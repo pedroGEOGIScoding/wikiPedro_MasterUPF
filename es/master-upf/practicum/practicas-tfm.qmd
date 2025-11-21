@@ -1,0 +1,191 @@
+---
+title: "Trabajo Final de Máster"
+subtitle: "Investigación-acción e innovación en la práctica docente"
+filename: practicas-tfm
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Información completa sobre el Trabajo Final de Máster del Máster de Formación del Profesorado
+categories: [tfm, investigacion, innovacion, practicum]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentación
+
+* En el Máster de Formación del Profesorado de Educación Secundaria Obligatoria y Bachillerato, Formación Profesional y Enseñanza de Idiomas el estudiante debe desarrollar un Trabajo Final de Máster (TFM) bajo la supervisión del tutor de la universidad. La carga de trabajo que supone este trabajo es de 6 créditos (ECTS), que corresponden orientativamente a 150 horas de trabajo del estudiante.
+
+* El Trabajo Final de Máster se entiende como un ejercicio de síntesis, integración y profundización en todos los conocimientos y competencias adquiridas durante el máster, y consiste en el desarrollo de un tema en profundidad y de forma exhaustiva. Este tema debe ser necesariamente del interés del estudiante y relacionado con la práctica docente de su especialidad. El eje de este trabajo debe ser fundamentalmente la exploración bibliográfica, el análisis de la situación en el aula durante el prácticum y la formulación, aplicación y análisis de la repercusión de propuestas educativas y didácticas innovadoras en el contexto del centro educativo de prácticas.
+
+* Durante el desarrollo del TFM, el estudiante deberá conectar la temática sobre la cual desarrolle el trabajo con los contenidos tratados en el módulo genérico y el de especialización, así como con todo lo que ha visto y aprendido en la estancia de prácticum.
+
+<br>
+
+## Información Técnica
+
+* **Código asignatura:** 32022
+
+* **Temporización:**
+  - Tiempo completo: primer y segundo semestre
+  - Tiempo parcial: segundo año, anual
+
+* **Número de créditos:** 6
+
+* **Dedicación:** 150 h de trabajo
+
+* **Profesorado:** Laura Ganzer (coordinadora) y tutores/as de la universidad
+
+<br>
+
+![Esquema de Trabajo Final de Máster](/images/tfm/tfm-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Módulos de la Asignatura
+
+* **Tutorías conjuntas TFM**
+
+* **Realización de una investigación-acción en un centro educativo**
+
+* **Elaboración de la memoria escrita**
+
+* **Sesión de defensa oral del póster explicativo del TFM**
+
+<br>
+
+## Objetivos
+
+* Ser capaz de aplicar los conocimientos adquiridos durante el máster alrededor de un tema que actúe como eje integrador relacionado con la práctica profesional y la innovación educativa.
+
+* Profundizar en los conocimientos de algún tema concreto en relación con la práctica profesional vivida en el centro de prácticas.
+
+<br>
+
+## Competencias
+
+* En términos generales los ámbitos competenciales que se trabajarán a lo largo del TFM son los indicados a continuación. Dependiendo de la temática concreta de la investigación-acción que se lleve a cabo se desarrollarán unas u otras competencias de los ámbitos indicados.
+
+1. Diseño, gestión y planificación de entornos de enseñanza-aprendizaje de las ciencias
+
+3. Metodología didáctica y gestión de la diversidad en el aula
+
+5. Investigación, innovación y reflexión sobre la identidad profesional y la mejora de la práctica docente
+
+6. Uso de entornos digitales para el desarrollo profesional y la interacción educativa
+
+<br>
+
+## Metodología
+
+* El trabajo final de máster (TFM) consiste en la realización de una investigación-acción para introducir una mejora en algún aspecto relacionado con las clases de ciencias en secundaria, siempre en el marco de las unidades y/o secuencias didácticas diseñadas en DEIA.
+
+* El TFM se llevará a cabo con la pareja de prácticas o bien individualmente.
+
+* Durante la primera estancia de prácticas en centro educativo, el estudiante deberá fijarse en algún aspecto mejorable de las clases de ciencias y elaborar una o más preguntas de investigación.
+
+* A lo largo de las sesiones de DEIA y del trabajo autónomo, se hará una búsqueda bibliográfica sobre el tema y se diseñarán las acciones educativas que supuestamente comportarán una mejora de las clases de ciencias. Durante la segunda estancia de prácticas, en el marco de las unidades y/o secuencias didácticas que el estudiante implemente con los grupos de estudiantes que el mentor/a le ha asignado, se llevarán a cabo las acciones educativas vinculadas al TFM, y la observación de los resultados y recogida de datos.
+
+* Posteriormente, el análisis de estos datos deberá permitir valorar si la intervención didáctica realizada supone o no una mejora en las clases de ciencias, dando respuesta a la pregunta de investigación inicialmente planteada y permitiendo la elaboración de las conclusiones del TFM.
+
+* A lo largo de todo el proceso de realización del TFM, se realizarán dos tutorías conjuntas del tutor/a y su grupo de estudiantes para valorar su desarrollo y hacer acciones de coevaluación. También se pueden realizar tutorías individualizadas con el tutor/a.
+
+* La presentación del TFM se hará mediante una memoria escrita que se entregará telemáticamente y su defensa se llevará a cabo en una sesión de pósters a final de curso.
+
+<br>
+
+## Evaluación
+
+* Para poder presentar el TFM, se recomienda haber superado positivamente la evaluación de las materias de los módulos de fundamentos de educación secundaria y de especialización docente, y es obligatorio obtener una calificación positiva en la evaluación del prácticum. En caso de haber suspendido el prácticum, la defensa del TFM se hará el curso académico siguiente, con el mismo calendario que el resto de estudiantes y siempre dependiendo de la superación del prácticum.
+
+* El estudiante hará una primera entrega de TFM, que será revisado por el tutor/a y un referee (revisor/a externo). Estos revisarán las diferentes partes del TFM y, si procede harán propuestas de mejora, y recomendarán o no su aceptación. A partir de este momento, los estudiantes tienen una semana para hacer las enmiendas necesarias y enviar la versión definitiva del TFM.
+
+* En el mes de junio tendrán lugar las presentaciones de los TFMs de todas las especialidades. Se presentarán de manera presencial en sesiones públicas de pósters. El TFM será evaluado por un Tribunal formado por tres profesores del Máster, a través de la memoria escrita y su defensa oral pública. Este tribunal deberá incluir el mentor del alumno y el tutor de la Universidad. Así, el tribunal de evaluación del TFM estará formado por: el mentor/tutor del centro, el tutor de la universidad y un profesor del máster de la universidad.
+
+### Ponderación de la evaluación
+
+* **Memoria escrita TFM (70%)**
+
+* **Exposición oral del póster del TFM (30%)**
+
+<br>
+
+## Estructura del TFM
+
+### Memoria escrita (70%)
+
+La memoria escrita debe incluir:
+
+* Exploración bibliográfica sobre el tema
+
+* Análisis de la situación en el aula durante el prácticum
+
+* Formulación de preguntas de investigación
+
+* Diseño de acciones educativas innovadoras
+
+* Implementación y recogida de datos
+
+* Análisis de resultados
+
+* Conclusiones y propuestas de mejora
+
+### Defensa oral del póster (30%)
+
+La defensa oral se realizará en:
+
+* Sesión pública de pósters
+
+* Presentación ante tribunal evaluador
+
+* Respuesta a preguntas del tribunal
+
+<br>
+
+## Proceso de Realización del TFM
+
+### Primera estancia de prácticas (Enero - Febrero)
+
+* Observación y análisis del funcionamiento del aula
+
+* Identificación de aspectos mejorables en las clases de ciencias
+
+* Elaboración de preguntas de investigación
+
+### Durante las sesiones de DEIA
+
+* Búsqueda bibliográfica sobre el tema elegido
+
+* Diseño de acciones educativas innovadoras
+
+* Planificación de la investigación-acción
+
+### Segunda estancia de prácticas (Marzo - Mayo)
+
+* Implementación de las acciones educativas vinculadas al TFM
+
+* Observación de resultados
+
+* Recogida de datos
+
+* Análisis de la intervención didáctica
+
+### Elaboración de la memoria
+
+* Redacción de la memoria escrita
+
+* Primera entrega y revisión por tutor/a y referee
+
+* Incorporación de mejoras sugeridas
+
+* Entrega de versión definitiva
+
+### Defensa del TFM (Junio)
+
+* Preparación del póster explicativo
+
+* Presentación pública ante tribunal
+
+* Defensa oral y respuesta a preguntas

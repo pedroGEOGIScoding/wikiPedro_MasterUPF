@@ -1,0 +1,19 @@
+# Notes
+
+## Commands Explanation
+
+### Back
+To move back one folder in the terminal, use the command `cd ..` . This works in most operating systems including Linux, macOS, and Windows PowerShell.
+
+- `cd` stands for "change directory" .
+- `..` refers to the parent folder of your current location in the directory tree .
+
+For example, if you are in `/home/user/Documents` and you run `cd ..`, you will move to `/home/user` .
+
+### Root
+To move back to the root directory, use the command `cd /` .
+
+### Forward
+To move forward one folder in the terminal, use the command `cd <folder_name>` . This works in most operating systems including Linux, macOS, and Windows PowerShell.
+
+For example, if you are in `/home/user/Documents` and you run `cd <folder_name>` , you will move to `/home/user/Documents/<folder_name>` .

@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: ../docs
+
+  preview:
+    port: 3000                  # Port number for local preview server (default random 3000-8000)
+    browser: true               # Whether to open browser on preview (true/false)
+    host: localhost
+
+metadata-files:
+  - _website.yml
+  - _format.yml
+  - _brand.yml
+
+execute:
+  cache: true
+  freeze: auto
+
+highlight-style: breezedark
+
+editor:
+    render-on-save: true
+
+lang: "es"

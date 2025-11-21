@@ -1,0 +1,290 @@
+---
+title: "Prácticum"
+subtitle: "Prácticas en Centro Educativo"
+filename: practicas-inicio
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Adquisición de competencias relacionadas con la práctica profesional docente
+categories: [practicum, observacion, evaluacion, competencias]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentación
+
+* La finalidad principal del prácticum del Máster de Formación del Profesorado de Educación Secundaria es la adquisición de las competencias relacionadas con la práctica profesional, además de ser un espacio para poner en práctica y sintetizar en la acción aquellos conocimientos adquiridos en las otras asignaturas. El prácticum debe suponer una experiencia de construcción profesional.
+
+* El prácticum está dedicado a la observación y participación en un centro educativo de secundaria y a la reflexión sobre su realidad y sobre la acción educativa del estudiante. Se trata del primer contacto con la profesión, y es el momento de reconocer modelos de actuación, contrastar las reflexiones teóricas con la práctica real, así como de plantearse interrogantes sobre las propias ideas y aptitudes.
+
+* Hay que ser conscientes de estar asistiendo a la realidad de la actividad de enseñar y aprender, no a una muestra de lo que sería ideal, de la perfección; que los mentores y el resto de los profesionales que encontraréis en los centros son "personas" con sus problemas personales, familiares, laborales.
+
+* Es importante aprovechar la oportunidad que se nos ofrece de poder conocer y reflexionar sobre aspectos que habría que mejorar en los centros educativos. Vosotros seréis los futuros profesionales, quienes os encontraréis pronto ejerciendo en un centro como el que ahora os acoge como observadores; sois, por tanto, los primeros interesados en aprovechar todo el conocimiento que adquiriréis en este curso para escribir valoraciones, reflexiones que nos ayuden a hacer y aplicar propuestas de mejora al sistema educativo.
+
+<br>
+
+## Información Técnica
+
+* **Código asignatura:** 32018
+
+* **Temporización:**
+  - Tiempo completo: primer y segundo semestres
+  - Tiempo parcial: segundo año, anual
+
+* **Número de créditos:** 14
+
+* **Dedicación:** 250 h de trabajo en el centro de prácticas, 20 h seminarios del prácticum y 185 h de trabajo autónomo (455 h totales)
+
+* **Profesorado responsable:** Marcel Costa (coordinación), mentores/as de los centros de prácticas y tutores/as de la universidad
+
+<br>
+
+![Esquema de Prácticas en Centro Educativo](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Módulos de la Asignatura
+
+* **Observación en el aula**
+
+* **Integración como miembro de un Claustro**
+
+* **Implementación de secuencias didácticas**
+
+* **Aplicación de innovaciones didácticas**
+
+* **Reflexión sobre la propia práctica y los resultados obtenidos**
+
+* **Seminarios del Prácticum**
+
+<br>
+
+## Objetivos
+
+* Conocer el funcionamiento y organización de los centros educativos de secundaria.
+
+* Seguir y analizar el día a día de un profesor/a de ciencias de secundaria.
+
+* Participar activamente en las diversas actividades que se llevan a cabo en un centro educativo.
+
+* Integrarse en el Claustro, equipos docentes y departamento de ciencias de un centro educativo.
+
+* Ayudar al mentor/a en tareas puntuales de gestión y corrección de actividades docentes.
+
+* Consensuar con el mentor/a los temas de la secuencia y unidad didácticas a diseñar en la asignatura de DEIA.
+
+* Implementar la secuencia y unidad didáctica diseñadas, observar sus resultados y proponer mejoras.
+
+* Contrastar con el mentor/a los resultados de las actividades docentes realizadas y aplicar las sugerencias de mejora recibidas.
+
+* Llevar a cabo las intervenciones educativas vinculadas al TFM.
+
+* Recopilar los datos y observaciones derivadas de la investigación-acción realizada en el contexto del TFM.
+
+<br>
+
+## Competencias
+
+### 1. Conocimiento y participación en el centro educativo
+
+* Conocimiento de la realidad social y cultural del centro
+
+* Búsqueda de información sobre el proyecto educativo y el funcionamiento del centro
+
+* Participación activa en la vida del centro como miembro del Claustro
+
+* Comunicación y relación adecuada con todos los miembros de la comunidad educativa
+
+### 2. Actuación dentro del aula
+
+* Enmarcar las actuaciones didácticas en base al contexto de cada grupo y al funcionamiento del centro educativo
+
+* Interacción constructiva con el alumnado para promover la participación de todos
+
+* Actitud temperada y de respeto en el aula para facilitar la resolución positiva de los conflictos
+
+* Tener un buen conocimiento del alumnado y mantener un clima de aula adecuado
+
+* Capacidad comunicativa a nivel verbal y no verbal con el alumnado
+
+* Uso de recursos didácticos adecuados para cada actividad docente
+
+### 3. Diseño e implementación de situaciones de aprendizaje
+
+* Conocimiento de los contenidos y estructuración adecuada de las actividades de aprendizaje (contextualizadas y competenciales)
+
+* Planificar procesos de evaluación formativa y formadora.
+
+* Realizar de manera creativa, adecuada y coherente los documentos, materiales y recursos de trabajo para el alumnado.
+
+* Utilizar metodologías de aula adecuadas al contexto del alumnado y a la intencionalidad didáctica.
+
+* Competencia digital docente suficiente en relación a la intervención llevada a cabo en el aula
+
+* Gestionar el tiempo de manera adecuada tanto en el diseño como en la implementación de las actividades didácticas.
+
+* Contemplar valores democráticos y universales consensuados a nivel social (sostenibilidad, compromiso y justicia social, equidad, etc.)
+
+* Reflexionar sobre el desarrollo de las sesiones en el aula y el retorno recibido de su mentor/a, particularmente en términos del aprendizaje del alumnado, para construir conocimiento práctico que permita mejoras en el futuro.
+
+<br>
+
+## Plan de Trabajo
+
+El prácticum se distribuirá en dos períodos y se estructurará en tres fases:
+
+* **Fase de observación** (25 horas de dedicación)
+
+* **Fase de intervención acompañada** (75 horas de dedicación)
+
+* **Fase de intervención autónoma** (150 horas de dedicación)
+
+La primera fase y parte de la segunda se llevarán a cabo durante el primer período del prácticum. La parte final de la segunda fase y la totalidad de la tercera se realizarán durante el segundo período del prácticum.
+
+### Reuniones con el mentor
+
+* Al inicio de cada una de las fases, los estudiantes se reunirán con su mentor/a y con el coordinador/a del prácticum del Centro para planificar las tareas que llevarán a cabo durante esta etapa. En la planificación deberán constar todas las tareas que se demandan en el plan de trabajo del prácticum.
+
+### Fase de observación
+
+* Este período tiene la finalidad de hacer el análisis global al centro, su modelo de práctica educativa y de gestión y su relación con el entorno, así como establecer un primer contacto con la vida del centro y el aula.
+
+**Tareas concretas que hay que realizar durante esta fase:**
+
+* Asistir a las clases del mentor/a.
+
+* Asistir a las reuniones de coordinación del Departamento.
+
+* Asistir a las reuniones de coordinación de profesores de áreas diferentes del mismo nivel.
+
+* Consultar al mentor/a sobre qué temas se pueden elaborar las situaciones de aprendizaje.
+
+### Posterior a la fase de observación
+
+* Después de la fase de observación, se deberá comenzar a diseñar una secuencia didáctica de, como mínimo, 4-5 sesiones para el bachillerato (2-3 si trabajan individualmente) y una unidad didáctica completa para la ESO, de un mínimo de 8 sesiones (6 sesiones si trabajan individualmente), que se impartirá durante la fase de intervención autónoma.
+
+### Fase de intervención acompañada
+
+* En este período el alumno comienza por llevar a cabo intervenciones puntuales en el aula con el apoyo y la supervisión del mentor/a y el seguimiento y reflexión del tutor/a del máster. Además de las tareas concretas que se le asignen, el alumno deberá participar activamente en las clases del mentor y, si es posible, en otras del centro. Durante los primeros días de esta segunda fase (aún en el primer trimestre del curso), el estudiante acordará con su mentor el tema concreto de las unidades de programación, que diseñará y aplicará más adelante (fase de intervención autónoma). También durante esta fase deberá conocer y familiarizarse con los grupos de estudiantes en los cuales realizará sus clases durante la fase de intervención autónoma.
+
+**Tareas concretas que se deben hacer durante esta fase:**
+
+* Proponer e impartir un mínimo de dos actividades en las clases del mentor/a y hacer una valoración de su desarrollo. El alumno deberá seleccionar un mínimo de dos actividades de todos aquellos recursos que se le han proporcionado en el módulo de especialización docente y adaptarlas a las clases del mentor/a. Si es posible, es recomendable que las dos actividades sean diversas, como prácticas experimentales, actividades TAC, actividades de debates, juegos de rol, entre otras.
+
+* Participar en alguna salida fuera del aula si coincide con el calendario del período de prácticas.
+
+* Corregir algunos de los ejercicios que han hecho los alumnos: Consensuar con el mentor los criterios de corrección. Hacer un análisis de los resultados obtenidos. Realizar un retorno formativo al alumnado.
+
+* Asistir a las reuniones de evaluación (si es posible)
+
+* Asistir a las reuniones de coordinación del Departamento
+
+* Asistir a las reuniones de coordinación de profesores de áreas diferentes del mismo nivel.
+
+* Participar en algunas sesiones de tutoría con todo el grupo clase.
+
+* Asistir a alguna reunión de coordinación de tutores
+
+* Asistir a algunas reuniones con familias. (si es posible)
+
+* Asistir a algunas reuniones de tutoría individualizada con alumnos.
+
+* Consensuar con el mentor/a, antes de finalizar el primer período de estancia en el centro, los contenidos a impartir en la tercera fase del prácticum, es decir, los temas concretos de la secuencia didáctica de bachillerato y de la unidad didáctica de ESO.
+
+### Fase de intervención autónoma
+
+* El objetivo principal de esta fase es llevar al aula las secuencias didácticas que se han diseñado de acuerdo con su mentor/a y el tutor/a de la universidad, con todo lo que comporta: el seguimiento, la evaluación y la actuación como profesor responsable del grupo clase, tomando las decisiones que corresponda para gestionar el aula.
+
+* Además de la implementación de estas secuencias didácticas, a lo largo de esta fase, el alumno continuará participando y colaborando en la misma tipología de actividades que desarrolló a lo largo de la fase de intervención acompañada (asistencia a reuniones, asistir a actividades fuera del centro, ayudar al mentor en tareas de corrección, etc.). Asimismo llevará a cabo aquellas acciones que le permitan obtener datos del ciclo de investigación-acción vinculado a la elaboración del trabajo final de máster (TFM).
+
+<br>
+
+## El Portafolio
+
+### Características
+
+* El portafolio es una recopilación de información y documentación representativa de un proceso de aprendizaje. Se trata de un instrumento de formación que incluye el análisis y la reflexión sobre las actuaciones que se han llevado a cabo y el diseño de planes de mejora, elementos básicos que capacitan para el autoaprendizaje y la formación continuada en el futuro profesional.
+
+* A la vez, también es un instrumento de acreditación, ya que permite a la persona que está aprendiendo mostrar qué ha aprendido y cómo lo ha aprendido de una manera muy personal y completa, documentándolo con material representativo.
+
+* Durante el prácticum el estudiante deberá elaborar un portafolio que, como objetivo principal, debe permitir mostrar el desarrollo en cuanto a las competencias básicas del profesional de la enseñanza, que pondrá en práctica durante su estancia en el centro docente. El portafolio es un buen instrumento para facilitar y evidenciar el desarrollo de estas competencias, tanto en el período de formación inicial en el que os encontráis, como en vuestra futura práctica y promoción profesional.
+
+* El formato de presentación del portafolio será electrónico y se hará con un google sites.
+
+* En este enlace se puede copiar la estructura pre-establecida a partir de una plantilla. En el aula virtual se colgará un documento con todos los detalles del procedimiento de inicio del portafolio y funcionalidades del mismo.
+
+### Elaboración
+
+* El portafolio se hará durante los dos períodos de estancia en el centro de prácticas, con entregas en diferentes momentos, que corresponderán a las tareas que se llevarán a cabo en cada fase del prácticum según el plan de trabajo concreto en cada caso. Hay que haber completado la totalidad del portafolio al final de la fase de intervención autónoma.
+
+### Estructura
+
+El portafolio recogerá diferentes tareas que se realizan con el apoyo de diferentes asignaturas:
+
+| Tareas | Asignatura donde se trabaja |
+|--------|----------------------------|
+| 1. Mi centro de Prácticum | Prácticum (seminarios) |
+| 2. El relato del Prácticum | Prácticum (seminarios) |
+| 3. El diario de indagación del Prácticum | DEIA |
+| 4. Las dos situaciones de aprendizaje | DEIA |
+| 5. Una vídeo-grabación de la intervención del alumno en el aula, auto-evaluada y co-evaluada por un compañero | Prácticum (seminarios) |
+| 6. Una valoración personal de cómo se han desarrollado las competencias docentes básicas durante el prácticum | Prácticum (seminarios) |
+
+### 1. Mi centro de prácticas
+
+* Durante la fase de observación, se deberá incluir en el portafolio una breve descripción del centro donde se hace el Prácticum. Se pondrá el énfasis en la visión personal del alumno del máster, respondiendo a las siguientes preguntas: ¿Qué imagen te has llevado del centro de prácticas durante la fase de observación? ¿En qué se parece al centro donde estudiaste y en qué se diferencia?
+
+### 2. El relato del Prácticum
+
+* Durante la fase de observación del Prácticum se hará un relato breve sobre algún acontecimiento relevante que se haya vivido en el centro de prácticas, con el objetivo de familiarizarse con el uso de registros narrativos para la práctica reflexiva. Este se analizará en uno de los seminarios del Prácticum y se incorporará al portafolio, después de haberlo trabajado en clase.
+
+### 3. Diario de indagación
+
+* El diario de indagación se llevará a cabo durante todo el período del prácticum y tiene el objetivo de desarrollar la capacidad reflexiva del futuro profesorado como herramienta para entender mejor los procesos de enseñanza y aprendizaje, y saber utilizar estos conocimientos para mejorar sus prácticas docentes e innovar. Se hará en formato electrónico, a través de una plantilla disponible en el e-portafolio. Las diferentes fases del diario se irán trabajando en las sesiones de DEIA.
+
+### 4. Las dos situaciones de aprendizaje
+
+* Durante la fase de intervención autónoma se deberán adjuntar al portafolio las dos situaciones de aprendizaje diseñadas e implementadas en el aula durante esta fase de prácticas.
+
+### 5. Vídeo-grabación de la intervención en el aula
+
+* Durante la fase de intervención del prácticum, será necesario grabar algunas sesiones de clase, aquellas que parezcan más representativas. Al finalizar esta fase, se deberán seleccionar algunos fragmentos de las grabaciones, ya se trate de momentos buenos o problemáticos, que sean representativos de la comunicación y la interacción constructiva en el aula y del modelo didáctico y opciones metodológicas. No se trata solo de mostrar los momentos perfectos, sino aquellos que nos gustaría comentar. Conviene seleccionar entre 3 y 5 momentos de unos 3-4 minutos y hacer una edición de un máximo de 15 minutos.
+
+* Los vídeos se trabajarán en el último seminario del Prácticum y se deberán adjuntar al portafolio junto con una auto-evaluación y una co-evaluación.
+
+### 6. Valoración personal del desarrollo de las competencias docentes
+
+* Durante el primer seminario del prácticum se realizará una tabla para explicitar la valoración personal inicial sobre las competencias docentes. En el último seminario, a partir de las experiencias vividas en la segunda fase de prácticas, se hará un contraste entre esta valoración inicial y la visión final sobre el grado de desarrollo personal de las competencias docentes. Este contraste estará guiado por la rúbrica de evaluación del prácticum y tendrá una extensión máxima de dos hojas. En este escrito debe constar:
+
+**Qué se ha aprendido y cómo se ha aprendido.** Hace referencia a los aspectos concretos de cada competencia que se han aprendido durante este período y a la actividad/es que han facilitado este aprendizaje.
+
+**Los puntos fuertes** o aspectos que han sido más alcanzados de cada competencia.
+
+**Los puntos débiles** o aspectos a mejorar en el futuro de cada competencia.
+
+**Los intentos de mejora practicados.** Hace referencia a las mejoras practicadas durante los meses del prácticum.
+
+**Evidencias** para documentar las afirmaciones hechas en el informe de valoración de las competencias. Es bueno relacionar sobre todo los puntos fuertes y las mejoras referidas con material representativo que lo constate. Este material puede ser tanto material que ya se ha adjuntado previamente en el portafolio (recursos utilizados, situaciones de aprendizaje, videograbación) o cualquier otra evidencia que considere oportuna.
+
+<br>
+
+## Evaluación, Seguimiento y Feedback
+
+* La evaluación del prácticum se llevará a cabo desde los centros donde los estudiantes realicen los dos períodos de prácticas y por parte de los tutores/as de la universidad. Durante las dos fases de prácticum mentor/a y alumnos firmarán semanalmente una tabla donde constarán las tareas realizadas y las horas de asistencia al centro.
+
+### e-Portafolio (50%)
+
+* Será evaluado por parte del tutor/a de la UPF y se tendrá en cuenta globalmente la regularidad de las aportaciones realizadas, así como la calidad de las reflexiones en los diferentes apartados (ver detalles en el apartado específico del e-Portafolio). En caso de que en algún momento el portafolio no contenga todos los materiales requeridos para evidenciar el logro de las competencias docentes, el tutor/a del prácticum lo notificará al estudiante para que lo corrija.
+
+* La presentación del portafolio será un requisito para poder superar el prácticum y plantear el Trabajo Final de Máster (TFM).
+
+* Cada estudiante tendrá un tutor/a de la universidad, que se encargará de hacer el seguimiento del prácticum y le dará apoyo en la elaboración del portafolio. Durante todo el período del prácticum habrá un seguimiento continuo del tutor a través del e-portafolio. Además, habrá una serie de sesiones programadas a lo largo del curso, llamadas Seminarios del prácticum donde se discutirán todos los aspectos relacionados con el Prácticum y las tareas que se deben incorporar al e-portafolio.
+
+### Prácticas en centro educativo (50%)
+
+* Serán evaluadas por el mentor/a del prácticum y se basará en el desarrollo de las competencias docentes, descritas en la rúbrica de evaluación del prácticum.
+
+* El tutor/a de la universidad hará una visita al estudiante para observar cómo realiza una o más sesiones de clase durante la segunda estancia de prácticas. Esta visita tiene como objetivo hacer un feedback al estudiante pero no tiene ninguna ponderación en la nota global del prácticum.

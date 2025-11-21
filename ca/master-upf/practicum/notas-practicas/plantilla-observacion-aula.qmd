@@ -1,0 +1,790 @@
+---
+title: "Plantilla d'observació a l'aula"
+subtitle: "Eina de seguiment i avaluació de l'alumnat"
+filename: plantilla-observacion-aula
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Plantilla completa per a l'observació sistemàtica dels alumnes a l'aula
+categories: [pràctica, observació, aula]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Dades d'observador i classe
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Nombre del observador:</strong>
+    <input type="text" name="nombre_observador" placeholder="Nombre completo" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Fecha de observación:</strong>
+    <input type="date" name="fecha_observacion" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Curso:</strong>
+    <input type="text" name="curso" placeholder="curso del aula" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Asignatura:</strong>
+    <input type="text" name="asignatura" placeholder="asignatura del aula" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Numero de Alumnos:</strong>
+    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Numero de Alumnos" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Hora:</strong>
+    <input type="text" name="hora" placeholder="Hora de observación" style="width: 200px">
+  </li>
+</ul>
+
+## Clima i comportament general a l'aula
+### Clima emocional de l'aula
+<ul>
+  <li>
+    Entorn de respecte i confiança entre els alumnes:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+  <li>
+    Nivell de tensió o conflicte observat:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+  <li>
+    Actitud general davant l'activitat docent:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+</ul>
+
+### Disciplina i normes
+<ul>
+  <li>
+    Compliment de les normes de convivència:
+    <input type="checkbox" name="compliance_standards" value="1">1
+    <input type="checkbox" name="compliance_standards" value="2">2
+    <input type="checkbox" name="compliance_standards" value="3">3
+    <input type="checkbox" name="compliance_standards" value="4">4
+    <input type="checkbox" name="compliance_standards" value="5">5
+    <input type="checkbox" name="compliance_standards" value="6">6
+    <input type="checkbox" name="compliance_standards" value="7">7
+    <input type="checkbox" name="compliance_standards" value="8">8
+    <input type="checkbox" name="compliance_standards" value="9">9
+    <input type="checkbox" name="compliance_standards" value="10">10
+  </li>
+  <li>
+    Interrupcions i interrupcions durant la sessió:
+    <input type="checkbox" name="interrupts" value="1">1
+    <input type="checkbox" name="interrupts" value="2">2
+    <input type="checkbox" name="interruptions" value="3">3
+    <input type="checkbox" name="interrupts" value="4">4
+    <input type="checkbox" name="interruptions" value="5">5
+    <input type="checkbox" name="interrupts" value="6">6
+    <input type="checkbox" name="interruptions" value="7">7
+    <input type="checkbox" name="interruptions" value="8">8
+    <input type="checkbox" name="interruptions" value="9">9
+    <input type="checkbox" name="interruptions" value="10">10
+  </li>
+  <li>
+    Necessitat de trucades d'atenció del professor:
+    <input type="checkbox" name="attention_calls" value="1">1
+    <input type="checkbox" name="attention_calls" value="2">2
+    <input type="checkbox" name="attention_calls" value="3">3
+    <input type="checkbox" name="attention_calls" value="4">4
+    <input type="checkbox" name="attention_calls" value="5">5
+    <input type="checkbox" name="attention_calls" value="6">6
+    <input type="checkbox" name="attention_calls" value="7">7
+    <input type="checkbox" name="attention_calls" value="8">8
+    <input type="checkbox" name="attention_calls" value="9">9
+    <input type="checkbox" name="attention_calls" value="10">10
+  </li>
+  <li>
+    Puntualitat a l'inici i al final de les activitats:
+    <input type="checkbox" name="puntualitat" value="1">1
+    <input type="checkbox" name="puntualitat" value="2">2
+    <input type="checkbox" name="puntualitat" value="3">3
+    <input type="checkbox" name="puntualitat" value="4">4
+    <input type="checkbox" name="puntualitat" value="5">5
+    <input type="checkbox" name="puntualitat" value="6">6
+    <input type="checkbox" name="puntualitat" value="7">7
+    <input type="checkbox" name="puntualitat" value="8">8
+    <input type="checkbox" name="puntualitat" value="9">9
+    <input type="checkbox" name="puntualitat" value="10">10
+  </li>
+</ul>
+
+### Interaccions socials
+<ul>
+  <li>
+    Qualitat de les relacions entre alumnes:
+    <input type="checkbox" name="relationships" value="1">1
+    <input type="checkbox" name="relationships" value="2">2
+    <input type="checkbox" name="relationships" value="3">3
+    <input type="checkbox" name="relationships" value="4">4
+    <input type="checkbox" name="relationships" value="5">5
+    <input type="checkbox" name="relationships" value="6">6
+    <input type="checkbox" name="relationships" value="7">7
+    <input type="checkbox" name="relationships" value="8">8
+    <input type="checkbox" name="relationships" value="9">9
+    <input type="checkbox" name="relationships" value="10">10
+  </li>
+  <li>
+    Col·laboració espontània entre companys:
+    <input type="checkbox" name="collaboration" value="1">1
+    <input type="checkbox" name="collaboration" value="2">2
+    <input type="checkbox" name="collaboration" value="3">3
+    <input type="checkbox" name="collaboration" value="4">4
+    <input type="checkbox" name="collaboration" value="5">5
+    <input type="checkbox" name="collaboration" value="6">6
+    <input type="checkbox" name="collaboration" value="7">7
+    <input type="checkbox" name="collaboration" value="8">8
+    <input type="checkbox" name="collaboration" value="9">9
+    <input type="checkbox" name="collaboration" value="10">10
+  </li>
+  <li>
+    Inclusió de tot l'alumnat en la dinàmica:
+    <input type="checkbox" name="inclusion" value="1">1
+    <input type="checkbox" name="inclusion" value="2">2
+    <input type="checkbox" name="inclusion" value="3">3
+    <input type="checkbox" name="inclusion" value="4">4
+    <input type="checkbox" name="inclusion" value="5">5
+    <input type="checkbox" name="inclusion" value="6">6
+    <input type="checkbox" name="inclusion" value="7">7
+    <input type="checkbox" name="inclusion" value="8">8
+    <input type="checkbox" name="inclusion" value="9">9
+    <input type="checkbox" name="inclusion" value="10">10
+  </li>
+  <li>
+    Actituds d'ajuda mútua observades:
+    <input type="checkbox" name="mutual_help" value="1">1
+    <input type="checkbox" name="mutual_help" value="2">2
+    <input type="checkbox" name="mutual_help" value="3">3
+    <input type="checkbox" name="mutual_help" value="4">4
+    <input type="checkbox" name="mutual_help" value="5">5
+    <input type="checkbox" name="mutual_help" value="6">6
+    <input type="checkbox" name="mutual_help" value="7">7
+    <input type="checkbox" name="mutual_help" value="8">8
+    <input type="checkbox" name="mutual_help" value="9">9
+    <input type="checkbox" name="mutual_help" value="10">10
+  </li>
+</ul>
+
+## Rendiment acadèmic i compromís
+### Nivell d'atenció i concentració
+<ul>
+  <li>
+    Percentatge estimat d'alumnes atents:
+    <input type="checkbox" name="attentive_students" value="1">1
+    <input type="checkbox" name="attentive_students" value="2">2
+    <input type="checkbox" name="attentive_students" value="3">3
+    <input type="checkbox" name="attentive_students" value="4">4
+    <input type="checkbox" name="attentive_students" value="5">5
+    <input type="checkbox" name="attentive_students" value="6">6
+    <input type="checkbox" name="attentive_students" value="7">7
+    <input type="checkbox" name="attentive_students" value="8">8
+    <input type="checkbox" name="attentive_students" value="9">9
+    <input type="checkbox" name="attentive_students" value="10">10
+  </li>
+  <li>
+    Dispersió o distraccions freqüents:
+    <input type="checkbox" name="dispersion" value="1">1
+    <input type="checkbox" name="dispersion" value="2">2
+    <input type="checkbox" name="dispersion" value="3">3
+    <input type="checkbox" name="dispersion" value="4">4
+    <input type="checkbox" name="dispersion" value="5">5
+    <input type="checkbox" name="dispersion" value="6">6
+    <input type="checkbox" name="dispersion" value="7">7
+    <input type="checkbox" name="dispersion" value="8">8
+    <input type="checkbox" name="dispersion" value="9">9
+    <input type="checkbox" name="dispersion" value="10">10
+  </li>
+  <li>
+    Capacitat de mantenir l'atenció durant les explicacions:
+    <input type="checkbox" name="focus" value="1">1
+    <input type="checkbox" name="focus" value="2">2
+    <input type="checkbox" name="focus" value="3">3
+    <input type="checkbox" name="focus" value="4">4
+    <input type="checkbox" name="focus" value="5">5
+    <input type="checkbox" name="focus" value="6">6
+    <input type="checkbox" name="focus" value="7">7
+    <input type="checkbox" name="focus" value="8">8
+    <input type="checkbox" name="focus" value="9">9
+    <input type="checkbox" name="focus" value="10">10
+  </li>
+</ul>
+
+### Participació activa
+<ul>
+  <li>
+    Freqüència de les intervencions voluntàries:
+    <input type="checkbox" name="intervencions" value="1">1
+    <input type="checkbox" name="intervencions" value="2">2
+    <input type="checkbox" name="intervencions" value="3">3
+    <input type="checkbox" name="intervencions" value="4">4
+    <input type="checkbox" name="intervencions" value="5">5
+    <input type="checkbox" name="intervencions" value="6">6
+    <input type="checkbox" name="intervencions" value="7">7
+    <input type="checkbox" name="intervencions" value="8">8
+    <input type="checkbox" name="intervencions" value="9">9
+    <input type="checkbox" name="intervencions" value="10">10
+  </li>
+  <li>
+    Qualitat de les aportacions realitzades:
+    <input type="checkbox" name="contributions" value="1">1
+    <input type="checkbox" name="contributions" value="2">2
+    <input type="checkbox" name="contributions" value="3">3
+    <input type="checkbox" name="contributions" value="4">4
+    <input type="checkbox" name="contributions" value="5">5
+    <input type="checkbox" name="contributions" value="6">6
+    <input type="checkbox" name="contributions" value="7">7
+    <input type="checkbox" name="contributions" value="8">8
+    <input type="checkbox" name="contributions" value="9">9
+    <input type="checkbox" name="contributions" value="10">10
+  </li>
+  <li>
+    Diversitat dels alumnes participants:
+    <input type="checkbox" name="diversity_participants" value="1">1
+    <input type="checkbox" name="diversity_participants" value="2">2
+    <input type="checkbox" name="diversity_participants" value="3">3
+    <input type="checkbox" name="diversity_participants" value="4">4
+    <input type="checkbox" name="diversity_participants" value="5">5
+    <input type="checkbox" name="diversity_participants" value="6">6
+    <input type="checkbox" name="diversity_participants" value="7">7
+    <input type="checkbox" name="diversity_participants" value="8">8
+    <input type="checkbox" name="diversity_participants" value="9">9
+    <input type="checkbox" name="diversity_participants" value="10">10
+  </li>
+  <li>
+    Resposta a les preguntes del professor:
+    <input type="checkbox" name="teacher_answer" value="1">1
+    <input type="checkbox" name="teacher_answer" value="2">2
+    <input type="checkbox" name="teacher_answer" value="3">3
+    <input type="checkbox" name="teacher_answer" value="4">4
+    <input type="checkbox" name="teacher_answer" value="5">5
+    <input type="checkbox" name="teacher_answer" value="6">6
+    <input type="checkbox" name="teacher_answer" value="7">7
+    <input type="checkbox" name="teacher_answer" value="8">8
+    <input type="checkbox" name="teacher_answer" value="9">9
+    <input type="checkbox" name="teacher_answer" value="10">10
+  </li>
+</ul>
+
+### Motivació i interès
+
+<ul>
+  <li>
+    Actitud davant els continguts treballats:
+    <input type="checkbox" name="content_attitude" value="1">1
+    <input type="checkbox" name="attitude_contents" value="2">2
+    <input type="checkbox" name="attitude_contents" value="3">3
+    <input type="checkbox" name="attitude_contents" value="4">4
+    <input type="checkbox" name="attitude_contents" value="5">5
+    <input type="checkbox" name="attitude_contents" value="6">6
+    <input type="checkbox" name="attitude_contents" value="7">7
+    <input type="checkbox" name="attitude_contents" value="8">8
+    <input type="checkbox" name="attitude_contents" value="9">9
+    <input type="checkbox" name="content_attitude" value="10">10
+  </li>
+  <li>
+    Implicació amb les activitats proposades:
+    <input type="checkbox" name="engagement" value="1">1
+    <input type="checkbox" name="engagement" value="2">2
+    <input type="checkbox" name="engagement" value="3">3
+    <input type="checkbox" name="engagement" value="4">4
+    <input type="checkbox" name="engagement" value="5">5
+    <input type="checkbox" name="engagement" value="6">6
+    <input type="checkbox" name="engagement" value="7">7
+    <input type="checkbox" name="engagement" value="8">8
+    <input type="checkbox" name="engagement" value="9">9
+    <input type="checkbox" name="engagement" value="10">10
+  </li>
+  <li>
+    Expressions de curiositat o preguntes:
+    <input type="checkbox" name="curiosity" value="1">1
+    <input type="checkbox" name="curiosity" value="2">2
+    <input type="checkbox" name="curiosity" value="3">3
+    <input type="checkbox" name="curiosity" value="4">4
+    <input type="checkbox" name="curiosity" value="5">5
+    <input type="checkbox" name="curiosity" value="6">6
+    <input type="checkbox" name="curiosity" value="7">7
+    <input type="checkbox" name="curiosity" value="8">8
+    <input type="checkbox" name="curiosity" value="9">9
+    <input type="checkbox" name="curiosity" value="10">10
+  </li>
+  <li>
+    Resistència o apatia observada:
+    <input type="checkbox" name="apatia" value="1">1
+    <input type="checkbox" name="apatia" value="2">2
+    <input type="checkbox" name="apatia" value="3">3
+    <input type="checkbox" name="apatia" value="4">4
+    <input type="checkbox" name="apatia" value="5">5
+    <input type="checkbox" name="apatia" value="6">6
+    <input type="checkbox" name="apatia" value="7">7
+    <input type="checkbox" name="apatia" value="8">8
+    <input type="checkbox" name="apatia" value="9">9
+    <input type="checkbox" name="apatia" value="10">10
+  </li>
+</ul>
+
+### Treball i esforç
+<ul>
+  <li>
+    Ritme de treball durant les activitats individuals o grupals:
+    <input type="checkbox" name="work_pace" value="1">1
+    <input type="checkbox" name="work_pace" value="2">2
+    <input type="checkbox" name="work_pace" value="3">3
+    <input type="checkbox" name="work_pace" value="4">4
+    <input type="checkbox" name="work_pace" value="5">5
+    <input type="checkbox" name="work_pace" value="6">6
+    <input type="checkbox" name="work_pace" value="7">7
+    <input type="checkbox" name="work_pace" value="8">8
+    <input type="checkbox" name="work_pace" value="9">9
+    <input type="checkbox" name="work_pace" value="10">10
+  </li>
+  <li>
+    Compliment de les tasques assignades:
+    <input type="checkbox" name="compliance_tasks" value="1">1
+    <input type="checkbox" name="compliance_tasks" value="2">2
+    <input type="checkbox" name="compliance_tasks" value="3">3
+    <input type="checkbox" name="compliance_tasks" value="4">4
+    <input type="checkbox" name="compliance_tasks" value="5">5
+    <input type="checkbox" name="compliance_tasks" value="6">6
+    <input type="checkbox" name="compliance_tasks" value="7">7
+    <input type="checkbox" name="compliance_tasks" value="8">8
+    <input type="checkbox" name="compliance_tasks" value="9">9
+    <input type="checkbox" name="compliance_tasks" value="10">10
+  </li>
+  <li>
+    Ús productiu del temps de classe:
+    <input type="checkbox" name="usage_time" value="1">1
+    <input type="checkbox" name="usage_time" value="2">2
+    <input type="checkbox" name="usage_time" value="3">3
+    <input type="checkbox" name="usage_time" value="4">4
+    <input type="checkbox" name="usage_time" value="5">5
+    <input type="checkbox" name="usage_time" value="6">6
+    <input type="checkbox" name="usage_time" value="7">7
+    <input type="checkbox" name="usage_time" value="8">8
+    <input type="checkbox" name="usage_time" value="9">9
+    <input type="checkbox" name="usage_time" value="10">10
+  </li>
+  <li>
+    Perseverança davant les dificultats:
+    <input type="checkbox" name="perseverança" value="1">1
+    <input type="checkbox" name="perseverança" value="2">2
+    <input type="checkbox" name="perseverança" value="3">3
+    <input type="checkbox" name="perseverança" value="4">4
+    <input type="checkbox" name="perseverança" value="5">5
+    <input type="checkbox" name="perseverança" value="6">6
+    <input type="checkbox" name="perseverança" value="7">7
+    <input type="checkbox" name="perseverança" value="8">8
+    <input type="checkbox" name="perseverança" value="9">9
+    <input type="checkbox" name="perseverança" value="10">10
+  </li>
+</ul>
+
+## Gestió i organització de l'aula
+
+### gestió del temps
+<ul>
+  <li>
+    Ús efectiu del temps d'ensenyament:
+    <input type="checkbox" name="time_use" value="1">1
+    <input type="checkbox" name="time_use" value="2">2
+    <input type="checkbox" name="time_use" value="3">3
+    <input type="checkbox" name="time_use" value="4">4
+    <input type="checkbox" name="time_use" value="5">5
+    <input type="checkbox" name="time_use" value="6">6
+    <input type="checkbox" name="time_use" value="7">7
+    <input type="checkbox" name="time_use" value="8">8
+    <input type="checkbox" name="time_use" value="9">9
+    <input type="checkbox" name="time_use" value="10">10
+  </li>
+  <li>
+    Transicions suaus entre activitats:
+    <input type="checkbox" name="transitions" value="1">1
+    <input type="checkbox" name="transitions" value="2">2
+    <input type="checkbox" name="transitions" value="3">3
+    <input type="checkbox" name="transitions" value="4">4
+    <input type="checkbox" name="transitions" value="5">5
+    <input type="checkbox" name="transitions" value="6">6
+    <input type="checkbox" name="transitions" value="7">7
+    <input type="checkbox" name="transitions" value="8">8
+    <input type="checkbox" name="transitions" value="9">9
+    <input type="checkbox" name="transitions" value="10">10
+  </li>
+  <li>
+    Compliment de la planificació planificada:
+    <input type="checkbox" name="planning" value="1">1
+    <input type="checkbox" name="planning" value="2">2
+    <input type="checkbox" name="planning" value="3">3
+    <input type="checkbox" name="planning" value="4">4
+    <input type="checkbox" name="planning" value="5">5
+    <input type="checkbox" name="planning" value="6">6
+    <input type="checkbox" name="planning" value="7">7
+    <input type="checkbox" name="planning" value="8">8
+    <input type="checkbox" name="planning" value="9">9
+    <input type="checkbox" name="planning" value="10">10
+  </li>
+</ul>
+
+### Organització espacial
+<ul>
+  <li>
+    Adequació de la distribució del mobiliari:
+    <input type="checkbox" name="furniture_distribution" value="1">1
+    <input type="checkbox" name="furniture_distribution" value="2">2
+    <input type="checkbox" name="furniture_distribution" value="3">3
+    <input type="checkbox" name="furniture_distribution" value="4">4
+    <input type="checkbox" name="furniture_distribution" value="5">5
+    <input type="checkbox" name="furniture_distribution" value="6">6
+    <input type="checkbox" name="furniture_distribution" value="7">7
+    <input type="checkbox" name="furniture_distribution" value="8">8
+    <input type="checkbox" name="furniture_distribution" value="9">9
+    <input type="checkbox" name="furniture_distribution" value="10">10
+  </li>
+  <li>
+    Accessibilitat i mobilitat a l'espai:
+    <input type="checkbox" name="accessibility" value="1">1
+    <input type="checkbox" name="accessibility" value="2">2
+    <input type="checkbox" name="accessibility" value="3">3
+    <input type="checkbox" name="accessibility" value="4">4
+    <input type="checkbox" name="accessibility" value="5">5
+    <input type="checkbox" name="accessibility" value="6">6
+    <input type="checkbox" name="accessibility" value="7">7
+    <input type="checkbox" name="accessibility" value="8">8
+    <input type="checkbox" name="accessibility" value="9">9
+    <input type="checkbox" name="accessibility" value="10">10
+  </li>
+  <li>
+    Ús de diferents espais de l'aula:
+    <input type="checkbox" name="use_zones" value="1">1
+    <input type="checkbox" name="use_zones" value="2">2
+    <input type="checkbox" name="use_zones" value="3">3
+    <input type="checkbox" name="use_zones" value="4">4
+    <input type="checkbox" name="use_zones" value="5">5
+    <input type="checkbox" name="use_zones" value="6">6
+    <input type="checkbox" name="use_zones" value="7">7
+    <input type="checkbox" name="use_zones" value="8">8
+    <input type="checkbox" name="use_zones" value="9">9
+    <input type="checkbox" name="use_zones" value="10">10
+  </li>
+</ul>
+
+### Ús de recursos i materials
+<ul>
+  <li>
+    Disponibilitat i accés als materials necessaris:
+    <input type="checkbox" name="material_availability" value="1">1
+    <input type="checkbox" name="material_availability" value="2">2
+    <input type="checkbox" name="material_availability" value="3">3
+    <input type="checkbox" name="material_availability" value="4">4
+    <input type="checkbox" name="material_availability" value="5">5
+    <input type="checkbox" name="material_availability" value="6">6
+    <input type="checkbox" name="material_availability" value="7">7
+    <input type="checkbox" name="material_availability" value="8">8
+    <input type="checkbox" name="material_availability" value="9">9
+    <input type="checkbox" name="material_availability" value="10">10
+  </li>
+  <li>
+    Ús de tecnologia (si escau):
+    <input type="checkbox" name="use_technology" value="1">1
+    <input type="checkbox" name="use_technology" value="2">2
+    <input type="checkbox" name="use_technology" value="3">3
+    <input type="checkbox" name="use_technology" value="4">4
+    <input type="checkbox" name="use_technology" value="5">5
+    <input type="checkbox" name="use_technology" value="6">6
+    <input type="checkbox" name="use_technology" value="7">7
+    <input type="checkbox" name="use_technology" value="8">8
+    <input type="checkbox" name="use_technology" value="9">9
+    <input type="checkbox" name="use_technology" value="10">10
+  </li>
+  <li>
+    Ordre i cura del material:
+    <input type="checkbox" name="material_order" value="1">1
+    <input type="checkbox" name="material_order" value="2">2
+    <input type="checkbox" name="material_order" value="3">3
+    <input type="checkbox" name="material_order" value="4">4
+    <input type="checkbox" name="material_order" value="5">5
+    <input type="checkbox" name="material_order" value="6">6
+    <input type="checkbox" name="material_order" value="7">7
+    <input type="checkbox" name="material_order" value="8">8
+    <input type="checkbox" name="material_order" value="9">9
+    <input type="checkbox" name="material_order" value="10">10
+  </li>
+</ul>
+
+## Dinàmiques d'Ensenyament-Aprenentatge
+
+### Estratègies metodològiques observades
+<ul>
+  <li>
+    Diverses activitats realitzades:
+    <input type="checkbox" name="variety_activities" value="1">1
+    <input type="checkbox" name="variety_activities" value="2">2
+    <input type="checkbox" name="variety_activities" value="3">3
+    <input type="checkbox" name="variety_activities" value="4">4
+    <input type="checkbox" name="variety_activities" value="5">5
+    <input type="checkbox" name="variety_activities" value="6">6
+    <input type="checkbox" name="variety_activities" value="7">7
+    <input type="checkbox" name="variety_activities" value="8">8
+    <input type="checkbox" name="variety_activities" value="9">9
+    <input type="checkbox" name="variety_activities" value="10">10
+  </li>
+  <li>
+    Adaptació de la metodologia al grup:
+    <input type="checkbox" name="adequacy_methodology" value="1">1
+    <input type="checkbox" name="adequacion_metodologia" value="2">2
+    <input type="checkbox" name="adequacion_metodologia" value="3">3
+    <input type="checkbox" name="adequacion_metodologia" value="4">4
+    <input type="checkbox" name="adequacion_metodologia" value="5">5
+    <input type="checkbox" name="adequacion_metodologia" value="6">6
+    <input type="checkbox" name="adequacion_metodologia" value="7">7
+    <input type="checkbox" name="adequacion_metodologia" value="8">8
+    <input type="checkbox" name="adequacion_metodologia" value="9">9
+    <input type="checkbox" name="adequacy_methodology" value="10">10
+  </li>
+  <li>
+    Equilibri entre explicació, pràctica i reflexió:
+    <input type="checkbox" name="balance" value="1">1
+    <input type="checkbox" name="balance" value="2">2
+    <input type="checkbox" name="balance" value="3">3
+    <input type="checkbox" name="balance" value="4">4
+    <input type="checkbox" name="balance" value="5">5
+    <input type="checkbox" name="balance" value="6">6
+    <input type="checkbox" name="balance" value="7">7
+    <input type="checkbox" name="balance" value="8">8
+    <input type="checkbox" name="balance" value="9">9
+    <input type="checkbox" name="balance" value="10">10
+  </li>
+  <li>
+    Ús de dinàmiques cooperatives o individuals:
+    <input type="checkbox" name="dynamics" value="1">1
+    <input type="checkbox" name="dynamics" value="2">2
+    <input type="checkbox" name="dynamics" value="3">3
+    <input type="checkbox" name="dynamics" value="4">4
+    <input type="checkbox" name="dynamics" value="5">5
+    <input type="checkbox" name="dynamics" value="6">6
+    <input type="checkbox" name="dynamics" value="7">7
+    <input type="checkbox" name="dynamics" value="8">8
+    <input type="checkbox" name="dynamics" value="9">9
+    <input type="checkbox" name="dynamics" value="10">10
+  </li>
+</ul>
+
+### Comprensió del contingut
+<ul>
+  <li>
+    Evidència de comprensió durant la sessió:
+    <input type="checkbox" name="evidencias_comprehension" value="1">1
+    <input type="checkbox" name="evidencias_comprehension" value="2">2
+    <input type="checkbox" name="evidencias_comprehension" value="3">3
+    <input type="checkbox" name="evidencias_comprehension" value="4">4
+    <input type="checkbox" name="evidencias_comprehension" value="5">5
+    <input type="checkbox" name="evidencias_comprehension" value="6">6
+    <input type="checkbox" name="evidencias_comprehension" value="7">7
+    <input type="checkbox" name="evidencias_comprehension" value="8">8
+    <input type="checkbox" name="evidencias_comprehension" value="9">9
+    <input type="checkbox" name="evidencias_comprehension" value="10">10
+  </li>
+  <li>
+    Necessitat de repeticions o aclariments:
+    <input type="checkbox" name="repetitions" value="1">1
+    <input type="checkbox" name="repetitions" value="2">2
+    <input type="checkbox" name="repetitions" value="3">3
+    <input type="checkbox" name="repetitions" value="4">4
+    <input type="checkbox" name="repetitions" value="5">5
+    <input type="checkbox" name="repetitions" value="6">6
+    <input type="checkbox" name="repetitions" value="7">7
+    <input type="checkbox" name="repetitions" value="8">8
+    <input type="checkbox" name="repetitions" value="9">9
+    <input type="checkbox" name="repetitions" value="10">10
+  </li>
+  <li>
+    Dificultats generalitzades observades:
+    <input type="checkbox" name="group_difficulties" value="1">1
+    <input type="checkbox" name="group_difficulties" value="2">2
+    <input type="checkbox" name="group_difficulties" value="3">3
+    <input type="checkbox" name="group_difficulties" value="4">4
+    <input type="checkbox" name="group_difficulties" value="5">5
+    <input type="checkbox" name="group_difficulties" value="6">6
+    <input type="checkbox" name="group_difficulties" value="7">7
+    <input type="checkbox" name="group_difficulties" value="8">8
+    <input type="checkbox" name="group_difficulties" value="9">9
+    <input type="checkbox" name="group_difficulties" value="10">10
+  </li>
+  <li>
+    Heterogeneïtat en el nivell de comprensió:
+    <input type="checkbox" name="heterogeneity" value="1">1
+    <input type="checkbox" name="heterogeneity" value="2">2
+    <input type="checkbox" name="heterogeneity" value="3">3
+    <input type="checkbox" name="heterogeneity" value="4">4
+    <input type="checkbox" name="heterogeneity" value="5">5
+    <input type="checkbox" name="heterogeneity" value="6">6
+    <input type="checkbox" name="heterogeneity" value="7">7
+    <input type="checkbox" name="heterogeneity" value="8">8
+    <input type="checkbox" name="heterogeneity" value="9">9
+    <input type="checkbox" name="heterogeneity" value="10">10
+  </li>
+</ul>
+
+### Atenció a la diversitat
+<ul>
+  <li>
+    Adaptació a diferents ritmes d'aprenentatge:
+    <input type="checkbox" name="adaptacion_rhythms" value="1">1
+    <input type="checkbox" name="adaptacion_rhythms" value="2">2
+    <input type="checkbox" name="adaptacion_rhythms" value="3">3
+    <input type="checkbox" name="adaptacion_rhythms" value="4">4
+    <input type="checkbox" name="adaptacion_rhythms" value="5">5
+    <input type="checkbox" name="adaptacion_rhythms" value="6">6
+    <input type="checkbox" name="adaptacion_rhythms" value="7">7
+    <input type="checkbox" name="adaptation_rhythms" value="8">8
+    <input type="checkbox" name="adaptacion_rhythms" value="9">9
+    <input type="checkbox" name="adaptacion_rhythms" value="10">10
+  </li>
+  <li>
+    Resposta a necessitats específiques dels alumnes:
+    <input type="checkbox" name="response_nese" value="1">1
+    <input type="checkbox" name="response_nese" value="2">2
+    <input type="checkbox" name="response_nese" value="3">3
+    <input type="checkbox" name="response_nese" value="4">4
+    <input type="checkbox" name="response_nese" value="5">5
+    <input type="checkbox" name="response_nese" value="6">6
+    <input type="checkbox" name="response_nese" value="7">7
+    <input type="checkbox" name="response_nese" value="8">8
+    <input type="checkbox" name="response_nese" value="9">9
+    <input type="checkbox" name="response_nese" value="10">10
+  </li>
+  <li>
+    Estratègies d'inclusió observades:
+    <input type="checkbox" name="inclusion_supports" value="1">1
+    <input type="checkbox" name="inclusion_supports" value="2">2
+    <input type="checkbox" name="inclusion_supports" value="3">3
+    <input type="checkbox" name="inclusion_supports" value="4">4
+    <input type="checkbox" name="inclusion_supports" value="5">5
+    <input type="checkbox" name="inclusion_supports" value="6">6
+    <input type="checkbox" name="inclusion_supports" value="7">7
+    <input type="checkbox" name="inclusion_supports" value="8">8
+    <input type="checkbox" name="inclusion_supports" value="9">9
+    <input type="checkbox" name="inclusion_supports" value="10">10
+  </li>
+  <li>
+    Diferenciació de tasques o suports:
+    <input type="checkbox" name="differentiation" value="1">1
+    <input type="checkbox" name="differentiation" value="2">2
+    <input type="checkbox" name="differentiation" value="3">3
+    <input type="checkbox" name="differentiation" value="4">4
+    <input type="checkbox" name="differentiation" value="5">5
+    <input type="checkbox" name="differentiation" value="6">6
+    <input type="checkbox" name="differentiation" value="7">7
+    <input type="checkbox" name="differentiation" value="8">8
+    <input type="checkbox" name="differentiation" value="9">9
+    <input type="checkbox" name="differentiation" value="10">10
+  </li>
+</ul>
+
+## Avaluació global de l'aula
+### Percentatge estimat d'alumnes
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Muy implicados:</strong>
+    <input type="number" name="very_involved" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Moderadamente implicados:</strong>
+    <input type="number" name="moderately_involved" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Poco implicados:</strong>
+    <input type="number" name="little_involved" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Desconectados:</strong>
+    <input type="number" name="disconnected" min="0" max="100" size="4" required> %
+  </li>
+</ul>  
+
+### Puntuació global
+
+<strong>Puntuación global de la sesión:</strong>
+<input type="number" name="total" min="0" max="100" size="4" required> %
+ 
+
+---
+
+## Punts forts del grup
+
+Espai per a notes, comentaris i observacions específiques sobre el grup:
+
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí las fortalezas observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Àrees de millora
+
+Espai per a notes, comentaris i observacions específiques sobre el grup:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las áreas de mejora observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Situacions o incidències rellevants
+
+Espai per a notes, comentaris i observacions específiques sobre el grup:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las situaciones o incidencias relevantes del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Propostes d'intervenció o seguiment
+
+Espai per a notes, comentaris i observacions específiques sobre el grup:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las propuestas de intervención o seguimiento..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Observacions addicionals
+
+Espai per a apunts, comentaris i observacions específiques sobre l'alumne:
+
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones adicionales..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>

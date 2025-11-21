@@ -1,0 +1,70 @@
+---
+title: "Màster de Formació del Professorat de Secundària, Batxillerat, EOI i Mòduls Professionals"
+subtitle: "Guia integrada de l'especialitat de Ciències Naturals (Biologia i Geologia / Física i Química)"
+filename: intro-master-upf
+author: "Pineda Badia, Bernat Blasco, Arturo Corts, Marcel Costa, Xavier Muñoz, Lluís Pagès, Gemma Viscasillas, Anna Torras, Gemma Serra, Jordi Soler, Jordi de Manuel, Anama Domènech, Sílvia Marro, Iván Marchán, Lluís Terrado, Laura Taberner, Xavier Oller, Teresa Martínez, Núria Domènech, Laura Farr, Jessica Fernández, Laura Ganzer, Davínia Hernández-Leo, Sílvia Lope, Laia Ramon, Diego Sanjulian"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Guia integrada del Màster Universitari en Formació del Professorat de Secundària
+categories: [guia, mestre]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Informació general
+
+* L'objectiu del màster en docència de la UPF és formar professionals competents i preparats per als reptes actuals i futurs de l'educació. Al llarg del curs, treballaràs les competències clau per ser professor i revisaràs i maduraràs tant les concepcions d'ensenyament-aprenentatge com la naturalesa dels coneixements de la teva especialitat, compartint l'experiència amb els teus companys de curs.
+
+* Aquest màster té un enfocament globalitzat i holístic, amb un aprenentatge vivencial i col·laboratiu basat en la pràctica reflexiva. La participació en el pràcticum en centres i el suport de mentors són una peça clau del creixement professional, complementat amb classes a la universitat, en línia i presencials.
+
+* Aquestes són les set àrees de competència que treballareu de manera transversal a les diferents matèries. Com a màster professionalitzador, aquestes àrees abasten els diferents aspectes de la tasca docent: comunicació, gestió, orientació, recerca i reflexió sobre la pràctica personal, a més del disseny de les seqüències d'aprenentatge dels aprenents. Les evidències de l'adquisició d'aquestes competències es recolliran en els projectes i activitats que realitzaràs a les assignatures, en el dossier de pràctiques i en el treball de fi de màster.
+
+
+<br>
+
+![Àrees de competència cobertes en el màster](/images/intro-master/ambitos-competenciales.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+![Estructura de les assignatures del màster](/images/intro-master/master-estructura.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+![Estructura detallada de les assignatures del màster](/images/intro-master/master-estructura2.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+![Calendari docent del màster](/images/intro-master/calendario-master.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+
+## Crèdits i dedicació
+
+* Cada ECTS (European Credit Transfer System) correspon a aproximadament 25 hores de treball (a l'aula presencial o virtual i de manera autònoma)
+
+* El total del màster correspon a unes 1.500 hores de dedicació aproximadament
+
+* Es pot cursar el màster en un o dos anys, segons les circumstàncies personals o laborals.
+
+## Estaca
+
+* En totes les assignatures cal participar constantment en activitats, treball personal, col·laboració en equip (dins i fora de l'aula), i puntualitat en l'entrega dels treballs.
+* A les especialitats de Ciències Naturals, anglès i català-castellà cal assistir a un mínim del 85% de les hores presencials, en totes les assignatures i en el Pràcticum.
+
+## Avaluació
+
+* La nota final del màster es basa en el nombre de crèdits assignats a cada mòdul, tal com es mostra a l'esquema anterior: 15 crèdits de Fonaments, 25 crèdits d'Especialitat i 20 crèdits de Pràcticum.
+
+* Per aprovar el màster cal aprovar TOTES les assignatures de Fonaments, Especialitat, Pràcticum i Treball Final de Màster (TFM).
+
+* Si utilitzeu Intel·ligència Artificial Generativa (GAI) per elaborar un fragment, imatge, activitat, etc., cal fer-ne una menció explícita, redactant un apartat específic a la bibliografia explicant l'ús que es fa del GIA i referenciant aquestes parts seguint les directrius de l'APA al respecte (Podeu trobar aquesta informació al web del CRAI de la UPF i, especialment, a l'apartat de citacions d'aquests casos). En cas de mal ús de l'IAG, la tasca o treball corresponent es considerarà suspesa.
+
+## Practicum
+
+* La universitat coordina l'assignació dels estudiants amb els centres i assigna a cadascun un mentor (un professor voluntari del centre, de l'especialització corresponent) i un tutor de la universitat.
+
+* Els alumnes que tinguin una relació laboral o personal amb un centre no poden cursar-hi el Pràcticum.

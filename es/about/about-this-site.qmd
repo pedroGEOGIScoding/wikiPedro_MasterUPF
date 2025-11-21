@@ -1,0 +1,447 @@
+---
+title: "Acerca de este sitio"
+filename: "about-this-site"
+categories: [about]
+---
+
+# Publicar un Sitio Web Quarto en GitHub Pages con GitHub Actions
+
+Esta guía proporciona un recorrido completo para crear y publicar un sitio web Quarto en GitHub Pages utilizando GitHub Actions para el despliegue automatizado.
+
+## Requisitos Previos
+
+Antes de comenzar, asegúrate de tener:
+
+- **Git** instalado en tu computadora ([Descargar Git](https://git-scm.com/downloads))
+- **Quarto** instalado ([Descargar Quarto](https://quarto.org/docs/get-started/))
+- Una **cuenta de GitHub** ([Registrarse en GitHub](https://github.com/join))
+- Un **editor de texto** o IDE (VS Code, RStudio, etc.)
+
+## Paso 1: Crear tu Sitio Web Quarto
+
+### 1.1 Inicializar un Nuevo Sitio Web Quarto
+
+Abre tu terminal y ejecuta:
+
+```bash
+quarto create project website mywebsite
+cd mywebsite
+```
+
+Esto crea una estructura básica de sitio web Quarto con:
+
+- `_quarto.yml` - Archivo de configuración
+- `index.qmd` - Página de inicio
+- `about.qmd` - Página Acerca de
+- `styles.css` - Estilos personalizados
+
+### 1.2 Configurar tu Sitio Web
+
+Edita `_quarto.yml` para personalizar tu sitio. Aquí hay un ejemplo de configuración:
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Mi Sitio Web"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+```
+
+**Opciones de configuración clave:**
+
+- `output-dir`: Dónde se guardan los archivos renderizados (por defecto: `_site`)
+- `title`: El título de tu sitio web
+- `theme`: Elige entre [temas Bootswatch](https://bootswatch.com/)
+- `navbar`: Estructura de navegación
+
+### 1.3 Previsualizar tu Sitio Web Localmente
+
+Prueba tu sitio web localmente antes de publicar:
+
+```bash
+quarto preview
+```
+
+Esto abre una vista previa en vivo en `http://localhost:4200` que se actualiza automáticamente cuando haces cambios.
+
+## Paso 2: Configurar el Repositorio Git
+
+### 2.1 Inicializar el Repositorio Git
+
+En el directorio de tu proyecto:
+
+```bash
+git init
+git add .
+git commit -m "Commit inicial: Sitio web Quarto"
+```
+
+### 2.2 Crear `.gitignore`
+
+Crea un archivo `.gitignore` para excluir archivos innecesarios:
+
+```gitignore
+/.quarto/
+/_site/
+/.Rproj.user/
+*.Rproj
+.DS_Store
+```
+
+El directorio `_site` será generado por GitHub Actions, por lo que no lo confirmamos.
+
+## Paso 3: Crear el Repositorio en GitHub
+
+### 3.1 Crear un Nuevo Repositorio en GitHub
+
+1. Ve a [GitHub](https://github.com) e inicia sesión
+2. Haz clic en el icono **"+"** en la esquina superior derecha
+3. Selecciona **"New repository"** (Nuevo repositorio)
+4. Ingresa los detalles del repositorio:
+   - **Repository name** (Nombre del repositorio): `mywebsite` (o tu nombre preferido)
+   - **Description** (Descripción): Descripción opcional
+   - **Visibility** (Visibilidad): Public (Público) (requerido para GitHub Pages gratuito)
+   - **NO** inicialices con README, .gitignore, o licencia
+5. Haz clic en **"Create repository"** (Crear repositorio)
+
+![Creando un nuevo repositorio en GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp)
+
+### 3.2 Conectar el Repositorio Local a GitHub
+
+Copia los comandos de GitHub (mostrados después de crear el repositorio):
+
+```bash
+git remote add origin https://github.com/tunombredeusuario/mywebsite.git
+git branch -M main
+git push -u origin main
+```
+
+Reemplaza `tunombredeusuario` con tu nombre de usuario real de GitHub.
+
+## Paso 4: Configurar GitHub Pages
+
+### 4.1 Habilitar GitHub Pages
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en la pestaña **"Settings"** (Configuración)
+3. Desplázate hacia abajo hasta **"Pages"** en la barra lateral izquierda
+4. En **"Source"** (Fuente), selecciona **"GitHub Actions"**
+
+![Configuración de GitHub Pages](/images/about/github-actions.png)
+
+Esto le indica a GitHub que use GitHub Actions para el despliegue en lugar de una rama.
+
+## Paso 5: Crear el Flujo de Trabajo de GitHub Actions
+
+### 5.1 Crear el Directorio del Flujo de Trabajo
+
+En la raíz de tu proyecto, crea el directorio del flujo de trabajo de GitHub Actions:
+
+```bash
+mkdir -p .github/workflows
+```
+
+### 5.2 Crear el Archivo del Flujo de Trabajo
+
+Crea `.github/workflows/publish.yml` con el siguiente contenido:
+
+```yaml
+name: Publish Quarto Website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 'release'
+
+      - name: Render Quarto Project
+        run: quarto render
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+### 5.3 Entendiendo el Flujo de Trabajo
+
+**Componentes del flujo de trabajo:**
+
+- **`on: push: branches: [main]`**: Se activa con los pushes a la rama main
+- **`workflow_dispatch`**: Permite la activación manual desde la interfaz de GitHub
+- **`permissions`**: Permisos requeridos para el despliegue en GitHub Pages
+- **`concurrency`**: Previene que múltiples despliegues se ejecuten simultáneamente
+- **Trabajo `build`**: Descarga el código, instala Quarto, renderiza el sitio
+- **Trabajo `deploy`**: Despliega el sitio renderizado en GitHub Pages
+
+**Acciones clave utilizadas:**
+
+- [`actions/checkout@v4`](https://github.com/actions/checkout): Descarga tu repositorio
+- [`quarto-dev/quarto-actions/setup@v2`](https://github.com/quarto-dev/quarto-actions): Instala Quarto
+- [`actions/upload-pages-artifact@v3`](https://github.com/actions/upload-pages-artifact): Sube el sitio para el despliegue
+- [`actions/deploy-pages@v4`](https://github.com/actions/deploy-pages): Despliega en GitHub Pages
+
+## Paso 6: Desplegar tu Sitio Web
+
+### 6.1 Confirmar y Subir el Flujo de Trabajo
+
+Añade y confirma el archivo del flujo de trabajo:
+
+```bash
+git add .github/workflows/publish.yml
+git add .gitignore
+git commit -m "Añadir flujo de trabajo de GitHub Actions para despliegue"
+git push
+```
+
+### 6.2 Monitorear el Despliegue
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en la pestaña **"Actions"** (Acciones)
+3. Deberías ver tu flujo de trabajo en ejecución
+
+![Flujo de trabajo de GitHub Actions en ejecución](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp)
+
+4. Haz clic en la ejecución del flujo de trabajo para ver los registros detallados
+5. Espera a que los trabajos **build** y **deploy** se completen (generalmente 1-3 minutos)
+
+### 6.3 Acceder a tu Sitio Web Publicado
+
+Una vez que el despliegue tenga éxito, tu sitio web estará disponible en:
+
+```
+https://tunombredeusuario.github.io/mywebsite/
+```
+
+Reemplaza `tunombredeusuario` con tu nombre de usuario de GitHub y `mywebsite` con el nombre de tu repositorio.
+
+## Paso 7: Dominio Personalizado (Opcional)
+
+### 7.1 Configurar Dominio Personalizado
+
+Si tienes un dominio propio, puedes usarlo en lugar de la URL predeterminada de GitHub Pages:
+
+1. Ve a **Settings** (Configuración) → **Pages** en tu repositorio
+2. En **"Custom domain"** (Dominio personalizado), ingresa tu dominio (ej., `www.misitio.com`)
+3. Haz clic en **"Save"** (Guardar)
+
+### 7.2 Configurar los Ajustes DNS
+
+Añade registros DNS con tu proveedor de dominio:
+
+**Para dominio apex (`misitio.com`):**
+
+```
+A     185.199.108.153
+A     185.199.109.153
+A     185.199.110.153
+A     185.199.111.153
+```
+
+**Para subdominio (`www.misitio.com`):**
+
+```
+CNAME     tunombredeusuario.github.io
+```
+
+Más detalles: [Documentación de dominio personalizado de GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+
+## Paso 8: Actualizar tu Sitio Web
+
+### 8.1 Hacer Cambios Localmente
+
+Edita cualquier archivo `.qmd` en tu proyecto:
+
+```bash
+# Editar archivos
+nano index.qmd
+
+# Previsualizar cambios
+quarto preview
+```
+
+### 8.2 Subir los Cambios
+
+Confirma y sube tus cambios:
+
+```bash
+git add .
+git commit -m "Actualizar contenido"
+git push
+```
+
+GitHub Actions reconstruirá y redesplegará automáticamente tu sitio web en minutos.
+
+## Solución de Problemas
+
+### Problemas Comunes y Soluciones
+
+#### Problema: El flujo de trabajo falla con "Permission denied" (Permiso denegado)
+
+**Solución:** Asegúrate de que los permisos del flujo de trabajo estén configurados correctamente:
+
+1. Ve a **Settings** (Configuración) → **Actions** (Acciones) → **General**
+2. En **"Workflow permissions"** (Permisos del flujo de trabajo), selecciona **"Read and write permissions"** (Permisos de lectura y escritura)
+3. Marca **"Allow GitHub Actions to create and approve pull requests"** (Permitir que GitHub Actions cree y apruebe pull requests)
+4. Haz clic en **"Save"** (Guardar)
+
+#### Problema: Error 404 al acceder al sitio
+
+**Solución:** Verifica que:
+
+- La fuente de GitHub Pages esté configurada como "GitHub Actions"
+- El flujo de trabajo se completó exitosamente
+- Estés usando el formato de URL correcto
+- El repositorio sea público (para GitHub Pages gratuito)
+
+#### Problema: Los estilos o imágenes no cargan
+
+**Solución:** Esto suele ocurrir con rutas base incorrectas. Actualiza `_quarto.yml`:
+
+```yaml
+website:
+  site-url: "https://tunombredeusuario.github.io/mywebsite"
+  repo-url: "https://github.com/tunombredeusuario/mywebsite"
+```
+
+#### Problema: El flujo de trabajo no se activa
+
+**Solución:**
+
+- Asegúrate de que el archivo del flujo de trabajo esté en el directorio `.github/workflows/`
+- Verifica que el archivo tenga la extensión `.yml` o `.yaml`
+- Confirma que hiciste push a la rama `main`
+- Intenta activarlo manualmente: **Actions** (Acciones) → **Workflow name** (Nombre del flujo) → **Run workflow** (Ejecutar flujo de trabajo)
+
+## Configuración Avanzada
+
+### Usar R o Python
+
+Si tus documentos Quarto usan código R o Python:
+
+#### Para R:
+
+Actualiza `.github/workflows/publish.yml` para incluir la configuración de R:
+
+```yaml
+- name: Set up R
+  uses: r-lib/actions/setup-r@v2
+
+- name: Install R packages
+  run: |
+    install.packages(c("rmarkdown", "knitr", "tidyverse"))
+  shell: Rscript {0}
+```
+
+#### Para Python:
+
+Actualiza `.github/workflows/publish.yml` para incluir la configuración de Python:
+
+```yaml
+- name: Set up Python
+  uses: actions/setup-python@v5
+  with:
+    python-version: '3.11'
+
+- name: Install Python packages
+  run: |
+    pip install jupyter matplotlib pandas numpy
+```
+
+### Congelar Computaciones
+
+Para computaciones complejas, usa la función freeze de Quarto para evitar re-ejecutar código en cada despliegue:
+
+En `_quarto.yml`:
+
+```yaml
+execute:
+  freeze: auto
+```
+
+Esto almacena en caché los resultados computacionales localmente. Confirma el directorio `_freeze/`:
+
+```bash
+git add _freeze/
+git commit -m "Añadir computaciones congeladas"
+```
+
+## Recursos Útiles
+
+### Documentación Oficial
+
+- [Documentación de Quarto](https://quarto.org/docs/guide/)
+- [Guía de Publicación de Quarto](https://quarto.org/docs/publishing/github-pages.html)
+- [Documentación de GitHub Pages](https://docs.github.com/en/pages)
+- [Documentación de GitHub Actions](https://docs.github.com/en/actions)
+
+### Recursos de Quarto
+
+- [Galería de Quarto](https://quarto.org/docs/gallery/) - Ejemplos de sitios web
+- [Extensiones de Quarto](https://quarto.org/docs/extensions/) - Añadir funcionalidad
+- [Comunidad de Quarto](https://github.com/quarto-dev/quarto-cli/discussions) - Obtener ayuda
+
+### Recursos de GitHub Actions
+
+- [Quarto GitHub Actions](https://github.com/quarto-dev/quarto-actions) - Acciones oficiales
+- [Marketplace de GitHub Actions](https://github.com/marketplace?type=actions) - Encontrar acciones
+- [Sintaxis de Flujo de Trabajo](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) - Referencia completa
+
+## Resumen
+
+Ahora has aprendido cómo:
+
+1. ✅ Crear un sitio web Quarto localmente
+2. ✅ Configurar un repositorio Git
+3. ✅ Crear un repositorio en GitHub
+4. ✅ Configurar GitHub Pages
+5. ✅ Configurar GitHub Actions para despliegue automatizado
+6. ✅ Desplegar y actualizar tu sitio web
+7. ✅ Solucionar problemas comunes
+
+Cada vez que subas cambios a tu rama `main`, GitHub Actions reconstruirá y redesplegará automáticamente tu sitio web. Esto crea un flujo de trabajo de publicación fluido que no requiere intervención manual.
+
+¡Feliz publicación! 🚀

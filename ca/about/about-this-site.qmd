@@ -1,0 +1,447 @@
+---
+title: "Sobre aquest lloc"
+filename: "about-this-site"
+categories: [sobre]
+---
+
+# Publiqueu un lloc web de Quarto a les pàgines de GitHub amb GitHub Actions
+
+Aquesta guia ofereix una guia completa per crear i publicar un lloc web de Quarto a les pàgines de GitHub mitjançant GitHub Actions per al desplegament automatitzat.
+
+## Requisits previs
+
+Abans de començar, assegureu-vos de tenir:
+
+- **Git** instal·lat al vostre ordinador ([Baixa Git](https://git-scm.com/downloads))
+- **Quarto** instal·lat ([Descarregueu Quarto](https://quarto.org/docs/get-started/))
+- Un **compte de GitHub** ([Registreu-vos a GitHub](https://github.com/join))
+- Un **editor de text** o IDE (VS Code, RStudio, etc.)
+
+## Pas 1: creeu el vostre lloc web de Quarto
+
+### 1.1 Inicialitzar un nou lloc web de Quarto
+
+Obriu el vostre terminal i executeu:
+
+```bash
+quarto create project website mywebsite
+cd mywebsite
+```
+
+Això crea una estructura bàsica del lloc web de Quarto amb:
+
+- `_quarto.yml` - Fitxer de configuració
+- `index.qmd` - Pàgina d'inici
+- `about.qmd` - Sobre la pàgina
+- `styles.css`: estils personalitzats
+
+### 1.2 Configura el teu lloc web
+
+Editeu `_quarto.yml` per personalitzar el vostre lloc. Aquí teniu un exemple de configuració:
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Mi Sitio Web"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+```
+
+**Opcions de configuració clau:**
+
+- `output-dir`: on es guarden els fitxers representats (per defecte: `_site`)
+- `title`: el títol del vostre lloc web
+- "tema": tria entre [temes de Bootswatch](https://bootswatch.com/)
+- `navbar`: estructura de navegació
+
+### 1.3 Previsualitza el teu lloc web localment
+
+Proveu el vostre lloc web localment abans de publicar-lo:
+
+```bash
+quarto preview
+```
+
+Això obre una vista prèvia en directe a `http://localhost:4200` que s'actualitza automàticament quan feu canvis.
+
+## Pas 2: configureu el repositori Git
+
+### 2.1 Inicialitzar el repositori Git
+
+Al directori del vostre projecte:
+
+```bash
+git init
+git add .
+git commit -m "Commit inicial: Sitio web Quarto"
+```
+
+### 2.2 Creeu `.gitignore`
+
+Creeu un fitxer `.gitignore` per excloure fitxers innecessaris:
+
+```gitignore
+/.quarto/
+/_site/
+/.Rproj.user/
+*.Rproj
+.DS_Store
+```
+
+El directori `_site` el generarà GitHub Actions, de manera que no ho confirmem.
+
+## Pas 3: creeu el repositori a GitHub
+
+### 3.1 Creeu un nou dipòsit a GitHub
+
+1. Aneu a [GitHub](https://github.com) i inicieu la sessió
+2. Feu clic a la icona **"+"** a l'extrem superior dret
+3. Seleccioneu **"Nou repositori"**
+4. Introduïu els detalls del repositori:
+   - **Nom del repositori**: `mywebsite` (o el vostre nom preferit)
+   - **Descripció**: descripció opcional
+   - **Visibilitat**: públic (obligatori per a pàgines de GitHub gratuïtes)
+   - **NO** inicialitzeu-vos amb README, .gitignore o llicència
+5. Feu clic a **"Crea un repositori"**
+
+![Creació d'un nou repositori a GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp)
+
+### 3.2 Connecteu el dipòsit local a GitHub
+
+Copieu les ordres de GitHub (que es mostren després de crear el repositori):
+
+```bash
+git remote add origin https://github.com/tunombredeusuario/mywebsite.git
+git branch -M main
+git push -u origin main
+```
+
+Substituïu `yourusername` pel vostre nom d'usuari de GitHub real.
+
+## Pas 4: configureu les pàgines de GitHub
+
+### 4.1 Habilita les pàgines de GitHub
+
+1. Aneu al vostre repositori a GitHub
+2. Feu clic a la pestanya **"Configuració"**
+3. Desplaceu-vos cap avall fins a **"Pàgines"** a la barra lateral esquerra
+4. A **"Font"**, seleccioneu **"Accions de GitHub"**
+
+![Configuració de pàgines de GitHub](/images/about/github-actions.png)
+
+Això indica a GitHub que utilitzi les accions de GitHub per al desplegament en lloc d'una branca.
+
+## Pas 5: creeu el flux de treball d'accions de GitHub
+
+### 5.1 Creeu el directori de flux de treball
+
+A l'arrel del vostre projecte, creeu el directori de flux de treball GitHub Actions:
+
+```bash
+mkdir -p .github/workflows
+```
+
+### 5.2 Creeu el fitxer de flux de treball
+
+Creeu `.github/workflows/publish.yml` amb el contingut següent:
+
+```yaml
+name: Publish Quarto Website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 'release'
+
+      - name: Render Quarto Project
+        run: quarto render
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+### 5.3 Comprensió del flux de treball
+
+**Components del flux de treball:**
+
+- **`on: push: branques: [principal]`**: activat amb empentes a la branca principal
+- **`workflow_dispatch`**: permet l'activació manual des de la interfície de GitHub
+- **`permisos`**: els permisos necessaris per al desplegament a les pàgines de GitHub
+- **`concurrència`**: impedeix que diversos desplegaments s'executin simultàniament
+- **'build' job**: Baixeu el codi, instal·leu Quarto, lloc de renderització
+- **`deploy` job**: desplega el lloc renderitzat a les pàgines de GitHub
+
+**Accions clau utilitzades:**
+
+- [`actions/checkout@v4`](https://github.com/actions/checkout): Baixeu el vostre repositori
+- [`quarto-dev/quarto-actions/setup@v2`](https://github.com/quarto-dev/quarto-actions): instal·leu Quarto
+- [`actions/upload-pages-artifact@v3`](https://github.com/actions/upload-pages-artifact): carregueu el lloc per al desplegament
+- [`actions/deploy-pages@v4`](https://github.com/actions/deploy-pages): desplega a les pàgines de GitHub
+
+## Pas 6: implementeu el vostre lloc web
+
+### 6.1 Confirmeu i carregueu el flux de treball
+
+Afegeix i confirma el fitxer de flux de treball:
+
+```bash
+git add .github/workflows/publish.yml
+git add .gitignore
+git commit -m "Añadir flujo de trabajo de GitHub Actions para despliegue"
+git push
+```
+
+### 6.2 Monitoritzar el desplegament
+
+1. Aneu al vostre repositori a GitHub
+2. Feu clic a la pestanya **"Accions"**
+3. Hauríeu de veure el vostre flux de treball en funcionament
+
+![Execució del flux de treball de GitHub Actions](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp)
+
+4. Feu clic a l'execució del flux de treball per veure els registres detallats
+5. Espereu que s'acabin les tasques de **construcció** i **implantació** (normalment d'1 a 3 minuts)
+
+### 6.3 Accediu al vostre lloc web publicat
+
+Un cop el desplegament tingui èxit, el vostre lloc web estarà disponible a:
+
+```
+https://tunombredeusuario.github.io/mywebsite/
+```
+
+Substituïu `yourusername` pel vostre nom d'usuari de GitHub i `mywebsite` amb el nom del vostre repositori.
+
+## Pas 7: domini personalitzat (opcional)
+
+### 7.1 Configura el domini personalitzat
+
+Si teniu el vostre propi domini, podeu utilitzar-lo en lloc de l'URL predeterminat de les pàgines de GitHub:
+
+1. Aneu a **Configuració** → **Pàgines** al vostre repositori
+2. A **"Domini personalitzat"**, introduïu el vostre domini (p. ex., `www.mysite.com`)
+3. Feu clic a **"Desa"**
+
+### 7.2 Configuració de la configuració de DNS
+
+Afegiu registres DNS amb el vostre proveïdor de domini:
+
+**Per al domini àpex (`mysite.com`):**
+
+```
+A     185.199.108.153
+A     185.199.109.153
+A     185.199.110.153
+A     185.199.111.153
+```
+
+**Per al subdomini (`www.mysite.com`):**
+
+```
+CNAME     tunombredeusuario.github.io
+```
+
+Més detalls: [Documentació del domini personalitzat de les pàgines de GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+
+## Pas 8: actualitzeu el vostre lloc web
+
+### 8.1 Feu canvis localment
+
+Editeu qualsevol fitxer `.qmd` del vostre projecte:
+
+```bash
+# Editar archivos
+nano index.qmd
+
+# Previsualizar cambios
+quarto preview
+```
+
+### 8.2 Canvis de càrrega
+
+Comprometeu i pengeu els vostres canvis:
+
+```bash
+git add .
+git commit -m "Actualizar contenido"
+git push
+```
+
+GitHub Actions reconstruirà i tornarà a desplegar automàticament el vostre lloc web en qüestió de minuts.
+
+## Resolució de problemes
+
+### Problemes comuns i solucions
+
+#### Problema: el flux de treball falla amb "Permís denegat"
+
+**Solució:** Assegureu-vos que els permisos del flux de treball estiguin definits correctament:
+
+1. Vés a **Configuració** → **Accions** → **General**
+2. A **"Permisos de flux de treball"**, seleccioneu **"Permisos de lectura i escriptura"**
+3. Marqueu **"Permet que les accions de GitHub creïn i aprovin sol·licituds d'extracció"**
+4. Feu clic a **"Desa"**
+
+#### Problema: error 404 en accedir al lloc
+
+**Solució:** Verifiqueu que:
+
+- El feed de pàgines de GitHub està configurat a "Accions de GitHub"
+- El flux de treball s'ha completat correctament
+- Esteu utilitzant el format d'URL correcte
+- El repositori és públic (per a pàgines de GitHub gratuïtes)
+
+#### Problema: els estils o les imatges no es carreguen
+
+**Correcció:** Això sol passar amb camins base incorrectes. Actualitza `_quarto.yml`:
+
+```yaml
+website:
+  site-url: "https://tunombredeusuario.github.io/mywebsite"
+  repo-url: "https://github.com/tunombredeusuario/mywebsite"
+```
+
+#### Problema: el flux de treball no s'activa
+
+**Solució:**
+
+- Assegureu-vos que el fitxer de flux de treball estigui al directori `.github/workflows/`
+- Comproveu que el fitxer tingui l'extensió `.yml` o `.yaml`
+- Confirmeu que heu premut a la branca "principal".
+- Proveu d'activar-lo manualment: **Accions** → **Nom del flux de treball** → **Executar el flux de treball**
+
+## Configuració avançada
+
+### Utilitzeu R o Python
+
+Si els vostres documents Quarto utilitzen codi R o Python:
+
+#### Paradeta:
+
+Actualitzeu `.github/workflows/publish.yml` per incloure la configuració R:
+
+```yaml
+- name: Set up R
+  uses: r-lib/actions/setup-r@v2
+
+- name: Install R packages
+  run: |
+    install.packages(c("rmarkdown", "knitr", "tidyverse"))
+  shell: Rscript {0}
+```
+
+#### Per a Python:
+
+Actualitzeu `.github/workflows/publish.yml` per incloure la configuració de Python:
+
+```yaml
+- name: Set up Python
+  uses: actions/setup-python@v5
+  with:
+    python-version: '3.11'
+
+- name: Install Python packages
+  run: |
+    pip install jupyter matplotlib pandas numpy
+```
+
+### Congelació de càlculs
+
+Per a càlculs complexos, utilitzeu la funció de congelació de Quarto per evitar que torni a executar codi en cada desplegament:
+
+A `_quarto.yml`:
+
+```yaml
+execute:
+  freeze: auto
+```
+
+Això guarda a la memòria cau els resultats computacionals localment. Confirmeu el directori `_freeze/`:
+
+```bash
+git add _freeze/
+git commit -m "Añadir computaciones congeladas"
+```
+
+## Recursos Útils
+
+### Documentació oficial
+
+- [Documentació de Quarto](https://quarto.org/docs/guide/)
+- [Guia de publicació de Quarto](https://quarto.org/docs/publishing/github-pages.html)
+- [Documentació de les pàgines de GitHub](https://docs.github.com/en/pages)
+- [Documentació d'accions de GitHub](https://docs.github.com/en/actions)
+
+### Recursos Quarto
+
+- [Galeria Quarto](https://quarto.org/docs/gallery/) - Exemples de llocs web
+- [Extensions Quarto](https://quarto.org/docs/extensions/) - Afegeix una funcionalitat
+- [Comunitat Quarto](https://github.com/quarto-dev/quarto-cli/discussions) - Obteniu ajuda
+
+### Recursos GitHub Actions
+
+- [Quarto GitHub Actions](https://github.com/quarto-dev/quarto-actions) - Accions oficials
+- [GitHub Actions Marketplace](https://github.com/marketplace?type=actions) - Troba accions
+- [Sintaxi de flux de treball](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) - Referència completa
+
+## Resum
+
+Ara heu après a:
+
+1. ✅ Creeu un lloc web de Quarto localment
+2. ✅ Configura un repositori Git
+3. ✅ Crea un repositori a GitHub
+4. ✅ Configura les pàgines de GitHub
+5. ✅ Configura les accions de GitHub per al desplegament automatitzat
+6. ✅ Implementa i actualitza el teu lloc web
+7. ✅ Solucionar problemes habituals
+
+Cada vegada que introduïu canvis a la vostra branca "principal", GitHub Actions reconstruirà i tornarà a desplegar automàticament el vostre lloc web. Això crea un flux de treball de publicació perfecte que no requereix cap intervenció manual.
+
+Feliç publicació! 🚀

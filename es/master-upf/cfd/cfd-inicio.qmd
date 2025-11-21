@@ -1,0 +1,231 @@
+---
+title: "Complementos de Formación Disciplinar"
+subtitle: "Guía integrada de la especialidad de Ciencias Naturales (Biología y Geología / Física y Química)"
+filename: cfd-inicio
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Asignatura que complementa la formación disciplinar en ciencias naturales desde una mirada integrada y disciplinar
+categories: [complementos, disciplinar]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentación
+
+* Esta asignatura tiene el propósito de complementar la formación disciplinar de los estudiantes en el ámbito de las ciencias naturales. Partiendo del análisis de los currículums de la educación secundaria, se analizará cómo enfocar la enseñanza de las ciencias desde una mirada a la vez integrada y disciplinar.
+
+* El objetivo principal de esta materia es aportar complementos de formación científica que completen los conocimientos de la licenciatura o grado de entrada al máster.
+
+<br>
+
+## Información Técnica
+
+* **Código asignatura:** 31543
+
+* **Temporización:**
+  - Tiempo completo: segundo semestre
+  - Tiempo parcial: primer año, anual
+
+* **Número de créditos:** 5
+
+* **Dedicación:** 35 h presenciales y 90 h de trabajo autónomo (125 h totales)
+
+* **Profesorado:** Xavier Muñoz (coordinación), Iván Marchán, Laia Ramon-Sala, Gemma Viscasillas
+
+<br>
+
+![Estructura de Complementos de Formación Disciplinar](/images/cfd/cfd-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Módulos de la Asignatura
+
+* **Análisis del currículum**
+
+* **Biología**
+
+* **Geología**
+
+* **Física**
+
+* **Química**
+
+**Nota:** Cada alumno deberá cursar obligatoriamente dos de los cuatro bloques disciplinarios propuestos (Biología, Geología, Física y Química).
+
+<br>
+
+## Objetivos
+
+* Conocer los modelos científicos clave de las disciplinas científicas de la especialidad que no se corresponden con la graduación obtenida.
+
+* Entender los errores conceptuales más relevantes relacionados con los modelos clave de las ciencias.
+
+* Conocer y aplicar las estrategias didácticas más eficientes para que el alumnado haga frente a los errores conceptuales más relevantes relacionados con los modelos clave de las ciencias.
+
+<br>
+
+## Competencias
+
+1. Diseño, gestión y planificación de entornos de enseñanza-aprendizaje de las ciencias
+
+2. Comunicación e interacción personal en procesos de enseñanza-aprendizaje e implicación eficaz en los equipos docentes
+
+3. Metodología didáctica y gestión de la diversidad en el aula
+
+4. Uso de entornos digitales para el desarrollo profesional y la interacción educativa
+
+<br>
+
+## Contenidos
+
+### Contenidos comunes (para todo el alumnado)
+
+* Descripción y análisis de los curricula de ciencias naturales de la ESO y el bachillerato
+
+* Análisis de la prueba científico-tecnológica de 4º de ESO
+
+### La enseñanza de la Biología en la educación secundaria
+
+* Los grandes temas de la Biología
+
+* ¿Cuáles son las principales preguntas que debería poder responder el alumnado de secundaria?
+
+* ¿Cuáles son los principales obstáculos en el aprendizaje de la Biología?
+
+* ¿Cuáles pueden ser buenos contextos para presentar los contenidos de Biología?
+
+* ¿Con qué recursos contamos?
+
+### La enseñanza de la Geología en la educación secundaria
+
+* Los grandes temas de la Geología
+
+* ¿Cuáles son las principales preguntas que debería poder responder el alumnado de secundaria?
+
+* ¿Cuáles son los principales obstáculos en el aprendizaje de la Geología?
+
+* ¿Cuáles pueden ser buenos contextos para presentar los contenidos de Geología?
+
+* ¿Con qué recursos contamos?
+
+### La enseñanza de la Física en la educación secundaria
+
+* Los grandes temas de la Física
+
+* ¿Cuáles son las principales preguntas que debería poder responder el alumnado de secundaria?
+
+* ¿Cuáles son los principales obstáculos en el aprendizaje de la Física?
+
+* ¿Cuáles pueden ser buenos contextos para presentar los contenidos de Física?
+
+* ¿Con qué recursos contamos?
+
+### La enseñanza de la Química en la educación secundaria
+
+* Los grandes temas de la Química
+
+* ¿Cuáles son las principales preguntas que debería poder responder el alumnado de secundaria?
+
+* ¿Cuáles son los principales obstáculos en el aprendizaje de la Química?
+
+* ¿Cuáles pueden ser buenos contextos para presentar los contenidos de Química?
+
+* ¿Con qué recursos contamos?
+
+<br>
+
+## Metodología
+
+* Las sesiones serán teórico-prácticas, se combinarán actividades para trabajar en el aula con exposiciones de los profesores. Predominarán, pues, las metodologías de aprendizaje activo y se facilitará la práctica reflexiva.
+
+* El estudiante tendrá a su disposición en la plataforma virtual los materiales utilizados en las clases.
+
+<br>
+
+## Evaluación
+
+### Tarea 1: Análisis de los curricula (25%)
+
+* Se trata de una actividad grupal. Esta actividad tiene como objetivo hacer un análisis del currículum de la ESO de ciencias, se realizará en grupos y se evaluará a través de una presentación oral que hará cada uno de los grupos.
+
+### Tarea 2: Evaluación de los conocimientos disciplinarios (35%)
+
+* Se valorará el conocimiento de cada disciplina a través de la realización de un examen colaborativo.
+
+**Fase 1:** Cada alumno deberá realizar individualmente una prueba escrita. El alumno deberá responder por escrito las preguntas relacionadas con los dos bloques que ha cursado. Los profesores recogerán el trabajo escrito.
+
+**Fase 2:** Inmediatamente a continuación de la fase 1 se formarán grupos de 4-5 alumnos (de acuerdo con las instrucciones del profesorado). Cada grupo pondrá en común y argumentará las respuestas individuales y volverá a contestar las preguntas en un único documento que también recogerán los profesores.
+
+**Fase 3:** Cada alumno volverá a trabajar individualmente y hará una regulación metacognitiva.
+
+### Tarea 3: Evaluación del conocimiento didáctico de las disciplinas científicas (30%)
+
+* En grupos formados por alumnos que cursan el mismo bloque.
+
+* Cada grupo deberá redactar una propuesta de actividad de enseñanza-aprendizaje del tema y nivel que se indique, coherente con el currículum de secundaria y que movilice los contenidos y recursos trabajados en el bloque disciplinario correspondiente. También será necesario indicar los criterios que se utilizarían para evaluar a los alumnos.
+
+### Competencia digital (10%)
+
+<br>
+
+## Recursos y Bibliografía Recomendada
+
+### Bibliografía básica
+
+Sanmartí, N., 2002. Didáctica de las ciencias en la educación secundaria obligatoria. Síntesis Educación.
+
+Izquierdo, M., Aliberas, J., 2004. Pensar, actuar i escriure a la classe de ciències. Per un ensenyament de les ciències racional i raonable. Cerdanyola: Publicacions de la UAB.
+
+Curricula de ciencias naturales de la Educación Secundaria Obligatoria y el Bachillerato. http://xtec.gencat.cat/ca/curriculum/eso/curriculum/ i http://xtec.gencat.cat/ca/curriculum/batxillerat/curriculum/
+
+### Bibliografía complementaria
+
+Alfaro, P. Biología y geología: Complementos de la formación disciplinar (2011). Ed. Graó.
+
+Aymerich, M. I., Díaz, M. J. M., Rodríguez, E. P., Julián, M. S. G., Matarredona, J. S., Pérez, D. G., & Aguado, A. M. W. (2011). Física y Química. Complementos de formación disciplinar (Vol. 51). Grao.
+
+Atkins, P., Jones, L. (1997). Química: Moléculas, Materia, Cambio, Ediciones Omega, S.A.,( 3ª Edición) Barcelona (traducción Claudi Mans). ISBN 84-282-1131-0
+
+Bueno, A. D. P., Mellado, V., Anta, A., Belmonte, M., Casellas, O., Corominas, J., ... & Oro, J. (2011). Física y química. Investigación, innovación y buenas prácticas (Vol. 3). Ministerio de Educación.
+
+Caamaño, A. Física y Química. Complementos de formación disciplinar (2011). Ed. Graó.
+
+del Carmen Martín, L. M., Aleixandre, M. P. J., de Pro Bueno, A., Barros, S. G., Rodríguez, E. P., Losada, C. M., ... & Vilallonga, R. M. P. (2011). Didáctica de la Biología y la Geología (Vol. 22). Grao.
+
+Feynman, Richard Phillips; Leighton, Robert B.; Sands, Matthew (2000). Física, tres volúmenes. Ed. ALHAMBRA MEXICANA, S.A.
+
+de Pro Bueno, A. (2011). Biología y Geología. Investigación, innovación y buenas prácticas (Vol. 23). Grao
+
+Harlen, W. (2010). Principios y grandes ideas de la educación en ciencias. Ed. Rosa Devés (www.innovec.org.mx)
+
+Harlen, W. (2011). Working towards big ideas of science education. Education in Science.
+
+Jones, A., McKim, A. Reiss, M. 2010. Ethics in science and technology classroom. New Approach to Teaching and Learning.
+
+Manzanal, R. F., Pérez, D. G., de Heredia, A. H. P., Rodríguez, E. P., Iglesia, P. M., Peña, A. V., ... & Mocholí, C. S. (2011). Biología y Geología. Complementos de formación disciplinar (Vol. 21). Graó.
+
+Murray, J. (2000) Teaching Secondary Chemistry ISBN 0 7195 7638 5
+
+Sanmartí, N., Cañal, P., Aleixandre, M. P. J., Couso, D., Pintó, R., Ametller, J., ... & De Pro, A. (2011). Didáctica de la Física y la Química (Vol. 2). Ministerio de Educación.
+
+Sanmartí, N., Del Carmen, L., Bueno, A. D. P., Barros, S. G., Aleixandre, M. P. J., Márquez, C., ... & Losada, C. M. (2011). Didáctica de la Biología y la Geología (Vol. 2). Ministerio de Educación.
+
+Strahler, Arthur N (1987). Geología física. Barcelona:Omega.
+
+Solomon, E.P., Berg, L.R., Martin D.W. 2008. Biología. McGraw-Hill/Interamericana.
+
+Taber, K. (2002), Chemical Misconceptions: Prevention, Diagnosis And Cure; Part 1 - Theoretical Background. London: Royal Society of Chemistry ISBN 13: 9780854043866
+
+Tarbuck, Edward J, Lutgens, Frederick K (2005). Ciencias de la tierra: una introducción a la geología física (8a ed). Madrid: Prentice Hall.
+
+Tipler, Paul Allen; Mosca, Gene. (2010) Física para la ciencia y la tecnología Ed. Reverte 6ed. 2 volúmenes
+
+V.V.A.A. (2010). Ciencias de la Tierra y del Universo. La Enciclopedia del Estudiante, T 10. Santillana/EL PAÍS.
+
+V.V.A.A. (1984). Història natural dels Països Catalans. Volums I, II i III. Enciclopèdia Catalana. Barcelona
+
+How things work.The physics of everyday life. Louis A. Bloomfield. Wiley & Sons, Inc. 2010A Framework for K-12 Science Education. National Research Council of the National Academies. The National Academic Press, Washington, 2012

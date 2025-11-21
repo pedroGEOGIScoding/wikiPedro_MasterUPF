@@ -1,0 +1,191 @@
+---
+title: "Treball Final de Màster"
+subtitle: "Recerca-acció i innovació en la pràctica docent"
+filename: practicas-tfm
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Informació completa sobre el Treball Final de Màster del Màster en Formació del Professorat
+categories: [tfm, investigació, innovació, pràctica]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentació
+
+* En el Màster de Formació del Professorat d'Educació Secundària Obligatòria i Batxillerat, Formació Professional i Ensenyaments d'Idiomes, l'estudiant ha de desenvolupar un Treball Final de Màster (TFM) sota la supervisió del tutor universitari. La càrrega de treball que comporta aquest treball és de 6 crèdits (ECTS), que corresponen aproximadament a 150 hores de treball de l'estudiant.
+
+* El Treball Final de Màster s'entén com un exercici de síntesi, integració i aprofundiment de tots els coneixements i habilitats adquirits durant el màster, i consisteix en el desenvolupament d'un tema en profunditat i de manera exhaustiva. Aquest tema ha de ser necessàriament d'interès per a l'estudiant i relacionat amb la pràctica docent de la seva especialitat. El focus d'aquest treball ha de ser fonamentalment l'exploració bibliogràfica, l'anàlisi de la situació a l'aula durant les pràctiques i la formulació, aplicació i anàlisi de l'impacte de propostes educatives i didàctiques innovadores en el context del centre educatiu de pràctiques.
+
+* Durant el desenvolupament del TFM, l'estudiant ha de connectar el tema sobre el qual desenvolupa el treball amb els continguts tractats en el mòdul genèric i el mòdul d'especialització, així com amb tot el que ha vist i après a l'estada de pràctiques.
+
+<br>
+
+## Informació tècnica
+
+* **Codi de l'assignatura:** 32022
+
+* **Temps:**
+  - Jornada completa: primer i segon semestre
+  - Jornada parcial: segon any, anual
+
+* **Nombre de crèdits:** 6
+
+* **Dedicació:** 150 hores de treball
+
+* **Professor:** Laura Ganzer (coordinadora) i tutors universitaris
+
+<br>
+
+![Esquema del Treball Final de Màster](/images/tfm/tfm-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Mòduls d'assignatures
+
+* **Tutoria conjunta TFM**
+
+* **Realització d'una investigació-acció en un centre educatiu**
+
+* **Elaboració de l'informe escrit**
+
+* **Sessió de defensa oral del pòster explicatiu del TFM**
+
+<br>
+
+## Gols
+
+* Ser capaç d'aplicar els coneixements adquirits durant el màster al voltant d'un tema que actuï com a eix integrador relacionat amb la pràctica professional i la innovació educativa.
+
+* Aprofundir en el coneixement d'un tema concret en relació a la pràctica professional experimentada al centre de pràctiques.
+
+<br>
+
+## Competències
+
+* En termes generals, les àrees de competència que es treballaran al llarg del TFM són les que s'indiquen a continuació. En funció de la temàtica concreta de la recerca-acció que es dugui a terme, es desenvoluparà una o altra competència en les àrees indicades.
+
+1. Disseny, gestió i planificació d'entorns d'ensenyament-aprenentatge de les ciències
+
+3. Metodologia docent i gestió de la diversitat a l'aula
+
+5. Recerca, innovació i reflexió sobre la identitat professional i la millora de la pràctica docent
+
+6. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
+
+<br>
+
+## Metodologia
+
+* El treball de fi de màster (TFM) consisteix a dur a terme una investigació-acció per introduir una millora en algun aspecte relacionat amb les classes de ciències a secundària, sempre en el marc de les unitats i/o seqüències didàctiques dissenyades a DEIA.
+
+* El TFM es realitzarà amb la parella de pràctiques o individualment.
+
+* Durant les primeres pràctiques en un centre educatiu, l'estudiant ha de centrar-se en algun aspecte que es pugui millorar a les classes de ciències i desenvolupar una o més preguntes de recerca.
+
+* Al llarg de les sessions del DEIA i del treball autònom es realitzarà una cerca bibliogràfica sobre el tema i es dissenyaran accions educatives que suposadament suposaran una millora de les classes de ciències. Durant la segona pràctica, en el marc de les unitats didàctiques i/o seqüències que l'alumne implementa amb els grups d'alumnes que el mentor/a li hagi assignat, es realitzaran les accions educatives vinculades al TFM, i s'observaran els resultats i es recolliran dades.
+
+* Posteriorment, l'anàlisi d'aquestes dades ha de permetre valorar si la intervenció didàctica realitzada suposa o no una millora a les classes de ciències, responent a la pregunta de recerca plantejada inicialment i permetent l'elaboració de les conclusions del TFM.
+
+* Durant tot el procés de realització del TFM es realitzaran dues tutories conjuntes pel tutor i el seu grup d'alumnes per avaluar-ne el desenvolupament i realitzar accions de coavaluació. També es poden fer tutories individualitzades amb el tutor.
+
+* La presentació del TFM es farà mitjançant un informe escrit que s'entregarà telemàticament i la seva defensa es realitzarà en una sessió de pòsters al final del curs.
+
+<br>
+
+## Avaluació
+
+* Per a poder presentar el TFM, es recomana haver superat positivament l'avaluació de les assignatures dels fonaments d'educació secundària i mòduls d'especialització docent, i és obligatori obtenir una qualificació positiva en l'avaluació del pràcticum. En cas de suspensió del pràcticum, la defensa del TFM es farà el curs següent, amb el mateix calendari que la resta d'alumnes i sempre en funció de la realització del pràcticum.
+
+* L'alumne farà un primer lliurament del TFM, que serà revisat pel tutor i un àrbitre (revisor extern). Aquests revisaran les diferents parts del TFM i, si escau, faran propostes de millora, i recomanaran o no acceptaran. A partir d'aquest moment, els alumnes tenen una setmana per fer les esmenes necessàries i enviar la versió definitiva del TFM.
+
+* El mes de juny es faran les presentacions dels TFM de totes les especialitats. Es presentaran personalment en sessions públiques de cartells. El TFM serà avaluat per un Tribunal format per tres professors de màster, mitjançant l'informe escrit i la seva defensa oral pública. Aquest tribunal ha d'incloure el tutor de l'estudiant i el tutor de la Universitat. Així, el tribunal avaluador de TFM estarà format per: el tutor/tutor del centre, el tutor universitari i un professor de màster de la universitat.
+
+### Ponderació de l'avaluació
+
+* **Memòria escrita TFM (70%)**
+
+* **Presentació oral del pòster de TFM (30%)**
+
+<br>
+
+## Estructura TFM
+
+### Memòria escrita (70%)
+
+L'informe escrit ha d'incloure:
+
+* Exploració bibliogràfica sobre el tema
+
+* Anàlisi de la situació a l'aula durant les pràctiques
+
+* Formulació de preguntes de recerca
+
+* Disseny d'accions educatives innovadores
+
+* Implementació i recollida de dades
+
+* Anàlisi de resultats
+
+* Conclusions i propostes de millora
+
+### Defensa oral del cartell (30%)
+
+La defensa oral tindrà lloc a:
+
+* Sessió de cartells públics
+
+* Presentació davant el tribunal avaluador
+
+* Resposta a preguntes judicials
+
+<br>
+
+## Procés de finalització del TFM
+
+### Primera estada de pràctiques (gener - febrer)
+
+* Observació i anàlisi del funcionament de l'aula
+
+* Identificació d'aspectes millorables a les classes de ciències
+
+* Desenvolupament de preguntes de recerca
+
+### Durant les sessions DEIA
+
+* Cerca bibliogràfica sobre el tema escollit
+
+* Disseny d'accions educatives innovadores
+
+* Planificació de la recerca-acció
+
+### Segona estada de pràctiques (març - maig)
+
+* Implementació d'accions educatives vinculades al TFM
+
+* Observació de resultats
+
+* Recollida de dades
+
+* Anàlisi de la intervenció didàctica
+
+### Preparació de la memòria
+
+* Redacció de l'informe escrit
+
+* Primer lliurament i revisió per part del tutor i àrbitre
+
+* Incorporació de les millores proposades
+
+* Lliurament de la versió final
+
+### Defensa del TFM (juny)
+
+* Elaboració del cartell explicatiu
+
+* Presentació pública al jutjat
+
+* Defensa oral i resposta a preguntes

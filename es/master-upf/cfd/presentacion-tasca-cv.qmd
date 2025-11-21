@@ -1,0 +1,15 @@
+---
+title: "Practica de la presentacion del análisis del CV"
+subtitle: "Guía integrada de la especialidad de Ciencias Naturales (Biología y Geología / Física y Química)"
+filename: cfd-presentacion-tasca-cv
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Asignatura que complementa la formación disciplinar en ciencias naturales desde una mirada integrada y disciplinar
+categories: [presentacion, complementos, disciplinar]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---

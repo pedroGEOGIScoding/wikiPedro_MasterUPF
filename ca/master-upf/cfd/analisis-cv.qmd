@@ -1,0 +1,15 @@
+---
+title: "Anàlisi de CV"
+subtitle: "Currículums de les especialitats de Ciències Naturals (Biologia i Geologia / Física i Química)"
+filename: cfd-analisis-cv
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Anàlisi dels currículums de les especialitats de Ciències Naturals (Biologia i Geologia / Física i Química)
+categories: [anàlisi, CV, currículum]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---

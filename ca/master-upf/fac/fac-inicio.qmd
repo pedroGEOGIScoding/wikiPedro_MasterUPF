@@ -1,0 +1,309 @@
+---
+title: "Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
+filename: fac-inicio
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Assignatura que treballa les bases fonamentals de l'ensenyament de les ciències, fomentant l'alfabetització científica
+categories: [fonamentals, aprenentatge, ensenyament, ciències]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentació
+
+* L'objectiu principal d'aquesta assignatura és treballar les bases fonamentals de l'ensenyament de les ciències. L'objectiu és promoure l'ensenyament-aprenentatge de les ciències que afavoreixi l'alfabetització científica i, alhora, incentivi els joves a apostar per les carreres científiques.
+
+* L'objectiu és fomentar la reflexió sobre el model de ciències que s'ha d'ensenyar i el model didàctic del professor, i també proporcionar les eines i els recursos necessaris per poder desenvolupar la tasca de professor de ciències d'acord amb els paradigmes de l'ensenyament de les ciències actuals.
+
+* Es treballen aspectes clau en l'ensenyament-aprenentatge de les ciències; Això aprofundeix en la naturalesa de la ciència, reflexiona sobre la importància del model d'ensenyament del professorat i les idees prèvies dels alumnes, sobre l'autoregulació de l'aprenentatge, el paper de la llengua en la construcció del coneixement, la importància del treball experimental o pràctic i de les activitats didàctiques fora de l'aula i, finalment, l'aprenentatge per projectes.
+
+* La importància del modelatge en ciència i el tractament de la diversitat són aspectes que s'ensenyaran amb la metodologia d'aprenentatge basat en problemes (ABP). El procés d'aprenentatge comença amb una situació problemàtica que afavoreix la identificació de necessitats d'aprenentatge. Treballareu amb grups de 8-10 alumnes amb un tutor com a facilitador d'aprenentatge. El procés d'aprenentatge està dirigit pels mateixos alumnes. Al final de cadascun dels dos problemes, els resultats es presentaran a la resta de companys.
+
+* Tots els continguts i procediments que es treballaran en aquesta assignatura seran recursos bàsics per al disseny de seqüències didàctiques que es realitzaran a l'assignatura DEIA.
+
+<br>
+
+![Estructura dels Fonaments de l'Aprenentatge i l'Ensenyament de les Ciències Naturals](/images/fac/fac-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Informació tècnica
+
+* **Codi de l'assignatura:** 32438
+
+* **Temps:**
+  - Jornada completa: primer i segon semestre
+  - Jornada parcial: primer any, anual
+
+* **Nombre de crèdits:** 10
+
+* **Dedicació:** 75 hores presencials i 120 hores de treball autònom (195 hores en total)
+
+* **Professors:** Pineda Badia (coordinador), Marcel Costa, Jordi de Manuel, Anama Domènech, Laura Ganzer, Xavier Muñoz, Xavier Oller, Nora Pérez, Xavi Pié, Diego Sanjulián, Laura Taberner, Gemma Viscasillas
+
+<br>
+
+## Mòduls d'assignatures
+
+* **Naturesa de la ciència**
+
+* **Model didàctic i idees prèvies**
+
+* **Aprenentatge autoregulat**
+
+* **Atenció a la diversitat dels alumnes**
+
+* ** Modelatge en ciència**
+
+* **Aprenentatge basat en projectes**
+
+* **Treball pràctic i ensenyament de com fer recerca**
+
+* **Activitats didàctiques fora de l'aula**
+
+<br>
+
+## Gols
+
+* Conèixer i aplicar l'anàlisi de la naturalesa de la ciència a les sessions de classe de secundària.
+
+* Prendre consciència de la importància dels preconceptes en l'ensenyament de les ciències.
+
+* Analitzar el propi model d'ensenyament i contrastar-lo amb el dels mestres del segle XX. XXI.
+
+* Conèixer els requisits per dur a terme treballs experimentals i investigacions en l'ensenyament de les ciències.
+
+* Aplicar l'autoregulació com a eina d'aprenentatge.
+
+* Conèixer la rellevància del llenguatge en la construcció i comunicació del coneixement científic.
+
+* Aplicar el modelatge com a estratègia d'aprenentatge a les classes de ciències
+
+* Utilitzar les preguntes de manera didàctica a les classes de ciències.
+
+* Aplicar les estratègies més adequades per atendre la diversitat dels alumnes a classe de ciències.
+
+* Identificar els requisits i les implicacions del treball a través de projectes transversals i en el context de la ciència.
+
+* Utilitzar de manera eficient les tecnologies de l'aprenentatge i el coneixement en l'ensenyament de les ciències.
+
+* Saber planificar i analitzar activitats didàctiques fora de l'aula.
+
+<br>
+
+## Competències
+
+1. Disseny, gestió i planificació d'entorns d'ensenyament-aprenentatge de les ciències
+
+2. Comunicació i interacció personal en els processos d'ensenyament-aprenentatge i implicació efectiva en els equips docents.
+
+3. Metodologia docent i gestió de la diversitat a l'aula
+
+5. Recerca, innovació i reflexió sobre la identitat professional i la millora de la pràctica docent
+
+6. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
+
+<br>
+
+## Continguts
+
+* Introducció a la naturalesa de la ciència.
+
+* Conseqüències dels preconcepcions sobre la naturalesa del coneixement científic en l'ensenyament de les ciències.
+
+* El model d'ensenyament del professorat.
+
+* Treball experimental en l'ensenyament de les ciències.
+
+* Ensenyar a fer recerca
+
+* Autoregulació de l'aprenentatge.
+
+* El llenguatge en la construcció i comunicació del coneixement científic.
+
+* Estratègies per promoure la participació ciutadana en la ciència
+
+* Modelatge en l'ensenyament de les ciències
+
+* Preguntes a les classes de ciències.
+
+* Atenció a la diversitat dels alumnes a classe de ciències.
+
+* Treball per projectes.
+
+* L'ús de les tecnologies de l'aprenentatge i del coneixement en l'ensenyament de les ciències.
+
+* Activitats didàctiques fora de l'aula: planificació i anàlisi.
+
+<br>
+
+## Metodologia
+
+### a) Sessions presencials
+
+* Les sessions seran teòrico-pràctiques, es combinaran activitats per treballar a l'aula amb exposicions del professorat. Predominaran, per tant, les metodologies d'aprenentatge actiu i es facilitarà la pràctica reflexiva.
+
+* Bona part de les tasques que es realitzaran de manera presencial durant les classes es realitzaran treballant en grups cooperatius.
+
+* Alguns dels temes d'aquesta assignatura es treballen amb la metodologia d'aprenentatge basat en problemes.
+
+* L'estudiant tindrà a la seva disposició a la plataforma virtual les presentacions i documents utilitzats durant les sessions i informació complementària de cada tema.
+
+### b) Tasques no presencials
+
+* Els alumnes tindran a la seva disposició diversos documents a la Plataforma Virtual que serviran per preparar diferents tasques (individuals o grupals); Aquestes tasques han de contribuir a la consecució dels objectius de l'assignatura.
+
+### c) Sessions pràctiques
+
+* Durant el curs es faran algunes sessions pràctiques als laboratoris de la Facultat de Ciències de la Salut i la Vida (FCSV). Els alumnes hauran de portar una bata per a aquestes sessions. També es farà una sortida de camp a Collserola que es farà al matí.
+
+### d) Visites programades
+
+* Es realitzaran dues sortides a institucions científiques on es realitzen activitats educatives per a alumnes de secundària, amb l'objectiu de conèixer els recursos que ofereixen aquest tipus de centres per a l'alumnat i professorat de ciències naturals i treballar com fer-ne un bon ús.
+
+<br>
+
+## Avaluació
+
+* L'assignatura disposarà d'un sistema d'avaluació contínua, que es basarà en les demandes realitzades durant el procés docent.
+
+Les activitats d'avaluació seran les següents:
+
+* **Tasca de grup: aprenentatge basat en problemes (35%)**
+
+* **Deures pràctics individuals o en parella (25%)**
+
+* **Tasca de grup de naturalesa de la ciència (30%)**
+
+* **Tasca grupal d'activitats didàctiques fora de l'aula (10%)**
+
+<br>
+
+## Recursos i bibliografia recomanada
+
+Adell, J. 2010. Congress models of TIC integration in education. http://www.ite.educacion.es/congreso/modelostic/
+
+Barba, C., Capella S. 2010. Ordinadors ales aules. La clau és la metodologia. Biblioteca Guix, 172. Barcelona. Ed. Graó.
+
+Barberà, E., Mauri, T., Onrubia, J. 2008. Com avaluar la qualitat de la docència basada en les TIC. Guies i instruments d'anàlisi. Crítica i fonaments, 19. Barcelona. Ed. Graó.
+
+Borrull Riera, A.; Valls Bautista, C., 2019. Low cost science. Guia pràctica d'activitats d'investigació sobre ciències de la vida per a secundària. Ed. Graó. Sèrie didàctica de les ciències experimentals. no. 330
+
+Cerezo, JM. 2008. Cap a un nou paradigma. L'era de la informació fragmentada. Telos, quaderns d'innovació i comunicació., 76. Madrid. Fundació Telefónica.
+
+Claxton, G. 1994. Educar ments curioses. Barcelona. Ed. Visera.
+
+Couso, D., Jimenez-Liso, M.R., Refojo, C. & Sacristán, J.A. (Coords) (2020) Ensenyar ciència amb ciència. Fundació FECYT i Lilly. Madrid: Penguin Random House. (https://www.fecyt.es/es/publicacion/ensenando-ciencia-con-ciencia)
+
+Chalmers, 1987 Què és això que s'anomena ciència? Segle XXI: Madrid
+
+De Manuel, J. 2000. Educa la curiositat. La recerca des de la infància fins a l'educació secundària. Guix, 263 pàgs. 35-40.
+
+Dagher, Z. R. i Erduran, S. (2016). Reconceptualització de la naturalesa de la ciència per a l'educació científica. Ciència i educació, 25(1-2), 147-164.
+
+Domènech, M. 2008. L'aula de ciències de secundària: de les tecnologies de la informació i la comunicació (TIC) a les tecnologies de l'aprenentatge i el coneixement (TAC), dels continguts a les competències. Revista Ciències, 11 pp 20-22.
+
+Domènech, J. (2019). Aprendre a partir de projectes, tasques pràctiques i polèmiques. 28 propostes i reflexions per a l'ensenyament de les Ciències. Premi Marta Mata de Pedagogia 2018. Rosa Sensat.
+
+Driver, R. et al. (1991). Idees científiques en la infància i l'adolescència. Madrid: Ed. Morata/MEC.
+
+González Aguado, Mª Elvira (coord.), 2013. 84 experiments quotidians de química a secundària. Ed. Graó. Biblioteca Alambic. Sèrie didàctica de les ciències experimentals. número 302
+
+Harlen, W. (2010). Principis i grans idees de l'educació científica. Ed. Rosa Devés (www.innovec.org.mx)
+
+Hernández, F. 2004. Passió pel procés de saber: Treball per projectes. Quaderns de Pedagogia, 332. P. 46-51.
+
+Izquierdo, M., Aliberes, J., 2004. Pensar, actuar i escriure a la classe de ciències. Per un ensenyament racional i raonable de les ciències. Cerdanyola: Publicacions UAB.
+
+Jiménez-Aleixandre (coord). 2003. Ensenyament de la ciència. Graó.
+
+Lemke J.L. 1997. Aprendre a parlar ciència, Barcelona: Ed. Paidós.
+
+Lozano, O. R i Solbes, J., 2014. 85 experiments de física quotidiana. Ed. Graó. Biblioteca Alambic. Sèrie didàctica de les ciències experimentals. número 305
+
+Lucio Gil, R., & Sanmartí, N. (2004). L'activitat metacognitiva com a desencadenant de processos d'autoregulació en les concepcions i pràctiques docents dels professors de ciències experimentals. Universitat Autònoma de Barcelona.
+
+Manent, M. 2011. Excursions i activitats als centres de primària i secundària. 15 medi natura sortides. Dossiers Rosa Sensat, 73. Barcelona. Publicacions de l'Associació de Mestres Rosa Sensat.
+
+Mayer, R.E. (2020). Aplicació de la ciència de l'aprenentatge. Ed. Graó.
+
+Molés, J.; Montferrer, Ll. 2014. Flipped Classroom al laboratori. Ciències, 27. pàgs 9-15.
+
+Monereo, C.; Duran D. 2001. Entramats. Mètodes d'aprenentatge cooperatiu i col·laboratiu. Barcelona. Edebe.
+
+Monereo, C.; 2005. Internet i competències bàsiques. Aprendre a col·laborar, a comunicar-se, a participar, a aprendre. Barcelona. Ed. Graó.
+
+Monereo, C., Pozo J. 2007. Competències bàsiques. Quaderns de pedagogia, 370.
+
+McComas, W. F., de., 1991. The Nature of Science in Science Education. Justificacions i estratègies. Dordrecht: Kluwer.
+
+Novak, J.D. & Gowin, 1988. Aprenent a aprendre. Barcelona: Ed. Martínez Roca.
+
+Ogborn, J. et al. 1998. Maneres d'explicar. Ensenyament de ciències a secundària. Madrid: Aula XXI Santillana.
+
+Osborne, J., Pimentel, D., Alberts, B., Allchin, D., Barzilai, S., Bergstrom, C., Coffey, J., Donovan, B., Kivinen, K., Kozyreva. A. i Wineburg, S. (2022). Educació científica en una era de desinformació. Universitat de Stanford, Stanford, CA.
+
+Prensky, M. 2004. The emerging online life of the digital native. http://www.marcprensky.com/writing/
+
+Pujolàs, P. 2003. Aprendre conjuntament amb diferents alumnes. Equips d'aprenentatge cooperatiu a l'aula. Vic. Eumo Editorial.
+
+Pujolàs, P. 2009. 9 idees clau: Aprenentatge cooperatiu. Vic. Eumo Editorial.
+
+PISA. 2006. Assessment Framework: Knowledge and Skills in Science, Mathematics and Reading: Program for International Student Assessment. Publicacions de l'OCDE.
+
+Ruiz, H. 2020. Com aprenem? Una aproximació científica a l'aprenentatge i l'ensenyament. Ed. Graó.
+
+Sanmartí, N. (2007). 10 idees clau. Avaluar per aprendre. Madrid: Ed. Graó.
+
+Sanmartí, N., 2002. L'ensenyament de les ciències a l'educació secundària obligatòria. Síntesi de l'educació.
+
+Sanmartí, N. El treball d'investigació del batxillerat. http://www.xtec.cat/sgfp/matform/matrecerca/neussanmarti.pdf
+
+Seré, M.G., Leach, J., et al. 2001. Millora de l'educació científica: qüestions i investigació sobre enfocaments empírics innovadors basats en ordinador per al treball de laboratori a Europa. Projecte PL 95-2005, Laboratori en Educació Científica. Informe final Comissió Europea. Programa de recerca socioeconòmica.
+
+Tamir, P. 1989. Formació de professors per ensenyar eficaçment al laboratori. Science Education, 73(1) pp 59-69.
+
+Valls, J. M. i Segura, M., 2014. La clau de volta. Recursos per a professors de Ciències Experimentals. Escola Pia de Catalunya.
+
+VVAA. 2000. Monografia: Museus de la Ciència. Alambic, 26. Barcelona. Ed. Graó.
+
+VVAA. 2004. Monografia: Treball pràctic de física i química. Alambic, 39. Barcelona. Ed. Graó.
+
+VVAA. 2005. Monografia Contextualitzant la ciència. Alambic, 46. Barcelona. Ed. Graó.
+
+VVAA. 2006. Monografia: Treball pràctic en la construcció del coneixement biològic i geològic. Alambic, 47. Barcelona. Ed. Graó.
+
+VVAA. 2007. Monografia: Ensenyar i aprendre investigant. Alambic, 52. Barcelona. Ed. Graó.
+
+VVAA. 2015. Monografia: Més sobre materials. Perspectiva escolar, 383.
+
+VVAA. 2017. Monografia: Aprenentatge a partir de projectes en àmbits STEM. Ciències, 33. pàg 1-56.
+
+VVAA, 2012. Alambic. Didàctica de les Ciències Experimentals. Ensenyar què és la ciència, número 72
+
+VVAA, 1996. Monografia: Les idees dels estudiants en ciència. Alambic, 7. Barcelona. Ed. Graó.
+
+VVAA,. 2008. Monografia: L'avaluació PISA en ciència. Alambic, 57. Barcelona. Ed. Graó.
+
+<br>
+
+## Recursos en línia
+
+ARC, espai per compartir propostes docents de qualitat associades a les competències bàsiques i al currículum: https://apliense.xtec.cat/arc/
+
+CESIRE (Centre de Suport a la Innovació i Recerca Educatives): https://serveiseducatius.xtec.cat/cesire/
+
+Comunitat de webquest catalana: http://webquestcat.net/
+
+Treball per projectes: http://xtec.gencat.cat/ca/curriculum/xarxacb/treball-projectes/
+
+Planificació del treball pràctic:
+- http://www.xtec.cat/~rgrau/
+- https://www.ub.edu/paubiologia/Recursos/Disseny%20_experimental.pdf
+- http://www.ciencianet.com/experimentos.html
+

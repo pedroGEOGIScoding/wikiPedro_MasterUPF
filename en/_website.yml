@@ -1,0 +1,170 @@
+website:
+  title: "Master's Degree in Secondary Education Teaching"
+  favicon: images/home/favicon.png
+  page-navigation: true    # Enable next/previous page navigation buttons (true/false)
+  back-to-top-navigation: true  # Enable 'Back to Top' button on pages (true/false)
+  site-url: https://pedromartinezduran.github.io/wiki_MasterUPF/
+  repo-url: https://github.com/pedromartinezduran/wiki_MasterUPF
+  repo-link-target: "_blank"
+  repo-link-rel: "noopener"
+  repo-branch: master
+  repo-actions: [source, issue]
+  reader-mode: false
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "**Warning** - this website is under development"
+    type: primary
+    position: below-navbar
+
+  search:
+    location: navbar             
+    type: overlay                  
+    limit: 10                
+    collapse-after: 10        
+    copy-button: true           
+    keyboard-shortcut: "ctrl+f"     # Keyboard shortcut(s) to activate search (e.g., "cmd+k", "ctrl+f")
+    show-item-context: true     # Show parent page context for search results (true/false)
+
+  navbar:
+    background: primary
+    style: "docked"
+    collapse: true
+    collapse-level: 1
+    collapse-below: lg
+    pinned: true
+    title: "Pedro Martinez Duran"
+    left:
+      - text: Home
+        href: index.qmd
+      - sidebar:portfolio-1
+      - sidebar:portfolio-2
+      - sidebar:portfolio-3
+      - sidebar:portfolio-4
+      - sidebar:masterUPF
+      - sidebar:edulinks
+      - sidebar:about
+    right:
+      - text: translate
+        menu:
+          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;'>🇪🇸 Spanish</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;'><img src='/images/home/catalan-flag.svg' width='20' height='15' style='margin-right: 5px;'/> Catalan</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;'>🇬🇧 English</a>"
+          
+      - icon: three-dots-vertical
+        menu:
+          - text: "{{< fa solid envelope >}} Email"
+            href: mailto:pedromartinezduran@gmail.com
+          - text: "{{< fa brands github >}} GitHub"
+            href: https://github.com/pedroGEOGIScoding/
+          - text: "{{< fa brands linkedin >}} LinkedIn"
+            href: https://www.linkedin.com/in/pedromartinezduran/
+
+  sidebar:
+    - id: "portfolio-1"
+      title: "Portfolio1"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - portfolio/portfolio-inicio.qmd
+
+    - id: "portfolio-2"
+      title: "Portfolio2"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - portfolio/portfolio-inicio.qmd
+
+    - id: "portfolio-3"
+      title: "Portfolio3"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - portfolio/portfolio-inicio.qmd
+
+    - id: "portfolio-4"
+      title: "Portfolio4"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - portfolio/portfolio-inicio.qmd
+
+    - id: "masterUPF"
+      title: "Master UPF"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - section: "General Documentation Master UPF"
+          contents:
+          - master-upf/intro-master-upf.qmd                 
+        - text: "---"
+        - section: "Fundamentals Module"
+          contents:
+            - section: "Society, family and education"
+              contents:
+              - master-upf/sofe/sofe-inicio.qmd
+            - section: "Development, learning and education"
+              contents:
+              - master-upf/dae/dae-inicio.qmd
+        - section: "Specialization Module"
+          contents:
+            - section: "Complementary training in disciplinary formation"
+              contents:
+              - master-upf/cfd/cfd-inicio.qmd
+              - master-upf/cfd/analisis-cv.qmd
+              - master-upf/cfd/presentacion-tasca-cv.qmd
+
+            - section: "Fundamentals of learning and teaching natural sciences"
+              contents:
+              - master-upf/fac/fac-inicio.qmd
+
+            - section: "Design of innovative learning environments"
+              contents:
+              - master-upf/deia/deia-inicio.qmd
+        
+        - section: "Practicum Module"
+          contents:
+            - section: "Practices in the educational center"
+              contents:
+              - master-upf/practicum/practicas-inicio.qmd
+              - master-upf/practicum/notas-practicas/plantilla-observacion-aula.qmd
+              - master-upf/practicum/notas-practicas/plantilla-observacion-alumno.qmd
+            - section: "Master's final work"
+              contents:
+              - master-upf/practicum/practicas-tfm.qmd
+
+    - id: "edulinks"
+      title: "WebLinks Educational"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - edulinks.qmd
+
+    - id: "about"
+      title: "About me"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      contents:
+        - about/about-this-me.qmd
+        - about/about-this-site.qmd
+        - about/about-this-images-credit.qmd
+        
+  page-footer:
+    background: primary
+    left: "Copyright 2025, Pedro Martinez Duran"
+    center: "*Per aspera, ad astra*"
+    right:
+      - icon: github
+        href: https://github.com/pedroGEOGIScoding/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/pedromartinezduran/
+      - icon: envelope
+        href: mailto:pedromartinezduran@gmail.com
+        aria-label: Send me an email

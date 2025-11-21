@@ -1,0 +1,155 @@
+---
+title: "Desenvolupament, aprenentatge i educació"
+subtitle: "Gestió de l'aula, avaluació i eines digitals per a l'ensenyament de les ciències"
+filename: dae-inicio
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Assignatura que aborda la gestió de l'aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals
+categories: [desenvolupament, aprenentatge, educació]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentació
+
+* Aquesta assignatura aborda tres qüestions essencials en l'ensenyament-aprenentatge de les ciències naturals avui a Catalunya, que són la gestió d'una aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals (dins de l'aula, per a l'ensenyament formal, i fora de l'aula, per a la formació continuada de l'aprenent en els seus contextos de lleure).
+
+* L'assignatura relaciona els continguts psicopedagògics, normatius i organitzatius més globals, a nivell més macro o general, tractats en SOFE (Societat, família i educació: processos i contextos educatius), amb la seva correlació en aspectes més concrets, amb un nivell micro, de l'aula i del dia a dia.
+
+* L'assignatura té un valor de 5 ECTS, que suposa 125 hores de treball de l'estudiant, amb 14 sessions presencials de dues hores (28h), impartides en modalitat virtual presencial i síncrona. S'ensenya sobretot abans de fer la segona visita al centre, quan hauràs de donar classes, per tal de dotar-te de tots els coneixements i habilitats necessàries per fer-ho bé.
+
+<br>
+
+## Informació tècnica
+
+* **Codi de l'assignatura:** 32864
+
+* **Temps:**
+  - Jornada completa: primer semestre
+  - Jornada parcial: primer curs, primer semestre
+
+* **Nombre de crèdits:** 5 ECTS
+
+* **Dedicació:** 125 hores (28 hores presencials i 97 hores de treball autònom)
+
+* **Professor responsable de l'assignatura:** Maria Calsamiglia, Arturo Cortés, Núria Domènech (coordinadora), Laura Taberner i Lluís Terrado.
+
+<br>
+
+## Preguntes clau
+
+Algunes de les preguntes que podreu respondre al final d'aquesta assignatura són:
+
+* Quin és el paper dels professors per crear un bon entorn d'aprenentatge a l'aula?
+
+* Com organitzar les activitats d'avaluació de l'aprenentatge per promoure una avaluació que combini funcions reguladores i d'acreditació?
+
+* Quines eines i metodologies digitals són les millors per al disseny i aplicació d'activitats a l'aula que afavoreixin el desenvolupament de la competència científica en l'alumnat?
+
+<br>
+
+## Mòduls d'assignatures
+
+Els mòduls que conformen aquesta assignatura són aquests, amb les modalitats corresponents:
+
+* **Docència i avaluació**, en modalitat presencial i sincrònica virtual.
+
+* **Gestió i cooperació de l'aula**, presencialment.
+
+* **Eines digitals per a la competència científica**, en modalitats virtuals presencial i síncrona.
+
+<br>
+
+## Gols
+
+* Saber gestionar el dia a dia a l'aula, la gestió de cada grup, la gestió de la dinàmica de l'aula (temps, espai, instruccions, interacció), el desenvolupament de les tasques d'aprenentatge i l'anticipació i reparació de conflictes.
+
+* Conèixer les principals finalitats, instruments i característiques de l'avaluació i saber-les implementar de manera formativa en l'ensenyament científic.
+
+* Conèixer i valorar les eines digitals de què disposa el centre, saber organitzar-les de manera eficaç per a tot l'alumnat, saber triar els recursos més adequats i educar l'alumnat perquè pugui fer un ús instructiu i eficaç d'aquests recursos.
+
+<br>
+
+## Competències
+
+* Saber adoptar una perspectiva d'investigació a l'aula, per gestionar de manera eficaç i reflexiva les dinàmiques i activitats que es desenvolupen.
+
+* Saber identificar l'objectiu, les característiques, els punts forts i febles i la utilitat dels diferents instruments d'avaluació i saber adaptar-los a cada situació.
+
+* Utilitzar de manera efectiva les eines digitals del centre per a les classes de ciències i saber orientar els alumnes en l'ús dels seus recursos digitals dins i fora de l'aula.
+
+<br>
+
+## Continguts
+
+* Estratègies de gestió de l'aula per construir el vincle amb l'alumnat, incloure rutines i establir límits i eines per afavorir la motivació.
+
+* Funcions d'avaluació, principals instruments i criteris per millorar la regulació de l'ensenyament-aprenentatge.
+
+* Eines digitals dins i fora de l'aula. Potencials i limitacions. Usos. Aplicacions i experiències d'ús diverses.
+
+<br>
+
+## Avaluació
+
+* **Tasca 1.** Resolució d'un cas pràctic relacionat amb els continguts dels mòduls de gestió i cooperació i docència i avaluació de l'aula. Tasca de resolució individual (70%).
+
+* **Tasca 2.** Mòdul d'eines digitals per a la competència científica. Informe final dels dos casos pràctics del mòdul (30%).
+
+<br>
+
+## Recursos i bibliografia recomanada
+
+AAVV. (2015) *Articles publicats de la competició científica. Marc conceptual PISA 2015*. Documents, 26. Publicacions del Departament d'Ensenyament. Generalitat de Catalunya.
+
+Barkley, E.F.; Creu, K.P.; Howell, C. (2007) *Tècniques d'aprenentatge col·laboratiu*, Madrid, Ed. Morata.
+
+Cassany, Daniel. "Com avaluar?" a *Construeix l'escriptura*. Barcelona: Paidós. 1999.
+
+Francia, A., Mata, J., 2003. *Dinàmiques i tècniques de grup*. Publicació CCS
+
+González, Evaristo. (2020) "Transicions educatives cap a l'aprenentatge híbrid". Portal de la Revista Magisteri. Madrid.
+
+González, Evaristo. (2023) "Aprenentatge entre estudiants universitaris i no universitaris amb el mètode de l'estudi de casos". A: Edgar Loyola (coord.) *Estudiant universitari. Propostes i testimonis*. Conca (Equador). pàg. 11-31.
+
+Jones, J. (2014) *Què hi ha de nou a AfL? Una vista des d'Anglaterra, (Regne Unit)*. Manuscrit inèdit: King's College London: University of London. Traduït al web de la Xarxa de competències bàsiques.
+
+Lemov, Doug. (2021) *Ensenya com un campió. 3.0. 63 tècniques que posen els estudiants al camí de la universitat*. Jossey-bass INC
+
+OCDE (2017) *Marc d'avaluació i anàlisi PISA per al desenvolupament. Lectura, matemàtiques i ciències*. Organització per a la Cooperació i el Desenvolupament Econòmic.
+
+Prensky, Mark. (2001) "Digital natives, digital immigrants", *On the horizon*, 9 (5), octubre 2001. MCB University Press.
+
+Ruiz, Héctor. (2021) *Com aprenem? Un enfocament científic de l'aprenentatge i l'ensenyament*. Graó Editorial.
+
+Pujolàs, P. Lago J. R. (Coordinadors) (2014) *Cooperar per aprendre/Aprendre a cooperar. Implantació de l'aprenentatge cooperatiu a l'aula*. Publicacions Universitat de Vic.
+
+Sanmartí, Neus (2020). *Avaluar per aprendre*. Direcció General de Currículum i Personalització. Publicacions del Departament d'Ensenyament.
+
+Sanmartí, N., León, M. (2021) *Avaluar i aprendre: un sol procés*. Ed. Octaedre
+
+Scrivener, J. (2012) *Tècniques de gestió d'aula*. Cambridge. Cambridge University Press.
+
+Simón, M. et al. (2006) "L'avaluació com a procés d'autoregulació: deu anys després". *Alambic: Didàctica de les ciències experimentals*, núm. 48 pàgines. 32-41.
+
+Teixidó Saballs, J. (2001) "Ser professor de secundària, avui", Bloc del GROC: Grup de Recerca en Organització de Centres.
+
+Vaello Orts, J. (2007). *Com ensenyar als que no volen fer classe*. Madrid: Santillana.
+
+Vaello Orts, J. (2003) *Resolució de conflictes a l'aula*. Santillana Educación, SL.
+
+Vinagre, M. (2010) *Teoria i pràctica de l'aprenentatge col·laboratiu assistit per ordinador*. Madrid: Síntesi.
+
+White, David i Alison Le Cornu. (2011) "Visitants and Residents: A new typology for online engagement", *Primer dilluns*, 16 (9), setembre.
+
+<br>
+
+## Repositoris
+
+XTEC. Xarxa Telemàtica Educativa de Catalunya. Ciències naturals. Treball per projectes.
+
+WebQuestCat. Comunitat Catalana de Webquest.

@@ -1,0 +1,19 @@
+color:
+  palette:
+    dark-grey: "#222222"
+    blue: "#ddeaf1"
+  background: white
+  foreground: dark-grey
+  primary: black
+
+typography:
+  fonts:
+    - family: Cabin Sketch
+      source: google
+    - family: Space Mono
+      source: google
+    - family: Winky Sans
+      source: google
+  base: Winky Sans
+  headings: Cabin Sketch
+  monospace: Space Mono

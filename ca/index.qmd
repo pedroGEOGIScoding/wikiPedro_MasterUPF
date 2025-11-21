@@ -1,0 +1,39 @@
+---
+title: "Màster en Magisteri de Secundària"
+filename: index
+format:
+  html: 
+    toc: false
+repo-actions: false
+
+---
+
+
+::: {.columns}
+::: {.column width="40%"}
+Hola, em dic Pedro i estic estudiant un màster de magisteri de secundària a la Universitat Pompeu Fabra. Aquest web és un registre del meu procés d'aprenentatge i reflexió durant aquest màster. Des dels meus anys d'instructor de temps lliure i posteriorment director de colònies, sempre he tingut curiositat per la professió d'educador, però la vida durant molts anys m'ha portat per múltiples camins.
+
+Quan vaig tornar després de 14 anys treballant a Anglaterra, la docència va ser una de les meves primeres opcions per reinventar-me a la meva tornada a casa.
+
+Fa poc vaig veure una pel·lícula, una d'aquelles no molt famoses, però amb un gran missatge. Aquella pel·lícula és **Lunana, un iac a l'escola** i hi ha una frase central sobre l'impacte del professor que deia: **“Els mestres poden tocar el futur”** i el cert és que em va impactar molt i ara després d'emprendre aquest procés m'he adonat que pot ser així, i que l'educació és una de les eines més poderoses per transformar vides.
+
+Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon educador i poder revertir tota la meva experiència vital i coneixements científics que he anat adquirint tots aquests anys com a geòleg d'exploració minera, després director d'empresa i tornar a explorar els hidrocarburs per més de la meitat del món en el futur de la nostra societat, els nostres fills.
+:::
+
+::: {.column width="60%"}
+![](images/home/class-image-home-page.png)
+:::
+:::
+---
+[Últimes notícies sobre ciència]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
+<br>  
+
+```{=html}
+<div style="position: relative; width: 100%; padding-top: 177.78%; /* Aspect ratio: 1600/900 * 100 */">
+    <iframe 
+        src="https://rss.app/embed/v1/carousel/tvjse9tysjnwS5tz" 
+        frameborder="0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;">
+    </iframe>
+</div>
+```

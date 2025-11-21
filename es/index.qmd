@@ -1,0 +1,39 @@
+---
+title: "Master de Profesorado en Secundaria"
+filename: index
+format:
+  html: 
+    toc: false
+repo-actions: false
+
+---
+
+
+::: {.columns}
+::: {.column width="40%"}
+Hola, soy Pedro y estoy estudiando el master de profesor de secundaria en la universidad Pompeu Fabra. Est sitio web es un registro de mi proceso de aprendizaje y reflexión durante este master. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
+
+Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
+
+Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es **Lunana, un yak en la escuela** y hay una frase central sobre el impacto del profesor que decia asi: **“Los profesores pueden tocar el futuro”** y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
+
+Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
+:::
+
+::: {.column width="60%"}
+![](images/home/class-image-home-page.png)
+:::
+:::
+---
+[Últimas noticias sobre Ciencia]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
+<br>  
+
+```{=html}
+<div style="position: relative; width: 100%; padding-top: 177.78%; /* Aspect ratio: 1600/900 * 100 */">
+    <iframe 
+        src="https://rss.app/embed/v1/carousel/tvjse9tysjnwS5tz" 
+        frameborder="0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;">
+    </iframe>
+</div>
+```

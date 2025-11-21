@@ -1,0 +1,39 @@
+---
+title: "Master of Secondary School Teaching"
+filename: index
+format:
+  html: 
+    toc: false
+repo-actions: false
+
+---
+
+
+::: {.columns}
+::: {.column width="40%"}
+Hello, I'm Pedro and I'm studying a master's degree in secondary school teaching at Pompeu Fabra University. This website is a record of my learning and reflection process during this master's degree. Since my years as a free time instructor and later summer camp director, I have always been curious about the profession of educator, but life for many years has taken me down multiple paths.
+
+Upon returning after 14 years working in England, teaching was one of my first options to reinvent myself upon my return home.
+
+I recently saw a movie, one of those not very famous ones, but with a great message. That film is **Lunana, a yak at school** and there is a central phrase about the impact of the teacher that said: **“Teachers can touch the future”** and the truth is that it had a great impact on me and now after embarking on this process I have realized that it can be like that, and that education is one of the most powerful tools to transform lives.
+
+So here I am, reinventing myself once again to become a good educator and be able to reverse all my life experience and scientific knowledge that I have been acquiring all these years as a mining exploration geologist, later a company director and return to explore hydrocarbons for more than half the world in the future of our society, our children.
+:::
+
+::: {.column width="60%"}
+![](images/home/class-image-home-page.png)
+:::
+:::
+---
+[Latest news about Science]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
+<br>  
+
+```{=html}
+<div style="position: relative; width: 100%; padding-top: 177.78%; /* Aspect ratio: 1600/900 * 100 */">
+    <iframe 
+        src="https://rss.app/embed/v1/carousel/tvjse9tysjnwS5tz" 
+        frameborder="0" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;">
+    </iframe>
+</div>
+```

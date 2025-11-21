@@ -1,0 +1,155 @@
+---
+title: "Desarrollo, Aprendizaje y Educación"
+subtitle: "Gestión del aula, evaluación y herramientas digitales para la enseñanza de las ciencias"
+filename: dae-inicio
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Asignatura que aborda la gestión del aula presencial, la evaluación de los aprendizajes y la concepción y gestión de las herramientas digitales
+categories: [desarrollo, aprendizaje, educación]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentación
+
+* Esta asignatura aborda tres cuestiones esenciales de la enseñanza-aprendizaje de las ciencias naturales hoy en Cataluña, que son la gestión de un aula presencial, la evaluación de los aprendizajes y la concepción y gestión de las herramientas digitales (dentro del aula, para la enseñanza formal, y fuera del aula, para la educación continuada del aprendiz en sus contextos de ocio).
+
+* La asignatura relaciona los contenidos más globales psicopedagógicos, normativos y organizativos, en un plano más macro o general, tratados en SOFE (Sociedad, familia y educación: procesos y contextos educativos), con su correlación en aspectos más concretos, a un plano micro, del aula y del día a día.
+
+* La asignatura tiene un valor de 5 ECTS, que suponen 125 horas de trabajo del estudiante, con 14 sesiones presenciales de dos horas (28h), impartidas en modo presencial y virtual síncrono. Se imparte sobre todo antes de hacer la segunda visita al centro, cuando tendrás que dar clases, a fin de dotarte de todos los conocimientos y destrezas necesarios para hacerlo bien.
+
+<br>
+
+## Información Técnica
+
+* **Código de asignatura:** 32864
+
+* **Temporización:**
+  - Tiempo completo: primer semestre
+  - Tiempo parcial: primer año, primer semestre
+
+* **Número de créditos:** 5 ECTS
+
+* **Dedicación:** 125 horas (28h presenciales y 97h de trabajo autónomo)
+
+* **Profesorado responsable de la asignatura:** Maria Calsamiglia, Arturo Cortés, Núria Domènech (coordinadora), Laura Taberner y Lluís Terrado.
+
+<br>
+
+## Preguntas Clave
+
+Algunas de las preguntas que podrás responder al acabar esta asignatura son:
+
+* ¿Cuál es el papel de los docentes en la construcción de un buen ambiente de aprendizaje en el aula?
+
+* ¿Cómo organizar las actividades de evaluación de los aprendizajes para promover una evaluación que combine las funciones reguladora y acreditadora?
+
+* ¿Qué herramientas y metodologías digitales van mejor para el diseño y la aplicación de las actividades de aula que favorezcan el desarrollo de la competencia científica en el alumnado?
+
+<br>
+
+## Módulos de la Asignatura
+
+Los módulos que componen esta asignatura son estos, con las modalidades correspondientes:
+
+* **Enseñanzas y evaluación**, en modalidad presencial y virtual síncrona.
+
+* **Gestión del aula y cooperación**, en modalidad presencial.
+
+* **Herramientas digitales para la competencia científica**, en modalidad presencial y virtual síncrona.
+
+<br>
+
+## Objetivos
+
+* Saber gestionar el día a día en el aula, llevando la gestión de cada grupo, manejando la dinámica de aula (tiempo, espacio, instrucciones, interacción), el desarrollo de las tareas de aprendizaje y la previsión y reparación de conflictos.
+
+* Conocer los principales propósitos, instrumentos y características de la evaluación y saber implementarlos de manera formativa en la educación científica.
+
+* Conocer y valorar las herramientas digitales disponibles en el centro, saber organizarlas de manera eficaz para todo el alumnado, saber elegir los recursos más idóneos y educar al alumnado para que pueda hacer un uso instructivo y eficaz de estos recursos.
+
+<br>
+
+## Competencias
+
+* Saber adoptar una perspectiva de indagación en el aula, para gestionar con eficacia y reflexión las dinámicas y las actividades que se desarrollen.
+
+* Saber identificar el objetivo, las características, los puntos fuertes y débiles y la utilidad de diversos instrumentos de evaluación y saber adaptarlos a cada situación.
+
+* Utilizar eficazmente las herramientas digitales del centro para la clase de ciencias y saber orientar a los aprendices en el uso de sus recursos digitales dentro y fuera del aula.
+
+<br>
+
+## Contenidos
+
+* Estrategias de gestión del aula para construir el vínculo con el alumnado, incluir rutinas y establecer límites y herramientas para fomentar la motivación.
+
+* Funciones de la evaluación, instrumentos principales y criterios para mejorar la regulación de la enseñanza-aprendizaje.
+
+* Herramientas digitales dentro y fuera del aula. Potencialidades y limitaciones. Usos. Apps y experiencias diversas de aprovechamiento.
+
+<br>
+
+## Evaluación
+
+* **Tarea 1.** Resolución de un caso práctico relacionado con los contenidos de los módulos gestión de aula y cooperación y enseñanzas y evaluación. Tarea de resolución individual (70%).
+
+* **Tarea 2.** Módulo Herramientas Digitales para la Competencia Científica. Informe final sobre los dos estudios de caso del módulo (30%).
+
+<br>
+
+## Recursos y Bibliografía Recomendada
+
+AAVV. (2015) *Ítems liberados de competencia científica. Marco conceptual PISA 2015*. Documents, 26. Publicaciones del Departamento de Enseñanza. Generalitat de Catalunya.
+
+Barkley, E.F.; Cross, K.P.; Howell, C. (2007) *Técnicas de aprendizaje colaborativo*, Madrid, Ed. Morata.
+
+Cassany, Daniel. "¿Cómo evaluar?" en *Construir la escritura*. Barcelona: Paidós. 1999.
+
+Francia, A., Mata, J., 2003. *Dinámica y técnicas de grupos*. Editorial CCS
+
+González, Evaristo. (2020) "Transiciones educativas hacia un aprendizaje híbrido". Portal Revista Magisterio. Madrid.
+
+González, Evaristo. (2023) "Aprender entre estudiantes universitarios y no universitarios con el método del 'estudio de caso'". En: Edgar Loyola (coord.) *Estudiante universitario. Propuestas y testimonios*. Cuenca (Ecuador). p. 11-31.
+
+Jones, J. (2014) *What is new in AfL? A view from England, (UK)*. Unpublished manuscript: King's College London: University of London. Traducido en el web de la Red de Competencias básicas.
+
+Lemov, Doug. (2021) *Teach like a Champion. 3.0. 63 techniques that put students into path to college*. Jossey-bass INC
+
+OCDE (2017) *Marco de Evaluación y de Análisis de PISA para el Desarrollo. Lectura, matemáticas y ciencias*. Organización para la Cooperación y el Desarrollo Económico.
+
+Prensky, Mark. (2001) "Digital natives, digital immigrants", *On the horizon*, 9 (5), octubre 2001. MCB University Press.
+
+Ruiz, Héctor. (2021) *¿Cómo Aprendemos?. Una aproximación científica al aprendizaje y la enseñanza*. Editorial Graó.
+
+Pujolàs, P. Lago J. R. (Coordinadores) (2014) *Cooperar para Aprender/Aprender a Cooperar. Implementación del aprendizaje cooperativo en el aula*. Publicaciones Universidad de Vic.
+
+Sanmartí, Neus (2020). *Evaluar para aprender*. Dirección General de Currículum y Personalización. Publicaciones del Departamento de educación.
+
+Sanmartí, N., León, M. (2021) *Evaluar y aprender: un único proceso*. Ed. Octaedro
+
+Scrivener, J. (2012) *Classroom Management Techniques*. Cambridge. Cambridge University Press.
+
+Simón, M. et al. (2006) "La evaluación como proceso de autorregulación: diez años después". *Alambique: Didáctica de las ciencias experimentales*, Nº 48 págs. 32-41.
+
+Teixidó Saballs, J. (2001) "Ser profesor de secundaria, hoy", Blog GROC: Grupo de Investigación en Organización de Centros.
+
+Vaello Orts, J. (2007). *Cómo dar clase a los que no quieren*. Madrid: Santillana.
+
+Vaello Orts, J. (2003) *Resolución de conflictos en el aula*. Santillana Educación, SL.
+
+Vinagre, M. (2010) *Teoría y práctica del aprendizaje colaborativo asistido por ordenador*. Madrid: Síntesis.
+
+White, David y Alison Le Cornu. (2011) "Visitors and Residents: A new typology for online engagement", *First Monday*, 16 (9), Septiembre.
+
+<br>
+
+## Repositorios
+
+XTEC. Red Telemática Educativa de Cataluña. Ciencias de la naturaleza. Trabajo por proyectos.
+
+WebQuestCat. Comunidad Catalana de Webquest.

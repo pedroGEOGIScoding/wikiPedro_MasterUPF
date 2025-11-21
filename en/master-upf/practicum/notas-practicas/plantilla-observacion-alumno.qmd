@@ -1,0 +1,600 @@
+---
+title: "Student Observation Template"
+subtitle: "Tool for monitoring and evaluating students"
+filename: plantilla-observacion-alumno
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Complete template for systematic observation of students in the classroom
+categories: [practicum, observation, student]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Observer data
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Nombre del observador:</strong>
+    <input type="text" name="nombre_observador" size="40" placeholder="Nombre completo">
+  </li>
+  <li>
+    <strong>Fecha de observación:</strong>
+    <input type="date" name="fecha_observacion">
+  </li>
+</ul>
+
+## General student information
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Nombre del alumno:</strong>
+    <input type="text" name="nombre_alumno" size="40" placeholder="Nombre completo del alumno">
+  </li>
+  <li>
+    <strong>Fecha de nacimiento:</strong>
+    <input type="date" name="fecha_nacimiento">
+  </li>
+  <li>
+    <strong>Edad:</strong>
+    <input type="number" name="edad" min="0" max="100" placeholder="Edad">
+  </li>
+  <li>
+    <strong>Clase o asignatura:</strong>
+    <input type="text" name="clase" size="40" placeholder="Ej: 3º ESO - Biología">
+  </li>
+</ul>
+
+---
+
+## Personality
+
+<ul>
+  <li>
+    Participate in class:
+    <input type="checkbox" name="participate" value="yes">Yes
+    <input type="checkbox" name="participate" value="no">No
+    <input type="checkbox" name="participate" value="sometimes">Sometimes
+  </li>
+  <li>
+    Dominant:
+    <input type="checkbox" name="dominant" value="yes">Yes
+    <input type="checkbox" name="dominant" value="no">No
+    <input type="checkbox" name="dominant" value="sometimes">Sometimes
+  </li>
+  <li>
+    Don't worry:
+    <input type="checkbox" name="calm" value="yes">Yes
+    <input type="checkbox" name="calm" value="no">No
+    <input type="checkbox" name="calm" value="sometimes">Sometimes
+  </li>
+  <li>
+    Responsible:
+    <input type="checkbox" name="responsible_pers" value="yes">Yes
+    <input type="checkbox" name="responsible_pers" value="no">No
+    <input type="checkbox" name="responsible_pers" value="sometimes">Sometimes
+  </li>
+  <li>
+    Obedient:
+    <input type="checkbox" name="compliant" value="yes">Yes
+    <input type="checkbox" name="compliant" value="no">No
+    <input type="checkbox" name="obedient" value="sometimes">Sometimes
+  </li>
+  <li>
+    Sociable:
+    <input type="checkbox" name="sociable" value="yes">Yes
+    <input type="checkbox" name="sociable" value="no">No
+    <input type="checkbox" name="sociable" value="sometimes">Sometimes
+  </li>
+  <li>
+    Thoughtful:
+    <input type="checkbox" name="reflexive" value="yes">Yes
+    <input type="checkbox" name="reflexive" value="no">No
+    <input type="checkbox" name="reflective" value="sometimes">Sometimes
+  </li>
+  <li>
+    Restless:
+    <input type="checkbox" name="restless" value="yes">Yes
+    <input type="checkbox" name="restless" value="no">No
+    <input type="checkbox" name="restless" value="sometimes">Sometimes
+  </li>
+  <li>
+    Irresponsible:
+    <input type="checkbox" name="irresponsible" value="yes">Yes
+    <input type="checkbox" name="irresponsible" value="no">No
+    <input type="checkbox" name="irresponsible" value="sometimes">Sometimes
+  </li>
+  <li>
+    Readiness for work:
+    <input type="checkbox" name="layout" value="yes">Yes
+    <input type="checkbox" name="disposition" value="no">No
+    <input type="checkbox" name="disposition" value="sometimes">Sometimes
+  </li>
+  <li>
+    Undisciplined:
+    <input type="checkbox" name="undisciplined" value="yes">Yes
+    <input type="checkbox" name="undisciplined" value="no">No
+    <input type="checkbox" name="undisciplined" value="sometimes">Sometimes
+  </li>
+  <li>
+    Positive leader:
+    <input type="checkbox" name="lider_pos" value="yes">Yes
+    <input type="checkbox" name="leader_pos" value="no">No
+    <input type="checkbox" name="leader_pos" value="sometimes">Sometimes
+  </li>
+  <li>
+    Negative leader:
+    <input type="checkbox" name="leader_neg" value="yes">Yes
+    <input type="checkbox" name="leader_neg" value="no">No
+    <input type="checkbox" name="leader_neg" value="sometimes">Sometimes
+  </li>
+  <li>
+    Rude:
+    <input type="checkbox" name="rude" value="yes">Yes
+    <input type="checkbox" name="rude" value="no">No
+    <input type="checkbox" name="rude" value="sometimes">Sometimes
+  </li>
+  <li>
+    Fickle:
+    <input type="checkbox" name="fickle" value="yes">Yes
+    <input type="checkbox" name="fickle" value="no">No
+    <input type="checkbox" name="fickle" value="sometimes">Sometimes
+  </li>
+  <li>
+    Insecure:
+    <input type="checkbox" name="unsafe" value="yes">Yes
+    <input type="checkbox" name="unsafe" value="no">No
+    <input type="checkbox" name="unsafe" value="sometimes">Sometimes
+  </li>
+  <li>
+    Reserved:
+    <input type="checkbox" name="reserved" value="yes">Yes
+    <input type="checkbox" name="reserved" value="no">No
+    <input type="checkbox" name="reserved" value="sometimes">Sometimes
+  </li>
+</ul>
+
+---
+
+## Attitude and school work
+
+<ul>
+  <li>
+    It focuses on the activities it carries out:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+  </li>
+  <li>
+    Has attention problems:
+    <input type="checkbox" name="attention" value="1">1
+    <input type="checkbox" name="attention" value="2">2
+    <input type="checkbox" name="attention" value="3">3
+    <input type="checkbox" name="attention" value="4">4
+    <input type="checkbox" name="attention" value="5">5
+  </li>
+  <li>
+    He is active and hardworking:
+    <input type="checkbox" name="active" value="1">1
+    <input type="checkbox" name="active" value="2">2
+    <input type="checkbox" name="active" value="3">3
+    <input type="checkbox" name="active" value="4">4
+    <input type="checkbox" name="active" value="5">5
+  </li>
+  <li>
+    Ask and raise doubts:
+    <input type="checkbox" name="question" value="1">1
+    <input type="checkbox" name="question" value="2">2
+    <input type="checkbox" name="question" value="3">3
+    <input type="checkbox" name="question" value="4">4
+    <input type="checkbox" name="question" value="5">5
+  </li>
+  <li>
+    Finish the class work:
+    <input type="checkbox" name="finish" value="1">1
+    <input type="checkbox" name="finish" value="2">2
+    <input type="checkbox" name="finish" value="3">3
+    <input type="checkbox" name="finish" value="4">4
+    <input type="checkbox" name="finish" value="5">5
+  </li>
+  <li>
+    Does the tasks that are sent home:
+    <input type="checkbox" name="tasks" value="1">1
+    <input type="checkbox" name="tasks" value="2">2
+    <input type="checkbox" name="tasks" value="3">3
+    <input type="checkbox" name="tasks" value="4">4
+    <input type="checkbox" name="tasks" value="5">5
+  </li>
+  <li>
+    It is neat and organized with its material:
+    <input type="checkbox" name="sorted" value="1">1
+    <input type="checkbox" name="sorted" value="2">2
+    <input type="checkbox" name="sorted" value="3">3
+    <input type="checkbox" name="sorted" value="4">4
+    <input type="checkbox" name="sorted" value="5">5
+  </li>
+  <li>
+    Attend regularly:
+    <input type="checkbox" name="attends" value="1">1
+    <input type="checkbox" name="attends" value="2">2
+    <input type="checkbox" name="attends" value="3">3
+    <input type="checkbox" name="attends" value="4">4
+    <input type="checkbox" name="attends" value="5">5
+  </li>
+  <li>
+    Borrow material from classmates:
+    <input type="checkbox" name="requests" value="1">1
+    <input type="checkbox" name="requests" value="2">2
+    <input type="checkbox" name="requests" value="3">3
+    <input type="checkbox" name="requests" value="4">4
+    <input type="checkbox" name="requests" value="5">5
+  </li>
+  <li>
+    Please attend:
+    <input type="checkbox" name="liked" value="1">1
+    <input type="checkbox" name="liked" value="2">2
+    <input type="checkbox" name="liked" value="3">3
+    <input type="checkbox" name="liked" value="4">4
+    <input type="checkbox" name="liked" value="5">5
+  </li>
+  <li>
+    Complies with the teaching material requested:
+    <input type="checkbox" name="compliant" value="1">1
+    <input type="checkbox" name="compliant" value="2">2
+    <input type="checkbox" name="complies" value="3">3
+    <input type="checkbox" name="complies" value="4">4
+    <input type="checkbox" name="complies" value="5">5
+  </li>
+  <li>
+    Take care of your notebooks, notes and other supplies:
+    <input type="checkbox" name="take care" value="1">1
+    <input type="checkbox" name="take care" value="2">2
+    <input type="checkbox" name="take care" value="3">3
+    <input type="checkbox" name="take care" value="4">4
+    <input type="checkbox" name="take care" value="5">5
+  </li>
+  <li>
+    Have the habit of recording homework:
+    <input type="checkbox" name="register" value="1">1
+    <input type="checkbox" name="register" value="2">2
+    <input type="checkbox" name="register" value="3">3
+    <input type="checkbox" name="register" value="4">4
+    <input type="checkbox" name="register" value="5">5
+  </li>
+  <li>
+    Deliver assignments and activities in the indicated time:
+    <input type="checkbox" name="delivery" value="1">1
+    <input type="checkbox" name="delivery" value="2">2
+    <input type="checkbox" name="delivery" value="3">3
+    <input type="checkbox" name="delivery" value="4">4
+    <input type="checkbox" name="delivery" value="5">5
+  </li>
+  <li>
+    It is easy to prepare class notes:
+    <input type="checkbox" name="notes" value="1">1
+    <input type="checkbox" name="notes" value="2">2
+    <input type="checkbox" name="notes" value="3">3
+    <input type="checkbox" name="notes" value="4">4
+    <input type="checkbox" name="notes" value="5">5
+  </li>
+  <li>
+    The management of texts (synthesis, ideas, etc.) is made easier:
+    <input type="checkbox" name="texts" value="1">1
+    <input type="checkbox" name="texts" value="2">2
+    <input type="checkbox" name="texts" value="3">3
+    <input type="checkbox" name="texts" value="4">4
+    <input type="checkbox" name="texts" value="5">5
+  </li>
+  <li>
+    Argue or give your opinion on various topics:
+    <input type="checkbox" name="argues" value="1">1
+    <input type="checkbox" name="argue" value="2">2
+    <input type="checkbox" name="argue" value="3">3
+    <input type="checkbox" name="argues" value="4">4
+    <input type="checkbox" name="argues" value="5">5
+  </li>
+  <li>
+    It reflects a basic knowledge of the topics addressed:
+    <input type="checkbox" name="knowledge" value="1">1
+    <input type="checkbox" name="knowledge" value="2">2
+    <input type="checkbox" name="knowledge" value="3">3
+    <input type="checkbox" name="knowledge" value="4">4
+    <input type="checkbox" name="knowledge" value="5">5
+  </li>
+  <li>
+    Express appreciation for the activities suggested by the teacher:
+    <input type="checkbox" name="appreciation" value="1">1
+    <input type="checkbox" name="appreciation" value="2">2
+    <input type="checkbox" name="appreciation" value="3">3
+    <input type="checkbox" name="appreciation" value="4">4
+    <input type="checkbox" name="appreciation" value="5">5
+  </li>
+</ul>
+
+---
+
+## Behavior in class
+
+<ul>
+  <li>
+    Makes unpleasant noises and constantly interrupts:
+    <input type="checkbox" name="noises" value="1">1
+    <input type="checkbox" name="noises" value="2">2
+    <input type="checkbox" name="noises" value="3">3
+    <input type="checkbox" name="noises" value="4">4
+    <input type="checkbox" name="noises" value="5">5
+  </li>
+  <li>
+    He frequently gets up from his place and is distracted from his work:
+    <input type="checkbox" name="lift" value="1">1
+    <input type="checkbox" name="lift" value="2">2
+    <input type="checkbox" name="lift" value="3">3
+    <input type="checkbox" name="lift" value="4">4
+    <input type="checkbox" name="lift" value="5">5
+  </li>
+  <li>
+    Speaks when it doesn't belong:
+    <input type="checkbox" name="speech" value="1">1
+    <input type="checkbox" name="speech" value="2">2
+    <input type="checkbox" name="speech" value="3">3
+    <input type="checkbox" name="speech" value="4">4
+    <input type="checkbox" name="speech" value="5">5
+  </li>
+  <li>
+    Annoys and provokes others:
+    <input type="checkbox" name="annoying" value="1">1
+    <input type="checkbox" name="annoying" value="2">2
+    <input type="checkbox" name="annoying" value="3">3
+    <input type="checkbox" name="annoying" value="4">4
+    <input type="checkbox" name="annoying" value="5">5
+  </li>
+  <li>
+    He fights or argues and is aggressive with his peers:
+    <input type="checkbox" name="fight" value="1">1
+    <input type="checkbox" name="fight" value="2">2
+    <input type="checkbox" name="fight" value="3">3
+    <input type="checkbox" name="fight" value="4">4
+    <input type="checkbox" name="fight" value="5">5
+  </li>
+  <li>
+    Seek the teacher's attention (protagonism):
+    <input type="checkbox" name="busca_atencion" value="1">1
+    <input type="checkbox" name="busca_atencion" value="2">2
+    <input type="checkbox" name="busca_atencion" value="3">3
+    <input type="checkbox" name="busca_atencion" value="4">4
+    <input type="checkbox" name="busca_atencion" value="5">5
+  </li>
+  <li>
+    Are you nervous or restless:
+    <input type="checkbox" name="nervous" value="1">1
+    <input type="checkbox" name="nervous" value="2">2
+    <input type="checkbox" name="nervous" value="3">3
+    <input type="checkbox" name="nervous" value="4">4
+    <input type="checkbox" name="nervous" value="5">5
+  </li>
+  <li>
+    He is disrespectful and rude to the teacher:
+    <input type="checkbox" name="disrespectful" value="1">1
+    <input type="checkbox" name="disrespectful" value="2">2
+    <input type="checkbox" name="disrespectful" value="3">3
+    <input type="checkbox" name="disrespectful" value="4">4
+    <input type="checkbox" name="disrespectful" value="5">5
+  </li>
+  <li>
+    He tends to constantly criticize:
+    <input type="checkbox" name="criticism" value="1">1
+    <input type="checkbox" name="criticism" value="2">2
+    <input type="checkbox" name="criticism" value="3">3
+    <input type="checkbox" name="criticism" value="4">4
+    <input type="checkbox" name="criticism" value="5">5
+  </li>
+  <li>
+    You can consider yourself a student with discipline problems:
+    <input type="checkbox" name="discipline" value="1">1
+    <input type="checkbox" name="discipline" value="2">2
+    <input type="checkbox" name="discipline" value="3">3
+    <input type="checkbox" name="discipline" value="4">4
+    <input type="checkbox" name="discipline" value="5">5
+  </li>
+</ul>
+
+---
+
+## Group participation
+
+<ul>
+  <li>
+    Respect the rules of coexistence:
+    <input type="checkbox" name="rules" value="1">1
+    <input type="checkbox" name="rules" value="2">2
+    <input type="checkbox" name="rules" value="3">3
+    <input type="checkbox" name="rules" value="4">4
+    <input type="checkbox" name="rules" value="5">5
+  </li>
+  <li>
+    It is accepted in and by the group:
+    <input type="checkbox" name="accepted" value="1">1
+    <input type="checkbox" name="accepted" value="2">2
+    <input type="checkbox" name="accepted" value="3">3
+    <input type="checkbox" name="accepted" value="4">4
+    <input type="checkbox" name="accepted" value="5">5
+  </li>
+  <li>
+    Easily integrated:
+    <input type="checkbox" name="integra" value="1">1
+    <input type="checkbox" name="integra" value="2">2
+    <input type="checkbox" name="integra" value="3">3
+    <input type="checkbox" name="integra" value="4">4
+    <input type="checkbox" name="integra" value="5">5
+  </li>
+  <li>
+    Help and collaborate with others:
+    <input type="checkbox" name="help" value="1">1
+    <input type="checkbox" name="help" value="2">2
+    <input type="checkbox" name="help" value="3">3
+    <input type="checkbox" name="help" value="4">4
+    <input type="checkbox" name="help" value="5">5
+  </li>
+  <li>
+    He is considerate and kind to his colleagues:
+    <input type="checkbox" name="friendly" value="1">1
+    <input type="checkbox" name="friendly" value="2">2
+    <input type="checkbox" name="friendly" value="3">3
+    <input type="checkbox" name="friendly" value="4">4
+    <input type="checkbox" name="friendly" value="5">5
+  </li>
+  <li>
+    Exchange and share material and knowledge:
+    <input type="checkbox" name="share" value="1">1
+    <input type="checkbox" name="share" value="2">2
+    <input type="checkbox" name="share" value="3">3
+    <input type="checkbox" name="share" value="4">4
+    <input type="checkbox" name="share" value="5">5
+  </li>
+  <li>
+    It is popular in the group:
+    <input type="checkbox" name="popular" value="1">1
+    <input type="checkbox" name="popular" value="2">2
+    <input type="checkbox" name="popular" value="3">3
+    <input type="checkbox" name="popular" value="4">4
+    <input type="checkbox" name="popular" value="5">5
+  </li>
+  <li>
+    He is responsible with teamwork:
+    <input type="checkbox" name="team" value="1">1
+    <input type="checkbox" name="team" value="2">2
+    <input type="checkbox" name="team" value="3">3
+    <input type="checkbox" name="team" value="4">4
+    <input type="checkbox" name="team" value="5">5
+  </li>
+</ul>
+
+## Self-concept
+
+<ul>
+  <li>
+    He appears confident:
+    <input type="checkbox" name="safe" value="1">1
+    <input type="checkbox" name="safe" value="2">2
+    <input type="checkbox" name="safe" value="3">3
+    <input type="checkbox" name="safe" value="4">4
+    <input type="checkbox" name="safe" value="5">5
+  </li>
+  <li>
+    You want to stand out from the rest:
+    <input type="checkbox" name="highlight" value="1">1
+    <input type="checkbox" name="highlight" value="2">2
+    <input type="checkbox" name="highlight" value="3">3
+    <input type="checkbox" name="highlight" value="4">4
+    <input type="checkbox" name="highlight" value="5">5
+  </li>
+  <li>
+    He is determined and with initiative:
+    <input type="checkbox" name="decided" value="1">1
+    <input type="checkbox" name="decided" value="2">2
+    <input type="checkbox" name="decided" value="3">3
+    <input type="checkbox" name="decided" value="4">4
+    <input type="checkbox" name="decided" value="5">5
+  </li>
+  <li>
+    He is usually happy and content:
+    <input type="checkbox" name="happy" value="1">1
+    <input type="checkbox" name="happy" value="2">2
+    <input type="checkbox" name="happy" value="3">3
+    <input type="checkbox" name="happy" value="4">4
+    <input type="checkbox" name="happy" value="5">5
+  </li>
+  <li>
+    Tends to be a natural leader of the group:
+    <input type="checkbox" name="leader_nat" value="1">1
+    <input type="checkbox" name="leader_nat" value="2">2
+    <input type="checkbox" name="leader_nat" value="3">3
+    <input type="checkbox" name="leader_nat" value="4">4
+    <input type="checkbox" name="leader_nat" value="5">5
+  </li>
+  <li>
+    Maintains good personal hygiene:
+    <input type="checkbox" name="hygiene" value="1">1
+    <input type="checkbox" name="hygiene" value="2">2
+    <input type="checkbox" name="hygiene" value="3">3
+    <input type="checkbox" name="hygiene" value="4">4
+    <input type="checkbox" name="hygiene" value="5">5
+  </li>
+</ul>
+
+---
+
+## Parent involvement
+
+<ul>
+  <li>
+    Attend school meetings:
+    <input type="checkbox" name="asiste_parents" value="1">1
+    <input type="checkbox" name="asiste_parents" value="2">2
+    <input type="checkbox" name="asiste_parents" value="3">3
+    <input type="checkbox" name="asiste_parents" value="4">4
+    <input type="checkbox" name="asiste_parents" value="5">5
+  </li>
+  <li>
+    Express interest in meetings and participate in them:
+    <input type="checkbox" name="interest" value="1">1
+    <input type="checkbox" name="interest" value="2">2
+    <input type="checkbox" name="interest" value="3">3
+    <input type="checkbox" name="interest" value="4">4
+    <input type="checkbox" name="interest" value="5">5
+  </li>
+  <li>
+    He is in constant communication with the teacher:
+    <input type="checkbox" name="communication" value="1">1
+    <input type="checkbox" name="communication" value="2">2
+    <input type="checkbox" name="communication" value="3">3
+    <input type="checkbox" name="communication" value="4">4
+    <input type="checkbox" name="communication" value="5">5
+  </li>
+  <li>
+    Follow instructions given by the teacher:
+    <input type="checkbox" name="next" value="1">1
+    <input type="checkbox" name="next" value="2">2
+    <input type="checkbox" name="next" value="3">3
+    <input type="checkbox" name="next" value="4">4
+    <input type="checkbox" name="next" value="5">5
+  </li>
+  <li>
+    Make the pending payment for the material your child needs:
+    <input type="checkbox" name="payment" value="1">1
+    <input type="checkbox" name="payment" value="2">2
+    <input type="checkbox" name="payment" value="3">3
+    <input type="checkbox" name="payment" value="4">4
+    <input type="checkbox" name="payment" value="5">5
+  </li>
+  <li>
+    You tend to blame the teacher for your child's performance:
+    <input type="checkbox" name="fault" value="1">1
+    <input type="checkbox" name="fault" value="2">2
+    <input type="checkbox" name="fault" value="3">3
+    <input type="checkbox" name="fault" value="4">4
+    <input type="checkbox" name="fault" value="5">5
+  </li>
+</ul>
+
+---
+
+## Additional observations
+
+Space for notes, comments and specific observations about the student:
+
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones sobre el alumno..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Recommendations
+
+Suggested actions to improve student performance and well-being:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las recomendaciones para el alumno..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+

@@ -1,0 +1,293 @@
+---
+title: "EducaLinks"
+subtitle: "Recull de vincles educatius d'interès"
+filename: edulinks
+author: "Pedro Martínez Durán"
+date: "20/11/2025"
+date-modified: last-modified
+date-format: full
+description: Enllaços de suport educatiu
+categories: [educació, Internet, enllaços]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+# Enllaços educatius d'interès
+
+## 🤖 Intel·ligència Artificial per a l'Educació
+
+**MagicSchool AI**
+[https://www.magicschool.ai/](https://www.magicschool.ai/)
+Plataforma d'intel·ligència artificial per a professors; ajuda a crear recursos i experiències educatives automatitzades, reduint la càrrega de treball docent.
+
+---
+
+**Google NotebookLM**
+[https://notebooklm.google.com/](https://notebooklm.google/)
+IA de Google Labs per prendre notes, investigar i organitzar la informació amb documents, resums visuals i col·laboració.
+
+---
+
+**Lumivara**
+[https://lumivara.at/](https://lumivara.at/)
+Plataforma educativa amb IA que ajuda a generar materials interactius, qüestionaris i resums.
+
+---
+
+**Kimi-ppt (Diapositives Kimi)**
+[https://ppt.ai/es/kimi-ppt](https://ppt.ai/es/kimi-ppt)
+La IA que crea presentacions automàtiques a partir de text facilita la generació ràpida de diapositives per a professors i estudiants.
+
+---
+
+## 🔬 Ciències Naturals - Simuladors i Laboratoris Virtuals
+
+**Simulacions interactives PhET**
+[https://phet.colorado.edu/](https://phet.colorado.edu/)
+Simuladors gratuïts i interactius per a experiments de física, química, biologia i matemàtiques desenvolupats per la Universitat de Colorado Boulder.
+
+---
+
+**ChemCollective**
+[https://chemcollective.org/](https://chemcollective.org/)
+Laboratoris virtuals i activitats dirigides per a l'ensenyament de la química, amb simulacions i exercicis interactius.
+
+---
+
+**Algodoo**
+[https://www.algodoo.com/](https://www.algodoo.com/)
+Sandbox de física 2D per experimentar i simular fenòmens físics mitjançant simulació visual i creativa, gratuïta.
+
+---
+
+** Simulacions de laboratori OER - Mines LibGuides**
+[https://libguides.mines.edu/oer/simulationslabs](https://libguides.mines.edu/oer/simulationslabs)
+Guia per a laboratoris virtuals oberts i simulacions, útil per a l'ensenyament STEM.
+
+---
+
+**Pregunteu a un biòleg (ASU)**
+[https://askabiologist.asu.edu/](https://askabiologist.asu.edu/)
+Portal on estudiants i professors poden fer preguntes de biologia a experts, amb activitats i recursos multimèdia.
+
+---
+
+**Biomolecules.cat**
+[http://biomolecules.cat/](http://biomolecules.cat/)
+Recursos científics i divulgatius sobre biomolècules i biologia molecular per a la docència i la divulgació.
+
+---
+
+## 🌍 Geologia i Ciències de la Terra
+
+**Geologia visible**
+[https://www.visiblegeology.com/](https://www.visiblegeology.com/)
+Eina per crear diagrames geològics 3D i modelar estructures visuals i interactives.
+
+---
+
+**Explorador tectònic - Consorci Concord**
+[https://tectonic-explorer.concord.org/](https://tectonic-explorer.concord.org/)
+Simulador gratuït de processos tectònics per experimentar amb plaques i roques a nivell educatiu.
+
+---
+
+**Paleolatitude.org**
+[https://paleolatitude.org/#!/](https://paleolatitude.org/#!/)
+Calculadora interactiva per visualitzar la latitud paleogeogràfica de qualsevol punt de la Terra.
+
+---
+
+**AEPECT**
+[https://www.aepect.org/](https://www.aepect.org/)
+Associació Espanyola per a l'Ensenyament de les Ciències de la Terra, formació i recursos en geologia.
+
+---
+
+**Biblioteca digital de fotos CNIG**
+[https://fototeca.cnig.es/fototeca/](https://fototeca.cnig.es/fototeca/)
+Repositori digital per consultar fotos aèries històriques d'Espanya, útils en geografia i estudis ambientals.
+
+---
+
+## 🗺️ Mapes mentals i organitzadors visuals
+
+**XMind**
+[https://xmind.com/es/](https://xmind.com/es/)
+Eina col·laborativa de mapes mentals i pluja d'idees assistida per IA, útil per organitzar conceptes i projectes.
+
+---
+
+**IHMC CmapTools**
+[https://cmap.ihmc.us/products/](https://cmap.ihmc.us/products/)
+Programari per a mapes conceptuals, permet crear, compartir i editar coneixements i models d'aprenentatge.
+
+---
+
+**CmapTools – IHMC**
+[https://cmap.ihmc.us/](https://cmap.ihmc.us/)
+Eina visual per crear i compartir mapes conceptuals en ciència i educació.
+
+---
+
+**MindMup**
+[https://www.mindmup.com/](https://www.mindmup.com/)
+Eina en línia per crear mapes mentals de manera ràpida i senzilla.
+
+---
+
+**Instamaps**
+[https://www.instamaps.cat/#/](https://www.instamaps.cat/#/)
+Plataforma gratuïta per crear mapes col·laboratius i visualitzacions geogràfiques interactives.
+
+---
+
+## 📊 Eines interactives per a l'aula
+
+**Wooclap Word Cloud Generator**
+[https://www.wooclap.com/en/word-cloud-generator/](https://www.wooclap.com/en/word-cloud-generator/)
+Eina instantània de creació de núvols de paraules, útil per a un resum visual i anàlisi de grup a classe.
+
+---
+
+**Metímetre: avaluació de l'esdeveniment**
+[https://www.mentimeter.com/templates/p/speakers-evaluate-event](https://www.mentimeter.com/templates/p/speakers-evaluate-event)
+Plantilles per valorar ponents i esdeveniments amb presentacions dinàmiques i interactives.
+
+---
+
+## 💻 Programació Educativa i Tecnologia
+
+**Scratch**
+[https://scratch.mit.edu/](https://scratch.mit.edu/)
+Plataforma de programació visual gratuïta on estudiants i professors creen jocs interactius i animacions.
+
+---
+
+## 🎓 Consulta i Metodologies STEM
+
+**LabInquiry – Investigació IQS**
+[https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond-in-based-beyond-teaching)
+Projecte internacional d'investigació i laboratori de matemàtiques i ciències utilitzant la metodologia STEM.
+
+---
+
+**LabInquiry – Secundària UB**
+[https://www.ub.edu/labinquiry/categoria/secundaria/](https://www.ub.edu/labinquiry/categoria/secundaria/)
+Activitats i propostes de recerca didàctica per a secundària, en col·laboració amb la UB.
+
+---
+
+## 🎨 Dibuixos animats conceptuals i recursos didàctics
+
+**Dibuixos animats de conceptes científics: aprenentatge STEM**
+[https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons](https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons)
+Còmics educatius que promouen la discussió científica i identifiquen idees errònies.
+
+---
+
+**Dibuixos animats conceptuals: investigació en educació científica**
+[https://science-education-research.com/teaching-science/concept-cartoons/](https://science-education-research.com/teaching-science/concept-cartoons/)
+Recursos i explicació sobre l'ús de vinyetes per detectar i abordar idees errònies en ciència.
+
+---
+
+**Dibuixos animats conceptuals de la naturalesa de la ciència – Educació RSC**
+[https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article](https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article)
+Dibuixos animats que ajuden a debatre i diagnosticar idees clau en ciències naturals.
+
+---
+
+**Dibuixos animats de conceptes científics: secrets de l'aula**
+[https://classroomsecrets.co.uk/campaign/science-concept-cartoons](https://classroomsecrets.co.uk/campaign/science-concept-cartoons)
+Plantilles i recursos per fomentar el pensament científic i crític a l'aula.
+
+---
+
+## 📚 Recursos acadèmics i repositoris
+
+**Learner.org**
+[https://www.learner.org/](https://www.learner.org/)
+Recursos i activitats multimèdia educatives per a ciències, matemàtiques, humanitats, ideals per a professors i estudiants.
+
+---
+
+**DDD UAB**
+[https://ddd.uab.cat/](https://ddd.uab.cat/)
+Repositori digital de la Universitat Autònoma de Barcelona per consultar i descarregar producció científico-acadèmica.
+
+---
+
+**BibGuru**
+[https://www.bibguru.com/es/](https://www.bibguru.com/es/)
+Generador de cites bibliogràfiques gratuït, compatible amb APA, MLA i més, ideal per a treballs acadèmics.
+
+---
+
+**UPF Master Wiki – PedroGeoGISCoding**
+[https://pedrogeogiscoding.github.io/wiki_MasterUPF/](https://pedrogeogiscoding.github.io/wiki_MasterUPF/)
+Viqui amb notes i recursos sobre l'ensenyament de la geografia, tecnologia i SIG al màster de la UPF.
+
+---
+
+## 📋 Reglament curricular i educatiu (Espanya i Catalunya)
+
+**Curriculums LOMLOE per CCAA**
+[https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html](https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html)
+Plans d'estudis oficials vigents per Comunitat Autònoma d'Espanya segons la LOMLOE.
+
+---
+
+**Curriculum bàsic XTEC**
+[https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0](https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0)
+Documentació i recursos del currículum educatiu bàsic a Catalunya.
+
+---
+
+**INTEF**
+[https://intef.es/](https://intef.es/)
+Institut dedicat a la formació i actualització del professorat en tecnologia educativa i recursos docents a Espanya.
+
+---
+
+**INEE**
+[https://www.educacionfpydeportes.gob.es/inee/portada.html](https://www.educacionfpydeportes.gob.es/inee/portada.html)
+Institut Nacional d'Espanya que realitza avaluacions i estudis sobre el sistema educatiu i el rendiment acadèmic.
+
+---
+
+**ARC CESIRE XTEC**
+[https://serveiseducatius.xtec.cat/cesire/arc/](https://serveiseducatius.xtec.cat/cesire/arc/)
+Portal de recursos i propostes educatives innovadores del CESIRE.
+
+---
+
+**Aplicacions ARC XTEC**
+[https://apliense.xtec.cat/arc/](https://apliense.xtec.cat/arc/)
+Portal de recursos i aplicacions actives per a l'aprenentatge, vinculat a CESIRE-XTEC.
+
+---
+
+## 🎯 Recursos lúdics i gamificació
+
+**Murtle**
+[https://murdle.com/](https://murdle.com/)
+Joc de lògica i misteri "misteri d'assassinat" amb reptes de lògica deductiva diària.
+
+---
+
+## 🔗 Accés Institucional
+
+**Autenticació UPF**
+[https://autenticacio.upf.edu/sso/SAML2/SSOService.php](https://autenticacio.upf.edu/sso/SAML2/SSOService.php)
+Pàgina d'inici de sessió segura per a la Universitat Pompeu Fabra via SAML2, accés protegit als recursos institucionals.
+
+---
+
+## 📡 Fonts RSS i agregadors
+
+**Canal RSS - Recursos dinàmics**
+[https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel](https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel)
+Font RSS per mostrar i integrar de manera dinàmica notícies i recursos en llocs o presentacions educatives.

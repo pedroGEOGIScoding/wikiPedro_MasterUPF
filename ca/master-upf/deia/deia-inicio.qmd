@@ -1,0 +1,225 @@
+---
+title: "Disseny d'entorns d'aprenentatge innovadors"
+subtitle: "Programació, innovació i reflexió sobre la pràctica docent en ciència"
+filename: deia-inicio
+author: "Pedro Martinez Duran"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Assignatura centrada en el disseny i avaluació de situacions d'aprenentatge i recerca-acció a l'aula
+categories: [disseny, innovació, aprenentatge]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Presentació
+
+Els dos objectius principals d'aquesta assignatura són:
+
+* Donar rellevància a la pràctica reflexiva en la docència i a la vida quotidiana del professor com a mètode de transformació de la realitat i de millora dels processos d'ensenyament-aprenentatge.
+
+* Aprendre el procés de disseny i avaluació de situacions d'aprenentatge a partir del model didàctic vigent, i contextualitzats en el currículum de treball per competències.
+
+* L'assoliment del primer objectiu, que implica l'aprenentatge de la sistematització del procés reflexiu, portarà l'alumnat a desenvolupar el paper de professor-investigador que promou la innovació docent.
+
+* En el cas del segon objectiu clau de l'assignatura, la seva consecució ha de permetre a l'alumnat ser competent en el procés de programació de les diferents matèries i disseny de les sessions corresponents, imprescindibles per desenvolupar la tasca docent.
+
+* Alguns dels continguts tractats són la continuació, ampliació i aplicació d'aspectes iniciats durant el primer trimestre de l'assignatura de Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals.
+
+* Es prioritzarà el plantejament pràctic de les activitats que realitzaran l'alumnat, de manera que la tasca final de l'assignatura serà la preparació tutoritzada de dos dels tres productes finals del màster: una situació d'aprenentatge per a ESO i una situació d'aprenentatge per a batxillerat, així com el disseny i implementació d'una investigació-acció a l'aula, que es posarà en pràctica durant la segona fase de les pràctiques, que permetrà preparar el treball final de màster. Sempre que sigui possible, els alumnes desenvoluparan, aplicaran i avaluaran els materials didàctics i les accions educatives desenvolupades en el marc d'aquests dos productes finals a l'aula per parelles.
+
+<br>
+
+## Informació tècnica
+
+* **Codi de l'assignatura:** 32439
+
+* **Temps:**
+  - Jornada completa: primer i segon semestre
+  - Jornada parcial: segon any, anual
+
+* **Nombre de crèdits:** 10
+
+* **Dedicació:** 65 hores presencials i 185 hores de treball autònom (250 hores en total)
+
+* **Professors:** Bernat Blasco, Marcel Costa, Eulàlia Durán, Laura Farró, Jèssica Fernández, Davínia Hernández-Leo, Sílvia Lope, Iván Marchán, Xavi Muñoz, Diego Sanjulián (coordinació), Gemma Serra, Jordi Soler.
+
+<br>
+
+![Disseny marc per a entorns d'aprenentatge innovadors](/images/deia/deia-structure.png){width=50% fig-align="center" group="intro-master-page"}
+
+<br>
+
+## Mòduls d'assignatures
+
+* **Observació a l'aula**
+
+* **Disseny i avaluació de seqüències didàctiques**
+
+* **Bases metodològiques per a la innovació i la recerca educativa**
+
+* **Projectes d'innovació en educació científica**
+
+<br>
+
+## Gols
+
+* Preparar la programació de situacions d'aprenentatge.
+
+* Dissenyar materials d'aula per implementar situacions d'aprenentatge.
+
+* Analitzar els resultats de la implementació a l'aula de les sessions dissenyades.
+
+* Proposar millores als punts febles detectats durant la implantació de situacions d'aprenentatge.
+
+* Identificar aspectes per millorar la pràctica educativa mitjançant l'observació a l'aula
+
+* Analitzar projectes d'innovació en educació científica
+
+* Dissenyar un cicle de recerca-acció per implementar al Pràcticum
+
+* Conèixer el marc normatiu i organitzatiu de la Formació Professional a Catalunya. Interpretar i aplicar els elements curriculars de l'FP en la planificació i disseny de programes.
+
+<br>
+
+## Competències
+
+1. Disseny, gestió i planificació d'entorns d'ensenyament-aprenentatge de les ciències
+
+2. Comunicació i interacció personal en els processos d'ensenyament-aprenentatge i implicació efectiva en els equips docents
+
+3. Metodologia docent i gestió de la diversitat a l'aula
+
+5. Recerca, innovació i reflexió sobre la identitat professional i la millora de la pràctica docent
+
+6. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
+
+<br>
+
+## Continguts
+
+### Estructura de la programació d'una seqüència didàctica
+
+* Definir l'enfocament de la seqüència i el context d'aprenentatge
+
+* Previsió de possibles obstacles
+
+* Descripció de la producció que han de realitzar els alumnes
+
+* Relació dels continguts, la seva progressió i la seva relació amb altres matèries i altres parts de l'assignatura
+
+* Objectius de redacció
+
+* Concreció de les competències globals, transversals, específiques de l'àmbit científic-tecnològic i dels ODS que es treballaran
+
+* Definició d'indicadors d'èxit i criteris d'avaluació
+
+* Descripció de la seqüència d'activitats, la seva gestió a l'aula, temporalització i instruments d'avaluació
+
+* Concreció de mesures per atendre la diversitat, dotació dels recursos necessaris i connexions amb altres matèries
+
+### Investigació-acció a l'aula
+
+* Observació a l'aula: objectius, models d'observació i instruments.
+
+* La interrelació entre pràctica, observació, recerca educativa i innovació.
+
+* Cicles de recerca-acció i la seva relació amb la pròpia formació com a docent.
+
+* Tendències actuals de la recerca en educació científica.
+
+* Disseny i avaluació d'innovacions didàctiques.
+
+* Disseny d'instruments de recollida d'informació per a la recerca educativa.
+
+* Anàlisi i interpretació de dades en recerca educativa.
+
+<br>
+
+## Metodologia
+
+### a) Sessions teòrico-pràctiques
+
+* Aquesta assignatura té un caràcter molt pràctic i està molt relacionada amb la pràctica. Les classes estan dissenyades perquè els estudiants incorporin coneixements a les seves pràctiques docents.
+
+* Les sessions seran de caràcter pràctic-teòric, la qual cosa significa que l'alumnat s'enfrontarà constantment a experiències i activitats concretes d'aprenentatge, a partir de la reflexió de les quals es construiran progressivament coneixements teòrics.
+
+* En diverses de les sessions presencials es realitzarà un treball acompanyat de preparació de la programació, els materials i les intervencions didàctiques, que conformen els productes finals de l'assignatura i del màster (una situació d'aprenentatge a batxillerat, una situació d'aprenentatge per a l'ESO i una recerca-acció d'innovació didàctica), que posteriorment es portaran a l'aula durant la segona fase de la pràctica.
+
+* Els grups de treball de pràctiques, és a dir, aquells estudiants que dissenyaran i aplicaran conjuntament aquests productes, es formaran des de l'inici del màster i en funció de l'assignació de places per realitzar les pràctiques al centre educatiu.
+
+### b) Tasques no presencials
+
+* Els estudiants tindran a la seva disposició diversos documents a la Plataforma virtual. Una bona part d'aquestes tasques aniran adreçades a l'elaboració de les diferents parts de la seqüència didàctica de batxillerat i de la unitat d'ESO. La resta de tasques no presencials, que s'elaboraran a l'e-portafoli de l'alumnat, permetran dur a terme el cicle d'investigació-acció dirigit a introduir una innovació didàctica: presentació i discussió de la pregunta d'investigació, anàlisi d'un article que fonamenta la innovació i presentació del pla d'acció.
+
+### c) Exposicions orals
+
+* En finalitzar el tercer trimestre del màster, després d'haver viscut la situació d'aprenentatge de batxillerat i la situació d'aprenentatge de l'ESO a l'aula, i realitzant la recerca-acció a l'aula, es farà una exposició oral dels resultats. En aquestes ponències, l'alumnat ha de fer una síntesi de les característiques didàctiques i activitats de la unitat d'ESO, així com un èmfasi especial en l'anàlisi dels resultats obtinguts i les propostes de millora que considerin pertinents. Així mateix, en aquesta presentació es presentaran els resultats i conclusions obtingudes de la innovació didàctica introduïda durant la recerca-acció.
+
+<br>
+
+## Avaluació
+
+* **Anàlisi i presentació d'un article de recerca educativa (10%)**
+
+* **Programació i materials d'aula per a la unitat didàctica d'ESO (25%)**
+
+* **Programació i materials d'aula de la seqüència didàctica BAT (25%)**
+
+* **Presentació del disseny del pla d'acció (20%)**
+
+* **Exposició oral de la unitat didàctica d'ESO i dels resultats i conclusions de la recerca-acció (20%)**
+
+<br>
+
+## Recursos i bibliografia recomanada
+
+### Bibliografia bàsica:
+
+AAVV., 2013. Fes unitats didàctiques. Revista Alambique, nº74.
+
+AAVV., 2016. Competències bàsiques de l'àmbit científicotecnològic. Identificació i desplegament de l'educació secundària obligatòria. Publicacions del Departament d'Ensenyament. Generalitat de Catalunya.
+
+AAVV., 2015. Les progressions dels ensenyaments. Revista Alambique, nº79.
+
+AAVV., 2020. Programador per competències a l'educació secundària obligatòria. Direcció General de Currículum i Personalització. Publicacions del Departament d'Ensenyament.
+
+Alba, C., Sánchez, J., Zubillaga, A. 2014. Disseny universal per a l'aprenentatge. Pautes per a la seva introducció al currículum. (http://www.educadua.es/doc/dua/dua_pautas_intro_cv.pdf)
+
+Claxton, G. 1994. Educar ments curioses. Ed. Visera (Aprenentatge). Madrid.
+
+Couso, D. 2013. El desenvolupament de les unitats didàctiques de competència. Revista Alambique, nº74, pp 12-24.
+
+Jiménez-Aleixandre (coord). 2003. Ensenyament de la ciència. Graó.
+
+Sanmartí, N., 2002. L'ensenyament de les ciències a l'educació secundària obligatòria. Síntesi de l'educació.
+
+### Bibliografia addicional:
+
+AAVV. 1997. Monografia: Seqüències de continguts en ciència. Alambic, 14. Barcelona. Ed. Graó.
+
+AAVV. 2011. Monografia: Cap a la competència científica. Alambic, 70. Barcelona. Ed. Graó.
+
+Couso, D. 2015. La classe de tots els plecs: la importància del "què" ensenyar a l'aula de ciències. Ciències, 29. pp 29-36.
+
+Couso, D. 2017. Per què estem en STEM? Un intent de definir l'alfabetització STEM per tots i ambdós valors. Ciències, 34. pàgs. 22-30.
+
+Grau, R. 2010. Altres formes de fer ciència. Alternatives a l'aula de secundària. Publicacions de l'Associació de Mestres Rosa Sensat.
+
+IBE (2019). Les competències futures i el futur del currículum: una referència global per a la transformació del currículum.
+
+Marchán, I., 2015. Aportacions de la contextualització dels aprenentatges i la transferència de coneixements a l'ensenyament competencial de la química. Tesi doctoral.
+
+NovaK, J.D. & Gowin, 1988. Aprenent a aprendre. Barcelona: Ed. Martínez Roca.
+
+OCDE 2018. Preparant la nostra joventut per a un món inclusiu i sostenible. Organització per a la Cooperació i el Desenvolupament Econòmic.
+
+Xarxa global d'aprenentatge. Quadern de treball 2019.
+
+Sanmartí, N. (coord) 2003 Aprendre ciència, aprendre a escriure ciència Ed. 62.
+
+Sanmartí, N., Márquez, C. 2017. Project-based science learning: from context to action. Àpex. Journal of Science Education, 1.1:3-16
+
+Sanmartí, N., Marchán, I. 2015. L'educació científica al segle XX. XXI: Reptes i propostes. Recerca i Ciència (469) pp 30-39.

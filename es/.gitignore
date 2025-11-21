@@ -1,0 +1,13 @@
+/.quarto/
+/.vscode/
+/_extensions/
+/_qtool/
+/.luarc.json
+/qpubli.sh
+**/*.quarto_ipynb
+
+# renv
+.Rprofile
+renv/library/
+renv/local/
+renv/staging/

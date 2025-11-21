@@ -1,0 +1,790 @@
+---
+title: "Plantilla de Observación del aula"
+subtitle: "Herramienta para el seguimiento y evaluación del alumnado"
+filename: plantilla-observacion-aula
+author: "Pedro Martínez"
+date: "15/11/2025"
+date-modified: last-modified
+date-format: full
+description: Plantilla completa para la observación sistemática del alumnado en el aula
+categories: [practicum, observacion, aula]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+## Datos del observador y de la clase
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Nombre del observador:</strong>
+    <input type="text" name="nombre_observador" placeholder="Nombre completo" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Fecha de observación:</strong>
+    <input type="date" name="fecha_observacion" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Curso:</strong>
+    <input type="text" name="curso" placeholder="curso del aula" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Asignatura:</strong>
+    <input type="text" name="asignatura" placeholder="asignatura del aula" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Numero de Alumnos:</strong>
+    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Numero de Alumnos" style="width: 200px">
+  </li>
+  <br>
+  <li>
+    <strong>Hora:</strong>
+    <input type="text" name="hora" placeholder="Hora de observación" style="width: 200px">
+  </li>
+</ul>
+
+## Clima y Comportamiento General del Aula
+### Clima emocional del aula
+<ul>
+  <li>
+    Ambiente de respeto y confianza entre estudiantes:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+  <li>
+    Nivel de tensión o conflictividad observado:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+  <li>
+    Actitud general hacia la actividad docente:
+    <input type="checkbox" name="concentra" value="1">1
+    <input type="checkbox" name="concentra" value="2">2
+    <input type="checkbox" name="concentra" value="3">3
+    <input type="checkbox" name="concentra" value="4">4
+    <input type="checkbox" name="concentra" value="5">5
+    <input type="checkbox" name="concentra" value="6">6
+    <input type="checkbox" name="concentra" value="7">7
+    <input type="checkbox" name="concentra" value="8">8
+    <input type="checkbox" name="concentra" value="9">9
+    <input type="checkbox" name="concentra" value="10">10
+  </li>
+</ul>
+
+### Disciplina y normas
+<ul>
+  <li>
+    Cumplimiento de normas de convivencia:
+    <input type="checkbox" name="cumplimiento_normas" value="1">1
+    <input type="checkbox" name="cumplimiento_normas" value="2">2
+    <input type="checkbox" name="cumplimiento_normas" value="3">3
+    <input type="checkbox" name="cumplimiento_normas" value="4">4
+    <input type="checkbox" name="cumplimiento_normas" value="5">5
+    <input type="checkbox" name="cumplimiento_normas" value="6">6
+    <input type="checkbox" name="cumplimiento_normas" value="7">7
+    <input type="checkbox" name="cumplimiento_normas" value="8">8
+    <input type="checkbox" name="cumplimiento_normas" value="9">9
+    <input type="checkbox" name="cumplimiento_normas" value="10">10
+  </li>
+  <li>
+    Interrupciones y disrupciones durante la sesión:
+    <input type="checkbox" name="interrupciones" value="1">1
+    <input type="checkbox" name="interrupciones" value="2">2
+    <input type="checkbox" name="interrupciones" value="3">3
+    <input type="checkbox" name="interrupciones" value="4">4
+    <input type="checkbox" name="interrupciones" value="5">5
+    <input type="checkbox" name="interrupciones" value="6">6
+    <input type="checkbox" name="interrupciones" value="7">7
+    <input type="checkbox" name="interrupciones" value="8">8
+    <input type="checkbox" name="interrupciones" value="9">9
+    <input type="checkbox" name="interrupciones" value="10">10
+  </li>
+  <li>
+    Necesidad de llamadas de atención por parte del docente:
+    <input type="checkbox" name="llamadas_atencion" value="1">1
+    <input type="checkbox" name="llamadas_atencion" value="2">2
+    <input type="checkbox" name="llamadas_atencion" value="3">3
+    <input type="checkbox" name="llamadas_atencion" value="4">4
+    <input type="checkbox" name="llamadas_atencion" value="5">5
+    <input type="checkbox" name="llamadas_atencion" value="6">6
+    <input type="checkbox" name="llamadas_atencion" value="7">7
+    <input type="checkbox" name="llamadas_atencion" value="8">8
+    <input type="checkbox" name="llamadas_atencion" value="9">9
+    <input type="checkbox" name="llamadas_atencion" value="10">10
+  </li>
+  <li>
+    Puntualidad en el inicio y finalización de actividades:
+    <input type="checkbox" name="puntualidad" value="1">1
+    <input type="checkbox" name="puntualidad" value="2">2
+    <input type="checkbox" name="puntualidad" value="3">3
+    <input type="checkbox" name="puntualidad" value="4">4
+    <input type="checkbox" name="puntualidad" value="5">5
+    <input type="checkbox" name="puntualidad" value="6">6
+    <input type="checkbox" name="puntualidad" value="7">7
+    <input type="checkbox" name="puntualidad" value="8">8
+    <input type="checkbox" name="puntualidad" value="9">9
+    <input type="checkbox" name="puntualidad" value="10">10
+  </li>
+</ul>
+
+### Interacciones sociales
+<ul>
+  <li>
+    Calidad de las relaciones entre estudiantes:
+    <input type="checkbox" name="relaciones" value="1">1
+    <input type="checkbox" name="relaciones" value="2">2
+    <input type="checkbox" name="relaciones" value="3">3
+    <input type="checkbox" name="relaciones" value="4">4
+    <input type="checkbox" name="relaciones" value="5">5
+    <input type="checkbox" name="relaciones" value="6">6
+    <input type="checkbox" name="relaciones" value="7">7
+    <input type="checkbox" name="relaciones" value="8">8
+    <input type="checkbox" name="relaciones" value="9">9
+    <input type="checkbox" name="relaciones" value="10">10
+  </li>
+  <li>
+    Colaboración espontánea entre compañeros:
+    <input type="checkbox" name="colaboracion" value="1">1
+    <input type="checkbox" name="colaboracion" value="2">2
+    <input type="checkbox" name="colaboracion" value="3">3
+    <input type="checkbox" name="colaboracion" value="4">4
+    <input type="checkbox" name="colaboracion" value="5">5
+    <input type="checkbox" name="colaboracion" value="6">6
+    <input type="checkbox" name="colaboracion" value="7">7
+    <input type="checkbox" name="colaboracion" value="8">8
+    <input type="checkbox" name="colaboracion" value="9">9
+    <input type="checkbox" name="colaboracion" value="10">10
+  </li>
+  <li>
+    Inclusión de todos los estudiantes en las dinámicas:
+    <input type="checkbox" name="inclusion" value="1">1
+    <input type="checkbox" name="inclusion" value="2">2
+    <input type="checkbox" name="inclusion" value="3">3
+    <input type="checkbox" name="inclusion" value="4">4
+    <input type="checkbox" name="inclusion" value="5">5
+    <input type="checkbox" name="inclusion" value="6">6
+    <input type="checkbox" name="inclusion" value="7">7
+    <input type="checkbox" name="inclusion" value="8">8
+    <input type="checkbox" name="inclusion" value="9">9
+    <input type="checkbox" name="inclusion" value="10">10
+  </li>
+  <li>
+    Actitudes de ayuda mutua observadas:
+    <input type="checkbox" name="ayuda_mutua" value="1">1
+    <input type="checkbox" name="ayuda_mutua" value="2">2
+    <input type="checkbox" name="ayuda_mutua" value="3">3
+    <input type="checkbox" name="ayuda_mutua" value="4">4
+    <input type="checkbox" name="ayuda_mutua" value="5">5
+    <input type="checkbox" name="ayuda_mutua" value="6">6
+    <input type="checkbox" name="ayuda_mutua" value="7">7
+    <input type="checkbox" name="ayuda_mutua" value="8">8
+    <input type="checkbox" name="ayuda_mutua" value="9">9
+    <input type="checkbox" name="ayuda_mutua" value="10">10
+  </li>
+</ul>
+
+## Rendimiento y Compromiso Académico
+### Nivel de atención y concentración
+<ul>
+  <li>
+    Porcentaje estimado de estudiantes atentos:
+    <input type="checkbox" name="estudiantes_atentos" value="1">1
+    <input type="checkbox" name="estudiantes_atentos" value="2">2
+    <input type="checkbox" name="estudiantes_atentos" value="3">3
+    <input type="checkbox" name="estudiantes_atentos" value="4">4
+    <input type="checkbox" name="estudiantes_atentos" value="5">5
+    <input type="checkbox" name="estudiantes_atentos" value="6">6
+    <input type="checkbox" name="estudiantes_atentos" value="7">7
+    <input type="checkbox" name="estudiantes_atentos" value="8">8
+    <input type="checkbox" name="estudiantes_atentos" value="9">9
+    <input type="checkbox" name="estudiantes_atentos" value="10">10
+  </li>
+  <li>
+    Dispersión o distracciones frecuentes:
+    <input type="checkbox" name="dispersion" value="1">1
+    <input type="checkbox" name="dispersion" value="2">2
+    <input type="checkbox" name="dispersion" value="3">3
+    <input type="checkbox" name="dispersion" value="4">4
+    <input type="checkbox" name="dispersion" value="5">5
+    <input type="checkbox" name="dispersion" value="6">6
+    <input type="checkbox" name="dispersion" value="7">7
+    <input type="checkbox" name="dispersion" value="8">8
+    <input type="checkbox" name="dispersion" value="9">9
+    <input type="checkbox" name="dispersion" value="10">10
+  </li>
+  <li>
+    Capacidad de mantener el foco durante explicaciones:
+    <input type="checkbox" name="foco" value="1">1
+    <input type="checkbox" name="foco" value="2">2
+    <input type="checkbox" name="foco" value="3">3
+    <input type="checkbox" name="foco" value="4">4
+    <input type="checkbox" name="foco" value="5">5
+    <input type="checkbox" name="foco" value="6">6
+    <input type="checkbox" name="foco" value="7">7
+    <input type="checkbox" name="foco" value="8">8
+    <input type="checkbox" name="foco" value="9">9
+    <input type="checkbox" name="foco" value="10">10
+  </li>
+</ul>
+
+### Participación activa
+<ul>
+  <li>
+    Frecuencia de intervenciones voluntarias:
+    <input type="checkbox" name="intervenciones" value="1">1
+    <input type="checkbox" name="intervenciones" value="2">2
+    <input type="checkbox" name="intervenciones" value="3">3
+    <input type="checkbox" name="intervenciones" value="4">4
+    <input type="checkbox" name="intervenciones" value="5">5
+    <input type="checkbox" name="intervenciones" value="6">6
+    <input type="checkbox" name="intervenciones" value="7">7
+    <input type="checkbox" name="intervenciones" value="8">8
+    <input type="checkbox" name="intervenciones" value="9">9
+    <input type="checkbox" name="intervenciones" value="10">10
+  </li>
+  <li>
+    Calidad de las aportaciones realizadas:
+    <input type="checkbox" name="aportaciones" value="1">1
+    <input type="checkbox" name="aportaciones" value="2">2
+    <input type="checkbox" name="aportaciones" value="3">3
+    <input type="checkbox" name="aportaciones" value="4">4
+    <input type="checkbox" name="aportaciones" value="5">5
+    <input type="checkbox" name="aportaciones" value="6">6
+    <input type="checkbox" name="aportaciones" value="7">7
+    <input type="checkbox" name="aportaciones" value="8">8
+    <input type="checkbox" name="aportaciones" value="9">9
+    <input type="checkbox" name="aportaciones" value="10">10
+  </li>
+  <li>
+    Diversidad de estudiantes que participan:
+    <input type="checkbox" name="diversidad_participantes" value="1">1
+    <input type="checkbox" name="diversidad_participantes" value="2">2
+    <input type="checkbox" name="diversidad_participantes" value="3">3
+    <input type="checkbox" name="diversidad_participantes" value="4">4
+    <input type="checkbox" name="diversidad_participantes" value="5">5
+    <input type="checkbox" name="diversidad_participantes" value="6">6
+    <input type="checkbox" name="diversidad_participantes" value="7">7
+    <input type="checkbox" name="diversidad_participantes" value="8">8
+    <input type="checkbox" name="diversidad_participantes" value="9">9
+    <input type="checkbox" name="diversidad_participantes" value="10">10
+  </li>
+  <li>
+    Respuesta a las preguntas del docente:
+    <input type="checkbox" name="respuesta_docente" value="1">1
+    <input type="checkbox" name="respuesta_docente" value="2">2
+    <input type="checkbox" name="respuesta_docente" value="3">3
+    <input type="checkbox" name="respuesta_docente" value="4">4
+    <input type="checkbox" name="respuesta_docente" value="5">5
+    <input type="checkbox" name="respuesta_docente" value="6">6
+    <input type="checkbox" name="respuesta_docente" value="7">7
+    <input type="checkbox" name="respuesta_docente" value="8">8
+    <input type="checkbox" name="respuesta_docente" value="9">9
+    <input type="checkbox" name="respuesta_docente" value="10">10
+  </li>
+</ul>
+
+### Motivación e interés
+
+<ul>
+  <li>
+    Actitud hacia los contenidos trabajados:
+    <input type="checkbox" name="actitud_contenidos" value="1">1
+    <input type="checkbox" name="actitud_contenidos" value="2">2
+    <input type="checkbox" name="actitud_contenidos" value="3">3
+    <input type="checkbox" name="actitud_contenidos" value="4">4
+    <input type="checkbox" name="actitud_contenidos" value="5">5
+    <input type="checkbox" name="actitud_contenidos" value="6">6
+    <input type="checkbox" name="actitud_contenidos" value="7">7
+    <input type="checkbox" name="actitud_contenidos" value="8">8
+    <input type="checkbox" name="actitud_contenidos" value="9">9
+    <input type="checkbox" name="actitud_contenidos" value="10">10
+  </li>
+  <li>
+    Engagement con las actividades propuestas:
+    <input type="checkbox" name="engagement" value="1">1
+    <input type="checkbox" name="engagement" value="2">2
+    <input type="checkbox" name="engagement" value="3">3
+    <input type="checkbox" name="engagement" value="4">4
+    <input type="checkbox" name="engagement" value="5">5
+    <input type="checkbox" name="engagement" value="6">6
+    <input type="checkbox" name="engagement" value="7">7
+    <input type="checkbox" name="engagement" value="8">8
+    <input type="checkbox" name="engagement" value="9">9
+    <input type="checkbox" name="engagement" value="10">10
+  </li>
+  <li>
+    Expresiones de curiosidad o preguntas:
+    <input type="checkbox" name="curiosidad" value="1">1
+    <input type="checkbox" name="curiosidad" value="2">2
+    <input type="checkbox" name="curiosidad" value="3">3
+    <input type="checkbox" name="curiosidad" value="4">4
+    <input type="checkbox" name="curiosidad" value="5">5
+    <input type="checkbox" name="curiosidad" value="6">6
+    <input type="checkbox" name="curiosidad" value="7">7
+    <input type="checkbox" name="curiosidad" value="8">8
+    <input type="checkbox" name="curiosidad" value="9">9
+    <input type="checkbox" name="curiosidad" value="10">10
+  </li>
+  <li>
+    Resistencia o apatía observada:
+    <input type="checkbox" name="apatia" value="1">1
+    <input type="checkbox" name="apatia" value="2">2
+    <input type="checkbox" name="apatia" value="3">3
+    <input type="checkbox" name="apatia" value="4">4
+    <input type="checkbox" name="apatia" value="5">5
+    <input type="checkbox" name="apatia" value="6">6
+    <input type="checkbox" name="apatia" value="7">7
+    <input type="checkbox" name="apatia" value="8">8
+    <input type="checkbox" name="apatia" value="9">9
+    <input type="checkbox" name="apatia" value="10">10
+  </li>
+</ul>
+
+### Trabajo y esfuerzo
+<ul>
+  <li>
+    Ritmo de trabajo durante actividades individuales o grupales:
+    <input type="checkbox" name="ritmo_trabajo" value="1">1
+    <input type="checkbox" name="ritmo_trabajo" value="2">2
+    <input type="checkbox" name="ritmo_trabajo" value="3">3
+    <input type="checkbox" name="ritmo_trabajo" value="4">4
+    <input type="checkbox" name="ritmo_trabajo" value="5">5
+    <input type="checkbox" name="ritmo_trabajo" value="6">6
+    <input type="checkbox" name="ritmo_trabajo" value="7">7
+    <input type="checkbox" name="ritmo_trabajo" value="8">8
+    <input type="checkbox" name="ritmo_trabajo" value="9">9
+    <input type="checkbox" name="ritmo_trabajo" value="10">10
+  </li>
+  <li>
+    Cumplimiento de tareas asignadas:
+    <input type="checkbox" name="cumplimiento_tareas" value="1">1
+    <input type="checkbox" name="cumplimiento_tareas" value="2">2
+    <input type="checkbox" name="cumplimiento_tareas" value="3">3
+    <input type="checkbox" name="cumplimiento_tareas" value="4">4
+    <input type="checkbox" name="cumplimiento_tareas" value="5">5
+    <input type="checkbox" name="cumplimiento_tareas" value="6">6
+    <input type="checkbox" name="cumplimiento_tareas" value="7">7
+    <input type="checkbox" name="cumplimiento_tareas" value="8">8
+    <input type="checkbox" name="cumplimiento_tareas" value="9">9
+    <input type="checkbox" name="cumplimiento_tareas" value="10">10
+  </li>
+  <li>
+    Uso productivo del tiempo de clase:
+    <input type="checkbox" name="uso_tiempo" value="1">1
+    <input type="checkbox" name="uso_tiempo" value="2">2
+    <input type="checkbox" name="uso_tiempo" value="3">3
+    <input type="checkbox" name="uso_tiempo" value="4">4
+    <input type="checkbox" name="uso_tiempo" value="5">5
+    <input type="checkbox" name="uso_tiempo" value="6">6
+    <input type="checkbox" name="uso_tiempo" value="7">7
+    <input type="checkbox" name="uso_tiempo" value="8">8
+    <input type="checkbox" name="uso_tiempo" value="9">9
+    <input type="checkbox" name="uso_tiempo" value="10">10
+  </li>
+  <li>
+    Perseverancia ante dificultades:
+    <input type="checkbox" name="perseverancia" value="1">1
+    <input type="checkbox" name="perseverancia" value="2">2
+    <input type="checkbox" name="perseverancia" value="3">3
+    <input type="checkbox" name="perseverancia" value="4">4
+    <input type="checkbox" name="perseverancia" value="5">5
+    <input type="checkbox" name="perseverancia" value="6">6
+    <input type="checkbox" name="perseverancia" value="7">7
+    <input type="checkbox" name="perseverancia" value="8">8
+    <input type="checkbox" name="perseverancia" value="9">9
+    <input type="checkbox" name="perseverancia" value="10">10
+  </li>
+</ul>
+
+## Gestión y Organización del Aula
+
+### Gestión del tiempo
+<ul>
+  <li>
+    Aprovechamiento efectivo del tiempo lectivo:
+    <input type="checkbox" name="aprovechamiento_tiempo" value="1">1
+    <input type="checkbox" name="aprovechamiento_tiempo" value="2">2
+    <input type="checkbox" name="aprovechamiento_tiempo" value="3">3
+    <input type="checkbox" name="aprovechamiento_tiempo" value="4">4
+    <input type="checkbox" name="aprovechamiento_tiempo" value="5">5
+    <input type="checkbox" name="aprovechamiento_tiempo" value="6">6
+    <input type="checkbox" name="aprovechamiento_tiempo" value="7">7
+    <input type="checkbox" name="aprovechamiento_tiempo" value="8">8
+    <input type="checkbox" name="aprovechamiento_tiempo" value="9">9
+    <input type="checkbox" name="aprovechamiento_tiempo" value="10">10
+  </li>
+  <li>
+    Transiciones fluidas entre actividades:
+    <input type="checkbox" name="transiciones" value="1">1
+    <input type="checkbox" name="transiciones" value="2">2
+    <input type="checkbox" name="transiciones" value="3">3
+    <input type="checkbox" name="transiciones" value="4">4
+    <input type="checkbox" name="transiciones" value="5">5
+    <input type="checkbox" name="transiciones" value="6">6
+    <input type="checkbox" name="transiciones" value="7">7
+    <input type="checkbox" name="transiciones" value="8">8
+    <input type="checkbox" name="transiciones" value="9">9
+    <input type="checkbox" name="transiciones" value="10">10
+  </li>
+  <li>
+    Cumplimiento de la planificación prevista:
+    <input type="checkbox" name="planificacion" value="1">1
+    <input type="checkbox" name="planificacion" value="2">2
+    <input type="checkbox" name="planificacion" value="3">3
+    <input type="checkbox" name="planificacion" value="4">4
+    <input type="checkbox" name="planificacion" value="5">5
+    <input type="checkbox" name="planificacion" value="6">6
+    <input type="checkbox" name="planificacion" value="7">7
+    <input type="checkbox" name="planificacion" value="8">8
+    <input type="checkbox" name="planificacion" value="9">9
+    <input type="checkbox" name="planificacion" value="10">10
+  </li>
+</ul>
+
+### Organización espacial
+<ul>
+  <li>
+    Adecuación de la distribución del mobiliario:
+    <input type="checkbox" name="distribucion_mobiliario" value="1">1
+    <input type="checkbox" name="distribucion_mobiliario" value="2">2
+    <input type="checkbox" name="distribucion_mobiliario" value="3">3
+    <input type="checkbox" name="distribucion_mobiliario" value="4">4
+    <input type="checkbox" name="distribucion_mobiliario" value="5">5
+    <input type="checkbox" name="distribucion_mobiliario" value="6">6
+    <input type="checkbox" name="distribucion_mobiliario" value="7">7
+    <input type="checkbox" name="distribucion_mobiliario" value="8">8
+    <input type="checkbox" name="distribucion_mobiliario" value="9">9
+    <input type="checkbox" name="distribucion_mobiliario" value="10">10
+  </li>
+  <li>
+    Accesibilidad y movilidad en el espacio:
+    <input type="checkbox" name="accesibilidad" value="1">1
+    <input type="checkbox" name="accesibilidad" value="2">2
+    <input type="checkbox" name="accesibilidad" value="3">3
+    <input type="checkbox" name="accesibilidad" value="4">4
+    <input type="checkbox" name="accesibilidad" value="5">5
+    <input type="checkbox" name="accesibilidad" value="6">6
+    <input type="checkbox" name="accesibilidad" value="7">7
+    <input type="checkbox" name="accesibilidad" value="8">8
+    <input type="checkbox" name="accesibilidad" value="9">9
+    <input type="checkbox" name="accesibilidad" value="10">10
+  </li>
+  <li>
+    Uso de diferentes zonas del aula:
+    <input type="checkbox" name="uso_zonas" value="1">1
+    <input type="checkbox" name="uso_zonas" value="2">2
+    <input type="checkbox" name="uso_zonas" value="3">3
+    <input type="checkbox" name="uso_zonas" value="4">4
+    <input type="checkbox" name="uso_zonas" value="5">5
+    <input type="checkbox" name="uso_zonas" value="6">6
+    <input type="checkbox" name="uso_zonas" value="7">7
+    <input type="checkbox" name="uso_zonas" value="8">8
+    <input type="checkbox" name="uso_zonas" value="9">9
+    <input type="checkbox" name="uso_zonas" value="10">10
+  </li>
+</ul>
+
+### Uso de recursos y materiales
+<ul>
+  <li>
+    Disponibilidad y acceso a materiales necesarios:
+    <input type="checkbox" name="disponibilidad_materiales" value="1">1
+    <input type="checkbox" name="disponibilidad_materiales" value="2">2
+    <input type="checkbox" name="disponibilidad_materiales" value="3">3
+    <input type="checkbox" name="disponibilidad_materiales" value="4">4
+    <input type="checkbox" name="disponibilidad_materiales" value="5">5
+    <input type="checkbox" name="disponibilidad_materiales" value="6">6
+    <input type="checkbox" name="disponibilidad_materiales" value="7">7
+    <input type="checkbox" name="disponibilidad_materiales" value="8">8
+    <input type="checkbox" name="disponibilidad_materiales" value="9">9
+    <input type="checkbox" name="disponibilidad_materiales" value="10">10
+  </li>
+  <li>
+    Uso de tecnología (si aplica):
+    <input type="checkbox" name="uso_tecnologia" value="1">1
+    <input type="checkbox" name="uso_tecnologia" value="2">2
+    <input type="checkbox" name="uso_tecnologia" value="3">3
+    <input type="checkbox" name="uso_tecnologia" value="4">4
+    <input type="checkbox" name="uso_tecnologia" value="5">5
+    <input type="checkbox" name="uso_tecnologia" value="6">6
+    <input type="checkbox" name="uso_tecnologia" value="7">7
+    <input type="checkbox" name="uso_tecnologia" value="8">8
+    <input type="checkbox" name="uso_tecnologia" value="9">9
+    <input type="checkbox" name="uso_tecnologia" value="10">10
+  </li>
+  <li>
+    Orden y cuidado del material:
+    <input type="checkbox" name="orden_material" value="1">1
+    <input type="checkbox" name="orden_material" value="2">2
+    <input type="checkbox" name="orden_material" value="3">3
+    <input type="checkbox" name="orden_material" value="4">4
+    <input type="checkbox" name="orden_material" value="5">5
+    <input type="checkbox" name="orden_material" value="6">6
+    <input type="checkbox" name="orden_material" value="7">7
+    <input type="checkbox" name="orden_material" value="8">8
+    <input type="checkbox" name="orden_material" value="9">9
+    <input type="checkbox" name="orden_material" value="10">10
+  </li>
+</ul>
+
+## Dinámica de Enseñanza-Aprendizaje
+
+### Estrategias metodológicas observadas
+<ul>
+  <li>
+    Variedad de actividades implementadas:
+    <input type="checkbox" name="variedad_actividades" value="1">1
+    <input type="checkbox" name="variedad_actividades" value="2">2
+    <input type="checkbox" name="variedad_actividades" value="3">3
+    <input type="checkbox" name="variedad_actividades" value="4">4
+    <input type="checkbox" name="variedad_actividades" value="5">5
+    <input type="checkbox" name="variedad_actividades" value="6">6
+    <input type="checkbox" name="variedad_actividades" value="7">7
+    <input type="checkbox" name="variedad_actividades" value="8">8
+    <input type="checkbox" name="variedad_actividades" value="9">9
+    <input type="checkbox" name="variedad_actividades" value="10">10
+  </li>
+  <li>
+    Adecuación de la metodología al grupo:
+    <input type="checkbox" name="adecuacion_metodologia" value="1">1
+    <input type="checkbox" name="adecuacion_metodologia" value="2">2
+    <input type="checkbox" name="adecuacion_metodologia" value="3">3
+    <input type="checkbox" name="adecuacion_metodologia" value="4">4
+    <input type="checkbox" name="adecuacion_metodologia" value="5">5
+    <input type="checkbox" name="adecuacion_metodologia" value="6">6
+    <input type="checkbox" name="adecuacion_metodologia" value="7">7
+    <input type="checkbox" name="adecuacion_metodologia" value="8">8
+    <input type="checkbox" name="adecuacion_metodologia" value="9">9
+    <input type="checkbox" name="adecuacion_metodologia" value="10">10
+  </li>
+  <li>
+    Equilibrio entre explicación, práctica y reflexión:
+    <input type="checkbox" name="equilibrio" value="1">1
+    <input type="checkbox" name="equilibrio" value="2">2
+    <input type="checkbox" name="equilibrio" value="3">3
+    <input type="checkbox" name="equilibrio" value="4">4
+    <input type="checkbox" name="equilibrio" value="5">5
+    <input type="checkbox" name="equilibrio" value="6">6
+    <input type="checkbox" name="equilibrio" value="7">7
+    <input type="checkbox" name="equilibrio" value="8">8
+    <input type="checkbox" name="equilibrio" value="9">9
+    <input type="checkbox" name="equilibrio" value="10">10
+  </li>
+  <li>
+    Uso de dinámicas cooperativas o individuales:
+    <input type="checkbox" name="dinamicas" value="1">1
+    <input type="checkbox" name="dinamicas" value="2">2
+    <input type="checkbox" name="dinamicas" value="3">3
+    <input type="checkbox" name="dinamicas" value="4">4
+    <input type="checkbox" name="dinamicas" value="5">5
+    <input type="checkbox" name="dinamicas" value="6">6
+    <input type="checkbox" name="dinamicas" value="7">7
+    <input type="checkbox" name="dinamicas" value="8">8
+    <input type="checkbox" name="dinamicas" value="9">9
+    <input type="checkbox" name="dinamicas" value="10">10
+  </li>
+</ul>
+
+### Comprensión del contenido
+<ul>
+  <li>
+    Evidencias de comprensión durante la sesión:
+    <input type="checkbox" name="evidencias_comprension" value="1">1
+    <input type="checkbox" name="evidencias_comprension" value="2">2
+    <input type="checkbox" name="evidencias_comprension" value="3">3
+    <input type="checkbox" name="evidencias_comprension" value="4">4
+    <input type="checkbox" name="evidencias_comprension" value="5">5
+    <input type="checkbox" name="evidencias_comprension" value="6">6
+    <input type="checkbox" name="evidencias_comprension" value="7">7
+    <input type="checkbox" name="evidencias_comprension" value="8">8
+    <input type="checkbox" name="evidencias_comprension" value="9">9
+    <input type="checkbox" name="evidencias_comprension" value="10">10
+  </li>
+  <li>
+    Necesidad de repeticiones o aclaraciones:
+    <input type="checkbox" name="repeticiones" value="1">1
+    <input type="checkbox" name="repeticiones" value="2">2
+    <input type="checkbox" name="repeticiones" value="3">3
+    <input type="checkbox" name="repeticiones" value="4">4
+    <input type="checkbox" name="repeticiones" value="5">5
+    <input type="checkbox" name="repeticiones" value="6">6
+    <input type="checkbox" name="repeticiones" value="7">7
+    <input type="checkbox" name="repeticiones" value="8">8
+    <input type="checkbox" name="repeticiones" value="9">9
+    <input type="checkbox" name="repeticiones" value="10">10
+  </li>
+  <li>
+    Dificultades generalizadas observadas:
+    <input type="checkbox" name="dificultades_grupo" value="1">1
+    <input type="checkbox" name="dificultades_grupo" value="2">2
+    <input type="checkbox" name="dificultades_grupo" value="3">3
+    <input type="checkbox" name="dificultades_grupo" value="4">4
+    <input type="checkbox" name="dificultades_grupo" value="5">5
+    <input type="checkbox" name="dificultades_grupo" value="6">6
+    <input type="checkbox" name="dificultades_grupo" value="7">7
+    <input type="checkbox" name="dificultades_grupo" value="8">8
+    <input type="checkbox" name="dificultades_grupo" value="9">9
+    <input type="checkbox" name="dificultades_grupo" value="10">10
+  </li>
+  <li>
+    Heterogeneidad en el nivel de comprensión:
+    <input type="checkbox" name="heterogeneidad" value="1">1
+    <input type="checkbox" name="heterogeneidad" value="2">2
+    <input type="checkbox" name="heterogeneidad" value="3">3
+    <input type="checkbox" name="heterogeneidad" value="4">4
+    <input type="checkbox" name="heterogeneidad" value="5">5
+    <input type="checkbox" name="heterogeneidad" value="6">6
+    <input type="checkbox" name="heterogeneidad" value="7">7
+    <input type="checkbox" name="heterogeneidad" value="8">8
+    <input type="checkbox" name="heterogeneidad" value="9">9
+    <input type="checkbox" name="heterogeneidad" value="10">10
+  </li>
+</ul>
+
+### Atención a la diversidad
+<ul>
+  <li>
+    Adaptación a diferentes ritmos de aprendizaje:
+    <input type="checkbox" name="adaptacion_ritmos" value="1">1
+    <input type="checkbox" name="adaptacion_ritmos" value="2">2
+    <input type="checkbox" name="adaptacion_ritmos" value="3">3
+    <input type="checkbox" name="adaptacion_ritmos" value="4">4
+    <input type="checkbox" name="adaptacion_ritmos" value="5">5
+    <input type="checkbox" name="adaptacion_ritmos" value="6">6
+    <input type="checkbox" name="adaptacion_ritmos" value="7">7
+    <input type="checkbox" name="adaptacion_ritmos" value="8">8
+    <input type="checkbox" name="adaptacion_ritmos" value="9">9
+    <input type="checkbox" name="adaptacion_ritmos" value="10">10
+  </li>
+  <li>
+    Respuesta a necesidades específicas del alumnado:
+    <input type="checkbox" name="respuesta_nese" value="1">1
+    <input type="checkbox" name="respuesta_nese" value="2">2
+    <input type="checkbox" name="respuesta_nese" value="3">3
+    <input type="checkbox" name="respuesta_nese" value="4">4
+    <input type="checkbox" name="respuesta_nese" value="5">5
+    <input type="checkbox" name="respuesta_nese" value="6">6
+    <input type="checkbox" name="respuesta_nese" value="7">7
+    <input type="checkbox" name="respuesta_nese" value="8">8
+    <input type="checkbox" name="respuesta_nese" value="9">9
+    <input type="checkbox" name="respuesta_nese" value="10">10
+  </li>
+  <li>
+    Estrategias de inclusión observadas:
+    <input type="checkbox" name="inclusion_apoyos" value="1">1
+    <input type="checkbox" name="inclusion_apoyos" value="2">2
+    <input type="checkbox" name="inclusion_apoyos" value="3">3
+    <input type="checkbox" name="inclusion_apoyos" value="4">4
+    <input type="checkbox" name="inclusion_apoyos" value="5">5
+    <input type="checkbox" name="inclusion_apoyos" value="6">6
+    <input type="checkbox" name="inclusion_apoyos" value="7">7
+    <input type="checkbox" name="inclusion_apoyos" value="8">8
+    <input type="checkbox" name="inclusion_apoyos" value="9">9
+    <input type="checkbox" name="inclusion_apoyos" value="10">10
+  </li>
+  <li>
+    Diferenciación de tareas o apoyos:
+    <input type="checkbox" name="diferenciacion" value="1">1
+    <input type="checkbox" name="diferenciacion" value="2">2
+    <input type="checkbox" name="diferenciacion" value="3">3
+    <input type="checkbox" name="diferenciacion" value="4">4
+    <input type="checkbox" name="diferenciacion" value="5">5
+    <input type="checkbox" name="diferenciacion" value="6">6
+    <input type="checkbox" name="diferenciacion" value="7">7
+    <input type="checkbox" name="diferenciacion" value="8">8
+    <input type="checkbox" name="diferenciacion" value="9">9
+    <input type="checkbox" name="diferenciacion" value="10">10
+  </li>
+</ul>
+
+## Evaluación Global del Aula
+### Porcentaje estimado de estudiantes
+
+<ul style="list-style-type: none;">
+  <li>
+    <strong>Muy implicados:</strong>
+    <input type="number" name="muy_implicados" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Moderadamente implicados:</strong>
+    <input type="number" name="moderadamente_implicados" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Poco implicados:</strong>
+    <input type="number" name="poco_implicados" min="0" max="100" size="4" required> %
+  </li>
+  <br>
+  <li>
+    <strong>Desconectados:</strong>
+    <input type="number" name="desconectados" min="0" max="100" size="4" required> %
+  </li>
+</ul>  
+
+### Puntuación global
+
+<strong>Puntuación global de la sesión:</strong>
+<input type="number" name="total" min="0" max="100" size="4" required> %
+ 
+
+---
+
+## Fortalezas del grupo
+
+Espacio para notas, comentarios y observaciones específicas sobre el grupo:
+
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí las fortalezas observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Áreas de mejora
+
+Espacio para notas, comentarios y observaciones específicas sobre el grupo:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las áreas de mejora observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Situaciones o incidencias relevantes
+
+Espacio para notas, comentarios y observaciones específicas sobre el grupo:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las situaciones o incidencias relevantes del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Propuestas de intervención o seguimiento
+
+Espacio para notas, comentarios y observaciones específicas sobre el grupo:
+
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las propuestas de intervención o seguimiento..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+## Observaciones adicionales
+
+Espacio para notas, comentarios y observaciones específicas sobre el alumno:
+
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones adicionales..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
