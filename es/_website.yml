@@ -47,9 +47,9 @@ website:
     right:
       - text: Idioma
         menu:
-          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;'>🇪🇸 Español</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;'><img src='/images/home/catalan-flag.svg' width='20' height='15' style='margin-right: 5px;'/> Català</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;'>🇬🇧 English</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none;'>🇪🇸 Español</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none;'><img src='/images/home/catalan-flag.svg' width='20' height='15' style='margin-right: 5px;'/> Català</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none;'>🇬🇧 English</a>"
           
       - icon: three-dots-vertical
         menu:
