@@ -108,6 +108,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script>
+function switchLanguage(targetLang) {
+    const currentPath = window.location.pathname;
+    let cleanPath = currentPath.replace(/^\//, '');
+    
+    if (cleanPath.startsWith('ca/')) {
+        cleanPath = cleanPath.substring(3);
+    } else if (cleanPath.startsWith('en/')) {
+        cleanPath = cleanPath.substring(3);
+    }
+    
+    if (cleanPath === '' || cleanPath === 'index.html') {
+        cleanPath = 'index.html';
+    }
+    
+    let newPath;
+    if (targetLang === 'es') {
+        newPath = '/' + cleanPath;
+    } else if (targetLang === 'ca') {
+        newPath = '/ca/' + cleanPath;
+    } else if (targetLang === 'en') {
+        newPath = '/en/' + cleanPath;
+    }
+    
+    window.location.href = newPath;
+}
+</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -338,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">En esta pagina encontrarás</h2>
+    <h2 id="toc-title">En aquesta pàgina trobaràs</h2>
    
   <ul>
   <li><a href="#publiqueu-un-lloc-web-de-quarto-a-les-pàgines-de-github-amb-github-actions" id="toc-publiqueu-un-lloc-web-de-quarto-a-les-pàgines-de-github-amb-github-actions" class="nav-link active" data-scroll-target="#publiqueu-un-lloc-web-de-quarto-a-les-pàgines-de-github-amb-github-actions"><span class="header-section-number">1</span> Publiqueu un lloc web de Quarto a les pàgines de GitHub amb GitHub Actions</a>
@@ -853,60 +880,6 @@ A     185.199.111.153</code></pre>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Torna a dalt</a></main> <!-- /main -->
-/**
- * Language Switcher for Multilingual Quarto Site
- * Handles switching between Spanish (root), Catalan (/ca/), and English (/en/)
- */
-
-function switchLanguage(targetLang) {
-    // Get current path
-    const currentPath = window.location.pathname;
-    
-    // Remove any leading slash and site base path
-    let cleanPath = currentPath.replace(/^\//, '');
-    
-    // Remove language prefix if present
-    if (cleanPath.startsWith('ca/')) {
-        cleanPath = cleanPath.substring(3);
-    } else if (cleanPath.startsWith('en/')) {
-        cleanPath = cleanPath.substring(3);
-    }
-    
-    // Handle root index page
-    if (cleanPath === '' || cleanPath === 'index.html') {
-        cleanPath = 'index.html';
-    }
-    
-    // Construct new path based on target language
-    let newPath;
-    if (targetLang === 'es') {
-        // Spanish is in root
-        newPath = '/' + cleanPath;
-    } else if (targetLang === 'ca') {
-        // Catalan is in /ca/
-        newPath = '/ca/' + cleanPath;
-    } else if (targetLang === 'en') {
-        // English is in /en/
-        newPath = '/en/' + cleanPath;
-    }
-    
-    // Navigate to new path
-    window.location.href = newPath;
-}
-
-// Add event listeners when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Find all language switcher links and add click handlers
-    const langLinks = document.querySelectorAll('[data-lang-switch]');
-    
-    langLinks.forEach(link =&gt; {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetLang = this.getAttribute('data-lang-switch');
-            switchLanguage(targetLang);
-        });
-    });
-});
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
