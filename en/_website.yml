@@ -47,9 +47,9 @@ website:
     right:
       - text: translate
         menu:
-          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none;'>🇪🇸 Spanish</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none;'><img src='/images/home/spain-flag.svg' width='20' height='15' style='margin-right: 5px;'/> Spanish</a>"
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none;'><img src='/images/home/catalan-flag.svg' width='20' height='15' style='margin-right: 5px;'/> Catalan</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none;'>🇬🇧 English</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none;'><img src='/images/home/uk-flag.svg' width='20' height='15' style='margin-right: 5px;'/> English</a>"
           
       - icon: three-dots-vertical
         menu:
