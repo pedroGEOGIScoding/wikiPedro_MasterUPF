@@ -74,25 +74,31 @@ ul.task-list li input[type="checkbox"] {
 <script>
 function switchLanguage(targetLang) {
     const currentPath = window.location.pathname;
-    let cleanPath = currentPath.replace(/^\//, '');
+    const basePath = '/wiki_MasterUPF/';
     
+    // Remove base path and leading slash
+    let cleanPath = currentPath.replace(basePath, '').replace(/^\//, '');
+    
+    // Remove language prefix if present
     if (cleanPath.startsWith('ca/')) {
         cleanPath = cleanPath.substring(3);
     } else if (cleanPath.startsWith('en/')) {
         cleanPath = cleanPath.substring(3);
     }
     
+    // Handle root index page
     if (cleanPath === '' || cleanPath === 'index.html') {
         cleanPath = 'index.html';
     }
     
+    // Construct new path based on target language
     let newPath;
     if (targetLang === 'es') {
-        newPath = '/' + cleanPath;
+        newPath = basePath + cleanPath;
     } else if (targetLang === 'ca') {
-        newPath = '/ca/' + cleanPath;
+        newPath = basePath + 'ca/' + cleanPath;
     } else if (targetLang === 'en') {
-        newPath = '/en/' + cleanPath;
+        newPath = basePath + 'en/' + cleanPath;
     }
     
     window.location.href = newPath;
@@ -251,9 +257,9 @@ function switchLanguage(targetLang) {
  <span class="menu-text">translate</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-translate">    
-        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;es&quot;); return false;">🇪🇸 Spanish</a></li>
-        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;ca&quot;); return false;"><img src="../../images/home/catalan-flag.svg" width="20" height="15" style="margin-right: 5px;"> Catalan</a></li>
-        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;en&quot;); return false;">🇬🇧 English</a></li>
+        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;es&quot;); return false;" style="text-decoration: none;">🇪🇸 Spanish</a></li>
+        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;ca&quot;); return false;" style="text-decoration: none;"><img src="../../images/home/catalan-flag.svg" width="20" height="15" style="margin-right: 5px;"> Catalan</a></li>
+        <li class="dropdown-header"><a href="#" onclick="switchLanguage(&quot;en&quot;); return false;" style="text-decoration: none;">🇬🇧 English</a></li>
     </ul>
   </li>
   <li class="nav-item dropdown ">
