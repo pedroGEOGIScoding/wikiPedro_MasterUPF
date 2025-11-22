@@ -24,3 +24,104 @@ To render the site, use the command `quarto render <language>` . This works in m
 For example, if you are in `/home/user/Documents` and you run `quarto render es` , you will render the site in the `es` folder .
 
 To render all languages, use the command `quarto render es && quarto render ca && quarto render en` .
+
+### Local and GitHub Navigation
+
+The multilingual website uses a JavaScript function called `switchLanguage()` to handle navigation between the three language versions (Spanish, Catalan, and English). This section explains how it works and how to troubleshoot common issues.
+
+#### How the Navigation System Works
+
+The language switcher is implemented in the `_format.yml` file for each language folder (`es/`, `ca/`, `en/`). The JavaScript function is embedded in the HTML header and performs the following steps:
+
+1. **Detects current path**: Gets the current URL path where the user is located
+2. **Auto-detects environment**: Checks if the site is running on GitHub Pages or localhost
+3. **Sets base path**: Uses `/wikiPedro_MasterUPF/` for GitHub Pages or `/` for localhost
+4. **Cleans the path**: Removes the base path and any existing language prefix (`ca/` or `en/`)
+5. **Constructs new path**: Builds the new URL with the target language prefix
+6. **Navigates**: Redirects the browser to the new language version
+
+Example workflow when switching from English to Spanish:
+- Current path: `/wikiPedro_MasterUPF/en/index.html` (on GitHub Pages)
+- Remove base path: `en/index.html`
+- Remove language prefix: `index.html`
+- Construct Spanish path: `/wikiPedro_MasterUPF/index.html` (Spanish is in root)
+- Navigate to new URL
+
+#### The GitHub Pages vs Localhost Issue
+
+**Problem**: The language navigation worked perfectly on the deployed GitHub Pages site but failed when testing locally with `quarto preview`.
+
+**Root Cause**: URL structure mismatch between environments:
+
+- **GitHub Pages URL structure**:
+  ```
+  https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
+  ```
+  The site is hosted in a subdirectory `/wikiPedro_MasterUPF/`
+
+- **Localhost URL structure**:
+  ```
+  http://localhost:3000/
+  ```
+  The site is served from the root directory `/`
+
+The original implementation had a hardcoded base path:
+```javascript
+const basePath = '/wikiPedro_MasterUPF/';
+```
+
+This worked on GitHub Pages where the path includes `/wikiPedro_MasterUPF/`, but on localhost, the function tried to find pages at paths like `/wikiPedro_MasterUPF/en/index.html` which don't exist locally (they're actually at `/en/index.html`).
+
+#### The Solution: Environment Auto-Detection
+
+The fix automatically detects whether the site is running on GitHub Pages or localhost and uses the appropriate base path:
+
+```javascript
+// Auto-detect environment: GitHub Pages or localhost
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+```
+
+**How it works**:
+- Checks if the hostname contains `github.io`
+- If yes → GitHub Pages → use `/wikiPedro_MasterUPF/` as base path
+- If no → localhost or other → use `/` as base path
+
+**Benefits**:
+- ✅ Works seamlessly on GitHub Pages (production)
+- ✅ Works correctly on localhost (development)
+- ✅ No need to modify code when switching between environments
+- ✅ Console logs help debug any issues
+
+#### Debug Console Logs
+
+The function includes console logs to help troubleshoot issues. Open browser DevTools (F12) → Console tab to see:
+
+```
+Current path: /wikiPedro_MasterUPF/en/index.html
+Target language: es
+Environment: GitHub Pages
+Base path: /wikiPedro_MasterUPF/
+Clean path after removing base: en/index.html
+Clean path after removing language prefix: index.html
+New path: /wikiPedro_MasterUPF/index.html
+```
+
+These logs help verify that the function is:
+1. Detecting the correct environment
+2. Using the right base path
+3. Properly cleaning the paths
+4. Constructing valid target URLs
+
+#### Files Modified
+
+The `switchLanguage()` function is located in:
+- `/home/pedro/Documents/wikiPedro_MasterUPF/en/_format.yml` (lines 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/es/_format.yml` (lines 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/ca/_format.yml` (lines 5-43)
+
+After modifying these files, always render all language versions:
+```bash
+quarto render es && quarto render ca && quarto render en
+```
+

@@ -8,7 +8,11 @@ format:
               console.log('Current path:', currentPath);
               console.log('Target language:', targetLang);
               
-              const basePath = '/wikiPedro_MasterUPF/';
+              // Auto-detect environment: GitHub Pages or localhost
+              const isGitHubPages = window.location.hostname.includes('github.io');
+              const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+              console.log('Environment:', isGitHubPages ? 'GitHub Pages' : 'localhost');
+              console.log('Base path:', basePath);
               
               // Remove base path and leading slash
               let cleanPath = currentPath.replace(basePath, '').replace(/^\//, '');
