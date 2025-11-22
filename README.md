@@ -2,6 +2,15 @@
 
 Personal website documenting my journey through the Master's Degree in Secondary Education Teaching at Universitat Pompeu Fabra.
 
+## ✨ Features
+
+- **🌐 Multilingual:** Available in Spanish, Catalan, and English
+- **🖼️ Optimized Images:** Lazy loading for improved performance
+- **🔍 Lightbox Gallery:** Interactive image viewing with fade effects
+- **📱 Responsive Design:** Mobile-friendly layout
+- **🚀 Auto-deployment:** GitHub Actions workflow for automatic publishing
+- **🔄 Translation Scripts:** Automated content translation tools
+
 ## 🌐 Languages
 
 This site is available in three languages:
@@ -107,13 +116,45 @@ Each language folder contains:
 - `_format.yml` - Output format settings
 - `_brand.yml` - Branding and styling
 
+Each `.qmd` file includes lightbox configuration in YAML front matter:
+```yaml
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+```
+
+## 🖼️ Image Optimization
+
+All **39 images** across **57 `.qmd` files** (19 per language) are optimized with:
+
+- **Lazy Loading:** `loading="lazy"` attribute for improved page load performance
+- **Lightbox Gallery:** Automatic lightbox functionality with:
+  - `match: auto` - Automatically detects images
+  - `effect: fade` - Smooth fade transition
+  - `desc-position: bottom` - Description at bottom
+  - `loop: false` - No continuous loop
+- **Group Organization:** Images grouped by page filename (e.g., `group="intro-master-upf"`)
+
+### Adding Images
+
+When adding new images to `.qmd` files:
+
+```markdown
+![Alt text](/path/to/image.png){ group="filename" loading="lazy" }
+```
+
+Replace `filename` with the name of your `.qmd` file (without extension).
+
 ## 📝 Adding Content
 
 1. Add content to the Spanish version in `/es/`
 2. Copy the file structure to `/ca/` and `/en/`
 3. Run translation scripts or manually translate
-4. Render all versions
-5. Commit and push
+4. Ensure all images include `group` and `loading="lazy"` attributes
+5. Render all versions
+6. Commit and push
 
 ## 🔗 Links
 
