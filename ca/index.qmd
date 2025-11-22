@@ -11,19 +11,22 @@ repo-actions: false
 
 ::: {.columns}
 ::: {.column width="40%"}
-Hola, em dic Pedro i estic estudiant un màster de magisteri de secundària a la Universitat Pompeu Fabra. Aquest web és un registre del meu procés d'aprenentatge i reflexió durant aquest màster. Des dels meus anys d'instructor de temps lliure i posteriorment director de colònies, sempre he tingut curiositat per la professió d'educador, però la vida durant molts anys m'ha portat per múltiples camins.
+Hola, soy Pedro y estoy estudiando el master de profesor de secundaria en la universidad Pompeu Fabra. Est sitio web es un registro de mi proceso de aprendizaje y reflexión durante este master. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
 
-Quan vaig tornar després de 14 anys treballant a Anglaterra, la docència va ser una de les meves primeres opcions per reinventar-me a la meva tornada a casa.
+Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
 
-Fa poc vaig veure una pel·lícula, una d'aquelles no molt famoses, però amb un gran missatge. Aquella pel·lícula és **Lunana, un iac a l'escola** i hi ha una frase central sobre l'impacte del professor que deia: **“Els mestres poden tocar el futur”** i el cert és que em va impactar molt i ara després d'emprendre aquest procés m'he adonat que pot ser així, i que l'educació és una de les eines més poderoses per transformar vides.
+Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es Lunana, un yak en la escuela y hay una frase central sobre el impacto del profesor en los alumnos que dice asi: [Los profesores pueden tocar el futuro de sus alumnos]{style="font-size: 1`em; font-weight: bold;"} y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
 
-Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon educador i poder revertir tota la meva experiència vital i coneixements científics que he anat adquirint tots aquests anys com a geòleg d'exploració minera, després director d'empresa i tornar a explorar els hidrocarburs per més de la meitat del món en el futur de la nostra societat, els nostres fills.
+Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
+
+Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd)
 :::
 
 ::: {.column width="60%"}
 ![](images/home/class-image-home-page.png)
 :::
 :::
+
 ---
 [Últimes notícies sobre ciència]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
 <br>  

@@ -15,16 +15,20 @@ Hola, soy Pedro y estoy estudiando el master de profesor de secundaria en la uni
 
 Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
 
-Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es **Lunana, un yak en la escuela** y hay una frase central sobre el impacto del profesor que decia asi: **“Los profesores pueden tocar el futuro”** y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
+Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es Lunana, un yak en la escuela y hay una frase central sobre el impacto del profesor en los alumnos que dice asi: [Los profesores pueden tocar el futuro de sus alumnos]{style="font-size: 1`em; font-weight: bold;"} y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
 
 Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
+
+Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd)
 :::
 
 ::: {.column width="60%"}
 ![](images/home/class-image-home-page.png)
 :::
 :::
+
 ---
+
 [Últimas noticias sobre Ciencia]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
 <br>  
 
