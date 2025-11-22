@@ -11,22 +11,21 @@ repo-actions: false
 
 ::: {.columns}
 ::: {.column width="40%"}
-Hola, soy Pedro y estoy estudiando el master de profesor de secundaria en la universidad Pompeu Fabra. Est sitio web es un registro de mi proceso de aprendizaje y reflexión durante este master. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
+Hello, I'm Pedro and I'm studying a master's degree in secondary school teaching at Pompeu Fabra University. This website is a record of my learning and reflection process during this master's degree. Since my years as a free time instructor and later summer camp director, I have always been curious about the profession of educator, but life for many years has taken me down multiple paths.
 
-Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
+Upon returning after 14 years working in England, teaching was one of my first options to reinvent myself upon my return home.
 
-Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es Lunana, un yak en la escuela y hay una frase central sobre el impacto del profesor en los alumnos que dice asi: [Los profesores pueden tocar el futuro de sus alumnos]{style="font-size: 1`em; font-weight: bold;"} y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
+I recently saw a movie, one of those not very famous ones, but with a great message. That film is Lunana, a yak at school and there is a central phrase about the impact of the teacher that said: [Teachers can touch the future of their students]{style="font-size: 1`em; font-weight: bold;"} and the truth is that it had a great impact on me and now after embarking on this process I have realized that it can be like that, and that education is one of the most powerful tools to transform lives.
 
-Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
+So here I am, reinventing myself once again to become a good educator and be able to reverse all my life experience and scientific knowledge that I have been acquiring all these years as a mining exploration geologist, later a company director and return to explore hydrocarbons for more than half the world in the future of our society, our children.
 
-Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd)
+For more information about my professional trajectory, you can visit the "About me" tab that is in the navigation bar or if you want you can click [here](about/about-this-me.qmd)
 :::
 
 ::: {.column width="60%"}
 ![](images/home/class-image-home-page.png)
 :::
 :::
-
 ---
 [Latest news about Science]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
 <br>  
