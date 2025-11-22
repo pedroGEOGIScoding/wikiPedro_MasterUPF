@@ -17,3 +17,10 @@ To move back to the root directory, use the command `cd /` .
 To move forward one folder in the terminal, use the command `cd <folder_name>` . This works in most operating systems including Linux, macOS, and Windows PowerShell.
 
 For example, if you are in `/home/user/Documents` and you run `cd <folder_name>` , you will move to `/home/user/Documents/<folder_name>` .
+
+### Render
+To render the site, use the command `quarto render <language>` . This works in most operating systems including Linux, macOS, and Windows PowerShell.
+
+For example, if you are in `/home/user/Documents` and you run `quarto render es` , you will render the site in the `es` folder .
+
+To render all languages, use the command `quarto render es && quarto render ca && quarto render en` .

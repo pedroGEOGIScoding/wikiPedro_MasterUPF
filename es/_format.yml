@@ -5,10 +5,14 @@ format:
           <script>
           function switchLanguage(targetLang) {
               const currentPath = window.location.pathname;
+              console.log('Current path:', currentPath);
+              console.log('Target language:', targetLang);
+              
               const basePath = '/wikiPedro_MasterUPF/';
               
               // Remove base path and leading slash
               let cleanPath = currentPath.replace(basePath, '').replace(/^\//, '');
+              console.log('Clean path after removing base:', cleanPath);
               
               // Remove language prefix if present
               if (cleanPath.startsWith('ca/')) {
@@ -16,6 +20,7 @@ format:
               } else if (cleanPath.startsWith('en/')) {
                   cleanPath = cleanPath.substring(3);
               }
+              console.log('Clean path after removing language prefix:', cleanPath);
               
               // Handle root index page
               if (cleanPath === '' || cleanPath === 'index.html') {
@@ -32,6 +37,7 @@ format:
                   newPath = basePath + 'en/' + cleanPath;
               }
               
+              console.log('New path:', newPath);
               window.location.href = newPath;
           }
           </script>
