@@ -11,6 +11,11 @@ categories: [tfm, investigació, innovació, pràctica]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -40,7 +45,7 @@ format: html
 
 <br>
 
-![Esquema del Treball Final de Màster](/images/tfm/tfm-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Esquema del Treball Final de Màster](/images/tfm/tfm-structure.png){width=50% fig-align="center" group="practicas-tfm" loading="lazy"}
 
 <br>
 

@@ -11,6 +11,11 @@ categories: [fundamentals, learning, teaching, sciences]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -28,7 +33,7 @@ format: html
 
 <br>
 
-![Structure of Fundamentals of Learning and Teaching of Natural Sciences](/images/fac/fac-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Structure of Fundamentals of Learning and Teaching of Natural Sciences](/images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
 
 <br>
 

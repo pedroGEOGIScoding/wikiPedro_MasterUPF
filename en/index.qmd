@@ -1,6 +1,11 @@
 ---
 title: "Master of Secondary School Teaching"
 filename: index
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format:
   html: 
     toc: false
@@ -23,7 +28,7 @@ For more information about my professional trajectory, you can visit the "About 
 :::
 
 ::: {.column width="60%"}
-![](images/home/class-image-home-page.png)
+![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
 :::
 :::
 ---

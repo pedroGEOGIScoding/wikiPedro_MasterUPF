@@ -2,6 +2,11 @@
 title: "Acerca de este sitio"
 filename: "about-this-site"
 categories: [about]
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 
 # Publicar un Sitio Web Quarto en GitHub Pages con GitHub Actions
@@ -116,7 +121,7 @@ El directorio `_site` será generado por GitHub Actions, por lo que no lo confir
    - **NO** inicialices con README, .gitignore, o licencia
 5. Haz clic en **"Create repository"** (Crear repositorio)
 
-![Creando un nuevo repositorio en GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp)
+![Creando un nuevo repositorio en GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp){ group="about-this-site" loading="lazy" }
 
 ### 3.2 Conectar el Repositorio Local a GitHub
 
@@ -139,7 +144,7 @@ Reemplaza `tunombredeusuario` con tu nombre de usuario real de GitHub.
 3. Desplázate hacia abajo hasta **"Pages"** en la barra lateral izquierda
 4. En **"Source"** (Fuente), selecciona **"GitHub Actions"**
 
-![Configuración de GitHub Pages](/images/about/github-actions.png)
+![Configuración de GitHub Pages](/images/about/github-actions.png){ group="about-this-site" loading="lazy" }
 
 Esto le indica a GitHub que use GitHub Actions para el despliegue en lugar de una rama.
 
@@ -243,7 +248,7 @@ git push
 2. Haz clic en la pestaña **"Actions"** (Acciones)
 3. Deberías ver tu flujo de trabajo en ejecución
 
-![Flujo de trabajo de GitHub Actions en ejecución](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp)
+![Flujo de trabajo de GitHub Actions en ejecución](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp){ group="about-this-site" loading="lazy" }
 
 4. Haz clic en la ejecución del flujo de trabajo para ver los registros detallados
 5. Espera a que los trabajos **build** y **deploy** se completen (generalmente 1-3 minutos)

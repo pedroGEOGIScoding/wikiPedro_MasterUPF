@@ -2,6 +2,11 @@
 title: "About the credits of the images"
 filename: "about-this-images-credit"
 categories: [about, images-credit]
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 
 ## Notice on the Use of Images and Copyright

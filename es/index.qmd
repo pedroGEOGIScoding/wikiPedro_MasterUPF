@@ -1,6 +1,11 @@
 ---
 title: "Master de Profesorado en Secundaria"
 filename: index
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format:
   html: 
     toc: false
@@ -23,7 +28,7 @@ Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca
 :::
 
 ::: {.column width="60%"}
-![](images/home/class-image-home-page.png)
+![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
 :::
 :::
 

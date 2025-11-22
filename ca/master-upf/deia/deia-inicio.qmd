@@ -11,6 +11,11 @@ categories: [disseny, innovació, aprenentatge]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -48,7 +53,7 @@ Els dos objectius principals d'aquesta assignatura són:
 
 <br>
 
-![Disseny marc per a entorns d'aprenentatge innovadors](/images/deia/deia-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Disseny marc per a entorns d'aprenentatge innovadors](/images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio" loading="lazy"}
 
 <br>
 

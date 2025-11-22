@@ -11,6 +11,11 @@ categories: [guia, mestre]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -25,19 +30,19 @@ format: html
 
 <br>
 
-![Àrees de competència cobertes en el màster](/images/intro-master/ambitos-competenciales.png){width=50% fig-align="center" group="intro-master-page"}
+![Àrees de competència cobertes en el màster](/images/intro-master/ambitos-competenciales.png){width=50% fig-align="center" group="intro-master-upf" loading="lazy"}
 
 <br>
 
-![Estructura de les assignatures del màster](/images/intro-master/master-estructura.png){width=50% fig-align="center" group="intro-master-page"}
+![Estructura de les assignatures del màster](/images/intro-master/master-estructura.png){width=50% fig-align="center" group="intro-master-upf" loading="lazy"}
 
 <br>
 
-![Estructura detallada de les assignatures del màster](/images/intro-master/master-estructura2.png){width=50% fig-align="center" group="intro-master-page"}
+![Estructura detallada de les assignatures del màster](/images/intro-master/master-estructura2.png){width=50% fig-align="center" group="intro-master-upf" loading="lazy"}
 
 <br>
 
-![Calendari docent del màster](/images/intro-master/calendario-master.png){width=50% fig-align="center" group="intro-master-page"}
+![Calendari docent del màster](/images/intro-master/calendario-master.png){width=50% fig-align="center" group="intro-master-upf" loading="lazy"}
 
 <br>
 

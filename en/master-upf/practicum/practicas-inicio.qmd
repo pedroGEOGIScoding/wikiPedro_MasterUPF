@@ -11,6 +11,11 @@ categories: [practicum, observation, assessment, competencies]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -42,7 +47,7 @@ format: html
 
 <br>
 
-![Internship Scheme in Educational Center](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Internship Scheme in Educational Center](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
 
 <br>
 

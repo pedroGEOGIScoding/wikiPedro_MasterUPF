@@ -2,6 +2,11 @@
 title: "Sobre aquest lloc"
 filename: "about-this-site"
 categories: [sobre]
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 
 # Publiqueu un lloc web de Quarto a les pàgines de GitHub amb GitHub Actions
@@ -116,7 +121,7 @@ El directori `_site` el generarà GitHub Actions, de manera que no ho confirmem.
    - **NO** inicialitzeu-vos amb README, .gitignore o llicència
 5. Feu clic a **"Crea un repositori"**
 
-![Creació d'un nou repositori a GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp)
+![Creació d'un nou repositori a GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp){ group="about-this-site" loading="lazy" }
 
 ### 3.2 Connecteu el dipòsit local a GitHub
 
@@ -139,7 +144,7 @@ Substituïu `yourusername` pel vostre nom d'usuari de GitHub real.
 3. Desplaceu-vos cap avall fins a **"Pàgines"** a la barra lateral esquerra
 4. A **"Font"**, seleccioneu **"Accions de GitHub"**
 
-![Configuració de pàgines de GitHub](/images/about/github-actions.png)
+![Configuració de pàgines de GitHub](/images/about/github-actions.png){ group="about-this-site" loading="lazy" }
 
 Això indica a GitHub que utilitzi les accions de GitHub per al desplegament en lloc d'una branca.
 
@@ -243,7 +248,7 @@ git push
 2. Feu clic a la pestanya **"Accions"**
 3. Hauríeu de veure el vostre flux de treball en funcionament
 
-![Execució del flux de treball de GitHub Actions](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp)
+![Execució del flux de treball de GitHub Actions](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp){ group="about-this-site" loading="lazy" }
 
 4. Feu clic a l'execució del flux de treball per veure els registres detallats
 5. Espereu que s'acabin les tasques de **construcció** i **implantació** (normalment d'1 a 3 minuts)

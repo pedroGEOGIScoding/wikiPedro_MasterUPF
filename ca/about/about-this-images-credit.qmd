@@ -2,6 +2,11 @@
 title: "Sobre els crèdits d'imatge"
 filename: "about-this-images-credit"
 categories: [sobre, imatges-crèdit]
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 
 ## Avís sobre l'ús de la imatge i els drets d'autor

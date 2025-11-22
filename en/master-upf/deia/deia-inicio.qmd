@@ -11,6 +11,11 @@ categories: [design, innovation, learning]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -48,7 +53,7 @@ The two key objectives of this subject are:
 
 <br>
 
-![Design Framework for Innovative Learning Environments](/images/deia/deia-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Design Framework for Innovative Learning Environments](/images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio" loading="lazy"}
 
 <br>
 

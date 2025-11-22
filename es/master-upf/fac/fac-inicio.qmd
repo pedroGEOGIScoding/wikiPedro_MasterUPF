@@ -11,6 +11,11 @@ categories: [fundamentos, aprendizaje, enseñanza, ciencias]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -28,7 +33,7 @@ format: html
 
 <br>
 
-![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](/images/fac/fac-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](/images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
 
 <br>
 

@@ -27,9 +27,39 @@ To render all languages, use the command `quarto render es && quarto render ca &
 
 ### Quarto commands
 
+- lightbox treatment. In HTML output formats you can add lightbox styling and behavior to images to allow a reader to click to see a larger version of the image. Lightbox treatment can be added by adding the class .lightbox to an image:
+
+`![An elephant](elephant.png){.lightbox}`
+
+Quarto supports a number of options to customize the lightbox behavior for a document. Options include:
+
+| Option | Description |
+| --- | --- |
+| `match` | Set this to `auto` if you’d like any image to be given lightbox treatment. If you omit this, only images with the class `lightbox` will be given the lightbox treatment. |
+| `effect` | The effect that should be used when opening and closing the lightbox. One of `fade`, `zoom`, `none`. Defaults to `zoom`. |
+| `desc-position` | The position of the title and description when displaying a lightbox. One of `top`, `bottom`, `left`, `right`. Defaults to `bottom`. |
+| `loop` | Whether galleries should ‘loop’ to first image in the gallery if the user continues past the last image of the gallery. Boolean that defaults to `true`. |
+| `css-class` | A class name to apply to the lightbox to allow css targeting. This will replace the lightbox class with your custom class name. |
+
+A complete example:
+```
+---
+title: Complete Lightbox Example
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: right
+  loop: false
+  css-class: "my-css-class"
+---
+```
 - Cómo implementar la carga diferida (loading="lazy") de imágenes en un sitio web creado con Quarto:
 
 `![alt text](ruta/imagen.jpg){ loading="lazy" }`
+
+- Gallery treatment. In HTML output formats you can add gallery styling and behavior to images to allow a reader to click to see a larger version of the image. Gallery treatment can be added by adding the class group to an image:
+
+`![An elephant](elephant.png){group = "my-gallery}`
 
 - Renderizar las 3 carpetas de idioma a la vez:
 

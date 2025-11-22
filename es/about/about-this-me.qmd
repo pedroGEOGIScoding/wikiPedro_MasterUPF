@@ -2,13 +2,18 @@
 title: "Acerca de mí"
 filename: "about-this-me"
 categories: [about]
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 
 :::{layout-ncol=2}
 
-![](/images/about/pedro.jpg){width=31% fig-align="center"}
+![](/images/about/pedro.jpg){width=31% fig-align="center" group="about-this-me" loading="lazy"}
 
-![](/images/about/class-image-home-page-bw.png){width=69% fig-align="center"}
+![](/images/about/class-image-home-page-bw.png){width=69% fig-align="center" group="about-this-me" loading="lazy"}
 
 :::
 

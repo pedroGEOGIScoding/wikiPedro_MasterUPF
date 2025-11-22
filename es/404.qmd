@@ -1,6 +1,11 @@
 ---
 title: Page Not Found <img src="/images/home/404/person.png" alt="Person" width="120" height="120">
 filename: 404
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 <center>
 ## Perhaps the page you are after was moved or renamed :(
@@ -14,7 +19,7 @@ filename: 404
 
 <center>
 <div style="width: 50%;">
-![](/images/home/404/404a.gif)
+![](/images/home/404/404a.gif){ group="404" loading="lazy" }
 </div>
 </center>
 

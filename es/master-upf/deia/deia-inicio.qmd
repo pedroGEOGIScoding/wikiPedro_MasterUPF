@@ -11,6 +11,11 @@ categories: [diseño, innovación, aprendizaje]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -48,7 +53,7 @@ Los dos objetivos clave de esta materia son:
 
 <br>
 
-![Estructura de Diseño de Entornos Innovadores de Aprendizaje](/images/deia/deia-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Estructura de Diseño de Entornos Innovadores de Aprendizaje](/images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio" loading="lazy"}
 
 <br>
 

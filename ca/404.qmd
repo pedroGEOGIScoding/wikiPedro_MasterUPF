@@ -1,6 +1,11 @@
 ---
 title: No s'ha trobat la pàgina <img src="/images/home/404/person.png" alt="Persona" width="120" height="120">
 filename: 404
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 ---
 <center>
 ## Potser la pàgina que esteu després s'ha mogut o canviat de nom :(
@@ -14,7 +19,7 @@ filename: 404
 
 <center>
 <div style="width: 50%;">
-![](/images/home/404/404a.gif)
+![](/images/home/404/404a.gif){ group="404" loading="lazy" }
 </div>
 </center>
 

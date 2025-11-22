@@ -1,6 +1,11 @@
 ---
 title: "Màster en Magisteri de Secundària"
 filename: index
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format:
   html: 
     toc: false
@@ -23,7 +28,7 @@ Per a saber mes de la meva trajectòria professional, pots visitar la pestanya "
 :::
 
 ::: {.column width="60%"}
-![](images/home/class-image-home-page.png)
+![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
 :::
 :::
 ---

@@ -11,6 +11,11 @@ categories: [pràctica, observació, valoració, competències]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
@@ -42,7 +47,7 @@ format: html
 
 <br>
 
-![Pla de Pràctiques en Centre Educatiu](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="intro-master-page"}
+![Pla de Pràctiques en Centre Educatiu](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
 
 <br>
 

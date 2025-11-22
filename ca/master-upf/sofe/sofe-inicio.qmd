@@ -11,6 +11,11 @@ categories: [marc educatiu, projecte educatiu, sistema educatiu]
 toc: true
 number-sections: true
 highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 format: html
 ---
 
