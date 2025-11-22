@@ -4,7 +4,13 @@ filename: "about-this-me"
 categories: [sobre]
 ---
 
-![](/images/home/class-image-home-page.png){width=80% fig-align="center"}
+:::{layout-ncol=2}
+
+![](/images/about/pedro.jpg){width=31% fig-align="center"}
+
+![](/images/about/class-image-home-page-bw.png){width=69% fig-align="center"}
+
+:::
 
 
 ## Perfil professional

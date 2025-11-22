@@ -1,6 +1,6 @@
 # Notes
 
-## Commands Explanation
+## Terminal Commands Explanation
 
 ### Back
 To move back one folder in the terminal, use the command `cd ..` . This works in most operating systems including Linux, macOS, and Windows PowerShell.
@@ -24,6 +24,16 @@ To render the site, use the command `quarto render <language>` . This works in m
 For example, if you are in `/home/user/Documents` and you run `quarto render es` , you will render the site in the `es` folder .
 
 To render all languages, use the command `quarto render es && quarto render ca && quarto render en` .
+
+### Quarto commands
+
+- Cómo implementar la carga diferida (loading="lazy") de imágenes en un sitio web creado con Quarto:
+
+`![alt text](ruta/imagen.jpg){ loading="lazy" }`
+
+- Renderizar las 3 carpetas de idioma a la vez:
+
+`quarto render es && quarto render ca && quarto render en`
 
 ### Local and GitHub Navigation
 
