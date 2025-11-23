@@ -13,6 +13,30 @@ lightbox:
 
 This guide provides a complete walkthrough to create and publish a Quarto website to GitHub Pages using GitHub Actions for automated deployment.
 
+## Document Structure
+
+This document is organized in **two main parts**:
+
+### 📘 Part 1: Basic Quarto Tutorial (for beginners)
+
+If you're creating your first Quarto website or need a site **in a single language**, this first part will guide you step by step:
+
+- ✅ Create a Quarto website from scratch
+- ✅ Configure Git and GitHub
+- ✅ Implement GitHub Actions for automatic deployment
+- ✅ Troubleshoot common issues
+
+### 📗 Part 2: Multilingual Sites Manual (advanced)
+
+If you already have experience with Quarto and need to create a **multilingual website** with language navigation, go directly to the [second part](#manual-building-and-publishing-a-multilingual-quarto-website) which covers:
+
+- ✅ Multilingual project structure
+- ✅ Language navigation system with JavaScript
+- ✅ Solution to localhost vs GitHub Pages problem
+- ✅ Workflow for multiple languages
+
+---
+
 ## Prerequisites
 
 Before you begin, make sure you have:
@@ -322,7 +346,9 @@ GitHub Actions will automatically rebuild and redeploy your website in minutes.
 
 ## Troubleshooting
 
-### Common Problems and Solutions
+### General Quarto and GitHub Pages Issues
+
+This section covers common issues that can occur in both basic and multilingual sites.
 
 #### Issue: Workflow fails with "Permission denied"
 
@@ -352,6 +378,12 @@ website:
   repo-url: "https://github.com/tunombredeusuario/mywebsite"
 ```
 
+**For resources in multilingual sites:** Use absolute paths from root:
+```markdown
+![](/images/about/pedro.jpg)
+```
+Don't use relative paths like `../images/about/pedro.jpg`
+
 #### Problem: Workflow does not activate
 
 **Solution:**
@@ -360,6 +392,16 @@ website:
 - Verify that the file has the `.yml` or `.yaml` extension
 - Confirm that you pushed to the `main` branch
 - Try activating it manually: **Actions** → **Workflow name** → **Run workflow**
+
+#### Problem: Changes Don't Appear on GitHub Pages
+
+**Solutions:**
+
+1. **Clear browser cache**: Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)
+2. **Check deployment status**: 
+   - Go to Actions on GitHub
+   - Verify the GitHub Pages workflow completed successfully
+3. **Wait a few minutes**: GitHub Pages can take 1-5 minutes to update
 
 ## Advanced Settings
 
@@ -450,3 +492,381 @@ Now you have learned how to:
 Every time you push changes to your `main` branch, GitHub Actions will automatically rebuild and redeploy your website. This creates a seamless publishing workflow that requires no manual intervention.
 
 Happy publishing! 🚀
+
+---
+
+# Part 2: Advanced Manual
+
+## Manual: Building and Publishing a Multilingual Quarto Website
+
+This manual documents the complete process for creating, developing, and publishing a multilingual Quarto website that works perfectly in both local development and production on GitHub Pages.
+
+### 1. Multilingual Project Structure
+
+The website is organized in three languages with the following folder structure:
+
+```
+wikiPedro_MasterUPF/
+├── es/                 # Spanish (default root folder)
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [.qmd files]
+├── ca/                 # Catalan
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [.qmd files]
+├── en/                 # English
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [.qmd files]
+├── images/             # Shared resources
+├── styles.css          # Global styles
+└── _quarto.yml         # Global configuration
+```
+
+**Key principles:**
+- Each language has its own folder with independent configuration
+- Spanish (`es/`) renders to the site root (`/`)
+- Shared resources (images, styles) are kept in common folders
+- Each language folder has its own `_quarto.yml` and `_format.yml`
+
+### 2. Local Development
+
+#### 2.1. Previewing a Specific Language
+
+To preview a language in local development:
+
+```bash
+# Spanish (from root)
+quarto preview es
+
+# Catalan
+quarto preview ca
+
+# English
+quarto preview en
+```
+
+The local server will run at `http://localhost:3000/` (or similar port).
+
+#### 2.2. Rendering the Entire Site
+
+Before publishing, render all language versions:
+
+```bash
+quarto render es && quarto render ca && quarto render en
+```
+
+This generates HTML files in the corresponding folders:
+- `_site/` (Spanish)
+- `_site/ca/` (Catalan)
+- `_site/en/` (English)
+
+### 3. Language Navigation System
+
+#### 3.1. How the System Works
+
+The site implements a language selector using JavaScript that allows switching between the three versions without losing the current page. The `switchLanguage()` function performs the following steps:
+
+1. **Detects current path**: Gets the URL where the user is located
+2. **Auto-detects environment**: Checks if the site is running on GitHub Pages or localhost
+3. **Sets base path**: Uses `/wikiPedro_MasterUPF/` for GitHub Pages or `/` for localhost
+4. **Cleans the path**: Removes the base path and existing language prefix (`ca/` or `en/`)
+5. **Constructs new path**: Builds the URL with the target language prefix
+6. **Navigates**: Redirects the browser to the new language version
+
+#### 3.2. Navigation Flow Example
+
+When switching from English to Spanish:
+- Current path: `/wikiPedro_MasterUPF/en/index.html` (on GitHub Pages)
+- Remove base path: `en/index.html`
+- Remove language prefix: `index.html`
+- Construct Spanish path: `/wikiPedro_MasterUPF/index.html` (Spanish is in root)
+- Navigate to new URL
+
+#### 3.3. The GitHub Pages vs Localhost Issue
+
+**Problem**: Language navigation worked perfectly on GitHub Pages but failed when testing locally with `quarto preview`.
+
+**Root Cause**: URL structure mismatch between environments:
+
+- **GitHub Pages URL structure**:
+  ```
+  https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
+  ```
+  The site is hosted in a subdirectory `/wikiPedro_MasterUPF/`
+
+- **Localhost URL structure**:
+  ```
+  http://localhost:3000/
+  ```
+  The site is served from the root directory `/`
+
+The original implementation had a hardcoded base path:
+```javascript
+const basePath = '/wikiPedro_MasterUPF/';
+```
+
+This worked on GitHub Pages where the path includes `/wikiPedro_MasterUPF/`, but on localhost, the function tried to find pages at paths like `/wikiPedro_MasterUPF/en/index.html` which don't exist locally (they're actually at `/en/index.html`).
+
+#### 3.4. The Solution: Environment Auto-Detection
+
+The implemented solution automatically detects whether the site is running on GitHub Pages or localhost and uses the appropriate base path:
+
+```javascript
+// Auto-detect environment: GitHub Pages or localhost
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+```
+
+**How it works**:
+- Checks if the hostname contains `github.io`
+- If yes → GitHub Pages → use `/wikiPedro_MasterUPF/` as base path
+- If no → localhost or other → use `/` as base path
+
+**Benefits**:
+- ✅ Works seamlessly on GitHub Pages (production)
+- ✅ Works correctly on localhost (development)
+- ✅ No need to modify code when switching between environments
+- ✅ Console logs help debug issues
+
+#### 3.5. Debug Console Logs
+
+The function includes console logs to help troubleshoot issues. Open browser DevTools (F12) → Console tab to see:
+
+```
+Current path: /wikiPedro_MasterUPF/en/index.html
+Target language: es
+Environment: GitHub Pages
+Base path: /wikiPedro_MasterUPF/
+Clean path after removing base: en/index.html
+Clean path after removing language prefix: index.html
+New path: /wikiPedro_MasterUPF/index.html
+```
+
+These logs help verify that the function is:
+1. Detecting the correct environment
+2. Using the right base path
+3. Properly cleaning the paths
+4. Constructing valid target URLs
+
+#### 3.6. Modified Files
+
+The `switchLanguage()` function is located in:
+- `/home/pedro/Documents/wikiPedro_MasterUPF/en/_format.yml` (lines 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/es/_format.yml` (lines 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/ca/_format.yml` (lines 5-43)
+
+After modifying these files, always render all language versions:
+```bash
+quarto render es && quarto render ca && quarto render en
+```
+
+### 4. Publishing to GitHub Pages
+
+#### 4.1. Initial Repository Configuration
+
+1. **Create repository on GitHub**:
+   - Name: `wikiPedro_MasterUPF`
+   - Visibility: Public (required for free GitHub Pages)
+
+2. **Configure GitHub Pages**:
+   - Go to Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: `main` (or `master`)
+   - Folder: `/ (root)`
+
+#### 4.2. Quarto Configuration for GitHub Pages
+
+In the main `_quarto.yml` file (project root):
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+  
+website:
+  site-url: "https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF"
+  
+format:
+  html:
+    theme: [cosmo, custom.scss]
+```
+
+#### 4.3. Publishing Process
+
+**Option 1: Manual Publishing**
+
+```bash
+# 1. Render all versions
+quarto render es && quarto render ca && quarto render en
+
+# 2. Add changes to git
+git add .
+git commit -m "Update site content"
+
+# 3. Publish to GitHub
+git push origin main
+```
+
+**Option 2: Publishing with Quarto Command**
+
+```bash
+quarto publish gh-pages
+```
+
+This command:
+- Automatically renders the site
+- Creates/updates the `gh-pages` branch
+- Pushes changes to GitHub
+
+#### 4.4. Post-Publication Verification
+
+After publishing, verify:
+
+1. **Main URL**: `https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/`
+2. **Language navigation**: Test the language switch buttons
+3. **Browser console**: Verify there are no JavaScript errors
+4. **Resource paths**: Ensure images and styles load correctly
+
+### 5. Multilingual Site-Specific Troubleshooting
+
+::: {.callout-note}
+For general Quarto and GitHub Pages issues, see the troubleshooting section in Part 1.
+:::
+
+#### 5.1. Language Links Don't Work Locally
+
+**Symptom**: Language switch buttons give 404 error in `quarto preview`.
+
+**Solution**: Ensure the `switchLanguage()` function includes environment auto-detection:
+
+```javascript
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+```
+
+#### 5.2. Language Links Don't Work on GitHub Pages
+
+**Symptom**: Language switch buttons give 404 error on GitHub Pages.
+
+**Possible causes and solutions**:
+
+1. **Verify the base path**: Must match the repository name
+   ```javascript
+   const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+   ```
+
+2. **Ensure all languages are rendered**:
+   ```bash
+   quarto render es && quarto render ca && quarto render en
+   ```
+
+3. **Verify the folder structure in `_site/`**:
+   ```
+   _site/
+   ├── index.html (Spanish)
+   ├── ca/
+   │   └── index.html
+   └── en/
+       └── index.html
+   ```
+
+#### 5.3. Resources (Images, CSS) Don't Load
+
+**Symptom**: Images or styles don't display correctly.
+
+**Solutions**:
+
+1. **Use absolute paths from root**:
+   ```markdown
+   ![](/images/about/pedro.jpg)
+   ```
+   Don't use relative paths like `../images/about/pedro.jpg`
+
+2. **Verify resource folders are outside language folders**:
+   ```
+   wikiPedro_MasterUPF/
+   ├── images/        # ✅ Correct
+   ├── styles.css     # ✅ Correct
+   └── es/
+       └── images/    # ❌ Incorrect
+   ```
+
+#### 5.4. Changes Don't Appear on GitHub Pages
+
+**Solutions**:
+
+1. **Clear browser cache**: Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)
+
+2. **Check deployment status**: 
+   - Go to Actions on GitHub
+   - Verify the GitHub Pages workflow completed successfully
+
+3. **Wait a few minutes**: GitHub Pages can take 1-5 minutes to update
+
+#### 5.5. Debugging with Browser Console
+
+For any navigation issues:
+
+1. Open DevTools (F12)
+2. Go to Console tab
+3. Look for `switchLanguage()` logs
+4. Verify:
+   - Environment detected correctly
+   - Base path is correct
+   - Paths are constructed correctly
+
+### 6. Recommended Workflow
+
+```bash
+# 1. Local development
+quarto preview es  # Work on Spanish content
+
+# 2. Test language navigation
+# Open browser at localhost:3000
+# Test language switch buttons
+
+# 3. Render before publishing
+quarto render es && quarto render ca && quarto render en
+
+# 4. Verify locally rendered files
+# Open _site/index.html in browser
+
+# 5. Publish to GitHub
+git add .
+git commit -m "Update content: [description]"
+git push origin main
+
+# 6. Verify in production
+# Visit https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
+# Test language navigation
+```
+
+### 7. Best Practices
+
+1. **Always render all languages before publishing**
+   - Maintains consistency between versions
+   - Avoids broken links
+
+2. **Test locally before publishing**
+   - Verify navigation works on localhost
+   - Check browser console for errors
+
+3. **Keep file structure synchronized**
+   - Each page in `es/` should have equivalents in `ca/` and `en/`
+   - Use the same `filename` in frontmatter
+
+4. **Use browser console for debugging**
+   - `switchLanguage()` logs are your best friend
+   - They help identify path issues
+
+5. **Document structure changes**
+   - Update this manual if you modify the navigation system
+   - Keep notes on special configurations
+
+### 8. Additional Resources
+
+- **Official Quarto Documentation**: [https://quarto.org](https://quarto.org)
+- **GitHub Pages Docs**: [https://docs.github.com/pages](https://docs.github.com/pages)
+- **Project Repository**: [https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF](https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF)

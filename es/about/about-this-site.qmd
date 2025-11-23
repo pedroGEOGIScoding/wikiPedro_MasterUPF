@@ -13,6 +13,30 @@ lightbox:
 
 Esta guía proporciona un recorrido completo para crear y publicar un sitio web Quarto en GitHub Pages utilizando GitHub Actions para el despliegue automatizado.
 
+## Estructura de este Documento
+
+Este documento está organizado en **dos partes principales**:
+
+### 📘 Parte 1: Tutorial Básico de Quarto (para principiantes)
+
+Si estás creando tu primer sitio web con Quarto o necesitas un sitio **en un solo idioma**, esta primera parte te guiará paso a paso:
+
+- ✅ Crear un sitio web Quarto desde cero
+- ✅ Configurar Git y GitHub
+- ✅ Implementar GitHub Actions para despliegue automático
+- ✅ Solucionar problemas comunes
+
+### 📗 Parte 2: Manual de Sitios Multilingües (avanzado)
+
+Si ya tienes experiencia con Quarto y necesitas crear un sitio web **multilingüe** con navegación entre idiomas, ve directamente a la [segunda parte](#manual-construcción-y-publicación-de-un-sitio-web-quarto-multilingüe) que cubre:
+
+- ✅ Estructura de proyectos multilingües
+- ✅ Sistema de navegación entre idiomas con JavaScript
+- ✅ Solución al problema localhost vs GitHub Pages
+- ✅ Flujo de trabajo para múltiples idiomas
+
+---
+
 ## Requisitos Previos
 
 Antes de comenzar, asegúrate de tener:
@@ -322,7 +346,9 @@ GitHub Actions reconstruirá y redesplegará automáticamente tu sitio web en mi
 
 ## Solución de Problemas
 
-### Problemas Comunes y Soluciones
+### Problemas Generales de Quarto y GitHub Pages
+
+Esta sección cubre problemas comunes que pueden ocurrir tanto en sitios básicos como multilingües.
 
 #### Problema: El flujo de trabajo falla con "Permission denied" (Permiso denegado)
 
@@ -352,6 +378,12 @@ website:
   repo-url: "https://github.com/tunombredeusuario/mywebsite"
 ```
 
+**Para recursos en sitios multilingües:** Usa rutas absolutas desde la raíz:
+```markdown
+![](/images/about/pedro.jpg)
+```
+No uses rutas relativas como `../images/about/pedro.jpg`
+
 #### Problema: El flujo de trabajo no se activa
 
 **Solución:**
@@ -360,6 +392,16 @@ website:
 - Verifica que el archivo tenga la extensión `.yml` o `.yaml`
 - Confirma que hiciste push a la rama `main`
 - Intenta activarlo manualmente: **Actions** (Acciones) → **Workflow name** (Nombre del flujo) → **Run workflow** (Ejecutar flujo de trabajo)
+
+#### Problema: Cambios No Aparecen en GitHub Pages
+
+**Soluciones:**
+
+1. **Limpia la caché del navegador**: Ctrl+F5 (Windows) o Cmd+Shift+R (Mac)
+2. **Verifica el estado de despliegue**: 
+   - Ve a Actions en GitHub
+   - Verifica que el workflow de GitHub Pages completó exitosamente
+3. **Espera unos minutos**: GitHub Pages puede tardar 1-5 minutos en actualizar
 
 ## Configuración Avanzada
 
@@ -450,3 +492,362 @@ Ahora has aprendido cómo:
 Cada vez que subas cambios a tu rama `main`, GitHub Actions reconstruirá y redesplegará automáticamente tu sitio web. Esto crea un flujo de trabajo de publicación fluido que no requiere intervención manual.
 
 ¡Feliz publicación! 🚀
+
+---
+
+# Parte 2: Manual Avanzado
+
+## Manual: Construcción y Publicación de un Sitio Web Quarto Multilingüe
+
+Este manual documenta el proceso completo para crear, desarrollar y publicar un sitio web Quarto multilingüe que funciona perfectamente tanto en desarrollo local como en producción en GitHub Pages.
+
+### 1. Estructura del Proyecto Multilingüe
+
+El sitio web está organizado en tres idiomas con la siguiente estructura de carpetas:
+
+```
+wikiPedro_MasterUPF/
+├── es/                 # Español (carpeta raíz por defecto)
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [archivos .qmd]
+├── ca/                 # Catalán
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [archivos .qmd]
+├── en/                 # Inglés
+│   ├── _format.yml
+│   ├── _quarto.yml
+│   └── [archivos .qmd]
+├── images/             # Recursos compartidos
+├── styles.css          # Estilos globales
+└── _quarto.yml         # Configuración global
+```
+
+**Principios clave:**
+- Cada idioma tiene su propia carpeta con configuración independiente
+- El español (`es/`) se renderiza en la raíz del sitio (`/`)
+- Los recursos compartidos (imágenes, estilos) se mantienen en carpetas comunes
+- Cada carpeta de idioma tiene su propio `_quarto.yml` y `_format.yml`
+
+### 2. Desarrollo Local
+
+#### 2.1. Previsualización de un Idioma Específico
+
+Para previsualizar un idioma en desarrollo local:
+
+```bash
+# Español (desde la raíz)
+quarto preview es
+
+# Catalán
+quarto preview ca
+
+# Inglés
+quarto preview en
+```
+
+El servidor local se ejecutará en `http://localhost:3000/` (o puerto similar).
+
+#### 2.2. Renderizado de Todo el Sitio
+
+Antes de publicar, renderiza todas las versiones de idioma:
+
+```bash
+quarto render es && quarto render ca && quarto render en
+```
+
+Esto genera los archivos HTML en las carpetas correspondientes:
+- `_site/` (español)
+- `_site/ca/` (catalán)
+- `_site/en/` (inglés)
+
+### 3. Sistema de Navegación entre Idiomas
+
+#### 3.1. Funcionamiento del Sistema
+
+El sitio implementa un selector de idiomas mediante JavaScript que permite cambiar entre las tres versiones sin perder la página actual. La función `switchLanguage()` realiza los siguientes pasos:
+
+1. **Detecta la ruta actual**: Obtiene la URL donde se encuentra el usuario
+2. **Auto-detecta el entorno**: Verifica si el sitio está en GitHub Pages o localhost
+3. **Establece la ruta base**: Usa `/wikiPedro_MasterUPF/` para GitHub Pages o `/` para localhost
+4. **Limpia la ruta**: Elimina la ruta base y el prefijo de idioma existente (`ca/` o `en/`)
+5. **Construye la nueva ruta**: Genera la URL con el prefijo del idioma destino
+6. **Navega**: Redirige el navegador a la nueva versión de idioma
+
+#### 3.2. Ejemplo de Flujo de Navegación
+
+Cuando cambias del inglés al español:
+- Ruta actual: `/wikiPedro_MasterUPF/en/index.html` (en GitHub Pages)
+- Eliminar ruta base: `en/index.html`
+- Eliminar prefijo de idioma: `index.html`
+- Construir ruta española: `/wikiPedro_MasterUPF/index.html` (español está en raíz)
+- Navegar a la nueva URL
+
+#### 3.3. El Problema GitHub Pages vs Localhost
+
+**Problema**: La navegación entre idiomas funcionaba perfectamente en GitHub Pages pero fallaba al probar localmente con `quarto preview`.
+
+**Causa Raíz**: Desajuste en la estructura de URL entre entornos:
+
+- **Estructura URL en GitHub Pages**:
+  ```
+  https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
+  ```
+  El sitio está alojado en un subdirectorio `/wikiPedro_MasterUPF/`
+
+- **Estructura URL en Localhost**:
+  ```
+  http://localhost:3000/
+  ```
+  El sitio se sirve desde el directorio raíz `/`
+
+La implementación original tenía una ruta base codificada:
+```javascript
+const basePath = '/wikiPedro_MasterUPF/';
+```
+
+Esto funcionaba en GitHub Pages donde la ruta incluye `/wikiPedro_MasterUPF/`, pero en localhost, la función intentaba encontrar páginas en rutas como `/wikiPedro_MasterUPF/en/index.html` que no existen localmente (en realidad están en `/en/index.html`).
+
+#### 3.4. La Solución: Auto-Detección de Entorno
+
+La solución implementada detecta automáticamente si el sitio está ejecutándose en GitHub Pages o localhost y usa la ruta base apropiada:
+
+```javascript
+// Auto-detectar entorno: GitHub Pages o localhost
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+```
+
+**Cómo funciona**:
+- Verifica si el hostname contiene `github.io`
+- Si es así → GitHub Pages → usa `/wikiPedro_MasterUPF/` como ruta base
+- Si no → localhost u otro → usa `/` como ruta base
+
+**Beneficios**:
+- ✅ Funciona perfectamente en GitHub Pages (producción)
+- ✅ Funciona correctamente en localhost (desarrollo)
+- ✅ No necesita modificar código al cambiar entre entornos
+- ✅ Los logs de consola ayudan a depurar problemas
+
+#### 3.5. Logs de Depuración en Consola
+
+La función incluye logs de consola para ayudar a solucionar problemas. Abre las Herramientas de Desarrollador del navegador (F12) → pestaña Console para ver:
+
+```
+Current path: /wikiPedro_MasterUPF/en/index.html
+Target language: es
+Environment: GitHub Pages
+Base path: /wikiPedro_MasterUPF/
+Clean path after removing base: en/index.html
+Clean path after removing language prefix: index.html
+New path: /wikiPedro_MasterUPF/index.html
+```
+
+Estos logs ayudan a verificar que la función está:
+1. Detectando el entorno correcto
+2. Usando la ruta base correcta
+3. Limpiando las rutas apropiadamente
+4. Construyendo URLs de destino válidas
+
+#### 3.6. Archivos Modificados
+
+La función `switchLanguage()` se encuentra en:
+- `/home/pedro/Documents/wikiPedro_MasterUPF/en/_format.yml` (líneas 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/es/_format.yml` (líneas 5-43)
+- `/home/pedro/Documents/wikiPedro_MasterUPF/ca/_format.yml` (líneas 5-43)
+
+Después de modificar estos archivos, siempre renderiza todas las versiones de idioma:
+```bash
+quarto render es && quarto render ca && quarto render en
+```
+
+### 4. Publicación en GitHub Pages
+
+#### 4.1. Configuración Inicial del Repositorio
+
+1. **Crear repositorio en GitHub**:
+   - Nombre: `wikiPedro_MasterUPF`
+   - Visibilidad: Público (necesario para GitHub Pages gratis)
+
+2. **Configurar GitHub Pages**:
+   - Ve a Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: `main` (o `master`)
+   - Carpeta: `/ (root)`
+
+#### 4.2. Configuración de Quarto para GitHub Pages
+
+En el archivo `_quarto.yml` principal (raíz del proyecto):
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+  
+website:
+  site-url: "https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF"
+  
+format:
+  html:
+    theme: [cosmo, custom.scss]
+```
+
+#### 4.3. Proceso de Publicación
+
+**Opción 1: Publicación Manual**
+
+```bash
+# 1. Renderizar todas las versiones
+quarto render es && quarto render ca && quarto render en
+
+# 2. Agregar cambios al git
+git add .
+git commit -m "Update site content"
+
+# 3. Publicar a GitHub
+git push origin main
+```
+
+**Opción 2: Publicación con Comando Quarto**
+
+```bash
+quarto publish gh-pages
+```
+
+Este comando:
+- Renderiza automáticamente el sitio
+- Crea/actualiza la rama `gh-pages`
+- Sube los cambios a GitHub
+
+#### 4.4. Verificación Post-Publicación
+
+Después de publicar, verifica:
+
+1. **URL principal**: `https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/`
+2. **Navegación entre idiomas**: Prueba los botones de cambio de idioma
+3. **Consola del navegador**: Verifica que no haya errores JavaScript
+4. **Rutas de recursos**: Asegúrate de que imágenes y estilos cargan correctamente
+
+### 5. Solución de Problemas Específicos de Sitios Multilingües
+
+::: {.callout-note}
+Para problemas generales de Quarto y GitHub Pages, consulta la [sección de solución de problemas](#solución-de-problemas) de la Parte 1.
+:::
+
+#### 5.1. Los Enlaces entre Idiomas No Funcionan en Local
+
+**Síntoma**: Los botones de cambio de idioma dan error 404 en `quarto preview`.
+
+**Solución**: Asegúrate de que la función `switchLanguage()` incluye la auto-detección de entorno:
+
+```javascript
+const isGitHubPages = window.location.hostname.includes('github.io');
+const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+```
+
+#### 5.2. Los Enlaces entre Idiomas No Funcionan en GitHub Pages
+
+**Síntoma**: Los botones de cambio de idioma dan error 404 en GitHub Pages.
+
+**Posibles causas y soluciones**:
+
+1. **Verifica la ruta base**: Debe coincidir con el nombre del repositorio
+   ```javascript
+   const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
+   ```
+
+2. **Asegúrate de que todos los idiomas están renderizados**:
+   ```bash
+   quarto render es && quarto render ca && quarto render en
+   ```
+
+3. **Verifica la estructura de carpetas en `_site/`**:
+   ```
+   _site/
+   ├── index.html (español)
+   ├── ca/
+   │   └── index.html
+   └── en/
+       └── index.html
+   ```
+
+#### 5.3. Estructura de Recursos en Proyectos Multilingües
+
+**Síntoma**: Imágenes o estilos no se muestran en todas las versiones de idioma.
+
+**Solución**: Verifica que las carpetas de recursos están fuera de las carpetas de idioma:
+
+```
+wikiPedro_MasterUPF/
+├── images/        # ✅ Correcto - compartido entre todos los idiomas
+├── styles.css     # ✅ Correcto - compartido entre todos los idiomas
+└── es/
+    └── images/    # ❌ Incorrecto - solo accesible desde español
+```
+
+#### 5.4. Depuración con Consola del Navegador
+
+Para cualquier problema de navegación:
+
+1. Abre DevTools (F12)
+2. Ve a la pestaña Console
+3. Busca los logs de `switchLanguage()`
+4. Verifica:
+   - Environment detectado correctamente
+   - Base path es correcto
+   - Las rutas se construyen correctamente
+
+### 6. Flujo de Trabajo Recomendado
+
+```bash
+# 1. Desarrollo local
+quarto preview es  # Trabajar en contenido español
+
+# 2. Probar navegación entre idiomas
+# Abrir navegador en localhost:3000
+# Probar botones de cambio de idioma
+
+# 3. Renderizar antes de publicar
+quarto render es && quarto render ca && quarto render en
+
+# 4. Verificar localmente los archivos renderizados
+# Abrir _site/index.html en el navegador
+
+# 5. Publicar a GitHub
+git add .
+git commit -m "Update content: [descripción]"
+git push origin main
+
+# 6. Verificar en producción
+# Visitar https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
+# Probar navegación entre idiomas
+```
+
+### 7. Mejores Prácticas
+
+1. **Siempre renderiza todos los idiomas antes de publicar**
+   - Mantiene coherencia entre versiones
+   - Evita enlaces rotos
+
+2. **Prueba localmente antes de publicar**
+   - Verifica que la navegación funciona en localhost
+   - Revisa la consola del navegador en busca de errores
+
+3. **Mantén sincronizada la estructura de archivos**
+   - Cada página en `es/` debe tener equivalentes en `ca/` y `en/`
+   - Usa el mismo `filename` en el frontmatter
+
+4. **Usa la consola del navegador para depuración**
+   - Los logs de `switchLanguage()` son tu mejor amigo
+   - Facilitan identificar problemas de rutas
+
+5. **Documenta cambios en la estructura**
+   - Actualiza este manual si modificas el sistema de navegación
+   - Mantén notas sobre configuraciones especiales
+
+### 8. Recursos Adicionales
+
+- **Documentación oficial de Quarto**: [https://quarto.org](https://quarto.org)
+- **GitHub Pages Docs**: [https://docs.github.com/pages](https://docs.github.com/pages)
+- **Repositorio del proyecto**: [https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF](https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF)
