@@ -65,8 +65,20 @@ website:
       logo: images/home/chalk.png
       title: "Portfolio1"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -74,8 +86,20 @@ website:
       logo: images/home/chalk.png
       title: "Portfolio2"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -83,8 +107,20 @@ website:
       logo: images/home/chalk.png
       title: "Portfolio3"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -92,8 +128,20 @@ website:
       logo: images/home/chalk.png
       title: "Portfolio4"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -101,8 +149,20 @@ website:
       logo: images/home/chalk.png
       title: "Màster UPF"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - section: "Documentació General Màster UPF"
           contents:
@@ -147,8 +207,20 @@ website:
       logo: images/home/chalk.png
       title: "WebLinks Educatius"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - edulinks.qmd
 
@@ -156,8 +228,20 @@ website:
       logo: images/home/chalk.png
       title: "Sobre mí"
       style: "docked"
+      search: true
       background: light
       collapse-level: 1
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+          text: "Email"
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+          text: "GitHub"
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+          text: "LinkedIn"
       contents:
         - about/about-this-me.qmd
         - about/about-this-site.qmd
