@@ -2,7 +2,7 @@
 title: "Máster de Formación del Profesorado de Secundaria, Bachillerato, EOI y Módulos Profesionales"
 subtitle: "Guía integrada de la especialidad de Ciencias Naturales (Biología y Geología / Física y Química)"
 filename: intro-master-upf
-author: "Pineda Badia, Bernat Blasco, Arturo Corts, Marcel Costa, Xavier Muñoz, Lluís Pagès, Gemma Viscasillas, Anna Torras, Gemma Serra, Jordi Soler, Jordi de Manuel, Anama Domènech, Sílvia Marro, Iván Marchán, Lluís Terrado, Laura Taberner, Xavier Oller, Teresa Martínez, Núria Domènech, Laura Farr, Jessica Fernández, Laura Ganzer, Davínia Hernández-Leo, Sílvia Lope, Laia Ramon, Diego Sanjulian"
+author: "Pedro Martínez Durán"
 date: "15/11/2025"
 date-modified: last-modified
 date-format: full
@@ -73,3 +73,7 @@ format: html
 * La universidad coordina con los centros la asignación de los estudiantes y asigna a cada uno un mentor (un profesor voluntario del centro, de la especialización correspondiente) y un tutor de la universidad
 
 * Los estudiantes que tengan alguna relación laboral o personal con algún centro no pueden cursar en él el Prácticum
+
+## Profesorado
+
+* Pineda Badia, Bernat Blasco, Arturo Corts, Marcel Costa, Xavier Muñoz, Lluís Pagès, Gemma Viscasillas, Anna Torras, Gemma Serra, Jordi Soler, Jordi de Manuel, Anama Domènech, Sílvia Marro, Iván Marchán, Lluís Terrado, Laura Taberner, Xavier Oller, Teresa Martínez, Núria Domènech, Laura Farr, Jessica Fernández, Laura Ganzer, Davínia Hernández-Leo, Sílvia Lope, Laia Ramon, Diego Sanjulian.

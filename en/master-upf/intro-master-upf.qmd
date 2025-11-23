@@ -2,7 +2,7 @@
 title: "Master of Secondary Teacher Training, Baccalaureate, EOI and Professional Modules"
 subtitle: "Integrated guide to the Natural Sciences specialty (Biology and Geology / Physics and Chemistry)"
 filename: intro-master-upf
-author: "Pineda Badia, Bernat Blasco, Arturo Corts, Marcel Costa, Xavier Muñoz, Lluís Pagès, Gemma Viscasillas, Anna Torras, Gemma Serra, Jordi Soler, Jordi de Manuel, Anama Domènech, Sílvia Marro, Iván Marchán, Lluís Terrado, Laura Taberner, Xavier Oller, Teresa Martínez, Núria Domènech, Laura Farr, Jessica Fernández, Laura Ganzer, Davínia Hernández-Leo, Sílvia Lope, Laia Ramon, Diego Sanjulian"
+author: "Pedro Martínez Durán"
 date: "15/11/2025"
 date-modified: last-modified
 date-format: full
@@ -73,3 +73,7 @@ format: html
 * The university coordinates the assignment of students with the centers and assigns each one a mentor (a volunteer teacher from the center, of the corresponding specialization) and a tutor from the university
 
 * Students who have a work or personal relationship with a center cannot take the Practicum there.
+
+## Teaching staff
+
+* Pineda Badia, Bernat Blasco, Arturo Corts, Marcel Costa, Xavier Muñoz, Lluís Pagès, Gemma Viscasillas, Anna Torras, Gemma Serra, Jordi Soler, Jordi de Manuel, Anama Domènech, Sílvia Marro, Iván Marchán, Lluís Terrado, Laura Taberner, Xavier Oller, Teresa Martínez, Núria Domènech, Laura Farr, Jessica Fernández, Laura Ganzer, Davínia Hernández-Leo, Sílvia Lope, Laia Ramon, Diego Sanjulian
