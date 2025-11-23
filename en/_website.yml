@@ -62,6 +62,7 @@ website:
 
   sidebar:
     - id: "portfolio-1"
+      logo: images/home/chalk.png
       title: "Portfolio1"
       style: "docked"
       background: light
@@ -70,6 +71,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-2"
+      logo: images/home/chalk.png
       title: "Portfolio2"
       style: "docked"
       background: light
@@ -78,6 +80,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-3"
+      logo: images/home/chalk.png
       title: "Portfolio3"
       style: "docked"
       background: light
@@ -86,6 +89,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-4"
+      logo: images/home/chalk.png
       title: "Portfolio4"
       style: "docked"
       background: light
@@ -139,6 +143,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "edulinks"
+      logo: images/home/chalk.png
       title: "WebLinks Educational"
       style: "docked"
       background: light
@@ -147,6 +152,7 @@ website:
         - edulinks.qmd
 
     - id: "about"
+      logo: images/home/chalk.png
       title: "About me"
       style: "docked"
       background: light
