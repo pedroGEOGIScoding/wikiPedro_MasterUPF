@@ -23,22 +23,68 @@ Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de 
 Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es Lunana, un yak en la escuela y hay una frase central sobre el impacto del profesor en los alumnos que dice asi: [Los profesores pueden tocar el futuro de sus alumnos]{style="font-size: 1`em; font-weight: bold;"} y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
 
 Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
-
-Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd)
 :::
 
 ::: {.column width="60%"}
 ![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
+
+```{=html}
+<div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+    <a href="https://github.com/pedroGEOGIScoding/" target="_blank" style="text-decoration: none;">
+        <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
+            <i class="bi bi-github" style="font-size: 18px;"></i> GitHub
+        </button>
+    </a>
+    <a href="mailto:pedromartinezduran@gmail.com" target="_blank" style="text-decoration: none;">
+        <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
+            <i class="bi bi-envelope" style="font-size: 18px;"></i> Email
+        </button>
+    </a>
+    <a href="https://www.linkedin.com/in/pedromartinezduran/" target="_blank" style="text-decoration: none;">
+        <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
+            <i class="bi bi-linkedin" style="font-size: 18px;"></i> LinkedIn
+        </button>
+    </a>
+    <a href="/about/about-this-me.qmd" style="text-decoration: none;">
+        <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
+            <i class="bi bi-person" style="font-size: 18px;"></i> Acerca de mí
+        </button>
+    </a>
+    <a href="/index.xml" target="_blank" style="text-decoration: none;">
+        <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
+            <i class="bi bi-rss" style="font-size: 18px;"></i> RSS
+        </button>
+    </a>
+</div>
+```
+
 :::
 :::
 
 ---
 
-[Últimas noticias sobre Ciencia]{style="font-size: 1.2em; font-weight: bold; text-align: center;"}
+Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd). Tambien, si te interesa como he realizado esta pagina web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-site.qmd). Por el tratamiento de las imagenes que estan en esta pagina web, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-images-credit.qmd).
+
+---
+::: {.columns}
+::: {.column width="25%"}
+
+[Mapa del tiempo]{style="font-size: 1.5em; font-weight: bold; text-align: center;"}
+
+<br>
+<div>
+
+```{=html}
+    <iframe width="450" height="408" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=38.204&lon=1.934&pressure=true&message=true" frameborder="0"></iframe>
+```
+</div>
+:::
+::: {.column width="75%"}
+[Últimas noticias sobre Ciencia]{style="font-size: 1.5em; font-weight: bold; text-align: right;"}  
 <br>  
 
 ```{=html}
-<div style="position: relative; width: 100%; padding-top: 177.78%; /* Aspect ratio: 1600/900 * 100 */">
+<div style="position: relative; width: 100%; padding-top: 177.78%; margin-left: auto; /* Aspect ratio: 1600/900 * 100 */">
     <iframe 
         src="https://rss.app/embed/v1/carousel/tvjse9tysjnwS5tz" 
         frameborder="0" 
@@ -46,3 +92,5 @@ Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca
     </iframe>
 </div>
 ```
+:::
+:::

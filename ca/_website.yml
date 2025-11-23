@@ -158,13 +158,6 @@ website:
         
   page-footer:
     background: primary
-    left: "Copyright 2025, Pedro Martinez Duran"
+    left: © 2024 fet amb ❤️ i [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
     center: "*Per aspera, ad astra*"
-    right:
-      - icon: github
-        href: https://github.com/pedroGEOGIScoding/
-      - icon: linkedin
-        href: https://www.linkedin.com/in/pedromartinezduran/
-      - icon: envelope
-        href: mailto:pedromartinezduran@gmail.com
-        aria-label: Send me an email
+    right: Website fet amb la llicencia [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
