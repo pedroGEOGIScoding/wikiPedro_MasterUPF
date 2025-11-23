@@ -62,7 +62,7 @@ website:
 
   sidebar:
     - id: "portfolio-1"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Portfolio1"
       style: "docked"
       search: true
@@ -83,7 +83,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-2"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Portfolio2"
       style: "docked"
       search: true
@@ -104,7 +104,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-3"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Portfolio3"
       style: "docked"
       search: true
@@ -125,7 +125,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-4"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Portfolio4"
       style: "docked"
       search: true
@@ -146,7 +146,7 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "masterUPF"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Master UPF"
       style: "docked"
       search: true
@@ -204,7 +204,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "edulinks"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "WebLinks Educativos"
       style: "docked"
       search: true
@@ -225,7 +225,7 @@ website:
         - edulinks.qmd
 
     - id: "about"
-      logo: /images/home/chalk.png
+      logo: "images/home/chalk.png"
       title: "Acerca de mí"
       style: "docked"
       search: true
