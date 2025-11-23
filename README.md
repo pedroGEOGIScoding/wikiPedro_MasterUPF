@@ -1,4 +1,4 @@
-# Wiki Master UPF - Multilingual Quarto Site
+# Wiki Master UPF - Multilingual Quarto Website
 
 Personal website documenting my journey through the Master's Degree in Secondary Education Teaching at Universitat Pompeu Fabra.
 
