@@ -1,4 +1,5 @@
 /*-- scss:defaults --*/
+//scss:defaults are used to define variables that affect fonts, colors, borders, etc. (note that variables start with a $)
 
 // Colors
 $dark-green: #858E79;
@@ -20,3 +21,8 @@ $link-color: $purple; // hyperlinks
 // Inline code
 $code-bg: $cream; // inline code background color
 $code-color: $purple; // inline code text color
+
+
+/*-- scss:rules --*/
+
+

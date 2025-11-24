@@ -52,9 +52,9 @@ format:
       effect: fade
       desc-position: bottom
       loop: true
-    theme: styles.scss
-    light: lux
-    dark: darkly
+    theme:
+      light: [lux, light-styles.scss]
+      dark: [darkly, dark-styles.scss]
     line-numbers: true
     linestretch: 1.5
     toc: true

@@ -1,0 +1,23 @@
+/*-- scss:defaults --*/
+//scss:defaults are used to define variables that affect fonts, colors, borders, etc. (note that variables start with a $)
+
+// Colors
+$cream: #FDFBF7;
+$purple: #9158A2;
+
+// Base document colors
+$body-bg: #181818;
+$body-color: #ccc;
+$link-color: #75AADB;
+
+// Code blocks
+$code-block-bg-alpha: -.9;
+
+// Inline code
+$code-bg: $cream; // inline code background color
+$code-color: $purple; // inline code text color
+
+
+/*-- scss:rules --*/
+
+

@@ -26,7 +26,14 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
 :::
 
 ::: {.column width="60%"}
+
+::: {.light-content}
 ![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
+:::
+
+::: {.dark-content}
+![](images/about/class-image-home-page-bw.png){ group="index" loading="lazy" }
+:::
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
