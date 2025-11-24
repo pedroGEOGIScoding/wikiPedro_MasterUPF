@@ -17,10 +17,23 @@ $body-bg: $light-green; // page background
 $body-color: $gray; // page text 
 $footer-bg: $cream; // footer 
 $link-color: $purple; // hyperlinks 
+$popover-bg:$purple;
+$popover-fg:$purple;
+$popover-border:$purple;
+$input-bg:$purple;
+$input-fg:$purple;
+$input-border:$purple;
+
+
 
 // Inline code
 $code-bg: $cream; // inline code background color
 $code-color: $purple; // inline code text color
+
+//Table of contents
+$toc-color:$purple;
+$toc-font-size: 1em;
+$toc-active-border: $purple;
 
 
 /*-- scss:rules --*/
