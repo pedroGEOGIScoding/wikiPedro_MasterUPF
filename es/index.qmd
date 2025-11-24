@@ -10,7 +10,7 @@ format:
   html: 
     toc: false
 repo-actions: false
-
+pagestyle: plain
 ---
 
 
