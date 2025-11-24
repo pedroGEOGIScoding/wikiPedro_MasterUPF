@@ -13,6 +13,13 @@ $orange: #ad7237;
 $navbar-bg: $cream; // navbar
 $navbar-fg: $dark-green; // navbar foreground elements
 $navbar-hl: $purple; // highlight color when hovering over navbar links
+$navbar-text-color: $dark-green; // navbar text color
+$navbar-link-color: $purple; // navbar link color
+$navbar-link-hover-color: $orange; // navbar link hover color
+$navbar-link-active-color: $purple; // navbar link active color
+$navbar-link-active-bg-color: $purple; // navbar link active background color
+$navbar-text-size: 1.3em; // navbar text size
+$navbar-link-size: 1.3em; // navbar link size
 $body-bg: $light-green; // page background 
 $body-color: $gray; // page text 
 $footer-bg: $cream; // footer 
@@ -22,7 +29,135 @@ $link-color: $purple; // hyperlinks
 $code-bg: $cream; // inline code background color
 $code-color: $purple; // inline code text color
 
+//Table of contents
+$toc-color:$purple;
+$toc-font-size: 1em;
+$toc-active-border: $purple;
+
 
 /*-- scss:rules --*/
 
 
+
+
+/* Navbar link sizing */
+.navbar .navbar-nav .nav-link {
+  font-size: $navbar-link-size;
+}
+
+.navbar .navbar-brand {
+  font-size: $navbar-text-size;
+}
+
+.navbar .navbar-text {
+  font-size: $navbar-text-size;
+}
+
+/* -- Experimental for the landing page -- */
+
+div.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #bdc3c7,
+    #95a5a6,
+    #7f8c8d,
+    #5d6d7e,
+    #4a5f7f,
+    #3b5073,
+    #2c3e50,
+    #3b5073,
+    #4a5f7f,
+    #5d6d7e,
+    #7f8c8d,
+    #bdc3c7
+
+  );
+  background-size: 800%;
+  //font-weight: 900;
+//  font-size: 4.1rem;
+//  letter-spacing: -3px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animated_text 50s ease-in-out infinite;
+  -moz-animation: animated_text 50s ease-in-out infinite;
+  -webkit-animation: animated_text 50s ease-in-out infinite;
+}
+
+@keyframes animated_text {
+  0% {
+    background-position: 0px 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0px 50%;
+  }
+}
+
+/* Homepage - Image with overlapping text */
+.hero-container {
+  position: relative;
+  width: 100%;
+  max-width: 2000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.hero-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  background: rgba(253, 251, 247, 0.60);
+  padding: 1rem;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-text p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  color: #64605f;
+  font-size: 1.33rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .hero-text {
+    position: static;
+    margin-top: -3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+/* Intro text section */
+.intro-text {
+  font-size: 1.4rem;
+  line-height: 1.7;
+  max-width: 1400px;
+  margin: 2rem auto;
+  text-align: center;
+}

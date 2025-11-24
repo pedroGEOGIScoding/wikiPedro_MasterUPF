@@ -1,5 +1,5 @@
 ---
-title: "Màster de Formació del Professorat de Secundària, Batxillerat, EOI i Mòduls Professionals"
+title: "Màster de Formació del Professorat de Secundària, Batxillerat i Mòduls Professionals"
 filename: index
 lightbox:
   match: auto
@@ -14,8 +14,20 @@ pagestyle: plain
 ---
 
 
-::: {.columns}
-::: {.column width="40%"}
+::: {.hero-container}
+
+::: {.hero-image}
+::: {.light-content}
+![](images/home/class-image-home-page.png){loading="lazy"}
+:::
+
+::: {.dark-content}
+![](images/about/class-image-home-page-bw.png){loading="lazy"}
+:::
+:::
+
+::: {.hero-text}
+<div class="gradient-text">
 Hola, em dic Pedro i estic estudiant un màster de magisteri de secundària a la Universitat Pompeu Fabra. Aquest web és un registre del meu procés d'aprenentatge i reflexió durant aquest màster. Des dels meus anys d'instructor de temps lliure i posteriorment director de colònies, sempre he tingut curiositat per la professió d'educador, però la vida durant molts anys m'ha portat per múltiples camins.
 
 Quan vaig tornar després de 14 anys treballant a Anglaterra, la docència va ser una de les meves primeres opcions per reinventar-me a la meva tornada a casa.
@@ -23,16 +35,9 @@ Quan vaig tornar després de 14 anys treballant a Anglaterra, la docència va se
 Fa poc vaig veure una pel·lícula, una d'aquelles no molt famoses, però amb un gran missatge. Aquella pel·lícula és Lunana, un iac a l'escola i hi ha una frase central sobre l'impacte del professor que deia: [Els professors poden tocar el futur dels seus alumnes]{style="font-size: 1`em; font-weight: bold;"} i el cert és que em va impactar molt i ara després d'emprendre aquest procés m'he adonat que pot ser així, i que l'educació és una de les eines més poderoses per transformar vides.
 
 Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon educador i poder revertir tota la meva experiència vital i coneixements científics que he anat adquirint tots aquests anys com a geòleg d'exploració minera, després director d'empresa i tornar a explorar els hidrocarburs per més de la meitat del món en el futur de la nostra societat, els nostres fills.
+</div>
 :::
 
-::: {.column width="60%"}
-
-::: {.light-content}
-![](images/home/class-image-home-page.png){ group="index" loading="lazy" }
-:::
-
-::: {.dark-content}
-![](images/about/class-image-home-page-bw.png){ group="index" loading="lazy" }
 :::
 
 ```{=html}
@@ -65,12 +70,11 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
 </div>
 ```
 
-:::
-:::
-
 ---
 
+::: {.intro-text}
 Per saber més sobre la meva trajectòria professional, pots visitar la pestanya "Sobre mi" a la barra de navegació o si vols pots clicar [aquí](about/about-this-me.qmd). També, si t'interessa com he realitzat aquesta pàgina web per al meu portafoli del Màster UPF, pots visitar la secció "Sobre aquest lloc" a la barra de navegació o si vols pots clicar [aquí](about/about-this-site.qmd). Per al tractament de les imatges que hi ha en aquesta pàgina web, pots visitar la secció "Crèdits d'imatges" a la barra de navegació o si vols pots clicar [aquí](about/about-this-images-credit.qmd).
+:::
 
 ---
 ::: {.columns}
