@@ -249,6 +249,6 @@ website:
         
   page-footer:
     background: primary
-    left: © 2024 Made with ❤️ and [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
+    left: © by Pedro 2025 made with ❤️ and [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
     center: "*Per aspera, ad astra*"
     right: Website under the license [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
