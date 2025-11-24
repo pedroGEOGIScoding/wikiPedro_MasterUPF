@@ -67,7 +67,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -88,7 +88,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -109,7 +109,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -130,7 +130,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -151,7 +151,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -209,7 +209,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
@@ -230,7 +230,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 3
       align: center
       tools:
         - icon: envelope
