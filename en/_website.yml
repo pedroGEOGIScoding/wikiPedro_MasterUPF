@@ -242,6 +242,8 @@ website:
         - about/about-this-me.qmd
         - about/about-this-site.qmd
         - about/about-this-images-credit.qmd
+        - text: "My programmer's corner"
+          href: https://pedrogeogisdev.com/
         
   page-footer:
     background: primary

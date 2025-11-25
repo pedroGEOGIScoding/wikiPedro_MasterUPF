@@ -240,6 +240,8 @@ website:
         - about/about-this-me.qmd
         - about/about-this-site.qmd
         - about/about-this-images-credit.qmd
+        - text: "El meu racó de programador"
+          href: https://pedrogeogisdev.com/
         
   page-footer:
     background: primary

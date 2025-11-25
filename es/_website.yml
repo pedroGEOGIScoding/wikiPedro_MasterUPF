@@ -27,7 +27,7 @@ website:
     show-item-context: true     # Show parent page context for search results (true/false)
 
   navbar:
-    logo: /images/home/volcan.png
+    logo: /images/about/pedro.jpg
     background: primary
     style: "docked"
     collapse: true
@@ -240,6 +240,8 @@ website:
         - about/about-this-me.qmd
         - about/about-this-site.qmd
         - about/about-this-images-credit.qmd
+        - text: "Mi rincón de programador"
+          href: https://pedrogeogisdev.com/
         
   page-footer:
     background: primary
