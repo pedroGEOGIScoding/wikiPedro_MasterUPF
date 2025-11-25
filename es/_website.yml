@@ -72,13 +72,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -92,13 +89,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -112,13 +106,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -132,13 +123,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -152,45 +140,150 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - section: "Documentacion General Master UPF"
           contents:
           - master-upf/intro-master-upf.qmd                 
         - text: "---"
-        - section: "Modulo de Fundamentos"
+        - section: "Módulo de Fundamentos"
           contents:
             - section: "Sociedad, familia y educación"
               contents:
               - master-upf/sofe/sofe-inicio.qmd
+              - section: "Marco educativo"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Proyecto educativo"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
             - section: "Desarrollo, aprendizaje y educación"
               contents:
               - master-upf/dae/dae-inicio.qmd
-        - section: "Modulo de Especialidad"
+              - section: "Herramientas digitales"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Gestión del ambiente en el aula"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+              - section: "Evaluación"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+        - section: "Módulo de Especialidad"
           contents:
             - section: "Complementos de formación disciplinaria"
               contents:
               - master-upf/cfd/cfd-inicio.qmd
-              - master-upf/cfd/analisis-cv.qmd
-              - master-upf/cfd/presentacion-tasca-cv.qmd
-
+              - section: "Análisis de currículum"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Presentación de la tareas de currículum"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
             - section: "Fundamentos de aprendizaje y enseñanza de las ciencias naturales"
               contents:
               - master-upf/fac/fac-inicio.qmd
-
-            - section: "Diseño de entornos innovadores de aprendizaje"
+              - section: "Aprendizaje basado en problemas (ABP)"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Ideas previas y aprendizaje"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Naturaleza de la Ciencia"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Proyectos interdisciplinares"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Trabajos prácticos"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+            - section: "Diseño de entornos innovadores de aprendizaje"
               contents:
               - master-upf/deia/deia-inicio.qmd
-        
-        - section: "Modulo Practicum"
+              - section: "Análisis de secuencias didácticas"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "De los objetivos a la secuencia didáctica I"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "De los objetivos a la secuencia didáctica II"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Enseñar implica conversar"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+              - section: "Iniciación a la innovación y la investigación educativa"
+                contents:
+                - sesion1.qmd
+                - sesion2.qmd
+                - sesion3.qmd
+                - sesion4.qmd
+                - sesion5.qmd
+        - section: "Módulo Practicum"
           contents:
-            - section: "Practicas en el centro educativo"
+            - section: "Prácticas en el centro educativo"
               contents:
               - master-upf/practicum/practicas-inicio.qmd
               - master-upf/practicum/notas-practicas/plantilla-observacion-aula.qmd
@@ -209,13 +302,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - edulinks.qmd
 
@@ -229,13 +319,10 @@ website:
       tools:
         - icon: envelope
           href: mailto:pedromartinezduran@gmail.com
-          text: "Email"
         - icon: github
           href: https://github.com/pedroGEOGIScoding/
-          text: "GitHub"
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
-          text: "LinkedIn"
       contents:
         - about/about-this-me.qmd
         - about/about-this-site.qmd
