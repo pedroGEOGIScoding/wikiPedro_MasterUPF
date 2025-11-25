@@ -11,9 +11,17 @@ lightbox:
 
 :::{layout-ncol=2}
 
-![](/images/about/pedro.jpg){width=31% fig-align="center" group="about-this-me" loading="lazy"}
+::: {.light-content}
+![](/images/about/pedro-color.jpg){width=31% fig-align="center" group="about-this-me" loading="lazy"}
+
+![](/images/about/class-image-home-page.png){width=69% fig-align="center" group="about-this-me" loading="lazy"}
+:::
+
+::: {.dark-content}
+![](/images/about/pedro-bw.jpg){width=31% fig-align="center" group="about-this-me" loading="lazy"}
 
 ![](/images/about/class-image-home-page-bw.png){width=69% fig-align="center" group="about-this-me" loading="lazy"}
+:::
 
 :::
 

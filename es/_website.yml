@@ -27,7 +27,7 @@ website:
     show-item-context: true     # Show parent page context for search results (true/false)
 
   navbar:
-    logo: /images/about/pedro.jpg
+    logo: /images/home/p-signature-green.png
     background: primary
     style: "docked"
     collapse: true
