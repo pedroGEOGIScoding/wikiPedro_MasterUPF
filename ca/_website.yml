@@ -1,5 +1,5 @@
 website:
-  title: "Màster Professorat de Secundària"
+#  title: "Màster Professorat de Secundària"
   favicon: images/home/favicon.png
   page-navigation: true    # Enable next/previous page navigation buttons (true/false)
   back-to-top-navigation: true  # Enable 'Back to Top' button on pages (true/false)
@@ -28,12 +28,13 @@ website:
 
   navbar:
     background: primary
+    logo: /images/home/volcan.png
     style: "docked"
     collapse: true
     collapse-level: 1
     collapse-below: lg
     pinned: true
-    title: "Pedro Martinez Duran"
+#    title: "Pedro Martinez Duran"
     left:
       - text: Home
         href: index.qmd
@@ -62,7 +63,6 @@ website:
 
   sidebar:
     - id: "portfolio-1"
-      logo: "/images/home/chalk.png"
       title: "Portfolio1"
       style: "docked"
       search: true
@@ -83,7 +83,6 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-2"
-      logo: "/images/home/chalk.png"
       title: "Portfolio2"
       style: "docked"
       search: true
@@ -104,7 +103,6 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-3"
-      logo: "/images/home/chalk.png"
       title: "Portfolio3"
       style: "docked"
       search: true
@@ -125,7 +123,6 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "portfolio-4"
-      logo: "/images/home/chalk.png"
       title: "Portfolio4"
       style: "docked"
       search: true
@@ -146,7 +143,6 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "masterUPF"
-      logo: "/images/home/chalk.png"
       title: "Màster UPF"
       style: "docked"
       search: true
@@ -204,7 +200,6 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "edulinks"
-      logo: "/images/home/chalk.png"
       title: "WebLinks Educatius"
       style: "docked"
       search: true
@@ -225,7 +220,6 @@ website:
         - edulinks.qmd
 
     - id: "about"
-      logo: "/images/home/chalk.png"
       title: "Sobre mí"
       style: "docked"
       search: true

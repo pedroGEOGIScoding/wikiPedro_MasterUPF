@@ -1,5 +1,5 @@
 website:
-  title: "Master Profesorado de Secundaria"
+#  title: "Master Profesorado de Secundaria"
   favicon: images/home/favicon.png
   page-navigation: true    # Enable next/previous page navigation buttons (true/false)
   back-to-top-navigation: true  # Enable 'Back to Top' button on pages (true/false)
@@ -27,13 +27,14 @@ website:
     show-item-context: true     # Show parent page context for search results (true/false)
 
   navbar:
+    logo: /images/home/volcan.png
     background: primary
     style: "docked"
     collapse: true
     collapse-level: 1
     collapse-below: lg
     pinned: true
-    title: "Pedro Martinez Duran"
+#    title: "Pedro Martinez Duran"
     left:
       - text: Home
         href: index.qmd

@@ -1,59 +1,70 @@
 /*-- scss:defaults --*/
 //scss:defaults are used to define variables that affect fonts, colors, borders, etc. (note that variables start with a $)
 
-// Colors
-$dark-green: #858E79;
-$light-green: #D1D9CE;
-$cream: #FDFBF7;
-$gray: #64605f;
-$purple: #9158A2;
-$orange: #ad7237;
+:root {
+  /* Color Palette */
+  --primary-brown: #4a3b30;
+  --secondary-brown: rgba(74, 59, 48, 0.7);
+  --primary-blue: #33a0d6;
+  --hover-white: #FFFFFF;
+  --success-green: #117441;
+  --light-green: #b3ff93;
+  --light-gray: #ebedf1;
+  --tab-blue: #91b1f3;
+  --sidebar-colour: #dcd6d1;
+  --margin-sidebar-colour: #dcd6d1;
+  
+  /* Spacing */
+  --border-radius: 10px;
+  --padding-standard: 16px;
+  
+  /* Font sizes */
+  --navbar-font-size-desktop: 24px;
+  --navbar-font-size-mobile: 16px;
+  --navbar-font-size-tablet: 20px;
+  --footer-font-size-desktop: 24px;
+  --footer-font-size-mobile: 16px;
+  --footer-font-size-tablet: 20px;
 
-// Base document colors
-$navbar-bg: $cream; // navbar
-$navbar-fg: $dark-green; // navbar foreground elements
-$navbar-hl: $purple; // highlight color when hovering over navbar links
-$navbar-text-color: $dark-green; // navbar text color
-$navbar-link-color: $purple; // navbar link color
-$navbar-link-hover-color: $orange; // navbar link hover color
-$navbar-link-active-color: $purple; // navbar link active color
-$navbar-link-active-bg-color: $purple; // navbar link active background color
-$navbar-text-size: 1.3em; // navbar text size
-$navbar-link-size: 1.3em; // navbar link size
-$body-bg: $light-green; // page background 
-$body-color: $gray; // page text 
-$footer-bg: $cream; // footer 
-$link-color: $purple; // hyperlinks 
+  /* Icon sizes*/
+  --navbar-icon-size-desktop: 22px;
+  --navbar-icon-size-mobile: 18px;
+  --navbar-icon-size-tablet: 22px;
+  --footer-icon-size-desktop: 22px;
+  --footer-icon-size-mobile: 18px;
+  --footer-icon-size-tablet: 22px;
+}
 
-// Inline code
-$code-bg: $cream; // inline code background color
-$code-color: $purple; // inline code text color
+/*highlight text*/
+.highlight {
+background-color: #00ff37;  /* Highlight background */
+padding: 2px 5px;
+border-radius: 3px;
+}
 
-//Table of contents
-$toc-color:$purple;
-$toc-font-size: 1em;
-$toc-active-border: $purple;
+/* ===== NAVBAR TITLE STYLING ===== */
+.navbar {
+  background-color: var(--primary-brown) !important;
+}
+
+.navbar-brand, 
+.navbar-nav .nav-link {
+  color: var(--primary-blue) !important;
+  font-size: 20px !important;
+  font-weight: normal !important;
+}
+
+.navbar-brand img {
+  max-height: 60px;
+  width: auto;
+}
 
 
 /*-- scss:rules --*/
 
 
 
-
-/* Navbar link sizing */
-.navbar .navbar-nav .nav-link {
-  font-size: $navbar-link-size;
-}
-
-.navbar .navbar-brand {
-  font-size: $navbar-text-size;
-}
-
-.navbar .navbar-text {
-  font-size: $navbar-text-size;
-}
-
-/* -- Experimental for the landing page -- */
+/* -- Animated intro of the landing page -- */
 
 div.gradient-text {
   background: linear-gradient(
@@ -160,4 +171,99 @@ div.gradient-text {
   max-width: 1400px;
   margin: 2rem auto;
   text-align: center;
+}
+
+/* Hover effects - must come after base styles */
+.navbar-brand:hover, 
+.navbar-title:hover,
+.navbar-nav .nav-link:hover {
+  color: var(--hover-white) !important;
+  transition: color 0.3s ease;
+}
+
+/* ===== SIDEBAR AND MARGIN STYLES ===== */
+.sidebar {
+  background-color: var(--sidebar-colour) !important;
+}
+
+.margin-sidebar {
+  background-color: var(--margin-sidebar-colour) !important;
+}
+
+/* Desktop (xl and above) - when navbar is expanded */
+@media (min-width: 1200px) {
+  .navbar-brand { font-size: var(--navbar-font-size-desktop) !important; }
+}
+
+/* Tablet and below - when navbar collapses */
+@media (max-width: 1199px) {
+  .navbar-brand { font-size: var(--navbar-font-size-mobile) !important; }
+}
+
+/* ===== FOOTER STYLES ===== */
+footer.footer, 
+.nav-footer {
+  background-color: var(--primary-brown) !important;
+  color: var(--primary-blue) !important;
+}
+
+.nav-footer-left,
+.nav-footer-center,
+.nav-footer-right {
+  color: var(--primary-blue) !important;
+}
+
+.nav-footer a {
+  color: var(--primary-blue) !important;
+}
+
+.nav-footer a:hover {
+  color: var(--hover-blue) !important;
+}
+
+/* Footer icons */
+.nav-footer .bi,
+.nav-footer i {
+  color: var(--primary-blue) !important;
+}
+
+.nav-footer .bi:hover,
+.nav-footer i:hover {
+  color: var(--hover-blue) !important;
+}
+
+/* Responsive footer sizing */
+.nav-footer {
+  font-size: var(--footer-font-size-desktop) !important;
+}
+
+.nav-footer .bi {
+  font-size: var(--footer-icon-size-desktop) !important;
+}
+
+/* ===== CARD COMPONENTS ===== */
+.summary {
+  padding: var(--padding-standard);
+  background: var(--light-green);
+  border: #ffffff6b;
+  color: var(--success-green);
+  border-radius: var(--border-radius);
+}
+
+.homecard {
+  padding: var(--padding-standard);
+  background: radial-gradient(circle, rgba(197,197,215,1) 35%, rgba(142,176,182,1) 100%);
+  border: #ffffff6b;
+  color: #003366;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-family: Papyrus, fantasy;
+}
+
+.keywords {
+  padding: var(--padding-standard);
+  background: var(--light-gray);
+  border: #ffffff6b;
+  color: var(--success-green);
+  border-radius: var(--border-radius);
 }
