@@ -1,10 +1,7 @@
-color:
-  palette:
-    dark-grey: "#222222"
-    blue: "#ddeaf1"
-  background: white
-  foreground: dark-grey
-  primary: black
+logo:
+  medium:
+    light: images/home/books.png
+    dark: images/home/owl1.png
 
 typography:
   fonts:

@@ -28,13 +28,11 @@ website:
 
   navbar:
     background: primary
-    logo: /images/home/p-signature-green.png
     style: "docked"
     collapse: true
     collapse-level: 1
     collapse-below: lg
     pinned: true
-    #title: "Pedro Martinez Duran"
     left:
       - text: Home
         href: index.qmd
@@ -131,7 +129,6 @@ website:
         - portfolio/portfolio-inicio.qmd
 
     - id: "masterUPF"
-      logo: "../images/home/chalk.png"
       title: "Master UPF"
       style: "docked"
       search: true
@@ -294,7 +291,6 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "edulinks"
-      logo: "/images/home/chalk.png"
       title: "WebLinks Educational"
       style: "docked"
       search: true

@@ -28,7 +28,6 @@ website:
 
   navbar:
     background: primary
-    logo: /images/home/p-signature-green.png
     style: "docked"
     collapse: true
     collapse-level: 1
