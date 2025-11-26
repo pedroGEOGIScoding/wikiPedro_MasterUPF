@@ -77,34 +77,24 @@ Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca
 :::
 
 ---
-::: {.columns}
-::: {.column width="25%"}
-
-[Mapa del tiempo]{style="font-size: 1.5em; font-weight: bold; text-align: center;"}
-
-<br>
-<div>
-
 ```{=html}
-    <iframe width="450" height="408" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=38.204&lon=1.934&pressure=true&message=true" frameborder="0"></iframe>
-```
+<div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
+  <!-- Weather Map -->
+  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
+    <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Mapa del tiempo</p>
+    <iframe style="flex: 1;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=38.204&lon=1.934&pressure=true&message=true" frameborder="0"></iframe>
+  </div>
+  
+  <!-- ISS Video -->
+  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
+    <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">¿Dónde está la ISS ahora mismo?</p>
+    <iframe style="flex: 1;" src="https://www.youtube.com/embed/fO9e9jnhYK8?autoplay=1&mute=1" title="Live 4K video of Earth and space" frameborder="0" width="100%" allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  
+  <!-- Science News -->
+  <div style="flex: 1 1 32%; display: flex; flex-direction: column; min-height: 550px;">
+    <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Últimas noticias sobre ciencia</p>
+    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+  </div>
 </div>
-:::
-::: {.column width="75%"}
-[¿Dónde está la Estación Espacial Internacional ahora mismo?]{style="font-size: 1.5em; font-weight: bold; text-align: right;"}  
-<br>  
-
-```{=html}
-<div class="video-responsive">
-  <iframe
-    src="https://www.youtube.com/embed/fO9e9jnhYK8?autoplay=1&mute=1"
-    title="Live 4K video of Earth and space: 24/7 Livestream of Earth by Sen’s 4K video cameras on the ISS"
-    frameborder="0"
-    allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
-
 ```
-:::
-:::
