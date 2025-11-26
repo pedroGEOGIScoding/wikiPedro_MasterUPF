@@ -91,17 +91,20 @@ Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca
 </div>
 :::
 ::: {.column width="75%"}
-[Últimas noticias sobre Ciencia]{style="font-size: 1.5em; font-weight: bold; text-align: right;"}  
+[¿Dónde está la Estación Espacial Internacional ahora mismo?]{style="font-size: 1.5em; font-weight: bold; text-align: right;"}  
 <br>  
 
 ```{=html}
-<div style="position: relative; width: 100%; padding-top: 177.78%; margin-left: auto; /* Aspect ratio: 1600/900 * 100 */">
-    <iframe 
-        src="https://rss.app/embed/v1/carousel/tvjse9tysjnwS5tz" 
-        frameborder="0" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;">
-    </iframe>
+<div class="video-responsive">
+  <iframe
+    src="https://www.youtube.com/embed/fO9e9jnhYK8?autoplay=1&mute=1"
+    title="Live 4K video of Earth and space: 24/7 Livestream of Earth by Sen’s 4K video cameras on the ISS"
+    frameborder="0"
+    allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
 </div>
+
 ```
 :::
 :::

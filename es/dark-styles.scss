@@ -20,4 +20,15 @@ $code-color: $purple; // inline code text color
 
 /*-- scss:rules --*/
 
+.video-responsive {
+  position: relative;
+  width: 725px; /* 408px * 16/9 for proper aspect ratio */
+  max-width: 100%;
+  height: 408px; /* Match weather map height */
+  margin-right: 20px; /* Align video left */
+}
 
+.video-responsive iframe {
+  width: 100%;
+  height: 100%;
+}
