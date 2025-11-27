@@ -5,11 +5,13 @@ _site/
 *_files/
 *docs/
 !docs/.nojekyll
-!docs/images/
-!docs/files/
+!docs/images/**
+!docs/files/**
+!docs/ca/
 !docs/ca/images/**
-!docs/en/images/**
 !docs/ca/files/**
+!docs/en/
+!docs/en/images/**
 !docs/en/files/**
 
 # Python
