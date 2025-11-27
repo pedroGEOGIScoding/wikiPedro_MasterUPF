@@ -6,11 +6,9 @@ _site/
 *docs/
 !docs/.nojekyll
 !docs/images/
+!docs/files/
 !docs/images/**
-!docs/ca/images/
-!docs/ca/images/**
-!docs/en/images/
-!docs/en/images/**
+!docs/files/**
 
 # Python
 __pycache__/
