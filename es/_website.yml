@@ -42,13 +42,14 @@ website:
       - sidebar:portfolio-3
       - sidebar:portfolio-4
       - sidebar:masterUPF
+      - sidebar:competencias-ciencias
       - sidebar:edulinks
       - sidebar:about
     right:
       - text: Idioma
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 16px;'>🇪🇸 Español</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'>🏴󠁥󠁳󠁣󠁴󠁿 Català</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'>💝 Català</a>"
           - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 16px;'>🇬🇧 English</a>"
           
       - icon: three-dots-vertical
@@ -290,6 +291,23 @@ website:
             - section: "Trabajo fin de master"
               contents:
               - master-upf/practicum/practicas-tfm.qmd
+
+    - id: "competencias-ciencias"
+      title: "Competencias en Ciencias"
+      style: "docked"
+      search: true
+      background: light
+      collapse-level: 3
+      align: center
+      tools:
+        - icon: envelope
+          href: mailto:pedromartinezduran@gmail.com
+        - icon: github
+          href: https://github.com/pedroGEOGIScoding/
+        - icon: linkedin
+          href: https://www.linkedin.com/in/pedromartinezduran/
+      contents:
+        - competencias-ciencias.qmd
 
     - id: "edulinks"
       title: "WebLinks Educativos"

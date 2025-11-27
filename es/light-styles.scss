@@ -280,3 +280,38 @@ footer.footer,
   width: 100%;
   height: 100%;
 }
+
+/* ===== ACCORDION STYLES ===== */
+.accordion-container {
+  max-width: calc(100% - 50px);
+  margin-left: 0;
+  margin-right: 50px;
+  overflow: hidden;
+}
+
+.accordion-button {
+  font-size: 1.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.accordion-button strong {
+  font-size: 1.5rem;
+}
+
+.accordion.quarto-accordion,
+#competenciasAccordion {
+  max-width: 100%;
+  width: 100%;
+}
+
+.accordion-item {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.accordion-body {
+  text-align: justify;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

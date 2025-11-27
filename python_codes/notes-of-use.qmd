@@ -1,0 +1,97 @@
+---
+title: "Translation Scripts - Usage Guide"
+subtitle: "How to use the Python translation scripts"
+author: "Pedro Martínez Durán"
+date: "27/11/2025"
+---
+
+# Translation Scripts
+
+These Python scripts use Google Translate (via `deep_translator`) to translate `.qmd` files while preserving Quarto/Markdown syntax.
+
+## Requirements
+
+```bash
+pip install deep-translator
+```
+
+## Available Scripts
+
+| Script | Source | Target | Type |
+|--------|--------|--------|------|
+| `translate_to_catalan.py` | Spanish (es) | Catalan (ca) | Batch |
+| `translate_to_english.py` | Spanish (es) | English (en) | Batch |
+| `translate_to_spanish.py` | Catalan (ca) | Spanish (es) | Batch |
+| `translate_to_english_from_catalan.py` | Catalan (ca) | English (en) | Batch |
+| `translate_single_file.py` | Spanish (es) | Catalan (ca) | Single file |
+| `translate_single_file_en.py` | Spanish (es) | English (en) | Single file |
+| `translate_single_file_ca_to_es.py` | Catalan (ca) | Spanish (es) | Single file |
+| `translate_single_file_ca_to_en.py` | Catalan (ca) | English (en) | Single file |
+
+## Usage
+
+### Batch Translation (all .qmd files in folder)
+
+Run from the **target language folder**:
+
+```bash
+# Spanish to Catalan (run from ca/ folder)
+cd ca/
+python3.13 ../python_codes/translate_to_catalan.py
+
+# Spanish to English (run from en/ folder)
+cd en/
+python3.13 ../python_codes/translate_to_english.py
+
+# Catalan to Spanish (run from es/ folder)
+cd es/
+python3.13 ../python_codes/translate_to_spanish.py
+
+# Catalan to English (run from en/ folder)
+cd en/
+python3.13 ../python_codes/translate_to_english_from_catalan.py
+```
+
+### Single File Translation
+
+```bash
+# Spanish to Catalan
+python3.13 python_codes/translate_single_file.py ca/filename.qmd
+
+# Spanish to English
+python3.13 python_codes/translate_single_file_en.py en/filename.qmd
+
+# Catalan to Spanish
+python3.13 python_codes/translate_single_file_ca_to_es.py es/filename.qmd
+
+# Catalan to English
+python3.13 python_codes/translate_single_file_ca_to_en.py en/filename.qmd
+```
+
+Or from within the target folder:
+
+```bash
+cd es/
+python3.13 ../python_codes/translate_single_file_ca_to_es.py competencias-ciencias.qmd
+```
+
+## What Gets Translated
+
+- **YAML frontmatter**: `title`, `subtitle`, `description`, `categories`
+- **Content**: Headers, paragraphs, lists, blockquotes, image alt text
+
+## What Is Preserved (Not Translated)
+
+- Code blocks (` ``` `)
+- HTML tags
+- Quarto shortcodes (`{{< ... >}}`)
+- Quarto div syntax (`:::`)
+- LaTeX equations (`$$`, `$...$`)
+- URLs and file paths
+- Markdown formatting (bold, italic, links)
+
+## Notes
+
+- Scripts translate files **in place** (overwrite the original)
+- Files starting with `_` are skipped (e.g., `_quarto.yml`, `_website.yml`)
+- Always review translations for accuracy, especially technical terms
