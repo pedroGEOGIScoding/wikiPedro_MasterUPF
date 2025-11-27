@@ -254,3 +254,59 @@ quarto render es && quarto render ca && quarto render en
 cd es && quarto preview
 ```
 
+---
+
+## Files (PDFs) Folder Details
+
+### Current Files
+
+The `es/files/` folder contains downloadable documents shared across all languages:
+
+```
+es/files/
+├── Biologia-i-Geologia.pdf
+├── CV-Pedro-Martinez.pdf
+├── Cultura-Cientifica.pdf
+├── Fisica-i-Quimica.pdf
+├── Matematiques.pdf
+├── curriculum-eso.pdf
+└── curriculum_batxillerat.pdf
+```
+
+### Symlink Structure
+
+```bash
+ca/files → ../es/files   # Catalan points to Spanish source
+en/files → ../es/files   # English points to Spanish source
+```
+
+### Adding a New PDF
+
+1. **Copy the PDF** to the source folder:
+   ```bash
+   cp my-new-document.pdf es/files/
+   ```
+
+2. **Link in your .qmd file** using relative paths:
+   ```markdown
+   # From es/about/*.qmd (depth 2)
+   [Download Document](../files/my-new-document.pdf)
+   
+   # From es/master-upf/cfd/*.qmd (depth 3)
+   [Download Document](../../files/my-new-document.pdf)
+   ```
+
+3. **Commit and push**:
+   ```bash
+   git add es/files/
+   git commit -m "Add new PDF document"
+   git push
+   ```
+
+### Why Symlinks?
+
+- **No duplication**: Only one copy of each file exists
+- **Automatic sync**: Changes in `es/files/` are immediately available to all languages
+- **Smaller repo**: No need to maintain 3 copies of large PDFs
+- **Simpler workflow**: Add once, available everywhere
+
