@@ -3,16 +3,7 @@
 _site/
 *_cache/
 *_files/
-*docs/
-!docs/.nojekyll
-!docs/images/**
-!docs/files/**
-!docs/ca/
-!docs/ca/images/**
-!docs/ca/files/**
-!docs/en/
-!docs/en/images/**
-!docs/en/files/**
+docs/
 
 # Python
 __pycache__/
