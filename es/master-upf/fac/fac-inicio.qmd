@@ -33,7 +33,7 @@ format: html
 
 <br>
 
-![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](/images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
+![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
 
 <br>
 

@@ -1,5 +1,5 @@
 ---
-title: No s'ha trobat la pàgina <img src="/images/home/404/person.png" alt="Persona" width="120" height="120">
+title: No s'ha trobat la pàgina <img src="images/home/404/person.png" alt="Persona" width="120" height="120">
 filename: 404
 lightbox:
   match: auto
@@ -13,13 +13,13 @@ lightbox:
 
 <p>
   <center style="font-size: 20px;">
-    Si us plau, torneu-ho a provar utilitzant la <strong style="color: #4a3b30; font-size: 20px;">a sobre <img src="/images/home/404/finger.png" alt="Search" width="35" height="35"> barra de navegació</strong>
+    Si us plau, torneu-ho a provar utilitzant la <strong style="color: #4a3b30; font-size: 20px;">a sobre <img src="images/home/404/finger.png" alt="Search" width="35" height="35"> barra de navegació</strong>
   </center>
 </p>
 
 <center>
 <div style="width: 50%;">
-![](/images/home/404/404a.gif){ group="404" loading="lazy" }
+![](images/home/404/404a.gif){ group="404" loading="lazy" }
 </div>
 </center>
 

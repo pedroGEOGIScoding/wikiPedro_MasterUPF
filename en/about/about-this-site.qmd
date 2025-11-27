@@ -168,7 +168,7 @@ Replace `yourusername` with your actual GitHub username.
 3. Scroll down to **"Pages"** in the left sidebar
 4. Under **"Source"**, select **"GitHub Actions"**
 
-![GitHub Pages Setup](/images/about/github-actions.png){ group="about-this-site" loading="lazy" }
+![GitHub Pages Setup](../images/about/github-actions.png){ group="about-this-site" loading="lazy" }
 
 This tells GitHub to use GitHub Actions for deployment instead of a branch.
 
@@ -378,11 +378,11 @@ website:
   repo-url: "https://github.com/tunombredeusuario/mywebsite"
 ```
 
-**For resources in multilingual sites:** Use absolute paths from root:
+**For resources in multilingual sites:** Use relative paths from the current file:
 ```markdown
-![](/images/about/pedro.jpg)
+![](../images/about/pedro.jpg)
 ```
-Don't use relative paths like `../images/about/pedro.jpg`
+Absolute paths like `/images/about/pedro.jpg` don't work on GitHub Pages when the site is in a subdirectory (e.g., `username.github.io/repository/`)
 
 #### Problem: Workflow does not activate
 
@@ -778,11 +778,11 @@ const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
 
 **Solutions**:
 
-1. **Use absolute paths from root**:
+1. **Use relative paths from current file**:
    ```markdown
-   ![](/images/about/pedro.jpg)
+   ![](../images/about/pedro.jpg)
    ```
-   Don't use relative paths like `../images/about/pedro.jpg`
+   Absolute paths like `/images/about/pedro.jpg` don't work on GitHub Pages subdirectories
 
 2. **Verify resource folders are outside language folders**:
    ```

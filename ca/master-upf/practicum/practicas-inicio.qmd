@@ -47,7 +47,7 @@ format: html
 
 <br>
 
-![Pla de Pràctiques en Centre Educatiu](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
+![Pla de Pràctiques en Centre Educatiu](../../images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
 
 <br>
 

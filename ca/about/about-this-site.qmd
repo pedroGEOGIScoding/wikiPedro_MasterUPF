@@ -168,7 +168,7 @@ Substituïu `yourusername` pel vostre nom d'usuari de GitHub real.
 3. Desplaceu-vos cap avall fins a **"Pàgines"** a la barra lateral esquerra
 4. A **"Font"**, seleccioneu **"Accions de GitHub"**
 
-![Configuració de pàgines de GitHub](/images/about/github-actions.png){ group="about-this-site" loading="lazy" }
+![Configuració de pàgines de GitHub](../images/about/github-actions.png){ group="about-this-site" loading="lazy" }
 
 Això indica a GitHub que utilitzi les accions de GitHub per al desplegament en lloc d'una branca.
 
@@ -378,11 +378,11 @@ website:
   repo-url: "https://github.com/tunombredeusuario/mywebsite"
 ```
 
-**Per a recursos en llocs multilingües:** Usa rutes absolutes des de l'arrel:
+**Per a recursos en llocs multilingües:** Usa rutes relatives des del fitxer actual:
 ```markdown
-![](/images/about/pedro.jpg)
+![](../images/about/pedro.jpg)
 ```
-No usis rutes relatives com `../images/about/pedro.jpg`
+Les rutes absolutes com `/images/about/pedro.jpg` no funcionen a GitHub Pages quan el lloc està en un subdirectori (ex: `usuari.github.io/repositori/`)
 
 #### Problema: el flux de treball no s'activa
 
@@ -778,11 +778,11 @@ const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
 
 **Solucions**:
 
-1. **Usa rutes absolutes des de l'arrel**:
+1. **Usa rutes relatives des del fitxer actual**:
    ```markdown
-   ![](/images/about/pedro.jpg)
+   ![](../images/about/pedro.jpg)
    ```
-   No usis rutes relatives com `../images/about/pedro.jpg`
+   Les rutes absolutes com `/images/about/pedro.jpg` no funcionen a GitHub Pages en subdirectoris
 
 2. **Verifica que les carpetes de recursos estan fora de les carpetes d'idioma**:
    ```

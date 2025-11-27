@@ -168,7 +168,7 @@ Reemplaza `tunombredeusuario` con tu nombre de usuario real de GitHub.
 3. Desplázate hacia abajo hasta **"Pages"** en la barra lateral izquierda
 4. En **"Source"** (Fuente), selecciona **"GitHub Actions"**
 
-![Configuración de GitHub Pages](/images/about/github-actions.png){ group="about-this-site" loading="lazy" }
+![Configuración de GitHub Pages](../images/about/github-actions.png){ group="about-this-site" loading="lazy" }
 
 Esto le indica a GitHub que use GitHub Actions para el despliegue en lugar de una rama.
 
@@ -378,11 +378,11 @@ website:
   repo-url: "https://github.com/tunombredeusuario/mywebsite"
 ```
 
-**Para recursos en sitios multilingües:** Usa rutas absolutas desde la raíz:
+**Para recursos en sitios multilingües:** Usa rutas relativas desde el archivo actual:
 ```markdown
-![](/images/about/pedro.jpg)
+![](../images/about/pedro.jpg)
 ```
-No uses rutas relativas como `../images/about/pedro.jpg`
+Las rutas absolutas como `/images/about/pedro.jpg` no funcionan en GitHub Pages cuando el sitio está en un subdirectorio (ej: `usuario.github.io/repositorio/`)
 
 #### Problema: El flujo de trabajo no se activa
 

@@ -47,7 +47,7 @@ format: html
 
 <br>
 
-![Internship Scheme in Educational Center](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
+![Internship Scheme in Educational Center](../../images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
 
 <br>
 

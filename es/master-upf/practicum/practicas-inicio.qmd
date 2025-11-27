@@ -47,7 +47,7 @@ format: html
 
 <br>
 
-![Esquema de Prácticas en Centro Educativo](/images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
+![Esquema de Prácticas en Centro Educativo](../../images/practicum/practicum-structure.png){width=50% fig-align="center" group="practicas-inicio" loading="lazy"}
 
 <br>
 

@@ -33,7 +33,7 @@ format: html
 
 <br>
 
-![Structure of Fundamentals of Learning and Teaching of Natural Sciences](/images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
+![Structure of Fundamentals of Learning and Teaching of Natural Sciences](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
 
 <br>
 
