@@ -94,7 +94,8 @@ Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca
   <!-- Science News -->
   <div style="flex: 1 1 32%; display: flex; flex-direction: column; min-height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Últimas noticias sobre ciencia</p>
-    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="500px" width="100%" class="fw-iframe" scrolling="no" frameborder="0">
+    </iframe>
   </div>
 </div>
 ```

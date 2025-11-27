@@ -88,7 +88,8 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
   <!-- Science News -->
   <div style="flex: 1 1 32%; display: flex; flex-direction: column; min-height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Darreres notícies sobre Ciència</p>
-    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="500px" width="100%" class="fw-iframe" scrolling="no" frameborder="0">
+    </iframe>
   </div>
 </div>
 ```
