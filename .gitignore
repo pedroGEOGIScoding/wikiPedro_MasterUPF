@@ -7,8 +7,10 @@ _site/
 !docs/.nojekyll
 !docs/images/
 !docs/files/
-!docs/images/**
-!docs/files/**
+!docs/ca/images/**
+!docs/en/images/**
+!docs/ca/files/**
+!docs/en/files/**
 
 # Python
 __pycache__/
