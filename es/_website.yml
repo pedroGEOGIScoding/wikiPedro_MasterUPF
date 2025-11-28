@@ -307,7 +307,8 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - competencias-ciencias.qmd
+        - eso-competencias-ciencias.qmd
+        - bach-competencias-ciencias.qmd
 
     - id: "edulinks"
       title: "WebLinks Educativos"

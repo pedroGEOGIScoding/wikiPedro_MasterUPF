@@ -1,7 +1,7 @@
 ---
-title: "Skills in Sciences"
+title: "ESO - Skills in Sciences"
 subtitle: "Official texts of the skills in Science"
-filename: competencias-ciencias
+filename: eso-competencias-ciencias
 author: "Pedro Martínez Durán"
 date: "20/11/2025"
 date-modified: last-modified
@@ -27,7 +27,7 @@ format: html
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingBio">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBio" aria-expanded="false" aria-controls="collapseBio">
-<strong>🧬 Biologia i Geologia</strong>
+<strong>🧬 Biology and Geology</strong>
 </button>
 </h2>
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
@@ -111,9 +111,7 @@ In the subject Biology and Geology, a total of 6 specific skills are worked on, 
 
 **Interpret natural phenomena, predicting and arguing their behavior based on models, laws and theories specific to biology and geology to appropriate concepts and processes specific to science.**
 
-**Evaluation criteria
-  
-None
+**Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
 None
@@ -146,9 +144,7 @@ For this reason, this specific competence prepares students for their profession
 
 **Design, develop and communicate the approach and conclusions of research within the school environment, including the formulation of questions and hypotheses and their experimental comparison, following the steps of the methodologies of science, such as experimentation and the search for evidence, cooperating when necessary, to investigate aspects related to biology and geology.**
 
-**Evaluation criteria
-  
-None
+**Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
 None
@@ -167,7 +163,7 @@ Likewise, the creation and participation in scientific projects provides student
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 4.1 Solve problems or explain biological or geological processes using knowledge, data and information provided, logical reasoning, computational thinking or digital resources.  4.2 Critically analyze the solution to a problem on biological and geological phenomena | 4.1 Solve problems or explain biological or geological processes using knowledge, data and information provided, logical reasoning, computational thinking or digital resources.  4.2 Critically analyze the solution to a problem or biological and geological phenomena and change the procedures used or revise the conclusions if this solution was not viable or in the face of new data provided later. |
 
 The biological and geological sciences are empirical disciplines, but they often use logical reasoning and mathematical methodology to create models, solve questions and problems, and validate the results or solutions obtained. Both the formulation of hypotheses and the interpretation of data and results or the experimental design require applying logicoformal thinking.
@@ -180,9 +176,7 @@ It should be noted that enhancing this specific competence means that students d
 
 **Analyze the effects of certain actions on the environment and health, based on the foundations of the biological and geological sciences, to make proposals for action and to decide in an informed manner on current problems and adopt habits that minimize environmental impacts, that are compatible with sustainable development and that allow maintaining and improving individual and collective health.**
 
-**Evaluation criteria
-  
-None
+**Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
 None
@@ -198,9 +192,7 @@ The ultimate goal is to achieve, through the education system, a citizenry with 
 
 **Analyze the elements of the landscape, using in an integrated way the knowledge from biology, geology and environmental sciences to explain their origin and possible evolution, as well as the characteristics of the community of organisms, the dynamics of the relief and possible natural risks.**
 
-**Evaluation criteria
-  
-None
+**Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
 None
@@ -212,7 +204,7 @@ Certain natural phenomena occur much more frequently in specific areas of the pl
 
 This specific competence implies that students develop the knowledge and critical spirit necessary to justify the nature of the landscape, its origin and evolution, and to recognize the geological risk associated with a certain area, adopting a critical attitude towards certain urban or forestry practices that endanger human lives, infrastructure or natural heritage. The students will face problematic situations or questions raised in the teaching-learning context, in which they will have to analyze possible natural risks and possible actions. The intention of this specific competition is that these ideals, acquired through the education system, reach society and the sea, contributing to form a critical and committed citizenry with the environment and with enough judgment not to expose themselves to avoidable natural risks, thus benefiting humanity as a whole.
 
-### knowledge
+### Knowledge
 
 Knowledge is formulated in relation to contexts in which competence learning can be developed. Teachers can incorporate alternative contexts if they consider it relevant.
 
@@ -334,7 +326,7 @@ The situations make it possible to program the course of any level, subject or a
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingFis">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFis" aria-expanded="false" aria-controls="collapseFis">
-<strong>⚛️ Física i Química</strong>
+<strong>⚛️ Physics and Chemistry</strong>
 </button>
 </h2>
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
@@ -420,7 +412,7 @@ In Physics and Chemistry, a total of 6 specific skills are worked on, which are 
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 1.1 Analyze concepts, phenomena and processes related to the knowledge of physics and chemistry by interpreting information in different formats (models, graphs, tables, diagrams, formulas, schemes, symbols, web pages...), maintaining a critical attitude and obtaining conclusions based on scientific reasons.  1.2 Interpret and predict the behavior of relevant everyday phenomena, relating it to appropriate models, laws and theories of physics and chemistry.  1.3 Identify concepts related to real problem situations of a scientific nature and provide possible solutions. | 1.1 Analyze concepts, phenomena and processes related to the knowledge of physics and chemistry by interpreting information in different formats (models, graphs, tables, diagrams, formulas, diagrams, symbols, web pages...), maintaining a critical attitude and obtaining conclusions based on scientific reasons and judiciously defending one's own well-founded opinions.  1.2 Interpret and predict the behavior of everyday phenomena, arguing it rigorously in accordance with appropriate models, laws and theories of physics and chemistry.  1.3 Identify the concepts related to real problematic situations of a scientific nature, provide possible solutions and argue their validity. |
 
 The essence of scientific thinking is to find out what are the reasons for the phenomena that occur in the natural environment in order to try to explain them through suitable scientific, physical and chemical models. The interpretation of phenomena involves the argumentation of the causes that originate them and their nature, and gives the student the ability to act with a critical sense to improve, as far as possible, the nearby reality through science.
@@ -433,12 +425,10 @@ The development of this specific competence entails asking questions to understa
 
 **Design, develop and communicate the research approach and conclusions, including the formulation of questions and hypotheses and their experimental comparison, within the school environment, following the steps of the methodologies of science, such as experimentation and the search for evidence, and computational thinking cooperating, when necessary, to investigate aspects related to physics and chemistry.**
 
-**Evaluation criteria
-  
-None
+**Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 2.1 Ask questions about everyday phenomena and formulate hypotheses that can be answered or contrasted in the school context through experimentation, data collection and analysis of physical and chemical phenomena.  2.2 Design, using methodologies specific to science, research procedures that involve the use of deduction, experimental work and logical-mathematical reasoning.  2.3 Carry out experimental designs using the appropriate instruments, tools or techniques correctly and interpret the results using, when necessary, mathematical and technological tools.  2.4 Cooperate in a scientific project by responsibly assuming a specific function, using virtual spaces when necessary, respecting diversity and promoting inclusion.  2.5 Present the results and conclusions obtained through experimentation and field observation using the appropriate format (tables, graphs, reports, etc.) and, when necessary, digital tools.  2.6 Value the contribution of science to society and the work of the people who have dedicated themselves to it, reflecting on gender bias in science and technology, and understanding research as a collective and interdisciplinary task in constant evolution, influenced by the political context and economic resources. | 2.1 Ask questions about everyday phenomena and formulate hypotheses that can be answered or contrasted in the school context through experimentation, data collection and analysis of physical and chemical phenomena, differentiating them from those pseudoscientific questions that do not admit of experimental verification.  2.2 Design, using methodologies specific to science, research procedures that involve the use of deduction, experimental work and logical-mathematical reasoning.  2.3 Carry out the proposed experiment using the appropriate instruments, tools or techniques with correctness and interpret the results, when necessary, with mathematical and technological tools to obtain reasoned and grounded conclusions or assess the impossibility of doing so.  2.4 Establish collaborations when necessary in the different phases of the scientific project to work more efficiently, valuing the importance of cooperation in research, respecting diversity and promoting inclusion.  2.5 Present clearly and rigorously the results and conclusions obtained through experimentation, arguing the connection between them, and field observation using the appropriate format (tables, graphs, reports, etc.) and digital tools.  2.6 Value the contribution of science to society and the work of the people who have dedicated themselves to it, arguing about gender bias in science and technology and understanding research as a collective and interdisciplinary task in constant evolution, influenced by the political context and economic resources. |
 
 An inherent characteristic of science and the development of scientific thinking in adolescence is the curiosity to know, describe and interpret natural phenomena. Equipping students with scientific skills involves working with the methodologies of science and recognizing and valuing its importance in society. Students who develop this competence must observe, formulate hypotheses and apply experimentation, inquiry and the search for evidence to verify it and predict possible changes.
@@ -452,7 +442,7 @@ Using the specific knowledge that students acquire as they progress in their bas
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 3.1 Generate and use data from various sources and formats (texts, tables, graphics, diagrams, etc.) to interpret, validate and communicate information related to a specific physical or chemical process, through the critical selection of what is most relevant to solving the problem.  3.2 Use appropriately the basic rules of physics and chemistry, including the use of measurement units, mathematical tools and IUPAC formulation and nomenclature, as basic elements of scientific language and effective communication for the exchange of knowledge among the scientific community.  3.3 Use in a practical and responsible manner the rules for the use of specific science spaces, such as the physics and chemistry laboratory, as a means of preserving personal and collective health, the sustainable conservation of the environment and respect for the facilities. | 3.1 Generate and use data from various sources and formats (texts, tables, graphics, diagrams, etc.) to interpret, validate and communicate information related to a specific physical or chemical process, through the critical selection of what is most relevant to solving the problem.  3.2 Use appropriately the basic rules of physics and chemistry, including the appropriate use of various systems of measurement units, the necessary mathematical tools and IUPAC formulation and nomenclature, as basic elements of scientific language and effective communication for the exchange of knowledge among the scientific community.  3.3 Use in a practical, responsible and rigorous manner the rules for the use of specific science spaces, such as the physics and chemistry laboratory, as a means of ensuring personal and collective health, the sustainable conservation of the environment and respect for the facilities. |
 
 The correct interpretation and communication of information play a very important role in the construction of scientific thinking, as they give students the ability to communicate in the universal language of science, beyond the geographical and cultural borders of the world. With the development of this competence, it is intended that students become familiar with the multidirectional information flows characteristic of scientific disciplines and with the rules that the entire scientific community recognizes as universal to establish effective communications included in an environment that ensures health and sustainable environmental development. In addition, it requires students to evaluate the quality of the data and value its imprecision, as well as to recognize the importance of research prior to a scientific study.
@@ -466,7 +456,7 @@ With this specific competence, we want to promote the acquisition of knowledge, 
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 4.1 Critically, creatively and efficiently use digital environments and different resources in various formats to defend one's point of view on eco-socially relevant phenomena and issues.  4.2 Justify your own point of view on eco-socially relevant issues, using both individual and team work, respecting everyone's contributions and promoting gender and social inclusion.  4.3 Search and analyze information with conventional and digital media and create content related to physics and chemistry, judiciously selecting the most reliable sources and organizing information through the correct use and citation of different sources. | 4.1 Critically, creatively and efficiently use digital environments and different resources in various formats to defend one's point of view on eco-socially relevant phenomena and issues.  4.2 Justify your own point of view on eco-socially relevant issues, using both individual and team work, respecting everyone's contributions and promoting gender and social inclusion.  4.3 Search and analyze information with conventional and digital media and create content related to physics and chemistry, judiciously selecting the most reliable sources and organizing information through the correct use and citation of sources, with respect for intellectual property. |
 
 Resources, both traditional and digital, play a crucial role in the teaching and learning process in general, and in the achievement of skills in particular, since a well-selected resource facilitates the development of higher-level cognitive processes and fosters understanding, creativity and the personal and group development of students. The importance of resources, not only used for the search, analysis, communication and argumentation of information, but also for other purposes such as the creation of teaching materials or effective communication with other members of their learning environment, provides students with the tools to adapt to a society that currently demands people who are integrated and committed to their environment.
@@ -480,7 +470,7 @@ It is for this reason that this specific competence also aims for the student to
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 5.1 Justify with scientific foundations the importance of preserving the physicochemical systems of the environment (air, water, soil quality).  5.2 Justify the need to have sustainable habits, critically analyzing one's own and others' activities and based on one's own reasoning, acquired knowledge and available information.  5.3 Identify some situations in which knowledge derived from physics and chemistry can contribute to improving environmental sustainability and individual and collective health.  5.4 Undertake, in a guided manner and with the appropriate methodology, scientific projects related to the improvement of society and that promote growth among peers as the basis of a critical and ethical school scientific community. | 5.1 Justify with scientific foundations the importance of air quality, of the balance in its composition at the various atmospheric levels, of water currents and soil free of pollutants and sustainable development and identify the possible natural risks enhanced by certain human actions on the physical-chemical systems of the environment 5.2 Argue about the need to have sustainable habits, analyzing own and other people's actions (consumption habits, waste generation, transport, etc.), with a critical attitude and based on the fundamentals of the functioning of natural systems.  5.3 Argue, justifying the reasons provided, about how the knowledge derived from physics and chemistry can contribute to improving environmental sustainability and individual and collective health.  5.4 Undertake, autonomously with the appropriate methodology, scientific projects related to the improvement of society and that promote growth among peers as the basis of a critical and ethical school scientific community. |
 
 The scientific disciplines are characterized by forming a whole of integrated and interrelated knowledge. In the same way, people dedicated to science develop teamwork skills, since collaboration and cooperation are the basis of the construction of scientific knowledge in every society. Competent students will be accustomed to the working methods of the most common techniques of all scientific disciplines, due to the fact that this is the way to achieve, through entrepreneurship, integration into an evolving society. Teamwork serves to unite different points of view and create unified research models, which are part of the progress of science.
@@ -494,14 +484,14 @@ The development of this specific competence creates a bond of commitment between
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 6.1 Interpret science as a process under construction, through the analysis with a historical perspective of the scientific advances of the men and women who participated in it, and value the mutual repercussions of current science with technology, society and the environment.  6.2 Reason the capacity of science to propose, through citizen involvement, sustainable solutions for technological, environmental, economic and social needs, detected in the environment, without gender bias. | 6.1 Interpret science as a process under construction, both through the analysis with a historical perspective of the scientific advances of the men and women who participated in it, as well as current lines of research, and assess the mutual repercussions and the social, economic and environmental implications of current science in society.  6.2 Argue the capacity of science to propose, through citizen involvement, sustainable solutions for technological, environmental, economic and social needs, detected in the environment, without gender bias. |
 
 To complete the development of competence in the subject of Physics and Chemistry, the student must assume that science is not a finished process, but is in a continuous reciprocal construction with technology and society. The search for new explanations, the improvement of procedures, new scientific discoveries, etc. they influence society, and knowing the impacts that science produces in a global way is fundamental in choosing the right path for development. Along these lines, competent students must take into account values ​​such as the importance of scientific advances for a demanding society, the limits of science, ethical issues and trust in scientists and their activity.
 
 All of this is part of a social awareness in which not only the scientific community intervenes, but which requires the participation of all of society, as it implies joint individual and social progress.
 
-### knowledge
+### Knowledge
 
 Knowledge is formulated in relation to contexts in which competence learning can be developed. Teachers can incorporate alternative contexts if they consider it relevant.
 
@@ -609,13 +599,13 @@ The situations make it possible to program the course of any level, subject or a
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingCultura">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCultura" aria-expanded="false" aria-controls="collapseCultura">
-<strong>🔬 Cultura Científica</strong>
+<strong>🔬 Scientific Culture</strong>
 </button>
 </h2>
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Cultura Científica**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica") **(elective subject of fourth year of ESO)**
+[**Scientific Culture**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica") **(elective subject of fourth year of ESO)**
 
 In the 21st century, science is everywhere, permeates the environment and conditions our lives, being inseparable from all the most relevant economic and social areas. In this sense, scientific literacy becomes essential for the knowledge and understanding of scientific concepts and the processes necessary for making personal and collective decisions. It becomes an indispensable means for effective participation in the societies and economy of the millennium.
 
@@ -764,7 +754,7 @@ To complete the development of competence in the subject of Scientific Culture, 
 
 All of this is part of a social awareness in which not only the scientific community intervenes, but which requires the participation of all of society, as it implies joint individual and social progress. The identification of upcoming needs or problems invites students to take an active role in building fairer and more sustainable environments.
 
-**know**
+**Knows**
 
 Knowledge is formulated in relation to contexts in which competence learning can be developed. Teachers can incorporate different contexts if they consider it relevant.
 
@@ -818,7 +808,7 @@ The learning situations make it possible to program the course of any level or s
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingMat">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMat" aria-expanded="false" aria-controls="collapseMat">
-<strong>📐 Matemàtiques</strong>
+<strong>📐 Mathematics</strong>
 </button>
 </h2>
 <div id="collapseMat" class="accordion-collapse collapse" aria-labelledby="headingMat" data-bs-parent="#competenciasAccordion">
@@ -873,7 +863,7 @@ In the Mathematics subject, a total of 9 specific skills are worked on, which ar
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 1.1 Interpret mathematical problems by organizing the information given and understanding the questions asked.  1.2 Develop effective mathematical representations, with manipulable, graphic and digital resources, that lead to the understanding and resolution of problems and situations in everyday life.  1.3 Analyze and select tools and strategies developed by evaluating and contrasting their effectiveness and suitability in a reasoned way in solving problems.  1.4 Obtain mathematical solutions to a problem by mobilizing the necessary knowledge and discriminating the existence or not of one or more solutions to a problem. | 1.1 Interpret mathematical problems by organizing the information given and understanding the questions asked.  1.2 Develop effective mathematical representations, with manipulable, graphic and digital resources, that lead to the understanding and resolution of problems and situations in everyday life.  1.3 Analyze and select tools and strategies developed by evaluating and contrasting their effectiveness and suitability in a reasoned way in solving problems.  1.4 Obtain mathematical solutions to a problem by mobilizing the necessary knowledge and discriminating the existence or not of one or more solutions to a problem. |
 
 Problem solving is a fundamental axis in learning mathematics, as it is a central process in the construction of mathematical knowledge. Both the situations of everyday life in different contexts and the problems proposed in the field of mathematics can be catalysts for new knowledge, since the reflections that are carried out during their resolution help to build concepts and establish connections between them.
@@ -887,7 +877,7 @@ The development of this competence involves applying the mathematical knowledge 
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 2.1 Construct and coherently express ideas and reasoning that allow to justify the validity of solutions, processes and conclusions from different perspectives (gender, sustainability, responsible consumption...).  2.2 Generate questions based on mathematical arguments that allow us to raise new challenges related to the solved problem. | 2.1 Construct and coherently express ideas and reasoning that allow to justify the validity of solutions, processes and conclusions from different perspectives (gender, sustainability, responsible consumption...).  2.2 Generate questions based on mathematical arguments that allow us to raise new challenges related to the solved problem |
 
 The analysis of the solutions obtained in the resolution of a problem enhances critical reflection on its validity, both from a strictly mathematical point of view and from a global perspective, valuing aspects related to sustainability, responsible consumption, equity or non-discrimination among others. Scientific and mathematical reasoning are the main tools to carry out this validation, but so are careful reading, asking appropriate questions, choosing strategies to verify the relevance of the solutions obtained according to the situation at hand, awareness of one's own progress and self-evaluation.
@@ -901,7 +891,7 @@ The development of this competence involves reflective processes specific to met
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 3.1 Ask questions in various contexts that can be answered through mathematical knowledge.  3.2 Make simple mathematical conjectures autonomously and reasoned in a context in which the student has creative freedom making use, if necessary, of technological tools (programming languages, spreadsheets, GeoGebra, mathematical photography, video, etc.).  3.3 Propose problems autonomously, creatively and reasoned in a context. | 3.1 Ask questions in various contexts that can be answered through mathematical knowledge.  3.2 Make simple mathematical conjectures autonomously and reasoned in a context in which the student has creative freedom making use, if necessary, of technological tools (programming languages, spreadsheets, GeoGebra, mathematical photography, video, etc.).  3.3 Propose problems autonomously, creatively and reasoned in a context. |
 
 Reasoning and analytical thinking increase the perception of patterns, structures and regularities in both real-world and abstract situations by favoring the formulation of conjectures about their nature. The formulation and verification of conjectures can be carried out by means of manipulative materials, calculators, software, representations and symbols, working individually or collectively using inductive and deductive reasoning to formulate mathematical arguments.
@@ -915,7 +905,7 @@ The development of this competence involves formulating conjectures, examining t
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 4.1 Break down a problem or situation in everyday life into different parts, tackling them one at a time to be able to find the global solution with digital devices.  4.2 Recognize patterns, similarities and trends in the problems or situations to be solved.  4.3 Find the principles that generate the patterns of a problem by discarding irrelevant data while identifying the most important parts.  4.4 Generate step-by-step instructions to solve a problem and similar ones by testing and carrying out possible solutions with digital devices. | 4.1 Break down a problem or situation in everyday life into different parts, tackling them one at a time to be able to find the global solution with digital devices.  4.2 Recognize patterns, similarities and trends in the problems or situations to be solved.  4.3 Find the principles that generate the patterns of a problem by discarding irrelevant data while identifying the most important parts.  4.4 Generate step-by-step instructions to solve a problem and similar ones by testing and carrying out possible solutions with digital devices. |
 
 Computational thinking is directly related to the resolution of challenges or problems and the formulation of procedures, using abstraction to identify the most relevant aspects, and the decomposition into simpler tasks with the aim of reaching a solution to the problem that can be executed by a computer system. Bringing computational thinking into daily life means relating the fundamental aspects of computer science to the needs of students.
@@ -929,7 +919,7 @@ The development of this competence entails the creation of abstract models of ev
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 5.1 Identify and use the connections between different representations of the same mathematical concept when information is extracted from one of them to apply it to the other.  5.2 Recognize and relate connections between different concepts and mathematical knowledge through everyday life situations to draw conclusions and have an integrated vision of mathematics. | 5.1 Identify and use the connections between different representations of the same mathematical concept when information is extracted from one of them to apply it to the other.  5.2 Recognize and relate connections between different concepts and mathematical knowledge through everyday life situations to draw conclusions and have an integrated vision of mathematics. |
 
 The connection between the different mathematical concepts, procedures and ideas brings a deeper and lasting understanding of the acquired knowledge, providing a broader view about the knowledge itself. Perceiving mathematics as a whole involves studying its internal connections and reflecting on these, both those existing between blocks of knowledge, between the mathematics of one level and those of different educational stages.
@@ -943,7 +933,7 @@ The development of this competence involves linking new mathematical ideas with 
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 6.1 Recognize and use the mathematics present in everyday life using the processes inherent in scientific and mathematical research: infer, measure, communicate, classify, predict..., in situations likely to be addressed in mathematical terms.  6.2 Recognize and use the connections between mathematics and other subjects, in situations that can be addressed in mathematical terms.  6.3 Identify and value the current and historical contribution of mathematics to the progress of humanity, also from a gender perspective, in the face of the challenges posed by today's society.  6.4 Develop the critical spirit and creative potential of mathematics by arguing innovative proposals in scientific, technological, social, artistic and cultural contexts. | 6.1 Recognize and use the mathematics present in everyday life using the processes inherent in scientific and mathematical research: infer, measure, communicate, classify, predict..., in situations likely to be addressed in mathematical terms.  6.2 Recognize and use the connections between mathematics and other subjects, in situations that can be addressed in mathematical terms.  6.3 Identify and value the current and historical contribution of mathematics to the progress of humanity, also from a gender perspective, in the face of the challenges posed by today's society.  6.4 Develop the critical spirit and creative potential of mathematics by arguing innovative proposals in scientific, technological, social, artistic and cultural contexts. |
 
 Recognizing and using the connection of mathematics with other subjects, with real life or with one's own experience increases the students' mathematical background. It is important that students have the opportunity to experience mathematics in different contexts (personal, school, social, scientific and humanistic), valuing, both historically and currently, the contribution of mathematics to the resolution of the major global development goals.
@@ -957,7 +947,7 @@ The connection between mathematics and other subjects should not be limited to c
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 7.1 Communicate information in an organized manner, using appropriate mathematical language, orally and in writing, to describe, explain and justify reasoning, procedures and conclusions.  7.2 Represent mathematical concepts, procedures and results clearly, using different tools and forms of expression, such as through drawing, photography, videos, visual and musical works, to visualize ideas and structure mathematical processes.  7.3 Dialogue with peers and debate mathematical ideas to describe, explain and justify reasoning, processes and conclusions. | 7.1 Communicate information in an organized manner, using appropriate mathematical language, orally and in writing, to describe, explain and justify reasoning, procedures and conclusions.  7.2 Represent mathematical concepts, procedures and results clearly, using different tools and forms of expression, such as through drawing, photography, videos, visual and musical works, to visualize ideas and structure mathematical processes.  7.3 Dialogue with peers and debate mathematical ideas to describe, explain and justify reasoning, processes and conclusions. |
 
 Communication and the exchange of ideas is an essential part of science and mathematics education. Through communication ideas become objects of reflection, refinement, discussion and rectification. Communicating ideas, concepts and processes contributes to collaborating, cooperating, strengthening and generating new knowledge.
@@ -975,7 +965,7 @@ The development of this competence entails the acquisition of a set of mathemati
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 8.1 Manage one's emotions and develop self-confidence to face new mathematical challenges by persevering in solving them in any proposed learning situation.  8.2 Be aware that you are learning and how you are learning in any proposed learning situation 8.3 Identify your own mistakes and express in a reasoned way what is the reason that causes them (conceptual, procedural, strategy...), in the resolution of challenges or problems, persevering in their resolution.  8.4 Participate in the evaluation itself by managing strategies that help overcome difficulties, in the review of the productions carried out.   8.5 Appreciate the creative potential of mathematics as well as its ability to generate harmony and beauty, in the creations and productions carried out. | 8.1 Manage one's emotions and develop self-confidence to face new mathematical challenges by persevering in solving them in any proposed learning situation.  8.2 Be aware that you are learning and how you are learning in any proposed learning situation 8.3 Identify your own mistakes and express in a reasoned way what is the reason that causes them (conceptual, procedural, strategy...), in the resolution of challenges or problems, persevering in their resolution.  8.4 Participate in the evaluation itself by managing strategies that help overcome difficulties, in the review of the productions carried out.   8.5 Appreciate the creative potential of mathematics as well as its ability to generate harmony and beauty, in the creations and productions carried out. |
 
 Solving mathematical problems or more global challenges involving mathematics should be a rewarding task. Emotional skills in learning mathematics promote students' well-being, emotional regulation and interest in their learning.
@@ -989,7 +979,7 @@ The development of this competence involves identifying and managing emotions, r
 **Evaluation criteria**
 
 | 1st, 2nd and 3rd | 4th |
-None
+
 | 9.1 Cooperate in teamwork both in face-to-face and virtual environments, listening to others and valuing their contributions, respecting the gender perspective, in situations where knowledge is shared and built together.  9.2 Collaborate actively with others, reaching agreements and complying with them, to achieve the group's objectives related to the construction of mathematical knowledge, valuing collective success as a strategy for personal improvement.  9.3. Balance personal needs with those of the group, based on empathy and respect, recognizing the diversity and value of the contributions of others to generate new mathematical learning, both individual and collective.  9.4. Help identify mistakes and learning difficulties of colleagues by making constructive and concrete contributions that can help overcome them and improve. | 9.1 Cooperate in teamwork both in face-to-face and virtual environments, listening to others and valuing their contributions, respecting the gender perspective, in situations where knowledge is shared and built together.  9.2 Collaborate actively with others, reaching agreements and complying with them, to achieve the group's objectives related to the construction of mathematical knowledge, valuing collective success as a strategy for personal improvement.  9.3. Balance personal needs with those of the group, based on empathy and respect, recognizing the diversity and value of the contributions of others to generate new mathematical learning, both individual and collective.  9.4. Help identify mistakes and learning difficulties of colleagues by making constructive and concrete contributions that can help overcome them and improve. |
 
 The development of this competence involves showing empathy for others, establishing and maintaining positive relationships, exercising active listening and assertive communication, working in a team and making responsible decisions. Likewise, the breakdown of stereotypes and preconceived ideas about mathematics associated with individual issues, such as gender or aptitude for mathematics, must be encouraged.
@@ -997,11 +987,8 @@ The development of this competence involves showing empathy for others, establis
 Working on the values ​​of respect, tolerance, equality or peaceful resolution of conflicts, at the same time as they solve mathematical challenges by developing effective communication skills, planning, inquiry, motivation, trust, to create healthy relationships and work environments, allows to strengthen self-confidence and normalize situations of coexistence in equality.
 
 Virtual environments are a good tool for sharing and building knowledge together, in this sense it is necessary to promote their use.
-  
-  
-  
 
-**know**
+**Knows**
 
 Knowledge, understood as the set of knowledge, skills, values ​​and attitudes, are formulated in relation to contexts where their learning skills can be developed. Teachers can incorporate alternative contexts if they consider it relevant.
 
@@ -1235,13 +1222,13 @@ Given that this subject is taught in compulsory secondary education, it has been
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🤖 Robòtica i Programació</strong>
+<strong>🤖 Robotics and programming</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Robotica and Programming](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robotica and Programming")**
+**[Robotics and Programming](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robotica and Programming")**
 
 This optional subject aims for students to develop skills to come up with innovative and creative solutions in solving problems through the design, programming and prototyping of automated systems and robots
 
@@ -1343,7 +1330,7 @@ This competence refers, on the one hand, to the digital or manual design of elem
 
 Likewise, the application of safety rules when working with materials, tools and machines are fundamental for the health of students, avoiding the risks inherent in many of the techniques that must be used.
 
-**know**
+**Knows**
 
 The knowledge is formulated in relation to contexts where their learning skills can be developed. Teachers can incorporate alternative contexts if they consider it relevant.
 
@@ -1379,7 +1366,7 @@ The situations make it possible to program the course of any level, subject or a
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingTec">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTec" aria-expanded="false" aria-controls="collapseTec">
-<strong>⚙️ Tecnologia</strong>
+<strong>⚙️ Technology</strong>
 </button>
 </h2>
 <div id="collapseTec" class="accordion-collapse collapse" aria-labelledby="headingTec" data-bs-parent="#competenciasAccordion">
@@ -1517,7 +1504,7 @@ Technology has responded to human needs throughout history by improving people's
 
 The aim is to promote technological development to improve social well-being by minimizing the repercussions in other areas, mentioned above. For this, all the criteria must be kept in mind from the initial moment of detection of the need and estimated in each of the phases of the creative process. In this sense, these issues are applied to the design of bioclimatic architecture in buildings and sustainable means of transport. Finally, attitudinal aspects related to the assessment of energy saving for the benefit of the environment and the contribution of emerging technologies, currently applicable in any field, to the achievement of sustainable development objectives are addressed.
 
-**know**
+**Knows**
 
 The knowledge is formulated in relation to contexts where their learning skills can be developed. Teachers can incorporate alternative contexts if they consider it relevant.
 

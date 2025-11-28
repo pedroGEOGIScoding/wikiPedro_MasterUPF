@@ -292,7 +292,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "competencias-ciencias"
-      title: "Competencias en Ciencias"
+      title: "Science Competencies"
       style: "docked"
       search: true
       background: light
@@ -306,7 +306,8 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - competencias-ciencias.qmd
+        - eso-competencias-ciencias.qmd
+        - bach-competencias-ciencias.qmd
 
     - id: "edulinks"
       title: "WebLinks Educational"

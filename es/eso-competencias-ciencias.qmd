@@ -1,7 +1,7 @@
 ---
-title: "Competencias curriculares en las ciencias"
+title: "ESO - Competencias curriculares en Ciencias"
 subtitle: "Textos oficiales de las competencias en Ciencias"
-filename: competencias-ciencias
+filename: eso-competencias-ciencias
 author: "Pedro Martínez Durán"
 date: "20/11/2025"
 date-modified: last-modified
@@ -27,13 +27,13 @@ format: html
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingBio">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBio" aria-expanded="false" aria-controls="collapseBio">
-<strong>🧬 Biologia i Geologia</strong>
+<strong>🧬 Biología y Geología</strong>
 </button>
 </h2>
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[Biología y Geología](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Biologia-i-Geologia.pdf )
+[**Biología y Geología**](/files/Biologia-i-Geologia.pdf)
 
 Entre los propósitos de las asignaturas de Biología y Geología de la ESO se encuentra el de promover la conciencia, por parte del alumnado, de la importancia del desarrollo sostenible, así como despertar la curiosidad, desarrollar la actitud, el pensamiento y las habilidades científicas críticas, la valoración del papel de la ciencia, la igualdad de oportunidades entre géneros y promover, especialmente entre los estudiantes, las vocaciones científicas.
 
@@ -111,9 +111,7 @@ En la asignatura Biología y Geología se trabaja un total de 6 competencias esp
 
 **Interpretar fenómenos naturales, prediciendo y argumentando su comportamiento con base en modelos, leyes y teorías propias de la biología y la geología para apropiarse de conceptos y procesos propios de la ciencia.**
 
-**Criterios de evaluación
-  
-None
+**Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
 None
@@ -124,7 +122,6 @@ El desarrollo científico es un proceso que rara vez es resultado del trabajo de
 Además, todo proceso de investigación científica debe comenzar con la recopilación y análisis crítico de las publicaciones del área de estudio porque la construcción de nuevos conocimientos se basa en conocimientos previos.
 
 Además, el vertiginoso avance de la ciencia y la tecnología es el motor de importantes cambios sociales que se producen cada vez con mayor frecuencia y con impactos más evidentes. Por ello, la participación activa de los estudiantes en la sociedad exige cada vez más una comprensión de los últimos descubrimientos y avances científicos y tecnológicos para interpretar y evaluar críticamente la información que inunda los medios de comunicación con el fin de extraer sus propias conclusiones, tomar decisiones coherentes y establecer interacciones comunicativas constructivas, utilizando una argumentación fundamentada y respetuosa con flexibilidad para cambiar concepciones a la vista de los datos y posiciones aportadas por otros interlocutores.
-  
 
 ## Competencia específica 2
 
@@ -133,7 +130,7 @@ Además, el vertiginoso avance de la ciencia y la tecnología es el motor de imp
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 2.1 Resolver cuestiones relacionadas con el conocimiento de la materia de Biología y Geología localizando, seleccionando fuentes confiables y organizando la información mediante el correcto uso y cita de diferentes fuentes.  2.2 Reconocer la información con base científica, distinguiéndola de pseudociencias, rumores, teorías conspirativas, noticias y creencias falsas, etc., y manteniendo una actitud escéptica ante ellas. | 2.1 Resolver cuestiones y profundizar en aspectos relacionados con el conocimiento de la materia de Biología y Geología localizando, seleccionando, organizando y analizando críticamente información procedente de diferentes fuentes, citándolas correctamente con respeto a la propiedad intelectual.  2.2 Comprobar la fiabilidad de la información sobre temas relacionados con el conocimiento de la asignatura de Biología y Geología, utilizando fuentes fiables (teniendo en cuenta si se identifica al autor o responsable, si hay una institución detrás, cuál es el propósito o intención de publicar esa información, si puede ser verificada con otras fuentes, si existe bibliografía, etc.) adoptando una actitud crítica y escéptica hacia la información no basada en la ciencia, como pseudociencias, teorías de conspiración, creencias, fake news, mentiras, etc.
 
 La investigación científica, la participación activa en la sociedad y el desarrollo profesional y personal de una persona implican muchas veces la adquisición de nuevos conocimientos y habilidades que suelen comenzar con la búsqueda, selección y recopilación de información relevante de diferentes fuentes para establecer las bases cognitivas de este aprendizaje.
@@ -147,8 +144,6 @@ Por ello, esta competencia específica prepara a los estudiantes para su autonom
 **Diseñar, desarrollar y comunicar el enfoque y las conclusiones de la investigación dentro del ámbito escolar, incluyendo la formulación de preguntas e hipótesis y su comparación experimental, siguiendo los pasos de las metodologías de las ciencias, como la experimentación y la búsqueda de evidencia, cooperando cuando sea necesario, para investigar aspectos relacionados con la biología y la geología.**
 
 **Criterios de evaluación
-  
-None
 
 | 1º, 2º y 3º | 4to |
 None
@@ -180,9 +175,8 @@ Cabe señalar que potenciar esta competencia específica significa que los estud
 
 **Analizar los efectos de determinadas acciones sobre el medio ambiente y la salud, con base en los fundamentos de las ciencias biológicas y geológicas, para hacer propuestas de acción y decidir de manera informada sobre los problemas actuales y adoptar hábitos que minimicen los impactos ambientales, que sean compatibles con el desarrollo sostenible y que permitan mantener y mejorar la salud individual y colectiva.**
 
-**Criterios de evaluación
-  
-None
+**Criterios de evaluación**
+
 
 | 1º, 2º y 3º | 4to |
 None
@@ -198,9 +192,7 @@ El objetivo final es conseguir, a través del sistema educativo, una ciudadanía
 
 **Analizar los elementos del paisaje, utilizando de forma integrada los conocimientos de la biología, la geología y las ciencias ambientales para explicar su origen y posible evolución, así como las características de la comunidad de organismos, la dinámica del relieve y los posibles riesgos naturales.**
 
-**Criterios de evaluación
-  
-None
+**Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
 None
@@ -212,7 +204,7 @@ Determinados fenómenos naturales se producen con mucha más frecuencia en zonas
 
 Esta competencia específica implica que los estudiantes desarrollen los conocimientos y el espíritu crítico necesarios para justificar la naturaleza del paisaje, su origen y evolución, y reconocer el riesgo geológico asociado a una determinada zona, adoptando una actitud crítica ante determinadas prácticas urbanísticas o forestales que pongan en peligro vidas humanas, infraestructuras o patrimonio natural. Los estudiantes se enfrentarán a situaciones problemáticas o interrogantes planteadas en el contexto de enseñanza-aprendizaje, en las que deberán analizar posibles riesgos naturales y posibles acciones. La intención de este concurso específico es que estos ideales, adquiridos a través del sistema educativo, lleguen a la sociedad y al mar, contribuyendo a formar una ciudadanía crítica y comprometida con el medio ambiente y con criterio suficiente para no exponerse a riesgos naturales evitables, beneficiando así a la humanidad en su conjunto.
 
-### conocimiento
+### Conocimiento
 
 El conocimiento se formula en relación con contextos en los que se puede desarrollar el aprendizaje de competencias. Los docentes pueden incorporar contextos alternativos si lo consideran relevante.
 
@@ -334,13 +326,13 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingFis">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFis" aria-expanded="false" aria-controls="collapseFis">
-<strong>⚛️ Física i Química</strong>
+<strong>⚛️ Física y Química</strong>
 </button>
 </h2>
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Física y Química**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Fisica-i-Quimica.pdf)
+[**Física y Química**](/files/Fisica-i-Quimica.pdf)
 
 
 Entre los objetivos de las asignaturas de Física y Química en la educación secundaria obligatoria se encuentra la concienciación, por parte del alumnado, de la contribución de estas ciencias a la mejora de la calidad de vida y al desarrollo sostenible, así como el de despertar la curiosidad, desarrollar la actitud crítica, el pensamiento y las habilidades científicas, la valoración del papel de la ciencia, la igualdad de oportunidades entre géneros y el fomento de las vocaciones científicas, especialmente entre el alumnado y el alumnado.
@@ -433,9 +425,8 @@ El desarrollo de esta competencia específica implica plantearse preguntas para 
 
 **Diseñar, desarrollar y comunicar el enfoque y las conclusiones de la investigación, incluyendo la formulación de preguntas e hipótesis y su comparación experimental, dentro del ámbito escolar, siguiendo los pasos de las metodologías propias de la ciencia, como la experimentación y la búsqueda de evidencias, y el pensamiento computacional cooperando, cuando sea necesario, para investigar aspectos relacionados con la física y la química.**
 
-**Criterios de evaluación
-  
-None
+**Criterios de evaluación**
+
 
 | 1º, 2º y 3º | 4to |
 None
@@ -452,7 +443,7 @@ Utilizar los conocimientos específicos que los estudiantes van adquiriendo a me
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 3.1 Generar y utilizar datos de diversas fuentes y formatos (textos, tablas, gráficos, diagramas, etc.) para interpretar, validar y comunicar información relacionada con un proceso físico o químico específico, mediante la selección crítica de lo más relevante para la solución del problema.  3.2 Utilizar adecuadamente las reglas básicas de la física y la química, incluido el uso de unidades de medida, herramientas matemáticas y formulación y nomenclatura IUPAC, como elementos básicos del lenguaje científico y la comunicación efectiva para el intercambio de conocimientos entre la comunidad científica.  3.3 Utilizar de forma práctica y responsable las normas de uso de espacios científicos específicos, como el laboratorio de física y química, como medio para preservar la salud personal y colectiva, la conservación sostenible del medio ambiente y el respeto a las instalaciones. | 3.1 Generar y utilizar datos de diversas fuentes y formatos (textos, tablas, gráficos, diagramas, etc.) para interpretar, validar y comunicar información relacionada con un proceso físico o químico específico, mediante la selección crítica de lo más relevante para la solución del problema.  3.2 Utilizar adecuadamente las reglas básicas de la física y la química, incluido el uso apropiado de diversos sistemas de unidades de medida, las herramientas matemáticas necesarias y la formulación y nomenclatura IUPAC, como elementos básicos del lenguaje científico y la comunicación efectiva para el intercambio de conocimientos entre la comunidad científica.  3.3 Utilizar de forma práctica, responsable y rigurosa las normas de uso de espacios científicos específicos, como el laboratorio de física y química, como medio para garantizar la salud personal y colectiva, la conservación sostenible del medio ambiente y el respeto a las instalaciones. |
 
 La correcta interpretación y comunicación de la información juegan un papel muy importante en la construcción del pensamiento científico, ya que brindan a los estudiantes la capacidad de comunicarse en el lenguaje universal de la ciencia, más allá de las fronteras geográficas y culturales del mundo. Con el desarrollo de esta competencia se pretende que los estudiantes se familiaricen con los flujos de información multidireccionales propios de las disciplinas científicas y con las reglas que toda la comunidad científica reconoce como universales para establecer comunicaciones efectivas incluidas en un entorno que asegure la salud y el desarrollo ambiental sostenible. Además, requiere que los estudiantes evalúen la calidad de los datos y valoren su imprecisión, así como que reconozcan la importancia de la investigación previa a un estudio científico.
@@ -466,7 +457,7 @@ Con esta competencia específica queremos promover la adquisición de conocimien
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 4.1 Utilizar de forma crítica, creativa y eficiente los entornos digitales y diferentes recursos en diversos formatos para defender el propio punto de vista sobre fenómenos y cuestiones eco-socialmente relevantes.  4.2 Justificar su propio punto de vista sobre temas ecosocialmente relevantes, utilizando el trabajo tanto individual como en equipo, respetando las aportaciones de todos y promoviendo el género y la inclusión social.  4.3 Buscar y analizar información con medios convencionales y digitales y crear contenidos relacionados con la física y la química, seleccionando juiciosamente las fuentes más fiables y organizando la información mediante el correcto uso y cita de las diferentes fuentes. | 4.1 Utilizar de forma crítica, creativa y eficiente los entornos digitales y diferentes recursos en diversos formatos para defender el propio punto de vista sobre fenómenos y cuestiones eco-socialmente relevantes.  4.2 Justificar su propio punto de vista sobre temas ecosocialmente relevantes, utilizando el trabajo tanto individual como en equipo, respetando las aportaciones de todos y promoviendo el género y la inclusión social.  4.3 Buscar y analizar información con medios convencionales y digitales y crear contenidos relacionados con la física y la química, seleccionando juiciosamente las fuentes más fiables y organizando la información mediante el correcto uso y cita de las fuentes, con respeto a la propiedad intelectual. |
 
 Los recursos, tanto tradicionales como digitales, juegan un papel crucial en el proceso de enseñanza y aprendizaje en general, y en el logro de habilidades en particular, ya que un recurso bien seleccionado facilita el desarrollo de procesos cognitivos de nivel superior y fomenta la comprensión, la creatividad y el desarrollo personal y grupal de los estudiantes. La importancia de los recursos, no sólo utilizados para la búsqueda, análisis, comunicación y argumentación de información, sino también para otros fines como la creación de materiales didácticos o la comunicación efectiva con otros miembros de su entorno de aprendizaje, proporciona a los estudiantes las herramientas para adaptarse a una sociedad que actualmente demanda personas integradas y comprometidas con su entorno.
@@ -480,7 +471,7 @@ Es por ello que esta competencia específica también pretende que el estudiante
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 5.1 Justificar con fundamentos científicos la importancia de preservar los sistemas fisicoquímicos del medio ambiente (calidad del aire, agua, suelo).  5.2 Justificar la necesidad de tener hábitos sostenibles, analizando críticamente las actividades propias y ajenas y basándose en los propios razonamientos, conocimientos adquiridos e información disponible.  5.3 Identificar algunas situaciones en las que los conocimientos derivados de la física y la química pueden contribuir a mejorar la sostenibilidad ambiental y la salud individual y colectiva.  5.4 Emprender, de forma guiada y con la metodología adecuada, proyectos científicos relacionados con la mejora de la sociedad y que promuevan el crecimiento entre pares como base de una comunidad científica escolar crítica y ética. | 5.1 Justificar con fundamentos científicos la importancia de la calidad del aire, del equilibrio en su composición en los distintos niveles atmosféricos, de las corrientes de agua y suelos libres de contaminantes y el desarrollo sostenible e identificar los posibles riesgos naturales potenciados por determinadas acciones humanas sobre los sistemas físico-químicos del medio ambiente. 5.2 Argumentar sobre la necesidad de tener hábitos sostenibles, analizando las acciones propias y ajenas (hábitos de consumo, generación de residuos, transporte, etc.), con una actitud crítica y basada en los fundamentos del funcionamiento de los sistemas naturales.  5.3 Argumentar, justificando las razones aportadas, sobre cómo los conocimientos derivados de la física y la química pueden contribuir a mejorar la sostenibilidad ambiental y la salud individual y colectiva.  5.4 Emprender, de forma autónoma y con la metodología adecuada, proyectos científicos relacionados con la mejora de la sociedad y que promuevan el crecimiento entre pares como base de una comunidad científica escolar crítica y ética. |
 
 Las disciplinas científicas se caracterizan por formar un conjunto de conocimientos integrados e interrelacionados. De la misma manera, las personas dedicadas a la ciencia desarrollan habilidades de trabajo en equipo, ya que la colaboración y la cooperación son la base de la construcción del conocimiento científico en toda sociedad. Los estudiantes competentes estarán acostumbrados a los métodos de trabajo de las técnicas más comunes de todas las disciplinas científicas, debido a que esta es la manera de lograr, a través del emprendimiento, la integración en una sociedad en evolución. El trabajo en equipo sirve para unir diferentes puntos de vista y crear modelos de investigación unificados, que son parte del progreso de la ciencia.
@@ -494,14 +485,14 @@ El desarrollo de esta competencia específica crea un vínculo de compromiso ent
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 6.1 Interpretar la ciencia como un proceso en construcción, a través del análisis con perspectiva histórica de los avances científicos de los hombres y mujeres que participaron en él, y valorar las repercusiones mutuas de la ciencia actual con la tecnología, la sociedad y el medio ambiente.  6.2 Razonar la capacidad de la ciencia para proponer, a través de la participación ciudadana, soluciones sostenibles a las necesidades tecnológicas, ambientales, económicas y sociales, detectadas en el medio ambiente, sin sesgos de género. | 6.1 Interpretar la ciencia como un proceso en construcción, tanto a través del análisis con perspectiva histórica de los avances científicos de los hombres y mujeres que en ella participaron, como de las líneas de investigación actuales, y valorar las repercusiones mutuas y las implicaciones sociales, económicas y ambientales de la ciencia actual en la sociedad.  6.2 Argumentar la capacidad de la ciencia para proponer, a través de la participación ciudadana, soluciones sostenibles a las necesidades tecnológicas, ambientales, económicas y sociales, detectadas en el entorno, sin sesgos de género. |
 
 Para completar el desarrollo de la competencia en la materia de Física y Química, el estudiante debe asumir que la ciencia no es un proceso terminado, sino que está en continua construcción recíproca con la tecnología y la sociedad. La búsqueda de nuevas explicaciones, la mejora de procedimientos, nuevos descubrimientos científicos, etc. influyen en la sociedad, y conocer los impactos que produce la ciencia de forma global es fundamental para elegir el camino correcto para el desarrollo. En esta línea, los estudiantes competentes deben tener en cuenta valores como la importancia de los avances científicos para una sociedad exigente, los límites de la ciencia, las cuestiones éticas y la confianza en los científicos y su actividad.
 
 Todo ello forma parte de una conciencia social en la que no sólo interviene la comunidad científica, sino que requiere la participación de toda la sociedad, ya que implica un progreso individual y social conjunto.
 
-### conocimiento
+### Conocimiento
 
 El conocimiento se formula en relación con contextos en los que se puede desarrollar el aprendizaje de competencias. Los docentes pueden incorporar contextos alternativos si lo consideran relevante.
 
@@ -615,7 +606,7 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Cultura Científica**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica") **(asignatura optativa de cuarto de la ESO)**
+[**Cultura Científica**](/files/Cultura-Cientifica.pdf) **(asignatura optativa de cuarto de la ESO)**
 
 En el siglo XXI, la ciencia está en todas partes, permea el medio ambiente y condiciona nuestras vidas, siendo inseparable de todos los ámbitos económicos y sociales más relevantes. En este sentido, la alfabetización científica se vuelve esencial para el conocimiento y comprensión de los conceptos científicos y los procesos necesarios para la toma de decisiones personales y colectivas. Se convierte en un medio indispensable para una participación efectiva en las sociedades y la economía del milenio.
 
@@ -764,7 +755,7 @@ Para completar el desarrollo de la competencia en la asignatura de Cultura Cient
 
 Todo ello forma parte de una conciencia social en la que no sólo interviene la comunidad científica, sino que requiere la participación de toda la sociedad, ya que implica un progreso individual y social conjunto. La identificación de necesidades o problemas próximos invita a los estudiantes a asumir un papel activo en la construcción de entornos más justos y sostenibles.
 
-**saber**
+**Saber**
 
 El conocimiento se formula en relación con contextos en los que se puede desarrollar el aprendizaje de competencias. Los docentes pueden incorporar diferentes contextos si lo consideran relevante.
 
@@ -818,13 +809,13 @@ Las situaciones de aprendizaje permiten programar el curso de cualquier nivel o 
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingMat">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMat" aria-expanded="false" aria-controls="collapseMat">
-<strong>📐 Matemàtiques</strong>
+<strong>📐 Matemáticas</strong>
 </button>
 </h2>
 <div id="collapseMat" class="accordion-collapse collapse" aria-labelledby="headingMat" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Matemáticas](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Matematiques.pdf "Matemáticas")**
+[**Matemáticas**](/files/Matematiques.pdf)
 
 Las matemáticas se encuentran en cualquier actividad humana, desde el trabajo científico hasta las expresiones culturales y artísticas, formando parte del patrimonio cultural de nuestra sociedad. El dominio del espacio y el tiempo, la organización y optimización de recursos, formas y proporciones, la capacidad de pronosticar y controlar la incertidumbre o el correcto uso de la tecnología digital son características de las matemáticas, pero también el razonamiento, la argumentación, la comunicación, la perseverancia, la toma de decisiones o la creatividad. Por ello, es importante desarrollar en los estudiantes los aspectos de las matemáticas que les permitan crecer y actuar con conocimiento tanto en el contexto personal, académico y científico como en el social y laboral.
 
@@ -873,7 +864,7 @@ En la asignatura Matemáticas se trabaja un total de 9 competencias específicas
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 1.1 Interpretar problemas matemáticos organizando la información dada y entendiendo las preguntas formuladas.  1.2 Desarrollar representaciones matemáticas efectivas, con recursos manipulables, gráficos y digitales, que conduzcan a la comprensión y resolución de problemas y situaciones de la vida cotidiana.  1.3 Analizar y seleccionar herramientas y estrategias desarrolladas evaluando y contrastando de forma razonada su eficacia e idoneidad en la resolución de problemas.  1.4 Obtener soluciones matemáticas a un problema movilizando el conocimiento necesario y discriminando la existencia o no de una o más soluciones a un problema. | 1.1 Interpretar problemas matemáticos organizando la información dada y entendiendo las preguntas formuladas.  1.2 Desarrollar representaciones matemáticas efectivas, con recursos manipulables, gráficos y digitales, que conduzcan a la comprensión y resolución de problemas y situaciones de la vida cotidiana.  1.3 Analizar y seleccionar herramientas y estrategias desarrolladas evaluando y contrastando de forma razonada su eficacia e idoneidad en la resolución de problemas.  1.4 Obtener soluciones matemáticas a un problema movilizando el conocimiento necesario y discriminando la existencia o no de una o más soluciones a un problema. |
 
 La resolución de problemas es un eje fundamental en el aprendizaje de las matemáticas, por ser un proceso central en la construcción del conocimiento matemático. Tanto las situaciones de la vida cotidiana en diferentes contextos como los problemas propuestos en el campo de las matemáticas pueden ser catalizadores de nuevos conocimientos, ya que las reflexiones que se realizan durante su resolución ayudan a construir conceptos y establecer conexiones entre ellos.
@@ -887,7 +878,7 @@ El desarrollo de esta competencia implica aplicar los conocimientos matemáticos
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 2.1 Construir y expresar coherentemente ideas y razonamientos que permitan justificar la validez de soluciones, procesos y conclusiones desde diferentes perspectivas (género, sostenibilidad, consumo responsable…).  2.2 Generar preguntas basadas en argumentos matemáticos que permitan plantear nuevos desafíos relacionados con el problema resuelto. | 2.1 Construir y expresar coherentemente ideas y razonamientos que permitan justificar la validez de soluciones, procesos y conclusiones desde diferentes perspectivas (género, sostenibilidad, consumo responsable…).  2.2 Generar preguntas basadas en argumentos matemáticos que nos permitan plantear nuevos desafíos relacionados con el problema resuelto |
 
 El análisis de las soluciones obtenidas en la resolución de un problema potencia la reflexión crítica sobre su validez, tanto desde un punto de vista estrictamente matemático como desde una perspectiva global, valorando aspectos relacionados con la sostenibilidad, el consumo responsable, la equidad o la no discriminación, entre otros. El razonamiento científico y matemático son las principales herramientas para llevar a cabo esta validación, pero también lo son la lectura atenta, la formulación de preguntas adecuadas, la elección de estrategias para verificar la pertinencia de las soluciones obtenidas según la situación actual, la conciencia del propio progreso y la autoevaluación.
@@ -901,7 +892,7 @@ El desarrollo de esta competencia implica procesos reflexivos propios de la meta
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 3.1 Formular preguntas en diversos contextos que puedan responderse a través del conocimiento matemático.  3.2 Realizar conjeturas matemáticas sencillas de forma autónoma y razonadas en un contexto en el que el estudiante tenga libertad creativa haciendo uso, si es necesario, de herramientas tecnológicas (lenguajes de programación, hojas de cálculo, GeoGebra, fotografía matemática, vídeo, etc.).  3.3 Proponer problemas de forma autónoma, creativa y razonada en un contexto. | 3.1 Formular preguntas en diversos contextos que puedan responderse a través del conocimiento matemático.  3.2 Realizar conjeturas matemáticas sencillas de forma autónoma y razonadas en un contexto en el que el estudiante tenga libertad creativa haciendo uso, si es necesario, de herramientas tecnológicas (lenguajes de programación, hojas de cálculo, GeoGebra, fotografía matemática, vídeo, etc.).  3.3 Proponer problemas de forma autónoma, creativa y razonada en un contexto. |
 
 El razonamiento y el pensamiento analítico aumentan la percepción de patrones, estructuras y regularidades tanto en situaciones del mundo real como abstractas al favorecer la formulación de conjeturas sobre su naturaleza. La formulación y verificación de conjeturas se puede realizar mediante materiales manipulativos, calculadoras, software, representaciones y símbolos, trabajando individual o colectivamente utilizando razonamientos inductivos y deductivos para formular argumentos matemáticos.
@@ -915,7 +906,7 @@ El desarrollo de esta competencia implica formular conjeturas, examinar su valid
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 4.1 Descomponer un problema o situación de la vida cotidiana en diferentes partes, abordándolas una a una para poder encontrar la solución global con los dispositivos digitales.  4.2 Reconocer patrones, similitudes y tendencias en los problemas o situaciones a resolver.  4.3 Encontrar los principios que generan los patrones de un problema descartando datos irrelevantes e identificando las partes más importantes.  4.4 Generar instrucciones paso a paso para resolver un problema y otros similares probando y llevando a cabo posibles soluciones con dispositivos digitales. | 4.1 Descomponer un problema o situación de la vida cotidiana en diferentes partes, abordándolas una a una para poder encontrar la solución global con los dispositivos digitales.  4.2 Reconocer patrones, similitudes y tendencias en los problemas o situaciones a resolver.  4.3 Encontrar los principios que generan los patrones de un problema descartando datos irrelevantes e identificando las partes más importantes.  4.4 Generar instrucciones paso a paso para resolver un problema y otros similares probando y llevando a cabo posibles soluciones con dispositivos digitales. |
 
 El pensamiento computacional está directamente relacionado con la resolución de desafíos o problemas y la formulación de procedimientos, utilizando la abstracción para identificar los aspectos más relevantes y la descomposición en tareas más simples con el objetivo de llegar a una solución al problema que pueda ser ejecutada por un sistema informático. Llevar el pensamiento computacional a la vida diaria significa relacionar los aspectos fundamentales de la informática con las necesidades de los estudiantes.
@@ -929,7 +920,7 @@ El desarrollo de esta competencia implica la creación de modelos abstractos de 
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 5.1 Identificar y utilizar las conexiones entre diferentes representaciones de un mismo concepto matemático cuando se extrae información de una de ellas para aplicarla a la otra.  5.2 Reconocer y relacionar conexiones entre diferentes conceptos y conocimientos matemáticos a través de situaciones de la vida cotidiana para extraer conclusiones y tener una visión integrada de las matemáticas. | 5.1 Identificar y utilizar las conexiones entre diferentes representaciones de un mismo concepto matemático cuando se extrae información de una de ellas para aplicarla a la otra.  5.2 Reconocer y relacionar conexiones entre diferentes conceptos y conocimientos matemáticos a través de situaciones de la vida cotidiana para extraer conclusiones y tener una visión integrada de las matemáticas. |
 
 La conexión entre los diferentes conceptos, procedimientos e ideas matemáticas aporta una comprensión más profunda y duradera del conocimiento adquirido, proporcionando una visión más amplia sobre el conocimiento mismo. Percibir las matemáticas como un todo implica estudiar sus conexiones internas y reflexionar sobre ellas, tanto las existentes entre bloques de conocimiento, como entre las matemáticas de un nivel y las de diferentes etapas educativas.
@@ -943,7 +934,7 @@ El desarrollo de esta competencia implica vincular nuevas ideas matemáticas con
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 6.1 Reconocer y utilizar las matemáticas presentes en la vida cotidiana utilizando los procesos inherentes a la investigación científica y matemática: inferir, medir, comunicar, clasificar, predecir..., en situaciones susceptibles de ser abordadas en términos matemáticos.  6.2 Reconocer y utilizar las conexiones entre las matemáticas y otras materias, en situaciones que puedan abordarse en términos matemáticos.  6.3 Identificar y valorar la contribución actual e histórica de las matemáticas al progreso de la humanidad, también desde una perspectiva de género, ante los desafíos que plantea la sociedad actual.  6.4 Desarrollar el espíritu crítico y el potencial creativo de las matemáticas argumentando propuestas innovadoras en contextos científicos, tecnológicos, sociales, artísticos y culturales. | 6.1 Reconocer y utilizar las matemáticas presentes en la vida cotidiana utilizando los procesos inherentes a la investigación científica y matemática: inferir, medir, comunicar, clasificar, predecir..., en situaciones susceptibles de ser abordadas en términos matemáticos.  6.2 Reconocer y utilizar las conexiones entre las matemáticas y otras materias, en situaciones que puedan abordarse en términos matemáticos.  6.3 Identificar y valorar la contribución actual e histórica de las matemáticas al progreso de la humanidad, también desde una perspectiva de género, ante los desafíos que plantea la sociedad actual.  6.4 Desarrollar el espíritu crítico y el potencial creativo de las matemáticas argumentando propuestas innovadoras en contextos científicos, tecnológicos, sociales, artísticos y culturales. |
 
 Reconocer y utilizar la conexión de las matemáticas con otras materias, con la vida real o con la propia experiencia aumenta la formación matemática de los estudiantes. Es importante que los estudiantes tengan la oportunidad de experimentar las matemáticas en diferentes contextos (personal, escolar, social, científico y humanístico), valorando, tanto históricamente como actualmente, la contribución de las matemáticas a la resolución de los grandes objetivos de desarrollo global.
@@ -957,7 +948,7 @@ La conexión entre las matemáticas y otras materias no debe limitarse al conoci
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 7.1 Comunicar información de forma organizada, utilizando un lenguaje matemático apropiado, de forma oral y escrita, para describir, explicar y justificar razonamientos, procedimientos y conclusiones.  7.2 Representar conceptos, procedimientos y resultados matemáticos con claridad, utilizando diferentes herramientas y formas de expresión, como a través del dibujo, fotografía, videos, obras visuales y musicales, para visualizar ideas y estructurar procesos matemáticos.  7.3 Dialogar con compañeros y debatir ideas matemáticas para describir, explicar y justificar razonamientos, procesos y conclusiones. | 7.1 Comunicar información de forma organizada, utilizando un lenguaje matemático apropiado, de forma oral y escrita, para describir, explicar y justificar razonamientos, procedimientos y conclusiones.  7.2 Representar conceptos, procedimientos y resultados matemáticos con claridad, utilizando diferentes herramientas y formas de expresión, como a través del dibujo, fotografía, videos, obras visuales y musicales, para visualizar ideas y estructurar procesos matemáticos.  7.3 Dialogar con compañeros y debatir ideas matemáticas para describir, explicar y justificar razonamientos, procesos y conclusiones. |
 
 La comunicación y el intercambio de ideas es una parte esencial de la educación científica y matemática. A través de la comunicación las ideas se convierten en objetos de reflexión, refinamiento, discusión y rectificación. Comunicar ideas, conceptos y procesos contribuye a colaborar, cooperar, fortalecer y generar nuevos conocimientos.
@@ -975,7 +966,7 @@ El desarrollo de esta competencia conlleva la adquisición de un conjunto de rep
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 8.1 Gestionar las emociones y desarrollar la confianza en sí mismo para afrontar nuevos retos matemáticos perseverando en su resolución en cualquier situación de aprendizaje propuesta.  8.2 Ser consciente de que estás aprendiendo y de cómo estás aprendiendo en cualquier situación de aprendizaje propuesta. 8.3 Identificar tus propios errores y expresar de forma razonada cuál es el motivo que los provoca (conceptual, procedimental, estratégico...), en la resolución de retos o problemas, perseverando en su resolución.  8.4 Participar en la propia evaluación gestionando estrategias que ayuden a superar las dificultades, en la revisión de las producciones realizadas.   8.5 Apreciar el potencial creativo de las matemáticas así como su capacidad para generar armonía y belleza, en las creaciones y producciones realizadas. | 8.1 Gestionar las emociones y desarrollar la confianza en sí mismo para afrontar nuevos retos matemáticos perseverando en su resolución en cualquier situación de aprendizaje propuesta.  8.2 Ser consciente de que estás aprendiendo y de cómo estás aprendiendo en cualquier situación de aprendizaje propuesta. 8.3 Identificar tus propios errores y expresar de forma razonada cuál es el motivo que los provoca (conceptual, procedimental, estratégico...), en la resolución de retos o problemas, perseverando en su resolución.  8.4 Participar en la propia evaluación gestionando estrategias que ayuden a superar las dificultades, en la revisión de las producciones realizadas.   8.5 Apreciar el potencial creativo de las matemáticas así como su capacidad para generar armonía y belleza, en las creaciones y producciones realizadas. |
 
 Resolver problemas matemáticos o desafíos más globales relacionados con las matemáticas debería ser una tarea gratificante. Las habilidades emocionales en el aprendizaje de las matemáticas promueven el bienestar, la regulación emocional y el interés de los estudiantes por su aprendizaje.
@@ -989,7 +980,7 @@ El desarrollo de esta competencia implica identificar y gestionar emociones, rec
 **Criterios de evaluación**
 
 | 1º, 2º y 3º | 4to |
-None
+
 | 9.1 Cooperar en el trabajo en equipo tanto en entornos presenciales como virtuales, escuchando a los demás y valorando sus aportes, respetando la perspectiva de género, en situaciones donde el conocimiento se comparte y se construye en conjunto.  9.2 Colaborar activamente con otros, alcanzando acuerdos y cumpliéndolos, para lograr los objetivos del grupo relacionados con la construcción del conocimiento matemático, valorando el éxito colectivo como estrategia de superación personal.  9.3. Equilibrar las necesidades personales con las del grupo, basándose en la empatía y el respeto, reconociendo la diversidad y el valor de las aportaciones de los demás para generar nuevos aprendizajes matemáticos, tanto individuales como colectivos.  9.4. Ayudar a identificar errores y dificultades de aprendizaje de los compañeros realizando aportaciones constructivas y concretas que puedan ayudar a superarlos y mejorar. | 9.1 Cooperar en el trabajo en equipo tanto en entornos presenciales como virtuales, escuchando a los demás y valorando sus aportes, respetando la perspectiva de género, en situaciones donde el conocimiento se comparte y se construye en conjunto.  9.2 Colaborar activamente con otros, alcanzando acuerdos y cumpliéndolos, para lograr los objetivos del grupo relacionados con la construcción del conocimiento matemático, valorando el éxito colectivo como estrategia de superación personal.  9.3. Equilibrar las necesidades personales con las del grupo, basándose en la empatía y el respeto, reconociendo la diversidad y el valor de las aportaciones de los demás para generar nuevos aprendizajes matemáticos, tanto individuales como colectivos.  9.4. Ayudar a identificar errores y dificultades de aprendizaje de los compañeros realizando aportaciones constructivas y concretas que puedan ayudar a superarlos y mejorar. |
 
 El desarrollo de esta competencia pasa por mostrar empatía por los demás, establecer y mantener relaciones positivas, ejercer la escucha activa y la comunicación asertiva, trabajar en equipo y tomar decisiones responsables. Asimismo, se debe fomentar la ruptura de estereotipos e ideas preconcebidas sobre las matemáticas asociadas a cuestiones individuales, como el género o la aptitud para las matemáticas.
@@ -997,11 +988,8 @@ El desarrollo de esta competencia pasa por mostrar empatía por los demás, esta
 Trabajar los valores de respeto, tolerancia, igualdad o resolución pacífica de conflictos, al mismo tiempo que resuelven retos matemáticos desarrollando habilidades efectivas de comunicación, planificación, indagación, motivación, confianza, para crear relaciones y entornos laborales saludables, permite fortalecer la confianza en uno mismo y normalizar situaciones de convivencia en igualdad.
 
 Los entornos virtuales son una buena herramienta para compartir y construir conocimiento en conjunto, en este sentido es necesario promover su uso.
-  
-  
-  
 
-**saber**
+**Saber**
 
 Los conocimientos, entendidos como el conjunto de conocimientos, habilidades, valores y actitudes, se formulan en relación con contextos donde se pueden desarrollar sus habilidades de aprendizaje. Los docentes pueden incorporar contextos alternativos si lo consideran relevante.
 
@@ -1235,13 +1223,13 @@ Dado que esta materia se imparte en educación secundaria obligatoria, se ha opt
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🤖 Robòtica i Programació</strong>
+<strong>🤖 Robótica y Programación</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Robótica y Programación](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robótica y Programación")**
+[**Robótica y Programación**](/files/Robotica-i-Programacio.pdf)
 
 Esta asignatura optativa tiene como objetivo que los estudiantes desarrollen habilidades para encontrar soluciones innovadoras y creativas en la resolución de problemas a través del diseño, programación y creación de prototipos de sistemas automatizados y robots.
 
@@ -1343,7 +1331,7 @@ Esta competencia se refiere, por un lado, al diseño digital o manual de element
 
 Asimismo, la aplicación de normas de seguridad en el trabajo con materiales, herramientas y máquinas son fundamentales para la salud de los estudiantes, evitando los riesgos inherentes a muchas de las técnicas que deben utilizarse.
 
-**saber**
+**Saber**
 
 El conocimiento se formula en relación con contextos donde se pueden desarrollar sus habilidades de aprendizaje. Los docentes pueden incorporar contextos alternativos si lo consideran relevante.
 
@@ -1379,13 +1367,13 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingTec">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTec" aria-expanded="false" aria-controls="collapseTec">
-<strong>⚙️ Tecnologia</strong>
+<strong>⚙️ Tecnología</strong>
 </button>
 </h2>
 <div id="collapseTec" class="accordion-collapse collapse" aria-labelledby="headingTec" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Tecnología](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Tecnologia.pdf "Tecnología")**
+[**Tecnología**](/files/Tecnologia.pdf)
 
 La asignatura de Tecnología contribuye a dar respuesta a las necesidades de los ciudadanos ante los retos tecnológicos que plantea la sociedad actual, especialmente la creciente digitalización. Así, esta asignatura sirve de base, no sólo para comprender la evolución social, sino también para poder actuar con criterios técnicos, científicos y éticos en el ejercicio de una ciudadanía responsable y activa, utilizando la generación de conocimiento como motor del desarrollo y fomentando la participación de los estudiantes en igualdad de condiciones con una visión integral de la tecnología, resaltando su aspecto social.
 
@@ -1517,7 +1505,7 @@ La tecnología ha respondido a las necesidades humanas a lo largo de la historia
 
 El objetivo es promover el desarrollo tecnológico para mejorar el bienestar social minimizando las repercusiones en otros ámbitos, mencionados anteriormente. Para ello se deben tener presentes todos los criterios desde el momento inicial de detección de la necesidad y estimarlos en cada una de las fases del proceso creativo. En este sentido, estas cuestiones se aplican al diseño de arquitectura bioclimática en edificios y medios de transporte sostenibles. Finalmente, se abordan aspectos actitudinales relacionados con la valoración del ahorro energético en beneficio del medio ambiente y la contribución de las tecnologías emergentes, actualmente aplicables en cualquier ámbito, a la consecución de los objetivos de desarrollo sostenible.
 
-**saber**
+**Saber**
 
 El conocimiento se formula en relación con contextos donde se pueden desarrollar sus habilidades de aprendizaje. Los docentes pueden incorporar contextos alternativos si lo consideran relevante.
 
