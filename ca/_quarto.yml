@@ -3,7 +3,7 @@ project:
   output-dir: ../docs/ca
 
   preview:
-    port: 3000                  # Port number for local preview server (default random 3000-8000)
+#    port: 3000                  # Port number for local preview server (default random 3000-8000)
     browser: true               # Whether to open browser on preview (true/false)
     host: localhost
 
