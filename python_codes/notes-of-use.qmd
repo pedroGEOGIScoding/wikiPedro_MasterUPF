@@ -2,7 +2,7 @@
 title: "Translation Scripts - Usage Guide"
 subtitle: "How to use the Python translation scripts"
 author: "Pedro Martínez Durán"
-date: "27/11/2025"
+date: "2025-11-27"
 ---
 
 # Translation Scripts

@@ -3,7 +3,7 @@ title: "Asignatura: Desarrollo, Aprendizaje y Educación"
 subtitle: "Gestión del aula, evaluación y herramientas digitales para la enseñanza de las ciencias"
 filename: dae-inicio
 author: "Pedro Martinez Duran"
-date: "15/11/2025"
+date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda la gestión del aula presencial, la evaluación de los aprendizajes y la concepción y gestión de las herramientas digitales

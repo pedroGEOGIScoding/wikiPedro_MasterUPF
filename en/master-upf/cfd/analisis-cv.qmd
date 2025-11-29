@@ -3,7 +3,7 @@ title: "CV analysis"
 subtitle: "CV's of Natural Sciences specialties (Biology and Geology / Physics and Chemistry)"
 filename: cfd-analisis-cv
 author: "Pedro Martinez Duran"
-date: "15/11/2025"
+date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Analysis of the CV's of the Natural Sciences specialties (Biology and Geology / Physics and Chemistry)

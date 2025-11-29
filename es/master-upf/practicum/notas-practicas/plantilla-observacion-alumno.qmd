@@ -3,7 +3,7 @@ title: "Plantilla de Observación del Alumno"
 subtitle: "Herramienta para el seguimiento y evaluación del alumnado"
 filename: plantilla-observacion-alumno
 author: "Pedro Martínez"
-date: "15/11/2025"
+date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Plantilla completa para la observación sistemática del alumnado en el aula

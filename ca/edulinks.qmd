@@ -3,7 +3,7 @@ title: "EducaLinks"
 subtitle: "Recull de vincles educatius d'interès"
 filename: edulinks
 author: "Pedro Martínez Durán"
-date: "20/11/2025"
+date: "2025-11-20"
 date-modified: last-modified
 date-format: full
 description: Enllaços de suport educatiu
