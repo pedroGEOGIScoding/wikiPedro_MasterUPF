@@ -10,15 +10,15 @@ lightbox:
 ---
 
 ::: {.light-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-color.jpg){fig-align="center" group="about-this-me" loading="lazy"}
+![](../images/about/pedro-color.jpg){fig-align="center" group="about-this-me" loading="lazy" fig-responsive}
 
-![](../images/about/class-image-home-page.png){fig-align="center" group="about-this-me" loading="lazy"}
+![](../images/about/class-image-home-page.png){fig-align="center" group="about-this-me" loading="lazy" fig-responsive}
 :::
 
 ::: {.dark-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-bw.jpg){fig-align="center" group="about-this-me" loading="lazy"}
+![](../images/about/pedro-bw.jpg){fig-align="center" group="about-this-me" loading="lazy" fig-responsive}
 
-![](../images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me" loading="lazy"}
+![](../images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me" loading="lazy" fig-responsive}
 :::
 
 

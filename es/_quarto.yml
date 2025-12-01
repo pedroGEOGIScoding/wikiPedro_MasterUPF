@@ -22,3 +22,5 @@ editor:
     render-on-save: true
 
 lang: "es"
+language:
+  search-text-placeholder: "Busca"

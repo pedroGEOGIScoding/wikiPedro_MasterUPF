@@ -22,3 +22,5 @@ editor:
     render-on-save: true
 
 lang: "ca"
+language:
+  search-text-placeholder: "Cerca"

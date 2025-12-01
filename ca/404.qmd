@@ -19,7 +19,7 @@ lightbox:
 
 <center>
 <div style="width: 50%;">
-![](images/home/404/404a.gif){ group="404" loading="lazy" }
+![](images/home/404/404a.gif){ group="404" loading="lazy" fig-responsive}
 </div>
 </center>
 
