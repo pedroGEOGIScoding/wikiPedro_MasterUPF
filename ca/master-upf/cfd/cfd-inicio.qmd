@@ -43,7 +43,7 @@ format: html
 
 <br>
 
-![Estructura dels complements formatius disciplinaris](../../images/cfd/cfd-structure.png){width=50% fig-align="center" group="cfd-inicio" loading="lazy"}
+![Estructura dels complements formatius disciplinaris](../../images/cfd/cfd-structure.png){width=50% fig-align="center" group="cfd-inicio"}
 
 <br>
 

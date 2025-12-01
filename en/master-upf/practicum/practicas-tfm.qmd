@@ -45,7 +45,7 @@ format: html
 
 <br>
 
-![Master's Final Project Outline](../../images/tfm/tfm-structure.png){width=50% fig-align="center" group="practicas-tfm" loading="lazy"}
+![Master's Final Project Outline](../../images/tfm/tfm-structure.png){width=50% fig-align="center" group="practicas-tfm"}
 
 <br>
 

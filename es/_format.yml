@@ -74,15 +74,16 @@ format:
     number-sections: true
     smooth-scroll: true
     background-color: black
+    fig-responsive: true
     code-link: true
     code-line-numbers: "true"
     code-overflow: "wrap"
     code-annotations: below
     grid:
       sidebar-width: 400px   
-      body-width: 1400px      
+      body-width: 2000px      
       margin-width: 400px   
-      gutter-width: 0.5rem   
+      gutter-width: 2rem   
     page-layout: full
     cap-location: bottom
     margin-right: 20rem

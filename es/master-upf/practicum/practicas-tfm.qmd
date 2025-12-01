@@ -45,7 +45,7 @@ format: html
 
 <br>
 
-![Esquema de Trabajo Final de Máster](../../images/tfm/tfm-structure.png){width=50% fig-align="center" group="practicas-tfm" loading="lazy"}
+![Esquema de Trabajo Final de Máster](../../images/tfm/tfm-structure.png){width=50% fig-align="center" group="practicas-tfm"}
 
 <br>
 

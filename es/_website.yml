@@ -63,7 +63,7 @@ website:
 
   sidebar:
     - id: "portfolio-1"
-      title: "Portfolio - Observacion"
+      title: "Portfolio - Observación"
       style: "docked"
       search: true
       background: light

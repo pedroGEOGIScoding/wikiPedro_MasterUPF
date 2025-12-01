@@ -18,11 +18,11 @@ pagestyle: plain
 
 ::: {.hero-image}
 ::: {.light-content}
-![](images/home/class-image-home-page.png){loading="lazy" fig-responsive}
+![](images/home/class-image-home-page.png){}
 :::
 
 ::: {.dark-content}
-![](images/about/class-image-home-page-bw.png){loading="lazy" fig-responsive}
+![](images/about/class-image-home-page-bw.png){}
 :::
 :::
 

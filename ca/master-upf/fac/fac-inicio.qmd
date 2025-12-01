@@ -33,7 +33,7 @@ format: html
 
 <br>
 
-![Estructura dels Fonaments de l'Aprenentatge i l'Ensenyament de les Ciències Naturals](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio" loading="lazy"}
+![Estructura dels Fonaments de l'Aprenentatge i l'Ensenyament de les Ciències Naturals](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio"}
 
 <br>
 
