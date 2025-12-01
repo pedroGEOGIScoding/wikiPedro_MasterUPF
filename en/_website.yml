@@ -19,7 +19,7 @@ website:
 
   search:
     location: navbar             
-    type: textbox   
+    type: overlay
     limit: 5        
     collapse-after: 5     
     copy-button: true           
