@@ -13,10 +13,9 @@ repo-actions: false
 pagestyle: plain
 ---
 
+<div style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;">
+<div style="flex: 50%;">
 
-::: {.hero-container}
-
-::: {.hero-image}
 ::: {.light-content}
 ![](images/home/class-image-home-page.png){}
 :::
@@ -24,10 +23,8 @@ pagestyle: plain
 ::: {.dark-content}
 ![](images/about/class-image-home-page-bw.png){}
 :::
-:::
-
-::: {.hero-text}
-<div class="gradient-text">
+</div>
+<div style="flex: 50%;">
 Hola, em dic Pedro i estic estudiant un màster de magisteri de secundària a la Universitat Pompeu Fabra. Aquest web és un registre del meu procés d'aprenentatge i reflexió durant aquest màster. Des dels meus anys d'instructor de temps lliure i posteriorment director de colònies, sempre he tingut curiositat per la professió d'educador, però la vida durant molts anys m'ha portat per múltiples camins.
 
 Quan vaig tornar després de 14 anys treballant a Anglaterra, la docència va ser una de les meves primeres opcions per reinventar-me a la meva tornada a casa.
@@ -36,9 +33,7 @@ Fa poc vaig veure una pel·lícula, una d'aquelles no molt famoses, però amb un
 
 Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon educador i poder revertir tota la meva experiència vital i coneixements científics que he anat adquirint tots aquests anys com a geòleg d'exploració minera, després director d'empresa i tornar a explorar els hidrocarburs per més de la meitat del món en el futur de la nostra societat, els nostres fills.
 </div>
-:::
-
-:::
+</div>
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
@@ -69,22 +64,15 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
 ```{=html}
 <div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
   <!-- Weather Map -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
+  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Mapa del temps</p>
-    <iframe style="flex: 1;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=38.204&lon=1.934&pressure=true&message=true" frameborder="0"></iframe>
-  </div>
-  
-  <!-- ISS Video -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
-    <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">On és la ISS ara mateix?</p>
-    <iframe style="flex: 1;" src="https://www.youtube.com/embed/fO9e9jnhYK8?autoplay=1&mute=1" title="Live 4K video of Earth and space" frameborder="0" width="100%" allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe style="flex: 1; height: 100%;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
   </div>
   
   <!-- Science News -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column; min-height: 550px;">
+  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Darreres notícies sobre Ciència</p>
-    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="500px" width="100%" class="fw-iframe" scrolling="no" frameborder="0">
-    </iframe>
+    <iframe src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="642px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
   </div>
 </div>
 ```

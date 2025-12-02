@@ -13,10 +13,9 @@ repo-actions: false
 pagestyle: plain
 ---
 
+<div style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;">
+<div style="flex: 50%;">
 
-::: {.hero-container}
-
-::: {.hero-image}
 ::: {.light-content}
 ![](images/home/class-image-home-page.png){}
 :::
@@ -24,10 +23,8 @@ pagestyle: plain
 ::: {.dark-content}
 ![](images/about/class-image-home-page-bw.png){}
 :::
-:::
-
-::: {.hero-text}
-<div class="gradient-text">
+</div>
+<div style="flex: 50%;">
 Hello, I'm Pedro and I'm studying a master's degree in secondary school teaching at Pompeu Fabra University. This website is a record of my learning and reflection process during this master's degree. Since my years as a free time instructor and later summer camp director, I have always been curious about the profession of educator, but life for many years has taken me down multiple paths.
 
 Upon returning after 14 years working in England, teaching was one of my first options to reinvent myself upon my return home.
@@ -36,9 +33,7 @@ I recently saw a movie, one of those not very famous ones, but with a great mess
 
 So here I am, reinventing myself once again to become a good educator and be able to reverse all my life experience and scientific knowledge that I have been acquiring all these years as a mining exploration geologist, later a company director and return to explore hydrocarbons for more than half the world in the future of our society, our children.
 </div>
-:::
-
-:::
+</div>
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
@@ -75,22 +70,15 @@ To learn more about my professional trajectory, you can visit the "About me" tab
 ```{=html}
 <div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
   <!-- Weather Map -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
+  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Weather Map</p>
-    <iframe style="flex: 1;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=wind&product=ecmwf&level=surface&lat=38.204&lon=1.934&pressure=true&message=true" frameborder="0"></iframe>
-  </div>
-  
-  <!-- ISS Video -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column;">
-    <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Where is the ISS right now?</p>
-    <iframe style="flex: 1;" src="https://www.youtube.com/embed/fO9e9jnhYK8?autoplay=1&mute=1" title="Live 4K video of Earth and space" frameborder="0" width="100%" allow="autoplay; encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe style="flex: 1; height: 100%;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
   </div>
   
   <!-- Science News -->
-  <div style="flex: 1 1 32%; display: flex; flex-direction: column; min-height: 550px;">
+  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Latest Science News</p>
-    <iframe style="flex: 1;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="500px" width="100%" class="fw-iframe" scrolling="no" frameborder="0">
-    </iframe>
+    <iframe src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="642px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
   </div>
 </div>
 ```
