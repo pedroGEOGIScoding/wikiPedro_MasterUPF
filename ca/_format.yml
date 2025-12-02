@@ -79,7 +79,7 @@ format:
     code-annotations: below
     grid:
       sidebar-width: 600px
-      body-width: 1400px
-      margin-width: 400px
+      body-width: 1000px
+      margin-width: 300px
       gutter-width: 0.5rem
     page-layout: full
