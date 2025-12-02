@@ -44,7 +44,7 @@ format:
               console.log('New path:', newPath);
               window.location.href = newPath;
           }
-          
+
           // Add target="_blank" to external link
           document.addEventListener('DOMContentLoaded', function() {
               const externalLink = document.querySelector('a[href="https://pedrogeogisdev.com/"]');
@@ -62,29 +62,25 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [lux, light-styles.scss]
-      dark: [darkly, dark-styles.scss]
+      light: [minty]
+      dark: [slate]
     line-numbers: true
     linestretch: 1.5
     toc: true
     toc-title: "En esta pagina encontrarás"
     toc-indent: 3em
     toc-depth: 3
-    toc-location: right
     number-sections: true
     smooth-scroll: true
     background-color: black
-    fig-responsive: true
     code-link: true
     code-line-numbers: "true"
     code-overflow: "wrap"
     code-annotations: below
     grid:
-      sidebar-width: 400px   
-      body-width: 2000px      
-      margin-width: 400px   
-      gutter-width: 2rem   
+      sidebar-width: 400px
+      body-width: 1400px
+      margin-width: 400px
+      gutter-width: 2rem
     page-layout: full
     cap-location: bottom
-    margin-right: 20rem
-

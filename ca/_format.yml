@@ -44,7 +44,7 @@ format:
               console.log('New path:', newPath);
               window.location.href = newPath;
           }
-          
+
           // Add target="_blank" to external link
           document.addEventListener('DOMContentLoaded', function() {
               const externalLink = document.querySelector('a[href="https://pedrogeogisdev.com/"]');
@@ -62,8 +62,8 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [lux, light-styles.scss]
-      dark: [darkly, dark-styles.scss]
+      light: [minty]
+      dark: [slate]
     line-numbers: true
     linestretch: 1.5
     toc: true
@@ -78,10 +78,8 @@ format:
     code-overflow: "wrap"
     code-annotations: below
     grid:
-      sidebar-width: 400px   
-      body-width: 1400px      
-      margin-width: 400px   
-      gutter-width: 0.5rem   
+      sidebar-width: 400px
+      body-width: 1400px
+      margin-width: 400px
+      gutter-width: 0.5rem
     page-layout: full
-  
-
