@@ -5,13 +5,35 @@ Run this script from within the target directory (e.g., cd en/ && python3 ../pyt
 Translates all .qmd files in current directory and subfolders while preserving Quarto syntax
 """
 
-import os
-import re
+import subprocess
+import sys
 from pathlib import Path
-from deep_translator import GoogleTranslator
 
-SOURCE_LANG = 'ca'
-TARGET_LANG = 'en'
+def main():
+    # Call the unified translation script
+    script_dir = Path(__file__).parent
+    translate_script = script_dir / 'translate_qmd.py'
+    
+    if not translate_script.exists():
+        print(f"Error: {translate_script} not found!")
+        sys.exit(1)
+    
+    current_dir = Path.cwd()
+    
+    # Run the unified script with Catalan -> English
+    result = subprocess.run([
+        sys.executable,
+        str(translate_script),
+        str(current_dir),
+        '-s', 'ca',
+        '-t', 'en',
+        '--progress'
+    ])
+    
+    sys.exit(result.returncode)
+
+if __name__ == "__main__":
+    main()
 
 def extract_yaml_and_content(file_path):
     """Extract YAML frontmatter and content separately"""

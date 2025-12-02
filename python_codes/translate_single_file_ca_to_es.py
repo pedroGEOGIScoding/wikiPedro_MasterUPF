@@ -2,7 +2,7 @@
 """Translate a single file from Catalan to Spanish in place"""
 import sys
 from pathlib import Path
-from translate_to_spanish import translate_qmd_file
+from translate_lib import translate_qmd_file
 
 if len(sys.argv) < 2:
     print("Usage: python3 translate_single_file_ca_to_es.py <file.qmd>")
@@ -22,4 +22,5 @@ if not file_path.exists():
 print(f"Working directory: {Path.cwd()}")
 print(f"Translating (Catalan -> Spanish): {file_path}\n")
 
-translate_qmd_file(file_path)
+success = translate_qmd_file(file_path, source='ca', target='es')
+sys.exit(0 if success else 1)
