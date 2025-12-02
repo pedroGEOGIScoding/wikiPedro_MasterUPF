@@ -78,7 +78,7 @@ format:
     code-overflow: "wrap"
     code-annotations: below
     grid:
-      sidebar-width: 600px
+      sidebar-width: 700px
       body-width: 1400px
       margin-width: 400px
       gutter-width: 2rem
