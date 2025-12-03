@@ -62,7 +62,7 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [minty]
+      light: [minty, style-assets/styles.scss]
       dark: [slate]
     line-numbers: true
     linestretch: 1.5
