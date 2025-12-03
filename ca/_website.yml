@@ -135,7 +135,7 @@ website:
       style: "docked"
       search: true
       background: light
-      collapse-level: 1
+      collapse-level: 0
       align: center
       tools:
         - icon: envelope
