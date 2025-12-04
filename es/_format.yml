@@ -62,8 +62,8 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [minty, style-assets/styles.scss]
-      dark: [slate]
+      light: [cosmo, style-assets/styles.scss]
+      dark: [darkly, style-assets/styles.scss]
     line-numbers: true
     linestretch: 1.5
     toc: true

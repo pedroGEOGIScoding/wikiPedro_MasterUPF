@@ -122,7 +122,7 @@ $link-hover-decoration:       none !default;
 
 // header
 .navbar {
-  background: transparent !important;
+  background: #fffbf2 !important;
 }
 
 // logo
@@ -135,6 +135,7 @@ $link-hover-decoration:       none !default;
 .navbar-title {
   font-size: 1.5em;
   font-weight: 700;
+  font-family: 'Petrona', serif !important;
   color: $spc-primary;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -178,4 +179,13 @@ $link-hover-decoration:       none !default;
 
 .quarto-color-scheme-toggle.alternate .bi::before {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23A23E02" class="bi bi-toggle-on" viewBox="0 0 16 16"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>') !important;
+}
+
+// Logo switching for dark mode
+.navbar-logo {
+  content: url('../images/home/books.png');
+}
+
+[data-bs-theme="dark"] .navbar-logo {
+  content: url('../images/home/owl1.png');
 }

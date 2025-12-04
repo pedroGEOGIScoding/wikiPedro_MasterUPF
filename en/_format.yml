@@ -62,7 +62,7 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [minty]
+      light: [cosmo, style-assets/styles.scss]
       dark: [slate]
     line-numbers: true
     linestretch: 1.5
@@ -81,5 +81,6 @@ format:
       sidebar-width: 500px
       body-width: 1400px
       margin-width: 400px
-      gutter-width: 0.5rem
+      gutter-width: 2rem
     page-layout: full
+    cap-location: bottom

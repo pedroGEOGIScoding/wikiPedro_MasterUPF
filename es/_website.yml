@@ -33,6 +33,8 @@ website:
     collapse-level: 1
     collapse-below: lg
     pinned: true
+    logo: images/home/books.png
+    logo-alt: "Pedro Martinez Duran"
     title: "Pedro Martinez Duran"
     right:
       - sidebar:portfolio-1
