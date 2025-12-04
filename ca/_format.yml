@@ -62,7 +62,7 @@ format:
       desc-position: bottom
       loop: true
     theme:
-      light: [cosmo, style-assets/styles.scss]
+      light: [cosmo, style-assets/light-styles.scss]
       dark: [slate]
     line-numbers: true
     linestretch: 1.5

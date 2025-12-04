@@ -42,13 +42,13 @@ website:
       - sidebar:masterUPF
       - sidebar:recursos
       - sidebar:about
-      - text: Idioma
+      - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 16px;'>🇪🇸 Español</a>"
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'>💝 Català</a>"
           - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 16px;'>🇬🇧 English</a>"
           
-      - icon: three-dots-vertical
+      - icon: person-lines-fill
         menu:
           - text: "{{< fa solid envelope >}} Email"
             href: mailto:pedromartinezduran@gmail.com
