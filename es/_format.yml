@@ -63,7 +63,7 @@ format:
       loop: true
     theme:
       light: [cosmo, style-assets/styles.scss]
-      dark: [darkly, style-assets/styles.scss]
+      dark: [darkly]
     line-numbers: true
     linestretch: 1.5
     toc: true
