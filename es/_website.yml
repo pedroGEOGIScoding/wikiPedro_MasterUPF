@@ -33,19 +33,15 @@ website:
     collapse-level: 1
     collapse-below: lg
     pinned: true
-#    title: "Pedro Martinez Duran"
-    left:
-      - text: Home
-        href: index.qmd
+    title: "Pedro Martinez Duran"
+    right:
       - sidebar:portfolio-1
       - sidebar:portfolio-2
       - sidebar:portfolio-3
       - sidebar:portfolio-4
       - sidebar:masterUPF
-      - sidebar:competencias-ciencias
-      - sidebar:edulinks
+      - sidebar:recursos
       - sidebar:about
-    right:
       - text: Idioma
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 16px;'>🇪🇸 Español</a>"
@@ -292,26 +288,8 @@ website:
               contents:
               - master-upf/practicum/practicas-tfm.qmd
 
-    - id: "competencias-ciencias"
-      title: "Competencias en Ciencias"
-      style: "docked"
-      search: true
-      background: light
-      collapse-level: 1
-      align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
-      contents:
-        - eso-competencias-ciencias.qmd
-        - bach-competencias-ciencias.qmd
-
-    - id: "edulinks"
-      title: "WebLinks Educativos"
+    - id: "recursos"
+      title: "Recursos"
       style: "docked"
       search: true
       background: light
@@ -326,6 +304,8 @@ website:
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
         - edulinks.qmd
+        - eso-competencias-ciencias.qmd
+        - bach-competencias-ciencias.qmd
 
     - id: "about"
       title: "Acerca de mí"

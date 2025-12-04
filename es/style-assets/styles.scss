@@ -117,20 +117,28 @@ $link-hover-decoration:       none !default;
        url('style-assets/fonts/red-hat-text-v3-latin-500italic.svg') format('svg');
 }
 
+
 // Navbar
 
 // header
 .navbar {
-  background: #F5F5F5;
+  background: transparent !important;
+}
+
+// logo
+.navbar-logo {
+  max-height: 40px !important;
+  width: auto !important;
 }
 
 // title
 .navbar-title {
-  font-size: 0.75em;
-  font-weight: 500;
+  font-size: 1.5em;
+  font-weight: 700;
   color: $spc-primary;
   text-transform: uppercase;
   letter-spacing: .1em;
+  line-height: 1.1em !important;
 
   &:hover {
     border-bottom: 1px solid $spc-primary !important;
@@ -140,7 +148,7 @@ $link-hover-decoration:       none !default;
 // links
 .navbar-nav .nav-link {
     color: $spc-secondary !important;
-    font-size: 1.1em;
+    font-size: 1em;
     text-transform: uppercase;
     letter-spacing: .1em; 
     border-bottom: 0px hidden $spc-secondary;    
@@ -153,21 +161,21 @@ $link-hover-decoration:       none !default;
     }
 }
 
-// navbar toggler icon (mobile menu)
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23A23E02' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
-
 // search icon
 .aa-SubmitIcon {
   color: $spc-secondary !important;
 }
 
-// dark mode toggle
-.quarto-color-scheme-toggle,
-.quarto-color-scheme-toggle .bi,
-.quarto-color-scheme-toggle i {
-  color: $spc-secondary !important;
+// navbar toggler icon (mobile menu)
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23A23E02' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
+// dark mode toggle icon - override the background-image with our color
+.quarto-color-scheme-toggle:not(.alternate) .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23A23E02" class="bi bi-toggle-off" viewBox="0 0 16 16"><path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"/></svg>') !important;
+}
 
+.quarto-color-scheme-toggle.alternate .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23A23E02" class="bi bi-toggle-on" viewBox="0 0 16 16"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>') !important;
+}
