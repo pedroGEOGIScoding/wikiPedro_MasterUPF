@@ -5,6 +5,11 @@ _site/
 *_files/
 docs/
 
+# But keep source images
+!es/images/
+!ca/images/
+!en/images/
+
 # Python
 __pycache__/
 *.py[cod]

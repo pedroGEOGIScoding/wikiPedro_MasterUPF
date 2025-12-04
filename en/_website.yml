@@ -31,7 +31,7 @@ website:
     style: "docked"
     collapse: true
     collapse-level: 1
-    collapse-below: md
+    collapse-below: xl
     pinned: true
     title: "Pedro Martinez Duran"
     right:
