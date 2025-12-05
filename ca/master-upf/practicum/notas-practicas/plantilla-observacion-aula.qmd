@@ -3,7 +3,6 @@ title: "Plantilla d'observació a l'aula"
 subtitle: "Eina de seguiment i avaluació de l'alumnat"
 filename: plantilla-observacion-aula
 author: "Pedro Martínez"
-date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Plantilla completa per a l'observació sistemàtica dels alumnes a l'aula

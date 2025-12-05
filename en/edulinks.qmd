@@ -3,7 +3,6 @@ title: "EducaLinks"
 subtitle: "Compilation of educational links of interest"
 filename: edulinks
 author: "Pedro Martínez Durán"
-date: "2025-11-20"
 date-modified: last-modified
 date-format: full
 description: Links for educational support

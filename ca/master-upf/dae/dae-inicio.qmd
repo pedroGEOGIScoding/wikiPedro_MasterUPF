@@ -3,7 +3,6 @@ title: "Assignatura: Desenvolupament, aprenentatge i educació"
 subtitle: "Gestió de l'aula, avaluació i eines digitals per a l'ensenyament de les ciències"
 filename: dae-inicio
 author: "Pedro Martinez Duran"
-date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Assignatura que aborda la gestió de l'aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals

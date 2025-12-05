@@ -34,6 +34,7 @@ $link-color:                  $secondary !default;
 $link-decoration:             underline !default;
 $link-hover-color:            $spc-secondary-light !default;
 $link-hover-decoration:       none !default;
+$breadcrumb-bg:               lighten($spc-secondary, 50%);
 
 /*-- scss:rules --*/
 

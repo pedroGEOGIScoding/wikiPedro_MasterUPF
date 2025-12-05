@@ -3,7 +3,6 @@ title: "Classroom Observation Template"
 subtitle: "Tool for monitoring and evaluating students"
 filename: plantilla-observacion-aula
 author: "Pedro Martínez"
-date: "2025-11-15"
 date-modified: last-modified
 date-format: full
 description: Complete template for systematic observation of students in the classroom
