@@ -1,21 +1,21 @@
 /*-- scss:defaults --*/
 
-$spc-bg: #fffbf2;
-$spc-bg-dark: #FAF0E3;
-$spc-primary: #002642;
-$spc-primary-light: #2E4963 ;
-$spc-secondary: #A23E02;
-$spc-secondary-light: #D96E34;
-$spc-accent: #b9c680;
-$spc-accent-light: #EEF1E0;
+$bg: #fffbf2;
+$bg-dark: #FAF0E3;
+$primary: #002642;
+$primary-light: #2E4963 ;
+$secondary: #A23E02;
+$secondary-light: #D96E34;
+$accent: #b9c680;
+$accent-light: #EEF1E0;
 
 // Colors
-$primary:                    $spc-primary-light !default;
-$secondary:                  $spc-secondary !default;
+$primary:                    $primary-light !default;
+$secondary:                  $secondary !default;
 
 // Body
-$body-color:                 $spc-primary !default;
-$body-bg:                    $spc-bg !default;
+$body-color:                 $primary !default;
+$body-bg:                    $bg !default;
 
 // Fonts
 
@@ -32,9 +32,9 @@ $headings-font-family:       "Petrona" !default;
 
 $link-color:                  $secondary !default;
 $link-decoration:             underline !default;
-$link-hover-color:            $spc-secondary-light !default;
+$link-hover-color:            $secondary-light !default;
 $link-hover-decoration:       none !default;
-$breadcrumb-bg:               lighten($spc-secondary, 50%);
+$breadcrumb-bg:               lighten($secondary, 50%);
 
 /*-- scss:rules --*/
 
@@ -130,6 +130,7 @@ $breadcrumb-bg:               lighten($spc-secondary, 50%);
 .navbar-logo {
   max-height: 40px !important;
   width: auto !important;
+  vertical-align: middle !important;
 }
 
 // title
@@ -137,35 +138,36 @@ $breadcrumb-bg:               lighten($spc-secondary, 50%);
   font-size: 1.5em;
   font-weight: 700;
   font-family: 'Petrona', serif !important;
-  color: $spc-primary;
+  color: $primary;
   text-transform: uppercase;
   letter-spacing: .1em;
   line-height: 1.1em !important;
+  vertical-align: middle !important;
 
   &:hover {
-    border-bottom: 1px solid $spc-primary !important;
+    border-bottom: 1px solid $primary !important;
   }
 }
 
 // links
 .navbar-nav .nav-link {
-    color: $spc-secondary !important;
+    color: $secondary !important;
     font-size: 1em;
     text-transform: uppercase;
     letter-spacing: .1em; 
-    border-bottom: 0px hidden $spc-secondary;    
+    border-bottom: 0px hidden $secondary;    
     margin: 0px 10px 0px 10px; 
     padding: 2px 2px 4px 2px !important;
 
     &:hover {
-      border-bottom: 1px solid $spc-secondary !important;
+      border-bottom: 1px solid $secondary !important;
       padding: 2px 2px 0px 2px !important;
     }
 }
 
 // search icon
 .aa-SubmitIcon {
-  color: $spc-secondary !important;
+  color: $secondary !important;
 }
 
 // navbar toggler icon (mobile menu)
