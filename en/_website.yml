@@ -44,10 +44,9 @@ website:
       - sidebar:about
       - icon: translate
         menu:
-          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 16px;'>🇪🇸 Spanish</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'><svg width='20' height='15' viewBox='0 0 810 540' style='vertical-align: middle; margin-right: 2px;'><rect width='810' height='540' fill='#FCDD09'/><rect width='810' height='60' y='120' fill='#DA121A'/><rect width='810' height='60' y='240' fill='#DA121A'/><rect width='810' height='60' y='360' fill='#DA121A'/><rect width='810' height='60' y='480' fill='#DA121A'/></svg> Catalan</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 16px;'>🇬🇧 English</a>"
-          
+          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Catalan</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/spain-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Spanish</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/uk-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> English</a>"
       - icon: person-lines-fill
         menu:
           - text: "{{< fa solid envelope >}} Email"
@@ -59,7 +58,7 @@ website:
 
   sidebar:
     - id: "portfolio-1"
-      title: "Portfolio - Observación"
+      title: "Portfolio - Observation"
       style: "docked"
       search: true
       background: light
