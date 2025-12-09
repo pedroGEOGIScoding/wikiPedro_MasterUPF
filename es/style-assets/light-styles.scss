@@ -1,4 +1,5 @@
 /*-- scss:defaults --*/
+/*Here, the scss variables are defined. The defaults section is specifically designed for overriding Bootstrap and Quarto variables before they're processed*/
 
 $bg: #fffbf2;
 $bg-dark: #FAF0E3;
@@ -39,6 +40,8 @@ $breadcrumb-active-color:     $primary-light !default;
 $breadcrumb-divider: quote("/");
 
 /*-- scss:rules --*/
+/* The rules section is for writing actual CSS rules - selectors with properties that style your HTML elements */
+/* The rules section is where you put all your custom styling after the variables have been set*/
 
 
 
