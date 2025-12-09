@@ -1,0 +1,46 @@
+---
+title: "Enseñanza y Evaluación"
+subtitle: "Por que, como y que evaluamos"
+filename: dae-evaluacion
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Asignatura que aborda la evaluación de los aprendizajes
+categories: [evaluacion, aprendizaje, educación]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+
+::: {.callout-tip}
+## Presentación
+
+Laura Taberne dirige este modulo donde se aborda la evaluación de los aprendizajes. Tradicionalmente, se ha entendido como un instrumento para mesurar el éxito académico del alumnado y asignarle una calificación. Esta visión reduccionista ha sido progresivamente cuestionada desde las perspectivas pedagógicas constructivistas y competenciales. A pesar de esto, la evaluación no está obsoleta, de hecho es una de las prácticas más frecuentes, potentes y decisivas en cualquier proceso educativo.
+
+:::
+
+::: {.panel-tabset}
+
+## Sesión 1 {.active}
+<object data="/files/S1_AVALUACIO_1.pdf" type="application/pdf" width="100%" height="800px">
+  <p>Unable to display PDF. <a href="/files/S1_AVALUACIO_1.pdf">Download</a></p>
+</object>
+
+## Sesión 2
+<object data="/files/S2_AVALUACIO_2.pdf" type="application/pdf" width="100%" height="800px">
+  <p>Unable to display PDF. <a href="/files/S2_AVALUACIO_2.pdf">Download</a></p>
+</object>
+
+## Sesión 3
+<object data="/files/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px">
+  <p>Unable to display PDF. <a href="/files/S3_AVALUACIO_3.pdf">Download</a></p>
+</object>
+
+:::
