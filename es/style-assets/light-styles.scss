@@ -35,8 +35,12 @@ $link-decoration:             underline !default;
 $link-hover-color:            $secondary-light !default;
 $link-hover-decoration:       none !default;
 $breadcrumb-bg:               lighten($secondary, 50%);
+$breadcrumb-active-color:     $primary-light !default;
+$breadcrumb-divider: quote("/");
 
 /*-- scss:rules --*/
+
+
 
 // Fonts
 
