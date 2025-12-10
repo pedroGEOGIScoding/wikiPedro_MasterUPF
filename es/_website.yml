@@ -10,9 +10,6 @@ website:
   repo-branch: master
   repo-actions: [source, issue]
   reader-mode: false
-  resources:
-    - "files/*"
-    - "images/*"
   announcement: 
     icon: info-circle
     dismissable: true
