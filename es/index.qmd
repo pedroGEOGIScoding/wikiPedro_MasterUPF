@@ -13,18 +13,18 @@ repo-actions: false
 pagestyle: plain
 ---
 
-<div style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;">
-<div style="flex: 50%;">
-
-::: {.light-content}
-![](images/home/class-image-home-page.png){}
+::::::: {style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;"}
+::::: {style="flex: 50%;"}
+::: light-content
+![](images/home/class-image-home-page.png)
 :::
 
-::: {.dark-content}
-![](images/about/class-image-home-page-bw.png){}
+::: dark-content
+![](images/about/class-image-home-page-bw.png)
 :::
-</div>
-<div style="flex: 50%;">
+:::::
+
+::: {style="flex: 50%;"}
 Hola, soy Pedro y estoy estudiando el master de profesor de secundaria en la universidad Pompeu Fabra. Est sitio web es un registro de mi proceso de aprendizaje y reflexión durante este master. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
 
 Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
@@ -32,9 +32,8 @@ Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de 
 Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa película es Lunana, un yak en la escuela y hay una frase central sobre el impacto del profesor en los alumnos que dice asi: [Los profesores pueden tocar el futuro de sus alumnos]{style="font-size: 1`em; font-weight: bold;"} y la verdad es que me impacto muchisimo y ahora despues de embarcanme en este proceso me he dado cuenta de que puede ser asi, y que la educación es una de las herramientas mas poderosas para transformar vidas.
 
 Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos cientificos que he ido adquiriendo todos estos años como geologo de exploracion minera, mas tarde director de empresas y volver a explorar hidrocarburos por mas de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
-
-</div>
-</div>
+:::
+:::::::
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
@@ -61,13 +60,14 @@ Asi que aqui estoy, reinventandome una vez mas para convertirme en un buen educa
 </div>
 ```
 
----
+------------------------------------------------------------------------
 
-::: {.intro-text}
+::: intro-text
 Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd). Tambien, si te interesa como he realizado esta pagina web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-site.qmd). Por el tratamiento de las imagenes que estan en esta pagina web, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-images-credit.qmd).
 :::
 
----
+------------------------------------------------------------------------
+
 ```{=html}
 <div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
   <!-- Weather Map -->
