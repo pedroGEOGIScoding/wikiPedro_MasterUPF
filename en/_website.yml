@@ -176,7 +176,7 @@ website:
                 - sesion2.qmd
               - section: "Assessment"
                 contents:
-                - dae-evaluacion.qmd
+                - master-upf/dae/dae-evaluacion.qmd
         - section: "Specialization Module"
           contents:
             - section: "Complementary disciplinary training"
