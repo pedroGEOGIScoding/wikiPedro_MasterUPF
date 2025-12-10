@@ -176,11 +176,7 @@ website:
                 - sesion2.qmd
               - section: "Assessment"
                 contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
+                - dae-evaluacion.qmd
         - section: "Specialization Module"
           contents:
             - section: "Complementary disciplinary training"

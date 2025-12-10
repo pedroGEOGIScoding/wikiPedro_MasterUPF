@@ -18,22 +18,24 @@ lightbox:
 format: html
 ---
 
-::: callout-tip
 ## Presentación
 
-Laura Taberne dirige este modulo donde se aborda la evaluación de los aprendizajes. Tradicionalmente, se ha entendido como un instrumento para mesurar el éxito académico del alumnado y asignarle una calificación. Esta visión reduccionista ha sido progresivamente cuestionada desde las perspectivas pedagógicas constructivistas y competenciales. A pesar de esto, la evaluación no está obsoleta, de hecho es una de las prácticas más frecuentes, potentes y decisivas en cualquier proceso educativo.
+> La profesora Laura Taberne dirige esta parte del módulo de desarrollo, aprendizaje y educación denominado **enseñanza y evaluación**, donde se aborda la evaluación de los aprendizajes. Tradicionalmente, se ha entendido como un instrumento para medir el éxito académico del alumnado y asignarle una calificación. Esta visión reduccionista ha sido progresivamente cuestionada desde las perspectivas pedagógicas constructivistas y competenciales. A pesar de esto, la evaluación no está obsoleta, de hecho es una de las prácticas más frecuentes, potentes y decisivas en cualquier proceso educativo.
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
 :::
 
 ::: panel-tabset
 ## Sesión 1 {.active}
+
 <embed src="/files/S1_AVALUACIO_1.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 2
+
 <embed src="/files/S2_AVALUACIO_2.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 3
+
 <embed src="/files/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px"/>
 :::
-
-
-
