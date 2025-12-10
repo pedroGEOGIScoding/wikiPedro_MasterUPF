@@ -24,16 +24,15 @@ format: html
 Laura Taberne dirige este modulo donde se aborda la evaluación de los aprendizajes. Tradicionalmente, se ha entendido como un instrumento para mesurar el éxito académico del alumnado y asignarle una calificación. Esta visión reduccionista ha sido progresivamente cuestionada desde las perspectivas pedagógicas constructivistas y competenciales. A pesar de esto, la evaluación no está obsoleta, de hecho es una de las prácticas más frecuentes, potentes y decisivas en cualquier proceso educativo.
 :::
 
+
 ::: panel-tabset
 ## Sesión 1 {.active}
-
-![](/files/S1_AVALUACIO_1.pdf){width=100% height=800px}
+<iframe src="/files/S1_AVALUACIO_1.pdf" width="100%" height="800px"></iframe>
 
 ## Sesión 2
-
-![](/files/S2_AVALUACIO_2.pdf){width=100% height=800px}
+<iframe src="/files/S2_AVALUACIO_2.pdf" width="100%" height="800px"></iframe>
 
 ## Sesión 3
-
-![](/files/S3_AVALUACIO_3.pdf){width=100% height=800px}
+<iframe src="/files/S3_AVALUACIO_3.pdf" width="100%" height="800px"></iframe>
 :::
+
