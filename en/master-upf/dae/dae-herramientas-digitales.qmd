@@ -1,0 +1,60 @@
+---
+title: "Digital tools for scientific competence"
+subtitle: "Digital tools in teaching"
+filename: dae-herramientas-digitales
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Course that addresses the use of digital tools in teaching
+categories: [tools, digital, education]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentation
+
+> Professor Núria Domènech leads this part of the development, learning, and education module called **Digital Tools for Scientific Competence**. Based on an analysis of digital tools, it addresses their use in teaching as a pedagogical approach. Competence means knowing and using digital tools pedagogically, effectively, and thoughtfully in the context of science learning.
+
+The objectives are:
+
+-   Reflect on the opportunities that digital tools offer in science learning situations.
+-   Critically evaluate the challenges that digital tools present in the classroom.
+-   Know a diversity of tools, for example sensors and virtual simulators.
+-   Introduce digital tools in the classroom in diverse contexts, taking advantage of their potential and managing the changes they provoke.
+
+::: callout-tip
+## Click on each tab to view the material of each session
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 3
+
+<embed src="/files/DAE-Eines-Sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 4
+
+<embed src="/files/DAE-Eines-Sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  App Checker Express Work
+
+<embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  Final Work
+
+<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+:::

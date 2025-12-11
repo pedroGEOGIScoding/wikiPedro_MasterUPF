@@ -1,0 +1,61 @@
+---
+title: "Herramientas digitales para la competencia científica"
+subtitle: "Herramientas digitales en la enseñanza"
+filename: dae-herramientas-digitales
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Asignatura que aborda el uso de las herramientas digitales en la enseñanza
+categories: [herramientas, digitales, educación]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentación
+
+> La profesora Núria Domènech dirige esta parte del módulo de desarrollo, aprendizaje y educación denominado **Herramientas digitales para la competencia científica**, desde un analisis de las herramientas digitales se aborda su uso en la enseñanza como una propuesta pedagogica. La competencia es conocer y utilizar pedagógicamente herramientas digitales, de manera eficaz y reflexiva, en el contexto del aprendizaje de las ciencies.
+
+Los objetivos son:
+
+-   Reflexionar sobre las oportunidades que ofrecen las herramientas digitales en las situaciones de aprendizaje de ciencias.
+-   Valorar crítiicament los retos que plantean las digitales en el aula.
+-   Conocer diversidad de herramientas, como por ejemplo sensores y simuladores virtuales.
+-   Introducir las herramientas digitales en el aula en contextos diversos, aprovechando las potencialidades y gestionando los cambios que provocan.
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: panel-tabset
+## Sesión 1 {.active}
+
+<embed src="/files/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 3
+
+<embed src="/files/DAE-Eines-Sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 4
+
+<embed src="/files/DAE-Eines-Sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  Trabajo App Checker Express
+
+<embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  Trabajo Final
+
+<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,61 @@
+---
+title: "Eines digitals per a la competència científica"
+subtitle: "Eines digitals en la enseñanza"
+filename: dae-herramientas-digitales
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Assignatura que aborda l'ús de les eines digitals en l'ensenyament
+categories: [eines, digitals, educacio]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentació
+
+> La professora Núria Domènech dirigeix aquesta part del mòdul de desenvolupament, aprenentatge i educació denominat *Eines digitals per a la competència científica*, des d'un analisis de les eines digitals s'aborda el seu ús en l'ensenyament com una proposta pedagogica. La competència és conèixer i utilitzar pedagògicament eines digitals, de manera eficaç i reflexiva, en el context de l'aprenentatge de les ciencies.
+
+Els objectius són:
+
+- Reflexionar sobre les oportunitats que ofereixen les eines digitals en les situacions d'aprenentatge de ciències.
+- Valorar crítiicament els reptes que plantegen les digitals a l'aula.
+- Conèixer diversitat d'eines, com per exemple sensors i simuladors virtuals.
+- Introduir les eines digitals a l'aula en contextos diversos, aprofitant les potencialitats i gestionant els canvis que provoquen.
+
+::: callout-tip
+## Clica en cada una de les pestanyes per visualitzar el material de cada sessió
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 3
+
+<embed src="/files/DAE-Eines-Sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 4
+
+<embed src="/files/DAE-Eines-Sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  Projecte App Checker Express
+
+<embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
+
+##  Projecte Final
+
+<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
