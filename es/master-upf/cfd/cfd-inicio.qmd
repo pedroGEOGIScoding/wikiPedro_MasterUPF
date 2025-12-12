@@ -27,11 +27,11 @@ format: html
 ::: panel-tabset
 ## Sesión 1 {.active}
 
-<embed src="/files/Intro-CFD.pptx" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/Intro-CFD.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 2
 
-<embed src="/files/CFD-Secundaria-Digital.pptx" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
