@@ -16,6 +16,10 @@ lightbox:
   desc-position: bottom
   loop: false
 format: html
+format-links:
+  - text: Gencat Competencias digitales
+    href: https://xtec.gencat.cat/ca/curriculum/primaria/recursos-i-materials/competencia-digital/
+    icon: pc-display-horizontal
 ---
 
 ## Presentación
@@ -59,3 +63,9 @@ Los objetivos son:
 <embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
+
+## Referencias
+
+-   [Gencat Competencias digitales de los docentes](https://educacio.gencat.cat/web/.content/home/departament/publicacions/colleccions/pla-educacio-digital/marc-referencia-competencia-digital-docent/marc-referencia-cdd.pdf)
+
+-   [Gencat Competencias basicas digitales ESO](https://educacio.gencat.cat/web/.content/home/departament/publicacions/colleccions/competencies-basiques/eso/ambit-digital.pdf)
