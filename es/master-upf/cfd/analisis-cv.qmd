@@ -22,6 +22,8 @@ format: html
 
 > El profesor Xavier Muñoz Báguena dirige esta parte del módulo de **Complementos de Formación Disciplinar** denominado **análisis de los curricula de la enseñanza de secundaria**, con los objetivos de conocer el currículum de ciencias naturales de la ESO y el bachillerato, reflexionar sobre los objetivos de la enseñanza-aprendizaje de las ciencas naturales en secundaria (finalidades del currículum) y finalmente analizar pruebas externas (4.º ESO).
 
+## Material de las sesiones
+
 ::: callout-tip
 ## Haz click en cada una de las pestañas para visualizar el material de cada sesión
 :::
@@ -57,4 +59,20 @@ format: html
 
 :::
 
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas
+
+::: panel-tabset
+## Prueba de Ciencia 2024/25 {.active}
+
+<embed src="/files/cfd-prova-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Hoja de respuestas 2024/25
+
+<embed src="/files/cfd-full-respostes-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2024/25
+
+<embed src="/files/cfd-criteris-correccio-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
 
