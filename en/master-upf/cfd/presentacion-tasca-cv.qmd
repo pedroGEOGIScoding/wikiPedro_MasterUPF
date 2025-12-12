@@ -1,11 +1,11 @@
 ---
-title: "Practice of presenting CV analysis"
-subtitle: "Integrated guide to the Natural Sciences specialty (Biology and Geology / Physics and Chemistry)"
+title: "Practice of presenting the learning situation"
+subtitle: "Presentation of the learning situation"
 filename: cfd-presentacion-tasca-cv
 author: "Pedro Martinez Duran"
 date-modified: last-modified
 date-format: full
-description: Subject that complements disciplinary training in natural sciences from an integrated and disciplinary perspective
+description: Practice of presenting the learning situation
 categories: [presentation, accessories, discipline]
 toc: true
 number-sections: true
@@ -17,3 +17,28 @@ lightbox:
   loop: false
 format: html
 ---
+
+## Presentation
+
+> This part is the practice of presenting the approach to a learning situation. The work is based on a task in groups of five components and each group will be assigned a course and an ESO subject (Biology and Geology or Physics and Chemistry). The group has to decide on a learning situation appropriate to the level and subject assigned. The context of the learning situation must be presented, as well as indicating the specific competencies that you consider can be worked on. Also mark the associated evaluation criteria that would be applicable and specify the knowledge of the subject that would be worked on (Conceptual map). Note possible interactions with other subjects that can be worked on interdisciplinaryly. The final product will be a recorded presentation to which all members of the group appear, which will not have to exceed 12 minutes and will be posted to the corresponding task in the CFD moodle.
+
+## Learning situation presentation practice material
+
+::: callout-tip
+## Click on each of the tabs to view the practice material
+:::
+
+::: panel-tabset
+## Description of the practice {.active}
+
+<embed src="/files/cfd-tasca-cv.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Presentation of the practice
+
+<embed src="/files/cfd-situacio-aprenentatge.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Evaluation rubric
+
+<embed src="/files/cfd-rubrica-tasca.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

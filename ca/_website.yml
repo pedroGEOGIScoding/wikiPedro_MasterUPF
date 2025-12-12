@@ -170,20 +170,8 @@ website:
             - section: "Complements de formació disciplinària"
               contents:
               - master-upf/cfd/cfd-inicio.qmd
-              - section: "Anàlisi de currículum"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Presentació de les tasques de currículum"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
+              - master-upf/cfd/analisis-cv.qmd
+              - master-upf/cfd/presentacion-tasca-cv.qmd
             - section: "Fonaments d'aprenentatge i ensenyament de les ciències naturals"
               contents:
               - master-upf/fac/fac-inicio.qmd
