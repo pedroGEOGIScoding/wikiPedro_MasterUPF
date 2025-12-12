@@ -1,5 +1,5 @@
 ---
-title: "Subject: Complementary Disciplinary Training"
+title: "Introduction to Complementary Disciplinary Training"
 subtitle: "Integrated guide to the Natural Sciences specialty (Biology and Geology / Physics and Chemistry)"
 filename: cfd-inicio
 author: "Pedro Martinez Duran"
@@ -24,8 +24,6 @@ format: html
 
 * The main objective of this subject is to provide complementary scientific training that completes the knowledge of the bachelor's degree or entry level to the master's degree.
 
-<br>
-
 ## Technical Information
 
 * **Subject code:** 31543
@@ -40,11 +38,7 @@ format: html
 
 * **Teachers:** Xavier Muñoz (coordination), Iván Marchán, Laia Ramon-Sala, Gemma Viscasillas
 
-<br>
-
 ![Structure of Disciplinary Training Complements](../../images/cfd/cfd-structure.png){width=50% fig-align="center" group="cfd-inicio"}
-
-<br>
 
 ## Subject Modules
 
@@ -60,8 +54,6 @@ format: html
 
 **Note:** Each student must take two of the four proposed disciplinary blocks (Biology, Geology, Physics and Chemistry).
 
-<br>
-
 ## Goals
 
 * Know the key scientific models of the scientific disciplines of the specialty that do not correspond to the degree obtained.
@@ -69,8 +61,6 @@ format: html
 * Understand the most relevant conceptual errors related to the key models of science.
 
 * Know and apply the most efficient teaching strategies so that students can deal with the most relevant conceptual errors related to the key models of science.
-
-<br>
 
 ## Competencies
 
@@ -81,8 +71,6 @@ format: html
 3. Teaching methodology and diversity management in the classroom
 
 4. Use of digital environments for professional development and educational interaction
-
-<br>
 
 ## Contents
 
@@ -140,15 +128,11 @@ format: html
 
 * What resources do we have?
 
-<br>
-
 ## Methodology
 
 * The sessions will be theoretical-practical, activities to work in the classroom will be combined with presentations by the teachers. Active learning methodologies will therefore predominate and reflective practice will be facilitated.
 
 * The student will have the materials used in classes at their disposal on the virtual platform.
-
-<br>
 
 ## Assessment
 
@@ -173,8 +157,6 @@ format: html
 * Each group must write a proposal for a teaching-learning activity on the topic and level indicated, consistent with the secondary school curriculum and that mobilizes the contents and resources worked on in the corresponding disciplinary block. It will also be necessary to indicate the criteria that would be used to evaluate the students.
 
 ### Digital competence (10%)
-
-<br>
 
 ## Resources and Recommended Bibliography
 

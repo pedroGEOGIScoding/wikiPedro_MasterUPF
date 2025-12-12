@@ -1,5 +1,5 @@
 ---
-title: "Assignatura: Complements de Formació Disciplinària"
+title: "Introducció a Complements de Formació Disciplinària"
 subtitle: "Guia integrada de l'especialitat de Ciències Naturals (Biologia i Geologia / Física i Química)"
 filename: cfd-inicio
 author: "Pedro Martinez Duran"
@@ -24,8 +24,6 @@ format: html
 
 * L'objectiu principal d'aquesta assignatura és oferir una formació científica complementària que completi els coneixements del grau o nivell d'accés al màster.
 
-<br>
-
 ## Informació tècnica
 
 * **Codi de l'assignatura:** 31543
@@ -40,11 +38,7 @@ format: html
 
 * **Professors:** Xavier Muñoz (coordinació), Iván Marchán, Laia Ramon-Sala, Gemma Viscasillas
 
-<br>
-
 ![Estructura dels complements formatius disciplinaris](../../images/cfd/cfd-structure.png){width=50% fig-align="center" group="cfd-inicio"}
-
-<br>
 
 ## Mòduls d'assignatures
 
@@ -60,8 +54,6 @@ format: html
 
 **Nota:** Cada estudiant ha de cursar dos dels quatre blocs disciplinaris proposats (Biologia, Geologia, Física i Química).
 
-<br>
-
 ## Gols
 
 * Conèixer els models científics clau de les disciplines científiques de l'especialitat que no corresponen a la titulació obtinguda.
@@ -69,8 +61,6 @@ format: html
 * Comprendre els errors conceptuals més rellevants relacionats amb els models clau de la ciència.
 
 * Conèixer i aplicar les estratègies docents més eficients perquè l'alumnat pugui fer front als errors conceptuals més rellevants relacionats amb els models clau de la ciència.
-
-<br>
 
 ## Competències
 
@@ -81,8 +71,6 @@ format: html
 3. Metodologia docent i gestió de la diversitat a l'aula
 
 4. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
-
-<br>
 
 ## Continguts
 
@@ -140,15 +128,11 @@ format: html
 
 * Quins recursos tenim?
 
-<br>
-
 ## Metodologia
 
 * Les sessions seran teòrico-pràctiques, es combinaran activitats per treballar a l'aula amb exposicions del professorat. Predominaran, per tant, les metodologies d'aprenentatge actiu i es facilitarà la pràctica reflexiva.
 
 * L'estudiant tindrà a la seva disposició els materials utilitzats a les classes a la plataforma virtual.
-
-<br>
 
 ## Avaluació
 
@@ -173,8 +157,6 @@ format: html
 * Cada grup ha de redactar una proposta d'activitat d'ensenyament-aprenentatge sobre el tema i el nivell indicats, coherent amb el currículum de secundària i que mobilitzi els continguts i recursos treballats en el bloc disciplinari corresponent. També caldrà indicar els criteris que s'utilitzarien per avaluar els alumnes.
 
 ### Competència digital (10%)
-
-<br>
 
 ## Recursos i bibliografia recomanada
 
