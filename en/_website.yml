@@ -165,6 +165,7 @@ website:
               - master-upf/dae/dae-inicio.qmd
               - master-upf/dae/dae-herramientas-digitales.qmd
               - master-upf/dae/dae-evaluacion.qmd
+              - master-upf/dae/dae-gestion-aula.qmd
         - section: "Specialization Module"
           contents:
             - section: "Complementary disciplinary training"

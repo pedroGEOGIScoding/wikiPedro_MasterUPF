@@ -1,0 +1,59 @@
+---
+title: "Managing the learning environment in the classroom"
+subtitle: "Managing the classroom through the link, routines, limits and motivation"
+filename: dae-gestion-aula
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Subject that addresses the management of the learning environment in the classroom through bonding, routines, boundaries, and motivation
+categories: [management, classroom, learning, bonding, routines, boundaries, motivation]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentation
+
+> The teachers Artur Cortés and Lluís Terrado direct this part of the module of development, learning and education called **management of the learning environment in the classroom**, where the management of the learning environment in the classroom is addressed through the four great areas on which it can be incident to build a good learning environment: bonding, routines, boundaries, and motivation.
+
+::: callout-tip
+## Click on each tab to view the material of each session
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/Sesion1-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/Sesion2-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 3
+
+<embed src="/files/Sesion3-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 4
+
+<embed src="/files/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 5
+
+<embed src="/files/Sesion5-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+:::
+
+## References
+
+-   [Gencat how to manage the classroom](https://projectes.xtec.cat/tilc/elements-tilc/com-ensenyar/gestionar-laula/)
+
+-   [Gencat classroom management documentation](https://xtec.gencat.cat/.content/alfresco/d/d/workspace/SpacesStore/0064/92789ee1-c500-45a1-970c-5064478f1316/12_Gestio_aula.pdf)
+
+-   [Gencat classroom structure and resource management](https://xtec.gencat.cat/web/.content/centres/projeducatiu/convivencia/aplicacio/graella-estructura-gestio-recursos-aula.pdf)
+
+-   [Gencat evaluate to learn](https://xtec.gencat.cat/.content/alfresco/d/d/workspace/SpacesStore/0024fc53024f-626e-423b-877a-932148c56075/avaluar_per_aprendre.pdf)

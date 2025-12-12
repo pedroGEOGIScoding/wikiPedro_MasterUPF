@@ -1,0 +1,59 @@
+---
+title: "Gestió de l'ambient d'aprenentatge a l'aula"
+subtitle: "Gestió de l'aula a través del víncol, rutines, límits i motivació"
+filename: dae-gestion-aula
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Assignatura que aborda la gestió de l'ambient d'aprenentatge a l'aula a través del vincle, rutines, límits i motivació
+categories: [gestio, ambient, aprenentatge, vincle, rutines, límits, motivació]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentació
+
+> Los professors Artur Cortés i Lluís Terrado dirigen esta part del mòdul de desenvolupament, aprendizaje i educació denominada **gestió de l'ambient d'aprenentatge a l'aula**, on es aborda la gestió de l'ambient d'aprenentatge a l'aula a través de les quatre àrees principals sobre les que es poden incidir per construir un bon ambient d'aprenentatge: vincle, rutines, límits i motivació.
+
+::: callout-tip
+## Clic en cada una de les pestanyes per visualitzar el material de cada sessió
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/Sesion1-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/Sesion2-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 3
+
+<embed src="/files/Sesion3-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 4
+
+<embed src="/files/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 5
+
+<embed src="/files/Sesion5-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+:::
+
+## Referències
+
+-   [Gencat Gestionar l'aula](https://projectes.xtec.cat/tilc/elements-tilc/com-ensenyar/gestionar-laula/)
+
+-   [Gencat Documentació de gestió d'aula](https://xtec.gencat.cat/.content/alfresco/d/d/workspace/SpacesStore/0064/92789ee1-c500-45a1-970c-5064478f1316/12_Gestio_aula.pdf)
+
+-   [Gencat Estructura i gestió de recursos en el aula](https://xtec.gencat.cat/web/.content/centres/projeducatiu/convivencia/aplicacio/graella-estructura-gestio-recursos-aula.pdf)
+
+-   [Gencat Avaluar per a aprendre](https://xtec.gencat.cat/.content/alfresco/d/d/workspace/SpacesStore/0024fc53024f-626e-423b-877a-932148c56075/avaluar_per_aprendre.pdf)
