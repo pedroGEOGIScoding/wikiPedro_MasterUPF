@@ -20,9 +20,18 @@ format: html
 
 ## Presentació
 
-* Aquesta assignatura té la finalitat de complementar la formació disciplinària dels estudiants de l'àmbit de les ciències naturals. Partint de l'anàlisi dels currículums d'educació secundària, analitzarem com abordar l'ensenyament de les ciències des d'una perspectiva alhora integrada i disciplinària.
+* Aquesta assignatura té la finalitat de complementar la formació disciplinària dels estudiants de l'àmbit de les ciències naturals. Partint de l'anàlisi dels currículums d'educació secundària, analitzarem com abordar l'ensenyament de les ciències des d'una perspectiva alhora integrada i disciplinària. L'objectiu principal d'aquesta assignatura és oferir una formació científica complementària que completi els coneixements del grau o nivell d'accés al màster.
 
-* L'objectiu principal d'aquesta assignatura és oferir una formació científica complementària que completi els coneixements del grau o nivell d'accés al màster.
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/Intro-CFD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
 
 ## Informació tècnica
 

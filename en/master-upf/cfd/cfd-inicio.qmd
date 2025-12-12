@@ -20,9 +20,18 @@ format: html
 
 ## Presentation
 
-* This subject has the purpose of complementing the disciplinary training of students in the field of natural sciences. Starting from the analysis of secondary education curricula, we will analyze how to approach science teaching from a perspective that is both integrated and disciplinary.
+* This subject has the purpose of complementing the disciplinary training of students in the field of natural sciences. Starting from the analysis of secondary education curricula, we will analyze how to approach science teaching from a perspective that is both integrated and disciplinary. The main objective of this subject is to provide complementary scientific training that completes the knowledge of the bachelor's degree or entry level to the master's degree.
 
-* The main objective of this subject is to provide complementary scientific training that completes the knowledge of the bachelor's degree or entry level to the master's degree.
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/Intro-CFD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
 
 ## Technical Information
 

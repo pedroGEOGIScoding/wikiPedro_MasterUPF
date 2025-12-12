@@ -38,6 +38,11 @@ format: html
 ## Session 3
 
 <embed src="/files/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Evaluar para aprender
+
+<embed src="/files/avaluar_per_aprendre.pdf" type="application/pdf" width="100%" height="800px"/>
+
 :::
 
 ## References
