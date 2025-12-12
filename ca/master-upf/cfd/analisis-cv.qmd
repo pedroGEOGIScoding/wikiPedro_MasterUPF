@@ -49,6 +49,10 @@ format: html
 
 <embed src="/files/CFD_ambitos-prioritarios.pdf" type="application/pdf" width="100%" height="800px"/>
 
+## Competències bàsiques científico-tecnològiques
+
+<embed src="/files/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>
+
 ## CV de competència a l'aula
 
 <embed src="/files/CFD-CV-competencial-aula.pdf" type="application/pdf" width="100%" height="800px"/>
