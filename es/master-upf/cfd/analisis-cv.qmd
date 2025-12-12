@@ -59,7 +59,7 @@ format: html
 
 :::
 
-## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2024/25
 
 ::: panel-tabset
 ## Prueba de Ciencia 2024/25 {.active}
@@ -73,6 +73,125 @@ format: html
 ## Criterios de corrección 2024/25
 
 <embed src="/files/cfd-criteris-correccio-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2022/23
+
+::: panel-tabset
+## Prueba de Ciencia 2022/23 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_22_23.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2022/23
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_22_23_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2022/23
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_22_23Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2020/21
+
+::: panel-tabset
+## Prueba de Ciencia 2020/21 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_20_21.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2020/21
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_20_21_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2020/21
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_20_21Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2019/20
+
+::: panel-tabset
+## Prueba de Ciencia 2019/20 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_19_20.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2019/20
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_19_20_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2019/20
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_19_20Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2018/19
+
+::: panel-tabset
+## Prueba de Ciencia 2018/19 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_18_19.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2018/19
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_18_19_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2018/19
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_18_19Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2017/18
+
+::: panel-tabset
+## Prueba de Ciencia 2017/18 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_17_18.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2017/18
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_17_18_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2017/18
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_17_18Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2016/17
+
+::: panel-tabset
+## Prueba de Ciencia 2016/17 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_16_17.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2016/17
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_16_17_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2016/17
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_16_17Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Documentación de la evaluacion final de 4 ESO de las competencias cientifico-tecnologicas 2015/16
+
+::: panel-tabset
+## Prueba de Ciencia 2015/16 {.active}
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_15_16.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Soluciones 2015/16
+
+<embed src="/files/provas-competencias-ct/Solucions/CBCT_15_16_Sol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Criterios de corrección 2015/16
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_15_16Cc.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
