@@ -39,3 +39,13 @@ format: html
 
 <embed src="/files/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px"/>
 :::
+
+## References
+
+-   [Gencat Evaluation ESO](https://xtec.gencat.cat/ca/curriculum/eso/avaluacio/)
+
+-   [Gencat Tests of evaluation](https://projectes.xtec.cat/nou-curriculum/proves-davaluacio/)
+
+-   [Gencat Agency of evaluation](https://avaluacioeducativa.gencat.cat/ca/avaluacions/)
+
+-   [Gencat Evaluate to learn](https://xtec.gencat.cat/.content/alfresco/d/d/workspace/SpacesStore/0024/fc53024f-626e-423b-877a-932148c56075/avaluar_per_aprendre.pdf)
