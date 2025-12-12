@@ -163,16 +163,8 @@ website:
             - section: "Desarrollo, aprendizaje y educación"
               contents:
               - master-upf/dae/dae-inicio.qmd
-              - section: "Herramientas digitales"
-                contents:
-                - master-upf/dae/dae-herramientas-digitales.qmd
-              - section: "Gestión del ambiente en el aula"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-              - section: "Evaluación"
-                contents:
-                - master-upf/dae/dae-evaluacion.qmd
+              - master-upf/dae/dae-herramientas-digitales.qmd
+              - master-upf/dae/dae-evaluacion.qmd
         - section: "Módulo de Especialidad"
           contents:
             - section: "Complementos de formación disciplinaria"
