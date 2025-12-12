@@ -163,16 +163,8 @@ website:
             - section: "Desenvolupament, aprenentatge i educació"
               contents:
               - master-upf/dae/dae-inicio.qmd
-              - section: "Eines digitals"
-                contents:
-                - master-upf/dae/dae-herramientas-digitales.qmd
-              - section: "Gestió de l'ambient a l'aula"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-              - section: "Avaluació"
-                contents:
-                - master-upf/dae/dae-evaluacion.qmd
+              - master-upf/dae/dae-herramientas-digitales.qmd
+              - master-upf/dae/dae-evaluacion.qmd
         - section: "Mòdul d'Especialitat"
           contents:
             - section: "Complements de formació disciplinària"

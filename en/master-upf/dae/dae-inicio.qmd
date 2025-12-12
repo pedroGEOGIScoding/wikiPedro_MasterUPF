@@ -1,11 +1,11 @@
 ---
-title: "Subject: Development, Learning and Education"
+title: "Introduction to Development, Learning and Education"
 subtitle: "Classroom management, assessment and digital tools for science teaching"
 filename: dae-inicio
 author: "Pedro Martinez Duran"
 date-modified: last-modified
 date-format: full
-description: Subject that addresses the management of the face-to-face classroom, the evaluation of learning and the conception and management of digital tools
+description: Module that addresses the management of the face-to-face classroom, the evaluation of learning and the conception and management of digital tools
 categories: [development, learning, education]
 toc: true
 number-sections: true
@@ -20,13 +20,12 @@ format: html
 
 ## Presentation
 
-* This subject addresses three essential issues in the teaching-learning of natural sciences today in Catalonia, which are the management of a face-to-face classroom, the evaluation of learning and the conception and management of digital tools (inside the classroom, for formal teaching, and outside the classroom, for the continued education of the learner in their leisure contexts).
+* This module on the fundamentals block addresses three essential issues in the teaching-learning of natural sciences today in Catalonia, which are the management of a face-to-face classroom, the evaluation of learning and the conception and management of digital tools (inside the classroom, for formal teaching, and outside the classroom, for the continued education of the learner in their leisure contexts).
 
 * The subject relates the most global psycho-pedagogical, normative and organizational contents, on a more macro or general level, treated in SOFE (Society, family and education: educational processes and contexts), with its correlation in more specific aspects, to a micro level, of the classroom and day-to-day life.
 
 * The subject has a value of 5 ECTS, which represents 125 hours of student work, with 14 face-to-face sessions of two hours (28h), taught in face-to-face and synchronous virtual mode. It is taught above all before making the second visit to the center, when you will have to give classes, in order to equip you with all the knowledge and skills necessary to do it well.
 
-<br>
 
 ## Technical Information
 
@@ -42,7 +41,6 @@ format: html
 
 * **Teachers responsible for the subject:** Maria Calsamiglia, Arturo Cortés, Núria Domènech (coordinator), Laura Taberner and Lluís Terrado.
 
-<br>
 
 ## Key Questions
 
@@ -54,7 +52,6 @@ Some of the questions that you will be able to answer at the end of this subject
 
 * What digital tools and methodologies are best for the design and application of classroom activities that promote the development of scientific competence in students?
 
-<br>
 
 ## Subject Modules
 
@@ -66,7 +63,6 @@ The modules that make up this subject are these, with the corresponding modaliti
 
 * **Digital tools for scientific competence**, in face-to-face and synchronous virtual modes.
 
-<br>
 
 ## Goals
 
@@ -76,7 +72,6 @@ The modules that make up this subject are these, with the corresponding modaliti
 
 * Know and value the digital tools available at the center, know how to organize them effectively for all students, know how to choose the most suitable resources and educate students so that they can make instructive and effective use of these resources.
 
-<br>
 
 ## Competencies
 
@@ -86,8 +81,6 @@ The modules that make up this subject are these, with the corresponding modaliti
 
 * Effectively use the center's digital tools for science class and know how to guide learners in the use of their digital resources inside and outside the classroom.
 
-<br>
-
 ## Contents
 
 * Classroom management strategies to build the bond with students, include routines and establish limits and tools to promote motivation.
@@ -96,15 +89,11 @@ The modules that make up this subject are these, with the corresponding modaliti
 
 * Digital tools inside and outside the classroom. Potentials and limitations. Uses. Apps and diverse use experiences.
 
-<br>
-
 ## Assessment
 
 * **Task 1.** Resolution of a practical case related to the contents of the classroom management and cooperation and teaching and evaluation modules. Individual resolution task (70%).
 
 * **Task 2.** Digital Tools Module for Scientific Competence. Final report on the two case studies of the module (30%).
-
-<br>
 
 ## Resources and Recommended Bibliography
 
@@ -149,8 +138,6 @@ Vaello Orts, J. (2003) *Conflict resolution in the classroom*. Santillana Educac
 Vinagre, M. (2010) *Theory and practice of computer-assisted collaborative learning*. Madrid: Synthesis.
 
 White, David and Alison Le Cornu. (2011) "Visitors and Residents: A new typology for online engagement", *First Monday*, 16 (9), September.
-
-<br>
 
 ## Repositories
 

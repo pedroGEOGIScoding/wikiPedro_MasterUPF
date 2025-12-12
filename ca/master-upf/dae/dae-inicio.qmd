@@ -1,11 +1,11 @@
 ---
-title: "Assignatura: Desenvolupament, aprenentatge i educació"
+title: "Introduccion a Desenvolupament, aprenentatge i educació"
 subtitle: "Gestió de l'aula, avaluació i eines digitals per a l'ensenyament de les ciències"
 filename: dae-inicio
 author: "Pedro Martinez Duran"
 date-modified: last-modified
 date-format: full
-description: Assignatura que aborda la gestió de l'aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals
+description: Mòdul que aborda la gestió de l'aula presencial, l'avaluació dels aprenentatges i la concepció i gestió de les eines digitals
 categories: [desenvolupament, aprenentatge, educació]
 toc: true
 number-sections: true
@@ -20,13 +20,12 @@ format: html
 
 ## Presentació
 
-* Aquesta assignatura aborda tres qüestions essencials en l'ensenyament-aprenentatge de les ciències naturals avui a Catalunya, que són la gestió d'una aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals (dins de l'aula, per a l'ensenyament formal, i fora de l'aula, per a la formació continuada de l'aprenent en els seus contextos de lleure).
+* Aquest mòdul dins del bloc de fonaments aborda tres qüestions essencials en l'ensenyament-aprenentatge de les ciències naturals avui a Catalunya, que són la gestió d'una aula presencial, l'avaluació dels aprenentatges i la concepció i gestió d'eines digitals (dins de l'aula, per a l'ensenyament formal, i fora de l'aula, per a la formació continuada de l'aprenent en els seus contextos de lleure).
 
 * L'assignatura relaciona els continguts psicopedagògics, normatius i organitzatius més globals, a nivell més macro o general, tractats en SOFE (Societat, família i educació: processos i contextos educatius), amb la seva correlació en aspectes més concrets, amb un nivell micro, de l'aula i del dia a dia.
 
 * L'assignatura té un valor de 5 ECTS, que suposa 125 hores de treball de l'estudiant, amb 14 sessions presencials de dues hores (28h), impartides en modalitat virtual presencial i síncrona. S'ensenya sobretot abans de fer la segona visita al centre, quan hauràs de donar classes, per tal de dotar-te de tots els coneixements i habilitats necessàries per fer-ho bé.
 
-<br>
 
 ## Informació tècnica
 
@@ -42,19 +41,15 @@ format: html
 
 * **Professor responsable de l'assignatura:** Maria Calsamiglia, Arturo Cortés, Núria Domènech (coordinadora), Laura Taberner i Lluís Terrado.
 
-<br>
-
 ## Preguntes clau
 
-Algunes de les preguntes que podreu respondre al final d'aquesta assignatura són:
+Algunes de les preguntes que podreu respondre al final d'aquest mòdul són:
 
 * Quin és el paper dels professors per crear un bon entorn d'aprenentatge a l'aula?
 
 * Com organitzar les activitats d'avaluació de l'aprenentatge per promoure una avaluació que combini funcions reguladores i d'acreditació?
 
 * Quines eines i metodologies digitals són les millors per al disseny i aplicació d'activitats a l'aula que afavoreixin el desenvolupament de la competència científica en l'alumnat?
-
-<br>
 
 ## Mòduls d'assignatures
 
@@ -66,8 +61,6 @@ Els mòduls que conformen aquesta assignatura són aquests, amb les modalitats c
 
 * **Eines digitals per a la competència científica**, en modalitats virtuals presencial i síncrona.
 
-<br>
-
 ## Gols
 
 * Saber gestionar el dia a dia a l'aula, la gestió de cada grup, la gestió de la dinàmica de l'aula (temps, espai, instruccions, interacció), el desenvolupament de les tasques d'aprenentatge i l'anticipació i reparació de conflictes.
@@ -75,8 +68,6 @@ Els mòduls que conformen aquesta assignatura són aquests, amb les modalitats c
 * Conèixer les principals finalitats, instruments i característiques de l'avaluació i saber-les implementar de manera formativa en l'ensenyament científic.
 
 * Conèixer i valorar les eines digitals de què disposa el centre, saber organitzar-les de manera eficaç per a tot l'alumnat, saber triar els recursos més adequats i educar l'alumnat perquè pugui fer un ús instructiu i eficaç d'aquests recursos.
-
-<br>
 
 ## Competències
 
@@ -86,8 +77,6 @@ Els mòduls que conformen aquesta assignatura són aquests, amb les modalitats c
 
 * Utilitzar de manera efectiva les eines digitals del centre per a les classes de ciències i saber orientar els alumnes en l'ús dels seus recursos digitals dins i fora de l'aula.
 
-<br>
-
 ## Continguts
 
 * Estratègies de gestió de l'aula per construir el vincle amb l'alumnat, incloure rutines i establir límits i eines per afavorir la motivació.
@@ -96,15 +85,11 @@ Els mòduls que conformen aquesta assignatura són aquests, amb les modalitats c
 
 * Eines digitals dins i fora de l'aula. Potencials i limitacions. Usos. Aplicacions i experiències d'ús diverses.
 
-<br>
-
 ## Avaluació
 
 * **Tasca 1.** Resolució d'un cas pràctic relacionat amb els continguts dels mòduls de gestió i cooperació i docència i avaluació de l'aula. Tasca de resolució individual (70%).
 
 * **Tasca 2.** Mòdul d'eines digitals per a la competència científica. Informe final dels dos casos pràctics del mòdul (30%).
-
-<br>
 
 ## Recursos i bibliografia recomanada
 
@@ -149,8 +134,6 @@ Vaello Orts, J. (2003) *Resolució de conflictes a l'aula*. Santillana Educació
 Vinagre, M. (2010) *Teoria i pràctica de l'aprenentatge col·laboratiu assistit per ordinador*. Madrid: Síntesi.
 
 White, David i Alison Le Cornu. (2011) "Visitants and Residents: A new typology for online engagement", *Primer dilluns*, 16 (9), setembre.
-
-<br>
 
 ## Repositoris
 

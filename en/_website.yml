@@ -163,16 +163,8 @@ website:
             - section: "Development, learning and education"
               contents:
               - master-upf/dae/dae-inicio.qmd
-              - section: "Digital tools"
-                contents:
-                - master-upf/dae/dae-herramientas-digitales.qmd
-              - section: "Classroom environment management"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-              - section: "Assessment"
-                contents:
-                - master-upf/dae/dae-evaluacion.qmd
+              - master-upf/dae/dae-herramientas-digitales.qmd
+              - master-upf/dae/dae-evaluacion.qmd
         - section: "Specialization Module"
           contents:
             - section: "Complementary disciplinary training"
