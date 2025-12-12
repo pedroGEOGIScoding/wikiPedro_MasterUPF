@@ -173,18 +173,8 @@ website:
               - master-upf/cfd/cfd-inicio.qmd
               - section: "Análisis de currículum"
                 contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Presentación de la tareas de currículum"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
+                - master-upf/cfd/analisis-cv.qmd
+                - master-upf/cfd/presentacion-tasca-cv.qmd
             - section: "Fundamentos de aprendizaje y enseñanza de las ciencias naturales"
               contents:
               - master-upf/fac/fac-inicio.qmd
