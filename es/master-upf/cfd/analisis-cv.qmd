@@ -33,11 +33,11 @@ format: html
 
 <embed src="/files/CFD-analisis-CV.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Decreto 175/2022, Dept. Educación
+## Decreto 175/2022
 
 <embed src="/files/Decret-CVE-DOGC.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## LOE con LOMLOE
+## LOE+LOMLOE
 
 <embed src="/files/loe-completa-con-lomloe.pdf" type="application/pdf" width="100%" height="800px"/>
 
