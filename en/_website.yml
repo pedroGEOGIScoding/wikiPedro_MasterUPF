@@ -149,17 +149,8 @@ website:
             - section: "Society, family and education"
               contents:
               - master-upf/sofe/sofe-inicio.qmd
-              - section: "Educational framework"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Educational project"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
+              - master-upf/sofe/sofe-marco-educativo.qmd
+              - master-upf/sofe/sofe-proyecto-educativo.qmd
             - section: "Development, learning and education"
               contents:
               - master-upf/dae/dae-inicio.qmd

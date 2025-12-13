@@ -2,7 +2,7 @@
 title: "Introduccion a Desenvolupament, aprenentatge i educació"
 subtitle: "Gestió de l'aula, avaluació i eines digitals per a l'ensenyament de les ciències"
 filename: dae-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Mòdul que aborda la gestió de l'aula presencial, l'avaluació dels aprenentatges i la concepció i gestió de les eines digitals

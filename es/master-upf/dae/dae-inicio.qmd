@@ -2,7 +2,7 @@
 title: "Introducción al módulo de Desarrollo, Aprendizaje y Educación"
 subtitle: "Gestión del aula, evaluación y herramientas digitales para la enseñanza de las ciencias"
 filename: dae-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Módulo que aborda la gestión del aula presencial, la evaluación de los aprendizajes y la concepción y gestión de las herramientas digitales

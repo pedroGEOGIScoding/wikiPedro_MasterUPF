@@ -2,7 +2,7 @@
 title: "Eines digitals per a la competència científica"
 subtitle: "Eines digitals en la enseñanza"
 filename: dae-herramientas-digitales
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Assignatura que aborda l'ús de les eines digitals en l'ensenyament
@@ -28,6 +28,8 @@ Els objectius són:
 - Valorar crítiicament els reptes que plantegen les digitals a l'aula.
 - Conèixer diversitat d'eines, com per exemple sensors i simuladors virtuals.
 - Introduir les eines digitals a l'aula en contextos diversos, aprofitant les potencialitats i gestionant els canvis que provoquen.
+
+## Material de totes les sessions
 
 ::: callout-tip
 ## Clica en cada una de les pestanyes per visualitzar el material de cada sessió

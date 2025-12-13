@@ -2,7 +2,7 @@
 title: "Anàlisi de CV"
 subtitle: "Currículums de les especialitats de Ciències Naturals (Biologia i Geologia / Física i Química)"
 filename: cfd-analisis-cv
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Anàlisi dels currículums de les especialitats de Ciències Naturals (Biologia i Geologia / Física i Química)
@@ -22,7 +22,7 @@ format: html
 
 > El professor Xavier Muñoz Báguena dirigeix ​​aquesta part del mòdul **Complements Formatius Disciplinaris** denominat **anàlisi dels currículums d'educació secundària**, amb els objectius de conèixer el pla d'estudis de ciències naturals d'ESO i batxillerat, reflexionant sobre els objectius d'ensenyament-aprenentatge de les ciències naturals a secundària (finalitats del currículum) i finalment proves externes d'anàlisi (4t d'ESO).
 
-## Material de la sessió
+## Material de totes les sessions
 
 ::: callout-tip
 ## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió

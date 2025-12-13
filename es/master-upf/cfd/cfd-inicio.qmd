@@ -2,7 +2,7 @@
 title: "Introducción al módulo de Complementos de Formación Disciplinar"
 subtitle: "Guía integrada de la especialidad de Ciencias Naturales (Biología y Geología / Física y Química)"
 filename: cfd-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que complementa la formación disciplinar en ciencias naturales desde una mirada integrada y disciplinar

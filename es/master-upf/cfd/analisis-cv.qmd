@@ -2,7 +2,7 @@
 title: "Analisis del CV"
 subtitle: "CV's de las especialidades de Ciencias Naturales (Biología y Geología / Física y Química)"
 filename: cfd-analisis-cv
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Analisis de los CV's de las especialidades de Ciencias Naturales (Biología y Geología / Física y Química)
@@ -22,7 +22,7 @@ format: html
 
 > El profesor Xavier Muñoz Báguena dirige esta parte del módulo de **Complementos de Formación Disciplinar** denominado **análisis de los curricula de la enseñanza de secundaria**, con los objetivos de conocer el currículum de ciencias naturales de la ESO y el bachillerato, reflexionar sobre los objetivos de la enseñanza-aprendizaje de las ciencas naturales en secundaria (finalidades del currículum) y finalmente analizar pruebas externas (4.º ESO).
 
-## Material de las sesiones
+## Material didáctico de todas las sesiones
 
 ::: callout-tip
 ## Haz click en cada una de las pestañas para visualizar el material de cada sesión

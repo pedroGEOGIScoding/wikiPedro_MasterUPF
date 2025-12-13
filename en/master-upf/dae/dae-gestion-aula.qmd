@@ -2,7 +2,7 @@
 title: "Managing the learning environment in the classroom"
 subtitle: "Managing the classroom through the link, routines, limits and motivation"
 filename: dae-gestion-aula
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Subject that addresses the management of the learning environment in the classroom through bonding, routines, boundaries, and motivation
@@ -21,6 +21,8 @@ format: html
 ## Presentation
 
 > The teachers Artur Cortés and Lluís Terrado direct this part of the module of development, learning and education called **management of the learning environment in the classroom**, where the management of the learning environment in the classroom is addressed through the four great areas on which it can be incident to build a good learning environment: bonding, routines, boundaries, and motivation.
+
+## All session materials
 
 ::: callout-tip
 ## Click on each tab to view the material of each session

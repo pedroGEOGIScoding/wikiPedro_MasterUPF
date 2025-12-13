@@ -149,22 +149,14 @@ website:
             - section: "Societat, família i educació"
               contents:
               - master-upf/sofe/sofe-inicio.qmd
-              - section: "Marc educatiu"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Projecte educatiu"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
+              - master-upf/sofe/sofe-marco-educativo.qmd
+              - master-upf/sofe/sofe-proyecto-educativo.qmd
             - section: "Desenvolupament, aprenentatge i educació"
               contents:
               - master-upf/dae/dae-inicio.qmd
               - master-upf/dae/dae-herramientas-digitales.qmd
               - master-upf/dae/dae-evaluacion.qmd
+              - master-upf/dae/dae-gestion-aula.qmd
         - section: "Mòdul d'Especialitat"
           contents:
             - section: "Complements de formació disciplinària"

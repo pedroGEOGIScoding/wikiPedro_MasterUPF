@@ -2,7 +2,7 @@
 title: "Digital tools for scientific competence"
 subtitle: "Digital tools in teaching"
 filename: dae-herramientas-digitales
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Course that addresses the use of digital tools in teaching
@@ -28,6 +28,8 @@ The objectives are:
 -   Critically evaluate the challenges that digital tools present in the classroom.
 -   Know a diversity of tools, for example sensors and virtual simulators.
 -   Introduce digital tools in the classroom in diverse contexts, taking advantage of their potential and managing the changes they provoke.
+
+## All session materials
 
 ::: callout-tip
 ## Click on each tab to view the material of each session

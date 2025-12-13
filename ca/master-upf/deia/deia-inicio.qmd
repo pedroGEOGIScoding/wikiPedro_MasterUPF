@@ -2,7 +2,7 @@
 title: "Assignatura: Disseny d'entorns d'aprenentatge innovadors"
 subtitle: "Programació, innovació i reflexió sobre la pràctica docent en ciència"
 filename: deia-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Assignatura centrada en el disseny i avaluació de situacions d'aprenentatge i recerca-acció a l'aula

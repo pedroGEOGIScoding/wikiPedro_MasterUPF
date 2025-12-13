@@ -2,7 +2,7 @@
 title: "Ensenyament i Avaluació"
 subtitle: "Perquè, com i que avaluem"
 filename: dae-evaluacion
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda la evaluació dels aprenentatges
@@ -22,6 +22,8 @@ format: html
 
 > La professora Laura Taberne dirigeix aquesta part del mòdul de desenvolupament, aprenentatge i educació denominat *ensenyament i avaluació*, on s'aborda l'avaluació dels aprenentatges. Tradicionalment, s'ha entès com un instrument per a mesurar l'èxit acadèmic de l'alumnat i assignar-li una qualificació. Aquesta visió reduccionista ha estat progressivament qüestionada des de les perspectives pedagògiques constructivistes i competencials. Malgrat això, l'avaluació no està obsoleta, de fet és una de les pràctiques més freqüents, potents i decisives en qualsevol procés educatiu.
 
+## Material de totes les sessions
+
 ::: callout-tip
 ## Fes clic en cadascuna de les pestanyes per a visualitzar el material de cada sessió
 :::
@@ -39,7 +41,7 @@ format: html
 
 <embed src="/files/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Evaluar para aprender
+## Avaluar per a aprendre
 
 <embed src="/files/avaluar_per_aprendre.pdf" type="application/pdf" width="100%" height="800px"/>
 

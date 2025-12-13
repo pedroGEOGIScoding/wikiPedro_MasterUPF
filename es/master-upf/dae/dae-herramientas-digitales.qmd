@@ -2,7 +2,7 @@
 title: "Herramientas digitales para la competencia científica"
 subtitle: "Herramientas digitales en la enseñanza"
 filename: dae-herramientas-digitales
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda el uso de las herramientas digitales en la enseñanza
@@ -32,6 +32,8 @@ Los objetivos son:
 -   Valorar crítiicament los retos que plantean las digitales en el aula.
 -   Conocer diversidad de herramientas, como por ejemplo sensores y simuladores virtuales.
 -   Introducir las herramientas digitales en el aula en contextos diversos, aprovechando las potencialidades y gestionando los cambios que provocan.
+
+## Material didáctico de todas las sesiones
 
 ::: callout-tip
 ## Haz click en cada una de las pestañas para visualizar el material de cada sesión

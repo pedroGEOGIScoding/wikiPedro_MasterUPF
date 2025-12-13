@@ -1,12 +1,12 @@
 ---
-title: "Marco educativo"
-subtitle: "Contexto y normativa del sistema educativo catalán"
+title: "Educational framework"
+subtitle: "Context and regulations of the Catalan educational system"
 filename: sofe-marco-educativo
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Contexto y normativa del sistema educativo catalán para docentes que se incorporan al sistema educativo catalán, con énfasis en el marco legal y las oportunidades laborales
-categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
+description: Context and regulations of the Catalan educational system for teachers who join the Catalan educational system, with emphasis on the legal framework and job opportunities
+categories: [education, educational system, regulations, teaching, employment, training, higher education, educational policy]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,130 +18,130 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
 
-> El profesor Lluís Pagès dirige esta parte del módulo de **sociedad, familia y educación: procesos y contextos educativos** denominado **marco educativo**, donde se aborda como incorporarse al sistema educativo catalán como docente, entendiendo el contexto particular que lo rodea y a sabiendas de interactuar con los diversos equipos y los agentes sociales, para cumplir con éxito la función educativa. Esto implica conocer las características principales del sistema educativo catalán y del centro particular en que nos incorporamos y saber desarrollar una tarea eficaz, que contribuya a educar el alumnado de manera satisfactoria. Ademas, conocer la documentación y la normativa y saber aprovechar los diversos casos reales trabajados al máster para resolver los retos que se planteen en la incorporación futura al sistema educativo.
+> Professor Lluís Pagès directs this part of the **society, family and education: educational processes and contexts** module called **educational framework**, which addresses how to join the Catalan educational system as a teacher, understanding the particular context that surrounds it and knowing how to interact with the various teams and social agents, to successfully fulfill the educational function. This implies knowing the main characteristics of the Catalan educational system and the particular center in which we join and knowing how to develop an effective task that contributes to educating students in a satisfactory manner. In addition, know the documentation and regulations and know how to take advantage of the various real cases worked on in the master's degree to resolve the challenges that arise in future incorporation into the educational system.
 
-## Material didáctico de todas las sesiones
+## Didactic material for all sessions
 
 ::: callout-tip
-## Haz click en cada una de las pestañas para visualizar el material de cada sesión y trabajos asincrónicos
+## Click on each of the tabs to view the material of each session and asynchronous work
 :::
 
 ::: panel-tabset
-## Sesión 0 {.active}
+## Session 0 {.active}
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 1
+## Session 1
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 2
+## Session 2
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 3
+## Session 3
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 4
+## Session 4
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 5
+## Session 5
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion5.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 6
+## Session 6
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion6.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 7
+## Session 7
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion7.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 8
+## Session 8
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion8.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 9
+## Session 9
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion9.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión 10
+## Session 10
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion10.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Tarea asíncrona 1
+## Asynchronous task 1
 
 <embed src="/files/sofesesion/sofe-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Tarea asíncrona 2
+## Asynchronous task 2
 
 <embed src="/files/sofesesion/sofe-asincrona2.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Tarea asíncrona 3
+## Asynchronous task 3
 
 <embed src="/files/sofesesion/sofe-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-## Referencias
+## References
 
--   [Gencat Personal docente](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/oposicions/personal-docent/){target="_blank"}
+-   [Gencat Teaching staff](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/opositions/personal-docent/){target="_blank"}
 
--   [Bolsas de trabajo personal docente](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/borses-treball/personal-interi-docent/){target="_blank"}
+-   [Teaching staff job boards](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/borses-treball/personal-interi-docent/){target="_blank"}
 
--   [Bolsa de trabajo de la escuela catalana](https://www.agrescat.cat/ca/borsa-treball.htm){target="_blank"}
+-   [Catalan school job board](https://www.agrescat.cat/ca/borsa-treball.htm){target="_blank"}
 
--   [FECCT - Bolsa de trabajo](https://www.fecc.cat/borsa-fecc/){target="_blank"}
+-   [FECCT - Job Board](https://www.fecc.cat/borsa-fecc/){target="_blank"}
 
-## Video a la profesora de castellano Clauda Comes Peña del Instituto Ausias March de Barcelona
+## Video to Spanish teacher Clauda Comes Peña from the Ausias March Institute in Barcelona
 
 {{< video https://www.youtube.com/watch?v=pXchSFHB5uA aspect-ratio="4x3" >}}
 
-## Documentación adicional aportada por el profesor Lluís Pagès
+## Additional documentation provided by Professor Lluís Pagès
 
 ::: panel-tabset
-## Resumen de tipos de centro educativos {.active}
+## Summary of educational center types {.active}
 
 <embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Funciones de organismos educativos
+## Functions of educational organizations
 
 <embed src="/files/sofedocs/sofe-doc-funciones-org-edu.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Tratamiento del uso de las lenguas
+## Treatment of the use of languages
 
 <embed src="/files/sofedocs/pec_tractament_us_llengues.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Objetivos del sistema educativo
+## Objectives of the educational system
 
 <embed src="/files/sofedocs/pec_objectius_projecte.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Documentos de gestión de centros
+## Center management documents
 
 <embed src="/files/sofedocs/pec_documents_gestio.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Competencias de los docentes
+## Teacher competencies
 
 <embed src="/files/sofedocs/marc_competencies_professionals_docents_2024.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Competencias para enseñar
+## Skills to teach
 
 <embed src="/files/sofedocs/nuevas-competencias-ensenar.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Guia de observacion - Practicum
+## Observation guide - Practicum
 
 <embed src="/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Planes educativos de entorno
+## Environmental educational plans
 
 <embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>
 
 
-## UNESCO - contrato social para la educación
+## UNESCO - social contract for education
 
 <embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
 

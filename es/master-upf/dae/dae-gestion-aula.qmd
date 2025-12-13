@@ -2,7 +2,7 @@
 title: "Gestión del ambiente de aprendizaje en el aula"
 subtitle: "Gestión del aula a través del vínculo, rutinas, límites y motivación"
 filename: dae-gestion-aula
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda la gestión del ambiente de aprendizaje en el aula a través del vínculo, rutinas, límites y motivación
@@ -21,6 +21,8 @@ format: html
 ## Presentación
 
 > Los profesores Artur Cortés y Lluís Terrado dirigen esta parte del módulo de desarrollo, aprendizaje y educación denominado **gestión del ambiente de aprendizaje en el aula**, donde se aborda la gestión del ambiente de aprendizaje en el aula a través de las cuatro grandes áreas sobre las que se pueden incidir para construir un buen ambiente de aprendizaje: vínculo, rutinas, límites y motivación.
+
+## Material didáctico de todas las sesiones
 
 ::: callout-tip
 ## Haz click en cada una de las pestañas para visualizar el material de cada sesión
