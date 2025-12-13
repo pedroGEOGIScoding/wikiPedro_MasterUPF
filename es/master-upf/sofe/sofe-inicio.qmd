@@ -1,8 +1,8 @@
 ---
-title: "Asignatura: Sociedad, Familia y Educación"
+title: "Introducción al módulo de Sociedad, Familia y Educación"
 subtitle: "Procesos y contextos educativos"
 filename: sofe-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Fundamentos organizativos y psicopedagógicos de la función educativa en la comunidad catalana

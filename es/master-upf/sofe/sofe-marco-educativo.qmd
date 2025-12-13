@@ -1,0 +1,154 @@
+---
+title: "Marco educativo"
+subtitle: "Contexto y normativa del sistema educativo catalán"
+filename: sofe-marco-educativo
+author: "Pedro Martinez Duran"
+date-modified: last-modified
+date-format: full
+description: Contexto y normativa del sistema educativo catalán para docentes que se incorporan al sistema educativo catalán, con énfasis en el marco legal y las oportunidades laborales
+categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentación
+
+> El profesor Lluís Pagès dirige esta parte del módulo de **sociedad, familia y educación: procesos y contextos educativos** denominado **marco educativo**, donde se aborda como incorporarse al sistema educativo catalán como docente, entendiendo el contexto particular que lo rodea y a sabiendas de interactuar con los diversos equipos y los agentes sociales, para cumplir con éxito la función educativa. Esto implica conocer las características principales del sistema educativo catalán y del centro particular en que nos incorporamos y saber desarrollar una tarea eficaz, que contribuya a educar el alumnado de manera satisfactoria. Ademas, conocer la documentación y la normativa y saber aprovechar los diversos casos reales trabajados al máster para resolver los retos que se planteen en la incorporación futura al sistema educativo.
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión y trabajos asincrónicos
+:::
+
+::: panel-tabset
+## Sesión 0 {.active}
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 1
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 3
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 4
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 5
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion5.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 6
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion6.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 7
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion7.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 8
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion8.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 9
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion9.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 10
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion10.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 1
+
+<embed src="/files/sofesesion/sofe-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 2
+
+<embed src="/files/sofesesion/sofe-asincrona2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 3
+
+<embed src="/files/sofesesion/sofe-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Referencias
+
+-   [Gencat Personal docente](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/oposicions/personal-docent/){target="_blank"}
+
+-   [Bolsas de trabajo personal docente](https://educacio.gencat.cat/ca/serveis-tramits/treballa-amb-nosaltres/borses-treball/personal-interi-docent/){target="_blank"}
+
+-   [Bolsa de trabajo de la escuela catalana](https://www.agrescat.cat/ca/borsa-treball.htm){target="_blank"}
+
+-   [FECCT - Bolsa de trabajo](https://www.fecc.cat/borsa-fecc/){target="_blank"}
+
+## Video a la profesora de castellano Clauda Comes Peña del Instituto Ausias March de Barcelona
+
+{{< video https://www.youtube.com/watch?v=pXchSFHB5uA aspect-ratio="4x3" >}}
+
+## Documentación adicional aportada por el profesor Lluís Pagès
+
+::: panel-tabset
+## Resumen de tipos de centro educativos {.active}
+
+<embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Funciones de organismos educativos
+
+<embed src="/files/sofedocs/sofe-doc-funciones-org-edu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tratamiento del uso de las lenguas
+
+<embed src="/files/sofedocs/pec_tractament_us_llengues.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objetivos del sistema educativo
+
+<embed src="/files/sofedocs/pec_objectius_projecte.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Documentos de gestión de centros
+
+<embed src="/files/sofedocs/pec_documents_gestio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Competencias de los docentes
+
+<embed src="/files/sofedocs/marc_competencies_professionals_docents_2024.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Competencias para enseñar
+
+<embed src="/files/sofedocs/nuevas-competencias-ensenar.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Guia de observacion - Practicum
+
+<embed src="/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Planes educativos de entorno
+
+<embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>
+
+
+## UNESCO - contrato social para la educación
+
+<embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Otros enlaces útiles
+
+-   [Portal de empleo de la Generalitat](https://empleo.gencat.cat/)
+-   [BOE - Oposiciones y concursos](https://www.boe.es/boe/dias/2025/09/22/)
+-   [BOE - Convocatorias de la Generalitat](https://www.boe.es/boe/dias/2025/09/22/)
+-   [BOE - Boletín Oficial del Estado](https://www.boe.es/)
+

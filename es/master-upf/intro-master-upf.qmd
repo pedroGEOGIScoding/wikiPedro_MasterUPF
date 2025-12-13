@@ -1,5 +1,5 @@
 ---
-title: "Introducción al Máster de Formación del Profesorado de Secundaria, Bachillerato, EOI y Módulos Profesionales"
+title: "Introducción general al Máster de Formación del Profesorado de Secundaria, Bachillerato, EOI y Módulos Profesionales"
 subtitle: "Guía integrada de la especialidad de Ciencias Naturales (Biología y Geología / Física y Química)"
 filename: intro-master-upf
 author: "Pedro Martínez Durán"
@@ -27,23 +27,15 @@ format: html
 * Estos son los siete ámbitos competenciales que trabajarás de manera transversal en las diferentes asignaturas. Como máster profesionalizador, estos ámbitos abarcan los diversos aspectos de la tarea docente: la comunicación, la gestión, la orientación, la investigación y la reflexión sobre la práctica personal, además del diseño de las secuencias de aprendizaje de los aprendices. Las pruebas de la adquisición de estas competencias se recogerán en los proyectos y en las actividades que harás en las asignaturas, en el portafolio del prácticum y en el trabajo de fin de máster.
 
 
-<br>
-
 ![Ámbitos competenciales cubiertos en el máster](../images/intro-master/ambitos-competenciales.png){width=50% fig-align="center" group="intro-master-upf"}
-
-<br>
 
 ![Estructura de las asignaturas del Máster](../images/intro-master/master-estructura.png){width=50% fig-align="center" group="intro-master-upf"}
 
-<br>
+![Estructura de las asignaturas del Máster en detalle](../images/intro-master/master-estructura2.png){width=50% fig-align="center" group="intro-master-upf"}
 
 ![Estructura de las asignaturas del Máster en detalle](../images/intro-master/master-estructura2.png){width=50% fig-align="center" group="intro-master-upf"}
 
-<br>
-
 ![Calendario de la docencia del Máster](../images/intro-master/calendario-master.png){width=50% fig-align="center" group="intro-master-upf"}
-
-<br>
 
 
 ## Créditos y dedicación

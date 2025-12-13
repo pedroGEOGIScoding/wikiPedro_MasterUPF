@@ -1,8 +1,8 @@
 ---
-title: "Asignatura: Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales"
+title: "Introducción al módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales"
 subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
 filename: fac-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
@@ -30,11 +30,7 @@ format: html
 
 * Todos los contenidos y procedimientos que se trabajarán en esta materia serán recursos básicos para el diseño de secuencias didácticas que se llevará a cabo en la asignatura DEIA.
 
-<br>
-
 ![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio"}
-
-<br>
 
 ## Información Técnica
 
@@ -49,8 +45,6 @@ format: html
 * **Dedicación:** 75 h presenciales y 120 h de trabajo autónomo (195 h totales)
 
 * **Profesorado:** Pineda Badia (coordinadora), Marcel Costa, Jordi de Manuel, Anama Domènech, Laura Ganzer, Xavier Muñoz, Xavier Oller, Nora Pérez, Xavi Pié, Diego Sanjulián, Laura Taberner, Gemma Viscasillas
-
-<br>
 
 ## Módulos de la Asignatura
 
@@ -70,7 +64,6 @@ format: html
 
 * **Actividades didácticas fuera del aula**
 
-<br>
 
 ## Objetivos
 
@@ -98,7 +91,6 @@ format: html
 
 * Saber planificar y analizar actividades didácticas fuera del aula.
 
-<br>
 
 ## Competencias
 
@@ -111,8 +103,6 @@ format: html
 5. Investigación, innovación y reflexión sobre la identidad profesional y la mejora de la práctica docente
 
 6. Uso de entornos digitales para el desarrollo profesional y la interacción educativa
-
-<br>
 
 ## Contenidos
 
@@ -144,8 +134,6 @@ format: html
 
 * Actividades didácticas fuera del aula: planificación y análisis.
 
-<br>
-
 ## Metodología
 
 ### a) Sesiones presenciales
@@ -170,8 +158,6 @@ format: html
 
 * Se harán dos salidas a instituciones científicas donde se realizan actividades didácticas para alumnos de secundaria, con el objetivo de conocer los recursos que ofrecen estos tipos de centros para el alumnado y el profesorado de ciencias naturales y trabajar cómo hacer un buen uso de ellos.
 
-<br>
-
 ## Evaluación
 
 * La asignatura tendrá un sistema de evaluación continuada, que se basará en las demandas hechas durante el proceso docente.
@@ -186,7 +172,6 @@ Las actividades de evaluación serán las siguientes:
 
 * **Tarea grupal sobre las actividades didácticas fuera del aula (10%)**
 
-<br>
 
 ## Recursos y Bibliografía Recomendada
 
@@ -293,8 +278,6 @@ VVAA, 2012. Alambique. Didáctica de las Ciencias Experimentales. Enseñar que e
 VVAA, 1996. Monografía: Las ideas del alumnado en ciencias. Alambique, 7. Barcelona. Ed. Graó.
 
 VVAA,. 2008. Monografía: La evaluación PISA en ciencias. Alambique, 57. Barcelona. Ed. Graó.
-
-<br>
 
 ## Recursos en Línea
 

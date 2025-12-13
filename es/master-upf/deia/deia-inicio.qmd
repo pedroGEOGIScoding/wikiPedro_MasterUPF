@@ -1,8 +1,8 @@
 ---
-title: "Asignatura: Diseño de Entornos Innovadores de Aprendizaje"
+title: "Introducción al módulo de Diseño de Entornos Innovadores de Aprendizaje"
 subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
 filename: deia-inicio
-author: "Pedro Martinez Duran"
+author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
@@ -34,8 +34,6 @@ Los dos objetivos clave de esta materia son:
 
 * Se priorizará el enfoque práctico de las actividades que llevarán a cabo los estudiantes, de manera que la tarea final de la asignatura será la elaboración tutorizada de dos de los tres productos finales del máster: una situación de aprendizaje para ESO y una situación de aprendizaje para bachillerato, así como el diseño e implementación de una investigación-acción en el aula, que se llevarán a la práctica durante la segunda fase del prácticum, la cual permitirá a los estudiantes elaborar su trabajo final de máster (TFM). Siempre que sea posible, los estudiantes elaborarán, aplicarán y evaluarán en el aula por parejas los materiales didácticos y las acciones educativas desarrolladas en el marco de estos dos productos finales.
 
-<br>
-
 ## Información Técnica
 
 * **Código asignatura:** 32439
@@ -50,11 +48,7 @@ Los dos objetivos clave de esta materia son:
 
 * **Profesorado:** Bernat Blasco, Marcel Costa, Eulàlia Durán, Laura Farró, Jèssica Fernández, Davínia Hernández-Leo, Sílvia Lope, Iván Marchán, Xavi Muñoz, Diego Sanjulián (coordinación), Gemma Serra, Jordi Soler.
 
-<br>
-
 ![Estructura de Diseño de Entornos Innovadores de Aprendizaje](../../images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio"}
-
-<br>
 
 ## Módulos de la Asignatura
 
@@ -66,7 +60,6 @@ Los dos objetivos clave de esta materia son:
 
 * **Proyectos de innovación en educación científica**
 
-<br>
 
 ## Objetivos
 
@@ -86,7 +79,6 @@ Los dos objetivos clave de esta materia son:
 
 * Conocer el marco normativo y organizativo de la Formación Profesional en Cataluña. Interpretar y aplicar los elementos curriculares de la FP en la planificación y diseño de programaciones.
 
-<br>
 
 ## Competencias
 
@@ -100,7 +92,6 @@ Los dos objetivos clave de esta materia son:
 
 6. Uso de entornos digitales para el desarrollo profesional y la interacción educativa
 
-<br>
 
 ## Contenidos
 
@@ -140,7 +131,6 @@ Los dos objetivos clave de esta materia son:
 
 * Análisis e interpretación de datos en la investigación educativa.
 
-<br>
 
 ## Metodología
 
@@ -162,7 +152,6 @@ Los dos objetivos clave de esta materia son:
 
 * A finales del tercer trimestre del máster, después de haber experimentado en el aula la situación de aprendizaje de bachillerato y la situación de aprendizaje de ESO, y de la realización de la investigación-acción en el aula, se hará una exposición oral de los resultados. En estas exposiciones los estudiantes deberán hacer una síntesis de las características didácticas y actividades de la unidad de ESO, así como un especial énfasis en el análisis de los resultados obtenidos y las propuestas de mejora que consideren relevantes. Asimismo, en esta presentación se expondrán los resultados y conclusiones obtenidas de la innovación didáctica introducida durante la investigación-acción.
 
-<br>
 
 ## Evaluación
 
@@ -176,7 +165,6 @@ Los dos objetivos clave de esta materia son:
 
 * **Presentación oral de la unidad didáctica de ESO y de los resultados y conclusiones de la investigación-acción (20%)**
 
-<br>
 
 ## Recursos y Bibliografía Recomendada
 
