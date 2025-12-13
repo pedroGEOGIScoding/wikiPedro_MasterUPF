@@ -172,6 +172,11 @@ $breadcrumb-divider: quote("/");
     }
 }
 
+.sidebar-item-text.sidebar-link.text-start {
+    font-weight: bold;
+}
+
+
 // search icon
 .aa-SubmitIcon {
   color: $secondary !important;
