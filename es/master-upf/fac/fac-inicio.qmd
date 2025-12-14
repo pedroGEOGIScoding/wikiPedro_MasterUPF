@@ -20,158 +20,160 @@ format: html
 
 ## Presentación
 
-* Esta materia tiene como objetivo principal trabajar las bases fundamentales de la didáctica de las ciencias. Se pretende favorecer una enseñanza-aprendizaje de las ciencias que promueva la alfabetización científica y, al mismo tiempo, incentive a los jóvenes a optar por carreras científicas.
+-   Esta materia tiene como objetivo principal trabajar las bases fundamentales de la didáctica de las ciencias. Se pretende favorecer una enseñanza-aprendizaje de las ciencias que promueva la alfabetización científica y, al mismo tiempo, incentive a los jóvenes a optar por carreras científicas.
 
-* Se pretende fomentar la reflexión sobre el modelo de ciencia a enseñar y el modelo didáctico del profesor, y también aportar las herramientas y los recursos necesarios para poder llevar a cabo la tarea de profesor de ciencias de acuerdo con los paradigmas actuales de la enseñanza de estas.
+-   Se pretende fomentar la reflexión sobre el modelo de ciencia a enseñar y el modelo didáctico del profesor, y también aportar las herramientas y los recursos necesarios para poder llevar a cabo la tarea de profesor de ciencias de acuerdo con los paradigmas actuales de la enseñanza de estas.
 
-* Se trabajan aspectos clave en la enseñanza-aprendizaje de las ciencias; así se profundiza en la naturaleza de la ciencia, se reflexiona sobre la importancia del modelo didáctico del profesorado y las ideas previas de los alumnos, sobre la autorregulación de los aprendizajes, el papel del lenguaje en la construcción del conocimiento, la importancia del trabajo experimental o práctico y de las actividades didácticas fuera del aula y, finalmente, el aprendizaje basado en proyectos.
+-   Se trabajan aspectos clave en la enseñanza-aprendizaje de las ciencias; así se profundiza en la naturaleza de la ciencia, se reflexiona sobre la importancia del modelo didáctico del profesorado y las ideas previas de los alumnos, sobre la autorregulación de los aprendizajes, el papel del lenguaje en la construcción del conocimiento, la importancia del trabajo experimental o práctico y de las actividades didácticas fuera del aula y, finalmente, el aprendizaje basado en proyectos.
 
-* La importancia de la modelización en ciencias y el tratamiento de la diversidad, son aspectos que se impartirán con la metodología de aprendizaje basado en problemas (ABP). El proceso de aprendizaje comienza con una situación problema que promueve la identificación de necesidades de aprendizaje. Se trabajará con grupos de 8-10 alumnos con un tutor como facilitador del aprendizaje. El proceso de aprendizaje es dirigido por los mismos estudiantes. Al finalizar cada uno de los dos problemas, se presentarán los resultados al resto de los compañeros.
+-   La importancia de la modelización en ciencias y el tratamiento de la diversidad, son aspectos que se impartirán con la metodología de aprendizaje basado en problemas (ABP). El proceso de aprendizaje comienza con una situación problema que promueve la identificación de necesidades de aprendizaje. Se trabajará con grupos de 8-10 alumnos con un tutor como facilitador del aprendizaje. El proceso de aprendizaje es dirigido por los mismos estudiantes. Al finalizar cada uno de los dos problemas, se presentarán los resultados al resto de los compañeros.
 
-* Todos los contenidos y procedimientos que se trabajarán en esta materia serán recursos básicos para el diseño de secuencias didácticas que se llevará a cabo en la asignatura DEIA.
+-   Todos los contenidos y procedimientos que se trabajarán en esta materia serán recursos básicos para el diseño de secuencias didácticas que se llevará a cabo en la asignatura DEIA.
 
-![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio"}
+![Estructura de Fundamentos de Aprendizaje y Enseñanza de las Ciencias Naturales](../../images/fac/fac-structure.png){width="50%" fig-align="center" group="fac-inicio"}
 
 ## Información Técnica
 
-* **Código asignatura:** 32438
+-   **Código asignatura:** 32438
 
-* **Temporización:**
-  - Tiempo completo: primer y segundo semestre
-  - Tiempo parcial: primer año, anual
+-   **Temporización:**
 
-* **Número de créditos:** 10
+    -   Tiempo completo: primer y segundo semestre
+    -   Tiempo parcial: primer año, anual
 
-* **Dedicación:** 75 h presenciales y 120 h de trabajo autónomo (195 h totales)
+-   **Número de créditos:** 10
 
-* **Profesorado:** Pineda Badia (coordinadora), Marcel Costa, Jordi de Manuel, Anama Domènech, Laura Ganzer, Xavier Muñoz, Xavier Oller, Nora Pérez, Xavi Pié, Diego Sanjulián, Laura Taberner, Gemma Viscasillas
+-   **Dedicación:** 75 h presenciales y 120 h de trabajo autónomo (195 h totales)
+
+-   **Profesorado:** Pineda Badia (coordinadora), Marcel Costa, Jordi de Manuel, Anama Domènech, Laura Ganzer, Xavier Muñoz, Xavier Oller, Nora Pérez, Xavi Pié, Diego Sanjulián, Laura Taberner, Gemma Viscasillas
 
 ## Módulos de la Asignatura
 
-* **Naturaleza de la ciencia**
+-   **Naturaleza de la ciencia**. Profesor: Diego Sanjulián. ¿Cómo sabe la ciencia lo que sabe? ¿Cómo construye el conocimiento? ¿Cuáles son las limitaciones?
 
-* **Modelo didáctico e ideas previas**
+-   **Conceptos previos**. Profesor: Marcel Costa. Identificar la importancia de partir de los conocimientos previos de los alumnos en el proceso de enseñanza-aprendizaje.
 
-* **Autorregulación del aprendizaje**
+-   **Aprendizaje basado en proyectos/situado** Tutores: Anama Domenech y Xavi Oller. Identificar los requisitos y las implicaciones del trabajo en proyectos transversales y del trabajo en el contexto científico.
 
-* **Atención a la diversidad del alumnado**
+-   **Preguntas en el aula de ciencias** Tutor: Pineda Badia. ¿Cómo se formulan las «buenas» preguntas en el aula de ciencias? ¿Qué preguntas hacen los alumnos?
 
-* **Modelización en ciencias**
+-   **Modelización y ciencias escolares** Profesor: Marcel Costa. Identificar la modelización científica como un proceso utilizado por los científicos para explicar la realidad a través de modelos y considerar su importancia en la enseñanza y el aprendizaje.
 
-* **Aprendizaje basado en proyectos**
+-   **Actividades didácticas fuera del aula** Profesor: Marcel Costa. Reconocer la importancia de las excursiones, las visitas a centros de investigación y otras actividades en la enseñanza y el aprendizaje de las ciencias.
 
-* **Trabajos prácticos y enseñar a hacer investigación**
+-   **Realizar investigaciones en el aula de ciencias** Profesor: Pineda Badia. Enseñar y aprender a realizar investigaciones en el entorno escolar.
 
-* **Actividades didácticas fuera del aula**
+-   **Trabajo experimental en la enseñanza de las ciencias** Profesor: Xavier Muñoz. Comprender los requisitos para llevar a cabo trabajos experimentales e investigaciones en la enseñanza de las ciencias.
 
+-   **Ciencia y pseudociencia** Profesor: Jordi de Manuel. ¿Qué es la pseudociencia? ¿Cómo podemos identificarla y tenerla en cuenta a la hora de construir el concepto de ciencia?
+
+-   **Abordar la diversidad en el aula** Profesores: Pineda Badia, Anama Doménech, Laura Ganzer, Nora Pérez, Xavi Pié y Laura Torras. A través de ABProblems, comprenderemos cómo podemos atender a la diversidad en el aula.
 
 ## Objetivos
 
-* Conocer y aplicar el análisis de la naturaleza de la ciencia a las sesiones de clase de secundaria.
+-   Conocer y aplicar el análisis de la naturaleza de la ciencia a las sesiones de clase de secundaria.
 
-* Ser consciente de la importancia de las preconcepciones en la enseñanza de las ciencias.
+-   Ser consciente de la importancia de las preconcepciones en la enseñanza de las ciencias.
 
-* Analizar el propio modelo didáctico y contrastarlo con el del profesorado del s. XXI.
+-   Analizar el propio modelo didáctico y contrastarlo con el del profesorado del s. XXI.
 
-* Conocer los requisitos para llevar a cabo trabajo experimental e investigación en la enseñanza de las ciencias.
+-   Conocer los requisitos para llevar a cabo trabajo experimental e investigación en la enseñanza de las ciencias.
 
-* Aplicar la autorregulación como herramienta de aprendizaje.
+-   Aplicar la autorregulación como herramienta de aprendizaje.
 
-* Conocer la relevancia del lenguaje en la construcción y comunicación del conocimiento científico.
+-   Conocer la relevancia del lenguaje en la construcción y comunicación del conocimiento científico.
 
-* Aplicar la modelización como estrategia de aprendizaje en las clases de ciencias
+-   Aplicar la modelización como estrategia de aprendizaje en las clases de ciencias
 
-* Utilizar didácticamente las preguntas en las clases de ciencias.
+-   Utilizar didácticamente las preguntas en las clases de ciencias.
 
-* Aplicar las estrategias más adecuadas para atender la diversidad del alumnado en la clase de ciencias.
+-   Aplicar las estrategias más adecuadas para atender la diversidad del alumnado en la clase de ciencias.
 
-* Identificar los requisitos e implicaciones del trabajo por proyectos transversales y en el contexto de las ciencias.
+-   Identificar los requisitos e implicaciones del trabajo por proyectos transversales y en el contexto de las ciencias.
 
-* Usar de manera eficiente las tecnologías del aprendizaje y el conocimiento en la enseñanza de las ciencias.
+-   Usar de manera eficiente las tecnologías del aprendizaje y el conocimiento en la enseñanza de las ciencias.
 
-* Saber planificar y analizar actividades didácticas fuera del aula.
-
+-   Saber planificar y analizar actividades didácticas fuera del aula.
 
 ## Competencias
 
-1. Diseño, gestión y planificación de entornos de enseñanza-aprendizaje de las ciencias
+1.  Diseño, gestión y planificación de entornos de enseñanza-aprendizaje de las ciencias
 
-2. Comunicación e interacción personal en procesos de enseñanza-aprendizaje e implicación eficaz en los equipos docentes.
+2.  Comunicación e interacción personal en procesos de enseñanza-aprendizaje e implicación eficaz en los equipos docentes.
 
-3. Metodología didáctica y gestión de la diversidad en el aula
+3.  Metodología didáctica y gestión de la diversidad en el aula
 
-5. Investigación, innovación y reflexión sobre la identidad profesional y la mejora de la práctica docente
+4.  Investigación, innovación y reflexión sobre la identidad profesional y la mejora de la práctica docente
 
-6. Uso de entornos digitales para el desarrollo profesional y la interacción educativa
+5.  Uso de entornos digitales para el desarrollo profesional y la interacción educativa
 
 ## Contenidos
 
-* Introducción a la naturaleza de la ciencia.
+-   Introducción a la naturaleza de la ciencia.
 
-* Consecuencias de las preconcepciones de la naturaleza del conocimiento científico en la enseñanza de las ciencias.
+-   Consecuencias de las preconcepciones de la naturaleza del conocimiento científico en la enseñanza de las ciencias.
 
-* El modelo didáctico del profesorado.
+-   El modelo didáctico del profesorado.
 
-* El trabajo experimental en la enseñanza de las ciencias.
+-   El trabajo experimental en la enseñanza de las ciencias.
 
-* Enseñar a hacer investigación
+-   Enseñar a hacer investigación
 
-* La autorregulación del aprendizaje.
+-   La autorregulación del aprendizaje.
 
-* El lenguaje en la construcción y comunicación del conocimiento científico.
+-   El lenguaje en la construcción y comunicación del conocimiento científico.
 
-* Estrategias para promover la participación ciudadana en ciencia
+-   Estrategias para promover la participación ciudadana en ciencia
 
-* La modelización en la enseñanza de las ciencias
+-   La modelización en la enseñanza de las ciencias
 
-* Las preguntas en las clases de ciencias.
+-   Las preguntas en las clases de ciencias.
 
-* La atención a la diversidad del alumnado en la clase de ciencias.
+-   La atención a la diversidad del alumnado en la clase de ciencias.
 
-* El trabajo por proyectos.
+-   El trabajo por proyectos.
 
-* El uso de las tecnologías del aprendizaje y el conocimiento en la enseñanza de las ciencias.
+-   El uso de las tecnologías del aprendizaje y el conocimiento en la enseñanza de las ciencias.
 
-* Actividades didácticas fuera del aula: planificación y análisis.
+-   Actividades didácticas fuera del aula: planificación y análisis.
 
 ## Metodología
 
 ### a) Sesiones presenciales
 
-* Las sesiones serán teórico-prácticas, se combinarán actividades para trabajar en el aula con exposiciones de los profesores. Predominarán, pues, las metodologías de aprendizaje activo y se facilitará la práctica reflexiva.
+-   Las sesiones serán teórico-prácticas, se combinarán actividades para trabajar en el aula con exposiciones de los profesores. Predominarán, pues, las metodologías de aprendizaje activo y se facilitará la práctica reflexiva.
 
-* Buena parte de las tareas que se realizarán presencialmente durante las clases se desarrollarán trabajando en grupos cooperativos.
+-   Buena parte de las tareas que se realizarán presencialmente durante las clases se desarrollarán trabajando en grupos cooperativos.
 
-* Algunas de las temáticas de esta materia se trabajan con la metodología de aprendizaje basado en problemas
+-   Algunas de las temáticas de esta materia se trabajan con la metodología de aprendizaje basado en problemas
 
-* El estudiante tendrá a su disposición en la plataforma virtual las presentaciones y documentos utilizados durante las sesiones e información complementaria de cada tema.
+-   El estudiante tendrá a su disposición en la plataforma virtual las presentaciones y documentos utilizados durante las sesiones e información complementaria de cada tema.
 
 ### b) Tareas no presenciales
 
-* Los estudiantes tendrán a su disposición en la Plataforma virtual documentos diversos que se usarán para la elaboración de diferentes tareas (individuales o grupales); estas tareas deberán contribuir a alcanzar los objetivos de la materia.
+-   Los estudiantes tendrán a su disposición en la Plataforma virtual documentos diversos que se usarán para la elaboración de diferentes tareas (individuales o grupales); estas tareas deberán contribuir a alcanzar los objetivos de la materia.
 
 ### c) Sesiones prácticas
 
-* Durante el curso se harán algunas sesiones de prácticas en los laboratorios de la Facultad de Ciencias de la Salud y de la Vida (FCSV). Será necesario que los estudiantes lleven bata para estas sesiones. También se realizará una salida de campo a Collserola que se hará en horario de mañana.
+-   Durante el curso se harán algunas sesiones de prácticas en los laboratorios de la Facultad de Ciencias de la Salud y de la Vida (FCSV). Será necesario que los estudiantes lleven bata para estas sesiones. También se realizará una salida de campo a Collserola que se hará en horario de mañana.
 
 ### d) Visitas programadas
 
-* Se harán dos salidas a instituciones científicas donde se realizan actividades didácticas para alumnos de secundaria, con el objetivo de conocer los recursos que ofrecen estos tipos de centros para el alumnado y el profesorado de ciencias naturales y trabajar cómo hacer un buen uso de ellos.
+-   Se harán dos salidas a instituciones científicas donde se realizan actividades didácticas para alumnos de secundaria, con el objetivo de conocer los recursos que ofrecen estos tipos de centros para el alumnado y el profesorado de ciencias naturales y trabajar cómo hacer un buen uso de ellos.
 
 ## Evaluación
 
-* La asignatura tendrá un sistema de evaluación continuada, que se basará en las demandas hechas durante el proceso docente.
+-   La asignatura tendrá un sistema de evaluación continuada, que se basará en las demandas hechas durante el proceso docente.
 
 Las actividades de evaluación serán las siguientes:
 
-* **Tarea grupal: Aprendizaje basado en problemas (35%)**
+-   **Tarea grupal: Aprendizaje basado en problemas (35%)**
 
-* **Tarea individual o en parejas sobre trabajos prácticos (25%)**
+-   **Tarea individual o en parejas sobre trabajos prácticos (25%)**
 
-* **Tarea grupal de naturaleza de la ciencia (30%)**
+-   **Tarea grupal de naturaleza de la ciencia (30%)**
 
-* **Tarea grupal sobre las actividades didácticas fuera del aula (10%)**
-
+-   **Tarea grupal sobre las actividades didácticas fuera del aula (10%)**
 
 ## Recursos y Bibliografía Recomendada
 
@@ -289,8 +291,4 @@ Comunidad catalana de webquest: http://webquestcat.net/
 
 Trabajo por proyectos: http://xtec.gencat.cat/ca/curriculum/xarxacb/treball-projectes/
 
-Planificación de trabajos prácticos:
-- http://www.xtec.cat/~rgrau/
-- https://www.ub.edu/paubiologia/Recursos/Disseny%20_experimental.pdf
-- http://www.ciencianet.com/experimentos.html
-
+Planificación de trabajos prácticos: - http://www.xtec.cat/\~rgrau/ - https://www.ub.edu/paubiologia/Recursos/Disseny%20_experimental.pdf - http://www.ciencianet.com/experimentos.html

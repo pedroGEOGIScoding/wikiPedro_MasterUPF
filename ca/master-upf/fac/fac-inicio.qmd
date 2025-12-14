@@ -30,11 +30,10 @@ format: html
 
 * Tots els continguts i procediments que es treballaran en aquesta assignatura seran recursos bàsics per al disseny de seqüències didàctiques que es realitzaran a l'assignatura DEIA.
 
-<br>
+
 
 ![Estructura dels Fonaments de l'Aprenentatge i l'Ensenyament de les Ciències Naturals](../../images/fac/fac-structure.png){width=50% fig-align="center" group="fac-inicio"}
 
-<br>
 
 ## Informació tècnica
 
@@ -50,29 +49,22 @@ format: html
 
 * **Professors:** Pineda Badia (coordinador), Marcel Costa, Jordi de Manuel, Anama Domènech, Laura Ganzer, Xavier Muñoz, Xavier Oller, Nora Pérez, Xavi Pié, Diego Sanjulián, Laura Taberner, Gemma Viscasillas
 
-<br>
 
 ## Mòduls d'assignatures
 
-* **Naturesa de la ciència**
+- **Naturalesa de la ciencia** professor: Diego Sanjulián. Com la ciència sap el que sap? Com construeix coneixement? Quins condicionants hi ha?.
+- **Idees prèvies** professor: Marcel Costa. Identificar la importància de partir dels coneixements previs de l’alumnat en el procés d’ensenyament-aprenentatge.
+- **El treball per projectes/situacions** professors: Anama Domenech i Xavi Oller. Identificar els requisits i implicacions del treball per projectes transversals i en el context de les ciències
+- **Les preguntes a l’aula de ciències** professor: Pineda Badia. Com es fan les “bones” preguntes a l’aula de ciències? Quines preguntes fa l’alumnat?
+- **Modelització i ciència escolar** professor: Marcel Costa. Identificar la modelització científica com a un procés que utilitzen els científics per explicar la realitat mitjançant models i considerar la seva importància en l’ensenyament-aprenentatge.
+- **Activitats didàctiques fora de l’aula** professor: Marcel Costa. Reconèixer la importància de les sortides de camp, visites a centres de recerca i d’altres en l’ensenyament-aprenentatge de les ciències.
+- **Fer recerca a l’aula de ciències** professor: Pineda Badia. Ensenyar-aprendre a fer recerca en l’àmbit escolar.
+- **El treball experimental en l’ensenyament de les ciències** professor: Xavier Muñoz. Conèixer els requisits per dur a terme treball experimental i recerca en l’ensenyament de les ciències.
+- **Ciència i pseudociència** professor: Jordi de Manuel. Què és la pseudociència? Com podem identificar-la i tenir-la en compte a l’hora de construir el concepte de ciencia.
+- **Atenció a la diversitat a l’aula** professors: Pineda Badia, Anama Doménech, Laura Ganzer, Nora Pérez, Xavi Pié i Laura Torras. A través de l’ABProblemes entendrem com podem atendre la diversitat a l’aula.
 
-* **Model didàctic i idees prèvies**
 
-* **Aprenentatge autoregulat**
-
-* **Atenció a la diversitat dels alumnes**
-
-* ** Modelatge en ciència**
-
-* **Aprenentatge basat en projectes**
-
-* **Treball pràctic i ensenyament de com fer recerca**
-
-* **Activitats didàctiques fora de l'aula**
-
-<br>
-
-## Gols
+## Objectius
 
 * Conèixer i aplicar l'anàlisi de la naturalesa de la ciència a les sessions de classe de secundària.
 
@@ -98,8 +90,6 @@ format: html
 
 * Saber planificar i analitzar activitats didàctiques fora de l'aula.
 
-<br>
-
 ## Competències
 
 1. Disseny, gestió i planificació d'entorns d'ensenyament-aprenentatge de les ciències
@@ -111,8 +101,6 @@ format: html
 5. Recerca, innovació i reflexió sobre la identitat professional i la millora de la pràctica docent
 
 6. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
-
-<br>
 
 ## Continguts
 
@@ -144,8 +132,6 @@ format: html
 
 * Activitats didàctiques fora de l'aula: planificació i anàlisi.
 
-<br>
-
 ## Metodologia
 
 ### a) Sessions presencials
@@ -170,8 +156,6 @@ format: html
 
 * Es realitzaran dues sortides a institucions científiques on es realitzen activitats educatives per a alumnes de secundària, amb l'objectiu de conèixer els recursos que ofereixen aquest tipus de centres per a l'alumnat i professorat de ciències naturals i treballar com fer-ne un bon ús.
 
-<br>
-
 ## Avaluació
 
 * L'assignatura disposarà d'un sistema d'avaluació contínua, que es basarà en les demandes realitzades durant el procés docent.
@@ -185,8 +169,6 @@ Les activitats d'avaluació seran les següents:
 * **Tasca de grup de naturalesa de la ciència (30%)**
 
 * **Tasca grupal d'activitats didàctiques fora de l'aula (10%)**
-
-<br>
 
 ## Recursos i bibliografia recomanada
 
