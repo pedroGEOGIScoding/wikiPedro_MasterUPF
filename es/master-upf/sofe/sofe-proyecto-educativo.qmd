@@ -1,0 +1,21 @@
+---
+title: "Proyecto educativo"
+subtitle: "Proyecto educativo"
+filename: sofe-proyecto-educativo
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Proyecto educativo
+categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentación
