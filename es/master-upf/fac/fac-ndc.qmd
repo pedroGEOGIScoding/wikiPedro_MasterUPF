@@ -22,7 +22,7 @@ format: html
 
 ## Presentación
 
-> El profesor Diego Sanjulián Alonso dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **naturaleza de la ciencia*, donde se aborda la naturaleza de la ciencia con diferentes preguntas: ¿Cómo sabe la ciencia lo que sabe? ¿Cómo construye el conocimiento? ¿Cuáles son las limitaciones?. Se han realizado tres sesiones teoricas, otras tres sesiones asincrónicas y una sesion grupal que conllevaba una presentacion del trabajo grupal.
+> El profesor Diego Sanjulián Alonso dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado \*\*naturaleza de la ciencia\*, donde se aborda la naturaleza de la ciencia con diferentes preguntas: ¿Cómo sabe la ciencia lo que sabe? ¿Cómo construye el conocimiento? ¿Cuáles son las limitaciones?. Se han realizado tres sesiones teoricas, otras tres sesiones asincrónicas y una sesion grupal que conllevaba una presentacion del trabajo grupal.
 
 ## Material didáctico de todas las sesiones
 
@@ -46,7 +46,57 @@ format: html
 ## Sesión 4
 
 <embed src="/files/NdC-sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+:::
 
+
+::: column-margin
+**Documentacion de apoyo**
+
+[Analisis de biases cognitivos](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%"}
+
+[Análisis de falacias](/files/NdC-docs/AnalisisdeFalacias.pdf){.highlight width="10%"}
+
+[Assaig 12](/files/NdC-docs/Assaig12.pdf){.highlight width="10%"}
+
+[Balanza de argumentos](/files/NdC-docs/Balanzadeargumentos.pdf){.highlight width="10%"}
+
+[CESINF](/files/NdC-docs/CESINF.pdf){.highlight width="10%"}
+
+[Clasificación de información y argumentos](/files/NdC-docs/Classificaciondeinformacionyargume.pdf){.highlight width="10%"}
+
+[Exemples per construir](/files/NdC-docs/ExemplesperConstruir.pdf){.highlight width="10%"}
+
+[Guía review congrés](/files/NdC-docs/GuiaReviewCongres.pdf){.highlight width="10%"}
+
+[Lectura crítica en 3 pasos](/files/NdC-docs/Lecturacriticaen3pasos.pdf){.highlight width="10%"}
+
+[Llista d'articles](/files/NdC-docs/LlistaArticles.pdf){.highlight width="10%"}
+
+[Plantilla CSC assaig](/files/NdC-docs/PlantillaCSCAssaig.pdf){.highlight width="10%"}
+
+[Plantilla lectura crítica de textos](/files/NdC-docs/PlantillaLecturacriticadetextos.pdf){.highlight width="10%"}
+
+[Rúbrica McLeares](/files/NdC-docs/RubricaMcLeares.pdf){.highlight width="10%"}
+
+[Rúbrica póster](/files/NdC-docs/RubricaPoster.pdf){.highlight width="10%"}
+
+[Rúbrica presentacions orals](/files/NdC-docs/RubricaPresentacionsOrals.pdf){.highlight width="10%"}
+
+[Tabla de validación de fuentes](/files/NdC-docs/Tabladevalidaciondefuentes.pdf){.highlight width="10%"}
+
+[Targetes converses socràtiques](/files/NdC-docs/TargetesConvSocratics.pdf){.highlight width="10%"}
+
+[Cacera d'arguments](/files/NdC-docs/caceraarguments.pdf){.highlight width="10%"}
+
+[Criteris per a articles](/files/NdC-docs/criterisarticles.pdf){.highlight width="10%"}
+
+[Guió de recerca](/files/NdC-docs/guiorecerca.pdf){.highlight width="10%"}
+
+[Model article 2](/files/NdC-docs/modelarticle2.pdf){.highlight width="10%"}
+
+[Superestructura póster](/files/NdC-docs/superestructuraPoster.pdf){.highlight width="10%"}
+
+[Text científic mític](/files/NdC-docs/textCientificMitic.pdf){.highlight width="10%"}
 :::
 
 ## Material de los trabajos asincrónicos y grupal
@@ -76,7 +126,7 @@ format: html
 
 <embed src="/files/NdC-SA2b.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Asíncrona 2 - Presentación Lectura crítica  
+## Asíncrona 2 - Presentación Lectura crítica
 
 <embed src="/files/NdC-SA2-Lectura-critica.pdf" type="application/pdf" width="100%" height="800px"/>
 
@@ -95,5 +145,4 @@ format: html
 ## Grupal 2 Presentación
 
 <embed src="/files/NdC-tasca-grupal-presentation.pdf" type="application/pdf" width="100%" height="800px"/>
-
 :::
