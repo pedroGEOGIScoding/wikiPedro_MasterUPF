@@ -26,6 +26,7 @@ format: html
 
 * The subject has a value of 5 ECTS, which represents 125 hours of student work, with 14 face-to-face sessions of two hours (28h), taught in face-to-face and synchronous virtual mode. It is taught above all before making the second visit to the center, when you will have to give classes, in order to equip you with all the knowledge and skills necessary to do it well.
 
+![Infographic generated with NotebookLM from the didactic material of the sessions](/images/dae/dae-infografia-en.png){fig-align="center"}
 
 ## Technical Information
 

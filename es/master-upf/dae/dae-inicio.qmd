@@ -26,6 +26,8 @@ format: html
 
 * La asignatura tiene un valor de 5 ECTS, que suponen 125 horas de trabajo del estudiante, con 14 sesiones presenciales de dos horas (28h), impartidas en modo presencial y virtual síncrono. Se imparte sobre todo antes de hacer la segunda visita al centro, cuando tendrás que dar clases, a fin de dotarte de todos los conocimientos y destrezas necesarios para hacerlo bien.
 
+![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/dae/dae-infografia-en.png){fig-align="center"}
+
 ## Información Técnica
 
 * **Código de asignatura:** 32864

@@ -26,6 +26,7 @@ format: html
 
 * L'assignatura té un valor de 5 ECTS, que suposa 125 hores de treball de l'estudiant, amb 14 sessions presencials de dues hores (28h), impartides en modalitat virtual presencial i síncrona. S'ensenya sobretot abans de fer la segona visita al centre, quan hauràs de donar classes, per tal de dotar-te de tots els coneixements i habilitats necessàries per fer-ho bé.
 
+![Infografia generada amb NotebookLM a partir del material didàctic de les sessions](/images/dae/dae-infografia-cat.png){fig-align="center"}
 
 ## Informació tècnica
 
