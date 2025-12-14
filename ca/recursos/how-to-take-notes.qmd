@@ -1,0 +1,73 @@
+---
+title: "Prenent notes"
+subtitle: "Sobre com prendre notes correctament"
+filename: how-to-take-notes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sobre com prendre notes correctament
+categories: [notes, Internet, enllaços]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Mètode de Cornell
+
+![Presa de notes de Cornell: s'explica la millor manera de prendre notes](/images/about/cornell-notes.jpeg)
+
+- [Mètode de Cornell](https://medium.goodnotes.com/study-with-ease-the-best-way-to-take-notes-2749a3e8297b){target="_blank"}
+
+
+## Què són les notes de Cornell
+
+La presa de notes de Cornell és un mètode popular de presa de notes per prendre, organitzar i resumir notes. Aquest mètode normalment dóna com a resultat una millor comprensió general.
+
+Aquest mètode de presa de notes va ser inventat pel professor Walter Paul de la Universitat de Cornell a la dècada de 1950.
+
+## Com prendre notes de Cornell
+
+Requereix molt poca preparació, la qual cosa la fa ideal per prendre apunts a classe. La pàgina es divideix en 4, o de vegades només 3, seccions diferents:
+
+- Un bloc a la part superior de la pàgina
+- Dues columnes
+- Un bloc a la part inferior de la pàgina
+
+# Consells efectius per prendre notes per a la classe
+
+> Optimitzeu la vostra presa de notes amb estratègies clau:
+> 
+> 1. Establir una organització estructural per a la claredat.
+> 2. Participar activament fomentant connexions entre coneixements nous i bàsics, condensant la informació de manera eficaç.
+> 3. Millorar la retenció mitjançant ajudes visuals, autoqüestionaris i ressaltats codificats per colors.
+> 4. Poseu èmfasi en el coneixement bàsic de la xarxa, assegurant-vos que la nova informació s'integra perfectament amb els conceptes existents per a una comprensió completa i interconnectada.
+
+## Organització estructural
+
+   - Trieu un **quadern dedicat** o una eina digital per a cada classe.
+   - Utilitzeu capçaleres, subtítols i **format coherent** per a una estructura clara i organitzada.
+   - **Date cada entrada per mantenir un registre cronològic** i facilitar la referència futura.
+
+## Compromís actiu
+
+   - **Escolteu activament** durant les conferències, centrant-vos en la comprensió dels conceptes més que en la transcripció textual.
+   - Condenseu la informació en **paraules clau** i frases breus per capturar punts essencials.
+   - Utilitzeu **abreviatures de manera intel·ligent** per agilitzar la presa de notes sense sacrificar la claredat.
+
+## Tècniques de retenció millorades
+
+   - Incorpora ajudes visuals com diagrames i gràfics per complementar la informació textual.
+   - Revisa i reforça les teves notes periòdicament, convertint els encapçalaments en preguntes per fer-te una prova eficaç.
+   - Experimenta amb el ressaltat codificat per colors per emfatitzar els punts clau i facilitar una revisió més ràpida.
+
+## Coneixement bàsic en xarxa
+
+  - Assegureu-vos que els nous coneixements es formen **connexions amb els conceptes bàsics existents.**
+  - Cultiva una **base de coneixement bàsica ben connectada** per millorar la comprensió general.
+  - Emfatitza les **relacions** entre temes per crear una experiència d'aprenentatge més interconnectada i completa.

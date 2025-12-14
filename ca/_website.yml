@@ -214,6 +214,8 @@ website:
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
         - recursos/edulinks.qmd
+        - recursos/writing.qmd
+        - recursos/how-to-take-notes.qmd
         - recursos/eso-competencias-ciencias.qmd
         - recursos/bach-competencias-ciencias.qmd
 

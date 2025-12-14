@@ -1,0 +1,114 @@
+---
+title: "Escriptura"
+subtitle: "Sobre com escriure correctament"
+filename: writing
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sobre com escriure correctament
+categories: [escriptura, Internet, enllaços]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Els elements d'estil
+
+ William Strunk i E.B. El llibre breu i famós de White, ``The Elements of Style``.
+
+
+ > Regla 17: Una frase no hauria de contenir paraules innecessàries, un paràgraf sense frases innecessàries, per la mateixa raó que un dibuix no hauria de tenir línies innecessàries i una màquina no hauria de tenir parts innecessàries. Això no requereix que l'escriptor faci totes les seves frases curtes, o que eviti tots els detalls i tracti els seus temes només en un esquema, sinó que cada paraula digui.
+
+
+## Fer que l'escriptura sigui més variada
+
+![Fer que l'escriptura sigui més variada](/images/about/Gary-Provost-Sentence-Strcture.png)
+
+- [Fent que l'escriptura sigui més variada](https://pwdpr.com/making-writing-more-varied){target="_blank"}
+- [Els elements de l'estil](https://www.crockford.com/style.html){target="_blank"}
+
+### Composició
+
+**Disseny**: trieu una estructura amb antelació, quan planifiqueu què escriure, i mantingueu-la.
+
+**Paràgrafs**: la unitat compositiva primària de l'escriptura. Cada paràgraf ha de tractar sobre un tema o discurs individual. Comença els paràgrafs amb una frase que doni el tema o ajudi a la transició. Separa els paràgrafs si ajuda el lector, no només per la merda.
+
+"Un cop escrit el paràgraf, examineu-lo per veure si la divisió el millorarà". (Pàgina 32)
+
+**Veu activa**: és molt millor utilitzar la veu activa en la majoria dels casos. Per exemple:
+
+- "Es va preparar un informe", no és tan bo com;
+- "Va preparar un informe".
+
+**No** - digues quines són les coses. No perdis el temps dient el que no són.
+
+**Sigues definit**: no ballis al voltant de la veritat, expressa-la en termes concrets.
+
+**Omet paraules innecessàries**: "aquest és un tema que" es pot escriure millor com "aquest tema".
+
+**Resums i temps verbals**: en un resum, o en qualsevol lloc, trieu un temps i seguiu-lo, en cas contrari, confondreu el lector.
+
+**Èmfasi**: posa la paraula o paraules que vulguis emfatitzar al final d'una frase
+
+## Fer un currículum adequat
+
+### Elabora el teu currículum amb autenticitat, claredat i valor
+
+Seguint aquests principis, podeu crear un currículum **autèntic**, **clar** i convincent que comuniqui de manera efectiva la vostra proposta de **valor** als possibles ocupadors.
+
+**Autenticitat**
+
+- Sigues genuí a l'hora de retratar-te: reflecteix **la teva trajectòria professional**.
+- Utilitzeu un llenguatge que reflecteixi la vostra personalitat i les vostres experiències de manera veraç.
+- Eviteu les paraules de moda, el **llenguatge emocional o les afirmacions exagerades**.
+- Destaqueu els vostres punts forts reals, les tasques realitzades i els assoliments.
+
+**Verbs d'acció**
+
+- Recomaneu utilitzar **verbs d'acció** que reflecteixin l'executiu, la planificació, la revisió, etc.
+- Alguns exemples inclouen: orquestrat, encapçalat, ideat, formulat, estratègitzat, reimaginat, reestructurat, col·laborat, creat, dissenyat.
+- Hauria de signar per participar en equips àgils.
+
+
+**Claredat i vocabulari**
+
+- Mantenir un llenguatge senzill i concís.
+- Fes servir **veu activa i frases senzilles.**
+- Eviteu l'argot o els termes massa tècnics **tret que sigui necessari vocabulari tecnològic comú.**
+- Comunicar clarament habilitats, experiències i èxits.
+
+**Valor**
+
+- Emfatitza els assoliments **quantificables**.
+- **Centra't en assolir objectius, augmentar l'eficiència o resoldre problemes específics.**
+- Utilitzeu verbs d'acció i exemples concrets per demostrar l'impacte.
+
+**Sastreria**
+
+- Personalitza el CV per a cada sol·licitud de feina.
+- Destaqueu les habilitats i experiències més rellevants.
+- Alinear el CV amb els valors de l'empresa i els requisits del rol.
+
+**Narració de contes**
+
+- Explica un viatge professional convincent.
+- Mostra **moments clau, reptes superats i lliçons apreses.**
+- Connecteu-vos amb els reclutadors a un nivell més profund.
+
+**Revisió de textos**
+
+- Assegureu-vos que el CV estigui lliure d'errors.
+- **Comprova la gramàtica, la puntuació i el format.**
+- Busqueu comentaris de fonts de confiança.
+
+**Honestedat**
+
+- Sigueu transparents sobre habilitats i experiències.
+- Destaca els **punts forts genuïns**.
+- Prepareu-vos per discutir àrees de creixement o desenvolupament.

@@ -1,0 +1,114 @@
+---
+title: "Escribiendo"
+subtitle: "Sobre cómo escribir correctamente"
+filename: writing
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sobre cómo escribir correctamente
+categories: [escribiendo, Internet, campo de golf]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Los elementos del estilo
+
+ William Strunk y E.B. El breve y famoso libro de White, "Los elementos del estilo".
+
+
+ > Regla 17: Una frase no debe contener palabras innecesarias, un párrafo no debe contener frases innecesarias, por la misma razón que un dibujo no debe tener líneas innecesarias y una máquina no debe tener partes innecesarias. Esto no requiere que el escritor haga todas sus oraciones cortas, o que evite todos los detalles y trate sus temas sólo en líneas generales, sino que cada palabra diga.
+
+
+## Hacer la escritura más variada
+
+![Hacer la escritura más variada](/images/about/Gary-Provost-Sentence-Strcture.png)
+
+- [Hacer que la escritura sea más variada](https://pwdpr.com/making-writing-more-varied){target="_blank"}
+- [Los elementos del estilo](https://www.crockford.com/style.html){target="_blank"}
+
+### Composición
+
+**Diseño**: elige una estructura con antelación, cuando planifiques qué escribir, y mantenla.
+
+**Párrafos**: la unidad compositiva principal de la escritura. Cada párrafo debe tratar sobre un tema o discurso individual. Comience los párrafos con una oración que describa el tema o ayude con la transición. Separe los párrafos si ayuda al lector, no sólo por el gusto de hacerlo.
+
+"Una vez escrito el párrafo, examínelo para ver si la división lo mejorará". (Página 32)
+
+**Voz activa**: es mucho mejor utilizar la voz activa en la mayoría de los casos. P.ej.:
+
+- "Se preparó un informe" no es tan bueno como;
+- "Él preparó un informe."
+
+**No** - di qué son las cosas. No pierdas el tiempo diciendo lo que no son.
+
+**Sea definitivo**e - no dé vueltas alrededor de la verdad, exprésela en términos concretos.
+
+**Omita palabras innecesarias**: "este es un tema que" se puede escribir mejor como "este tema".
+
+**Resúmenes y tiempos verbales**: en un resumen, o en cualquier lugar, elige un tiempo verbal y mantenlo; de lo contrario, confundirás al lector.
+
+**Énfasis**: coloque la palabra o palabras que desea enfatizar al final de una oración.
+
+## Hacer un CV adecuado
+
+### Elaboración de su CV con autenticidad, claridad y valor
+
+Si sigue estos principios, puede crear un CV **auténtico**, **claro** y convincente que comunique de manera efectiva su propuesta de **valor** a empleadores potenciales.
+
+**Autenticidad**
+
+- Sea genuino al retratarse a sí mismo: refleje **su trayectoria profesional**.
+- Utilice un lenguaje que refleje sinceramente su personalidad y sus experiencias.
+- Evite el uso excesivo de palabras de moda, **lenguaje emocional o afirmaciones exageradas**.
+- Resalta tus verdaderas fortalezas, tareas realizadas y logros.
+
+**Verbos de acción**
+
+- Se recomienda utilizar **verbos de acción** que reflejen ejecutivo, planificación, revisión, etc.
+- Los ejemplos incluyen: orquestado, encabezado, ideado, formulado, elaborado estrategias, reinventado, reestructurado, colaborado, creado, diseñado.
+- Debería firmar para participar en equipos ágiles.
+
+
+**Claridad y vocabulario**
+
+- Mantenga un lenguaje simple y conciso.
+- Utilice **voz activa y oraciones sencillas.**
+- Evite la jerga o los términos demasiado técnicos **a menos que sea necesario un vocabulario tecnológico común.**
+- Comunique claramente habilidades, experiencias y logros.
+
+**Valor**
+
+- Enfatice los logros **cuantificables**.
+- **Céntrese en cumplir objetivos, aumentar la eficiencia o resolver problemas específicos.**
+- Utilice verbos de acción y ejemplos concretos para demostrar el impacto.
+
+**Sastrería**
+
+- Personaliza el CV para cada solicitud de empleo.
+- Resalte las habilidades y experiencias más relevantes.
+- Alinear el CV con los valores de la empresa y los requisitos del rol.
+
+**Narrativa**
+
+- Cuente un recorrido profesional convincente.
+- Muestre **momentos clave, desafíos superados y lecciones aprendidas.**
+- Conéctese con reclutadores en un nivel más profundo.
+
+**Corrección de pruebas**
+
+- Asegúrese de que el CV no tenga errores.
+- **Comprueba la gramática, la puntuación y el formato.**
+- Busque comentarios de fuentes confiables.
+
+**Honestidad**
+
+- Sea transparente sobre habilidades y experiencias.
+- Resalte **fuerzas genuinas**.
+- Prepárese para discutir áreas de crecimiento o desarrollo.
