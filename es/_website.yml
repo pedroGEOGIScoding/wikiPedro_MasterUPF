@@ -162,79 +162,32 @@ website:
             - section: "Fundamentos de aprendizaje y enseñanza de las ciencias naturales"
               contents:
               - master-upf/fac/fac-inicio.qmd
-              - section: "Aprendizaje basado en problemas (ABP)"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Ideas previas y aprendizaje"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Naturaleza de la Ciencia"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Proyectos interdisciplinares"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Trabajos prácticos"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
+              - master-upf/fac/fac-ndc.qmd
+              - master-upf/fac/fac-abp.qmd
+              - master-upf/fac/fac-proyectos-inter.qmd
+              - master-upf/fac/fac-ideas-previas.qmd
+              - master-upf/fac/fac-trabajos-practicos.qmd
+              - master-upf/fac/fac-ensenar-investigacion.qmd
+              - master-upf/fac/fac-preguntas-clase.qmd
+              - master-upf/fac/fac-modelos.qmd
+              - master-upf/fac/fac-pseudociencia.qmd
+              - master-upf/fac/fac-actividades-fuera-clase.qmd
             - section: "Diseño de entornos innovadores de aprendizaje"
               contents:
               - master-upf/deia/deia-inicio.qmd
-              - section: "Análisis de secuencias didácticas"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "De los objetivos a la secuencia didáctica I"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "De los objetivos a la secuencia didáctica II"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Enseñar implica conversar"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
-              - section: "Iniciación a la innovación y la investigación educativa"
-                contents:
-                - sesion1.qmd
-                - sesion2.qmd
-                - sesion3.qmd
-                - sesion4.qmd
-                - sesion5.qmd
+              - master-upf/deia/deia-analisis-secuencias.qmd
+              - master-upf/deia/deia-secuencia-didactica1.qmd
+              - master-upf/deia/deia-secuencia-didactica2.qmd
+              - master-upf/deia/deia-ensenar-conversar.qmd
+              - master-upf/deia/deia-innovacion-inves-edu.qmd
+              - master-upf/deia/deia-orientaciones-programacion.qmd
+              - master-upf/deia/deia-pro-aprendizaje-ciencia.qmd
+              - master-upf/deia/deia-edu-desarrollo-sostenible.qmd
+              - master-upf/deia/deia-competencias-aula-programacion.qmd
+              - master-upf/deia/deia-regulacion-programaciones.qmd
+              - master-upf/deia/deia-coevaluacion.qmd
+              - master-upf/deia/deia-entregas-sa-pre.qmd
+              - master-upf/deia/deia-acceso-docencia.qmd
         - section: "Módulo Practicum"
           contents:
             - section: "Prácticas en el centro educativo"
@@ -260,9 +213,9 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - edulinks.qmd
-        - eso-competencias-ciencias.qmd
-        - bach-competencias-ciencias.qmd
+        - recursos/edulinks.qmd
+        - recursos/eso-competencias-ciencias.qmd
+        - recursos/bach-competencias-ciencias.qmd
 
     - id: "about"
       title: "Acerca de mí"

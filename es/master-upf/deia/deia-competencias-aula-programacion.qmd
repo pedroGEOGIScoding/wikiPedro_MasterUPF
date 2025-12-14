@@ -1,0 +1,21 @@
+---
+title: "Competencias en el aula y programación"
+subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+filename: deia-competencias-aula-programacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
+categories: [diseño, innovación, aprendizaje]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentación
