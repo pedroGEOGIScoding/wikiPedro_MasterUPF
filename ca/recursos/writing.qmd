@@ -23,7 +23,7 @@ format: html
  William Strunk i E.B. El llibre breu i famós de White, ``The Elements of Style``.
 
 
- > Regla 17: Una frase no hauria de contenir paraules innecessàries, un paràgraf sense frases innecessàries, per la mateixa raó que un dibuix no hauria de tenir línies innecessàries i una màquina no hauria de tenir parts innecessàries. Això no requereix que l'escriptor faci totes les seves frases curtes, o que eviti tots els detalls i tracti els seus temes només en un esquema, sinó que cada paraula digui.
+ > **Regla 17**: Una frase no hauria de contenir paraules innecessàries, un paràgraf sense frases innecessàries, per la mateixa raó que un dibuix no hauria de tenir línies innecessàries i una màquina no hauria de tenir parts innecessàries. Això no requereix que l'escriptor faci totes les seves frases curtes, o que eviti tots els detalls i tracti els seus temes només en un esquema, sinó que cada paraula digui.
 
 
 ## Fer que l'escriptura sigui més variada
