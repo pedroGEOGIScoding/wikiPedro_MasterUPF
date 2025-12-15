@@ -19,5 +19,5 @@ listing:
 ---
 
 ::: callout-tip
-## En esta página podrás navegar por todas las páginas del sitio. Puedes usar el filtro para buscar contenido específico. La tabla muestra el título, la fecha de creación y una breve descripción de cada página. Haz clic en los encabezados de la tabla para ordenarlas por diferentes criterios.
+## En esta página podrás navegar por todas las páginas del sitio. Puedes usar el filtro para buscar contenido específico. La tabla muestra el título, la fecha de creación y la breve descripción de cada página. Haz clic en los encabezados de la tabla para ordenarlas por diferentes criterios.
 ::: 
