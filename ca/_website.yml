@@ -35,13 +35,12 @@ website:
     pinned: true
     title: "Pedro Martinez Duran"
     right:
-      - sidebar:portfolio-1
-      - sidebar:portfolio-2
-      - sidebar:portfolio-3
-      - sidebar:portfolio-4
+      - sidebar:portfolio
       - sidebar:masterUPF
       - sidebar:recursos
       - sidebar:about
+      - text: "Mapa del lloc"
+        href: listingpages.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
@@ -57,67 +56,12 @@ website:
             href: https://www.linkedin.com/in/pedromartinezduran/
 
   sidebar:
-    - id: "portfolio-1"
-      title: "Portfolio - Observació"
+    - id: "portfolio"
+      title: "Portfolio Pedro"
       style: "docked"
       background: light
       collapse-level: 1
       align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
-      contents:
-        - portfolio/portfolio-inicio.qmd
-
-    - id: "portfolio-2"
-      title: "Portfolio2"
-      style: "docked"
-      background: light
-      collapse-level: 1
-      align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
-      contents:
-        - portfolio/portfolio-inicio.qmd
-
-    - id: "portfolio-3"
-      title: "Portfolio3"
-      style: "docked"
-      background: light
-      collapse-level: 1
-      align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
-      contents:
-        - portfolio/portfolio-inicio.qmd
-
-    - id: "portfolio-4"
-      title: "Portfolio4"
-      style: "docked"
-      background: light
-      collapse-level: 1
-      align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
         - portfolio/portfolio-inicio.qmd
 
@@ -238,6 +182,15 @@ website:
         - about/about-this-images-credit.qmd
         - text: "El meu racó de programador"
           href: https://pedrogeogisdev.com/
+
+    - id: "website-map"
+      title: "Mapa del lloc"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - listingpages.qmd
         
   page-footer:
     background: primary

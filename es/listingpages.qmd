@@ -1,0 +1,23 @@
+---
+title: "Todas las páginas de este sitio"
+listing:
+  contents:
+    - "*.qmd"
+  exclude:
+    - filename: "index"
+    - filename: "Page Not Found"
+  type: default
+  image-align: left
+  fields: [title, description, categories]
+  sort:
+    - "title"
+    - "date"
+  sort-ui: true
+  filter-ui: true
+  categories: true            # Show category list
+  page-size: 12               # Items per page (pagination)
+---
+
+::: callout-tip
+## En esta página podrás navegar por todas las páginas del sitio. Puedes usar el filtro para buscar contenido específico. La tabla muestra el título, la fecha de creación y una breve descripción de cada página. Haz clic en los encabezados de la tabla para ordenarlas por diferentes criterios.
+::: 

@@ -1,0 +1,23 @@
+---
+title: "All pages on this site"
+listing:
+  contents:
+    - "*.qmd"
+  exclude:
+    - filename: "index"
+    - filename: "Page Not Found"
+  type: default
+  image-align: left
+  fields: [title, description, categories]
+  sort:
+    - "title"
+    - "date"
+  sort-ui: true
+  filter-ui: true
+  categories: true            # Show category list
+  page-size: 12               # Items per page (pagination)
+---
+
+::: callout-tip
+## On this page, you can browse all the pages on the site. You can use the filter to search for specific content. The table shows the title, creation date, and a brief description of each page. Click on the table headers to sort them by different criteria.
+:::

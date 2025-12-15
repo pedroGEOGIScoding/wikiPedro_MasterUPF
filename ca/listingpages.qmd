@@ -1,0 +1,23 @@
+---
+title: "Totes les pàgines d'aquest lloc"
+listing:
+  contents:
+    - "*.qmd"
+  exclude:
+    - filename: "index"
+    - filename: "Page Not Found"
+  type: default
+  image-align: left
+  fields: [title, description, categories]
+  sort:
+    - "title"
+    - "date"
+  sort-ui: true
+  filter-ui: true
+  categories: true            # Show category list
+  page-size: 12               # Items per page (pagination)
+---
+
+::: callout-tip
+## En aquesta pàgina podràs navegar per totes les pàgines del lloc. Pots usar el filtre per a buscar contingut específic. La taula mostra el títol, la data de creació i una breu descripció de cada pàgina. Fes clic en els encapçalats de la taula per a ordenar-les per diferents criteris.
+:::
