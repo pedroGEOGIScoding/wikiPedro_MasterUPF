@@ -1,5 +1,5 @@
 ---
-title: "sobre mi"
+title: "Sobre mí"
 filename: "about-this-me"
 categories: [sobre]
 lightbox:
