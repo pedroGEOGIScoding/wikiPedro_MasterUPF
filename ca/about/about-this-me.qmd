@@ -56,9 +56,9 @@ Aquesta àmplia experiència internacional ha proporcionat habilitats personals 
 > - **API**: serveis RESTful
 > - **Núvol**: serveis d'AWS
 > - **Projectes rellevants:**
->     - [Tauler per fer un seguiment dels participants de l'esdeveniment](https://dashboardfest2fun-production.up.railway.app/){.external target='_blank'} - Tauler de seguiment d'esdeveniments
->     - [Aplicació de seguiment de vols en temps real FullStack](https://pedrogeogiscoding.github.io/Flight_Tracker_PedroGeoGISdev/){.external target='_blank'} - Sistema de seguiment de vols en temps real
->     - [Aplicació de lloguer de cotxes FullStack amb funcionalitats CRUD completes i mapa de seguiment de cotxes](https://rentingcar-production.up.railway.app/){.external target='_blank'} - Sistema complet de gestió de lloguer de cotxes
+>     - [Tauler per fer un seguiment dels participants de l'esdeveniment](https://dashboardfest2fun-production.up.railway.app/){.external target="_blank"} - Tauler de seguiment d'esdeveniments
+>     - [Aplicació de seguiment de vols en temps real FullStack](https://pedrogeogiscoding.github.io/Flight_Tracker_PedroGeoGISdev/){.external target="_blank"} - Sistema de seguiment de vols en temps real
+>     - [Aplicació de lloguer de cotxes FullStack amb funcionalitats CRUD completes i mapa de seguiment de cotxes](https://rentingcar-production.up.railway.app/){.external target="_blank"} - Sistema complet de gestió de lloguer de cotxes
 
 > **Gestió de projectes internacionals** - Experiència demostrada en la gestió de projectes geològics multidisciplinaris al nord i l'oest d'Àfrica, el mar del Nord, el golf de Mèxic, Nova Zelanda, Austràlia i Àsia.
 
@@ -127,4 +127,4 @@ None
 
 #### Perfil de Linkedin
   
-[linkedin.com/in/pedromartinezduran/](https://www.linkedin.com/in/pedromartinezduran/)
+[linkedin.com/in/pedromartinezduran/](https://www.linkedin.com/in/pedromartinezduran/){target="_blank"}

@@ -23,25 +23,25 @@ format: html
 ## 🤖 Artificial Intelligence for Education
 
 **MagicSchool AI**
-[https://www.magicschool.ai/](https://www.magicschool.ai/)
+[https://www.magicschool.ai/](https://www.magicschool.ai/){target="_blank"}  
 Artificial intelligence platform for teachers; helps create automated educational resources and experiences, reducing teaching workload.
 
 ---
 
 **Google NotebookLM**
-[https://notebooklm.google.com/](https://notebooklm.google/)
+[https://notebooklm.google.com/](https://notebooklm.google/){target="_blank"}  
 Google Labs AI for note-taking, research, and organizing information with documents, visual summaries, and collaboration.
 
 ---
 
 **Lumivara**
-[https://lumivara.at/](https://lumivara.at/)
+[https://lumivara.at/](https://lumivara.at/){target="_blank"}  
 Educational platform with AI that helps generate interactive materials, questionnaires and summaries.
 
 ---
 
 **Kimi-ppt (Kimi Slides)**
-[https://ppt.ai/es/kimi-ppt](https://ppt.ai/es/kimi-ppt)
+[https://ppt.ai/es/kimi-ppt](https://ppt.ai/es/kimi-ppt){target="_blank"}  
 AI that creates automatic presentations from text makes it easy to quickly generate slides for teachers and students.
 
 ---
@@ -49,73 +49,73 @@ AI that creates automatic presentations from text makes it easy to quickly gener
 ## 🔬 Natural Sciences - Simulators and Virtual Laboratories
 
 **PhET Interactive Simulations**
-[https://phet.colorado.edu/](https://phet.colorado.edu/)
+[https://phet.colorado.edu/](https://phet.colorado.edu/){target="_blank"}  
 Free and interactive simulators for physics, chemistry, biology and mathematics experiments developed by the University of Colorado Boulder.
 
 ---
 
 **ChemCollective**
-[https://chemcollective.org/](https://chemcollective.org/)
+[https://chemcollective.org/](https://chemcollective.org/){target="_blank"}  
 Virtual laboratories and guided activities to teach chemistry, with simulations and interactive exercises.
 
 ---
 
 **Algodoo**
-[https://www.algodoo.com/](https://www.algodoo.com/)
+[https://www.algodoo.com/](https://www.algodoo.com/){target="_blank"}  
 2D physics sandbox to experiment and simulate physical phenomena through visual and creative simulation, free.
 
 ---
 
 **Lab Simulations OER – Mines LibGuides**
-[https://libguides.mines.edu/oer/simulationslabs](https://libguides.mines.edu/oer/simulationslabs)
+[https://libguides.mines.edu/oer/simulationslabs](https://libguides.mines.edu/oer/simulationslabs){target="_blank"}  
 Guide to open virtual laboratories and simulations, useful for STEM teaching.
 
 ---
 
 **Ask A Biologist (ASU)**
-[https://askabiologist.asu.edu/](https://askabiologist.asu.edu/)
+[https://askabiologist.asu.edu/](https://askabiologist.asu.edu/){target="_blank"}  
 Portal where students and teachers can ask biology questions from experts, with activities and multimedia resources.
 
 ---
 
 **Biomolecules.cat**
-[http://biomolecules.cat/](http://biomolecules.cat/)
+[http://biomolecules.cat/](http://biomolecules.cat/){target="_blank"}  
 Scientific and informative resources on biomolecules and molecular biology for teaching and dissemination.
 
 ---
 
 **Climate Change Simulator**  
-[https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/)  
+[https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}  
 World Climate Simulation is an in-person role-playing game about UN climate change negotiations. Through the simulation, participants explore the speed and work required by nations to address global climate change.
 
 ## 🌍 Geology and Earth Sciences
 
 **Visible Geology**
-[https://www.visiblegeology.com/](https://www.visiblegeology.com/)
+[https://www.visiblegeology.com/](https://www.visiblegeology.com/){target="_blank"}  
 Tool to create geological 3D diagrams and model visual and interactive structures.
 
 ---
 
 **Tectonic Explorer – Concord Consortium**
-[https://tectonic-explorer.concord.org/](https://tectonic-explorer.concord.org/)
+[https://tectonic-explorer.concord.org/](https://tectonic-explorer.concord.org/){target="_blank"}{target="_blank"}  
 Free simulator of tectonic processes to experiment with plates and rocks at an educational level.
 
 ---
 
 **Paleolatitude.org**
-[https://paleolatitude.org/#!/](https://paleolatitude.org/#!/)
+[https://paleolatitude.org/#!/](https://paleolatitude.org/#!/){target="_blank"}  
 Interactive calculator to visualize the paleogeographic latitude of any point on Earth.
 
 ---
 
 **AEPECT**
-[https://www.aepect.org/](https://www.aepect.org/)
+[https://www.aepect.org/](https://www.aepect.org/){target="_blank"}
 Spanish Association for the Teaching of Earth Sciences, training and resources in geology.
 
 ---
 
 **CNIG Digital Photo Library**
-[https://fototeca.cnig.es/fototeca/](https://fototeca.cnig.es/fototeca/)
+[https://fototeca.cnig.es/fototeca/](https://fototeca.cnig.es/fototeca/){target="_blank"}
 Digital repository to consult historical aerial photos of Spain, useful in geography and environmental studies.
 
 ---
@@ -123,31 +123,31 @@ Digital repository to consult historical aerial photos of Spain, useful in geogr
 ## 🗺️ Mind Maps and Visual Organizers
 
 **XMind**
-[https://xmind.com/es/](https://xmind.com/es/)
+[https://xmind.com/es/](https://xmind.com/es/){target="_blank"}
 Collaborative mind mapping and AI-assisted brainstorming tool, useful for organizing concepts and projects.
 
 ---
 
 **IHMC CmapTools**
-[https://cmap.ihmc.us/products/](https://cmap.ihmc.us/products/)
+[https://cmap.ihmc.us/products/](https://cmap.ihmc.us/products/){target="_blank"}
 Software for concept maps, allows you to create, share and edit knowledge and learning models.
 
 ---
 
 **CmapTools – IHMC**
-[https://cmap.ihmc.us/](https://cmap.ihmc.us/)
+[https://cmap.ihmc.us/](https://cmap.ihmc.us/){target="_blank"}
 Visual tool to create and share concept maps in science and education.
 
 ---
 
 **MindMup**
-[https://www.mindmup.com/](https://www.mindmup.com/)
+[https://www.mindmup.com/](https://www.mindmup.com/){target="_blank"}
 Online tool to create mind maps quickly and easily.
 
 ---
 
 **Instamaps**
-[https://www.instamaps.cat/#/](https://www.instamaps.cat/#/)
+[https://www.instamaps.cat/#/](https://www.instamaps.cat/#/){target="_blank"}
 Free platform to create collaborative maps and interactive geographic visualizations.
 
 ---
@@ -155,13 +155,13 @@ Free platform to create collaborative maps and interactive geographic visualizat
 ## 📊 Interactive Tools for the Classroom
 
 **Wooclap Word Cloud Generator**
-[https://www.wooclap.com/en/word-cloud-generator/](https://www.wooclap.com/en/word-cloud-generator/)
+[https://www.wooclap.com/en/word-cloud-generator/](https://www.wooclap.com/en/word-cloud-generator/){target="_blank"}
 Instant word cloud creation tool, useful for visual summary and group analysis in class.
 
 ---
 
 **Mentimeter: Event evaluation**
-[https://www.mentimeter.com/templates/p/speakers-evaluate-event](https://www.mentimeter.com/templates/p/speakers-evaluate-event)
+[https://www.mentimeter.com/templates/p/speakers-evaluate-event](https://www.mentimeter.com/templates/p/speakers-evaluate-event){target="_blank"}
 Templates to rate speakers and events with dynamic and interactive presentations.
 
 ---
@@ -169,25 +169,25 @@ Templates to rate speakers and events with dynamic and interactive presentations
 ## 💻 Educational Programming and Technology
 
 **Scratch**
-[https://scratch.mit.edu/](https://scratch.mit.edu/)
+[https://scratch.mit.edu/](https://scratch.mit.edu/){target="_blank"}
 Free visual programming platform where students and teachers create interactive games and animations.
 
 ---
 
 **Binario**  
-[https://www.puzzle-binairo.com/binairo-6x6-easy/](https://www.puzzle-binairo.com/binairo-6x6-easy/)  
+[https://www.puzzle-binairo.com/binairo-6x6-easy/](https://www.puzzle-binairo.com/binairo-6x6-easy/){target="_blank"}  
 Logic puzzle game to solve.
 
 ## 🎓 Inquiry and STEM Methodologies
 
 **LabInquiry – IQS Investigation**
-[https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/)
+[https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/){target="_blank"}  
 International project on inquiry and laboratory in mathematics and science using STEM methodology.
 
 ---
 
 **LabInquiry – UB Secondary**
-[https://www.ub.edu/labinquiry/categoria/secundaria/](https://www.ub.edu/labinquiry/categoria/secundaria/)
+[https://www.ub.edu/labinquiry/categoria/secundaria/](https://www.ub.edu/labinquiry/categoria/secundaria/){target="_blank"}  
 Activities and didactic inquiry proposals for secondary school, in collaboration with the UB.
 
 ---
@@ -195,25 +195,25 @@ Activities and didactic inquiry proposals for secondary school, in collaboration
 ## 🎨 Concept Cartoons and Teaching Resources
 
 **Science Concept Cartoons – STEM Learning**
-[https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons](https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons)
+[https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons](https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons){target="_blank"}  
 Educational comics that promote scientific discussion and identify misconceptions.
 
 ---
 
 **Concept Cartoons – Science Education Research**
-[https://science-education-research.com/teaching-science/concept-cartoons/](https://science-education-research.com/teaching-science/concept-cartoons/)
+[https://science-education-research.com/teaching-science/concept-cartoons/](https://science-education-research.com/teaching-science/concept-cartoons/){target="_blank"}  
 Resources and explanation on using vignettes to detect and address misconceptions in science.
 
 ---
 
 **Nature of Science Concept Cartoons – RSC Education**
-[https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article](https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article)
+[https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article](https://edu.rsc.org/resources/the-nature-of-science-concept-cartoons/1277.article){target="_blank"}  
 Cartoons that help debate and diagnose key ideas in natural sciences.
 
 ---
 
 **Science Concept Cartoons – Classroom Secrets**
-[https://classroomsecrets.co.uk/campaign/science-concept-cartoons](https://classroomsecrets.co.uk/campaign/science-concept-cartoons)
+[https://classroomsecrets.co.uk/campaign/science-concept-cartoons](https://classroomsecrets.co.uk/campaign/science-concept-cartoons){target="_blank"}  
 Templates and resources to encourage scientific and critical thinking in the classroom.
 
 ---
@@ -221,25 +221,25 @@ Templates and resources to encourage scientific and critical thinking in the cla
 ## 📚 Academic Resources and Repositories
 
 **Learner.org**
-[https://www.learner.org/](https://www.learner.org/)
+[https://www.learner.org/](https://www.learner.org/){target="_blank"}
 Educational multimedia resources and activities for science, mathematics, humanities—ideal for teachers and students.
 
 ---
 
 **DDD UAB**
-[https://ddd.uab.cat/](https://ddd.uab.cat/)
+[https://ddd.uab.cat/](https://ddd.uab.cat/){target="_blank"}  
 Digital repository of the Autonomous University of Barcelona to consult and download scientific-academic production.
 
 ---
 
 **BibGuru**
-[https://www.bibguru.com/es/](https://www.bibguru.com/es/)
+[https://www.bibguru.com/es/](https://www.bibguru.com/es/){target="_blank"}   
 Free bibliographic citation generator, compatible with APA, MLA and more, ideal for academic works.
 
 ---
 
 **UPF Master Wiki – PedroGeoGISCoding**
-[https://pedrogeogiscoding.github.io/wiki_MasterUPF/](https://pedrogeogiscoding.github.io/wiki_MasterUPF/)
+[https://pedrogeogiscoding.github.io/wiki_MasterUPF/](https://pedrogeogiscoding.github.io/wiki_MasterUPF/){target="_blank"}
 Wiki with notes and resources on teaching geography, technology and GIS in the UPF master's degree.
 
 ---
@@ -247,37 +247,37 @@ Wiki with notes and resources on teaching geography, technology and GIS in the U
 ## 📋 Curriculum and Educational Regulations (Spain and Catalonia)
 
 **LOMLOE curricula by CCAA**
-[https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html](https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html)
+[https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html](https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/curriculos-ccaa.html){target="_blank"}  
 Current official educational curricula by Autonomous Community of Spain according to the LOMLOE law.
 
 ---
 
 **XTEC Basic Curriculum**
-[https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0](https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0)
+[https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0](https://sites.google.com/xtec.cat/curriculumbasica/p%C3%A0gina-principal?authuser=0){target="_blank"}  
 Documentation and resources of the basic educational curriculum in Catalonia.
 
 ---
 
 **INTEF**
-[https://intef.es/](https://intef.es/)
+[https://intef.es/](https://intef.es/){target="_blank"}
 Institute dedicated to the training and updating of teachers in educational technology and teaching resources in Spain.
 
 ---
 
 **INEE**
-[https://www.educacionfpydeportes.gob.es/inee/portada.html](https://www.educacionfpydeportes.gob.es/inee/portada.html)
+[https://www.educacionfpydeportes.gob.es/inee/portada.html](https://www.educacionfpydeportes.gob.es/inee/portada.html){target="_blank"}
 Spanish National Institute that carries out evaluations and studies on the educational system and academic performance.
 
 ---
 
 **ARC CESIRE XTEC**
-[https://serveiseducatius.xtec.cat/cesire/arc/](https://serveiseducatius.xtec.cat/cesire/arc/)
+[https://serveiseducatius.xtec.cat/cesire/arc/](https://serveiseducatius.xtec.cat/cesire/arc/){target="_blank"}  
 Portal of resources and innovative educational proposals of the CESIRE.
 
 ---
 
 **ARC applications XTEC**
-[https://apliense.xtec.cat/arc/](https://apliense.xtec.cat/arc/)
+[https://apliense.xtec.cat/arc/](https://apliense.xtec.cat/arc/){target="_blank"}
 Portal of resources and active applications for learning, linked to CESIRE-XTEC.
 
 ---
@@ -285,7 +285,7 @@ Portal of resources and active applications for learning, linked to CESIRE-XTEC.
 ## 🎯 Playful Resources and Gamification
 
 **Murdle**
-[https://murdle.com/](https://murdle.com/)
+[https://murdle.com/](https://murdle.com/){target="_blank"}
 Logic and mystery game "murder mystery" with daily deductive logic challenges.
 
 ---
@@ -293,7 +293,7 @@ Logic and mystery game "murder mystery" with daily deductive logic challenges.
 ## 🔗 Institutional Access
 
 **UPF Authentication**
-[https://autenticacio.upf.edu/sso/SAML2/SSOService.php](https://autenticacio.upf.edu/sso/SAML2/SSOService.php)
+[https://autenticacio.upf.edu/sso/SAML2/SSOService.php](https://autenticacio.upf.edu/sso/SAML2/SSOService.php){target="_blank"}
 Secure login page for Pompeu Fabra University via SAML2, protected access to institutional resources.
 
 ---
@@ -301,5 +301,5 @@ Secure login page for Pompeu Fabra University via SAML2, protected access to ins
 ## 📡 RSS Feeds and Aggregators
 
 **RSS Channel – Dynamic Resources**
-[https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel](https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel)
+[https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel](https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel){target="_blank"}
 RSS feed to dynamically display and integrate news and resources into educational sites or presentations.

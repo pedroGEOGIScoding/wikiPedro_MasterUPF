@@ -32,7 +32,7 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biology**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Biologia.pdf )
+[**Biology**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Biologia.pdf ){target="_blank"}
 
 Advances in biology have accelerated significantly in recent decades. In this field there have been major paradigm shifts (such as the discovery of the cell, the development of the theory of evolution, the birth of molecular biology and the discovery of viruses and prions, among others) that have revolutionized the concept of a living organism and the understanding of its functioning.
 
@@ -305,7 +305,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Physics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Fisica.pdf)
+[**Physics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Fisica.pdf){target="_blank"}
 
 
 The teaching of Physics at high school completes the scientific training that students have acquired throughout compulsory secondary education and actively contributes to students acquiring a rich and quality scientific cultural base that allows them to develop with confidence and judgment in a society that demands scientific and technical profiles for research and the world of work, while giving them tools to analyze the reality that surrounds them.
@@ -513,7 +513,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Geology and Environmental Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Geologia-i-Ciencies-Ambientals.pdf)
+[**Geology and Environmental Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Geologia-i-Ciencies-Ambientals.pdf){target="_blank"}
 
 The advances of humanity have often been based on the use of natural resources for the production of products or objects that solve existing problems or provide us with certain services. Among these resources, geological resources stand out, although often in an inconspicuous way. On the other hand, humans, as the inhabitants of the Earth that we are, are continuously exposed to geodynamic processes, which bring risks but also opportunities. In this sense, the analysis of the main events that have taken place in the history of our planet allows us to make predictions about current or future events to which we may be exposed.
 
@@ -737,7 +737,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseQuimica" class="accordion-collapse collapse" aria-labelledby="headingQuimica" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Chemistry**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Quimica.pdf)
+[**Chemistry**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Quimica.pdf){target="_blank"}
 
 Chemistry is a science, increasingly present in many areas of society, which can provide answers to problems related to very diverse areas, especially in the fields of health and sustainability. In this sense, the applications of science and chemistry in particular can have a positive impact in very diverse areas. Chemistry provides solutions in the world of drugs, materials, energy and water, among others, and generates knowledge and applications to contribute to the achievement of sustainable development goals.
 
@@ -977,7 +977,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Technology and Engineering**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Tecnologia-i-Ingenyria.pdf)
+[**Technology and Engineering**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Tecnologia-i-Ingenyria.pdf){target="_blank"}
 
 In today's society, the development of technology by engineering has become one of the axes around which socio-cultural evolution is articulated. In recent times, technology, understood as the set of knowledge derived from technique and engineering, with the contributions of scientific knowledge, and its instrumental and interdisciplinary nature, has played a fundamental role in the evolution of humanity, which will undoubtedly bring great changes and challenges in the society of the 21st century.
 
@@ -1214,7 +1214,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**General Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Ciencies-Generals.pdf)
+[**General Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Ciencies-Generals.pdf){target="_blank"}
 
 In today's society there are many aspects that are related to scientific activity, both in the health field and in the environmental, technological or economic fields. For this reason, the fact of having a solid scientific training allows people to form and defend a well-founded opinion in the face of controversial facts that are part of the day-to-day life of our world. This subject offers students basic training in the four fundamental scientific disciplines. In addition, its multidisciplinary approach gives the curriculum a unifying character that highlights that the different sciences are a specialization of a global and coherent whole that is scientific knowledge. In fact, in the development of research as a professional activity, scientists relate knowledge, skills and attitudes from all disciplines to enrich their studies and contribute more efficiently to the progress of society.
 
@@ -1407,7 +1407,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques.pdf)
+[**Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques.pdf){target="_blank"}
 
 Mathematics constitutes one of the greatest cultural and intellectual achievements of humanity. Throughout history, different cultures have endeavored to describe nature using mathematics and to transmit all the knowledge acquired to future generations. Today, this intellectual heritage acquires a fundamental value, since the great global challenges, such as respect for the environment, energy efficiency or inclusive and sustainable industrialization, which society will have to face, require students who are able to adapt to changing conditions, to learn autonomously, to model situations, to explore new avenues of research and to use technology effectively. Therefore, it is essential for the citizens of the 21st century to use mathematical knowledge and skills, such as reasoning, modelling, computational thinking or problem solving.
 
@@ -1819,7 +1819,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Mathematics Applied to Social Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques-Aplicades-a-les-Ciencies-Socials.pdf)
+[**Mathematics Applied to Social Sciences**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques-Aplicades-a-les-Ciencies-Socials.pdf){target="_blank"}
 
 Mathematics constitutes one of the greatest cultural and intellectual achievements of humanity. Throughout history, different cultures have endeavored to describe nature using mathematics and to transmit all the knowledge acquired to future generations. Today, this intellectual heritage acquires a fundamental value, since the great global challenges, such as respect for the environment, energy efficiency or inclusive and sustainable industrialization, which society will have to face, require students who are able to adapt to changing conditions, to learn autonomously, to model situations, to explore new avenues of research and to use technology effectively. Therefore, the use of mathematical knowledge and skills, such as reasoning, modelling, computational thinking or problem solving, is essential for 21st century citizens.
 
@@ -2175,7 +2175,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**General Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques-Generals.pdf)
+[**General Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-obligatories-de-modalitat/Matematiques-Generals.pdf){target="_blank"}
 
 The dizzying development of today's world makes it necessary for students to have the ability to analyze and interpret reality in order to adapt to conditions full of uncertainty, in addition to having the necessary skills to learn for themselves. Mathematics plays a fundamental role in modelling, analyzing and understanding the phenomena of multiple fields of knowledge: social, educational, scientific, economic, etc. Mathematical competences include, in addition to mathematical ideas and elements, problem-solving, mathematical reasoning and communication skills, which can be extrapolated to non-mathematical contexts.
 
@@ -2491,7 +2491,7 @@ The situations make it possible to program the course of any level, subject or f
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biomedicina**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Biomedicina.pdf)
+[**Biomedicina**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Biomedicina.pdf){target="_blank"}
 
 The subject of Biomedicine is an annual optional subject that is particularly recommended for students with an orientation towards biosanitary studies. However, it can be taken by any student from other modes of high school.
 
@@ -2552,7 +2552,7 @@ Explain the biological foundations of some recent contributions of biomedical re
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Programació**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Programacio.docx.pdf)
+[**Programació**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Programacio.docx.pdf){target="_blank"}
 
 Programming is an annual optional subject that can be taken by students from any type of high school. The ability to program provides added value to students in the higher studies that they can take later.
 
@@ -2609,7 +2609,7 @@ Starting from the functional description of an IT solution, develop the program,
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Applied Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Matematica-Aplicada_TS_sc.docx.pdf)
+[**Applied Mathematics**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Matematica-Aplicada_TS_sc.docx.pdf){target="_blank"}
 
 The Applied Mathematics subject is a quarterly optional subject focused on providing a panoramic view of the field of application of mathematics that allows students to ascertain and arouse interest in mathematics, in particular its use in many other disciplines as an instrumental subject that works with numbers, magnitudes or quantifiable elements.
 
@@ -2668,7 +2668,7 @@ Identify and use the ideas, evidence and arguments that use any of the different
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Current Scientific Challenges (Biology and Geology)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Reptes-Cientificas-Actuals-Biologia-i-Geologia_TS_sc.pdf)
+[**Current Scientific Challenges (Biology and Geology)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Reptes-Cientificas-Actuals-Biologia-i-Geologia_TS_sc.pdf){target="_blank"}
 
 The subject Challenges in Biology and Geology is a quarterly optional subject focused on providing a panoramic view of the field of study of these sciences that allows students to ascertain, awaken, or discard in their case, interest in these disciplines.
 
@@ -2727,7 +2727,7 @@ Identify and use the ideas, evidence, scientific arguments that support the expl
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Current Scientific Challenges (Physics and Chemistry)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Reptes-Cientific-Actuals-Fisica-i-Quimica_TS_sc.pdf)
+[**Current Scientific Challenges (Physics and Chemistry)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-trimestrals-de-primer-curs/Reptes-Cientific-Actuals-Fisica-i-Quimica_TS_sc.pdf){target="_blank"}
 
 The subject Challenges in Physics and Chemistry is a quarterly optional subject focused on providing a panoramic view of the field of study of these sciences that allows students to ascertain, awaken, or discard in their case, interest in these disciplines.
 

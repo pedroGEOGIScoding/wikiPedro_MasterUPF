@@ -32,7 +32,7 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[Biologia i Geologia](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Biologia-i-Geologia.pdf )
+[Biologia i Geologia](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Biologia-i-Geologia.pdf ){target="_blank"}
 
 Entre les finalitats de les matèries de Biologia i Geologia de l’ESO hi ha la de promoure la presa de consciència, per part de l’alumnat, de la importància del desenvolupament sostenible, així com la de despertar la curiositat, desenvolupar l’actitud crítica, el pensament i les destreses científiques, la valoració del paper de la ciència, la igualtat d’oportunitats entre gèneres i la de fomentar, especialment entre l’alumnat, les vocacions científiques. 
 
@@ -339,7 +339,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Física i Química**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Fisica-i-Quimica.pdf)
+[**Física i Química**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Fisica-i-Quimica.pdf){target="_blank"}
 
 
 Entre les finalitats de les matèries de Física i Química de l’educació secundària obligatòria hi ha la presa de consciència, per part de l’alumnat, de la contribució d’aquestes ciències a la millora de la qualitat de vida i al desenvolupament sostenible, així com la de despertar la curiositat, desenvolupar l’actitud crítica, el pensament i les destreses científiques, la valoració del paper de la ciència, la igualtat d’oportunitats entre gèneres i fomentar les vocacions científiques, especialment entre els i les alumnes.
@@ -362,7 +362,7 @@ ODS 6. Aigua neta i sanejament. Garantir la disponibilitat i una gestió sosteni
 
 ODS 7. Energia neta i assequible. Garantir l’accés de totes les persones a fonts d’energia assequibles, fiables, sostenibles i renovables.
 
-ODS9. Innovació i [infraestructures](https://ca.wikipedia.org/wiki/Infraestructures). Construir infraestructures resistents, promoure una industrialització inclusiva i sostenible i fomentar la innovació.
+ODS9. Innovació i [infraestructures](https://ca.wikipedia.org/wiki/Infraestructures){target="_blank"}. Construir infraestructures resistents, promoure una industrialització inclusiva i sostenible i fomentar la innovació.
 
 ODS 11. Ciutats i comunitats sostenibles. Aconseguir que les ciutats i els assentaments humans siguin inclusius, segurs, resilients i sostenibles.
 
@@ -614,7 +614,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Cultura Científica**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica") **(matèria optativa de quart d'ESO)**
+[**Cultura Científica**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica"){target="_blank"} **(matèria optativa de quart d'ESO)**
 
 En el segle XXI, la ciència és per tot arreu, impregna l’entorn i condiciona les nostres vides, essent indissociable de tots els àmbits econòmics i socials més rellevants. En aquest sentit, l’alfabetització científica esdevé essencial per al coneixement i la comprensió dels conceptes científics i dels processos necessaris per a la presa de decisions personals i col·lectives. Esdevé un mitjà indispensable per a la participació eficaç en les societats i l’economia del mil·lenni.
 
@@ -823,7 +823,7 @@ Les situacions d’aprenentatge permeten programar el curs de qualsevol nivell o
 <div id="collapseMat" class="accordion-collapse collapse" aria-labelledby="headingMat" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Matemàtiques](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Matematiques.pdf "Matemàtiques")**
+**[Matemàtiques](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Matematiques.pdf "Matemàtiques"){target="_blank"}**
 
 Les matemàtiques es troben en qualsevol activitat humana, des del treball científic fins a les expressions culturals i artístiques, formant part del patrimoni cultural de la nostra societat. El domini de l’espai i del temps, l’organització i optimització de recursos, formes i proporcions, la capacitat de previsió i control de la incertesa o l’ús correcte de la tecnologia digital són característiques de les matemàtiques, però també el raonament, l’argumentació, la comunicació, la perseverança, la presa de decisions o la creativitat. Així, doncs, resulta important desenvolupar en l’alumnat els aspectes de les matemàtiques que li permetin créixer i actuar amb coneixement tant en contextos personals, acadèmics i científics com socials i laborals.
 
@@ -1240,7 +1240,7 @@ Atès que aquesta matèria s’imparteix a l’educació secundària obligatòri
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Robòtica i Programació](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robòtica i Programació")**
+**[Robòtica i Programació](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robòtica i Programació"){target="_blank"}**
 
 Aquesta matèria optativa pretén que l’alumnat desenvolupi competències per plantejar solucions innovadores i creatives en la resolució de problemes mitjançant el disseny, programació i prototipatge de sistemes automatitzats i robots
 
@@ -1384,7 +1384,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseTec" class="accordion-collapse collapse" aria-labelledby="headingTec" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Tecnologia](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Tecnologia.pdf "Tecnologia")**
+**[Tecnologia](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Tecnologia.pdf "Tecnologia"){target="_blank"}**
 
 La matèria de Tecnologia contribueix a donar resposta a les necessitats de la ciutadania davant els desafiaments i reptes tecnològics que planteja la societat actual, especialment la digitalització creixent. Així, aquesta matèria serveix de base, no sols per comprendre l’evolució social, sinó també per poder actuar amb criteris tècnics, científics i ètics en l’exercici d’una ciutadania responsable i activa, utilitzant la generació del coneixement com a motor de desenvolupament i fomentant la participació de l’alumnat en igualtat amb una visió integral de la tecnologia, ressaltant el seu aspecte social.
 

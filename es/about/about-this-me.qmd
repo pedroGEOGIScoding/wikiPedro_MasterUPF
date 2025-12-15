@@ -55,9 +55,9 @@ Esta amplia experiencia internacional ha proporcionado habilidades personales y 
 > - **APIs**: RESTful services
 > - **Cloud**: AWS Services
 > - **Proyectos relevantes:**
->     - [Dashboard to track event participants](https://dashboardfest2fun-production.up.railway.app/){.external target='_blank'} - Event tracking dashboard
->     - [FullStack Real-Time Flight Tracking Application](https://pedrogeogiscoding.github.io/Flight_Tracker_PedroGeoGISdev/){.external target='_blank'} - Real-time flight tracking system
->     - [FullStack Renting Car Application with full CRUD funcionalities and car tracking map](https://rentingcar-production.up.railway.app/){.external target='_blank'} - Complete car rental management system
+>     - [Dashboard to track event participants](https://dashboardfest2fun-production.up.railway.app/){.external target="_blank"} - Event tracking dashboard
+>     - [FullStack Real-Time Flight Tracking Application](https://pedrogeogiscoding.github.io/Flight_Tracker_PedroGeoGISdev/){.external target="_blank"} - Real-time flight tracking system
+>     - [FullStack Renting Car Application with full CRUD funcionalities and car tracking map](https://rentingcar-production.up.railway.app/){.external target="_blank"} - Complete car rental management system
 
 > **Gestión Internacional de Proyectos** - Trayectoria demostrada en la gestión de proyectos geológicos multidisciplinarios en el Norte y Oeste de África, Mar del Norte, Golfo de México, Nueva Zelanda, Australia y Asia.
 
@@ -126,4 +126,4 @@ Actualmente, estudiando el master de profesorado de secundaria en la universidad
 
 #### Perfil de Linkedin
   
-[linkedin.com/in/pedromartinezduran/](https://www.linkedin.com/in/pedromartinezduran/)
+[linkedin.com/in/pedromartinezduran/](https://www.linkedin.com/in/pedromartinezduran/){target="_blank"}

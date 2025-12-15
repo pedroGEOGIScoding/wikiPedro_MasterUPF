@@ -32,7 +32,7 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[Biology and Geology](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Biologia-i-Geologia.pdf )
+[Biology and Geology](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Biologia-i-Geologia.pdf ){target="_blank"}
 
 Among the purposes of the subjects of Biology and Geology at the ESO is to promote awareness, on the part of students, of the importance of sustainable development, as well as to awaken curiosity, develop critical attitude, thinking and scientific skills, the assessment of the role of science, equal opportunities between genders and to promote, especially among students, scientific vocations.
 
@@ -331,7 +331,7 @@ The situations make it possible to program the course of any level, subject or a
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Physics and Chemistry**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Fisica-i-Quimica.pdf)
+[**Physics and Chemistry**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Fisica-i-Quimica.pdf){target="_blank"}
 
 
 Among the aims of the subjects of Physics and Chemistry in compulsory secondary education is the awareness, on the part of students, of the contribution of these sciences to the improvement of the quality of life and to sustainable development, as well as that of awakening curiosity, developing a critical attitude, thinking and scientific skills, the assessment of the role of science, equal opportunities between genders and fostering scientific vocations, especially among male and female students.
@@ -354,7 +354,7 @@ SDG 6. Clean water and sanitation. Guarantee the availability and sustainable ma
 
 ODS 7. Clean and affordable energy. Guarantee everyone's access to affordable, reliable, sustainable and renewable energy sources.
 
-SDG9. Innovation and [infrastructures](https://ca.wikipedia.org/wiki/Infrastructures). Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation.
+SDG9. Innovation and [infrastructures](https://ca.wikipedia.org/wiki/Infrastructures){target="_blank"}. Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation.
 
 ODS 11. Sustainable cities and communities. Making cities and human settlements inclusive, safe, resilient and sustainable.
 
@@ -604,7 +604,7 @@ The situations make it possible to program the course of any level, subject or a
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Scientific Culture**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica") **(elective subject of fourth year of ESO)**
+[**Scientific Culture**](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Cultura-Cientifica.pdf "Cultura Científica"){target="_blank"} **(elective subject of fourth year of ESO)**
 
 In the 21st century, science is everywhere, permeates the environment and conditions our lives, being inseparable from all the most relevant economic and social areas. In this sense, scientific literacy becomes essential for the knowledge and understanding of scientific concepts and the processes necessary for making personal and collective decisions. It becomes an indispensable means for effective participation in the societies and economy of the millennium.
 
@@ -813,7 +813,7 @@ The learning situations make it possible to program the course of any level or s
 <div id="collapseMat" class="accordion-collapse collapse" aria-labelledby="headingMat" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Mathematics](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Matematiques.pdf "Mathematics")**
+**[Mathematics](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Matematiques.pdf "Mathematics"){target="_blank"}**
 
 Mathematics is found in any human activity, from scientific work to cultural and artistic expressions, forming part of the cultural heritage of our society. The mastery of space and time, the organization and optimization of resources, shapes and proportions, the ability to forecast and control uncertainty or the correct use of digital technology are characteristics of mathematics, but also reasoning, argumentation, communication, perseverance, decision-making or creativity. Therefore, it is important to develop in students the aspects of mathematics that allow them to grow and act with knowledge both in personal, academic and scientific as well as social and work contexts.
 
@@ -1227,7 +1227,7 @@ Given that this subject is taught in compulsory secondary education, it has been
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Robotics and Programming](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robotica and Programming")**
+**[Robotics and Programming](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Robotica-i-Programacio.pdf "Robotica and Programming"){target="_blank"}**
 
 This optional subject aims for students to develop skills to come up with innovative and creative solutions in solving problems through the design, programming and prototyping of automated systems and robots
 
@@ -1371,7 +1371,7 @@ The situations make it possible to program the course of any level, subject or a
 <div id="collapseTec" class="accordion-collapse collapse" aria-labelledby="headingTec" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-**[Technology](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Tecnologia.pdf "Technology")**
+**[Technology](https://xtec.gencat.cat/web/.content/curriculum/eso/curriculum-175-2022/Tecnologia.pdf "Technology"){target="_blank"}**
 
 The subject of Technology contributes to responding to the needs of citizens in the face of the technological challenges posed by today's society, especially the growing digitization. Thus, this subject serves as a basis, not only for understanding social evolution, but also for being able to act with technical, scientific and ethical criteria in the exercise of responsible and active citizenship, using the generation of knowledge as a driver of development and encouraging the participation of students on an equal footing with a comprehensive vision of technology, highlighting its social aspect.
 

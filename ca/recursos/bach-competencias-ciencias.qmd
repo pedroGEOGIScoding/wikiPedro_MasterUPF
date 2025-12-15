@@ -32,7 +32,7 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biologia**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Biologia.pdf )
+[**Biologia**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Biologia.pdf ){target="_blank"}
 
 Els avenços de la biologia s’han accelerat notablement en les darreres dècades. En aquest camp s’han produït grans canvis de paradigma (com el descobriment de la cèl·lula, el desenvolupament de la teoria de l’evolució, el naixement de la biologia molecular i el descobriment dels virus i els prions, entre d’altres) que han revolucionat el concepte d’organisme viu i la comprensió del seu funcionament.
 
@@ -305,7 +305,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Física**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Fisica.pdf)
+[**Física**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Fisica.pdf){target="_blank"}
 
 
 L’ensenyament de la Física a batxillerat completa la formació científica que l’alumnat ha adquirit al llarg de tota l’educació secundària obligatòria i contribueix de manera activa que els estudiants adquireixin una base cultural científica rica i de qualitat que els permeti desenvolupar-se amb confiança i criteri en una societat que demana perfils científics i tècnics per a la recerca i el món laboral, alhora que els dona eines d’anàlisi de la realitat que els envolta.
@@ -513,7 +513,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Geologia i Ciències Ambientals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Geologia-i-Ciencies-Ambientals.pdf) 
+[**Geologia i Ciències Ambientals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Geologia-i-Ciencies-Ambientals.pdf){target="_blank"} 
 
 Els avenços de la humanitat s’han basat molt sovint en l’ús de recursos naturals per a l’elaboració de productes o objectes que resolguessin problemes existents o ens proporcionessin determinats serveis. Entre aquests recursos destaquen, tot i que sovint de manera poc aparent, els recursos geològics. D’altra banda, els humans, com a habitants de la Terra que som, estem contínuament exposats als processos geodinàmics, que comporten riscos però també oportunitats. En aquest sentit, l’anàlisi dels principals esdeveniments que han tingut lloc a la història del nostre planeta ens permet fer prediccions sobre successos actuals o futurs als quals ens podem veure exposats.
 
@@ -737,7 +737,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseQuimica" class="accordion-collapse collapse" aria-labelledby="headingQuimica" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Química**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Quimica.pdf)
+[**Química**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Quimica.pdf){target="_blank"}
 
 La química és una ciència, cada vegada més present en molts dels àmbits de la societat, que pot donar resposta a problemàtiques relacionades amb àmbits molt diversos, especialment en els camps de la salut i la sostenibilitat. En aquest sentit, les aplicacions de la ciència i de la química en particular poden tenir un impacte positiu en àrees molt diverses. La química aporta solucions en el món dels fàrmacs, dels materials, de l’energia i de l’aigua, entre d’altres, i genera coneixement i aplicacions per contribuir a l’assoliment dels objectius de desenvolupament sostenible.
 
@@ -977,7 +977,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Tecnologia i Enginyeria**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Tecnologia-i-Enginyeria.pdf)
+[**Tecnologia i Enginyeria**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-de-modalitat/modalitat-ciencies-i-tecnologia/Tecnologia-i-Enginyeria.pdf){target="_blank"}
 
 A la societat actual, el desenvolupament de la tecnologia per part de les enginyeries ha esdevingut un dels eixos al voltant dels quals s’articula l’evolució sociocultural. En els darrers temps, la tecnologia, entesa com el conjunt de coneixements derivats de la tècnica i de l’enginyeria, amb les aportacions del coneixement científic, i el seu caràcter instrumental i interdisciplinari, ha tingut un paper fonamental en l’evolució de la humanitat, que, sens dubte, comportarà grans canvis i reptes en la societat del segle XXI.
 
@@ -1214,7 +1214,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Ciències Generals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Ciencies-Generals.pdf)
+[**Ciències Generals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Ciencies-Generals.pdf){target="_blank"}
 
 A la societat actual hi ha multitud d’aspectes que estan relacionats amb l’activitat científica, tant en el camp sanitari com en l’ambiental, el tecnològic o l’econòmic. Per això, el fet de disposar d’una formació científica sòlida permet a les persones formar-se i defensar una opinió fonamentada davant fets controvertits que formen part del dia a dia del nostre món. Aquesta matèria ofereix a l’alumnat una formació bàsica en les quatre disciplines científiques fonamentals. A més, el seu enfocament multidisciplinari confereix al currículum un caràcter unificador que posa de manifest que les diferents ciències són una especialització d’un tot global I coherent que és el coneixement científic. De fet, en el desenvolupament de la recerca com a activitat professional, els científics i les científiques relacionen coneixements, destreses i actituds de totes les disciplines per enriquir els seus estudis i contribuir de forma més eficient al progrés de la societat.
 
@@ -1407,7 +1407,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Matemàtiques**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques.pdf)
+[**Matemàtiques**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques.pdf){target="_blank"}
 
 Les matemàtiques constitueixen un dels assoliments culturals i intel·lectuals més grans de la humanitat. Al llarg de la història, les diferents cultures s’han esforçat a descriure la naturalesa utilitzant les matemàtiques i a transmetre tot el coneixement adquirit a les generacions futures. Avui dia, aquest patrimoni intel·lectual adquireix un valor fonamental, ja que els grans reptes globals, com el respecte al medi ambient, l’eficiència energètica o la industrialització inclusiva i sostenible, als quals la societat haurà de fer front, requereixen un alumnat capaç d’adaptar-se a les condicions canviants, d’aprendre de manera autònoma, de modelitzar situacions, d’explorar noves vies de recerca i d’usar la tecnologia de manera efectiva. Per tant, és imprescindible per a la ciutadania del segle XXI la utilització de coneixements i destreses matemàtiques, com el raonament, la modelització, el pensament computacional o la resolució de problemes.
 
@@ -1819,7 +1819,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Matemàtiques Aplicades a les Ciències Socials**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques-Aplicades-a-les-Ciencies-Socials.pdf)
+[**Matemàtiques Aplicades a les Ciències Socials**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques-Aplicades-a-les-Ciencies-Socials.pdf){target="_blank"}
 
 Les matemàtiques constitueixen un dels majors assoliments culturals i intel·lectuals de la humanitat. Al llarg de la història, les diferents cultures s’han esforçat a descriure la naturalesa utilitzant les matemàtiques i a transmetre tot el coneixement adquirit a les generacions futures. Avui dia, aquest patrimoni intel·lectual adquireix un valor fonamental, ja que els grans reptes globals, com ara el respecte al medi ambient, l’eficiència energètica o la industrialització inclusiva i sostenible, als quals la societat haurà de fer front, requereixen un alumnat capaç d’adaptar-se a les condicions canviants, d’aprendre de manera autònoma, de modelitzar situacions, d’explorar noves vies de recerca i d’usar la tecnologia de manera efectiva. Per tant, és imprescindible per a la ciutadania del segle XXI la utilització de coneixements i destreses matemàtiques, com ara el raonament, la modelització, el pensament computacional o la resolució de problemes.
 
@@ -2175,7 +2175,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Matemàtiques Generals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques-Generals.pdf)
+[**Matemàtiques Generals**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-obligatories-de-modalitat/Matematiques-Generals.pdf){target="_blank"}
 
 El desenvolupament vertiginós del món actual fa necessari que l’alumnat disposi de capacitat d’anàlisi i d’interpretació de la realitat per poder adaptar-se a unes condicions plenes d’incertesa, a més de disposar de les competències necessàries per aprendre per si mateix. Les matemàtiques exerceixen un paper fonamental per modelitzar, analitzar i comprendre els fenòmens de múltiples camps de coneixement: socials, educatius, científics, econòmics, etc. Les competències matemàtiques comprenen, a més de les idees i dels elements matemàtics, destreses de resolució de problemes, de raonament matemàtic i de comunicació, extrapolables a contextos no matemàtics.
 
@@ -2491,7 +2491,7 @@ Les situacions permeten programar el curs de qualsevol nivell, matèria o àmbit
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biomedicina**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-anuals-de-1r-curs/Biomedicina.pdf)
+[**Biomedicina**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-anuals-de-1r-curs/Biomedicina.pdf){target="_blank"}
 
 La matèria de Biomedicina és una matèria optativa anual que està especialment recomanada per a l’alumnat amb orientació cap als estudis biosanitaris. No obstant això, pot ser cursada per qualsevol alumne d’altres modalitats del batxillerat.
 
@@ -2552,7 +2552,7 @@ Explicar els fonaments biològics d’algunes contribucions recents de la invest
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Programació**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-anuals-de-1r-curs/Programacio.docx.pdf)
+[**Programació**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-anuals-de-1r-curs/Programacio.docx.pdf){target="_blank"}
 
 La matèria de Programació és una matèria optativa anual que pot ser cursada per alumnes de qualsevol modalitat del batxillerat. La competència de programar aporta un valor afegit a l’alumnat en els estudis superiors que pugui cursar posteriorment.
 
@@ -2609,7 +2609,7 @@ Partint de la descripció funcional d’una solució informàtica, desenvolupar 
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Matemàtica Aplicada**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Matematica-Aplicada_TS_sc.docx.pdf)
+[**Matemàtica Aplicada**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Matematica-Aplicada_TS_sc.docx.pdf){target="_blank"}
 
 La matèria Matemàtica Aplicada és una matèria optativa trimestral enfocada a facilitar una visió panoràmica del camp d’aplicació de les matemàtiques que permeti a l’alumnat constatar i despertar l’interès per les matemàtiques, en particular el seu ús en moltes altres disciplines com a matèria instrumental que treballa amb nombres, magnituds o elements quantificables.
 
@@ -2668,7 +2668,7 @@ Identificar i fer servir les idees, evidències i arguments que utilitzin algun 
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Reptes Científics Actuals (Biologia i Geologia)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Reptes-Cientifics-Actuals-Biologia-i-Geologia_TS_sc.pdf)
+[**Reptes Científics Actuals (Biologia i Geologia)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Reptes-Cientifics-Actuals-Biologia-i-Geologia_TS_sc.pdf){target="_blank"}
 
 La matèria Reptes en Biologia i Geologia és una matèria optativa trimestral enfocada a facilitar una visió panoràmica del camp d’estudi d’aquestes ciències que permeti a l’alumnat constatar, despertar, o descartar en el seu cas, l’interès per aquestes disciplines.
 
@@ -2727,7 +2727,7 @@ Identificar i fer servir les idees, evidències, arguments científics que suste
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Reptes Científics Actuals (Física i Química)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Reptes-Cientific-Actuals-Fisica-i-Quimica_TS_sc.pdf)
+[**Reptes Científics Actuals (Física i Química)**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materies-optatives/materies-optatives-trimestrals-de-primer-curs/Reptes-Cientific-Actuals-Fisica-i-Quimica_TS_sc.pdf){target="_blank"}
 
 La matèria Reptes en Física i Química és una matèria optativa trimestral enfocada a facilitar una visió panoràmica del camp d’estudi d’aquestes ciències que permeti a l’alumnat constatar, despertar, o descartar en el seu cas, l’interès per aquestes disciplines.
 

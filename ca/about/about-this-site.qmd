@@ -41,9 +41,9 @@ Si ja tens experiència amb Quarto i necessites crear un lloc web **multilingüe
 
 Abans de començar, assegureu-vos de tenir:
 
-- **Git** instal·lat al vostre ordinador ([Baixa Git](https://git-scm.com/downloads))
-- **Quarto** instal·lat ([Descarregueu Quarto](https://quarto.org/docs/get-started/))
-- Un **compte de GitHub** ([Registreu-vos a GitHub](https://github.com/join))
+- **Git** instal·lat al vostre ordinador ([Baixa Git](https://git-scm.com/downloads){target="_blank"})
+- **Quarto** instal·lat ([Descarregueu Quarto](https://quarto.org/docs/get-started/){target="_blank"})
+- Un **compte de GitHub** ([Registreu-vos a GitHub](https://github.com/join){target="_blank"})
 - Un **editor de text** o IDE (VS Code, RStudio, etc.)
 
 ## Creeu el vostre lloc web de Quarto
@@ -92,7 +92,7 @@ format:
 
 - `output-dir`: on es guarden els fitxers representats (per defecte: `_site`)
 - `title`: el títol del vostre lloc web
-- "tema": tria entre [temes de Bootswatch](https://bootswatch.com/)
+- "tema": tria entre [temes de Bootswatch](https://bootswatch.com/){target="_blank"}
 - `navbar`: estructura de navegació
 
 ### Previsualitza el teu lloc web localment
@@ -135,7 +135,7 @@ El directori `_site` el generarà GitHub Actions, de manera que no ho confirmem.
 
 ### Creeu un nou dipòsit a GitHub
 
-1. Aneu a [GitHub](https://github.com) i inicieu la sessió
+1. Aneu a [GitHub](https://github.com){target="_blank"} i inicieu la sessió
 2. Feu clic a la icona **"+"** a l'extrem superior dret
 3. Seleccioneu **"Nou repositori"**
 4. Introduïu els detalls del repositori:
@@ -145,7 +145,7 @@ El directori `_site` el generarà GitHub Actions, de manera que no ho confirmem.
    - **NO** inicialitzeu-vos amb README, .gitignore o llicència
 5. Feu clic a **"Crea un repositori"**
 
-![Creació d'un nou repositori a GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp){ group="about-this-site" }
+![Creació d'un nou repositori a GitHub](https://docs.github.com/assets/cb-11427/mw-1440/images/help/repository/repo-create.webp){group="about-this-site" target="_blank"}
 
 ### Connecteu el dipòsit local a GitHub
 
@@ -248,10 +248,10 @@ jobs:
 
 **Accions clau utilitzades:**
 
-- [`actions/checkout@v4`](https://github.com/actions/checkout): Baixeu el vostre repositori
-- [`quarto-dev/quarto-actions/setup@v2`](https://github.com/quarto-dev/quarto-actions): instal·leu Quarto
-- [`actions/upload-pages-artifact@v3`](https://github.com/actions/upload-pages-artifact): carregueu el lloc per al desplegament
-- [`actions/deploy-pages@v4`](https://github.com/actions/deploy-pages): desplega a les pàgines de GitHub
+- [`actions/checkout@v4`](https://github.com/actions/checkout){target="_blank"}: Baixeu el vostre repositori
+- [`quarto-dev/quarto-actions/setup@v2`](https://github.com/quarto-dev/quarto-actions){target="_blank"}: instal·leu Quarto
+- [`actions/upload-pages-artifact@v3`](https://github.com/actions/upload-pages-artifact){target="_blank"}: carregueu el lloc per al desplegament
+- [`actions/deploy-pages@v4`](https://github.com/actions/deploy-pages){target="_blank"}: desplega a les pàgines de GitHub
 
 ## Implementeu el vostre lloc web
 
@@ -272,7 +272,7 @@ git push
 2. Feu clic a la pestanya **"Accions"**
 3. Hauríeu de veure el vostre flux de treball en funcionament
 
-![Execució del flux de treball de GitHub Actions](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp){ group="about-this-site" }
+![Execució del flux de treball de GitHub Actions](https://docs.github.com/assets/cb-31477/mw-1440/images/help/repository/actions-tab.webp){group="about-this-site" target="_blank"}
 
 4. Feu clic a l'execució del flux de treball per veure els registres detallats
 5. Espereu que s'acabin les tasques de **construcció** i **implantació** (normalment d'1 a 3 minuts)
@@ -316,7 +316,7 @@ A     185.199.111.153
 CNAME     tunombredeusuario.github.io
 ```
 
-Més detalls: [Documentació del domini personalitzat de les pàgines de GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)
+Més detalls: [Documentació del domini personalitzat de les pàgines de GitHub](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site){target="_blank"}
 
 ## Actualitzeu el vostre lloc web
 
@@ -460,22 +460,22 @@ git commit -m "Añadir computaciones congeladas"
 
 ### Documentació oficial
 
-- [Documentació de Quarto](https://quarto.org/docs/guide/)
-- [Guia de publicació de Quarto](https://quarto.org/docs/publishing/github-pages.html)
-- [Documentació de les pàgines de GitHub](https://docs.github.com/en/pages)
-- [Documentació d'accions de GitHub](https://docs.github.com/en/actions)
+- [Documentació de Quarto](https://quarto.org/docs/guide/){target="_blank"}
+- [Guia de publicació de Quarto](https://quarto.org/docs/publishing/github-pages.html){target="_blank"}
+- [Documentació de les pàgines de GitHub](https://docs.github.com/en/pages){target="_blank"}
+- [Documentació d'accions de GitHub](https://docs.github.com/en/actions){target="_blank"}
 
 ### Recursos Quarto
 
-- [Galeria Quarto](https://quarto.org/docs/gallery/) - Exemples de llocs web
-- [Extensions Quarto](https://quarto.org/docs/extensions/) - Afegeix una funcionalitat
-- [Comunitat Quarto](https://github.com/quarto-dev/quarto-cli/discussions) - Obteniu ajuda
+- [Galeria Quarto](https://quarto.org/docs/gallery/){target="_blank"} - Exemples de llocs web
+- [Extensions Quarto](https://quarto.org/docs/extensions/){target="_blank"} - Afegeix una funcionalitat
+- [Comunitat Quarto](https://github.com/quarto-dev/quarto-cli/discussions){target="_blank"} - Obteniu ajuda
 
 ### Recursos GitHub Actions
 
-- [Quarto GitHub Actions](https://github.com/quarto-dev/quarto-actions) - Accions oficials
-- [GitHub Actions Marketplace](https://github.com/marketplace?type=actions) - Troba accions
-- [Sintaxi de flux de treball](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) - Referència completa
+- [Quarto GitHub Actions](https://github.com/quarto-dev/quarto-actions){target="_blank"} - Accions oficials
+- [GitHub Actions Marketplace](https://github.com/marketplace?type=actions){target="_blank"} - Troba accions
+- [Sintaxi de flux de treball](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions){target="_blank"} - Referència completa
 
 ## Resum
 
@@ -867,6 +867,6 @@ git push origin main
 
 ### Recursos Addicionals
 
-- **Documentació oficial de Quarto**: [https://quarto.org](https://quarto.org)
-- **GitHub Pages Docs**: [https://docs.github.com/pages](https://docs.github.com/pages)
-- **Repositori del projecte**: [https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF](https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF)
+- **Documentació oficial de Quarto**: [https://quarto.org](https://quarto.org){target="_blank"}
+- **GitHub Pages Docs**: [https://docs.github.com/pages](https://docs.github.com/pages){target="_blank"}
+- **Repositori del projecte**: [https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF](https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF){target="_blank"}
