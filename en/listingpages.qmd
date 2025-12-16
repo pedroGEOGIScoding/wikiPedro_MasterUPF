@@ -10,12 +10,11 @@ listing:
   image-align: left
   fields: [title, description, categories]
   sort:
-    - "title"
-    - "date"
+    - "title asc"
   sort-ui: true
   filter-ui: true
   categories: true            # Show category list
-  page-size: 12               # Items per page (pagination)
+  page-size: 5              # Items per page (pagination)
 ---
 
 ::: callout-tip
