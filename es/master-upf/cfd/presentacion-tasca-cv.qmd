@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Práctica de la presentación de la situación de aprendizaje
-categories: [presentacion, complementos, disciplinar]
+categories: [presentación, complementos, disciplinar]
 toc: true
 number-sections: true
 highlight-style: pygments

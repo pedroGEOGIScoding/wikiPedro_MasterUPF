@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Links para soporte educativo
-categories: [educacion, internet, links]
+categories: [educación, internet, links]
 toc: true
 number-sections: true
 highlight-style: pygments

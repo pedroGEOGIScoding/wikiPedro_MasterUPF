@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda la evaluación de los aprendizajes
-categories: [evaluacion, aprendizaje, educación]
+categories: [evaluación, aprendizaje, educación]
 toc: true
 number-sections: true
 highlight-style: pygments

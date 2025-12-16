@@ -6,7 +6,7 @@ author: "Pedro Martínez"
 date-modified: last-modified
 date-format: full
 description: Plantilla completa para la observación sistemática del alumnado en el aula
-categories: [practicum, observacion, alumno]
+categories: [prácticum, observación, alumno]
 toc: true
 number-sections: true
 highlight-style: pygments

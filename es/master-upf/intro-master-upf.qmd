@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Guía integrada del Máster de Formación del Profesorado de Secundaria
-categories: [guia, master]
+categories: [guía, máster]
 toc: true
 number-sections: true
 highlight-style: pygments

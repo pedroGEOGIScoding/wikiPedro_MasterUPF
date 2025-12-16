@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que aborda la gestión del ambiente de aprendizaje en el aula a través del vínculo, rutinas, límites y motivación
-categories: [gestion, ambiente, aprendizaje, vínculo, rutinas, límites, motivación]
+categories: [gestión, ambiente, aprendizaje, vínculo, rutinas, límites, motivación]
 toc: true
 number-sections: true
 highlight-style: pygments
