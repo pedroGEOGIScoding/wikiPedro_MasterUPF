@@ -63,8 +63,10 @@ website:
       collapse-level: 1
       align: center
       contents:
-        - portfolio/portfolio-relato.qmd
-        - portfolio/portfolio-centro.qmd
+        - section: "Portfolio"
+          contents:
+          - portfolio/portfolio-relato.qmd
+          - portfolio/portfolio-centro.qmd
 
     - id: "masterUPF"
       title: "Master UPF"

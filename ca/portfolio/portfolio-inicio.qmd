@@ -1,9 +1,0 @@
----
-title: "Cartera"
-filename: portfolio-inicio
-lightbox:
-  match: auto
-  effect: fade
-  desc-position: bottom
-  loop: false
----

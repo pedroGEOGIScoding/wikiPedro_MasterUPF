@@ -77,6 +77,12 @@ The language codes follow the ISO 639-1 standard (two-letter codes). For example
 
 #### Examples
 
+**In this enviroment project**
+```bash
+# single file translation (Spanish to English)
+python3.13 python_codes/translate_qmd.py en/portfolio/portfolio-centro.qmd -s es -t en
+```
+
 ```bash
 # Single file translation (Spanish to English)
 python3 python_codes/translate_qmd.py file.qmd -s es -t en
