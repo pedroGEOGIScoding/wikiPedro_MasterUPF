@@ -26,7 +26,7 @@ format: html
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingBio">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBio" aria-expanded="false" aria-controls="collapseBio">
-<strong>🧬 Biologia - Matèries de modalitat - Ciències i Tecnologia</strong>
+<strong>🧬 Biology - Subjects of modalities - Sciences and Technology</strong>
 </button>
 </h2>
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
@@ -299,7 +299,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingFis">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFis" aria-expanded="false" aria-controls="collapseFis">
-<strong>⚛️ Física - Matèries de modalitat - Ciències i Tecnologia</strong>
+<strong>⚛️ Physics - Subjects of modalities - Sciences and Technology</strong>
 </button>
 </h2>
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
@@ -507,7 +507,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingCultura">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCultura" aria-expanded="false" aria-controls="collapseCultura">
-<strong>🔬 Geologia i Ciències Ambientals - Matèries de modalitat - Ciències i Tecnologia</strong>
+<strong>🔬 Geology and Environmental Sciences - Subjects of modalities - Sciences and Technology</strong>
 </button>
 </h2>
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
@@ -731,7 +731,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingQuimica">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuimica" aria-expanded="false" aria-controls="collapseQuimica">
-<strong>🧪 Química - Matèries de modalitat - Ciències i tecnologia</strong>
+<strong>🧪 Chemistry - Subjects of modalities - Sciences and Technology</strong>
 </button>
 </h2>
 <div id="collapseQuimica" class="accordion-collapse collapse" aria-labelledby="headingQuimica" data-bs-parent="#competenciasAccordion">
@@ -971,7 +971,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🤖 Tecnologia i Enginyeria - Matèries de modalitat - Ciències i tecnologia</strong>
+<strong>🤖 Technology and Engineering - Subjects of modalities - Sciences and Technology</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -1208,7 +1208,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🤖 Ciències Generals - Matèries obligatòries de modalitat</strong>
+<strong>🤖 General Sciences - Subjects of modalities</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -1401,7 +1401,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong> ♾️ Matemàtiques - Matèries obligatòries de modalitat</strong>
+<strong> ♾️ Mathematics - Subjects of modalities</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -1813,7 +1813,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>♾️ Matemàtiques Aplicades a les Ciències Socials - Matèries obligatòries de modalitat</strong>
+<strong>♾️ Math Applied to Social Sciences - Subjects of modalities</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -2169,7 +2169,7 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>♾️ Matemàtiques Generals - Matèries obligatòries de modalitat</strong>
+<strong>♾️ General Mathematics - Compulsory subjects of modalities</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -2485,13 +2485,13 @@ The situations make it possible to program the course of any level, subject or f
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🧬 Biomedicina -  Matèries optatives - Matèries optatives anuals de primer curs</strong>
+<strong>🧬 Biomedicine - Optional subjects - Annual optional subjects of first year</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biomedicina**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Biomedicina.pdf){target="_blank"}
+[**Biomedicine**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Biomedicina.pdf){target="_blank"}
 
 The subject of Biomedicine is an annual optional subject that is particularly recommended for students with an orientation towards biosanitary studies. However, it can be taken by any student from other modes of high school.
 
@@ -2546,13 +2546,13 @@ Explain the biological foundations of some recent contributions of biomedical re
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🖥️ Programació -  Matèries optatives - Matèries optatives anuals de primer curs</strong>
+<strong>🖥️ Programming -  Optional subjects - Annual optional subjects of first year</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Programació**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Programacio.docx.pdf){target="_blank"}
+[**Programming**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-optatives/materias-optatives-anuals-de-1r-curs/Programacio.docx.pdf){target="_blank"}
 
 Programming is an annual optional subject that can be taken by students from any type of high school. The ability to program provides added value to students in the higher studies that they can take later.
 
@@ -2603,7 +2603,7 @@ Starting from the functional description of an IT solution, develop the program,
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🖥️ Matemàtica Aplicada -  Matèries optatives trimestrals de primer curs</strong>
+<strong>🖥️ Applied Mathematics -  Optional subjects - Trimestral optional subjects of first year</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -2662,7 +2662,7 @@ Identify and use the ideas, evidence and arguments that use any of the different
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>🔭 Reptes Científics Actuals (Biologia i Geologia) -  Matèries optatives trimestrals de primer curs</strong>
+<strong>🔭 Current Scientific Challenges (Biology and Geology) - Trimestral optional subjects of first year</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
@@ -2721,7 +2721,7 @@ Identify and use the ideas, evidence, scientific arguments that support the expl
 <div class="accordion-item">
 <h2 class="accordion-header" id="headingRob">
 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRob" aria-expanded="false" aria-controls="collapseRob">
-<strong>📡 Reptes Científics Actuals (Física i Química) -  Matèries optatives trimestrals de primer curs</strong>
+<strong>📡 Current Scientific Challenges (Physics and Chemistry) - Trimestral optional subjects of first year</strong>
 </button>
 </h2>
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">

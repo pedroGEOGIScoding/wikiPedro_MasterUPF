@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Subject that complements disciplinary training in natural sciences from an integrated and disciplinary perspective
-categories: [accessories, discipline]
+categories: [complementary, discipline]
 toc: true
 number-sections: true
 highlight-style: pygments

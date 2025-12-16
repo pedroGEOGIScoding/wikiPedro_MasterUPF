@@ -26,6 +26,6 @@ lightbox:
 <p>
   <center style="font-size: 20px;">
     El codi d'estat de resposta d'error del client <strong style="color: red;">404</strong> <strong>No trobat</strong> indica que el servidor no pot trobar el recurs sol·licitat.
-    Aquests enllaços que porten a una pàgina 404 sovint s'anomenen enllaços trencats o morts i poden estar subjectes a la putrefacció dels enllaços.
+    Aquests enllaços que porten a una pàgina 404 sovint s'anomenen enllaços trencats o morts i poden estar subjectes a la podridura dels enllaços.
   </center>
 </p>

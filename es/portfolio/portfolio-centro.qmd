@@ -18,11 +18,11 @@ lightbox:
 format: html
 ---
 
-# Mi image del centro y la actividad didáctica de mi mentor
+# Mi imagen del centro y la actividad didáctica de mi mentor
 
 Mi centro de prácticas, el colegio concertado "Los Gabrielistas" se encuentra en la localidad de Viladecans. Mi mentor de prácticas se llama Carlos Giménez Esteban y es licenciado en biología con 35 años de experiencia docente, todos ellos en este mismo colegio.
 
-La actividad educativa de Carlos se concentra en 4 de ESO y principalmente bachillerato. De 4 de ESO solo imparte cultura científica y en los 2 cursos de bachillerato se encarga de las asignaturas las relacionadas con biología, las matemáticas de 2 de bachillerato, y retos científicos actuales de biologia-geologia. Los dos últimos días de la primera semana y los 2 primeros de la segunda semana de prácticas coincidieron con los exámenes del primer trimestre y el miércoles siguiente fue la excursión de las clases de bachillerato después de los exámenes. Esto ha implicado que, durante esos días las clases fueron enfocadas a repasar y preparar los exámenes, lo que hizo que las dinámicas fueran muy diferentes a las habituales.
+La actividad educativa de Carlos se concentra en 4 de ESO y principalmente bachillerato. De 4 de ESO solo imparte cultura científica y en los 2 cursos de bachillerato se encarga de las asignaturas las relacionadas con biología, las matemáticas de 2 de bachillerato, y retos científicos actuales de biología-geología. Los dos últimos días de la primera semana y los 2 primeros de la segunda semana de prácticas coincidieron con los exámenes del primer trimestre y el miércoles siguiente fue la excursión de las clases de bachillerato después de los exámenes. Esto ha implicado que, durante esos días las clases fueron enfocadas a repasar y preparar los exámenes, lo que hizo que las dinámicas fueran muy diferentes a las habituales.
 
 ::: {style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;"}
 ::: {style="flex: 50%;"}
@@ -34,7 +34,7 @@ La actividad educativa de Carlos se concentra en 4 de ESO y principalmente bachi
 :::
 :::
 
-## Vision general del Colegio Sant Gabriel de Viladecans
+## Visión general del Colegio Sant Gabriel de Viladecans
 
 El **Colegio Sant Gabriel de Viladecans** es un centro educativo concertado ubicado en Viladecans. Se trata de una institución dirigida por la congregación religiosa de los Hermanos de San Gabriel, que forma parte de la comunidad educativa Gabrielista con más de 100 años de historia educativa.
 

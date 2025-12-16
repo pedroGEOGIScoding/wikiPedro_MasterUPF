@@ -42,7 +42,7 @@ format: html
   </li>
   <br>
   <li>
-    <strong>Numero de Alumnos:</strong>
+    <strong>Número de Alumnos:</strong>
     <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Numero de Alumnos" style="width: 200px">
   </li>
   <br>

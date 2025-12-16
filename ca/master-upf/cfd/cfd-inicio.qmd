@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Assignatura que complementa la formació disciplinària en ciències naturals des d'una perspectiva integrada i disciplinar
-categories: [accessoris, disciplina]
+categories: [complementaris, disciplina]
 toc: true
 number-sections: true
 highlight-style: pygments
