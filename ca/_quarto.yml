@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: ../docs/ca
+  output-dir: ../docs
 
   preview:
 #    port: 3000                  # Port number for local preview server (default random 3000-8000)

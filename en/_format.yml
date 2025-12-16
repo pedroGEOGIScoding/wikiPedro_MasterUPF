@@ -3,53 +3,70 @@ format:
     include-in-header:
       - text: |
           <script>
+          /**
+           * Handles language switching functionality for a multi-language website
+           * @param {string} targetLang - The target language code ('es', 'ca', or 'en')
+           */
           function switchLanguage(targetLang) {
+              // Get the current URL path
               const currentPath = window.location.pathname;
               console.log('Current path:', currentPath);
               console.log('Target language:', targetLang);
               
-              // Auto-detect environment: GitHub Pages or localhost
+              // Auto-detect if running on GitHub Pages or localhost
+              // This handles different base paths for different environments
               const isGitHubPages = window.location.hostname.includes('github.io');
               const basePath = isGitHubPages ? '/wikiPedro_MasterUPF/' : '/';
               console.log('Environment:', isGitHubPages ? 'GitHub Pages' : 'localhost');
               console.log('Base path:', basePath);
               
-              // Remove base path and leading slash
+              // Clean the path by removing the base path and any leading slashes
               let cleanPath = currentPath.replace(basePath, '').replace(/^\//, '');
               console.log('Clean path after removing base:', cleanPath);
               
-              // Remove language prefix if present
-              if (cleanPath.startsWith('ca/')) {
+              // Remove any existing language prefix from the path
+              // This ensures we don't stack language codes when switching multiple times
+              if (cleanPath.startsWith('es/')) {
                   cleanPath = cleanPath.substring(3);
               } else if (cleanPath.startsWith('en/')) {
                   cleanPath = cleanPath.substring(3);
               }
               console.log('Clean path after removing language prefix:', cleanPath);
               
-              // Handle root index page
+              // Handle the root index page case
               if (cleanPath === '' || cleanPath === 'index.html') {
                   cleanPath = 'index.html';
               }
               
-              // Construct new path based on target language
+              // Construct the new URL path based on the target language
               let newPath;
-              if (targetLang === 'es') {
+              if (targetLang === 'ca') {
+                  // Catalan is the default language, so no prefix needed
                   newPath = basePath + cleanPath;
-              } else if (targetLang === 'ca') {
-                  newPath = basePath + 'ca/' + cleanPath;
+              } else if (targetLang === 'es') {
+                  // Add Spanish prefix
+                  newPath = basePath + 'es/' + cleanPath;
               } else if (targetLang === 'en') {
+                  // Add English prefix
                   newPath = basePath + 'en/' + cleanPath;
               }
               
               console.log('New path:', newPath);
+              // Navigate to the new URL
               window.location.href = newPath;
           }
 
-          // Add target="_blank" to external link
+          /**
+           * Event listener that runs when the DOM is fully loaded
+           * This adds target="_blank" to external links for better user experience
+           */
           document.addEventListener('DOMContentLoaded', function() {
+              // Find the external link to pedrogeogisdev.com
               const externalLink = document.querySelector('a[href="https://pedrogeogisdev.com/"]');
               if (externalLink) {
+                  // Make the link open in a new tab
                   externalLink.setAttribute('target', '_blank');
+                  // Add security attributes for external links
                   externalLink.setAttribute('rel', 'noopener noreferrer');
               }
           });

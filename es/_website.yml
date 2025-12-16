@@ -43,9 +43,9 @@ website:
         href: listingpages.qmd
       - icon: translate
         menu:
-          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/spain-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Español</a>"
-          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 18px;'><img src='/images/home/uk-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> English</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"es\"); return false;' style='text-decoration: none; font-size: 16px;'><img src='/images/home/spain-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Español</a>"
+          - text: "<a href='#' onclick='switchLanguage(\"en\"); return false;' style='text-decoration: none; font-size: 16px;'><img src='/images/home/uk-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> English</a>"
       - icon: person-lines-fill
         menu:
           - text: "{{< fa solid envelope >}} Email"
