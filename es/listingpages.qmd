@@ -11,8 +11,8 @@ listing:
   fields: [title, description, categories]
   sort:
     - "title asc"
-  sort-ui: true
-  filter-ui: true
+  sort-ui: [title, categories]
+  filter-ui: [title, categories]
   categories: true            # Show category list
   page-size: 5              # Items per page (pagination)
 ---
