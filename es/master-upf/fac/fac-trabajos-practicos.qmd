@@ -21,3 +21,34 @@ format: html
 # Trabajos prácticos
 
 ## Introducción
+
+> El profesor Xavier Muñoz dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **trabajos prácticos**, con los objetivos de analizar por qué se hace trabajo experimental en las clases de ciencias (finalidad del trabajo experimental), asi como reflexionar sobre cómo se puede desarrollar mejor la comprensión y procedimientos de los estudiantes a través del trabajo experimental. Fnalmente, explorar como presentar las actividades experimentales de forma que realmente ayuden a la construcción de conocimiento científico
+
+## Material didáctico de todas las sesiones
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión y material didáctico
+:::
+
+::: panel-tabset
+## Sesión 1 {.active}
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## 24 Experimentos para el aula con material sencillo
+
+<embed src="/files/fac-trabajos-practicos/fac-activitats-practiques.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Experimento de Coca-Cola con Mentos
+
+<embed src="/files/fac-trabajos-practicos/fac-Mentos-cocacola.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Experimento del volcan de burbujas
+
+<embed src="/files/fac-trabajos-practicos/fac-volcan-burbujas-limon.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
