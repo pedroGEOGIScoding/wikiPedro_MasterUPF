@@ -1,0 +1,19 @@
+---
+title: "cfd-full-respostes-ciencia-2025"
+filename: cfd-full-respostes-ciencia-2025
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "cfd-full-respostes-ciencia-2025"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## cfd-full-respostes-ciencia-2025
+
+<embed src="/files/cfd-full-respostes-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "textCientificMitic"
+filename: textCientificMitic
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "textCientificMitic"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## textCientificMitic
+
+<embed src="/files/NdC-docs/textCientificMitic.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "Robotica-i-Programacio"
+filename: Robotica-i-Programacio
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Robotica-i-Programacio"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Robotica-i-Programacio
+
+<embed src="/files/Robotica-i-Programacio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

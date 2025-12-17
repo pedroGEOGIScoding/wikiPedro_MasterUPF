@@ -1,0 +1,19 @@
+---
+title: "SOFE-MEdu-sesion6"
+filename: SOFE-MEdu-sesion6
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "SOFE-MEdu-sesion6"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## SOFE-MEdu-sesion6
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion6.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

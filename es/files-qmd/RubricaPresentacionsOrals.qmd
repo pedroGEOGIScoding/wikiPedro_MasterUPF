@@ -1,0 +1,19 @@
+---
+title: "RubricaPresentacionsOrals"
+filename: RubricaPresentacionsOrals
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "RubricaPresentacionsOrals"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## RubricaPresentacionsOrals
+
+<embed src="/files/NdC-docs/RubricaPresentacionsOrals.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

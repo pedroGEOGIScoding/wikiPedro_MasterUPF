@@ -1,0 +1,19 @@
+---
+title: "S1_AVALUACIO_1"
+filename: S1_AVALUACIO_1
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "S1_AVALUACIO_1"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## S1_AVALUACIO_1
+
+<embed src="/files/S1_AVALUACIO_1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

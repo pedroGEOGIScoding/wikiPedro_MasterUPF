@@ -1,0 +1,19 @@
+---
+title: "NdC-SA2a"
+filename: NdC-SA2a
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-SA2a"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-SA2a
+
+<embed src="/files/NdC-SA2a.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

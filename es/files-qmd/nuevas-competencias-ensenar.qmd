@@ -1,0 +1,19 @@
+---
+title: "nuevas-competencias-ensenar"
+filename: nuevas-competencias-ensenar
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "nuevas-competencias-ensenar"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## nuevas-competencias-ensenar
+
+<embed src="/files/sofedocs/nuevas-competencias-ensenar.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

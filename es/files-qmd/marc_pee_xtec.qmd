@@ -1,0 +1,19 @@
+---
+title: "marc_pee_xtec"
+filename: marc_pee_xtec
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "marc_pee_xtec"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## marc_pee_xtec
+
+<embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "CESINF"
+filename: CESINF
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CESINF"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CESINF
+
+<embed src="/files/NdC-docs/CESINF.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "CFD_ambitos-prioritarios"
+filename: CFD_ambitos-prioritarios
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CFD_ambitos-prioritarios"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CFD_ambitos-prioritarios
+
+<embed src="/files/CFD_ambitos-prioritarios.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

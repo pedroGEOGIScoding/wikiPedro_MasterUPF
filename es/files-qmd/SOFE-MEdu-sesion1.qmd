@@ -1,0 +1,19 @@
+---
+title: "SOFE-MEdu-sesion1"
+filename: SOFE-MEdu-sesion1
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "SOFE-MEdu-sesion1"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## SOFE-MEdu-sesion1
+
+<embed src="/files/sofesesion/SOFE-MEdu-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

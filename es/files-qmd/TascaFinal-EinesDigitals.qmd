@@ -1,0 +1,19 @@
+---
+title: "TascaFinal-EinesDigitals"
+filename: TascaFinal-EinesDigitals
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "TascaFinal-EinesDigitals"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## TascaFinal-EinesDigitals
+
+<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

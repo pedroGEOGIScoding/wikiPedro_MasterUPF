@@ -1,0 +1,19 @@
+---
+title: "avaluar_per_aprendre"
+filename: avaluar_per_aprendre
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "avaluar_per_aprendre"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## avaluar_per_aprendre
+
+<embed src="/files/avaluar_per_aprendre.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "Rubrica-gestion-aula"
+filename: Rubrica-gestion-aula
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Rubrica-gestion-aula"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Rubrica-gestion-aula
+
+<embed src="/files/Rubrica-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

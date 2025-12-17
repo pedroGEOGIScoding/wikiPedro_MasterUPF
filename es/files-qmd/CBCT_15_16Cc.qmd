@@ -1,0 +1,19 @@
+---
+title: "CBCT_15_16Cc"
+filename: CBCT_15_16Cc
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CBCT_15_16Cc"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CBCT_15_16Cc
+
+<embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_15_16Cc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

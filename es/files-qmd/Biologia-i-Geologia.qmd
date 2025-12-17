@@ -1,0 +1,19 @@
+---
+title: "Biologia-i-Geologia"
+filename: Biologia-i-Geologia
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Biologia-i-Geologia"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Biologia-i-Geologia
+
+<embed src="/files/Biologia-i-Geologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

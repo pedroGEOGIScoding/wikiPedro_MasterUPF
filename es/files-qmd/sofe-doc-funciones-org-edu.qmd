@@ -1,0 +1,19 @@
+---
+title: "sofe-doc-funciones-org-edu"
+filename: sofe-doc-funciones-org-edu
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "sofe-doc-funciones-org-edu"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## sofe-doc-funciones-org-edu
+
+<embed src="/files/sofedocs/sofe-doc-funciones-org-edu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

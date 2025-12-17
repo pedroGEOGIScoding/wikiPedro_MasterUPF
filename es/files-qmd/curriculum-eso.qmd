@@ -1,0 +1,19 @@
+---
+title: "curriculum-eso"
+filename: curriculum-eso
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "curriculum-eso"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## curriculum-eso
+
+<embed src="/files/curriculum-eso.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "marc_competencies_professionals_docents_2024"
+filename: marc_competencies_professionals_docents_2024
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "marc_competencies_professionals_docents_2024"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## marc_competencies_professionals_docents_2024
+
+<embed src="/files/sofedocs/marc_competencies_professionals_docents_2024.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

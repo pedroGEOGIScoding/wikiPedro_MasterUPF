@@ -1,0 +1,19 @@
+---
+title: "modelarticle2"
+filename: modelarticle2
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "modelarticle2"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## modelarticle2
+
+<embed src="/files/NdC-docs/modelarticle2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

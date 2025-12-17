@@ -1,0 +1,19 @@
+---
+title: "guiorecerca"
+filename: guiorecerca
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "guiorecerca"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## guiorecerca
+
+<embed src="/files/NdC-docs/guiorecerca.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

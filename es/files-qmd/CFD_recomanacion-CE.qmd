@@ -1,0 +1,19 @@
+---
+title: "CFD_recomanacion-CE"
+filename: CFD_recomanacion-CE
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CFD_recomanacion-CE"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CFD_recomanacion-CE
+
+<embed src="/files/CFD_recomanacion-CE.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

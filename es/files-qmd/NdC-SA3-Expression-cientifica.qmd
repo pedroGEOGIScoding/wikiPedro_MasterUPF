@@ -1,0 +1,19 @@
+---
+title: "NdC-SA3-Expression-cientifica"
+filename: NdC-SA3-Expression-cientifica
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-SA3-Expression-cientifica"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-SA3-Expression-cientifica
+
+<embed src="/files/NdC-SA3-Expression-cientifica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

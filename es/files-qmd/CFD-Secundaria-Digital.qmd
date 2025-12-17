@@ -1,0 +1,19 @@
+---
+title: "CFD-Secundaria-Digital"
+filename: CFD-Secundaria-Digital
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CFD-Secundaria-Digital"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CFD-Secundaria-Digital
+
+<embed src="/files/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

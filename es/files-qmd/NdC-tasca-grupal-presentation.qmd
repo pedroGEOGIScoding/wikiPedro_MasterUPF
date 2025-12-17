@@ -1,0 +1,19 @@
+---
+title: "NdC-tasca-grupal-presentation"
+filename: NdC-tasca-grupal-presentation
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-tasca-grupal-presentation"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-tasca-grupal-presentation
+
+<embed src="/files/NdC-tasca-grupal-presentation.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

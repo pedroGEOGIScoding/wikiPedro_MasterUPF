@@ -1,0 +1,19 @@
+---
+title: "NdC-sesion3"
+filename: NdC-sesion3
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-sesion3"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-sesion3
+
+<embed src="/files/NdC-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

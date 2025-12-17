@@ -1,0 +1,19 @@
+---
+title: "Fisica-i-Quimica"
+filename: Fisica-i-Quimica
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Fisica-i-Quimica"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Fisica-i-Quimica
+
+<embed src="/files/Fisica-i-Quimica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

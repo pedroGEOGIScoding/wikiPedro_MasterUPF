@@ -1,0 +1,19 @@
+---
+title: "Analisisdebiasescognitivos"
+filename: Analisisdebiasescognitivos
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Analisisdebiasescognitivos"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Analisisdebiasescognitivos
+
+<embed src="/files/NdC-docs/Analisisdebiasescognitivos.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

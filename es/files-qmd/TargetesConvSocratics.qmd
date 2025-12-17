@@ -1,0 +1,19 @@
+---
+title: "TargetesConvSocratics"
+filename: TargetesConvSocratics
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "TargetesConvSocratics"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## TargetesConvSocratics
+
+<embed src="/files/NdC-docs/TargetesConvSocratics.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "autoavaluacio-competencies-docents"
+filename: autoavaluacio-competencies-docents
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "autoavaluacio-competencies-docents"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## autoavaluacio-competencies-docents
+
+<embed src="/files/autoavaluacio-competencies-docents.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

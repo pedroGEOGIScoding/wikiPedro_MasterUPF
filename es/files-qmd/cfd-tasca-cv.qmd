@@ -1,0 +1,19 @@
+---
+title: "cfd-tasca-cv"
+filename: cfd-tasca-cv
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "cfd-tasca-cv"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## cfd-tasca-cv
+
+<embed src="/files/cfd-tasca-cv.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

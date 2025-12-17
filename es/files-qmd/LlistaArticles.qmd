@@ -1,0 +1,19 @@
+---
+title: "LlistaArticles"
+filename: LlistaArticles
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "LlistaArticles"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## LlistaArticles
+
+<embed src="/files/NdC-docs/LlistaArticles.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

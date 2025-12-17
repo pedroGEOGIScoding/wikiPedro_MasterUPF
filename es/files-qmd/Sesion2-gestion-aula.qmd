@@ -1,0 +1,19 @@
+---
+title: "Sesion2-gestion-aula"
+filename: Sesion2-gestion-aula
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Sesion2-gestion-aula"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Sesion2-gestion-aula
+
+<embed src="/files/Sesion2-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

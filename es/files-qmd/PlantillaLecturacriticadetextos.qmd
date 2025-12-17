@@ -1,0 +1,19 @@
+---
+title: "PlantillaLecturacriticadetextos"
+filename: PlantillaLecturacriticadetextos
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "PlantillaLecturacriticadetextos"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## PlantillaLecturacriticadetextos
+
+<embed src="/files/NdC-docs/PlantillaLecturacriticadetextos.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

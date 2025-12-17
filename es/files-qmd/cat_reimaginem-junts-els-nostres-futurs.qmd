@@ -1,0 +1,19 @@
+---
+title: "cat_reimaginem-junts-els-nostres-futurs"
+filename: cat_reimaginem-junts-els-nostres-futurs
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "cat_reimaginem-junts-els-nostres-futurs"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## cat_reimaginem-junts-els-nostres-futurs
+
+<embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "CBCT_17_18"
+filename: CBCT_17_18
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CBCT_17_18"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CBCT_17_18
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_17_18.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

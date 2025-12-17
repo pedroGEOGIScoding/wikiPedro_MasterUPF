@@ -1,0 +1,19 @@
+---
+title: "DAE-Eines-Sesion2"
+filename: DAE-Eines-Sesion2
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "DAE-Eines-Sesion2"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## DAE-Eines-Sesion2
+
+<embed src="/files/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

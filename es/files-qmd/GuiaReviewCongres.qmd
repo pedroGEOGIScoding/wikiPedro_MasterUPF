@@ -1,0 +1,19 @@
+---
+title: "GuiaReviewCongres"
+filename: GuiaReviewCongres
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "GuiaReviewCongres"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## GuiaReviewCongres
+
+<embed src="/files/NdC-docs/GuiaReviewCongres.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "PlantillaCSCAssaig"
+filename: PlantillaCSCAssaig
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "PlantillaCSCAssaig"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## PlantillaCSCAssaig
+
+<embed src="/files/NdC-docs/PlantillaCSCAssaig.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

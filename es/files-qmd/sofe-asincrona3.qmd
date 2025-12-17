@@ -1,0 +1,19 @@
+---
+title: "sofe-asincrona3"
+filename: sofe-asincrona3
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "sofe-asincrona3"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## sofe-asincrona3
+
+<embed src="/files/sofesesion/sofe-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

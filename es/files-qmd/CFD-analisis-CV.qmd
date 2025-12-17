@@ -1,0 +1,19 @@
+---
+title: "CFD-analisis-CV"
+filename: CFD-analisis-CV
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CFD-analisis-CV"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CFD-analisis-CV
+
+<embed src="/files/CFD-analisis-CV.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

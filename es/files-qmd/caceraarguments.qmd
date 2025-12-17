@@ -1,0 +1,19 @@
+---
+title: "caceraarguments"
+filename: caceraarguments
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "caceraarguments"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## caceraarguments
+
+<embed src="/files/NdC-docs/caceraarguments.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

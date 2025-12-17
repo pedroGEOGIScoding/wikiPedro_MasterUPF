@@ -1,0 +1,19 @@
+---
+title: "Tabladevalidaciondefuentes"
+filename: Tabladevalidaciondefuentes
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Tabladevalidaciondefuentes"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Tabladevalidaciondefuentes
+
+<embed src="/files/NdC-docs/Tabladevalidaciondefuentes.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

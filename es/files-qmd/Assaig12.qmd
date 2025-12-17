@@ -1,0 +1,19 @@
+---
+title: "Assaig12"
+filename: Assaig12
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Assaig12"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Assaig12
+
+<embed src="/files/NdC-docs/Assaig12.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

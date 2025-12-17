@@ -1,0 +1,19 @@
+---
+title: "Intro-CFD"
+filename: Intro-CFD
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Intro-CFD"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Intro-CFD
+
+<embed src="/files/Intro-CFD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

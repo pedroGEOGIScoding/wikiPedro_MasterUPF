@@ -1,0 +1,19 @@
+---
+title: "ExemplesperConstruir"
+filename: ExemplesperConstruir
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "ExemplesperConstruir"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## ExemplesperConstruir
+
+<embed src="/files/NdC-docs/ExemplesperConstruir.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

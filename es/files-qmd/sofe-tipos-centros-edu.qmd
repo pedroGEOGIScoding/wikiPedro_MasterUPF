@@ -1,0 +1,19 @@
+---
+title: "sofe-tipos-centros-edu"
+filename: sofe-tipos-centros-edu
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "sofe-tipos-centros-edu"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## sofe-tipos-centros-edu
+
+<embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

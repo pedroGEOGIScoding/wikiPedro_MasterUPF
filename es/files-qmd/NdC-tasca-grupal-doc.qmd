@@ -1,0 +1,19 @@
+---
+title: "NdC-tasca-grupal-doc"
+filename: NdC-tasca-grupal-doc
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-tasca-grupal-doc"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-tasca-grupal-doc
+
+<embed src="/files/NdC-tasca-grupal-doc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

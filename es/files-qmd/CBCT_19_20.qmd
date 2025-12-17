@@ -1,0 +1,19 @@
+---
+title: "CBCT_19_20"
+filename: CBCT_19_20
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "CBCT_19_20"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## CBCT_19_20
+
+<embed src="/files/provas-competencias-ct/Proves/CBCT_19_20.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

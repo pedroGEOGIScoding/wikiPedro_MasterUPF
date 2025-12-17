@@ -1,0 +1,19 @@
+---
+title: "ambit-cientificotecnologic"
+filename: ambit-cientificotecnologic
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "ambit-cientificotecnologic"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## ambit-cientificotecnologic
+
+<embed src="/files/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

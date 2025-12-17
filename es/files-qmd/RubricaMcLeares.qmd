@@ -1,0 +1,19 @@
+---
+title: "RubricaMcLeares"
+filename: RubricaMcLeares
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "RubricaMcLeares"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## RubricaMcLeares
+
+<embed src="/files/NdC-docs/RubricaMcLeares.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

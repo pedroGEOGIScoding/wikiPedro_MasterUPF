@@ -1,0 +1,19 @@
+---
+title: "cfd-rubrica-tasca"
+filename: cfd-rubrica-tasca
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "cfd-rubrica-tasca"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## cfd-rubrica-tasca
+
+<embed src="/files/cfd-rubrica-tasca.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

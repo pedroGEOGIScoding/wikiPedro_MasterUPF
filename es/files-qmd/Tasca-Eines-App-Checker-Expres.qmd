@@ -1,0 +1,19 @@
+---
+title: "Tasca-Eines-App-Checker-Expres"
+filename: Tasca-Eines-App-Checker-Expres
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "Tasca-Eines-App-Checker-Expres"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## Tasca-Eines-App-Checker-Expres
+
+<embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

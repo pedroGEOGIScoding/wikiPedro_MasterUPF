@@ -1,0 +1,19 @@
+---
+title: "S2_AVALUACIO_2"
+filename: S2_AVALUACIO_2
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "S2_AVALUACIO_2"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## S2_AVALUACIO_2
+
+<embed src="/files/S2_AVALUACIO_2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,19 @@
+---
+title: "NdC-sesion2"
+filename: NdC-sesion2
+author: ""
+date: ""
+date-modified: last-modified
+date-format: full
+description: "NdC-sesion2"
+categories: [documentación]
+format:
+  html
+---
+
+::: panel-tabset
+## NdC-sesion2
+
+<embed src="/files/NdC-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
