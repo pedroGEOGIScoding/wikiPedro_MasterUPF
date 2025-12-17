@@ -23,5 +23,5 @@ listing:
 # Lista de la documentación oficial y material didáctico del master
 
 ::: callout-tip
-## En esta página podrás acceder a toda la documentación didáctica y oficial relacionada con el master de secundaria de la Universidad Pompeu Fabra, aparte de documentacion oficial de la Generalitat de Catalunya Departament d’Ensenyament. Puedes usar el filtro para buscar contenido específico. La tabla muestra el título, la fecha de creación y la breve descripción de cada documento. Haz clic en los encabezados de la tabla para ordenarlas por diferentes criterios.
+## En esta página podrás acceder a toda la documentación didáctica y oficial relacionada con el master de secundaria de la Universidad Pompeu Fabra, aparte de documentacion oficial de la Generalitat de Catalunya Departament d’Ensenyament que he incluido por su relevancia. Puedes usar el filtro para buscar contenido específico. La tabla muestra el título, categorias, fecha de creación, autor en caso de poderse identificar y la breve descripción del documento y la tabla se puede ordenar por titulo y categorias.
 ::: 

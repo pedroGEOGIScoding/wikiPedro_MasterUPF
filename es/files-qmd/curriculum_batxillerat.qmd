@@ -10,6 +10,9 @@ format:
   html
 ---
 
+::: panel-tabset
 ## Curriculum de Bachillerato
 
-- [curriculum_batxillerat.pdf](/files/curriculum_batxillerat.pdf){width="60%"}
+<embed src="/files/curriculum_batxillerat.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
