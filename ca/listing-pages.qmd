@@ -1,5 +1,6 @@
 ---
 title: "Totes les pàgines d'aquest lloc"
+filename: listing-pages
 listing:
   contents:
     - "*.qmd"

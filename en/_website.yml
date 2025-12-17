@@ -40,7 +40,9 @@ website:
       - sidebar:resources
       - sidebar:about
       - text: "Site Map"
-        href: listingpages.qmd
+        href: listing-pages.qmd
+      - text: "Documentation"
+        href: listing-docs.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16x;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Catalan</a>"
@@ -193,8 +195,17 @@ website:
       collapse-level: 0
       align: center
       contents:
-        - listingpages.qmd
-        
+        - listing-pages.qmd
+
+    - id: "docs"
+      title: "Documentation"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - listing-docs.qmd
+
   page-footer:
     background: primary
     left: © by Pedro 2025 made with [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)

@@ -41,6 +41,8 @@ website:
       - sidebar:about
       - text: "Mapa del lloc"
         href: listingpages.qmd
+      - text: "Documentació"
+        href: listing-docs.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16x;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
@@ -194,7 +196,16 @@ website:
       align: center
       contents:
         - listingpages.qmd
-        
+
+    - id: "docs"
+      title: "Documentació"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - listing-docs.qmd
+
   page-footer:
     background: primary
     left: © by Pedro 2025 fet amb [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)

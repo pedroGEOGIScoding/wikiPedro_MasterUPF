@@ -40,7 +40,7 @@ website:
       - sidebar:recursos
       - sidebar:about
       - text: "Mapa del sitio"
-        href: listingpages.qmd
+        href: listing-pages.qmd
       - text: "Documentación"
         href: listing-docs.qmd
       - icon: translate
@@ -195,7 +195,7 @@ website:
       collapse-level: 0
       align: center
       contents:
-        - listingpages.qmd
+        - listing-pages.qmd
 
     - id: "docs"
       title: "Documentación"

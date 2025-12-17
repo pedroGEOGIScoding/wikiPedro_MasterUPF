@@ -1,5 +1,6 @@
 ---
 title: "Todas las páginas de este sitio"
+filename: listing-pages
 listing:
   contents:
     - "*.qmd"
