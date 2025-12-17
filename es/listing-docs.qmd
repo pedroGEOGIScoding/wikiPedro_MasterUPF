@@ -1,7 +1,7 @@
 ---
 title: "Documentación oficial y material didactico del master"
 subtitle: "Documentación oficial"
-date: "06/01/2021"
+date: "12/17/2025"
 date-modified: last-modified
 date-format: full
 description: "Documentación oficial"
@@ -11,7 +11,7 @@ format:
 listing:
     id: documents
     contents:
-        - "../files"
+        - "../files-qmd"
     sort-ui: [title, categories]
     filter-ui: [title, categories]
     type: default
