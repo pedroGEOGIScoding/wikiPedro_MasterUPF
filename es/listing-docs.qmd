@@ -1,0 +1,30 @@
+---
+title: "Documentación oficial y material didactico del master"
+subtitle: "Documentación oficial"
+date: "06/01/2021"
+date-modified: last-modified
+date-format: full
+description: "Documentación oficial"
+categories: [listing, documentos, documentacion]
+format:
+  html
+listing:
+    id: documents
+    contents:
+        - "../files/*.qmd"
+    sort-ui: [title, genre]
+    filter-ui: [title, genre]
+    type: default
+    image-align: left
+    fields: [image, categories, title, description, reading-time, date, author, file-modified]
+    date-format: full
+    categories: true
+---
+
+# Lista de la documentacion oficial y material didactico del master
+
+</br>
+
+::: {#documents}
+
+:::

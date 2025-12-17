@@ -1,0 +1,15 @@
+---
+title: "Curriculum Bachillerato"
+author: "Generalitat de Catalunya Departament d’Ensenyament"
+date: "2025-07-31"
+date-modified: last-modified
+date-format: full
+description: "Curriculum de bachillerato"
+categories: [documentacion, bachillerato, curriculum]
+format:
+  html
+---
+
+## Curriculum Bachillerato
+
+- [curriculum_batxillerat.pdf](/files/curriculum_batxillerat.pdf){width="60%"}
