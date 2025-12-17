@@ -11,7 +11,7 @@ format:
 listing:
     id: documents
     contents:
-        - "../files-qmd"
+        - "files-qmd"
     sort-ui: [title, categories]
     filter-ui: [title, categories]
     type: default
