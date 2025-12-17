@@ -1,18 +1,17 @@
 ---
-title: "caceraarguments"
+title: "Taula de Cacera d’Arguments"
 filename: caceraarguments
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "caceraarguments"
-categories: [documentación]
+description: "Tabla de análisis de argumentos"
+categories: [argumentos, análisis, lectura científica]
 format:
   html
 ---
 
 ::: panel-tabset
-## caceraarguments
+## Tabla de análisis de argumentos
 
 <embed src="/files/NdC-docs/caceraarguments.pdf" type="application/pdf" width="100%" height="800px"/>
 

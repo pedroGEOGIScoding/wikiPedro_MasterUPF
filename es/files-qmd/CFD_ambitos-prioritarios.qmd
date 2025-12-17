@@ -1,18 +1,18 @@
 ---
-title: "CFD_ambitos-prioritarios"
+title: "Áreas y ámbitos prioritarios basados en los Objetivos estratégicos de la ET2020 a lo largo de los ciclos de trabajo"
 filename: CFD_ambitos-prioritarios
-author: ""
+author: "Eurydice España-REDIE"
 date: ""
 date-modified: last-modified
 date-format: full
-description: "CFD_ambitos-prioritarios"
-categories: [documentación]
+description: "Áreas y ámbitos prioritarios basados en los objetivos estratégicos de la ET2020 a lo largo de los ciclos de trabajo"
+categories: [cfd, eurydice]
 format:
   html
 ---
 
 ::: panel-tabset
-## CFD_ambitos-prioritarios
+## Áreas y ámbitos prioritarios basados en los Objetivos estratégicos de la ET2020 a lo largo de los ciclos de trabajo
 
 <embed src="/files/CFD_ambitos-prioritarios.pdf" type="application/pdf" width="100%" height="800px"/>
 

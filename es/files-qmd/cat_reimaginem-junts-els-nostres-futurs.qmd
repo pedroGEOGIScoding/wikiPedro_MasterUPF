@@ -1,12 +1,12 @@
 ---
-title: "cat_reimaginem-junts-els-nostres-futurs"
+title: "Reimaginant junts el nostre futur: un nou contracte social per a l'educació"
 filename: cat_reimaginem-junts-els-nostres-futurs
-author: ""
-date: ""
+author: "UNESCO"
+date: "01/01/2021"
 date-modified: last-modified
 date-format: full
-description: "cat_reimaginem-junts-els-nostres-futurs"
-categories: [documentación]
+description: "La Comisión Internacional sobre los Futuros de la Educación fue creada por la UNESCO el 2019 para reinventar como el conocimiento y el aprendizaje pueden transformar el futuro de la humanidad y del planeta. La iniciativa incorpora una amplia participación del público y de los expertos y pretende catalizar un debate mundial sobre como es debido replantear la educación en un mundo de complejidad creciente, incertidumbre y fragilidad"
+categories: [unesco, futuro, aprendizaje]
 format:
   html
 ---

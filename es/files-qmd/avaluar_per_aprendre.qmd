@@ -1,18 +1,18 @@
 ---
-title: "avaluar_per_aprendre"
+title: "Avaluar per aprendre"
 filename: avaluar_per_aprendre
-author: ""
-date: ""
+author: "Neus Sanmartí"
+date: "10/01/2010"
 date-modified: last-modified
 date-format: full
-description: "avaluar_per_aprendre"
-categories: [documentación]
+description: "La evaluación para mejorar los aprendizajes del alumnado en el marco del currículum por competencias"
+categories: [evaluación, competencias]
 format:
   html
 ---
 
 ::: panel-tabset
-## avaluar_per_aprendre
+## Evaluar para aprender
 
 <embed src="/files/avaluar_per_aprendre.pdf" type="application/pdf" width="100%" height="800px"/>
 

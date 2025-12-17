@@ -1,18 +1,17 @@
 ---
-title: "CESINF"
+title: "Fitxa CESINF de recolzament a la recerca, tractament i síntesi d’informació"
 filename: CESINF
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "CESINF"
-categories: [documentación]
+description: "Iniciadores de frase para promover la investigación, tratamiento y síntesis de información, y el desarrollo de diferentes habilidades específicas."
+categories: [investigación, tratamiento, síntesis]
 format:
   html
 ---
 
 ::: panel-tabset
-## CESINF
+## Ficha CESINF de espaldarazo en la investigación, tratamiento y síntesis de información
 
 <embed src="/files/NdC-docs/CESINF.pdf" type="application/pdf" width="100%" height="800px"/>
 

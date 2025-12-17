@@ -1,18 +1,18 @@
 ---
-title: "CFD-analisis-CV"
+title: "Anàlisi dels curricula de l’ensenyament secundari"
 filename: CFD-analisis-CV
-author: ""
+author: "Xavier Muñoz Báguena"
 date: ""
 date-modified: last-modified
 date-format: full
-description: "CFD-analisis-CV"
-categories: [documentación]
+description: "Conocer el currículum de Ciencias Naturales de la ESO y el bachillerato. Reflexionar sobre los objetivos de la enseñanza-aprendizaje de las Ciencias Naturales en secundaria (finalidades del currículum) y analizar pruebas externas (4.º ESO)"
+categories: [análisis, enseñanza secundaria, eso, bachillerato, curriculum, curricula]
 format:
   html
 ---
 
 ::: panel-tabset
-## CFD-analisis-CV
+## Análisis de los curricula de la enseñanza secundaria
 
 <embed src="/files/CFD-analisis-CV.pdf" type="application/pdf" width="100%" height="800px"/>
 

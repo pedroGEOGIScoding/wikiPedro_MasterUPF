@@ -1,18 +1,18 @@
 ---
-title: "Biologia-i-Geologia"
+title: "Biologia i Geologia"
 filename: Biologia-i-Geologia
-author: ""
-date: ""
+author: "Generalitat de Catalunya Departament d'Ensenyament"
+date: "09/27/2022"
 date-modified: last-modified
 date-format: full
-description: "Biologia-i-Geologia"
-categories: [documentación]
+description: "Biología y Geología, Decreto 175/2022, de 27 de septiembre, de ordenación de las enseñanzas de la educación básica"
+categories: [Decreto 175/2022, ordenación, biología, geología]
 format:
   html
 ---
 
 ::: panel-tabset
-## Biologia-i-Geologia
+## Biología y Geología
 
 <embed src="/files/Biologia-i-Geologia.pdf" type="application/pdf" width="100%" height="800px"/>
 

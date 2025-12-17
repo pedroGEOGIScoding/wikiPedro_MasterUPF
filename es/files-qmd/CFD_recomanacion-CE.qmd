@@ -1,18 +1,18 @@
 ---
-title: "CFD_recomanacion-CE"
+title: "Recomendación del Parlamento Europeo y del Consejo sobre las competencias clave para el aprendizaje permanente"
 filename: CFD_recomanacion-CE
-author: ""
-date: ""
+author: "Parlamento Europeo y Consejo"
+date: "12/18/2006"
 date-modified: last-modified
 date-format: full
-description: "CFD_recomanacion-CE"
-categories: [documentación]
+description: "Recomendación del Parlamento Europeo y del Consejo sobre las competencias clave para el aprendizaje permanente"
+categories: [cfd,competencias clave, aprendizaje permanente]
 format:
   html
 ---
 
 ::: panel-tabset
-## CFD_recomanacion-CE
+## Recomendación del Parlamento Europeo y del Consejo sobre las competencias clave para el aprendizaje permanente
 
 <embed src="/files/CFD_recomanacion-CE.pdf" type="application/pdf" width="100%" height="800px"/>
 

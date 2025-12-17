@@ -1,18 +1,17 @@
 ---
-title: "Balanzadeargumentos"
+title: "Balança d’Arguments"
 filename: Balanzadeargumentos
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "Balanzadeargumentos"
-categories: [documentación]
+description: "Herramienta para analizar argumentos científicos"
+categories: [análisis, argumentos]
 format:
   html
 ---
 
 ::: panel-tabset
-## Balanzadeargumentos
+## Balanza de argumentos
 
 <embed src="/files/NdC-docs/Balanzadeargumentos.pdf" type="application/pdf" width="100%" height="800px"/>
 
