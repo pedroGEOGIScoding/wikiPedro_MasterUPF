@@ -1,18 +1,18 @@
 ---
-title: "Tasca-Eines-App-Checker-Expres"
+title: "Trabajo de la asignatura Herramientas digitales sobre App-Checker-Expres"
 filename: Tasca-Eines-App-Checker-Expres
-author: ""
-date: ""
+author: "Pedro Martínez Durán"
+date: "2025"
 date-modified: last-modified
-date-format: full
-description: "Tasca-Eines-App-Checker-Expres"
-categories: [documentación]
+date-format: YYYY
+description: "Trabajo de la asignatura Herramientas digitales del módulo de desarrollo, aprendizaje y educación sobre App-Checker-Expres"
+categories: [Herramientas digitales]
 format:
   html
 ---
 
 ::: panel-tabset
-## Tasca-Eines-App-Checker-Expres
+## Trabajo de la asignatura Herramientas digitales sobre App-Checker-Expres
 
 <embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
 

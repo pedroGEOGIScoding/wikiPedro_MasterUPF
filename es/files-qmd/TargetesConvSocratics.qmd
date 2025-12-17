@@ -1,18 +1,17 @@
 ---
-title: "TargetesConvSocratics"
+title: "Targetes conversacionals per a seminaris socràtics"
 filename: TargetesConvSocratics
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "TargetesConvSocratics"
-categories: [documentación]
+description: "Tarjetas socráticas para facilitar la conversación para seminarios socráticos"
+categories: [socrates, seminarios, socráticos, conversaciones, conversación]
 format:
   html
 ---
 
 ::: panel-tabset
-## TargetesConvSocratics
+## Tarjetas conversacionales para seminarios socráticos
 
 <embed src="/files/NdC-docs/TargetesConvSocratics.pdf" type="application/pdf" width="100%" height="800px"/>
 
