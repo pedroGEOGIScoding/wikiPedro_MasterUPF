@@ -1,6 +1,6 @@
 ---
 title: "Documentación oficial y material didáctico del master"
-subtitle: "Documentación oficial"
+filename: listing-docs
 date: "12/17/2025"
 date-modified: last-modified
 date-format: full

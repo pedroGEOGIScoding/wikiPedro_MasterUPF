@@ -1,0 +1,27 @@
+---
+title: "Official documentation and didactic material of the master"
+filename: listing-docs
+date: "12/17/2025"
+date-modified: last-modified
+date-format: full
+description: "Official documentation and didactic material of the master"
+categories: [listing, documents, documentation]
+format:
+  html
+listing:
+    id: documents
+    contents: "files-qmd"
+    sort-ui: [title, categories]
+    filter-ui: [title, categories]
+    type: default
+    image-align: left
+    fields: [categories, title, description, date, author]
+    date-format: full
+    categories: true
+---
+
+# List of official documentation and didactic material of the master
+
+::: callout-tip
+## On this page, you can access all the educational and official documentation related to the secondary school master's degree at Pompeu Fabra University, as well as official documentation from the Catalan Government's Department of Education, which I have included due to its relevance. You can use the filter to search for specific content. The table shows the title, categories, date of creation, author (if identifiable) and a brief description of the document. The table can be sorted by title and categories.
+::: 

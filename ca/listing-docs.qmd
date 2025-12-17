@@ -1,0 +1,27 @@
+---
+title: "Documentació oficial i material didàctic del master"
+filename: listing-docs
+date: "12/17/2025"
+date-modified: last-modified
+date-format: full
+description: "Documentació oficial i material didàctic del master"
+categories: [listing, documentos, documentación]
+format:
+  html
+listing:
+    id: documents
+    contents: "files-qmd"
+    sort-ui: [title, categories]
+    filter-ui: [title, categories]
+    type: default
+    image-align: left
+    fields: [categories, title, description, date, author]
+    date-format: full
+    categories: true
+---
+
+# Documentació oficial i material didàctic del master
+
+::: callout-tip
+## En aquesta pàgina podràs accedir a tota la documentació didàctica i oficial relacionada amb el màster de secundària de la Universitat Pompeu Fabra, a part de documentacion oficial de la Generalitat de Catalunya Departament d’Ensenyament que he inclòs per la seva rellevància. Pots usar el filtre per a buscar contingut específic. La taula mostra el títol, categorias, data de creació, autor en cas de poder-se identificar i la breu descripció del document i la taula es pot ordenar per titulo i categorias.
+::: 
