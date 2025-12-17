@@ -11,12 +11,12 @@ format:
 listing:
     id: documents
     contents:
-        - "../files/*.qmd"
-    sort-ui: [title, genre]
-    filter-ui: [title, genre]
+        - "../files"
+    sort-ui: [title, categories]
+    filter-ui: [title, categories]
     type: default
     image-align: left
-    fields: [image, categories, title, description, reading-time, date, author, file-modified]
+    fields: [categories, title, description, date, author]
     date-format: full
     categories: true
 ---

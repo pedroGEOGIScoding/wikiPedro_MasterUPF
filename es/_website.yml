@@ -41,6 +41,8 @@ website:
       - sidebar:about
       - text: "Mapa del sitio"
         href: listingpages.qmd
+      - text: "Documentación"
+        href: listing-docs.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16px;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
@@ -194,6 +196,15 @@ website:
       align: center
       contents:
         - listingpages.qmd
+
+    - id: "docs"
+      title: "Documentación"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - listing-docs.qmd
         
   page-footer:
     background: primary
