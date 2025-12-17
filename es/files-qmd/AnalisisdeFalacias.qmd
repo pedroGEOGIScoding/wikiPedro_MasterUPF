@@ -1,18 +1,17 @@
 ---
-title: "AnalisisdeFalacias"
+title: "Targetes d’anàlisis de fal·làcies"
 filename: AnalisisdeFalacias
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "AnalisisdeFalacias"
-categories: [documentación]
+description: "Tarjetas y ayudas para el análisis de falacias"
+categories: [analisis, falacias]
 format:
   html
 ---
 
 ::: panel-tabset
-## AnalisisdeFalacias
+## Análisis de falacias
 
 <embed src="/files/NdC-docs/AnalisisdeFalacias.pdf" type="application/pdf" width="100%" height="800px"/>
 

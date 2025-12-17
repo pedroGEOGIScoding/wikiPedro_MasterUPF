@@ -1,18 +1,18 @@
 ---
-title: "ambit-cientificotecnologic"
+title: "Competències bàsiques de l’àmbit cientificotecnològic"
 filename: ambit-cientificotecnologic
-author: ""
-date: ""
+author: "Generalitat de Catalunya Departament d’Ensenyament"
+date: "01/01/2016"
 date-modified: last-modified
 date-format: full
-description: "ambit-cientificotecnologic"
-categories: [documentación]
+description: "Competencias básicas del ámbito científico-tecnológico - Identificación y despliegamiento en la educacion secundaria obligatoria - Biología, Geología, Física, Química y Tecnología"
+categories: [competencias, cientificotecnologico, biologia, geologia, fisica, quimica, tecnologia]
 format:
   html
 ---
 
 ::: panel-tabset
-## ambit-cientificotecnologic
+## Competencias básicas del ámbito científico-tecnológico
 
 <embed src="/files/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>
 

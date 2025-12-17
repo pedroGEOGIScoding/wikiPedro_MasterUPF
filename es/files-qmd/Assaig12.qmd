@@ -1,18 +1,17 @@
 ---
-title: "Assaig12"
+title: "Bastida per a l’acompanyament en l’escriptura d’assajos científics a 1er-2on ES"
 filename: Assaig12
-author: ""
-date: ""
+author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
-description: "Assaig12"
-categories: [documentación]
+description: "Herramienta para el acompañamiento en la escritura de ensayos científicos a 1.º-2.º ESO"
+categories: [escritura, ensayos, escritura-cientifica, herramienta]
 format:
   html
 ---
 
 ::: panel-tabset
-## Assaig12
+## Herramienta para el acompañamiento en la escritura de ensayos científicos a 1.º-2.º ESO
 
 <embed src="/files/NdC-docs/Assaig12.pdf" type="application/pdf" width="100%" height="800px"/>
 

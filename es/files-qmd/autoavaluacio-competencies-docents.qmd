@@ -1,18 +1,17 @@
 ---
-title: "autoavaluacio-competencies-docents"
+title: "Tasca Fase1_e-portafoli: Autoavaluació inicial de les meves competències docents"
 filename: autoavaluacio-competencies-docents
-author: ""
-date: ""
+author: "Material didáctico del master"
 date-modified: last-modified
 date-format: full
-description: "autoavaluacio-competencies-docents"
-categories: [documentación]
+description: "El objetivo de esta tarea es ayudaros a reflexionar sobre vuestro punto de partida en relación a las competencias docentes. Como base de vuestra reflexión, hemos incluido los cinco ámbitos competenciales docentes y una serie de indicadores que valoraréis. Marcáis el nivel que consideráis que tenéis de los indicadores de cada ámbito. Si en algún caso consideráis que no tenéis suficiente criterio para valorarlo, lo podéis dejar en blanco. En aquellos casos en que podáis aportar alguna evidencia del nivel de logro que habéis marcado, escribidla a la última fila."
+categories: [documentación, competencias, portafolio]
 format:
   html
 ---
 
 ::: panel-tabset
-## autoavaluacio-competencies-docents
+## Tarea Fase1 e-portafoli: Autoevaluación inicial de mis competencias docentes
 
 <embed src="/files/autoavaluacio-competencies-docents.pdf" type="application/pdf" width="100%" height="800px"/>
 
