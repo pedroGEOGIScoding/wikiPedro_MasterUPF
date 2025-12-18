@@ -32,7 +32,7 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Biología y Geología**](/files/Biologia-i-Geologia.pdf)
+[**Biología y Geología**](/files/general-docs/Biologia-i-Geologia.pdf)
 
 Entre los propósitos de las asignaturas de Biología y Geología de la ESO se encuentra el de promover la conciencia, por parte del alumnado, de la importancia del desarrollo sostenible, así como despertar la curiosidad, desarrollar la actitud, el pensamiento y las habilidades científicas críticas, la valoración del papel de la ciencia, la igualdad de oportunidades entre géneros y promover, especialmente entre los estudiantes, las vocaciones científicas.
 
@@ -331,7 +331,7 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div id="collapseFis" class="accordion-collapse collapse" aria-labelledby="headingFis" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Física y Química**](/files/Fisica-i-Quimica.pdf)
+[**Física y Química**](/files/general-docs/Fisica-i-Quimica.pdf)
 
 
 Entre los objetivos de las asignaturas de Física y Química en la educación secundaria obligatoria se encuentra la concienciación, por parte del alumnado, de la contribución de estas ciencias a la mejora de la calidad de vida y al desarrollo sostenible, así como el de despertar la curiosidad, desarrollar la actitud crítica, el pensamiento y las habilidades científicas, la valoración del papel de la ciencia, la igualdad de oportunidades entre géneros y el fomento de las vocaciones científicas, especialmente entre el alumnado y el alumnado.
@@ -605,7 +605,7 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div id="collapseCultura" class="accordion-collapse collapse" aria-labelledby="headingCultura" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Cultura Científica**](/files/Cultura-Cientifica.pdf) **(asignatura optativa de cuarto de la ESO)**
+[**Cultura Científica**](/files/general-docs/Cultura-Cientifica.pdf) **(asignatura optativa de cuarto de la ESO)**
 
 En el siglo XXI, la ciencia está en todas partes, permea el medio ambiente y condiciona nuestras vidas, siendo inseparable de todos los ámbitos económicos y sociales más relevantes. En este sentido, la alfabetización científica se vuelve esencial para el conocimiento y comprensión de los conceptos científicos y los procesos necesarios para la toma de decisiones personales y colectivas. Se convierte en un medio indispensable para una participación efectiva en las sociedades y la economía del milenio.
 
@@ -814,7 +814,7 @@ Las situaciones de aprendizaje permiten programar el curso de cualquier nivel o 
 <div id="collapseMat" class="accordion-collapse collapse" aria-labelledby="headingMat" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Matemáticas**](/files/Matematiques.pdf)
+[**Matemáticas**](/files/general-docs/Matematiques.pdf)
 
 Las matemáticas se encuentran en cualquier actividad humana, desde el trabajo científico hasta las expresiones culturales y artísticas, formando parte del patrimonio cultural de nuestra sociedad. El dominio del espacio y el tiempo, la organización y optimización de recursos, formas y proporciones, la capacidad de pronosticar y controlar la incertidumbre o el correcto uso de la tecnología digital son características de las matemáticas, pero también el razonamiento, la argumentación, la comunicación, la perseverancia, la toma de decisiones o la creatividad. Por ello, es importante desarrollar en los estudiantes los aspectos de las matemáticas que les permitan crecer y actuar con conocimiento tanto en el contexto personal, académico y científico como en el social y laboral.
 
@@ -1228,7 +1228,7 @@ Dado que esta materia se imparte en educación secundaria obligatoria, se ha opt
 <div id="collapseRob" class="accordion-collapse collapse" aria-labelledby="headingRob" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Robótica y Programación**](/files/Robotica-i-Programacio.pdf)
+[**Robótica y Programación**](/files/general-docs/Robotica-i-Programacio.pdf)
 
 Esta asignatura optativa tiene como objetivo que los estudiantes desarrollen habilidades para encontrar soluciones innovadoras y creativas en la resolución de problemas a través del diseño, programación y creación de prototipos de sistemas automatizados y robots.
 
@@ -1372,7 +1372,7 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 <div id="collapseTec" class="accordion-collapse collapse" aria-labelledby="headingTec" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-[**Tecnología**](/files/Tecnologia.pdf)
+[**Tecnología**](/files/general-docs/Tecnologia.pdf)
 
 La asignatura de Tecnología contribuye a dar respuesta a las necesidades de los ciudadanos ante los retos tecnológicos que plantea la sociedad actual, especialmente la creciente digitalización. Así, esta asignatura sirve de base, no sólo para comprender la evolución social, sino también para poder actuar con criterios técnicos, científicos y éticos en el ejercicio de una ciudadanía responsable y activa, utilizando la generación de conocimiento como motor del desarrollo y fomentando la participación de los estudiantes en igualdad de condiciones con una visión integral de la tecnología, resaltando su aspecto social.
 

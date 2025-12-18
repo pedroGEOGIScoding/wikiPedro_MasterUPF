@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## cfd-situacio-aprenentatge
 
-<embed src="/files/cfd-situacio-aprenentatge.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/cfd-docs/cfd-situacio-aprenentatge.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

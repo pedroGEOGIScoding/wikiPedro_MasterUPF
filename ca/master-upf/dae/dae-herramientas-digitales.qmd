@@ -38,31 +38,31 @@ Els objectius són:
 ::: panel-tabset
 ## Sessió 1 {.active}
 
-<embed src="/files/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sessió 2
 
-<embed src="/files/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sessió 3
 
-<embed src="/files/DAE-Eines-Sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/DAE-Eines-Sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sessió 4
 
-<embed src="/files/DAE-Eines-Sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/DAE-Eines-Sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ##  Projecte App Checker Express
 
-<embed src="/files/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ##  Projecte Final
 
-<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Competències bàsiques científiques-tecnològiques
 
-<embed src="/files/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 

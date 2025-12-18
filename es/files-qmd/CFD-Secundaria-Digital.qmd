@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## CFD-Secundaria-Digital
 
-<embed src="/files/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/cfd-docs/CFD-Secundaria-Digital.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

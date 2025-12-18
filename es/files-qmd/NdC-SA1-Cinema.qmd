@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## NdC-SA1-Cinema
 
-<embed src="/files/NdC-SA1-Cinema.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/NdC-docs/NdC-SA1-Cinema.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

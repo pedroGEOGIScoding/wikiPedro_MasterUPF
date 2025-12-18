@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## cfd-tasca-cv
 
-<embed src="/files/cfd-tasca-cv.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/cfd-docs/cfd-tasca-cv.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

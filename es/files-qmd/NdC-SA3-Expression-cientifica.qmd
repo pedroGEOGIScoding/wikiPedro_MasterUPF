@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## NdC-SA3-Expression-cientifica
 
-<embed src="/files/NdC-SA3-Expression-cientifica.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/NdC-docs/NdC-SA3-Expression-cientifica.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

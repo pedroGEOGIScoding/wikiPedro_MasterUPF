@@ -31,19 +31,19 @@ format: html
 ::: panel-tabset
 ## Sesión 1 {.active}
 
-<embed src="/files/Sesion1-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/Sesion1-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 2
 
-<embed src="/files/Sesion2-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/Sesion2-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 3
 
-<embed src="/files/Sesion3-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/Sesion3-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 4
 
-<embed src="/files/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Sesión 5
 

@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## Trabajo final de la asignatura Herramientas digitales
 
-<embed src="/files/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/dae-docs/TascaFinal-EinesDigitals.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

@@ -13,6 +13,6 @@ format:
 ::: panel-tabset
 ## Curriculum de Bachillerato
 
-<embed src="/files/curriculum_batxillerat.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/curriculum_batxillerat.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

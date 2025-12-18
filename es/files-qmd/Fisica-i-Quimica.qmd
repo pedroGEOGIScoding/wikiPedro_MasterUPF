@@ -14,6 +14,6 @@ format:
 ::: panel-tabset
 ## Fisica-i-Quimica
 
-<embed src="/files/Fisica-i-Quimica.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/Fisica-i-Quimica.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::

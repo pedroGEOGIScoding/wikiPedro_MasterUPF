@@ -13,6 +13,6 @@ format:
 ::: panel-tabset
 ## Tarea Fase1 e-portafoli: Autoevaluación inicial de mis competencias docentes
 
-<embed src="/files/autoavaluacio-competencies-docents.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/autoavaluacio-competencies-docents.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
