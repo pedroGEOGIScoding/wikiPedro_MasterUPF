@@ -5,8 +5,8 @@ filename: fac-abp
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: El Aprendizaje Basado en Problemas (ABP) es una técnica didáctica centrada en el estudiante que utiliza problemas del mundo real como punto de partida para el aprendizaje
+categories: [ABP, aprendizaje, enseñanza, problemas]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -20,4 +20,134 @@ format: html
 
 # Aprendizaje basado en problemas (ABP)
 
-## Introducción
+## Presentación
+
+> Este bloque esta dirigido por varios profesores ya que los alumnos se dividen en diferentes grupos de trabajo. Es parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **aprendizaje basado en problemas** ABP. El Aprendizaje Basado en Problemas (ABP) es una técnica didáctica centrada en el estudiante que utiliza problemas del mundo real como punto de partida para el aprendizaje. El ABP es una metodología en la que primero se presenta un problema, luego los estudiantes identifican necesidades de aprendizaje, buscan información necesaria y finalmente regresan al problema para resolverlo. Los alumnos trabajan de manera colaborativa en pequeños grupos, construyendo conocimiento a través de situaciones reales. El ABP representa un cambio de los enfoques tradicionales, donde el profesor transmite conocimiento, hacia un modelo donde el estudiante construye su propio aprendizaje mediante la investigación y reflexión.
+
+## Fases del proceso
+
+El ABP sigue un proceso estructurado con pasos definidos:
+
+1. **Presentación del problema** - Se plantea una situación real o reto
+2. **Identificar lo que se conoce** - Listar conocimientos previos sobre el problema
+3. **Identificar lo que no se conoce** - Determinar lagunas de conocimiento
+4. **Definir el problema** - Clarificar qué se desea resolver o responder
+5. **Planificar estrategias** - Diseñar plan de trabajo y distribuir tareas
+6. **Búsqueda de información** - Investigar y procesar datos necesarios
+7. **Resolución del problema** - Aplicar conocimientos adquiridos
+8. **Presentación de la solución** - Comunicar resultados (informe, presentación)
+
+## Características principales
+
+El ABP se distingue por:
+
+- **Estudiante como protagonista** - Gestiona su propio aprendizaje de forma autodirigida
+- **Trabajo colaborativo** - Desarrolla habilidades de comunicación y trabajo en equipo
+- **Problemas contextuales** - Situaciones relevantes que aumentan motivación e interés
+- **Pensamiento crítico** - Integrado en el proceso de enseñanza-aprendizaje
+- **Docente como facilitador** - Actúa como mentor o guía, no como centro del proceso
+
+## Ventajas del ABP
+
+Esta metodología ofrece múltiples beneficios:
+
+- Promueve aprendizaje profundo y duradero
+- Desarrolla habilidades de resolución de problemas
+- Fomenta pensamiento crítico y toma de decisiones
+- Estimula autonomía y responsabilidad del estudiante
+- Mejora capacidad de comunicación efectiva
+- Prepara para enfrentar desafíos del mundo profesional real
+
+## Material didáctico de las 2 sesiones ABP
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: panel-tabset
+## Sesion - Introducción y teoría del ABP {.active}
+
+<embed src="/files/fac-ABP/presentacio_ABP.pdf" width="100%" height="800px"/>
+
+:::
+
+## Material didáctico del ABP 1
+
+::: panel-tabset
+## ABP 1 Introducción al caso {.active}
+
+<embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
+
+## ABP 1 Presentación del problema {.active}
+
+<embed src="/files/fac-ABP/ABP1-presentacion-final.pdf" width="100%" height="800px"/>
+
+## ABP 1 Rúbrica {.active}
+
+<embed src="/files/fac-ABP/ABP-rubrica.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Documentación de apoyo para el ABP 1**
+
+[Actitudes en la enseñanza de las ciencias](/files/fac-ABP/ABP1-articulos/Actitudesenlaenseñanzadelasciencias.pdf){.highlight width="10%" target="_blank"}
+
+[Actitudes hacia la salud](/files/fac-ABP/ABP1-articulos/Actitudeshacialasalud.pdf){.highlight width="10%" target="_blank"}
+
+[No es pot matar el que no és gras](/files/fac-ABP/ABP1-articulos/BadalNoespotmatartotelquenoesgras.pdf){.highlight width="10%" target="_blank"}
+
+[Atención a la diversidad desde propuestas diversas](/files/fac-ABP/ABP1-articulos/Canoatenciónaladiversidaddesdepropuestasdiversas.pdf){.highlight width="10%" target="_blank"}
+
+[Ensenyament multinivell](/files/fac-ABP/ABP1-articulos/Collicott_Ensenyament_multinivell.pdf){.highlight width="10%" target="_blank"}
+
+[Pautes guia DUA](/files/fac-ABP/ABP1-articulos/Dalmaupautes-guia-dua.pdf){.highlight width="10%" target="_blank"}
+
+[La atención a la diversidad en los países europeos](/files/fac-ABP/ABP1-articulos/DePradala-atencion-a-la-diversidad-en-los-paises-europeos.pdf){.highlight width="10%" target="_blank"}
+
+[Estrategies i bones pràctiques per educar en la diversitat a l'ESO](/files/fac-ABP/ABP1-articulos/EstrategiesibonespractiquespereducarenladiversitatalESO.pdf){.highlight width="10%" target="_blank"}
+
+[Evaluación de actitudes ambientales en la ESO](/files/fac-ABP/ABP1-articulos/EvaluaciondeactitudesambientalesenlaESO.pdf){.highlight width="10%" target="_blank"}
+
+[Las bases de orientación](/files/fac-ABP/ABP1-articulos/GarciaSanmartiLasbasesdeorientacion.pdf){.highlight width="10%" target="_blank"}
+
+[El trabajo cooperativo](/files/fac-ABP/ABP1-articulos/Gavilan_el_trabajo_cooperativo.pdf){.highlight width="10%" target="_blank"}
+
+[Mesures suports universals centre educatiu 2023](/files/fac-ABP/ABP1-articulos/Gencatmesures-suports-universals-centre-educatiu-2023.pdf){.highlight width="10%" target="_blank"}
+
+[Un gueto dentro del instituto](/files/fac-ABP/ABP1-articulos/Gutierrez_Unguetodentrodelinstituto.pdf){.highlight width="10%" target="_blank"}
+
+[Integración educativa de alumnado de origen inmigrante](/files/fac-ABP/ABP1-articulos/Integracioneducativadealumnadodeorigeninmigrante.pdf){.highlight width="10%" target="_blank"}
+
+[Introducción a la monografía](/files/fac-ABP/ABP1-articulos/Introduccionalamonografia.pdf){.highlight width="10%" target="_blank"}
+
+[Gènere i ensenyament de les ciències](/files/fac-ABP/ABP1-articulos/Izquierdo_Genereiensenyamentdelesciencies.pdf){.highlight width="10%" target="_blank"}
+
+[Género y ciencias: el paso siguiente](/files/fac-ABP/ABP1-articulos/Jimenezgenero-y-ciencias-el-paso-siguiente.pdf){.highlight width="10%" target="_blank"}
+
+[DIVERSIDAD](/files/fac-ABP/ABP1-articulos/Mendia_DIVERSIDAD.pdf){.highlight width="10%" target="_blank"}
+
+[Enseñar juntos a alumnos diferentes](/files/fac-ABP/ABP1-articulos/Pujolas_Ensenarjuntos_Alumnosdiferentes.pdf){.highlight width="10%" target="_blank"}
+
+[Aprender ciencias desde la diversidad](/files/fac-ABP/ABP1-articulos/Sanmarti_aprender-ciencias-desde-la-diversidad.pdf){.highlight width="10%" target="_blank"}
+
+[Avaluar per aprendre](/files/fac-ABP/ABP1-articulos/Sanmarti_avaluar_per_aprendre.pdf){.highlight width="10%" target="_blank"}
+
+[Ciències i alumnat immigrats](/files/fac-ABP/ABP1-articulos/Torremilans_cienciesalumnatimmigrats.pdf){.highlight width="10%" target="_blank"}
+
+[Valores y actitudes ¿se puede aprender ciencias sin ellos?](/files/fac-ABP/ABP1-articulos/Valoresyactitudessepuedeaprendercienciasinellos.pdf){.highlight width="10%" target="_blank"}
+
+[La base de orientación](/files/fac-ABP/ABP1-articulos/VilallongaLabasedeorientación.pdf){.highlight width="10%" target="_blank"}
+
+
+
+:::
+
+## Material didáctico del ABP 2
+
+::: panel-tabset
+## ABP 2 Introducción al caso {.active}
+
+<embed src="/files/fac-ABP/ABP2-material-alumnat.pdf" width="100%" height="800px"/>
+
+:::

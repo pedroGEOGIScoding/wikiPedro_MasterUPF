@@ -5,8 +5,8 @@ filename: fac-trabajos-practicos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description:  Analizar por qué se hace trabajo experimental en las clases de ciencias (finalidad del trabajo experimental), asi como reflexionar sobre cómo se puede desarrollar mejor la comprensión y procedimientos de los estudiantes a través del trabajo experimental.
+categories: [práctica, laboratorio, experimento, aprendizaje, enseñanza]
 toc: true
 number-sections: true
 highlight-style: pygments

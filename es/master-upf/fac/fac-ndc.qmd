@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: ¿Cómo sabe la ciencia lo que sabe? ¿Cómo construye el conocimiento? ¿Cuáles son las limitaciones?
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+categories: [naturaleza, aprendizaje, enseñanza, ciencia]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -49,7 +49,7 @@ format: html
 ::: column-margin
 **Documentación de apoyo**
 
-[Analisis de biases cognitivos](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%" target="_blank"}
+[Análisis de biases cognitivos](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%" target="_blank"}
 
 [Análisis de falacias](/files/NdC-docs/AnalisisdeFalacias.pdf){.highlight width="10%" target="_blank"}
 

@@ -5,8 +5,8 @@ filename: fac-proyectos-ABPj
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: El concepto de ABPj, tambien determinar las oportunidades, las necesidades y los obstáculos en un ABPj, asi como discutir las evidencias sobre la efectividad de la ABPj.
+categories: [proyectos, ABPj, aprendizaje, enseñanza, proyectos interdisciplinarios]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -20,4 +20,55 @@ format: html
 
 # Aprendizaje basado en proyectos (ABPj)
 
-## Introducción
+## Presentación
+
+> Los profesores Anama Domènech i Xavier Oller dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **proyectos interdisciplinarios**, donde se profundiza en el concepto de ABPj, tambien determinar las oportunidades, las necesidades y los obstáculos en un ABPj, asi como discutir las evidencias sobre la efectividad de la ABPj. En la ultima sesion, se repasan los cimientos del aprendizaje basado en proyectos, se analizan las propuestas didácticas del aula para acabar describiendo la experiencia del trabajo por proyectos en un centro educativo.
+
+## Material didáctico de todas las sesiones y trabajos
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: panel-tabset
+## Sesión asíncrona
+
+<embed src="/files/fac-proyectos-ABPj/projectes-interdisciplinaris.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea de análisis de artículo
+
+<embed src="/files/fac-proyectos-ABPj/MARTINEZ_PEDRO_Article_4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 1 {.active}
+
+<embed src="/files/fac-proyectos-ABPj/fac-proyectos-inter-S2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/fac-proyectos-ABPj/fac-proyectos-inter-S3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Documentación de apoyo**
+
+[Contexto y modelo en el aprendizaje basado en proyectos](/files/fac-proyectos-ABPj/contexto-y-modelo-aprendizaje.pdf){.highlight width="10%" target="_blank"}
+
+[Aprendizaje Basado en Proyectos en el marco STEM](/files/fac-proyectos-ABPj/Domenech_2018.pdf){.highlight width="10%" target="_blank"}
+
+[Herramienta de análisis de rúbricas](/files/fac-proyectos-ABPj/eina-analisi-projectes-rubriques.pdf){.highlight width="10%" target="_blank"}
+
+[Ejemplo de proyecto: Química amb substància](/files/fac-proyectos-ABPj/exemples-projectes.pdf){.highlight width="10%" target="_blank"}
+
+[Revisiting the effects of project-based learning...](/files/fac-proyectos-ABPj/PBL_metanalysis_2019.pdf){.highlight width="10%" target="_blank"}
+
+[¿Cómo diseñar un buen proyecto STEM? Pérez-Torres (2021)](/files/fac-proyectos-ABPj/Perez-Torres_2021.pdf){.highlight width="10%" target="_blank"}
+
+[Does student learning improve through project-based instruction?](/files/fac-proyectos-ABPj/Que_funciona_16_learning.pdf){.highlight width="10%" target="_blank"}
+
+[Rúbrica ABPMap Pérez-Torres (2021)](/files/fac-proyectos-ABPj/Project-based_learning_2019.pdf){.highlight width="10%" target="_blank"}
+
+[Rúbrica ABPMap Domenech (2018)](/files/fac-proyectos-ABPj/rubrica-Domenech_2018.pdf){.highlight width="10%" target="_blank"}
+
+
+:::

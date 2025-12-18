@@ -5,8 +5,8 @@ filename: fac-ideas-previas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Se trabaja la importancia de las ideas previas del alumnado en su aprendizaje de nuevos conceptos que pueden ser alternativos a sus ideas previas. Asi que en este bloque se trabaja la importancia de las concepciones alternativas en la enseñanza-aprendizaje.
+categories: [ideas previas, aprendizaje, enseñanza]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -20,4 +20,53 @@ format: html
 
 # Ideas previas
 
-## Introducción
+## Presentación
+
+> El profesor Marcel Costa dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **ideas previas y aprendizaje**, con la idea principal de que *todos los factores que influyen en el aprendizaje, el más importante consiste en aquello que el alumno ya sabe. Habrá que ponerlo en claro y enseñar en consecuencia*. Asi que en este bloque se trabaja la importancia de las concepciones alternativas en la enseñanza-aprendizaje.
+
+## Material didáctico de todas las sesiones
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: panel-tabset
+## Sesión 1 {.active}
+
+<embed src="/files/fac-ideas-previas/ideas-previas-aprendizaje.pdf" width="100%" height="800px"/>
+
+## Tarea práctica
+
+<embed src="/files/fac-ideas-previas/tasca-exito-o-fracaso.pdf" width="100%" height="800px"/>
+
+:::
+
+## Experimentos de bajo coste y fácil sobre el agua atmósfera
+
+::: panel-tabset
+## Propuesta de actividad - Nubes 1 {.active}
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa.pdf" width="100%" height="800px"/>
+
+## Propuesta de actividad - Nubes 2
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa1.pdf" width="100%" height="800px"/>
+
+## Propuesta de actividad - Nubes 3
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa2.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Documentación de apoyo**
+
+[Concepciones y dificultades pensamiento biológico comunes en la construcción del pensamiento biológico](/files/fac-ideas-previas/concepciones-construccion-pensamiento-biologico.pdf){.highlight width="10%" target="_blank"}
+
+[Las ideas del alumnado en física](/files/fac-ideas-previas/ideas-alumnado-fisica.pdf){.highlight width="10%" target="_blank"}
+
+[Sobre la persistencia o no de las ideas del alumnado en geología](/files/fac-ideas-previas/ideas-alumnado-geologia.pdf){.highlight width="10%" target="_blank"}
+
+[Ideas y dificultades en el aprendizaje de la química](/files/fac-ideas-previas/ideas-dificultades-aprendizaje-quimica.pdf){.highlight width="10%" target="_blank"}
+
+:::
