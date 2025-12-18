@@ -71,18 +71,18 @@ Esta metodología ofrece múltiples beneficios:
 
 :::
 
-## Material didáctico del ABP 1
+# Material didáctico del ABP 1
 
 ::: panel-tabset
 ## ABP 1 Introducción al caso {.active}
 
 <embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
 
-## ABP 1 Presentación del problema {.active}
+## ABP 1 Presentación del problema
 
 <embed src="/files/fac-ABP/ABP1-presentacion-final.pdf" width="100%" height="800px"/>
 
-## ABP 1 Rúbrica {.active}
+## ABP 1 Rúbrica
 
 <embed src="/files/fac-ABP/ABP-rubrica.pdf" width="100%" height="800px"/>
 
@@ -139,11 +139,9 @@ Esta metodología ofrece múltiples beneficios:
 
 [La base de orientación](/files/fac-ABP/ABP1-articulos/VilallongaLabasedeorientación.pdf){.highlight width="10%" target="_blank"}
 
-
-
 :::
 
-## Material didáctico del ABP 2
+# Material didáctico del ABP 2
 
 ::: panel-tabset
 ## ABP 2 Introducción al caso {.active}
