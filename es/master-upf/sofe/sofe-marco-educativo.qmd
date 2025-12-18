@@ -22,6 +22,8 @@ format: html
 
 > El profesor Lluís Pagès dirige esta parte del módulo de **sociedad, familia y educación: procesos y contextos educativos** denominado **marco educativo**, donde se aborda como incorporarse al sistema educativo catalán como docente, entendiendo el contexto particular que lo rodea y a sabiendas de interactuar con los diversos equipos y los agentes sociales, para cumplir con éxito la función educativa. Esto implica conocer las características principales del sistema educativo catalán y del centro particular en que nos incorporamos y saber desarrollar una tarea eficaz, que contribuya a educar el alumnado de manera satisfactoria. Además, conocer la documentación y la normativa y saber aprovechar los diversos casos reales trabajados al máster para resolver los retos que se planteen en la incorporación futura al sistema educativo.
 
+![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/dae/dae-infografia-en.png){fig-align="center"}
+
 ## Material didáctico de todas las sesiones
 
 ::: callout-tip
