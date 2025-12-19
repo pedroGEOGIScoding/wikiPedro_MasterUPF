@@ -34,7 +34,20 @@ The two key objectives of this subject are:
 
 * The practical approach of the activities that the students will carry out will be prioritized, so that the final task of the subject will be the tutored preparation of two of the three final products of the master's degree: a learning situation for ESO and a learning situation for high school, as well as the design and implementation of an action research in the classroom, which will be put into practice during the second phase of the practicum, which will allow the students to prepare their final master's thesis (TFM). Whenever possible, students will develop, apply and evaluate the teaching materials and educational actions developed within the framework of these two final products in the classroom in pairs.
 
-<br>
+::: callout-tip
+## Click on each tab to view the material of the introductory session and the subject guide
+:::
+
+::: panel-tabset
+## Session 0 {.active}
+
+<embed src="/files/deia-docs/deia-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Subject guide
+
+<embed src="/files/deia-docs/deia-guia-docente.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
 
 ## Technical Information
 
@@ -50,11 +63,10 @@ The two key objectives of this subject are:
 
 * **Teachers:** Bernat Blasco, Marcel Costa, Eulàlia Durán, Laura Farró, Jèssica Fernández, Davínia Hernández-Leo, Sílvia Lope, Iván Marchán, Xavi Muñoz, Diego Sanjulián (coordination), Gemma Serra, Jordi Soler.
 
-<br>
 
 ![Design Framework for Innovative Learning Environments](../../images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio"}
 
-<br>
+
 
 ## Subject Modules
 
@@ -66,7 +78,7 @@ The two key objectives of this subject are:
 
 * **Innovation projects in scientific education**
 
-<br>
+
 
 ## Goals
 
@@ -86,7 +98,7 @@ The two key objectives of this subject are:
 
 * Know the regulatory and organizational framework of Vocational Training in Catalonia. Interpret and apply the curricular elements of the FP in the planning and design of programs.
 
-<br>
+
 
 ## Competencies
 
@@ -100,7 +112,6 @@ The two key objectives of this subject are:
 
 6. Use of digital environments for professional development and educational interaction
 
-<br>
 
 ## Contents
 
@@ -140,7 +151,6 @@ The two key objectives of this subject are:
 
 * Analysis and interpretation of data in educational research.
 
-<br>
 
 ## Methodology
 
@@ -162,8 +172,6 @@ The two key objectives of this subject are:
 
 * At the end of the third quarter of the master's degree, after having experienced the high school learning situation and the ESO learning situation in the classroom, and carrying out the action research in the classroom, an oral presentation of the results will be given. In these presentations, students must make a synthesis of the didactic characteristics and activities of the ESO unit, as well as a special emphasis on the analysis of the results obtained and the proposals for improvement that they consider relevant. Likewise, this presentation will present the results and conclusions obtained from the didactic innovation introduced during the action research.
 
-<br>
-
 ## Assessment
 
 * **Analysis and presentation of an educational research article (10%)**
@@ -175,8 +183,6 @@ The two key objectives of this subject are:
 * **Presentation of the action plan design (20%)**
 
 * **Oral presentation of the ESO teaching unit and the results and conclusions of the action research (20%)**
-
-<br>
 
 ## Resources and Recommended Bibliography
 

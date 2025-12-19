@@ -34,7 +34,20 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * Es prioritzarà el plantejament pràctic de les activitats que realitzaran l'alumnat, de manera que la tasca final de l'assignatura serà la preparació tutoritzada de dos dels tres productes finals del màster: una situació d'aprenentatge per a ESO i una situació d'aprenentatge per a batxillerat, així com el disseny i implementació d'una investigació-acció a l'aula, que es posarà en pràctica durant la segona fase de les pràctiques, que permetrà preparar el treball final de màster. Sempre que sigui possible, els alumnes desenvoluparan, aplicaran i avaluaran els materials didàctics i les accions educatives desenvolupades en el marc d'aquests dos productes finals a l'aula per parelles.
 
-<br>
+::: callout-tip
+## Fes clic en cadascuna de les pestanyes per a visualitzar el material de la sessió introductòria i la guia docent de l'assignatura
+:::
+
+::: panel-tabset
+## Sessió 0 {.active}
+
+<embed src="/files/deia-docs/deia-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Guia docent de la assignatura
+
+<embed src="/files/deia-docs/deia-guia-docente.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
 
 ## Informació tècnica
 
@@ -50,11 +63,9 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * **Professors:** Bernat Blasco, Marcel Costa, Eulàlia Durán, Laura Farró, Jèssica Fernández, Davínia Hernández-Leo, Sílvia Lope, Iván Marchán, Xavi Muñoz, Diego Sanjulián (coordinació), Gemma Serra, Jordi Soler.
 
-<br>
 
 ![Disseny marc per a entorns d'aprenentatge innovadors](../../images/deia/deia-structure.png){width=50% fig-align="center" group="deia-inicio"}
 
-<br>
 
 ## Mòduls d'assignatures
 
@@ -66,7 +77,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * **Projectes d'innovació en educació científica**
 
-<br>
 
 ## Gols
 
@@ -86,7 +96,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * Conèixer el marc normatiu i organitzatiu de la Formació Professional a Catalunya. Interpretar i aplicar els elements curriculars de l'FP en la planificació i disseny de programes.
 
-<br>
 
 ## Competències
 
@@ -100,7 +109,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 6. Ús d'entorns digitals per al desenvolupament professional i la interacció educativa
 
-<br>
 
 ## Continguts
 
@@ -140,7 +148,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * Anàlisi i interpretació de dades en recerca educativa.
 
-<br>
 
 ## Metodologia
 
@@ -162,7 +169,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * En finalitzar el tercer trimestre del màster, després d'haver viscut la situació d'aprenentatge de batxillerat i la situació d'aprenentatge de l'ESO a l'aula, i realitzant la recerca-acció a l'aula, es farà una exposició oral dels resultats. En aquestes ponències, l'alumnat ha de fer una síntesi de les característiques didàctiques i activitats de la unitat d'ESO, així com un èmfasi especial en l'anàlisi dels resultats obtinguts i les propostes de millora que considerin pertinents. Així mateix, en aquesta presentació es presentaran els resultats i conclusions obtingudes de la innovació didàctica introduïda durant la recerca-acció.
 
-<br>
 
 ## Avaluació
 
@@ -176,7 +182,6 @@ Els dos objectius principals d'aquesta assignatura són:
 
 * **Exposició oral de la unitat didàctica d'ESO i dels resultats i conclusions de la recerca-acció (20%)**
 
-<br>
 
 ## Recursos i bibliografia recomanada
 

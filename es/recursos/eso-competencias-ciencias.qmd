@@ -1558,3 +1558,13 @@ Las situaciones permiten programar el rumbo de cualquier nivel, materia o área 
 
 </div>
 </div>
+
+
+## Nuevas competencies curriculares
+
+```{=html}
+<div class="alert alert-info">
+  <p><strong>Enlace externo:</strong> <a href="https://xtec.gencat.cat/ca/curriculum/eso/concrecions-curriculars/" target="_blank" rel="noopener noreferrer">Competències curriculars - XTEC</a></p>
+  <p><em>Haz clic en el enlace para acceder directamente al contenido.</em></p>
+</div>
+```

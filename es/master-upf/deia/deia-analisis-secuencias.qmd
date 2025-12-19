@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+categories: [diseño, innovación, aprendizaje, secuencias, análisis]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -19,3 +19,52 @@ format: html
 ---
 
 ## Presentación
+
+> El profesor Marcel Costa dirige esta parte del módulo de **Diseño de entornos de aprendizaje innovadores e iniciación en la investigación educativa de las ciencias naturales** denominado **análisis de secuencias didácticas**, para dar relevancia a la práctica reflexiva en la docencia y el día a día del profesor/a como método de transformación de la realidad y de mejora de los procesos de enseñanza-aprendizaje. Aprender el proceso de diseño y evaluación de situaciones de aprendizaje basadas en el modelo didáctico vigente, y contextualizados en el currículum del trabajo por competencias.
+
+## Material didáctico de la sesión y material de apoyo
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material didáctico de la sesión y el material de apoyo
+:::
+
+::: column-margin
+**Documentación de apoyo**
+
+[La elaboración de unidades didácticas competenciales](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
+
+[Learning Cycle Model of a Science Lesson](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Material analizado {.active}
+
+<embed src="/files/deia-docs/deia-estacions-any.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea realizada
+
+<embed src="/files/deia-docs/deia-analisi-SD-Pedro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Otros materiales para analizar
+
+<embed src="/files/deia-docs/deia-canvi-fisic-canvi-quimic.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Otros materiales para analizar
+
+<embed src="/files/deia-docs/deia-Els-bacteris-1ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Otros materiales para analizar
+
+<embed src="/files/deia-docs/deia-microorganismes-i-salut.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Otros materiales para analizar
+
+<embed src="/files/deia-docs/deia-moviment.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Otros materiales para analizar
+
+<embed src="/files/deia-docs/deia-viu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
