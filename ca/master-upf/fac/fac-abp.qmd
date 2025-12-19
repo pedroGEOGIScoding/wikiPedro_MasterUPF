@@ -1,12 +1,12 @@
 ---
-title: "Aprendizaje basado en problemas (ABP)"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Aprenentatge basat en problemes (ABP)"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
 filename: fac-abp
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: L'aprenentatge basat en problemes (ABP) és una tècnica d'ensenyament centrada en l'estudiant que utilitza problemes del món real com a punt de partida per a l'aprenentatge.
+categories: [ABP, aprenentatge, l'ensenyament, qüestions]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,134 @@ lightbox:
 format: html
 ---
 
-# Aprendizaje basado en problemas (ABP)
+# Aprenentatge basat en problemes (ABP)
 
-## Introducción
+## Presentació
+
+> Aquest bloc està dirigit per diversos professors ja que els alumnes estan dividits en diferents grups de treball. Forma part del mòdul Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals anomenat **aprenentatge basat en problemes** PBL. L'aprenentatge basat en problemes (ABP) és una tècnica d'ensenyament centrada en l'estudiant que utilitza problemes del món real com a punt de partida per a l'aprenentatge. L'ABP és una metodologia en la qual primer es presenta un problema, després els alumnes identifiquen les necessitats d'aprenentatge, busquen la informació necessària i, finalment, tornen al problema per resoldre'l. Els alumnes treballen col·laborativament en grups reduïts, construint coneixements a través de situacions reals. L'ABP representa un canvi des dels enfocaments tradicionals, on el professor transmet coneixement, cap a un model on l'alumne construeix el seu propi aprenentatge a través de la recerca i la reflexió.
+
+## Fases del procés
+
+PBL segueix un procés estructurat amb passos definits:
+
+1. **Presentació del problema** - Es planteja una situació o repte real
+2. **Identificar el que se sap** - Llista els coneixements previs sobre el problema
+3. **Identificar allò que no es coneix** - Determinar llacunes de coneixement
+4. **Defineix el problema** - Aclareix què vols resoldre o què vols respondre
+5. **Planificar estratègies** - Dissenyar el pla de treball i distribuir les tasques
+6. **Cerca d'informació** - Investiga i processa les dades necessàries
+7. **Resolució de problemes** - Aplicar els coneixements adquirits
+8. **Presentació de la solució** - Comunicar resultats (informe, presentació)
+
+## Característiques principals
+
+L'ABP es distingeix per:
+
+- **L'alumne com a protagonista** - Gestiona el seu propi aprenentatge de manera autodirigida
+- **Treball col·laboratiu** - Desenvolupa habilitats comunicatives i de treball en equip
+- **Problemes contextuals** - Situacions rellevants que augmenten la motivació i l'interès
+- **Pensament crític** - Integrat en el procés d'ensenyament-aprenentatge
+- **El professor com a facilitador** - Actua com a mentor o guia, no com a centre del procés
+
+## Avantatges de l'ABP
+
+Aquesta metodologia ofereix múltiples avantatges:
+
+- Afavoreix l'aprenentatge profund i durador
+- Desenvolupar habilitats de resolució de problemes
+- Afavoreix el pensament crític i la presa de decisions
+- Estimula l'autonomia i la responsabilitat de l'alumnat
+- Millora les habilitats de comunicació eficaç
+- Prepareu-vos per afrontar reptes reals del món professional
+
+## Material didàctic per a les 2 sessions d'ABP
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió
+:::
+
+::: panel-tabset
+## Sessió - Introducció i teoria del PBL {.active}
+
+<embed src="/files/fac-ABP/presentacio_ABP.pdf" width="100%" height="800px"/>
+
+:::
+
+# Material didàctic PBL 1
+
+::: panel-tabset
+## ABP 1 Introducció al cas {.active}
+
+<embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
+
+## PBL 1 Presentació del problema
+
+<embed src="/files/fac-ABP/ABP1-presentacion-final.pdf" width="100%" height="800px"/>
+
+## PBL 1 Rúbrica
+
+<embed src="/files/fac-ABP/ABP-rubrica.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Documentació de suport per a ABP 1**
+
+[Actituds en l'ensenyament de les ciències](/files/fac-ABP/ABP1-articulos/Actitudesenlaensenzadelasciencias.pdf){.highlight width="10%" target="_blank"}
+
+[Actituds envers la salut](/files/fac-ABP/ABP1-articulos/Actitudeshacialasalud.pdf){.highlight width="10%" target="_blank"}
+
+[No és possible matar algú que no sigui gras](/files/fac-ABP/ABP1-articulos/BadalNoespotmatartotelquenoesgras.pdf){.highlight width="10%" target="_blank"}
+
+[Atenció a la diversitat des de propostes diverses](/files/fac-ABP/ABP1-articulos/Canotaciónaladiversidad desdepropuestasdiversas.pdf){.highlight width="10%" target="_blank"}
+
+[Ensenyament multinivell](/files/fac-ABP/ABP1-articulos/Collicott_Ensenyament_multinivell.pdf){.highlight width="10%" target="_blank"}
+
+[Directrius de la guia DUA](/files/fac-ABP/ABP1-articulos/Dalmaupautes-guia-dua.pdf){.highlight width="10%" target="_blank"}
+
+[Atenció a la diversitat als països europeus](/files/fac-ABP/ABP1-articulos/DePradala-atencion-a-la-diversidad-en-los-paises-europeos.pdf){.highlight width="10%" target="_blank"}
+
+[Estrategies and bones practices for educating in diversitat a l'ESO](/files/fac-ABP/ABP1-articulos/EstrategiesibonespractiquespereducarenladiversitatalESO.pdf){.highlight width="10%" target="_blank"}
+
+[Avaluació d'actituds ambientals a l'ESO](/files/fac-ABP/ABP1-articulos/EvaluaciondeactitudesambientalesenlaESO.pdf){.highlight width="10%" target="_blank"}
+
+[Les bases d'orientació](/files/fac-ABP/ABP1-articulos/GarciaSanmartiLasbasesdeorientacion.pdf){.highlight width="10%" target="_blank"}
+
+[Treball cooperatiu](/files/fac-ABP/ABP1-articulos/Gavilan_el_trabajo_cooperativo.pdf){.highlight width="10%" target="_blank"}
+
+[Mesures suports universals centre educatiu 2023](/files/fac-ABP/ABP1-articulos/Gencatmesures-suports-universals-centre-educatiu-2023.pdf){.highlight width="10%" target="_blank"}
+
+[Un gueto dins de l'institut](/files/fac-ABP/ABP1-articulos/Gutierrez_Unguetodentrodelinstituto.pdf){.highlight width="10%" target="_blank"}
+
+[Integració educativa d'alumnes d'origen immigrant](/files/fac-ABP/ABP1-articulos/Integracioneducativadealumnadodeorigeninmigrante.pdf){.highlight width="10%" target="_blank"}
+
+[Introducció a la monografia](/files/fac-ABP/ABP1-articulos/Introduccionalamonografia.pdf){.highlight width="10%" target="_blank"}
+
+[Gènere i ensenyament de les ciències](/files/fac-ABP/ABP1-articulos/Izquierdo_Genereiensenyamentdelesciencies.pdf){.highlight width="10%" target="_blank"}
+
+[Gènere i ciències: el següent pas](/files/fac-ABP/ABP1-articulos/Jimenezgenero-y-ciencias-el-paso-gíente.pdf){.highlight width="10%" target="_blank"}
+
+[DIVERSIDAD](/files/fac-ABP/ABP1-articulos/Mendia_DIVERSIDAD.pdf){.highlight width="10%" target="_blank"}
+
+[Ensenyar a diferents estudiants junts](/files/fac-ABP/ABP1-articulos/Pujolas_Ensenarjuntos_Alumnosdiferentes.pdf){.highlight width="10%" target="_blank"}
+
+[Aprèn ciència des de la diversitat](/files/fac-ABP/ABP1-articulos/Sanmarti_aprender-ciencias- desde-la-diversidad.pdf){.highlight width="10%" target="_blank"}
+
+[Avaluar per aprendre](/files/fac-ABP/ABP1-articulos/Sanmarti_avaluar_per_aprendre.pdf){.highlight width="10%" target="_blank"}
+
+[Ciències i estudiants immigrats](/files/fac-ABP/ABP1-articulos/Torremilans_ciencesalumnatimmigrats.pdf){.highlight width="10%" target="_blank"}
+
+[Valors i actituds, pots aprendre ciència sense ells?](/files/fac-ABP/ABP1-articulos/Valoresyactitudessetrabajoaprendercienciasinellos.pdf){.highlight width="10%" target="_blank"}
+
+[La base d'orientació](/files/fac-ABP/ABP1-articulos/VilallongaLabasedeorientación.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+# Material didàctic PBL 2
+
+::: panel-tabset
+## ABP 2 Introducció al cas {.active}
+
+<embed src="/files/fac-ABP/ABP2-material-alumnat.pdf" width="100%" height="800px"/>
+
+:::

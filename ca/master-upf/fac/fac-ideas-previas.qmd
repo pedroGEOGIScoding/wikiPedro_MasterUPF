@@ -1,12 +1,12 @@
 ---
-title: "Ideas previas"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Idees prèvies"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
 filename: fac-ideas-previas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Es treballa la importància de les idees prèvies dels alumnes en el seu aprenentatge de nous conceptes que poden ser alternatives a les seves idees prèvies. Així doncs, en aquest bloc es treballa la importància de les concepcions alternatives en l'ensenyament-aprenentatge.
+categories: [idees prèvies, aprenentatge, ensenyament]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,55 @@ lightbox:
 format: html
 ---
 
-# Ideas previas
+# Idees prèvies
 
-## Introducción
+## Presentació
+
+> El professor Marcel Costa dirigeix ​​aquesta part del mòdul Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals anomenada **idees i aprenentatges previs**, amb la idea principal que *tots els factors que influeixen en l'aprenentatge, el més important consisteix en allò que l'estudiant ja sap. S'haurà de deixar clar i ensenyar en conseqüència*. Així doncs, en aquest bloc es treballa la importància de les concepcions alternatives en l'ensenyament-aprenentatge.
+
+## Material didàctic per a totes les sessions
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/fac-ideas-previas/ideas-previas-aprendizaje.pdf" width="100%" height="800px"/>
+
+## Tasca pràctica
+
+<embed src="/files/fac-ideas-previas/tasca-exito-o-fracaso.pdf" width="100%" height="800px"/>
+
+:::
+
+## Experiments fàcils i de baix cost amb aigua atmosfèrica
+
+::: panel-tabset
+## Proposta d'activitat - Clouds 1 {.active}
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa.pdf" width="100%" height="800px"/>
+
+## Proposta d'activitat - Núvols 2
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa1.pdf" width="100%" height="800px"/>
+
+## Proposta d'activitat - Núvols 3
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa2.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Documentació de suport**
+
+[Concepcions comunes i dificultats del pensament biològic en la construcció del pensament biològic](/files/fac-ideas-previas/concepcions-construccion-pensamiento-biologico.pdf){.highlight width="10%" target="_blank"}
+
+[Les idees dels estudiants de física](/files/fac-ideas-previas/ideas-alumnado-fisica.pdf){.highlight width="10%" target="_blank"}
+
+[Sobre la persistència o no de les idees dels estudiants en geologia](/files/fac-ideas-previas/ideas-alumnado-geologia.pdf){.highlight width="10%" target="_blank"}
+
+[Idees i dificultats en l'aprenentatge de la química](/files/fac-ideas-previas/ideas-dificuldades-aprendizaje-quimica.pdf){.highlight width="10%" target="_blank"}
+
+:::

@@ -1,12 +1,12 @@
 ---
-title: "Orientaciones para la programación"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Programming Guidelines"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-orientaciones-programacion
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on the design and evaluation of learning situations and action research in the classroom
+categories: [design, innovation, learning]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,4 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation

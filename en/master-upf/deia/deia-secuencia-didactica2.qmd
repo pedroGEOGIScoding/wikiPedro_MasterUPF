@@ -1,12 +1,12 @@
 ---
-title: "Los objetivos de la secuencia didáctica II"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "The objectives of the didactic sequence II"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-secuencia-didactica2
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on the design and evaluation of learning situations and action research in the classroom
+categories: [design, innovation, learning]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,17 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
+
+> Professor Marcel Costa directs this part of the **Design of innovative learning environments and initiation into educational research in the natural sciences** module called **from objectives to didactic sequences II**, to give relevance to the definition of learning objectives, the concept of didactic sequences, their programming and learning cycles.
+
+## Teaching material for the sessions and support material
+
+::: callout-tip
+## Click on each of the tabs to view the teaching material of the sessions and the support material
+:::
+
+::: column-margin
+**Supporting documentation**
+
+:::

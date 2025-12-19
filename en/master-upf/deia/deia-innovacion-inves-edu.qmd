@@ -1,12 +1,12 @@
 ---
-title: "Iniciación a la innovación y la investigación educativa"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Introduction to innovation and educational research"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-innovacion-inves-edu
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on making known what reflective practice and action research are. Some characteristics of classroom observation and some instruments to do it during the first practicum are presented. In addition, we seek to think about our own professional starting point, based on the experiences and beliefs of each of us.
+categories: [design, innovation, learning, reflective practice, action research, observation, classroom]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,42 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
+
+> Professor Jordi Soler Garcia directs this part of the module **Design of innovative learning environments and initiation into educational research in the natural sciences** called **initiation to innovation and educational research**, to publicize what reflective practice and action research are. Some characteristics of classroom observation and some instruments to do it during the first practicum are presented. In addition, we seek to think about our own professional starting point, based on the experiences and beliefs of each of us.
+
+## Goals
+
+- Know what reflective practice and action research are.
+- Know the objectives and operation of the subject.
+- Know some characteristics of classroom observation and some instruments to do it during the first practicum
+
+## Teaching material for the sessions and support material
+
+::: callout-tip
+## Click on each of the tabs to view the teaching material of the sessions and the support material
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[Methodological bases for educational research](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
+
+[Practicum portfolio guide](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/deia-docs/deia-sesion1-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/deia-docs/deia-sesion2-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 3
+
+<embed src="/files/deia-docs/deia-sesion3-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

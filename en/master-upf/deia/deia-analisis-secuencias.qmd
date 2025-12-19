@@ -1,12 +1,12 @@
 ---
-title: "Análisis de secuencias"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Sequence analysis"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-analisis-secuencias
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on the design and evaluation of learning situations and action research in the classroom
+categories: [design, innovation, learning, sequences, analysis]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,53 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
+
+> Professor Marcel Costa directs this part of the **Design of innovative learning environments and initiation into educational research in the natural sciences** module called **analysis of teaching sequences**, to give relevance to reflective practice in teaching and the teacher's daily life as a method of transforming reality and improving teaching-learning processes. Learn the process of designing and evaluating learning situations based on the current didactic model, and contextualized in the competency-based work curriculum.
+
+## Teaching material for the session and support material
+
+::: callout-tip
+## Click on each of the tabs to view the teaching material of the session and the support material
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[The development of competency teaching units](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
+
+[Learning Cycle Model of a Science Lesson](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Analyzed material {.active}
+
+<embed src="/files/deia-docs/deia-estacions-any.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Task done
+
+<embed src="/files/deia-docs/deia-analisi-SD-Pedro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Other materials to analyze
+
+<embed src="/files/deia-docs/deia-canvi-fisic-canvi-quimic.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Other materials to analyze
+
+<embed src="/files/deia-docs/deia-Els-bacteris-1ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Other materials to analyze
+
+<embed src="/files/deia-docs/deia-microorganismes-i-salut.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Other materials to analyze
+
+<embed src="/files/deia-docs/deia-moviment.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Other materials to analyze
+
+<embed src="/files/deia-docs/deia-viu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+

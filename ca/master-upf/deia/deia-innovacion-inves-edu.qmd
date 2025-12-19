@@ -1,12 +1,12 @@
 ---
-title: "Iniciación a la innovación y la investigación educativa"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Introducció a la innovació i la recerca educativa"
+subtitle: "Programació, innovació i reflexió sobre la pràctica docent en ciència"
 filename: deia-innovacion-inves-edu
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Tema enfocat a donar a conèixer què és la pràctica reflexiva i la recerca-acció. Es presenten algunes característiques de l'observació a l'aula i alguns instruments per fer-la durant la primera pràctica. A més, busquem pensar en el nostre propi punt de partida professional, a partir de les experiències i creences de cadascun de nosaltres.
+categories: [disseny, innovació, aprenentatge, pràctica reflexiva, recerca-acció, observació, aula]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,42 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentació
+
+> El professor Jordi Soler Garcia dirigeix ​​aquesta part del mòdul **Disseny d'entorns innovadors d'aprenentatge i iniciació a la recerca educativa en ciències naturals** anomenada **iniciació a la innovació i la recerca educativa**, per donar a conèixer què són la pràctica reflexiva i la recerca-acció. Es presenten algunes característiques de l'observació a l'aula i alguns instruments per fer-la durant la primera pràctica. A més, busquem pensar en el nostre propi punt de partida professional, a partir de les experiències i creences de cadascun de nosaltres.
+
+## Gols
+
+- Conèixer què són la pràctica reflexiva i la recerca-acció.
+- Conèixer els objectius i el funcionament de l'assignatura.
+- Conèixer algunes característiques de l'observació a l'aula i alguns instruments per fer-ho durant la primera pràctica
+
+## Material didàctic per a les sessions i material de suport
+
+::: callout-tip
+## Cliqueu a cadascuna de les pestanyes per veure el material didàctic de les sessions i el material de suport
+:::
+
+::: column-margin
+**Documentació de suport**
+
+[Bases metodològiques per a la recerca educativa](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
+
+[Guia de la cartera de pràctiques](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/deia-docs/deia-sesion1-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/deia-docs/deia-sesion2-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 3
+
+<embed src="/files/deia-docs/deia-sesion3-innov.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

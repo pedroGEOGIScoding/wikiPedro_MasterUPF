@@ -1,12 +1,12 @@
 ---
-title: "Los objetivos de la secuencia didáctica I"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "The objectives of the didactic sequence I"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-secuencia-didactica1
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on the design and evaluation of learning situations and action research in the classroom
+categories: [design, innovation, learning]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,58 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
+
+> Professor Marcel Costa directs this part of the **Design of innovative learning environments and initiation in educational research in the natural sciences** module called **from objectives to didactic sequences I**, to give relevance to the definition of learning objectives, the concept of didactic sequences, their programming and learning cycles.
+
+## Teaching material for the sessions and support material
+
+::: callout-tip
+## Click on each of the tabs to view the teaching material of the sessions and the support material
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[A Model of Learning Objectives](/files/deia-docs/RevisedBloomsHandout.pdf){.highlight width="10%" target="_blank"}
+
+[Document of support for the programming of the ESO learning situations](/files/deia-docs/doc-support-ESO.pdf){.highlight width="10%" target="_blank"}
+
+[Document of support for the programming of the situations of learning Batxillerat](/files/deia-docs/document_suport_BATXI.pdf){.highlight width="10%" target="_blank"}
+
+[First outline of a didactic sequence and its various objects](/files/deia-docs/deia-sqd1/Fulldetreball3.2aelaboracióobjectiusViu-Inert1rESO.pdf){.highlight width="10%" target="_blank"}
+
+[Objectius i paraules clau - 2n ESO](/files/deia-docs/deia-sqd1/Fulldetreball3.2bobjectiusmescles-solucions2nESO.pdf){.highlight width="10%" target="_blank"}
+
+[Programació situació aprenentatge - Batxillerat](/files/deia-docs/deia-sqd1/ProgramaciósituacióaprenentatgeBAT.pdf){.highlight width="10%" target="_blank"}
+
+[Programació situació aprenentatge - CFGM-S](/files/deia-docs/deia-sqd1/ProgramaciósituacióaprenentatgeCFGM-S.pdf){.highlight width="10%" target="_blank"}
+
+[Programació situació aprenentatge - ESO](/files/deia-docs/deia-sqd1/ProgramaciósituacióaprenentatgeESO.pdf){.highlight width="10%" target="_blank"}
+
+[Programació situació aprenentatge - Atmosfera 1r ESO](/files/deia-docs/deia-sqd1/Programaciósituacióaprenentatgeatmosfera1rESO.pdf){.highlight width="10%" target="_blank"}
+
+[Programació unitat didàctica - Batxillerat](/files/deia-docs/deia-sqd1/ProgramacióunitatdidàcticaBAT.pdf){.highlight width="10%" target="_blank"}
+
+[Programació unitat didàctica - ESO](/files/deia-docs/deia-sqd1/ProgramacióunitatdidàcticaESO.pdf){.highlight width="10%" target="_blank"}
+
+[Programació unitat didàctica - ESO Atmosfera v2](/files/deia-docs/deia-sqd1/ProgramacióunitatdidàcticaESOatmosferav2.pdf){.highlight width="10%" target="_blank"}
+
+[Unitat meteo 2p1](/files/deia-docs/deia-sqd1/Unitatmeteo2p1.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/deia-docs/deia-sesion1-sq.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/deia-docs/deia-sesion2-sq.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Didactic unit 1 ESO. "A changing climate – Act here to guarantee the rest"
+
+<embed src="/files/deia-docs/Delgado_2017.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

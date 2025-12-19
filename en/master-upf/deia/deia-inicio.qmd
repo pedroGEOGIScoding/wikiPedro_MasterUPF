@@ -24,7 +24,7 @@ The two key objectives of this subject are:
 
 * Give relevance to reflective practice in teaching and the teacher's daily life as a method of transforming reality and improving teaching-learning processes.
 
-* Learn the process of designing and evaluating learning situations based on the current didactic model, and contextualized in the competency-based work curriculum.
+* Learn the process of designing and evaluating learning situations based on the current didactic model, and contextualized in the competence-based work curriculum.
 
 * The achievement of the first objective, which involves learning the systematization of the reflective process, will lead students to develop the role of teacher-researcher who promotes teaching innovation.
 
@@ -36,6 +36,17 @@ The two key objectives of this subject are:
 
 ::: callout-tip
 ## Click on each tab to view the material of the introductory session and the subject guide
+:::
+
+::: panel-tabset
+## Session 0 {.active}
+
+<embed src="/files/deia-docs/deia-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Subject guide
+
+<embed src="/files/deia-docs/deia-guia-docente.pdf" type="application/pdf" width="100%" height="800px"/>
+
 :::
 
 ::: panel-tabset
@@ -190,7 +201,7 @@ The two key objectives of this subject are:
 
 AAVV., 2013. Make teaching units. Alambique Magazine, nº74.
 
-AAVV., 2016. Basic competences of the scientific-technological sphere. Identification and deployment of compulsory secondary education. Publications of the Department of Education. Generalitat of Catalonia.
+AAVV., 2016. Basic competences of the scientific-technological sphere. Identification and implementation of compulsory secondary education. Publications of the Department of Education. Generalitat of Catalonia.
 
 AAVV., 2015. The progressions of teachings. Alambique Magazine, nº79.
 
@@ -200,7 +211,7 @@ Alba, C., Sánchez, J., Zubillaga, A. 2014. Universal Design for Learning. Guide
 
 Claxton, G. 1994. Educating curious minds. Ed. Visor (Learning). Madrid.
 
-Couso, D. 2013. The development of competency teaching units. Alambique Magazine, nº74, pp 12-24.
+Couso, D. 2013. The development of competence teaching units. Alambique Magazine, nº74, pp 12-24.
 
 Jimenez-Aleixandre (coord). 2003. Teaching science. Graó.
 

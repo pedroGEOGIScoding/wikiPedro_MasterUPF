@@ -79,9 +79,15 @@ The language codes follow the ISO 639-1 standard (two-letter codes). For example
 
 **In this enviroment project**
 ```bash
-# single file translation (Spanish to English)
+# single file translation (Spanish to English). Must be run in pedro@PedroLinuxMint:~/Documents/wikiPedro_MasterUPF (master)
 python3.13 python_codes/translate_qmd.py en/portfolio/portfolio-centro.qmd -s es -t en
 ```
+
+```bash
+# batch translation (all .qmd files in directory)
+python3 python_codes/translate_qmd.py en/master-upf/fac -s es -t en --progress
+```
+
 
 ```bash
 # Single file translation (Spanish to English)

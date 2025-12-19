@@ -1,12 +1,12 @@
 ---
-title: "Enseñar conversar"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "teach converse"
+subtitle: "Programming, innovation and reflection on teaching practice in science"
 filename: deia-ensenar-conversar
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Subject focused on working on conversational competence in teaching work. Work on communication skills to promote interaction and guide student learning
+categories: [design, innovation, learning, discuss, broom, ESETE, open questions]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,63 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
+
+> Professors Laura Farró and Sílvia López direct this part of the **Design of innovative learning environments and initiation into educational research in the natural sciences** module called **teaching involves talking**, to work on conversational competence in teaching work. Work on communication skills to promote interaction and guide student learning.
+
+
+## Teaching material for the sessions and support material
+
+::: callout-tip
+## Click on each of the tabs to view the teaching material of the sessions and the support material
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[Conversational letters](/files/deia-docs/conversar/Cartes_conversacionales.pdf){.highlight width="10%" target="_blank"}
+
+[ESET Discursive Strategies](/files/deia-docs/conversar/ESET_Estrategies-discursives.pdf){.highlight width="10%" target="_blank"}
+
+[Exploratory conversation strategies](/files/deia-docs/conversar/Estrategies-conversa-exploratoria.pdf){.highlight width="10%" target="_blank"}
+
+[ESETE Task Guidelines](/files/deia-docs/conversar/Pauta-Tasca-ESETE.pdf){.highlight width="10%" target="_blank"}
+
+[Oral presentation](/files/deia-docs/conversar/Presentaci-oral.pdf){.highlight width="10%" target="_blank"}
+
+[SCOBA TFM 2016](/files/deia-docs/conversar/SCOBA-TFM-2016.pdf){.highlight width="10%" target="_blank"}
+
+[Converse Medium Task](/files/deia-docs/conversar/Tasca-Conversar-Medio.pdf){.highlight width="10%" target="_blank"}
+
+[Tools for change](/files/deia-docs/conversar/eines_per_al_canvi3.pdf){.highlight width="10%" target="_blank"}
+
+[SCOBA module EIC](/files/deia-docs/conversar/scoba-modul-EIC.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/deia-docs/conversar-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/deia-docs/conversar-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 3
+
+<embed src="/files/deia-docs/conversar-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 4
+
+<embed src="/files/deia-docs/conversar-sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Work for session 4 - Instructions
+
+<embed src="/files/deia-docs/Tasca-session4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Work for session 4 - Task completed
+
+<embed src="/files/deia-docs/TascaPedro-session4-Actividad-ESET-Competencial.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

@@ -1,0 +1,25 @@
+---
+title: "Biología"
+subtitle: "Guía integrada de la especialidad de Ciencias Naturales en Biología"
+filename: cfd-biologia
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Asignatura que cubre los aspectos especificos del currículum de Biología en la educación secundaria
+categories: [complementos, disciplinar, biologia]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Presentación
+
+> Esta asignatura cubre los aspectos especificos del currículum de Biología en la educación secundaria. Su propósito es complementar la formación disciplinar de los estudiantes en el ámbito de la biología.
+
+

@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Subject that works on the fundamental bases of science teaching, promoting scientific literacy
-categories: [fundamentals, learning, teaching, sciences]
+categories: [fundamentals, learning, teaching, science]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -54,9 +54,9 @@ format: html
 - **Nature of Science** teacher: Diego Sanjulián. How does science know what it knows? How does it construct knowledge? What are the constraints?
 - **Prior Concepts** teacher: Marcel Costa. To identify the importance of starting from students' prior knowledge in the teaching-learning process.
 - **Project-based/Situated Learning** Tutors: Anama Domenech and Xavi Oller. Identifying the requirements and implications of interdisciplinary project-based work and work in the science context.
-- **Questions in the Science Classroom** Tutor: Pineda Badia. How do you ask the ‘good’ questions in the science classroom? What questions do pupils ask?
-- **Modelling and school science** lecturer: Marcel Costa. To identify scientific modelling as a process used by scientists to explain reality through models, and to consider its importance in teaching and learning.
-- **Out-of-classroom teaching activities** Professor: Marcel Costa. Recognising the importance of field trips, visits to research centres and others in the teaching and learning of science.
+- **Questions in the Science Classroom** Tutor: Pineda Badia. How do you ask the 'good' questions in the science classroom? What questions do pupils ask?
+- **Modelling and school science** lecturer: Marcel Costa. To identify scientific modeling as a process used by scientists to explain reality through models, and to consider its importance in teaching and learning.
+- **Out-of-classroom teaching activities** Professor: Marcel Costa. Recognizing the importance of field trips, visits to research centers and others in the teaching and learning of science.
 - **Conducting research in the science classroom** Professor: Pineda Badia. Teaching and learning how to conduct research in the school setting.
 - **Experimental work in science education** Professor: Xavier Muñoz. To understand the requirements for carrying out experimental work and research in science education.
 - **Science and pseudoscience** Professor: Jordi de Manuel. What is pseudoscience? How can we identify it and take it into account when constructing the concept of science.
@@ -141,7 +141,7 @@ format: html
 
 * Some of the topics of this subject are worked with the problem-based learning methodology.
 
-* The student will have at their disposal on the virtual platform the presentations and documents used during the sessions and complementary information on each topic.
+* The students will have at their disposal on the virtual platform the presentations and documents used during the sessions and complementary information on each topic.
 
 ### b) Non-face-to-face tasks
 
@@ -175,9 +175,9 @@ Adell, J. 2010. Congress models of ICT integration in education. http://www.ite.
 
 Barba, C., Capella S. 2010. Ordinadors ales aules. The key is the methodology. Guix Library, 172. Barcelona. Ed. Graó.
 
-Barberà, E., Mauri, T., Onrubia, J. 2008. How to assess the quality of teaching based on ICT. Guidelines and analysis instruments. Criticism and foundations, 19. Barcelona. Ed. Graó.
+Barberà, E., Mauri, T., Onrubia, J. 2008. How to assess the quality of teaching based on ICT. Guidelines and instruments analysis. Criticism and foundations, 19. Barcelona. Ed. Graó.
 
-Borrull Riera, A.; Valls Bautista, C., 2019. Low cost science. Practical guide to inquiry activities on life sciences for secondary school. Ed. Graó. Didactic series of experimental sciences. no. 330
+Borrull Riera, A.; Valls Bautista, C., 2019. Low cost science. Practical guide to inquiry activities on life sciences for secondary school. Ed. Graó. Didactic series of experimental sciences. No. 330
 
 Cerezo, JM. 2008. Towards a new paradigm. The age of fragmented information. Telos, innovation and communication notebooks., 76. Madrid. Telefónica Foundation.
 
@@ -263,7 +263,7 @@ VVAA. 2005. Monograph Contextualizing science. Alembic, 46. Barcelona. Ed. Graó
 
 VVAA. 2006. Monograph: Practical work in the construction of biological and geological knowledge. Alembic, 47. Barcelona. Ed. Graó.
 
-VVAA. 2007. Monograph: Teaching and learning by researching. Alembic, 52. Barcelona. Ed. Graó.
+VVAA. 2007. Monograph: Teaching and learning by research. Alembic, 52. Barcelona. Ed. Graó.
 
 VVAA. 2015. Monograph: More on materials. School Perspective, 383.
 

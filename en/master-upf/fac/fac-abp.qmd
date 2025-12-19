@@ -1,12 +1,12 @@
 ---
-title: "Aprendizaje basado en problemas (ABP)"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Problem Based Learning (PBL)"
+subtitle: "Fundamental bases of science teaching for scientific literacy"
 filename: fac-abp
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Problem-Based Learning (PBL) is a student-centered teaching technique that uses real-world problems as a starting point for learning.
+categories: [ABP, learning, teaching, issues]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,134 @@ lightbox:
 format: html
 ---
 
-# Aprendizaje basado en problemas (ABP)
+# Problem Based Learning (PBL)
 
-## Introducción
+## Presentation
+
+> This block is directed by several teachers since the students are divided into different work groups. It is part of the Fundamentals of Learning and Teaching of Natural Sciences module called **problem-based learning** PBL. Problem-Based Learning (PBL) is a student-centered teaching technique that uses real-world problems as a starting point for learning. PBL is a methodology in which a problem is first presented, then students identify learning needs, search for necessary information, and finally return to the problem to solve it. Students work collaboratively in small groups, building knowledge through real situations. PBL represents a change from traditional approaches, where the teacher transmits knowledge, towards a model where the student constructs his or her own learning through research and reflection.
+
+## Process phases
+
+PBL follows a structured process with defined steps:
+
+1. **Presentation of the problem** - A real situation or challenge is posed
+2. **Identify what is known** - List prior knowledge about the problem
+3. **Identify what is not known** - Determine knowledge gaps
+4. **Define the problem** - Clarify what you want to solve or respond to
+5. **Plan strategies** - Design work plan and distribute tasks
+6. **Information search** - Investigate and process necessary data
+7. **Problem resolution** - Apply acquired knowledge
+8. **Presentation of the solution** - Communicate results (report, presentation)
+
+## Main features
+
+The ABP is distinguished by:
+
+- **Student as protagonist** - Manages his/her own learning in a self-directed way
+- **Collaborative work** - Develops communication and teamwork skills
+- **Contextual problems** - Relevant situations that increase motivation and interest
+- **Critical thinking** - Integrated into the teaching-learning process
+- **Teacher as facilitator** - Acts as a mentor or guide, not as the center of the process
+
+## Advantages of ABP
+
+This methodology offers multiple benefits:
+
+- Promotes deep and lasting learning
+- Develop problem-solving skills
+- Promotes critical thinking and decision making
+- Stimulates student autonomy and responsibility
+- Improves effective communication skills
+- Prepare to face real professional world challenges
+
+## Didactic material for the 2 PBL sessions
+
+::: callout-tip
+## Click on each of the tabs to view the material of each session
+:::
+
+::: panel-tabset
+## Session - Introduction and theory of PBL {.active}
+
+<embed src="/files/fac-ABP/presentacio_ABP.pdf" width="100%" height="800px"/>
+
+:::
+
+# PBL 1 teaching material
+
+::: panel-tabset
+## ABP 1 Introduction to the case {.active}
+
+<embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
+
+## PBL 1 Presentation of the problem
+
+<embed src="/files/fac-ABP/ABP1-presentacion-final.pdf" width="100%" height="800px"/>
+
+## PBL 1 Rubric
+
+<embed src="/files/fac-ABP/ABP-rubrica.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Supporting documentation for ABP 1**
+
+[Attitudes in science teaching](/files/fac-ABP/ABP1-articulos/Actitudesenlaensenzadelasciencias.pdf){.highlight width="10%" target="_blank"}
+
+[Attitudes towards health](/files/fac-ABP/ABP1-articulos/Actitudeshacialasalud.pdf){.highlight width="10%" target="_blank"}
+
+[It is not possible to kill someone who is not gras](/files/fac-ABP/ABP1-articulos/BadalNoespotmatartotelquenoesgras.pdf){.highlight width="10%" target="_blank"}
+
+[Attention to diversity from diverse proposals](/files/fac-ABP/ABP1-articulos/Canotaciónaladiversidad desdepropuestasdiversas.pdf){.highlight width="10%" target="_blank"}
+
+[Ensenyament multinivell](/files/fac-ABP/ABP1-articulos/Collicott_Ensenyament_multinivell.pdf){.highlight width="10%" target="_blank"}
+
+[DUA guide guidelines](/files/fac-ABP/ABP1-articulos/Dalmaupautes-guia-dua.pdf){.highlight width="10%" target="_blank"}
+
+[Attention to diversity in European countries](/files/fac-ABP/ABP1-articulos/DePradala-atencion-a-la-diversidad-en-los-paises-europeos.pdf){.highlight width="10%" target="_blank"}
+
+[Estrategies and bones practices for educating in diversitat a l'ESO](/files/fac-ABP/ABP1-articulos/EstrategiesibonespractiquespereducarenladiversitatalESO.pdf){.highlight width="10%" target="_blank"}
+
+[Evaluation of environmental attitudes in ESO](/files/fac-ABP/ABP1-articulos/EvaluaciondeactitudesambientalesenlaESO.pdf){.highlight width="10%" target="_blank"}
+
+[The orientation bases](/files/fac-ABP/ABP1-articulos/GarciaSanmartiLasbasesdeorientacion.pdf){.highlight width="10%" target="_blank"}
+
+[Cooperative work](/files/fac-ABP/ABP1-articulos/Gavilan_el_trabajo_cooperativo.pdf){.highlight width="10%" target="_blank"}
+
+[Mesures suports universals center educatiu 2023](/files/fac-ABP/ABP1-articulos/Gencatmesures-suports-universals-centre-educatiu-2023.pdf){.highlight width="10%" target="_blank"}
+
+[A ghetto inside the institute](/files/fac-ABP/ABP1-articulos/Gutierrez_Unguetodentrodelinstituto.pdf){.highlight width="10%" target="_blank"}
+
+[Educational integration of students of immigrant origin](/files/fac-ABP/ABP1-articulos/Integracioneducativadealumnadodeorigeninmigrante.pdf){.highlight width="10%" target="_blank"}
+
+[Introduction to the monograph](/files/fac-ABP/ABP1-articulos/Introduccionalamonografia.pdf){.highlight width="10%" target="_blank"}
+
+[Gènere i ensenyament de les ciències](/files/fac-ABP/ABP1-articulos/Izquierdo_Genereiensenyamentdelesciencies.pdf){.highlight width="10%" target="_blank"}
+
+[Gender and sciences: the next step](/files/fac-ABP/ABP1-articulos/Jimenezgenero-y-ciencias-el-paso-gíente.pdf){.highlight width="10%" target="_blank"}
+
+[DIVERSIDAD](/files/fac-ABP/ABP1-articulos/Mendia_DIVERSIDAD.pdf){.highlight width="10%" target="_blank"}
+
+[Teach different students together](/files/fac-ABP/ABP1-articulos/Pujolas_Ensenarjuntos_Alumnosdiferentes.pdf){.highlight width="10%" target="_blank"}
+
+[Learn science from diversity](/files/fac-ABP/ABP1-articulos/Sanmarti_aprender-ciencias- desde-la-diversidad.pdf){.highlight width="10%" target="_blank"}
+
+[Avaluar per aprendre](/files/fac-ABP/ABP1-articulos/Sanmarti_avaluar_per_aprendre.pdf){.highlight width="10%" target="_blank"}
+
+[Ciències and students immigrats](/files/fac-ABP/ABP1-articulos/Torremilans_cienciesalumnatimmigrats.pdf){.highlight width="10%" target="_blank"}
+
+[Values ​​and attitudes, can you learn science without them?](/files/fac-ABP/ABP1-articulos/Valoresyactitudessetrabajoaprendercienciasinellos.pdf){.highlight width="10%" target="_blank"}
+
+[The orientation base](/files/fac-ABP/ABP1-articulos/VilallongaLabasedeorientación.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+# PBL 2 teaching material
+
+::: panel-tabset
+## ABP 2 Introduction to the case {.active}
+
+<embed src="/files/fac-ABP/ABP2-material-alumnat.pdf" width="100%" height="800px"/>
+
+:::

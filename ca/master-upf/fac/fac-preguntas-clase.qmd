@@ -1,12 +1,12 @@
 ---
-title: "Preguntas en clase"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Preguntes a classe"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
 filename: fac-preguntas-clase
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Assignatura que treballa les bases fonamentals de l'ensenyament de les ciències, fomentant l'alfabetització científica
+categories: [fonamentals, aprenentatge, ensenyament, ciències]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,5 @@ lightbox:
 format: html
 ---
 
-# Preguntas en clase
+# Preguntes a classe
 
-## Introducción

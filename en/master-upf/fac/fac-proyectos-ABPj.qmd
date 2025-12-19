@@ -1,12 +1,12 @@
 ---
-title: "Learning based on projects"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Project Based Learning (PBLj)"
+subtitle: "Fundamental bases of science teaching for scientific literacy"
 filename: fac-proyectos-ABPj
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: The concept of PBLj will also determine the opportunities, needs and obstacles in a PBLj, as well as discuss the evidence on the effectiveness of PBLj.
+categories: [projects, ABPj, learning, teaching, interdisciplinary projects]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,57 @@ lightbox:
 format: html
 ---
 
-# Learning based on projects
+# Project Based Learning (PBLj)
 
-## Introduction
+## Presentation
+
+> Professors Anama Domènech and Xavier Oller direct this part of the Fundamentals of Learning and Teaching of Natural Sciences module called **interdisciplinary projects**, where they delve into the concept of PBLj, also determine the opportunities, needs and obstacles in a PBLj, as well as discuss the evidence on the effectiveness of PBLj. In the last session, the foundations of project-based learning are reviewed, the classroom teaching proposals are analyzed to end up describing the experience of project work in an educational center.
+
+## Didactic material for all sessions and works
+
+::: callout-tip
+## Click on each of the tabs to view the material of each session
+:::
+
+::: panel-tabset
+## Asynchronous session
+
+<embed src="/files/fac-proyectos-ABPj/projectes-interdisciplinaris.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Article analysis task
+
+<embed src="/files/fac-proyectos-ABPj/MARTINEZ_PEDRO_Article_4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 1 {.active}
+
+<embed src="/files/fac-proyectos-ABPj/fac-proyectos-inter-S2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/fac-proyectos-ABPj/fac-proyectos-inter-S3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[Context and model in project-based learning](/files/fac-proyectos-ABPj/contexto-y-modelo-aprendizaje.pdf){.highlight width="10%" target="_blank"}
+
+[Project-Based Learning in the STEM framework](/files/fac-proyectos-ABPj/Domenech_2018.pdf){.highlight width="10%" target="_blank"}
+
+[Rubric analysis tool](/files/fac-proyectos-ABPj/eina-analisi-projectes-rubriques.pdf){.highlight width="10%" target="_blank"}
+
+[Project example: Química amb substància](/files/fac-proyectos-ABPj/exemples-projectes.pdf){.highlight width="10%" target="_blank"}
+
+[Revisiting the effects of project-based learning...](/files/fac-proyectos-ABPj/PBL_metaanalysis_2019.pdf){.highlight width="10%" target="_blank"}
+
+[How to design a good STEM project? Pérez-Torres (2021)](/files/fac-proyectos-ABPj/Perez-Torres_2021.pdf){.highlight width="10%" target="_blank"}
+
+[Does student learning improve through project-based instruction?](/files/fac-proyectos-ABPj/Que_Function_16_learning.pdf){.highlight width="10%" target="_blank"}
+
+[Rubrica ABPMap Pérez-Torres (2021)](/files/fac-proyectos-ABPj/Project-based_learning_2019.pdf){.highlight width="10%" target="_blank"}
+
+[Rubrica ABPMap Domenech (2018)](/files/fac-proyectos-ABPj/rubrica-Domenech_2018.pdf){.highlight width="10%" target="_blank"}
+
+
+:::

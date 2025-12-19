@@ -1,12 +1,12 @@
 ---
-title: "Trabajos prácticos"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Treball pràctic"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
 filename: fac-trabajos-practicos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description:  Analitzar per què es fa el treball experimental a les classes de ciències (propòsit del treball experimental), així com reflexionar sobre com es poden desenvolupar millor la comprensió i els procediments dels estudiants mitjançant el treball experimental.
+categories: [pràctica, laboratori, experiment, aprenentatge, ensenyament]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,37 @@ lightbox:
 format: html
 ---
 
-# Trabajos prácticos
+# Treball pràctic
 
-## Introducción
+## Introducció
+
+> El professor Xavier Muñoz dirigeix ​​aquesta part del mòdul Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals anomenada **treball pràctic**, amb l'objectiu d'analitzar per què es fa el treball experimental a les classes de ciències (propòsit del treball experimental), així com reflexionar sobre com es poden desenvolupar millor la comprensió i els procediments dels alumnes mitjançant el treball experimental. Finalment, explorar com presentar activitats experimentals d'una manera que realment ajudi a la construcció del coneixement científic.
+
+## Material didàctic per a totes les sessions
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió i el material didàctic
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## 24 Experiments per a l'aula amb material senzill
+
+<embed src="/files/fac-trabajos-practicos/fac-activitats-practiques.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Experiment de Coca-Cola amb Mentos
+
+<embed src="/files/fac-trabajos-practicos/fac-Mentos-cocacola.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Experiment del volcà de bombolles
+
+<embed src="/files/fac-trabajos-practicos/fac-volcan-burbujas-limon.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

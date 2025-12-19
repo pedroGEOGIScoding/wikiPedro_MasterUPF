@@ -1,12 +1,12 @@
 ---
-title: "Análisis de secuencias"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Anàlisi de seqüències"
+subtitle: "Programació, innovació i reflexió sobre la pràctica docent en ciència"
 filename: deia-analisis-secuencias
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Assignatura centrada en el disseny i avaluació de situacions d'aprenentatge i recerca-acció a l'aula
+categories: [disseny, innovació, aprenentatge, seqüències, anàlisi]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,53 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentació
+
+> El professor Marcel Costa dirigeix ​​aquesta part del mòdul **Disseny d'entorns d'aprenentatge innovadors i iniciació a la recerca educativa en ciències naturals** denominat **anàlisi de seqüències didàctiques**, per donar rellevància a la pràctica reflexiva en l'ensenyament i a la vida quotidiana del professor com a mètode de transformació de la realitat i de millora dels processos d'ensenyament-aprenentatge. Aprendre el procés de disseny i avaluació de situacions d'aprenentatge a partir del model didàctic vigent, i contextualitzats en el currículum de treball per competències.
+
+## Material didàctic per a la sessió i material de suport
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material didàctic de la sessió i el material de suport
+:::
+
+::: column-margin
+**Documentació de suport**
+
+[El desenvolupament de les unitats didàctiques de competència](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
+
+[Model de cicle d'aprenentatge d'una lliçó de ciències](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Material analitzat {.active}
+
+<embed src="/files/deia-docs/deia-estacions-any.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tasca feta
+
+<embed src="/files/deia-docs/deia-analisi-SD-Pedro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Altres materials per analitzar
+
+<embed src="/files/deia-docs/deia-canvi-fisic-canvi-quimic.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Altres materials per analitzar
+
+<embed src="/files/deia-docs/deia-Els-bacteris-1ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Altres materials per analitzar
+
+<embed src="/files/deia-docs/deia-microorganismes-i-salut.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Altres materials per analitzar
+
+<embed src="/files/deia-docs/deia-moviment.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Altres materials per analitzar
+
+<embed src="/files/deia-docs/deia-viu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+

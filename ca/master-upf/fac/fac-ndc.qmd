@@ -1,12 +1,12 @@
 ---
-title: "Naturaleza de la ciencia"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "naturalesa de la ciència"
+subtitle: "Bases fonamentals de l'ensenyament de les ciències per a l'alfabetització científica"
 filename: fac-ndc
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Com sap la ciència el que sap? Com es construeix el coneixement? Quines són les limitacions?
+categories: [natura, aprenentatge, ensenyament, ciència]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,128 @@ lightbox:
 format: html
 ---
 
-# Naturaleza de la ciencia
+# naturalesa de la ciència
 
-## Introducción
+## Presentació
+
+> El professor Diego Sanjulián Alonso dirigeix ​​aquesta part del mòdul Fonaments de l'aprenentatge i l'ensenyament de les ciències naturals anomenat **naturalesa de la ciència**, on la naturalesa de la ciència s'aborda amb diferents preguntes: Com sap la ciència el que sap? Com es construeix el coneixement? Quines són les limitacions? S'han realitzat tres sessions teòriques, altres tres sessions asíncrones i una sessió grupal que ha implicat una presentació del treball en grup.
+
+## Material didàctic per a totes les sessions
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/NdC-docs/NdC-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/NdC-docs/NdC-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 3
+
+<embed src="/files/NdC-docs/NdC-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+
+::: column-margin
+**Documentació de suport**
+
+[Anàlisi de biaixos cognitius](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%" target="_blank"}
+
+[Anàlisi de fal·làcies](/files/NdC-docs/AnalisisdeFalacias.pdf){.highlight width="10%" target="_blank"}
+
+[Assaig 12](/files/NdC-docs/Assaig12.pdf){.highlight width="10%" target="_blank"}
+
+[Balancement d'arguments](/files/NdC-docs/Balanzadeargumentos.pdf){.highlight width="10%" target="_blank"}
+
+[CESINF](/files/NdC-docs/CESINF.pdf){.highlight width="10%" target="_blank"}
+
+[Classificació d'informació i arguments](/files/NdC-docs/Classificaciondeinformacionyargume.pdf){.highlight width="10%" target="_blank"}
+
+[Exemples per construcció](/files/NdC-docs/ExemplesperConstruir.pdf){.highlight width="10%" target="_blank"}
+
+[Guia de revisió del congrés](/files/NdC-docs/GuiaReviewCongres.pdf){.highlight width="10%" target="_blank"}
+
+[Lectura crítica en 3 passos](/files/NdC-docs/Lecturacriticaen3pasos.pdf){.highlight width="10%" target="_blank"}
+
+[Llista d'articles](/files/NdC-docs/LlistaArticles.pdf){.highlight width="10%" target="_blank"}
+
+[Template CSC assaig](/files/NdC-docs/PlantillaCSCAssaig.pdf){.highlight width="10%" target="_blank"}
+
+[Plantilla de lectura de text crític](/files/NdC-docs/PlantillaLecturacriticadetextos.pdf){.highlight width="10%" target="_blank"}
+
+[Rubrica McLeares](/files/NdC-docs/RubricaMcLeares.pdf){.highlight width="10%" target="_blank"}
+
+[Rúbrica del pòster](/files/NdC-docs/RubricaPoster.pdf){.highlight width="10%" target="_blank"}
+
+[Rubrica oral presentations](/files/NdC-docs/RubricaPresentacionsOrals.pdf){.highlight width="10%" target="_blank"}
+
+[Taula de validació de fonts](/files/NdC-docs/Tablevalidaciondefuentes.pdf){.highlight width="10%" target="_blank"}
+
+[Targetes converses socràtiques](/files/NdC-docs/TargetesConvSocratics.pdf){.highlight width="10%" target="_blank"}
+
+[Càcera d'arguments](/files/NdC-docs/caceraarguments.pdf){.highlight width="10%" target="_blank"}
+
+[Criteris per articles](/files/NdC-docs/criterisarticles.pdf){.highlight width="10%" target="_blank"}
+
+[Guia de recerca](/files/NdC-docs/guiorecerca.pdf){.highlight width="10%" target="_blank"}
+
+[Model d'article 2](/files/NdC-docs/modelarticle2.pdf){.highlight width="10%" target="_blank"}
+
+[Poster de la superestructura](/files/NdC-docs/superestructuraPoster.pdf){.highlight width="10%" target="_blank"}
+
+[Text científic mític](/files/NdC-docs/textCientificMitic.pdf){.highlight width="10%" target="_blank"}
+:::
+
+## Material per al treball asíncron i en grup
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada treball
+:::
+
+::: panel-tabset
+## Asíncron 1: creativitat {.active}
+
+<embed src="/files/NdC-docs/NdC-SA1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 1 - Presentació de la creativitat
+
+<embed src="/files/NdC-docs/NdC-SA1-Creativitat.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 1 - Presentació de cinema
+
+<embed src="/files/NdC-docs/NdC-SA1-Cinema.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 2a - Pensament crític
+
+<embed src="/files/NdC-docs/NdC-SA2a.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 2b - Pensament crític
+
+<embed src="/files/NdC-docs/NdC-SA2b.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 2 - Presentació Lectura crítica
+
+<embed src="/files/NdC-docs/NdC-SA2-Lectura-critica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asíncron 3 - Expressió científica
+
+<embed src="/files/NdC-docs/NdC-SA3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asíncron 3 - Presentació Expressió científica
+
+<embed src="/files/NdC-docs/NdC-SA3-Expression-cientifica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Informe del grup 1
+
+<embed src="/files/NdC-docs/NdC-tasca-grupal-doc.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Presentació del grup 2
+
+<embed src="/files/NdC-docs/NdC-tasca-grupal-presentation.pdf" type="application/pdf" width="100%" height="800px"/>
+:::

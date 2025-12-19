@@ -1,12 +1,12 @@
 ---
-title: "Progesiones de aprendizaje de las grandes ideas de la ciencia"
-subtitle: "Programación, innovación y reflexión sobre la práctica docente en ciencias"
+title: "Progressos d'aprenentatge per a les grans idees de la ciència"
+subtitle: "Programació, innovació i reflexió sobre la pràctica docent en ciència"
 filename: deia-pro-aprendizaje-ciencia
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Assignatura centrada en el disseny i avaluació de situacions d'aprenentatge i recerca-acció a l'aula
+categories: [disseny, innovació, aprenentatge, idees, mapes de progressió]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,31 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentació
+
+> El professor Iván Marchán Carvajal dirigeix ​​aquesta part del mòdul **Disseny d'entorns innovadors d'aprenentatge i iniciació a la recerca educativa en ciències naturals** denominat **progressions d'aprenentatge de les grans idees de la ciència**, per definir què són realment, per a què serveixen i exemples.
+
+
+## Material didàctic per a les sessions i material de suport
+
+::: callout-tip
+## Cliqueu a cadascuna de les pestanyes per veure el material didàctic de les sessions i el material de suport
+:::
+
+::: column-margin
+**Documentació de suport**
+
+[En el nou currículum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Sessió 1 {.active}
+
+<embed src="/files/deia-docs/Progression-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/deia-docs/concepts-maps.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::

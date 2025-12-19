@@ -1,12 +1,12 @@
 ---
-title: "Actividades fuera de clase"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Activities outside of class"
+subtitle: "Fundamental bases of science teaching for scientific literacy"
 filename: fac-actividades-fuera-clase
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: Subject that works on the fundamental bases of science teaching, promoting scientific literacy
+categories: [fundamentals, learning, teaching, sciences]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,9 @@ lightbox:
 format: html
 ---
 
-# Actividades fuera de clase
+# Activities outside of class
 
-## Introducción
+
+## under construction
+## Under construction
+## Under construction

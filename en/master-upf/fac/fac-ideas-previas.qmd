@@ -1,12 +1,12 @@
 ---
-title: "Ideas previas"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Previous ideas"
+subtitle: "Fundamental bases of science teaching for scientific literacy"
 filename: fac-ideas-previas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description: The importance of students' previous ideas is worked on in their learning of new concepts that may be alternatives to their previous ideas. So in this block we work on the importance of alternative conceptions in teaching-learning.
+categories: [previous ideas, learning, teaching]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,55 @@ lightbox:
 format: html
 ---
 
-# Ideas previas
+# Previous ideas
 
-## Introducción
+## Presentation
+
+> Professor Marcel Costa directs this part of the Fundamentals of Learning and Teaching of Natural Sciences module called **previous ideas and learning**, with the main idea that *all the factors that influence learning, the most important one consists of what the student already knows. It will have to be made clear and taught accordingly*. So in this block we work on the importance of alternative conceptions in teaching-learning.
+
+## Didactic material for all sessions
+
+::: callout-tip
+## Click on each of the tabs to view the material of each session
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/fac-ideas-previas/ideas-previas-aprendizaje.pdf" width="100%" height="800px"/>
+
+## Practical task
+
+<embed src="/files/fac-ideas-previas/tasca-exito-o-fracaso.pdf" width="100%" height="800px"/>
+
+:::
+
+## Low-cost and easy experiments on atmospheric water
+
+::: panel-tabset
+## Activity proposal - Clouds 1 {.active}
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa.pdf" width="100%" height="800px"/>
+
+## Activity proposal - Clouds 2
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa1.pdf" width="100%" height="800px"/>
+
+## Activity proposal - Clouds 3
+
+<embed src="/files/fac-ideas-previas/nubes-propuesta-educativa2.pdf" width="100%" height="800px"/>
+
+:::
+
+::: column-margin
+**Supporting documentation**
+
+[Common conceptions and difficulties of biological thinking in the construction of biological thinking](/files/fac-ideas-previas/concepcións-construccion-pensamiento-biologico.pdf){.highlight width="10%" target="_blank"}
+
+[The ideas of students in physics](/files/fac-ideas-previas/ideas-alumnado-fisica.pdf){.highlight width="10%" target="_blank"}
+
+[On the persistence or not of the students' ideas in geology](/files/fac-ideas-previas/ideas-alumnado-geologia.pdf){.highlight width="10%" target="_blank"}
+
+[Ideas and difficulties in learning chemistry](/files/fac-ideas-previas/ideas-dificuldades-aprendizaje-quimica.pdf){.highlight width="10%" target="_blank"}
+
+:::

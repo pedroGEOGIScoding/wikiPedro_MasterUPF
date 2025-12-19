@@ -1,12 +1,12 @@
 ---
-title: "Trabajos prácticos"
-subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
+title: "Practical work"
+subtitle: "Fundamental bases of science teaching for scientific literacy"
 filename: fac-trabajos-practicos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+description:  Analyze why experimental work is done in science classes (purpose of experimental work), as well as reflect on how students' understanding and procedures can be better developed through experimental work.
+categories: [practice, laboratory, experiment, learning, teaching]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,37 @@ lightbox:
 format: html
 ---
 
-# Trabajos prácticos
+# Practical work
 
-## Introducción
+## Introduction
+
+> Professor Xavier Muñoz directs this part of the Fundamentals of Learning and Teaching of Natural Sciences module called **practical work**, with the objectives of analyzing why experimental work is done in science classes (purpose of experimental work), as well as reflecting on how students' understanding and procedures can be better developed through experimental work. Finally, explore how to present experimental activities in a way that really helps the construction of scientific knowledge.
+
+## Didactic material for all sessions
+
+::: callout-tip
+## Click on each of the tabs to view the material of each session and teaching material
+:::
+
+::: panel-tabset
+## Session 1 {.active}
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Session 2
+
+<embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## 24 Experiments for the classroom with simple material
+
+<embed src="/files/fac-trabajos-practicos/fac-activitats-practiques.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Coca-Cola Experiment with Mentos
+
+<embed src="/files/fac-trabajos-practicos/fac-Mentos-cocacola.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Bubble volcano experiment
+
+<embed src="/files/fac-trabajos-practicos/fac-volcan-burbujas-limon.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
