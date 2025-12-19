@@ -5,8 +5,8 @@ filename: deia-ensenar-conversar
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura centrada en el diseño y evaluación de situaciones de aprendizaje y la investigación-acción en el aula
-categories: [diseño, innovación, aprendizaje]
+description: Asignatura centrada en trabajar la competencia conversacional en el trabajo docente. Trabajar las habilidades comunicativas para favorecer la interacción y guiar el aprendizaje de los alumnos
+categories: [diseño, innovación, aprendizaje, conversar, scoba, ESETE, preguntas abiertas]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -19,3 +19,62 @@ format: html
 ---
 
 ## Presentación
+
+> Las profesoras Laura Farró y Sílvia López dirigen esta parte del módulo de **Diseño de entornos de aprendizaje innovadores e iniciación en la investigación educativa de las ciencias naturales** denominado **enseñar implica conversar**, para trabajar la competencia conversacional en el trabajo docente. Trabajar las habilidades comunicativas para favorecer la interacción y guiar el aprendizaje de los alumnos.
+
+
+## Material didáctico de las sesiones y material de apoyo
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material didáctico de las sesiones y el material de apoyo
+:::
+
+::: column-margin
+**Documentación de apoyo**
+
+[Cartas conversacionales](/files/deia-docs/conversar/Cartes_conversacionals.pdf){.highlight width="10%" target="_blank"}
+
+[ESET Estrategias discursivas](/files/deia-docs/conversar/ESET_Estrategies-discursives.pdf){.highlight width="10%" target="_blank"}
+
+[Estrategias conversación exploratoria](/files/deia-docs/conversar/Estrategies-conversa-exploratoria.pdf){.highlight width="10%" target="_blank"}
+
+[Pauta Tarea ESETE](/files/deia-docs/conversar/Pauta-Tasca-ESETE.pdf){.highlight width="10%" target="_blank"}
+
+[Presentación oral](/files/deia-docs/conversar/Presentaci-oral.pdf){.highlight width="10%" target="_blank"}
+
+[SCOBA TFM 2016](/files/deia-docs/conversar/SCOBA-TFM-2016.pdf){.highlight width="10%" target="_blank"}
+
+[Tarea Conversar Medio](/files/deia-docs/conversar/Tasca-Conversar-Medio.pdf){.highlight width="10%" target="_blank"}
+
+[Herramientas para el cambio](/files/deia-docs/conversar/eines_per_al_canvi3.pdf){.highlight width="10%" target="_blank"}
+
+[SCOBA módulo EIC](/files/deia-docs/conversar/scoba-modul-EIC.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+::: panel-tabset
+## Sesión 1 {.active}
+
+<embed src="/files/deia-docs/conversar-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/deia-docs/conversar-sesion2.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 3
+
+<embed src="/files/deia-docs/conversar-sesion3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 4
+
+<embed src="/files/deia-docs/conversar-sesion4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Trabajo para la sesión 4 - Instrucciones
+
+<embed src="/files/deia-docs/Tasca-session4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Trabajo para la sesión 4 - Tarea realizada
+
+<embed src="/files/deia-docs/TascaPedro-session4-Actividad-ESET-Competencial.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
