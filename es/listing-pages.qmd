@@ -3,16 +3,18 @@ title: "Todas las páginas de este sitio"
 filename: listing-pages
 listing:
   contents:
-    - "*.qmd"
+    - "master-upf/*.qmd"
+    - "portfolio/*.qmd"
+    - "recursos/*.qmd"
   exclude:
-    - filename: "index"
-    - filename: "Page Not Found"
+    - filename: "index.qmd"
+    - filename: "404.qmd"
   type: default
   image-align: left
   fields: [title, description, categories]
   sort:
     - "title asc"
-  sort-ui: [title, categories]
+  sort-ui: [title, categories] 
   filter-ui: [title, categories]
   categories: true            # Show category list
   page-size: 5              # Items per page (pagination)
