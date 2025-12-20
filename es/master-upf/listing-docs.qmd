@@ -10,7 +10,7 @@ format:
   html
 listing:
     id: documents
-    contents: files-qmd
+    contents: "files-qmd/*.qmd"
     sort-ui: [title, categories]
     filter-ui: [title, categories]
     type: default
