@@ -31,9 +31,9 @@ format: html
 ::: column-margin
 **Documentació de suport**
 
-[El desenvolupament de les unitats didàctiques de competència](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
+- [El desenvolupament de les unitats didàctiques de competència](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
 
-[Model de cicle d'aprenentatge d'una lliçó de ciències](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
+- [Model de cicle d'aprenentatge d'una lliçó de ciències](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
 
 :::
 

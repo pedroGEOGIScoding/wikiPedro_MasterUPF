@@ -37,9 +37,9 @@ format: html
 ::: column-margin
 **Documentación de apoyo**
 
-[Bases metodològiques per a la recerca educativa](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
+- [Bases metodològiques per a la recerca educativa](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
 
-[Guia del portafoli del practicum](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
+- [Guia del portafoli del practicum](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
 
 :::
 

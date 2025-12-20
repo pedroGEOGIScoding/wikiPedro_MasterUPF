@@ -32,7 +32,7 @@ format: html
 ::: column-margin
 **Supporting documentation**
 
-[The new curriculum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+- [The new curriculum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
 
 :::
 

@@ -31,9 +31,9 @@ format: html
 ::: column-margin
 **Supporting documentation**
 
-[The development of competency teaching units](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
+- [The development of competency teaching units](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
 
-[Learning Cycle Model of a Science Lesson](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
+- [Learning Cycle Model of a Science Lesson](/files/deia-docs/Learning-Cycle.pdf){.highlight width="10%" target="_blank"}
 
 :::
 

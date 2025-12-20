@@ -37,9 +37,9 @@ format: html
 ::: column-margin
 **Supporting documentation**
 
-[Methodological bases for educational research](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
+- [Methodological bases for educational research](/files/deia-docs/bases-metodologiques-fulldetreball.pdf){.highlight width="10%" target="_blank"}
 
-[Practicum portfolio guide](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
+- [Practicum portfolio guide](/files/deia-docs/guia-portafoli.pdf){.highlight width="10%" target="_blank"}
 
 :::
 
