@@ -20,6 +20,15 @@ lightbox:
 format: html
 ---
 
+::: column-margin
+**Important links**
+
+- [The new curriculum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+
+- [Baccalaureate competencies](https://projectes.xtec.cat/nou-curriculum/batxillerat/){.highlight width="10%" target="_blank"}
+
+:::
+
 <div class="accordion-container">
 <div class="accordion" id="competenciasAccordion">
 

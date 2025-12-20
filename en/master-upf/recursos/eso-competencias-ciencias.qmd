@@ -20,6 +20,18 @@ lightbox:
 format: html
 ---
 
+::: column-margin
+**Important links**
+
+- [The new curriculum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+
+- [Basic education](https://projectes.xtec.cat/nou-curriculum/educacio-basica/){.highlight width="10%" target="_blank"}
+
+- [Orientations of the subjects of Geology and Biology for ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-biologia-i-geologia-de-leso/){.highlight width="10%" target="_blank"}
+
+- [Orientations of the subjects of Physics and Chemistry for ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-fisica-i-quimica-de-leso/){.highlight width="10%" target="_blank"}
+:::
+
 <div class="accordion-container">
 <div class="accordion" id="competenciasAccordion">
 
