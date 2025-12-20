@@ -10,15 +10,15 @@ lightbox:
 ---
 
 ::: {.light-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-color.jpg){fig-align="center" group="about-this-me"}
+![](/images/about/pedro-color.jpg){fig-align="center" group="about-this-me"}
 
-![](../images/about/class-image-home-page.png){fig-align="center" group="about-this-me"}
+![](/images/about/class-image-home-page.png){fig-align="center" group="about-this-me"}
 :::
 
 ::: {.dark-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-bw.jpg){fig-align="center" group="about-this-me"}
+![](/images/about/pedro-bw.jpg){fig-align="center" group="about-this-me"}
 
-![](../images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me"}
+![](/images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me"}
 :::
 
 
@@ -94,7 +94,7 @@ Actualmente, estudiando el master de profesorado de secundaria en la universidad
 
 :::{.column-}
 
-| Date | Author | Title | Journal or Publisher |
+| Fecha | Autor | Titulo | Revista o Editor |
 | -- | -- | :-- | :-- |
 | 2022 | **Pedro Martinez Duran** and Jarrad Grahame | New insights in the offshore fold-and-thrust belt in Timor Trough | AAPG Workshop Structural Styles and Hydrocarbon Prospectivity in Thrust Belt Settings: A Global Perspective. Barcelona |
 | 2020 | Jarrad Grahame and **Pedro Martinez Duran** | New broadband imaging reveals prospectivity insights | GEO ExPro Magazine, Vol. 17, No. 3 |

@@ -26,11 +26,11 @@ L'activitat educativa del Carlos se centra en els 4 anys d'ESO i els dos batxill
 
 ::: {style="display: flex; gap: 0.5em; align-items: stretch; justify-content: space-between;"}
 ::: {style="flex: 50%;"}
-![El pati de l'escola](../images/practicum/cole-sg-patio1.jpg)
+![El pati de l'escola](/images/practicum/cole-sg-patio1.jpg)
 :::
 
 ::: {style="flex: 50%;"}
-![Entrada a l'escola pel pati](../images/practicum/cole-sg-patio-2.jpg)
+![Entrada a l'escola pel pati](/images/practicum/cole-sg-patio-2.jpg)
 :::
 :::
 

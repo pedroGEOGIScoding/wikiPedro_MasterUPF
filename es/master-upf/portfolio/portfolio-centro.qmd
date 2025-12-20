@@ -26,11 +26,11 @@ La actividad educativa de Carlos se concentra en 4 de ESO y en los dos cursos de
 
 ::: {style="display: flex; gap: 0.5em; align-items: stretch; justify-content: space-between;"}
 ::: {style="flex: 50%;"}
-![El patio del colegio](../images/practicum/cole-sg-patio1.jpg)
+![El patio del colegio](/images/practicum/cole-sg-patio1.jpg)
 :::
 
 ::: {style="flex: 50%;"}
-![Entrada al colegio por el patio](../images/practicum/cole-sg-patio-2.jpg)
+![Entrada al colegio por el patio](/images/practicum/cole-sg-patio-2.jpg)
 :::
 :::
 

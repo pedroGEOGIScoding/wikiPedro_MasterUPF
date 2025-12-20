@@ -26,11 +26,11 @@ Carlos's educational activity focuses on 4 years of ESO and the two high school 
 
 ::: {style="display: flex; gap: 0.5em; align-items: stretch; justify-content: space-between;"}
 ::: {style="flex: 50%;"}
-![The school yard](../images/practicum/cole-sg-patio1.jpg)
+![The school yard](/images/practicum/cole-sg-patio1.jpg)
 :::
 
 ::: {style="flex: 50%;"}
-![Entrance to the school through the patio](../images/practicum/cole-sg-patio-2.jpg)
+![Entrance to the school through the patio](/images/practicum/cole-sg-patio-2.jpg)
 :::
 :::
 

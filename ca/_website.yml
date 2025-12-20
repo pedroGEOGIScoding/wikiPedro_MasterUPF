@@ -40,9 +40,9 @@ website:
       - sidebar:recursos
       - sidebar:about
       - text: "Mapa del lloc"
-        href: listing-pages.qmd
+        href: master-upf/listing-pages.qmd
       - text: "Documentació"
-        href: listing-docs.qmd
+        href: master-upf/listing-docs.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16x;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Català</a>"
@@ -67,8 +67,8 @@ website:
       contents:
         - section: "Portfolio"
           contents:
-          - portfolio/portfolio-relato.qmd
-          - portfolio/portfolio-centro.qmd
+          - master-upf/portfolio/portfolio-relato.qmd
+          - master-upf/portfolio/portfolio-centro.qmd
 
     - id: "masterUPF"
       title: "Màster UPF"
@@ -162,11 +162,11 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - recursos/edulinks.qmd
-        - recursos/writing.qmd
-        - recursos/how-to-take-notes.qmd
-        - recursos/eso-competencias-ciencias.qmd
-        - recursos/bach-competencias-ciencias.qmd
+        - master-upf/recursos/edulinks.qmd
+        - master-upf/recursos/writing.qmd
+        - master-upf/recursos/how-to-take-notes.qmd
+        - master-upf/recursos/eso-competencias-ciencias.qmd
+        - master-upf/recursos/bach-competencias-ciencias.qmd
 
     - id: "about"
       title: "Sobre mí"
@@ -182,9 +182,9 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - about/about-this-me.qmd
-        - about/about-this-site.qmd
-        - about/about-this-images-credit.qmd
+        - master-upf/about/about-this-me.qmd
+        - master-upf/about/about-this-site.qmd
+        - master-upf/about/about-this-images-credit.qmd
         - text: "El meu racó de programador"
           href: https://pedrogeogisdev.com/
 
@@ -195,7 +195,7 @@ website:
       collapse-level: 0
       align: center
       contents:
-        - listing-pages.qmd
+        - master-upf/listing-pages.qmd
 
     - id: "docs"
       title: "Documentació"
@@ -204,7 +204,7 @@ website:
       collapse-level: 0
       align: center
       contents:
-        - listing-docs.qmd
+        - master-upf/listing-docs.qmd
 
   page-footer:
     background: primary

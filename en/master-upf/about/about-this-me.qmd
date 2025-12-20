@@ -10,15 +10,15 @@ lightbox:
 ---
 
 ::: {.light-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-color.jpg){fig-align="center" group="about-this-me"}
+![](/images/about/pedro-color.jpg){fig-align="center" group="about-this-me"}
 
-![](../images/about/class-image-home-page.png){fig-align="center" group="about-this-me"}
+![](/images/about/class-image-home-page.png){fig-align="center" group="about-this-me"}
 :::
 
 ::: {.dark-content layout="[31,69]" layout-valign="center"}
-![](../images/about/pedro-bw.jpg){fig-align="center" group="about-this-me"}
+![](/images/about/pedro-bw.jpg){fig-align="center" group="about-this-me"}
 
-![](../images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me"}
+![](/images/about/class-image-home-page-bw.png){fig-align="center" group="about-this-me"}
 :::
 
 
@@ -96,14 +96,14 @@ Currently, studying the master's degree in secondary teaching at Pompeu Fabra Un
 :::{.column-}
 
 | Date | Author | Title | Journal or Publisher |
-None
+| -- | -- | :-- | :-- |
 | 2022 | **Pedro Martinez Duran** and Jarrad Grahame | New insights in the offshore fold-and-thrust belt in Timor Trough | AAPG Workshop Structural Styles and Hydrocarbon Prospectivity in Thrust Belt Settings: A Global Perspective. Barcelona |
-| 2020 | Jarrad Grahame and **Pedro Martinez Duran** | New broadband imaging reveals prospective insights | GEO ExPro Magazine, Vol. 17, No. 3 |
+| 2020 | Jarrad Grahame and **Pedro Martinez Duran** | New broadband imaging reveals prospectivity insights | GEO ExPro Magazine, Vol. 17, No. 3 |
 | 2019 | **Martinez Duran, P.**, Baillie, P., Carrillo, E. & Duval, G. | Geological Development of the Timor Orogen | Geological Society, London, Special Publications, 490 |
 | 2019 | Baillie, P., Keep, Myra., **Martinez Duran, P.**, Carrillo, E. & Duval, G. | Broadband seismic imaging around the Banda Arc: changes in the anatomy of offshore fold-and-thrust belts | Geological Society, London, Special Publications, 490 |
 | 2019 | Baillie, P., Carter, Paul. & **Martinez Duran, P.** | Evolution and Plays of the Banda Arc | AAPG. Search and Discovery Article #11245 |
 | 2018 | **Martinez Duran, P.**, Parsons, M., & Duval, G. | Revealing the Complexities of the Gabon Southern Margin through Gravity, Magnetics and Seismic Data Integration | AAPG International Conference and Exhibition. Cape Town, South Africa |
-| 2018 | **Martinez Duran, P.**, Parsons, M., Soyer, W., & Duval, G. | Evidence for a more complex crustal setting offshore Gabon: support from a high-resolution regional seismic dataset integrated with 3D grav/mag modeling | 80th EAGE Annual Conference, Copenhagen |
+| 2018 | **Martinez Duran, P.**, Parsons, M., Soyer, W., & Duval, G. | Evidence for a more complex crustal setting offshore Gabon: support from a high-resolution regional seismic dataset integrated with 3D grav/mag modelling | 80th EAGE Annual Conference, Copenhagen |
 | 2017 | **Martinez Duran, P.**, Baillie, P., Carrillo, E., & Duval, G. | Geological development of the offshore Timor Orogen | Petroleum Group of the Geological Society of London, Burlington House, London |
 | 2017 | Baillie, P., **Martinez Duran, P.**, Carrillo, E., & Duval, G. | Fold & Thrust Belts of the Banda Arc | Petroleum Group of the Geological Society of London, Burlington House, London |
 | 2017 | Parsons, M., **Martinez Duran, P.**, Soyer, W., & Duval, G. | Understanding the tectonic history offshore Southern Gabon with high resolution seismic, gravity and magnetics | First Break, 35(September), 1–8 |
@@ -111,10 +111,10 @@ None
 | 2015 | **Martinez-Duran, P.**, Duval, G. and Baillie, P. | New Broadband Seismic Unveils the Complexity of the Timor-Leste Offshore Subduction Zone | AAPG Melbourne, Australia |
 | 2015 | **Martinez-Duran, P.**, Gater, R., Chesser, K., et al. | The Petroleum Potential of the Late Cretaceous-Palaeogene Sediments of the Reinga, Northland and Deepwater Taranaki Basins | AAPG Melbourne, Australia |
 | 2015 | **Martinez-Duran, P.**, Gater, R., Chesser, K., et al. | Insights into the reservoir quality of the Cretaceous to Miocene sediments of the Reinga/Northland and deepwater Taranaki basins: An integrated approach | New Zealand Petroleum Conference, Auckland |
-| 2013 | **Martinez Duran, P.** et al. | Implications of a new analytical program on the petroleum potential of the late Cretaceous-Palaeocene sediments of the Great South and Canterbury Basins | New Zealand Petroleum Conference, Auckland |
-| 2012 | Pueyo, E.L., Calvin, P., Casas, A.M., et al. | A research plan for a large potential CO2 reservoir in the Southern Pyrenees | Geo-Themes, 13, pp.1970-1973 |
-| 2000 | Regueiro, M., **Martinez Duran, P.**, Gonzalo, F. | Industrial Rocks and Minerals from Spain | Geomining Technological Institute of Spain |
-| 2000 | **Martinez Duran, P.** | Industrial Minerals in the South Cone | European Geologist, no. 9. Journal of the European Federation of Geologists |
+| 2013 | **Martinez Duran, P.** et al. | Implications of a new analytical programme on the petroleum potential of the late Cretaceous-Palaeocene sediments of the Great South and Canterbury Basins | New Zealand Petroleum Conference, Auckland |
+| 2012 | Pueyo, E.L., Calvin, P., Casas, A.M., et al. | A research plan for a large potential CO2 reservoir in the Southern Pyrenees | Geo-Temas, 13, pp.1970-1973 |
+| 2000 | Regueiro, M., **Martinez Duran, P.**, Gonzalo, F. | Rocas y Minerales Industriales de España | Instituto Tecnológico Geominero de España |
+| 2000 | **Martinez Duran, P.** | Industrial Minerals in the South Cone | European Geologist, nº 9. Journal of the European Federation of Geologists |
 | 2000 | Gajardo, A., **Martinez Duran, P.**, Regueiro, M. | Industrial Minerals in South America: European future industrial minerals grain-stock? | 36th Forum on Geology of Industrial Minerals and 11th Extractive Industry Geology Conference. Bath (U.K) |
 | 1997 | **Martinez Duran, P.**, Melendez, A., Floquet, M. | Spatial distribution of parasequences controlled by paleogeographical local features. Examples from the Central Iberian Range | 18th Regional Meeting of Sedimentology (I.A.S). Heidelberg, Germany |
 | 1995 | **Martinez Duran, P.**, Melendez, A. | Identification of sequences boundaries in epicontinental carbonate platform. Examples from Late Cenomanian-Middle Turonian. Central Iberian Range, Spain | 16th Regional Meeting of Sedimentology. Aix-les-Bains, France |

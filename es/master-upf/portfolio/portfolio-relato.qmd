@@ -34,11 +34,11 @@ Ambos aspectos los he comentado con Carlos, mi tutor, y obviamente él se da cue
 
 ::::: {style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;"}
 ::: {style="flex: 50%;"}
-![Sala de profesores de Bachillerato](../images/practicum/sala-profes.png)
+![Sala de profesores de Bachillerato](/images/practicum/sala-profes.png)
 :::
 
 ::: {style="flex: 50%;"}
-![Entrada principal del centro](../images/practicum/entrada-sg.png)
+![Entrada principal del centro](/images/practicum/entrada-sg.png)
 :::
 :::::
 
@@ -85,7 +85,7 @@ Finalmente, me gustaría destacar mi asistencia a la reunión del claustro de ba
 :::
 
 ::: {style="flex: 40%;"}
-![Una de las clases de bachillerato](../images/practicum/clase-sg.png)
+![Una de las clases de bachillerato](/images/practicum/clase-sg.png)
 :::
 :::::
 
@@ -104,29 +104,29 @@ Además he quedado con Carlos unirme a varias actividades. La primera será la v
 # Notas manuscritas del periodo de prácticas de observación
 
 ::: {layout-ncol="1"}
-![Portada y primer dia](../images/practicum/Fotos_Practicum_observacion/prac-obs-1.jpg){fig-align="center" group="portfolio-inicio"}
+![Portada y primer dia](/images/practicum/Fotos_Practicum_observacion/prac-obs-1.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Primera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-2.jpg){fig-align="center" group="portfolio-inicio"}
+![Primera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-2.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Primera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-3.jpg){fig-align="center" group="portfolio-inicio"}
+![Primera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-3.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Primera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-4.jpg){fig-align="center" group="portfolio-inicio"}
+![Primera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-4.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Primera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-5.jpg){fig-align="center" group="portfolio-inicio"}
+![Primera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-5.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Primera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-6.jpg){fig-align="center" group="portfolio-inicio"}
+![Primera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-6.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Después de exámenes, segunda semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-7.jpg){fig-align="center" group="portfolio-inicio"}
+![Después de exámenes, segunda semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-7.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Segunda semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-8.jpg){fig-align="center" group="portfolio-inicio"}
+![Segunda semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-8.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Segunda-Tercera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-9.jpg){fig-align="center" group="portfolio-inicio"}
+![Segunda-Tercera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-9.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Tercera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-10.jpg){fig-align="center" group="portfolio-inicio"}
+![Tercera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-10.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Tercera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-11.jpg){fig-align="center" group="portfolio-inicio"}
+![Tercera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-11.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Tercera semana](../images/practicum/Fotos_Practicum_observacion/prac-obs-12.jpg){fig-align="center" group="portfolio-inicio"}
+![Tercera semana](/images/practicum/Fotos_Practicum_observacion/prac-obs-12.jpg){fig-align="center" group="portfolio-inicio"}
 
-![Tercera semana, último día](../images/practicum/Fotos_Practicum_observacion/prac-obs-13.jpg){fig-align="center" group="portfolio-inicio"}
+![Tercera semana, último día](/images/practicum/Fotos_Practicum_observacion/prac-obs-13.jpg){fig-align="center" group="portfolio-inicio"}
 :::
