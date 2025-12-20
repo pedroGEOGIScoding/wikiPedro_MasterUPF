@@ -3,9 +3,11 @@ title: "Totes les pàgines d'aquest lloc"
 filename: listing-pages
 listing:
   contents:
-    - "master-upf/*.qmd"
+    - "*.qmd"
     - "portfolio/*.qmd"
     - "recursos/*.qmd"
+    - "about/*.qmd"
+    - "practicum/*.qmd"
   exclude:
     listed: false
   type: default
