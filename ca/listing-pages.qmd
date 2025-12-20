@@ -7,8 +7,7 @@ listing:
     - "portfolio/*.qmd"
     - "recursos/*.qmd"
   exclude:
-    - filename: "index.qmd"
-    - filename: "404.qmd"
+    listed: false
   type: default
   image-align: left
   fields: [title, description, categories]

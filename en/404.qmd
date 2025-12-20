@@ -6,6 +6,7 @@ lightbox:
   effect: fade
   desc-position: bottom
   loop: false
+listed: false
 ---
 <center>
 ## Perhaps the page you are after was moved or renamed :(
