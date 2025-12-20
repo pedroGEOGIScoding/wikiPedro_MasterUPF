@@ -10,7 +10,7 @@ format:
   html
 listing:
     id: documents
-    contents: "files-qmd/master-upf"
+    contents: files-qmd
     sort-ui: [title, categories]
     filter-ui: [title, categories]
     type: default
