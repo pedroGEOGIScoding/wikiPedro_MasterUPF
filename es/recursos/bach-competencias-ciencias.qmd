@@ -20,6 +20,15 @@ lightbox:
 format: html
 ---
 
+::: column-margin
+**Links importantes**
+
+- [Orientaciones curriculares](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+
+- [El bachillerato competencial](https://projectes.xtec.cat/nou-curriculum/batxillerat/){.highlight width="10%" target="_blank"}
+
+:::
+
 <div class="accordion-container">
 <div class="accordion" id="competenciasAccordion">
 
@@ -31,15 +40,6 @@ format: html
 </h2>
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
-
-::: column-margin
-**Links importantes**
-
-- [Orientaciones curriculares](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
-
-- [El bachillerato competencial](https://projectes.xtec.cat/nou-curriculum/batxillerat/){.highlight width="10%" target="_blank"}
-
-:::
 
 [**Biología**](https://xtec.gencat.cat/web/.content/curriculum/batxillerat/curriculum-171-2022/materias-de-modalitat/modalitat-ciencies-i-tecnologia/Biologia.pdf ){target="_blank"}
 

@@ -20,6 +20,18 @@ lightbox:
 format: html
 ---
 
+::: column-margin
+**Links importantes**
+
+- [Orientaciones curriculares](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
+
+- [Orientaciones Educación básica](https://projectes.xtec.cat/nou-curriculum/educacio-basica/){.highlight width="10%" target="_blank"}
+
+- [Orientaciones de las materias de Geología y Biología para la ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-biologia-i-geologia-de-leso/){.highlight width="10%" target="_blank"}
+
+- [Orientaciones de las materias de Física y Química para la ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-fisica-i-quimica-de-leso/){.highlight width="10%" target="_blank"}
+:::
+
 <div class="accordion-container">
 <div class="accordion" id="competenciasAccordion">
 
@@ -32,17 +44,6 @@ format: html
 <div id="collapseBio" class="accordion-collapse collapse" aria-labelledby="headingBio" data-bs-parent="#competenciasAccordion">
 <div class="accordion-body">
 
-::: column-margin
-**Links importantes**
-
-- [Orientaciones curriculares](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}
-
-- [Orientaciones Educación básica](https://projectes.xtec.cat/nou-curriculum/educacio-basica/){.highlight width="10%" target="_blank"}
-
-- [Orientaciones de las materias de Geología y Biología para la ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-biologia-i-geologia-de-leso/){.highlight width="10%" target="_blank"}
-
-- [Orientaciones de las materias de Física y Química para la ESO](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/orientacions-de-la-materia-de-fisica-i-quimica-de-leso/){.highlight width="10%" target="_blank"}
-:::
 
 [**Biología y Geología**](/files/general-docs/Biologia-i-Geologia.pdf)
 
