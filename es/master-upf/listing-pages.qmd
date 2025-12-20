@@ -9,7 +9,7 @@ listing:
     - "about/*.qmd"
     - "practicum/*.qmd"
   exclude:
-    listed: false
+    listed: true
   type: default
   image-align: left
   fields: [title, description, categories]
