@@ -11,18 +11,18 @@ format:
     toc: false
 repo-actions: false
 pagestyle: plain
-listed: false
+
 ---
 
 <div style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;">
 <div style="flex: 50%;">
 
 ::: {.light-content}
-![](images/home/class-image-home-page.png){}
+![](images/about/class-image-home-page-en-color.png){}
 :::
 
 ::: {.dark-content}
-![](images/about/class-image-home-page-bw.png){}
+![](images/about/class-image-home-page-en-bw.png){}
 :::
 </div>
 <div style="flex: 50%;">

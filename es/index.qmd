@@ -17,7 +17,7 @@ listed: false
 ::::::: {style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;"}
 ::::: {style="flex: 50%;"}
 ::: light-content
-![](images/home/class-image-home-page.png)
+![](images/about/class-image-home-page.png)
 :::
 
 ::: dark-content
