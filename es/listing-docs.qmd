@@ -9,8 +9,7 @@ categories: [listing, documentos, documentación]
 format:
   html
 listing:
-    id: documents
-    contents: "files-qmd/*.qmd"
+    contents: "files-qmd"
     sort-ui: [title, categories]
     filter-ui: [title, categories]
     type: default
