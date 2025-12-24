@@ -60,8 +60,14 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
     </a>
 </div>
 ```
+------------------------------------------------------------------------
 
----
+::: intro-text
+Per saber més sobre la meva trajectòria professional, pots visitar la pestanya "Sobre mi" que és a la barra de navegació o si prefereixes pots fer clic [aquí](master-upf/about/about-this-me.qmd). També, si t'interessa com he realitzat aquesta pàgina web per al meu portafoli del Màster UPF, pots visitar la pestanya "Sobre aquest lloc" que és a la barra de navegació o si prefereixes pots fer clic [aquí](master-upf/about/about-this-site.qmd). Per al tractament de les imatges que són en aquesta pàgina web, pots visitar la pestanya "Crèdits d'imatges" que és a la barra de navegació o si prefereixes pots fer clic [aquí](master-upf/about/about-this-images-credit.qmd).
+:::
+
+------------------------------------------------------------------------
+
 ```{=html}
 <div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
   <!-- Weather Map -->

@@ -64,7 +64,7 @@ Así que aquí estoy, reinventándome una vez más para convertirme en un buen e
 ------------------------------------------------------------------------
 
 ::: intro-text
-Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-me.qmd). Tambien, si te interesa como he realizado esta pagina web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-site.qmd). Por el tratamiento de las imagenes que estan en esta pagina web, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](about/about-this-images-credit.qmd).
+Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-me.qmd). Tambien, si te interesa como he realizado esta pagina web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-site.qmd). Por el tratamiento de las imagenes que estan en esta pagina web, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-images-credit.qmd).
 :::
 
 ------------------------------------------------------------------------

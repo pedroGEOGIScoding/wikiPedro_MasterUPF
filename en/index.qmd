@@ -64,7 +64,7 @@ So here I am, reinventing myself once again to become a good educator and be abl
 ---
 
 ::: {.intro-text}
-To learn more about my professional trajectory, you can visit the "About me" tab in the navigation bar or if you prefer you can click [here](about/about-this-me.qmd). Also, if you are interested in how I created this website for my UPF Master's portfolio, you can visit the "About this site" section in the navigation bar or if you prefer you can click [here](about/about-this-site.qmd). For information about the images used on this website, you can visit the "Image Credits" section in the navigation bar or if you prefer you can click [here](about/about-this-images-credit.qmd).
+To learn more about my professional trajectory, you can visit the "About me" tab in the navigation bar or if you prefer you can click [here](master-upf/about/about-this-me.qmd). Also, if you are interested in how I created this website for my UPF Master's portfolio, you can visit the "About this site" section in the navigation bar or if you prefer you can click [here](master-upf/about/about-this-site.qmd). For information about the images used on this website, you can visit the "Image Credits" section in the navigation bar or if you prefer you can click [here](master-upf/about/about-this-images-credit.qmd).
 :::
 
 ---

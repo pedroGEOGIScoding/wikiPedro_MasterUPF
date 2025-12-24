@@ -42,7 +42,7 @@ website:
       - text: "Site Map"
         href: master-upf/listing-pages.qmd
       - text: "Documentation"
-        href: master-upf/listing-docs.qmd
+        href: listing-docs.qmd
       - icon: translate
         menu:
           - text: "<a href='#' onclick='switchLanguage(\"ca\"); return false;' style='text-decoration: none; font-size: 16x;'><img src='/images/home/catalan-flag.svg' style='width: 26px; height: 20px; vertical-align: middle;'> Catalan</a>"
@@ -204,7 +204,7 @@ website:
       collapse-level: 0
       align: center
       contents:
-        - master-upf/listing-docs.qmd
+        - listing-docs.qmd
 
   page-footer:
     background: primary
