@@ -68,7 +68,25 @@ Sandbox de física 2D per experimentar i simular fenòmens físics mitjançant s
 
 ** Simulacions de laboratori OER - Mines LibGuides**
 [https://libguides.mines.edu/oer/simulationslabs](https://libguides.mines.edu/oer/simulationslabs){target="_blank"}
-Guia per a laboratoris virtuals oberts i simulacions, útil per a l'ensenyament STEM.
+Guia per a laboratoris i simulacions virtuals oberts, útil per a l'ensenyament STEM.
+
+---
+
+**Simulador de canvi climàtic**
+[https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}
+World Climate Simulation és un joc de rol en persona sobre les negociacions de l'ONU sobre el canvi climàtic. A través de la simulació, els participants exploren la velocitat i el treball que requereixen les nacions per abordar el canvi climàtic global.
+
+## 🧬 Biologia
+
+**BioDigital**
+[https://biodigital.com/](https://biodigital.com/){target="_blank"}
+Eina per crear diagrames biològics 3D i modelar estructures visuals i interactives.
+
+---
+
+**Biologycorner**
+[https://biologycorner.com/](https://biologycorner.com/){target="_blank"}
+Portal amb recursos educatius per ensenyar biologia, amb simulacions i exercicis interactius.
 
 ---
 
@@ -83,10 +101,6 @@ Portal on estudiants i professors poden fer preguntes de biologia a experts, amb
 Recursos científics i divulgatius sobre biomolècules i biologia molecular per a la docència i la divulgació.
 
 ---
-
-**Simulador de Canvi Climàtic**  
-[https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}  
-World Climate Simulation és un joc de rols presencial sobre les negociacions de canvi climàtic de l'ONU. A través de la simulació, els participants exploren la rapidesa i el treball requerit per les nacions per abordar el canvi climàtic global.
 
 ## 🌍 Geologia i Ciències de la Terra
 
@@ -160,7 +174,7 @@ Eina instantània de creació de núvols de paraules, útil per a un resum visua
 
 ---
 
-**Metímetre: avaluació de l'esdeveniment**
+**Metímetre: avaluació d'esdeveniments i taules de les paraules més citades**
 [https://www.mentimeter.com/templates/p/speakers-evaluate-event](https://www.mentimeter.com/templates/p/speakers-evaluate-event){target="_blank"}
 Plantilles per valorar ponents i esdeveniments amb presentacions dinàmiques i interactives.
 
@@ -174,14 +188,14 @@ Plataforma de programació visual gratuïta on estudiants i professors creen joc
 
 ---
 
-**Binario**  
-[https://www.puzzle-binairo.com/binairo-6x6-easy/](https://www.puzzle-binairo.com/binairo-6x6-easy/){target="_blank"}  
+**Bini**
+[https://www.puzzle-binairo.com/binairo-6x6-easy/](https://www.puzzle-binairo.com/binairo-6x6-easy/){target="_blank"}
 Joc de lògica de trencaclosques per resoldre.
 
 ## 🎓 Consulta i Metodologies STEM
 
-**LabInquiry – Investigació IQS**
-[https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond-in-based-beyond-teaching){target="_blank"}
+**LabInquiry - Investigació IQS**
+[https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https:/ /iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/){target="_blank"}
 Projecte internacional d'investigació i laboratori de matemàtiques i ciències utilitzant la metodologia STEM.
 
 ---
@@ -200,7 +214,7 @@ Còmics educatius que promouen la discussió científica i identifiquen idees er
 
 ---
 
-**Dibuixos animats conceptuals: investigació en educació científica**
+**Dibuixos animats conceptuals: recerca en educació científica**
 [https://science-education-research.com/teaching-science/concept-cartoons/](https://science-education-research.com/teaching-science/concept-cartoons/){target="_blank"}
 Recursos i explicació sobre l'ús de vinyetes per detectar i abordar idees errònies en ciència.
 
@@ -266,7 +280,7 @@ Institut dedicat a la formació i actualització del professorat en tecnologia e
 
 **INEE**
 [https://www.educacionfpydeportes.gob.es/inee/portada.html](https://www.educacionfpydeportes.gob.es/inee/portada.html){target="_blank"}
-Institut Nacional d'Espanya que realitza avaluacions i estudis sobre el sistema educatiu i el rendiment acadèmic.
+Institut Nacional que realitza avaluacions i estudis sobre el sistema educatiu i el rendiment acadèmic.
 
 ---
 
@@ -290,16 +304,130 @@ Joc de lògica i misteri "misteri d'assassinat" amb reptes de lògica deductiva 
 
 ---
 
-## 🔗 Accés Institucional
+## 📡 Blogs educatius
 
-**Autenticació UPF**
-[https://autenticacio.upf.edu/sso/SAML2/SSOService.php](https://autenticacio.upf.edu/sso/SAML2/SSOService.php){target="_blank"}
-Pàgina d'inici de sessió segura per a la Universitat Pompeu Fabra via SAML2, accés protegit als recursos institucionals.
+**Jordi Soler - Reflexió i innovació educativa**
+[https://blocs.xtec.cat/blocs_formacio/obrirlamirada/2022/06/02/hola-mon/](https://blocs.xtec.cat/blocs_formacio/obrirlamirada/2022/06/02/hola-mon/){target="_blank"}
+Blog de reflexió i innovació educativa.
 
 ---
 
-## 📡 Fonts RSS i agregadors
+**Antonio Márquez - Innovació educativa i inclusió**
+[https://www.antonioamarquez.com/#](https://www.antonioamarquez.com/#){target="_blank"}
+Bloc centrat en la innovació educativa i la inclusió.
 
-**Canal RSS - Recursos dinàmics**
-[https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel](https://rss.app/feed/tvjse9tysjnwS5tz/embed?tab=carousel){target="_blank"}
-Font RSS per mostrar i integrar de manera dinàmica notícies i recursos en llocs o presentacions educatives.
+---
+
+**Sergi del Moral - Reflexió i innovació educativa**
+[http://www.sergidelmoral.net/](http://www.sergidelmoral.net/){target="_blank"}
+Reflexions sobre la innovació educativa.
+
+---
+
+**Jordi Domènech | Pupitrelàndia - EA de ciències**
+[https://blogcienciasnaturales.wordpress.com/](https://blogcienciasnaturales.wordpress.com/){target="_blank"}
+Blog sobre l'ensenyament-aprenentatge de les ciències naturals.
+
+---
+
+**Elena Ferro - Reflexió i innovació educativa**
+[https://quenoensperdinlesformes.blogspot.com/](https://quenoensperdinlesformes.blogspot.com/){target="_blank"}
+Blog de reflexió i innovació educativa.
+
+---
+
+**Jaume Feliu | Tecnocentres - Avaluació i disseny curricular**
+[https://tecnocentres.org/](https://tecnocentres.org/){target="_blank"}
+Avaluació i disseny curricular educatiu.
+
+---
+
+**Roger Futé - EA de filosofia**
+[https://ensenyarfilosofia.wordpress.com/](https://ensenyarfilosofia.wordpress.com/){target="_blank"}
+Blog sobre l'ensenyament-aprenentatge de la filosofia.
+
+---
+
+**Tom Sherrington - Reflexió i innovació educativa**
+[https://teacherhead.com/](https://teacherhead.com/){target="_blank"}
+Reflexions sobre la innovació educativa i les pràctiques docents.
+
+---
+
+**Sarah Cottingham | Evidència per a educadors - Ciència de l'aprenentatge. Evidència de la investigació**
+[https://overpractised.wordpress.com/](https://overpractised.wordpress.com/){target="_blank"}
+Ciència de l'aprenentatge basada en l'evidència de la investigació.
+
+---
+
+**Juan Fernández | Investigació docent - Ciència de l'aprenentatge. Evidència de la investigació**
+[https://investigaciondocente.com/](https://investigaciondocente.com/){target="_blank"}
+L'ensenyament de la recerca i l'aprenentatge de la ciència.
+
+---
+
+** Sr. Dr. Professor de ciències - Science EA**
+[https://mrdrscienceteacher.wordpress.com/](https://mrdrscienceteacher.wordpress.com/){target="_blank"}
+Blog sobre l'ensenyament-aprenentatge de les ciències.
+
+---
+
+**Albano Alonso - Reflexió i innovació educativa**
+[https://albanoalonso.info/blog/](https://albanoalonso.info/blog/){target="_blank"}
+Reflexions sobre la innovació educativa.
+
+---
+
+**Dr Catlin Tucker - Reflexió i innovació educativa**
+[https://catlintucker.com/blog-2/](https://catlintucker.com/blog-2/){target="_blank"}
+Blog sobre innovació educativa i tecnologia.
+
+---
+
+**Joan Domènech - Reflexió i innovació educativa**
+[http://joandf.blogspot.com/](http://joandf.blogspot.com/){target="_blank"}
+Reflexions sobre educació i innovació.
+
+---
+
+**Escola amb cervell - Ciència de l'aprenentatge. Evidència de la investigació**
+[https://escuelaconcerebro.wordpress.com/](https://escuelaconcerebro.wordpress.com/){target="_blank"}
+Ciència de l'aprenentatge aplicada a l'educació.
+
+---
+
+**Principi d'incertesa. Manuel Fernandez - Reflexió i innovació educativa**
+[https://blog.manuelfnavas.es/](https://blog.manuelfnavas.es/){target="_blank"}
+Reflexions sobre l'educació i la incertesa.
+
+---
+
+**Els professors no tenen qualificacions - Avaluació**
+[https://www.teachersgoinggradeless.com/](https://www.teachersgoinggradeless.com/){target="_blank"}
+Blog sobre avaluació sense qualificacions tradicionals.
+
+---
+
+**ASCD - Reflexió i innovació educativa**
+[https://www.ascd.org/blogs](https://www.ascd.org/blogs){target="_blank"}
+Blog de l'Associació per a la Supervisió i el Desenvolupament Currículum.
+
+---
+
+**Culte de la pedagogia - Reflexió i innovació educativa**
+[https://www.cultofpedagogy.com/](https://www.cultofpedagogy.com/){target="_blank"}
+Recursos i estratègies per a professors innovadors.
+
+---
+
+**Efrat Furst - Ciència de l'aprenentatge. Evidència de la investigació**
+[https://sites.google.com/view/efratfurst/teaching-with-learning-in-mind](https://sites.google.com/view/efratfurst/teaching-with-learning-in-mind){target="_blank"}
+Ciència de l'aprenentatge i ensenyament basat en l'evidència.
+
+---
+
+**Bibliotecari escolar (Carlos Ortiz) - Biblioteca escolar i literatura juvenil**
+[https://bibliotecarioenlaescuela.blogspot.com/](https://bibliotecarioenlaescuela.blogspot.com/){target="_blank"}
+Recursos sobre biblioteques escolars i literatura juvenil.
+
+
