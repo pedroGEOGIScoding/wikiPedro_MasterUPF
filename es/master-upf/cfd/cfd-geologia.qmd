@@ -54,6 +54,23 @@ format: html
 {{< video https://youtu.be/ClJ5lwl_wM0 aspect-ratio="4x3" >}}
 
 
+::: column-margin
+**Documentación de apoyo**
+
+- [Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
+
+- [Corrección Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-correccion.pdf){.highlight width="10%" target="_blank"}
+
+- [Prueba geología año 20/21](/files/cfd-docs/cfd-geo-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+
+- [Corrección Prueba geología año 20/21](/files/cfd-docs/cfd-geo-correccion-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+
+- [Prueba geología año 21/22](/files/cfd-docs/cfd-geo-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+
+- [Corrección Prueba geología año 21/22](/files/cfd-docs/cfd-geo-correccion-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
 ## Tarea 1 "Gaia, la Gran Madre"
 
 En esta tarea se trabajarán los siguientes objetivos de aprendizaje:
