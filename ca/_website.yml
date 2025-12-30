@@ -108,6 +108,9 @@ website:
               - master-upf/cfd/cfd-inicio.qmd
               - master-upf/cfd/analisis-cv.qmd
               - master-upf/cfd/presentacion-tasca-cv.qmd
+              - master-upf/cfd/cfd-geologia.qmd
+              - master-upf/cfd/cfd-biologia.qmd
+              
             - section: "Fonaments d'aprenentatge i ensenyament de les ciències naturals"
               contents:
               - master-upf/fac/fac-inicio.qmd

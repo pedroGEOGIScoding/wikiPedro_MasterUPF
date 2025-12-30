@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que cubre los aspectos especificos del currículum de Biología en la educación secundaria
-categories: [complementos, disciplinar, biologia]
+categories: [complementos, disciplinar, biología]
 toc: true
 number-sections: true
 highlight-style: pygments
