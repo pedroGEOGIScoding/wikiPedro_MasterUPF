@@ -149,7 +149,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "resources"
-      title: "Resources"
+      title: "{{< fa gear >}} Resources"
       style: "docked"
       background: light
       collapse-level: 1
