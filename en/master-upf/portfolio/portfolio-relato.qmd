@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Personal portfolio with reflections on observation in an educational center
-categories: [portfolio, reflections]
+categories: [portfolio, reflections, practicum]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,7 +18,10 @@ lightbox:
 format: html
 ---
 
-# My practicum story
+# My story of the practicum (after sharing with my colleagues Martiña and Raúl on 12/19/2025, new comments in light blue)
+## [Title: "There is always room for improvement"]{style="background-color: lightskyblue; color: black;"}
+
+[In my initial version I had not given the story a title, but I think it is a good idea to capture the global idea I am trying to express. This title was born from my sharing with my colleagues Martiña and Raúl and reflects the idea that there is always room for improvement and that one should not be happy no matter how much things initially look very good, because there is always something that can be improved.]{style="background-color: lightskyblue; color: black;"}
 
 The truth is that I have been thinking a few times about the practicum story because there has not been anything extraordinary or out of the ordinary since in the groups where I have been: 4 ESO and the 2 high school students there is no conflict whatsoever, a clear racial or cognitive diversity or anything else to highlight or expand on to construct this story.
 
@@ -26,7 +29,7 @@ I do want to remember that the first day I was, not nervous, but *very expectant
 
 In any case, I would like to expand on a couple of aspects that have caught my attention and have been a constant in the 3 groups and especially in the elective subjects. The first circumstance that caught my attention was that the **students are grouped in class by sex**, either to work in groups during the optional classes or simply to sit and follow the explanations of the non-optional classes. There was not a day that this situation was not repeated. This is facilitated by the fact that *Carlos does not create the groups*, but rather the students themselves group themselves together and this means that the groups always end up being the same, each one with their friends and separated by sex. This aspect of sex, I don't know if this is related to the fact that the school is religious or not since I have no criteria to compare with secular public schools.
 
-In my opinion, this situation *impoverishes the exchange of different ideas*, and does not help a good and strong cohesion of all the components of the classroom and that ultimately *has an impact on the classroom environment and its management*. Reversing this dynamic could help create greater cohesion of the students as a group and obviously the group work would be greatly enriched by the diversity of ideas. Normally, friends have very similar ideas and working with friends is fine, but I think that in these stages it is impoverishing to always do group work with friends and separated by sex.
+In my opinion, this situation *impoverishes the exchange of different ideas*, and does not help a good and strong cohesion of all the components of the classroom and that ultimately *has an impact on the classroom environment and its management*. Reversing this dynamic could help create greater cohesion of the students as a group and obviously the group work would be greatly enriched by the diversity of ideas. Normally, friends have very similar ideas and working with friends is fine, but I think that in these stages it is impoverishing to always do group work with friends and separated by sex. [My colleagues have invited me to delve deeper into this topic and investigate what implications this behavior has, why it occurs and if, for example, it is something more social, inherited or educational from the center itself.]{style="background-color: lightskyblue; color: black;"}
 
 The other fact that caught my attention and I didn't like it at all is the **use of the laptop when it is not strictly necessary**. I have only described this circumstance in high school and I have been able to verify that many students are distracted doing other things such as playing, designing the Christmas card for the school contest while Carlos or another student is presenting their work on the stage.
 
@@ -42,7 +45,7 @@ I have discussed both aspects with Carlos, my tutor, and obviously he is aware o
 :::
 :::::
 
-Possibly, at this point with his 35 years of experience, he is clear that there are battles that deserve to be fought (and I have seen some of him in class) and that other battles are not, like the circumstances that I have described. It is a topic that I did not want to talk about in depth with Carlos so as not to make him uncomfortable or cause him to think that it could call into question his teaching work, which I think is excellent, but I would have liked to have addressed this topic much more in depth with him to know why he does nothing to reverse these two situations.
+Possibly, at this point with his 35 years of experience, he is clear that there are battles that deserve to be fought (and I have seen him fight some battles in class) and that other battles are not, like the circumstances that I have described. It is a topic that I did not want to talk about in depth with Carlos so as not to make him uncomfortable or cause him to think that it could call into question his teaching work, which I think is excellent, but I would have liked to have addressed this topic much more in depth with him to know why he does nothing to reverse these two situations. [I have to reflect on this aspect and define what I did not like about how Carlos manages the classroom in some aspects and be able to discuss it with Carlos and together we can devise actions to improve classroom management in these cases.]{style="background-color: lightskyblue; color: black;"}
 
 What I did tell him when we were talking about the learning situations that I will have to prepare for the second phase of the practicum is that *I will design the work groups myself* to create heterogeneous groups by mixing students by sex and with the help of Carlos I will also include the academic performance parameter to cognitively balance the groups. I also told him that in my classes *I will ask students to keep their laptops off the table when it is not strictly necessary* to avoid confusion. In both cases, he told me that, without any problem, I will be able to manage my classes as I see fit. We will see what results heterogeneous groups give and if group cohesion and group work performance are actually improved. And I hope that the limitation of the use of laptops is not a cause of friction with the students trying to explain it to them in a coherent and beneficial way for them.
 
@@ -67,7 +70,7 @@ I believe that the solution to this situation has a first clear option, which wo
 
 # Other personal notes during the observation phase beyond the story
 
-## My interventions as an observer
+## My interventions as observer
 
 The truth is that in this observation phase, unless Carlos invited me to contribute more information to what he was explaining, I have limited myself to being in the back of the class observing and taking notes. My interventions have been to add comments or extra explanations that Carlos was giving in class, but I remember that on the third day of the first week I was already participating in Carlos's explanations. These interventions have grown over time as I gained more confidence in myself and the trust between Carlos and me. I have also helped supervise exams during those 4 days of quarterly and I have interacted a lot with the high school teachers since Carlos's activity in the ESO classes was limited to the subject of scientific culture of 4 of the ESO.
 
@@ -95,7 +98,7 @@ Finally, Carlos and I have already agreed on what didactic actions I will carry 
 
 | 4th ESO | 2nd Baccalaureate |
 |------------------------------------|------------------------------------|
-| For [4 of ESO]{style="font-weight: bold;"}, I will do the point [The Earth in the Universe](#) included in the subject Biology and Geology. Description of the origin of the universe and its relationship with the stars that make up the solar system. Analysis and comparison of hypotheses about the origin of life, arguments. Discussion of the main research in the field of astrobiology. | For [2nd year of high school]{style="font-weight: bold;"}, the learning situation is the [quarterly optional subject on sustainable development goals](#). The SDG that will be discussed will be sustainable development goal number 13 “Climate Action” which is included in the thematic block of sustainable environment. In this specific action, Carlos has asked me to use a film or documentary in this teaching and in pairs to make a short presentation of the quotes from SDG 13, focusing attention on the implications of climate change and sustainability. |
+| For [4 of ESO]{style="font-weight: bold;"}, I will do the point [The Earth in the Universe](#) included in the subject Biology and Geology. Description of the origin of the universe and its relationship with the stars that make up the solar system. Analysis and comparison of hypotheses about the origin of life, arguments. Discusión sobre las investigaciones principales en el campo de la astrobiología. | For [2nd year of high school]{style="font-weight: bold;"}, the learning situation is the [quarterly optional subject on sustainable development goals](#). The SDG that will be discussed will be sustainable development goal number 13 “Climate Action” which is included in the thematic block of sustainable environment. In this specific action, Carlos has asked me to use a film or documentary in this teaching and in pairs to make a short presentation of the quotes from SDG 13, focusing attention on the implications of climate change and sustainability. |
 
 Apart from these learning situations, I will do a class in English at the request of the English teacher (Montse) on climate change and the geopolitical and economic implications of the reduction of the North Pole ice cap. On the other hand, they have asked me to do a one-day intervention in a training cycle of landscape interpretation with an excursion to the Garraf mountain range to explain the reason for the physiography of the landscape from the point of view of geology.
 

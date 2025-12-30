@@ -1,12 +1,12 @@
 ---
-title: "El meu relat de pràctiques"
+title: "La meva història de pràctiques"
 subtitle: "Cartera personal - Reflexions"
 filename: portfolio-relato
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Portafoli personal amb reflexions sobre l'observació en un centre educatiu
-categories: [cartera, reflexions]
+categories: [cartera, reflexions, pràctica]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,15 +18,18 @@ lightbox:
 format: html
 ---
 
-# El meu relat de pràctiques
+# El meu relat de pràctiques (després de compartir amb els meus companys Martiña i Raúl el 19/12/2025, nous comentaris en blau clar)
+## [Títol: "Sempre hi ha marge per millorar"]{style="background-color: lightskyblue; color: black;"}
 
-La veritat és que he estat pensant unes quantes vegades en la història del pràcticum perquè no hi ha hagut res d'extraordinari ni d'extraordinari ja que als grups on he estat: 4t d'ESO i 2 de batxillerat no hi ha cap conflicte, una clara diversitat racial o cognitiva o qualsevol altra cosa a destacar o ampliar per construir aquest relat.
+[En la meva versió inicial no havia posat títol al meu relat de pràctiques, però crec que és una bona idea captar la idea global que estic intentant expressar. Aquest títol neix de la meva compartició amb els meus companys Martiña i Raúl i reflecteix la idea que sempre hi ha marge de millora i que no s'ha d'estar content per molt que les coses inicialment semblin molt bé, perquè sempre hi ha alguna cosa que es pot millorar.]{style="background-color: lightskyblue; color: black;"}
 
-Vull recordar que el primer dia no estava nerviós, sinó *molt expectant* i els primers dies vaig ser extremadament prudent amb tot el que vaig fer i dir. El cert és que, en aquesta fase d'observació, llevat que en Carlos em convides a aportar més informació al que explicava, m'he limitat a estar al fons de la classe observant i prenent notes. Les meves intervencions han estat per afegir comentaris o explicacions extres que el Carlos donava a classe, però recordo que el tercer dia de la primera setmana ja estava participant en les explicacions del Carlos. Aquestes intervencions han anat creixent amb el temps a mesura que anava guanyant més confiança en mi mateix i la confiança entre Carlos i jo.
+La veritat és que he estat pensant unes quantes vegades en la història del pràcticum perquè no hi ha hagut res d'extraordinari ni d'extraordinari ja que als grups on he estat: 4t d'ESO i 2 de batxillerat no hi ha cap conflicte, una clara diversitat racial o cognitiva o qualsevol altra cosa a destacar o ampliar per construir aquesta història.
+
+Vull recordar que el primer dia no estava nerviós, sinó *molt expectant* i els primers dies vaig ser extremadament prudent amb tot el que vaig fer i dir. El cert és que, en aquesta fase d'observació, llevat que en Carlos em convides a aportar més informació al que explicava, m'he limitat a estar al fons de la classe observant i prenent notes. Les meves intervencions han estat per afegir comentaris o explicacions extres que el Carlos donava a classe, però recordo que el tercer dia de la primera setmana ja estava participant en les explicacions del Carlos. Aquestes intervencions han anat creixent amb el temps a mesura que vaig agafar més confiança en mi mateix i la confiança entre Carlos i jo.
 
 En tot cas, m'agradaria ampliar un parell d'aspectes que m'han cridat l'atenció i que han estat una constant en els 3 grups i sobretot en les assignatures optatives. La primera circumstància que em va cridar l'atenció va ser que els **alumnes s'agrupen a classe per sexe**, ja sigui per treballar en grup durant les classes optatives o simplement per seure i seguir les explicacions de les classes no optatives. No hi va haver dia que aquesta situació no es tornés a repetir. Això es facilita pel fet que *Carlos no crea els grups*, sinó que els mateixos alumnes s'agrupen i això fa que els grups sempre acabin sent els mateixos, cadascun amb els seus amics i separats per sexe. Aquest aspecte del sexe, no sé si està relacionat amb el fet que l'escola sigui religiosa o no, ja que no tinc criteris per comparar amb les escoles públiques laiques.
 
-Al meu parer, aquesta situació *empobreix l'intercanvi d'idees diferents*, i no ajuda a una bona i forta cohesió de tots els components de l'aula i que en definitiva *incideix en l'entorn de l'aula i la seva gestió*. Invertir aquesta dinàmica podria ajudar a crear una major cohesió de l'alumnat com a grup i, evidentment, el treball en grup es veuria molt enriquit per la diversitat d'idees. Normalment els amics tenen idees molt semblants i treballar amb amics està bé, però crec que en aquestes etapes és empobreix fer sempre treballs en grup amb amics i separats per sexe.
+Al meu parer, aquesta situació *empobreix l'intercanvi d'idees diferents*, i no ajuda a una bona i forta cohesió de tots els components de l'aula i que en definitiva *incideix en l'entorn de l'aula i la seva gestió*. Invertir aquesta dinàmica podria ajudar a crear una major cohesió de l'alumnat com a grup i, evidentment, el treball en grup es veuria molt enriquit per la diversitat d'idees. Normalment els amics tenen idees molt semblants i treballar amb amics està bé, però crec que en aquestes etapes és empobreix fer sempre treballs en grup amb amics i separats per sexe. [Els meus companys m'han convidat a aprofundir en aquest tema i a investigar quines implicacions té aquest comportament, per què es produeix i si, per exemple, és quelcom més social, heretat o educatiu del mateix centre.]{style="background-color: lightskyblue; color: black;"}
 
 L'altre fet que em va cridar l'atenció i que no em va agradar gens és l'**ús de l'ordinador portàtil quan no és estrictament necessari**. Només he descrit aquesta circumstància a l'institut i he pogut comprovar que molts alumnes es distreuen fent altres coses com jugar, dissenyar la postal de Nadal del concurs escolar mentre en Carlos o un altre alumne presenta el seu treball a l'escenari.
 
@@ -42,7 +45,7 @@ He comentat ambdós aspectes amb Carlos, el meu tutor, i òbviament és conscien
 :::
 :::::
 
-Possiblement, en aquest punt amb els seus 35 anys d'experiència, té clar que hi ha batalles que mereixen ser lliurades (i n'he vist algunes a classe) i que altres batalles no ho són, com les circumstàncies que he descrit. És un tema del qual no he volgut parlar a fons amb el Carlos per no incomodar-lo ni fer-li pensar que podria posar en dubte la seva tasca docent, que em sembla excel·lent, però m'hauria agradat haver tractat aquest tema molt més a fons amb ell per saber per què no fa res per revertir aquestes dues situacions.
+Possiblement, en aquest punt amb els seus 35 anys d'experiència, té clar que hi ha batalles que mereixen ser lliurades (i l'he vist lluitar algunes batalles a classe) i que altres batalles no ho són, com les circumstàncies que he descrit. És un tema del qual no he volgut parlar a fons amb el Carlos per no incomodar-lo ni fer-li pensar que podria posar en dubte la seva tasca docent, que em sembla excel·lent, però m'hauria agradat haver tractat aquest tema molt més a fons amb ell per saber per què no fa res per revertir aquestes dues situacions. [He de reflexionar sobre aquest aspecte i definir què no m'ha agradat de com en Carlos gestiona l'aula en alguns aspectes i poder-ho parlar amb en Carlos i entre tots podem idear accions per millorar la gestió de l'aula en aquests casos.]{style="background-color: lightskyblue; color: black;"}
 
 El que sí que li vaig dir quan parlàvem de les situacions d'aprenentatge que hauré de preparar per a la segona fase de la pràctica és que *dissenyarem jo mateix els grups de treball* per crear grups heterogenis barrejant alumnes per sexe i amb l'ajuda de Carlos també inclouré el paràmetre de rendiment acadèmic per equilibrar cognitivament els grups. També li vaig dir que a les meves classes *demanaré als alumnes que mantinguin els ordinadors portàtils fora de la taula quan no sigui estrictament necessari* per evitar confusions. En tots dos casos, em va dir que, sense cap problema, podré gestionar les meves classes com cregui. Veurem quins resultats donen els grups heterogenis i si realment es millora la cohesió del grup i el rendiment del treball grupal. I espero que la limitació de l'ús dels ordinadors portàtils no sigui un motiu de fricció amb l'alumnat intentant explicar-los-ho d'una manera coherent i beneficiosa per a ells.
 
@@ -69,7 +72,7 @@ Crec que la solució a aquesta situació té una primera opció clara, que seria
 
 ## Les meves intervencions com a observador
 
-El cert és que en aquesta fase d'observació, llevat que el Carlos em convides a aportar més informació al que explicava, m'he limitat a estar al fons de la classe observant i prenent notes. Les meves intervencions han estat per afegir comentaris o explicacions extres que el Carlos donava a classe, però recordo que el tercer dia de la primera setmana ja estava participant en les explicacions del Carlos. Aquestes intervencions han anat creixent amb el temps a mesura que anava guanyant més confiança en mi mateix i la confiança entre Carlos i jo. També he ajudat a supervisar exàmens durant aquests 4 dies de trimestral i he interactuat molt amb els professors de batxillerat ja que l'activitat del Carlos a les classes d'ESO es limitava a l'assignatura de cultura científica de 4t d'ESO.
+El cert és que en aquesta fase d'observació, llevat que el Carlos em convides a aportar més informació al que explicava, m'he limitat a estar al fons de la classe observant i prenent notes. Les meves intervencions han estat per afegir comentaris o explicacions extres que el Carlos donava a classe, però recordo que el tercer dia de la primera setmana ja estava participant en les explicacions del Carlos. Aquestes intervencions han anat creixent amb el temps a mesura que vaig agafar més confiança en mi mateix i la confiança entre Carlos i jo. També he ajudat a supervisar exàmens durant aquests 4 dies de trimestral i he interactuat molt amb els professors de batxillerat ja que l'activitat del Carlos a les classes d'ESO es limitava a l'assignatura de cultura científica de 4t d'ESO.
 
 El cert és que aquest fet és l'únic punt 'no òptim' que puc posar a les pràctiques ja que limita la meva experiència d'interacció amb la resta del professorat a unes 5 persones amb les quals he tingut contacte directe dins de la sala de professors de batxillerat. L'única interacció amb el professorat d'ESO va ser quan vaig anar al claustre conjunt de professorat d'ESO i batxillerat, però es va parlar sobretot dels problemes de certs alumnes de formació professional bàsica.
 

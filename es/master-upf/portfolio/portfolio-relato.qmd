@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Portfolio personal con reflexiones sobre la observación en centro educativo
-categories: [portfolio, reflexiones]
+categories: [portfolio, reflexiones, practicum]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,7 +18,10 @@ lightbox:
 format: html
 ---
 
-# Mi relato del prácticum
+# Mi relato del prácticum (después de la puesta en común con mis compañeros Martiña y Raúl el 19/12/2025, nuevos comentarios en azul claro)
+## [Título: "Siempre hay espacio para mejorar"]{style="background-color: lightskyblue; color: black;"}
+
+[En mi versión inicial no le había puesto título al relato, pero creo que es buena idea para captar la idea global que intento expresar. Este título nace de mi puesta en común con mis compañeros Martiña y Raúl y refleja la idea de que siempre hay espacio para mejorar y que no hay que estar contento por mucho que las cosas inicialmente se vean muy bien, por que siempre hay algo que se puede mejorar.]{style="background-color: lightskyblue; color: black;"}
 
 La verdad es que he estado dando unas cuantas vueltas al relato de practicum porque no ha habido nada extraordinario o fuera de lo normal ya que en los grupos donde he estado: 4 de ESO y los 2 bachilleratos no hay conflictividad alguna, una clara diversidad racial o cognitiva o cualquier otra cosa que remarcar o extenderse para construir este relato.
 
@@ -26,7 +29,7 @@ Si que quiero recordar que el primer día estaba, no nervioso, pero *muy expecta
 
 De todos modos, me gustaría extenderme en un par de aspectos que me han llamado la atención y han sido una constante en los 3 grupos y sobre todo en las asignaturas optativas. La primera circunstancia que me llamó muchísimo la atención era que los **alumnos se agrupan en clase por sexos**, sea para trabajar en grupo durante las clases optativas o simplemente para sentarse a seguir las explicaciones de las clases no optativas. No había un día que esta situación no se repitiera. Esto se facilita por el hecho de que *Carlos no crea los grupos*, si no que los propios alumnos se agrupan y esto deriva a que los grupos acaban siendo los mismos siempre, cada uno con sus amigos y separados por sexos. Este aspecto del sexo, no sé si esto tiene relación con el hecho de que el colegio sea religioso o no ya que no tengo criterio para comparar con colegios públicos laicos.
 
-En mi opinión esta situación *empobrece el intercambio de ideas diferentes*, y no ayuda a una buena y fuerte cohesión de todos los componentes del aula y que al fin y al cabo *repercute en el ambiente del aula y su gestión*. Revertir esta dinámica podría ayudar a crear una mayor cohesión de los alumnos como grupo y obviamente se enriquecería muchísimo los trabajos en grupo por la diversidad de ideas. Normalmente, los amigos tienen ideas muy parecidas y trabajar con amigos está bien, pero creo que en estas etapas empobrece hacer los trabajos en grupo siempre con amigos y separados por sexos.
+En mi opinión esta situación *empobrece el intercambio de ideas diferentes*, y no ayuda a una buena y fuerte cohesión de todos los componentes del aula y que al fin y al cabo *repercute en el ambiente del aula y su gestión*. Revertir esta dinámica podría ayudar a crear una mayor cohesión de los alumnos como grupo y obviamente se enriquecería muchísimo los trabajos en grupo por la diversidad de ideas. Normalmente, los amigos tienen ideas muy parecidas y trabajar con amigos está bien, pero creo que en estas etapas empobrece hacer los trabajos en grupo siempre con amigos y separados por sexos. [Mis compañeros me han invitado a profundizar más en este tema e indagar que implicaciones tiene este comportamiento, el por que ocurre y si por ejemplo es algo más social, heredado o educativo del centro en sí mismo.]{style="background-color: lightskyblue; color: black;"}
 
 El otro hecho que me ha llamado la atención y no me ha gustado nada es el **uso del portátil cuando no es estrictamente necesario**. Esta circunstancia solo la he descrito en bachillerato y he podido constatar que muchos alumnos se distraen haciendo otras cosas como jugando, diseñando la postal de navidad para el concurso del colegio mientras Carlos o algún alumno está exponiendo su trabajo en la tarima.
 
@@ -42,7 +45,7 @@ Ambos aspectos los he comentado con Carlos, mi tutor, y obviamente él se da cue
 :::
 :::::
 
-Posiblemente, a estas alturas con su experiencia de 35 años tiene claro que hay batallas que merecen ser peleadas (y le he visto alguna en clase) y que otras batallas no, como las circunstancias que yo he descrito. Es un tema que no he querido hablar en profundidad con Carlos por no incomodarlo o que se crea que pudiera poner en tela de juicio su labor docente que me parece excelente, pero me hubiera gustado haber abordado este tema mucho más en profundidad con él para saber por qué no hace nada para revertir estas dos situaciones.
+Posiblemente, a estas alturas con su experiencia de 35 años tiene claro que hay batallas que merecen ser peleadas (y le he visto pelear alguna batalla en clase) y que otras batallas no, como las circunstancias que yo he descrito. Es un tema que no he querido hablar en profundidad con Carlos por no incomodarlo o que se crea que pudiera poner en tela de juicio su labor docente que me parece excelente, pero me hubiera gustado haber abordado este tema mucho más en profundidad con él para saber por qué no hace nada para revertir estas dos situaciones. [Tengo que reflexionar sobre este aspecto y definir que es lo que no me ha gustado de como Carlos gestiona el aula en algunos aspectos y poderlo comentar con Carlos y juntos poder idear actuaciones para mejorar la gestión del aula en estos casos.]{style="background-color: lightskyblue; color: black;"}
 
 Lo que sí que le dije cuando estuvimos hablando de las situaciones de aprendizaje que tendré que preparar para la segunda fase del prácticum es que *los grupos de trabajo los diseñaré yo mismo* para crear grupos heterogéneos mezclando a los alumnos por sexos y con ayuda de Carlos también incluiré el parámetro de rendimiento académico para equilibrar cognitivamente los grupos. También le comenté que en mis clases *pediré a los alumnos que cuando no sea estrictamente necesario que guarden los portátiles* fuera de la mesa para evitar despistes. En ambos casos, me dijo que, sin ningún problema, que mis clases las podré gestionar como mejor crea. Veremos qué resultado da los grupos heterogéneos y si en realidad se mejora la cohesión del grupo y el rendimiento de los trabajos en grupo. Y espero que la limitación del uso de los portátiles no sea un motivo de fricción con los alumnos intentando explicárselo a ellos de una manera coherente y beneficiosa para ellos.
 
