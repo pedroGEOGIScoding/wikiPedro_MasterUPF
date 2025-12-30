@@ -20,4 +20,136 @@ format: html
 
 ## Presentación
 
-> Esta asignatura cubre los aspectos especificos del currículum de Geología en la educación secundaria. Su propósito es complementar la formación disciplinar de los estudiantes en el ámbito de la geología.
+> La profesora Laia Ramon-Sala dirige esta parte del módulo de **Complementos de Formación Disciplinar** denominado **Geología y Ciencias Ambientales**, con los objetivos de conocer el currículum de la geología y las ciencias ambientales de la ESO y el bachillerato, reflexionar sobre los objetivos de la enseñanza-aprendizaje de las ciencias naturales en secundaria.
+
+## Material didáctico de las sesiones y los trabajos a realizar
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de la sesión inicial y la documentación asociada a los trabajos a realizar
+:::
+
+::: panel-tabset
+## Sesión inicial {.active}
+
+<embed src="/files/cfd-docs/cfd-geologia-intro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Bibliografía complementaria
+
+<embed src="/files/cfd-docs/cfd-geo-bibliografia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+## Links de interes para la asignatura
+
+- [Guía de rocas de Museu de Ciències de Catalunya](https://museuciencies.cat/comunicacio/publicacions/divulgatives/guia-de-roques/)
+
+- [Diccionario de geología](https://cit.iec.cat/DGEOL/default.asp?opcio=0)
+
+### RAPAKIVI - @jpereztar
+
+{{< video https://www.youtube.com/watch?v=T2dbGA4vsEE aspect-ratio="4x3" >}}
+
+### Fossil Rock Anthem
+
+{{< video https://youtu.be/ClJ5lwl_wM0 aspect-ratio="4x3" >}}
+
+
+## Tarea 1 "Gaia, la Gran Madre"
+
+En esta tarea se trabajarán los siguientes objetivos de aprendizaje:
+
+- Argumentar el conocimiento de los diferentes elementos del sistema Tierra, así como de las interacciones entre sí en el ámbito local y en el ámbito global, para prever la dinámica de un sistema.
+
+- Identificar situaciones y explicar ejemplos de cambios paradigmáticos que hayan supuesto grandes controversias científicas en la historia de las ciencias.
+
+Para conseguir los objetivos, visualiza los dos videos y realiza las tareas indicadas, de manera individual. El primero tiene carácter narrativo apropiado para un nivel de ESO, haciendo la misma tarea. El segundo tiene un carácter puramente didáctico y es bastante denso, servirá para introducir o repasar conceptos clave en geología, pero hacer esta actividad en el aula sería demasiado pesado.
+
+### Video 1: Gaia, la gran madre
+
+Documental de 48' sobre el origen, la evolución y el futuro de la Tierra, con énfasis en los conceptos geológicos y el papel de la vida y de los humanos. Los hechos y las ideas se muestran mediante ilustraciones y animaciones, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. También se exponen las amenazas en la sostenibilidad del planeta. Hay tres tipos de preguntas:
+
+- Preguntas que tenéis que contestar antes de empezar a ver el documental.
+
+- Preguntas que tenéis que contestar durante la visualización del documental.
+
+- Preguntas que tenéis que contestar después de ver el documental.
+
+Por este motivo disponéis de unas dos horas para realizar el cuestionario, a pesar de que no he fijado un límite.
+
+Después de ver el documental y contestar el cuestionario hiciera una aportación a uno de los debates del foro, teniendo en cuenta el que han respondido tus compañeros y tus compañeras.
+
+{{< video https://youtu.be/OL6U_1WmBbw aspect-ratio="4x3" >}}
+
+### Video 2: Las profundidades de la Tierra
+
+Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la atención en los fenómenos volcánicos y sísmicos, pero también exponiendo la diferente composición de las capas de la Tierra y su movimiento. Los hechos y las ideas se muestran mediante animaciones y modelos didácticos analógicos, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. Hay tres tipos de preguntas:
+
+- Preguntas que tenéis que contestar antes de empezar a ver el programa divulgativo.
+
+- Preguntas que tenéis que contestar durante la visualización del programa divulgativo.
+
+- Preguntas que tenéis que contestar después de ver el programa divulgativo.
+
+[Ver programa divulgativo: Las profundidades de la Tierra](https://www.rtve.es/play/videos/curioseando/curioseando-t2-programa-5-profundidades-tierra/16444938/){target="_blank"}
+
+## Tarea 2 "Minerales cotidianos"
+
+::: panel-tabset
+## Presentación inicial {.active}
+
+<embed src="/files/cfd-docs/cfd-geo-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Actividad práctica de minerales cotidianos
+
+<embed src="/files/cfd-docs/cfd-tasca-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+### Como funciona la tierra - parte 1
+
+[Ver video: Como funciona la tierra - parte 1](file:///C:/Users/pedro/Documents/shared_VMs/Tasca2/view1.htm){target="_blank"}
+
+### Como funciona la tierra - parte 2
+
+[Ver video: Como funciona la tierra - parte 2](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1665785){target="_blank"}
+
+
+## Tarea 3 "El relleno y su litología"
+
+::: panel-tabset
+## Presentación inicial {.active}
+
+<embed src="/files/cfd-docs/cfd-geo-presentacion-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## ¿Qué es la historia geológica?
+
+<embed src="/files/cfd-docs/cfd-geo-historia-geologica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Descripción de la tarea 3
+
+<embed src="/files/cfd-docs/cfd-geo-tasca3-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+### El relleno geológico
+
+[Ver video: El relleno geológico](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1629089){target="_blank"}
+
+
+## Tarea 4 "Interdependencia - Noticia reciente"
+
+::: panel-tabset
+## Presentación inicial {.active}
+
+<embed src="/files/cfd-docs/cfd-geo-relacion-tierra.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Interdependencia - Noticia reciente
+
+<embed src="/files/cfd-geo-noticia-reciente.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+
+
+
+
