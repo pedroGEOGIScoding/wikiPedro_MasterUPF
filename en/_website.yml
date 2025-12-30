@@ -71,7 +71,7 @@ website:
           - master-upf/portfolio/portfolio-centro.qmd
 
     - id: "masterUPF"
-      title: "Master UPF"
+      title: "Master ![](/images/home/UPFt_rgb.png){width=90px}"
       style: "docked"
       background: light
       collapse-level: 0

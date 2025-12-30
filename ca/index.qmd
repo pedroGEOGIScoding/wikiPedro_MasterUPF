@@ -53,9 +53,9 @@ Així que aquí estic, reinventant-me una vegada més per convertir-me en un bon
             <i class="bi bi-linkedin" style="font-size: 18px;"></i> LinkedIn
         </button>
     </a>
-    <a href="/about/about-this-me.qmd" style="text-decoration: none;">
+    <a href="master-upf/about/about-this-me.qmd" style="text-decoration: none;">
         <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
-            <i class="bi bi-person" style="font-size: 18px;"></i> Acerca de mí
+            <i class="bi bi-person" style="font-size: 18px;"></i> Sobre mi
         </button>
     </a>
 </div>

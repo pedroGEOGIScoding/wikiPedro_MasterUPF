@@ -53,7 +53,7 @@ Así que aquí estoy, reinventándome una vez más para convertirme en un buen e
             <i class="bi bi-linkedin" style="font-size: 18px;"></i> LinkedIn
         </button>
     </a>
-    <a href="/about/about-this-me.qmd" style="text-decoration: none;">
+    <a href="master-upf/about/about-this-me.qmd" style="text-decoration: none;">
         <button style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; color: #333; transition: all 0.2s;">
             <i class="bi bi-person" style="font-size: 18px;"></i> Acerca de mí
         </button>
@@ -64,7 +64,7 @@ Así que aquí estoy, reinventándome una vez más para convertirme en un buen e
 ------------------------------------------------------------------------
 
 ::: intro-text
-Para saber mas de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-me.qmd). Tambien, si te interesa como he realizado esta pagina web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-site.qmd). Por el tratamiento de las imagenes que estan en esta pagina web, puedes visitar la pestaña "Acerca de mi" que esta en la barra de navegación o si quieres puedes cliquear [aquí](master-upf/about/about-this-images-credit.qmd).
+Para saber más de mi trayectoria profesional, puedes visitar la pestaña "Acerca de mí" que está en la barra de navegación o si quieres, puedes cliquear [aquí](master-upf/about/about-this-me.qmd). También, si te interesa cómo he realizado esta página web para mi portafolio del Master UPF, puedes visitar la pestaña "Acerca de mí" que está en la barra de navegación o si quieres, puedes cliquear [aquí](master-upf/about/about-this-site.qmd). Por el tratamiento de las imágenes que están en esta página web, puedes visitar la pestaña "Acerca de mí" que está en la barra de navegación o si quieres, puedes cliquear [aquí](master-upf/about/about-this-images-credit.qmd).
 :::
 
 ------------------------------------------------------------------------
