@@ -22,10 +22,12 @@ format: html
 
 > Professor Lluís Pagès directs this part of the **society, family and education: educational processes and contexts** module called **educational framework**, which addresses how to join the Catalan educational system as a teacher, understanding the particular context that surrounds it and knowing how to interact with the various teams and social agents, to successfully fulfill the educational function. This implies knowing the main characteristics of the Catalan educational system and the particular center in which we join and knowing how to develop an effective task that contributes to educating students in a satisfactory manner. In addition, know the documentation and regulations and know how to take advantage of the various real cases worked on in the master's degree to resolve the challenges that arise in future incorporation into the educational system.
 
+![Infographic generated with NotebookLM from the teaching material of the sessions](/images/dae/dae-infografia-en.png){fig-align="center"}
+
 ## Didactic material for all sessions
 
 ::: callout-tip
-## Click on each of the tabs to view the material of each session and asynchronous work
+## Click on each of the tabs to view the material of each session
 :::
 
 ::: panel-tabset
@@ -73,7 +75,48 @@ format: html
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion10.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Asynchronous task 1
+:::
+
+::: column-margin
+**Additional documentation provided by Professor Lluís Pagès and support for asynchronous tasks**
+
+- [Analysis of cognitive biases](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%" target="_blank"}
+
+- [Summary of types of educational centers](/files/sofedocs/sofe-tipos-centros-edu.pdf){.highlight width="10%" target="_blank"}
+
+- [Functions of educational organizations](/files/sofedocs/sofe-doc-functions-org-edu.pdf){.highlight width="10%" target="_blank"}
+
+- [Treatment of the use of languages](/files/sofedocs/pec_tractament_us_llengues.pdf){.highlight width="10%" target="_blank"}
+
+- [Objectives of the educational system](/files/sofedocs/pec_objectius_projecte.pdf){.highlight width="10%" target="_blank"}
+
+- [Center management documents](/files/sofedocs/pec_documents_gestio.pdf){.highlight width="10%" target="_blank"}
+
+- [Teachers' competencies](/files/sofedocs/marc_competencies_professionals_docents_2024.pdf){.highlight width="10%" target="_blank"}
+
+- [Competencies to teach](/files/sofedocs/nuevas-competencias-ensenar.pdf){.highlight width="10%" target="_blank"}
+
+- [Observation Guide - Practicum](/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf){.highlight width="10%" target="_blank"}
+
+- [Environmental educational plans](/files/sofedocs/marc_pee_xtec.pdf){.highlight width="10%" target="_blank"}
+
+- [UNESCO - social contract for education](/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf){.highlight width="10%" target="_blank"}
+
+- [Pedagogical innovation framework of Catalonia](/files/sofedocs/marc_dinnovacio_pedagogica.pdf){.highlight width="10%" target="_blank"}
+
+- [Summary of the pedagogical innovation framework of Catalonia](/files/sofedocs/resumen-marc-innovacio-pedagogica.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+## Didactic material for asynchronous tasks
+
+::: callout-tip
+## Click on each of the tabs to view the material of the asynchronous tasks
+:::
+
+:::panel-tabset
+
+## Asynchronous task 1 {.active}
 
 <embed src="/files/sofesesion/sofe-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
 
@@ -84,6 +127,10 @@ format: html
 ## Asynchronous task 3
 
 <embed src="/files/sofesesion/sofe-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous task 4
+
+<embed src="/files/sofesesion/sofe-asincrona4.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
@@ -97,54 +144,7 @@ format: html
 
 -   [FECCT - Job Board](https://www.fecc.cat/borsa-fecc/){target="_blank"}
 
-## Video to Spanish teacher Clauda Comes Peña from the Ausias March Institute in Barcelona
+## Video of Spanish teacher Clauda Comes Peña from the Ausias March Institute in Barcelona
 
 {{< video https://www.youtube.com/watch?v=pXchSFHB5uA aspect-ratio="4x3" >}}
-
-## Additional documentation provided by Professor Lluís Pagès
-
-::: panel-tabset
-## Summary of educational center types {.active}
-
-<embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Functions of educational organizations
-
-<embed src="/files/sofedocs/sofe-doc-funciones-org-edu.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Treatment of the use of languages
-
-<embed src="/files/sofedocs/pec_tractament_us_llengues.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Objectives of the educational system
-
-<embed src="/files/sofedocs/pec_objectius_projecte.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Center management documents
-
-<embed src="/files/sofedocs/pec_documents_gestio.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Teacher competencies
-
-<embed src="/files/sofedocs/marc_competencies_professionals_docents_2024.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Skills to teach
-
-<embed src="/files/sofedocs/nuevas-competencias-ensenar.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Observation guide - Practicum
-
-<embed src="/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Environmental educational plans
-
-<embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>
-
-
-## UNESCO - social contract for education
-
-<embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
-
-:::
-
 

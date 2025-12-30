@@ -77,6 +77,37 @@ format: html
 
 :::
 
+::: column-margin
+**Documentación adicional aportada por el profesor Lluís Pagès y de apoyo a las tareas asíncronas**
+
+- [Análisis de biases cognitivos](/files/NdC-docs/Analisisdebiasescognitivos.pdf){.highlight width="10%" target="_blank"}
+
+- [Resumen de tipos de centro educativos](/files/sofedocs/sofe-tipos-centros-edu.pdf){.highlight width="10%" target="_blank"}
+
+- [Funciones de organismos educativos](/files/sofedocs/sofe-doc-funciones-org-edu.pdf){.highlight width="10%" target="_blank"}
+
+- [Tratamiento del uso de las lenguas](/files/sofedocs/pec_tractament_us_llengues.pdf){.highlight width="10%" target="_blank"}
+
+- [Objetivos del sistema educativo](/files/sofedocs/pec_objectius_projecte.pdf){.highlight width="10%" target="_blank"}
+
+- [Documentos de gestión de centros](/files/sofedocs/pec_documents_gestio.pdf){.highlight width="10%" target="_blank"}
+
+- [Competencias de los docentes](/files/sofedocs/marc_competencies_professionals_docents_2024.pdf){.highlight width="10%" target="_blank"}
+
+- [Competencias para enseñar](/files/sofedocs/nuevas-competencias-ensenar.pdf){.highlight width="10%" target="_blank"}
+
+- [Guia de observacion - Practicum](/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf){.highlight width="10%" target="_blank"}
+
+- [Planes educativos de entorno](/files/sofedocs/marc_pee_xtec.pdf){.highlight width="10%" target="_blank"}
+
+- [UNESCO - contrato social para la educación](/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf){.highlight width="10%" target="_blank"}
+
+- [Marco de innovación pedagógica de Cataluña](/files/sofedocs/marc_dinnovacio_pedagogica.pdf){.highlight width="10%" target="_blank"}
+
+- [Resumen del marco de innovación pedagógica de Cataluña](/files/sofedocs/resumen-marc-innovacio-pedagogica.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
 ## Material didáctico de las tareas asíncronas
 
 ::: callout-tip
@@ -116,59 +147,4 @@ format: html
 ## Video de la profesora de castellano Clauda Comes Peña del Instituto Ausias March de Barcelona
 
 {{< video https://www.youtube.com/watch?v=pXchSFHB5uA aspect-ratio="4x3" >}}
-
-## Documentación adicional aportada por el profesor Lluís Pagès
-
-::: panel-tabset
-## Resumen de tipos de centro educativos {.active}
-
-<embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Funciones de organismos educativos
-
-<embed src="/files/sofedocs/sofe-doc-funciones-org-edu.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Tratamiento del uso de las lenguas
-
-<embed src="/files/sofedocs/pec_tractament_us_llengues.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Objetivos del sistema educativo
-
-<embed src="/files/sofedocs/pec_objectius_projecte.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Documentos de gestión de centros
-
-<embed src="/files/sofedocs/pec_documents_gestio.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Competencias de los docentes
-
-<embed src="/files/sofedocs/marc_competencies_professionals_docents_2024.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Competencias para enseñar
-
-<embed src="/files/sofedocs/nuevas-competencias-ensenar.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Guia de observacion - Practicum
-
-<embed src="/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Planes educativos de entorno
-
-<embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>
-
-
-## UNESCO - contrato social para la educación
-
-<embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Marco de innovación pedagógica de Cataluña
-
-<embed src="/files/sofedocs/marc_dinnovacio_pedagogica.pdf" type="application/pdf" width="100%" height="800px"/>
-
-## Resumen del marco de innovación pedagógica de Cataluña
-
-<embed src="/files/sofedocs/resumen-marc-innovacio-pedagogica.pdf" type="application/pdf" width="100%" height="800px"/>
-
-:::
-
 
