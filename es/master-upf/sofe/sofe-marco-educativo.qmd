@@ -27,7 +27,7 @@ format: html
 ## Material didáctico de todas las sesiones
 
 ::: callout-tip
-## Haz click en cada una de las pestañas para visualizar el material de cada sesión y trabajos asincrónicos
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
 :::
 
 ::: panel-tabset
@@ -75,7 +75,17 @@ format: html
 
 <embed src="/files/sofesesion/SOFE-MEdu-sesion10.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Tarea asíncrona 1
+:::
+
+## Material didáctico de las tareas asíncronas
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de las tareas asincrónicas
+:::
+
+:::panel-tabset
+
+## Tarea asíncrona 1 {.active}
 
 <embed src="/files/sofesesion/sofe-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
 
@@ -86,6 +96,10 @@ format: html
 ## Tarea asíncrona 3
 
 <embed src="/files/sofesesion/sofe-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 4
+
+<embed src="/files/sofesesion/sofe-asincrona4.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
@@ -99,7 +113,7 @@ format: html
 
 -   [FECCT - Bolsa de trabajo](https://www.fecc.cat/borsa-fecc/){target="_blank"}
 
-## Video a la profesora de castellano Clauda Comes Peña del Instituto Ausias March de Barcelona
+## Video de la profesora de castellano Clauda Comes Peña del Instituto Ausias March de Barcelona
 
 {{< video https://www.youtube.com/watch?v=pXchSFHB5uA aspect-ratio="4x3" >}}
 
@@ -146,6 +160,14 @@ format: html
 ## UNESCO - contrato social para la educación
 
 <embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Marco de innovación pedagógica de Cataluña
+
+<embed src="/files/sofedocs/marc_dinnovacio_pedagogica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resumen del marco de innovación pedagógica de Cataluña
+
+<embed src="/files/sofedocs/resumen-marc-innovacio-pedagogica.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
