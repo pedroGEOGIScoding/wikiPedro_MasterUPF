@@ -39,9 +39,9 @@ website:
       - sidebar:masterUPF
       - sidebar:recursos
       - sidebar:about
-      - text: "Mapa del lloc"
+      - text: "Mapa del lloc {{< bi diagram-3-fill >}}"
         href: master-upf/listing-pages.qmd
-      - text: "Documentació"
+      - text: "Documentació {{< bi folder2-open >}}"
         href: listing-docs.qmd
       - icon: translate
         menu:
@@ -59,13 +59,13 @@ website:
 
   sidebar:
     - id: "portfolio"
-      title: "Portfolio Pedro"
+      title: "Portafolis {{< bi archive-fill >}}"
       style: "docked"
       background: light
       collapse-level: 1
       align: center
       contents:
-        - section: "Portfolio"
+        - section: "Portafolis"
           contents:
           - master-upf/portfolio/portfolio-relato.qmd
           - master-upf/portfolio/portfolio-centro.qmd
@@ -149,7 +149,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "recursos"
-      title: "{{< fa gear >}} Recursos"
+      title: "Recursos {{< bi gear-wide-connected >}}"
       style: "docked"
       background: light
       collapse-level: 1
