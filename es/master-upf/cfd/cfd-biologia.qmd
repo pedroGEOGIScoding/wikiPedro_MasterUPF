@@ -165,10 +165,14 @@ Haced las siguientes dos actividades, son buenas propuestas para trabajar los pr
 
 ::: panel-tabset
 
-## Membrana Celular - Imágenes {.active}
-<embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/
+## Meiosis {.active}
+<embed src="/files/cfd-docs/cfd-bio-Meiosi.pdf" type="application/pdf" width="100%" height="800px"/>
 
+## Mitosis {.active}
+<embed src="/files/cfd-docs/cfd-bio-investigation-Mitosis.pdf" type="application/pdf" width="100%" height="800px"/>
 
+## Objetivos de Estudio
+<embed src="/files/cfd-docs/cfd-bio-objectius-estudiar.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
