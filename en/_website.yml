@@ -39,9 +39,9 @@ website:
       - sidebar:masterUPF
       - sidebar:resources
       - sidebar:about
-      - text: "Site Map {{< bi diagram-3-fill >}}"
+      - text: "Site Map {{< fa solid sitemap >}}"
         href: master-upf/listing-pages.qmd
-      - text: "Documentation {{< bi folder2-open >}}"
+      - text: "Documentation {{< fa solid folder-open >}}"
         href: listing-docs.qmd
       - icon: translate
         menu:
@@ -59,7 +59,7 @@ website:
 
   sidebar:
     - id: "portfolio"
-      title: "Portfolio {{< bi archive-fill >}}"
+      title: "Portfolio {{< fa solid box-archive >}}"
       style: "docked"
       background: light
       collapse-level: 1
@@ -151,7 +151,7 @@ website:
               - master-upf/practicum/practicas-tfm.qmd
 
     - id: "resources"
-      title: "Resources {{< bi gear-wide-connected >}}"
+      title: "Resources {{< fa solid gears >}}"
       style: "docked"
       background: light
       collapse-level: 1
