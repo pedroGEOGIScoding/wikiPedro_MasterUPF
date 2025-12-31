@@ -259,10 +259,11 @@ Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede
   + [Catalysis de las enzimas](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
 
 **Preguntas a contestar en el foro:**
-  + ¿Qué es el objetivo principal de esta actividad?
-  + ¿Para qué nivel consideráis que es adecuada?
-  + ¿Qué puntos fuertes destacáis?
-  + ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
+
+  * ¿Qué es el objetivo principal de esta actividad?
+  * ¿Para qué nivel consideráis que es adecuada?
+  * ¿Qué puntos fuertes destacáis?
+  * ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
 
 ### Tarea 3: Las cosas en genética no son sencillas…, feudo esta actividad para profundizar en la biología de la determinación del sexo (os gustará):
 
@@ -288,7 +289,7 @@ Contestáis en el foro: ¿Qué se puede aprender, en relación a la genética, c
 
 :::
 
-Contestáis en el foro: Indicáis las ideas clave que se trabajan en esta actividad.
+**Contestáis en el foro**: Indicáis las ideas clave que se trabajan en esta actividad.
 
 ::: {.callout-caution collapse="true"}
 ## Haz click para mayor información
@@ -329,31 +330,37 @@ Visionar la presentación-video (13 min), para hacer las tres tareas siguientes:
 
 :::
 
-Contestáis en el foro: ¿Qué se puede aprender con esta actividad?
+**Contestáis en el foro**: ¿Qué se puede aprender con esta actividad?
 
 ### Tarea 2: La complejidad de las relaciones entre las poblaciones del ecosistema.
 
-Encontraréis la hoja de trabajo de la actividad aquí:
+::: {.panel-tabset}
 
+## Hoja de trabajo de la actividad {.active}
 <embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
 
-y la simulación aquí (Ecology lab): 
-
+## La simulación de Ecology labcd ..
 <iframe src="https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html" width="100%" height="800px"></iframe>
 
-Un buen ejemplo de especie clave: How wolves change rivers
+:::
 
-<iframe src="https://youtu.be/ysa5obhxz-q" width="100%" height="800px"></iframe>
+**Un buen ejemplo de especie clave: How wolves change rivers**
+
+{{< video https://youtu.be/ysa5obhxz-q >}}
 
 ¿Qué habéis aprendido con esta actividad? ¿Podéis definir los siguientes conceptos:competencia, exclusión competitiva, nicho ecológico, modelo depredador-tomada, especie clave (keystone species)?
 
-### Tarea 3: Exploráis el concepto de biomagnificación con esta actividad
+### Tarea 3: Explorar el concepto de biomagnificación con esta actividad
 
-<embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
+::: {.panel-tabset}
 
-Escribís vuestras conclusiones sobre esta actividad en el foro.
+## Artículo de biomagnificación {.active}
+<embed src="/files/cfd-docs/cfd-bio-What-Biological-Magnification.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Contestáis en el foro**: Escribid vuestras conclusiones sobre esta actividad en el foro.
 
 ### Tarea 4: Para repasar conceptos (voluntario):
 
-Actividad : 
 <iframe src="https://www.biologycorner.com/2020/04/08/predator-prey-sim/" width="100%" height="800px"></iframe>
