@@ -298,46 +298,62 @@ Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede
 
 ## Ecología
 
+::: {.panel-tabset}
+
+## Documentación Biodiversidad {.active}
+<embed src="/files/cfd-docs/cfd-bio-biodiversitat.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objetivos de estudio
+<embed src="/files/cfd-docs/cfd-bio-objectius-ecologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
 El guión de trabajo para la tarea de ecología es el siguiente:
 
-Visionar la presentación-video (13 min)
++ [Video de Genética](https://aulaglobal.upf.edu/pluginfile.php/9959005/mod_folder/content/0/Biodiversitat%20Ecologia%2021-22.mp4?forcedownload=1){target="_blank"}
 
-Para hacer las tareas siguientes.
+Visionar la presentación-video (13 min), para hacer las tres tareas siguientes:
 
-Tarea 1: Fotosíntesis actividad estudio y animación nivel bachillerato:
+### Tarea 1: Fotosíntesis actividad estudio y animación nivel bachillerato.
 
-Animación: https://media.hhmi.org/biointeractive/click/photosynthesis/
+::: {.panel-tabset}
 
-Hoja de trabajo:
+## Documentación Biodiversidad {.active}
+<iframe src="https://media.hhmi.org/biointeractive/click/photosynthesis/" width="100%" height="800px"></iframe>
 
-inglés: https://www.biointeractive.org/sites/default/files/photosynthesis-studentws-animation.pdf
+## Hoja de trabajo del estudiante (castellano)
+<embed src="/files/cfd-docs/cfd-bio-Fotosintesis-Estudiante-Animacion.pdf" type="application/pdf" width="100%" height="800px"/>
 
-castellano: https://www.biointeractive.org/sites/default/files/media/file/2020-02/fotosintesis-estudiante-animacion_0.pdf
+## Hoja de trabajo del estudiante (inglés)
+<embed src="/files/cfd-docs/cfd-bio-Photosynthesis-StudentWS-animation.pdf" type="application/pdf" width="100%" height="800px"/>
 
-Contestáis en el foro: Qué se puede aprender con esta actividad?
+:::
 
-Tarea 2: La complejidad de las relaciones entre las poblaciones del ecosistema.
+Contestáis en el foro: ¿Qué se puede aprender con esta actividad?
+
+### Tarea 2: La complejidad de las relaciones entre las poblaciones del ecosistema.
 
 Encontraréis la hoja de trabajo de la actividad aquí:
 
-https://docs.google.com/document/d/1deqcf2lpdk8kw8o64khf9fjent8vbe5ajnmurcrqoie/edit
+<embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
 
-y la simulación aquí (Ecology lab): https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html
+y la simulación aquí (Ecology lab): 
+
+<iframe src="https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html" width="100%" height="800px"></iframe>
 
 Un buen ejemplo de especie clave: How wolves change rivers
 
-https://youtu.be/ysa5obhxz-q
+<iframe src="https://youtu.be/ysa5obhxz-q" width="100%" height="800px"></iframe>
 
-Qué habéis aprendido con esta actividad? Podéis definir los siguientes conceptos:competencia, exclusión competitiva, nicho ecológico, modelo depredador-tomada, especie clave (keystone species)?
+¿Qué habéis aprendido con esta actividad? ¿Podéis definir los siguientes conceptos:competencia, exclusión competitiva, nicho ecológico, modelo depredador-tomada, especie clave (keystone species)?
 
-Tarea 3: Exploráis el concepto de biomagnificación con esta actividad:
+### Tarea 3: Exploráis el concepto de biomagnificación con esta actividad
 
-https://drive.google.com/file/d/1x1uaehpayrxvdfhpib7cxtz8cnkj5xs7/view
+<embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
 
 Escribís vuestras conclusiones sobre esta actividad en el foro.
 
-Para repasar conceptos (voluntario):
+### Tarea 4: Para repasar conceptos (voluntario):
 
-IOC Ecología: https://educaciodigital.cat/ioc-batx/moodle/course/view.php?id=43#section-3
-
-Actividad : https://www.biologycorner.com/2020/04/08/predator-prey-sim/
+Actividad : 
+<iframe src="https://www.biologycorner.com/2020/04/08/predator-prey-sim/" width="100%" height="800px"></iframe>
