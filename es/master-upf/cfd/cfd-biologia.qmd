@@ -108,9 +108,69 @@ Elegir 4 actividades de las siguientes, leedlas y analizadlas y contestáis las 
 
 - ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
 
+::: column-margin
+**Documentación de apoyo**
+
+[Microscopio virtual interactivo](https://www.ncbionetwork.org/iet/microscope/){target="_blank"}
+
+[Transporte a través de la membrana - YouTube](https://www.youtube.com/watch?v=Nw6E2MGyJVc){target="_blank"}
+
+[Transporte de membrana - Mr G Science](https://www.mrgscience.com/topic-14-membrane-transport.html){target="_blank"}
+
+[Recursos de biología - Apliense](https://apliense.xtec.cat/arc/node/29280){target="_blank"}
+
+[Cálculo del índice mitótico - Drug Research](https://sites.google.com/a/xtec.cat/drugresearch/additional-steps/a-training-session-to-calculate-the-mitotic-index){target="_blank"}
+
+:::
+
+::: panel-tabset
+
+## Membrana Celular - Imágenes {.active}
+<embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Modelo de Célula
+<embed src="/files/cfd-docs/cfd-bio-Make-Model-Cell.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Protocolo de Membrana
+<embed src="/files/cfd-docs/cfd-bio-MembraneProtocol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Microscopio Virtual
+<embed src="/files/cfd-docs/cfd-bio-Virtual-Microscope.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## ¿Por qué las células son pequeñas?
+<embed src="/files/cfd-docs/cfd-bio-Why-Cells-Small.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Evaluación ARC
+<embed src="/files/cfd-docs/cfd-bio-arcavaluacio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Proyecto de Analogía Celular
+<embed src="/files/cfd-docs/cfd-bio-cell_analogy_project.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Preparación Microscópica
+<embed src="/files/cfd-docs/cfd-bio-enfocar-preparacio-microscopi.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
 ### Trabajo 2
 
+Haced las siguientes dos actividades, son buenas propuestas para trabajar los procesos de mitosis y meiosis y y os ayudarán a fijar conocimientos. A continuación, contestáis las siguientes preguntas en el foro:
 
+- ¿Cuál es el objetivo principal de esta actividad?
+
+- ¿Para qué nivel consideráis que es adecuada?
+
+- ¿Qué puntos fuertes destacáis?
+
+- ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
+
+::: panel-tabset
+
+## Membrana Celular - Imágenes {.active}
+<embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/
+
+
+
+:::
 
 ## Genética mendeliana
 
