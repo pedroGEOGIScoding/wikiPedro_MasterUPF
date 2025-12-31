@@ -4,11 +4,13 @@ _site/
 *_cache/
 *_files/
 docs/
+*/_extensions/
 
-# But keep source images
+# But keep source images and Bootstrap Icons assets
 !es/images/
 !ca/images/
 !en/images/
+!*/_extensions/shafayetShafee/bsicons/assets/
 
 # Python
 __pycache__/
