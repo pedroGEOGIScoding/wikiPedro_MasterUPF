@@ -1,12 +1,12 @@
 ---
-title: "Biología"
-subtitle: "Guía integrada de la especialidad de Ciencias Naturales en Biología"
+title: "Biology"
+subtitle: "Integrated guide to the Natural Sciences specialty in Biology"
 filename: cfd-biologia
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que cubre los aspectos especificos del currículum de Biología en la educación secundaria
-categories: [complementos, disciplinar, biología]
+description: Subject that covers the specific aspects of the Biology curriculum in secondary education
+categories: [accessories, discipline, biology]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,8 +18,349 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
 
-> Esta asignatura cubre los aspectos especificos del currículum de Biología en la educación secundaria. Su propósito es complementar la formación disciplinar de los estudiantes en el ámbito de la biología.
+> This subject covers the specific aspects of the Biology curriculum in secondary education. Its purpose is to complement the disciplinary training of students in the field of biology. Professor Xavier Muñoz Báguena directs this part of the **Disciplinary Training Complements** module called **Biology**, with the objectives of knowing the curriculum of biology and environmental sciences of ESO and high school, and reflecting on the objectives of teaching-learning of natural sciences in secondary school.
 
 
+## Goals
+
+The objectives of this subject are:
+
+* Identify the big ideas (key ideas) of Biology
+    + They have explanatory power in relation to a large number of phenomena that students may encounter throughout their lives
+    + Provide a good basis for understanding relevant issues (affecting health and well-being as well as the environment)
+    + They provoke the satisfaction of being able to find answers to the questions they may ask about themselves and the natural, everyday world
+    + They have cultural significance, that is, they are related to aspects of the human condition, great moments in the history of science, the impacts of human activity on the environment.
+* Identify the aspects of Biology that will have to be studied/reviewed
+    + The paradigm of Evolution
+    + Cell theory and the hypothesis of chromosome continuity
+    + Mendelian genetics
+    + Molecular genetics. Metabolism
+    + Ecology
+* Know the main obstacles that students encounter
+* Reflect on the way to approach different aspects of the discipline
+* Analyze specific teaching-learning activities
+
+## Didactic material for the sessions and the work to be done
+
+::: callout-tip
+## Click on each of the tabs to view the material from the initial session and the documentation associated with the work to be done
+:::
+
+::: {.panel-tabset}
+## Initial session {.active}
+
+<embed src="/files/cfd-docs/cfd-bio-presentacion-Biologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Click for more information
+
+It is important not to forget to read all the supporting documentation, as it can be very useful in resolving the work to be done.
+:::
+
+## Evolution
+
+::: {.panel-tabset}
+## Session introduction {.active}
+
+<embed src="/files/cfd-docs/cfd-bio-evolucion-intro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Goals
+
+<embed src="/files/cfd-docs/cfd-bio-evolucion-objectius.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercise: Fact, fiction and opinions
+
+<embed src="/files/cfd-docs/cfd-bio-evo-Fact-Fiction-Opinion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercise: Paper amoebas
+
+<embed src="/files/cfd-docs/cfd-bio-Amebes-paper.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercise result: Paper amoebas
+
+![](/images/cfd/amebas.jpeg){width="100%" height="800px"}
+
+:::
+
+::: {.column-margin}
+**Supporting documentation**
+
+[The Biology Corner, resources for teaching biology](https://www.biologycorner.com/){target="_blank"}
+
+[The Biology Corner, evolution resource](https://www.biologycorner.com/worksheets/evolution-fact-fiction-key.html){target="_blank"}
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Click for more information
+
+It is important not to forget to read all the supporting documentation, as it can be very useful in resolving the work to be done.
+:::
+
+## cell theory
+
+::: {.panel-tabset}
+## Session introduction {.active}
+![](/files/cfd-docs/cfd-bio-cell-intro.pdf){width="100%" height="800px"}
+:::
+
+### Job 1
+
+Choose 4 activities from the following, read and analyze them and answer the following questions in the forum:
+
+- What is the main objective of this activity?
+- For what level do you think it is suitable?
+- What strengths do you highlight?
+- What are the weak points? How could it be improved?
+
+::: {.column-margin}
+**Supporting documentation**
+
+[Interactive virtual microscope](https://www.ncbionetwork.org/iet/microscope/){target="_blank"}
+
+[Transport through the membrane - YouTube](https://www.youtube.com/watch?v=Nw6E2MGyJVc){target="_blank"}
+
+[Membrane transport - Mr G Science](https://www.mrgscience.com/topic-14-membrane-transport.html){target="_blank"}
+
+[Biology resources - Apliense](https://apliense.xtec.cat/arc/node/29280){target="_blank"}
+
+[Calculation of the mitotic index - Drug Research](https://sites.google.com/a/xtec.cat/drugresearch/additional-steps/a-training-session-to-calculate-the-mitotic-index){target="_blank"}
+
+:::
+
+::: {.panel-tabset}
+
+## Cell Membrane - Images {.active}
+<embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Cell Model
+<embed src="/files/cfd-docs/cfd-bio-Make-Model-Cell.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Membrane Protocol
+<embed src="/files/cfd-docs/cfd-bio-MembraneProtocol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Virtual Microscope
+<embed src="/files/cfd-docs/cfd-bio-Virtual-Microscope.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Why are cells small?
+<embed src="/files/cfd-docs/cfd-bio-Why-Cells-Small.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## ARC Evaluation
+<embed src="/files/cfd-docs/cfd-bio-arcavaluacio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Cellular Analogy Project
+<embed src="/files/cfd-docs/cfd-bio-cell_analogy_project.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Microscopic Preparation
+<embed src="/files/cfd-docs/cfd-bio-enfocar-preparacio-microscopi.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+### Job 2
+
+Do the following two activities, they are good proposals to work on the processes of mitosis and meiosis and they will help you establish knowledge. Next, answer the following questions in the forum:
+
+- What is the main objective of this activity?
+- For what level do you think it is suitable?
+- What strengths do you highlight?
+- What are the weak points? How could it be improved?
+
+::: {.panel-tabset}
+
+## Meiosis {.active}
+<embed src="/files/cfd-docs/cfd-bio-Meiosi.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Mitosis
+<embed src="/files/cfd-docs/cfd-bio-investigation-Mitosis.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Study Objectives
+<embed src="/files/cfd-docs/cfd-bio-objectius-estudiar.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Click for more information
+
+It is important not to forget to read all the supporting documentation, as it can be very useful in resolving the work to be done.
+:::
+
+## Mendelian genetics
+
+Session guide:
+
+Watch the video presentation (6 min)
+
+Do the activity “Why are two brothers different?” (it's long, but I'm sure it will be very useful) and post on the forum the schematic of the “son” that you will obtain. Naturally, you can also intervene in the forum with questions or any comments that you consider of interest.
+
+::: {.column-margin}
+**Supporting documentation**
+
+[Genetics Video](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+:::
+
+::: {.panel-tabset}
+
+## Mendelian Genetics {.active}
+<embed src="/files/cfd-docs/cfd-bio-genetica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Activity Siblings according to Mendelian genetics
+<embed src="/files/cfd-docs/cfd-bio-Activitat-germans-diferents-mendeliana.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercises for Mendelian genetics
+<embed src="/files/cfd-docs/cfd-bio-ejercicios-resueltos-mendel.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resolution about pedigrees
+<embed src="/files/cfd-docs/cfd-bio-resolucion-pedigris.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Click for more information
+
+It is important not to forget to read all the supporting documentation, as it can be very useful in resolving the work to be done.
+:::
+
+## Molecular genetics. Metabolism
+
+::: {.panel-tabset}
+
+## Introduction to molecular genetics and metabolism {.active}
+<embed src="/files/cfd-docs/cfd-bio-genetica-metabolisme.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Study objectives
+<embed src="/files/cfd-docs/cfd-bio-objectius-metabolismo.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+[Genetics and metabolism video](https://aulaglobal.upf.edu/pluginfile.php/9959002/mod_folder/content/0/Gen%C3%A8tica%20Metabolisme%202021-22.mp4?forcedownload=1){target="_blank"}
+
+::: {.column-margin}
+**Links to activities**
+
+[Genetics Video](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+
+[Investigation Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+
+[Enzyme catalysis](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+:::
+
+### Task 1: Watch the video presentation (10 min)
+  + [Genetics Video](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+### Task 2: Analyze the following activities about enzymes
+
+  + [Enzymes](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+  + [Investigation Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+  + [Enzyme Catalysis](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+
+**Questions to answer in the forum:**
+
+  * What is the main objective of this activity?
+  * For what level do you think it is suitable?
+  * What strengths do you highlight?
+  * What are the weak points? How could it be improved?
+
+### Task 3: Things in genetics are not simple..., I use this activity to delve deeper into the biology of sex determination (you will like it):
+
+::: {.panel-tabset}
+
+## Task 3 script {.active}
+<embed src="/files/cfd-docs/cfd-bio-SexVerification-StudentWS-CL.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Video: “Sex Verification of Athletes”**
+
+{{< video https://vimeo.com/270183169/4fad4297ea?fl=pl&fe=vl aspect-ratio="4x3" >}}
+
+You answer in the forum: What can be learned, in relation to genetics, with this activity?
+
+### Task 4: Activity to delve deeper into gene regulation: Modeling the Regulatory Switches of the Pitx1 Gene in Stickleback Fish:
+
+::: {.panel-tabset}
+
+## Task 4 script {.active}
+<embed src="/files/cfd-docs/cfd-bio-modelingPITX1gene-StudentHO-act.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**You answer in the forum**: You indicate the key ideas that are worked on in this activity.
+
+::: {.callout-caution collapse="true"}
+## Click for more information
+
+It is important not to forget to read all the supporting documentation, as it can be very useful in resolving the work to be done.
+:::
+
+## Ecology
+
+::: {.panel-tabset}
+
+## Biodiversity Documentation {.active}
+<embed src="/files/cfd-docs/cfd-bio-biodiversitat.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Study objectives
+<embed src="/files/cfd-docs/cfd-bio-objectius-ecologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+The work script for the ecology task is as follows:
+
++ [Genetics Video](https://aulaglobal.upf.edu/pluginfile.php/9959005/mod_folder/content/0/Biodiversitat%20Ecologia%2021-22.mp4?forcedownload=1){target="_blank"}
+
+Watch the video presentation (13 min), to do the following three tasks:
+
+### Task 1: Photosynthesis activity study and animation high school level.
+
+::: {.panel-tabset}
+
+## Biodiversity Documentation {.active}
+<iframe src="https://media.hhmi.org/biointeractive/click/photosynthesis/" width="100%" height="800px"></iframe>
+
+## Student Worksheet (Spanish)
+<embed src="/files/cfd-docs/cfd-bio-Fotosintesis-Estudiante-Animacion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Student Worksheet (English)
+<embed src="/files/cfd-docs/cfd-bio-Photosynthesis-StudentWS-animation.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**You answer in the forum**: What can you learn from this activity?
+
+### Task 2: The complexity of the relationships between ecosystem populations.
+
+::: {.panel-tabset}
+
+## Activity Worksheet {.active}
+<embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## The Ecology lab simulation
+<iframe src="https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html" width="100%" height="800px"></iframe>
+
+:::
+
+**A good example of a keystone species: "How wolves change rivers"**
+
+{{< video https://youtu.be/ysa5OBhXz-Q >}}
+
+What have you learned with this activity? Can you define the following concepts: competition, competitive exclusion, ecological niche, predator-take model, keystone species?
+
+### Task 3: Explore the concept of biomagnification with this activity
+
+::: {.panel-tabset}
+
+## Biomagnification article {.active}
+<embed src="/files/cfd-docs/cfd-bio-What-Biological-Magnification.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**You answer in the forum**: Write your conclusions about this activity in the forum.
+
+### Task 4: To review concepts (voluntary)
+
+[The biology corner - Predator-Prey Sim](https://www.biologycorner.com/2020/04/08/predator-prey-sim/){target="_blank"}

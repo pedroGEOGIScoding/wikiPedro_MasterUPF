@@ -1,12 +1,12 @@
 ---
-title: "Geología"
-subtitle: "Guía integrada de la especialidad de Ciencias Naturales en Geología"
+title: "Geology"
+subtitle: "Integrated guide to the Natural Sciences specialty in Geology"
 filename: cfd-geologia
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que cubre los aspectos especificos del currículum de Geología en la educación secundaria
-categories: [complementos, disciplinar, geología]
+description: Subject that covers the specific aspects of the Geology curriculum in secondary education
+categories: [accessories, discipline, geology]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,32 +18,32 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentation
 
-> La profesora Laia Ramon-Sala dirige esta parte del módulo de **Complementos de Formación Disciplinar** denominado **Geología y Ciencias Ambientales**, con los objetivos de conocer el currículum de la geología y las ciencias ambientales de la ESO y el bachillerato, reflexionar sobre los objetivos de la enseñanza-aprendizaje de las ciencias naturales en secundaria.
+> Professor Laia Ramon-Sala directs this part of the **Disciplinary Training Complements** module called **Geology and Environmental Sciences**, with the objectives of knowing the curriculum of geology and environmental sciences of ESO and high school, and reflecting on the objectives of teaching-learning of natural sciences in secondary school.
 
-## Material didáctico de las sesiones y los trabajos a realizar
+## Didactic material for the sessions and the work to be done
 
 ::: callout-tip
-## Haz click en cada una de las pestañas para visualizar el material de la sesión inicial y la documentación asociada a los trabajos a realizar
+## Click on each of the tabs to view the material from the initial session and the documentation associated with the work to be done
 :::
 
 ::: {.panel-tabset}
-## Sesión inicial {.active}
+## Initial session {.active}
 
 <embed src="/files/cfd-docs/cfd-geologia-intro.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Bibliografía complementaria
+## Additional bibliography
 
 <embed src="/files/cfd-docs/cfd-geo-bibliografia.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-## Links de interes para la asignatura
+## Links of interest for the subject
 
-- [Guía de rocas de Museu de Ciències de Catalunya](https://museuciencies.cat/comunicacio/publicacions/divulgatives/guia-de-roques/)
+- [Guide to rocks from the Museu de Ciències de Catalunya](https://museuciencies.cat/comunicacio/publicacions/divulgatives/guia-de-roques/)
 
-- [Diccionario de geología](https://cit.iec.cat/DGEOL/default.asp?opcio=0)
+- [Dictionary of geology](https://cit.iec.cat/DGEOL/default.asp?opcio=0)
 
 ### RAPAKIVI - @jpereztar
 
@@ -55,112 +55,112 @@ format: html
 
 
 ::: {.column-margin}
-**Documentación de apoyo**
+**Supporting documentation**
 
-- [Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
+- [Geology test year 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-correccion.pdf){.highlight width="10%" target="_blank"}
+- [Correction Geology test year 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-correccion.pdf){.highlight width="10%" target="_blank"}
 
-- [Prueba geología año 20/21](/files/cfd-docs/cfd-geo-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+- [Geology test year 20/21](/files/cfd-docs/cfd-geo-prova-20-21.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 20/21](/files/cfd-docs/cfd-geo-correccion-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+- [Correccion Geology test year 20/21](/files/cfd-docs/cfd-geo-correccion-prova-20-21.pdf){.highlight width="10%" target="_blank"}
 
-- [Prueba geología año 21/22](/files/cfd-docs/cfd-geo-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+- [Geology test year 21/22](/files/cfd-docs/cfd-geo-prova-21-22.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 21/22](/files/cfd-docs/cfd-geo-correccion-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+- [Correction Geology test year 21/22](/files/cfd-docs/cfd-geo-correccion-prova-21-22.pdf){.highlight width="10%" target="_blank"}
 
 :::
 
-## Tarea 1 "Gaia, la Gran Madre"
+## Task 1 "Gaia, the Great Mother"
 
-En esta tarea se trabajarán los siguientes objetivos de aprendizaje:
+In this task the following learning objectives will be worked on:
 
-- Argumentar el conocimiento de los diferentes elementos del sistema Tierra, así como de las interacciones entre sí en el ámbito local y en el ámbito global, para prever la dinámica de un sistema.
+- Argue the knowledge of the different elements of the Earth system, as well as the interactions between them at the local level and at the global level, to predict the dynamics of a system.
 
-- Identificar situaciones y explicar ejemplos de cambios paradigmáticos que hayan supuesto grandes controversias científicas en la historia de las ciencias.
+- Identify situations and explain examples of paradigmatic changes that have led to major scientific controversies in the history of science.
 
-Para conseguir los objetivos, visualiza los dos videos y realiza las tareas indicadas, de manera individual. El primero tiene carácter narrativo apropiado para un nivel de ESO, haciendo la misma tarea. El segundo tiene un carácter puramente didáctico y es bastante denso, servirá para introducir o repasar conceptos clave en geología, pero hacer esta actividad en el aula sería demasiado pesado.
+To achieve the objectives, watch the two videos and perform the indicated tasks, individually. The first has a narrative character appropriate for an ESO level, doing the same task. The second has a purely didactic nature and is quite dense. It will serve to introduce or review key concepts in geology, but doing this activity in the classroom would be too heavy.
 
-### Video 1: Gaia, la gran madre
+### Video 1: Gaia, the great mother
 
-Documental de 48' sobre el origen, la evolución y el futuro de la Tierra, con énfasis en los conceptos geológicos y el papel de la vida y de los humanos. Los hechos y las ideas se muestran mediante ilustraciones y animaciones, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. También se exponen las amenazas en la sostenibilidad del planeta. Hay tres tipos de preguntas:
+48' documentary about the origin, evolution and future of the Earth, with emphasis on geological concepts and the role of life and humans. Facts and ideas are shown through illustrations and animations, as well as films taken in places such as museums and nearby relevant landscapes. Threats to the sustainability of the planet are also exposed. There are three types of questions:
 
-- Preguntas que tenéis que contestar antes de empezar a ver el documental.
+- Questions that you have to answer before starting to watch the documentary.
 
-- Preguntas que tenéis que contestar durante la visualización del documental.
+- Questions that you have to answer while watching the documentary.
 
-- Preguntas que tenéis que contestar después de ver el documental.
+- Questions you have to answer after watching the documentary.
 
-Por este motivo disponéis de unas dos horas para realizar el cuestionario, a pesar de que no he fijado un límite.
+For this reason you have about two hours to complete the questionnaire, although I have not set a limit.
 
-Después de ver el documental y contestar el cuestionario hiciera una aportación a uno de los debates del foro, teniendo en cuenta el que han respondido tus compañeros y tus compañeras.
+After watching the documentary and answering the questionnaire, make a contribution to one of the forum debates, taking into account what your colleagues have responded to.
 
 {{< video https://youtu.be/OL6U_1WmBbw aspect-ratio="4x3" >}}
 
-### Video 2: Las profundidades de la Tierra
+### Video 2: The depths of the Earth
 
-Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la atención en los fenómenos volcánicos y sísmicos, pero también exponiendo la diferente composición de las capas de la Tierra y su movimiento. Los hechos y las ideas se muestran mediante animaciones y modelos didácticos analógicos, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. Hay tres tipos de preguntas:
+53' informative program on the internal dynamics of the planet, focusing on volcanic and seismic phenomena, but also exposing the different composition of the Earth's layers and their movement. Facts and ideas are shown through animations and analog teaching models, as well as films made in places such as museums and relevant nearby landscapes. There are three types of questions:
 
-- Preguntas que tenéis que contestar antes de empezar a ver el programa divulgativo.
+- Questions that you have to answer before starting to watch the informative program.
 
-- Preguntas que tenéis que contestar durante la visualización del programa divulgativo.
+- Questions that you have to answer while viewing the informative program.
 
-- Preguntas que tenéis que contestar después de ver el programa divulgativo.
+- Questions that you have to answer after watching the informative program.
 
-[Ver programa divulgativo: Las profundidades de la Tierra](https://www.rtve.es/play/videos/curioseando/curioseando-t2-programa-5-profundidades-tierra/16444938/){target="_blank"}
+[See informative program: The depths of the Earth](https://www.rtve.es/play/videos/curioseando/curioseando-t2-programa-5-profundidades-tierra/16444938/){target="_blank"}
 
-## Tarea 2 "Minerales cotidianos"
+## Task 2 "Everyday minerals"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Initial presentation {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Actividad práctica de minerales cotidianos
+## Practical activity of everyday minerals
 
 <embed src="/files/cfd-docs/cfd-tasca-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-### Como funciona la tierra - parte 1
+### How the earth works - part 1
 
-[Ver video: Como funciona la tierra - parte 1](file:///C:/Users/pedro/Documents/shared_VMs/Tasca2/view1.htm){target="_blank"}
+[See video: How the earth works - part 1](file:///C:/Users/pedro/Documents/shared_VMs/Tasca2/view1.htm){target="_blank"}
 
-### Como funciona la tierra - parte 2
+### How the earth works - part 2
 
-[Ver video: Como funciona la tierra - parte 2](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1665785){target="_blank"}
+[See video: How the earth works - part 2](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1665785){target="_blank"}
 
 
-## Tarea 3 "El relleno y su litología"
+## Task 3 "The fill and its lithology"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Initial presentation {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-presentacion-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## ¿Qué es la historia geológica?
+## What is geological history?
 
 <embed src="/files/cfd-docs/cfd-geo-historia-geologica.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Descripción de la tarea 3
+## Description of task 3
 
 <embed src="/files/cfd-docs/cfd-geo-tasca3-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-### El relleno geológico
+### The geological fill
 
-[Ver video: El relleno geológico](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1629089){target="_blank"}
+[See video: The geological fill](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1629089){target="_blank"}
 
 
-## Tarea 4 "Interdependencia - Noticia reciente"
+## Task 4 "Interdependence - Recent news"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Initial presentation {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-relacion-tierra.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Interdependencia - Noticia reciente
+## Interdependence - Recent news
 
 <embed src="/files/cfd-docs/cfd-geo-noticia-reciente.pdf" type="application/pdf" width="100%" height="800px"/>
 

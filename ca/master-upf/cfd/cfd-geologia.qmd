@@ -1,12 +1,12 @@
 ---
-title: "Geología"
-subtitle: "Guía integrada de la especialidad de Ciencias Naturales en Geología"
+title: "Geologia"
+subtitle: "Guia integrada de l'especialitat de Ciències Naturals en Geologia"
 filename: cfd-geologia
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que cubre los aspectos especificos del currículum de Geología en la educación secundaria
-categories: [complementos, disciplinar, geología]
+description: Assignatura que abasta els aspectes específics del pla d'estudis de Geologia a l'educació secundària
+categories: [accessoris, disciplina, geologia]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,149 +18,149 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentació
 
-> La profesora Laia Ramon-Sala dirige esta parte del módulo de **Complementos de Formación Disciplinar** denominado **Geología y Ciencias Ambientales**, con los objetivos de conocer el currículum de la geología y las ciencias ambientales de la ESO y el bachillerato, reflexionar sobre los objetivos de la enseñanza-aprendizaje de las ciencias naturales en secundaria.
+> La professora Laia Ramon-Sala dirigeix ​​aquesta part del mòdul **Complements Formatius Disciplinaris** denominat **Geologia i Ciències Ambientals**, amb els objectius de conèixer el pla d'estudis de geologia i ciències ambientals d'ESO i batxillerat, i reflexionar sobre els objectius de l'ensenyament-aprenentatge de les ciències naturals a secundària.
 
-## Material didáctico de las sesiones y los trabajos a realizar
+## Material didàctic per a les sessions i el treball a realitzar
 
 ::: callout-tip
-## Haz click en cada una de las pestañas para visualizar el material de la sesión inicial y la documentación asociada a los trabajos a realizar
+## Feu clic a cadascuna de les pestanyes per veure el material de la sessió inicial i la documentació associada al treball a realitzar
 :::
 
 ::: {.panel-tabset}
-## Sesión inicial {.active}
+## Sessió inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geologia-intro.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Bibliografía complementaria
+## Bibliografia addicional
 
 <embed src="/files/cfd-docs/cfd-geo-bibliografia.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-## Links de interes para la asignatura
+## Enllaços d'interès per al tema
 
-- [Guía de rocas de Museu de Ciències de Catalunya](https://museuciencies.cat/comunicacio/publicacions/divulgatives/guia-de-roques/)
+- [Guia de roques del Museu de Ciències de Catalunya](https://museuciencies.cat/comunicacio/publicacions/divulgatives/guia-de-roques/)
 
-- [Diccionario de geología](https://cit.iec.cat/DGEOL/default.asp?opcio=0)
+- [Diccionari de geologia](https://cit.iec.cat/DGEOL/default.asp?opcio=0)
 
 ### RAPAKIVI - @jpereztar
 
 {{< video https://www.youtube.com/watch?v=T2dbGA4vsEE aspect-ratio="4x3" >}}
 
-### Fossil Rock Anthem
+### Himne de roca fòssil
 
 {{< video https://youtu.be/ClJ5lwl_wM0 aspect-ratio="4x3" >}}
 
 
 ::: {.column-margin}
-**Documentación de apoyo**
+**Documentació de suport**
 
-- [Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
+- [Any de prova de geologia 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-correccion.pdf){.highlight width="10%" target="_blank"}
+- [Prova de Geologia de correcció any 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-correccion.pdf){.highlight width="10%" target="_blank"}
 
-- [Prueba geología año 20/21](/files/cfd-docs/cfd-geo-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+- [Any de prova de geologia 20/21](/files/cfd-docs/cfd-geo-prova-20-21.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 20/21](/files/cfd-docs/cfd-geo-correccion-prova-20-21.pdf){.highlight width="10%" target="_blank"}
+- [Prova de correcció de geologia any 20/21](/files/cfd-docs/cfd-geo-correccion-prova-20-21.pdf){.highlight width="10%" target="_blank"}
 
-- [Prueba geología año 21/22](/files/cfd-docs/cfd-geo-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+- [Any de prova de geologia 21/22](/files/cfd-docs/cfd-geo-prova-21-22.pdf){.highlight width="10%" target="_blank"}
 
-- [Corrección Prueba geología año 21/22](/files/cfd-docs/cfd-geo-correccion-prova-21-22.pdf){.highlight width="10%" target="_blank"}
+- [Prova de Geologia de correcció any 21/22](/files/cfd-docs/cfd-geo-correccion-prova-21-22.pdf){.highlight width="10%" target="_blank"}
 
 :::
 
-## Tarea 1 "Gaia, la Gran Madre"
+## Tasca 1 "Gaia, la gran mare"
 
-En esta tarea se trabajarán los siguientes objetivos de aprendizaje:
+En aquesta tasca es treballaran els següents objectius d'aprenentatge:
 
-- Argumentar el conocimiento de los diferentes elementos del sistema Tierra, así como de las interacciones entre sí en el ámbito local y en el ámbito global, para prever la dinámica de un sistema.
+- Argumentar el coneixement dels diferents elements del sistema Terra, així com les interaccions entre ells a nivell local i global, per predir la dinàmica d'un sistema.
 
-- Identificar situaciones y explicar ejemplos de cambios paradigmáticos que hayan supuesto grandes controversias científicas en la historia de las ciencias.
+- Identificar situacions i explicar exemples de canvis paradigmàtics que han donat lloc a grans controvèrsies científiques en la història de la ciència.
 
-Para conseguir los objetivos, visualiza los dos videos y realiza las tareas indicadas, de manera individual. El primero tiene carácter narrativo apropiado para un nivel de ESO, haciendo la misma tarea. El segundo tiene un carácter puramente didáctico y es bastante denso, servirá para introducir o repasar conceptos clave en geología, pero hacer esta actividad en el aula sería demasiado pesado.
+Per aconseguir els objectius, mira els dos vídeos i realitza les tasques indicades, individualment. El primer té un caràcter narratiu adequat a un nivell d'ESO, fent la mateixa tasca. El segon té un caràcter purament didàctic i és força dens. Servirà per introduir o repassar conceptes clau en geologia, però fer aquesta activitat a l'aula seria massa pesat.
 
-### Video 1: Gaia, la gran madre
+### Vídeo 1: Gaia, la gran mare
 
-Documental de 48' sobre el origen, la evolución y el futuro de la Tierra, con énfasis en los conceptos geológicos y el papel de la vida y de los humanos. Los hechos y las ideas se muestran mediante ilustraciones y animaciones, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. También se exponen las amenazas en la sostenibilidad del planeta. Hay tres tipos de preguntas:
+48' documental sobre l'origen, l'evolució i el futur de la Terra, amb èmfasi en els conceptes geològics i el paper de la vida i dels humans. Els fets i les idees es mostren mitjançant il·lustracions i animacions, així com pel·lícules fetes en llocs com museus i paisatges rellevants propers. També s'exposen les amenaces a la sostenibilitat del planeta. Hi ha tres tipus de preguntes:
 
-- Preguntas que tenéis que contestar antes de empezar a ver el documental.
+- Preguntes que has de respondre abans de començar a veure el documental.
 
-- Preguntas que tenéis que contestar durante la visualización del documental.
+- Preguntes que has de respondre mentre veus el documental.
 
-- Preguntas que tenéis que contestar después de ver el documental.
+- Preguntes que has de respondre després de veure el documental.
 
-Por este motivo disponéis de unas dos horas para realizar el cuestionario, a pesar de que no he fijado un límite.
+Per aquest motiu tens unes dues hores per omplir el qüestionari, tot i que no he posat cap límit.
 
-Después de ver el documental y contestar el cuestionario hiciera una aportación a uno de los debates del foro, teniendo en cuenta el que han respondido tus compañeros y tus compañeras.
+Després de veure el documental i contestar el qüestionari, fes una aportació a un dels debats del fòrum, tenint en compte el que han respost els teus companys.
 
 {{< video https://youtu.be/OL6U_1WmBbw aspect-ratio="4x3" >}}
 
-### Video 2: Las profundidades de la Tierra
+### Vídeo 2: Les profunditats de la Terra
 
-Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la atención en los fenómenos volcánicos y sísmicos, pero también exponiendo la diferente composición de las capas de la Tierra y su movimiento. Los hechos y las ideas se muestran mediante animaciones y modelos didácticos analógicos, así como filmaciones realizadas en lugares como museos y paisajes relevantes próximos. Hay tres tipos de preguntas:
+Programa informatiu de 53' sobre la dinàmica interna del planeta, centrat en els fenòmens volcànics i sísmics, però també exposant la diferent composició de les capes de la Terra i el seu moviment. Els fets i les idees es mostren mitjançant animacions i models d'ensenyament analògic, així com pel·lícules fetes en llocs com museus i paisatges propers rellevants. Hi ha tres tipus de preguntes:
 
-- Preguntas que tenéis que contestar antes de empezar a ver el programa divulgativo.
+- Preguntes que has de respondre abans de començar a veure el programa informatiu.
 
-- Preguntas que tenéis que contestar durante la visualización del programa divulgativo.
+- Preguntes que heu de respondre mentre visualitzeu el programa informatiu.
 
-- Preguntas que tenéis que contestar después de ver el programa divulgativo.
+- Preguntes que has de respondre després de veure el programa informatiu.
 
-[Ver programa divulgativo: Las profundidades de la Tierra](https://www.rtve.es/play/videos/curioseando/curioseando-t2-programa-5-profundidades-tierra/16444938/){target="_blank"}
+[Veure programa informatiu: Les profunditats de la Terra](https://www.rtve.es/play/videos/curioseando/curioseando-t2-programa-5-profundidades-tierra/16444938/){target="_blank"}
 
-## Tarea 2 "Minerales cotidianos"
+## Tasca 2 "Minerals quotidians"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Presentació inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Actividad práctica de minerales cotidianos
+## Activitat pràctica dels minerals quotidians
 
 <embed src="/files/cfd-docs/cfd-tasca-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-### Como funciona la tierra - parte 1
+### Com funciona la terra - part 1
 
-[Ver video: Como funciona la tierra - parte 1](file:///C:/Users/pedro/Documents/shared_VMs/Tasca2/view1.htm){target="_blank"}
+[Vegeu el vídeo: Com funciona la terra - part 1](file:///C:/Users/pedro/Documents/shared_VMs/Tasca2/view1.htm){target="_blank"}
 
-### Como funciona la tierra - parte 2
+### Com funciona la terra - part 2
 
-[Ver video: Como funciona la tierra - parte 2](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1665785){target="_blank"}
+[Vegeu el vídeo: Com funciona la terra - part 2](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1665785){target="_blank"}
 
 
-## Tarea 3 "El relleno y su litología"
+## Tasca 3 "El farciment i la seva litologia"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Presentació inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-presentacion-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## ¿Qué es la historia geológica?
+## Què és la història geològica?
 
 <embed src="/files/cfd-docs/cfd-geo-historia-geologica.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Descripción de la tarea 3
+## Descripció de la tasca 3
 
 <embed src="/files/cfd-docs/cfd-geo-tasca3-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
-### El relleno geológico
+### El farciment geològic
 
-[Ver video: El relleno geológico](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1629089){target="_blank"}
+[Veure el vídeo: El farciment geològic](https://aulaglobal.upf.edu/mod/kalvidres/view.php?id=1629089){target="_blank"}
 
 
-## Tarea 4 "Interdependencia - Noticia reciente"
+## Tasca 4 "Interdependència - Notícies recents"
 
 ::: {.panel-tabset}
-## Presentación inicial {.active}
+## Presentació inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-relacion-tierra.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Interdependencia - Noticia reciente
+## Interdependència - Notícies recents
 
 <embed src="/files/cfd-docs/cfd-geo-noticia-reciente.pdf" type="application/pdf" width="100%" height="800px"/>
 

@@ -1,12 +1,12 @@
 ---
-title: "Biología"
-subtitle: "Guía integrada de la especialidad de Ciencias Naturales en Biología"
+title: "Biologia"
+subtitle: "Guia integrada de l'especialitat de Ciències Naturals en Biologia"
 filename: cfd-biologia
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Asignatura que cubre los aspectos especificos del currículum de Biología en la educación secundaria
-categories: [complementos, disciplinar, biología]
+description: Assignatura que abasta els aspectes específics del pla d'estudis de Biologia a l'educació secundària
+categories: [accessoris, disciplina, biologia]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,8 +18,349 @@ lightbox:
 format: html
 ---
 
-## Presentación
+## Presentació
 
-> Esta asignatura cubre los aspectos especificos del currículum de Biología en la educación secundaria. Su propósito es complementar la formación disciplinar de los estudiantes en el ámbito de la biología.
+> Aquesta assignatura tracta els aspectes específics del pla d'estudis de Biologia a l'educació secundària. La seva finalitat és complementar la formació disciplinària dels estudiants de l'àmbit de la biologia. El professor Xavier Muñoz Báguena dirigeix ​​aquesta part del mòdul **Complements Formatius Disciplinaris** denominat **Biologia**, amb els objectius de conèixer el pla d'estudis de biologia i ciències ambientals d'ESO i batxillerat, i reflexionar sobre els objectius de l'ensenyament-aprenentatge de les ciències naturals a secundària.
 
 
+## Gols
+
+Els objectius d'aquesta assignatura són:
+
+* Identificar les grans idees (idees clau) de la Biologia
+    + Tenen poder explicatiu en relació a un gran nombre de fenòmens que els alumnes poden trobar al llarg de la seva vida
+    + Proporcionar una bona base per comprendre els problemes rellevants (que afecten la salut i el benestar, així com el medi ambient)
+    + Provoquen la satisfacció de poder trobar respostes a les preguntes que es poden fer sobre ells mateixos i sobre el món natural i quotidià.
+    + Tenen un significat cultural, és a dir, estan relacionats amb aspectes de la condició humana, grans moments de la història de la ciència, els impactes de l'activitat humana en el medi ambient.
+* Identificar els aspectes de la Biologia que caldrà estudiar/revisar
+    + El paradigma de l'evolució
+    + Teoria cel·lular i hipòtesi de continuïtat cromosòmica
+    + Genètica mendeliana
+    + Genètica molecular. Metabolisme
+    + Ecologia
+* Conèixer els principals obstacles amb què es troben els alumnes
+* Reflexionar sobre la manera d'abordar diferents aspectes de la disciplina
+* Analitzar activitats específiques d'ensenyament-aprenentatge
+
+## Material didàctic per a les sessions i el treball a realitzar
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de la sessió inicial i la documentació associada al treball a realitzar
+:::
+
+::: {.panel-tabset}
+## Sessió inicial {.active}
+
+<embed src="/files/cfd-docs/cfd-bio-presentacion-Biologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Feu clic per obtenir més informació
+
+És important no oblidar de llegir tota la documentació de suport, ja que pot ser molt útil per resoldre la feina a fer.
+:::
+
+## Evolució
+
+::: {.panel-tabset}
+## Presentació de la sessió {.active}
+
+<embed src="/files/cfd-docs/cfd-bio-evolucion-intro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Gols
+
+<embed src="/files/cfd-docs/cfd-bio-evolucion-objectius.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercici: Fets, ficció i opinions
+
+<embed src="/files/cfd-docs/cfd-bio-evo-Fact-Fiction-Opinion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercici: amebes de paper
+
+<embed src="/files/cfd-docs/cfd-bio-Amebes-paper.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resultat de l'exercici: amebes de paper
+
+![](/images/cfd/amebas.jpeg){width="100%" height="800px"}
+
+:::
+
+::: {.column-margin}
+**Documentació de suport**
+
+[The Biology Corner, recursos per a l'ensenyament de la biologia](https://www.biologycorner.com/){target="_blank"}
+
+[The Biology Corner, recurs de l'evolució](https://www.biologycorner.com/worksheets/evolution-fact-fiction-key.html){target="_blank"}
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Feu clic per obtenir més informació
+
+És important no oblidar de llegir tota la documentació de suport, ja que pot ser molt útil per resoldre la feina a fer.
+:::
+
+## teoria cel·lular
+
+::: {.panel-tabset}
+## Presentació de la sessió {.active}
+![](/files/cfd-docs/cfd-bio-cell-intro.pdf){width="100%" height="800px"}
+:::
+
+### Treball 1
+
+Tria 4 activitats de les següents, llegeix-les i analitza-les i respon les preguntes següents al fòrum:
+
+- Quin és l'objectiu principal d'aquesta activitat?
+- Per a quin nivell creus que és adequat?
+- Quins punts forts destaqueu?
+- Quins són els punts febles? Com es podria millorar?
+
+::: {.column-margin}
+**Documentació de suport**
+
+[Microscopi virtual interactiu](https://www.ncbionetwork.org/iet/microscope/){target="_blank"}
+
+[Transport a través de la membrana - YouTube](https://www.youtube.com/watch?v=Nw6E2MGyJVc){target="_blank"}
+
+[Transport de membrana - Mr G Science](https://www.mrgscience.com/topic-14-membrane-transport.html){target="_blank"}
+
+[Recursos de biologia - Apliense](https://apliense.xtec.cat/arc/node/29280){target="_blank"}
+
+[Càlcul de l'índex mitòtic - Investigació de fàrmacs](https://sites.google.com/a/xtec.cat/drugresearch/additional-steps/a-training-session-to-calculate-the-mitotic-index){target="_blank"}
+
+:::
+
+::: {.panel-tabset}
+
+## Membrana cel·lular: imatges {.active}
+<embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Model cel·lular
+<embed src="/files/cfd-docs/cfd-bio-Make-Model-Cell.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Protocol de membrana
+<embed src="/files/cfd-docs/cfd-bio-MembraneProtocol.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Microscopi virtual
+<embed src="/files/cfd-docs/cfd-bio-Virtual-Microscope.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Per què les cèl·lules són petites?
+<embed src="/files/cfd-docs/cfd-bio-Why-Cells-Small.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Avaluació ARC
+<embed src="/files/cfd-docs/cfd-bio-arcavaluacio.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Projecte d'analogia cel·lular
+<embed src="/files/cfd-docs/cfd-bio-cell_analogy_project.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Preparació microscòpica
+<embed src="/files/cfd-docs/cfd-bio-enfocar-preparacio-microscopi.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+### Treball 2
+
+Fes les dues activitats següents, són bones propostes per treballar els processos de mitosi i meiosi i t'ajudaran a establir coneixements. A continuació, respon les preguntes següents al fòrum:
+
+- Quin és l'objectiu principal d'aquesta activitat?
+- Per a quin nivell creus que és adequat?
+- Quins punts forts destaqueu?
+- Quins són els punts febles? Com es podria millorar?
+
+::: {.panel-tabset}
+
+## Meiosi {.active}
+<embed src="/files/cfd-docs/cfd-bio-Meiosi.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Mitosi
+<embed src="/files/cfd-docs/cfd-bio-investigation-Mitosis.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objectius de l'estudi
+<embed src="/files/cfd-docs/cfd-bio-objectius-estudiar.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Feu clic per obtenir més informació
+
+És important no oblidar de llegir tota la documentació de suport, ja que pot ser molt útil per resoldre la feina a fer.
+:::
+
+## Genètica mendeliana
+
+Guia de sessió:
+
+Veure el vídeo de presentació (6 min)
+
+Feu l'activitat "Per què dos germans són diferents?" (és llarg, però segur que us serà molt útil) i publiqueu al fòrum l'esquema del “fill” que obtindreu. Naturalment, també podeu intervenir al fòrum amb preguntes o comentaris que considereu del vostre interès.
+
+::: {.column-margin}
+**Documentació de suport**
+
+[Vídeo de genètica](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+:::
+
+::: {.panel-tabset}
+
+## Genètica mendeliana {.active}
+<embed src="/files/cfd-docs/cfd-bio-genetica.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Activitat Germans segons la genètica mendeliana
+<embed src="/files/cfd-docs/cfd-bio-Activitat-germans-diferents-mendeliana.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Exercicis de genètica mendeliana
+<embed src="/files/cfd-docs/cfd-bio-ejercicios-resueltos-mendel.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resolució sobre pedigrí
+<embed src="/files/cfd-docs/cfd-bio-resolucion-pedigris.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.callout-caution collapse="true"}
+## Feu clic per obtenir més informació
+
+És important no oblidar de llegir tota la documentació de suport, ja que pot ser molt útil per resoldre la feina a fer.
+:::
+
+## Genètica molecular. Metabolisme
+
+::: {.panel-tabset}
+
+## Introducció a la genètica molecular i el metabolisme {.active}
+<embed src="/files/cfd-docs/cfd-bio-genetica-metabolisme.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objectius de l'estudi
+<embed src="/files/cfd-docs/cfd-bio-objectius-metabolismo.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+[Vídeo de genètica i metabolisme](https://aulaglobal.upf.edu/pluginfile.php/9959002/mod_folder/content/0/Gen%C3%A8tica%20Metabolisme%202021-22.mp4?forcedownload=1){target="_blank"}
+
+::: {.column-margin}
+**Enllaços a activitats**
+
+[Vídeo de genètica](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+
+[Investigació Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+
+[Catàlisi enzimàtica](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+:::
+
+### Tasca 1: Veure el vídeo de presentació (10 min)
+  + [Vídeo de genètica](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+### Tasca 2: Analitza les activitats següents sobre enzims
+
+  + [Enzymes](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+  + [Investigació Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+  + [Catàlisi enzimàtica](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+
+**Preguntes per respondre al fòrum:**
+
+  * Quin és l'objectiu principal d'aquesta activitat?
+  * Per a quin nivell creus que és adequat?
+  * Quins punts forts destaqueu?
+  * Quins són els punts febles? Com es podria millorar?
+
+### Tasca 3: Les coses en genètica no són senzilles..., faig servir aquesta activitat per aprofundir en la biologia de la determinació del sexe (t'agradarà):
+
+::: {.panel-tabset}
+
+## Script de la tasca 3 {.active}
+<embed src="/files/cfd-docs/cfd-bio-SexVerification-StudentWS-CL.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Vídeo: "Verificació del sexe dels atletes"**
+
+{{< video https://vimeo.com/270183169/4fad4297ea?fl=pl&fe=vl aspect-ratio="4x3" >}}
+
+Respon al fòrum: Què es pot aprendre, en relació a la genètica, amb aquesta activitat?
+
+### Tasca 4: Activitat per aprofundir en la regulació gènica: Modelització dels interruptors reguladors del gen Pitx1 en peixos espinoses:
+
+::: {.panel-tabset}
+
+## Script de la tasca 4 {.active}
+<embed src="/files/cfd-docs/cfd-bio-modelingPITX1gene-StudentHO-act.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Contestes al fòrum**: indiques les idees clau que es treballen en aquesta activitat.
+
+::: {.callout-caution collapse="true"}
+## Feu clic per obtenir més informació
+
+És important no oblidar de llegir tota la documentació de suport, ja que pot ser molt útil per resoldre la feina a fer.
+:::
+
+## Ecologia
+
+::: {.panel-tabset}
+
+## Documentació sobre la biodiversitat {.active}
+<embed src="/files/cfd-docs/cfd-bio-biodiversitat.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objectius de l'estudi
+<embed src="/files/cfd-docs/cfd-bio-objectius-ecologia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+El guió de treball per a la tasca d'ecologia és el següent:
+
++ [Vídeo de genètica](https://aulaglobal.upf.edu/pluginfile.php/9959005/mod_folder/content/0/Biodiversitat%20Ecologia%2021-22.mp4?forcedownload=1){target="_blank"}
+
+Mira el vídeo de presentació (13 min), per fer les tres tasques següents:
+
+### Tasca 1: Activitat de fotosíntesi estudi i animació de batxillerat.
+
+::: {.panel-tabset}
+
+## Documentació sobre la biodiversitat {.active}
+<iframe src="https://media.hhmi.org/biointeractive/click/photosynthesis/" width="100%" height="800px"></iframe>
+
+## Full de treball de l'alumne (castellà)
+<embed src="/files/cfd-docs/cfd-bio-Fotosintesis-Estudiante-Animacion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Full de treball de l'alumne (anglès)
+<embed src="/files/cfd-docs/cfd-bio-Photosynthesis-StudentWS-animation.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Contestes al fòrum**: Què pots aprendre d'aquesta activitat?
+
+### Tasca 2: La complexitat de les relacions entre les poblacions dels ecosistemes.
+
+::: {.panel-tabset}
+
+## Full de treball de l'activitat {.active}
+<embed src="/files/cfd-docs/cfd-bio-Ecology-Lab.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## La simulació del laboratori d'Ecologia
+<iframe src="https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html" width="100%" height="800px"></iframe>
+
+:::
+
+**Un bon exemple d'espècie clau: "Com canvien els llops els rius"**
+
+{{< video https://youtu.be/ysa5OBhXz-Q >}}
+
+Què has après amb aquesta activitat? Pots definir els conceptes següents: competència, exclusió competitiva, nínxol ecològic, model de presa de depredadors, espècie clau?
+
+### Tasca 3: Explorar el concepte de bioamplificació amb aquesta activitat
+
+::: {.panel-tabset}
+
+## Article sobre bioamplificació {.active}
+<embed src="/files/cfd-docs/cfd-bio-What-Biological-Magnification.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Contestes al fòrum**: Escriu les teves conclusions sobre aquesta activitat al fòrum.
+
+### Tasca 4: Revisar conceptes (voluntari)
+
+[El racó de la biologia - Predator-Prey Sim](https://www.biologycorner.com/2020/04/08/predator-prey-sim/){target="_blank"}
