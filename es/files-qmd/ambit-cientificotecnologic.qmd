@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Competencias básicas del ámbito científico-tecnológico
 
 <embed src="/files/general-docs/ambit-cientificotecnologic.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -28,7 +28,7 @@ format: html
 ## Cliqueu a cadascuna de les pestanyes per veure el material didàctic de les sessions i el material de suport
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentació de suport**
 
 :::

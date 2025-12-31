@@ -10,7 +10,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Ficha CESINF de espaldarazo en la investigación, tratamiento y síntesis de información
 
 <embed src="/files/NdC-docs/CESINF.pdf" type="application/pdf" width="100%" height="800px"/>

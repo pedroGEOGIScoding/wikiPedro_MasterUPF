@@ -20,7 +20,7 @@ lightbox:
 format: html
 ---
 
-::: column-margin
+::: {.column-margin}
 **Important links**
 
 - [The new curriculum](https://projectes.xtec.cat/nou-curriculum/orientacions-curriculars/){.highlight width="10%" target="_blank"}

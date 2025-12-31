@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## sofe-tipos-centros-edu
 
 <embed src="/files/sofedocs/sofe-tipos-centros-edu.pdf" type="application/pdf" width="100%" height="800px"/>

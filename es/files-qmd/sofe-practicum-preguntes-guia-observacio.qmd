@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## sofe-practicum-preguntes-guia-observacio
 
 <embed src="/files/sofedocs/sofe-practicum-preguntes-guia-observacio.pdf" type="application/pdf" width="100%" height="800px"/>

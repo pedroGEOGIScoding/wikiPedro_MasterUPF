@@ -10,7 +10,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Análisis de falacias
 
 <embed src="/files/NdC-docs/AnalisisdeFalacias.pdf" type="application/pdf" width="100%" height="800px"/>

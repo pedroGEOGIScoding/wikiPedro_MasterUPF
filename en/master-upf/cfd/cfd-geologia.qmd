@@ -28,7 +28,7 @@ format: html
 ## Haz click en cada una de las pestañas para visualizar el material de la sesión inicial y la documentación asociada a los trabajos a realizar
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geologia-intro.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -54,7 +54,7 @@ format: html
 {{< video https://youtu.be/ClJ5lwl_wM0 aspect-ratio="4x3" >}}
 
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 - [Prueba geología año 19/20](/files/cfd-docs/cfd-geo-geologia-provaA-competencia-geologica.pdf){.highlight width="10%" target="_blank"}
@@ -111,7 +111,7 @@ Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la 
 
 ## Tarea 2 "Minerales cotidianos"
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Presentación inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-minerals-quotidians.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -133,7 +133,7 @@ Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la 
 
 ## Tarea 3 "El relleno y su litología"
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Presentación inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-presentacion-relleu.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -155,7 +155,7 @@ Programa divulgativo de 53' sobre la dinámica interna del planeta, poniendo la 
 
 ## Tarea 4 "Interdependencia - Noticia reciente"
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Presentación inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-geo-relacion-tierra.pdf" type="application/pdf" width="100%" height="800px"/>

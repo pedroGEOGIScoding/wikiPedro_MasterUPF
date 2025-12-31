@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Áreas y ámbitos prioritarios basados en los Objetivos estratégicos de la ET2020 a lo largo de los ciclos de trabajo
 
 <embed src="/files/CFD_ambitos-prioritarios.pdf" type="application/pdf" width="100%" height="800px"/>

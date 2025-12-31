@@ -28,7 +28,7 @@ format: html
 ## Click on each of the tabs to view the practice material
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Description of the practice {.active}
 
 <embed src="/files/cfd-docs/cfd-tasca-cv.pdf" type="application/pdf" width="100%" height="800px"/>

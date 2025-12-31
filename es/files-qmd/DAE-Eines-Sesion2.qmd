@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## DAE-Eines-Sesion2
 
 <embed src="/files/dae-docs/DAE-Eines-Sesion2.pdf" type="application/pdf" width="100%" height="800px"/>

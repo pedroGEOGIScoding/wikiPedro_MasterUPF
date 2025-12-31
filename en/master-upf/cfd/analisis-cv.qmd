@@ -28,7 +28,7 @@ format: html
 ## Click on each of the tabs to view the material of each session
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Session 1 {.active}
 
 <embed src="/files/cfd-docs/CFD-analisis-CV.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -65,7 +65,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2024/25
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Quiz 2024/25 {.active}
 
 <embed src="/files/cfd-docs/cfd-prova-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -82,7 +82,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2022/23
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Test 2022/23 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_22_23.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -99,7 +99,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological skills 2020/21
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Quiz 2020/21 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_20_21.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -116,7 +116,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2019/20
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Quiz 2019/20 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_19_20.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -133,7 +133,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2018/19
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Test 2018/19 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_18_19.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -150,7 +150,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2017/18
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Test 2017/18 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_17_18.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -167,7 +167,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2016/17
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Test 2016/17 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_16_17.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -184,7 +184,7 @@ format: html
 
 ## Documentation of the final evaluation of 4 ESO of scientific-technological competencies 2015/16
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Science Test 2015/16 {.active}
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_15_16.pdf" type="application/pdf" width="100%" height="800px"/>

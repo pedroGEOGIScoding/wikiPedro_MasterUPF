@@ -61,7 +61,7 @@ La soluci처n a esta situaci처n creo que tiene una primera opci처n clara que ser�
 
 # Autoevaluaci처n de mis competencias docentes
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Autoevaluaci처n de competencias docentes {.active}
 
 <embed src="/files/general-docs/autoavaluacio-competencies-docents.pdf" type="application/pdf" width="100%" height="800px"/>

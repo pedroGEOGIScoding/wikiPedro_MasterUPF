@@ -30,7 +30,7 @@ format: html
 ## Click on each tab to view the material of each session
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Session 1 {.active}
 
 <embed src="/files/dae-docs/S1_AVALUACIO_1.pdf" type="application/pdf" width="100%" height="800px"/>

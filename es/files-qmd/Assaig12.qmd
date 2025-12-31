@@ -10,7 +10,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Herramienta para el acompañamiento en la escritura de ensayos científicos a 1.º-2.º ESO
 
 <embed src="/files/NdC-docs/Assaig12.pdf" type="application/pdf" width="100%" height="800px"/>

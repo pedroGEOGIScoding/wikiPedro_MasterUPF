@@ -64,7 +64,7 @@ Aquesta metodologia ofereix múltiples avantatges:
 ## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sessió - Introducció i teoria del PBL {.active}
 
 <embed src="/files/fac-ABP/presentacio_ABP.pdf" width="100%" height="800px"/>
@@ -73,7 +73,7 @@ Aquesta metodologia ofereix múltiples avantatges:
 
 # Material didàctic PBL 1
 
-::: panel-tabset
+::: {.panel-tabset}
 ## ABP 1 Introducció al cas {.active}
 
 <embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
@@ -88,7 +88,7 @@ Aquesta metodologia ofereix múltiples avantatges:
 
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentació de suport per a ABP 1**
 
 - [Actituds en l'ensenyament de les ciències](/files/fac-ABP/ABP1-articulos/Actitudesenlaensenzadelasciencias.pdf){.highlight width="10%" target="_blank"}
@@ -143,7 +143,7 @@ Aquesta metodologia ofereix múltiples avantatges:
 
 # Material didàctic PBL 2
 
-::: panel-tabset
+::: {.panel-tabset}
 ## ABP 2 Introducció al cas {.active}
 
 <embed src="/files/fac-ABP/ABP2-material-alumnat.pdf" width="100%" height="800px"/>

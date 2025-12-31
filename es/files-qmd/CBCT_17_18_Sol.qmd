@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## CBCT_17_18_Sol
 
 <embed src="/files/provas-competencias-ct/Solucions/CBCT_17_18_Sol.pdf" type="application/pdf" width="100%" height="800px"/>

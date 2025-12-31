@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## CBCT_20_21Cc
 
 <embed src="/files/provas-competencias-ct/Criteris_correccio/CBCT_20_21Cc.pdf" type="application/pdf" width="100%" height="800px"/>

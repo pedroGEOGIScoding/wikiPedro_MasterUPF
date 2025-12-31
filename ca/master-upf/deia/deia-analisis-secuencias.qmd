@@ -28,7 +28,7 @@ format: html
 ## Feu clic a cadascuna de les pestanyes per veure el material didàctic de la sessió i el material de suport
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentació de suport**
 
 - [El desenvolupament de les unitats didàctiques de competència](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
@@ -37,7 +37,7 @@ format: html
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Material analitzat {.active}
 
 <embed src="/files/deia-docs/deia-estacions-any.pdf" type="application/pdf" width="100%" height="800px"/>

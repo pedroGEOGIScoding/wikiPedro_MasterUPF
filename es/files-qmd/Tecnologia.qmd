@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Tecnología
 
 <embed src="/files/general-docs/Tecnologia.pdf" type="application/pdf" width="100%" height="800px"/>

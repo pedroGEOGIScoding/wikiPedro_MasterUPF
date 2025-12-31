@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## cfd-rubrica-tasca
 
 <embed src="/files/cfd-docs/cfd-rubrica-tasca.pdf" type="application/pdf" width="100%" height="800px"/>

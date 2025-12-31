@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## loe-completa-con-lomloe
 
 <embed src="/files/general-docs/loe-completa-con-lomloe.pdf" type="application/pdf" width="100%" height="800px"/>

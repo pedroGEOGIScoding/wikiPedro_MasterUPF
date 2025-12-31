@@ -35,7 +35,7 @@ Els objectius són:
 ## Clica en cada una de les pestanyes per visualitzar el material de cada sessió
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sessió 1 {.active}
 
 <embed src="/files/dae-docs/DAE-Eines-Sesion1.pdf" type="application/pdf" width="100%" height="800px"/>

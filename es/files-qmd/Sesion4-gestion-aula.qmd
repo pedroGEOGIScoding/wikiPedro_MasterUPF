@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesion4-gestion-aula
 
 <embed src="/files/dae-docs/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>

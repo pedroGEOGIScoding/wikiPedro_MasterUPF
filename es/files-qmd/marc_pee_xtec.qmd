@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## marc_pee_xtec
 
 <embed src="/files/sofedocs/marc_pee_xtec.pdf" type="application/pdf" width="100%" height="800px"/>

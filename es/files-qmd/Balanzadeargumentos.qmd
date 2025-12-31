@@ -10,7 +10,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Balanza de argumentos
 
 <embed src="/files/NdC-docs/Balanzadeargumentos.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -30,7 +30,7 @@ format: html
 ## Click on each of the tabs to view the material of each session and teaching material
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Session 1 {.active}
 
 <embed src="/files/fac-trabajos-practicos/fac-treballs-practics-S1.pdf" type="application/pdf" width="100%" height="800px"/>

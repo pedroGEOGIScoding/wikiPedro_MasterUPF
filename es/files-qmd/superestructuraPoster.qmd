@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## superestructuraPoster
 
 <embed src="/files/NdC-docs/superestructuraPoster.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## pec_documents_gestio
 
 <embed src="/files/sofedocs/pec_documents_gestio.pdf" type="application/pdf" width="100%" height="800px"/>

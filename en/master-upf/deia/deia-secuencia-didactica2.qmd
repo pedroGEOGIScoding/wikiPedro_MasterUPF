@@ -28,7 +28,7 @@ format: html
 ## Click on each of the tabs to view the teaching material of the sessions and the support material
 :::
 
-::: column-margin
+::: {.column-margin}
 **Supporting documentation**
 
 :::

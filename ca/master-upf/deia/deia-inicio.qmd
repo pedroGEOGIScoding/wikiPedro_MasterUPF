@@ -38,7 +38,7 @@ Els dos objectius principals d'aquesta assignatura són:
 ## Cliqueu a cadascuna de les pestanyes per veure el material de la sessió introductòria i la guia didàctica de l'assignatura.
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sessió 0 {.active}
 
 <embed src="/files/deia-docs/deia-sesion0.pdf" type="application/pdf" width="100%" height="800px"/>

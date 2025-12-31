@@ -28,7 +28,7 @@ format: html
 ## Click on each of the tabs to view the teaching material of the sessions and the support material
 :::
 
-::: column-margin
+::: {.column-margin}
 **Supporting documentation**
 
 - [A Model of Learning Objectives](/files/deia-docs/RevisedBloomsHandout.pdf){.highlight width="10%" target="_blank"}
@@ -59,7 +59,7 @@ format: html
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Session 1 {.active}
 
 <embed src="/files/deia-docs/deia-sesion1-sq.pdf" type="application/pdf" width="100%" height="800px"/>

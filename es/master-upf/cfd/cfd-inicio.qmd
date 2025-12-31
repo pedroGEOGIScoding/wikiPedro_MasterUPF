@@ -22,7 +22,7 @@ format: html
 
 * Esta asignatura tiene el propósito de complementar la formación disciplinar de los estudiantes en el ámbito de las ciencias naturales. Partiendo del análisis de los currículums de la educación secundaria, se analizará cómo enfocar la enseñanza de las ciencias desde una mirada a la vez integrada y disciplinar. El objetivo principal de esta materia es aportar complementos de formación científica que completen los conocimientos de la licenciatura o grado de entrada al máster.
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión 1 {.active}
 
 <embed src="/files/cfd-docs/Intro-CFD.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -10,7 +10,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Tabla de análisis de argumentos
 
 <embed src="/files/NdC-docs/caceraarguments.pdf" type="application/pdf" width="100%" height="800px"/>

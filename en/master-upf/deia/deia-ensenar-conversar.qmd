@@ -29,7 +29,7 @@ format: html
 ## Click on each of the tabs to view the teaching material of the sessions and the support material
 :::
 
-::: column-margin
+::: {.column-margin}
 **Supporting documentation**
 
 - [Conversational letters](/files/deia-docs/conversar/Cartes_conversacionales.pdf){.highlight width="10%" target="_blank"}
@@ -52,7 +52,7 @@ format: html
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Session 1 {.active}
 
 <embed src="/files/deia-docs/conversar-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>

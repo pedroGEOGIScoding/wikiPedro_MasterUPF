@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## criterisarticles
 
 <embed src="/files/NdC-docs/criterisarticles.pdf" type="application/pdf" width="100%" height="800px"/>

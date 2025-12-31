@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Biología y Geología
 
 <embed src="/files/general-docs/Biologia-i-Geologia.pdf" type="application/pdf" width="100%" height="800px"/>

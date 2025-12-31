@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## curriculum-eso
 
 <embed src="/files/general-docs/curriculum-eso.pdf" type="application/pdf" width="100%" height="800px"/>

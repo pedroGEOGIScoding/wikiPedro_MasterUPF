@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## S3_AVALUACIO_3
 
 <embed src="/files/dae-docs/S3_AVALUACIO_3.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -48,16 +48,22 @@ Los objetivos de esta asignatura son:
 ## Haz click en cada una de las pestañas para visualizar el material de la sesión inicial y la documentación asociada a los trabajos a realizar
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión inicial {.active}
 
 <embed src="/files/cfd-docs/cfd-bio-presentacion-Biologia.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
+::: {.callout-caution collapse="true"}
+## Haz click para mayor información
+
+Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede ser de gran utilidad para resolver los trabajos a realizar.
+:::
+
 ## Evolución
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión introducción {.active}
 
 <embed src="/files/cfd-docs/cfd-bio-evolucion-intro.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -80,7 +86,7 @@ Los objetivos de esta asignatura son:
 
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 [The Biology Corner, recursos para enseñar biología](https://www.biologycorner.com/){target="_blank"}
@@ -89,9 +95,15 @@ Los objetivos de esta asignatura son:
 
 :::
 
+::: {.callout-caution collapse="true"}
+## Haz click para mayor información
+
+Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede ser de gran utilidad para resolver los trabajos a realizar.
+:::
+
 ## Teoría celular
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión introducción {.active}
 ![](/files/cfd-docs/cfd-bio-cell-intro.pdf){width="100%" height="800px"}
 :::
@@ -101,14 +113,11 @@ Los objetivos de esta asignatura son:
 Elegir 4 actividades de las siguientes, leedlas y analizadlas y contestáis las siguientes preguntas en el foro:
 
 - ¿Cuál es el objetivo principal de esta actividad?
-
 - ¿Para qué nivel consideráis que es adecuada?
-
 - ¿Qué puntos fuertes destacáis?
-
 - ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 [Microscopio virtual interactivo](https://www.ncbionetwork.org/iet/microscope/){target="_blank"}
@@ -123,7 +132,7 @@ Elegir 4 actividades de las siguientes, leedlas y analizadlas y contestáis las 
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 
 ## Membrana Celular - Imágenes {.active}
 <embed src="/files/cfd-docs/cfd-bio-Cell-Membrane-Caption-Images.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -156,24 +165,27 @@ Elegir 4 actividades de las siguientes, leedlas y analizadlas y contestáis las 
 Haced las siguientes dos actividades, son buenas propuestas para trabajar los procesos de mitosis y meiosis y y os ayudarán a fijar conocimientos. A continuación, contestáis las siguientes preguntas en el foro:
 
 - ¿Cuál es el objetivo principal de esta actividad?
-
 - ¿Para qué nivel consideráis que es adecuada?
-
 - ¿Qué puntos fuertes destacáis?
-
 - ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
 
-::: panel-tabset
+::: {.panel-tabset}
 
 ## Meiosis {.active}
 <embed src="/files/cfd-docs/cfd-bio-Meiosi.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Mitosis {.active}
+## Mitosis
 <embed src="/files/cfd-docs/cfd-bio-investigation-Mitosis.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Objetivos de Estudio
 <embed src="/files/cfd-docs/cfd-bio-objectius-estudiar.pdf" type="application/pdf" width="100%" height="800px"/>
 
+:::
+
+::: {.callout-caution collapse="true"}
+## Haz click para mayor información
+
+Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede ser de gran utilidad para resolver los trabajos a realizar.
 :::
 
 ## Genética mendeliana
@@ -184,14 +196,14 @@ Visionáis el video-presentación (6 min)
 
 Haced la actividad “Por qué dos hermanos son diferentes?” (es larga, pero seguro que os será muy útil) y colgáis al foro el esquema del “hijo” que obtendréis. Naturalmente, también podéis intervenir en el foro con preguntas o cualquier comentario que consideráis de interés.
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 [Video de Genética](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 
 ## Genética Mendeliana {.active}
 <embed src="/files/cfd-docs/cfd-bio-genetica.pdf" type="application/pdf" width="100%" height="800px"/>
@@ -207,9 +219,125 @@ Haced la actividad “Por qué dos hermanos son diferentes?” (es larga, pero s
 
 :::
 
+::: {.callout-caution collapse="true"}
+## Haz click para mayor información
+
+Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede ser de gran utilidad para resolver los trabajos a realizar.
+:::
 
 ## Genética molecular. Metabolismo
 
+::: {.panel-tabset}
 
+## Introducción a la genética molecular y metabolismo {.active}
+<embed src="/files/cfd-docs/cfd-bio-genetica-metabolisme.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objetivos de estudio
+<embed src="/files/cfd-docs/cfd-bio-objectius-metabolismo.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+[Video de Genética y metabolismo](https://aulaglobal.upf.edu/pluginfile.php/9959002/mod_folder/content/0/Gen%C3%A8tica%20Metabolisme%202021-22.mp4?forcedownload=1){target="_blank"}
+
+::: {.column-margin}
+**Links de actividades**
+
+[Video de Genética](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+
+[Investigation Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+
+[Catalysis de las enzimas](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+:::
+
+### Tarea 1: Ver la video-presentación (10 min)
+  + [Video de Genética](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+### Tarea 2: Analizar las siguientes actividades sobre enzimas
+
+  + [Enzimas](https://www.biologycorner.com/2019/10/27/enzymes-graphics/){target="_blank"}
+  + [Investigation Toothpickase](https://www.biologycorner.com/worksheets/investigation-toothpickase.html){target="_blank"}
+  + [Catalysis de las enzimas](http://bcs.whfreeman.com/webpub/biology/hillis1e/animated%20Tutorials/*at0302/*at_0302_*enzyme_*catalysis.HTML){target="_blank"}
+
+**Preguntas a contestar en el foro:**
+  + ¿Qué es el objetivo principal de esta actividad?
+  + ¿Para qué nivel consideráis que es adecuada?
+  + ¿Qué puntos fuertes destacáis?
+  + ¿Cuáles son los puntos débiles? Cómo se podría mejorar?
+
+### Tarea 3: Las cosas en genética no son sencillas…, feudo esta actividad para profundizar en la biología de la determinación del sexo (os gustará):
+
+::: {.panel-tabset}
+
+## Guión de la tarea 3 {.active}
+<embed src="/files/cfd-docs/cfd-bio-SexVerification-StudentWS-CL.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+**Video: “Sex Verification of Athletes”**
+
+{{< video https://vimeo.com/270183169/4fad4297ea?fl=pl&fe=vl aspect-ratio="4x3" >}}
+
+Contestáis en el foro: ¿Qué se puede aprender, en relación a la genética, con esta actividad?
+
+### Tarea 4: Actividad para profundizar en la regulación de los genes: Modeling the Regulatory Switches of the Pitx1 Gene in Stickleback Fish:
+
+::: {.panel-tabset}
+
+## Guión de la tarea 4 {.active}
+<embed src="/files/cfd-docs/cfd-bio-modelingPITX1gene-StudentHO-act.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+Contestáis en el foro: Indicáis las ideas clave que se trabajan en esta actividad.
+
+::: {.callout-caution collapse="true"}
+## Haz click para mayor información
+
+Es importante no olvidarse de leer toda la documentación de apoyo, ya que puede ser de gran utilidad para resolver los trabajos a realizar.
+:::
 
 ## Ecología
+
+El guión de trabajo para la tarea de ecología es el siguiente:
+
+Visionar la presentación-video (13 min)
+
+Para hacer las tareas siguientes.
+
+Tarea 1: Fotosíntesis actividad estudio y animación nivel bachillerato:
+
+Animación: https://media.hhmi.org/biointeractive/click/photosynthesis/
+
+Hoja de trabajo:
+
+inglés: https://www.biointeractive.org/sites/default/files/photosynthesis-studentws-animation.pdf
+
+castellano: https://www.biointeractive.org/sites/default/files/media/file/2020-02/fotosintesis-estudiante-animacion_0.pdf
+
+Contestáis en el foro: Qué se puede aprender con esta actividad?
+
+Tarea 2: La complejidad de las relaciones entre las poblaciones del ecosistema.
+
+Encontraréis la hoja de trabajo de la actividad aquí:
+
+https://docs.google.com/document/d/1deqcf2lpdk8kw8o64khf9fjent8vbe5ajnmurcrqoie/edit
+
+y la simulación aquí (Ecology lab): https://www.learner.org/wp-content/interactive/envsci/ecology/ecology.html
+
+Un buen ejemplo de especie clave: How wolves change rivers
+
+https://youtu.be/ysa5obhxz-q
+
+Qué habéis aprendido con esta actividad? Podéis definir los siguientes conceptos:competencia, exclusión competitiva, nicho ecológico, modelo depredador-tomada, especie clave (keystone species)?
+
+Tarea 3: Exploráis el concepto de biomagnificación con esta actividad:
+
+https://drive.google.com/file/d/1x1uaehpayrxvdfhpib7cxtz8cnkj5xs7/view
+
+Escribís vuestras conclusiones sobre esta actividad en el foro.
+
+Para repasar conceptos (voluntario):
+
+IOC Ecología: https://educaciodigital.cat/ioc-batx/moodle/course/view.php?id=43#section-3
+
+Actividad : https://www.biologycorner.com/2020/04/08/predator-prey-sim/

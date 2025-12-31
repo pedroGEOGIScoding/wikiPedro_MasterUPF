@@ -64,7 +64,7 @@ Esta metodología ofrece múltiples beneficios:
 ## Haz click en cada una de las pestañas para visualizar el material de cada sesión
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesion - Introducción y teoría del ABP {.active}
 
 <embed src="/files/fac-ABP/presentacio_ABP.pdf" width="100%" height="800px"/>
@@ -73,7 +73,7 @@ Esta metodología ofrece múltiples beneficios:
 
 # Material didáctico del ABP 1
 
-::: panel-tabset
+::: {.panel-tabset}
 ## ABP 1 Introducción al caso {.active}
 
 <embed src="/files/fac-ABP/ABP1-material-alumnat.pdf" width="100%" height="800px"/>
@@ -88,7 +88,7 @@ Esta metodología ofrece múltiples beneficios:
 
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo para el ABP 1**
 
 - [Actitudes en la enseñanza de las ciencias](/files/fac-ABP/ABP1-articulos/Actitudesenlaenseñanzadelasciencias.pdf){.highlight width="10%" target="_blank"}
@@ -143,7 +143,7 @@ Esta metodología ofrece múltiples beneficios:
 
 # Material didáctico del ABP 2
 
-::: panel-tabset
+::: {.panel-tabset}
 ## ABP 2 Introducción al caso {.active}
 
 <embed src="/files/fac-ABP/ABP2-material-alumnat.pdf" width="100%" height="800px"/>

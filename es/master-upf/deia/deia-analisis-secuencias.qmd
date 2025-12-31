@@ -28,7 +28,7 @@ format: html
 ## Haz click en cada una de las pestañas para visualizar el material didáctico de la sesión y el material de apoyo
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 - [La elaboración de unidades didácticas competenciales](/files/deia-docs/Disseny-UD-Digna-Couso.pdf){.highlight width="10%" target="_blank"}
@@ -37,7 +37,7 @@ format: html
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Material analizado {.active}
 
 <embed src="/files/deia-docs/deia-estacions-any.pdf" type="application/pdf" width="100%" height="800px"/>

@@ -29,7 +29,7 @@ format: html
 ## Haz click en cada una de las pestañas para visualizar el material didáctico de las sesiones y el material de apoyo
 :::
 
-::: column-margin
+::: {.column-margin}
 **Documentación de apoyo**
 
 - [Cartas conversacionales](/files/deia-docs/conversar/Cartes_conversacionals.pdf){.highlight width="10%" target="_blank"}
@@ -52,7 +52,7 @@ format: html
 
 :::
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Sesión 1 {.active}
 
 <embed src="/files/deia-docs/conversar-sesion1.pdf" type="application/pdf" width="100%" height="800px"/>

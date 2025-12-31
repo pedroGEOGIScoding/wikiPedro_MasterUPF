@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## CBCT_22_23
 
 <embed src="/files/provas-competencias-ct/Proves/CBCT_22_23.pdf" type="application/pdf" width="100%" height="800px"/>

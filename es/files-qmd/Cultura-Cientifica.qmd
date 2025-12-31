@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Cultura-Cientifica
 
 <embed src="/files/general-docs/Cultura-Cientifica.pdf" type="application/pdf" width="100%" height="800px"/>

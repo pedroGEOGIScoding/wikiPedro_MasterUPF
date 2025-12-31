@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## cat_reimaginem-junts-els-nostres-futurs
 
 <embed src="/files/sofedocs/cat_reimaginem-junts-els-nostres-futurs.pdf" type="application/pdf" width="100%" height="800px"/>

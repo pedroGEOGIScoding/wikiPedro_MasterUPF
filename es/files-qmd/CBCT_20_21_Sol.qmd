@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## CBCT_20_21_Sol
 
 <embed src="/files/provas-competencias-ct/Solucions/CBCT_20_21_Sol.pdf" type="application/pdf" width="100%" height="800px"/>

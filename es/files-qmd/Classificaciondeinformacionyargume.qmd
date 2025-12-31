@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Classificaciondeinformacionyargume
 
 <embed src="/files/NdC-docs/Classificaciondeinformacionyargume.pdf" type="application/pdf" width="100%" height="800px"/>

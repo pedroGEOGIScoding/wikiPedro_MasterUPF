@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## pec_objectius_projecte
 
 <embed src="/files/sofedocs/pec_objectius_projecte.pdf" type="application/pdf" width="100%" height="800px"/>

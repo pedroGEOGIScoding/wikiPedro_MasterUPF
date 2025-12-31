@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## cfd-criteris-correccio-ciencia-2025
 
 <embed src="/files/cfd-docs/cfd-criteris-correccio-ciencia-2025.pdf" type="application/pdf" width="100%" height="800px"/>

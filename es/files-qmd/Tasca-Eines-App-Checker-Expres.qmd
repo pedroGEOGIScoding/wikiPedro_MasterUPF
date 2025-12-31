@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Trabajo de la asignatura Herramientas digitales sobre App-Checker-Expres
 
 <embed src="/files/dae-docs/Tasca-Eines-App-Checker-Expres.pdf" type="application/pdf" width="100%" height="800px"/>

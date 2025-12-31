@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Tabladevalidaciondefuentes
 
 <embed src="/files/NdC-docs/Tabladevalidaciondefuentes.pdf" type="application/pdf" width="100%" height="800px"/>

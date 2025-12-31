@@ -11,7 +11,7 @@ format:
   html
 ---
 
-::: panel-tabset
+::: {.panel-tabset}
 ## Evaluar para aprender
 
 <embed src="/files/general-docs/avaluar_per_aprendre.pdf" type="application/pdf" width="100%" height="800px"/>
