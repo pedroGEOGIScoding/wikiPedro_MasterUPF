@@ -57,7 +57,37 @@ Los objetivos de esta asignatura son:
 
 ## Evolución
 
+::: panel-tabset
+## Sesión introducción {.active}
 
+<embed src="/files/cfd-docs/cfd-bio-evolucion-intro.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Objetivos
+
+<embed src="/files/cfd-docs/cfd-bio-evolucion-objectius.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Ejercicio: Hecho, ficción y opiniones
+
+<embed src="/files/cfd-docs/cfd-bio-evo-Fact-Fiction-Opinion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Ejercicio: Amebas de papel
+
+<embed src="/files/cfd-docs/cfd-bio-Amebes-paper.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resultado del ejercicio: Amebas de papel
+
+![](/images/cfd/amebas.jpeg){width="100%" height="800px"}
+
+:::
+
+::: column-margin
+**Documentación de apoyo**
+
+[The Biology Corner, recursos para enseñar biología](https://www.biologycorner.com/){target="_blank"}
+
+[The Biology Corner, recurso para la evolución](https://www.biologycorner.com/worksheets/evolution-fact-fiction-key.html){target="_blank"}
+
+:::
 
 ## Teoría celular
 
