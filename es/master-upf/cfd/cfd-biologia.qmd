@@ -180,17 +180,30 @@ Haced las siguientes dos actividades, son buenas propuestas para trabajar los pr
 
 Guía de la sesión:
 
-Visionáis el video-presentación ( 6 min)
+Visionáis el video-presentación (6 min)
 
 Haced la actividad “Por qué dos hermanos son diferentes?” (es larga, pero seguro que os será muy útil) y colgáis al foro el esquema del “hijo” que obtendréis. Naturalmente, también podéis intervenir en el foro con preguntas o cualquier comentario que consideráis de interés.
+
+::: column-margin
+**Documentación de apoyo**
+
+[Video de Genética](https://aulaglobal.upf.edu/pluginfile.php/9958996/mod_folder/content/0/Gen%C3%A8tica.mp4?forcedownload=1){target="_blank"}
+
+:::
 
 ::: panel-tabset
 
 ## Genética Mendeliana {.active}
 <embed src="/files/cfd-docs/cfd-bio-genetica.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Actividad Hermanos segun genética mendeliana {.active}
+## Actividad Hermanos segun genética mendeliana
 <embed src="/files/cfd-docs/cfd-bio-Activitat-germans-diferents-mendeliana.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Ejercicios resuletos de la genética mendeliana
+<embed src="/files/cfd-docs/cfd-bio-ejercicios-resueltos-mendel.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Resolución acerca de pedigrees
+<embed src="/files/cfd-docs/cfd-bio-resolucion-pedigris.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
