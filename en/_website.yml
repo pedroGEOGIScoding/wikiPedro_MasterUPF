@@ -213,7 +213,7 @@ website:
     left: © by Pedro 2025 made with [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
     center: "*Knowledge will make you free (Socrates)*
       <div id=\"visitor-count-footer\">
-        Visitors: <span id=\"gc-visitors\"></span>
+        Visits: <span id=\"gc-visitors\"></span>
       </div>"
     right: Website under the license [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
     

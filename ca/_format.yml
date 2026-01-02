@@ -81,7 +81,7 @@ format:
                   try {
                     var data = JSON.parse(this.responseText);
                     // use count or count_unique depending on what you prefer
-                    document.getElementById('gc-visitors').innerText = data.count_unique;
+                    document.getElementById('gc-visitors').innerText = data.count;
                   } catch (e) {
                     console.error(e);
                   }
