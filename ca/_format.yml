@@ -75,30 +75,22 @@ format:
           <script data-goatcounter="https://pedromartinezduran.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
       - text: |
           <script>
-            function addVisitorCounter() {
-              const centerFooter = document.querySelector('.nav-footer-center p');
-              if (centerFooter) {
-                centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitants: <img src="https://pedromartinezduran.goatcounter.com/count/%3Fplain" alt="visitants" style="height: 1em; vertical-align: middle; margin-left: 4px;">';
-              } else {
-                console.error('Footer element not found');
-              }
-            }
-            
-            // Try multiple approaches to ensure the script runs
-            if (window.onload) {
-              var oldOnload = window.onload;
-              window.onload = function() {
-                oldOnload();
-                addVisitorCounter();
-              };
-            } else {
-              window.onload = addVisitorCounter;
-            }
-            
-            // Fallback: also try DOMContentLoaded
-            document.addEventListener('DOMContentLoaded', function() {
-              setTimeout(addVisitorCounter, 500);
-            });
+            (function () {
+                var r = new XMLHttpRequest();
+                r.addEventListener('load', function () {
+                  try {
+                    var data = JSON.parse(this.responseText);
+                    // use count or count_unique depending on what you prefer
+                    document.getElementById('gc-visitors').innerText = data.count_unique;
+                  } catch (e) {
+                    console.error(e);
+                  }
+                });
+                // For whole-site total, use a fixed path like "/"
+                r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
+                              encodeURIComponent('/') + '.json');
+                r.send();
+              })();
           </script>
     filters:
       - fontawesome
