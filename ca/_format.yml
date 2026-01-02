@@ -88,7 +88,7 @@ format:
                 });
                 // For whole-site total, use a fixed path like "/"
                 r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
-                              encodeURIComponent('/') + '.json');
+                              encodeURIComponent('/') + '.json?t=' + Date.now());
                 r.send();
               })();
           </script>
