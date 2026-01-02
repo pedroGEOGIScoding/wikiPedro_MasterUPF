@@ -75,7 +75,7 @@ format:
           <script data-goatcounter="https://pedromartinezduran.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
       - text: |
           <script>
-            window.onload = function() {
+            function addVisitorCounter() {
               const centerFooter = document.querySelector('.nav-footer-center p');
               if (centerFooter) {
                 centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitantes: <span id="gc-visitors">cargando...</span>';
@@ -109,7 +109,23 @@ format:
               } else {
                 console.error('Footer element not found');
               }
-            };
+            }
+            
+            // Try multiple approaches to ensure the script runs
+            if (window.onload) {
+              var oldOnload = window.onload;
+              window.onload = function() {
+                oldOnload();
+                addVisitorCounter();
+              };
+            } else {
+              window.onload = addVisitorCounter;
+            }
+            
+            // Fallback: also try DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', function() {
+              setTimeout(addVisitorCounter, 500);
+            });
           </script>
     filters:
       - fontawesome
