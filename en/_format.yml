@@ -87,7 +87,7 @@ format:
                     var data = JSON.parse(this.responseText);
                     var visitorElement = document.getElementById('gc-visitors');
                     if (visitorElement) {
-                      visitorElement.innerText = data.count_unique;
+                      visitorElement.innerText = data.count;
                     }
                   } catch (e) {
                     console.error('Error loading visitor count:', e);
