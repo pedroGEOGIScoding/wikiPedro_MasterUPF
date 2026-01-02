@@ -78,23 +78,7 @@ format:
             function addVisitorCounter() {
               const centerFooter = document.querySelector('.nav-footer-center p');
               if (centerFooter) {
-                centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitors: <span id="gc-visitors-en">loading...</span>';
-                
-                // Now fetch the visitor count using JSONP to avoid CORS issues
-                var script = document.createElement('script');
-                script.src = 'https://pedromartinezduran.goatcounter.com/counter/' + encodeURIComponent('/') + '.json?callback=updateVisitorCountEN';
-                document.head.appendChild(script);
-                
-                // Global callback function for JSONP (unique for English)
-                window.updateVisitorCountEN = function(data) {
-                  var visitorElement = document.getElementById('gc-visitors-en');
-                  if (visitorElement) {
-                    visitorElement.innerText = data.count;
-                  }
-                  // Clean up
-                  document.head.removeChild(script);
-                  delete window.updateVisitorCountEN;
-                };
+                centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitors: <img src="https://pedromartinezduran.goatcounter.com/count/%3Fplain" alt="visitors" style="height: 1em; vertical-align: middle; margin-left: 4px;">';
               } else {
                 console.error('Footer element not found');
               }
