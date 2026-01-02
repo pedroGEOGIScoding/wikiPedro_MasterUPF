@@ -211,5 +211,8 @@ website:
   page-footer:
     background: primary
     left: © by Pedro 2025 hecho con [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
-    center: "*El conocimiento os hará libres (Sócrates)*"
+    center: "*El conocimiento os hará libres (Sócrates)*
+      <div id=\"visitor-count-footer\">
+        Visitantes: <span id=\"gc-visitors\"></span>
+      </div>"
     right: Website bajo la licencia [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)

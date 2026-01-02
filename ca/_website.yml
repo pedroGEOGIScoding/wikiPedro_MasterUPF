@@ -212,5 +212,8 @@ website:
   page-footer:
     background: primary
     left: © by Pedro 2025 fet amb [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)
-    center: "*El coneixement os farà llibres (Sócrates)*"
+    center: "*El coneixement os farà llibres (Sócrates)*
+      <div id=\"visitor-count-footer\">
+        Visitants: <span id=\"gc-visitors\"></span>
+      </div>"
     right: Website fet amb la llicencia [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
