@@ -75,28 +75,56 @@ format:
           <script data-goatcounter="https://pedromartinezduran.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
       - text: |
           <script>
-            (function () {
-              var r = new XMLHttpRequest();
-              r.addEventListener('load', function () {
-                try {
-                  var data = JSON.parse(this.responseText);
-                  document.getElementById('gc-visitors').innerText = data.count_unique;
-                } catch (e) {
-                  console.error(e);
-                }
-              });
-              r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
-                            encodeURIComponent('/') + '.json');
-              r.send();
-            })();
-          </script>
-      - text: |
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            function addVisitorCounter() {
               const centerFooter = document.querySelector('.nav-footer-center p');
               if (centerFooter) {
                 centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitants: <span id="gc-visitors">carregant...</span>';
+                
+                // Now fetch the visitor count
+                var r = new XMLHttpRequest();
+                r.addEventListener('load', function () {
+                  try {
+                    var data = JSON.parse(this.responseText);
+                    var visitorElement = document.getElementById('gc-visitors');
+                    if (visitorElement) {
+                      visitorElement.innerText = data.count_unique;
+                    }
+                  } catch (e) {
+                    console.error('Error loading visitor count:', e);
+                    var visitorElement = document.getElementById('gc-visitors');
+                    if (visitorElement) {
+                      visitorElement.innerText = 'error';
+                    }
+                  }
+                });
+                r.addEventListener('error', function() {
+                  console.error('Failed to load visitor count');
+                  var visitorElement = document.getElementById('gc-visitors');
+                  if (visitorElement) {
+                    visitorElement.innerText = 'error';
+                  }
+                });
+                r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' + encodeURIComponent('/') + '.json');
+                r.send();
+              } else {
+                console.error('Footer element not found');
               }
+            }
+            
+            // Try multiple approaches to ensure the script runs
+            if (window.onload) {
+              var oldOnload = window.onload;
+              window.onload = function() {
+                oldOnload();
+                addVisitorCounter();
+              };
+            } else {
+              window.onload = addVisitorCounter;
+            }
+            
+            // Fallback: also try DOMContentLoaded
+            document.addEventListener('DOMContentLoaded', function() {
+              setTimeout(addVisitorCounter, 500);
             });
           </script>
     filters:
