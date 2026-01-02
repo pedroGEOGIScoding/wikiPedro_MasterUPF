@@ -80,32 +80,21 @@ format:
               if (centerFooter) {
                 centerFooter.innerHTML += '<br><i class="fa-solid fa-eye"></i> Visitants: <span id="gc-visitors">carregant...</span>';
                 
-                // Now fetch the visitor count
-                var r = new XMLHttpRequest();
-                r.addEventListener('load', function () {
-                  try {
-                    var data = JSON.parse(this.responseText);
-                    var visitorElement = document.getElementById('gc-visitors');
-                    if (visitorElement) {
-                      visitorElement.innerText = data.count;
-                    }
-                  } catch (e) {
-                    console.error('Error loading visitor count:', e);
-                    var visitorElement = document.getElementById('gc-visitors');
-                    if (visitorElement) {
-                      visitorElement.innerText = 'error';
-                    }
-                  }
-                });
-                r.addEventListener('error', function() {
-                  console.error('Failed to load visitor count');
+                // Now fetch the visitor count using JSONP to avoid CORS issues
+                var script = document.createElement('script');
+                script.src = 'https://pedromartinezduran.goatcounter.com/counter/' + encodeURIComponent('/') + '.json?callback=updateVisitorCount';
+                document.head.appendChild(script);
+                
+                // Global callback function for JSONP
+                window.updateVisitorCount = function(data) {
                   var visitorElement = document.getElementById('gc-visitors');
                   if (visitorElement) {
-                    visitorElement.innerText = 'error';
+                    visitorElement.innerText = data.count;
                   }
-                });
-                r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' + encodeURIComponent('/') + '.json');
-                r.send();
+                  // Clean up
+                  document.head.removeChild(script);
+                  delete window.updateVisitorCount;
+                };
               } else {
                 console.error('Footer element not found');
               }
