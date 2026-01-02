@@ -101,3 +101,31 @@ format:
       gutter-width: 2rem
     page-layout: full
     cap-location: bottom
+    include-after-body:
+      - text: |
+          <script data-goatcounter="https://pedromartinezduran.goatcounter.com/count"async src="//gc.zgo.at/count.js"></script>
+
+      - text: |
+          <div id="visitor-count-footer">
+            Visitors: <span id="gc-visitors"></span>
+          </div>
+
+      - text: |
+          <script>
+            (function () {
+              var r = new XMLHttpRequest();
+              r.addEventListener('load', function () {
+                try {
+                  var data = JSON.parse(this.responseText);
+                  // use count or count_unique depending on what you prefer
+                  document.getElementById('gc-visitors').innerText = data.count_unique;
+                } catch (e) {
+                  console.error(e);
+                }
+              });
+              // For whole-site total, use a fixed path like "/"
+              r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
+                            encodeURIComponent('/') + '.json');
+              r.send();
+            })();
+          </script>
