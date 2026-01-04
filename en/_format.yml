@@ -76,21 +76,28 @@ format:
       - text: |
           <script>
             (function () {
-                var r = new XMLHttpRequest();
+                let r = new XMLHttpRequest();
                 r.addEventListener('load', function () {
                   try {
-                    var data = JSON.parse(this.responseText);
-                    // use count or count_unique depending on what you prefer
-                    document.getElementById('gc-visitors').innerText = data.count;
+                    let data = JSON.parse(this.responseText);
+                    document.querySelector('#gc-visitors').innerText = data.count;
                   } catch (e) {
                     console.error(e);
                   }
                 });
-                // For whole-site total, use a fixed path like "/"
                 r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
                               encodeURIComponent('/') + '.json?t=' + Date.now());
                 r.send();
               })();
+          </script>
+      - text: |
+          <script>
+            let t = setInterval(function() {
+              if (window.goatcounter && window.goatcounter.visit_count) {
+                clearInterval(t);
+                window.goatcounter.visit_count({append: '#gc-page-visitors'});
+              }
+            }, 100);
           </script>
     filters:
       - fontawesome
