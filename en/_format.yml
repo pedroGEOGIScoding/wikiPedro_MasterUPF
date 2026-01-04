@@ -92,21 +92,24 @@ format:
           </script>
       - text: |
           <script>
-            let attempts = 0;
-            let t = setInterval(function() {
-              attempts++;
-              if (window.goatcounter && window.goatcounter.visit_count) {
-                clearInterval(t);
-                window.goatcounter.visit_count({
-                  append: '#gc-page-visitors',
-                  path: location.pathname,
-                  type: 'html'
-                });
-              } else if (attempts > 50) {
-                clearInterval(t);
-                console.error('GoatCounter visit_count not available after 5 seconds');
-              }
-            }, 100);
+            (function() {
+              let attempts = 0;
+              let t = setInterval(function() {
+                attempts++;
+                if (window.goatcounter && window.goatcounter.visit_count) {
+                  clearInterval(t);
+                  console.log('GoatCounter visit_count called for path:', location.pathname);
+                  window.goatcounter.visit_count({
+                    append: '#gc-page-visitors',
+                    path: location.pathname,
+                    type: 'html'
+                  });
+                } else if (attempts > 50) {
+                  clearInterval(t);
+                  console.error('GoatCounter visit_count not available after 5 seconds');
+                }
+              }, 100);
+            })();
           </script>
     filters:
       - fontawesome
