@@ -215,7 +215,7 @@ website:
       <div id=\"visitor-count-footer\">
         Visitas totales a esta web: <span id=\"gc-visitors\"></span>
       </div>
-      <div id=\"gc-page-visitors\">
+      <div id=\"page-visitor-count-footer\">
         Visitas a esta página: <span id=\"gc-page-visitors\"></span>
       </div>"
     right: Website bajo la licencia [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
