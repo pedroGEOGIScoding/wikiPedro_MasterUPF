@@ -215,8 +215,7 @@ website:
       <div id=\"visitor-count-footer\">
         Total views: <span id=\"gc-visitors\"></span>
       </div>
-      <div id=\"page-visitor-count-footer\">
-        Page views: <span id=\"gc-page-visitors\"></span>
+      <div id=\"page-views\">
+        Page views: <span id=\"page-views-value\"></span>
       </div>"
     right: Website under the license [![](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
-    

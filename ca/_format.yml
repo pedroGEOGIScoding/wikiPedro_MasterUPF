@@ -93,29 +93,40 @@ format:
       - text: |
           <script>
             (function() {
-              let attempts = 0;
-              let t = setInterval(function() {
-                attempts++;
-                if (window.goatcounter && window.goatcounter.visit_count) {
-                  clearInterval(t);
-                  
-                  // Check if target element exists in the DOM
-                  if (document.querySelector('#gc-page-visitors')) {
-                    // Use get_data() for accurate path tracking that matches the UI
-                    let path = window.goatcounter.get_data ? window.goatcounter.get_data()['p'] : location.pathname;
-                    
-                    console.log('GoatCounter visit_count called for path:', path);
-                    window.goatcounter.visit_count({
-                      append: '#gc-page-visitors',
-                      path: path,
-                      type: 'html'
-                    });
-                  } else {
-                    console.error('Target element #gc-page-visitors not found in DOM');
+              function updateViews() {
+                if (!window.goatcounter || !window.goatcounter.get_data) {
+                  console.error('GoatCounter not ready');
+                  return;
+                }
+                const el = document.querySelector('#page-views-value');
+                if (!el) {
+                  console.error('Target element #page-views-value not found in DOM');
+                  return;
+                }
+                const path = window.goatcounter.get_data()['p']; // matches GoatCounter UI[web:1]
+                const r = new XMLHttpRequest();
+                r.addEventListener('load', function() {
+                  try {
+                    const data = JSON.parse(this.responseText);
+                    el.innerText = data.count; // formatted string with separators[web:1]
+                  } catch (e) {
+                    console.error('Failed to parse GoatCounter response', e);
                   }
+                });
+                r.open('GET', 'https://pedromartinezduran.goatcounter.com/counter/' +
+                  encodeURIComponent(path) + '.json');
+                r.send();
+              }
+              // Wait a bit to ensure GoatCounter has set get_data()
+              let attempts = 0;
+              const t = setInterval(function() {
+                attempts++;
+                if (window.goatcounter && window.goatcounter.get_data) {
+                  clearInterval(t);
+                  updateViews();
                 } else if (attempts > 50) {
                   clearInterval(t);
-                  console.error('GoatCounter visit_count not available after 5 seconds');
+                  console.error('GoatCounter get_data not available after 5 seconds');
                 }
               }, 100);
             })();
