@@ -87,16 +87,20 @@ Los objetivos de esta parte del módulo son:
 ## Material didáctico de las sesiones asíncronas
 
 ::: {.panel-tabset}
-## Sesión asíncrona 1 {.active}
+## Asíncrona 1 {.active}
 
 <embed src="/files/sofedocs/sofe-project-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Sesión asíncrona 2 - Video: El cerebro adolescente
+## Asíncrona 2 - Video: El cerebro adolescente
 
 {{< video https://www.youtube.com/watch?v=Lqbi_yiqEzw aspect-ratio="4x3" >}}
 
-## Sesión asíncrona 3 - TDAH
+## Asíncrona 3 - TDAH
 
 <embed src="/files/sofedocs/sofe-project-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asíncrona 3 - TDAH - Respuesta
+
+<embed src="/files/sofedocs/sofe-proyecto-MARTINEZ-DURAN-PEDRO_SOFE PE_A3.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
