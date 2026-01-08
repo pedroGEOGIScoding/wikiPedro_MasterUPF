@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Proyecto educativo
-categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
+categories: [educación, sistema educativo, normativa, docencia, tutor, tutorización, NESE, dislexia, TDA, recursos educativos]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,6 +18,85 @@ lightbox:
 format: html
 ---
 
-## En construccion
-## En construcció
-## Under construction
+## Presentación
+
+> Las profesoras Sílvia Marro Cosialls y Teresa Martínez Guardiola dirigen esta parte del módulo de **sociedad, familia y educación: procesos y contextos educativos** denominado **proyecto educativo**, donde se abordan las siguientes preguntas:
+
+* ¿Cuales son las principales caracteristicas de los alumnos adolescentes, de los adultos y de su aprendizaje?
+* ¿Cuales son los recursos que tienes a tu disposición para atender la diversidad del alumnado y como puedes utilizarlos?
+* ¿Que caracteristicas a de tener la tutorizacion de los alumnos para que sea efectiva?
+
+Los objetivos de esta parte del módulo son:
+
+* Conocer las características del alumnado en las diferentes etapas educativas (secundaria obligatoria y postobligatoria).
+
+* Fomentar la personalización del aprendizaje y atención a todo el alumnado en el marco de un sistema educativo inclusivo. Inclusión versus atención a la diversidad. Medidas y apoyos. Planes individualizados.
+
+* Conocer y valorar la respuesta educativa en función de las necesidades específicas de apoyo educativo (NESE) del alumnado.
+
+* Compartir herramientas para la acción tutorial, la orientación educativa y la orientación profesional.
+
+* Velar y fomentar la interacción entre el alumnado. Aspectos psicosociales del aprendizaje.
+
+* Realizar coordinaciones con los equipos docentes (psicopedagogos, apoyo lingüístico, aulas de acogida) y las entidades del entorno.
+
+## Material didáctico de todas las sesiones
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: {.panel-tabset}
+## Sesión de introducción {.active}
+
+<embed src="/files/sofesesion/sofe-project-sesion1-presentacion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 2
+
+<embed src="/files/sofesesion/sofe-project-sesion2-aprenentatge.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 3
+
+<embed src="/files/sofesesion/sofe-project-sesion3-TDAH.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión 4
+
+<embed src="/files/sofesesion/sofe-project-sesion4-dislexia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.column-margin}
+**Documentación adicional**
+
+- [PRODISLEX Batxillerat](/files/sofedocs/sofe-project-PRODISLEXBatxillerat.pdf){.highlight width="10%" target="_blank"}
+- [PRODISLEX Primer cicle ESO](/files/sofedocs/sofe-project-PRODISLEXPrimer_cicle_ESO.pdf){.highlight width="10%" target="_blank"}
+- [PRODISLEX Segon cicle ESO](/files/sofedocs/sofe-project-PRODISLEXSegon_cicle_ESO.pdf){.highlight width="10%" target="_blank"}
+- [TDAH cuestionario profes](/files/sofedocs/sofe-project-TDAH-cuesttionario-profes.pdf){.highlight width="10%" target="_blank"}
+- [Trastorn llenguatge](/files/sofedocs/sofe-project-Trastorn-llenguatge.pdf){.highlight width="10%" target="_blank"}
+- [Alterac conduct](/files/sofedocs/sofe-project-alterac-conduct.pdf){.highlight width="10%" target="_blank"}
+- [Escola inclusiva](/files/sofedocs/sofe-project-escola-inclusiva.pdf){.highlight width="10%" target="_blank"}
+- [Guía TDAH](/files/sofedocs/sofe-project-guia-tdah.pdf){.highlight width="10%" target="_blank"}
+- [Medidas TDAH](/files/sofedocs/sofe-project-medidas-TDAH.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT 5è 6è](/files/sofedocs/sofe-project-prodiscat_5e_6e.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT Batx FP](/files/sofedocs/sofe-project-prodiscat_batx_fp.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT ESO](/files/sofedocs/sofe-project-prodiscat_eso.pdf){.highlight width="10%" target="_blank"}
+- [Sistema inclusiu](/files/sofedocs/sofe-project-sistema-inclusiu.pdf){.highlight width="10%" target="_blank"}
+
+:::
+
+## Material didáctico de las sesiones asíncronas
+
+::: {.panel-tabset}
+## Sesión asíncrona 1 {.active}
+
+<embed src="/files/sofedocs/sofe-project-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sesión asíncrona 2 - Video: El cerebro adolescente
+
+{{< video https://www.youtube.com/watch?v=Lqbi_yiqEzw aspect-ratio="4x3" >}}
+
+## Sesión asíncrona 3 - TDAH
+
+<embed src="/files/sofedocs/sofe-project-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
