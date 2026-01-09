@@ -106,6 +106,8 @@ format: html
 
 - [Resumen del marco de innovación pedagógica de Cataluña](/files/sofedocs/resumen-marc-innovacio-pedagogica.pdf){.highlight width="10%" target="_blank"}
 
+- [Protocolo de actuación frente a la violencia](/files/sofedocs/protocol-actuacio-davant-violencia.pdf){.highlight width="10%" target="_blank"}
+
 :::
 
 ## Material didáctico de las tareas asíncronas
@@ -131,6 +133,14 @@ format: html
 ## Tarea asíncrona 4
 
 <embed src="/files/sofesesion/sofe-asincrona4.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 5
+
+<embed src="/files/sofesesion/sofe-asincrona5.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Tarea asíncrona 5 - Resumen
+
+<embed src="/files/sofedocs/sofe-resumen-protocolo-violencia.pdf" width="100%" height="800px"/>
 
 :::
 

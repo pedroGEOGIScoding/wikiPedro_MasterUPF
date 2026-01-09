@@ -1,12 +1,12 @@
 ---
-title: "Modelos"
+title: "Modelos y enseñanza-aprendizaje"
 subtitle: "Bases fundamentales de la didáctica de las ciencias para la alfabetización científica"
 filename: fac-modelos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Asignatura que trabaja las bases fundamentales de la didáctica de las ciencias, promoviendo la alfabetización científica
-categories: [fundamentos, aprendizaje, enseñanza, ciencias]
+categories: [modelos, modelización, aprendizaje, enseñanza, ciencias]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -20,6 +20,19 @@ format: html
 
 # Modelos
 
-## En construccion
-## En construcció
-## Under construction
+## Presentación
+
+> El profesor Marcel Costa dirige esta parte del módulo de Fundamentos del Aprendizaje y Enseñanza de las Ciencias Naturales denominado **modelos y enseñanza-aprendizaje**, donde se aborda la importancia de los modelos en el proceso de enseñanza-aprendizaje de las ciencias.
+
+## Material didáctico de las sesiones
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar el material de cada sesión
+:::
+
+::: {.panel-tabset}
+## Asíncrona 1 {.active}
+
+<embed src="/files/fac-trabajos-practicos/fac-modelos-tasca1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
