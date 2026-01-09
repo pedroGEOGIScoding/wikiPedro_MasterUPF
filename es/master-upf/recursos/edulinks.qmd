@@ -76,6 +76,10 @@ Guía de laboratorios y simulaciones virtuales abiertas, útiles para docencia S
 [https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}  
 World Climate Simulation es un juego de roles en persona sobre las negociaciones de cambio climático de la ONU. A través de la simulación, los participantes exploran la rapidez y el trabajo requerido por las naciones para abordar el cambio climático global.
 
+**Simulador de modelos científicos**  
+[https://www.netlogo.org/](https://www.netlogo.org/){target="_blank"}  
+NetLogo es unaa plataforma de modelado basado en agentes más utilizada del mundo, diseñada con una filosofía de *umbral bajo, techo alto*. Esto significa que los alumnos de primaria pueden aprender a crear sus primeros modelos, mientras que la misma plataforma impulsa investigaciones de vanguardia. NetLogo se ha utilizado en más de 10 000 publicaciones científicas y se utiliza en miles de aulas de todo el mundo.
+
 ## 🧬 Biología
 
 **BioDigital**  
