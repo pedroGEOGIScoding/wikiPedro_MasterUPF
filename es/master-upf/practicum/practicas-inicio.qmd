@@ -6,7 +6,7 @@ author: "Pedro Martínez"
 date-modified: last-modified
 date-format: full
 description: Adquisición de competencias relacionadas con la práctica profesional docente
-categories: [prácticum, observación, evaluación, competencias]
+categories: [practicum, observación, evaluación, competencias]
 toc: true
 number-sections: true
 highlight-style: pygments

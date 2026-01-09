@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Proyecto educativo
-categories: [educación, sistema educativo, normativa, docencia, tutor, tutorización, NESE, dislexia, TDA, recursos educativos]
+categories: [educación, sistema educativo, normativa, docencia, tutor, tutorización, NESE, dislexia, TDA, TDAH, recursos educativos]
 toc: true
 number-sections: true
 highlight-style: pygments

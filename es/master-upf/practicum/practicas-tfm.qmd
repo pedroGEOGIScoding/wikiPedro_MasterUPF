@@ -6,7 +6,7 @@ author: "Pedro Martínez"
 date-modified: last-modified
 date-format: full
 description: Información completa sobre el Trabajo Final de Máster del Máster de Formación del Profesorado
-categories: [tfm, investigación, innovación, prácticum]
+categories: [tfm, investigación, innovación, practicum]
 toc: true
 number-sections: true
 highlight-style: pygments
