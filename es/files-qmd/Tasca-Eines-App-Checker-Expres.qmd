@@ -6,7 +6,7 @@ date: "2025"
 date-modified: last-modified
 date-format: YYYY
 description: "Trabajo de la asignatura Herramientas digitales del módulo de desarrollo, aprendizaje y educación sobre App-Checker-Expres"
-categories: [Herramientas digitales]
+categories: [herramientas digitales]
 format:
   html
 ---

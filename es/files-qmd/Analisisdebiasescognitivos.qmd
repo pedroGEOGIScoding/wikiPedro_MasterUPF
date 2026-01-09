@@ -5,7 +5,7 @@ author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
 description: "Targetas para el análisis de sesgos cognitivos"
-categories: [sesgo, analisis]
+categories: [sesgo, análisis]
 format:
   html
 ---

@@ -5,7 +5,7 @@ author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
 description: "Herramienta para el acompañamiento en la escritura de ensayos científicos a 1.º-2.º ESO"
-categories: [escritura, ensayos, escritura-cientifica, herramienta]
+categories: [escritura, ensayos, escritura científica, herramienta]
 format:
   html
 ---

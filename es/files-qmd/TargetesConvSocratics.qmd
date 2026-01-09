@@ -5,7 +5,7 @@ author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
 description: "Tarjetas socráticas para facilitar la conversación para seminarios socráticos"
-categories: [socrates, seminarios, socráticos, conversaciones, conversación]
+categories: [sócrates, seminarios, socráticos, conversaciones, conversación]
 format:
   html
 ---

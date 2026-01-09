@@ -6,7 +6,7 @@ date: "2025"
 date-modified: last-modified
 date-format: YYYY
 description: "Trabajo final de la asignatura Herramientas digitales del módulo de desarrollo, aprendizaje y educación"
-categories: [Herramientas digitales, geología]
+categories: [herramientas digitales, geología]
 format:
   html
 ---

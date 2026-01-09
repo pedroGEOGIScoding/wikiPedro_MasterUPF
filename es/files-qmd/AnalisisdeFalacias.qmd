@@ -5,7 +5,7 @@ author: "Jordi Domènech"
 date-modified: last-modified
 date-format: full
 description: "Tarjetas y ayudas para el análisis de falacias"
-categories: [analisis, falacias]
+categories: [análisis, falacias]
 format:
   html
 ---
