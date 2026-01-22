@@ -23,24 +23,28 @@ format: html
 ## 🤖 Intel·ligència Artificial per a l'Educació
 
 **MagicSchool AI**
+
 [https://www.magicschool.ai/](https://www.magicschool.ai/){target="_blank"}
 Plataforma d'intel·ligència artificial per a professors; ajuda a crear recursos i experiències educatives automatitzades, reduint la càrrega de treball docent.
 
 ---
 
 **Google NotebookLM**
+
 [https://notebooklm.google.com/](https://notebooklm.google/){target="_blank"}
 IA de Google Labs per prendre notes, investigar i organitzar la informació amb documents, resums visuals i col·laboració.
 
 ---
 
 **Lumivara**
+
 [https://lumivara.at/](https://lumivara.at/){target="_blank"}
 Plataforma educativa amb IA que ajuda a generar materials interactius, qüestionaris i resums.
 
 ---
 
 **Kimi-ppt (Diapositives Kimi)**
+
 [https://ppt.ai/es/kimi-ppt](https://ppt.ai/es/kimi-ppt){target="_blank"}
 La IA que crea presentacions automàtiques a partir de text facilita la generació ràpida de diapositives per a professors i estudiants.
 
@@ -49,58 +53,70 @@ La IA que crea presentacions automàtiques a partir de text facilita la generaci
 ## 🔬 Ciències Naturals - Simuladors i Laboratoris Virtuals
 
 **Simulacions interactives PhET**
+
 [https://phet.colorado.edu/](https://phet.colorado.edu/){target="_blank"}
 Simuladors gratuïts i interactius per a experiments de física, química, biologia i matemàtiques desenvolupats per la Universitat de Colorado Boulder.
 
 ---
 
 **ChemCollective**
+
 [https://chemcollective.org/](https://chemcollective.org/){target="_blank"}
 Laboratoris virtuals i activitats dirigides per a l'ensenyament de la química, amb simulacions i exercicis interactius.
 
 ---
 
 **Algodoo**
+
 [https://www.algodoo.com/](https://www.algodoo.com/){target="_blank"}
 Sandbox de física 2D per experimentar i simular fenòmens físics mitjançant simulació visual i creativa, gratuïta.
 
 ---
 
-** Simulacions de laboratori OER - Mines LibGuides**
+**Simulacions de laboratori OER - Mines LibGuides**
+
 [https://libguides.mines.edu/oer/simulationslabs](https://libguides.mines.edu/oer/simulationslabs){target="_blank"}
 Guia per a laboratoris i simulacions virtuals oberts, útil per a l'ensenyament STEM.
 
 ---
 
 **Simulador de canvi climàtic**
+
 [https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}
 World Climate Simulation és un joc de rol en persona sobre les negociacions de l'ONU sobre el canvi climàtic. A través de la simulació, els participants exploren la velocitat i el treball que requereixen les nacions per abordar el canvi climàtic global.
 
+---
+
 **Simulador de models científics**  
+
 [https://www.netlogo.org/](https://www.netlogo.org/){target="_blank"}  
 NetLogo és una plataforma de modelatge basada en agents més utilitzada del món, dissenyada amb una filosofia de *umbral baix, techo alt*. Això significa que els alumnes de primària poden aprendre a crear els seus primers models, mentre que la mateixa plataforma impulsa investigacions de vanguardia. NetLogo s'ha utilitzat en més de 10.000 publicacions científiques i s'utilitza en milers d'aulas de tot el món.
 
 ## 🧬 Biologia
 
 **BioDigital**
+
 [https://biodigital.com/](https://biodigital.com/){target="_blank"}
 Eina per crear diagrames biològics 3D i modelar estructures visuals i interactives.
 
 ---
 
 **Biologycorner**
+
 [https://biologycorner.com/](https://biologycorner.com/){target="_blank"}
 Portal amb recursos educatius per ensenyar biologia, amb simulacions i exercicis interactius.
 
 ---
 
 **Pregunteu a un biòleg (ASU)**
+
 [https://askabiologist.asu.edu/](https://askabiologist.asu.edu/){target="_blank"}
 Portal on estudiants i professors poden fer preguntes de biologia a experts, amb activitats i recursos multimèdia.
 
 ---
 
 **Biomolecules.cat**
+
 [http://biomolecules.cat/](http://biomolecules.cat/){target="_blank"}
 Recursos científics i divulgatius sobre biomolècules i biologia molecular per a la docència i la divulgació.
 
@@ -109,62 +125,79 @@ Recursos científics i divulgatius sobre biomolècules i biologia molecular per 
 ## 🌍 Geologia i Ciències de la Terra
 
 **Geologia visible**
+
 [https://www.visiblegeology.com/](https://www.visiblegeology.com/){target="_blank"}
 Eina per crear diagrames geològics 3D i modelar estructures visuals i interactives.
 
 ---
 
 **Explorador tectònic - Consorci Concord**
+
 [https://tectonic-explorer.concord.org/](https://tectonic-explorer.concord.org/){target="_blank"}
 Simulador gratuït de processos tectònics per experimentar amb plaques i roques a nivell educatiu.
 
 ---
 
 **Paleolatitude.org**
+
 [https://paleolatitude.org/#!/](https://paleolatitude.org/#!/){target="_blank"}
 Calculadora interactiva per visualitzar la latitud paleogeogràfica de qualsevol punt de la Terra.
 
 ---
 
 **AEPECT**
+
 [https://www.aepect.org/](https://www.aepect.org/){target="_blank"}
 Associació Espanyola per a l'Ensenyament de les Ciències de la Terra, formació i recursos en geologia.
 
 ---
 
 **Biblioteca digital de fotos CNIG**
+
 [https://fototeca.cnig.es/fototeca/](https://fototeca.cnig.es/fototeca/){target="_blank"}
 Repositori digital per consultar fotos aèries històriques d'Espanya, útils en geografia i estudis ambientals.
+
+---
+
+**Cartografia geológica**
+
+[UNED Cartografia geológica interactiva](https://www.intecca.uned.es/difusiongiccu/grado/curso_cartografia/index.html){target="_blank"}  
+Portal amb recursos educatius per enseñar cartografia geológica, amb simulacions i exercicis interactivos.
 
 ---
 
 ## 🗺️ Mapes mentals i organitzadors visuals
 
 **XMind**
+
 [https://xmind.com/es/](https://xmind.com/es/){target="_blank"}
 Eina col·laborativa de mapes mentals i pluja d'idees assistida per IA, útil per organitzar conceptes i projectes.
 
 ---
 
 **IHMC CmapTools**
+
 [https://cmap.ihmc.us/products/](https://cmap.ihmc.us/products/){target="_blank"}
 Programari per a mapes conceptuals, permet crear, compartir i editar coneixements i models d'aprenentatge.
 
 ---
 
 **CmapTools – IHMC**
+
 [https://cmap.ihmc.us/](https://cmap.ihmc.us/){target="_blank"}
 Eina visual per crear i compartir mapes conceptuals en ciència i educació.
 
 ---
 
 **MindMup**
+
 [https://www.mindmup.com/](https://www.mindmup.com/){target="_blank"}
 Eina en línia per crear mapes mentals de manera ràpida i senzilla.
 
 ---
 
 **Instamaps**
+
 [https://www.instamaps.cat/#/](https://www.instamaps.cat/#/){target="_blank"}
 Plataforma gratuïta per crear mapes col·laboratius i visualitzacions geogràfiques interactives.
 
@@ -173,6 +206,7 @@ Plataforma gratuïta per crear mapes col·laboratius i visualitzacions geogràfi
 ## 📊 Eines interactives per a l'aula
 
 **Wooclap Word Cloud Generator**
+
 [https://www.wooclap.com/en/word-cloud-generator/](https://www.wooclap.com/en/word-cloud-generator/){target="_blank"}
 Eina instantània de creació de núvols de paraules, útil per a un resum visual i anàlisi de grup a classe.
 
@@ -187,24 +221,30 @@ Plantilles per valorar ponents i esdeveniments amb presentacions dinàmiques i i
 ## 💻 Programació Educativa i Tecnologia
 
 **Scratch**
+
 [https://scratch.mit.edu/](https://scratch.mit.edu/){target="_blank"}
 Plataforma de programació visual gratuïta on estudiants i professors creen jocs interactius i animacions.
 
 ---
 
 **Bini**
+
 [https://www.puzzle-binairo.com/binairo-6x6-easy/](https://www.puzzle-binairo.com/binairo-6x6-easy/){target="_blank"}
 Joc de lògica de trencaclosques per resoldre.
+
+---
 
 ## 🎓 Consulta i Metodologies STEM
 
 **LabInquiry - Investigació IQS**
+
 [https://iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/](https:/ /iqs.edu/es/investigacion/proyectos-investigacion/labinquiry-labs-for-inquiry-based-teaching-in-mathematics-and-beyond/){target="_blank"}
 Projecte internacional d'investigació i laboratori de matemàtiques i ciències utilitzant la metodologia STEM.
 
 ---
 
 **LabInquiry – Secundària UB**
+
 [https://www.ub.edu/labinquiry/categoria/secundaria/](https://www.ub.edu/labinquiry/categoria/secundaria/){target="_blank"}
 Activitats i propostes de recerca didàctica per a secundària, en col·laboració amb la UB.
 
@@ -213,12 +253,14 @@ Activitats i propostes de recerca didàctica per a secundària, en col·laboraci
 ## 🎨 Dibuixos animats conceptuals i recursos didàctics
 
 **Dibuixos animats de conceptes científics: aprenentatge STEM**
+
 [https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons](https://www.stem.org.uk/resources/library/collection/4226/science-concept-cartoons){target="_blank"}
 Còmics educatius que promouen la discussió científica i identifiquen idees errònies.
 
 ---
 
 **Dibuixos animats conceptuals: recerca en educació científica**
+
 [https://science-education-research.com/teaching-science/concept-cartoons/](https://science-education-research.com/teaching-science/concept-cartoons/){target="_blank"}
 Recursos i explicació sobre l'ús de vinyetes per detectar i abordar idees errònies en ciència.
 
@@ -231,6 +273,7 @@ Dibuixos animats que ajuden a debatre i diagnosticar idees clau en ciències nat
 ---
 
 **Dibuixos animats de conceptes científics: secrets de l'aula**
+
 [https://classroomsecrets.co.uk/campaign/science-concept-cartoons](https://classroomsecrets.co.uk/campaign/science-concept-cartoons){target="_blank"}
 Plantilles i recursos per fomentar el pensament científic i crític a l'aula.
 
@@ -239,18 +282,21 @@ Plantilles i recursos per fomentar el pensament científic i crític a l'aula.
 ## 📚 Recursos acadèmics i repositoris
 
 **Learner.org**
+
 [https://www.learner.org/](https://www.learner.org/){target="_blank"}
 Recursos i activitats multimèdia educatives per a ciències, matemàtiques, humanitats, ideals per a professors i estudiants.
 
 ---
 
 **DDD UAB**
+
 [https://ddd.uab.cat/](https://ddd.uab.cat/){target="_blank"}
-Repositori digital de la Universitat Autònoma de Barcelona per consultar i descarregar producció científico-acadèmica.
+Repositori digital de la Universitat Autònoma de Barcelona per consultar i descarregar producció científica-acadèmica.
 
 ---
 
 **BibGuru**
+
 [https://www.bibguru.com/es/](https://www.bibguru.com/es/){target="_blank"}
 Generador de cites bibliogràfiques gratuït, compatible amb APA, MLA i més, ideal per a treballs acadèmics.
 
@@ -303,6 +349,7 @@ Portal de recursos i aplicacions actives per a l'aprenentatge, vinculat a CESIRE
 ## 🎯 Recursos lúdics i gamificació
 
 **Murtle**
+
 [https://murdle.com/](https://murdle.com/){target="_blank"}
 Joc de lògica i misteri "misteri d'assassinat" amb reptes de lògica deductiva diària.
 
@@ -311,132 +358,154 @@ Joc de lògica i misteri "misteri d'assassinat" amb reptes de lògica deductiva 
 ## 📡 Blogs educatius
 
 **Jordi Soler - Reflexió i innovació educativa**
+
 [https://blocs.xtec.cat/blocs_formacio/obrirlamirada/2022/06/02/hola-mon/](https://blocs.xtec.cat/blocs_formacio/obrirlamirada/2022/06/02/hola-mon/){target="_blank"}
 Blog de reflexió i innovació educativa.
 
 ---
 
 **Antonio Márquez - Innovació educativa i inclusió**
+
 [https://www.antonioamarquez.com/#](https://www.antonioamarquez.com/#){target="_blank"}
 Bloc centrat en la innovació educativa i la inclusió.
 
 ---
 
 **Sergi del Moral - Reflexió i innovació educativa**
+
 [http://www.sergidelmoral.net/](http://www.sergidelmoral.net/){target="_blank"}
 Reflexions sobre la innovació educativa.
 
 ---
 
 **Jordi Domènech | Pupitrelàndia - EA de ciències**
+
 [https://blogcienciasnaturales.wordpress.com/](https://blogcienciasnaturales.wordpress.com/){target="_blank"}
 Blog sobre l'ensenyament-aprenentatge de les ciències naturals.
 
 ---
 
 **Elena Ferro - Reflexió i innovació educativa**
+
 [https://quenoensperdinlesformes.blogspot.com/](https://quenoensperdinlesformes.blogspot.com/){target="_blank"}
 Blog de reflexió i innovació educativa.
 
 ---
 
 **Jaume Feliu | Tecnocentres - Avaluació i disseny curricular**
+
 [https://tecnocentres.org/](https://tecnocentres.org/){target="_blank"}
 Avaluació i disseny curricular educatiu.
 
 ---
 
 **Roger Futé - EA de filosofia**
+
 [https://ensenyarfilosofia.wordpress.com/](https://ensenyarfilosofia.wordpress.com/){target="_blank"}
 Blog sobre l'ensenyament-aprenentatge de la filosofia.
 
 ---
 
 **Tom Sherrington - Reflexió i innovació educativa**
+
 [https://teacherhead.com/](https://teacherhead.com/){target="_blank"}
 Reflexions sobre la innovació educativa i les pràctiques docents.
 
 ---
 
 **Sarah Cottingham | Evidència per a educadors - Ciència de l'aprenentatge. Evidència de la investigació**
+
 [https://overpractised.wordpress.com/](https://overpractised.wordpress.com/){target="_blank"}
 Ciència de l'aprenentatge basada en l'evidència de la investigació.
 
 ---
 
 **Juan Fernández | Investigació docent - Ciència de l'aprenentatge. Evidència de la investigació**
+
 [https://investigaciondocente.com/](https://investigaciondocente.com/){target="_blank"}
 L'ensenyament de la recerca i l'aprenentatge de la ciència.
 
 ---
 
-** Sr. Dr. Professor de ciències - Science EA**
+**Dr. Professor de ciències - Science EA**
+
 [https://mrdrscienceteacher.wordpress.com/](https://mrdrscienceteacher.wordpress.com/){target="_blank"}
 Blog sobre l'ensenyament-aprenentatge de les ciències.
 
 ---
 
 **Albano Alonso - Reflexió i innovació educativa**
+
 [https://albanoalonso.info/blog/](https://albanoalonso.info/blog/){target="_blank"}
 Reflexions sobre la innovació educativa.
 
 ---
 
 **Dr Catlin Tucker - Reflexió i innovació educativa**
+
 [https://catlintucker.com/blog-2/](https://catlintucker.com/blog-2/){target="_blank"}
 Blog sobre innovació educativa i tecnologia.
 
 ---
 
 **Joan Domènech - Reflexió i innovació educativa**
+
 [http://joandf.blogspot.com/](http://joandf.blogspot.com/){target="_blank"}
 Reflexions sobre educació i innovació.
 
 ---
 
 **Escola amb cervell - Ciència de l'aprenentatge. Evidència de la investigació**
+
 [https://escuelaconcerebro.wordpress.com/](https://escuelaconcerebro.wordpress.com/){target="_blank"}
 Ciència de l'aprenentatge aplicada a l'educació.
 
 ---
 
 **Principi d'incertesa. Manuel Fernandez - Reflexió i innovació educativa**
+
 [https://blog.manuelfnavas.es/](https://blog.manuelfnavas.es/){target="_blank"}
 Reflexions sobre l'educació i la incertesa.
 
 ---
 
 **Els professors no tenen qualificacions - Avaluació**
+
 [https://www.teachersgoinggradeless.com/](https://www.teachersgoinggradeless.com/){target="_blank"}
 Blog sobre avaluació sense qualificacions tradicionals.
 
 ---
 
 **ASCD - Reflexió i innovació educativa**
+
 [https://www.ascd.org/blogs](https://www.ascd.org/blogs){target="_blank"}
 Blog de l'Associació per a la Supervisió i el Desenvolupament Currículum.
 
 ---
 
 **Culte de la pedagogia - Reflexió i innovació educativa**
+
 [https://www.cultofpedagogy.com/](https://www.cultofpedagogy.com/){target="_blank"}
 Recursos i estratègies per a professors innovadors.
 
 ---
 
 **Efrat Furst - Ciència de l'aprenentatge. Evidència de la investigació**
+
 [https://sites.google.com/view/efratfurst/teaching-with-learning-in-mind](https://sites.google.com/view/efratfurst/teaching-with-learning-in-mind){target="_blank"}
 Ciència de l'aprenentatge i ensenyament basat en l'evidència.
 
 ---
 
 **Bibliotecari escolar (Carlos Ortiz) - Biblioteca escolar i literatura juvenil**
+
 [https://bibliotecarioenlaescuela.blogspot.com/](https://bibliotecarioenlaescuela.blogspot.com/){target="_blank"}
 Recursos sobre biblioteques escolars i literatura juvenil.
 
 ---
 
 **Blog de psicopedagogia PRISMA**  
+
 [https://www.educat.cat/blog/](https://www.educat.cat/blog/){target="_blank"}  
 Recursos sobre psicopedagogia i educació.
 
