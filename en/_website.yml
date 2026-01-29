@@ -169,6 +169,7 @@ website:
         - master-upf/recursos/how-to-take-notes.qmd
         - master-upf/recursos/eso-competencias-ciencias.qmd
         - master-upf/recursos/bach-competencias-ciencias.qmd
+        - master-upf/recursos/calculate-climate-stripes.qmd
 
     - id: "about"
       title: "About me"

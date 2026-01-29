@@ -1,0 +1,1222 @@
+---
+title: "Calculate Your Climate Stripes"
+subtitle: "Interactive Warming Stripes Generator"
+filename: calculate-climate-stripes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Interactive tool to generate warming stripes visualizations from temperature data
+categories: [climate, visualization, data]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+# Warming Stripes Generator
+
+This tool allows you to create **warming stripes** visualizations from your own temperature data. Warming stripes are a powerful visual way to show temperature change over time.
+
+::: {.callout-note}
+## How to use this tool
+
+1. Upload a CSV file with two columns: year and annual mean temperature
+2. Configure the reference period to calculate anomalies
+3. Adjust visualization parameters according to your preferences
+4. Generate and download your warming stripes visualization
+:::
+
+```{=html}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --color-primary: #2171b5;
+            --color-text: #1f2937;
+            --color-bg: #f9fafb;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
+            --color-error: #dc2626;
+            --color-success: #059669;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .warming-stripes-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--color-primary);
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            margin-top: 0;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        input[type="file"],
+        input[type="number"],
+        input[type="text"],
+        input[type="checkbox"],
+        select {
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        input[type="file"],
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: auto;
+        }
+
+        input[type="file"]:focus,
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(33, 113, 181, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1560a0;
+            box-shadow: 0 2px 8px rgba(33, 113, 181, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background-color: #b3d9f2;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: var(--color-text);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        .output-section {
+            display: none;
+        }
+
+        .output-section.active {
+            display: block;
+        }
+
+        canvas {
+            max-width: 100%;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        canvas:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .canvas-container {
+            background-color: #f3f4f6;
+            padding: 16px;
+            border-radius: 4px;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .download-buttons button {
+            flex: 1;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .message.error {
+            background-color: #fee2e2;
+            color: var(--color-error);
+            border: 1px solid #fecaca;
+            display: block;
+        }
+
+        .message.success {
+            background-color: #d1fae5;
+            color: var(--color-success);
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            background-color: #f3f4f6;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            white-space: nowrap;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .tooltip.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .statistics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warming-stripes-container">
+        <div class="info-box">
+            <strong>Instructions:</strong>
+            Upload a temperature data file (CSV format) with two columns: year and annual mean temperature. 
+            Specify the reference period to calculate anomalies and generate your warming stripes visualization.
+        </div>
+
+        <div class="section">
+            <h2>1. Load Temperature Data</h2>
+            
+            <div class="form-group">
+                <label for="fileInput">Data file (CSV with columns: year, temperature):</label>
+                <input type="file" id="fileInput" accept=".csv" />
+            </div>
+
+            <div id="fileMessage" class="message"></div>
+            
+            <div id="dataPreview" class="data-preview" style="display: none;">
+                <h3 style="font-size: 14px; margin-bottom: 8px;">Data Preview:</h3>
+                <div style="overflow-x: auto; max-height: 200px; overflow-y: auto; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 4px; padding: 8px;">
+                    <table id="previewTable" style="width: 100%; font-size: 12px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #e5e7eb;">
+                                <th style="padding: 6px; text-align: left; border-bottom: 2px solid #d1d5db;">Year</th>
+                                <th style="padding: 6px; text-align: right; border-bottom: 2px solid #d1d5db;">Temperature (°C)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Configure Parameters</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="refStart">Reference period start year:</label>
+                    <input type="number" id="refStart" value="1971" />
+                </div>
+                <div class="form-group">
+                    <label for="refEnd">Reference period end year:</label>
+                    <input type="number" id="refEnd" value="2000" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dataStart">Data start year to display:</label>
+                    <input type="number" id="dataStart" value="" placeholder="Automatic" />
+                </div>
+                <div class="form-group">
+                    <label for="dataEnd">Data end year to display:</label>
+                    <input type="number" id="dataEnd" value="" placeholder="Automatic" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="width">Image width (px):</label>
+                    <input type="number" id="width" value="1400" min="400" />
+                </div>
+                <div class="form-group">
+                    <label for="height">Image height (px):</label>
+                    <input type="number" id="height" value="300" min="100" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="chartType">Visualization type:</label>
+                    <select id="chartType">
+                        <option value="stripes">Stripes (vertical bands)</option>
+                        <option value="bars">Vertical bars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="colorPalette">Color palette:</label>
+                    <select id="colorPalette">
+                        <option value="bluered">Blue-Red</option>
+                        <option value="default">Blue-Red Extended (56 colors)</option>
+                        <option value="viridis">Viridis</option>
+                        <option value="plasma">Plasma</option>
+                        <option value="warm">Warm</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="showLabels" checked />
+                    <label for="showLabels" style="margin-bottom: 0; display: inline;">Show year labels</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="labelInterval">Label interval (years):</label>
+                <input type="number" id="labelInterval" value="10" min="1" />
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="generateBtn">Generate Warming Stripes</button>
+                <button class="btn-secondary" id="resetBtn">Clear</button>
+            </div>
+        </div>
+
+        <div id="outputSection" class="section output-section">
+            <h2>Result</h2>
+            
+            <div class="statistics">
+                <div class="stat-box">
+                    <div class="stat-label">Minimum temperature</div>
+                    <div class="stat-value" id="minTemp">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Maximum temperature</div>
+                    <div class="stat-value" id="maxTemp">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Reference mean</div>
+                    <div class="stat-value" id="refMean">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Minimum anomaly</div>
+                    <div class="stat-value" id="minAnomaly">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Maximum anomaly</div>
+                    <div class="stat-value" id="maxAnomaly">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Warming rate</div>
+                    <div class="stat-value" id="warmingRate">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Years displayed</div>
+                    <div class="stat-value" id="yearCount">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Total change</div>
+                    <div class="stat-value" id="totalChange">-</div>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="canvas"></canvas>
+            </div>
+            
+            <div id="colorLegend" style="margin-top: 16px; padding: 12px; background: #f9fafb; border-radius: 4px;">
+                <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; text-align: center;">Temperature scale (anomalies)</div>
+                <div style="display: flex; height: 30px; border-radius: 4px; overflow: hidden; border: 1px solid #e5e7eb;" id="legendGradient"></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 11px; color: #6b7280;">
+                    <span id="legendMin">-</span>
+                    <span>0°C</span>
+                    <span id="legendMax">-</span>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <button class="btn-primary" id="downloadPNG">Download PNG</button>
+                <button class="btn-primary" id="downloadSVG">Download SVG</button>
+                <button class="btn-secondary" id="exportConfig">Export JSON Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <script>
+        const COLOR_PALETTES = {
+            bluered: [
+                '#08306b', '#08519c', '#2171b5', '#4292c6',
+                '#6baed6', '#9ecae1', '#c6dbef', '#deebf7',
+                '#fee0d2', '#fcbba1', '#fc9272', '#fb6a4a',
+                '#ef3b2c', '#cb181d', '#a50f15', '#67000d'
+            ],
+            default: [
+                '#08306b', '#083d77', '#084383', '#084c8f', '#08519c', '#1459a3',
+                '#1861aa', '#2169b1', '#2171b5', '#2979b9', '#3181be', '#3989c2',
+                '#4292c6', '#4c9aca', '#569fce', '#60a7d2', '#6baed6', '#75b5d9',
+                '#7fbddd', '#89c4e1', '#9ecae1', '#a6d0e5', '#b3d5e8', '#bfdaeb',
+                '#c6dbef', '#cee0f1', '#d7e3f3', '#dfe7f5', '#deebf7', '#e4edf6',
+                '#e8eeef', '#f1ece7', '#fee5d9', '#fee0d3', '#fedfcd', '#fdd5c4',
+                '#fcae91', '#fca589', '#fb9c7d', '#fb8370', '#fb6a4a', '#f86042',
+                '#f5563b', '#f24934', '#ef3b2c', '#e63228', '#dd2e25', '#d42321',
+                '#cb181d', '#c1121a', '#b20c16', '#a90813', '#99000d', '#91000b',
+                '#800008', '#700007', '#600006', '#500005'
+            ],
+            viridis: [
+                '#440154', '#450a5f', '#46146b', '#471e76', '#482878', '#46317d',
+                '#453882', '#424186', '#3e4989', '#3c528c', '#395a8f', '#366291',
+                '#31688e', '#2f708e', '#2c738e', '#2a7b8e', '#26828e', '#24898e',
+                '#228e8d', '#20968c', '#1f9e89', '#22a386', '#2aa97b', '#2fae72',
+                '#35b779', '#3dbf6e', '#4ac26d', '#55c667', '#6ece58', '#79d34f',
+                '#7fd74e', '#86d949', '#8ad545', '#95d83e', '#a5db36', '#afdd30',
+                '#b5de2b', '#bde028', '#c5e225', '#cde423', '#cbe627', '#d1e926',
+                '#d7eb28', '#deed29', '#e3ef29', '#e9f12a', '#eef32a', '#f3f52b',
+                '#f8f72c', '#fbf92d', '#fde724', '#fde724', '#fde724', '#fde724',
+                '#fde724', '#fde724'
+            ],
+            plasma: [
+                '#0d0887', '#1f0c8c', '#2a0593', '#3b0198', '#46039f', '#5102a3',
+                '#5c01a6', '#6701a9', '#7201a8', '#7d09a5', '#8612a1', '#911c9d',
+                '#9c179e', '#a72197', '#b02a8f', '#b93188', '#bd3786', '#c33e81',
+                '#ca457c', '#d04c77', '#d8576b', '#de5d66', '#e16462', '#e76b5d',
+                '#ed7953', '#f0814c', '#f68f46', '#f99740', '#fb9f3a', '#fca735',
+                '#fcaf31', '#fdb72d', '#fdca26', '#fdd122', '#fdd724', '#fcdd24',
+                '#fcdf25', '#fce325', '#fbe626', '#fae926', '#f9ed27', '#f8f027',
+                '#f7f428', '#f6f728', '#f4fa29', '#f2fc2a', '#f0f921', '#f0f921',
+                '#f0f921', '#f0f921', '#f0f921', '#f0f921', '#f0f921', '#f0f921',
+                '#f0f921', '#f0f921'
+            ],
+            warm: [
+                '#ffffcc', '#fffec0', '#fffdb3', '#fffca7', '#ffeda0', '#ffef96',
+                '#fff18b', '#ffe780', '#fed976', '#fee76e', '#fee361', '#fedf54',
+                '#feb24c', '#fea945', '#fea03e', '#fd9737', '#fd8d3c', '#fd8338',
+                '#fd7933', '#fd6f2e', '#fc4e2a', '#f84626', '#f33f22', '#ee371e',
+                '#e31a1c', '#dc181f', '#d41521', '#cc1323', '#bd0026', '#b20024',
+                '#a60023', '#9a0021', '#8f001f', '#84001d', '#78001b', '#6d0019',
+                '#800026', '#750023', '#6a0020', '#5f001d', '#550019', '#4a0016',
+                '#400013', '#350010', '#2b000d', '#20000a', '#160007', '#0b0004',
+                '#000000', '#000000', '#000000', '#000000', '#000000', '#000000',
+                '#000000', '#000000'
+            ]
+        };
+
+        let data = null;
+        let displayData = null;
+        let refMean = null;
+        let selectedYearIndex = -1;
+        let canvasContext = null;
+        let chartParameters = null;
+
+        document.getElementById('fileInput').addEventListener('change', handleFileUpload);
+        document.getElementById('generateBtn').addEventListener('click', generateStripes);
+        document.getElementById('resetBtn').addEventListener('click', resetForm);
+        document.getElementById('downloadPNG').addEventListener('click', downloadPNG);
+        document.getElementById('downloadSVG').addEventListener('click', downloadSVG);
+        document.getElementById('exportConfig').addEventListener('click', exportConfiguration);
+        document.getElementById('chartType').addEventListener('change', generateStripes);
+        document.getElementById('colorPalette').addEventListener('change', generateStripes);
+
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            const messageDiv = document.getElementById('fileMessage');
+
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const lines = event.target.result.split('\n').filter(line => line.trim());
+                    const parsedData = [];
+
+                    for (const line of lines) {
+                        if (line.toLowerCase().includes('year') || line.toLowerCase().includes('temp')) {
+                            continue;
+                        }
+                        
+                        const parts = line.trim().split(/[,;]/).map(p => p.trim());
+                        if (parts.length >= 2) {
+                            const year = parseInt(parts[0]);
+                            const temp = parseFloat(parts[1]);
+                            if (!isNaN(year) && !isNaN(temp)) {
+                                parsedData.push({ year, temp });
+                            }
+                        }
+                    }
+
+                    if (parsedData.length === 0) {
+                        throw new Error('No valid data found in the file.');
+                    }
+
+                    data = parsedData.sort((a, b) => a.year - b.year);
+                    const minYear = data[0].year;
+                    const maxYear = data[data.length - 1].year;
+
+                    document.getElementById('dataStart').value = minYear;
+                    document.getElementById('dataEnd').value = maxYear;
+
+                    showDataPreview(data);
+
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = `✓ File loaded: ${data.length} years of data (${minYear}-${maxYear})`;
+                } catch (error) {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = '✗ Error: ' + error.message;
+                    data = null;
+                    document.getElementById('dataPreview').style.display = 'none';
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function showDataPreview(data) {
+            const previewBody = document.getElementById('previewBody');
+            const previewDiv = document.getElementById('dataPreview');
+            
+            previewBody.innerHTML = '';
+            
+            const maxRows = 10;
+            const displayData = data.length > maxRows ? 
+                [...data.slice(0, 5), ...data.slice(-5)] : data;
+            
+            displayData.forEach((d, index) => {
+                if (index === 5 && data.length > maxRows) {
+                    const row = previewBody.insertRow();
+                    row.innerHTML = '<td colspan="2" style="text-align: center; padding: 6px; color: #6b7280;">...</td>';
+                }
+                const row = previewBody.insertRow();
+                row.innerHTML = `
+                    <td style="padding: 6px; border-bottom: 1px solid #e5e7eb;">${d.year}</td>
+                    <td style="padding: 6px; text-align: right; border-bottom: 1px solid #e5e7eb;">${d.temp.toFixed(2)}</td>
+                `;
+            });
+            
+            previewDiv.style.display = 'block';
+        }
+
+        function generateStripes() {
+            const messageDiv = document.getElementById('fileMessage');
+
+            if (!data || data.length === 0) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ Please load a valid file first.';
+                return;
+            }
+
+            try {
+                const refStart = parseInt(document.getElementById('refStart').value);
+                const refEnd = parseInt(document.getElementById('refEnd').value);
+                const dataStart = parseInt(document.getElementById('dataStart').value);
+                const dataEnd = parseInt(document.getElementById('dataEnd').value);
+                const showLabels = document.getElementById('showLabels').checked;
+                const labelInterval = parseInt(document.getElementById('labelInterval').value);
+                const chartType = document.getElementById('chartType').value;
+
+                if (isNaN(refStart) || isNaN(refEnd) || isNaN(dataStart) || isNaN(dataEnd)) {
+                    throw new Error('All parameters must be numbers.');
+                }
+
+                if (refStart >= refEnd) {
+                    throw new Error('Start year must be less than end year.');
+                }
+
+                if (dataStart > dataEnd) {
+                    throw new Error('Data start year must be less than end year.');
+                }
+
+                const minDataYear = data[0].year;
+                const maxDataYear = data[data.length - 1].year;
+                
+                if (refStart < minDataYear || refEnd > maxDataYear) {
+                    throw new Error(`Reference period (${refStart}-${refEnd}) must be within available data range (${minDataYear}-${maxDataYear}).`);
+                }
+
+                const referenceData = data.filter(d => d.year >= refStart && d.year <= refEnd);
+                displayData = data.filter(d => d.year >= dataStart && d.year <= dataEnd);
+
+                if (referenceData.length === 0) {
+                    throw new Error('No data in the specified reference period.');
+                }
+
+                if (displayData.length === 0) {
+                    throw new Error('No data in the specified display period.');
+                }
+
+                refMean = referenceData.reduce((sum, d) => sum + d.temp, 0) / referenceData.length;
+                const anomalies = displayData.map(d => d.temp - refMean);
+                const minAnomaly = Math.min(...anomalies);
+                const maxAnomaly = Math.max(...anomalies);
+                const limit = Math.max(Math.abs(minAnomaly), Math.abs(maxAnomaly));
+                
+                const actualTemps = displayData.map(d => d.temp);
+                const minTemp = Math.min(...actualTemps);
+                const maxTemp = Math.max(...actualTemps);
+
+                const selectedPalette = document.getElementById('colorPalette').value;
+                const COLORS = COLOR_PALETTES[selectedPalette];
+
+                const canvas = document.getElementById('canvas');
+                const ctx = canvas.getContext('2d');
+                const inputWidth = parseInt(document.getElementById('width').value);
+                const stripesWidth = inputWidth * 0.5;
+                const height = parseInt(document.getElementById('height').value);
+
+                const horizontalPadding = 30;
+                const titleHeight = 50;
+                const labelHeight = showLabels ? 40 : 0;
+                const canvasWidth = stripesWidth + (horizontalPadding * 2);
+                canvas.width = canvasWidth;
+                canvas.height = titleHeight + height + labelHeight;
+
+                const startYear = displayData[0].year;
+                const endYear = displayData[displayData.length - 1].year;
+
+                ctx.fillStyle = '#505050';
+                ctx.fillRect(0, 0, canvasWidth, titleHeight);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`Temperature change (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+
+                const totalBarSpace = stripesWidth / displayData.length;
+
+                if (chartType === 'stripes') {
+                    displayData.forEach((d, index) => {
+                        const anomaly = d.temp - refMean;
+                        const normalized = (anomaly + limit) / (2 * limit);
+                        const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                        const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+
+                        const xStart = Math.round(index * totalBarSpace) + horizontalPadding;
+                        const xEnd = Math.round((index + 1) * totalBarSpace) + horizontalPadding;
+                        const stripeWidth = xEnd - xStart + 1;
+
+                        ctx.fillStyle = color;
+                        ctx.fillRect(xStart, titleHeight, stripeWidth, height);
+                    });
+
+                    if (showLabels) {
+                        ctx.fillStyle = '#505050';
+                        ctx.fillRect(0, titleHeight + height, canvasWidth, labelHeight);
+
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        displayData.forEach((d, index) => {
+                            if (d.year % labelInterval === 0) {
+                                const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                            }
+                        });
+                    }
+                } else if (chartType === 'bars') {
+                    const yAxisWidth = 50;
+                    const chartStartX = horizontalPadding + yAxisWidth;
+                    const chartWidth = stripesWidth - yAxisWidth;
+                    const barSpace = chartWidth / displayData.length;
+                    const barWidth = Math.max(1, barSpace * 0.8);
+                    const barGap = barSpace - barWidth;
+                    
+                    const padding = 20;
+                    const chartHeight = height - padding * 2;
+                    const centerY = titleHeight + height / 2;
+                    const maxBarHeight = chartHeight / 2;
+
+                    ctx.fillStyle = '#4a5568';
+                    ctx.fillRect(horizontalPadding, titleHeight, stripesWidth, height);
+
+                    ctx.strokeStyle = '#6b7280';
+                    ctx.lineWidth = 1;
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                    ctx.textAlign = 'right';
+                    ctx.textBaseline = 'middle';
+
+                    const numTicks = 6;
+                    for (let i = 0; i <= numTicks; i++) {
+                        const value = limit - (i * (2 * limit) / numTicks);
+                        const y = titleHeight + padding + (i * chartHeight / numTicks);
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(horizontalPadding + yAxisWidth - 5, y);
+                        ctx.lineTo(horizontalPadding + stripesWidth, y);
+                        ctx.stroke();
+                        
+                        ctx.fillText(value.toFixed(1), horizontalPadding + yAxisWidth - 8, y);
+                    }
+
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(chartStartX, centerY);
+                    ctx.lineTo(horizontalPadding + stripesWidth, centerY);
+                    ctx.stroke();
+
+                    displayData.forEach((d, index) => {
+                        const anomaly = d.temp - refMean;
+                        const normalized = (anomaly + limit) / (2 * limit);
+                        const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                        const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+
+                        const barHeight = (anomaly / limit) * maxBarHeight;
+                        const xPos = chartStartX + index * barSpace + barGap / 2;
+                        
+                        ctx.fillStyle = color;
+                        if (barHeight >= 0) {
+                            ctx.fillRect(xPos, centerY - barHeight, barWidth, barHeight);
+                        } else {
+                            ctx.fillRect(xPos, centerY, barWidth, -barHeight);
+                        }
+                    });
+
+                    if (showLabels) {
+                        ctx.fillStyle = '#505050';
+                        ctx.fillRect(0, titleHeight + height, canvasWidth, labelHeight);
+
+                        ctx.fillStyle = '#ffffff';
+                        ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        displayData.forEach((d, index) => {
+                            if (d.year % labelInterval === 0) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                            }
+                        });
+                    }
+                }
+
+                const n = displayData.length;
+                const years = displayData.map(d => d.year);
+                const temps = displayData.map(d => d.temp);
+                
+                const meanYear = years.reduce((a, b) => a + b, 0) / n;
+                const meanTemp = temps.reduce((a, b) => a + b, 0) / n;
+                
+                let numerator = 0;
+                let denominator = 0;
+                for (let i = 0; i < n; i++) {
+                    numerator += (years[i] - meanYear) * (temps[i] - meanTemp);
+                    denominator += (years[i] - meanYear) * (years[i] - meanYear);
+                }
+                
+                const slope = numerator / denominator;
+                const warmingRatePerDecade = slope * 10;
+                const totalTempChange = displayData[displayData.length - 1].temp - displayData[0].temp;
+                
+                document.getElementById('minTemp').textContent = minTemp.toFixed(2) + '°C';
+                document.getElementById('maxTemp').textContent = maxTemp.toFixed(2) + '°C';
+                document.getElementById('refMean').textContent = refMean.toFixed(2) + '°C';
+                document.getElementById('minAnomaly').textContent = (minAnomaly >= 0 ? '+' : '') + minAnomaly.toFixed(2) + '°C';
+                document.getElementById('maxAnomaly').textContent = (maxAnomaly >= 0 ? '+' : '') + maxAnomaly.toFixed(2) + '°C';
+                document.getElementById('warmingRate').textContent = (warmingRatePerDecade >= 0 ? '+' : '') + warmingRatePerDecade.toFixed(3) + '°C/decade';
+                document.getElementById('yearCount').textContent = displayData.length;
+                document.getElementById('totalChange').textContent = (totalTempChange >= 0 ? '+' : '') + totalTempChange.toFixed(2) + '°C';
+
+                updateColorLegend(COLORS, minAnomaly, maxAnomaly);
+                
+                chartParameters = {
+                    chartType,
+                    horizontalPadding,
+                    stripesWidth,
+                    titleHeight,
+                    height,
+                    labelHeight,
+                    COLORS,
+                    limit,
+                    totalBarSpace,
+                    canvasWidth,
+                    canvasHeight: titleHeight + height + labelHeight
+                };
+                canvasContext = ctx;
+                
+                setupCanvasTooltip(canvas, displayData, refMean, chartType, horizontalPadding, stripesWidth, titleHeight, height, labelHeight);
+
+                document.getElementById('outputSection').classList.add('active');
+                messageDiv.className = '';
+                messageDiv.textContent = '';
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ Error: ' + error.message;
+                document.getElementById('outputSection').classList.remove('active');
+            }
+        }
+
+        function setupCanvasTooltip(canvas, displayData, refMean, chartType, horizontalPadding, stripesWidth, titleHeight, height, labelHeight) {
+            const tooltip = document.getElementById('tooltip');
+            const totalBarSpace = stripesWidth / displayData.length;
+
+            canvas.onmousemove = function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (y < titleHeight || y > titleHeight + height) {
+                    tooltip.classList.remove('active');
+                    return;
+                }
+
+                const adjustedX = x - horizontalPadding;
+                const index = Math.floor(adjustedX / totalBarSpace);
+                
+                if (index >= 0 && index < displayData.length && adjustedX >= 0 && adjustedX <= stripesWidth) {
+                    const d = displayData[index];
+                    const anomaly = d.temp - refMean;
+                    
+                    tooltip.innerHTML = `
+                        <strong>Year:</strong> ${d.year}<br>
+                        <strong>Temperature:</strong> ${d.temp.toFixed(2)}°C<br>
+                        <strong>Anomaly:</strong> ${anomaly >= 0 ? '+' : ''}${anomaly.toFixed(2)}°C
+                    `;
+                    
+                    let tooltipX = e.pageX + 10;
+                    let tooltipY = e.pageY - 70;
+                    
+                    const tooltipWidth = 200;
+                    const tooltipHeight = 70;
+                    
+                    if (tooltipX + tooltipWidth > window.pageXOffset + window.innerWidth) {
+                        tooltipX = e.pageX - tooltipWidth - 10;
+                    }
+                    
+                    if (tooltipX < window.pageXOffset) {
+                        tooltipX = window.pageXOffset + 10;
+                    }
+                    
+                    if (tooltipY < window.pageYOffset) {
+                        tooltipY = e.pageY + 20;
+                    }
+                    
+                    if (tooltipY + tooltipHeight > window.pageYOffset + window.innerHeight) {
+                        tooltipY = e.pageY - tooltipHeight - 10;
+                    }
+                    
+                    tooltip.style.left = tooltipX + 'px';
+                    tooltip.style.top = tooltipY + 'px';
+                    tooltip.classList.add('active');
+                    
+                    canvas.style.cursor = 'pointer';
+                } else {
+                    tooltip.classList.remove('active');
+                    canvas.style.cursor = 'default';
+                }
+            };
+
+            canvas.onmouseleave = function() {
+                tooltip.classList.remove('active');
+                canvas.style.cursor = 'default';
+            };
+        }
+
+        function updateColorLegend(colors, minAnomaly, maxAnomaly) {
+            const legendGradient = document.getElementById('legendGradient');
+            legendGradient.innerHTML = '';
+            
+            colors.forEach(color => {
+                const colorDiv = document.createElement('div');
+                colorDiv.style.flex = '1';
+                colorDiv.style.backgroundColor = color;
+                legendGradient.appendChild(colorDiv);
+            });
+            
+            document.getElementById('legendMin').textContent = minAnomaly.toFixed(2) + '°C';
+            document.getElementById('legendMax').textContent = maxAnomaly.toFixed(2) + '°C';
+        }
+
+        function exportConfiguration() {
+            if (!data || !displayData) {
+                alert('Please generate a visualization first before exporting the configuration.');
+                return;
+            }
+
+            const config = {
+                metadata: {
+                    exportDate: new Date().toISOString(),
+                    version: '9.0',
+                    description: 'Warming Stripes Generator Configuration'
+                },
+                parameters: {
+                    referenceStart: parseInt(document.getElementById('refStart').value),
+                    referenceEnd: parseInt(document.getElementById('refEnd').value),
+                    dataStart: parseInt(document.getElementById('dataStart').value),
+                    dataEnd: parseInt(document.getElementById('dataEnd').value),
+                    width: parseInt(document.getElementById('width').value),
+                    height: parseInt(document.getElementById('height').value),
+                    chartType: document.getElementById('chartType').value,
+                    colorPalette: document.getElementById('colorPalette').value,
+                    showLabels: document.getElementById('showLabels').checked,
+                    labelInterval: parseInt(document.getElementById('labelInterval').value)
+                },
+                statistics: {
+                    referenceMean: refMean.toFixed(2),
+                    minAnomaly: document.getElementById('minTemp').textContent,
+                    maxAnomaly: document.getElementById('maxTemp').textContent,
+                    yearCount: displayData.length,
+                    dataRange: {
+                        min: data[0].year,
+                        max: data[data.length - 1].year
+                    }
+                },
+                data: displayData.map(d => ({
+                    year: d.year,
+                    temperature: d.temp,
+                    anomaly: (d.temp - refMean).toFixed(2)
+                }))
+            };
+
+            const jsonStr = JSON.stringify(config, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `warming-stripes-config-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadPNG() {
+            const canvas = document.getElementById('canvas');
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'warming-stripes.png';
+            link.click();
+        }
+
+        function downloadSVG() {
+            if (!displayData || !refMean) {
+                alert('Please generate a visualization first.');
+                return;
+            }
+
+            const chartType = document.getElementById('chartType').value;
+            const selectedPalette = document.getElementById('colorPalette').value;
+            const COLORS = COLOR_PALETTES[selectedPalette];
+            const showLabels = document.getElementById('showLabels').checked;
+            const labelInterval = parseInt(document.getElementById('labelInterval').value);
+            
+            const inputWidth = parseInt(document.getElementById('width').value);
+            const stripesWidth = inputWidth * 0.5;
+            const height = parseInt(document.getElementById('height').value);
+            const horizontalPadding = 30;
+            const titleHeight = 50;
+            const labelHeight = showLabels ? 40 : 0;
+            const canvasWidth = stripesWidth + (horizontalPadding * 2);
+            const canvasHeight = titleHeight + height + labelHeight;
+            
+            const startYear = displayData[0].year;
+            const endYear = displayData[displayData.length - 1].year;
+            
+            const anomalies = displayData.map(d => d.temp - refMean);
+            const minAnomaly = Math.min(...anomalies);
+            const maxAnomaly = Math.max(...anomalies);
+            const limit = Math.max(Math.abs(minAnomaly), Math.abs(maxAnomaly));
+            
+            let svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="${canvasWidth}" height="${canvasHeight}" viewBox="0 0 ${canvasWidth} ${canvasHeight}">
+`;
+            
+            svg += `  <rect x="0" y="0" width="${canvasWidth}" height="${titleHeight}" fill="#505050"/>
+`;
+            
+            svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Temperature change (${startYear}-${endYear})</text>
+`;
+            
+            const totalBarSpace = stripesWidth / displayData.length;
+            
+            if (chartType === 'stripes') {
+                displayData.forEach((d, index) => {
+                    const anomaly = d.temp - refMean;
+                    const normalized = (anomaly + limit) / (2 * limit);
+                    const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                    const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+                    
+                    const xStart = Math.round(index * totalBarSpace) + horizontalPadding;
+                    const xEnd = Math.round((index + 1) * totalBarSpace) + horizontalPadding;
+                    const stripeWidth = xEnd - xStart + 1;
+                    
+                    svg += `  <rect x="${xStart}" y="${titleHeight}" width="${stripeWidth}" height="${height}" fill="${color}"/>
+`;
+                });
+                
+                if (showLabels) {
+                    svg += `  <rect x="0" y="${titleHeight + height}" width="${canvasWidth}" height="${labelHeight}" fill="#505050"/>
+`;
+                    
+                    displayData.forEach((d, index) => {
+                        if (d.year % labelInterval === 0) {
+                            const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                            svg += `  <text x="${xPos}" y="${titleHeight + height + labelHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">${d.year}</text>
+`;
+                        }
+                    });
+                }
+            } else if (chartType === 'bars') {
+                const yAxisWidth = 50;
+                const chartStartX = horizontalPadding + yAxisWidth;
+                const chartWidth = stripesWidth - yAxisWidth;
+                const barSpace = chartWidth / displayData.length;
+                const barWidth = Math.max(1, barSpace * 0.8);
+                const barGap = barSpace - barWidth;
+                
+                const padding = 20;
+                const chartHeight = height - padding * 2;
+                const centerY = titleHeight + height / 2;
+                const maxBarHeight = chartHeight / 2;
+                
+                svg += `  <rect x="${horizontalPadding}" y="${titleHeight}" width="${stripesWidth}" height="${height}" fill="#4a5568"/>
+`;
+                
+                const numTicks = 6;
+                for (let i = 0; i <= numTicks; i++) {
+                    const value = limit - (i * (2 * limit) / numTicks);
+                    const y = titleHeight + padding + (i * chartHeight / numTicks);
+                    svg += `  <line x1="${horizontalPadding + yAxisWidth - 5}" y1="${y}" x2="${horizontalPadding + stripesWidth}" y2="${y}" stroke="#6b7280" stroke-width="1"/>
+`;
+                    svg += `  <text x="${horizontalPadding + yAxisWidth - 8}" y="${y}" text-anchor="end" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#ffffff">${value.toFixed(1)}</text>
+`;
+                }
+                
+                svg += `  <line x1="${chartStartX}" y1="${centerY}" x2="${horizontalPadding + stripesWidth}" y2="${centerY}" stroke="#ffffff" stroke-width="2"/>
+`;
+                
+                displayData.forEach((d, index) => {
+                    const anomaly = d.temp - refMean;
+                    const normalized = (anomaly + limit) / (2 * limit);
+                    const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                    const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+                    
+                    const barHeight = (anomaly / limit) * maxBarHeight;
+                    const xPos = chartStartX + index * barSpace + barGap / 2;
+                    
+                    if (barHeight >= 0) {
+                        svg += `  <rect x="${xPos}" y="${centerY - barHeight}" width="${barWidth}" height="${barHeight}" fill="${color}"/>
+`;
+                    } else {
+                        svg += `  <rect x="${xPos}" y="${centerY}" width="${barWidth}" height="${-barHeight}" fill="${color}"/>
+`;
+                    }
+                });
+                
+                if (showLabels) {
+                    svg += `  <rect x="0" y="${titleHeight + height}" width="${canvasWidth}" height="${labelHeight}" fill="#505050"/>
+`;
+                    
+                    displayData.forEach((d, index) => {
+                        if (d.year % labelInterval === 0) {
+                            const xPos = chartStartX + index * barSpace + barSpace / 2;
+                            svg += `  <text x="${xPos}" y="${titleHeight + height + labelHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="bold" fill="#ffffff">${d.year}</text>
+`;
+                        }
+                    });
+                }
+            }
+            
+            svg += `</svg>`;
+            
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'warming-stripes.svg';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function resetForm() {
+            document.getElementById('fileInput').value = '';
+            document.getElementById('refStart').value = '1971';
+            document.getElementById('refEnd').value = '2000';
+            document.getElementById('dataStart').value = '';
+            document.getElementById('dataEnd').value = '';
+            document.getElementById('showLabels').checked = true;
+            document.getElementById('labelInterval').value = '10';
+            document.getElementById('chartType').value = 'stripes';
+            document.getElementById('colorPalette').value = 'default';
+            document.getElementById('outputSection').classList.remove('active');
+            document.getElementById('fileMessage').className = '';
+            document.getElementById('fileMessage').textContent = '';
+            document.getElementById('dataPreview').style.display = 'none';
+            data = null;
+            displayData = null;
+            refMean = null;
+            selectedYearIndex = -1;
+            canvasContext = null;
+            chartParameters = null;
+        }
+    </script>
+</body>
+</html>
+```
+
+## About Warming Stripes
+
+**Warming stripes** were created by climatologist Ed Hawkins as a simple yet powerful visual way to communicate climate change. Each stripe represents a year, and the color indicates whether the temperature was cooler (blue) or warmer (red) than the average of the reference period.
+
+### Tool Features
+
+- **Custom data upload**: Upload your own temperature data in CSV format
+- **Configurable reference period**: Define the baseline period to calculate anomalies
+- **Multiple color palettes**: Choose from different color schemes
+- **Two visualization types**: Traditional stripes or bar chart
+- **Flexible export**: Download as PNG, SVG, or export configuration as JSON
+- **Automatic statistics**: Calculates warming rates and anomalies
+
+### Required Data Format
+
+Your CSV file should have two columns:
+
+```
+year,temperature
+1850,14.2
+1851,14.3
+1852,14.1
+...
+```
+
+::: {.callout-tip}
+## Data Sources
+
+You can obtain temperature data from sources such as:
+
+- [Berkeley Earth](http://berkeleyearth.org/data/)
+- [NASA GISS](https://data.giss.nasa.gov/gistemp/)
+- [NOAA](https://www.ncdc.noaa.gov/cag/)
+- National meteorological services
+:::
+
+## References
+
+- [Show Your Stripes](https://showyourstripes.info/) - Original project by Ed Hawkins
+- Hawkins, E. (2018). "Warming stripes". Climate Lab Book.
