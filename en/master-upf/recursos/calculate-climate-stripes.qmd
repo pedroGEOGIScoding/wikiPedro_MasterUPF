@@ -340,12 +340,12 @@ This tool allows you to create **warming stripes** visualizations from your own 
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="refStart">Reference period start year:</label>
-                    <input type="number" id="refStart" value="1971" />
+                    <label for="refStart">Reference period start year (following WMO recommendations):</label>
+                    <input type="number" id="refStart" value="1991" />
                 </div>
                 <div class="form-group">
-                    <label for="refEnd">Reference period end year:</label>
-                    <input type="number" id="refEnd" value="2000" />
+                    <label for="refEnd">Reference period end year (following WMO recommendations):</label>
+                    <input type="number" id="refEnd" value="2020" />
                 </div>
             </div>
 
@@ -375,7 +375,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
                 <div class="form-group">
                     <label for="chartType">Visualization type:</label>
                     <select id="chartType">
-                        <option value="stripes">Stripes (vertical bands)</option>
+                        <option value="stripes">Stripes</option>
                         <option value="bars">Vertical bars</option>
                     </select>
                 </div>
@@ -1156,8 +1156,8 @@ This tool allows you to create **warming stripes** visualizations from your own 
 
         function resetForm() {
             document.getElementById('fileInput').value = '';
-            document.getElementById('refStart').value = '1971';
-            document.getElementById('refEnd').value = '2000';
+            document.getElementById('refStart').value = '1991';
+            document.getElementById('refEnd').value = '2020';
             document.getElementById('dataStart').value = '';
             document.getElementById('dataEnd').value = '';
             document.getElementById('showLabels').checked = true;

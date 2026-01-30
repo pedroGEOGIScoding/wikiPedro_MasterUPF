@@ -340,12 +340,12 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
             
             <div class="form-row">
                 <div class="form-group">
-                    <label for="refStart">Año de inicio del período de referencia:</label>
-                    <input type="number" id="refStart" value="1971" />
+                    <label for="refStart">Año de inicio del período de referencia (siguiendo las recomendaciones de la OMM):</label>
+                    <input type="number" id="refStart" value="1991" />
                 </div>
                 <div class="form-group">
-                    <label for="refEnd">Año de fin del período de referencia:</label>
-                    <input type="number" id="refEnd" value="2000" />
+                    <label for="refEnd">Año de fin del período de referencia (siguiendo las recomendaciones de la OMM):</label>
+                    <input type="number" id="refEnd" value="2020" />
                 </div>
             </div>
 
@@ -375,7 +375,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
                 <div class="form-group">
                     <label for="chartType">Tipo de visualización:</label>
                     <select id="chartType">
-                        <option value="stripes">Franjas (bandas verticales)</option>
+                        <option value="stripes">Franjas</option>
                         <option value="bars">Barras verticales</option>
                     </select>
                 </div>
@@ -1156,8 +1156,8 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
 
         function resetForm() {
             document.getElementById('fileInput').value = '';
-            document.getElementById('refStart').value = '1971';
-            document.getElementById('refEnd').value = '2000';
+            document.getElementById('refStart').value = '1991';
+            document.getElementById('refEnd').value = '2020';
             document.getElementById('dataStart').value = '';
             document.getElementById('dataEnd').value = '';
             document.getElementById('showLabels').checked = true;
