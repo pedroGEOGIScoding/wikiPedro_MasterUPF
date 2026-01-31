@@ -1220,3 +1220,39 @@ Puedes obtener datos de temperatura de fuentes como:
 
 - [Show Your Stripes](https://showyourstripes.info/) - Proyecto original de Ed Hawkins
 - Hawkins, E. (2018). "Warming stripes". Climate Lab Book.
+
+## Gráficos importantes acerca del cambio climático
+
+Estos gráficos muestran cómo han cambiado los diferentes componentes del cambio climático a lo largo del tiempo. Haz clic en los gráficos para que sean interactivos y puedas ver los datos en detalle año a año.
+
+<div id="o2-widget-container"></div><script type="text/javascript" src="https://www.climatelevels.org/graphs/js/o2.php?theme=default&pid=2degreesinstitute"></script>
+
+Graficos de: [2DegreesInstitute](https://2degreesinstitute.org/)
+
+## Mapa interactivo de evaluación de la subida del nivel del mar
+
+<div style="margin-bottom: 15px;">
+  <label for="water-level-slider" style="font-weight: bold; margin-right: 10px;">Nivel del agua (metros):</label>
+  <input type="range" id="water-level-slider" min="0" max="10" step="0.1" value="2" style="width: 300px; vertical-align: middle;">
+  <span id="water-level-value" style="margin-left: 10px; font-weight: bold;">2m</span>
+</div>
+
+<iframe id="climate-central-map" allow="fullscreen 'src'" frameBorder="0" src="https://coastal.climatecentral.org/embed/map/10/2.0387/41.3271/?theme=water_level&map_type=water_level_above_mhhw&basemap=roadmap&contiguous=true&elevation_model=best_available&water_level=2&water_unit=m" width="100%" height="500" title="Climate Central | Land below water"></iframe>
+
+<script>
+const slider = document.getElementById('water-level-slider');
+const valueDisplay = document.getElementById('water-level-value');
+const iframe = document.getElementById('climate-central-map');
+
+slider.addEventListener('input', function() {
+  const waterLevel = this.value;
+  valueDisplay.textContent = waterLevel + 'm';
+  
+  // Update iframe src with new water level
+  const baseUrl = 'https://coastal.climatecentral.org/embed/map/10/2.0387/41.3271/?theme=water_level&map_type=water_level_above_mhhw&basemap=roadmap&contiguous=true&elevation_model=best_available&water_level=';
+  iframe.src = baseUrl + waterLevel + '&water_unit=m';
+  iframe.title = 'Climate Central | Land below ' + waterLevel + ' meters of water';
+});
+</script>
+
+Herramienta de: [Climate Central](https://coastal.climatecentral.org/)
