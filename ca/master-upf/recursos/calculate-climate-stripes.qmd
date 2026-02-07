@@ -29,6 +29,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 ```{=html}
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -286,6 +287,156 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             visibility: visible;
         }
 
+        /* Drag & Drop Zone */
+        .drop-zone {
+            border: 2px dashed var(--color-border);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--color-primary);
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--color-primary);
+            border-style: solid;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .drop-zone-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            color: #9ca3af;
+            transition: color 0.3s ease;
+        }
+
+        .drop-zone:hover .drop-zone-icon,
+        .drop-zone.drag-over .drop-zone-icon {
+            color: var(--color-primary);
+        }
+
+        .drop-zone-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .drop-zone-hint {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .drop-zone-hint strong {
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        .drop-zone input[type="file"] {
+            display: none;
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+            gap: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg,
+                    #08306b, #2171b5, #6baed6, #deebf7,
+                    #fee0d2, #fb6a4a, #cb181d, #67000d,
+                    #08306b);
+            animation: spin 1.2s linear infinite;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .loading-spinner::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .loading-subtext {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: -12px;
+        }
+
+        .loading-progress {
+            width: 280px;
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2171b5, #6baed6, #fb6a4a, #cb181d);
+            background-size: 200% 100%;
+            width: 0%;
+            transition: width 0.05s ease-out;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
         @media (max-width: 640px) {
             .form-row {
                 grid-template-columns: 1fr;
@@ -301,32 +452,46 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         }
     </style>
 </head>
+
 <body>
     <div class="warming-stripes-container">
         <div class="info-box">
             <strong>Instruccions:</strong>
-            Puja un arxiu de dades de temperatura (format CSV) amb dues columnes: any i temperatura mitjana anual. 
-            Especifica el període de referència per calcular les anomalies i genera la teva visualització de franges climàtiques.
+            Puja un arxiu de dades de temperatura (format CSV) amb dues columnes: any i temperatura mitjana anual.
+            Especifica el període de referència per calcular les anomalies i genera la teva visualització de franges
+            climàtiques.
         </div>
 
         <div class="section">
             <h2>1. Carregar dades de temperatura</h2>
-            
+
             <div class="form-group">
-                <label for="fileInput">Arxiu de dades (CSV amb columnes: any, temperatura):</label>
-                <input type="file" id="fileInput" accept=".csv" />
+                <label>Arxiu de dades (CSV amb columnes: any, temperatura):</label>
+                <div id="dropZone" class="drop-zone">
+                    <svg class="drop-zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <div class="drop-zone-text">Arrossega i deixa anar el teu arxiu CSV aquí</div>
+                    <div class="drop-zone-hint">o <strong>fes clic per seleccionar</strong></div>
+                    <input type="file" id="fileInput" accept=".csv" />
+                </div>
             </div>
 
             <div id="fileMessage" class="message"></div>
-            
+
             <div id="dataPreview" class="data-preview" style="display: none;">
-                <h3 style="font-size: 14px; margin-bottom: 8px;">Vista prèvia de dades:</h3>
-                <div style="overflow-x: auto; max-height: 200px; overflow-y: auto; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 4px; padding: 8px;">
+                <h3 style="font-size: 14px; margin-bottom: 8px;">Previsualització de dades:</h3>
+                <div
+                    style="overflow-x: auto; max-height: 200px; overflow-y: auto; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 4px; padding: 8px;">
                     <table id="previewTable" style="width: 100%; font-size: 12px; border-collapse: collapse;">
                         <thead>
                             <tr style="background: #e5e7eb;">
                                 <th style="padding: 6px; text-align: left; border-bottom: 2px solid #d1d5db;">Any</th>
-                                <th style="padding: 6px; text-align: right; border-bottom: 2px solid #d1d5db;">Temperatura (°C)</th>
+                                <th style="padding: 6px; text-align: right; border-bottom: 2px solid #d1d5db;">
+                                    Temperatura (°C)</th>
                             </tr>
                         </thead>
                         <tbody id="previewBody"></tbody>
@@ -337,14 +502,16 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 
         <div class="section">
             <h2>2. Configurar paràmetres</h2>
-            
+
             <div class="form-row">
                 <div class="form-group">
-                    <label for="refStart">Any d'inici del període de referència (seguint les recomanacions de l'OMM):</label>
+                    <label for="refStart">Any d'inici del període de referència (seguint les recomanacions de l'
+                        OMM):</label>
                     <input type="number" id="refStart" value="1991" />
                 </div>
                 <div class="form-group">
-                    <label for="refEnd">Any de fi del període de referència (seguint les recomanacions de l'OMM):</label>
+                    <label for="refEnd">Any de fi del període de referència (seguint les recomanacions de l'
+                        OMM):</label>
                     <input type="number" id="refEnd" value="2020" />
                 </div>
             </div>
@@ -387,7 +554,51 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                         <option value="viridis">Viridis</option>
                         <option value="plasma">Plasma</option>
                         <option value="warm">Càlid</option>
+                        <option value="custom">Personalitzada</option>
                     </select>
+                </div>
+            </div>
+
+            <div id="customPaletteContainer" class="form-row"
+                style="display: none; background: #f0f9ff; padding: 12px; border-radius: 8px; border: 1px solid #bae6fd;">
+                <div class="form-group">
+                    <label for="coldColor" style="display: flex; align-items: center; gap: 8px;">
+                        <span
+                            style="display: inline-block; width: 12px; height: 12px; background: #08306b; border-radius: 2px;"></span>
+                        Color fred (anomalia negativa):
+                    </label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="coldColor" value="#08306b"
+                            style="width: 60px; height: 36px; padding: 2px; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;" />
+                        <input type="text" id="coldColorHex" value="#08306b"
+                            style="width: 80px; font-family: monospace;" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="neutralColor" style="display: flex; align-items: center; gap: 8px;">
+                        <span
+                            style="display: inline-block; width: 12px; height: 12px; background: #f7f7f7; border-radius: 2px; border: 1px solid #d1d5db;"></span>
+                        Color neutre (anomalia zero):
+                    </label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="neutralColor" value="#f7f7f7"
+                            style="width: 60px; height: 36px; padding: 2px; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;" />
+                        <input type="text" id="neutralColorHex" value="#f7f7f7"
+                            style="width: 80px; font-family: monospace;" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="warmColor" style="display: flex; align-items: center; gap: 8px;">
+                        <span
+                            style="display: inline-block; width: 12px; height: 12px; background: #67000d; border-radius: 2px;"></span>
+                        Color càlid (anomalia positiva):
+                    </label>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <input type="color" id="warmColor" value="#67000d"
+                            style="width: 60px; height: 36px; padding: 2px; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer;" />
+                        <input type="text" id="warmColorHex" value="#67000d"
+                            style="width: 80px; font-family: monospace;" />
+                    </div>
                 </div>
             </div>
 
@@ -395,6 +606,20 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 <div class="checkbox-group">
                     <input type="checkbox" id="showLabels" checked />
                     <label for="showLabels" style="margin-bottom: 0; display: inline;">Mostrar etiquetes d'anys</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="showTrendLine" />
+                        <label for="showTrendLine" style="margin-bottom: 0; display: inline;">Mostrar línia de tendència
+                            (mitjana mòbil)</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="trendWindow">Finestra de mitjana mòbil (anys):</label>
+                    <input type="number" id="trendWindow" value="5" min="2" max="30" />
                 </div>
             </div>
 
@@ -411,7 +636,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 
         <div id="outputSection" class="section output-section">
             <h2>Resultat</h2>
-            
+
             <div class="statistics">
                 <div class="stat-box">
                     <div class="stat-label">Temperatura mínima</div>
@@ -422,8 +647,8 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     <div class="stat-value" id="maxTemp">-</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-label">Mitjana de referència</div>
-                    <div class="stat-value" id="refMean">-</div>
+                    <div class="stat-label">Anys mostrats</div>
+                    <div class="stat-value" id="yearCount">-</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-label">Anomalia mínima</div>
@@ -434,27 +659,56 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     <div class="stat-value" id="maxAnomaly">-</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-label">Taxa d'escalfament</div>
-                    <div class="stat-value" id="warmingRate">-</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Anys mostrats</div>
-                    <div class="stat-value" id="yearCount">-</div>
+                    <div class="stat-label">Mitjana de referència</div>
+                    <div class="stat-value" id="refMean">-</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-label">Canvi total</div>
                     <div class="stat-value" id="totalChange">-</div>
                 </div>
+                <div class="stat-box">
+                    <div class="stat-label">Taxa ref. (30 anys)</div>
+                    <div class="stat-value" id="refPeriodRate">-</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Taxa d'escalfament</div>
+                    <div class="stat-value" id="warmingRate">-</div>
+                </div>
+                <div class="stat-box" style="grid-column: span 3;">
+                    <div class="stat-label">Tendència de temperatura</div>
+                    <canvas id="sparkLine" style="width: 100%; height: 50px; margin-top: 4px;"></canvas>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+                <button class="btn-secondary" id="highlightColdest"
+                    style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+                    <span
+                        style="display: inline-block; width: 12px; height: 12px; background: #08306b; border-radius: 2px;"></span>
+                    Destacar any més fred
+                </button>
+                <button class="btn-secondary" id="highlightHottest"
+                    style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+                    <span
+                        style="display: inline-block; width: 12px; height: 12px; background: #67000d; border-radius: 2px;"></span>
+                    Destacar any més càlid
+                </button>
+                <button class="btn-secondary" id="clearHighlights" style="font-size: 13px;">
+                    Netejar destacats
+                </button>
             </div>
 
             <div class="canvas-container">
                 <canvas id="canvas"></canvas>
             </div>
-            
+
             <div id="colorLegend" style="margin-top: 16px; padding: 12px; background: #f9fafb; border-radius: 4px;">
-                <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; text-align: center;">Escala de temperatura (anomalies)</div>
-                <div style="display: flex; height: 30px; border-radius: 4px; overflow: hidden; border: 1px solid #e5e7eb;" id="legendGradient"></div>
-                <div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 11px; color: #6b7280;">
+                <div style="font-size: 12px; font-weight: 600; margin-bottom: 8px; text-align: center;">Escala de
+                    temperatura (anomalies)</div>
+                <div style="display: flex; height: 30px; border-radius: 4px; overflow: hidden; border: 1px solid #e5e7eb;"
+                    id="legendGradient"></div>
+                <div
+                    style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 11px; color: #6b7280;">
                     <span id="legendMin">-</span>
                     <span>0°C</span>
                     <span id="legendMax">-</span>
@@ -462,14 +716,39 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             </div>
 
             <div class="download-buttons">
-                <button class="btn-primary" id="downloadPNG">Descarregar PNG</button>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <button class="btn-primary" id="downloadPNG">Descarregar PNG</button>
+                    <select id="pngResolution"
+                        style="padding: 8px 12px; border-radius: 6px; border: 1px solid var(--color-border); font-size: 14px; cursor: pointer;">
+                        <option value="1">1x (Estàndard)</option>
+                        <option value="2">2x (Retina)</option>
+                        <option value="4">4x (Alta resolució)</option>
+                    </select>
+                </div>
                 <button class="btn-primary" id="downloadSVG">Descarregar SVG</button>
+                <button class="btn-primary" id="copyToClipboard" style="display: flex; align-items: center; gap: 6px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copiar imatge
+                </button>
                 <button class="btn-secondary" id="exportConfig">Exportar configuració JSON</button>
             </div>
         </div>
     </div>
 
     <div id="tooltip" class="tooltip"></div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Generant franges climàtiques...</div>
+        <div class="loading-subtext" id="loadingSubtext">Preparant visualització</div>
+        <div class="loading-progress">
+            <div id="loadingProgressBar" class="loading-progress-bar"></div>
+        </div>
+    </div>
 
     <script>
         const COLOR_PALETTES = {
@@ -535,15 +814,295 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         let selectedYearIndex = -1;
         let canvasContext = null;
         let chartParameters = null;
+        let animationInProgress = false;
 
         document.getElementById('fileInput').addEventListener('change', handleFileUpload);
         document.getElementById('generateBtn').addEventListener('click', generateStripes);
         document.getElementById('resetBtn').addEventListener('click', resetForm);
         document.getElementById('downloadPNG').addEventListener('click', downloadPNG);
         document.getElementById('downloadSVG').addEventListener('click', downloadSVG);
+        document.getElementById('copyToClipboard').addEventListener('click', copyToClipboard);
         document.getElementById('exportConfig').addEventListener('click', exportConfiguration);
         document.getElementById('chartType').addEventListener('change', generateStripes);
-        document.getElementById('colorPalette').addEventListener('change', generateStripes);
+        document.getElementById('colorPalette').addEventListener('change', handlePaletteChange);
+        document.getElementById('showTrendLine').addEventListener('change', generateStripes);
+        document.getElementById('showLabels').addEventListener('change', generateStripes);
+        document.getElementById('trendWindow').addEventListener('change', generateStripes);
+        document.getElementById('highlightColdest').addEventListener('click', highlightColdestYear);
+        document.getElementById('highlightHottest').addEventListener('click', highlightHottestYear);
+        document.getElementById('clearHighlights').addEventListener('click', clearHighlights);
+
+        // Track highlighted years
+        let highlightedYears = [];
+
+        // Debounce function for live preview
+        let debounceTimer;
+        function debounce(func, delay = 300) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(func, delay);
+        }
+
+        // Auto-generate on parameter change (with debounce for number inputs)
+        const autoGenerateInputs = [
+            'refStart', 'refEnd', 'dataStart', 'dataEnd',
+            'width', 'height', 'labelInterval'
+        ];
+
+        autoGenerateInputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                // Use 'input' event for real-time feedback while typing
+                input.addEventListener('input', () => {
+                    debounce(() => {
+                        if (data && data.length > 0) {
+                            generateStripes();
+                        }
+                    }, 2000);
+                });
+            }
+        });
+
+        // Drag & Drop functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        // Click on drop zone triggers file input
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Highlight drop zone when dragging over
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.add('drag-over');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.remove('drag-over');
+            }, false);
+        });
+
+        // Handle dropped files
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length > 0) {
+                const file = files[0];
+
+                // Check if it's a CSV file
+                if (file.name.endsWith('.csv') || file.type === 'text/csv') {
+                    // Create a synthetic event to match handleFileUpload signature
+                    processFile(file);
+                } else {
+                    const messageDiv = document.getElementById('fileMessage');
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = '✗ Si us plau, puja un arxiu CSV vàlid.';
+                }
+            }
+        }
+
+        function processFile(file) {
+            const messageDiv = document.getElementById('fileMessage');
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                try {
+                    const lines = event.target.result.split('\n').filter(line => line.trim());
+                    const parsedData = [];
+
+                    for (const line of lines) {
+                        if (line.toLowerCase().includes('year') || line.toLowerCase().includes('temp') || line.toLowerCase().includes('año') || line.toLowerCase().includes('any')) {
+                            continue;
+                        }
+
+                        const parts = line.trim().split(/[,;]/).map(p => p.trim());
+                        if (parts.length >= 2) {
+                            const year = parseInt(parts[0]);
+                            const temp = parseFloat(parts[1]);
+                            if (!isNaN(year) && !isNaN(temp)) {
+                                parsedData.push({ year, temp });
+                            }
+                        }
+                    }
+
+                    if (parsedData.length === 0) {
+                        throw new Error('No s\'han trobat dades vàlides');
+                    }
+
+                    parsedData.sort((a, b) => a.year - b.year);
+                    data = parsedData;
+
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = `✓ Arxiu carregat: ${file.name} (${data.length} anys de dades, ${data[0].year}-${data[data.length - 1].year})`;
+
+                    document.getElementById('dataStart').value = data[0].year;
+                    document.getElementById('dataEnd').value = data[data.length - 1].year;
+
+                    showDataPreview(data);
+                } catch (error) {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = `✗ Error en processar l'arxiu: ${error.message}`;
+                }
+            };
+            reader.onerror = function () {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '✗ Error en llegir l\'arxiu.';
+            };
+            reader.readAsText(file);
+        }
+
+        // Custom palette controls
+        document.getElementById('coldColor').addEventListener('input', syncColorFromPicker);
+        document.getElementById('neutralColor').addEventListener('input', syncColorFromPicker);
+        document.getElementById('warmColor').addEventListener('input', syncColorFromPicker);
+        document.getElementById('coldColorHex').addEventListener('change', syncColorFromHex);
+        document.getElementById('neutralColorHex').addEventListener('change', syncColorFromHex);
+        document.getElementById('warmColorHex').addEventListener('change', syncColorFromHex);
+
+        function handlePaletteChange() {
+            const palette = document.getElementById('colorPalette').value;
+            const customContainer = document.getElementById('customPaletteContainer');
+
+            if (palette === 'custom') {
+                customContainer.style.display = 'grid';
+                updateCustomPalette();
+            } else {
+                customContainer.style.display = 'none';
+            }
+            generateStripes();
+        }
+
+        function syncColorFromPicker(e) {
+            const id = e.target.id;
+            const hexInput = document.getElementById(id + 'Hex');
+            hexInput.value = e.target.value;
+            updateCustomPalette();
+            if (document.getElementById('colorPalette').value === 'custom') {
+                generateStripes();
+            }
+        }
+
+        function syncColorFromHex(e) {
+            const id = e.target.id.replace('Hex', '');
+            const picker = document.getElementById(id);
+            const value = e.target.value;
+
+            // Validate hex color
+            if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+                picker.value = value;
+                updateCustomPalette();
+                if (document.getElementById('colorPalette').value === 'custom') {
+                    generateStripes();
+                }
+            }
+        }
+
+        function updateCustomPalette() {
+            const coldColor = document.getElementById('coldColor').value;
+            const neutralColor = document.getElementById('neutralColor').value;
+            const warmColor = document.getElementById('warmColor').value;
+
+            COLOR_PALETTES.custom = generateGradientPalette(coldColor, neutralColor, warmColor, 56);
+        }
+
+        function generateGradientPalette(coldColor, neutralColor, warmColor, steps) {
+            const palette = [];
+            const halfSteps = Math.floor(steps / 2);
+
+            // Parse hex colors to RGB
+            function hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : { r: 0, g: 0, b: 0 };
+            }
+
+            function rgbToHex(r, g, b) {
+                return '#' + [r, g, b].map(x => {
+                    const hex = Math.round(x).toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                }).join('');
+            }
+
+            function interpolate(color1, color2, factor) {
+                return {
+                    r: color1.r + (color2.r - color1.r) * factor,
+                    g: color1.g + (color2.g - color1.g) * factor,
+                    b: color1.b + (color2.b - color1.b) * factor
+                };
+            }
+
+            const cold = hexToRgb(coldColor);
+            const neutral = hexToRgb(neutralColor);
+            const warm = hexToRgb(warmColor);
+
+            // Generate cold to neutral gradient
+            for (let i = 0; i < halfSteps; i++) {
+                const factor = i / (halfSteps - 1);
+                const color = interpolate(cold, neutral, factor);
+                palette.push(rgbToHex(color.r, color.g, color.b));
+            }
+
+            // Generate neutral to warm gradient
+            for (let i = 0; i < halfSteps; i++) {
+                const factor = i / (halfSteps - 1);
+                const color = interpolate(neutral, warm, factor);
+                palette.push(rgbToHex(color.r, color.g, color.b));
+            }
+
+            return palette;
+        }
+
+        // Initialize custom palette
+        updateCustomPalette();
+
+        // Calculate moving average for trend line
+        function calculateMovingAverage(data, windowSize) {
+            const result = [];
+            const halfWindow = Math.floor(windowSize / 2);
+
+            for (let i = 0; i < data.length; i++) {
+                const start = Math.max(0, i - halfWindow);
+                const end = Math.min(data.length - 1, i + halfWindow);
+
+                // Only calculate if we have enough data points
+                if (i < halfWindow || i >= data.length - halfWindow) {
+                    // For edges, use available data
+                    let sum = 0;
+                    let count = 0;
+                    for (let j = start; j <= end; j++) {
+                        sum += data[j];
+                        count++;
+                    }
+                    result.push(sum / count);
+                } else {
+                    // Full window available
+                    let sum = 0;
+                    for (let j = start; j <= end; j++) {
+                        sum += data[j];
+                    }
+                    result.push(sum / (end - start + 1));
+                }
+            }
+
+            return result;
+        }
 
         function handleFileUpload(e) {
             const file = e.target.files[0];
@@ -552,16 +1111,16 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = function (event) {
                 try {
                     const lines = event.target.result.split('\n').filter(line => line.trim());
                     const parsedData = [];
 
                     for (const line of lines) {
-                        if (line.toLowerCase().includes('year') || line.toLowerCase().includes('temp') || line.toLowerCase().includes('any')) {
+                        if (line.toLowerCase().includes('year') || line.toLowerCase().includes('temp') || line.toLowerCase().includes('año') || line.toLowerCase().includes('any')) {
                             continue;
                         }
-                        
+
                         const parts = line.trim().split(/[,;]/).map(p => p.trim());
                         if (parts.length >= 2) {
                             const year = parseInt(parts[0]);
@@ -600,13 +1159,13 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         function showDataPreview(data) {
             const previewBody = document.getElementById('previewBody');
             const previewDiv = document.getElementById('dataPreview');
-            
+
             previewBody.innerHTML = '';
-            
+
             const maxRows = 10;
-            const displayData = data.length > maxRows ? 
+            const displayData = data.length > maxRows ?
                 [...data.slice(0, 5), ...data.slice(-5)] : data;
-            
+
             displayData.forEach((d, index) => {
                 if (index === 5 && data.length > maxRows) {
                     const row = previewBody.insertRow();
@@ -618,8 +1177,25 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     <td style="padding: 6px; text-align: right; border-bottom: 1px solid #e5e7eb;">${d.temp.toFixed(2)}</td>
                 `;
             });
-            
+
             previewDiv.style.display = 'block';
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+            document.getElementById('loadingProgressBar').style.width = '0%';
+            document.getElementById('loadingSubtext').textContent = 'Preparant visualització';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function updateLoadingProgress(percent, year) {
+            document.getElementById('loadingProgressBar').style.width = percent + '%';
+            if (year) {
+                document.getElementById('loadingSubtext').textContent = `Dibuixant any ${year}...`;
+            }
         }
 
         function generateStripes() {
@@ -629,6 +1205,10 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 messageDiv.className = 'message error';
                 messageDiv.textContent = '✗ Si us plau, carrega un arxiu vàlid primer.';
                 return;
+            }
+
+            if (animationInProgress) {
+                return; // Prevent regenerating while animation is in progress
             }
 
             try {
@@ -654,7 +1234,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 
                 const minDataYear = data[0].year;
                 const maxDataYear = data[data.length - 1].year;
-                
+
                 if (refStart < minDataYear || refEnd > maxDataYear) {
                     throw new Error(`El període de referència (${refStart}-${refEnd}) ha d'estar dins del rang de dades disponibles (${minDataYear}-${maxDataYear}).`);
                 }
@@ -663,11 +1243,11 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 displayData = data.filter(d => d.year >= dataStart && d.year <= dataEnd);
 
                 if (referenceData.length === 0) {
-                    throw new Error('No hi ha dades al període de referència especificat.');
+                    throw new Error('No hi ha dades en el període de referència especificat.');
                 }
 
                 if (displayData.length === 0) {
-                    throw new Error('No hi ha dades al període de visualització especificat.');
+                    throw new Error('No hi ha dades en el període de visualització especificat.');
                 }
 
                 refMean = referenceData.reduce((sum, d) => sum + d.temp, 0) / referenceData.length;
@@ -675,7 +1255,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 const minAnomaly = Math.min(...anomalies);
                 const maxAnomaly = Math.max(...anomalies);
                 const limit = Math.max(Math.abs(minAnomaly), Math.abs(maxAnomaly));
-                
+
                 const actualTemps = displayData.map(d => d.temp);
                 const minTemp = Math.min(...actualTemps);
                 const maxTemp = Math.max(...actualTemps);
@@ -710,36 +1290,119 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 const totalBarSpace = stripesWidth / displayData.length;
 
                 if (chartType === 'stripes') {
-                    displayData.forEach((d, index) => {
-                        const anomaly = d.temp - refMean;
-                        const normalized = (anomaly + limit) / (2 * limit);
-                        const colorIndex = Math.floor(normalized * (COLORS.length - 1));
-                        const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+                    // Show loading overlay and start animated rendering
+                    showLoading();
+                    animationInProgress = true;
 
-                        const xStart = Math.round(index * totalBarSpace) + horizontalPadding;
-                        const xEnd = Math.round((index + 1) * totalBarSpace) + horizontalPadding;
-                        const stripeWidth = xEnd - xStart + 1;
+                    let currentIndex = 0;
+                    const totalStripes = displayData.length;
 
-                        ctx.fillStyle = color;
-                        ctx.fillRect(xStart, titleHeight, stripeWidth, height);
-                    });
+                    function drawNextStripe() {
+                        if (currentIndex < totalStripes) {
+                            const d = displayData[currentIndex];
+                            const anomaly = d.temp - refMean;
+                            const normalized = (anomaly + limit) / (2 * limit);
+                            const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                            const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
 
-                    if (showLabels) {
-                        ctx.fillStyle = '#505050';
-                        ctx.fillRect(0, titleHeight + height, canvasWidth, labelHeight);
+                            const xStart = Math.round(currentIndex * totalBarSpace) + horizontalPadding;
+                            const xEnd = Math.round((currentIndex + 1) * totalBarSpace) + horizontalPadding;
+                            const stripeWidth = xEnd - xStart + 1;
 
-                        ctx.fillStyle = '#ffffff';
-                        ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-                        ctx.textAlign = 'center';
-                        ctx.textBaseline = 'middle';
+                            ctx.fillStyle = color;
+                            ctx.fillRect(xStart, titleHeight, stripeWidth, height);
 
-                        displayData.forEach((d, index) => {
-                            if (d.year % labelInterval === 0) {
-                                const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
-                                ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                            // Update progress
+                            const progress = ((currentIndex + 1) / totalStripes) * 100;
+                            updateLoadingProgress(progress, displayData[currentIndex].year);
+
+                            currentIndex++;
+                            requestAnimationFrame(drawNextStripe);
+                        } else {
+                            // Animation complete - draw labels
+                            if (showLabels) {
+                                ctx.fillStyle = '#505050';
+                                ctx.fillRect(0, titleHeight + height, canvasWidth, labelHeight);
+
+                                ctx.fillStyle = '#ffffff';
+                                ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+
+                                displayData.forEach((d, index) => {
+                                    if (d.year % labelInterval === 0) {
+                                        const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                        ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                                    }
+                                });
                             }
-                        });
+
+                            // Draw trend line if enabled (for stripes)
+                            const showTrendLine = document.getElementById('showTrendLine').checked;
+                            if (showTrendLine) {
+                                const trendWindow = parseInt(document.getElementById('trendWindow').value) || 5;
+                                const movingAverages = calculateMovingAverage(anomalies, trendWindow);
+
+                                // Calculate chart dimensions for trend line
+                                const padding = 20;
+                                const chartHeight = height - padding * 2;
+                                const centerY = titleHeight + height / 2;
+                                const maxBarHeight = chartHeight / 2;
+
+                                // Draw shadow first
+                                ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+                                ctx.lineWidth = 5;
+                                ctx.lineCap = 'round';
+                                ctx.lineJoin = 'round';
+                                ctx.beginPath();
+
+                                let started = false;
+                                movingAverages.forEach((avg, index) => {
+                                    if (avg !== null) {
+                                        const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                        const yPos = centerY - (avg / limit) * maxBarHeight + 2;
+
+                                        if (!started) {
+                                            ctx.moveTo(xPos, yPos);
+                                            started = true;
+                                        } else {
+                                            ctx.lineTo(xPos, yPos);
+                                        }
+                                    }
+                                });
+                                ctx.stroke();
+
+                                // Draw gold trend line
+                                ctx.strokeStyle = '#ffd700';
+                                ctx.lineWidth = 3;
+                                ctx.beginPath();
+                                started = false;
+                                movingAverages.forEach((avg, index) => {
+                                    if (avg !== null) {
+                                        const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                        const yPos = centerY - (avg / limit) * maxBarHeight;
+
+                                        if (!started) {
+                                            ctx.moveTo(xPos, yPos);
+                                            started = true;
+                                        } else {
+                                            ctx.lineTo(xPos, yPos);
+                                        }
+                                    }
+                                });
+                                ctx.stroke();
+                            }
+
+                            // Finish animation
+                            setTimeout(() => {
+                                hideLoading();
+                                animationInProgress = false;
+                            }, 300);
+                        }
                     }
+
+                    // Start the animation
+                    requestAnimationFrame(drawNextStripe);
                 } else if (chartType === 'bars') {
                     const yAxisWidth = 50;
                     const chartStartX = horizontalPadding + yAxisWidth;
@@ -747,7 +1410,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     const barSpace = chartWidth / displayData.length;
                     const barWidth = Math.max(1, barSpace * 0.8);
                     const barGap = barSpace - barWidth;
-                    
+
                     const padding = 20;
                     const chartHeight = height - padding * 2;
                     const centerY = titleHeight + height / 2;
@@ -767,12 +1430,12 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     for (let i = 0; i <= numTicks; i++) {
                         const value = limit - (i * (2 * limit) / numTicks);
                         const y = titleHeight + padding + (i * chartHeight / numTicks);
-                        
+
                         ctx.beginPath();
                         ctx.moveTo(horizontalPadding + yAxisWidth - 5, y);
                         ctx.lineTo(horizontalPadding + stripesWidth, y);
                         ctx.stroke();
-                        
+
                         ctx.fillText(value.toFixed(1), horizontalPadding + yAxisWidth - 8, y);
                     }
 
@@ -791,7 +1454,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 
                         const barHeight = (anomaly / limit) * maxBarHeight;
                         const xPos = chartStartX + index * barSpace + barGap / 2;
-                        
+
                         ctx.fillStyle = color;
                         if (barHeight >= 0) {
                             ctx.fillRect(xPos, centerY - barHeight, barWidth, barHeight);
@@ -816,26 +1479,114 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                             }
                         });
                     }
+
+                    // Draw trend line if enabled
+                    const showTrendLine = document.getElementById('showTrendLine').checked;
+                    if (showTrendLine) {
+                        const trendWindow = parseInt(document.getElementById('trendWindow').value) || 5;
+                        const movingAverages = calculateMovingAverage(anomalies, trendWindow);
+
+                        ctx.strokeStyle = '#ffd700';
+                        ctx.lineWidth = 3;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+
+                        let started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                const yPos = centerY - (avg / limit) * maxBarHeight;
+
+                                if (!started) {
+                                    ctx.moveTo(xPos, yPos);
+                                    started = true;
+                                } else {
+                                    ctx.lineTo(xPos, yPos);
+                                }
+                            }
+                        });
+                        ctx.stroke();
+
+                        // Add shadow for better visibility
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+                        ctx.lineWidth = 5;
+                        ctx.beginPath();
+                        started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                const yPos = centerY - (avg / limit) * maxBarHeight + 2;
+
+                                if (!started) {
+                                    ctx.moveTo(xPos, yPos);
+                                    started = true;
+                                } else {
+                                    ctx.lineTo(xPos, yPos);
+                                }
+                            }
+                        });
+                        ctx.stroke();
+
+                        // Redraw the gold line on top
+                        ctx.strokeStyle = '#ffd700';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                const yPos = centerY - (avg / limit) * maxBarHeight;
+
+                                if (!started) {
+                                    ctx.moveTo(xPos, yPos);
+                                    started = true;
+                                } else {
+                                    ctx.lineTo(xPos, yPos);
+                                }
+                            }
+                        });
+                        ctx.stroke();
+                    }
                 }
 
                 const n = displayData.length;
                 const years = displayData.map(d => d.year);
                 const temps = displayData.map(d => d.temp);
-                
+
                 const meanYear = years.reduce((a, b) => a + b, 0) / n;
                 const meanTemp = temps.reduce((a, b) => a + b, 0) / n;
-                
+
                 let numerator = 0;
                 let denominator = 0;
                 for (let i = 0; i < n; i++) {
                     numerator += (years[i] - meanYear) * (temps[i] - meanTemp);
                     denominator += (years[i] - meanYear) * (years[i] - meanYear);
                 }
-                
+
                 const slope = numerator / denominator;
                 const warmingRatePerDecade = slope * 10;
                 const totalTempChange = displayData[displayData.length - 1].temp - displayData[0].temp;
-                
+
+                // Calculate warming rate for the reference period (30 years)
+                const refStartYear = parseInt(document.getElementById('refStart').value);
+                const refEndYear = parseInt(document.getElementById('refEnd').value);
+                const refPeriodData = displayData.filter(d => d.year >= refStartYear && d.year <= refEndYear);
+                let refPeriodRateValue = 0;
+                if (refPeriodData.length >= 2) {
+                    const refYears = refPeriodData.map(d => d.year);
+                    const refTemps = refPeriodData.map(d => d.temp);
+                    const refN = refPeriodData.length;
+                    const refMeanYear = refYears.reduce((a, b) => a + b, 0) / refN;
+                    const refMeanTemp = refTemps.reduce((a, b) => a + b, 0) / refN;
+                    let refNum = 0, refDen = 0;
+                    for (let i = 0; i < refN; i++) {
+                        refNum += (refYears[i] - refMeanYear) * (refTemps[i] - refMeanTemp);
+                        refDen += (refYears[i] - refMeanYear) * (refYears[i] - refMeanYear);
+                    }
+                    refPeriodRateValue = (refNum / refDen) * 10; // per decade
+                }
+
                 document.getElementById('minTemp').textContent = minTemp.toFixed(2) + '°C';
                 document.getElementById('maxTemp').textContent = maxTemp.toFixed(2) + '°C';
                 document.getElementById('refMean').textContent = refMean.toFixed(2) + '°C';
@@ -844,9 +1595,10 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 document.getElementById('warmingRate').textContent = (warmingRatePerDecade >= 0 ? '+' : '') + warmingRatePerDecade.toFixed(3) + '°C/dècada';
                 document.getElementById('yearCount').textContent = displayData.length;
                 document.getElementById('totalChange').textContent = (totalTempChange >= 0 ? '+' : '') + totalTempChange.toFixed(2) + '°C';
+                document.getElementById('refPeriodRate').textContent = (refPeriodRateValue >= 0 ? '+' : '') + refPeriodRateValue.toFixed(3) + '°C/dècada';
 
                 updateColorLegend(COLORS, minAnomaly, maxAnomaly);
-                
+
                 chartParameters = {
                     chartType,
                     horizontalPadding,
@@ -861,10 +1613,21 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     canvasHeight: titleHeight + height + labelHeight
                 };
                 canvasContext = ctx;
-                
+
                 setupCanvasTooltip(canvas, displayData, refMean, chartType, horizontalPadding, stripesWidth, titleHeight, height, labelHeight);
 
                 document.getElementById('outputSection').classList.add('active');
+
+                // Draw spark line in stats section (after output is visible)
+                setTimeout(() => {
+                    drawSparkLine(displayData, refMean);
+                }, 50);
+
+                // Redraw any existing highlights
+                if (highlightedYears.length > 0) {
+                    drawHighlights();
+                }
+
                 messageDiv.className = '';
                 messageDiv.textContent = '';
             } catch (error) {
@@ -878,7 +1641,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             const tooltip = document.getElementById('tooltip');
             const totalBarSpace = stripesWidth / displayData.length;
 
-            canvas.onmousemove = function(e) {
+            canvas.onmousemove = function (e) {
                 const rect = canvas.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -890,43 +1653,43 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 
                 const adjustedX = x - horizontalPadding;
                 const index = Math.floor(adjustedX / totalBarSpace);
-                
+
                 if (index >= 0 && index < displayData.length && adjustedX >= 0 && adjustedX <= stripesWidth) {
                     const d = displayData[index];
                     const anomaly = d.temp - refMean;
-                    
+
                     tooltip.innerHTML = `
                         <strong>Any:</strong> ${d.year}<br>
                         <strong>Temperatura:</strong> ${d.temp.toFixed(2)}°C<br>
                         <strong>Anomalia:</strong> ${anomaly >= 0 ? '+' : ''}${anomaly.toFixed(2)}°C
                     `;
-                    
+
                     let tooltipX = e.pageX + 10;
                     let tooltipY = e.pageY - 70;
-                    
+
                     const tooltipWidth = 200;
                     const tooltipHeight = 70;
-                    
+
                     if (tooltipX + tooltipWidth > window.pageXOffset + window.innerWidth) {
                         tooltipX = e.pageX - tooltipWidth - 10;
                     }
-                    
+
                     if (tooltipX < window.pageXOffset) {
                         tooltipX = window.pageXOffset + 10;
                     }
-                    
+
                     if (tooltipY < window.pageYOffset) {
                         tooltipY = e.pageY + 20;
                     }
-                    
+
                     if (tooltipY + tooltipHeight > window.pageYOffset + window.innerHeight) {
                         tooltipY = e.pageY - tooltipHeight - 10;
                     }
-                    
+
                     tooltip.style.left = tooltipX + 'px';
                     tooltip.style.top = tooltipY + 'px';
                     tooltip.classList.add('active');
-                    
+
                     canvas.style.cursor = 'pointer';
                 } else {
                     tooltip.classList.remove('active');
@@ -934,7 +1697,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 }
             };
 
-            canvas.onmouseleave = function() {
+            canvas.onmouseleave = function () {
                 tooltip.classList.remove('active');
                 canvas.style.cursor = 'default';
             };
@@ -943,16 +1706,242 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         function updateColorLegend(colors, minAnomaly, maxAnomaly) {
             const legendGradient = document.getElementById('legendGradient');
             legendGradient.innerHTML = '';
-            
+
             colors.forEach(color => {
                 const colorDiv = document.createElement('div');
                 colorDiv.style.flex = '1';
                 colorDiv.style.backgroundColor = color;
                 legendGradient.appendChild(colorDiv);
             });
-            
+
             document.getElementById('legendMin').textContent = minAnomaly.toFixed(2) + '°C';
             document.getElementById('legendMax').textContent = maxAnomaly.toFixed(2) + '°C';
+        }
+
+        function drawSparkLine(dataPoints, refMean) {
+            const canvas = document.getElementById('sparkLine');
+            const ctx = canvas.getContext('2d');
+
+            // Set actual canvas dimensions for high DPI
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+
+            const width = rect.width;
+            const height = rect.height;
+            const padding = 4;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+
+            if (!dataPoints || dataPoints.length < 2) return;
+
+            const anomalies = dataPoints.map(d => d.temp - refMean);
+            const minVal = Math.min(...anomalies);
+            const maxVal = Math.max(...anomalies);
+            const range = maxVal - minVal || 1;
+
+            // Draw gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, 'rgba(239, 68, 68, 0.1)');
+            gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
+            gradient.addColorStop(1, 'rgba(59, 130, 246, 0.1)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw zero line
+            const zeroY = padding + ((maxVal) / range) * (height - 2 * padding);
+            ctx.strokeStyle = '#d1d5db';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([2, 2]);
+            ctx.beginPath();
+            ctx.moveTo(0, zeroY);
+            ctx.lineTo(width, zeroY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw spark line
+            ctx.beginPath();
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 1.5;
+
+            anomalies.forEach((val, i) => {
+                const x = padding + (i / (anomalies.length - 1)) * (width - 2 * padding);
+                const y = padding + ((maxVal - val) / range) * (height - 2 * padding);
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+
+            // Mark extreme points
+            const minIdx = anomalies.indexOf(minVal);
+            const maxIdx = anomalies.indexOf(maxVal);
+
+            // Coldest point
+            ctx.fillStyle = '#1d4ed8';
+            const coldX = padding + (minIdx / (anomalies.length - 1)) * (width - 2 * padding);
+            const coldY = padding + ((maxVal - minVal) / range) * (height - 2 * padding);
+            ctx.beginPath();
+            ctx.arc(coldX, coldY, 3, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Hottest point
+            ctx.fillStyle = '#dc2626';
+            const hotX = padding + (maxIdx / (anomalies.length - 1)) * (width - 2 * padding);
+            const hotY = padding;
+            ctx.beginPath();
+            ctx.arc(hotX, hotY, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function highlightColdestYear() {
+            if (!displayData || !refMean) {
+                alert('Si us plau, genera una visualització primer.');
+                return;
+            }
+
+            const anomalies = displayData.map(d => d.temp - refMean);
+            const minAnomaly = Math.min(...anomalies);
+            const minIndex = anomalies.indexOf(minAnomaly);
+            const coldestYear = displayData[minIndex].year;
+
+            if (!highlightedYears.includes(coldestYear)) {
+                highlightedYears.push(coldestYear);
+            }
+
+            drawHighlights();
+            alert(`Any més fred: ${coldestYear} (anomalia: ${minAnomaly.toFixed(2)}°C)`);
+        }
+
+        function highlightHottestYear() {
+            if (!displayData || !refMean) {
+                alert('Si us plau, genera una visualització primer.');
+                return;
+            }
+
+            const anomalies = displayData.map(d => d.temp - refMean);
+            const maxAnomaly = Math.max(...anomalies);
+            const maxIndex = anomalies.indexOf(maxAnomaly);
+            const hottestYear = displayData[maxIndex].year;
+
+            if (!highlightedYears.includes(hottestYear)) {
+                highlightedYears.push(hottestYear);
+            }
+
+            drawHighlights();
+            alert(`Any més càlid: ${hottestYear} (anomalia: +${maxAnomaly.toFixed(2)}°C)`);
+        }
+
+        function clearHighlights() {
+            if (highlightedYears.length === 0) {
+                return; // Nothing to clear
+            }
+            highlightedYears.length = 0; // Clear array in place
+            if (displayData && refMean) {
+                generateStripes();
+            }
+        }
+
+        function drawHighlights() {
+            if (!chartParameters || !canvasContext || highlightedYears.length === 0) return;
+
+            const { horizontalPadding, stripesWidth, titleHeight, height, totalBarSpace } = chartParameters;
+            const ctx = canvasContext;
+
+            highlightedYears.forEach(year => {
+                const index = displayData.findIndex(d => d.year === year);
+                if (index === -1) return;
+
+                const x = horizontalPadding + index * totalBarSpace + totalBarSpace / 2;
+                const anomaly = displayData[index].temp - refMean;
+                const isWarm = anomaly > 0;
+
+                // Draw marker triangle above/below stripe
+                ctx.fillStyle = isWarm ? '#dc2626' : '#1d4ed8';
+                ctx.beginPath();
+
+                // Triangle pointing down at top of stripe
+                ctx.moveTo(x, titleHeight - 5);
+                ctx.lineTo(x - 6, titleHeight - 15);
+                ctx.lineTo(x + 6, titleHeight - 15);
+                ctx.closePath();
+                ctx.fill();
+
+                // Year label
+                ctx.font = 'bold 11px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(year.toString(), x, titleHeight - 18);
+
+                // Highlight border on stripe
+                ctx.strokeStyle = isWarm ? '#dc2626' : '#1d4ed8';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(horizontalPadding + index * totalBarSpace + 1, titleHeight, totalBarSpace - 2, height);
+            });
+        }
+
+        async function copyToClipboard() {
+            if (!displayData || !refMean) {
+                alert('Si us plau, genera una visualització primer.');
+                return;
+            }
+
+            const canvas = document.getElementById('canvas');
+            const button = document.getElementById('copyToClipboard');
+            const originalHTML = button.innerHTML;
+
+            try {
+                // Convert canvas to blob
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+
+                // Use Clipboard API
+                await navigator.clipboard.write([
+                    new ClipboardItem({
+                        'image/png': blob
+                    })
+                ]);
+
+                // Show success feedback
+                button.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Copiat!
+                `;
+                button.style.background = '#10b981';
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.background = '';
+                }, 2000);
+
+            } catch (err) {
+                console.error('Error copying to clipboard:', err);
+
+                // Fallback message
+                button.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    Error
+                `;
+                button.style.background = '#ef4444';
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.background = '';
+                }, 2000);
+
+                // Show additional info for unsupported browsers
+                alert('No s\'ha pogut copiar la imatge. El teu navegador pot no suportar aquesta funció.\n\nAlternativa: Utilitza "Descarregar PNG" per guardar la imatge.');
+            }
         }
 
         function exportConfiguration() {
@@ -1007,11 +1996,250 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         }
 
         function downloadPNG() {
-            const canvas = document.getElementById('canvas');
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = 'franges-climatiques.png';
-            link.click();
+            if (!displayData || !refMean) {
+                alert('Si us plau, genera una visualització primer.');
+                return;
+            }
+
+            const scale = parseInt(document.getElementById('pngResolution').value) || 1;
+            const originalCanvas = document.getElementById('canvas');
+
+            if (scale === 1) {
+                // Standard resolution - use original canvas
+                const link = document.createElement('a');
+                link.href = originalCanvas.toDataURL('image/png');
+                link.download = 'franges-climatiques.png';
+                link.click();
+            } else {
+                // High-DPI - create scaled canvas
+                const scaledCanvas = document.createElement('canvas');
+                scaledCanvas.width = originalCanvas.width * scale;
+                scaledCanvas.height = originalCanvas.height * scale;
+
+                const ctx = scaledCanvas.getContext('2d');
+                ctx.scale(scale, scale);
+
+                // Redraw everything at higher resolution
+                const chartType = document.getElementById('chartType').value;
+                const selectedPalette = document.getElementById('colorPalette').value;
+                const COLORS = COLOR_PALETTES[selectedPalette];
+                const showLabels = document.getElementById('showLabels').checked;
+                const labelInterval = parseInt(document.getElementById('labelInterval').value);
+                const showTrendLine = document.getElementById('showTrendLine').checked;
+                const trendWindow = parseInt(document.getElementById('trendWindow').value) || 5;
+
+                const inputWidth = parseInt(document.getElementById('width').value);
+                const stripesWidth = inputWidth * 0.5;
+                const height = parseInt(document.getElementById('height').value);
+                const horizontalPadding = 30;
+                const titleHeight = 50;
+                const labelHeight = showLabels ? 40 : 0;
+                const canvasWidth = stripesWidth + (horizontalPadding * 2);
+
+                const startYear = displayData[0].year;
+                const endYear = displayData[displayData.length - 1].year;
+
+                const anomalies = displayData.map(d => d.temp - refMean);
+                const minAnomaly = Math.min(...anomalies);
+                const maxAnomaly = Math.max(...anomalies);
+                const limit = Math.max(Math.abs(minAnomaly), Math.abs(maxAnomaly));
+
+                // Draw title
+                ctx.fillStyle = '#505050';
+                ctx.fillRect(0, 0, canvasWidth, titleHeight);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`Canvi de temperatura (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+
+                const totalBarSpace = stripesWidth / displayData.length;
+
+                if (chartType === 'stripes') {
+                    // Draw stripes
+                    displayData.forEach((d, index) => {
+                        const anomaly = d.temp - refMean;
+                        const normalized = (anomaly + limit) / (2 * limit);
+                        const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                        const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+
+                        const xStart = Math.round(index * totalBarSpace) + horizontalPadding;
+                        const xEnd = Math.round((index + 1) * totalBarSpace) + horizontalPadding;
+                        const stripeWidth = xEnd - xStart + 1;
+
+                        ctx.fillStyle = color;
+                        ctx.fillRect(xStart, titleHeight, stripeWidth, height);
+                    });
+
+                    // Draw trend line if enabled
+                    if (showTrendLine) {
+                        const movingAverages = calculateMovingAverage(anomalies, trendWindow);
+                        const padding = 20;
+                        const chartHeight = height - padding * 2;
+                        const centerY = titleHeight + height / 2;
+                        const maxBarHeight = chartHeight / 2;
+
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+                        ctx.lineWidth = 5;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+                        let started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                const yPos = centerY - (avg / limit) * maxBarHeight + 2;
+                                if (!started) { ctx.moveTo(xPos, yPos); started = true; }
+                                else { ctx.lineTo(xPos, yPos); }
+                            }
+                        });
+                        ctx.stroke();
+
+                        ctx.strokeStyle = '#ffd700';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                const yPos = centerY - (avg / limit) * maxBarHeight;
+                                if (!started) { ctx.moveTo(xPos, yPos); started = true; }
+                                else { ctx.lineTo(xPos, yPos); }
+                            }
+                        });
+                        ctx.stroke();
+                    }
+                } else if (chartType === 'bars') {
+                    const yAxisWidth = 50;
+                    const chartStartX = horizontalPadding + yAxisWidth;
+                    const chartWidth = stripesWidth - yAxisWidth;
+                    const barSpace = chartWidth / displayData.length;
+                    const barWidth = Math.max(1, barSpace * 0.8);
+                    const barGap = barSpace - barWidth;
+                    const padding = 20;
+                    const chartHeight = height - padding * 2;
+                    const centerY = titleHeight + height / 2;
+                    const maxBarHeight = chartHeight / 2;
+
+                    ctx.fillStyle = '#4a5568';
+                    ctx.fillRect(horizontalPadding, titleHeight, stripesWidth, height);
+
+                    // Y-axis
+                    ctx.strokeStyle = '#6b7280';
+                    ctx.lineWidth = 1;
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '11px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                    ctx.textAlign = 'right';
+                    ctx.textBaseline = 'middle';
+
+                    const numTicks = 6;
+                    for (let i = 0; i <= numTicks; i++) {
+                        const value = limit - (i * (2 * limit) / numTicks);
+                        const y = titleHeight + padding + (i * chartHeight / numTicks);
+                        ctx.beginPath();
+                        ctx.moveTo(horizontalPadding + yAxisWidth - 5, y);
+                        ctx.lineTo(horizontalPadding + stripesWidth, y);
+                        ctx.stroke();
+                        ctx.fillText(value.toFixed(1), horizontalPadding + yAxisWidth - 8, y);
+                    }
+
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(chartStartX, centerY);
+                    ctx.lineTo(horizontalPadding + stripesWidth, centerY);
+                    ctx.stroke();
+
+                    // Draw bars
+                    displayData.forEach((d, index) => {
+                        const anomaly = d.temp - refMean;
+                        const normalized = (anomaly + limit) / (2 * limit);
+                        const colorIndex = Math.floor(normalized * (COLORS.length - 1));
+                        const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
+                        const barHeight = (anomaly / limit) * maxBarHeight;
+                        const xPos = chartStartX + index * barSpace + barGap / 2;
+
+                        ctx.fillStyle = color;
+                        if (barHeight >= 0) {
+                            ctx.fillRect(xPos, centerY - barHeight, barWidth, barHeight);
+                        } else {
+                            ctx.fillRect(xPos, centerY, barWidth, -barHeight);
+                        }
+                    });
+
+                    // Draw trend line if enabled
+                    if (showTrendLine) {
+                        const movingAverages = calculateMovingAverage(anomalies, trendWindow);
+
+                        ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+                        ctx.lineWidth = 5;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+                        let started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                const yPos = centerY - (avg / limit) * maxBarHeight + 2;
+                                if (!started) { ctx.moveTo(xPos, yPos); started = true; }
+                                else { ctx.lineTo(xPos, yPos); }
+                            }
+                        });
+                        ctx.stroke();
+
+                        ctx.strokeStyle = '#ffd700';
+                        ctx.lineWidth = 3;
+                        ctx.beginPath();
+                        started = false;
+                        movingAverages.forEach((avg, index) => {
+                            if (avg !== null) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                const yPos = centerY - (avg / limit) * maxBarHeight;
+                                if (!started) { ctx.moveTo(xPos, yPos); started = true; }
+                                else { ctx.lineTo(xPos, yPos); }
+                            }
+                        });
+                        ctx.stroke();
+                    }
+                }
+
+                // Draw labels if enabled
+                if (showLabels) {
+                    ctx.fillStyle = '#505050';
+                    ctx.fillRect(0, titleHeight + height, canvasWidth, labelHeight);
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+
+                    if (chartType === 'stripes') {
+                        displayData.forEach((d, index) => {
+                            if (d.year % labelInterval === 0) {
+                                const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
+                                ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                            }
+                        });
+                    } else {
+                        const yAxisWidth = 50;
+                        const chartStartX = horizontalPadding + yAxisWidth;
+                        const chartWidth = stripesWidth - yAxisWidth;
+                        const barSpace = chartWidth / displayData.length;
+                        displayData.forEach((d, index) => {
+                            if (d.year % labelInterval === 0) {
+                                const xPos = chartStartX + index * barSpace + barSpace / 2;
+                                ctx.fillText(d.year.toString(), xPos, titleHeight + height + labelHeight / 2);
+                            }
+                        });
+                    }
+                }
+
+                // Download scaled image
+                const link = document.createElement('a');
+                link.href = scaledCanvas.toDataURL('image/png');
+                link.download = `franges-climatiques-${scale}x.png`;
+                link.click();
+            }
         }
 
         function downloadSVG() {
@@ -1025,7 +2253,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             const COLORS = COLOR_PALETTES[selectedPalette];
             const showLabels = document.getElementById('showLabels').checked;
             const labelInterval = parseInt(document.getElementById('labelInterval').value);
-            
+
             const inputWidth = parseInt(document.getElementById('width').value);
             const stripesWidth = inputWidth * 0.5;
             const height = parseInt(document.getElementById('height').value);
@@ -1034,46 +2262,46 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
             const labelHeight = showLabels ? 40 : 0;
             const canvasWidth = stripesWidth + (horizontalPadding * 2);
             const canvasHeight = titleHeight + height + labelHeight;
-            
+
             const startYear = displayData[0].year;
             const endYear = displayData[displayData.length - 1].year;
-            
+
             const anomalies = displayData.map(d => d.temp - refMean);
             const minAnomaly = Math.min(...anomalies);
             const maxAnomaly = Math.max(...anomalies);
             const limit = Math.max(Math.abs(minAnomaly), Math.abs(maxAnomaly));
-            
+
             let svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${canvasWidth}" height="${canvasHeight}" viewBox="0 0 ${canvasWidth} ${canvasHeight}">
 `;
-            
+
             svg += `  <rect x="0" y="0" width="${canvasWidth}" height="${titleHeight}" fill="#505050"/>
 `;
-            
+
             svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Canvi de temperatura (${startYear}-${endYear})</text>
 `;
-            
+
             const totalBarSpace = stripesWidth / displayData.length;
-            
+
             if (chartType === 'stripes') {
                 displayData.forEach((d, index) => {
                     const anomaly = d.temp - refMean;
                     const normalized = (anomaly + limit) / (2 * limit);
                     const colorIndex = Math.floor(normalized * (COLORS.length - 1));
                     const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
-                    
+
                     const xStart = Math.round(index * totalBarSpace) + horizontalPadding;
                     const xEnd = Math.round((index + 1) * totalBarSpace) + horizontalPadding;
                     const stripeWidth = xEnd - xStart + 1;
-                    
+
                     svg += `  <rect x="${xStart}" y="${titleHeight}" width="${stripeWidth}" height="${height}" fill="${color}"/>
 `;
                 });
-                
+
                 if (showLabels) {
                     svg += `  <rect x="0" y="${titleHeight + height}" width="${canvasWidth}" height="${labelHeight}" fill="#505050"/>
 `;
-                    
+
                     displayData.forEach((d, index) => {
                         if (d.year % labelInterval === 0) {
                             const xPos = index * totalBarSpace + totalBarSpace / 2 + horizontalPadding;
@@ -1089,15 +2317,15 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                 const barSpace = chartWidth / displayData.length;
                 const barWidth = Math.max(1, barSpace * 0.8);
                 const barGap = barSpace - barWidth;
-                
+
                 const padding = 20;
                 const chartHeight = height - padding * 2;
                 const centerY = titleHeight + height / 2;
                 const maxBarHeight = chartHeight / 2;
-                
+
                 svg += `  <rect x="${horizontalPadding}" y="${titleHeight}" width="${stripesWidth}" height="${height}" fill="#4a5568"/>
 `;
-                
+
                 const numTicks = 6;
                 for (let i = 0; i <= numTicks; i++) {
                     const value = limit - (i * (2 * limit) / numTicks);
@@ -1107,19 +2335,19 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     svg += `  <text x="${horizontalPadding + yAxisWidth - 8}" y="${y}" text-anchor="end" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" fill="#ffffff">${value.toFixed(1)}</text>
 `;
                 }
-                
+
                 svg += `  <line x1="${chartStartX}" y1="${centerY}" x2="${horizontalPadding + stripesWidth}" y2="${centerY}" stroke="#ffffff" stroke-width="2"/>
 `;
-                
+
                 displayData.forEach((d, index) => {
                     const anomaly = d.temp - refMean;
                     const normalized = (anomaly + limit) / (2 * limit);
                     const colorIndex = Math.floor(normalized * (COLORS.length - 1));
                     const color = COLORS[Math.max(0, Math.min(COLORS.length - 1, colorIndex))];
-                    
+
                     const barHeight = (anomaly / limit) * maxBarHeight;
                     const xPos = chartStartX + index * barSpace + barGap / 2;
-                    
+
                     if (barHeight >= 0) {
                         svg += `  <rect x="${xPos}" y="${centerY - barHeight}" width="${barWidth}" height="${barHeight}" fill="${color}"/>
 `;
@@ -1128,11 +2356,11 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
 `;
                     }
                 });
-                
+
                 if (showLabels) {
                     svg += `  <rect x="0" y="${titleHeight + height}" width="${canvasWidth}" height="${labelHeight}" fill="#505050"/>
 `;
-                    
+
                     displayData.forEach((d, index) => {
                         if (d.year % labelInterval === 0) {
                             const xPos = chartStartX + index * barSpace + barSpace / 2;
@@ -1142,9 +2370,9 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
                     });
                 }
             }
-            
+
             svg += `</svg>`;
-            
+
             const blob = new Blob([svg], { type: 'image/svg+xml' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -1177,6 +2405,7 @@ Aquesta eina et permet crear visualitzacions de **franges climàtiques** (warmin
         }
     </script>
 </body>
+
 </html>
 ```
 
