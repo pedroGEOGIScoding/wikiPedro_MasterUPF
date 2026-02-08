@@ -1,6 +1,6 @@
 ---
-title: "Calculate Your Climate Stripes"
-subtitle: "Interactive Warming Stripes Generator"
+title: "Climate Change"
+subtitle: "Interactive Warming Stripes Generator, graphs and interactive sea-level rise map"
 filename: calculate-climate-stripes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
@@ -809,6 +809,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
         };
 
         let data = null;
+        let uploadedFileName = '';
         let displayData = null;
         let refMean = null;
         let selectedYearIndex = -1;
@@ -945,6 +946,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
 
                     parsedData.sort((a, b) => a.year - b.year);
                     data = parsedData;
+                    uploadedFileName = file.name.replace(/\.csv$/i, '');
 
                     messageDiv.className = 'message success';
                     messageDiv.textContent = `✓ File loaded: ${file.name} (${data.length} years of data, ${data[0].year}-${data[data.length - 1].year})`;
@@ -1136,6 +1138,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
                     }
 
                     data = parsedData.sort((a, b) => a.year - b.year);
+                    uploadedFileName = file.name.replace(/\.csv$/i, '');
                     const minYear = data[0].year;
                     const maxYear = data[data.length - 1].year;
 
@@ -1285,7 +1288,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
                 ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(`Temperature change (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+                ctx.fillText(`${uploadedFileName} - Temperature change (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
 
                 const totalBarSpace = stripesWidth / displayData.length;
 
@@ -2051,7 +2054,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
                 ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(`Temperature change (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+                ctx.fillText(`${uploadedFileName} - Temperature change (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
 
                 const totalBarSpace = stripesWidth / displayData.length;
 
@@ -2278,7 +2281,7 @@ This tool allows you to create **warming stripes** visualizations from your own 
             svg += `  <rect x="0" y="0" width="${canvasWidth}" height="${titleHeight}" fill="#505050"/>
 `;
 
-            svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Temperature change (${startYear}-${endYear})</text>
+            svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">${uploadedFileName} - Temperature change (${startYear}-${endYear})</text>
 `;
 
             const totalBarSpace = stripesWidth / displayData.length;

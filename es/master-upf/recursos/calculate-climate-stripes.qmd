@@ -1,6 +1,6 @@
 ---
-title: "Calcula tus franjas climáticas"
-subtitle: "Generador de Warming Stripes interactivo"
+title: "Cambio climático"
+subtitle: "Generador de Warming Stripes interactivo, graficos y mapa interactivo de la subida del nivel del mar"
 filename: calculate-climate-stripes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
@@ -809,6 +809,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
         };
 
         let data = null;
+        let uploadedFileName = '';
         let displayData = null;
         let refMean = null;
         let selectedYearIndex = -1;
@@ -945,6 +946,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
 
                     parsedData.sort((a, b) => a.year - b.year);
                     data = parsedData;
+                    uploadedFileName = file.name.replace(/\.csv$/i, '');
 
                     messageDiv.className = 'message success';
                     messageDiv.textContent = `✓ Archivo cargado: ${file.name} (${data.length} años de datos, ${data[0].year}-${data[data.length - 1].year})`;
@@ -1136,6 +1138,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
                     }
 
                     data = parsedData.sort((a, b) => a.year - b.year);
+                    uploadedFileName = file.name.replace(/\.csv$/i, '');
                     const minYear = data[0].year;
                     const maxYear = data[data.length - 1].year;
 
@@ -1285,7 +1288,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
                 ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(`Cambio de temperatura (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+                ctx.fillText(`${uploadedFileName} - Cambio de temperatura (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
 
                 const totalBarSpace = stripesWidth / displayData.length;
 
@@ -2051,7 +2054,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
                 ctx.font = 'bold 20px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
-                ctx.fillText(`Cambio de temperatura (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
+                ctx.fillText(`${uploadedFileName} - Cambio de temperatura (${startYear}-${endYear})`, canvasWidth / 2, titleHeight / 2);
 
                 const totalBarSpace = stripesWidth / displayData.length;
 
@@ -2278,7 +2281,7 @@ Esta herramienta te permite crear visualizaciones de **franjas climáticas** (wa
             svg += `  <rect x="0" y="0" width="${canvasWidth}" height="${titleHeight}" fill="#505050"/>
 `;
 
-            svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Cambio de temperatura (${startYear}-${endYear})</text>
+            svg += `  <text x="${canvasWidth / 2}" y="${titleHeight / 2}" text-anchor="middle" dominant-baseline="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="20" font-weight="bold" fill="#ffffff">${uploadedFileName} - Cambio de temperatura (${startYear}-${endYear})</text>
 `;
 
             const totalBarSpace = stripesWidth / displayData.length;
