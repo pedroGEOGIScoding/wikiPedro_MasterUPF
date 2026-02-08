@@ -5,7 +5,7 @@ filename: calculate-climate-stripes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Eina interactiva per generar visualitzacions de franges climàtiques (warming stripes) a partir de dades de temperatura
+description: Eina interactiva per generar visualitzacions de franges climàtiques (warming stripes) a partir de dades de temperatura, gràfics i mapa interactiu sobre els riscos de l'augment del nivell del mar
 categories: [clima, visualització, dades]
 toc: true
 number-sections: true

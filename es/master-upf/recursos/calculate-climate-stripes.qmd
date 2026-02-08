@@ -1,11 +1,11 @@
 ---
 title: "Cambio climático"
-subtitle: "Generador de Warming Stripes interactivo, graficos y mapa interactivo de la subida del nivel del mar"
+subtitle: "Generador de Warming Stripes interactivo, gráficos y mapa interactivo sobre los riesgos de la subida del nivel del mar"
 filename: calculate-climate-stripes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Herramienta interactiva para generar visualizaciones de franjas climáticas (warming stripes) a partir de datos de temperatura
+description: Herramienta interactiva para generar visualizaciones de franjas climáticas (warming stripes) a partir de datos de temperatura, gráficos y mapa interactivo sobre los riesgos de la subida del nivel del mar
 categories: [clima, visualización, datos]
 toc: true
 number-sections: true

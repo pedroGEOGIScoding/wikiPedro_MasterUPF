@@ -5,7 +5,7 @@ filename: calculate-climate-stripes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Interactive tool to generate warming stripes visualizations from temperature data
+description: Interactive tool to generate warming stripes visualizations from temperature data, graphs and interactive sea-level rise map
 categories: [climate, visualization, data]
 toc: true
 number-sections: true
