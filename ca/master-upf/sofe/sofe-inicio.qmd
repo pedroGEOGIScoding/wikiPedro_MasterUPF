@@ -28,6 +28,7 @@ format: html
 
 * L'assignatura té un valor de 10 ECTS, que suposa 260 hores de treball de l'estudiant, amb 30 sessions presencials de dues hores (60 hores), impartides en modalitat presencial i virtual síncrona i asíncrona. S'ensenya, sobretot, abans de fer la segona visita al centre, quan hauràs de fer classes, per tal de dotar-te de tots els coneixements i habilitats necessàries per fer-ho bé.
 
+![Infografia generada amb NotebookLM a partir del material didàctic de les sessions](/images/sofe/Infografia_sofe.png){fig-align="center"}
 
 ## Informació tècnica
 

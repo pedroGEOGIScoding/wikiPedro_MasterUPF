@@ -28,6 +28,8 @@ format: html
 
 * La asignatura tiene un valor de 10 ECTS, que suponen 260 horas de trabajo del estudiante, con 30 sesiones presenciales de dos horas (60h), impartidas en modo presencial y virtual síncrono y asíncrono. Se imparte, sobre todo, antes de hacer la segunda visita al centro, cuando tendrás que hacer clases, a fin de dotarte de todos los conocimientos y destrezas necesarios para hacerlo bien.
 
+![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/sofe/Infografia_sofe.png){fig-align="center"}
+
 ## Información Técnica
 
 * **Código de asignatura:** 32865
