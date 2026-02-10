@@ -22,7 +22,7 @@ format: html
 
 > El professor Lluís Pagès dirigeix ​​aquesta part del mòdul **societat, família i educació: processos i contextos educatius** denominat **marc educatiu**, que aborda com incorporar-se al sistema educatiu català com a docent, entenent el context particular que l'envolta i sabent com relacionar-se amb els diferents equips i agents socials, per complir amb èxit la funció educativa. Això implica conèixer les principals característiques del sistema educatiu català i del centre particular en el qual ens incorporem i saber desenvolupar una tasca eficaç que contribueixi a formar l'alumnat de manera satisfactòria. A més, conèixer la documentació i la normativa i saber aprofitar els diferents casos reals treballats en el màster per resoldre els reptes que es plantegen en la futura incorporació al sistema educatiu.
 
-![Infografia generada amb NotebookLM a partir del material didàctic de les sessions](/images/dae/dae-infografia-en.png){fig-align="center"}
+![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/sofe/Infografia_MarcoEdu.png){fig-align="center"}
 
 ## Material didàctic per a totes les sessions
 
