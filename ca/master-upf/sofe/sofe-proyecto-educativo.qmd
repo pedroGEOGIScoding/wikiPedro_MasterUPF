@@ -113,7 +113,7 @@ Els objectius d'aquesta part del mòdul són:
 ::: {.panel-tabset}
 ## Asíncron 1 {.active}
 
-<embed src="/files/sofedocs/sofe-project-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/sofesesion/sofe-project-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
 
 ## Asynchronous 2 - Vídeo: El cervell adolescent
 
@@ -121,10 +121,10 @@ Els objectius d'aquesta part del mòdul són:
 
 ## Asíncron 3 - TDAH
 
-<embed src="/files/sofedocs/sofe-project-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/sofesesion/sofe-project-asincrona3_NESE.pdf" type="application/pdf" width="100%" height="800px"/>
 
-## Asíncron 3 - TDAH - Resposta
+## Asíncron 4 - Dislèxia
 
-<embed src="/files/sofedocs/sofe-proyecto-MARTINEZ-DURAN-PEDRO_SOFE PE_A3.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/sofesesion/sofe-project-asincrona4_Dislexia.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
