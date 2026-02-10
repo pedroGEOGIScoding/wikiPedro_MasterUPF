@@ -1,12 +1,12 @@
 ---
-title: "Projecte educatiu"
-subtitle: "Projecte educatiu"
+title: "projecte educatiu"
+subtitle: "projecte educatiu"
 filename: sofe-proyecto-educativo
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Projecte educatiu
-categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
+description: projecte educatiu
+categories: [educació, sistema educatiu, normatives, l'ensenyament, tutor, tutoria, NESE, dislèxia, AFEGIR, TDAH, recursos educatius]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,4 +18,113 @@ lightbox:
 format: html
 ---
 
-## Presentació 
+## Presentació
+
+> Les professores Sílvia Marro Cosialls i Teresa Martínez Guardiola dirigeixen aquesta part del mòdul **societat, família i educació: processos i contextos educatius** anomenat **projecte educatiu**, on es tracten les següents qüestions:
+
+* Quines són les principals característiques dels estudiants adolescents, adults i el seu aprenentatge?
+* Quins són els recursos que tens al teu abast per atendre la diversitat dels alumnes i com pots utilitzar-los?
+* Quines característiques ha de tenir la tutoria dels estudiants perquè sigui efectiva?
+
+Els objectius d'aquesta part del mòdul són:
+
+* Conèixer les característiques dels alumnes de les diferents etapes educatives (secundària obligatòria i postobligatòria).
+
+* Promoure la personalització de l'aprenentatge i l'atenció a tot l'alumnat en el marc d'un sistema educatiu inclusiu. Inclusió versus atenció a la diversitat. Mides i suports. Plans individualitzats.
+
+* Conèixer i avaluar la resposta educativa en funció de les necessitats específiques de suport educatiu (NESE) de l'alumnat.
+
+* Compartir eines d'acció tutorial, orientació educativa i orientació professional.
+
+* Garantir i fomentar la interacció entre els alumnes. Aspectes psicosocials de l'aprenentatge.
+
+* Realitzar la coordinació amb els equips docents (psicopedagogs, suport lingüístic, aules d'acollida) i entitats del voltant.
+
+## Material didàctic per a totes les sessions
+
+::: callout-tip
+## Feu clic a cadascuna de les pestanyes per veure el material de cada sessió
+:::
+
+::: {.panel-tabset}
+## Sessió de presentació {.active}
+
+<embed src="/files/sofesesion/sofe-project-sesion1-presentacion.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 2
+
+<embed src="/files/sofesesion/sofe-project-sesion2-aprenentatge.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 3
+
+<embed src="/files/sofesesion/sofe-project-sesion3-TDAH.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 4
+
+<embed src="/files/sofesesion/sofe-project-sesion4-dislexia.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 5
+
+<embed src="/files/sofesesion/sofe-project-sesion5-transtornoConducta.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 6
+
+<embed src="/files/sofesesion/sofe-project-sesion6-TEA.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Sessió 7
+
+<embed src="/files/sofesesion/sofe-project-sesion7-PlanSoporteIndividual.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+::: {.column-margin}
+**Documentació addicional**
+
+- [PRODISLEX Batxillerat](/files/sofedocs/sofe-project-PRODISLEXBatxillerat.pdf){.highlight width="10%" target="_blank"}
+- [PRODISLEX Primer cicle ESO](/files/sofedocs/sofe-project-PRODISLEXPrimer_cicle_ESO.pdf){.highlight width="10%" target="_blank"}
+- [PRODISLEX Segon cicle ESO](/files/sofedocs/sofe-project-PRODISLEXSegon_cicle_ESO.pdf){.highlight width="10%" target="_blank"}
+- [Qüestionari del professor TDAH](/files/sofedocs/sofe-project-ADHD-profes questionnaire.pdf){.highlight width="10%" target="_blank"}
+- [Trastorn llenguatge](/files/sofedocs/sofe-project-Trastorn-llenguatge.pdf){.highlight width="10%" target="_blank"}
+- [Alterac conduct](/files/sofedocs/sofe-project-alterac-conduct.pdf){.highlight width="10%" target="_blank"}
+- [Escola inclusiva](/files/sofedocs/sofe-project-escola-inclusiva.pdf){.highlight width="10%" target="_blank"}
+- [Guia del TDAH](/files/sofedocs/sofe-project-guia-tdah.pdf){.highlight width="10%" target="_blank"}
+- [Mesures del TDAH](/files/sofedocs/sofe-project-medidas-TDAH.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT 5è 6è](/files/sofedocs/sofe-project-prodiscat_5e_6e.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT Batx FP](/files/sofedocs/sofe-project-prodiscat_batx_fp.pdf){.highlight width="10%" target="_blank"}
+- [PRODISCAT ESO](/files/sofedocs/sofe-project-prodiscat_eso.pdf){.highlight width="10%" target="_blank"}
+- [Sistema inclusiu](/files/sofedocs/sofe-project-sistema-inclusiu.pdf){.highlight width="10%" target="_blank"}
+- [Actius de l'escola](/files/sofedocs/sofe-project-assetjament-escolar.pdf){.highlight width="10%" target="_blank"}
+- [CESC - Administració de proves](/files/sofedocs/sofe-project-cesc-administracion-del-test.pdf){.highlight width="10%" target="_blank"}
+- [CESC - Introducció i marc teòric](/files/sofedocs/sofe-project-cesc-introduccion-y-marco-teorico.pdf){.highlight width="10%" target="_blank"}
+- [CESC 1 - Instruccions d'Excel](/files/sofedocs/sofe-project-cesc-1-instructions-excel.pdf){.highlight width="10%" target="_blank"}
+- [CESC 3 - Questionari ESO](/files/sofedocs/sofe-project-cesc-3-questionari-eso.pdf){.highlight width="10%" target="_blank"}
+- [Guia TEA - CRTDIC 2025](/files/sofedocs/sofe-project-guia-tea-cretdic-2025.pdf){.highlight width="10%" target="_blank"}
+- [Guia Docents Alumnat desafiant i negativista](/files/sofedocs/sofe-project-Guia_Docents_Alumnat_desafiant_i_negativista.pdf){.highlight width="10%" target="_blank"}
+- [Actiu escolar des d'un enfocament restaurador](/files/sofedocs/sofe-project-l_assetjament-escolar-des-d_un-enfocament-restauratiu-llibre.pdf){.highlight width="10%" target="_blank"}
+- [Física i Química 2 ESO - Canvis en la matèria](/files/sofedocs/sofe-project-fisica_y_quimica_2_eso_cambios_en_la_materia.pdf){.highlight width="10%" target="_blank"}
+- [Reglament de conducta](/files/sofedocs/sofe-project-regulacio-conducta.pdf){.highlight width="10%" target="_blank"}
+
+
+
+:::
+
+## Material didàctic per a sessions asíncrones
+
+::: {.panel-tabset}
+## Asíncron 1 {.active}
+
+<embed src="/files/sofedocs/sofe-project-asincrona1.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asynchronous 2 - Vídeo: El cervell adolescent
+
+{{< video https://www.youtube.com/watch?v=Lqbi_yiqEzw aspect-ratio="4x3" >}}
+
+## Asíncron 3 - TDAH
+
+<embed src="/files/sofedocs/sofe-project-asincrona3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Asíncron 3 - TDAH - Resposta
+
+<embed src="/files/sofedocs/sofe-proyecto-MARTINEZ-DURAN-PEDRO_SOFE PE_A3.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
