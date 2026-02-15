@@ -33,14 +33,9 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
 :::
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
-    <style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+<style>
         .timelapse-container {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 14px;
@@ -152,7 +147,7 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             <details style="margin-top:8px;font-size:12px;color:#666;">
                 <summary style="cursor:pointer;font-weight:bold;">¿Cómo obtener el token?</summary>
                 <div style="margin:4px 0;">
-                    <button onclick="copyExampleCode()" style="background:#4285F4;color:white;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:8px;">
+                    <button onclick="copyExampleCode(this)" style="background:#4285F4;color:white;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:8px;">
                         📋 Copiar comando
                     </button>
                 </div>
@@ -254,23 +249,77 @@ function updateProjectExample() {
 }
 
 // Copy example code to clipboard
-function copyExampleCode() {
+function copyExampleCode(btn) {
+    console.log('[Timelapse] Copy button clicked');
     var codeEl = document.getElementById('tl-example-code');
-    if (codeEl) {
-        navigator.clipboard.writeText(codeEl.innerText).then(function() {
+    console.log('[Timelapse] Code element:', codeEl);
+    
+    if (!codeEl) {
+        console.error('[Timelapse] Code element not found');
+        alert('Error: Elemento de código no encontrado');
+        return;
+    }
+    
+    var textToCopy = codeEl.innerText || codeEl.textContent;
+    console.log('[Timelapse] Text to copy:', textToCopy);
+    
+    // Try modern clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            console.log('[Timelapse] Successfully copied to clipboard');
             // Show feedback
-            var btn = event.target;
-            var originalText = btn.innerText;
-            btn.innerText = '✅ Copiado!';
-            btn.style.background = '#4CAF50';
-            setTimeout(function() {
-                btn.innerText = originalText;
-                btn.style.background = '#4285F4';
-            }, 2000);
+            if (btn) {
+                var originalText = btn.innerText;
+                btn.innerText = '✅ Copiado!';
+                btn.style.background = '#4CAF50';
+                setTimeout(function() {
+                    btn.innerText = originalText;
+                    btn.style.background = '#4285F4';
+                }, 2000);
+            }
         }).catch(function(err) {
-            console.error('Error copying to clipboard:', err);
-            alert('Error al copiar. Por favor, selecciona y copia manualmente.');
+            console.error('[Timelapse] Clipboard API error:', err);
+            // Fallback method
+            fallbackCopy(textToCopy, btn);
         });
+    } else {
+        console.log('[Timelapse] Clipboard API not available, using fallback');
+        fallbackCopy(textToCopy, btn);
+    }
+}
+
+// Fallback copy method
+function fallbackCopy(text, btn) {
+    try {
+        var textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        var successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (successful) {
+            console.log('[Timelapse] Fallback copy successful');
+            if (btn) {
+                var originalText = btn.innerText;
+                btn.innerText = '✅ Copiado!';
+                btn.style.background = '#4CAF50';
+                setTimeout(function() {
+                    btn.innerText = originalText;
+                    btn.style.background = '#4285F4';
+                }, 2000);
+            }
+        } else {
+            throw new Error('execCommand failed');
+        }
+    } catch (err) {
+        console.error('[Timelapse] Fallback copy failed:', err);
+        alert('Error al copiar. Por favor, selecciona y copia manualmente:\n\n' + text);
     }
 }
 var map, drawnItems, drawControl, currentGeoJSON = null;
@@ -688,8 +737,6 @@ function resetTimelapse() {
 }
 function clearAll() { resetTimelapse(); }
 </script>
-</body>
-</html>
 ```
 
 ## Sobre los Timelapse Landsat
