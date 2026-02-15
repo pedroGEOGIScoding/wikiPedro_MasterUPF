@@ -100,13 +100,6 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             transition: width 0.3s;
         }
         #tl-progress-text { font-size: 12px; color: #666; margin-top: 2px; }
-        .tl-search-results {
-            position: absolute; top: 100%; left: 0; right: 0;
-            background: white; border-radius: 0 0 6px 6px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            max-height: 200px; overflow-y: auto; z-index: 2000; display: none;
-            max-width: 400px;
-        }
         .tl-search-results div {
             padding: 8px 12px; font-size: 13px; cursor: pointer;
             border-top: 1px solid #eee;
@@ -224,14 +217,6 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
     </div>
 </div>
 
-<!-- Location Search Box (Outside Main Container) -->
-<div style="max-width: 100%; margin: 20px auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px;">
-    <label class="tl-label">🔍 Search Location:</label>
-    <div style="position:relative;margin-top:4px;">
-        <input id="tl-search" type="text" class="tl-input" placeholder="Search location..." style="width: 100%; max-width: 400px;">
-        <div id="tl-search-results" class="tl-search-results"></div>
-    </div>
-</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
@@ -366,6 +351,21 @@ L.control.layers({
     'Esri Satellite': esriImagery, 'OpenStreetMap': osm,
     'Carto Light': cartoLight, 'Carto Dark': cartoDark, 'Esri Topographic': esriTopo
 }, null, {position: 'bottomright'}).addTo(map);
+
+// Search control
+var SearchControl = L.Control.extend({
+    options: { position: 'topleft' },
+    onAdd: function(m) {
+        this._container = L.DomUtil.create('div', 'leaflet-search-control');
+        this._container.style.cssText = 'background:white;padding:4px;border-radius:4px;box-shadow:0 1px 5px rgba(0,0,0,0.4);margin-left:50px;margin-top:-52px;';
+        this._container.innerHTML = 
+            '<input id="tl-search" type="text" placeholder="🔍 Search..." style="width:200px;padding:4px 6px;border:1px solid #ccc;border-radius:3px;font-size:13px;">' +
+            '<div id="tl-search-results" class="tl-search-results" style="position:absolute;top:100%;left:0;right:0;background:white;border-radius:0 0 4px 4px;box-shadow:0 4px 8px rgba(0,0,0,0.2);max-height:200px;overflow-y:auto;z-index:2000;display:none;max-width:200px;"></div>';
+        L.DomEvent.disableClickPropagation(this._container);
+        return this._container;
+    }
+});
+map.addControl(new SearchControl());
 
 // Scale bar
 var ScaleBar = L.Control.extend({
