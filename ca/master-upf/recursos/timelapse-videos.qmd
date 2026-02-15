@@ -1,0 +1,638 @@
+---
+title: "Generador de Timelapse Landsat"
+subtitle: "Crea timelapses de satèl·lit amb Google Earth Engine"
+filename: timelapse-videos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Eina interactiva per generar timelapses d'imatges Landsat des del navegador usant Google Earth Engine
+categories: [teledetecció, visualització, dades]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+# Generador de Timelapse Landsat
+
+Aquesta eina et permet crear **timelapses d'imatges de satèl·lit Landsat** directament des del teu navegador usant la teva API de Google Earth Engine. Pots seleccionar qualsevol àrea del món i generar una animació que mostra els canvis en la superfície terrestre des de 1984 fins a l'actualitat.
+
+::: {.callout-note}
+## Com usar aquesta eina
+
+1. Escriu el nom del projecte de Google Earth Engine al qual tinguis accés i vulguis usar al camp del panell **Projecte GEE**
+2. Obtén el teu **token d'accés** executant al terminal: `python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"`
+3. Enganxa el token (comença per `ya29.`) al camp del panell **Token d'accés** i fes clic a **Connectar amb Earth Engine**
+4. Dibuixa un **rectangle** o **polígon** al mapa per seleccionar l'àrea
+5. Configura les opcions (combinació de bandes, resolució, rang d'anys)
+6. Fes clic a **Crear Timelapse** i espera que es generin els fotogrames
+7. Descarrega el resultat com a GIF animat
+:::
+
+```{=html}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+    <style>
+        .timelapse-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+        #tl-map {
+            height: 70vh;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        #tl-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 300px;
+            max-height: calc(70vh - 30px);
+            overflow-y: auto;
+        }
+        #tl-panel h3 { margin: 0 0 10px 0; color: #333; }
+        #tl-panel p { margin: 5px 0; font-size: 13px; color: #666; }
+        .tl-btn {
+            display: block; width: 100%; padding: 10px; margin-top: 8px;
+            color: white; border: none; border-radius: 5px;
+            font-size: 14px; font-weight: bold; cursor: pointer;
+            text-align: center; box-sizing: border-box;
+        }
+        .tl-btn:hover { opacity: 0.9; }
+        .tl-btn:disabled { background: #ccc !important; cursor: not-allowed; }
+        #tl-auth-btn { background: #4285F4; }
+        #tl-create-btn { background: #2196F3; display: none; }
+        #tl-stop-btn { background: #f44336; display: none; }
+        #tl-download-btn { background: #4CAF50; display: none; text-decoration: none; }
+        #tl-new-btn { background: #FF9800; display: none; }
+        #tl-pause-btn { background: #9C27B0; display: none; }
+        #tl-clear-btn { background: #607D8B; margin-top: 12px; }
+        .tl-label {
+            font-size: 13px; font-weight: bold; color: #333;
+            margin-top: 10px; display: block;
+        }
+        .tl-select, .tl-input {
+            width: 100%; padding: 8px; margin-top: 4px;
+            border-radius: 4px; border: 1px solid #ccc;
+            font-size: 13px; box-sizing: border-box;
+        }
+        #tl-status { margin-top: 8px; font-size: 13px; color: #333; }
+        #tl-coords { font-size: 12px; color: #888; margin-top: 5px; word-break: break-all; }
+        #tl-progress-container { display: none; margin-top: 8px; }
+        #tl-progress-bar {
+            width: 100%; height: 6px; background: #e0e0e0;
+            border-radius: 3px; overflow: hidden;
+        }
+        #tl-progress-fill {
+            height: 100%; background: #2196F3; width: 0%;
+            transition: width 0.3s;
+        }
+        #tl-progress-text { font-size: 12px; color: #666; margin-top: 2px; }
+        .tl-search-results {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: white; border-radius: 0 0 6px 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-height: 200px; overflow-y: auto; z-index: 2000; display: none;
+        }
+        .tl-search-results div {
+            padding: 8px 12px; font-size: 13px; cursor: pointer;
+            border-top: 1px solid #eee;
+        }
+        .tl-search-results div:hover { background: #f0f0f0; }
+        .tl-north-arrow {
+            background: white; padding: 4px 8px; border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.4); text-align: center;
+            font-size: 22px; line-height: 1; cursor: default;
+        }
+        .tl-north-arrow span { display: block; font-size: 11px; font-weight: bold; color: #333; }
+        .tl-year-range {
+            display: flex; gap: 8px; margin-top: 4px;
+        }
+        .tl-year-range input {
+            flex: 1; padding: 6px; border: 1px solid #ccc;
+            border-radius: 4px; font-size: 13px;
+        }
+        .tl-slider-wrap {
+            display: flex; align-items: center; gap: 6px; margin-top: 8px;
+        }
+        .tl-slider-wrap span { font-size: 11px; color: #888; }
+        .tl-slider-wrap input[type=range] { flex: 1; }
+    </style>
+<div class="timelapse-container">
+    <div id="tl-map"></div>
+    <div id="tl-panel">
+        <h3>🎬 Timelapse Landsat</h3>
+
+        <div id="tl-auth-section">
+            <p>Connecta't a Google Earth Engine per començar.</p>
+            <label class="tl-label">Projecte GEE:</label>
+            <input id="tl-project" type="text" class="tl-input" placeholder="Escriu el teu ID de projecte GEE">
+            <label class="tl-label">Token d'accés:</label>
+            <input id="tl-token" type="password" class="tl-input" placeholder="Enganxa aquí el teu token (ya29....)">
+            <button id="tl-auth-btn" class="tl-btn" onclick="authenticateGEE()">🔐 Connectar amb Earth Engine</button>
+            <details style="margin-top:8px;font-size:12px;color:#666;">
+                <summary style="cursor:pointer;font-weight:bold;">Com obtenir el token?</summary>
+                <p style="margin:6px 0 2px 0;">Executa al teu terminal:</p>
+                <code style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
+                <p style="margin:4px 0;font-size:11px;">Copia el token que comença per <b>ya29.</b> i enganxa'l a dalt.</p>
+            </details>
+        </div>
+
+        <div id="tl-config-section" style="display:none;">
+            <p>Dibuixa un <b>rectangle</b> o <b>polígon</b> al mapa.</p>
+
+            <label class="tl-label">Combinació de bandes:</label>
+            <select id="tl-bands" class="tl-select">
+                <option value="Red,Green,Blue">Red/Green/Blue (Color real)</option>
+                <option value="NIR,Red,Green">NIR/Red/Green (Fals color)</option>
+                <option value="SWIR2,SWIR1,NIR">SWIR2/SWIR1/NIR</option>
+                <option value="NIR,SWIR1,Red">NIR/SWIR1/Red</option>
+                <option value="SWIR2,NIR,Red">SWIR2/NIR/Red</option>
+            </select>
+
+            <label class="tl-label">Resolució:</label>
+            <select id="tl-resolution" class="tl-select">
+                <option value="256">256px (Ràpida)</option>
+                <option value="384" selected>384px (Per defecte)</option>
+                <option value="512">512px</option>
+                <option value="768">768px (Alta)</option>
+            </select>
+
+            <label class="tl-label">Rang d'anys:</label>
+            <div class="tl-year-range">
+                <input id="tl-start-year" type="number" value="1984" min="1984" max="2025" placeholder="Inici">
+                <input id="tl-end-year" type="number" value="2024" min="1984" max="2025" placeholder="Fi">
+            </div>
+
+            <label class="tl-label">Mesos (inici - fi):</label>
+            <div class="tl-year-range">
+                <input id="tl-start-month" type="number" value="5" min="1" max="12" placeholder="Mes inici">
+                <input id="tl-end-month" type="number" value="10" min="1" max="12" placeholder="Mes fi">
+            </div>
+
+            <button id="tl-create-btn" class="tl-btn" onclick="createTimelapse()">🎬 Crear Timelapse</button>
+            <button id="tl-stop-btn" class="tl-btn" onclick="stopTimelapse()">⏹ Aturar</button>
+            <a id="tl-download-btn" class="tl-btn" href="#" style="display:none;">⬇ Descarregar GIF</a>
+            <button id="tl-new-btn" class="tl-btn" onclick="resetTimelapse()">🔄 Nou Timelapse</button>
+            <button id="tl-pause-btn" class="tl-btn" onclick="togglePlay()">⏸ Pausa</button>
+
+            <div id="tl-progress-container">
+                <div id="tl-progress-bar"><div id="tl-progress-fill"></div></div>
+                <div id="tl-progress-text"></div>
+            </div>
+
+            <div id="tl-status"></div>
+            <div id="tl-coords"></div>
+
+            <div id="tl-playback-controls" style="display:none;">
+                <label class="tl-label">Opacitat:</label>
+                <div class="tl-slider-wrap">
+                    <span>0%</span>
+                    <input id="tl-opacity" type="range" min="0" max="100" value="90">
+                    <span>100%</span>
+                </div>
+                <label class="tl-label">Velocitat (ms/fotograma):</label>
+                <div class="tl-slider-wrap">
+                    <span>Ràpid</span>
+                    <input id="tl-speed" type="range" min="50" max="1000" value="200">
+                    <span>Lent</span>
+                </div>
+            </div>
+
+            <hr style="border:none;border-top:1px solid #ddd;margin-top:12px;">
+            <button id="tl-clear-btn" class="tl-btn" onclick="clearAll()">🗑 Netejar tot</button>
+
+            <hr style="border:none;border-top:1px solid #ddd;margin-top:12px;">
+            <label class="tl-label">🔍 Cercar ubicació:</label>
+            <div style="position:relative;margin-top:4px;">
+                <input id="tl-search" type="text" class="tl-input" placeholder="Cercar ubicació...">
+                <div id="tl-search-results" class="tl-search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.js"></script>
+<script>
+// ============================================
+// GLOBALS
+// ============================================
+var map, drawnItems, drawControl, currentGeoJSON = null;
+var frameOverlay = null, gifBounds = null;
+var frames = [], frameIdx = 0, frameTimer = null;
+var frameSpeed = 200, isPlaying = false, stopRequested = false;
+var eeReady = false;
+
+var BAND_MAP = {
+    'Red': 'SR_B4', 'Green': 'SR_B3', 'Blue': 'SR_B2',
+    'NIR': 'SR_B5', 'SWIR1': 'SR_B6', 'SWIR2': 'SR_B7'
+};
+var BAND_MAP_L5 = {
+    'Red': 'SR_B3', 'Green': 'SR_B2', 'Blue': 'SR_B1',
+    'NIR': 'SR_B4', 'SWIR1': 'SR_B5', 'SWIR2': 'SR_B7'
+};
+
+// ============================================
+// MAP SETUP
+// ============================================
+map = L.map('tl-map').setView([40.65, 0.6], 8);
+
+var esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri', maxZoom: 18
+});
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap', maxZoom: 19
+});
+var cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CARTO', maxZoom: 20
+});
+var cartoDark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CARTO', maxZoom: 20
+});
+var esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri', maxZoom: 18
+});
+esriImagery.addTo(map);
+
+L.control.layers({
+    'Esri Satèl·lit': esriImagery, 'OpenStreetMap': osm,
+    'Carto Clar': cartoLight, 'Carto Fosc': cartoDark, 'Esri Topogràfic': esriTopo
+}, null, {position: 'bottomright'}).addTo(map);
+
+// Scale bar
+var ScaleBar = L.Control.extend({
+    options: { position: 'bottomleft', numSegments: 4 },
+    onAdd: function(m) {
+        this._container = L.DomUtil.create('div');
+        this._container.style.cssText = 'background:rgba(255,255,255,0.85);padding:8px 12px 6px 12px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.3);';
+        L.DomEvent.disableClickPropagation(this._container);
+        m.on('zoomend moveend resize', this._update, this);
+        this._update();
+        return this._container;
+    },
+    onRemove: function(m) { m.off('zoomend moveend resize', this._update, this); },
+    _update: function() {
+        var m=this._map, tPx=Math.round(m.getSize().x*0.2), y=m.getSize().y/2;
+        var p1=m.containerPointToLatLng([0,y]), p2=m.containerPointToLatLng([tPx,y]);
+        var dist=m.distance(p1,p2);
+        var nice=[1,2,5,10,20,25,50,100,200,250,500,1000,2000,2500,5000,10000,20000,50000,100000,200000,500000];
+        var n=this.options.numSegments, totalDist=0;
+        for(var i=0;i<nice.length;i++){if(nice[i]*n<=dist)totalDist=nice[i]*n;}
+        if(!totalDist)totalDist=dist;
+        var segDist=totalDist/n, barPx=Math.round(tPx*totalDist/dist), segPx=barPx/n;
+        var useKm=totalDist>=1000, unit=useKm?'km':'m', bH=8, tH=6, svgW=barPx+2, svgH=bH+tH+22;
+        var svg='<svg width="'+svgW+'" height="'+svgH+'" xmlns="http://www.w3.org/2000/svg">';
+        for(var s=0;s<n;s++){var x=1+s*segPx;svg+='<rect x="'+x+'" y="0" width="'+segPx+'" height="'+bH+'" fill="'+(s%2===0?'#000':'#fff')+'" stroke="#000" stroke-width="1"/>';}
+        for(var s=0;s<=n;s++){var x=1+s*segPx;svg+='<line x1="'+x+'" y1="'+bH+'" x2="'+x+'" y2="'+(bH+tH)+'" stroke="#000" stroke-width="1.2"/>';var d=segDist*s,val=useKm?(d/1000):d;val=Math.round(val*100)/100;var anchor='middle';if(s===0)anchor='start';if(s===n)anchor='end';svg+='<text x="'+x+'" y="'+(bH+tH+13)+'" text-anchor="'+anchor+'" font-size="12" font-family="Arial" font-weight="bold" fill="#000">'+val+'</text>';}
+        svg+='<text x="'+(barPx/2+1)+'" y="'+(svgH-1)+'" text-anchor="middle" font-size="11" font-family="Arial" fill="#333">'+unit+'</text></svg>';
+        this._container.innerHTML=svg;
+    }
+});
+map.addControl(new ScaleBar());
+
+// North arrow
+var NorthArrow = L.Control.extend({
+    options:{position:'topleft'},
+    onAdd:function(){var d=L.DomUtil.create('div','tl-north-arrow');d.innerHTML='&#9650;<span>N</span>';d.title='Nord';return d;}
+});
+map.addControl(new NorthArrow());
+
+// Drawing tools
+drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+drawControl = new L.Control.Draw({
+    draw:{polygon:true,rectangle:true,circle:false,circlemarker:false,marker:false,polyline:false},
+    edit:{featureGroup:drawnItems}
+});
+map.addControl(drawControl);
+
+map.on(L.Draw.Event.CREATED, function(e) {
+    drawnItems.clearLayers();
+    drawnItems.addLayer(e.layer);
+    currentGeoJSON = e.layer.toGeoJSON().geometry;
+    document.getElementById('tl-create-btn').style.display = 'block';
+    document.getElementById('tl-coords').innerText = JSON.stringify(
+        currentGeoJSON.coordinates[0].map(function(c){return [c[1].toFixed(4),c[0].toFixed(4)];})
+    );
+    document.getElementById('tl-status').innerText = '✅ Àrea seleccionada!';
+});
+map.on(L.Draw.Event.DELETED, function() {
+    currentGeoJSON = null;
+    document.getElementById('tl-create-btn').style.display = 'none';
+    document.getElementById('tl-coords').innerText = '';
+    document.getElementById('tl-status').innerText = '';
+});
+
+// Search box
+(function(){
+    var input=document.getElementById('tl-search'), results=document.getElementById('tl-search-results'), timer=null;
+    input.addEventListener('input',function(){
+        clearTimeout(timer); var q=input.value.trim();
+        if(q.length<3){results.style.display='none';return;}
+        timer=setTimeout(function(){
+            fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&q='+encodeURIComponent(q))
+            .then(function(r){return r.json();}).then(function(data){
+                results.innerHTML='';
+                if(!data.length){results.style.display='none';return;}
+                data.forEach(function(item){
+                    var row=document.createElement('div');row.innerText=item.display_name;
+                    row.addEventListener('click',function(){map.flyTo([parseFloat(item.lat),parseFloat(item.lon)],13);input.value=item.display_name;results.style.display='none';});
+                    results.appendChild(row);
+                });
+                results.style.display='block';
+            });
+        },400);
+    });
+    input.addEventListener('keydown',function(e){if(e.key==='Escape')results.style.display='none';});
+    document.addEventListener('click',function(e){if(!input.parentElement.contains(e.target))results.style.display='none';});
+})();
+
+// ============================================
+// GEE AUTHENTICATION
+// ============================================
+var eeApiLoaded = false;
+function loadEEApi(callback) {
+    if (eeApiLoaded) { callback(); return; }
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@google/earthengine@0.1.384/build/ee_api_js.js';
+    script.onload = function() { eeApiLoaded = true; callback(); };
+    script.onerror = function() {
+        document.getElementById('tl-status').innerText = '❌ Error carregant la API d\'Earth Engine';
+        document.getElementById('tl-auth-btn').disabled = false;
+        document.getElementById('tl-auth-btn').innerText = '🔐 Connectar amb Earth Engine';
+    };
+    document.head.appendChild(script);
+}
+
+function authenticateGEE() {
+    var token = document.getElementById('tl-token').value.trim();
+    var project = document.getElementById('tl-project').value.trim();
+    if (!token) {
+        document.getElementById('tl-status').innerText = '❌ Enganxa el teu token d\'accés.';
+        return;
+    }
+    var btn = document.getElementById('tl-auth-btn');
+    btn.disabled = true;
+    btn.innerText = '⏳ Carregant API...';
+
+    loadEEApi(function() {
+        btn.innerText = '⏳ Connectant...';
+        ee.data.setAuthToken('', 'Bearer', token, 3600, [], function() {
+            ee.initialize(null, null, function() {
+                eeReady = true;
+                document.getElementById('tl-auth-section').style.display = 'none';
+                document.getElementById('tl-config-section').style.display = 'block';
+                document.getElementById('tl-status').innerText = '✅ Connectat a Earth Engine (projecte: ' + project + ')';
+            }, function(err) {
+                btn.disabled = false; btn.innerText = '🔐 Connectar amb Earth Engine';
+                document.getElementById('tl-status').innerText = '❌ Error en inicialitzar: ' + err;
+            }, null, project);
+        }, false);
+    });
+}
+
+// ============================================
+// LANDSAT COLLECTION
+// ============================================
+function getLandsatCollection(roi, year, startMonth, endMonth, bandNames) {
+    var startDate = year+'-'+String(startMonth).padStart(2,'0')+'-01';
+    var endDay = new Date(year, endMonth, 0).getDate();
+    var endDate = year+'-'+String(endMonth).padStart(2,'0')+'-'+String(endDay).padStart(2,'0');
+    var collections = [];
+
+    function maskAndScale(img, bMap) {
+        var srcBands = bandNames.map(function(b){return bMap[b];});
+        var scaled = img.select(srcBands).multiply(0.0000275).add(-0.2).rename(bandNames);
+        var qa = img.select('QA_PIXEL');
+        var mask = qa.bitwiseAnd(1<<3).eq(0).and(qa.bitwiseAnd(1<<4).eq(0));
+        return scaled.updateMask(mask).clip(roi);
+    }
+
+    if (year>=1984 && year<=2012) {
+        collections.push(ee.ImageCollection('LANDSAT/LT05/C02/T1_L2')
+            .filterBounds(roi).filterDate(startDate,endDate)
+            .map(function(img){return maskAndScale(img,BAND_MAP_L5);}));
+    }
+    if (year>=1999 && year<=2022) {
+        collections.push(ee.ImageCollection('LANDSAT/LE07/C02/T1_L2')
+            .filterBounds(roi).filterDate(startDate,endDate)
+            .map(function(img){return maskAndScale(img,BAND_MAP_L5);}));
+    }
+    if (year>=2013) {
+        collections.push(ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+            .filterBounds(roi).filterDate(startDate,endDate)
+            .map(function(img){return maskAndScale(img,BAND_MAP);}));
+    }
+    if (year>=2022) {
+        collections.push(ee.ImageCollection('LANDSAT/LC09/C02/T1_L2')
+            .filterBounds(roi).filterDate(startDate,endDate)
+            .map(function(img){return maskAndScale(img,BAND_MAP);}));
+    }
+
+    if (!collections.length) return null;
+    var merged = collections[0];
+    for (var i=1; i<collections.length; i++) merged = merged.merge(collections[i]);
+    return merged.median();
+}
+
+// ============================================
+// TIMELAPSE CREATION
+// ============================================
+function createTimelapse() {
+    if (!eeReady || !currentGeoJSON) return;
+    stopRequested = false;
+
+    var startYear = parseInt(document.getElementById('tl-start-year').value);
+    var endYear = parseInt(document.getElementById('tl-end-year').value);
+    var startMonth = parseInt(document.getElementById('tl-start-month').value);
+    var endMonth = parseInt(document.getElementById('tl-end-month').value);
+    var bandNames = document.getElementById('tl-bands').value.split(',');
+    var resolution = parseInt(document.getElementById('tl-resolution').value);
+
+    if (startYear > endYear) {
+        document.getElementById('tl-status').innerText = '❌ L\'any d\'inici ha de ser menor que el de fi.';
+        return;
+    }
+
+    var coords = currentGeoJSON.coordinates;
+    var roi = currentGeoJSON.type === 'Polygon' ? ee.Geometry.Polygon(coords) : ee.Geometry(currentGeoJSON);
+
+    var coordsList = coords[0];
+    var lats = coordsList.map(function(c){return c[1];}), lngs = coordsList.map(function(c){return c[0];});
+    gifBounds = [[Math.min.apply(null,lats),Math.min.apply(null,lngs)],[Math.max.apply(null,lats),Math.max.apply(null,lngs)]];
+
+    document.getElementById('tl-create-btn').style.display = 'none';
+    document.getElementById('tl-stop-btn').style.display = 'block';
+    document.getElementById('tl-progress-container').style.display = 'block';
+    document.getElementById('tl-status').innerText = '⏳ Generant fotogrames...';
+    drawnItems.clearLayers();
+
+    frames = [];
+    var years = [];
+    for (var y=startYear; y<=endYear; y++) years.push(y);
+    var total = years.length;
+    var monthAbbr = ['','Gen','Feb','Mar','Abr','Mai','Jun','Jul','Ago','Set','Oct','Nov','Des'];
+
+    function processYear(index) {
+        if (stopRequested || index >= total) {
+            if (!stopRequested) finishTimelapse();
+            return;
+        }
+        var year = years[index];
+        var pct = Math.round(((index+1)/total)*100);
+        document.getElementById('tl-progress-fill').style.width = pct+'%';
+        document.getElementById('tl-progress-text').innerText = 'Any '+year+' ('+(index+1)+'/'+total+')';
+
+        var composite = getLandsatCollection(roi, year, startMonth, endMonth, bandNames);
+        if (!composite) { frames.push({year:year,url:null}); processYear(index+1); return; }
+
+        var visParams = {bands:bandNames, min:0, max:0.3, dimensions:resolution, region:roi, format:'png'};
+        composite.getThumbURL(visParams, function(url) {
+            if (stopRequested) return;
+            var img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = img.width; canvas.height = img.height;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                var label = monthAbbr[startMonth]+'-'+monthAbbr[endMonth]+' '+year;
+                ctx.font = 'bold 16px Arial';
+                var tw = ctx.measureText(label).width;
+                var tx = canvas.width-tw-10, ty = 20;
+                ctx.fillStyle = 'rgba(0,0,0,0.5)';
+                ctx.fillRect(tx-4, ty-14, tw+8, 20);
+                ctx.fillStyle = 'white';
+                ctx.fillText(label, tx, ty);
+                frames.push({year:year, url:canvas.toDataURL('image/png'), canvas:canvas});
+                processYear(index+1);
+            };
+            img.onerror = function() { frames.push({year:year,url:null}); processYear(index+1); };
+            img.src = url;
+        });
+    }
+    processYear(0);
+}
+
+function finishTimelapse() {
+    var valid = frames.filter(function(f){return f.url!==null;});
+    if (!valid.length) {
+        document.getElementById('tl-status').innerText = '❌ No s\'han generat fotogrames vàlids.';
+        document.getElementById('tl-stop-btn').style.display = 'none';
+        document.getElementById('tl-create-btn').style.display = 'block';
+        document.getElementById('tl-progress-container').style.display = 'none';
+        return;
+    }
+
+    document.getElementById('tl-status').innerText = '✅ '+valid.length+' fotogrames. Creant GIF...';
+    document.getElementById('tl-stop-btn').style.display = 'none';
+
+    frameIdx = 0; showFrame(0); startPlayer();
+
+    document.getElementById('tl-pause-btn').style.display = 'block';
+    document.getElementById('tl-new-btn').style.display = 'block';
+    document.getElementById('tl-playback-controls').style.display = 'block';
+    document.getElementById('tl-progress-container').style.display = 'none';
+
+    document.getElementById('tl-opacity').oninput = function() {
+        if (frameOverlay) frameOverlay.setOpacity(this.value/100);
+    };
+    document.getElementById('tl-speed').oninput = function() {
+        frameSpeed = parseInt(this.value);
+        if (isPlaying) startPlayer();
+    };
+
+    try {
+        var gif = new GIF({workers:2, quality:10,
+            workerScript:'https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js'});
+        valid.forEach(function(f){ gif.addFrame(f.canvas, {delay:200}); });
+        gif.on('finished', function(blob) {
+            var url = URL.createObjectURL(blob);
+            var dlBtn = document.getElementById('tl-download-btn');
+            dlBtn.href = url; dlBtn.download = 'landsat-timelapse.gif'; dlBtn.style.display = 'block';
+            document.getElementById('tl-status').innerText = '✅ Timelapse llest! '+valid.length+' fotogrames.';
+        });
+        gif.render();
+    } catch(e) {
+        document.getElementById('tl-status').innerText = '✅ Animació llesta ('+valid.length+' fotogrames). GIF: '+e.message;
+    }
+}
+
+// ============================================
+// MAP FRAME PLAYER
+// ============================================
+function showFrame(idx) {
+    var valid = frames.filter(function(f){return f.url!==null;});
+    if (!valid.length || !gifBounds) return;
+    var op = document.getElementById('tl-opacity').value/100;
+    if (frameOverlay) map.removeLayer(frameOverlay);
+    frameOverlay = L.imageOverlay(valid[idx].url, gifBounds, {opacity:op}).addTo(map);
+}
+function startPlayer() {
+    stopPlayer(); isPlaying = true;
+    document.getElementById('tl-pause-btn').innerText = '⏸ Pausa';
+    var valid = frames.filter(function(f){return f.url!==null;});
+    frameTimer = setInterval(function(){
+        frameIdx = (frameIdx+1)%valid.length; showFrame(frameIdx);
+    }, frameSpeed);
+}
+function stopPlayer() { if(frameTimer){clearInterval(frameTimer);frameTimer=null;} isPlaying=false; }
+function togglePlay() {
+    if (isPlaying) { stopPlayer(); document.getElementById('tl-pause-btn').innerText='▶ Reproduir'; }
+    else startPlayer();
+}
+function stopTimelapse() {
+    stopRequested = true; stopPlayer();
+    document.getElementById('tl-stop-btn').style.display = 'none';
+    document.getElementById('tl-create-btn').style.display = 'block';
+    document.getElementById('tl-progress-container').style.display = 'none';
+    document.getElementById('tl-status').innerText = '⏹ Aturat.';
+}
+function resetTimelapse() {
+    stopPlayer(); stopRequested = true;
+    if (frameOverlay) { map.removeLayer(frameOverlay); frameOverlay=null; }
+    gifBounds=null; frames=[]; frameIdx=0; currentGeoJSON=null;
+    drawnItems.clearLayers();
+    ['tl-create-btn','tl-stop-btn','tl-download-btn','tl-new-btn','tl-pause-btn','tl-playback-controls','tl-progress-container'].forEach(function(id){
+        document.getElementById(id).style.display='none';
+    });
+    document.getElementById('tl-status').innerText = '';
+    document.getElementById('tl-coords').innerText = '';
+}
+function clearAll() { resetTimelapse(); }
+</script>
+```
+
+## Sobre els Timelapse Landsat
+
+Els **timelapses Landsat** són animacions creades a partir d'imatges de satèl·lit del programa Landsat de la NASA/USGS, que porta capturant imatges de la Terra des de 1984. Permeten visualitzar canvis com:
+
+- **Expansió urbana**: creixement de ciutats i àrees metropolitanes
+- **Desforestació i reforestació**: canvis en la cobertura forestal
+- **Canvis en masses d'aigua**: evolució de llacs, rius i embassaments
+- **Agricultura**: rotació de conreus i canvis en l'ús del sòl
+- **Impacte del canvi climàtic**: retrocés de glaceres, desertificació
+
+### Combinacions de bandes disponibles
+
+- **Red/Green/Blue**: Color real, mostra la superfície tal com la veuríem amb els nostres ulls
+- **NIR/Red/Green**: Fals color, ressalta la vegetació en tons vermells
+- **SWIR2/SWIR1/NIR**: Útil per detectar incendis i sòls nus
+- **NIR/SWIR1/Red**: Combinació per a anàlisi de vegetació i humitat
+- **SWIR2/NIR/Red**: Ressalta diferències geològiques i d'ús del sòl
+
+### Requisits
+
+- Un compte de Google amb accés a [Google Earth Engine](https://earthengine.google.com/)
+- Navegador modern amb JavaScript habilitat

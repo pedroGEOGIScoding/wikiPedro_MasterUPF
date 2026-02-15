@@ -171,6 +171,7 @@ website:
         - master-upf/recursos/eso-competencias-ciencias.qmd
         - master-upf/recursos/bach-competencias-ciencias.qmd
         - master-upf/recursos/calculate-climate-stripes.qmd
+        - master-upf/recursos/timelapse-videos.qmd
 
     - id: "about"
       title: "Sobre mí"
