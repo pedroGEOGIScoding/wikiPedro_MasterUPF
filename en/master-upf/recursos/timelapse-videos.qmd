@@ -105,6 +105,7 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             background: white; border-radius: 0 0 6px 6px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             max-height: 200px; overflow-y: auto; z-index: 2000; display: none;
+            max-width: 400px;
         }
         .tl-search-results div {
             padding: 8px 12px; font-size: 13px; cursor: pointer;
@@ -219,13 +220,16 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             <hr style="border:none;border-top:1px solid #ddd;margin-top:12px;">
             <button id="tl-clear-btn" class="tl-btn" onclick="clearAll()">🗑 Clear all</button>
 
-            <hr style="border:none;border-top:1px solid #ddd;margin-top:12px;">
-            <label class="tl-label">🔍 Search location:</label>
-            <div style="position:relative;margin-top:4px;">
-                <input id="tl-search" type="text" class="tl-input" placeholder="Search location...">
-                <div id="tl-search-results" class="tl-search-results"></div>
-            </div>
         </div>
+    </div>
+</div>
+
+<!-- Location Search Box (Outside Main Container) -->
+<div style="max-width: 100%; margin: 20px auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px;">
+    <label class="tl-label">🔍 Search Location:</label>
+    <div style="position:relative;margin-top:4px;">
+        <input id="tl-search" type="text" class="tl-input" placeholder="Search location..." style="width: 100%; max-width: 400px;">
+        <div id="tl-search-results" class="tl-search-results"></div>
     </div>
 </div>
 
