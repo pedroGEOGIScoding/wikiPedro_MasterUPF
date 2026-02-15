@@ -21,7 +21,10 @@ Aquesta eina et permet crear **timelapses d'imatges de satèl·lit Landsat** dir
 ## Com usar aquesta eina
 
 1. Escriu el nom del projecte de Google Earth Engine al qual tinguis accés i vulguis usar al camp del panell **Projecte GEE**
-2. Obtén el teu **token d'accés** executant al terminal: `python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"`
+2. Obtén el teu **token d'accés** executant al terminal: 
+```bash
+python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"
+```
 3. Enganxa el token (comença per `ya29.`) al camp del panell **Token d'accés** i fes clic a **Connectar amb Earth Engine**
 4. Dibuixa un **rectangle** o **polígon** al mapa per seleccionar l'àrea
 5. Configura les opcions (combinació de bandes, resolució, rang d'anys)
@@ -135,14 +138,19 @@ Aquesta eina et permet crear **timelapses d'imatges de satèl·lit Landsat** dir
         <div id="tl-auth-section">
             <p>Connecta't a Google Earth Engine per començar.</p>
             <label class="tl-label">Projecte GEE:</label>
-            <input id="tl-project" type="text" class="tl-input" placeholder="Escriu el teu ID de projecte GEE">
+            <input id="tl-project" type="text" class="tl-input" placeholder="Escriu el teu ID de projecte GEE" oninput="updateProjectExample()">
             <label class="tl-label">Token d'accés:</label>
             <input id="tl-token" type="password" class="tl-input" placeholder="Enganxa aquí el teu token (ya29....)">
             <button id="tl-auth-btn" class="tl-btn" onclick="authenticateGEE()">🔐 Connectar amb Earth Engine</button>
             <details style="margin-top:8px;font-size:12px;color:#666;">
                 <summary style="cursor:pointer;font-weight:bold;">Com obtenir el token?</summary>
+                <div style="margin:4px 0;">
+                    <button onclick="copyExampleCode()" style="background:#4285F4;color:white;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:8px;">
+                        📋 Copiar comandament
+                    </button>
+                </div>
                 <p style="margin:6px 0 2px 0;">Executa al teu terminal:</p>
-                <code style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
+                <code id="tl-example-code" style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
                 <p style="margin:4px 0;font-size:11px;">Copia el token que comença per <b>ya29.</b> i enganxa'l a dalt.</p>
             </details>
         </div>
@@ -228,6 +236,36 @@ Aquesta eina et permet crear **timelapses d'imatges de satèl·lit Landsat** dir
 // ============================================
 // GLOBALS
 // ============================================
+
+// Auto-update project name in example command
+function updateProjectExample() {
+    var project = document.getElementById('tl-project').value.trim() || 'your-project-name';
+    var codeEl = document.getElementById('tl-example-code');
+    if (codeEl) {
+        codeEl.innerText = "python3.13 -c \"import ee, google.auth.transport.requests; ee.Initialize(project='" + project + "'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)\"";
+    }
+}
+
+// Copy example code to clipboard
+function copyExampleCode() {
+    var codeEl = document.getElementById('tl-example-code');
+    if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText).then(function() {
+            // Show feedback
+            var btn = event.target;
+            var originalText = btn.innerText;
+            btn.innerText = '✅ Copiat!';
+            btn.style.background = '#4CAF50';
+            setTimeout(function() {
+                btn.innerText = originalText;
+                btn.style.background = '#4285F4';
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Error copying to clipboard:', err);
+            alert('Error en copiar. Si us plau, selecciona i copia manualment.');
+        });
+    }
+}
 var map, drawnItems, drawControl, currentGeoJSON = null;
 var frameOverlay = null, gifBounds = null;
 var frames = [], frameIdx = 0, frameTimer = null;

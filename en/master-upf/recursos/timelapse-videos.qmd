@@ -21,7 +21,10 @@ This tool allows you to create **Landsat satellite image timelapses** directly f
 ## How to use this tool
 
 1. Enter the name of your Google Earth Engine project in the **GEE Project** field
-2. Get your **access token** by running in the terminal: `python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"`
+2. Get your **access token** by running in the terminal: 
+```bash
+python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"
+```
 3. Paste the token (starts with `ya29.`) in the **Access Token** field and click **Connect to Earth Engine**
 4. Draw a **rectangle** or **polygon** on the map to select the area
 5. Configure the options (band combination, resolution, year range)
@@ -135,14 +138,19 @@ This tool allows you to create **Landsat satellite image timelapses** directly f
         <div id="tl-auth-section">
             <p>Connect to Google Earth Engine to get started.</p>
             <label class="tl-label">GEE Project:</label>
-            <input id="tl-project" type="text" class="tl-input" placeholder="Enter your GEE project ID">
+            <input id="tl-project" type="text" class="tl-input" placeholder="Enter your GEE project ID" oninput="updateProjectExample()">
             <label class="tl-label">Access Token:</label>
             <input id="tl-token" type="password" class="tl-input" placeholder="Paste your token here (ya29....)">
             <button id="tl-auth-btn" class="tl-btn" onclick="authenticateGEE()">🔐 Connect to Earth Engine</button>
             <details style="margin-top:8px;font-size:12px;color:#666;">
                 <summary style="cursor:pointer;font-weight:bold;">How to get the token?</summary>
+                <div style="margin:4px 0;">
+                    <button onclick="copyExampleCode()" style="background:#4285F4;color:white;border:none;padding:4px 8px;border-radius:4px;font-size:11px;cursor:pointer;margin-right:8px;">
+                        📋 Copy command
+                    </button>
+                </div>
                 <p style="margin:6px 0 2px 0;">Run in your terminal:</p>
-                <code style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
+                <code id="tl-example-code" style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
                 <p style="margin:4px 0;font-size:11px;">Copy the token starting with <b>ya29.</b> and paste it above.</p>
             </details>
         </div>
@@ -228,6 +236,36 @@ This tool allows you to create **Landsat satellite image timelapses** directly f
 // ============================================
 // GLOBALS
 // ============================================
+
+// Auto-update project name in example command
+function updateProjectExample() {
+    var project = document.getElementById('tl-project').value.trim() || 'your-project-name';
+    var codeEl = document.getElementById('tl-example-code');
+    if (codeEl) {
+        codeEl.innerText = "python3.13 -c \"import ee, google.auth.transport.requests; ee.Initialize(project='" + project + "'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)\"";
+    }
+}
+
+// Copy example code to clipboard
+function copyExampleCode() {
+    var codeEl = document.getElementById('tl-example-code');
+    if (codeEl) {
+        navigator.clipboard.writeText(codeEl.innerText).then(function() {
+            // Show feedback
+            var btn = event.target;
+            var originalText = btn.innerText;
+            btn.innerText = '✅ Copied!';
+            btn.style.background = '#4CAF50';
+            setTimeout(function() {
+                btn.innerText = originalText;
+                btn.style.background = '#4285F4';
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Error copying to clipboard:', err);
+            alert('Error copying. Please select and copy manually.');
+        });
+    }
+}
 var map, drawnItems, drawControl, currentGeoJSON = null;
 var frameOverlay = null, gifBounds = null;
 var frames = [], frameIdx = 0, frameTimer = null;
