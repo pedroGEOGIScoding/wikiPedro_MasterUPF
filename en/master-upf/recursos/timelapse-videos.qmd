@@ -23,7 +23,7 @@ This tool allows you to create **Landsat satellite image timelapses** directly f
 1. Enter the name of your Google Earth Engine project in the **GEE Project** field
 2. Get your **access token** by running in the terminal: 
 ```bash
-python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"
+python3 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"
 ```
 3. Paste the token (starts with `ya29.`) in the **Access Token** field and click **Connect to Earth Engine**
 4. Draw a **rectangle** or **polygon** on the map to select the area
@@ -123,11 +123,51 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
         }
         .tl-slider-wrap span { font-size: 11px; color: #888; }
         .tl-slider-wrap input[type=range] { flex: 1; }
+        #tl-frame-scrubber { width: 100%; margin-top: 6px; }
+        #tl-frame-label { font-size: 12px; color: #666; text-align: center; margin-top: 2px; }
+
+        /* Dark mode support */
+        body.quarto-dark #tl-panel {
+            background: #1e1e2e;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        body.quarto-dark #tl-panel h3 { color: #cdd6f4; }
+        body.quarto-dark #tl-panel p { color: #a6adc8; }
+        body.quarto-dark .tl-label { color: #cdd6f4; }
+        body.quarto-dark .tl-select,
+        body.quarto-dark .tl-input {
+            background: #313244;
+            color: #cdd6f4;
+            border-color: #45475a;
+        }
+        body.quarto-dark #tl-status { color: #cdd6f4; }
+        body.quarto-dark #tl-coords { color: #6c7086; }
+        body.quarto-dark #tl-progress-bar { background: #45475a; }
+        body.quarto-dark #tl-example-code { background: #313244; color: #cdd6f4; }
+        body.quarto-dark #tl-frame-label { color: #a6adc8; }
+        body.quarto-dark .tl-slider-wrap span { color: #6c7086; }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            #tl-panel {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                max-width: 100% !important;
+                max-height: none !important;
+                border-radius: 0 0 8px 8px !important;
+                margin-top: 0;
+            }
+            #tl-map {
+                height: 50vh !important;
+                border-radius: 8px 8px 0 0 !important;
+            }
+        }
     </style>
 <div class="timelapse-container">
     <div id="tl-map"></div>
     <div id="tl-panel">
-        <h3>🎬 Landsat Timelapse</h3>
+        <h3>🎬 Landsat / Sentinel-2 Timelapse</h3>
 
         <div id="tl-auth-section">
             <p>Connect to Google Earth Engine to get started.</p>
@@ -144,7 +184,7 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
                     </button>
                 </div>
                 <p style="margin:6px 0 2px 0;">Run in your terminal:</p>
-                <code id="tl-example-code" style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
+                <code id="tl-example-code" style="display:block;background:#f5f5f5;padding:6px;border-radius:4px;font-size:11px;word-break:break-all;margin-bottom:4px;">python3 -c "import ee, google.auth.transport.requests; ee.Initialize(project='your-project-name'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)"</code>
                 <p style="margin:4px 0;font-size:11px;">Copy the token starting with <b>ya29.</b> and paste it above.</p>
             </details>
         </div>
@@ -152,13 +192,28 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
         <div id="tl-config-section" style="display:none;">
             <p>Draw a <b>rectangle</b> or <b>polygon</b> on the map.</p>
 
+            <label class="tl-label">Sensor:</label>
+            <select id="tl-sensor" class="tl-select" onchange="updateSensorInfo()">
+                <option value="landsat">Landsat (1984–present, 30m)</option>
+                <option value="sentinel2">Sentinel-2 (2017–present, 10m)</option>
+            </select>
+            <div id="tl-sensor-info" style="font-size:11px;color:#888;margin-top:2px;"></div>
+
             <label class="tl-label">Band combination:</label>
             <select id="tl-bands" class="tl-select">
-                <option value="Red,Green,Blue">Red/Green/Blue (True colour)</option>
-                <option value="NIR,Red,Green">NIR/Red/Green (False colour)</option>
-                <option value="SWIR2,SWIR1,NIR">SWIR2/SWIR1/NIR</option>
-                <option value="NIR,SWIR1,Red">NIR/SWIR1/Red</option>
-                <option value="SWIR2,NIR,Red">SWIR2/NIR/Red</option>
+                <optgroup label="RGB Bands">
+                    <option value="Red,Green,Blue">Red/Green/Blue (True colour)</option>
+                    <option value="NIR,Red,Green">NIR/Red/Green (False colour)</option>
+                    <option value="SWIR2,SWIR1,NIR">SWIR2/SWIR1/NIR</option>
+                    <option value="NIR,SWIR1,Red">NIR/SWIR1/Red</option>
+                    <option value="SWIR2,NIR,Red">SWIR2/NIR/Red</option>
+                </optgroup>
+                <optgroup label="Spectral Indices">
+                    <option value="idx:NDVI">🌿 NDVI (Vegetation)</option>
+                    <option value="idx:NDWI">💧 NDWI (Water)</option>
+                    <option value="idx:NBR">🔥 NBR (Burn Severity)</option>
+                    <option value="idx:NDBI">🏗️ NDBI (Built-up)</option>
+                </optgroup>
             </select>
 
             <label class="tl-label">Resolution:</label>
@@ -169,10 +224,18 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
                 <option value="768">768px (High)</option>
             </select>
 
+            <label class="tl-label">Composite method:</label>
+            <select id="tl-composite" class="tl-select">
+                <option value="median" selected>Median (recommended)</option>
+                <option value="mean">Mean</option>
+                <option value="min">Minimum</option>
+                <option value="max">Maximum</option>
+            </select>
+
             <label class="tl-label">Year range:</label>
             <div class="tl-year-range">
-                <input id="tl-start-year" type="number" value="1984" min="1984" max="2025" placeholder="Start">
-                <input id="tl-end-year" type="number" value="2024" min="1984" max="2025" placeholder="End">
+                <input id="tl-start-year" type="number" value="1984" min="1984" max="2030" placeholder="Start">
+                <input id="tl-end-year" type="number" value="2025" min="1984" max="2030" placeholder="End">
             </div>
 
             <label class="tl-label">Months (start - end):</label>
@@ -184,6 +247,7 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             <button id="tl-create-btn" class="tl-btn" onclick="createTimelapse()">🎬 Create Timelapse</button>
             <button id="tl-stop-btn" class="tl-btn" onclick="stopTimelapse()">⏹ Stop</button>
             <a id="tl-download-btn" class="tl-btn" href="#" style="display:none;">⬇ Download GIF</a>
+            <button id="tl-video-btn" class="tl-btn" onclick="exportAsVideo()" style="display:none;">🎥 Export video</button>
             <button id="tl-new-btn" class="tl-btn" onclick="resetTimelapse()">🔄 New Timelapse</button>
             <button id="tl-pause-btn" class="tl-btn" onclick="togglePlay()">⏸ Pause</button>
 
@@ -196,6 +260,9 @@ python3.13 -c "import ee, google.auth.transport.requests; ee.Initialize(project=
             <div id="tl-coords"></div>
 
             <div id="tl-playback-controls" style="display:none;">
+                <label class="tl-label">Frame:</label>
+                <input id="tl-frame-scrubber" type="range" min="0" max="0" value="0" oninput="scrubFrame(this.value)">
+                <div id="tl-frame-label"></div>
                 <label class="tl-label">Opacity:</label>
                 <div class="tl-slider-wrap">
                     <span>0%</span>
@@ -231,7 +298,7 @@ function updateProjectExample() {
     var project = document.getElementById('tl-project').value.trim() || 'your-project-name';
     var codeEl = document.getElementById('tl-example-code');
     if (codeEl) {
-        codeEl.innerText = "python3.13 -c \"import ee, google.auth.transport.requests; ee.Initialize(project='" + project + "'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)\"";
+        codeEl.innerText = "python3 -c \"import ee, google.auth.transport.requests; ee.Initialize(project='" + project + "'); c=ee.data.get_persistent_credentials(); c.refresh(google.auth.transport.requests.Request()); print(c.token)\"";
     }
 }
 
@@ -324,6 +391,20 @@ var BAND_MAP_L5 = {
     'Red': 'SR_B3', 'Green': 'SR_B2', 'Blue': 'SR_B1',
     'NIR': 'SR_B4', 'SWIR1': 'SR_B5', 'SWIR2': 'SR_B7'
 };
+var BAND_MAP_S2 = {
+    'Red': 'B4', 'Green': 'B3', 'Blue': 'B2',
+    'NIR': 'B8', 'SWIR1': 'B11', 'SWIR2': 'B12'
+};
+
+function updateSensorInfo() {
+    var sensor = document.getElementById('tl-sensor').value;
+    var info = document.getElementById('tl-sensor-info');
+    if (sensor === 'sentinel2') {
+        info.innerText = '🛰️ Sentinel-2: 10m resolution, available from 2017. Start year will be adjusted automatically.';
+    } else {
+        info.innerText = '';
+    }
+}
 
 // ============================================
 // MAP SETUP
@@ -504,6 +585,7 @@ function authenticateGEE() {
                     ee.initialize(null, null, function() {
                         clearTimeout(authTimeout);
                         eeReady = true;
+                        document.getElementById('tl-token').value = '';
                         document.getElementById('tl-auth-section').style.display = 'none';
                         document.getElementById('tl-config-section').style.display = 'block';
                         document.getElementById('tl-status').innerText = '✅ Connected to Earth Engine (project: ' + project + ')';
@@ -531,9 +613,19 @@ function authenticateGEE() {
 }
 
 // ============================================
+// COMPOSITE HELPER
+// ============================================
+function applyComposite(collection, method) {
+    if (method === 'mean') return collection.mean();
+    if (method === 'min') return collection.min();
+    if (method === 'max') return collection.max();
+    return collection.median();
+}
+
+// ============================================
 // LANDSAT COLLECTION
 // ============================================
-function getLandsatCollection(roi, year, startMonth, endMonth, bandNames) {
+function getLandsatCollection(roi, year, startMonth, endMonth, bandNames, compositeMethod) {
     var startDate = year+'-'+String(startMonth).padStart(2,'0')+'-01';
     var endDay = new Date(year, endMonth, 0).getDate();
     var endDate = year+'-'+String(endMonth).padStart(2,'0')+'-'+String(endDay).padStart(2,'0');
@@ -571,7 +663,49 @@ function getLandsatCollection(roi, year, startMonth, endMonth, bandNames) {
     if (!collections.length) return null;
     var merged = collections[0];
     for (var i=1; i<collections.length; i++) merged = merged.merge(collections[i]);
-    return merged.median();
+    return applyComposite(merged, compositeMethod);
+}
+
+// ============================================
+// SENTINEL-2 COLLECTION
+// ============================================
+function getSentinel2Collection(roi, year, startMonth, endMonth, bandNames, compositeMethod) {
+    var startDate = year+'-'+String(startMonth).padStart(2,'0')+'-01';
+    var endDay = new Date(year, endMonth, 0).getDate();
+    var endDate = year+'-'+String(endMonth).padStart(2,'0')+'-'+String(endDay).padStart(2,'0');
+
+    if (year < 2017) return null;
+
+    var srcBands = bandNames.map(function(b){ return BAND_MAP_S2[b]; });
+    var collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+        .filterBounds(roi).filterDate(startDate, endDate)
+        .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+        .map(function(img) {
+            var scl = img.select('SCL');
+            var mask = scl.neq(3).and(scl.neq(8)).and(scl.neq(9)).and(scl.neq(10));
+            return img.select(srcBands).divide(10000).rename(bandNames)
+                .updateMask(mask).clip(roi);
+        });
+
+    return applyComposite(collection, compositeMethod);
+}
+
+// ============================================
+// SPECTRAL INDEX COMPUTATION
+// ============================================
+var INDEX_CONFIG = {
+    'NDVI': { bands: ['NIR','Red'],        palette: ['#d73027','#f46d43','#fdae61','#fee08b','#d9ef8b','#a6d96a','#66bd63','#1a9850'] },
+    'NDWI': { bands: ['Green','NIR'],      palette: ['#ffffcc','#a1dab4','#41b6c4','#2c7fb8','#253494'] },
+    'NBR':  { bands: ['NIR','SWIR2'],      palette: ['#d73027','#fc8d59','#fee08b','#d9ef8b','#91cf60','#1a9850'] },
+    'NDBI': { bands: ['SWIR1','NIR'],      palette: ['#1a9850','#91cf60','#fee08b','#fc8d59','#d73027'] }
+};
+
+function computeIndex(composite, indexName) {
+    var cfg = INDEX_CONFIG[indexName];
+    if (!cfg) return null;
+    var b1 = composite.select(cfg.bands[0]);
+    var b2 = composite.select(cfg.bands[1]);
+    return b1.subtract(b2).divide(b1.add(b2)).rename(indexName);
 }
 
 // ============================================
@@ -585,12 +719,23 @@ function createTimelapse() {
     var endYear = parseInt(document.getElementById('tl-end-year').value);
     var startMonth = parseInt(document.getElementById('tl-start-month').value);
     var endMonth = parseInt(document.getElementById('tl-end-month').value);
-    var bandNames = document.getElementById('tl-bands').value.split(',');
+    var bandValue = document.getElementById('tl-bands').value;
+    var isIndex = bandValue.indexOf('idx:') === 0;
+    var indexName = isIndex ? bandValue.split(':')[1] : null;
+    var bandNames = isIndex ? ['NIR','Red','Green','SWIR1','SWIR2'] : bandValue.split(',');
     var resolution = parseInt(document.getElementById('tl-resolution').value);
+    var compositeMethod = document.getElementById('tl-composite').value;
 
     if (startYear > endYear) {
         document.getElementById('tl-status').innerText = '❌ Start year must be less than end year.';
         return;
+    }
+
+    var sensor = document.getElementById('tl-sensor').value;
+    if (sensor === 'sentinel2' && startYear < 2017) {
+        startYear = 2017;
+        document.getElementById('tl-start-year').value = 2017;
+        document.getElementById('tl-status').innerText = '⚠️ Sentinel-2 available from 2017. Start year adjusted.';
     }
 
     var coords = currentGeoJSON.coordinates;
@@ -622,11 +767,22 @@ function createTimelapse() {
         document.getElementById('tl-progress-fill').style.width = pct+'%';
         document.getElementById('tl-progress-text').innerText = 'Year '+year+' ('+(index+1)+'/'+total+')';
 
-        var composite = getLandsatCollection(roi, year, startMonth, endMonth, bandNames);
+        var composite = (sensor === 'sentinel2')
+            ? getSentinel2Collection(roi, year, startMonth, endMonth, bandNames, compositeMethod)
+            : getLandsatCollection(roi, year, startMonth, endMonth, bandNames, compositeMethod);
         if (!composite) { frames.push({year:year,url:null}); processYear(index+1); return; }
 
-        var visParams = {bands:bandNames, min:0, max:0.3, dimensions:resolution, region:roi, format:'png'};
-        composite.getThumbURL(visParams, function(url) {
+        // Compute index if in index mode
+        var visImage = composite;
+        var visParams;
+        if (isIndex && indexName) {
+            visImage = computeIndex(composite, indexName);
+            visParams = {bands:[indexName], min:-0.5, max:0.8, palette:INDEX_CONFIG[indexName].palette, dimensions:resolution, region:roi, format:'png'};
+            if (indexName === 'NDBI') { visParams.min = -0.3; visParams.max = 0.3; }
+        } else {
+            visParams = {bands:bandNames, min:0, max:0.3, dimensions:resolution, region:roi, format:'png'};
+        }
+        visImage.getThumbURL(visParams, function(url) {
             if (stopRequested) return;
             var img = new Image();
             img.crossOrigin = 'anonymous';
@@ -666,6 +822,7 @@ function finishTimelapse() {
     document.getElementById('tl-status').innerText = '✅ '+valid.length+' frames. Creating GIF...';
     document.getElementById('tl-stop-btn').style.display = 'none';
 
+    updateScrubberRange();
     frameIdx = 0; showFrame(0); startPlayer();
 
     document.getElementById('tl-pause-btn').style.display = 'block';
@@ -682,19 +839,75 @@ function finishTimelapse() {
     };
 
     try {
-        var gif = new GIF({workers:2, quality:10,
-            workerScript:'https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js'});
-        valid.forEach(function(f){ gif.addFrame(f.canvas, {delay:200}); });
-        gif.on('finished', function(blob) {
-            var url = URL.createObjectURL(blob);
-            var dlBtn = document.getElementById('tl-download-btn');
-            dlBtn.href = url; dlBtn.download = 'landsat-timelapse.gif'; dlBtn.style.display = 'block';
-            document.getElementById('tl-status').innerText = '✅ Timelapse ready! '+valid.length+' frames.';
+        fetch('https://cdn.jsdelivr.net/npm/gif.js@0.2.0/dist/gif.worker.js')
+        .then(function(r){ return r.blob(); })
+        .then(function(blob){
+            var workerUrl = URL.createObjectURL(blob);
+            var gif = new GIF({workers:2, quality:10, workerScript:workerUrl});
+            valid.forEach(function(f){ gif.addFrame(f.canvas, {delay:200}); });
+            gif.on('finished', function(gifBlob) {
+                URL.revokeObjectURL(workerUrl);
+                var url = URL.createObjectURL(gifBlob);
+                var dlBtn = document.getElementById('tl-download-btn');
+                dlBtn.href = url; dlBtn.download = 'landsat-timelapse.gif'; dlBtn.style.display = 'block';
+                document.getElementById('tl-video-btn').style.display = 'block';
+                document.getElementById('tl-status').innerText = '✅ Timelapse ready! '+valid.length+' frames.';
+            });
+            gif.render();
+        }).catch(function(err){
+            document.getElementById('tl-status').innerText = '✅ Animation ready ('+valid.length+' frames). GIF: '+err.message;
         });
-        gif.render();
     } catch(e) {
         document.getElementById('tl-status').innerText = '✅ Animation ready ('+valid.length+' frames). GIF: '+e.message;
     }
+}
+
+// ============================================
+// VIDEO EXPORT (WebM)
+// ============================================
+function exportAsVideo() {
+    var valid = frames.filter(function(f){ return f.url !== null; });
+    if (!valid.length) return;
+
+    var btn = document.getElementById('tl-video-btn');
+    btn.disabled = true; btn.innerText = '⏳ Generating video...';
+
+    var firstCanvas = valid[0].canvas;
+    var w = firstCanvas.width, h = firstCanvas.height;
+    var canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    var ctx = canvas.getContext('2d');
+
+    var stream = canvas.captureStream(0);
+    var mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
+        ? 'video/webm;codecs=vp9'
+        : 'video/webm';
+    var recorder = new MediaRecorder(stream, { mimeType: mimeType, videoBitsPerSecond: 2500000 });
+    var chunks = [];
+    recorder.ondataavailable = function(e) { if (e.data.size > 0) chunks.push(e.data); };
+    recorder.onstop = function() {
+        var blob = new Blob(chunks, { type: 'video/webm' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url; a.download = 'landsat-timelapse.webm';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        btn.disabled = false; btn.innerText = '🎥 Export video';
+    };
+
+    recorder.start();
+    var i = 0;
+    function drawNext() {
+        if (i >= valid.length) {
+            setTimeout(function() { recorder.stop(); }, 300);
+            return;
+        }
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(valid[i].canvas, 0, 0, w, h);
+        stream.getVideoTracks()[0].requestFrame();
+        i++;
+        setTimeout(drawNext, frameSpeed);
+    }
+    drawNext();
 }
 
 // ============================================
@@ -706,6 +919,23 @@ function showFrame(idx) {
     var op = document.getElementById('tl-opacity').value/100;
     if (frameOverlay) map.removeLayer(frameOverlay);
     frameOverlay = L.imageOverlay(valid[idx].url, gifBounds, {opacity:op}).addTo(map);
+    // Update scrubber position and label
+    var scrubber = document.getElementById('tl-frame-scrubber');
+    var label = document.getElementById('tl-frame-label');
+    if (scrubber) scrubber.value = idx;
+    if (label && valid[idx]) label.innerText = '📅 ' + valid[idx].year;
+}
+function updateScrubberRange() {
+    var valid = frames.filter(function(f){return f.url!==null;});
+    var scrubber = document.getElementById('tl-frame-scrubber');
+    if (scrubber) { scrubber.max = Math.max(0, valid.length - 1); scrubber.value = 0; }
+}
+function scrubFrame(val) {
+    var idx = parseInt(val);
+    stopPlayer();
+    document.getElementById('tl-pause-btn').innerText = '▶ Play';
+    frameIdx = idx;
+    showFrame(idx);
 }
 function startPlayer() {
     stopPlayer(); isPlaying = true;
@@ -737,6 +967,7 @@ function resetTimelapse() {
     });
     document.getElementById('tl-status').innerText = '';
     document.getElementById('tl-coords').innerText = '';
+    document.getElementById('tl-frame-label').innerText = '';
 }
 function clearAll() { resetTimelapse(); }
 </script>
