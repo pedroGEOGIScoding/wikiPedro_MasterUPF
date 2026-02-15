@@ -382,23 +382,54 @@ function authenticateGEE() {
         document.getElementById('tl-status').innerText = '❌ Paste your access token.';
         return;
     }
+    if (!project) {
+        document.getElementById('tl-status').innerText = '❌ Enter your GEE project ID.';
+        return;
+    }
     var btn = document.getElementById('tl-auth-btn');
     btn.disabled = true;
     btn.innerText = '⏳ Loading API...';
+    document.getElementById('tl-status').innerText = '⏳ Loading Earth Engine API...';
+
+    var authTimeout = setTimeout(function() {
+        btn.disabled = false; btn.innerText = '🔐 Connect to Earth Engine';
+        document.getElementById('tl-status').innerText = '❌ Timed out. Check your token and project. Open browser console (F12) for details.';
+    }, 30000);
 
     loadEEApi(function() {
         btn.innerText = '⏳ Connecting...';
-        ee.data.setAuthToken('', 'Bearer', token, 3600, [], function() {
-            ee.initialize(null, null, function() {
-                eeReady = true;
-                document.getElementById('tl-auth-section').style.display = 'none';
-                document.getElementById('tl-config-section').style.display = 'block';
-                document.getElementById('tl-status').innerText = '✅ Connected to Earth Engine (project: ' + project + ')';
-            }, function(err) {
-                btn.disabled = false; btn.innerText = '🔐 Connect to Earth Engine';
-                document.getElementById('tl-status').innerText = '❌ Initialization error: ' + err;
-            }, null, project);
-        }, false);
+        document.getElementById('tl-status').innerText = '⏳ API loaded. Authenticating...';
+        console.log('[Timelapse] EE API loaded, setting auth token...');
+        try {
+            ee.data.setAuthToken('', 'Bearer', token, 3600, [], function() {
+                console.log('[Timelapse] Auth token set, initializing with project:', project);
+                try {
+                    ee.initialize(null, null, function() {
+                        clearTimeout(authTimeout);
+                        eeReady = true;
+                        document.getElementById('tl-auth-section').style.display = 'none';
+                        document.getElementById('tl-config-section').style.display = 'block';
+                        document.getElementById('tl-status').innerText = '✅ Connected to Earth Engine (project: ' + project + ')';
+                        console.log('[Timelapse] Successfully connected!');
+                    }, function(err) {
+                        clearTimeout(authTimeout);
+                        btn.disabled = false; btn.innerText = '🔐 Connect to Earth Engine';
+                        document.getElementById('tl-status').innerText = '❌ Initialization error: ' + err;
+                        console.error('[Timelapse] Initialize error:', err);
+                    }, null, project);
+                } catch(e2) {
+                    clearTimeout(authTimeout);
+                    btn.disabled = false; btn.innerText = '🔐 Connect to Earth Engine';
+                    document.getElementById('tl-status').innerText = '❌ Error in ee.initialize: ' + e2.message;
+                    console.error('[Timelapse] ee.initialize exception:', e2);
+                }
+            }, false);
+        } catch(e) {
+            clearTimeout(authTimeout);
+            btn.disabled = false; btn.innerText = '🔐 Connect to Earth Engine';
+            document.getElementById('tl-status').innerText = '❌ Error in setAuthToken: ' + e.message;
+            console.error('[Timelapse] setAuthToken exception:', e);
+        }
     });
 }
 
