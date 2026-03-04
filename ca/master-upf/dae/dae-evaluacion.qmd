@@ -24,6 +24,25 @@ format: html
 
 ![Infografia generada amb NotebookLM a partir del material didàctic de les sessions](/images/dae/infografia-evaluar.png){fig-align="center"}
 
+::: {.column-margin}
+**Documentació de suport**
+
+[Avaluar per aprendre](/files/dae-docs/avaluar_per_aprendre.pdf){target="_blank"}
+
+[Avaluar-aprendre](/files/dae-docs/avaluar-aprendre.pdf){target="_blank"}
+
+[Instruments d'avaluació diagnòstica](/files/dae-docs/Instruments_Avaluacio_diagnostica.pdf){target="_blank"}
+
+[La carpeta d'aprenentatge](/files/dae-docs/La-carpeta-daprenentatge.pdf){target="_blank"}
+
+[Generar un clima de confiança](/files/dae-docs/PSM_Generar-un-clima-de-confianca_actualitzat-marc-2023.pdf){target="_blank"}
+
+[Gestió de grups cooperatius](/files/dae-docs/PSM_Gestio-de-grups-cooperatius_actualitzat-marc-2023.pdf){target="_blank"}
+
+[Interacció docent-alumne](/files/dae-docs/PSM_Interaccio-docent-alumne_Actualitzat-marc-2023.pdf){target="_blank"}
+
+:::
+
 ## Material de totes les sessions
 
 ::: callout-tip

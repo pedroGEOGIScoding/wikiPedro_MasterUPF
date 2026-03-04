@@ -24,6 +24,25 @@ format: html
 
 ![Infographic generated with NotebookLM from the didactic material of the sessions](/images/dae/ingografia-evaluar-en.png){fig-align="center"}
 
+::: {.column-margin}
+**Supporting documentation**
+
+[Assesment for learning](/files/dae-docs/avaluar_per_aprendre.pdf){target="_blank"}
+
+[Assesment-learning](/files/dae-docs/avaluar-aprendre.pdf){target="_blank"}
+
+[Instruments for diagnostic assesment](/files/dae-docs/Instruments_Avaluacio_diagnostica.pdf){target="_blank"}
+
+[The learning folder](/files/dae-docs/La-carpeta-daprenentatge.pdf){target="_blank"}
+
+[Generate a climate of trust](/files/dae-docs/PSM_Generar-un-clima-de-confianca_actualitzat-marc-2023.pdf){target="_blank"}
+
+[Management of cooperative groups](/files/dae-docs/PSM_Gestio-de-grups-cooperatius_actualitzat-marc-2023.pdf){target="_blank"}
+
+[Teacher-student interaction](/files/dae-docs/PSM_Interaccio-docent-alumne_Actualitzat-marc-2023.pdf){target="_blank"}
+
+:::
+
 ## All session materials
 
 ::: callout-tip

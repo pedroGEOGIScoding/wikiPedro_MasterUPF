@@ -45,6 +45,10 @@ format: html
 
 <embed src="/files/dae-docs/Sesion4-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
 
+## Sesión 5
+
+<embed src="/files/dae-docs/Sesion5_Gestion del Aula_Motivacion.pdf" type="application/pdf" width="100%" height="800px"/>
+
 ## Rúbrica del trabajo final
 
 <embed src="/files/dae-docs/SesionRubrica-gestion-aula.pdf" type="application/pdf" width="100%" height="800px"/>
