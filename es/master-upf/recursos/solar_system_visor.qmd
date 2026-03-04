@@ -1,0 +1,20 @@
+---
+title: "Visor del Sistema Solar"
+subtitle: "Visor del sistema solar interactivo como recurso educativo embebido de https://www.solarsystemscope.com/"
+filename: solar_system_visor
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Herramienta interactiva para visializar el sistema solar y via Lactea por "Solar System Scope"
+categories: [sistema solar, visualización, recurso]
+toc: true
+number-sections: true
+highlight-style: pygments
+format: html
+---
+
+# Navega por el sistema solar
+
+<div style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+<iframe src="https://www.solarsystemscope.com/iframe" width="100%" height="600" style="min-height: 600px; border: 2px solid #0f5c6e; display: block;"></iframe>
+</div>
