@@ -50,6 +50,29 @@ AI that creates automatic presentations from text makes it easy to quickly gener
 
 ---
 
+**Mathew.ai**
+
+[https://mathew.ai/ia-para-docentes](https://mathew.ai/ia-para-docentes){target="_blank"}
+AI platform for teachers that helps create, evaluate and accompany students with intelligent educational tools.
+
+---
+
+## 🧪 Chemistry
+
+**Compound Interest**
+
+[https://www.compoundchem.com/](https://www.compoundchem.com/){target="_blank"}
+Educational infographics about chemistry, elements and chemical reactions for didactic visualization.
+
+---
+
+**Periodic Table - Element Origins**
+
+[https://madler.net/madler/element_origins.html](https://madler.net/madler/element_origins.html){target="_blank"}
+Interactive periodic table showing the origin of each chemical element in the universe.
+
+---
+
 ## 🔬 Natural Sciences - Simulators and Virtual Laboratories
 
 **PhET Interactive Simulations**
@@ -79,10 +102,31 @@ Guide to open virtual laboratories and simulations, useful for STEM teaching.
 
 ---
 
+**GEAS Project - Astronomy Labs**
+
+[http://astronomy.nmsu.edu/geas/labs/html/home.shtml](http://astronomy.nmsu.edu/geas/labs/html/home.shtml){target="_blank"}
+Virtual astronomy and space science laboratories for secondary and university education.
+
+---
+
+**Exploratorium Teaching Resources**
+
+[https://www.exploratorium.edu/education/teaching-resources](https://www.exploratorium.edu/education/teaching-resources){target="_blank"}
+Teaching resources and hands-on science activities from the San Francisco Exploratorium.
+
+---
+
 **Climate Change Simulator**
 
 [https://www.climateinteractive.org/world-climate-simulation-spanish/](https://www.climateinteractive.org/world-climate-simulation-spanish/){target="_blank"}
 World Climate Simulation is an in-person role-playing game about the UN climate change negotiations. Through the simulation, participants explore the speed and work required by nations to address global climate change.
+
+---
+
+**C-ROADS Climate Simulator**
+
+[https://c-roads.climateinteractive.org/scenario.html](https://c-roads.climateinteractive.org/scenario.html){target="_blank"}
+Interactive simulator that allows exploring different climate policy scenarios and their impact on global warming.
 
 ---
 
@@ -118,6 +162,20 @@ Portal where students and teachers can ask biology questions from experts, with 
 
 [http://biomolecules.cat/](http://biomolecules.cat/){target="_blank"}
 Scientific and informative resources on biomolecules and molecular biology for teaching and dissemination.
+
+---
+
+**Anatomy Learning**
+
+[https://anatomylearning.com/](https://anatomylearning.com/){target="_blank"}
+Educational platform with interactive 3D models of human anatomy for visual and detailed learning.
+
+---
+
+**PAU Biology Questions - UB**
+
+[https://web.ub.edu/ca/web/pau-biologia/preguntes-per-mat%C3%A8ries](https://web.ub.edu/ca/web/pau-biologia/preguntes-per-mat%C3%A8ries){target="_blank"}
+Collection of Biology university entrance exam questions organized by topics, University of Barcelona.
 
 ---
 
@@ -162,6 +220,34 @@ Digital repository to consult historical aerial photos of Spain, useful in geogr
 
 [UNED Cartography geology interactive](https://www.intecca.uned.es/difusiongiccu/grado/curso_cartografia/index.html){target="_blank"}  
 Portal with educational resources to teach cartography geology, with simulations and interactive exercises.
+
+---
+
+**Geology Infographics - MichMin**
+
+[https://www.michmin.org/appraising-gemstones](https://www.michmin.org/appraising-gemstones){target="_blank"}
+Educational infographics about geology, mineralogy and gemology for didactic visualization.
+
+---
+
+**IPCC Interactive Atlas**
+
+[https://interactive-atlas.ipcc.ch/regional-information](https://interactive-atlas.ipcc.ch/regional-information){target="_blank"}
+IPCC interactive atlas with regional climate data and climate change projections.
+
+---
+
+**Google Earth Timelapse**
+
+[https://earthengine.google.com/timelapse/](https://earthengine.google.com/timelapse/){target="_blank"}
+Time visualization of changes on Earth's surface from 1984 to present using satellite imagery.
+
+---
+
+**Google Earth**
+
+[https://earth.google.com/web/](https://earth.google.com/web/){target="_blank"}
+3D geographic explorer to visualize the planet, geological, historical and environmental layers.
 
 ---
 
@@ -245,6 +331,13 @@ International project on inquiry and laboratory in mathematics and science using
 
 [https://www.ub.edu/labinquiry/categoria/secundaria/](https://www.ub.edu/labinquiry/categoria/secundaria/){target="_blank"}
 Activities and didactic inquiry proposals for secondary school, in collaboration with the UB.
+
+---
+
+**ABPxODS**
+
+[https://abpxods.cat/](https://abpxods.cat/){target="_blank"}
+Project-Based Learning resources and projects linked to Sustainable Development Goals.
 
 ---
 
@@ -349,6 +442,27 @@ Portal of resources and innovative educational proposals of the CESIRE.
 
 [https://apliense.xtec.cat/arc/](https://apliense.xtec.cat/arc/){target="_blank"}
 Portal of resources and active applications for learning, linked to CESIRE-XTEC.
+
+---
+
+**How to create a learning situation - XTEC**
+
+[https://sites.google.com/xtec.cat/situaciodaprenentatge/p%C3%A0gina-principal](https://sites.google.com/xtec.cat/situaciodaprenentatge/p%C3%A0gina-principal){target="_blank"}
+Practical guide to design competency-based learning situations according to the new curriculum.
+
+---
+
+**ESO Curriculum Map Model - Google Sheets**
+
+[https://docs.google.com/spreadsheets/d/1FnYdN_mghdwl2od9JFKn7Oda0-tjZhhAfLhvlL42mW4/template/preview](https://docs.google.com/spreadsheets/d/1FnYdN_mghdwl2od9JFKn7Oda0-tjZhhAfLhvlL42mW4/template/preview){target="_blank"}
+Google Sheets template to organize the ESO curriculum map with competencies and knowledge.
+
+---
+
+**SPCN - Permanent Seminar of Natural Sciences**
+
+[https://spcn.cat/](https://spcn.cat/){target="_blank"}
+Permanent seminar for natural science teachers in Catalonia with resources and continuous training.
 
 ---
 
@@ -514,6 +628,22 @@ Resources on school libraries and youth literature.
 
 [https://www.educat.cat/blog/](https://www.educat.cat/blog/){target="_blank"}
 Resources on psicopedagogy and education.
+
+---
+
+## 🌐 Web Technology and Accessibility
+
+**WAVE AIM Score**
+
+[https://wave.webaim.org/aimscore](https://wave.webaim.org/aimscore){target="_blank"}
+Tool to evaluate web accessibility and generate WCAG standards compliance reports.
+
+---
+
+**Open Data Services API - CKAN and SOCRATA**
+
+[https://gss-mtig.github.io/gss-mtig-19-20/2_conceptos_y_servicios_open_data/](https://gss-mtig.github.io/gss-mtig-19-20/2_conceptos_y_servicios_open_data/){target="_blank"}
+Guide on open data services APIs (CKAN and SOCRATA) for geoservices and smart cities.
 
 ---
 
