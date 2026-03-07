@@ -54,56 +54,163 @@ Lo que sí que le dije cuando estuvimos hablando de las situaciones de aprendiza
 
 Como guinda del pastel al final de las tres semanas fue que los alumnos de 2 de bachillerato se despidieron muy efusivamente y me preguntaron por que me iba tan temprano. Tengo que reconocer que me sorprendió que me preguntaran por que me iba tan temprano, ya que no me lo esperaba y la verdad es que me gustó mucho.
 
-# Mi diario de indagación en el prácticum - Parte 1
+# Mi diario de indagación en el prácticum
 
-[(incluye feedback de Jordi Soler 18-01-2026)]{style="background-color: lightskyblue; color: black; font-size: 16px;"}
+## Mi diario de indagación en el prácticum - Parte 1
 
-Para comenzar o abrir mi diario de indagación, es necesario ligarlo con mi relato de la fase de observación del practicum para ir definiendo el problema a investigar. Dentro de estas aulas tranquilas, como he comentado en mi relato, lo que más me ha llamado la atención durante esta fase de observación ha sido esa **inmiscibilidad entre sexos** ya que los alumnos siempre eligen libremente los grupos de trabajo. Trabajar en revertir esta dinámica de segregación será mi área de interés en la que quiero focalizarme durante la fase de intervención.
+La investigación educativa comienza identificando un área de interés. De entrada puede ser amplia, pero es importante focalizar la observación. Una vez identificada, se pueden plantear preguntas concretas y hacer las primeras hipótesis intuitivas.
 
-Me parece muy importante porque, en mi opinión, si se pudiera revertir este comportamiento de los alumnos, ya que los **efectos de mejora** repercutirían en múltiples dimensiones: el ambiente del aula, la cohesión del grupo, el intercambio de ideas nuevas y diferentes entre ellos y, en definitiva, un **mayor rendimiento académico** y mejora cognitiva al **exponer a los alumnos a perspectivas diversas más allá de su círculo habitual de amigos**. Estos resultados o efectos de mejora potenciales que espero observar me parecen suficientemente relevantes como para implementar medidas correctoras que permitan evaluar si se puede mejorar el rendimiento académico de los trabajos en grupo, **incrementar la cohesión del grupo** independientemente del sexo y, en consecuencia, promover una **mejora académica general**. Así pues, el planteamiento de mi hipótesis es que romper la dinámica actual de agrupamiento por sexos en los trabajos en grupo será beneficioso para los alumnos en varios aspectos: cognitivo, humano y de rendimiento académico.
+### Focalizando la observación {#focalizando-observacion}
 
-Por tanto, después de identificar este problema tanto en 4º de ESO como en los dos grupos de bachillerato mediante mis tres semanas de observación, las preguntas más concretas en las que me gustaría trabajar se centran en cómo intervenir a escala micro o individualizada en la elaboración de los grupos de trabajo.
+Para iniciar el proceso de indagación, las preguntas básicas de partida han sido:
 
-La solución a esta situación tiene una primera vía clara: la intervención directa en la **elaboración de grupos multinivel creando grupos heterogéneos** basándome en la variable que quiero trabajar, ***el sexo del alumno***, y una segunda variable para equilibrar esos grupos heterogéneos sera , ***el rendimiento cognitivo individual de cada alumno***. Para esta segunda variable, necesitaré la colaboración de Carlos, ya que conoce bien a los alumnos, para equilibrar cognitivamente los grupos. De esta manera se pretende mejorar el proceso de enseñanza y aprendizaje con una mejora de la práctica docente a través de la implementación de grupos heterogéneos multinivel (Collicot, 1991; Tomlinson, 2008). Esta estrategia se fundamenta en la integración de la transposición didáctica de Chevallard (1985, 1991) y la educación multinivel de Collicot (1991): al crear grupos diversos cognitivamente, se genera un escenario donde el mismo contenido científico debe ser apropiado y explicado desde múltiples niveles de comprensión dentro del grupo, enriqueciendo el aprendizaje colectivo. Cada alumno, desde su zona de desarrollo próximo (Vygotsky, 1978), contribuye con una transposición diferenciada del conocimiento, exponiendo a sus compañeros a formas diversas de construcción del saber. Así, la heterogeneidad cognitiva del grupo no es un obstáculo, sino el motor de una transposición didáctica multinivel donde la interacción entre sexos y entre niveles de rendimiento genera múltiples mediaciones que, en conjunto, potencian tanto la cohesión social como el desarrollo cognitivo de todos los miembros del grupo (Johnson & Johnson, 1999; Slavin, 1995).
+- ¿Qué pasa con tus estudiantes?
+- ¿Cómo lo puedes saber?
+- ¿Por qué es importante?
 
-Mi [**pregunta de investigación**]{style="background-color: lightskyblue; color: black;"} que guiará mi investigación es: **¿El tipo de agrupamiento del alumnado (heterogéneo por género y habilidades cognitivas versus agrupamiento libre) influye en su aprendizaje, cohesión grupal y motivación?**.
+#### Describe el problema con el que quieres profundizar {#describe-problema}
 
-Por otro lado, mi [**hipótesis**]{style="background-color: lightskyblue; color: black;"} es que un agrupamiento heterogéneo en cuanto a género y habilidades cognitivas mejorará significativamente el aprendizaje de todo el alumnado, la cohesión del grupo-clase y la motivación académica, en comparación con la situación inicial de agrupamiento libre. Esta hipótesis se fundamenta en la observación de que la segregación por sexos actual limita la exposición a perspectivas diversas y la riqueza cognitiva de los intercambios.
+La razón por la cual me interesa este tema es básicamente porque creo que la **pseudociencia** es actualmente una de las mayores barreras para que la ciencia avance en los alumnos y en la sociedad. Por muchas clases de ciencias que se ofrezcan en los colegios, si la variable de la pseudociencia no se trabaja de una manera principal, consciente y diaria como uno de los mayores enemigos de la ciencia en sí misma, las clases de ciencia no harán su trabajo: educar científicamente a nuestra sociedad y convertir a los ciudadanos en personas científicamente competentes. Y no solo eso, aún más importante es sacarlos o que no entren en las cuevas oscuras que suponen estas ideas pseudocientíficas, que anulan la razón, que no es sino la libertad del saber.
 
-Para contrastar esta hipótesis, analizaré tres variables:
+El otro motivo por el cual he decidido elegir el tema de la pseudociencia para mi TFM es la temática de mis situaciones de aprendizaje: **ODS 13 (cambio climático)** para 2º de bachillerato y **el origen del universo, la vida y la astrobiología** para 4º de ESO. Ambos temas, sumados a las edades de los alumnos, son el caldo de cultivo perfecto para que se perpetúen fábulas, falacias, teorías conspirativas y pseudociencia en general.
 
-- Rendimiento académico: calidad de los trabajos en grupo y aprendizaje cognitivo de los contenidos trabajados
-- Cohesión grupal: grado de integración y colaboración entre alumnos independientemente del sexo
-- Motivación académica: nivel de interés e implicación de los alumnos en las tareas grupales
+Si no se identifican y trabajan estas creencias pseudocientíficas antes y durante las situaciones de aprendizaje, pueden actuar como **barreras cognitivas** que impiden que el alumnado construya conocimiento científico sólido, aplique el método científico correctamente y desarrolle pensamiento crítico ante la información.
 
-Falta desarrollar, asunto que trabajaré con mi mentor de prácticas, cómo se categorizará el rendimiento académico de cada alumno y cómo se balanceará la carga cognitiva del grupo para que todos los grupos de trabajo estén lo más equilibrados posible. También deberé diseñar instrumentos de medida específicos para evaluar cada una de las tres variables dependientes identificadas, tanto en el momento inicial (pretest) como tras la implementación de la intervención (postest). Finalmente, para el control para evaluar la efectividad de las medidas propuestas se ha descartado el crear un grupo de control, es decir un grupo de alumnos amigos y dejarlos agruparse a su libre albedrío, pero esto supondría una intervención éticamente cuestionable. Creo que sería visto por el resto de clase como algo negativo y como un trato de favor sin entender la variable de control de la hipótesis. Así que el control será comparar con los rendimientos anteriores de los alumnos y ver si hay una mejora, aparte de la entrevista individuales y cuestionarios al principio, medio y final de la actividad.
+#### Buscando lo que se esconde detrás {#buscando-detras}
 
-Para acabar y mirando de cara al trabajo final de Master, mi propuesta de título del TFM sería algo así: **Grupos heterogéneos para una transposición multinivel en el aula de ciencias: ¿una estrategia para mejorar la motivación y el rendimiento académico?**. La estrategia de triangulación para corroborar datos y resultados estaría basada en la comparación con datos anteriores (principalmente rendimiento académico) proporcionados por el mentor, cuestionarios y entrevistas personales que se realizaran al final de cada situación de aprendizaje. Los datos por recoger serán los siguientes:
+Los aspectos clave que he identificado como motor del problema son tres:
 
-- Cómo se sienten trabajando con quienes no son sus amigos
-- Si sienten que aprenden más
-- Rendimiento académico
+**Primero**, el contexto social actual es el perfecto caldo de cultivo donde los adolescentes están constantemente expuestos a ideas pseudocientíficas a través de redes sociales y creadores de contenido que promueven ideas como la astrología predictiva, teorías conspirativas sobre el clima, negacionismo científico, curas "naturales" o falsas correlaciones entre acontecimientos científicos y creencias personales.
 
-Se utilizarán los siguientes instrumentos:
+**Segundo**, los alumnos tienen una comprensión inadecuada de qué es la ciencia. Creen que las teorías científicas son "solo hipótesis sin demostrar", que la ciencia no se puede equivocar, o que si hay debate científico es que nadie sabe nada. Esta imagen distorsionada de la ciencia representa un obstáculo epistemológico que bloquea la incorporación de nuevo conocimiento.
 
-- Material multinivel
-- Autoevaluaciones
-- Coevaluaciones
-- Entrevistas
-- Cuestionarios
+**Tercero**, el mecanismo más documentado detrás de las creencias pseudocientíficas es lo que se llama **"la ilusión causal"**: la tendencia del cerebro a percibir relaciones de causa-efecto donde solo hay coincidencia. Así, por ejemplo, un alumno que cree en el horóscopo no lo hace por irracionalidad sino porque su cerebro hace lo que hace siempre —buscar patrones— pero sin las herramientas para distinguir correlación de causalidad.
 
-Y los datos recogidos de 2º de Bachillerato se comparan con los datos de la situación de aprendizaje de 4º de ESO. En definitiva, ¿qué es lo que pienso que marcará la diferencia respecto a la situación anterior? Que haciendo valida mi hipótesis, la elaboración forzada de grupos heterogéneos multinivel construidos bajo dos variables: sexo y rendimiento académico mejorara el rendimiento academico, cohesion del aula y motivación academica.
+#### Preguntas de indagación {#preguntas-indagacion}
 
+Las preguntas que guiarán mi investigación son:
 
-## Referencias bibliográficas del diario de indagación
+> **Pregunta principal:** ¿El tipo de agrupación de estudiantes (heterogéneo por género y capacidades cognitivas, en comparación con la agrupación libre que rompe las burbujas de afinidad en el aula) es una herramienta útil en la aceptación de ideas pseudocientíficas entre el diagnóstico inicial y el final de las situaciones de aprendizaje?
 
-- Vygotsky, L. S. (1978). Mind in society: The development of higher psychological processes. Cambridge, MA: Harvard University Press. (Obra original publicada en 1934).
-- Chevallard, Y. (1985). La transposition didactique. Du savoir savant au savoir enseigné. Grenoble: La Pensée Sauvage.
-- Chevallard, Y. (1991). La transposición didáctica: del saber sabio al saber enseñado. Buenos Aires: Aique.
-- Collicot, J. (1991). Implementing multi-level instruction: Strategies for classroom teachers. In G. Porter & D. Richler (Eds.), Changing Canadian schools: Perspectives on disability and inclusion (pp. 191-218). Toronto: Roeher Institute.
-- Johnson, D. W., & Johnson, R. T. (1999). Learning together and alone: Cooperative, competitive, and individualistic learning (5th ed.). Boston: Allyn & Bacon.
-- Slavin, R. E. (1995). Cooperative learning: Theory, research, and practice (2nd ed.). Boston: Allyn & Bacon.
-- Tomlinson, C. A. (2008). El aula diversificada: dar respuesta a las necesidades de todos los estudiantes. Barcelona: Octaedro.
+Como segunda derivada se podrá valorar:
+
+- ¿Hay sesgo por sexo o edad en la prevalencia de creencias pseudocientíficas?
+
+Y en forma abreviada:
+
+> **¿Los grupos heterogéneos son una herramienta útil para revertir las ideas previas pseudocientíficas?**
+
+#### Formulando hipótesis {#formulando-hipotesis}
+
+Más que una única solución, creo que el problema se debe abordar desde una perspectiva poliédrica. La **hipótesis principal** es que la creación de grupos heterogéneos (con criterios de género y capacidad cognitiva) para romper los grupos homofílicos donde las creencias no se cuestionan porque todo el mundo piensa igual permitirá generar un conflicto psico-cognitivo productivo que facilite la revisión de creencias pseudocientíficas.
+
+Complementariamente, las **actividades de autoaprendizaje e indagación de máxima autonomía** (franjas de calentamiento generadas por ellos mismos, comparación temporal con imágenes de satélite, espectroscopia) tienen potencial para confrontar o revertir creencias pseudocientíficas de manera más efectiva que las clases magistrales tradicionales, ya que ponen al alumno en contacto directo con evidencias científicas manipulables.
+
+---
+
+## Mi diario de indagación en el prácticum - Parte 2 - Diseño del plan de acción {#diario-indagacion-2}
+
+### Fundamentando el problema a investigar {#fundamentando-problema}
+
+#### Revisión de la bibliografía {#revision-bibliografia}
+
+Estudios recientes sobre redes sociales y pensamiento crítico (Del Moral-Pérez et al., 2026) muestran que los algoritmos de TikTok e Instagram **amplifican el contenido emocionalmente activador**, que coincide a menudo con pseudociencia y generan cámaras de eco donde las creencias erróneas se refuerzan sin exposición a contraargumentos.
+
+El estudio de Quevedo, González y Fernández (2019) sobre pensamiento pseudocientífico en ESO encontró que los alumnos con mayor exposición a redes sociales muestran **más aceptación de ideas pseudocientíficas**, y que hay diferencias de género significativas. Por ello propongo integrar cinco documentos de validación de fuentes (lectura crítica, tabla de fuentes, sesgos cognitivos, andamiaje semántico, guía de investigación) en las sesiones 6-9 de la SA de 2º de bachillerato.
+
+Ibáñez, Romero y Jiménez (2019) analizaron cómo los **libros de texto de secundaria presentan una imagen distorsionada de la ciencia**, como estática, dogmática y sin incertidumbre, lo cual contribuye a que los alumnos no comprendan qué es una teoría científica o cómo funcionan las pruebas científicas. Estas imágenes distorsionadas representan obstáculos epistemológicos que bloquean la incorporación de nuevo conocimiento.
+
+##### Bibliografía {#bibliografia}
+
+- Del Moral-Pérez, M. E., Castañeda-Fernández, J., López-Bouzas, N., & Bellver-Moreno, M. C. (2026). Verdad o ficción: certeza e incertidumbre de universitarios al discriminar noticias científicas. *Enseñanza de las Ciencias, 44*(1), 5–24.
+- Ibáñez-Ibáñez, M. M., Romero-López, M. C., & Jiménez-Tejada, M. P. (2019). ¿Qué ciencia se presenta en los libros de texto de Educación Secundaria? *Enseñanza de las Ciencias, 37*(3), 49–71. <https://doi.org/10.5565/rev/ensciencias.2668>
+- Quevedo-Ortiz, G., González-García, F., & Fernández-Ferrer, G. (2019). Un estudio sobre pensamiento pseudocientífico en estudiantes de educación secundaria. *Didáctica de las Ciencias Experimentales y Sociales, 37*, 147–164. <https://doi.org/10.7203/dces.37.15339>
+
+#### Definiendo la pregunta de indagación {#definiendo-pregunta-indagacion}
+
+Después de revisar la literatura y reflexionar sobre el problema, la **pregunta de indagación definitiva** que guiará mi investigación es:
+
+> *¿En qué medida el trabajo en grupos heterogéneos (diseñados con criterios de género, capacidad cognitiva y ruptura de endogrupos de afinidad) facilita la identificación y revisión de creencias pseudocientíficas en alumnos de 4º de ESO (origen del universo) y 2º de bachillerato (cambio climático), en comparación con los patrones de interacción en los grupos homofílicos espontáneos?*
+
+### Definiendo el plan de acción {#definiendo-plan-accion}
+
+#### Descripción de la intervención diseñada {#descripcion-intervencion}
+
+Mi intervención s'implementarà simultàniament en les dues situacions d'aprenentatge del pràcticum: **"Som pols d'estrelles"** (4t d'ESO, 9 sessions) i **"El Mediterrani el 2100: Paradís perdut?"** (2n de batxillerat, 10 sessions).
+
+S'estructura en dues fases complementàries. La **primera fase, de diagnòstic**, es durà a terme a la sessió 1 de cada SA i inclou l'aplicació d'un qüestionari anònim pre-intervenció (15–20 min) sobre creences pseudocientífiques específiques de cada grup: negacionisme del Big Bang, terraplanisme, geocentrisme i astrologia (4t d'ESO); negacionisme climàtic i teories conspiratives (2n de batxillerat). En paral·lel, es dissenyaran els **grups heterogenis fixos** de 4 alumnes formats per criteris explícits de gènere i capacitat cognitiva.
+
+La **segona fase, d'implementació**, consisteix en activitats d'indagació ja integrades a les SA que actuen com a generadors de conflicte psociocognitiu dins dels grups heterogenis: espectroscòpia i anàlisi de la Radiació Còsmica de Fons (4t d'ESO), i l'exercici *"descobreix per tu mateix el canvi climàtic"* amb dades científiques reals —imatges de satèl·lit, fonts científiques primàries— (2n de batxillerat).
+
+Per avaluar el **canvi conceptual**, es combina la comparació de les produccions grupals amb el qüestionari post-intervenció i una reflexió metacognitiva individual a la sessió final, on cada alumne obre el sobre amb la seva quartilla inicial i contrasta el seu pensament d'aleshores amb el d'ara. Al final, entrevistes personals a un membre de cada grup permetran contrastar l'acollida i funcionament dels grups heterogenis.
+
+#### Disseny de nova planta o readaptació? {#disseny-o-readaptació}
+
+És una **readaptació de les dues situacions d'aprenentatge** que ja tinc programades. El nucli de les dues SA (continguts, objectius, activitats d'indagació) ja existia, però hi he afegit els elements nous específics per a la recerca del TFM:
+
+- **Formació estratègica de grups heterogenis** basant-me en sexe i capacitats cognitives per trencar els tradicionals endogrups.
+- **Dos qüestionaris específics** sobre pseudociència, aplicats pre i post SA, amb preguntes de control (mateixa pregunta, diferent redacció) i preguntes sobre ús de xarxes socials.
+- **Un qüestionari addicional** sobre la percepció de treballar en grups heterogenis, aplicat dues sessions abans d'acabar les SA.
+- **Observació sistemàtica** de les interaccions dins dels grups durant les activitats clau, registrades en un diari de camp amb categories predefinides: tipus d'arguments, ús de fonts, contraarguments, apel·lació a evidències.
+- **Entrevista al final de cada SA** a un membre de cada grup per contrastar la informació recollida als qüestionaris.
+
+Les activitats d'indagació que ja estaven dissenyades (warming stripes, espectroscòpia, anàlisi CMB, documents de validació de fonts, treball amb dades reals) tenen ara una **doble funció**: són activitats d'aprenentatge de continguts curriculars i, alhora, eines per generar conflicte psociocognitiu que permeti revertir pseudociència.
+
+#### Integració dins de les unitats didàctiques {#integració-unitats-didàctiques}
+
+##### 4t d'ESO — SA "Som pols d'estrelles" (9 sessions, 3r trimestre) {#4t-eso}
+
+- **Bloc curricular:** La Terra a l'univers (GEO4t.3, GEO4t.4, GEO4t.5)
+- **Competències específiques:** CE1 (interpretació de fenòmens naturals), CE2 (localització i avaluació crítica d'informació científica), CE3 (aplicació del mètode científic)
+- **Sessions amb recollida de dades:** sessió 1 (qüestionari pre + quartilla), 2 (observació indagació espectroscòpia), 3–4 (anàlisi proves Big Bang), 7–8 (debat astrobiologia vs. pseudociència), 9 (qüestionari post + metacognició)
+
+##### 2n de batxillerat — SA "El Mediterrani en 2100: Paradís perdut?" (10 sessions, 3r trimestre) {#2n-bat}
+
+- **Matèria:** Objectius de Desenvolupament Sostenible (ODS 13 — Acció pel Clima)
+- **Competències específiques:** C1 (identificar i avaluar críticament informació vinculada als ODS), C2 (aplicar aprenentatges amb esperit crític), C3 (argumentar i justificar opinions fonamentades en evidències)
+- **Sessions amb recollida de dades:** sessió 1 (qüestionari pre + quartilla + warming stripes), 6 (anàlisi pel·lícula + 5 documents validació fonts), 8-9 (treball amb dades reals i fonts científiques), 10 (presentació final + qüestionari post + metacognició)
+
+#### Beneficis esperats: alumnes i docent {#beneficis-esperats}
+
+La situació de partida al meu centre de pràctiques és que el meu mentor deixa els alumnes que s'agrupin lliurement, i aquests s'organitzen espontàniament per afinitat, generant **endogrups homofílics** on les creences pseudocientífiques circulen al seu lliure albir. La meva intervenció introdueix una **intencionalitat pedagògica** en l'agrupament per maximitzar la diversitat de perspectives i generar un conflicte psociocognitiu productiu.
+
+Els beneficis esperats per als **alumnes** en aquests dos grups (24 alumnes a 4t d'ESO i 19 a 2n de batxillerat) s'articulen al voltant de:
+
+- Un major i millor **desenvolupament del pensament crític** i de la seva autoregulació cognitiva
+- Millora de l'**alfabetització científica** i la comprensió de la Naturalesa de la Ciència (NdC)
+- Construcció d'una major **competència argumentativa** i comunicativa
+- Consciència real sobre l'**impacte de les xarxes socials** en el seu pensament
+- Valoració del treball en **entorns cooperatius diversos**
+
+Com a **docent**, espero obtenir:
+
+- Una comprensió dels obstacles epistemològics del meu alumnat sobre la ciència
+- Evidències empíriques sobre l'efectivitat dels grups heterogenis, viscudes en primera persona
+- Millora en el disseny d'activitats d'indagació en entorns educatius
+- Desenvolupament professional com a docent-investigador
+
+Cal tenir en compte la **limitació metodològica** real que suposa tenir dos grups de mida petita: no serà factible demostrar una causalitat estadística entre l'agrupament heterogeni i la reducció de creences pseudocientífiques. El que sí que serà factible és documentar **patrons d'evidència**: si els grups heterogenis generen més conflicte argumentatiu, major ús de fonts científiques i més revisió de creences que els homofílics, això constitueix una contribució vàlida i fonamentada.
+
+#### Planificació de la recollida d'informació {#planificació-recollida}
+
+| Moment | Instrument | Quan (sessió) |
+| --- | --- | --- |
+| **ABANS** | Qüestionari pre-intervenció | 5 min abans sessió 1 |
+| **ABANS** | Quartilla anònima d'idees prèvies | Sessió 1 (tancada en sobre) |
+| **DURANT** | Diari de camp docent (observació sistemàtica d'interaccions) | Sessions 2, 3–4, 6, 7–8 (4t ESO); 1, 6, 8–9 (2n BAT) |
+| **DURANT** | Produccions grupals (fulls d'indagació, guies respostes, documents anàlisi) | Sessions 2, 3–4, 7–8 (4t ESO); 1, 6, 8–9 (2n BAT) |
+| **DESPRÉS** | Produccions finals individuals (Relat Còsmic Personal / Pla d'Acció) | Sessió 9 (4t ESO), Sessió 10 (2n BAT) |
+| **DESPRÉS** | Qüestionari post-intervenció | Sessió 9 (4t ESO), Sessió 10 (2n BAT) |
+| **DESPRÉS** | Obertura sobre + reflexió metacognitiva escrita | Sessió 9 (4t ESO), Sessió 10 (2n BAT) |
+
+#### Instruments de recollida d'informació {#instruments-recollida}
+
+Els qüestionaris pre-intervenció estan disponibles en els enllaços següents:
+
+- [Qüestionari anònim · Origen de l'Univers i de la Vida 1](#)
+- [Qüestionari anònim · Canvi climàtic 1](#)
+
+Les preguntes dels qüestionaris **post-intervenció** així com les de les **entrevistes** finals estan pendents d'elaboració a l'espera del feedback del primer qüestionari i de les observacions a l'aula.
 
 # Autoevaluación de mis competencias docentes
 
