@@ -1,0 +1,167 @@
+---
+title: "Situación de Aprendizaje para 2 de Bachillerato"
+subtitle: "Prácticas en el centro educativo|Implementación de la situación de aprendizaje de 2 de Bachillerato"
+filename: portfolio-SA-2Batx
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Situación de aprendizaje de 10 sesiones para 2 de Bachillerato sobre la ODS 13 (Cambio climático)
+categories: [Situación de aprendizaje, Practicum, Cambio Climatico, ODS 13, Bachillerato, Ciencia Naturales]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducción a la Situación de aprendizaje de 2 de Bachillerato
+
+Imagina que sales a pasear por la playa con tu abuela y ella, al ver la orilla, se detiene y dice: *"Aquí cuando yo era joven había mucha más arena."* Esa frase, aparentemente sencilla, encierra una realidad documentada y urgente: las playas del litoral catalán están desapareciendo a un ritmo acelerado. Las de Gavà y Viladecans han perdido el **25 % de su arena en los últimos 9 años**. Las de Montgat, el **74 %**. Y mientras esto ocurre, el mar Mediterráneo se calienta más rápido que la media global.
+
+Esta situación de aprendizaje parte de una pregunta incómoda y genuinamente abierta: **¿Podría el Mediterráneo convertirse en un paraíso perdido antes de que celebréis vuestros 75 años?** No es una pregunta retórica. Es el hilo conductor de diez sesiones en las que el alumnado de 2.º de Bachillerato investigará, analizará datos reales, debatirá evidencias científicas y diseñará propuestas de acción local ante la emergencia climática.
+
+La propuesta se enmarca en la materia optativa trimestral *Objetivos de Desarrollo Sostenible* y se articula alrededor del **ODS 13: Acción por el Clima**. Su enfoque es interdisciplinar: conecta climatología, geología, ciencias ambientales, pensamiento crítico y comunicación científica. El contexto es deliberadamente local —el delta del Llobregat, las playas de Gavà, el litoral de la Costa Brava— para que el alumnado compruebe por sí mismo que el cambio climático no es un problema abstracto del futuro, sino una realidad que ya transforma su entorno más cercano.
+
+La metodología combina el **aprendizaje basado en la indagación** con el trabajo cooperativo, el uso de herramientas digitales reales (datos de *Copernicus*, mapas colaborativos, simuladores climáticos), el análisis cinematográfico y la metacognición. Se priorizan las competencias de pensamiento crítico, razonamiento científico y acción ciudadana informada.
+
+::: {.panel-tabset}
+## Situacion de aprendizaje 2 Batx {.active}
+
+<embed src="/files/general-docs/SA_2Batx.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Resumen de la Situación de Aprendizaje
+
+### Datos generales
+
+| Campo | Información |
+| --- | --- |
+| **Título** | *El Mediterráneo en 2100: ¿Paraíso Perdido?* |
+| **Nivel** | 2.º Bachillerato |
+| **Materia** | ODS 13: Acción por el Clima (optativa trimestral) |
+| **Duración** | 10 sesiones × 55 minutos |
+| **Trimestre** | 3.er trimestre |
+| **Grupo** | 1 línea (19 alumnos) |
+| **Ámbito** | Interdisciplinar — Ciencias Naturales, Geografía, Ciencias Sociales |
+
+---
+
+### El reto
+
+La situación de aprendizaje arranca con una narrativa anclada en la experiencia local: una alumna de Viladecans descubre, durante las vacaciones de Navidad de 2025, que la playa de su infancia ha perdido arena de forma alarmante. Al volver a clase, ese hallazgo detona un debate sobre causas, responsabilidades y futuros posibles. El profesorado lanza la pregunta vertebradora: **¿podría el Mediterráneo convertirse en un paraíso perdido antes de que celebréis vuestros 75 años?**
+
+El reto concreto para el alumnado es investigar los impactos específicos del cambio climático en el Baix Llobregat y el litoral mediterráneo catalán, utilizando fotografías aéreas, bases de datos climáticas y herramientas de análisis geoespacial, para comprobar de primera mano que el cambio climático ya ha llegado a casa.
+
+---
+
+### Saberes trabajados
+
+Los contenidos curriculares se articulan en torno a los siguientes ejes temáticos:
+
+- Funciones de la atmósfera y la hidrosfera y su papel esencial para la vida en la Tierra.
+- Elementos del clima (temperatura, precipitación, presión) y su variabilidad temporal y espacial.
+- Factores naturales y antrópicos que modifican el territorio y los ecosistemas (emisiones de GEI, urbanismo, construcción portuaria).
+- Análisis de datos e interpretación de gráficos climáticos (*warming stripes*, evolución de temperaturas, climatogramas).
+- Impactos del cambio climático en ecosistemas mediterráneos: subida del nivel del mar, tropicalización, extremos climáticos y pérdida de biodiversidad.
+- Vulnerabilidad territorial del litoral catalán: erosión costera, pérdida de playas, salinización de acuíferos e impactos económicos.
+- Metodología de investigación científica escolar: hipótesis, fuentes primarias y secundarias, método científico.
+- ODS 13 «Acción por el Clima» aplicado al contexto mediterráneo catalán.
+- Pensamiento sistémico: relación clima–sociedad–economía a escala local y global.
+
+---
+
+### Competencias clave desarrolladas
+
+La situación de aprendizaje desarrolla de forma integrada las competencias clave del Bachillerato:
+
+**Competencia matemática y STEM:** El alumnado aplica pensamiento científico (hipótesis, análisis de datos climáticos, interpretación de gráficos) y propone soluciones de ingeniería sostenible ante la erosión litoral.
+
+**Competencia digital:** Se utilizan herramientas digitales como la base de datos *Copernicus*, informes del IPCC, simuladores climáticos y la plataforma cartográfica *Instamaps* del ICGC para distinguir ciencia de pseudociencia y evaluar la fiabilidad de las fuentes.
+
+**Competencia personal, social y de aprender a aprender:** El trabajo cooperativo en grupos heterogéneos, la gestión de proyectos y la reflexión sobre las propias ideas previas son ejes transversales de todas las sesiones.
+
+**Competencias para la sostenibilidad (ODS 13):** Pensamiento sistémico, competencia anticipatoria (diseño de escenarios futuros), competencia estratégica (planes de acción locales) y competencia crítica ante el negacionismo climático.
+
+---
+
+### Secuencia de sesiones
+
+| Sesión | Título | Fase didáctica |
+| --- | --- | --- |
+| **1** | Ideas previas y descubrir el cambio climático por uno mismo | Exploración — Activación |
+| **2** | ¿Qué es el clima? Diferencias entre clima y tiempo | Desarrollo — Construcción de saberes |
+| **3** | Grandes contaminantes ocultos — Introducción al ODS 13 | Desarrollo — Ampliación temática |
+| **4** | Visionado de *El niño que domó el viento* (parte 1) | Desarrollo — Contextualización humana |
+| **5** | Visionado de *El niño que domó el viento* (parte 2) | Desarrollo — Estructuración |
+| **6** | Trabajo grupal sobre la película | Desarrollo — Pensamiento crítico y conexión local |
+| **7** | El clima a escala geológica y las últimas glaciaciones | Desarrollo — Fundamentación científica |
+| **8** | Jornada de consolidación de los trabajos prácticos | Aplicación — Trabajo cooperativo |
+| **9** | Trabajo individual con preguntas TSS | Aplicación y evaluación |
+| **10** | Cierre metacognitivo y debate final | Síntesis — Evaluación y metacognición |
+
+---
+
+### Actividades y productos de aprendizaje
+
+**Sesión 1–2 | Descubrir el cambio climático por uno mismo**
+Los grupos analizan datos de temperatura de 34 localidades del mundo (datos *Copernicus*) utilizando una herramienta HTML interactiva que genera *warming stripes*. El objetivo es que el alumnado descubra de forma inductiva que el Ártico se calienta cuatro veces más rápido que el resto del planeta, sin que el docente lo indique previamente. La actividad incorpora una reflexión crítica sobre la manipulación de datos climáticos mediante la elección del período de referencia.
+
+**Sesión 3 | Grandes contaminantes ocultos**
+Se presentan dos casos de emisiones poco conocidas: el *gas flaring* (quema de metano por intereses petrolíferos) y el deshielo del permafrost (retroalimentación positiva del cambio climático). A continuación, se presentan las cinco metas del ODS 13 y cada grupo recibe por sorteo una meta que deberá investigar y materializar en una **infografía** como producto transversal de la situación de aprendizaje.
+
+**Sesiones 4–6 | Análisis de *El niño que domó el viento***
+El visionado de la película de Netflix (2019) sirve como ancla emocional y analítica. El caso de William Kamkwamba en Malaui ilustra cómo el cambio climático afecta a comunidades vulnerables y cómo la innovación local con energías renovables puede generar resiliencia. El trabajo grupal posterior conecta la historia africana con el contexto mediterráneo: *«Si William hubiera crecido en el Baix Llobregat, ¿qué soluciones habría propuesto?»*
+
+**Sesión 7 | El clima a escala geológica**
+Una presentación sobre la evolución del clima desde el Cámbrico, los ciclos glaciales, los métodos paleoclimáticos (núcleos de hielo, anillos de árboles, ciclos de Milankovitch) y la velocidad del cambio climático actual —50 veces más rápida que la última deglaciación— sirve para deconstruir argumentos negacionistas con datos científicos sólidos.
+
+**Sesión 9 | Preguntas TSS (Testing Science Skills)**
+Ejercicio individual en formato TSS en el que el alumnado debe distinguir afirmaciones científicas de opiniones o decisiones éticas, aplicar conocimientos climáticos y justificar su razonamiento. Evalúa competencias de pensamiento científico sin interferencia memorística.
+
+**Sesión 10 | Cierre metacognitivo**
+Se abren los sobres con las cuartillas escritas en la Sesión 1 y el alumnado lee sus propias ideas previas. El debate final contrasta el punto de partida con el pensamiento desarrollado a lo largo de la situación de aprendizaje. Se entregan las infografías ODS 13 y se realiza la autoevaluación mediante Google Forms.
+
+---
+
+### Evaluación
+
+La evaluación es **continua, formativa y sumativa**, y se distribuye del siguiente modo:
+
+| Instrumento | Peso | Modalidad |
+| --- | --- | --- |
+| Ejercicio grupal *warming stripes* — «Descubrir el cambio climático por uno mismo» | 10 % | Grupal |
+| Análisis grupal de escenas de *El niño que domó el viento* | 20 % | Grupal |
+| Infografía de la meta ODS 13 asignada | 20 % | Grupal |
+| Preguntas individuales TSS | 45 % | Individual |
+| Cuartilla metacognitiva — reflexión sobre el cambio de pensamiento | 5 % | Individual |
+
+El instrumento de evaluación formativa continua es el **diario del docente**, que registra las ideas previas detectadas, los malentendidos conceptuales, la participación y la evolución del pensamiento crítico de cada estudiante a lo largo de las sesiones.
+
+---
+
+### Atención a la diversidad
+
+La situación de aprendizaje incorpora medidas de atención a la diversidad siguiendo los principios del **Diseño Universal para el Aprendizaje (DUA)**:
+
+- **Alumnado TEA:** roles asignados en el grupo, anticipación de estructuras con plantillas visuales, guiones de escenas clave para el visionado.
+- **Alumnado TDAH:** subdivisión de tareas largas, temporizadores visuales, paradas estratégicas con preguntas, permiso para pausas breves.
+- **Alumnado con DEA:** glosario visual ilustrado, posibilidad de grabación de audio, material adaptado con mayor espaciado tipográfico.
+- **Alumnado con altas capacidades:** lecturas científicas avanzadas, investigación del *feedback* albedo-hielo, casos de resiliencia mediterránea, papel de «mentor científico» en el grupo.
+
+---
+
+### Conexiones con los ODS
+
+Aunque el ODS 13 es el eje central, la situación de aprendizaje establece conexiones explícitas con otros objetivos:
+
+- **ODS 2 (Hambre cero):** el cambio climático afecta directamente la producción de alimentos y la fertilidad de los suelos, especialmente en zonas mediterráneas vulnerables.
+- **ODS 4 (Educación de calidad):** cada actividad de la situación de aprendizaje es, simultáneamente, contenido climático y desarrollo de competencias propias de una educación transformadora (meta 4.7).
+- **ODS 7 (Energía limpia):** la transición energética aparece como respuesta estructural al cambio climático, especialmente a través del caso de William Kamkwamba y la propuesta de planes de acción locales.
+
