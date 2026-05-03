@@ -1,11 +1,11 @@
 ---
-title: "Som pols d'estrelles"
+title: "Situació d'aprenentatge 4 ESO: Som pols d'estrelles"
 subtitle: "Pràctiques en el centre educatiu|Implementació de la situació d'aprenentatge de 4 ESO|Biologia i Geologia"
 filename: portfolio-SA-4ESO
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Situació de aprendizatge de 7 sesions per a 4 ESO sobre l'origen de l'univers, sistema solar i astrobiologia
+description: Situació d'aprenentatge de 7 sesions per a 4 ESO sobre l'origen de l'univers, sistema solar i astrobiologia
 categories: [Situació d'aprenentatge, Practicum, ESO, Biologia, Geologia, Ciencia Natural]
 toc: true
 number-sections: true
@@ -18,7 +18,7 @@ lightbox:
 format: html
 ---
 
-# Introducció a la Situación de aprendizaje de 4 ESO Biologia i Geologia
+# Introducció a la Situació d'aprenentatge de 4 ESO Biologia i Geologia
 
 D'on venen els àtoms de ferro que circulen per la teva sang? Quin és l'origen del calci dels teus ossos o del carboni que compon el teu ADN? La resposta, tan vertiginosa com rigorosa, és que tots aquests àtoms es van forjar a l'interior d'estrelles gegants que van explotar fa milers de milions d'anys. **Literalment, som pols d'estrelles.**
 
@@ -29,9 +29,9 @@ La proposta s'emmarca en el bloc curricular *La Terra a l'univers* de Biologia i
 El que fa especialment poderosa aquesta proposta és la seva capacitat de connectar amb preguntes existencials que els adolescents ja es fan: *d'on venim?, estem sols a l'univers?, què fa de la Terra un lloc tan especial?* En respondre-les des de la ciència, l'alumnat no només aprèn continguts: desenvolupa la consciència que som part de l'univers, no simples observadors. Som l'univers prenent consciència de si mateix.
 
 ::: {.panel-tabset}
-## Situació de aprendizatge de 4 ESO {.active}
+## Situació d'aprenentatge de 4 ESO {.active}
 
-<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/SA_4ESO.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 

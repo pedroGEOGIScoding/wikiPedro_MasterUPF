@@ -1,5 +1,5 @@
 ---
-title: "We Are Made of Stardust"
+title: "Learning Situation of 4 ESO: We Are Made of Stardust"
 subtitle: "Practices in the educational center|Implementation of the learning situation of 4 ESO|Biology and Geology"
 filename: portfolio-SA-4ESO
 author: "Pedro Martínez Durán"
@@ -31,7 +31,7 @@ What makes this proposal especially powerful is its ability to connect with exis
 ::: {.panel-tabset}
 ## Learning situation 4 ESO {.active}
 
-<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/SA_4ESO.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 

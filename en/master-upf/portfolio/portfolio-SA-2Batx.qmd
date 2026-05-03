@@ -1,12 +1,12 @@
 ---
-title: "The Mediterranean in 2100: A Lost Paradise?"
-subtitle: "Practices at the educational center|Implementation of the learning situation for 2nd year of Bachillerato"
+title: "Learning situation for 2 Batx: The Mediterranean in 2100: A Lost Paradise?"
+subtitle: "Practices at the educational center|Implementation of the learning situation for 2nd year of baccalaureate"
 filename: portfolio-SA-2Batx
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Learning situation of 10 sessions for 2nd year of Bachillerato on ODS 13 (Climate change)
-categories: [Learning situation, Practicum, Climate Change, ODS 13, Bachillerato, Natural Sciences]
+description: Learning situation of 10 sessions for 2nd year of baccalaureate on ODS 13 (Climate change)
+categories: [Learning situation, Practicum, Climate Change, ODS 13, baccalaureate, Natural Sciences]
 toc: true
 number-sections: true
 highlight-style: pygments
@@ -18,7 +18,7 @@ lightbox:
 format: html
 ---
 
-# Introduction to the Learning Situation for 2nd Year of Bachillerato
+# Introduction to the Learning Situation for 2nd Year of baccalaureate
 
 Imagine walking along the beach with your grandmother and watching her stop, look at the shoreline, and say: *"When I was young, there was so much more sand here."* That simple remark captures an urgent, documented reality: the beaches of the Catalan coast are disappearing at an accelerating rate. The beaches of Gavà and Viladecans have lost **25% of their sand in the past 9 years**. Those of Montgat have lost **74%**. All the while, the Mediterranean Sea is warming faster than the global average.
 
@@ -29,7 +29,7 @@ The unit is framed within the elective trimestral subject *Sustainable Developme
 The methodology combines **inquiry-based learning** with cooperative work, the use of real digital tools (Copernicus climate data, collaborative mapping, climate simulators), film analysis and metacognition. The emphasis throughout is on critical thinking, scientific reasoning and informed civic agency.
 
 ::: {.panel-tabset}
-## Learning Situation for 2 Batx {.active}
+## Learning Situation for 2 baccalaureate {.active}
 
 <embed src="/files/general-docs/SA_2Batx.pdf" type="application/pdf" width="100%" height="800px"/>
 
@@ -44,7 +44,7 @@ The methodology combines **inquiry-based learning** with cooperative work, the u
 | Field | Details |
 | --- | --- |
 | **Title** | *The Mediterranean in 2100: A Lost Paradise?* |
-| **Level** | Year 12 (2nd Bachillerato) |
+| **Level** | Year 12 (2nd baccalaureate) |
 | **Subject** | SDG 13: Climate Action (trimestral elective) |
 | **Duration** | 10 sessions × 55 minutes |
 | **Term** | Third term |
@@ -79,7 +79,7 @@ The curricular knowledge is organised around the following thematic axes:
 
 ### Key Competences Developed
 
-The learning situation develops the key competences of Bachillerato in an integrated way:
+The learning situation develops the key competences of baccalaureate in an integrated way:
 
 **Mathematical and STEM competence:** Students apply scientific thinking (hypotheses, climate data analysis, graph interpretation) and propose sustainable engineering solutions to address coastal erosion.
 

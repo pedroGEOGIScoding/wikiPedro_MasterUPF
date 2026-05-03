@@ -1,5 +1,5 @@
 ---
-title: "Somos polvo de estrellas"
+title: "Situación de aprendizaje de 4 ESO: Somos polvo de estrellas"
 subtitle: "Prácticas en el centro educativo|Implementación de la situación de aprendizaje de 4 ESO|Biología y Geología"
 filename: portfolio-SA-4ESO
 author: "Pedro Martínez Durán"
@@ -29,9 +29,9 @@ La propuesta se enmarca en el bloque curricular *La Tierra en el Universo* de Bi
 Lo que hace especialmente poderosa esta propuesta es su capacidad de conectar con preguntas existenciales que los adolescentes ya se hacen: *¿de dónde venimos?, ¿estamos solos en el universo?, ¿qué hace a la Tierra un lugar tan especial?* Al responderlas desde la ciencia, el alumnado no solo aprende contenidos: desarrolla la consciencia de que somos parte del universo, no simples observadores. Somos el universo tomando conciencia de sí mismo.
 
 ::: {.panel-tabset}
-## Situacion de aprendizaje 4 ESO {.active}
+## Situación de aprendizaje 4 ESO {.active}
 
-<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+<embed src="/files/general-docs/SA_4ESO.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 
