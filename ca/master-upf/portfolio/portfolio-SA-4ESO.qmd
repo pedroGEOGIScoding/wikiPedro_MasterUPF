@@ -1,0 +1,165 @@
+---
+title: "Som pols d'estrelles"
+subtitle: "Pràctiques en el centre educatiu|Implementació de la situació d'aprenentatge de 4 ESO|Biologia i Geologia"
+filename: portfolio-SA-4ESO
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Situació de aprendizatge de 7 sesions per a 4 ESO sobre l'origen de l'univers, sistema solar i astrobiologia
+categories: [Situació d'aprenentatge, Practicum, ESO, Biologia, Geologia, Ciencia Natural]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducció a la Situación de aprendizaje de 4 ESO Biologia i Geologia
+
+D'on venen els àtoms de ferro que circulen per la teva sang? Quin és l'origen del calci dels teus ossos o del carboni que compon el teu ADN? La resposta, tan vertiginosa com rigorosa, és que tots aquests àtoms es van forjar a l'interior d'estrelles gegants que van explotar fa milers de milions d'anys. **Literalment, som pols d'estrelles.**
+
+Aquesta situació d'aprenentatge parteix d'un moment quotidià i poderós: un alumne de 4t d'ESO porta a classe els resultats d'una analítica mèdica. Ferro, calci, sodi, potassi, magnesi... El professor de Biologia i Geologia veu l'oportunitat i llança la pregunta que ho canvia tot: *«Sabeu d'on venen tots aquests elements químics que teniu al vostre cos?»*. Aquesta pregunta obre un viatge que va des del Big Bang —fa 13.800 milions d'anys— fins a l'aparició dels primers éssers vius a la Terra, i més enllà: fins a l'astrobiologia i la possibilitat que la «recepta» per crear vida s'hagi repetit en altres llocs de l'univers.
+
+La proposta s'emmarca en el bloc curricular *La Terra a l'univers* de Biologia i Geologia de 4t d'ESO, i treballa els sabers #GEO4t.3, #GEO4t.4 i #GEO4t.5 de manera integrada i competencial. Lluny d'un enfocament memorístic, la situació d'aprenentatge combina indagació experimental (espectroscòpia amb prismes), modelització (analogia del globus en expansió), anàlisi d'hipòtesis científiques sobre l'origen de la vida i pensament crític davant la pseudociència. El producte final —el **Relat Còsmic Personal**— és una línia temporal visual i argumentada que connecta el Big Bang amb cada alumne, construïda al llarg de set sessions de 55 minuts.
+
+El que fa especialment poderosa aquesta proposta és la seva capacitat de connectar amb preguntes existencials que els adolescents ja es fan: *d'on venim?, estem sols a l'univers?, què fa de la Terra un lloc tan especial?* En respondre-les des de la ciència, l'alumnat no només aprèn continguts: desenvolupa la consciència que som part de l'univers, no simples observadors. Som l'univers prenent consciència de si mateix.
+
+::: {.panel-tabset}
+## Situació de aprendizatge de 4 ESO {.active}
+
+<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Resum de la Situació d'Aprenentatge
+
+### Dades generals
+
+| Camp | Informació |
+| --- | --- |
+| **Títol** | *Som Pols d'Estrelles* |
+| **Nivell** | 4t ESO |
+| **Matèria** | Biologia i Geologia (àmbit científic) |
+| **Durada** | 7 sessions × 55 minuts |
+| **Trimestre** | 3r trimestre |
+| **Grup** | 1 sola línia (24 alumnes) |
+| **Bloc curricular** | La Terra a l'univers (#GEO4t.3, #GEO4t.4, #GEO4t.5) |
+
+---
+
+### El repte
+
+El punt de partida és un objecte real i proper: una analítica de sang projectada a la pantalla de l'aula. En veure els valors de ferro, calci, sodi i magnesi, l'alumnat es troba amb la pregunta detonant: *«Sabeu d'on vénen aquests elements?»*. A partir d'aquest moment, el repte s'articula en tres nivells de profunditat progressiva:
+
+**Reconstruir la història còsmica:** des del Big Bang fins a la formació del sistema solar, entenent com es van crear els elements pesants mitjançant la nucleosíntesi estel·lar i com les supernoves els van escampar per l'espai.
+
+**Investigar l'origen de la vida:** analitzar i debatre les principals hipòtesis sobre com la matèria inerta es va transformar en matèria viva a la Terra primitiva fa gairebé 4.000 milions d'anys, avaluant les evidències científiques que les sustenten (registre fòssil, datació geològica, experiments clàssics).
+
+**Explorar l'astrobiologia:** reflexionar sobre si les condicions úniques de la Terra podrien haver-se donat en altres llocs de l'univers, distingint el que la ciència pot afirmar del que encara és especulació, i diferenciant ciència rigorosa de pseudociència.
+
+El producte que articula tot el procés és el **Relat Còsmic Personal**: una línia temporal visual i argumentada, d'elaboració individual, que connecta el Big Bang amb el propi alumne, explicant científicament com els àtoms del seu cos van néixer a l'interior d'estrelles.
+
+---
+
+### Sabers curriculars treballats
+
+Els continguts s'organitzen al voltant dels tres sabers específics del bloc *La Terra a l'univers* de 4t d'ESO:
+
+**#GEO4t.3 — Origen de l'univers i el sistema solar:** Teoria del Big Bang (l'univers té ~13.800 milions d'anys i està en expansió constant); nucleosíntesi estel·lar (formació d'elements pesants a l'interior d'estrelles); formació del sistema solar per col·lapse d'un núvol de gas i pols fa ~4.600 milions d'anys; estructura del sistema solar i posició de la Terra a la zona habitable.
+
+**#GEO4t.4 — Origen de la vida:** Condicions úniques de la Terra que van possibilitar l'aparició de vida (atmosfera, aigua líquida, temperatura, camp magnètic); principals hipòtesis sobre l'origen de la vida (síntesi abiòtica, panspèrmia, endosimbiosi); evidències en què se sustenten (registre fòssil, datació radiomètrica); connexió amb els sabers del bloc Cèl·lula.
+
+**#GEO4t.5 — Astrobiologia:** L'astrobiologia com a disciplina científica que estudia on podria haver-hi vida a l'univers i com detectar-la; implicacions científiques, culturals i filosòfiques del descobriment hipotètic de vida extraterrestre; anàlisi crítica de fonts sobre aquest tema.
+
+---
+
+### Competències desenvolupades
+
+**Competències específiques de Biologia i Geologia**
+
+La situació d'aprenentatge treballa de manera integrada les quatre competències específiques de la matèria. La **CE1** (Interpretació de fenòmens naturals) s'activa quan l'alumnat interpreta models cosmològics, gràfics d'expansió de l'univers i la formació del sistema solar. La **CE2** (Avaluació d'informació científica) entra en joc en contrastar fonts fiables (NASA, ESA, IPCC) amb notícies sensacionalistes sobre vida extraterrestre. La **CE3** (Aplicació del mètode científic) es desenvolupa en dissenyar hipòtesis sobre l'origen de la vida i treballar amb mètodes de datació geològica. La **CE4** (Resolució de problemes) s'exercita en analitzar si les condicions de la Terra podrien existir en altres mons (Mart, Europa, exoplanetes).
+
+**Competències transversals**
+
+La **competència digital** es desenvolupa amb la cerca i avaluació crítica d'informació astronòmica i astrobiològica, incloent l'ús de recursos interactius de la NASA i simuladors en línia. La **competència personal, social i d'aprendre a aprendre** es treballa a través de l'autoregulació de l'aprenentatge mitjançant el quadern de navegació còsmica i el treball cooperatiu en grups. La **competència ciutadana** emergeix en reflexionar sobre la fragilitat de les condicions que fan possible la vida a la Terra, connectant amb la urgència de la sostenibilitat ambiental (ODS 13, 14, 15).
+
+---
+
+### Seqüència de sessions
+
+| Sessió | Títol | Fase didàctica |
+| --- | --- | --- |
+| **1** | Som pols d'estrelles | Exploració — Activació de coneixements previs |
+| **2** | Llegint la llum estel·lar: el codi de l'arc de Sant Martí | Introducció de nous coneixements — Modelització |
+| **3** | El Big Bang o com va començar tot | Introducció de nous coneixements — Modelització |
+| **4** | Construint la nostra llar: el sistema solar i la Terra | Estructuració — Nous coneixements |
+| **5** | Les condicions úniques de la Terra i l'astrobiologia | Reforç — Introducció a l'astrobiologia |
+| **6** | Les primeres formes de vida i la seva datació geològica | Desenvolupament — Aplicació |
+| **7** | La nostra història còsmica | Síntesi — Avaluació i coavaluació |
+
+---
+
+### Activitats i productes d'aprenentatge
+
+**Sessió 1 | Som pols d'estrelles**
+La classe comença amb la projecció d'una analítica de sang real. El professorat pregunta per l'origen dels elements que hi apareixen i explora les idees prèvies de l'alumnat mitjançant un debat dinàmic. S'introdueix el títol de la situació d'aprenentatge i es presenta el recorregut complet: des del Big Bang fins a cada alumne. Es visualitza el vídeo de la NASA *«Finds Ingredients of Life in Fragments of Lost World»* i s'inicia el **quadern de navegació còsmica**, que l'alumnat completarà al final de cada sessió amb el que ha après.
+
+**Sessió 2 | Llegint la llum estel·lar**
+Aquesta sessió respon a una pregunta fonamental: com saben els científics de què estan fetes les estrelles sense visitar-les? Mitjançant una **pràctica experimental en grups de quatre**, l'alumnat descompon llum blanca amb prismes òptics i observa espectres d'emissió. A partir d'aquesta experiència inductiva, es construeix el concepte d'espectroscòpia estel·lar: la llum de les estrelles és l'única font d'informació que tenen els científics per conèixer la seva composició, distància i temperatura.
+
+**Sessió 3 | El Big Bang**
+Presentació dialogada de la teoria del Big Bang: l'univers concentrat en un punt infinitament dens i calent, expansió i refredament, formació dels primers àtoms d'hidrogen i heli, i la radiació de fons de microones (CMB) com a «fotografia fòssil» de l'univers nadó. El model es materialitza amb una analogia física: **un globus inflat amb monedes enganxades** que representen galàxies que s'allunyen les unes de les altres a mesura que el globus s'expandeix, il·lustrant que no són les galàxies les que es mouen, sinó l'espai entre elles.
+
+**Sessió 4 | El sistema solar i la Terra**
+Presentació cronològica de la formació del sistema solar: col·lapse d'un núvol de gas i pols interestel·lar fa 4.600 milions d'anys, formació del Sol i el disc protoplanetari, diferenciació planetària i posició de la Terra a la zona habitable. Aquesta sessió estableix el pont conceptual cap a la Sessió 6: quines condicions concretes de la Terra van fer possible l'aparició de vida?
+
+**Sessió 5 | Condicions per a la vida i astrobiologia**
+L'alumnat analitza les sis condicions que van fer possible la vida a la Terra primitiva (atmosfera, aigua líquida, temperatura, camp magnètic, cicles biogeoquímics, distància al Sol) i s'introdueix a l'astrobiologia com a disciplina científica. Un punt clau és el matís conceptual que l'astrobiologia no pot obviar: estudiar on *podria* haver-hi vida és diferent d'afirmar que *hi ha* vida fora de la Terra. Es treballa la diferència entre condició per a la vida i evidència de vida.
+
+**Sessió 6 | Primeres formes de vida i datació geològica**
+Es presenten i analitzen les principals hipòtesis sobre l'origen de la vida: síntesi abiòtica (experiment de Miller-Urey), panspèrmia i endosimbiosi. L'alumnat treballa amb els mètodes de datació geològica (especialment la datació radiomètrica amb U-238) per entendre com els científics saben que les primeres cèl·lules van aparèixer fa gairebé 4.000 milions d'anys. La sessió connecta directament amb els sabers del bloc Cèl·lula treballats anteriorment en el curs.
+
+**Sessió 7 | La nostra història còsmica**
+Sessió de síntesi i avaluació. En grups de quatre, l'alumnat integra els aprenentatges de totes les sessions per construir i presentar oralment el **Relat Còsmic Personal**: una narració visual i argumentada que traça el camí del Big Bang fins al propi alumne, passant per la nucleosíntesi estel·lar, la formació del sistema solar, les condicions de la Terra, l'origen de la vida i l'evolució. S'inclou una **fitxa d'autoavaluació** i coavaluació entre grups. Al tancament, s'obren els sobres amb les reflexions inicials de la Sessió 1 per contrastar el punt de partida amb el pensament desenvolupat.
+
+---
+
+### Avaluació
+
+L'avaluació és **contínua, formativa i sumativa**, amb dos instruments principals:
+
+| Instrument | Pes | Modalitat |
+| --- | --- | --- |
+| **Relat Còsmic Personal** — línia temporal visual i argumentada | 80 % | Individual |
+| **Exposició oral del Relat Còsmic** — presentació grupal (5 min) | 20 % | Grupal (grups de 4) |
+
+El **Relat Còsmic Personal** s'avalua amb una rúbrica de quatre nivells (Insuficient, Suficient, Notable, Excel·lent) que pondera tres dimensions: rigor científic i precisió conceptual (50%), connexió lògica i coherent entre les etapes del relat (30%), i creativitat, organització gràfica i llegibilitat (20%).
+
+L'**exposició oral** s'avalua segons: claredat expositiva i estructura del discurs (60%), ús adequat del vocabulari científic treballat (25%), i gestió del temps i ús de recursos visuals (15%).
+
+L'instrument d'avaluació formativa contínua és el **diari del docent** i el **quadern de navegació còsmica**, que permet detectar errors conceptuals, malentesos i evolució del pensament de l'alumnat sessió a sessió.
+
+---
+
+### Atenció a la diversitat
+
+La situació d'aprenentatge incorpora mesures d'atenció a la diversitat seguint els principis del **Disseny Universal per a l'Aprenentatge (DUA)**:
+
+- **Alumnat TEA:** rols definits al grup, plantilles estructurades amb instruccions pas a pas, anticipació de l'estructura de cada sessió.
+- **Alumnat TDAH:** subdivisió de tasques llargues en passos amb objectius assequibles, cronòmetres visuals, pauses breus estratègiques, seient proper al docent.
+- **Alumnat amb DEA:** material de lectura adaptat (lletra més gran, més espaiat), glossari il·lustrat de vocabulari científic, possibilitat de gravar les explicacions, avaluació preferentment oral.
+- **Alumnat amb altes capacitats:** projectes d'ampliació (investigar el *feedback* albedo-gel, molècules orgàniques en meteorits, exoplanetes a la zona habitable), rol de «mentor científic» al grup, lectures científiques avançades.
+
+---
+
+### Connexions interdisciplinàries i amb els ODS
+
+Tot i que el contingut és geològic i astronòmic, la situació d'aprenentatge estableix connexions transversals que n'amplien l'abast. Amb el **bloc Cèl·lula** del propi curs de 4t d'ESO, en explicar com les primeres formes de vida unicel·lulars i anaeròbies connecten amb la biologia cel·lular. Amb els cursos anteriors d'ESO, en reprendre la tectònica de plaques, l'estructura interna de la Terra i l'escala del temps geològic com a fonament per situar l'origen del sistema solar.
+
+Quant als ODS, la situació activa la consciència de l'alumnat en tres dimensions. L'**ODS 13** (Acció pel clima) emergeix en comprendre que les condicions úniques que fan possible la vida a la Terra —atmosfera, temperatura, aigua líquida— són fràgils i poden veure's compromeses per l'acció humana. Els **ODS 14 i 15** (Vida submarina i Vida terrestre) es connecten en valorar la biodiversitat com el resultat de milers de milions d'anys d'evolució: un patrimoni únic que mereix protecció.

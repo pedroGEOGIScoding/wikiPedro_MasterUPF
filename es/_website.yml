@@ -69,6 +69,7 @@ website:
           contents:
           - master-upf/portfolio/portfolio-relato.qmd
           - master-upf/portfolio/portfolio-centro.qmd
+          - master-upf/portfolio/portfolio-SA-4ESO.qmd
           - master-upf/portfolio/portfolio-SA-2Batx.qmd
 
     - id: "masterUPF"

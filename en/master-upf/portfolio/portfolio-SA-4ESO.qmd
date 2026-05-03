@@ -1,0 +1,165 @@
+---
+title: "We Are Made of Stardust"
+subtitle: "Practices in the educational center|Implementation of the learning situation of 4 ESO|Biology and Geology"
+filename: portfolio-SA-4ESO
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Learning situation of 7 sessions for 4 ESO about the origin of the universe, solar system and astrobiology
+categories: [Learning situation, Practicum, ESO, Biology, Geology, Natural Science]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introduction to the Learning Situation of 4 ESO Biology and Geology
+
+WWhere do the iron atoms circulating in your blood come from? What is the origin of the calcium in your bones, or the carbon that makes up your DNA? The answer — as dizzying as it is scientifically rigorous — is that all those atoms were forged inside giant stars that exploded billions of years ago. **We are, quite literally, made of stardust.**
+
+This learning situation begins with a powerful everyday moment: a Year 10 student brings a medical blood test report to class. Iron, calcium, sodium, potassium, magnesium... The Biology and Geology teacher seizes the opportunity and asks the question that changes everything: *"Do you know where all these chemical elements in your body actually come from?"*. That question opens a journey stretching from the Big Bang — 13.8 billion years ago — to the appearance of the first living organisms on Earth, and further still: to astrobiology and the possibility that the «recipe» for creating life may have been repeated elsewhere in the universe.
+
+The unit sits within the curriculum block *Earth in the Universe* of Biology and Geology for Year 10, addressing learning outcomes #GEO4t.3, #GEO4t.4 and #GEO4t.5 in an integrated and competency-based way. Far from a memorisation-driven approach, the learning situation combines experimental inquiry (spectroscopy with prisms), modelling (the expanding balloon analogy), analysis of scientific hypotheses about the origin of life, and critical thinking against pseudoscience. The final product — the **Personal Cosmic Narrative** — is a visual and argued timeline connecting the Big Bang to each individual student, built across seven 55-minute sessions.
+
+What makes this proposal especially powerful is its ability to connect with existential questions that teenagers are already asking: *Where do we come from? Are we alone in the universe? What makes Earth such a special place?* By answering them through science, students do not merely learn content — they develop the awareness that we are part of the universe, not mere spectators of it. We are the universe becoming conscious of itself.
+
+::: {.panel-tabset}
+## Learning situation 4 ESO {.active}
+
+<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Learning Situation Summary
+
+### General information
+
+| Field | Information |
+| --- | --- |
+| **Title** | *Som Pols d'Estrelles* / *We Are Made of Stardust* |
+| **Year group** | Year 10 (4th ESO, ages 15–16) |
+| **Subject** | Biology and Geology (science stream) |
+| **Duration** | 7 sessions × 55 minutes |
+| **Term** | Third term |
+| **Class group** | Single form (24 students) |
+| **Curriculum block** | Earth in the Universe (#GEO4t.3, #GEO4t.4, #GEO4t.5) |
+
+---
+
+### The challenge
+
+The starting point is a real and familiar object: a blood test report projected on the classroom screen. Looking at the iron, calcium, sodium and magnesium readings, students are confronted with the trigger question: *"Do you know where these elements come from?"*. From that moment, the challenge unfolds at three levels of progressive depth:
+
+**Reconstructing cosmic history:** from the Big Bang to the formation of the solar system, understanding how heavy elements were created through stellar nucleosynthesis and how supernovae scattered them across space.
+
+**Investigating the origin of life:** analysing and debating the main hypotheses about how inert matter transformed into living matter on early Earth almost 4 billion years ago, evaluating the scientific evidence supporting each one (the fossil record, geological dating, classical experiments).
+
+**Exploring astrobiology:** reflecting on whether the unique conditions of Earth could have occurred elsewhere in the universe, distinguishing what science can actually claim from what remains speculation, and differentiating rigorous science from pseudoscience.
+
+The product that integrates the whole process is the **Personal Cosmic Narrative**: an individually produced, visual and argued timeline connecting the Big Bang to the student themselves, explaining scientifically how the atoms in their body were born inside stars.
+
+---
+
+### Curriculum content addressed
+
+Content is organised around the three specific learning outcomes of the *Earth in the Universe* block for Year 10:
+
+**#GEO4t.3 — Origin of the universe and solar system:** Big Bang theory (the universe is ~13.8 billion years old and constantly expanding); stellar nucleosynthesis (formation of heavy elements inside stars); formation of the solar system by collapse of a gas and dust cloud ~4.6 billion years ago; structure of the solar system and Earth's position in the habitable zone.
+
+**#GEO4t.4 — Origin of life:** Unique conditions on Earth that enabled the emergence of life (atmosphere, liquid water, temperature, magnetic field); main hypotheses on the origin of life (abiotic synthesis, panspermia, endosymbiosis); supporting evidence (fossil record, radiometric dating); connection with the Cell biology block.
+
+**#GEO4t.5 — Astrobiology:** Astrobiology as the scientific discipline that investigates where life could exist in the universe and how to detect it; scientific, cultural and philosophical implications of a hypothetical discovery of extraterrestrial life; critical analysis of sources on this topic.
+
+---
+
+### Competencies developed
+
+**Specific Biology and Geology competencies**
+
+The learning situation works all four specific competencies of the subject in an integrated manner. **SC1** (Interpretation of natural phenomena) is activated when students interpret cosmological models, universe expansion graphs and solar system formation. **SC2** (Evaluation of scientific information) comes into play when contrasting reliable sources (NASA, ESA, IPCC) with sensationalist news about extraterrestrial life. **SC3** (Application of scientific methods) is developed when students design hypotheses about the origin of life and work with geological dating methods. **SC4** (Problem solving) is exercised when analysing whether Earth's conditions could exist on other worlds (Mars, Europa, exoplanets).
+
+**Cross-curricular competencies**
+
+**Digital competency** is developed through the critical search and evaluation of astronomical and astrobiological information, including the use of NASA interactive resources and online simulators. **Personal, social and learning-to-learn competency** is practised through self-regulated learning via the cosmic navigation journal and cooperative group work. **Civic competency** emerges when reflecting on the fragility of the conditions that make life on Earth possible, linking to the urgency of environmental sustainability (SDGs 13, 14, 15).
+
+---
+
+### Session sequence
+
+| Session | Title | Didactic phase |
+| --- | --- | --- |
+| **1** | We are made of stardust | Exploration — Activating prior knowledge |
+| **2** | Reading starlight: the rainbow code | Introduction of new knowledge — Modelling |
+| **3** | The Big Bang, or how everything began | Introduction of new knowledge — Modelling |
+| **4** | Building our home: the solar system and Earth | Structuring — New knowledge |
+| **5** | Earth's unique conditions and astrobiology | Consolidation — Introduction to astrobiology |
+| **6** | The first life forms and geological dating | Development — Application |
+| **7** | Our cosmic story | Synthesis — Assessment and peer assessment |
+
+---
+
+### Learning activities and products
+
+**Session 1 | We are made of stardust**
+The class begins with the projection of a real blood test report. The teacher asks about the origin of the elements listed and explores prior knowledge through a dynamic debate. The title of the learning situation is introduced and the full journey is presented: from the Big Bang to each individual student. The NASA video *«Finds Ingredients of Life in Fragments of Lost World»* is shown, and the **cosmic navigation journal** is launched — a personal learning log that students will complete at the end of every session with what they have learned.
+
+**Session 2 | Reading starlight**
+This session answers a fundamental question: how do scientists know what stars are made of without visiting them? Through a **hands-on experiment in groups of four**, students decompose white light using optical prisms and observe emission spectra. From this inductive experience, the concept of stellar spectroscopy is constructed: starlight is the only source of information scientists have to determine a star's composition, distance and temperature.
+
+**Session 3 | The Big Bang**
+A dialogic presentation of the Big Bang theory: the universe concentrated in an infinitely dense and hot point, expansion and cooling, formation of the first hydrogen and helium atoms, and the cosmic microwave background radiation (CMB) as a «fossil photograph» of the baby universe. The model is brought to life with a physical analogy: **an inflated balloon with coins attached**, representing galaxies moving away from each other as the balloon expands — illustrating that it is not the galaxies that move, but the space between them.
+
+**Session 4 | The solar system and Earth**
+A chronological presentation of solar system formation: collapse of an interstellar gas and dust cloud 4.6 billion years ago, formation of the Sun and the protoplanetary disc, planetary differentiation, and Earth's position in the habitable zone. This session builds the conceptual bridge towards Session 6: what specific conditions on Earth made the emergence of life possible?
+
+**Session 5 | Conditions for life and astrobiology**
+Students analyse the six conditions that made life possible on early Earth (atmosphere, liquid water, temperature, magnetic field, biogeochemical cycles, distance from the Sun) and are introduced to astrobiology as a scientific discipline. A key conceptual point: astrobiology investigates where life *could* exist, which is fundamentally different from claiming that life *does* exist beyond Earth. Students explore the distinction between a condition for life and evidence of life.
+
+**Session 6 | First life forms and geological dating**
+The main hypotheses about the origin of life are presented and analysed: abiotic synthesis (Miller-Urey experiment), panspermia and endosymbiosis. Students work with geological dating methods (especially radiometric dating with U-238) to understand how scientists know that the first cells appeared almost 4 billion years ago. The session connects directly with the Cell biology content covered earlier in the course.
+
+**Session 7 | Our cosmic story**
+A synthesis and assessment session. In groups of four, students integrate the learning from all sessions to build and present their **Personal Cosmic Narrative** orally: a visual and argued account tracing the path from the Big Bang to themselves, passing through stellar nucleosynthesis, solar system formation, Earth's conditions, the origin of life and evolution. A **self-assessment sheet** and peer assessment between groups are included. At the close, students open envelopes containing their initial reflections from Session 1 to contrast their starting point with their developed thinking.
+
+---
+
+### Assessment
+
+Assessment is **continuous, formative and summative**, with two main instruments:
+
+| Instrument | Weight | Format |
+| --- | --- | --- |
+| **Personal Cosmic Narrative** — visual and argued timeline | 80 % | Individual |
+| **Oral presentation of the Cosmic Narrative** — group presentation (5 min) | 20 % | Group (groups of 4) |
+
+The **Personal Cosmic Narrative** is assessed with a four-level rubric (Insufficient, Pass, Good, Excellent) weighting three dimensions: scientific rigour and conceptual accuracy (50%), logical and coherent connections between the stages of the narrative (30%), and creativity, graphic organisation and readability (20%).
+
+The **oral presentation** is assessed by: clarity and structure of delivery (60%), appropriate use of the scientific vocabulary practised throughout the unit (25%), and time management and use of visual resources (15%).
+
+The continuous formative assessment instrument is the **teacher's diary** and the **cosmic navigation journal**, which allows the detection of conceptual errors, misunderstandings and the evolution of each student's thinking session by session.
+
+---
+
+### Diversity and inclusion
+
+The learning situation incorporates inclusive education measures following the principles of **Universal Design for Learning (UDL)**:
+
+- **Students with ASD:** clearly defined group roles, structured templates with step-by-step instructions, advance notice of the structure of each session.
+- **Students with ADHD:** longer tasks broken into steps with achievable goals, visual timers, strategic short breaks, seating near the teacher.
+- **Students with learning difficulties (dyslexia, etc.):** adapted reading materials (larger font, wider spacing), illustrated scientific vocabulary glossary, option to audio-record explanations, preference for oral assessment.
+- **Gifted and talented students:** extension projects (albedo-ice feedback, organic molecules in meteorites, exoplanets in habitable zones), role of «scientific mentor» within the group, advanced scientific readings.
+
+---
+
+### Cross-curricular links and SDGs
+
+Although the subject matter is geological and astronomical, the learning situation establishes transversal connections that extend its reach. It links to the **Cell biology block** within the Year 10 course, by explaining how the first unicellular and anaerobic life forms connect with cellular biology. It also builds on prior knowledge from earlier years of secondary school, revisiting plate tectonics, Earth's internal structure and the geological timescale as a foundation for understanding the origin of the solar system.
+
+Regarding the Sustainable Development Goals, the unit activates students' awareness on three dimensions. **SDG 13** (Climate Action) emerges through the understanding that the unique conditions enabling life on Earth — atmosphere, temperature, liquid water — are fragile and can be compromised by human activity. **SDGs 14 and 15** (Life Below Water and Life on Land) are connected by valuing biodiversity as the result of billions of years of evolution: a unique heritage deserving protection.

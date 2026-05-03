@@ -1,0 +1,165 @@
+---
+title: "Somos polvo de estrellas"
+subtitle: "Prácticas en el centro educativo|Implementación de la situación de aprendizaje de 4 ESO|Biología y Geología"
+filename: portfolio-SA-4ESO
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Situación de aprendizaje de 7 sesiones para 4 ESO sobre el origen del univero, sistema solar y astrobiologia
+categories: [Situación de aprendizaje, Practicum, ESO, Biología, Geología, Ciencia Naturales]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducción a la Situación de aprendizaje de 4 ESO Biología y Geología
+
+¿De dónde vienen los átomos de hierro que circulan por tu sangre? ¿Cuál es el origen del calcio de tus huesos o del carbono que compone tu ADN? La respuesta, tan vertiginosa como rigurosa, es que todos esos átomos se forjaron en el interior de estrellas gigantes que explotaron hace miles de millones de años. **Literalmente, somos polvo de estrellas.**
+
+Esta situación de aprendizaje parte de un momento cotidiano y poderoso: un alumno de 4.º de ESO lleva a clase los resultados de una analítica médica. Hierro, calcio, sodio, potasio, magnesio... El profesor de Biología y Geología ve la oportunidad y lanza la pregunta que lo cambia todo: *«¿Sabéis de dónde vienen todos estos elementos químicos que tenéis en vuestro cuerpo?»*. Esa pregunta abre un viaje que va desde el Big Bang —hace 13.800 millones de años— hasta la aparición de los primeros seres vivos en la Tierra, y más allá: hasta la astrobiología y la posibilidad de que la «receta» para crear vida se haya repetido en otros lugares del universo.
+
+La propuesta se enmarca en el bloque curricular *La Tierra en el Universo* de Biología y Geología de 4.º de ESO, y trabaja los saberes #GEO4t.3, #GEO4t.4 y #GEO4t.5 de forma integrada y competencial. Lejos de un enfoque memorístico, la situación de aprendizaje combina indagación experimental (espectroscopía con prismas), modelización (analogía del globo en expansión), análisis de hipótesis científicas sobre el origen de la vida y pensamiento crítico ante la pseudociencia. El producto final —el **Relato Cósmico Personal**— es una línea temporal visual y argumentada que conecta el Big Bang con cada alumno, construida a lo largo de siete sesiones de 55 minutos.
+
+Lo que hace especialmente poderosa esta propuesta es su capacidad de conectar con preguntas existenciales que los adolescentes ya se hacen: *¿de dónde venimos?, ¿estamos solos en el universo?, ¿qué hace a la Tierra un lugar tan especial?* Al responderlas desde la ciencia, el alumnado no solo aprende contenidos: desarrolla la consciencia de que somos parte del universo, no simples observadores. Somos el universo tomando conciencia de sí mismo.
+
+::: {.panel-tabset}
+## Situacion de aprendizaje 4 ESO {.active}
+
+<embed src="/files/general-docs/SA_2ESO.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Resumen de la Situación de Aprendizaje
+
+### Datos generales
+
+| Campo | Información |
+| --- | --- |
+| **Título** | *Som Pols d'Estrelles* («Somos Polvo de Estrellas») |
+| **Nivel** | 4.º ESO |
+| **Materia** | Biología y Geología (ámbito científico) |
+| **Duración** | 7 sesiones × 55 minutos |
+| **Trimestre** | 3.er trimestre |
+| **Grupo** | 1 línea (24 alumnos) |
+| **Bloque curricular** | La Tierra en el Universo (#GEO4t.3, #GEO4t.4, #GEO4t.5) |
+
+---
+
+### El reto
+
+El punto de partida es un objeto real y próximo: una analítica de sangre proyectada en la pantalla del aula. Al ver los valores de hierro, calcio, sodio y magnesio, el alumnado se encuentra con la pregunta detonante: *«¿Sabéis de dónde vienen estos elementos?»*. A partir de ese momento, el reto se articula en tres niveles de profundidad progresiva:
+
+**Reconstruir la historia cósmica:** desde el Big Bang hasta la formación del sistema solar, entendiendo cómo se crearon los elementos pesados mediante la nucleosíntesis estelar y cómo las supernovas los dispersaron por el espacio.
+
+**Investigar el origen de la vida:** analizar y debatir las principales hipótesis sobre cómo la materia inerte se transformó en materia viva en la Tierra primitiva hace casi 4.000 millones de años, evaluando las evidencias científicas que las sustentan (registro fósil, datación geológica, experimentos clásicos).
+
+**Explorar la astrobiología:** reflexionar sobre si las condiciones únicas de la Tierra podrían haberse dado en otros lugares del universo, distinguiendo lo que la ciencia puede afirmar de lo que aún es especulación, y diferenciando ciencia rigurosa de pseudociencia.
+
+El producto que articula todo el proceso es el **Relato Cósmico Personal**: una línea temporal visual y argumentada, de elaboración individual, que conecta el Big Bang con el propio alumno, explicando científicamente cómo los átomos de su cuerpo nacieron en el interior de estrellas.
+
+---
+
+### Saberes curriculares trabajados
+
+Los contenidos se organizan en torno a los tres saberes específicos del bloque *La Tierra en el Universo* de 4.º de ESO:
+
+**#GEO4t.3 — Origen del universo y el sistema solar:** Teoría del Big Bang (el universo tiene ~13.800 millones de años y está en expansión constante); nucleosíntesis estelar (formación de elementos pesados en el interior de estrellas); formación del sistema solar por colapso de una nube de gas y polvo hace ~4.600 millones de años; estructura del sistema solar y posición de la Tierra en la zona habitable.
+
+**#GEO4t.4 — Origen de la vida:** Condiciones únicas de la Tierra que posibilitaron la aparición de vida (atmósfera, agua líquida, temperatura, campo magnético); principales hipótesis sobre el origen de la vida (síntesis abiótica, panspermia, endosimbiosis); evidencias en que se sustentan (registro fósil, datación radiométrica); conexión con los saberes del bloque Célula.
+
+**#GEO4t.5 — Astrobiología:** La astrobiología como disciplina científica que estudia dónde podría haber vida en el universo y cómo detectarla; implicaciones científicas, culturales y filosóficas del descubrimiento hipotético de vida extraterrestre; análisis crítico de fuentes sobre este tema.
+
+---
+
+### Competencias desarrolladas
+
+**Competencias específicas de Biología y Geología**
+
+La situación de aprendizaje trabaja de forma integrada las cuatro competencias específicas de la materia. La **CE1** (Interpretación de fenómenos naturales) se activa cuando el alumnado interpreta modelos cosmológicos, gráficos de expansión del universo y la formación del sistema solar. La **CE2** (Evaluación de información científica) entra en juego al contrastar fuentes fiables (NASA, ESA, IPCC) con noticias sensacionalistas sobre vida extraterrestre. La **CE3** (Aplicación del método científico) se desarrolla al diseñar hipótesis sobre el origen de la vida y al trabajar con métodos de datación geológica. La **CE4** (Resolución de problemas) se ejercita al analizar si las condiciones de la Tierra podrían existir en otros mundos (Marte, Europa, exoplanetas).
+
+**Competencias transversales**
+
+La **competencia digital** se desarrolla con la búsqueda y evaluación crítica de información astronómica y astrobiológica, incluyendo el uso de recursos interactivos de la NASA y simuladores en línea. La **competencia personal, social y de aprender a aprender** se trabaja a través de la autoregulación del aprendizaje mediante el cuaderno de navegación cósmica y el trabajo cooperativo en los grupos. La **competencia ciudadana** emerge al reflexionar sobre la fragilidad de las condiciones que hacen posible la vida en la Tierra, conectando con la urgencia de la sostenibilidad ambiental (ODS 13, 14, 15).
+
+---
+
+### Secuencia de sesiones
+
+| Sesión | Título | Fase didáctica |
+| --- | --- | --- |
+| **1** | Somos polvo de estrellas | Exploración — Activación de conocimientos previos |
+| **2** | Leyendo la luz estelar: el código del arco iris | Introducción de nuevos conocimientos — Modelización |
+| **3** | El Big Bang o cómo empezó todo | Introducción de nuevos conocimientos — Modelización |
+| **4** | Construyendo nuestro hogar: el sistema solar y la Tierra | Estructuración — Nuevos conocimientos |
+| **5** | Las condiciones únicas de la Tierra y la astrobiología | Refuerzo — Introducción a la astrobiología |
+| **6** | Las primeras formas de vida y su datación geológica | Desarrollo — Aplicación |
+| **7** | Nuestra historia cósmica | Síntesis — Evaluación y coevaluación |
+
+---
+
+### Actividades y productos de aprendizaje
+
+**Sesión 1 | Somos polvo de estrellas**
+La clase comienza con la proyección de una analítica de sangre real. El profesorado pregunta por el origen de los elementos que aparecen en ella y explora las ideas previas del alumnado mediante un debate dinámico. Se introduce el título de la situación de aprendizaje y se presenta el recorrido completo: desde el Big Bang hasta cada alumno. Se visualiza el vídeo de la NASA *«Finds Ingredients of Life in Fragments of Lost World»* y se inicia el **cuaderno de navegación cósmica**, que el alumnado completará al final de cada sesión con lo que ha aprendido.
+
+**Sesión 2 | Leyendo la luz estelar**
+Esta sesión responde a una pregunta fundamental: ¿cómo saben los científicos de qué están hechas las estrellas sin visitarlas? Mediante una **práctica experimental en grupos de cuatro**, el alumnado descompone luz blanca con prismas ópticos y observa espectros de emisión. A partir de esa experiencia inductiva, se construye el concepto de espectroscopía estelar: la luz de las estrellas es la única fuente de información que tienen los científicos para conocer su composición, distancia y temperatura.
+
+**Sesión 3 | El Big Bang**
+Presentación dialogada de la teoría del Big Bang: el universo concentrado en un punto infinitamente denso y caliente, expansión y enfriamiento, formación de los primeros átomos de hidrógeno y helio, y la radiación de fondo de microondas (CMB) como «fotografía fósil» del universo bebé. El modelo se materializa con una analogía física: **un globo inflado con monedas pegadas** que representan galaxias que se alejan unas de otras a medida que el globo se expande, ilustrando que no son las galaxias las que se mueven, sino el espacio entre ellas.
+
+**Sesión 4 | El sistema solar y la Tierra**
+Presentación cronológica de la formación del sistema solar: colapso de una nube de gas y polvo interestelar hace 4.600 millones de años, formación del Sol y el disco protoplanetario, diferenciación planetaria y posición de la Tierra en la zona habitable. Esta sesión establece el puente conceptual hacia la Sesión 6: ¿qué condiciones concretas de la Tierra hicieron posible la aparición de vida?
+
+**Sesión 5 | Condiciones para la vida y astrobiología**
+El alumnado analiza las seis condiciones que hicieron posible la vida en la Tierra primitiva (atmósfera, agua líquida, temperatura, campo magnético, ciclos biogeoquímicos, distancia al Sol) y se introduce a la astrobiología como disciplina científica. Un punto clave es el matiz conceptual que la astrobiología no puede obviar: estudiar dónde *podría* haber vida es diferente a afirmar que *hay* vida fuera de la Tierra. Se trabaja la diferencia entre condición para la vida y evidencia de vida.
+
+**Sesión 6 | Primeras formas de vida y datación geológica**
+Se presentan y analizan las principales hipótesis sobre el origen de la vida: síntesis abiótica (experimento de Miller-Urey), panspermia y endosimbiosis. El alumnado trabaja con los métodos de datación geológica (especialmente la datación radiométrica con U-238) para comprender cómo los científicos saben que las primeras células aparecieron hace casi 4.000 millones de años. La sesión conecta directamente con los saberes del bloque Célula trabajados anteriormente en el curso.
+
+**Sesión 7 | Nuestra historia cósmica**
+Sesión de síntesis y evaluación. En grupos de cuatro, el alumnado integra los aprendizajes de todas las sesiones para construir y presentar oralmente el **Relato Cósmico Personal**: una narración visual y argumentada que traza el camino del Big Bang hasta el propio alumno, pasando por la nucleosíntesis estelar, la formación del sistema solar, las condiciones de la Tierra, el origen de la vida y la evolución. Se incluye una **ficha de autoevaluación** y coevaluación entre grupos. Al cierre, se abren los sobres con las reflexiones iniciales de la Sesión 1 para contrastar el punto de partida con el pensamiento desarrollado.
+
+---
+
+### Evaluación
+
+La evaluación es **continua, formativa y sumativa**, con dos instrumentos principales:
+
+| Instrumento | Peso | Modalidad |
+| --- | --- | --- |
+| **Relato Cósmico Personal** — línea temporal visual y argumentada | 80 % | Individual |
+| **Exposición oral del Relato Cósmico** — presentación grupal (5 min) | 20 % | Grupal (grupos de 4) |
+
+El **Relato Cósmico Personal** se evalúa con una rúbrica de cuatro niveles (Insuficiente, Suficiente, Notable, Excelente) que pondera tres dimensiones: rigor científico y precisión conceptual (50%), conexión lógica y coherente entre las etapas del relato (30%), y creatividad, organización gráfica y legibilidad (20%).
+
+La **exposición oral** se evalúa según: claridad expositiva y estructura del discurso (60%), uso adecuado del vocabulario científico trabajado (25%), y gestión del tiempo y uso de recursos visuales (15%).
+
+El instrumento de evaluación formativa continua es el **diario del docente** y el **cuaderno de navegación cósmica**, que permite detectar errores conceptuales, malentendidos y evolución del pensamiento del alumnado sesión a sesión.
+
+---
+
+### Atención a la diversidad
+
+La situación de aprendizaje incorpora medidas de atención a la diversidad siguiendo los principios del **Diseño Universal para el Aprendizaje (DUA)**:
+
+- **Alumnado TEA:** roles definidos en el grupo, plantillas estructuradas con instrucciones paso a paso, anticipación de la estructura de cada sesión.
+- **Alumnado TDAH:** subdivisión de tareas largas en pasos con objetivos assequibles, cronómetros visuales, pausas breves estratégicas, asiento cercano al docente.
+- **Alumnado con DEA:** material de lectura adaptado (letra más grande, mayor espaciado), glosario ilustrado de vocabulario científico, posibilidad de grabar las explicaciones, evaluación preferentemente oral.
+- **Alumnado con altas capacidades:** proyectos de ampliación (investigar el *feedback* albedo-hielo, moléculas orgánicas en meteoritos, exoplanetas en zona habitable), rol de «mentor científico» en el grupo, lecturas científicas avanzadas.
+
+---
+
+### Conexiones interdisciplinares y con los ODS
+
+Aunque el contenido es geológico y astronómico, la situación de aprendizaje establece conexiones transversales que amplían su alcance. Con el **bloque Célula** del propio curso de 4.º de ESO, al explicar cómo las primeras formas de vida unicelulares y anaeróbicas conectan con la biología celular. Con los cursos anteriores de ESO, al retomar la tectónica de placas, la estructura interna de la Tierra y la escala del tiempo geológico como fundamento para situar el origen del sistema solar.
+
+Respecto a los ODS, la situación activa la consciencia del alumnado en tres dimensiones. El **ODS 13** (Acción por el clima) emerge al comprender que las condiciones únicas que hacen posible la vida en la Tierra —atmósfera, temperatura, agua líquida— son frágiles y pueden verse comprometidas por la acción humana. Los **ODS 14 y 15** (Vida submarina y Vida terrestre) se conectan al valorar la biodiversidad como el resultado de miles de millones de años de evolución: un patrimonio único que merece protección.
