@@ -1,0 +1,166 @@
+---
+title: "El Mediterrani en 2100: ¿Paradís Perdut?"
+subtitle: "Pràctiques en el centre educatiu|Implementació de la Situació d'Aprenentatge per 2n de Batxillerat | ODS 13: Acció pel Clima"
+filename: portfolio-SA-2Batx
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Situació d'aprenentatge de 10 sessions per a 2 de Batxillerat sobre la *ODS 13 (Canvi climàtic)*
+categories: [Situació d'aprenentatge, Practicum, Canvi Climàtic, ODS 13, Batxillerat, Ciències Naturals]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducció a la Situació d'aprenentatge de 2 de Batxillerat
+
+Imagina que surts a passejar per la platja amb la teva àvia i ella, en veure la riba, s'atura i diu: *"Aquí quan jo era jove hi havia molta més sorra."* Aquesta frase, aparentment senzilla, encapsula una realitat documentada i urgent: les platges del litoral català estan desapareixent a un ritme accelerat. Les de Gavà i Viladecans han perdut el **25 % de la seva arena en els últims 9 anys**. Les de Montgat, el **74 %**. I mentre això passa, la mar Mediterrània s'escalfa més ràpid que la mitjana global.
+
+Aquesta situació d'aprenentatge parteix d'una pregunta incòmoda i genuïnament oberta: **¿Podria el Mediterrani convertir-se en un paradís perdut abans que celebreu els vostres 75 anys?** No és una pregunta retòrica. És el fil conductor de deu sessions en les quals l'alumnat de 2n de Batxillerat investigarà, analitzarà dades reals, debatrà evidències científiques i dissenyarà propostes d'acció local davant l'emergència climàtica.
+
+La proposta s'emmarca en la matèria optativa trimestral *Objectius de Desenvolupament Sostenible* i s'articula al voltant de l'**ODS 13: Acció pel Clima**. El seu enfocament és interdisciplinari: connecta climatologia, geologia, ciències ambientals, pensament crític i comunicació científica. El context és deliberadament local —el delta del Llobregat, les platges de Gavà, el litoral de la Costa Brava— perquè l'alumnat comprovi per si mateix que el canvi climàtic no és un problema abstracte del futur, sinó una realitat que ja transforma el seu entorn més proper.
+
+La metodologia combina l'**aprenentatge basat en la indagació** amb el treball cooperatiu, l'ús d'eines digitals reals (dades de *Copernicus*, mapes col·laboratius, simuladors climàtics), l'anàlisi cinematogràfica i la metacognició. Es prioritzen les competències de pensament crític, raonament científic i acció ciutadana informada.
+
+::: {.panel-tabset}
+## Situació d'aprenentatge 2 Batx {.active}
+
+<embed src="/files/general-docs/SA_2Batx.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Resum de la Situació d'Aprenentatge
+
+### Dades generals
+
+| Camp | Informació |
+| --- | --- |
+| **Títol** | *El Mediterrani en 2100: ¿Paradís Perdut?* |
+| **Nivell** | 2n de Batxillerat |
+| **Matèria** | ODS 13: Acció pel Clima (optativa trimestral) |
+| **Durada** | 10 sessions × 55 minuts |
+| **Trimestre** | 3r trimestre |
+| **Grup** | 1 línia (19 alumnes) |
+| **Àmbit** | Interdisciplinari — Ciències Naturals, Geografia, Ciències Socials |
+
+---
+
+### El repte
+
+La situació d'aprenentatge comença amb una narrativa ancorada en l'experiència local: una alumna de Viladecans descobreix, durant les vacances de Nadal de 2025, que la platja de la seva infància ha perdut arena de manera alarmant. En tornar a classe, aquesta troballa desencadena un debat sobre causes, responsabilitats i futurs possibles. El docent llança la pregunta vertebradora: **¿podria el Mediterrani convertir-se en un paradís perdut abans que celebreu els vostres 75 anys?**
+
+El repte concret per a l'alumnat és investigar els impactes específics del canvi climàtic al Baix Llobregat i al litoral mediterrani català, utilitzant fotografies aèries, bases de dades climàtiques i eines d'anàlisi geoespacial, per comprovar de primera mà que el canvi climàtic ja ha arribat a casa.
+
+---
+
+### Sabers treballats
+
+Els continguts curriculars s'articulen al voltant dels eixos temàtics següents:
+
+- Funcions de l'atmosfera i la hidrosfera i el seu paper essencial per a la vida a la Terra.
+- Elements del clima (temperatura, precipitació, pressió) i la seva variabilitat temporal i espacial.
+- Factors naturals i antròpics que modifiquen el territori i els ecosistemes (emissions de GEH, urbanisme, construcció portuària).
+- Anàlisi de dades i interpretació de gràfics climàtics (*warming stripes*, evolució de temperatures, climogrames).
+- Impactes del canvi climàtic en ecosistemes mediterranis: pujada del nivell de la mar, tropicalització, extrems climàtics i pèrdua de biodiversitat.
+- Vulnerabilitat territorial del litoral català: erosió costanera, pèrdua de platges, salinització d'aqüífers i impactes econòmics.
+- Metodologia de recerca científica escolar: hipòtesis, fonts primàries i secundàries, mètode científic.
+- ODS 13 «Acció pel Clima» aplicat al context mediterrani català.
+- Pensament sistèmic: relació clima–societat–economia a escala local i global.
+
+---
+
+### Competències clau desenvolupades
+
+La situació d'aprenentatge desenvolupa de manera integrada les competències clau del Batxillerat:
+
+**Competència matemàtica i STEM:** L'alumnat aplica pensament científic (hipòtesis, anàlisi de dades climàtiques, interpretació de gràfics) i proposa solucions d'enginyeria sostenible davant l'erosió litoral.
+
+**Competència digital:** S'utilitzen eines digitals com la base de dades *Copernicus*, informes de l'IPCC, simuladors climàtics i la plataforma cartogràfica *Instamaps* de l'ICGC per distingir ciència de pseudociència i avaluar la fiabilitat de les fonts.
+
+**Competència personal, social i d'aprendre a aprendre:** El treball cooperatiu en grups heterogenis, la gestió de projectes i la reflexió sobre les pròpies idees prèvies són eixos transversals de totes les sessions.
+
+**Competències per a la sostenibilitat (ODS 13):** Pensament sistèmic, competència anticipatòria (disseny d'escenaris futurs), competència estratègica (plans d'acció locals) i competència crítica davant el negacionisme climàtic.
+
+---
+
+### Seqüència de sessions
+
+| Sessió | Títol | Fase didàctica |
+| --- | --- | --- |
+| **1** | Idees prèvies i descobrir per un mateix el canvi climàtic | Exploració — Activació |
+| **2** | Què és el clima? Diferències entre clima i temps | Desenvolupament — Construcció de sabers |
+| **3** | Grans contaminants ocults — Introducció a l'ODS 13 | Desenvolupament — Ampliació temàtica |
+| **4** | Visionat de *El niño que domó el viento* (part 1) | Desenvolupament — Contextualització humana |
+| **5** | Visionat de *El niño que domó el viento* (part 2) | Desenvolupament — Estructuració |
+| **6** | Treball grupal sobre la pel·lícula | Desenvolupament — Pensament crític i connexió local |
+| **7** | El clima a escala geològica i les últimes glaceres | Desenvolupament — Fonamentació científica |
+| **8** | Jornada de consolidació dels treballs pràctics | Aplicació — Treball cooperatiu |
+| **9** | Treball individual amb preguntes TSS | Aplicació i avaluació |
+| **10** | Tancament metacognitiu i debat final | Síntesi — Avaluació i metacognició |
+
+---
+
+### Activitats i productes d'aprenentatge
+
+**Sessions 1–2 | Descobrir el canvi climàtic per un mateix**
+Els grups analitzen dades de temperatura de 34 localitats del món (dades *Copernicus*) utilitzant una eina HTML interactiva que genera *warming stripes*. L'objectiu és que l'alumnat descobreixi de manera inductiva que l'Àrtic s'escalfa quatre vegades més ràpid que la resta del planeta, sense que el docent ho indiqui prèviament. L'activitat incorpora una reflexió crítica sobre la manipulació de dades climàtiques mitjançant l'elecció del període de referència.
+
+**Sessió 3 | Grans contaminants ocults**
+Es presenten dos casos d'emissions poc conegudes: el *gas flaring* (crema de metà per interessos petrolífers) i el desglaç del permafrost (retroalimentació positiva del canvi climàtic). A continuació, es presenten les cinc metes de l'ODS 13 i cada grup rep per sorteig una meta que haurà d'investigar i materialitzar en una **infografia** com a producte transversal de la situació d'aprenentatge.
+
+**Sessions 4–6 | Anàlisi de *El niño que domó el viento***
+El visionat de la pel·lícula de Netflix (2019) serveix com a àncora emocional i analítica. El cas de William Kamkwamba a Malawi il·lustra com el canvi climàtic afecta comunitats vulnerables i com la innovació local amb energies renovables pot generar resiliència. El treball grupal posterior connecta la història africana amb el context mediterrani: *«Si el William hagués crescut al Baix Llobregat, quines solucions hauria proposat?»*
+
+**Sessió 7 | El clima a escala geològica**
+Una presentació sobre l'evolució del clima des del Càmbric, els cicles glacials, els mètodes paleoclimàtics (nuclis de gel, anells d'arbres, cicles de Milankovitch) i la velocitat del canvi climàtic actual —50 vegades més ràpida que l'última deglaciació— serveix per deconstruir arguments negacionistes amb dades científiques sòlides.
+
+**Sessió 9 | Preguntes TSS (Testing Science Skills)**
+Exercici individual en format TSS en el qual l'alumnat ha de distingir afirmacions científiques d'opinions o decisions ètiques, aplicar coneixements climàtics i justificar el seu raonament. Avalua competències de pensament científic sense interferència memorística.
+
+**Sessió 10 | Tancament metacognitiu**
+S'obren els sobres amb les quartilles escrites a la Sessió 1 i l'alumnat llegeix les seves pròpies idees prèvies. El debat final contrasta el punt de partida amb el pensament desenvolupat al llarg de la situació d'aprenentatge. Es lliuren les infografies ODS 13 i es realitza l'autoavaluació mitjançant Google Forms.
+
+---
+
+### Avaluació
+
+L'avaluació és **contínua, formativa i sumativa**, i es distribueix de la manera següent:
+
+| Instrument | Pes | Modalitat |
+| --- | --- | --- |
+| Exercici grupal *warming stripes* — «Descobrir el canvi climàtic per un mateix» | 10 % | Grupal |
+| Anàlisi grupal d'escenes de *El niño que domó el viento* | 20 % | Grupal |
+| Infografia de la meta ODS 13 assignada | 20 % | Grupal |
+| Preguntes individuals TSS | 45 % | Individual |
+| Quartilla metacognitiva — reflexió sobre el canvi de pensament | 5 % | Individual |
+
+L'instrument d'avaluació formativa contínua és el **diari del docent**, que registra les idees prèvies detectades, els malentesos conceptuals, la participació i l'evolució del pensament crític de cada estudiant al llarg de les sessions.
+
+---
+
+### Atenció a la diversitat
+
+La situació d'aprenentatge incorpora mesures d'atenció a la diversitat seguint els principis del **Disseny Universal per a l'Aprenentatge (DUA)**:
+
+- **Alumnat TEA:** rols assignats al grup, anticipació d'estructures amb plantilles visuals, guions d'escenes clau per al visionat.
+- **Alumnat TDAH:** subdivisió de tasques llargues, temporitzadors visuals, parades estratègiques amb preguntes, permís per a pauses breus.
+- **Alumnat amb DEA:** glossari visual il·lustrat, possibilitat de gravació d'àudio, material adaptat amb més espaiat tipogràfic.
+- **Alumnat d'altes capacitats:** lectures científiques avançades, investigació del *feedback* albedo-gel, casos de resiliència mediterrània, paper de «mentor científic» al grup.
+
+---
+
+### Connexions amb els ODS
+
+Tot i que l'ODS 13 és l'eix central, la situació d'aprenentatge estableix connexions explícites amb altres objectius:
+
+- **ODS 2 (Fam zero):** el canvi climàtic afecta directament la producció d'aliments i la fertilitat dels sòls, especialment a les zones mediterrànies vulnerables.
+- **ODS 4 (Educació de qualitat):** cada activitat de la situació d'aprenentatge és, simultàniament, contingut climàtic i desenvolupament de competències pròpies d'una educació transformadora (meta 4.7).
+- **ODS 7 (Energia neta):** la transició energètica apareix com a resposta estructural al canvi climàtic, especialment a través del cas de William Kamkwamba i la proposta de plans d'acció locals.

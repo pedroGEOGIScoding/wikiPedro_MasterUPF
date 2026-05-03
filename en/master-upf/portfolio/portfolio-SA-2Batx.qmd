@@ -1,0 +1,166 @@
+---
+title: "The Mediterranean in 2100: A Lost Paradise?"
+subtitle: "Practices at the educational center|Implementation of the learning situation for 2nd year of Bachillerato"
+filename: portfolio-SA-2Batx
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Learning situation of 10 sessions for 2nd year of Bachillerato on ODS 13 (Climate change)
+categories: [Learning situation, Practicum, Climate Change, ODS 13, Bachillerato, Natural Sciences]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introduction to the Learning Situation for 2nd Year of Bachillerato
+
+Imagine walking along the beach with your grandmother and watching her stop, look at the shoreline, and say: *"When I was young, there was so much more sand here."* That simple remark captures an urgent, documented reality: the beaches of the Catalan coast are disappearing at an accelerating rate. The beaches of Gavà and Viladecans have lost **25% of their sand in the past 9 years**. Those of Montgat have lost **74%**. All the while, the Mediterranean Sea is warming faster than the global average.
+
+This learning situation is built around an uncomfortable and genuinely open question: **Could the Mediterranean become a lost paradise before you turn 75?** This is not a rhetorical question — it is the guiding thread of ten sessions in which Year 12 students will investigate, analyse real data, debate scientific evidence and design local action proposals in response to the climate emergency.
+
+The unit is framed within the elective trimestral subject *Sustainable Development Goals* and is organised around **SDG 13: Climate Action**. Its approach is interdisciplinary, connecting climatology, geology, environmental sciences, critical thinking and scientific communication. The context is deliberately local — the Llobregat delta, the beaches of Gavà, the Costa Brava coastline — so that students can verify for themselves that climate change is not an abstract future problem, but a reality already reshaping the places they know best.
+
+The methodology combines **inquiry-based learning** with cooperative work, the use of real digital tools (Copernicus climate data, collaborative mapping, climate simulators), film analysis and metacognition. The emphasis throughout is on critical thinking, scientific reasoning and informed civic agency.
+
+::: {.panel-tabset}
+## Learning Situation for 2 Batx {.active}
+
+<embed src="/files/general-docs/SA_2Batx.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+
+---
+
+## Learning Situation Summary
+
+### General Information
+
+| Field | Details |
+| --- | --- |
+| **Title** | *The Mediterranean in 2100: A Lost Paradise?* |
+| **Level** | Year 12 (2nd Bachillerato) |
+| **Subject** | SDG 13: Climate Action (trimestral elective) |
+| **Duration** | 10 sessions × 55 minutes |
+| **Term** | Third term |
+| **Group** | 1 class (19 students) |
+| **Scope** | Interdisciplinary — Natural Sciences, Geography, Social Sciences |
+
+---
+
+### The Challenge
+
+The learning situation opens with a narrative rooted in local experience: a student from Viladecans discovers during the Christmas holidays of 2025 that the beach she grew up on has lost a striking amount of sand. Back in class, this finding sparks a debate about causes, responsibilities and possible futures. The teacher then poses the central question: **Could the Mediterranean become a lost paradise before you turn 75?**
+
+The concrete challenge for students is to investigate the specific impacts of climate change in the Baix Llobregat region and the Catalan Mediterranean coastline, using aerial photography, climate databases and geospatial analysis tools, to verify first-hand that climate change has already arrived in their own backyard.
+
+---
+
+### Curriculum Content
+
+The curricular knowledge is organised around the following thematic axes:
+
+- Functions of the atmosphere and hydrosphere and their essential role for life on Earth.
+- Elements of climate (temperature, precipitation, pressure) and their temporal and spatial variability.
+- Natural and anthropogenic factors that modify territory and ecosystems (GHG emissions, urban development, port construction).
+- Data analysis and interpretation of climate graphs (*warming stripes*, temperature trends, climatic diagrams).
+- Climate change impacts on Mediterranean ecosystems: sea level rise, tropicalisation, extreme weather events and biodiversity loss.
+- Territorial vulnerability of the Catalan coast: coastal erosion, beach loss, aquifer salinisation and economic impacts.
+- School scientific research methodology: hypotheses, primary and secondary sources, the scientific method.
+- SDG 13 «Climate Action» applied to the Catalan Mediterranean context.
+- Systems thinking: the climate–society–economy relationship at local and global scales.
+
+---
+
+### Key Competences Developed
+
+The learning situation develops the key competences of Bachillerato in an integrated way:
+
+**Mathematical and STEM competence:** Students apply scientific thinking (hypotheses, climate data analysis, graph interpretation) and propose sustainable engineering solutions to address coastal erosion.
+
+**Digital competence:** Real digital tools are used throughout — the Copernicus climate database, IPCC reports, climate simulators and the ICGC's *Instamaps* cartographic platform — to distinguish science from pseudoscience and evaluate the reliability of sources.
+
+**Personal, social and learning-to-learn competence:** Cooperative work in heterogeneous groups, project management and reflection on prior conceptions are cross-cutting elements of every session.
+
+**Sustainability competences (SDG 13):** Systems thinking, anticipatory competence (future scenario design), strategic competence (local action plans) and critical competence in the face of climate denial.
+
+---
+
+### Session Sequence
+
+| Session | Title | Didactic Phase |
+| --- | --- | --- |
+| **1** | Prior conceptions and discovering climate change for oneself | Exploration — Activation |
+| **2** | What is climate? The difference between climate and weather | Development — Knowledge construction |
+| **3** | Hidden major pollutants — Introduction to SDG 13 | Development — Thematic expansion |
+| **4** | Screening of *The Boy Who Harnessed the Wind* (part 1) | Development — Human contextualisation |
+| **5** | Screening of *The Boy Who Harnessed the Wind* (part 2) | Development — Structuring |
+| **6** | Group analysis of the film | Development — Critical thinking and local connection |
+| **7** | Climate on a geological scale and the last ice ages | Development — Scientific foundation |
+| **8** | Consolidation session for the two practical tasks | Application — Cooperative work |
+| **9** | Individual work with TSS questions | Application and assessment |
+| **10** | Metacognitive closure and final debate | Synthesis — Assessment and metacognition |
+
+---
+
+### Activities and Learning Products
+
+**Sessions 1–2 | Discovering climate change for oneself**
+Groups analyse temperature data from 34 locations worldwide (Copernicus data) using an interactive HTML tool that generates *warming stripes*. The goal is for students to discover inductively that the Arctic is warming four times faster than the rest of the planet, without being told this in advance. The activity incorporates a critical reflection on the manipulation of climate data through the strategic choice of reference period.
+
+**Session 3 | Hidden major pollutants**
+Two little-known emission sources are introduced: *gas flaring* (methane burning driven by fossil fuel industry interests) and permafrost thaw (a positive feedback loop in the climate system). Students are then presented with the five targets of SDG 13, and each group draws a target by lot, which they will research and transform into an **infographic** — the transversal product of the entire learning situation.
+
+**Sessions 4–6 | Analysis of *The Boy Who Harnessed the Wind***
+The Netflix film (2019) serves as both an emotional and analytical anchor. The story of William Kamkwamba in Malawi illustrates how climate change affects vulnerable communities and how local innovation using renewable energy can build resilience. The subsequent group analysis connects the African context with the local Mediterranean one: *"If William had grown up in the Baix Llobregat, what solutions would he have proposed?"*
+
+**Session 7 | Climate on a geological scale**
+A presentation covering climate evolution since the Cambrian, glacial cycles, palaeoclimatic methods (ice cores, tree rings, Milankovitch cycles) and the speed of current climate change — 50 times faster than the last deglaciation — provides the scientific evidence needed to dismantle climate denial arguments with rigour.
+
+**Session 9 | TSS Questions (Testing Science Skills)**
+An individual exercise in TSS format in which students must distinguish scientific claims from ethical opinions or value judgements, apply climate knowledge and justify their reasoning. The exercise assesses scientific thinking competences without interference from rote memorisation.
+
+**Session 10 | Metacognitive closure**
+The envelopes containing the notes written in Session 1 are opened and students read their own prior conceptions aloud. The final debate contrasts the starting point with the thinking developed throughout the learning situation. SDG 13 infographics are submitted and self-assessment is conducted via Google Forms.
+
+---
+
+### Assessment
+
+Assessment is **ongoing, formative and summative**, distributed as follows:
+
+| Instrument | Weight | Mode |
+| --- | --- | --- |
+| Group *warming stripes* task — «Discovering climate change for oneself» | 10% | Group |
+| Group analysis of scenes from *The Boy Who Harnessed the Wind* | 20% | Group |
+| SDG 13 target infographic | 20% | Group |
+| Individual TSS questions | 45% | Individual |
+| Metacognitive note — reflection on change in thinking | 5%  | Individual |
+
+The continuous formative assessment instrument is the **teacher's journal**, which records detected prior conceptions, conceptual misunderstandings, participation patterns and the evolution of each student's critical thinking throughout the sessions.
+
+---
+
+### Attention to Diversity
+
+The learning situation incorporates differentiation measures following the principles of **Universal Design for Learning (UDL)**:
+
+- **Students with ASD:** assigned group roles, anticipatory visual templates, scene-by-scene guides for the film screenings.
+- **Students with ADHD:** subdivision of long tasks, visual timers, strategic pause-and-question breaks, permission for brief movement breaks.
+- **Students with specific learning difficulties:** illustrated visual glossary, audio recording option, adapted materials with increased typographic spacing.
+- **Gifted students:** advanced scientific readings, investigation of the ice–albedo feedback loop, Mediterranean resilience case studies, role of «scientific mentor» within the group.
+
+---
+
+### Connections with the SDGs
+
+Although SDG 13 is the central axis, the learning situation establishes explicit connections with other goals:
+
+- **SDG 2 (Zero Hunger):** climate change directly affects food production and soil fertility, especially in vulnerable Mediterranean zones.
+- **SDG 4 (Quality Education):** every activity in the learning situation is simultaneously climate content and the development of competences central to transformative education (target 4.7).
+- **SDG 7 (Clean Energy):** the energy transition appears as a structural response to climate change, particularly through the story of William Kamkwamba and the design of local action plans.
