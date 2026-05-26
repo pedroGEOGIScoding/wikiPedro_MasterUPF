@@ -792,3 +792,45 @@ Space for notes, comments and specific observations about the group:
 Space for notes, comments and specific observations about the student:
 
 <textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones adicionales..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+
+---
+
+```{=html}
+<div id="pdf-btn-container" style="text-align: center; margin: 2em 0;">
+  <button onclick="window.print()" style="
+    background-color: #0f5c6e;
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  ">
+    ⬇ Download as PDF
+  </button>
+  <p style="font-size: 13px; color: #666; margin-top: 8px;">
+    In the print dialog, select <strong>"Save as PDF"</strong> as the destination.
+  </p>
+</div>
+
+<style>
+@media print {
+  .navbar, .nav-footer, #quarto-sidebar, #TOC, .quarto-title-banner,
+  .quarto-title-meta, #pdf-btn-container, .page-navigation,
+  #quarto-margin-sidebar, header.quarto-title-block, .quarto-secondary-nav {
+    display: none !important;
+  }
+  body { font-size: 11pt; color: #000; }
+  #quarto-content { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+  input[type="checkbox"] { width: 12px; height: 12px; }
+  textarea { border: 1px solid #999 !important; min-height: 80px; }
+  h2 { page-break-before: always; }
+  h2:first-of-type { page-break-before: avoid; }
+}
+</style>
+```
