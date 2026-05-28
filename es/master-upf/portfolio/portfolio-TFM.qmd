@@ -1,0 +1,173 @@
+---
+title: "Trabajo fin de Máster"
+subtitle: "Deconstruyendo pseudociencia enseñando ciencia: Una intervención mediante grupos heterogéneos en Bachillerato"
+filename: portfolio-TFM
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Trabajo fin de máster sobre deconstrucción de pseudociencia enseñando ciencia
+categories: [TFM, pseudociencia, Practicum, Biología, Geología, Ciencia Naturales]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducción al trabajo fin de Máster (TFM) de Secundaria
+
+¿Qué pasa cuando un alumno de 2.º de Bachillerato acepta que «una nevada en marzo demuestra que el calentamiento global es mentira»? ¿O cuando la fuente de referencia científica más fiable para otro compañero es un *influencer* de TikTok? La pseudociencia no es un fenómeno marginal ni anecdótico: es un sistema de creencias que opera activamente dentro de las aulas, y la investigación educativa demuestra que no nace de la ignorancia, sino de los mismos mecanismos cognitivos que hacen funcionar el pensamiento humano — la búsqueda de patrones, el sesgo de confirmación, la ilusión causal —, amplificados por los algoritmos de las redes sociales.
+
+Este Trabajo de Fin de Máster parte de una convicción pedagógica clara: **enseñar ciencia de manera realmente eficaz exige enseñar, en paralelo y de forma explícita, qué es la pseudociencia**. No como curiosidad anecdótica, sino como el antagonista directo del método científico, como la sombra que define la silueta de la evidencia. Esa filosofía — resumida en el leitmotiv *«se enseña ciencia deconstruyendo la pseudociencia»* — es la piedra angular de la intervención didáctica que se presenta en este trabajo.
+
+La investigación se desarrolló en el Colegio San Gabriel de Viladecans, con 18 alumnos de 2.º de Bachillerato, durante 10 sesiones centradas en la ODS 13 (cambio climático). El cambio climático fue elegido como contexto temático deliberadamente: es uno de los temas científicos con mayor polarización política y social, con alta presencia de narrativas negacionistas amplificadas en redes, y especialmente fértil para estudiar cómo se instalan y pueden revertirse las creencias pseudocientíficas en adolescentes con alta exposición digital.
+
+La propuesta didáctica se articuló en torno a tres ejes que actúan de forma sinérgica: la **enseñanza explícita de la Naturaleza de la Ciencia (NdC)**, la **validación crítica de fuentes** de información científica y mediática, y la **formación de grupos heterogéneos** por género y rendimiento académico. Este tercer eje es la hipótesis central de la investigación: los grupos heterogéneos rompen los endogrupos homofílicos donde las creencias raramente se cuestionan, generando la tensión sociocognitiva necesaria para revisar ideas pseudocientíficas. La heterogeneidad del grupo no es un criterio organizativo más — es una condición para que funcione la Zona de Desarrollo Próximo de Vygotsky.
+
+Lo que hace especialmente relevante esta investigación es que aborda un problema que el propio sistema educativo catalán no reconoce explícitamente: el Decret 171/2022 de Bachillerato no contiene ni un solo criterio de evaluación relacionado con la pseudociencia, y la página del Departament d'Educació i Formació Professional arroja cero resultados al buscar «pseudociència». Frente a ese vacío curricular, este trabajo propone y pone a prueba una estrategia didáctica concreta, replicable y fundamentada en la investigación educativa más reciente, que cualquier docente de ciencias puede aplicar sin necesidad de modificar el currículo.
+
+::: {.panel-tabset}
+## Trabajo fin de Máster {.active}
+
+<embed src="/files/general-docs/TFM-PMD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+---
+
+## Resumen del TFM
+
+### Datos del trabajo
+
+| Campo | Información |
+| --- | --- |
+| **Título completo** | *Deconstruyendo pseudociencia enseñando ciencia: una intervención mediante grupos heterogéneos en Bachillerato* |
+| **Autor** | Pedro Martínez Durán |
+| **Máster** | Máster de Formación del Profesorado de Secundaria — Ciencias Naturales |
+| **Centro de prácticas** | Colegio San Gabriel de Viladecans (Baix Llobregat, Catalunya) |
+| **Muestra principal** | 18 alumnos de 2.º de Bachillerato |
+| **Duración** | 10 sesiones (febrero–abril 2026) |
+| **Contexto temático** | ODS 13 — Cambio climático |
+| **Metodología** | Mixta (cuantitativa + cualitativa) |
+
+---
+
+### El problema de investigación
+
+La proliferación de pseudociencia en entornos digitales representa un reto creciente para la educación científica. La investigación reciente demuestra que las creencias pseudocientíficas no nacen de la ignorancia, sino de mecanismos cognitivos como el **sesgo de confirmación**, la **ilusión causal** y el **efecto de influencia continuada**, amplificados por la exposición algorítmica a desinformación en redes sociales. En España, las búsquedas del término «pseudociencia» muestran un patrón estacional recurrente con un pico anual en septiembre-octubre coincidiendo con el inicio del curso escolar, lo que indica que la pseudociencia «entra en las aulas cada otoño junto con el calendario escolar».
+
+El problema es especialmente grave en Bachillerato: el Decret 171/2022 d'ordenació dels ensenyaments de batxillerat contiene **cero menciones** a criterios de evaluación relacionados con la pseudociencia. La educación científica en secundaria presenta la ciencia como estática y sin incertidumbre (Ibáñez-Ibáñez et al., 2019), generando obstáculos epistemológicos que dificultan al alumnado distinguir una teoría científica de una creencia. Paradójicamente, un estudio de Solbes et al. (2017) con futuros docentes de ciencias encontró que el 64,9 % aceptaba la influencia de la luna en la salud y la agricultura, y casi el 11 % rechazaba la evolución: niveles comparables a los de la población general.
+
+---
+
+### Objetivos e hipótesis
+
+El **objetivo general** de la intervención fue *analizar la incidencia del pensamiento pseudocientífico en estudiantes de Bachillerato y evaluar una propuesta didáctica orientada a fomentar el pensamiento crítico científico*.
+
+Los **objetivos específicos** fueron:
+
+- Diagnosticar el grado de creencias pseudocientíficas en el contexto del cambio climático.
+- Buscar correlaciones entre el consumo de redes sociales y las creencias pseudocientíficas.
+- Evaluar el impacto de la intervención didáctica en la deconstrucción de ideas pseudocientíficas.
+- Analizar diferencias de respuesta por género.
+- Evaluar la aceptación de los grupos heterogéneos en alumnado acostumbrado a endogrupos homofílicos.
+
+La **hipótesis central** plantea que los grupos heterogéneos — diseñados para romper las burbujas de afinidad donde las creencias circulan sin ser cuestionadas — generan el conflicto sociocognitivo necesario para facilitar la revisión de ideas pseudocientíficas, pero no como herramienta única: en combinación con la enseñanza explícita de la NdC, la validación de fuentes y actividades de indagación con evidencias científicas directas.
+
+---
+
+### Marco teórico
+
+El marco teórico integra seis capas causales interconectadas que explican la persistencia de las creencias pseudocientíficas en adolescentes:
+
+**Raíz cognitiva — Ilusión causal y sesgos:** El cerebro adolescente busca patrones de forma innata. La ilusión causal (Torres et al., 2020), el sesgo de confirmación, el efecto Dunning-Kruger y el «continued influence effect» actúan como amplificadores. Un alumno que cree en el horóscopo no lo hace por irracionalidad, sino porque su cerebro ejecuta una función evolutiva básica sin las herramientas para distinguir correlación de causalidad.
+
+**Naturaleza de la Ciencia (NdC):** Muchos alumnos tienen una imagen distorsionada de la ciencia — creen que las teorías son «hipótesis sin demostrar» o que el desacuerdo entre científicos significa que «nadie sabe nada». Estas concepciones son obstáculos epistemológicos (Bachelard, 1981) que bloquean el cambio conceptual. El enfoque explícito de la NdC, frente al implícito, produce resultados sistemáticamente superiores (Gandolfi, 2017).
+
+**Cambio conceptual:** Según Posner et al. (1982), el alumno solo sustituye una creencia si siente insatisfacción con la que ya tiene y percibe la alternativa como comprensible, verosímil y útil. La teoría *framework* (Vosniadou et al., 2014) añade que los marcos implícitos más profundos requieren una desestabilización sostenida, no una corrección puntual.
+
+**Redes sociales y factor socioemocional:** Los algoritmos de TikTok e Instagram priorizan contenido emocionalmente activador que coincide con narrativas pseudocientíficas. El estudio de Quevedo-Ortiz et al. (2019) confirmó que los alumnos con mayor exposición a redes muestran niveles más altos de aceptación de ideas pseudocientíficas. Los adolescentes no son receptores pasivos: toman decisiones epistémicas deliberadas, aunque frecuentemente erróneas.
+
+**Grupos heterogéneos y conflicto sociocognitivo:** La Zona de Desarrollo Próximo (Vygotsky, 1978) se activa cuando el estudiante trabaja con compañeros que aportan perspectivas genuinamente distintas. Doise et al. (1984) añaden que lo que impulsa el desarrollo cognitivo es la confrontación entre perspectivas divergentes. En un grupo homofílico, ese espacio no existe porque todos piensan de forma similar.
+
+**Teoría de inoculación:** Al igual que una vacuna expone al sistema inmunológico a una dosis debilitada de un patógeno, la teoría de la inoculación cognitiva (Linden et al., 2026) propone exponer al alumnado a versiones debilitadas de argumentos pseudocientíficos junto con herramientas para refutarlos. Cook et al. (2017) demostraron que añadir una «inoculación» previa a la desinformación climática mantiene la resistencia incluso cruzando espectros ideológicos distintos.
+
+---
+
+### Metodología
+
+La investigación empleó un **diseño metodológico mixto** combinando instrumentos cuantitativos y cualitativos, aplicados durante la fase de prácticum entre febrero y abril de 2026.
+
+**Formación de grupos heterogéneos:** Se diseñaron 5 grupos de 3-4 alumnos equilibrados en tres variables cuantificadas por el tutor del centro: rendimiento académico (diferencia máxima entre grupos: 0,25 puntos), actitud hacia el trabajo cooperativo (diferencia máxima: 0,25 puntos) y sexo (50 % en 4 de los 5 grupos). Los grupos espontáneos que generaban los propios alumnos presentaban diferencias de hasta 2,33 puntos en rendimiento y segregación casi total por sexos.
+
+**Índice de Pensamiento Pseudocientífico (IPP):** Se diseñó un índice operativo ad hoc — inspirado en la *Pseudoscientific Belief Scale* (PSEUDO) y la *Pseudoscience Endorsement Scale* (sPES) — basado en 18 ítems Likert de 4 puntos (escala *forced-choice*, sin punto medio), organizados en dos tipos: preguntas MITO (10 ítems que contienen falacias pseudocientíficas) y preguntas CORRECTO (8 ítems con afirmaciones científicamente correctas). Los valores van de 1,00 (posición completamente científica) a 4,00 (alta carga pseudocientífica).
+
+**Cuestionarios pre y post intervención:** Dos cuestionarios anónimos en Google Forms, con código personal anónimo para seguimiento longitudinal individual. El cuestionario post añadió 6 ítems sobre trabajo en grupo, una matriz de fiabilidad percibida de fuentes (TikTok, Instagram, YouTube, NASA, Copernicus, ESA, MeteoCat) y una pregunta abierta de reflexión metacognitiva.
+
+**Preguntas TSS (*Testing Science Skills*):** En la sesión 9, el alumnado respondió 3 preguntas diseñadas con el protocolo TSS del grupo EduWikiLab, en papel y escritura a mano para evitar el uso de IA generativa. Este protocolo evalúa habilidades científicas — conceptos, procedimientos y comprensión de la generación del conocimiento — sin depender de la memorización de contenidos.
+
+**Entrevistas semiestructuradas:** Tras la sesión 10, se realizaron 3 entrevistas individuales voluntarias, grabadas y transcritas íntegramente (transcripción con Gemini), con el objetivo de triangular los datos cuantitativos de los cuestionarios con las percepciones cualitativas del alumnado sobre los grupos heterogéneos, el cambio en sus creencias y la valoración de la intervención.
+
+**Diario de campo docente:** Observación sistemática en sesiones 1, 2, 6, 8 y 9, registrando participación, calidad de argumentaciones, aparición de conflictos sociocognitivos y posible revisión de creencias.
+
+---
+
+### Resultados principales
+
+#### Evolución global del IPP
+
+| Indicador | IPP pre | IPP post | ΔIPP |
+| --- | --- | --- | --- |
+| **Media del grupo** | 1,975 | 1,855 | **−0,120** |
+| Desviación típica | 0,447 | 0,314 | —   |
+| IPP mínimo | 1,278 | 1,389 | —   |
+| IPP máximo | 3,167 | 2,778 | —   |
+
+El 67 % del alumnado (12 de 18) redujo su puntuación, el 6 % (1 alumno) se mantuvo estable y el 28 % (5 alumnos) empeoró. La reducción de la desviación típica (de 0,447 a 0,314) indica que el grupo converge hacia posiciones más uniformemente científicas tras la intervención. El caso paradigmático fue MO06, que partía del IPP más alto del grupo (3,167, zona de pseudociencia moderada-alta) y cayó 0,944 puntos tras la intervención.
+
+#### Diferencias por género
+
+| Sexo | IPP pre | IPP post | ΔIPP | Mejoran | Empeoran |
+| --- | --- | --- | --- | --- | --- |
+| **Mujeres** | 2,000 | 1,821 | **−0,179** | 78 % (7/9) | 22 % (2/9) |
+| **Hombres** | 1,951 | 1,889 | **−0,062** | 56 % (5/9) | 33 % (3/9) |
+
+Con un IPP inicial prácticamente idéntico en ambos grupos (2,000 vs. 1,951), las alumnas mostraron una mejora casi **tres veces superior** a la de los alumnos. Este resultado se explica parcialmente por la mayor dispersión inicial de las alumnas (rango 1,333–3,167 vs. 1,278–2,222 en hombres): la intervención fue especialmente niveladora para las alumnas que partían de posiciones más extremas.
+
+#### Impacto del consumo de redes sociales
+
+Se encontró una correlación de Pearson *r* = +0,225 entre el número de horas de consumo de redes sociales y la menor mejora del IPP. Este resultado es un indicador de tendencia — no de causalidad dado el tamaño muestral — coherente con la literatura (Quevedo-Ortiz et al., 2019; Del-Moral-Pérez et al., 2026) que asocia el uso intensivo de redes con mayor vulnerabilidad a la desinformación pseudocientífica.
+
+#### Grupos heterogéneos
+
+Los datos cuantitativos no permiten aislar el efecto específico de los grupos heterogéneos del conjunto de la intervención. Sin embargo, las entrevistas cualitativas revelan que el conflicto sociocognitivo sí fue percibido por el alumnado como una experiencia real de confrontación de perspectivas distintas. La disfuncionalidad descrita como «dos que trabajaban y dos que no» en algunos grupos explica parcialmente por qué algunos alumnos con alto potencial de mejora no alcanzaron los deltas esperados en el IPP. La responsabilidad individual fue la dimensión más difícil de garantizar dentro del tiempo disponible.
+
+#### Preguntas TSS y entrevistas
+
+El análisis de las preguntas TSS reveló que la mayoría del alumnado distinguía correctamente entre correlación y causalidad en el contexto del cambio climático, aunque con dificultades para usar vocabulario científico preciso en argumentaciones escritas. Las 3 entrevistas triangularon los datos cuantitativos y revelaron matices no capturables con cuestionarios cerrados: dos alumnos declararon explícitamente haber cambiado su percepción sobre el cambio climático, coherente con sus datos cuantitativos.
+
+---
+
+### Conclusiones
+
+Los datos obtenidos sugieren que **deconstruir explícitamente la pseudociencia en el aula es una estrategia didáctica prometedora**, con una reducción media del IPP de −0,120 puntos y un 67 % del alumnado mejorando su posición. Sin embargo, la muestra de 18 alumnos no permite establecer causalidad estadística ni generalizar los resultados, y se requieren intervenciones más prolongadas con muestras más amplias para consolidar las conclusiones.
+
+La **diferencia de respuesta por género** es el hallazgo más llamativo: las alumnas mejoran casi tres veces más que los alumnos desde una línea de base prácticamente idéntica. Este resultado requiere validación con muestras mayores, pero apunta a que la metodología empleada — trabajo cooperativo heterogéneo, análisis crítico de fuentes, evidencias visuales directas — conecta más efectivamente con estilos de procesamiento más colaborativos y relacionales.
+
+El **vacío curricular** en Bachillerato — cero criterios de evaluación sobre pseudociencia en el Decret 171/2022 — es, en sí mismo, una de las conclusiones más relevantes del trabajo: la pseudociencia no puede abordarse de forma tangencial. Debe convertirse en un objeto de enseñanza explícito y sistemático en la educación científica secundaria.
+
+---
+
+### Limitaciones y futuras líneas
+
+La principal limitación metodológica es la **ausencia de grupo de control**, decisión justificada pedagógicamente para evitar dinámicas de discriminación percibida en el aula. A esta se suma el tamaño muestral reducido (18 alumnos), la imposibilidad de aislar el efecto específico de los grupos heterogéneos del resto de la intervención, y la duración relativamente breve (10 sesiones).
+
+Las futuras líneas de investigación incluyen: replicar el diseño con muestras más amplias y grupos de control; incorporar ejercicios explícitos de *lateral reading* (lectura lateral) como técnica de evaluación de fuentes digitales; explorar la efectividad diferencial por género con mayor control estadístico; y extender la intervención a otras materias y niveles educativos fuera del contexto del cambio climático.
+
+---
+
+*Trabajo Fin de Máster — Máster Universitario en Formación del Profesorado de Educación Secundaria Obligatoria y Bachillerato — Especialidad Ciencias Naturales. Mayo 2026.
+

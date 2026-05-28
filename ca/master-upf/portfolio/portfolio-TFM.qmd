@@ -1,0 +1,168 @@
+---
+title: "Treball fi de Master"
+subtitle: "Deconstruint Pseudociència Ensenyant Ciència: Una intervenció mitjançant grups heterogenis a Batxillerat"
+filename: portfolio-TFM
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Treball fi de master sobre deconstrucció de pseudociència ensenyant ciència
+categories: [TFM, pseudociència, Practicum, Biologia, Geologia, Ciència Natural, Pensament crític, Grups heterogenis]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introducció al treball fin de Máster (TFM) de Secundaria
+
+Què passa quan un alumne de 2n de Batxillerat accepta que «una nevada al març demostra que l'escalfament global és mentida»? O quan la font de referència científica més fiable per a un altre company és un *influencer* de TikTok? La pseudociència no és un fenomen marginal ni anecdòtic: és un sistema de creences que opera activament dins de les aules, i la investigació educativa demostra que no neix de la ignorància, sinó dels mateixos mecanismes cognitius que fan funcionar el pensament humà — la recerca de patrons, el biaix de confirmació, la il·lusió causal —, amplificats pels algoritmes de les xarxes socials.
+
+Aquest Treball de Fi de Màster parteix d'una convicció pedagògica clara: **ensenyar ciència de manera realment eficaç exigeix ensenyar, en paral·lel i de forma explícita, què és la pseudociència**. No com a curiositat anecdòtica, sinó com l'antagonista directe del mètode científic, com l'ombra que defineix la silueta de l'evidència. Aquesta filosofia — resumida en el leitmotiv *«s'ensenya ciència deconstruint la pseudociència»* — és la pedra angular de la intervenció didàctica que es presenta en aquest treball.
+
+La investigació es va desenvolupar al Col·legi San Gabriel de Viladecans, amb 18 alumnes de 2n de Batxillerat, durant 10 sessions centrades en l'ODS 13 (canvi climàtic). El canvi climàtic va ser escollit com a context temàtic de manera deliberada: és un dels temes científics amb major polarització política i social, amb alta presència de narratives negacionistes amplificades a les xarxes, i especialment fèrtil per estudiar com s'instal·len i poden revertir-se les creences pseudocientífiques en adolescents amb alta exposició digital.
+
+La proposta didàctica es va articular al voltant de tres eixos que actuen de forma sinèrgica: l'**ensenyament explícit de la Natura de la Ciència (NdC)**, la **validació crítica de fonts** d'informació científica i mediàtica, i la **formació de grups heterogenis** per gènere i rendiment acadèmic. Aquest tercer eix és la hipòtesi central de la investigació: els grups heterogenis trenquen els endogrups homofílics on les creences rarament es qüestionen, generant la tensió sociocognitiva necessària per revisar idees pseudocientífiques. La heterogeneïtat del grup no és un criteri organitzatiu més — és una condició perquè funcioni la Zona de Desenvolupament Pròxim de Vygotsky.
+
+El que fa especialment rellevant aquesta investigació és que aborda un problema que el propi sistema educatiu català no reconeix explícitament: el Decret 171/2022 de Batxillerat no conté ni un sol criteri d'avaluació relacionat amb la pseudociència, i la pàgina del Departament d'Educació i Formació Professional retorna zero resultats en cercar «pseudociència». Davant d'aquest buit curricular, aquest treball proposa i posa a prova una estratègia didàctica concreta, replicable i fonamentada en la investigació educativa més recent, que qualsevol docent de ciències pot aplicar sense necessitat de modificar el currículum.
+
+::: {.panel-tabset}
+## Treball fin de Máster {.active}
+
+<embed src="/files/general-docs/TFM-PMD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+---
+
+## Resum del TFM
+
+### Dades del treball
+
+| Camp | Informació |
+| --- | --- |
+| **Títol complet** | *Deconstruint pseudociència ensenyant ciència: una intervenció mitjançant grups heterogenis a Batxillerat* |
+| **Autor** | Pedro Martínez Durán |
+| **Màster** | Màster de Formació del Professorat de Secundària — Ciències Naturals |
+| **Centre de pràctiques** | Col·legi San Gabriel de Viladecans (Baix Llobregat, Catalunya) |
+| **Mostra principal** | 18 alumnes de 2n de Batxillerat |
+| **Durada** | 10 sessions (febrer–abril 2026) |
+| **Context temàtic** | ODS 13 — Canvi climàtic |
+| **Metodologia** | Mixta (quantitativa + qualitativa) |
+
+---
+
+### El problema de recerca
+
+La proliferació de pseudociència en entorns digitals representa un repte creixent per a l'educació científica. La investigació recent demostra que les creences pseudocientífiques no neixen de la ignorància, sinó de mecanismes cognitius com el **biaix de confirmació**, la **il·lusió causal** i l'**efecte d'influència continuada**, amplificats per l'exposició algorítmica a desinformació a les xarxes socials. A Espanya, les cerques del terme «pseudociència» mostren un patró estacional recurrent amb un pic anual al setembre-octubre coincidint amb l'inici del curs escolar, la qual cosa indica que la pseudociència «entra a les aules cada tardor juntament amb el calendari escolar».
+
+El problema és especialment greu a Batxillerat: el Decret 171/2022 d'ordenació dels ensenyaments de batxillerat conté **zero mencions** a criteris d'avaluació relacionats amb la pseudociència. L'educació científica a secundària presenta la ciència com a estàtica i sense incertesa (Ibáñez-Ibáñez et al., 2019), generant obstacles epistemològics que dificulten a l'alumnat distingir una teoria científica d'una creença. Paradoxalment, un estudi de Solbes et al. (2017) amb futurs docents de ciències va trobar que el 64,9 % acceptava la influència de la lluna en la salut i l'agricultura, i gairebé l'11 % rebutjava l'evolució: nivells comparables als de la població general.
+
+---
+
+### Objectius i hipòtesi
+
+L'**objectiu general** de la intervenció va ser *analitzar la incidència del pensament pseudocientífic en estudiants de Batxillerat i avaluar una proposta didàctica orientada a fomentar el seu pensament crític científic*.
+
+Els **objectius específics** van ser:
+
+- Diagnosticar el grau de creences pseudocientífiques en el context del canvi climàtic.
+- Cercar correlacions entre el consum de xarxes socials i les creences pseudocientífiques.
+- Avaluar l'impacte de la intervenció didàctica en la deconstrucció d'idees pseudocientífiques.
+- Analitzar diferències de resposta per gènere.
+- Avaluar l'acceptació dels grups heterogenis en alumnat acostumat a endogrups homofílics.
+
+La **hipòtesi central** planteja que els grups heterogenis — dissenyats per trencar les bombolles d'afinitat on les creences circulen sense ser qüestionades — generen el conflicte sociocognitiu necessari per facilitar la revisió d'idees pseudocientífiques, però no com a eina única: en combinació amb l'ensenyament explícit de la NdC, la validació de fonts i activitats d'indagació amb evidències científiques directes.
+
+---
+
+### Marc teòric
+
+El marc teòric integra sis capes causals interconnectades que expliquen la persistència de les creences pseudocientífiques en adolescents:
+
+**Arrel cognitiva — Il·lusió causal i biaixos:** El cervell adolescent cerca patrons de forma innata. La il·lusió causal (Torres et al., 2020), el biaix de confirmació, l'efecte Dunning-Kruger i el «continued influence effect» actuen com a amplificadors. Un alumne que creu en l'horòscop no ho fa per irracionalitat, sinó perquè el seu cervell executa una funció evolutiva bàsica sense les eines per distingir correlació de causalitat.
+
+**Natura de la Ciència (NdC):** Molts alumnes tenen una imatge distorsionada de la ciència — creuen que les teories són «hipòtesis sense demostrar» o que el desacord entre científics significa que «ningú no sap res». Aquestes concepcions són obstacles epistemològics (Bachelard, 1981) que bloquegen el canvi conceptual. L'enfocament explícit de la NdC, enfront de l'implícit, produeix resultats sistemàticament superiors (Gandolfi, 2017).
+
+**Canvi conceptual:** Segons Posner et al. (1982), l'alumne només substitueix una creença si sent insatisfacció amb la que ja té i percep l'alternativa com a comprensible, versemblant i útil. La teoria *framework* (Vosniadou et al., 2014) afegeix que els marcs implícits més profunds requereixen una desestabilització sostinguda, no una correcció puntual.
+
+**Xarxes socials i factor socioemocional:** Els algoritmes de TikTok i Instagram prioritzen contingut emocionalment activador que coincideix amb narratives pseudocientífiques. L'estudi de Quevedo-Ortiz et al. (2019) va confirmar que els alumnes amb major exposició a xarxes mostren nivells més alts d'acceptació d'idees pseudocientífiques. Els adolescents no són receptors passius: prenen decisions epistèmiques deliberades, tot i que freqüentment errònies.
+
+**Grups heterogenis i conflicte sociocognitiu:** La Zona de Desenvolupament Pròxim (Vygotsky, 1978) s'activa quan l'estudiant treballa amb companys que aporten perspectives genuïnament diferents. Doise et al. (1984) afegeixen que el que impulsa el desenvolupament cognitiu és la confrontació entre perspectives divergents. En un grup homofílic, aquest espai no existeix perquè tots pensen de manera similar.
+
+**Teoria d'inoculació:** Igual que una vacuna exposa el sistema immunitari a una dosi debilitada d'un patogen, la teoria de la inoculació cognitiva (Linden et al., 2026) proposa exposar l'alumnat a versions debilitades d'arguments pseudocientífics juntament amb eines per refutar-los. Cook et al. (2017) van demostrar que afegir una «inoculació» prèvia a la desinformació climàtica manté la resistència fins i tot creuant espectres ideològics diferents.
+
+---
+
+### Metodologia
+
+La investigació va emprar un **disseny metodològic mixt** combinant instruments quantitatius i qualitatius, aplicats durant la fase de pràcticum entre febrer i abril de 2026.
+
+**Formació de grups heterogenis:** Es van dissenyar 5 grups de 3-4 alumnes equilibrats en tres variables quantificades pel tutor del centre: rendiment acadèmic (diferència màxima entre grups: 0,25 punts), actitud cap al treball cooperatiu (diferència màxima: 0,25 punts) i sexe (50 % en 4 dels 5 grups). Els grups espontanis que generaven els propis alumnes presentaven diferències de fins a 2,33 punts en rendiment i segregació gairebé total per sexes.
+
+**Índex de Pensament Pseudocientífic (IPP):** Es va dissenyar un índex operatiu ad hoc — inspirat en la *Pseudoscientific Belief Scale* (PSEUDO) i la *Pseudoscience Endorsement Scale* (sPES) — basat en 18 ítems Likert de 4 punts (escala *forced-choice*, sense punt mig), organitzats en dos tipus: preguntes MITE (10 ítems que contenen fal·làcies pseudocientífiques) i preguntes CORRECTE (8 ítems amb afirmacions científicament correctes). Els valors van d'1,00 (posició completament científica) a 4,00 (alta càrrega pseudocientífica).
+
+**Qüestionaris pre i post intervenció:** Dos qüestionaris anònims a Google Forms, amb codi personal anònim per al seguiment longitudinal individual. El qüestionari post va afegir 6 ítems sobre treball en grup, una matriu de fiabilitat percebuda de fonts (TikTok, Instagram, YouTube, NASA, Copernicus, ESA, MeteoCat) i una pregunta oberta de reflexió metacognitiva.
+
+**Preguntes TSS (*Testing Science Skills*):** A la sessió 9, l'alumnat va respondre 3 preguntes dissenyades amb el protocol TSS del grup EduWikiLab, en paper i escriptura a mà per evitar l'ús d'IA generativa. Aquest protocol avalua habilitats científiques — conceptes, procediments i comprensió de la generació del coneixement — sense dependre de la memorització de continguts.
+
+**Entrevistes semiestructurades:** Després de la sessió 10, es van realitzar 3 entrevistes individuals voluntàries, gravades i transcrites íntegrament (transcripció amb Gemini), amb l'objectiu de triangular les dades quantitatives dels qüestionaris amb les percepcions qualitatives de l'alumnat sobre els grups heterogenis, el canvi en les seves creences i la valoració de la intervenció.
+
+**Diari de camp docent:** Observació sistemàtica a les sessions 1, 2, 6, 8 i 9, registrant participació, qualitat d'argumentacions, aparició de conflictes sociocognitius i possible revisió de creences.
+
+---
+
+### Resultats principals
+
+#### Evolució global de l'IPP
+
+| Indicador | IPP pre | IPP post | ΔIPP |
+| --- | --- | --- | --- |
+| **Mitjana del grup** | 1,975 | 1,855 | **−0,120** |
+| Desviació típica | 0,447 | 0,314 | —   |
+| IPP mínim | 1,278 | 1,389 | —   |
+| IPP màxim | 3,167 | 2,778 | —   |
+
+El 67 % de l'alumnat (12 de 18) va reduir la seva puntuació, el 6 % (1 alumne) es va mantenir estable i el 28 % (5 alumnes) va empitjorar. La reducció de la desviació típica (de 0,447 a 0,314) indica que el grup convergeix cap a posicions més uniformement científiques després de la intervenció. El cas paradigmàtic va ser MO06, que partia de l'IPP més alt del grup (3,167, zona de pseudociència moderada-alta) i va baixar 0,944 punts després de la intervenció.
+
+#### Diferències per gènere
+
+| Sexe | IPP pre | IPP post | ΔIPP | Milloren | Empitjoren |
+| --- | --- | --- | --- | --- | --- |
+| **Dones** | 2,000 | 1,821 | **−0,179** | 78 % (7/9) | 22 % (2/9) |
+| **Homes** | 1,951 | 1,889 | **−0,062** | 56 % (5/9) | 33 % (3/9) |
+
+Amb un IPP inicial pràcticament idèntic en tots dos grups (2,000 vs. 1,951), les alumnes van mostrar una millora gairebé **tres vegades superior** a la dels alumnes. Aquest resultat s'explica parcialment per la major dispersió inicial de les alumnes (rang 1,333–3,167 vs. 1,278–2,222 en homes): la intervenció va ser especialment anivelladora per a les alumnes que partien de posicions més extremes.
+
+#### Impacte del consum de xarxes socials
+
+Es va trobar una correlació de Pearson *r* = +0,225 entre el nombre d'hores de consum de xarxes socials i la menor millora de l'IPP. Aquest resultat és un indicador de tendència — no de causalitat donada la mida mostral — coherent amb la literatura (Quevedo-Ortiz et al., 2019; Del-Moral-Pérez et al., 2026) que associa l'ús intensiu de xarxes amb major vulnerabilitat a la desinformació pseudocientífica.
+
+#### Grups heterogenis
+
+Les dades quantitatives no permeten aïllar l'efecte específic dels grups heterogenis del conjunt de la intervenció. Tanmateix, les entrevistes qualitatives revelen que el conflicte sociocognitiu sí va ser percebut per l'alumnat com una experiència real de confrontació de perspectives diferents. La disfuncionalitat descrita com «dos que treballaven i dos que no» en alguns grups explica parcialment per què alguns alumnes amb alt potencial de millora no van assolir els deltes esperats en l'IPP.
+
+---
+
+### Conclusions
+
+Les dades obtingudes suggereixen que **deconstruir explícitament la pseudociència a l'aula és una estratègia didàctica prometedora**, amb una reducció mitjana de l'IPP de −0,120 punts i un 67 % de l'alumnat millorant la seva posició. Tanmateix, la mostra de 18 alumnes no permet establir causalitat estadística ni generalitzar els resultats, i calen intervencions més prolongades amb mostres més àmplies per consolidar les conclusions.
+
+La **diferència de resposta per gènere** és la troballa més cridanera: les alumnes milloren gairebé tres vegades més que els alumnes des d'una línia de base pràcticament idèntica. Aquest resultat requereix validació amb mostres majors, però apunta que la metodologia emprada — treball cooperatiu heterogeni, anàlisi crític de fonts, evidències visuals directes — connecta més efectivament amb estils de processament més col·laboratius i relacionals.
+
+El **buit curricular** a Batxillerat — zero criteris d'avaluació sobre pseudociència al Decret 171/2022 — és, en si mateix, una de les conclusions més rellevants del treball: la pseudociència no pot abordar-se de forma tangencial. Ha de convertir-se en un objecte d'ensenyament explícit i sistemàtic en l'educació científica secundària.
+
+---
+
+### Limitacions i futures línies
+
+La principal limitació metodològica és l'**absència de grup de control**, decisió justificada pedagògicament per evitar dinàmiques de discriminació percebuda a l'aula. A aquesta se suma la mida mostral reduïda (18 alumnes), la impossibilitat d'aïllar l'efecte específic dels grups heterogenis de la resta de la intervenció, i la durada relativament breu (10 sessions).
+
+Les futures línies de recerca inclouen: replicar el disseny amb mostres més àmplies i grups de control; incorporar exercicis explícits de *lateral reading* (lectura lateral) com a tècnica d'avaluació de fonts digitals; explorar l'efectivitat diferencial per gènere amb major control estadístic; i estendre la intervenció a altres matèries i nivells educatius fora del context del canvi climàtic.
+
+---
+
+*Treball de Fi de Màster — Màster Universitari en Formació del Professorat d'Educació Secundària Obligatòria i Batxillerat — Especialitat Ciències Naturals. Maig 2026.

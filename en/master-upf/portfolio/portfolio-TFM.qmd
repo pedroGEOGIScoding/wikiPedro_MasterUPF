@@ -1,0 +1,170 @@
+---
+title: "Master's Thesis"
+subtitle: "Deconstructing Pseudoscience by Teaching Science: An intervention through heterogeneous groups in upper secondary education"
+filename: portfolio-TFM
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Master's thesis on deconstructing pseudoscience by teaching science
+categories: [Master's Thesis, pseudoscience, Practicum, Biology, Geology, Natural Science, Critical thinking, Heterogeneous groups]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+# Introduction to the Master's Thesis: Deconstructing Pseudoscience by Teaching Science
+
+What happens when a Year 12 student accepts that «a snowfall in March proves that global warming is a lie»? Or when the most trusted scientific source for another classmate is a TikTok *influencer*? Pseudoscience is not a marginal or anecdotal phenomenon: it is a belief system that operates actively inside classrooms, and educational research shows that it does not stem from ignorance, but from the very cognitive mechanisms that drive human thinking — pattern-seeking, confirmation bias, causal illusion — amplified by social media algorithms.
+
+This Master's thesis starts from a clear pedagogical conviction: **teaching science effectively requires teaching, in parallel and explicitly, what pseudoscience is**. Not as an anecdotal curiosity, but as the direct antagonist of the scientific method — the shadow that defines the silhouette of evidence. That philosophy — captured in the leitmotif *«science is taught by deconstructing pseudoscience»* — is the cornerstone of the educational intervention presented in this work.
+
+The research was carried out at Colegio San Gabriel in Viladecans, with 18 Year 12 students, across 10 sessions centred on SDG 13 (climate change). Climate change was chosen as the thematic context deliberately: it is one of the most politically and socially polarised scientific topics, with high levels of denialist narratives amplified on social media, and an especially fertile ground for studying how pseudoscientific beliefs are formed and can be reversed in digitally exposed adolescents.
+
+The didactic proposal was built around three synergistic axes: the **explicit teaching of the Nature of Science (NoS)**, the **critical validation of sources** of scientific and media information, and the **formation of heterogeneous groups** by gender and academic performance. This third axis is the central hypothesis of the research: heterogeneous groups break the homophilic in-groups where beliefs are rarely questioned, generating the sociocognitive tension necessary to revise pseudoscientific ideas. Group heterogeneity is not simply an organisational criterion — it is a condition for Vygotsky's Zone of Proximal Development to function.
+
+What makes this research particularly relevant is that it addresses a problem the Catalan education system does not explicitly acknowledge: the Decret 171/2022 for upper secondary education contains **zero** assessment criteria related to pseudoscience, and the Departament d'Educació i Formació Professional website returns no results when searching for «pseudociència». Faced with this curricular gap, this work proposes and tests a concrete, replicable, research-grounded didactic strategy that any science teacher can apply without needing to modify the curriculum.
+
+---
+
+::: {.panel-tabset}
+## Trabajo fin de Máster {.active}
+
+<embed src="/files/general-docs/TFM-PMD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+:::
+---
+
+## Thesis Summary
+
+### Overview
+
+| Field | Information |
+| --- | --- |
+| **Full title** | *Deconstructing pseudoscience by teaching science: an intervention through heterogeneous groups in upper secondary education* |
+| **Author** | Pedro Martínez Durán |
+| **Programme** | Master's Degree in Secondary Education Teaching — Natural Sciences |
+| **Practicum school** | Colegio San Gabriel, Viladecans (Baix Llobregat, Catalonia) |
+| **Main sample** | 18 Year 12 students (ages 17–18) |
+| **Duration** | 10 sessions (February–April 2026) |
+| **Thematic context** | SDG 13 — Climate change |
+| **Methodology** | Mixed methods (quantitative + qualitative) |
+
+---
+
+### The research problem
+
+The proliferation of pseudoscience in digital environments represents a growing challenge for science education. Recent research shows that pseudoscientific beliefs do not stem from ignorance, but from cognitive mechanisms such as **confirmation bias**, **causal illusion** and the **continued influence effect**, amplified by algorithmic exposure to misinformation on social media. In Spain, searches for the term «pseudociencia» show a recurring seasonal pattern with an annual peak in September-October coinciding with the start of the school year, indicating that pseudoscience «enters classrooms every autumn alongside the academic calendar».
+
+The problem is especially acute in upper secondary education: the Decret 171/2022 on upper secondary education curriculum contains **zero** assessment criteria related to pseudoscience. Science education in secondary schools presents science as static and without uncertainty (Ibáñez-Ibáñez et al., 2019), creating epistemological obstacles that prevent students from distinguishing a scientific theory from a belief. Paradoxically, a study by Solbes et al. (2017) with future science teachers found that 64.9 % accepted the influence of the moon on health and agriculture, and almost 11 % rejected evolution — levels comparable to those of the general population.
+
+---
+
+### Objectives and hypothesis
+
+The **general objective** of the intervention was *to analyse the incidence of pseudoscientific thinking in upper secondary students and to evaluate a didactic proposal aimed at fostering scientific critical thinking*.
+
+The **specific objectives** were:
+
+- Diagnosing the degree of pseudoscientific beliefs in the context of climate change.
+- Identifying correlations between social media consumption and pseudoscientific beliefs.
+- Evaluating the impact of the didactic intervention on the deconstruction of pseudoscientific ideas.
+- Analysing gender-based differences in response.
+- Evaluating the acceptance of heterogeneous groups by students accustomed to homophilic in-groups.
+
+The **central hypothesis** posits that heterogeneous groups — designed to break the affinity bubbles where beliefs circulate without being questioned — generate the sociocognitive conflict necessary to facilitate the revision of pseudoscientific ideas, but not as a standalone tool: in combination with explicit NoS teaching, source validation, and inquiry activities using direct scientific evidence.
+
+---
+
+### Theoretical framework
+
+The theoretical framework integrates six interconnected causal layers that explain the persistence of pseudoscientific beliefs in adolescents:
+
+**Cognitive root — Causal illusion and biases:** The adolescent brain seeks patterns innately. Causal illusion (Torres et al., 2020), confirmation bias, the Dunning-Kruger effect and the continued influence effect act as amplifiers. A student who believes in horoscopes does not do so out of irrationality, but because their brain is executing a basic evolutionary function without the tools to distinguish correlation from causation.
+
+**Nature of Science (NoS):** Many students hold a distorted image of science — believing theories are «unproven hypotheses» or that disagreement among scientists means «no one really knows anything». These conceptions are epistemological obstacles (Bachelard, 1981) that block conceptual change. Explicit NoS instruction, as opposed to implicit, consistently produces superior outcomes (Gandolfi, 2017).
+
+**Conceptual change:** According to Posner et al. (1982), a student only replaces a belief when they feel dissatisfied with the existing one and perceive the alternative as intelligible, plausible, and fruitful. The *framework theory* (Vosniadou et al., 2014) adds that the deepest implicit frameworks require sustained destabilisation, not a one-off correction.
+
+**Social media and socio-emotional factors:** TikTok and Instagram algorithms prioritise emotionally activating content that often coincides with pseudoscientific narratives. The study by Quevedo-Ortiz et al. (2019) confirmed that students with greater social media exposure show higher levels of acceptance of pseudoscientific ideas. Adolescents are not passive recipients: they make deliberate epistemic decisions, albeit frequently mistaken ones.
+
+**Heterogeneous groups and sociocognitive conflict:** The Zone of Proximal Development (Vygotsky, 1978) is activated when students work with peers who bring genuinely different perspectives. Doise et al. (1984) add that what drives cognitive development is the confrontation between truly divergent perspectives. In a homophilic group, that space does not exist because everyone thinks similarly.
+
+**Inoculation theory:** Just as a vaccine exposes the immune system to a weakened dose of a pathogen, cognitive inoculation theory (Linden et al., 2026) proposes exposing students to weakened versions of pseudoscientific arguments alongside tools to refute them. Cook et al. (2017) demonstrated that adding a pre-emptive «inoculation» against climate misinformation maintains resistance even across different ideological spectrums.
+
+---
+
+### Methodology
+
+The research employed a **mixed-methods design** combining quantitative and qualitative instruments, applied during the practicum phase between February and April 2026.
+
+**Heterogeneous group formation:** Five groups of 3–4 students were designed, balanced across three variables quantified by the class tutor: academic performance (maximum difference between groups: 0.25 points), attitude toward cooperative work (maximum difference: 0.25 points), and gender (50/50 in 4 of 5 groups). The spontaneous groups students formed themselves showed performance differences of up to 2.33 points and near-total gender segregation.
+
+**Pseudoscientific Thinking Index (PTI):** An ad hoc operational index was designed — inspired by the *Pseudoscientific Belief Scale* (PSEUDO) and the *Pseudoscience Endorsement Scale* (sPES) — based on 18 Likert items on a 4-point scale (*forced-choice*, no midpoint), organised into two types: MYTH items (10 items containing pseudoscientific fallacies) and CORRECT items (8 items with scientifically accurate statements). Values range from 1.00 (fully scientific position) to 4.00 (high pseudoscientific load).
+
+**Pre- and post-intervention questionnaires:** Two anonymous questionnaires via Google Forms, with a personal anonymous code enabling individual longitudinal tracking. The post-questionnaire added 6 items on group work, a matrix of perceived source reliability (TikTok, Instagram, YouTube, NASA, Copernicus, ESA, MeteoCat) and an open-ended metacognitive reflection question.
+
+**TSS questions (*Testing Science Skills*):** In session 9, students answered 3 questions designed using the TSS protocol from the EduWikiLab group, on paper and handwritten to prevent the use of generative AI. This protocol assesses scientific skills — concepts, procedures and understanding of knowledge generation — without relying on content memorisation.
+
+**Semi-structured interviews:** After session 10, 3 voluntary individual interviews were conducted, recorded and fully transcribed (transcription with Gemini), aiming to triangulate the quantitative questionnaire data with students' qualitative perceptions of the heterogeneous groups, changes in their beliefs, and their evaluation of the intervention.
+
+**Teacher field journal:** Systematic observation in sessions 1, 2, 6, 8 and 9, recording participation, quality of arguments, emergence of sociocognitive conflicts and potential revision of beliefs.
+
+---
+
+### Key results
+
+#### Overall PTI evolution
+
+| Indicator | PTI pre | PTI post | ΔPTI |
+| --- | --- | --- | --- |
+| **Group mean** | 1.975 | 1.855 | **−0.120** |
+| Standard deviation | 0.447 | 0.314 | —   |
+| Minimum PTI | 1.278 | 1.389 | —   |
+| Maximum PTI | 3.167 | 2.778 | —   |
+
+67 % of students (12 out of 18) reduced their score, 6 % (1 student) remained stable and 28 % (5 students) worsened. The reduction in standard deviation (from 0.447 to 0.314) indicates that the group converges toward more uniformly scientific positions after the intervention. The paradigmatic case was MO06, who had the highest PTI in the group (3.167, moderate-to-high pseudoscience zone) and dropped 0.944 points after the intervention.
+
+#### Gender differences
+
+| Gender | PTI pre | PTI post | ΔPTI | Improved | Worsened |
+| --- | --- | --- | --- | --- | --- |
+| **Female** | 2.000 | 1.821 | **−0.179** | 78 % (7/9) | 22 % (2/9) |
+| **Male** | 1.951 | 1.889 | **−0.062** | 56 % (5/9) | 33 % (3/9) |
+
+With a virtually identical baseline PTI (2.000 vs. 1.951), female students showed an improvement nearly **three times greater** than male students. This result is partly explained by the greater initial spread among female students (range 1.333–3.167 vs. 1.278–2.222 for males): the intervention was especially levelling for female students who started from more extreme positions.
+
+#### Impact of social media consumption
+
+A Pearson correlation of *r* = +0.225 was found between hours of daily social media consumption and smaller PTI improvement. This is a trend indicator — not a causal claim given the sample size — consistent with the literature (Quevedo-Ortiz et al., 2019; Del-Moral-Pérez et al., 2026) associating heavy social media use with greater vulnerability to pseudoscientific misinformation.
+
+#### Heterogeneous groups
+
+Quantitative data do not allow isolating the specific effect of heterogeneous groups from the rest of the intervention. However, qualitative interviews reveal that sociocognitive conflict was genuinely perceived by students as a real confrontation of different perspectives. The dysfunction described as «two who worked and two who didn't» in some groups partially explains why some students with high improvement potential did not reach expected PTI deltas.
+
+---
+
+### Conclusions
+
+The data suggest that **explicitly deconstructing pseudoscience in the classroom is a promising didactic strategy**, with a mean PTI reduction of −0.120 points and 67 % of students improving their position. However, the sample of 18 students does not allow establishing statistical causality or generalising results, and longer interventions with larger samples are needed to consolidate conclusions.
+
+The **gender response difference** is the most striking finding: female students improve nearly three times more than male students from a virtually identical baseline. This result requires validation with larger samples, but suggests that the methodology employed — heterogeneous cooperative work, critical source analysis, direct visual evidence — connects more effectively with more collaborative and relational processing styles.
+
+The **curricular gap** in upper secondary education — zero assessment criteria on pseudoscience in the Decret 171/2022 — is itself one of the most relevant conclusions of the work: pseudoscience cannot be addressed tangentially. It must become an explicit and systematic teaching object in secondary science education.
+
+---
+
+### Limitations and future directions
+
+The primary methodological limitation is the **absence of a control group**, a decision pedagogically justified to avoid perceived discrimination dynamics in the classroom. This is compounded by the small sample size (18 students), the impossibility of isolating the specific effect of heterogeneous groups from the rest of the intervention, and the relatively short duration (10 sessions).
+
+Future research directions include: replicating the design with larger samples and control groups; incorporating explicit *lateral reading* exercises as a digital source evaluation technique; exploring gender differential effectiveness with greater statistical control; and extending the intervention to other subjects and educational levels beyond the climate change context.
+
+---
+
+*Master's Thesis — Master's Degree in Secondary and Upper Secondary Education Teaching — Natural Sciences specialisation. May 2026.
