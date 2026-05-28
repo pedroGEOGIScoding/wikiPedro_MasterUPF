@@ -29,12 +29,22 @@ La investigación se desarrolló en el Colegio San Gabriel de Viladecans, con 18
 La propuesta didáctica se articuló en torno a tres ejes que actúan de forma sinérgica: la **enseñanza explícita de la Naturaleza de la Ciencia (NdC)**, la **validación crítica de fuentes** de información científica y mediática, y la **formación de grupos heterogéneos** por género y rendimiento académico. Este tercer eje es la hipótesis central de la investigación: los grupos heterogéneos rompen los endogrupos homofílicos donde las creencias raramente se cuestionan, generando la tensión sociocognitiva necesaria para revisar ideas pseudocientíficas. La heterogeneidad del grupo no es un criterio organizativo más — es una condición para que funcione la Zona de Desarrollo Próximo de Vygotsky.
 
 Lo que hace especialmente relevante esta investigación es que aborda un problema que el propio sistema educativo catalán no reconoce explícitamente: el Decret 171/2022 de Bachillerato no contiene ni un solo criterio de evaluación relacionado con la pseudociencia, y la página del Departament d'Educació i Formació Professional arroja cero resultados al buscar «pseudociència». Frente a ese vacío curricular, este trabajo propone y pone a prueba una estrategia didáctica concreta, replicable y fundamentada en la investigación educativa más reciente, que cualquier docente de ciencias puede aplicar sin necesidad de modificar el currículo.
+---
+
+## Trabajo fin de Máster
+
+::: callout-tip
+## Haz click en cada una de las pestañas para visualizar todos los documentos
+:::
 
 ::: {.panel-tabset}
 ## Trabajo fin de Máster {.active}
 
 <embed src="/files/general-docs/TFM-PMD.pdf" type="application/pdf" width="100%" height="800px"/>
 
+## Poster fin de Máster
+
+<embed src="/files/general-docs/TFM-poster.pdf" type="application/pdf" width="100%" height="800px"/>
 :::
 ---
 

@@ -1,11 +1,11 @@
 ---
-title: "Treball fi de Master"
+title: "Treball fi de Màster"
 subtitle: "Deconstruint Pseudociència Ensenyant Ciència: Una intervenció mitjançant grups heterogenis a Batxillerat"
 filename: portfolio-TFM
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Treball fi de master sobre deconstrucció de pseudociència ensenyant ciència
+description: Treball fi de màster sobre deconstrucció de pseudociència ensenyant ciència
 categories: [TFM, pseudociència, Practicum, Biologia, Geologia, Ciència Natural, Pensament crític, Grups heterogenis]
 toc: true
 number-sections: true
@@ -18,7 +18,7 @@ lightbox:
 format: html
 ---
 
-# Introducció al treball fin de Máster (TFM) de Secundaria
+# Introducció al treball fin de Màster (TFM) de Secundaria
 
 Què passa quan un alumne de 2n de Batxillerat accepta que «una nevada al març demostra que l'escalfament global és mentida»? O quan la font de referència científica més fiable per a un altre company és un *influencer* de TikTok? La pseudociència no és un fenomen marginal ni anecdòtic: és un sistema de creences que opera activament dins de les aules, i la investigació educativa demostra que no neix de la ignorància, sinó dels mateixos mecanismes cognitius que fan funcionar el pensament humà — la recerca de patrons, el biaix de confirmació, la il·lusió causal —, amplificats pels algoritmes de les xarxes socials.
 
@@ -29,11 +29,22 @@ La investigació es va desenvolupar al Col·legi San Gabriel de Viladecans, amb 
 La proposta didàctica es va articular al voltant de tres eixos que actuen de forma sinèrgica: l'**ensenyament explícit de la Natura de la Ciència (NdC)**, la **validació crítica de fonts** d'informació científica i mediàtica, i la **formació de grups heterogenis** per gènere i rendiment acadèmic. Aquest tercer eix és la hipòtesi central de la investigació: els grups heterogenis trenquen els endogrups homofílics on les creences rarament es qüestionen, generant la tensió sociocognitiva necessària per revisar idees pseudocientífiques. La heterogeneïtat del grup no és un criteri organitzatiu més — és una condició perquè funcioni la Zona de Desenvolupament Pròxim de Vygotsky.
 
 El que fa especialment rellevant aquesta investigació és que aborda un problema que el propi sistema educatiu català no reconeix explícitament: el Decret 171/2022 de Batxillerat no conté ni un sol criteri d'avaluació relacionat amb la pseudociència, i la pàgina del Departament d'Educació i Formació Professional retorna zero resultats en cercar «pseudociència». Davant d'aquest buit curricular, aquest treball proposa i posa a prova una estratègia didàctica concreta, replicable i fonamentada en la investigació educativa més recent, que qualsevol docent de ciències pot aplicar sense necessitat de modificar el currículum.
+---
+
+## Treball fin de Màster
+
+::: callout-tip
+## Fes clic en cadascuna de les pestanyes per a visualitzar tots els documents
+:::
 
 ::: {.panel-tabset}
-## Treball fin de Máster {.active}
+## Treball fin de Màster {.active}
 
 <embed src="/files/general-docs/TFM-PMD.pdf" type="application/pdf" width="100%" height="800px"/>
+
+## Poster fin de Màster
+
+<embed src="/files/general-docs/TFM-poster.pdf" type="application/pdf" width="100%" height="800px"/>
 
 :::
 ---
