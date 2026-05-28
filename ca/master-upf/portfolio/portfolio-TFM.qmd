@@ -29,9 +29,8 @@ La investigació es va desenvolupar al Col·legi San Gabriel de Viladecans, amb 
 La proposta didàctica es va articular al voltant de tres eixos que actuen de forma sinèrgica: l'**ensenyament explícit de la Natura de la Ciència (NdC)**, la **validació crítica de fonts** d'informació científica i mediàtica, i la **formació de grups heterogenis** per gènere i rendiment acadèmic. Aquest tercer eix és la hipòtesi central de la investigació: els grups heterogenis trenquen els endogrups homofílics on les creences rarament es qüestionen, generant la tensió sociocognitiva necessària per revisar idees pseudocientífiques. La heterogeneïtat del grup no és un criteri organitzatiu més — és una condició perquè funcioni la Zona de Desenvolupament Pròxim de Vygotsky.
 
 El que fa especialment rellevant aquesta investigació és que aborda un problema que el propi sistema educatiu català no reconeix explícitament: el Decret 171/2022 de Batxillerat no conté ni un sol criteri d'avaluació relacionat amb la pseudociència, i la pàgina del Departament d'Educació i Formació Professional retorna zero resultats en cercar «pseudociència». Davant d'aquest buit curricular, aquest treball proposa i posa a prova una estratègia didàctica concreta, replicable i fonamentada en la investigació educativa més recent, que qualsevol docent de ciències pot aplicar sense necessitat de modificar el currículum.
----
 
-## Treball fin de Màster
+# Treball fin de Màster
 
 ::: callout-tip
 ## Fes clic en cadascuna de les pestanyes per a visualitzar tots els documents
@@ -49,9 +48,9 @@ El que fa especialment rellevant aquesta investigació és que aborda un problem
 :::
 ---
 
-## Resum del TFM
+# Resum del TFM
 
-### Dades del treball
+## Dades del treball
 
 | Camp | Informació |
 | --- | --- |
@@ -66,7 +65,7 @@ El que fa especialment rellevant aquesta investigació és que aborda un problem
 
 ---
 
-### El problema de recerca
+## El problema de recerca
 
 La proliferació de pseudociència en entorns digitals representa un repte creixent per a l'educació científica. La investigació recent demostra que les creences pseudocientífiques no neixen de la ignorància, sinó de mecanismes cognitius com el **biaix de confirmació**, la **il·lusió causal** i l'**efecte d'influència continuada**, amplificats per l'exposició algorítmica a desinformació a les xarxes socials. A Espanya, les cerques del terme «pseudociència» mostren un patró estacional recurrent amb un pic anual al setembre-octubre coincidint amb l'inici del curs escolar, la qual cosa indica que la pseudociència «entra a les aules cada tardor juntament amb el calendari escolar».
 
@@ -74,7 +73,7 @@ El problema és especialment greu a Batxillerat: el Decret 171/2022 d'ordenació
 
 ---
 
-### Objectius i hipòtesi
+## Objectius i hipòtesi
 
 L'**objectiu general** de la intervenció va ser *analitzar la incidència del pensament pseudocientífic en estudiants de Batxillerat i avaluar una proposta didàctica orientada a fomentar el seu pensament crític científic*.
 
@@ -90,7 +89,7 @@ La **hipòtesi central** planteja que els grups heterogenis — dissenyats per t
 
 ---
 
-### Marc teòric
+## Marc teòric
 
 El marc teòric integra sis capes causals interconnectades que expliquen la persistència de les creences pseudocientífiques en adolescents:
 
@@ -108,7 +107,7 @@ El marc teòric integra sis capes causals interconnectades que expliquen la pers
 
 ---
 
-### Metodologia
+## Metodologia
 
 La investigació va emprar un **disseny metodològic mixt** combinant instruments quantitatius i qualitatius, aplicats durant la fase de pràcticum entre febrer i abril de 2026.
 

@@ -29,9 +29,8 @@ The research was carried out at Colegio San Gabriel in Viladecans, with 18 Year 
 The didactic proposal was built around three synergistic axes: the **explicit teaching of the Nature of Science (NoS)**, the **critical validation of sources** of scientific and media information, and the **formation of heterogeneous groups** by gender and academic performance. This third axis is the central hypothesis of the research: heterogeneous groups break the homophilic in-groups where beliefs are rarely questioned, generating the sociocognitive tension necessary to revise pseudoscientific ideas. Group heterogeneity is not simply an organisational criterion — it is a condition for Vygotsky's Zone of Proximal Development to function.
 
 What makes this research particularly relevant is that it addresses a problem the Catalan education system does not explicitly acknowledge: the Decret 171/2022 for upper secondary education contains **zero** assessment criteria related to pseudoscience, and the Departament d'Educació i Formació Professional website returns no results when searching for «pseudociència». Faced with this curricular gap, this work proposes and tests a concrete, replicable, research-grounded didactic strategy that any science teacher can apply without needing to modify the curriculum.
----
 
-## Master's Thesis Documents
+# Master's Thesis Documents
 
 ::: callout-tip
 ## Click on the tabs to visualise the submitted documents for the master's thesis
@@ -49,9 +48,9 @@ What makes this research particularly relevant is that it addresses a problem th
 :::
 ---
 
-## Thesis Summary
+# Thesis Summary
 
-### Overview
+## Overview
 
 | Field | Information |
 | --- | --- |
@@ -66,7 +65,7 @@ What makes this research particularly relevant is that it addresses a problem th
 
 ---
 
-### The research problem
+## The research problem
 
 The proliferation of pseudoscience in digital environments represents a growing challenge for science education. Recent research shows that pseudoscientific beliefs do not stem from ignorance, but from cognitive mechanisms such as **confirmation bias**, **causal illusion** and the **continued influence effect**, amplified by algorithmic exposure to misinformation on social media. In Spain, searches for the term «pseudociencia» show a recurring seasonal pattern with an annual peak in September-October coinciding with the start of the school year, indicating that pseudoscience «enters classrooms every autumn alongside the academic calendar».
 
@@ -74,7 +73,7 @@ The problem is especially acute in upper secondary education: the Decret 171/202
 
 ---
 
-### Objectives and hypothesis
+## Objectives and hypothesis
 
 The **general objective** of the intervention was *to analyse the incidence of pseudoscientific thinking in upper secondary students and to evaluate a didactic proposal aimed at fostering scientific critical thinking*.
 
@@ -90,7 +89,7 @@ The **central hypothesis** posits that heterogeneous groups — designed to brea
 
 ---
 
-### Theoretical framework
+## Theoretical framework
 
 The theoretical framework integrates six interconnected causal layers that explain the persistence of pseudoscientific beliefs in adolescents:
 
@@ -108,7 +107,7 @@ The theoretical framework integrates six interconnected causal layers that expla
 
 ---
 
-### Methodology
+## Methodology
 
 The research employed a **mixed-methods design** combining quantitative and qualitative instruments, applied during the practicum phase between February and April 2026.
 

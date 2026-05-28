@@ -26,12 +26,10 @@ Este Trabajo de Fin de Máster parte de una convicción pedagógica clara: **ens
 
 La investigación se desarrolló en el Colegio San Gabriel de Viladecans, con 18 alumnos de 2.º de Bachillerato, durante 10 sesiones centradas en la ODS 13 (cambio climático). El cambio climático fue elegido como contexto temático deliberadamente: es uno de los temas científicos con mayor polarización política y social, con alta presencia de narrativas negacionistas amplificadas en redes, y especialmente fértil para estudiar cómo se instalan y pueden revertirse las creencias pseudocientíficas en adolescentes con alta exposición digital.
 
-La propuesta didáctica se articuló en torno a tres ejes que actúan de forma sinérgica: la **enseñanza explícita de la Naturaleza de la Ciencia (NdC)**, la **validación crítica de fuentes** de información científica y mediática, y la **formación de grupos heterogéneos** por género y rendimiento académico. Este tercer eje es la hipótesis central de la investigación: los grupos heterogéneos rompen los endogrupos homofílicos donde las creencias raramente se cuestionan, generando la tensión sociocognitiva necesaria para revisar ideas pseudocientíficas. La heterogeneidad del grupo no es un criterio organizativo más — es una condición para que funcione la Zona de Desarrollo Próximo de Vygotsky.
+La propuesta didáctica se articuló en torno a tres ejes que actúan de forma sinérgica: la **enseñanza explícita de la Naturaleza de la Ciencia (NdC)**, la **validación crítica de fuentes** de información científica y mediática, y la **formación de grupos heterogéneos** por género y rendimiento académico. Este tercer eje es la hipótesis central de la investigación: los grupos heterogéneos rompen los endogrupos homofílicos donde las creencias raramente se cuestionan, generando la tensión sociocognitiva necesaria para revisar ideas pseudocientíficas. La heterogeneidad del grupo no es un criterio organizativo más — es una condición para que funcione la Zona de Desarrollo Próximo de Vygotsky.Lo que hace especialmente relevante esta investigación es que aborda un problema que el propio sistema educativo catalán no reconoce explícitamente: el Decret 171/2022 de Bachillerato no contiene ni un solo criterio de evaluación relacionado con la pseudociencia, y la página del Departament d'Educació i Formació Professional arroja cero resultados al buscar «pseudociència». Frente a ese vacío curricular, este trabajo propone y pone a prueba una estrategia didáctica concreta, replicable y fundamentada en la investigación educativa más reciente, que cualquier docente de ciencias puede aplicar sin necesidad de modificar el currículo.
 
-Lo que hace especialmente relevante esta investigación es que aborda un problema que el propio sistema educativo catalán no reconoce explícitamente: el Decret 171/2022 de Bachillerato no contiene ni un solo criterio de evaluación relacionado con la pseudociencia, y la página del Departament d'Educació i Formació Professional arroja cero resultados al buscar «pseudociència». Frente a ese vacío curricular, este trabajo propone y pone a prueba una estrategia didáctica concreta, replicable y fundamentada en la investigación educativa más reciente, que cualquier docente de ciencias puede aplicar sin necesidad de modificar el currículo.
----
 
-## Trabajo fin de Máster
+# Trabajo fin de Máster
 
 ::: callout-tip
 ## Haz click en cada una de las pestañas para visualizar todos los documentos
@@ -48,9 +46,9 @@ Lo que hace especialmente relevante esta investigación es que aborda un problem
 :::
 ---
 
-## Resumen del TFM
+# Resumen del TFM
 
-### Datos del trabajo
+## Datos del trabajo
 
 | Campo | Información |
 | --- | --- |
@@ -65,7 +63,7 @@ Lo que hace especialmente relevante esta investigación es que aborda un problem
 
 ---
 
-### El problema de investigación
+## El problema de investigación
 
 La proliferación de pseudociencia en entornos digitales representa un reto creciente para la educación científica. La investigación reciente demuestra que las creencias pseudocientíficas no nacen de la ignorancia, sino de mecanismos cognitivos como el **sesgo de confirmación**, la **ilusión causal** y el **efecto de influencia continuada**, amplificados por la exposición algorítmica a desinformación en redes sociales. En España, las búsquedas del término «pseudociencia» muestran un patrón estacional recurrente con un pico anual en septiembre-octubre coincidiendo con el inicio del curso escolar, lo que indica que la pseudociencia «entra en las aulas cada otoño junto con el calendario escolar».
 
@@ -73,7 +71,7 @@ El problema es especialmente grave en Bachillerato: el Decret 171/2022 d'ordenac
 
 ---
 
-### Objetivos e hipótesis
+## Objetivos e hipótesis
 
 El **objetivo general** de la intervención fue *analizar la incidencia del pensamiento pseudocientífico en estudiantes de Bachillerato y evaluar una propuesta didáctica orientada a fomentar el pensamiento crítico científico*.
 
@@ -89,7 +87,7 @@ La **hipótesis central** plantea que los grupos heterogéneos — diseñados pa
 
 ---
 
-### Marco teórico
+## Marco teórico
 
 El marco teórico integra seis capas causales interconectadas que explican la persistencia de las creencias pseudocientíficas en adolescentes:
 
@@ -107,7 +105,7 @@ El marco teórico integra seis capas causales interconectadas que explican la pe
 
 ---
 
-### Metodología
+## Metodología
 
 La investigación empleó un **diseño metodológico mixto** combinando instrumentos cuantitativos y cualitativos, aplicados durante la fase de prácticum entre febrero y abril de 2026.
 
