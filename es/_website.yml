@@ -4,7 +4,7 @@ website:
   page-navigation: true    # Enable next/previous page navigation buttons (true/false)
   back-to-top-navigation: true  # Enable 'Back to Top' button on pages (true/false)
   site-url: https://pedrogeogiscoding.github.io/wikiPedro_MasterUPF/
-  repo-url: https://github.com/pedromartinezduran/wiki_MasterUPF
+  repo-url: https://github.com/pedroGEOGIScoding/wikiPedro_MasterUPF
   repo-link-target: "_blank"
   repo-link-rel: "noopener"
   repo-branch: master

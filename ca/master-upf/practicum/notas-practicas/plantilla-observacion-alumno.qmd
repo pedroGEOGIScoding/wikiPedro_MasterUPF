@@ -59,105 +59,105 @@ format: html
 <ul>
   <li>
     Participa a classe:
-    <input type="checkbox" name="participate" value="yes">Sí
-    <input type="checkbox" name="participate" value="no">Núm
-    <input type="checkbox" name="participate" value="sometimes">De vegades
+    <input type="checkbox" name="participa" value="si">Sí
+    <input type="checkbox" name="participa" value="no">Núm
+    <input type="checkbox" name="participa" value="aveces">De vegades
   </li>
   <li>
     Dominant:
-    <input type="checkbox" name="dominant" value="yes">Sí
-    <input type="checkbox" name="dominant" value="no">Núm
-    <input type="checkbox" name="dominant" value="sometimes">De vegades
+    <input type="checkbox" name="dominante" value="si">Sí
+    <input type="checkbox" name="dominante" value="no">Núm
+    <input type="checkbox" name="dominante" value="aveces">De vegades
   </li>
   <li>
     No et preocupis:
-    <input type="checkbox" name="calm" value="yes">Sí
-    <input type="checkbox" name="calm" value="no">No
-    <input type="checkbox" name="calm" value="sometimes">De vegades
+    <input type="checkbox" name="tranquilo" value="si">Sí
+    <input type="checkbox" name="tranquilo" value="no">No
+    <input type="checkbox" name="tranquilo" value="aveces">De vegades
   </li>
   <li>
     Responsable:
-    <input type="checkbox" name="responsible_pers" value="yes">Sí
-    <input type="checkbox" name="responsible_pers" value="no">Núm
-    <input type="checkbox" name="responsible_pers" value="sometimes">De vegades
+    <input type="checkbox" name="responsable_pers" value="si">Sí
+    <input type="checkbox" name="responsable_pers" value="no">Núm
+    <input type="checkbox" name="responsable_pers" value="aveces">De vegades
   </li>
   <li>
     Obedient:
-    <input type="checkbox" name="compliant" value="yes">Sí
-    <input type="checkbox" name="compliant" value="no">Núm
-    <input type="checkbox" name="obedient" value="sometimes">De vegades
+    <input type="checkbox" name="obediente" value="si">Sí
+    <input type="checkbox" name="obediente" value="no">Núm
+    <input type="checkbox" name="obediente" value="aveces">De vegades
   </li>
   <li>
     Sociable:
-    <input type="checkbox" name="sociable" value="yes">Sí
+    <input type="checkbox" name="sociable" value="si">Sí
     <input type="checkbox" name="sociable" value="no">Núm
-    <input type="checkbox" name="sociable" value="sometimes">De vegades
+    <input type="checkbox" name="sociable" value="aveces">De vegades
   </li>
   <li>
     reflexiu:
-    <input type="checkbox" name="reflexive" value="yes">Sí
-    <input type="checkbox" name="reflexive" value="no">Núm
-    <input type="checkbox" name="reflective" value="sometimes">De vegades
+    <input type="checkbox" name="reflexivo" value="si">Sí
+    <input type="checkbox" name="reflexivo" value="no">Núm
+    <input type="checkbox" name="reflexivo" value="aveces">De vegades
   </li>
   <li>
     Inquiet:
-    <input type="checkbox" name="restless" value="yes">Sí
-    <input type="checkbox" name="restless" value="no">Núm
-    <input type="checkbox" name="restless" value="sometimes">De vegades
+    <input type="checkbox" name="inquieto" value="si">Sí
+    <input type="checkbox" name="inquieto" value="no">Núm
+    <input type="checkbox" name="inquieto" value="aveces">De vegades
   </li>
   <li>
     Irresponsable:
-    <input type="checkbox" name="irresponsible" value="yes">Sí
-    <input type="checkbox" name="irresponsible" value="no">No
-    <input type="checkbox" name="irresponsible" value="sometimes">De vegades
+    <input type="checkbox" name="irresponsable" value="si">Sí
+    <input type="checkbox" name="irresponsable" value="no">No
+    <input type="checkbox" name="irresponsable" value="aveces">De vegades
   </li>
   <li>
     Preparació per treballar:
-    <input type="checkbox" name="layout" value="yes">Sí
-    <input type="checkbox" name="disposition" value="no">Núm
-    <input type="checkbox" name="disposition" value="sometimes">De vegades
+    <input type="checkbox" name="disposicion" value="si">Sí
+    <input type="checkbox" name="disposicion" value="no">Núm
+    <input type="checkbox" name="disposicion" value="aveces">De vegades
   </li>
   <li>
     Indisciplinat:
-    <input type="checkbox" name="undisciplined" value="yes">Sí
-    <input type="checkbox" name="undisciplined" value="no">No
-    <input type="checkbox" name="undisciplined" value="sometimes">De vegades
+    <input type="checkbox" name="indisciplinado" value="si">Sí
+    <input type="checkbox" name="indisciplinado" value="no">No
+    <input type="checkbox" name="indisciplinado" value="aveces">De vegades
   </li>
   <li>
     Líder positiu:
-    <input type="checkbox" name="lider_pos" value="yes">Sí
-    <input type="checkbox" name="leader_pos" value="no">Núm
-    <input type="checkbox" name="leader_pos" value="sometimes">De vegades
+    <input type="checkbox" name="lider_pos" value="si">Sí
+    <input type="checkbox" name="lider_pos" value="no">Núm
+    <input type="checkbox" name="lider_pos" value="aveces">De vegades
   </li>
   <li>
     Líder negatiu:
-    <input type="checkbox" name="leader_neg" value="yes">Sí
-    <input type="checkbox" name="leader_neg" value="no">Núm
-    <input type="checkbox" name="leader_neg" value="sometimes">De vegades
+    <input type="checkbox" name="lider_neg" value="si">Sí
+    <input type="checkbox" name="lider_neg" value="no">Núm
+    <input type="checkbox" name="lider_neg" value="aveces">De vegades
   </li>
   <li>
     Groller:
-    <input type="checkbox" name="rude" value="yes">Sí
-    <input type="checkbox" name="rude" value="no">Núm
-    <input type="checkbox" name="rude" value="sometimes">De vegades
+    <input type="checkbox" name="grosero" value="si">Sí
+    <input type="checkbox" name="grosero" value="no">Núm
+    <input type="checkbox" name="grosero" value="aveces">De vegades
   </li>
   <li>
     Volable:
-    <input type="checkbox" name="fickle" value="yes">Sí
-    <input type="checkbox" name="fickle" value="no">Núm
-    <input type="checkbox" name="fickle" value="sometimes">De vegades
+    <input type="checkbox" name="voluble" value="si">Sí
+    <input type="checkbox" name="voluble" value="no">Núm
+    <input type="checkbox" name="voluble" value="aveces">De vegades
   </li>
   <li>
     Insegur:
-    <input type="checkbox" name="unsafe" value="yes">Sí
-    <input type="checkbox" name="unsafe" value="no">No
-    <input type="checkbox" name="unsafe" value="sometimes">De vegades
+    <input type="checkbox" name="inseguro" value="si">Sí
+    <input type="checkbox" name="inseguro" value="no">No
+    <input type="checkbox" name="inseguro" value="aveces">De vegades
   </li>
   <li>
     Reservat:
-    <input type="checkbox" name="reserved" value="yes">Sí
-    <input type="checkbox" name="reserved" value="no">Núm
-    <input type="checkbox" name="reserved" value="sometimes">De vegades
+    <input type="checkbox" name="reservado" value="si">Sí
+    <input type="checkbox" name="reservado" value="no">Núm
+    <input type="checkbox" name="reservado" value="aveces">De vegades
   </li>
 </ul>
 
@@ -176,147 +176,147 @@ format: html
   </li>
   <li>
     Té problemes d'atenció:
-    <input type="checkbox" name="attention" value="1">1
-    <input type="checkbox" name="attention" value="2">2
-    <input type="checkbox" name="attention" value="3">3
-    <input type="checkbox" name="attention" value="4">4
-    <input type="checkbox" name="attention" value="5">5
+    <input type="checkbox" name="atencion" value="1">1
+    <input type="checkbox" name="atencion" value="2">2
+    <input type="checkbox" name="atencion" value="3">3
+    <input type="checkbox" name="atencion" value="4">4
+    <input type="checkbox" name="atencion" value="5">5
   </li>
   <li>
     És actiu i treballador:
-    <input type="checkbox" name="active" value="1">1
-    <input type="checkbox" name="active" value="2">2
-    <input type="checkbox" name="active" value="3">3
-    <input type="checkbox" name="active" value="4">4
-    <input type="checkbox" name="active" value="5">5
+    <input type="checkbox" name="activo" value="1">1
+    <input type="checkbox" name="activo" value="2">2
+    <input type="checkbox" name="activo" value="3">3
+    <input type="checkbox" name="activo" value="4">4
+    <input type="checkbox" name="activo" value="5">5
   </li>
   <li>
     Pregunta i planteja dubtes:
-    <input type="checkbox" name="question" value="1">1
-    <input type="checkbox" name="question" value="2">2
-    <input type="checkbox" name="question" value="3">3
-    <input type="checkbox" name="question" value="4">4
-    <input type="checkbox" name="question" value="5">5
+    <input type="checkbox" name="pregunta" value="1">1
+    <input type="checkbox" name="pregunta" value="2">2
+    <input type="checkbox" name="pregunta" value="3">3
+    <input type="checkbox" name="pregunta" value="4">4
+    <input type="checkbox" name="pregunta" value="5">5
   </li>
   <li>
     Acaba el treball de classe:
-    <input type="checkbox" name="finish" value="1">1
-    <input type="checkbox" name="finish" value="2">2
-    <input type="checkbox" name="finish" value="3">3
-    <input type="checkbox" name="finish" value="4">4
-    <input type="checkbox" name="finish" value="5">5
+    <input type="checkbox" name="acaba" value="1">1
+    <input type="checkbox" name="acaba" value="2">2
+    <input type="checkbox" name="acaba" value="3">3
+    <input type="checkbox" name="acaba" value="4">4
+    <input type="checkbox" name="acaba" value="5">5
   </li>
   <li>
     Fa les tasques que s'envien a casa:
-    <input type="checkbox" name="tasks" value="1">1
-    <input type="checkbox" name="tasks" value="2">2
-    <input type="checkbox" name="tasks" value="3">3
-    <input type="checkbox" name="tasks" value="4">4
-    <input type="checkbox" name="tasks" value="5">5
+    <input type="checkbox" name="tareas" value="1">1
+    <input type="checkbox" name="tareas" value="2">2
+    <input type="checkbox" name="tareas" value="3">3
+    <input type="checkbox" name="tareas" value="4">4
+    <input type="checkbox" name="tareas" value="5">5
   </li>
   <li>
     Està net i organitzat amb el seu material:
-    <input type="checkbox" name="sorted" value="1">1
-    <input type="checkbox" name="sorted" value="2">2
-    <input type="checkbox" name="sorted" value="3">3
-    <input type="checkbox" name="sorted" value="4">4
-    <input type="checkbox" name="sorted" value="5">5
+    <input type="checkbox" name="ordenado" value="1">1
+    <input type="checkbox" name="ordenado" value="2">2
+    <input type="checkbox" name="ordenado" value="3">3
+    <input type="checkbox" name="ordenado" value="4">4
+    <input type="checkbox" name="ordenado" value="5">5
   </li>
   <li>
     Assistir regularment:
-    <input type="checkbox" name="attends" value="1">1
-    <input type="checkbox" name="attends" value="2">2
-    <input type="checkbox" name="attends" value="3">3
-    <input type="checkbox" name="attends" value="4">4
-    <input type="checkbox" name="attends" value="5">5
+    <input type="checkbox" name="asiste" value="1">1
+    <input type="checkbox" name="asiste" value="2">2
+    <input type="checkbox" name="asiste" value="3">3
+    <input type="checkbox" name="asiste" value="4">4
+    <input type="checkbox" name="asiste" value="5">5
   </li>
   <li>
     Demaneu en préstec material als companys:
-    <input type="checkbox" name="requests" value="1">1
-    <input type="checkbox" name="requests" value="2">2
-    <input type="checkbox" name="requests" value="3">3
-    <input type="checkbox" name="requests" value="4">4
-    <input type="checkbox" name="requests" value="5">5
+    <input type="checkbox" name="pide" value="1">1
+    <input type="checkbox" name="pide" value="2">2
+    <input type="checkbox" name="pide" value="3">3
+    <input type="checkbox" name="pide" value="4">4
+    <input type="checkbox" name="pide" value="5">5
   </li>
   <li>
     Si us plau assistiu a:
-    <input type="checkbox" name="liked" value="1">1
-    <input type="checkbox" name="liked" value="2">2
-    <input type="checkbox" name="liked" value="3">3
-    <input type="checkbox" name="liked" value="4">4
-    <input type="checkbox" name="liked" value="5">5
+    <input type="checkbox" name="agrado" value="1">1
+    <input type="checkbox" name="agrado" value="2">2
+    <input type="checkbox" name="agrado" value="3">3
+    <input type="checkbox" name="agrado" value="4">4
+    <input type="checkbox" name="agrado" value="5">5
   </li>
   <li>
     Compleix amb el material didàctic sol·licitat:
-    <input type="checkbox" name="compliant" value="1">1
-    <input type="checkbox" name="compliant" value="2">2
-    <input type="checkbox" name="complies" value="3">3
-    <input type="checkbox" name="complies" value="4">4
-    <input type="checkbox" name="complies" value="5">5
+    <input type="checkbox" name="cumple" value="1">1
+    <input type="checkbox" name="cumple" value="2">2
+    <input type="checkbox" name="cumple" value="3">3
+    <input type="checkbox" name="cumple" value="4">4
+    <input type="checkbox" name="cumple" value="5">5
   </li>
   <li>
     Cuida dels teus quaderns, notes i altres subministraments:
-    <input type="checkbox" name="take care" value="1">1
-    <input type="checkbox" name="take care" value="2">2
-    <input type="checkbox" name="take care" value="3">3
-    <input type="checkbox" name="take care" value="4">4
-    <input type="checkbox" name="take care" value="5">5
+    <input type="checkbox" name="cuida" value="1">1
+    <input type="checkbox" name="cuida" value="2">2
+    <input type="checkbox" name="cuida" value="3">3
+    <input type="checkbox" name="cuida" value="4">4
+    <input type="checkbox" name="cuida" value="5">5
   </li>
   <li>
     Teniu el costum de gravar els deures:
-    <input type="checkbox" name="register" value="1">1
-    <input type="checkbox" name="register" value="2">2
-    <input type="checkbox" name="register" value="3">3
-    <input type="checkbox" name="register" value="4">4
-    <input type="checkbox" name="register" value="5">5
+    <input type="checkbox" name="registra" value="1">1
+    <input type="checkbox" name="registra" value="2">2
+    <input type="checkbox" name="registra" value="3">3
+    <input type="checkbox" name="registra" value="4">4
+    <input type="checkbox" name="registra" value="5">5
   </li>
   <li>
     Entrega les tasques i activitats en el temps indicat:
-    <input type="checkbox" name="delivery" value="1">1
-    <input type="checkbox" name="delivery" value="2">2
-    <input type="checkbox" name="delivery" value="3">3
-    <input type="checkbox" name="delivery" value="4">4
-    <input type="checkbox" name="delivery" value="5">5
+    <input type="checkbox" name="entrega" value="1">1
+    <input type="checkbox" name="entrega" value="2">2
+    <input type="checkbox" name="entrega" value="3">3
+    <input type="checkbox" name="entrega" value="4">4
+    <input type="checkbox" name="entrega" value="5">5
   </li>
   <li>
     És fàcil preparar apunts de classe:
-    <input type="checkbox" name="notes" value="1">1
-    <input type="checkbox" name="notes" value="2">2
-    <input type="checkbox" name="notes" value="3">3
-    <input type="checkbox" name="notes" value="4">4
-    <input type="checkbox" name="notes" value="5">5
+    <input type="checkbox" name="apuntes" value="1">1
+    <input type="checkbox" name="apuntes" value="2">2
+    <input type="checkbox" name="apuntes" value="3">3
+    <input type="checkbox" name="apuntes" value="4">4
+    <input type="checkbox" name="apuntes" value="5">5
   </li>
   <li>
     Es facilita la gestió de textos (síntesi, idees, etc.):
-    <input type="checkbox" name="texts" value="1">1
-    <input type="checkbox" name="texts" value="2">2
-    <input type="checkbox" name="texts" value="3">3
-    <input type="checkbox" name="texts" value="4">4
-    <input type="checkbox" name="texts" value="5">5
+    <input type="checkbox" name="textos" value="1">1
+    <input type="checkbox" name="textos" value="2">2
+    <input type="checkbox" name="textos" value="3">3
+    <input type="checkbox" name="textos" value="4">4
+    <input type="checkbox" name="textos" value="5">5
   </li>
   <li>
     Argumenta o dóna la teva opinió sobre diversos temes:
-    <input type="checkbox" name="argues" value="1">1
-    <input type="checkbox" name="argue" value="2">2
-    <input type="checkbox" name="argue" value="3">3
-    <input type="checkbox" name="argues" value="4">4
-    <input type="checkbox" name="argues" value="5">5
+    <input type="checkbox" name="argumenta" value="1">1
+    <input type="checkbox" name="argumenta" value="2">2
+    <input type="checkbox" name="argumenta" value="3">3
+    <input type="checkbox" name="argumenta" value="4">4
+    <input type="checkbox" name="argumenta" value="5">5
   </li>
   <li>
     Reflecteix un coneixement bàsic dels temes tractats:
-    <input type="checkbox" name="knowledge" value="1">1
-    <input type="checkbox" name="knowledge" value="2">2
-    <input type="checkbox" name="knowledge" value="3">3
-    <input type="checkbox" name="knowledge" value="4">4
-    <input type="checkbox" name="knowledge" value="5">5
+    <input type="checkbox" name="conocimiento" value="1">1
+    <input type="checkbox" name="conocimiento" value="2">2
+    <input type="checkbox" name="conocimiento" value="3">3
+    <input type="checkbox" name="conocimiento" value="4">4
+    <input type="checkbox" name="conocimiento" value="5">5
   </li>
   <li>
     Expressar agraïment per les activitats proposades pel professor:
-    <input type="checkbox" name="apreciation" value="1">1
-    <input type="checkbox" name="apreciation" value="2">2
-    <input type="checkbox" name="apreciation" value="3">3
-    <input type="checkbox" name="apreciation" value="4">4
-    <input type="checkbox" name="apreciation" value="5">5
+    <input type="checkbox" name="aprecio" value="1">1
+    <input type="checkbox" name="aprecio" value="2">2
+    <input type="checkbox" name="aprecio" value="3">3
+    <input type="checkbox" name="aprecio" value="4">4
+    <input type="checkbox" name="aprecio" value="5">5
   </li>
 </ul>
 
@@ -327,43 +327,43 @@ format: html
 <ul>
   <li>
     Fa sorolls desagradables i interromp constantment:
-    <input type="checkbox" name="noises" value="1">1
-    <input type="checkbox" name="noises" value="2">2
-    <input type="checkbox" name="noises" value="3">3
-    <input type="checkbox" name="noises" value="4">4
-    <input type="checkbox" name="noises" value="5">5
+    <input type="checkbox" name="ruidos" value="1">1
+    <input type="checkbox" name="ruidos" value="2">2
+    <input type="checkbox" name="ruidos" value="3">3
+    <input type="checkbox" name="ruidos" value="4">4
+    <input type="checkbox" name="ruidos" value="5">5
   </li>
   <li>
     Sovint s'aixeca del seu lloc i es distreu de la seva feina:
-    <input type="checkbox" name="lift" value="1">1
-    <input type="checkbox" name="lift" value="2">2
-    <input type="checkbox" name="lift" value="3">3
-    <input type="checkbox" name="lift" value="4">4
-    <input type="checkbox" name="lift" value="5">5
+    <input type="checkbox" name="levanta" value="1">1
+    <input type="checkbox" name="levanta" value="2">2
+    <input type="checkbox" name="levanta" value="3">3
+    <input type="checkbox" name="levanta" value="4">4
+    <input type="checkbox" name="levanta" value="5">5
   </li>
   <li>
     Parla quan no pertany:
-    <input type="checkbox" name="speech" value="1">1
-    <input type="checkbox" name="speech" value="2">2
-    <input type="checkbox" name="speech" value="3">3
-    <input type="checkbox" name="speech" value="4">4
-    <input type="checkbox" name="speech" value="5">5
+    <input type="checkbox" name="habla" value="1">1
+    <input type="checkbox" name="habla" value="2">2
+    <input type="checkbox" name="habla" value="3">3
+    <input type="checkbox" name="habla" value="4">4
+    <input type="checkbox" name="habla" value="5">5
   </li>
   <li>
     Molesta i provoca els altres:
-    <input type="checkbox" name="annoying" value="1">1
-    <input type="checkbox" name="annoying" value="2">2
-    <input type="checkbox" name="annoying" value="3">3
-    <input type="checkbox" name="annoying" value="4">4
-    <input type="checkbox" name="annoying" value="5">5
+    <input type="checkbox" name="molesta" value="1">1
+    <input type="checkbox" name="molesta" value="2">2
+    <input type="checkbox" name="molesta" value="3">3
+    <input type="checkbox" name="molesta" value="4">4
+    <input type="checkbox" name="molesta" value="5">5
   </li>
   <li>
     Es baralla o discuteix i és agressiu amb els seus companys:
-    <input type="checkbox" name="fight" value="1">1
-    <input type="checkbox" name="fight" value="2">2
-    <input type="checkbox" name="fight" value="3">3
-    <input type="checkbox" name="fight" value="4">4
-    <input type="checkbox" name="fight" value="5">5
+    <input type="checkbox" name="pelea" value="1">1
+    <input type="checkbox" name="pelea" value="2">2
+    <input type="checkbox" name="pelea" value="3">3
+    <input type="checkbox" name="pelea" value="4">4
+    <input type="checkbox" name="pelea" value="5">5
   </li>
   <li>
     Busqueu l'atenció del professor (protagonisme):
@@ -375,35 +375,35 @@ format: html
   </li>
   <li>
     Estàs nerviós o inquiet:
-    <input type="checkbox" name="nervous" value="1">1
-    <input type="checkbox" name="nervous" value="2">2
-    <input type="checkbox" name="nervous" value="3">3
-    <input type="checkbox" name="nervous" value="4">4
-    <input type="checkbox" name="nervous" value="5">5
+    <input type="checkbox" name="nervioso" value="1">1
+    <input type="checkbox" name="nervioso" value="2">2
+    <input type="checkbox" name="nervioso" value="3">3
+    <input type="checkbox" name="nervioso" value="4">4
+    <input type="checkbox" name="nervioso" value="5">5
   </li>
   <li>
     És irrespectuós i groller amb el professor:
-    <input type="checkbox" name="disrespectful" value="1">1
-    <input type="checkbox" name="disrespectful" value="2">2
-    <input type="checkbox" name="disrespectful" value="3">3
-    <input type="checkbox" name="disrespectful" value="4">4
-    <input type="checkbox" name="disrespectful" value="5">5
+    <input type="checkbox" name="irrespetuoso" value="1">1
+    <input type="checkbox" name="irrespetuoso" value="2">2
+    <input type="checkbox" name="irrespetuoso" value="3">3
+    <input type="checkbox" name="irrespetuoso" value="4">4
+    <input type="checkbox" name="irrespetuoso" value="5">5
   </li>
   <li>
     Acostuma a criticar constantment:
-    <input type="checkbox" name="criticism" value="1">1
-    <input type="checkbox" name="criticism" value="2">2
-    <input type="checkbox" name="criticism" value="3">3
-    <input type="checkbox" name="criticism" value="4">4
-    <input type="checkbox" name="criticism" value="5">5
+    <input type="checkbox" name="critica" value="1">1
+    <input type="checkbox" name="critica" value="2">2
+    <input type="checkbox" name="critica" value="3">3
+    <input type="checkbox" name="critica" value="4">4
+    <input type="checkbox" name="critica" value="5">5
   </li>
   <li>
     Pots considerar-te un estudiant amb problemes de disciplina:
-    <input type="checkbox" name="discipline" value="1">1
-    <input type="checkbox" name="discipline" value="2">2
-    <input type="checkbox" name="discipline" value="3">3
-    <input type="checkbox" name="discipline" value="4">4
-    <input type="checkbox" name="discipline" value="5">5
+    <input type="checkbox" name="disciplina" value="1">1
+    <input type="checkbox" name="disciplina" value="2">2
+    <input type="checkbox" name="disciplina" value="3">3
+    <input type="checkbox" name="disciplina" value="4">4
+    <input type="checkbox" name="disciplina" value="5">5
   </li>
 </ul>
 
@@ -414,19 +414,19 @@ format: html
 <ul>
   <li>
     Respectar les normes de convivència:
-    <input type="checkbox" name="rules" value="1">1
-    <input type="checkbox" name="rules" value="2">2
-    <input type="checkbox" name="rules" value="3">3
-    <input type="checkbox" name="rules" value="4">4
-    <input type="checkbox" name="rules" value="5">5
+    <input type="checkbox" name="normas" value="1">1
+    <input type="checkbox" name="normas" value="2">2
+    <input type="checkbox" name="normas" value="3">3
+    <input type="checkbox" name="normas" value="4">4
+    <input type="checkbox" name="normas" value="5">5
   </li>
   <li>
     S'accepta en i pel grup:
-    <input type="checkbox" name="accepted" value="1">1
-    <input type="checkbox" name="accepted" value="2">2
-    <input type="checkbox" name="accepted" value="3">3
-    <input type="checkbox" name="accepted" value="4">4
-    <input type="checkbox" name="accepted" value="5">5
+    <input type="checkbox" name="aceptado" value="1">1
+    <input type="checkbox" name="aceptado" value="2">2
+    <input type="checkbox" name="aceptado" value="3">3
+    <input type="checkbox" name="aceptado" value="4">4
+    <input type="checkbox" name="aceptado" value="5">5
   </li>
   <li>
     Fàcil d'integrar:
@@ -438,27 +438,27 @@ format: html
   </li>
   <li>
     Ajuda i col·labora amb altres:
-    <input type="checkbox" name="help" value="1">1
-    <input type="checkbox" name="help" value="2">2
-    <input type="checkbox" name="help" value="3">3
-    <input type="checkbox" name="help" value="4">4
-    <input type="checkbox" name="help" value="5">5
+    <input type="checkbox" name="ayuda" value="1">1
+    <input type="checkbox" name="ayuda" value="2">2
+    <input type="checkbox" name="ayuda" value="3">3
+    <input type="checkbox" name="ayuda" value="4">4
+    <input type="checkbox" name="ayuda" value="5">5
   </li>
   <li>
     És considerat i amable amb els seus companys:
-    <input type="checkbox" name="friendly" value="1">1
-    <input type="checkbox" name="friendly" value="2">2
-    <input type="checkbox" name="friendly" value="3">3
-    <input type="checkbox" name="friendly" value="4">4
-    <input type="checkbox" name="friendly" value="5">5
+    <input type="checkbox" name="amable" value="1">1
+    <input type="checkbox" name="amable" value="2">2
+    <input type="checkbox" name="amable" value="3">3
+    <input type="checkbox" name="amable" value="4">4
+    <input type="checkbox" name="amable" value="5">5
   </li>
   <li>
     Intercanviar i compartir material i coneixements:
-    <input type="checkbox" name="share" value="1">1
-    <input type="checkbox" name="share" value="2">2
-    <input type="checkbox" name="share" value="3">3
-    <input type="checkbox" name="share" value="4">4
-    <input type="checkbox" name="share" value="5">5
+    <input type="checkbox" name="comparte" value="1">1
+    <input type="checkbox" name="comparte" value="2">2
+    <input type="checkbox" name="comparte" value="3">3
+    <input type="checkbox" name="comparte" value="4">4
+    <input type="checkbox" name="comparte" value="5">5
   </li>
   <li>
     És popular al grup:
@@ -470,11 +470,11 @@ format: html
   </li>
   <li>
     És responsable del treball en equip:
-    <input type="checkbox" name="team" value="1">1
-    <input type="checkbox" name="team" value="2">2
-    <input type="checkbox" name="team" value="3">3
-    <input type="checkbox" name="team" value="4">4
-    <input type="checkbox" name="team" value="5">5
+    <input type="checkbox" name="equipo" value="1">1
+    <input type="checkbox" name="equipo" value="2">2
+    <input type="checkbox" name="equipo" value="3">3
+    <input type="checkbox" name="equipo" value="4">4
+    <input type="checkbox" name="equipo" value="5">5
   </li>
 </ul>
 
@@ -483,51 +483,51 @@ format: html
 <ul>
   <li>
     Sembla confiat:
-    <input type="checkbox" name="safe" value="1">1
-    <input type="checkbox" name="safe" value="2">2
-    <input type="checkbox" name="safe" value="3">3
-    <input type="checkbox" name="safe" value="4">4
-    <input type="checkbox" name="safe" value="5">5
+    <input type="checkbox" name="seguro" value="1">1
+    <input type="checkbox" name="seguro" value="2">2
+    <input type="checkbox" name="seguro" value="3">3
+    <input type="checkbox" name="seguro" value="4">4
+    <input type="checkbox" name="seguro" value="5">5
   </li>
   <li>
     Vols destacar de la resta:
-    <input type="checkbox" name="highlight" value="1">1
-    <input type="checkbox" name="highlight" value="2">2
-    <input type="checkbox" name="highlight" value="3">3
-    <input type="checkbox" name="highlight" value="4">4
-    <input type="checkbox" name="highlight" value="5">5
+    <input type="checkbox" name="destacar" value="1">1
+    <input type="checkbox" name="destacar" value="2">2
+    <input type="checkbox" name="destacar" value="3">3
+    <input type="checkbox" name="destacar" value="4">4
+    <input type="checkbox" name="destacar" value="5">5
   </li>
   <li>
     És decidit i amb iniciativa:
-    <input type="checkbox" name="decided" value="1">1
-    <input type="checkbox" name="decided" value="2">2
-    <input type="checkbox" name="decided" value="3">3
-    <input type="checkbox" name="decided" value="4">4
-    <input type="checkbox" name="decided" value="5">5
+    <input type="checkbox" name="decidido" value="1">1
+    <input type="checkbox" name="decidido" value="2">2
+    <input type="checkbox" name="decidido" value="3">3
+    <input type="checkbox" name="decidido" value="4">4
+    <input type="checkbox" name="decidido" value="5">5
   </li>
   <li>
     Normalment està content i content:
-    <input type="checkbox" name="happy" value="1">1
-    <input type="checkbox" name="happy" value="2">2
-    <input type="checkbox" name="happy" value="3">3
-    <input type="checkbox" name="happy" value="4">4
-    <input type="checkbox" name="happy" value="5">5
+    <input type="checkbox" name="feliz" value="1">1
+    <input type="checkbox" name="feliz" value="2">2
+    <input type="checkbox" name="feliz" value="3">3
+    <input type="checkbox" name="feliz" value="4">4
+    <input type="checkbox" name="feliz" value="5">5
   </li>
   <li>
     Acostuma a ser un líder natural del grup:
-    <input type="checkbox" name="leader_nat" value="1">1
-    <input type="checkbox" name="leader_nat" value="2">2
-    <input type="checkbox" name="leader_nat" value="3">3
-    <input type="checkbox" name="leader_nat" value="4">4
-    <input type="checkbox" name="leader_nat" value="5">5
+    <input type="checkbox" name="lider_nat" value="1">1
+    <input type="checkbox" name="lider_nat" value="2">2
+    <input type="checkbox" name="lider_nat" value="3">3
+    <input type="checkbox" name="lider_nat" value="4">4
+    <input type="checkbox" name="lider_nat" value="5">5
   </li>
   <li>
     Manté una bona higiene personal:
-    <input type="checkbox" name="hygiene" value="1">1
-    <input type="checkbox" name="hygiene" value="2">2
-    <input type="checkbox" name="hygiene" value="3">3
-    <input type="checkbox" name="hygiene" value="4">4
-    <input type="checkbox" name="hygiene" value="5">5
+    <input type="checkbox" name="higiene" value="1">1
+    <input type="checkbox" name="higiene" value="2">2
+    <input type="checkbox" name="higiene" value="3">3
+    <input type="checkbox" name="higiene" value="4">4
+    <input type="checkbox" name="higiene" value="5">5
   </li>
 </ul>
 
@@ -538,51 +538,51 @@ format: html
 <ul>
   <li>
     Assistir a les reunions de l'escola:
-    <input type="checkbox" name="asiste_parents" value="1">1
-    <input type="checkbox" name="asiste_parents" value="2">2
-    <input type="checkbox" name="asiste_parents" value="3">3
-    <input type="checkbox" name="asiste_parents" value="4">4
-    <input type="checkbox" name="asiste_parents" value="5">5
+    <input type="checkbox" name="asiste_padres" value="1">1
+    <input type="checkbox" name="asiste_padres" value="2">2
+    <input type="checkbox" name="asiste_padres" value="3">3
+    <input type="checkbox" name="asiste_padres" value="4">4
+    <input type="checkbox" name="asiste_padres" value="5">5
   </li>
   <li>
     Expressar interès per les reunions i participar-hi:
-    <input type="checkbox" name="interest" value="1">1
-    <input type="checkbox" name="interest" value="2">2
-    <input type="checkbox" name="interest" value="3">3
-    <input type="checkbox" name="interest" value="4">4
-    <input type="checkbox" name="interest" value="5">5
+    <input type="checkbox" name="interes" value="1">1
+    <input type="checkbox" name="interes" value="2">2
+    <input type="checkbox" name="interes" value="3">3
+    <input type="checkbox" name="interes" value="4">4
+    <input type="checkbox" name="interes" value="5">5
   </li>
   <li>
     Està en constant comunicació amb el professor:
-    <input type="checkbox" name="communication" value="1">1
-    <input type="checkbox" name="communication" value="2">2
-    <input type="checkbox" name="communication" value="3">3
-    <input type="checkbox" name="communication" value="4">4
-    <input type="checkbox" name="communication" value="5">5
+    <input type="checkbox" name="comunicacion" value="1">1
+    <input type="checkbox" name="comunicacion" value="2">2
+    <input type="checkbox" name="comunicacion" value="3">3
+    <input type="checkbox" name="comunicacion" value="4">4
+    <input type="checkbox" name="comunicacion" value="5">5
   </li>
   <li>
     Seguiu les instruccions donades pel professor:
-    <input type="checkbox" name="next" value="1">1
-    <input type="checkbox" name="next" value="2">2
-    <input type="checkbox" name="next" value="3">3
-    <input type="checkbox" name="next" value="4">4
-    <input type="checkbox" name="next" value="5">5
+    <input type="checkbox" name="sigue" value="1">1
+    <input type="checkbox" name="sigue" value="2">2
+    <input type="checkbox" name="sigue" value="3">3
+    <input type="checkbox" name="sigue" value="4">4
+    <input type="checkbox" name="sigue" value="5">5
   </li>
   <li>
     Fes el pagament pendent del material que el teu fill necessita:
-    <input type="checkbox" name="payment" value="1">1
-    <input type="checkbox" name="payment" value="2">2
-    <input type="checkbox" name="payment" value="3">3
-    <input type="checkbox" name="payment" value="4">4
-    <input type="checkbox" name="payment" value="5">5
+    <input type="checkbox" name="pago" value="1">1
+    <input type="checkbox" name="pago" value="2">2
+    <input type="checkbox" name="pago" value="3">3
+    <input type="checkbox" name="pago" value="4">4
+    <input type="checkbox" name="pago" value="5">5
   </li>
   <li>
     Acostumes a culpar el professor pel rendiment del teu fill:
-    <input type="checkbox" name="fault" value="1">1
-    <input type="checkbox" name="fault" value="2">2
-    <input type="checkbox" name="fault" value="3">3
-    <input type="checkbox" name="fault" value="4">4
-    <input type="checkbox" name="fault" value="5">5
+    <input type="checkbox" name="culpa" value="1">1
+    <input type="checkbox" name="culpa" value="2">2
+    <input type="checkbox" name="culpa" value="3">3
+    <input type="checkbox" name="culpa" value="4">4
+    <input type="checkbox" name="culpa" value="5">5
   </li>
 </ul>
 

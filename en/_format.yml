@@ -137,7 +137,7 @@ format:
       match: auto
       effect: fade
       desc-position: bottom
-      loop: true
+      loop: false
     theme:
       light: [minty, style-assets/light-styles.scss]
       dark: [slate, style-assets/dark-styles.scss]

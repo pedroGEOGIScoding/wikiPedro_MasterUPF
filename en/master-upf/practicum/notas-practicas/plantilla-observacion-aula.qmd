@@ -57,42 +57,42 @@ format: html
 <ul>
   <li>
     Environment of respect and trust among students:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_respeto" value="1">1
+    <input type="checkbox" name="clima_respeto" value="2">2
+    <input type="checkbox" name="clima_respeto" value="3">3
+    <input type="checkbox" name="clima_respeto" value="4">4
+    <input type="checkbox" name="clima_respeto" value="5">5
+    <input type="checkbox" name="clima_respeto" value="6">6
+    <input type="checkbox" name="clima_respeto" value="7">7
+    <input type="checkbox" name="clima_respeto" value="8">8
+    <input type="checkbox" name="clima_respeto" value="9">9
+    <input type="checkbox" name="clima_respeto" value="10">10
   </li>
   <li>
     Observed level of tension or conflict:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_tension" value="1">1
+    <input type="checkbox" name="clima_tension" value="2">2
+    <input type="checkbox" name="clima_tension" value="3">3
+    <input type="checkbox" name="clima_tension" value="4">4
+    <input type="checkbox" name="clima_tension" value="5">5
+    <input type="checkbox" name="clima_tension" value="6">6
+    <input type="checkbox" name="clima_tension" value="7">7
+    <input type="checkbox" name="clima_tension" value="8">8
+    <input type="checkbox" name="clima_tension" value="9">9
+    <input type="checkbox" name="clima_tension" value="10">10
   </li>
   <li>
     General attitude towards teaching activity:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_actitud" value="1">1
+    <input type="checkbox" name="clima_actitud" value="2">2
+    <input type="checkbox" name="clima_actitud" value="3">3
+    <input type="checkbox" name="clima_actitud" value="4">4
+    <input type="checkbox" name="clima_actitud" value="5">5
+    <input type="checkbox" name="clima_actitud" value="6">6
+    <input type="checkbox" name="clima_actitud" value="7">7
+    <input type="checkbox" name="clima_actitud" value="8">8
+    <input type="checkbox" name="clima_actitud" value="9">9
+    <input type="checkbox" name="clima_actitud" value="10">10
   </li>
 </ul>
 
@@ -100,55 +100,55 @@ format: html
 <ul>
   <li>
     Compliance with coexistence rules:
-    <input type="checkbox" name="compliance_standards" value="1">1
-    <input type="checkbox" name="compliance_standards" value="2">2
-    <input type="checkbox" name="compliance_standards" value="3">3
-    <input type="checkbox" name="compliance_standards" value="4">4
-    <input type="checkbox" name="compliance_standards" value="5">5
-    <input type="checkbox" name="compliance_standards" value="6">6
-    <input type="checkbox" name="compliance_standards" value="7">7
-    <input type="checkbox" name="compliance_standards" value="8">8
-    <input type="checkbox" name="compliance_standards" value="9">9
-    <input type="checkbox" name="compliance_standards" value="10">10
+    <input type="checkbox" name="cumplimiento_normas" value="1">1
+    <input type="checkbox" name="cumplimiento_normas" value="2">2
+    <input type="checkbox" name="cumplimiento_normas" value="3">3
+    <input type="checkbox" name="cumplimiento_normas" value="4">4
+    <input type="checkbox" name="cumplimiento_normas" value="5">5
+    <input type="checkbox" name="cumplimiento_normas" value="6">6
+    <input type="checkbox" name="cumplimiento_normas" value="7">7
+    <input type="checkbox" name="cumplimiento_normas" value="8">8
+    <input type="checkbox" name="cumplimiento_normas" value="9">9
+    <input type="checkbox" name="cumplimiento_normas" value="10">10
   </li>
   <li>
     Interruptions and disruptions during the session:
-    <input type="checkbox" name="interrupts" value="1">1
-    <input type="checkbox" name="interrupts" value="2">2
-    <input type="checkbox" name="interruptions" value="3">3
-    <input type="checkbox" name="interrupts" value="4">4
-    <input type="checkbox" name="interruptions" value="5">5
-    <input type="checkbox" name="interrupts" value="6">6
-    <input type="checkbox" name="interruptions" value="7">7
-    <input type="checkbox" name="interruptions" value="8">8
-    <input type="checkbox" name="interruptions" value="9">9
-    <input type="checkbox" name="interruptions" value="10">10
+    <input type="checkbox" name="interrupciones" value="1">1
+    <input type="checkbox" name="interrupciones" value="2">2
+    <input type="checkbox" name="interrupciones" value="3">3
+    <input type="checkbox" name="interrupciones" value="4">4
+    <input type="checkbox" name="interrupciones" value="5">5
+    <input type="checkbox" name="interrupciones" value="6">6
+    <input type="checkbox" name="interrupciones" value="7">7
+    <input type="checkbox" name="interrupciones" value="8">8
+    <input type="checkbox" name="interrupciones" value="9">9
+    <input type="checkbox" name="interrupciones" value="10">10
   </li>
   <li>
     Need for attention calls from the teacher:
-    <input type="checkbox" name="attention_calls" value="1">1
-    <input type="checkbox" name="attention_calls" value="2">2
-    <input type="checkbox" name="attention_calls" value="3">3
-    <input type="checkbox" name="attention_calls" value="4">4
-    <input type="checkbox" name="attention_calls" value="5">5
-    <input type="checkbox" name="attention_calls" value="6">6
-    <input type="checkbox" name="attention_calls" value="7">7
-    <input type="checkbox" name="attention_calls" value="8">8
-    <input type="checkbox" name="attention_calls" value="9">9
-    <input type="checkbox" name="attention_calls" value="10">10
+    <input type="checkbox" name="llamadas_atencion" value="1">1
+    <input type="checkbox" name="llamadas_atencion" value="2">2
+    <input type="checkbox" name="llamadas_atencion" value="3">3
+    <input type="checkbox" name="llamadas_atencion" value="4">4
+    <input type="checkbox" name="llamadas_atencion" value="5">5
+    <input type="checkbox" name="llamadas_atencion" value="6">6
+    <input type="checkbox" name="llamadas_atencion" value="7">7
+    <input type="checkbox" name="llamadas_atencion" value="8">8
+    <input type="checkbox" name="llamadas_atencion" value="9">9
+    <input type="checkbox" name="llamadas_atencion" value="10">10
   </li>
   <li>
     Punctuality at the start and end of activities:
-    <input type="checkbox" name="punctuality" value="1">1
-    <input type="checkbox" name="punctuality" value="2">2
-    <input type="checkbox" name="punctuality" value="3">3
-    <input type="checkbox" name="punctuality" value="4">4
-    <input type="checkbox" name="punctuality" value="5">5
-    <input type="checkbox" name="punctuality" value="6">6
-    <input type="checkbox" name="punctuality" value="7">7
-    <input type="checkbox" name="punctuality" value="8">8
-    <input type="checkbox" name="punctuality" value="9">9
-    <input type="checkbox" name="punctuality" value="10">10
+    <input type="checkbox" name="puntualidad" value="1">1
+    <input type="checkbox" name="puntualidad" value="2">2
+    <input type="checkbox" name="puntualidad" value="3">3
+    <input type="checkbox" name="puntualidad" value="4">4
+    <input type="checkbox" name="puntualidad" value="5">5
+    <input type="checkbox" name="puntualidad" value="6">6
+    <input type="checkbox" name="puntualidad" value="7">7
+    <input type="checkbox" name="puntualidad" value="8">8
+    <input type="checkbox" name="puntualidad" value="9">9
+    <input type="checkbox" name="puntualidad" value="10">10
   </li>
 </ul>
 
@@ -156,29 +156,29 @@ format: html
 <ul>
   <li>
     Quality of relationships between students:
-    <input type="checkbox" name="relationships" value="1">1
-    <input type="checkbox" name="relationships" value="2">2
-    <input type="checkbox" name="relationships" value="3">3
-    <input type="checkbox" name="relationships" value="4">4
-    <input type="checkbox" name="relationships" value="5">5
-    <input type="checkbox" name="relationships" value="6">6
-    <input type="checkbox" name="relationships" value="7">7
-    <input type="checkbox" name="relationships" value="8">8
-    <input type="checkbox" name="relationships" value="9">9
-    <input type="checkbox" name="relationships" value="10">10
+    <input type="checkbox" name="relaciones" value="1">1
+    <input type="checkbox" name="relaciones" value="2">2
+    <input type="checkbox" name="relaciones" value="3">3
+    <input type="checkbox" name="relaciones" value="4">4
+    <input type="checkbox" name="relaciones" value="5">5
+    <input type="checkbox" name="relaciones" value="6">6
+    <input type="checkbox" name="relaciones" value="7">7
+    <input type="checkbox" name="relaciones" value="8">8
+    <input type="checkbox" name="relaciones" value="9">9
+    <input type="checkbox" name="relaciones" value="10">10
   </li>
   <li>
     Spontaneous collaboration between colleagues:
-    <input type="checkbox" name="collaboration" value="1">1
-    <input type="checkbox" name="collaboration" value="2">2
-    <input type="checkbox" name="collaboration" value="3">3
-    <input type="checkbox" name="collaboration" value="4">4
-    <input type="checkbox" name="collaboration" value="5">5
-    <input type="checkbox" name="collaboration" value="6">6
-    <input type="checkbox" name="collaboration" value="7">7
-    <input type="checkbox" name="collaboration" value="8">8
-    <input type="checkbox" name="collaboration" value="9">9
-    <input type="checkbox" name="collaboration" value="10">10
+    <input type="checkbox" name="colaboracion" value="1">1
+    <input type="checkbox" name="colaboracion" value="2">2
+    <input type="checkbox" name="colaboracion" value="3">3
+    <input type="checkbox" name="colaboracion" value="4">4
+    <input type="checkbox" name="colaboracion" value="5">5
+    <input type="checkbox" name="colaboracion" value="6">6
+    <input type="checkbox" name="colaboracion" value="7">7
+    <input type="checkbox" name="colaboracion" value="8">8
+    <input type="checkbox" name="colaboracion" value="9">9
+    <input type="checkbox" name="colaboracion" value="10">10
   </li>
   <li>
     Inclusion of all students in the dynamics:
@@ -195,16 +195,16 @@ format: html
   </li>
   <li>
     Observed mutual aid attitudes:
-    <input type="checkbox" name="mutual_help" value="1">1
-    <input type="checkbox" name="mutual_help" value="2">2
-    <input type="checkbox" name="mutual_help" value="3">3
-    <input type="checkbox" name="mutual_help" value="4">4
-    <input type="checkbox" name="mutual_help" value="5">5
-    <input type="checkbox" name="mutual_help" value="6">6
-    <input type="checkbox" name="mutual_help" value="7">7
-    <input type="checkbox" name="mutual_help" value="8">8
-    <input type="checkbox" name="mutual_help" value="9">9
-    <input type="checkbox" name="mutual_help" value="10">10
+    <input type="checkbox" name="ayuda_mutua" value="1">1
+    <input type="checkbox" name="ayuda_mutua" value="2">2
+    <input type="checkbox" name="ayuda_mutua" value="3">3
+    <input type="checkbox" name="ayuda_mutua" value="4">4
+    <input type="checkbox" name="ayuda_mutua" value="5">5
+    <input type="checkbox" name="ayuda_mutua" value="6">6
+    <input type="checkbox" name="ayuda_mutua" value="7">7
+    <input type="checkbox" name="ayuda_mutua" value="8">8
+    <input type="checkbox" name="ayuda_mutua" value="9">9
+    <input type="checkbox" name="ayuda_mutua" value="10">10
   </li>
 </ul>
 
@@ -213,16 +213,16 @@ format: html
 <ul>
   <li>
     Estimated percentage of attentive students:
-    <input type="checkbox" name="attentive_students" value="1">1
-    <input type="checkbox" name="attentive_students" value="2">2
-    <input type="checkbox" name="attentive_students" value="3">3
-    <input type="checkbox" name="attentive_students" value="4">4
-    <input type="checkbox" name="attentive_students" value="5">5
-    <input type="checkbox" name="attentive_students" value="6">6
-    <input type="checkbox" name="attentive_students" value="7">7
-    <input type="checkbox" name="attentive_students" value="8">8
-    <input type="checkbox" name="attentive_students" value="9">9
-    <input type="checkbox" name="attentive_students" value="10">10
+    <input type="checkbox" name="estudiantes_atentos" value="1">1
+    <input type="checkbox" name="estudiantes_atentos" value="2">2
+    <input type="checkbox" name="estudiantes_atentos" value="3">3
+    <input type="checkbox" name="estudiantes_atentos" value="4">4
+    <input type="checkbox" name="estudiantes_atentos" value="5">5
+    <input type="checkbox" name="estudiantes_atentos" value="6">6
+    <input type="checkbox" name="estudiantes_atentos" value="7">7
+    <input type="checkbox" name="estudiantes_atentos" value="8">8
+    <input type="checkbox" name="estudiantes_atentos" value="9">9
+    <input type="checkbox" name="estudiantes_atentos" value="10">10
   </li>
   <li>
     Dispersion or frequent distractions:
@@ -239,16 +239,16 @@ format: html
   </li>
   <li>
     Ability to maintain focus during explanations:
-    <input type="checkbox" name="focus" value="1">1
-    <input type="checkbox" name="focus" value="2">2
-    <input type="checkbox" name="focus" value="3">3
-    <input type="checkbox" name="focus" value="4">4
-    <input type="checkbox" name="focus" value="5">5
-    <input type="checkbox" name="focus" value="6">6
-    <input type="checkbox" name="focus" value="7">7
-    <input type="checkbox" name="focus" value="8">8
-    <input type="checkbox" name="focus" value="9">9
-    <input type="checkbox" name="focus" value="10">10
+    <input type="checkbox" name="foco" value="1">1
+    <input type="checkbox" name="foco" value="2">2
+    <input type="checkbox" name="foco" value="3">3
+    <input type="checkbox" name="foco" value="4">4
+    <input type="checkbox" name="foco" value="5">5
+    <input type="checkbox" name="foco" value="6">6
+    <input type="checkbox" name="foco" value="7">7
+    <input type="checkbox" name="foco" value="8">8
+    <input type="checkbox" name="foco" value="9">9
+    <input type="checkbox" name="foco" value="10">10
   </li>
 </ul>
 
@@ -256,55 +256,55 @@ format: html
 <ul>
   <li>
     Frequency of voluntary interventions:
-    <input type="checkbox" name="interventions" value="1">1
-    <input type="checkbox" name="interventions" value="2">2
-    <input type="checkbox" name="interventions" value="3">3
-    <input type="checkbox" name="interventions" value="4">4
-    <input type="checkbox" name="interventions" value="5">5
-    <input type="checkbox" name="interventions" value="6">6
-    <input type="checkbox" name="interventions" value="7">7
-    <input type="checkbox" name="interventions" value="8">8
-    <input type="checkbox" name="interventions" value="9">9
-    <input type="checkbox" name="interventions" value="10">10
+    <input type="checkbox" name="intervenciones" value="1">1
+    <input type="checkbox" name="intervenciones" value="2">2
+    <input type="checkbox" name="intervenciones" value="3">3
+    <input type="checkbox" name="intervenciones" value="4">4
+    <input type="checkbox" name="intervenciones" value="5">5
+    <input type="checkbox" name="intervenciones" value="6">6
+    <input type="checkbox" name="intervenciones" value="7">7
+    <input type="checkbox" name="intervenciones" value="8">8
+    <input type="checkbox" name="intervenciones" value="9">9
+    <input type="checkbox" name="intervenciones" value="10">10
   </li>
   <li>
     Quality of contributions made:
-    <input type="checkbox" name="contributions" value="1">1
-    <input type="checkbox" name="contributions" value="2">2
-    <input type="checkbox" name="contributions" value="3">3
-    <input type="checkbox" name="contributions" value="4">4
-    <input type="checkbox" name="contributions" value="5">5
-    <input type="checkbox" name="contributions" value="6">6
-    <input type="checkbox" name="contributions" value="7">7
-    <input type="checkbox" name="contributions" value="8">8
-    <input type="checkbox" name="contributions" value="9">9
-    <input type="checkbox" name="contributions" value="10">10
+    <input type="checkbox" name="aportaciones" value="1">1
+    <input type="checkbox" name="aportaciones" value="2">2
+    <input type="checkbox" name="aportaciones" value="3">3
+    <input type="checkbox" name="aportaciones" value="4">4
+    <input type="checkbox" name="aportaciones" value="5">5
+    <input type="checkbox" name="aportaciones" value="6">6
+    <input type="checkbox" name="aportaciones" value="7">7
+    <input type="checkbox" name="aportaciones" value="8">8
+    <input type="checkbox" name="aportaciones" value="9">9
+    <input type="checkbox" name="aportaciones" value="10">10
   </li>
   <li>
     Diversity of students participating:
-    <input type="checkbox" name="diversity_participants" value="1">1
-    <input type="checkbox" name="diversity_participants" value="2">2
-    <input type="checkbox" name="diversity_participants" value="3">3
-    <input type="checkbox" name="diversity_participants" value="4">4
-    <input type="checkbox" name="diversity_participants" value="5">5
-    <input type="checkbox" name="diversity_participants" value="6">6
-    <input type="checkbox" name="diversity_participants" value="7">7
-    <input type="checkbox" name="diversity_participants" value="8">8
-    <input type="checkbox" name="diversity_participants" value="9">9
-    <input type="checkbox" name="diversity_participants" value="10">10
+    <input type="checkbox" name="diversidad_participantes" value="1">1
+    <input type="checkbox" name="diversidad_participantes" value="2">2
+    <input type="checkbox" name="diversidad_participantes" value="3">3
+    <input type="checkbox" name="diversidad_participantes" value="4">4
+    <input type="checkbox" name="diversidad_participantes" value="5">5
+    <input type="checkbox" name="diversidad_participantes" value="6">6
+    <input type="checkbox" name="diversidad_participantes" value="7">7
+    <input type="checkbox" name="diversidad_participantes" value="8">8
+    <input type="checkbox" name="diversidad_participantes" value="9">9
+    <input type="checkbox" name="diversidad_participantes" value="10">10
   </li>
   <li>
     Answer to the teacher's questions:
-    <input type="checkbox" name="teacher_answer" value="1">1
-    <input type="checkbox" name="teacher_answer" value="2">2
-    <input type="checkbox" name="teacher_answer" value="3">3
-    <input type="checkbox" name="teacher_answer" value="4">4
-    <input type="checkbox" name="teacher_answer" value="5">5
-    <input type="checkbox" name="teacher_answer" value="6">6
-    <input type="checkbox" name="teacher_answer" value="7">7
-    <input type="checkbox" name="teacher_answer" value="8">8
-    <input type="checkbox" name="teacher_answer" value="9">9
-    <input type="checkbox" name="teacher_answer" value="10">10
+    <input type="checkbox" name="respuesta_docente" value="1">1
+    <input type="checkbox" name="respuesta_docente" value="2">2
+    <input type="checkbox" name="respuesta_docente" value="3">3
+    <input type="checkbox" name="respuesta_docente" value="4">4
+    <input type="checkbox" name="respuesta_docente" value="5">5
+    <input type="checkbox" name="respuesta_docente" value="6">6
+    <input type="checkbox" name="respuesta_docente" value="7">7
+    <input type="checkbox" name="respuesta_docente" value="8">8
+    <input type="checkbox" name="respuesta_docente" value="9">9
+    <input type="checkbox" name="respuesta_docente" value="10">10
   </li>
 </ul>
 
@@ -313,16 +313,16 @@ format: html
 <ul>
   <li>
     Attitude towards the contents worked on:
-    <input type="checkbox" name="content_attitude" value="1">1
-    <input type="checkbox" name="attitude_contents" value="2">2
-    <input type="checkbox" name="attitude_contents" value="3">3
-    <input type="checkbox" name="attitude_contents" value="4">4
-    <input type="checkbox" name="attitude_contents" value="5">5
-    <input type="checkbox" name="attitude_contents" value="6">6
-    <input type="checkbox" name="attitude_contents" value="7">7
-    <input type="checkbox" name="attitude_contents" value="8">8
-    <input type="checkbox" name="attitude_contents" value="9">9
-    <input type="checkbox" name="content_attitude" value="10">10
+    <input type="checkbox" name="actitud_contenidos" value="1">1
+    <input type="checkbox" name="actitud_contenidos" value="2">2
+    <input type="checkbox" name="actitud_contenidos" value="3">3
+    <input type="checkbox" name="actitud_contenidos" value="4">4
+    <input type="checkbox" name="actitud_contenidos" value="5">5
+    <input type="checkbox" name="actitud_contenidos" value="6">6
+    <input type="checkbox" name="actitud_contenidos" value="7">7
+    <input type="checkbox" name="actitud_contenidos" value="8">8
+    <input type="checkbox" name="actitud_contenidos" value="9">9
+    <input type="checkbox" name="actitud_contenidos" value="10">10
   </li>
   <li>
     Engagement with the proposed activities:
@@ -339,16 +339,16 @@ format: html
   </li>
   <li>
     Expressions of curiosity or questions:
-    <input type="checkbox" name="curiosity" value="1">1
-    <input type="checkbox" name="curiosity" value="2">2
-    <input type="checkbox" name="curiosity" value="3">3
-    <input type="checkbox" name="curiosity" value="4">4
-    <input type="checkbox" name="curiosity" value="5">5
-    <input type="checkbox" name="curiosity" value="6">6
-    <input type="checkbox" name="curiosity" value="7">7
-    <input type="checkbox" name="curiosity" value="8">8
-    <input type="checkbox" name="curiosity" value="9">9
-    <input type="checkbox" name="curiosity" value="10">10
+    <input type="checkbox" name="curiosidad" value="1">1
+    <input type="checkbox" name="curiosidad" value="2">2
+    <input type="checkbox" name="curiosidad" value="3">3
+    <input type="checkbox" name="curiosidad" value="4">4
+    <input type="checkbox" name="curiosidad" value="5">5
+    <input type="checkbox" name="curiosidad" value="6">6
+    <input type="checkbox" name="curiosidad" value="7">7
+    <input type="checkbox" name="curiosidad" value="8">8
+    <input type="checkbox" name="curiosidad" value="9">9
+    <input type="checkbox" name="curiosidad" value="10">10
   </li>
   <li>
     Observed resistance or apathy:
@@ -369,55 +369,55 @@ format: html
 <ul>
   <li>
     Work pace during individual or group activities:
-    <input type="checkbox" name="work_pace" value="1">1
-    <input type="checkbox" name="work_pace" value="2">2
-    <input type="checkbox" name="work_pace" value="3">3
-    <input type="checkbox" name="work_pace" value="4">4
-    <input type="checkbox" name="work_pace" value="5">5
-    <input type="checkbox" name="work_pace" value="6">6
-    <input type="checkbox" name="work_pace" value="7">7
-    <input type="checkbox" name="work_pace" value="8">8
-    <input type="checkbox" name="work_pace" value="9">9
-    <input type="checkbox" name="work_pace" value="10">10
+    <input type="checkbox" name="ritmo_trabajo" value="1">1
+    <input type="checkbox" name="ritmo_trabajo" value="2">2
+    <input type="checkbox" name="ritmo_trabajo" value="3">3
+    <input type="checkbox" name="ritmo_trabajo" value="4">4
+    <input type="checkbox" name="ritmo_trabajo" value="5">5
+    <input type="checkbox" name="ritmo_trabajo" value="6">6
+    <input type="checkbox" name="ritmo_trabajo" value="7">7
+    <input type="checkbox" name="ritmo_trabajo" value="8">8
+    <input type="checkbox" name="ritmo_trabajo" value="9">9
+    <input type="checkbox" name="ritmo_trabajo" value="10">10
   </li>
   <li>
     Compliance with assigned tasks:
-    <input type="checkbox" name="compliance_tasks" value="1">1
-    <input type="checkbox" name="compliance_tasks" value="2">2
-    <input type="checkbox" name="compliance_tasks" value="3">3
-    <input type="checkbox" name="compliance_tasks" value="4">4
-    <input type="checkbox" name="compliance_tasks" value="5">5
-    <input type="checkbox" name="compliance_tasks" value="6">6
-    <input type="checkbox" name="compliance_tasks" value="7">7
-    <input type="checkbox" name="compliance_tasks" value="8">8
-    <input type="checkbox" name="compliance_tasks" value="9">9
-    <input type="checkbox" name="compliance_tasks" value="10">10
+    <input type="checkbox" name="cumplimiento_tareas" value="1">1
+    <input type="checkbox" name="cumplimiento_tareas" value="2">2
+    <input type="checkbox" name="cumplimiento_tareas" value="3">3
+    <input type="checkbox" name="cumplimiento_tareas" value="4">4
+    <input type="checkbox" name="cumplimiento_tareas" value="5">5
+    <input type="checkbox" name="cumplimiento_tareas" value="6">6
+    <input type="checkbox" name="cumplimiento_tareas" value="7">7
+    <input type="checkbox" name="cumplimiento_tareas" value="8">8
+    <input type="checkbox" name="cumplimiento_tareas" value="9">9
+    <input type="checkbox" name="cumplimiento_tareas" value="10">10
   </li>
   <li>
     Productive use of class time:
-    <input type="checkbox" name="usage_time" value="1">1
-    <input type="checkbox" name="usage_time" value="2">2
-    <input type="checkbox" name="usage_time" value="3">3
-    <input type="checkbox" name="usage_time" value="4">4
-    <input type="checkbox" name="usage_time" value="5">5
-    <input type="checkbox" name="usage_time" value="6">6
-    <input type="checkbox" name="usage_time" value="7">7
-    <input type="checkbox" name="usage_time" value="8">8
-    <input type="checkbox" name="usage_time" value="9">9
-    <input type="checkbox" name="usage_time" value="10">10
+    <input type="checkbox" name="uso_tiempo" value="1">1
+    <input type="checkbox" name="uso_tiempo" value="2">2
+    <input type="checkbox" name="uso_tiempo" value="3">3
+    <input type="checkbox" name="uso_tiempo" value="4">4
+    <input type="checkbox" name="uso_tiempo" value="5">5
+    <input type="checkbox" name="uso_tiempo" value="6">6
+    <input type="checkbox" name="uso_tiempo" value="7">7
+    <input type="checkbox" name="uso_tiempo" value="8">8
+    <input type="checkbox" name="uso_tiempo" value="9">9
+    <input type="checkbox" name="uso_tiempo" value="10">10
   </li>
   <li>
     Perseverance in the face of difficulties:
-    <input type="checkbox" name="perseverance" value="1">1
-    <input type="checkbox" name="perseverance" value="2">2
-    <input type="checkbox" name="perseverance" value="3">3
-    <input type="checkbox" name="perseverance" value="4">4
-    <input type="checkbox" name="perseverance" value="5">5
-    <input type="checkbox" name="perseverance" value="6">6
-    <input type="checkbox" name="perseverance" value="7">7
-    <input type="checkbox" name="perseverance" value="8">8
-    <input type="checkbox" name="perseverance" value="9">9
-    <input type="checkbox" name="perseverance" value="10">10
+    <input type="checkbox" name="perseverancia" value="1">1
+    <input type="checkbox" name="perseverancia" value="2">2
+    <input type="checkbox" name="perseverancia" value="3">3
+    <input type="checkbox" name="perseverancia" value="4">4
+    <input type="checkbox" name="perseverancia" value="5">5
+    <input type="checkbox" name="perseverancia" value="6">6
+    <input type="checkbox" name="perseverancia" value="7">7
+    <input type="checkbox" name="perseverancia" value="8">8
+    <input type="checkbox" name="perseverancia" value="9">9
+    <input type="checkbox" name="perseverancia" value="10">10
   </li>
 </ul>
 
@@ -427,42 +427,42 @@ format: html
 <ul>
   <li>
     Effective use of teaching time:
-    <input type="checkbox" name="time_use" value="1">1
-    <input type="checkbox" name="time_use" value="2">2
-    <input type="checkbox" name="time_use" value="3">3
-    <input type="checkbox" name="time_use" value="4">4
-    <input type="checkbox" name="time_use" value="5">5
-    <input type="checkbox" name="time_use" value="6">6
-    <input type="checkbox" name="time_use" value="7">7
-    <input type="checkbox" name="time_use" value="8">8
-    <input type="checkbox" name="time_use" value="9">9
-    <input type="checkbox" name="time_use" value="10">10
+    <input type="checkbox" name="aprovechamiento_tiempo" value="1">1
+    <input type="checkbox" name="aprovechamiento_tiempo" value="2">2
+    <input type="checkbox" name="aprovechamiento_tiempo" value="3">3
+    <input type="checkbox" name="aprovechamiento_tiempo" value="4">4
+    <input type="checkbox" name="aprovechamiento_tiempo" value="5">5
+    <input type="checkbox" name="aprovechamiento_tiempo" value="6">6
+    <input type="checkbox" name="aprovechamiento_tiempo" value="7">7
+    <input type="checkbox" name="aprovechamiento_tiempo" value="8">8
+    <input type="checkbox" name="aprovechamiento_tiempo" value="9">9
+    <input type="checkbox" name="aprovechamiento_tiempo" value="10">10
   </li>
   <li>
     Smooth transitions between activities:
-    <input type="checkbox" name="transitions" value="1">1
-    <input type="checkbox" name="transitions" value="2">2
-    <input type="checkbox" name="transitions" value="3">3
-    <input type="checkbox" name="transitions" value="4">4
-    <input type="checkbox" name="transitions" value="5">5
-    <input type="checkbox" name="transitions" value="6">6
-    <input type="checkbox" name="transitions" value="7">7
-    <input type="checkbox" name="transitions" value="8">8
-    <input type="checkbox" name="transitions" value="9">9
-    <input type="checkbox" name="transitions" value="10">10
+    <input type="checkbox" name="transiciones" value="1">1
+    <input type="checkbox" name="transiciones" value="2">2
+    <input type="checkbox" name="transiciones" value="3">3
+    <input type="checkbox" name="transiciones" value="4">4
+    <input type="checkbox" name="transiciones" value="5">5
+    <input type="checkbox" name="transiciones" value="6">6
+    <input type="checkbox" name="transiciones" value="7">7
+    <input type="checkbox" name="transiciones" value="8">8
+    <input type="checkbox" name="transiciones" value="9">9
+    <input type="checkbox" name="transiciones" value="10">10
   </li>
   <li>
     Compliance with planned planning:
-    <input type="checkbox" name="planning" value="1">1
-    <input type="checkbox" name="planning" value="2">2
-    <input type="checkbox" name="planning" value="3">3
-    <input type="checkbox" name="planning" value="4">4
-    <input type="checkbox" name="planning" value="5">5
-    <input type="checkbox" name="planning" value="6">6
-    <input type="checkbox" name="planning" value="7">7
-    <input type="checkbox" name="planning" value="8">8
-    <input type="checkbox" name="planning" value="9">9
-    <input type="checkbox" name="planning" value="10">10
+    <input type="checkbox" name="planificacion" value="1">1
+    <input type="checkbox" name="planificacion" value="2">2
+    <input type="checkbox" name="planificacion" value="3">3
+    <input type="checkbox" name="planificacion" value="4">4
+    <input type="checkbox" name="planificacion" value="5">5
+    <input type="checkbox" name="planificacion" value="6">6
+    <input type="checkbox" name="planificacion" value="7">7
+    <input type="checkbox" name="planificacion" value="8">8
+    <input type="checkbox" name="planificacion" value="9">9
+    <input type="checkbox" name="planificacion" value="10">10
   </li>
 </ul>
 
@@ -470,42 +470,42 @@ format: html
 <ul>
   <li>
     Adequacy of furniture distribution:
-    <input type="checkbox" name="furniture_distribution" value="1">1
-    <input type="checkbox" name="furniture_distribution" value="2">2
-    <input type="checkbox" name="furniture_distribution" value="3">3
-    <input type="checkbox" name="furniture_distribution" value="4">4
-    <input type="checkbox" name="furniture_distribution" value="5">5
-    <input type="checkbox" name="furniture_distribution" value="6">6
-    <input type="checkbox" name="furniture_distribution" value="7">7
-    <input type="checkbox" name="furniture_distribution" value="8">8
-    <input type="checkbox" name="furniture_distribution" value="9">9
-    <input type="checkbox" name="furniture_distribution" value="10">10
+    <input type="checkbox" name="distribucion_mobiliario" value="1">1
+    <input type="checkbox" name="distribucion_mobiliario" value="2">2
+    <input type="checkbox" name="distribucion_mobiliario" value="3">3
+    <input type="checkbox" name="distribucion_mobiliario" value="4">4
+    <input type="checkbox" name="distribucion_mobiliario" value="5">5
+    <input type="checkbox" name="distribucion_mobiliario" value="6">6
+    <input type="checkbox" name="distribucion_mobiliario" value="7">7
+    <input type="checkbox" name="distribucion_mobiliario" value="8">8
+    <input type="checkbox" name="distribucion_mobiliario" value="9">9
+    <input type="checkbox" name="distribucion_mobiliario" value="10">10
   </li>
   <li>
     Accessibility and mobility in space:
-    <input type="checkbox" name="accessibility" value="1">1
-    <input type="checkbox" name="accessibility" value="2">2
-    <input type="checkbox" name="accessibility" value="3">3
-    <input type="checkbox" name="accessibility" value="4">4
-    <input type="checkbox" name="accessibility" value="5">5
-    <input type="checkbox" name="accessibility" value="6">6
-    <input type="checkbox" name="accessibility" value="7">7
-    <input type="checkbox" name="accessibility" value="8">8
-    <input type="checkbox" name="accessibility" value="9">9
-    <input type="checkbox" name="accessibility" value="10">10
+    <input type="checkbox" name="accesibilidad" value="1">1
+    <input type="checkbox" name="accesibilidad" value="2">2
+    <input type="checkbox" name="accesibilidad" value="3">3
+    <input type="checkbox" name="accesibilidad" value="4">4
+    <input type="checkbox" name="accesibilidad" value="5">5
+    <input type="checkbox" name="accesibilidad" value="6">6
+    <input type="checkbox" name="accesibilidad" value="7">7
+    <input type="checkbox" name="accesibilidad" value="8">8
+    <input type="checkbox" name="accesibilidad" value="9">9
+    <input type="checkbox" name="accesibilidad" value="10">10
   </li>
   <li>
     Use of different areas of the classroom:
-    <input type="checkbox" name="use_zones" value="1">1
-    <input type="checkbox" name="use_zones" value="2">2
-    <input type="checkbox" name="use_zones" value="3">3
-    <input type="checkbox" name="use_zones" value="4">4
-    <input type="checkbox" name="use_zones" value="5">5
-    <input type="checkbox" name="use_zones" value="6">6
-    <input type="checkbox" name="use_zones" value="7">7
-    <input type="checkbox" name="use_zones" value="8">8
-    <input type="checkbox" name="use_zones" value="9">9
-    <input type="checkbox" name="use_zones" value="10">10
+    <input type="checkbox" name="uso_zonas" value="1">1
+    <input type="checkbox" name="uso_zonas" value="2">2
+    <input type="checkbox" name="uso_zonas" value="3">3
+    <input type="checkbox" name="uso_zonas" value="4">4
+    <input type="checkbox" name="uso_zonas" value="5">5
+    <input type="checkbox" name="uso_zonas" value="6">6
+    <input type="checkbox" name="uso_zonas" value="7">7
+    <input type="checkbox" name="uso_zonas" value="8">8
+    <input type="checkbox" name="uso_zonas" value="9">9
+    <input type="checkbox" name="uso_zonas" value="10">10
   </li>
 </ul>
 
@@ -513,42 +513,42 @@ format: html
 <ul>
   <li>
     Availability and access to necessary materials:
-    <input type="checkbox" name="material_availability" value="1">1
-    <input type="checkbox" name="material_availability" value="2">2
-    <input type="checkbox" name="material_availability" value="3">3
-    <input type="checkbox" name="material_availability" value="4">4
-    <input type="checkbox" name="material_availability" value="5">5
-    <input type="checkbox" name="material_availability" value="6">6
-    <input type="checkbox" name="material_availability" value="7">7
-    <input type="checkbox" name="material_availability" value="8">8
-    <input type="checkbox" name="material_availability" value="9">9
-    <input type="checkbox" name="material_availability" value="10">10
+    <input type="checkbox" name="disponibilidad_materiales" value="1">1
+    <input type="checkbox" name="disponibilidad_materiales" value="2">2
+    <input type="checkbox" name="disponibilidad_materiales" value="3">3
+    <input type="checkbox" name="disponibilidad_materiales" value="4">4
+    <input type="checkbox" name="disponibilidad_materiales" value="5">5
+    <input type="checkbox" name="disponibilidad_materiales" value="6">6
+    <input type="checkbox" name="disponibilidad_materiales" value="7">7
+    <input type="checkbox" name="disponibilidad_materiales" value="8">8
+    <input type="checkbox" name="disponibilidad_materiales" value="9">9
+    <input type="checkbox" name="disponibilidad_materiales" value="10">10
   </li>
   <li>
     Use of technology (if applicable):
-    <input type="checkbox" name="use_technology" value="1">1
-    <input type="checkbox" name="use_technology" value="2">2
-    <input type="checkbox" name="use_technology" value="3">3
-    <input type="checkbox" name="use_technology" value="4">4
-    <input type="checkbox" name="use_technology" value="5">5
-    <input type="checkbox" name="use_technology" value="6">6
-    <input type="checkbox" name="use_technology" value="7">7
-    <input type="checkbox" name="use_technology" value="8">8
-    <input type="checkbox" name="use_technology" value="9">9
-    <input type="checkbox" name="use_technology" value="10">10
+    <input type="checkbox" name="uso_tecnologia" value="1">1
+    <input type="checkbox" name="uso_tecnologia" value="2">2
+    <input type="checkbox" name="uso_tecnologia" value="3">3
+    <input type="checkbox" name="uso_tecnologia" value="4">4
+    <input type="checkbox" name="uso_tecnologia" value="5">5
+    <input type="checkbox" name="uso_tecnologia" value="6">6
+    <input type="checkbox" name="uso_tecnologia" value="7">7
+    <input type="checkbox" name="uso_tecnologia" value="8">8
+    <input type="checkbox" name="uso_tecnologia" value="9">9
+    <input type="checkbox" name="uso_tecnologia" value="10">10
   </li>
   <li>
     Order and care of the material:
-    <input type="checkbox" name="material_order" value="1">1
-    <input type="checkbox" name="material_order" value="2">2
-    <input type="checkbox" name="material_order" value="3">3
-    <input type="checkbox" name="material_order" value="4">4
-    <input type="checkbox" name="material_order" value="5">5
-    <input type="checkbox" name="material_order" value="6">6
-    <input type="checkbox" name="material_order" value="7">7
-    <input type="checkbox" name="material_order" value="8">8
-    <input type="checkbox" name="material_order" value="9">9
-    <input type="checkbox" name="material_order" value="10">10
+    <input type="checkbox" name="orden_material" value="1">1
+    <input type="checkbox" name="orden_material" value="2">2
+    <input type="checkbox" name="orden_material" value="3">3
+    <input type="checkbox" name="orden_material" value="4">4
+    <input type="checkbox" name="orden_material" value="5">5
+    <input type="checkbox" name="orden_material" value="6">6
+    <input type="checkbox" name="orden_material" value="7">7
+    <input type="checkbox" name="orden_material" value="8">8
+    <input type="checkbox" name="orden_material" value="9">9
+    <input type="checkbox" name="orden_material" value="10">10
   </li>
 </ul>
 
@@ -558,55 +558,55 @@ format: html
 <ul>
   <li>
     Variety of activities implemented:
-    <input type="checkbox" name="variety_activities" value="1">1
-    <input type="checkbox" name="variety_activities" value="2">2
-    <input type="checkbox" name="variety_activities" value="3">3
-    <input type="checkbox" name="variety_activities" value="4">4
-    <input type="checkbox" name="variety_activities" value="5">5
-    <input type="checkbox" name="variety_activities" value="6">6
-    <input type="checkbox" name="variety_activities" value="7">7
-    <input type="checkbox" name="variety_activities" value="8">8
-    <input type="checkbox" name="variety_activities" value="9">9
-    <input type="checkbox" name="variety_activities" value="10">10
+    <input type="checkbox" name="variedad_actividades" value="1">1
+    <input type="checkbox" name="variedad_actividades" value="2">2
+    <input type="checkbox" name="variedad_actividades" value="3">3
+    <input type="checkbox" name="variedad_actividades" value="4">4
+    <input type="checkbox" name="variedad_actividades" value="5">5
+    <input type="checkbox" name="variedad_actividades" value="6">6
+    <input type="checkbox" name="variedad_actividades" value="7">7
+    <input type="checkbox" name="variedad_actividades" value="8">8
+    <input type="checkbox" name="variedad_actividades" value="9">9
+    <input type="checkbox" name="variedad_actividades" value="10">10
   </li>
   <li>
     Adaptation of the methodology to the group:
-    <input type="checkbox" name="adequacy_methodology" value="1">1
-    <input type="checkbox" name="adequacion_metodologia" value="2">2
-    <input type="checkbox" name="adequacion_metodologia" value="3">3
-    <input type="checkbox" name="adequacion_metodologia" value="4">4
-    <input type="checkbox" name="adequacion_metodologia" value="5">5
-    <input type="checkbox" name="adequacion_metodologia" value="6">6
-    <input type="checkbox" name="adequacion_metodologia" value="7">7
-    <input type="checkbox" name="adequacion_metodologia" value="8">8
-    <input type="checkbox" name="adequacion_metodologia" value="9">9
-    <input type="checkbox" name="adequacy_methodology" value="10">10
+    <input type="checkbox" name="adecuacion_metodologia" value="1">1
+    <input type="checkbox" name="adecuacion_metodologia" value="2">2
+    <input type="checkbox" name="adecuacion_metodologia" value="3">3
+    <input type="checkbox" name="adecuacion_metodologia" value="4">4
+    <input type="checkbox" name="adecuacion_metodologia" value="5">5
+    <input type="checkbox" name="adecuacion_metodologia" value="6">6
+    <input type="checkbox" name="adecuacion_metodologia" value="7">7
+    <input type="checkbox" name="adecuacion_metodologia" value="8">8
+    <input type="checkbox" name="adecuacion_metodologia" value="9">9
+    <input type="checkbox" name="adecuacion_metodologia" value="10">10
   </li>
   <li>
     Balance between explanation, practice and reflection:
-    <input type="checkbox" name="balance" value="1">1
-    <input type="checkbox" name="balance" value="2">2
-    <input type="checkbox" name="balance" value="3">3
-    <input type="checkbox" name="balance" value="4">4
-    <input type="checkbox" name="balance" value="5">5
-    <input type="checkbox" name="balance" value="6">6
-    <input type="checkbox" name="balance" value="7">7
-    <input type="checkbox" name="balance" value="8">8
-    <input type="checkbox" name="balance" value="9">9
-    <input type="checkbox" name="balance" value="10">10
+    <input type="checkbox" name="equilibrio" value="1">1
+    <input type="checkbox" name="equilibrio" value="2">2
+    <input type="checkbox" name="equilibrio" value="3">3
+    <input type="checkbox" name="equilibrio" value="4">4
+    <input type="checkbox" name="equilibrio" value="5">5
+    <input type="checkbox" name="equilibrio" value="6">6
+    <input type="checkbox" name="equilibrio" value="7">7
+    <input type="checkbox" name="equilibrio" value="8">8
+    <input type="checkbox" name="equilibrio" value="9">9
+    <input type="checkbox" name="equilibrio" value="10">10
   </li>
   <li>
     Use of cooperative or individual dynamics:
-    <input type="checkbox" name="dynamics" value="1">1
-    <input type="checkbox" name="dynamics" value="2">2
-    <input type="checkbox" name="dynamics" value="3">3
-    <input type="checkbox" name="dynamics" value="4">4
-    <input type="checkbox" name="dynamics" value="5">5
-    <input type="checkbox" name="dynamics" value="6">6
-    <input type="checkbox" name="dynamics" value="7">7
-    <input type="checkbox" name="dynamics" value="8">8
-    <input type="checkbox" name="dynamics" value="9">9
-    <input type="checkbox" name="dynamics" value="10">10
+    <input type="checkbox" name="dinamicas" value="1">1
+    <input type="checkbox" name="dinamicas" value="2">2
+    <input type="checkbox" name="dinamicas" value="3">3
+    <input type="checkbox" name="dinamicas" value="4">4
+    <input type="checkbox" name="dinamicas" value="5">5
+    <input type="checkbox" name="dinamicas" value="6">6
+    <input type="checkbox" name="dinamicas" value="7">7
+    <input type="checkbox" name="dinamicas" value="8">8
+    <input type="checkbox" name="dinamicas" value="9">9
+    <input type="checkbox" name="dinamicas" value="10">10
   </li>
 </ul>
 
@@ -614,55 +614,55 @@ format: html
 <ul>
   <li>
     Evidence of understanding during the session:
-    <input type="checkbox" name="evidencias_comprehension" value="1">1
-    <input type="checkbox" name="evidencias_comprehension" value="2">2
-    <input type="checkbox" name="evidencias_comprehension" value="3">3
-    <input type="checkbox" name="evidencias_comprehension" value="4">4
-    <input type="checkbox" name="evidencias_comprehension" value="5">5
-    <input type="checkbox" name="evidencias_comprehension" value="6">6
-    <input type="checkbox" name="evidencias_comprehension" value="7">7
-    <input type="checkbox" name="evidencias_comprehension" value="8">8
-    <input type="checkbox" name="evidencias_comprehension" value="9">9
-    <input type="checkbox" name="evidencias_comprehension" value="10">10
+    <input type="checkbox" name="evidencias_comprension" value="1">1
+    <input type="checkbox" name="evidencias_comprension" value="2">2
+    <input type="checkbox" name="evidencias_comprension" value="3">3
+    <input type="checkbox" name="evidencias_comprension" value="4">4
+    <input type="checkbox" name="evidencias_comprension" value="5">5
+    <input type="checkbox" name="evidencias_comprension" value="6">6
+    <input type="checkbox" name="evidencias_comprension" value="7">7
+    <input type="checkbox" name="evidencias_comprension" value="8">8
+    <input type="checkbox" name="evidencias_comprension" value="9">9
+    <input type="checkbox" name="evidencias_comprension" value="10">10
   </li>
   <li>
     Need for repetitions or clarifications:
-    <input type="checkbox" name="repetitions" value="1">1
-    <input type="checkbox" name="repetitions" value="2">2
-    <input type="checkbox" name="repetitions" value="3">3
-    <input type="checkbox" name="repetitions" value="4">4
-    <input type="checkbox" name="repetitions" value="5">5
-    <input type="checkbox" name="repetitions" value="6">6
-    <input type="checkbox" name="repetitions" value="7">7
-    <input type="checkbox" name="repetitions" value="8">8
-    <input type="checkbox" name="repetitions" value="9">9
-    <input type="checkbox" name="repetitions" value="10">10
+    <input type="checkbox" name="repeticiones" value="1">1
+    <input type="checkbox" name="repeticiones" value="2">2
+    <input type="checkbox" name="repeticiones" value="3">3
+    <input type="checkbox" name="repeticiones" value="4">4
+    <input type="checkbox" name="repeticiones" value="5">5
+    <input type="checkbox" name="repeticiones" value="6">6
+    <input type="checkbox" name="repeticiones" value="7">7
+    <input type="checkbox" name="repeticiones" value="8">8
+    <input type="checkbox" name="repeticiones" value="9">9
+    <input type="checkbox" name="repeticiones" value="10">10
   </li>
   <li>
     Generalized difficulties observed:
-    <input type="checkbox" name="group_difficulties" value="1">1
-    <input type="checkbox" name="group_difficulties" value="2">2
-    <input type="checkbox" name="group_difficulties" value="3">3
-    <input type="checkbox" name="group_difficulties" value="4">4
-    <input type="checkbox" name="group_difficulties" value="5">5
-    <input type="checkbox" name="group_difficulties" value="6">6
-    <input type="checkbox" name="group_difficulties" value="7">7
-    <input type="checkbox" name="group_difficulties" value="8">8
-    <input type="checkbox" name="group_difficulties" value="9">9
-    <input type="checkbox" name="group_difficulties" value="10">10
+    <input type="checkbox" name="dificultades_grupo" value="1">1
+    <input type="checkbox" name="dificultades_grupo" value="2">2
+    <input type="checkbox" name="dificultades_grupo" value="3">3
+    <input type="checkbox" name="dificultades_grupo" value="4">4
+    <input type="checkbox" name="dificultades_grupo" value="5">5
+    <input type="checkbox" name="dificultades_grupo" value="6">6
+    <input type="checkbox" name="dificultades_grupo" value="7">7
+    <input type="checkbox" name="dificultades_grupo" value="8">8
+    <input type="checkbox" name="dificultades_grupo" value="9">9
+    <input type="checkbox" name="dificultades_grupo" value="10">10
   </li>
   <li>
     Heterogeneity in the level of understanding:
-    <input type="checkbox" name="heterogeneity" value="1">1
-    <input type="checkbox" name="heterogeneity" value="2">2
-    <input type="checkbox" name="heterogeneity" value="3">3
-    <input type="checkbox" name="heterogeneity" value="4">4
-    <input type="checkbox" name="heterogeneity" value="5">5
-    <input type="checkbox" name="heterogeneity" value="6">6
-    <input type="checkbox" name="heterogeneity" value="7">7
-    <input type="checkbox" name="heterogeneity" value="8">8
-    <input type="checkbox" name="heterogeneity" value="9">9
-    <input type="checkbox" name="heterogeneity" value="10">10
+    <input type="checkbox" name="heterogeneidad" value="1">1
+    <input type="checkbox" name="heterogeneidad" value="2">2
+    <input type="checkbox" name="heterogeneidad" value="3">3
+    <input type="checkbox" name="heterogeneidad" value="4">4
+    <input type="checkbox" name="heterogeneidad" value="5">5
+    <input type="checkbox" name="heterogeneidad" value="6">6
+    <input type="checkbox" name="heterogeneidad" value="7">7
+    <input type="checkbox" name="heterogeneidad" value="8">8
+    <input type="checkbox" name="heterogeneidad" value="9">9
+    <input type="checkbox" name="heterogeneidad" value="10">10
   </li>
 </ul>
 
@@ -670,55 +670,55 @@ format: html
 <ul>
   <li>
     Adaptation to different learning rates:
-    <input type="checkbox" name="adaptacion_rhythms" value="1">1
-    <input type="checkbox" name="adaptacion_rhythms" value="2">2
-    <input type="checkbox" name="adaptacion_rhythms" value="3">3
-    <input type="checkbox" name="adaptacion_rhythms" value="4">4
-    <input type="checkbox" name="adaptacion_rhythms" value="5">5
-    <input type="checkbox" name="adaptacion_rhythms" value="6">6
-    <input type="checkbox" name="adaptacion_rhythms" value="7">7
-    <input type="checkbox" name="adaptacion_rhythms" value="8">8
-    <input type="checkbox" name="adaptacion_rhythms" value="9">9
-    <input type="checkbox" name="adaptacion_rhythms" value="10">10
+    <input type="checkbox" name="adaptacion_ritmos" value="1">1
+    <input type="checkbox" name="adaptacion_ritmos" value="2">2
+    <input type="checkbox" name="adaptacion_ritmos" value="3">3
+    <input type="checkbox" name="adaptacion_ritmos" value="4">4
+    <input type="checkbox" name="adaptacion_ritmos" value="5">5
+    <input type="checkbox" name="adaptacion_ritmos" value="6">6
+    <input type="checkbox" name="adaptacion_ritmos" value="7">7
+    <input type="checkbox" name="adaptacion_ritmos" value="8">8
+    <input type="checkbox" name="adaptacion_ritmos" value="9">9
+    <input type="checkbox" name="adaptacion_ritmos" value="10">10
   </li>
   <li>
     Response to specific needs of students:
-    <input type="checkbox" name="response_nese" value="1">1
-    <input type="checkbox" name="response_nese" value="2">2
-    <input type="checkbox" name="response_nese" value="3">3
-    <input type="checkbox" name="response_nese" value="4">4
-    <input type="checkbox" name="response_nese" value="5">5
-    <input type="checkbox" name="response_nese" value="6">6
-    <input type="checkbox" name="response_nese" value="7">7
-    <input type="checkbox" name="response_nese" value="8">8
-    <input type="checkbox" name="response_nese" value="9">9
-    <input type="checkbox" name="response_nese" value="10">10
+    <input type="checkbox" name="respuesta_nese" value="1">1
+    <input type="checkbox" name="respuesta_nese" value="2">2
+    <input type="checkbox" name="respuesta_nese" value="3">3
+    <input type="checkbox" name="respuesta_nese" value="4">4
+    <input type="checkbox" name="respuesta_nese" value="5">5
+    <input type="checkbox" name="respuesta_nese" value="6">6
+    <input type="checkbox" name="respuesta_nese" value="7">7
+    <input type="checkbox" name="respuesta_nese" value="8">8
+    <input type="checkbox" name="respuesta_nese" value="9">9
+    <input type="checkbox" name="respuesta_nese" value="10">10
   </li>
   <li>
     Observed inclusion strategies:
-    <input type="checkbox" name="inclusion_supports" value="1">1
-    <input type="checkbox" name="inclusion_supports" value="2">2
-    <input type="checkbox" name="inclusion_supports" value="3">3
-    <input type="checkbox" name="inclusion_supports" value="4">4
-    <input type="checkbox" name="inclusion_supports" value="5">5
-    <input type="checkbox" name="inclusion_supports" value="6">6
-    <input type="checkbox" name="inclusion_supports" value="7">7
-    <input type="checkbox" name="inclusion_supports" value="8">8
-    <input type="checkbox" name="inclusion_supports" value="9">9
-    <input type="checkbox" name="inclusion_supports" value="10">10
+    <input type="checkbox" name="inclusion_apoyos" value="1">1
+    <input type="checkbox" name="inclusion_apoyos" value="2">2
+    <input type="checkbox" name="inclusion_apoyos" value="3">3
+    <input type="checkbox" name="inclusion_apoyos" value="4">4
+    <input type="checkbox" name="inclusion_apoyos" value="5">5
+    <input type="checkbox" name="inclusion_apoyos" value="6">6
+    <input type="checkbox" name="inclusion_apoyos" value="7">7
+    <input type="checkbox" name="inclusion_apoyos" value="8">8
+    <input type="checkbox" name="inclusion_apoyos" value="9">9
+    <input type="checkbox" name="inclusion_apoyos" value="10">10
   </li>
   <li>
     Differentiation of tasks or supports:
-    <input type="checkbox" name="differentiation" value="1">1
-    <input type="checkbox" name="differentiation" value="2">2
-    <input type="checkbox" name="differentiation" value="3">3
-    <input type="checkbox" name="differentiation" value="4">4
-    <input type="checkbox" name="differentiation" value="5">5
-    <input type="checkbox" name="differentiation" value="6">6
-    <input type="checkbox" name="differentiation" value="7">7
-    <input type="checkbox" name="differentiation" value="8">8
-    <input type="checkbox" name="differentiation" value="9">9
-    <input type="checkbox" name="differentiation" value="10">10
+    <input type="checkbox" name="diferenciacion" value="1">1
+    <input type="checkbox" name="diferenciacion" value="2">2
+    <input type="checkbox" name="diferenciacion" value="3">3
+    <input type="checkbox" name="diferenciacion" value="4">4
+    <input type="checkbox" name="diferenciacion" value="5">5
+    <input type="checkbox" name="diferenciacion" value="6">6
+    <input type="checkbox" name="diferenciacion" value="7">7
+    <input type="checkbox" name="diferenciacion" value="8">8
+    <input type="checkbox" name="diferenciacion" value="9">9
+    <input type="checkbox" name="diferenciacion" value="10">10
   </li>
 </ul>
 
@@ -728,22 +728,22 @@ format: html
 <ul style="list-style-type: none;">
   <li>
     <strong>Muy implicados:</strong>
-    <input type="number" name="very_involved" min="0" max="100" size="4" required> %
+    <input type="number" name="muy_implicados" min="0" max="100" size="4" required> %
   </li>
   <br>
   <li>
     <strong>Moderadamente implicados:</strong>
-    <input type="number" name="moderately_involved" min="0" max="100" size="4" required> %
+    <input type="number" name="moderadamente_implicados" min="0" max="100" size="4" required> %
   </li>
   <br>
   <li>
     <strong>Poco implicados:</strong>
-    <input type="number" name="little_involved" min="0" max="100" size="4" required> %
+    <input type="number" name="poco_implicados" min="0" max="100" size="4" required> %
   </li>
   <br>
   <li>
     <strong>Desconectados:</strong>
-    <input type="number" name="disconnected" min="0" max="100" size="4" required> %
+    <input type="number" name="desconectados" min="0" max="100" size="4" required> %
   </li>
 </ul>  
 

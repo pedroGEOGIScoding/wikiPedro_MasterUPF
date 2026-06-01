@@ -57,42 +57,42 @@ format: html
 <ul>
   <li>
     Ambiente de respeto y confianza entre estudiantes:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_respeto" value="1">1
+    <input type="checkbox" name="clima_respeto" value="2">2
+    <input type="checkbox" name="clima_respeto" value="3">3
+    <input type="checkbox" name="clima_respeto" value="4">4
+    <input type="checkbox" name="clima_respeto" value="5">5
+    <input type="checkbox" name="clima_respeto" value="6">6
+    <input type="checkbox" name="clima_respeto" value="7">7
+    <input type="checkbox" name="clima_respeto" value="8">8
+    <input type="checkbox" name="clima_respeto" value="9">9
+    <input type="checkbox" name="clima_respeto" value="10">10
   </li>
   <li>
     Nivel de tensión o conflictividad observado:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_tension" value="1">1
+    <input type="checkbox" name="clima_tension" value="2">2
+    <input type="checkbox" name="clima_tension" value="3">3
+    <input type="checkbox" name="clima_tension" value="4">4
+    <input type="checkbox" name="clima_tension" value="5">5
+    <input type="checkbox" name="clima_tension" value="6">6
+    <input type="checkbox" name="clima_tension" value="7">7
+    <input type="checkbox" name="clima_tension" value="8">8
+    <input type="checkbox" name="clima_tension" value="9">9
+    <input type="checkbox" name="clima_tension" value="10">10
   </li>
   <li>
     Actitud general hacia la actividad docente:
-    <input type="checkbox" name="concentra" value="1">1
-    <input type="checkbox" name="concentra" value="2">2
-    <input type="checkbox" name="concentra" value="3">3
-    <input type="checkbox" name="concentra" value="4">4
-    <input type="checkbox" name="concentra" value="5">5
-    <input type="checkbox" name="concentra" value="6">6
-    <input type="checkbox" name="concentra" value="7">7
-    <input type="checkbox" name="concentra" value="8">8
-    <input type="checkbox" name="concentra" value="9">9
-    <input type="checkbox" name="concentra" value="10">10
+    <input type="checkbox" name="clima_actitud" value="1">1
+    <input type="checkbox" name="clima_actitud" value="2">2
+    <input type="checkbox" name="clima_actitud" value="3">3
+    <input type="checkbox" name="clima_actitud" value="4">4
+    <input type="checkbox" name="clima_actitud" value="5">5
+    <input type="checkbox" name="clima_actitud" value="6">6
+    <input type="checkbox" name="clima_actitud" value="7">7
+    <input type="checkbox" name="clima_actitud" value="8">8
+    <input type="checkbox" name="clima_actitud" value="9">9
+    <input type="checkbox" name="clima_actitud" value="10">10
   </li>
 </ul>
 
