@@ -23,7 +23,7 @@ format: html
 <ul style="list-style-type: none;">
   <li>
     <strong>Nombre del observador:</strong>
-    <input type="text" name="nombre_observador" placeholder="Nombre completo" style="width: 200px">
+    <input type="text" name="nombre_observador" placeholder="Full name" style="width: 200px">
   </li>
   <br>
   <li>
@@ -33,22 +33,22 @@ format: html
   <br>
   <li>
     <strong>Curso:</strong>
-    <input type="text" name="curso" placeholder="curso del aula" style="width: 200px">
+    <input type="text" name="curso" placeholder="class/grade" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Asignatura:</strong>
-    <input type="text" name="asignatura" placeholder="asignatura del aula" style="width: 200px">
+    <input type="text" name="asignatura" placeholder="subject" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Numero de Alumnos:</strong>
-    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Numero de Alumnos" style="width: 200px">
+    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Number of students" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Hora:</strong>
-    <input type="text" name="hora" placeholder="Hora de observación" style="width: 200px">
+    <input type="text" name="hora" placeholder="Observation time" style="width: 200px">
   </li>
 </ul>
 
@@ -759,7 +759,7 @@ format: html
 
 Space for notes, comments and specific observations about the group:
 
-<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí las fortalezas observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="observaciones" rows="8" cols="100" placeholder="Write the observed strengths of the group here..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -767,7 +767,7 @@ Space for notes, comments and specific observations about the group:
 
 Space for notes, comments and specific observations about the group:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las áreas de mejora observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Write the observed areas for improvement of the group here..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -775,7 +775,7 @@ Space for notes, comments and specific observations about the group:
 
 Space for notes, comments and specific observations about the group:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las situaciones o incidencias relevantes del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Write the relevant situations or incidents of the group here..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -783,7 +783,7 @@ Space for notes, comments and specific observations about the group:
 
 Space for notes, comments and specific observations about the group:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las propuestas de intervención o seguimiento..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Write intervention or follow-up proposals here..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -791,7 +791,7 @@ Space for notes, comments and specific observations about the group:
 
 Space for notes, comments and specific observations about the student:
 
-<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones adicionales..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="observaciones" rows="8" cols="100" placeholder="Write your additional observations here..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 

@@ -1,0 +1,3 @@
+# Dependencies for the translation scripts in python_codes/
+# (translate_to_catalan.py, translate_to_english.py, translate_single_file*.py, translate_lib.py)
+deep-translator>=1.11.4

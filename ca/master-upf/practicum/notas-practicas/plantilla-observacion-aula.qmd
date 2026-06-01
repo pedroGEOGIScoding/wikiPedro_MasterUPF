@@ -23,7 +23,7 @@ format: html
 <ul style="list-style-type: none;">
   <li>
     <strong>Nombre del observador:</strong>
-    <input type="text" name="nombre_observador" placeholder="Nombre completo" style="width: 200px">
+    <input type="text" name="nombre_observador" placeholder="Nom complet" style="width: 200px">
   </li>
   <br>
   <li>
@@ -33,22 +33,22 @@ format: html
   <br>
   <li>
     <strong>Curso:</strong>
-    <input type="text" name="curso" placeholder="curso del aula" style="width: 200px">
+    <input type="text" name="curso" placeholder="curs de l'aula" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Asignatura:</strong>
-    <input type="text" name="asignatura" placeholder="asignatura del aula" style="width: 200px">
+    <input type="text" name="asignatura" placeholder="assignatura de l'aula" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Numero de Alumnos:</strong>
-    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Numero de Alumnos" style="width: 200px">
+    <input type="number" name="numero_alumnos" min="0" max="100" placeholder="Nombre d'alumnes" style="width: 200px">
   </li>
   <br>
   <li>
     <strong>Hora:</strong>
-    <input type="text" name="hora" placeholder="Hora de observación" style="width: 200px">
+    <input type="text" name="hora" placeholder="Hora d'observació" style="width: 200px">
   </li>
 </ul>
 
@@ -759,7 +759,7 @@ format: html
 
 Espai per a notes, comentaris i observacions específiques sobre el grup:
 
-<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí las fortalezas observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escriu aquí els punts forts observats del grup..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -767,7 +767,7 @@ Espai per a notes, comentaris i observacions específiques sobre el grup:
 
 Espai per a notes, comentaris i observacions específiques sobre el grup:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las áreas de mejora observadas del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escriu aquí les àrees de millora observades del grup..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -775,7 +775,7 @@ Espai per a notes, comentaris i observacions específiques sobre el grup:
 
 Espai per a notes, comentaris i observacions específiques sobre el grup:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las situaciones o incidencias relevantes del grupo..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escriu aquí les situacions o incidències rellevants del grup..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -783,7 +783,7 @@ Espai per a notes, comentaris i observacions específiques sobre el grup:
 
 Espai per a notes, comentaris i observacions específiques sobre el grup:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las propuestas de intervención o seguimiento..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escriu aquí les propostes d'intervenció o seguiment..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -791,7 +791,7 @@ Espai per a notes, comentaris i observacions específiques sobre el grup:
 
 Espai per a apunts, comentaris i observacions específiques sobre l'alumne:
 
-<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones adicionales..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escriu aquí les teves observacions addicionals..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 

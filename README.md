@@ -38,6 +38,11 @@ wiki_MasterUPF/
 - [Quarto](https://quarto.org/docs/get-started/)
 - Python 3.x (for translation scripts)
 
+Install the Python dependencies for the translation scripts:
+```bash
+pip install -r requirements.txt
+```
+
 ### Rendering the Site
 
 **Render all languages:**

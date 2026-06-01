@@ -23,7 +23,7 @@ format: html
 <ul style="list-style-type: none;">
   <li>
     <strong>Nombre del observador:</strong>
-    <input type="text" name="nombre_observador" size="40" placeholder="Nombre completo">
+    <input type="text" name="nombre_observador" size="40" placeholder="Nom complet">
   </li>
   <li>
     <strong>Fecha de observación:</strong>
@@ -36,7 +36,7 @@ format: html
 <ul style="list-style-type: none;">
   <li>
     <strong>Nombre del alumno:</strong>
-    <input type="text" name="nombre_alumno" size="40" placeholder="Nombre completo del alumno">
+    <input type="text" name="nombre_alumno" size="40" placeholder="Nom complet de l'alumne">
   </li>
   <li>
     <strong>Fecha de nacimiento:</strong>
@@ -44,11 +44,11 @@ format: html
   </li>
   <li>
     <strong>Edad:</strong>
-    <input type="number" name="edad" min="0" max="100" placeholder="Edad">
+    <input type="number" name="edad" min="0" max="100" placeholder="Edat">
   </li>
   <li>
     <strong>Clase o asignatura:</strong>
-    <input type="text" name="clase" size="40" placeholder="Ej: 3º ESO - Biología">
+    <input type="text" name="clase" size="40" placeholder="Ex: 3r ESO - Biologia">
   </li>
 </ul>
 
@@ -592,7 +592,7 @@ format: html
 
 Espai per a apunts, comentaris i observacions específiques sobre l'alumne:
 
-<textarea name="observaciones" rows="8" cols="100" placeholder="Escribe aquí tus observaciones sobre el alumno..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="observaciones" rows="8" cols="100" placeholder="Escriu aquí les teves observacions sobre l'alumne..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 
@@ -600,7 +600,7 @@ Espai per a apunts, comentaris i observacions específiques sobre l'alumne:
 
 Accions suggerides per millorar el rendiment i el benestar dels estudiants:
 
-<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escribe aquí las recomendaciones para el alumno..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+<textarea name="recomendaciones" rows="8" cols="100" placeholder="Escriu aquí les recomanacions per a l'alumne..." style="width: 100%; padding: 10px; font-family: inherit; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
 
 ---
 

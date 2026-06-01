@@ -149,7 +149,6 @@ format:
     toc-depth: 3
     number-sections: true
     smooth-scroll: true
-    background-color: black
     code-link: true
     code-line-numbers: "true"
     code-overflow: "wrap"
