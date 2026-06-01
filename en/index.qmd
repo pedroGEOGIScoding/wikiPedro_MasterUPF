@@ -14,8 +14,56 @@ pagestyle: plain
 
 ---
 
-<div style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;">
-<div style="flex: 50%;">
+```{=html}
+<style>
+  /* Intro: image + text */
+  .home-intro {
+    display: flex;
+    gap: 2em;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .home-intro-col {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  /* Dashboard widgets: weather map + science news */
+  .home-widgets {
+    display: flex;
+    gap: 2%;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .home-widget {
+    flex: 1 1 48%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+  }
+
+  @media (max-width: 768px) {
+    .home-intro {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1em;
+    }
+    .home-intro-col {
+      flex-basis: auto;
+    }
+    .home-widget {
+      flex-basis: 100%;
+      height: 450px;
+    }
+  }
+</style>
+```
+
+<div class="home-intro">
+<div class="home-intro-col">
 
 ::: {.light-content}
 ![](images/about/class-image-home-page-en-color.png){}
@@ -25,7 +73,7 @@ pagestyle: plain
 ![](images/about/class-image-home-page-en-bw.png){}
 :::
 </div>
-<div style="flex: 50%;">
+<div class="home-intro-col">
 Hello, I'm Pedro and I'm studying a master's degree in secondary school teaching at Pompeu Fabra University. This website is a record of my learning and reflection process during this master's degree. Since my years as a free time instructor and later summer camp director, I have always been curious about the profession of educator, but life for many years has taken me down multiple paths.
 
 Upon returning after 14 years working in England, teaching was one of my first options to reinvent myself upon my return home.
@@ -69,17 +117,17 @@ To learn more about my professional trajectory, you can visit the "About me" tab
 
 ---
 ```{=html}
-<div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
+<div class="home-widgets">
   <!-- Weather Map -->
-  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
+  <div class="home-widget">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Weather Map</p>
-    <iframe style="flex: 1; height: 100%;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
+    <iframe style="flex: 1; height: 100%; width: 100%; border: 0;" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
   </div>
   
   <!-- Science News -->
-  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
+  <div class="home-widget">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Latest Science News</p>
-    <iframe src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="642px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+    <iframe style="flex: 1; width: 100%; border: 0;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
   </div>
 </div>
 ```

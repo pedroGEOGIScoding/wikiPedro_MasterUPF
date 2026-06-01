@@ -14,8 +14,56 @@ pagestyle: plain
 listed: false
 ---
 
-::::::: {style="display: flex; gap: 2em; align-items: stretch; justify-content: space-between;"}
-::::: {style="flex: 50%;"}
+```{=html}
+<style>
+  /* Intro: image + text */
+  .home-intro {
+    display: flex;
+    gap: 2em;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .home-intro-col {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  /* Dashboard widgets: weather map + science news */
+  .home-widgets {
+    display: flex;
+    gap: 2%;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+  .home-widget {
+    flex: 1 1 48%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+  }
+
+  @media (max-width: 768px) {
+    .home-intro {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1em;
+    }
+    .home-intro-col {
+      flex-basis: auto;
+    }
+    .home-widget {
+      flex-basis: 100%;
+      height: 450px;
+    }
+  }
+</style>
+```
+
+:::::::: {.home-intro}
+::::: {.home-intro-col}
 ::: light-content
 ![](images/about/class-image-home-page.png)
 :::
@@ -25,7 +73,7 @@ listed: false
 :::
 :::::
 
-::: {style="flex: 50%;"}
+::: {.home-intro-col}
 Hola, soy Pedro y estoy estudiando el máster de profesor de secundaria en la universidad Pompeu Fabra. Este sitio web es un registro de mi proceso de aprendizaje y reflexión durante este máster. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
 
 Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
@@ -34,7 +82,7 @@ Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa 
 
 Así que aquí estoy, reinventándome una vez más para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos científicos que he ido adquiriendo todos estos años como geólogo de exploración minera, más tarde director de empresas y volver a explorar hidrocarburos por más de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
 :::
-:::::::
+::::::::
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
@@ -70,17 +118,17 @@ Para saber más de mi trayectoria profesional, puedes visitar la pestaña "Acerc
 ------------------------------------------------------------------------
 
 ```{=html}
-<div style="display: flex; gap: 2%; justify-content: space-between; align-items: stretch;">
+<div class="home-widgets">
   <!-- Weather Map -->
-  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
+  <div class="home-widget">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Mapa del tiempo</p>
-    <iframe style="flex: 1; height: 100%;" width="100%" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
+    <iframe style="flex: 1; height: 100%; width: 100%; border: 0;" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=rain&product=ecmwf&level=surface&lat=38.479&lon=0.703&detailLat=41.509&detailLon=2.285&detail=true&pressure=true&message=true" frameborder="0"></iframe>
   </div>
   
   <!-- Science News -->
-  <div style="flex: 1 1 48%; display: flex; flex-direction: column; height: 550px;">
+  <div class="home-widget">
     <p style="font-size: 1.5em; font-weight: bold; text-align: center; margin: 0 0 10px 0;">Últimas noticias sobre ciencia</p>
-    <iframe src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" height="642px" width="100%" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
+    <iframe style="flex: 1; width: 100%; border: 0;" src="https://feed.mikle.com/widget/v2/176215/?preloader-text=Loading&" class="fw-iframe" scrolling="no" frameborder="0"></iframe>
   </div>
 </div>
 ```
