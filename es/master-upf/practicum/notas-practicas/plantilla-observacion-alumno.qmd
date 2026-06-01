@@ -606,7 +606,7 @@ Acciones sugeridas para mejorar el desempeño y bienestar del alumno:
 
 ```{=html}
 <div id="pdf-btn-container" style="text-align: center; margin: 2em 0;">
-  <button onclick="window.print()" style="
+  <button onclick="imprimirPDF()" style="
     background-color: #0f5c6e;
     color: white;
     border: none;
@@ -626,6 +626,28 @@ Acciones sugeridas para mejorar el desempeño y bienestar del alumno:
     En el diálogo de impresión, selecciona <strong>«Guardar como PDF»</strong> como destino.
   </p>
 </div>
+
+<script>
+function imprimirPDF() {
+  const nombre = document.querySelector('input[name="nombre_alumno"]')?.value?.trim();
+  const fecha  = document.querySelector('input[name="fecha_observacion"]')?.value;
+
+  if (!nombre) {
+    const ok = confirm("El campo «Nombre del alumno» está vacío.\n¿Deseas continuar de todas formas?");
+    if (!ok) return;
+  }
+
+  const tituloOriginal = document.title;
+  if (nombre) {
+    const sufijo = fecha ? `_${fecha}` : "";
+    document.title = `Observacion_${nombre.replace(/\s+/g, "_")}${sufijo}`;
+  }
+
+  window.print();
+
+  setTimeout(() => { document.title = tituloOriginal; }, 1500);
+}
+</script>
 
 <style>
 @media print {
@@ -656,15 +678,33 @@ Acciones sugeridas para mejorar el desempeño y bienestar del alumno:
     max-width: 100% !important;
   }
 
-  /* Asegurar que los checkboxes y textareas se vean bien */
+  /* Inputs de texto y fecha: sin caja, solo subrayado */
+  input[type="text"],
+  input[type="date"],
+  input[type="number"] {
+    border: none !important;
+    border-bottom: 1px solid #555 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Checkboxes: forzar renderizado del estado marcado */
   input[type="checkbox"] {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    appearance: auto;
+    -webkit-appearance: auto;
   }
 
   textarea {
     border: 1px solid #999 !important;
     min-height: 80px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   /* Saltos de página */

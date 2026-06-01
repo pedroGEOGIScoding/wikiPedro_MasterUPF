@@ -10,12 +10,12 @@ website:
   repo-branch: master
   repo-actions: [source, issue]
   reader-mode: false
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "**Warning** - this website is under development"
-    type: primary
-    position: below-navbar
+  # announcement: 
+  #  icon: info-circle
+  #  dismissable: true
+  #  content: "**Warning** - this website is under development"
+  #  type: primary
+  #  position: below-navbar
 
   search:
     location: navbar             

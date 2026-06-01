@@ -606,7 +606,7 @@ Suggested actions to improve student performance and well-being:
 
 ```{=html}
 <div id="pdf-btn-container" style="text-align: center; margin: 2em 0;">
-  <button onclick="window.print()" style="
+  <button onclick="imprimirPDF()" style="
     background-color: #0f5c6e;
     color: white;
     border: none;
@@ -627,6 +627,28 @@ Suggested actions to improve student performance and well-being:
   </p>
 </div>
 
+<script>
+function imprimirPDF() {
+  const nombre = document.querySelector('input[name="nombre_alumno"]')?.value?.trim();
+  const fecha  = document.querySelector('input[name="fecha_observacion"]')?.value;
+
+  if (!nombre) {
+    const ok = confirm("The \"Student name\" field is empty.\nDo you want to continue anyway?");
+    if (!ok) return;
+  }
+
+  const tituloOriginal = document.title;
+  if (nombre) {
+    const sufijo = fecha ? `_${fecha}` : "";
+    document.title = `Observation_${nombre.replace(/\s+/g, "_")}${sufijo}`;
+  }
+
+  window.print();
+
+  setTimeout(() => { document.title = tituloOriginal; }, 1500);
+}
+</script>
+
 <style>
 @media print {
   .navbar, .nav-footer, #quarto-sidebar, #TOC, .quarto-title-banner,
@@ -636,8 +658,30 @@ Suggested actions to improve student performance and well-being:
   }
   body { font-size: 11pt; color: #000; }
   #quarto-content { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
-  input[type="checkbox"] { width: 12px; height: 12px; }
-  textarea { border: 1px solid #999 !important; min-height: 80px; }
+  input[type="text"],
+  input[type="date"],
+  input[type="number"] {
+    border: none !important;
+    border-bottom: 1px solid #555 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    appearance: auto;
+    -webkit-appearance: auto;
+  }
+  textarea {
+    border: 1px solid #999 !important;
+    min-height: 80px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   h2 { page-break-before: always; }
   h2:first-of-type { page-break-before: avoid; }
 }
