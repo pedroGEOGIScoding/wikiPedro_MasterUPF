@@ -155,11 +155,42 @@ $link-hover-decoration:       none !default;
     border-bottom: 0px hidden $spc-secondary;    
     margin: 0px 10px 0px 10px; 
     padding: 2px 2px 4px 2px !important;
+    white-space: nowrap;
 
     &:hover {
       border-bottom: 1px solid $spc-secondary-light !important;
       padding: 2px 2px 0px 2px !important;
     }
+}
+
+// Responsive navbar: shrink links and their inline icons (Font Awesome + flags)
+// when the horizontal bar (>= xxl / 1400px) gets cramped. Below 1400px the
+// navbar collapses to the hamburger menu (collapse-below: xxl).
+@media (min-width: 1400px) and (max-width: 1599.98px) {
+  .navbar-nav .nav-link {
+    font-size: 0.78em;
+    letter-spacing: .04em;
+    margin: 0px 4px;
+  }
+}
+@media (min-width: 1600px) and (max-width: 1799.98px) {
+  .navbar-nav .nav-link {
+    font-size: 0.88em;
+    letter-spacing: .06em;
+    margin: 0px 7px;
+  }
+}
+// Keep inline navbar images (e.g. the UPF logo in the "Master" item) from
+// overgrowing and overlapping neighbouring links. Scoped strongly so it beats
+// Bootstrap's .img-fluid and the inline width="90" attribute.
+.navbar .navbar-nav .nav-link img,
+.navbar .navbar-nav .nav-link img.img-fluid,
+.navbar .navbar-nav .menu-text img {
+  height: 1.5em !important;
+  max-height: 1.5em !important;
+  width: auto !important;
+  max-width: none !important;
+  vertical-align: middle;
 }
 
 // search icon

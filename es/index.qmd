@@ -62,8 +62,8 @@ listed: false
 </style>
 ```
 
-:::::::: {.home-intro}
-::::: {.home-intro-col}
+::::::: home-intro
+::::: home-intro-col
 ::: light-content
 ![](images/about/class-image-home-page.png)
 :::
@@ -73,7 +73,7 @@ listed: false
 :::
 :::::
 
-::: {.home-intro-col}
+::: home-intro-col
 Hola, soy Pedro y estoy estudiando el máster de profesor de secundaria en la universidad Pompeu Fabra. Este sitio web es un registro de mi proceso de aprendizaje y reflexión durante este máster. Desde mis años como monitor de tiempo libre y más tarde director de campamentos de verano, siempre he tenido curiosidad por la profesión de educador, pero la vida durante muchos años me ha llevado por múltiples derroteros.
 
 Al volver después de 14 años trabajando en Inglaterra, la docencia fue una de mis primeras opciones para reinventarme a mi vuelta a casa.
@@ -82,7 +82,7 @@ Hace poco vi una película, de esas poco famosas, pero con un gran mensaje. Esa 
 
 Así que aquí estoy, reinventándome una vez más para convertirme en un buen educador y poder revertir toda mi experiencia vital y conocimientos científicos que he ido adquiriendo todos estos años como geólogo de exploración minera, más tarde director de empresas y volver a explorar hidrocarburos por más de medio mundo en el futuro de nuestra sociedad, nuestros hijos.
 :::
-::::::::
+:::::::
 
 ```{=html}
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
