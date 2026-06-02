@@ -37,19 +37,19 @@ jobs:
           python3 -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Render Spanish version (default - root)
+      - name: Render Spanish version (/es)
         run: |
           cd es
           quarto render
           cd ..
 
-      - name: Render Catalan version
+      - name: Render Catalan version (default - root)
         run: |
           cd ca
           quarto render
           cd ..
 
-      - name: Render English version
+      - name: Render English version (/en)
         run: |
           cd en
           quarto render

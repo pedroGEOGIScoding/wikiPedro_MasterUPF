@@ -22,7 +22,7 @@ format: html
 
 > La profesora Laura Taberne dirige esta parte del módulo de desarrollo, aprendizaje y educación denominado **enseñanza y evaluación**, donde se aborda la evaluación de los aprendizajes. Tradicionalmente, se ha entendido como un instrumento para medir el éxito académico del alumnado y asignarle una calificación. Esta visión reduccionista ha sido progresivamente cuestionada desde las perspectivas pedagógicas constructivistas y competenciales. A pesar de esto, la evaluación no está obsoleta, de hecho es una de las prácticas más frecuentes, potentes y decisivas en cualquier proceso educativo.
 
-![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/dae/ingografia-evaluar-es.png){fig-align="center"}
+![Infografía generada con NotebookLM a partir del material didáctico de las sesiones](/images/dae/infografia-evaluar-es.png){fig-align="center"}
 
 ::: {.column-margin}
 **Documentación de apoyo**

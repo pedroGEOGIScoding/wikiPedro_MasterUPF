@@ -61,12 +61,12 @@ format: html
 ::: {.column-margin}
 **Supporting documentation**
 
-- [Common conceptions and difficulties of biological thinking in the construction of biological thinking](/files/fac-ideas-previas/concepcións-construccion-pensamiento-biologico.pdf){.highlight width="10%" target="_blank"}
+- [Common conceptions and difficulties of biological thinking in the construction of biological thinking](/files/fac-ideas-previas/concepciones-construccion-pensamiento-biologico.pdf){.highlight width="10%" target="_blank"}
 
 - [The ideas of students in physics](/files/fac-ideas-previas/ideas-alumnado-fisica.pdf){.highlight width="10%" target="_blank"}
 
 - [On the persistence or not of the students' ideas in geology](/files/fac-ideas-previas/ideas-alumnado-geologia.pdf){.highlight width="10%" target="_blank"}
 
-- [Ideas and difficulties in learning chemistry](/files/fac-ideas-previas/ideas-dificuldades-aprendizaje-quimica.pdf){.highlight width="10%" target="_blank"}
+- [Ideas and difficulties in learning chemistry](/files/fac-ideas-previas/ideas-dificultades-aprendizaje-quimica.pdf){.highlight width="10%" target="_blank"}
 
 :::

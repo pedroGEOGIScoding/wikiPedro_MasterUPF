@@ -168,7 +168,7 @@ Reemplaza `tunombredeusuario` con tu nombre de usuario real de GitHub.
 3. Desplázate hacia abajo hasta **"Pages"** en la barra lateral izquierda
 4. En **"Source"** (Fuente), selecciona **"GitHub Actions"**
 
-![Configuración de GitHub Pages](../images/about/github-actions.png){ group="about-this-site" }
+![Configuración de GitHub Pages](../../images/about/github-actions.png){ group="about-this-site" }
 
 Esto le indica a GitHub que use GitHub Actions para el despliegue en lugar de una rama.
 

@@ -168,7 +168,7 @@ Replace `yourusername` with your actual GitHub username.
 3. Scroll down to **"Pages"** in the left sidebar
 4. Under **"Source"**, select **"GitHub Actions"**
 
-![GitHub Pages Setup](../images/about/github-actions.png){ group="about-this-site" }
+![GitHub Pages Setup](../../images/about/github-actions.png){ group="about-this-site" }
 
 This tells GitHub to use GitHub Actions for deployment instead of a branch.
 

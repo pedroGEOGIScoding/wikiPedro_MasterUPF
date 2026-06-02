@@ -168,7 +168,7 @@ Substituïu `yourusername` pel vostre nom d'usuari de GitHub real.
 3. Desplaceu-vos cap avall fins a **"Pàgines"** a la barra lateral esquerra
 4. A **"Font"**, seleccioneu **"Accions de GitHub"**
 
-![Configuració de pàgines de GitHub](../images/about/github-actions.png){ group="about-this-site" }
+![Configuració de pàgines de GitHub](../../images/about/github-actions.png){ group="about-this-site" }
 
 Això indica a GitHub que utilitzi les accions de GitHub per al desplegament en lloc d'una branca.
 

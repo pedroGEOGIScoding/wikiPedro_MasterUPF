@@ -32,7 +32,7 @@ format: html
 ::: {.column-margin}
 **Supporting documentation**
 
-- [Conversational letters](/files/deia-docs/conversar/Cartes_conversacionales.pdf){.highlight width="10%" target="_blank"}
+- [Conversational letters](/files/deia-docs/conversar/Cartes_conversacionals.pdf){.highlight width="10%" target="_blank"}
 
 - [ESET Discursive Strategies](/files/deia-docs/conversar/ESET_Estrategies-discursives.pdf){.highlight width="10%" target="_blank"}
 
