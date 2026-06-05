@@ -32,11 +32,13 @@ The recommended way to translate files is using the unified CLI tool.
 ### Features
 
 ✅ **Translator instance caching** - Faster performance (no recreation overhead)  
-✅ **Rate limiting with exponential backoff** - Avoid API blocks  
+✅ **Configurable rate limiting** - Tune delay/retries (`--delay`, `--retries`) to avoid API blocks  
 ✅ **Automatic backups** - Creates `.bak` files before modifying  
 ✅ **Rollback on failure** - Restores from backup if translation fails  
-✅ **Dry-run mode** - Preview changes without modifying files  
+✅ **Dry-run mode** - Previews changes as a unified diff without modifying files  
 ✅ **Progress bars** - Visual feedback for batch operations  
+✅ **Failed-file reporting** - Lists the names of any files that failed in a batch  
+✅ **Graceful interruption** - Clean exit on `Ctrl+C`  
 ✅ **Flexible language support** - Support for 7+ languages
 
 ### Supported Languages
@@ -75,6 +77,18 @@ The language codes follow the ISO 639-1 standard (two-letter codes). For example
 
 **Example:** `-s es -t en` means "translate FROM Spanish TO English"
 
+**Optional Arguments:**
+
+| Option | Description |
+|--------|-------------|
+| `--dry-run` | Preview the proposed changes as a unified diff; does **not** modify files (still calls the translation API to compute the result) |
+| `--no-backup` | Do not create `.bak` backup files before translating |
+| `--include-underscore` | Include files starting with `_` (e.g. `_quarto.yml`), which are skipped by default |
+| `--progress` | Show an updating progress bar for batch operations (suppresses per-file logs) |
+| `--delay DELAY` | Minimum delay in seconds between translation API calls (default: `0.1`) |
+| `--retries RETRIES` | Max retries per call with exponential backoff (default: `3`) |
+| `--force` | Translate even if the file does not have a `.qmd` extension |
+
 #### Examples
 
 **In this enviroment project**
@@ -107,6 +121,12 @@ python3 python_codes/translate_qmd.py file.qmd -s es -t ca --no-backup
 
 # Include files starting with underscore
 python3 python_codes/translate_qmd.py . -s es -t en --include-underscore
+
+# Tune rate limiting for large batches (slower, fewer API blocks)
+python3 python_codes/translate_qmd.py . -s ca -t es --delay 0.5 --retries 5
+
+# Force-translate a file without a .qmd extension
+python3 python_codes/translate_qmd.py notes.md -s es -t en --force
 
 # From within a target folder
 cd en/
@@ -184,8 +204,12 @@ python3 ../python_codes/translate_single_file.py filename.qmd
 - **Retry logic**: Exponential backoff for transient errors
 
 ### Usability
-- **Dry-run mode**: Test translations without making changes
+- **Dry-run mode**: Previews translations as a unified diff without making changes
 - **Progress feedback**: Visual progress bars for batch operations
+- **Failed-file reporting**: Names of failed files are listed at the end of a batch
+- **Configurable rate limiting**: `--delay` and `--retries` flags for tuning large batches
+- **Graceful interruption**: `Ctrl+C` exits cleanly without a traceback
+- **Deterministic order**: Batch files are processed in sorted order
 - **Better error messages**: Clear feedback on what went wrong
 - **Exit codes**: Proper success/failure codes for scripting
 
@@ -197,8 +221,10 @@ python3 ../python_codes/translate_single_file.py filename.qmd
 ## Notes
 
 - Scripts translate files **in place** (overwrite the original unless using `--dry-run`)
+- `--dry-run` prints a unified diff of the proposed changes; note it still performs the (rate-limited) translation calls in order to compute that preview
 - Files starting with `_` are skipped by default (use `--include-underscore` to override)
 - Backups (`.bak` files) are automatically removed on successful translation
+- In a batch, any files that fail are listed by name in the final summary
 - Always review translations for accuracy, especially technical terms
 - For custom language pairs, use `translate_qmd.py` directly
 

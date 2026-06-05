@@ -7,6 +7,7 @@ Provides reusable functions with translator caching, rate limiting, and error ha
 import re
 import time
 import shutil
+import difflib
 from pathlib import Path
 from typing import Optional, Tuple
 from deep_translator import GoogleTranslator
@@ -302,7 +303,29 @@ def translate_yaml_fields(yaml_content: str, source: str, target: str, rate_limi
     return '\n'.join(translated_lines)
 
 
-def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool = False, create_backup_file: bool = True) -> bool:
+def print_diff(original: str, translated: str, file_path: Path, max_lines: int = 200) -> None:
+    """Print a unified diff of the proposed translation (for dry-run preview)"""
+    diff = difflib.unified_diff(
+        original.splitlines(),
+        translated.splitlines(),
+        fromfile=f"{file_path} (original)",
+        tofile=f"{file_path} (translated)",
+        lineterm='',
+    )
+    shown = 0
+    for line in diff:
+        print(line)
+        shown += 1
+        if shown >= max_lines:
+            print(f"... (diff truncated at {max_lines} lines)")
+            break
+    if shown == 0:
+        print(f"(no changes) {file_path}")
+
+
+def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool = False,
+                       create_backup_file: bool = True, min_delay: float = 0.1,
+                       max_retries: int = 3, quiet: bool = False) -> bool:
     """
     Translate a .qmd file in place
     
@@ -310,8 +333,11 @@ def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool 
         file_path: Path to the .qmd file
         source: Source language code (e.g., 'es', 'ca', 'en')
         target: Target language code
-        dry_run: If True, don't write changes, just simulate
+        dry_run: If True, don't write changes; print a diff preview instead
         create_backup_file: If True, create a .bak backup before modifying
+        min_delay: Minimum delay (seconds) between translation API calls
+        max_retries: Max retries per call with exponential backoff
+        quiet: If True, suppress per-file log/diff output (for progress bars)
     
     Returns:
         True if successful, False otherwise
@@ -324,7 +350,8 @@ def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool 
         print(f"Skipping {file_path}: Source and target languages are the same ({source})")
         return False
     
-    print(f"{'[DRY RUN] ' if dry_run else ''}Translating: {file_path}")
+    if not quiet:
+        print(f"{'[DRY RUN] ' if dry_run else ''}Translating: {file_path}")
     
     # Create backup if requested
     backup_path = None
@@ -332,8 +359,9 @@ def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool 
         backup_path = create_backup(file_path)
     
     try:
+        original_content = file_path.read_text(encoding='utf-8')
         yaml_front, main_content = extract_yaml_and_content(file_path)
-        rate_limiter = RateLimiter()
+        rate_limiter = RateLimiter(min_delay=min_delay, max_retries=max_retries)
         
         # Translate YAML fields
         if yaml_front:
@@ -350,8 +378,11 @@ def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool 
         else:
             final_content = translated_content
         
-        # Write back to the same file (unless dry run)
-        if not dry_run:
+        if dry_run:
+            # Preview the proposed changes without modifying the file
+            if not quiet:
+                print_diff(original_content, final_content, file_path)
+        else:
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(final_content)
             
@@ -359,7 +390,8 @@ def translate_qmd_file(file_path: Path, source: str, target: str, dry_run: bool 
             if backup_path and backup_path.exists():
                 backup_path.unlink()
         
-        print(f"✓ {'[DRY RUN] ' if dry_run else ''}Translated: {file_path}")
+        if not quiet:
+            print(f"✓ {'[DRY RUN] ' if dry_run else ''}Translated: {file_path}")
         return True
         
     except Exception as e:
@@ -382,7 +414,7 @@ def find_qmd_files(directory: Path, exclude_underscore: bool = True) -> list[Pat
     Returns:
         List of .qmd file paths
     """
-    qmd_files = list(directory.rglob('*.qmd'))
+    qmd_files = sorted(directory.rglob('*.qmd'))
     
     if exclude_underscore:
         qmd_files = [f for f in qmd_files if not f.name.startswith('_')]

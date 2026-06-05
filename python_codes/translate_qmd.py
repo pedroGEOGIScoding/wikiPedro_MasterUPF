@@ -53,6 +53,9 @@ Examples:
   # Translate without creating backups
   python translate_qmd.py file.qmd -s ca -t en --no-backup
 
+  # Tune rate limiting for large batches (slower, fewer API blocks)
+  python translate_qmd.py . -s ca -t es --delay 0.5 --retries 5
+
 Supported languages:
   ca (Catalan), es (Spanish), en (English), fr (French),
   de (German), it (Italian), pt (Portuguese)
@@ -103,6 +106,26 @@ Supported languages:
         help='Show progress bar for batch operations'
     )
     
+    parser.add_argument(
+        '--delay',
+        type=float,
+        default=0.1,
+        help='Minimum delay (seconds) between translation API calls (default: 0.1)'
+    )
+    
+    parser.add_argument(
+        '--retries',
+        type=int,
+        default=3,
+        help='Max retries per translation call with exponential backoff (default: 3)'
+    )
+    
+    parser.add_argument(
+        '--force',
+        action='store_true',
+        help='Translate even if the file does not have a .qmd extension'
+    )
+    
     args = parser.parse_args()
     
     # Validate languages
@@ -133,8 +156,9 @@ Supported languages:
     # Determine if single file or batch operation
     if path.is_file():
         # Single file translation
-        if not path.suffix == '.qmd':
-            print(f"Warning: File '{path}' is not a .qmd file")
+        if path.suffix != '.qmd' and not args.force:
+            print(f"Error: File '{path}' is not a .qmd file (use --force to translate anyway)")
+            sys.exit(1)
         
         print(f"{'[DRY RUN] ' if args.dry_run else ''}Translation: {SUPPORTED_LANGUAGES[source]} -> {SUPPORTED_LANGUAGES[target]}")
         print(f"File: {path}\n")
@@ -144,7 +168,9 @@ Supported languages:
             source,
             target,
             dry_run=args.dry_run,
-            create_backup_file=not args.no_backup
+            create_backup_file=not args.no_backup,
+            min_delay=args.delay,
+            max_retries=args.retries
         )
         
         sys.exit(0 if success else 1)
@@ -163,12 +189,11 @@ Supported languages:
         print(f"Found {len(qmd_files)} .qmd file{'s' if len(qmd_files) != 1 else ''}\n")
         
         success_count = 0
-        failed_count = 0
+        failed_files = []
         
         for i, file_path in enumerate(qmd_files, 1):
             if args.progress:
                 print_progress(i, len(qmd_files), file_path.name)
-                print()  # New line after progress
             else:
                 print(f"[{i}/{len(qmd_files)}] ", end='')
             
@@ -177,21 +202,30 @@ Supported languages:
                 source,
                 target,
                 dry_run=args.dry_run,
-                create_backup_file=not args.no_backup
+                create_backup_file=not args.no_backup,
+                min_delay=args.delay,
+                max_retries=args.retries,
+                quiet=args.progress
             )
             
             if success:
                 success_count += 1
             else:
-                failed_count += 1
+                failed_files.append(file_path)
         
         if args.progress:
-            print()  # Clear progress bar
+            print()  # End the progress bar line
         
+        failed_count = len(failed_files)
         print(f"\n{'=' * 60}")
         print(f"Translation {'simulation' if args.dry_run else 'complete'}!")
         print(f"Success: {success_count} | Failed: {failed_count} | Total: {len(qmd_files)}")
         print(f"{'=' * 60}")
+        
+        if failed_files:
+            print("\nFailed files:")
+            for f in failed_files:
+                print(f"  - {f}")
         
         sys.exit(0 if failed_count == 0 else 1)
     
@@ -201,4 +235,8 @@ Supported languages:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nInterrupted by user. Exiting.")
+        sys.exit(130)
