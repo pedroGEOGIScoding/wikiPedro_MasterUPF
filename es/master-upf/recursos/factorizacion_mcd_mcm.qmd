@@ -1,0 +1,392 @@
+---
+title: "Factorización, Máximo Común Divisor (MCD)y Mínimo Común Múltiplo (mcm)"
+subtitle: "Calculadora para descomposición factorial, MCD y mcm"
+filename: factorizacion_mcd_mcm
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Calculadora para ayudar a entender la descomposición factorial, MCD y mcm
+categories: [matemáticas]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Acerca de esta Herramienta de Factorización, MCD y mcm
+
+La herramienta **Factorización, MCD y mcm** es una aplicación web interactiva pensada para que el alumnado de secundaria practique la descomposición de números naturales en factores primos y el cálculo del Máximo Común Divisor (MCD) y del mínimo común múltiplo (mcm) de forma visual e inmediata. Basta con introducir un conjunto de números en un campo de texto para obtener, al instante, su árbol de factores, la tabla de exponentes y ambos resultados con su justificación matemática.
+
+Se trata de un recurso autocontenido en un único archivo HTML, por lo que funciona directamente en cualquier navegador sin necesidad de instalación ni conexión a internet.
+
+## Finalidad y objetivos
+
+La finalidad de esta herramienta es reforzar uno de los bloques fundamentales de la aritmética en secundaria: la descomposición factorial y su aplicación al cálculo del MCD y el mcm, contenidos que resultan clave para trabajar fracciones, proporcionalidad y resolución de problemas. Al automatizar los cálculos y mostrar el procedimiento paso a paso, el recurso permite que el estudiante compruebe sus propios resultados y entienda el razonamiento detrás de ellos, en lugar de limitarse a memorizar un algoritmo.
+
+Entre los objetivos específicos de la herramienta se encuentran:
+
+- Descomponer varios números naturales en sus factores primos, visualizando el proceso mediante un árbol de factorización y su expresión en forma de potencias.
+- Organizar los factores primos de todos los números introducidos en una tabla comparativa de exponentes, facilitando la identificación de factores comunes y no comunes.
+- Calcular el MCD tomando los factores primos comunes elevados al menor exponente, entendiendo el criterio matemático que sustenta este cálculo.
+- Calcular el mcm tomando todos los factores primos, comunes y no comunes, elevados al mayor exponente, reforzando la diferencia conceptual respecto al MCD.
+- Practicar con distintos conjuntos de números de forma autónoma, recibiendo retroalimentación inmediata ante entradas no válidas (decimales, negativos o menos de dos números).
+
+## Instrucciones de uso
+
+El manejo de la herramienta es sencillo y no requiere ningún paso previo de configuración.
+
+### Introducción de datos
+
+En el campo de texto situado en la parte superior se deben escribir al menos dos números naturales, separados por comas o espacios (por ejemplo, "24, 36, 60"). La herramienta no admite números decimales ni negativos, y muestra un mensaje de error si la entrada no cumple estos requisitos o si se introduce un único número.
+
+### Cálculo de resultados
+
+Al pulsar el botón **"Calcular"** (o al presionar la tecla Enter), la aplicación procesa los números introducidos y muestra los resultados organizados en varias secciones. En primer lugar aparecen los números introducidos a modo de resumen, seguidos de la descomposición en factores primos de cada uno, representada tanto en notación de potencias como en un árbol de factorización.
+
+A continuación se muestra una tabla de exponentes que compara, para cada factor primo detectado, el exponente correspondiente en cada uno de los números introducidos. Finalmente, se presentan el MCD y el mcm calculados, acompañados de una breve explicación del criterio empleado (menor exponente para el MCD, mayor exponente para el mcm).
+
+### Reinicio de la herramienta
+
+El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los resultados anteriores, dejando la herramienta lista para introducir un nuevo conjunto de números.
+
+```{=html}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Factorización, MCD y mcm</title>
+<style>
+  * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  body {
+    margin: 0; padding: 0;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    min-height: 100vh;
+    display: flex; justify-content: center; align-items: flex-start;
+    padding: 30px 10px;
+  }
+  .card {
+    background: #fff;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    padding: 30px 35px;
+  }
+  h1 {
+    text-align: center;
+    color: #1e3c72;
+    margin-top: 0;
+    font-size: 26px;
+  }
+  p.subtitle {
+    text-align: center;
+    color: #555;
+    margin-top: -8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+  }
+  .input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+  .input-area input[type=text] {
+    flex: 1;
+    padding: 12px 14px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    min-width: 250px;
+  }
+  .input-area input[type=text]:focus { border-color: #2a5298; outline: none; }
+  button {
+    background: #2a5298;
+    color: #fff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  button:hover { background: #1e3c72; }
+  button.secondary {
+    background: #888;
+  }
+  button.secondary:hover { background: #666; }
+  .hint {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  .error {
+    background: #ffe0e0;
+    color: #a10000;
+    border: 1px solid #ffb3b3;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: none;
+  }
+  .results {
+    display: none;
+  }
+  .section {
+    margin-top: 25px;
+  }
+  .section h2 {
+    color: #1e3c72;
+    border-bottom: 2px solid #2a5298;
+    padding-bottom: 6px;
+    font-size: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 15px;
+  }
+  th { background: #eef2fa; color: #1e3c72; }
+  .factor-tree {
+    font-family: 'Courier New', monospace;
+    background: #f7f9fc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 8px;
+    white-space: pre;
+    font-size: 15px;
+    overflow-x: auto;
+  }
+  .result-box {
+    display: inline-block;
+    background: #eef7ee;
+    border: 1px solid #a8d8a8;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 8px 8px 0 0;
+    font-size: 17px;
+    color: #1a5c1a;
+  }
+  .result-box b { font-size: 22px; }
+  .steps {
+    background: #fdfdf2;
+    border: 1px solid #e6e6a8;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  .chip {
+    display: inline-block;
+    background: #dbe6ff;
+    color: #1e3c72;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Factorización, MCD y mcm</h1>
+  <p class="subtitle">Introduce un grupo de números naturales para descomponerlos en factores primos y calcular su Máximo Común Divisor (MCD) y su mínimo común múltiplo (mcm).</p>
+
+  <div class="input-area">
+    <input type="text" id="numbersInput" placeholder="Ej: 24, 36, 60" autofocus>
+    <button onclick="calcular()">Calcular</button>
+    <button class="secondary" onclick="limpiar()">Limpiar</button>
+  </div>
+  <p class="hint">Escribe los números naturales separados por comas o espacios (mínimo 2 números, sin decimales ni negativos).</p>
+
+  <div class="error" id="errorBox"></div>
+
+  <div class="results" id="results">
+
+    <div class="section">
+      <h2>Números introducidos</h2>
+      <div id="numbersChips"></div>
+    </div>
+
+    <div class="section">
+      <h2>Descomposición en factores primos</h2>
+      <div id="factorizations"></div>
+    </div>
+
+    <div class="section">
+      <h2>Tabla de exponentes</h2>
+      <div id="exponentTable"></div>
+    </div>
+
+    <div class="section">
+      <h2>Máximo Común Divisor (MCD)</h2>
+      <div id="mcdBox"></div>
+    </div>
+
+    <div class="section">
+      <h2>Mínimo Común Múltiplo (mcm)</h2>
+      <div id="mcmBox"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function factorize(n) {
+  let factors = [];
+  let num = n;
+  let d = 2;
+  while (d * d <= num) {
+    while (num % d === 0) {
+      factors.push(d);
+      num /= d;
+    }
+    d++;
+  }
+  if (num > 1) factors.push(num);
+  return factors;
+}
+
+function factorsToExponentMap(factors) {
+  let map = {};
+  factors.forEach(f => { map[f] = (map[f] || 0) + 1; });
+  return map;
+}
+
+function factorizationString(map) {
+  return Object.keys(map).sort((a,b)=>a-b).map(p => map[p] === 1 ? p : `${p}^${map[p]}`).join(' x ');
+}
+
+function buildTree(n) {
+  let lines = [];
+  let num = n;
+  let d = 2;
+  lines.push(`${num} |`);
+  while (num > 1) {
+    while (num % d === 0) {
+      lines.push(`${num.toString().padStart(String(n).length)} | ${d}`);
+      num = num / d;
+    }
+    d++;
+  }
+  lines.push(`${1}`.padStart(String(n).length) + ' |');
+  return lines.join('\n');
+}
+
+function limpiar() {
+  document.getElementById('numbersInput').value = '';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('errorBox').style.display = 'none';
+  document.getElementById('numbersInput').focus();
+}
+
+function calcular() {
+  const errorBox = document.getElementById('errorBox');
+  errorBox.style.display = 'none';
+  const raw = document.getElementById('numbersInput').value;
+  const parts = raw.split(/[\s,]+/).filter(x => x.length > 0);
+
+  if (parts.length < 2) {
+    errorBox.textContent = 'Introduce al menos dos números separados por comas o espacios.';
+    errorBox.style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    return;
+  }
+
+  let numbers = [];
+  for (const p of parts) {
+    if (!/^\d+$/.test(p)) {
+      errorBox.textContent = `"${p}" no es un número natural válido. Usa solo enteros positivos.`;
+      errorBox.style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+      return;
+    }
+    const n = parseInt(p, 10);
+    if (n < 1) {
+      errorBox.textContent = 'Los números deben ser mayores que 0.';
+      errorBox.style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+      return;
+    }
+    numbers.push(n);
+  }
+
+  document.getElementById('numbersChips').innerHTML = numbers.map(n => `<span class="chip">${n}</span>`).join(' ');
+
+  let factorMaps = [];
+  let factorizeHTML = '';
+  numbers.forEach(n => {
+    const factors = factorize(n);
+    const map = factorsToExponentMap(factors);
+    factorMaps.push(map);
+    factorizeHTML += `
+      <div style="margin-bottom:18px;">
+        <b>${n}</b> = ${factorizationString(map)}
+        <div class="factor-tree">${buildTree(n)}</div>
+      </div>`;
+  });
+  document.getElementById('factorizations').innerHTML = factorizeHTML;
+
+  let allPrimes = new Set();
+  factorMaps.forEach(m => Object.keys(m).forEach(p => allPrimes.add(parseInt(p))));
+  allPrimes = Array.from(allPrimes).sort((a,b)=>a-b);
+
+  let tableHTML = '<table><tr><th>Número</th>' + allPrimes.map(p => `<th>${p}</th>`).join('') + '</tr>';
+  numbers.forEach((n, idx) => {
+    tableHTML += `<tr><td><b>${n}</b></td>`;
+    allPrimes.forEach(p => {
+      tableHTML += `<td>${factorMaps[idx][p] || 0}</td>`;
+    });
+    tableHTML += '</tr>';
+  });
+  tableHTML += '</table>';
+  document.getElementById('exponentTable').innerHTML = tableHTML;
+
+  let mcdExp = {};
+  let mcmExp = {};
+  allPrimes.forEach(p => {
+    let exps = factorMaps.map(m => m[p] || 0);
+    mcdExp[p] = Math.min(...exps);
+    mcmExp[p] = Math.max(...exps);
+  });
+
+  let mcd = 1, mcm = 1;
+  allPrimes.forEach(p => {
+    mcd *= Math.pow(p, mcdExp[p]);
+    mcm *= Math.pow(p, mcmExp[p]);
+  });
+
+  const mcdFactorsStr = allPrimes.filter(p => mcdExp[p] > 0).map(p => mcdExp[p] === 1 ? p : `${p}^${mcdExp[p]}`).join(' x ') || '1';
+  const mcmFactorsStr = allPrimes.filter(p => mcmExp[p] > 0).map(p => mcmExp[p] === 1 ? p : `${p}^${mcmExp[p]}`).join(' x ');
+
+  document.getElementById('mcdBox').innerHTML = `
+    <div class="result-box">MCD(${numbers.join(', ')}) = <b>${mcd}</b></div>
+    <div class="steps">Se toman los factores primos comunes elevados al <b>menor</b> exponente: ${mcdFactorsStr} = ${mcd}</div>`;
+
+  document.getElementById('mcmBox').innerHTML = `
+    <div class="result-box">mcm(${numbers.join(', ')}) = <b>${mcm}</b></div>
+    <div class="steps">Se toman todos los factores primos (comunes y no comunes) elevados al <b>mayor</b> exponente: ${mcmFactorsStr} = ${mcm}</div>`;
+
+  document.getElementById('results').style.display = 'block';
+}
+
+document.getElementById('numbersInput').addEventListener('keyup', function(e){
+  if (e.key === 'Enter') calcular();
+});
+</script>
+</body>
+</html>
+```

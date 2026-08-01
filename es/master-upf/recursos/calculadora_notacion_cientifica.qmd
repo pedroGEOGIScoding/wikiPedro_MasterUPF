@@ -1,0 +1,1358 @@
+---
+title: "Calculadora Notación Científica"
+subtitle: "Calculadora para entrenar números en notación científica"
+filename: calculadora_notacion_cientifica
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Calculadora para mejorar la destreza de las operaciones matemáticas con números en notación científica
+categories: [matemáticas]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Acerca de esta Calculadora Notación Científica
+
+El **Entrenador de Notación Científica** es una herramienta interactiva diseñada para que el alumnado de 1º de Bachillerato practique y consolide el manejo de la notación científica de forma autónoma. Se trata de una aplicación web autocontenida (HTML, CSS y JavaScript) que funciona sin conexión a internet: basta con guardar el archivo y abrirlo con doble clic en cualquier navegador para empezar a trabajar.
+
+La herramienta combina una guía teórica de consulta con cuatro modos de ejercicios generados aleatoriamente y un reto final de evaluación, ofreciendo así un recorrido completo desde la comprensión conceptual hasta la aplicación práctica.
+
+## Finalidad y objetivos
+
+La finalidad principal del recurso es reforzar la competencia matemática relacionada con la notación científica, un contenido clave del currículo de Bachillerato para expresar y operar con magnitudes muy grandes o muy pequeñas. A través de la práctica guiada y el feedback inmediato, se busca que el alumnado interiorice tanto los procedimientos de conversión como el razonamiento matemático que hay detrás de ellos.
+
+Entre los objetivos específicos de aprendizaje se encuentran:
+
+- Comprender qué es la notación científica y reconocer sus dos componentes, la mantisa (un número entre 1 y 10) y el exponente entero de la potencia de diez.
+- Convertir un número decimal a notación científica y viceversa, identificando la dirección en la que se desplaza la coma según el signo del exponente.
+- Aplicar la "regla del balancín" para cambiar el orden de magnitud de un número sin alterar su valor, compensando exponente y mantisa.
+- Realizar operaciones (suma, resta, multiplicación y división) entre números expresados en notación científica, igualando exponentes o aplicando las propiedades de las potencias según corresponda.
+- Identificar y corregir los errores más frecuentes, como no normalizar la mantisa, confundir el signo del exponente o sumar mantisas con exponentes distintos.
+- Contextualizar el aprendizaje mediante ejemplos reales de escala del universo, como la masa de la Tierra, la velocidad de la luz o el tamaño de un virus, para conectar los contenidos con magnitudes del mundo físico.
+
+## Instrucciones de uso
+
+La aplicación se organiza en pestañas de navegación situadas en la parte superior, cada una correspondiente a una sección distinta del entrenamiento. A continuación se describe el funcionamiento de cada una.
+
+### Selección de nivel de dificultad
+
+Antes de empezar, se puede elegir el nivel de dificultad (Básico, Intermedio o Avanzado) mediante el desplegable situado en la cabecera de la herramienta. Este ajuste modifica el rango de los exponentes y el número de decimales que aparecen en los ejercicios generados, permitiendo adaptar la práctica al nivel de cada estudiante.
+
+### Guía teórica
+
+La pestaña **"Guía teórica"** presenta de forma visual los conceptos fundamentales: la estructura de la notación científica, las reglas de conversión de números grandes y pequeños, la escala del universo, la regla del balancín para cambiar el exponente, las operaciones básicas y un listado de errores frecuentes con su corrección. Se recomienda revisar esta sección antes de comenzar los ejercicios prácticos.
+
+### Modos de práctica
+
+Las pestañas **"Número → Notación"**, **"Notación → Número"**, **"Orden de magnitud"** y **"Operaciones"** generan ejercicios aleatorios específicos de cada destreza. En cada ejercicio, el estudiante introduce su respuesta en los campos habilitados (mantisa y exponente, o el número decimal completo, según el tipo de ejercicio) y dispone de los siguientes botones de acción: "Comprobar" para validar la respuesta, "Pista" para obtener una ayuda orientativa, "Ver solución" para consultar la resolución paso a paso, y "Nueva pregunta" para generar un ejercicio distinto. En la pestaña de Operaciones, además, se puede elegir el tipo de operación (suma, resta, multiplicación, división o aleatoria) mediante un selector adicional.
+
+Cada modo lleva un registro visible de aciertos, fallos y racha de respuestas correctas consecutivas, lo que permite al estudiante monitorizar su propio progreso.
+
+### Reto final
+
+La pestaña **"Reto final"** propone una evaluación de 10 preguntas aleatorias que combinan todos los tipos de ejercicios anteriores, según el nivel de dificultad seleccionado. A diferencia de los modos de práctica, en el reto no se muestran pistas y la solución solo aparece tras responder cada pregunta; al finalizar, se muestra una nota final junto con un mensaje de valoración del desempeño global.
+
+### Notas técnicas
+
+La herramienta admite la introducción de números tanto con coma como con punto decimal, y permite el uso de puntos de millar para facilitar la escritura de cifras grandes. Incluye además un botón para alternar entre tema claro y oscuro, adaptándose a las preferencias visuales del usuario.
+
+```{=html}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrenador de Notación Científica · 1º Bachillerato</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --s1:.25rem; --s2:.5rem; --s3:.75rem; --s4:1rem; --s5:1.25rem; --s6:1.5rem; --s8:2rem; --s10:2.5rem; --s12:3rem; --s16:4rem;
+  --font-display:'Cabinet Grotesk', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  --font-body:'General Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --radius:14px;
+}
+:root, [data-theme="light"]{
+  --bg:#f6f5f1;
+  --surface:#ffffff;
+  --surface-2:#eef0f7;
+  --ink:#1d2033;
+  --ink-2:#565b74;
+  --ink-3:#8b90a6;
+  --line:#dcdfe9;
+  --accent:#3f45c0;
+  --accent-ink:#ffffff;
+  --accent-soft:#e6e8fb;
+  --amber:#b45309;
+  --amber-soft:#fdf0dd;
+  --ok:#166b43;
+  --ok-soft:#e0f2e8;
+  --bad:#b3383c;
+  --bad-soft:#fbe7e7;
+  --hint:#7a5b0e;
+  --hint-soft:#faf3d8;
+  --shadow:0 1px 2px rgba(29,32,51,.05),0 6px 20px rgba(29,32,51,.06);
+}
+[data-theme="dark"]{
+  --bg:#14161f;
+  --surface:#1d2030;
+  --surface-2:#262a3d;
+  --ink:#eceef7;
+  --ink-2:#a9aec5;
+  --ink-3:#787d96;
+  --line:#33384f;
+  --accent:#8d93f2;
+  --accent-ink:#14161f;
+  --accent-soft:#2b2f4d;
+  --amber:#e5a55d;
+  --amber-soft:#3a2f1e;
+  --ok:#6fd0a0;
+  --ok-soft:#1d3529;
+  --bad:#f09a9d;
+  --bad-soft:#3d2325;
+  --hint:#e3c86a;
+  --hint-soft:#37301a;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  min-height:100vh;
+}
+/* ---------- header ---------- */
+header{
+  max-width:1060px;margin:0 auto;padding:var(--s6) var(--s5) var(--s4);
+  display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:var(--s3)}
+.logo svg{flex:none}
+.title-block h1{
+  font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;letter-spacing:-.02em;line-height:1.1;
+}
+.title-block p{font-size:var(--text-sm);color:var(--ink-2);margin-top:2px}
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
+.diff-select{display:flex;align-items:center;gap:var(--s2);font-size:var(--text-sm);color:var(--ink-2)}
+select,#theme-btn{
+  font-family:var(--font-body);font-size:var(--text-sm);
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:10px;padding:var(--s2) var(--s3);cursor:pointer;
+}
+#theme-btn{display:flex;align-items:center;line-height:1}
+select:focus-visible,#theme-btn:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* ---------- tabs ---------- */
+nav.tabs{
+  max-width:1060px;margin:0 auto;padding:0 var(--s5);
+  display:flex;gap:var(--s2);flex-wrap:wrap;
+}
+.tab-btn{
+  font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
+  padding:var(--s2) var(--s4);border-radius:999px;cursor:pointer;transition:all .15s ease;
+}
+.tab-btn:hover{border-color:var(--accent);color:var(--accent)}
+.tab-btn.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+main{max-width:1060px;margin:0 auto;padding:var(--s6) var(--s5) var(--s16)}
+.panel{display:none;animation:fade .25s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:var(--s6);box-shadow:var(--shadow);
+}
+.theory-pill{
+  background:var(--accent-soft);border:1px solid transparent;border-radius:var(--radius);
+  padding:var(--s4) var(--s5);margin-bottom:var(--s5);font-size:var(--text-sm);color:var(--ink);
+}
+.theory-pill strong{color:var(--accent)}
+.theory-pill .sci{font-size:1em}
+h2.section{
+  font-family:var(--font-display);font-size:var(--text-lg);font-weight:800;letter-spacing:-.01em;
+  margin:var(--s8) 0 var(--s4);
+}
+h2.section:first-child{margin-top:0}
+/* ---------- scientific notation rendering ---------- */
+.sci{white-space:nowrap;font-variant-numeric:tabular-nums}
+.sci sup{font-size:.68em}
+.big-number{
+  font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);
+  letter-spacing:.01em;overflow-wrap:anywhere;white-space:normal;
+}
+.big-number .sci{white-space:normal}
+/* ---------- exercise area ---------- */
+.exercise-context{font-size:var(--text-sm);color:var(--ink-2);margin-bottom:var(--s2)}
+.exercise-prompt{margin:var(--s4) 0 var(--s5)}
+.answer-row{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s5)}
+.answer-row label{font-size:var(--text-sm);color:var(--ink-2);font-weight:500}
+input[type="text"]{
+  font-family:var(--font-body);font-size:var(--text-base);font-variant-numeric:tabular-nums;
+  background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:10px;
+  padding:var(--s3) var(--s4);width:170px;
+}
+input.exp-input{width:90px}
+.times-ten{font-size:var(--text-lg);font-weight:500}
+.times-ten sup{font-size:.6em}
+.btn-row{display:flex;gap:var(--s3);flex-wrap:wrap}
+button.action{
+  font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;
+  border:none;border-radius:10px;padding:var(--s3) var(--s5);cursor:pointer;transition:filter .15s ease, transform .05s ease;
+}
+button.action:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+/* ---------- feedback ---------- */
+.feedback{border-radius:var(--radius);padding:var(--s4) var(--s5);margin-top:var(--s5);font-size:var(--text-sm);display:none}
+.feedback.show{display:block;animation:fade .2s ease}
+.feedback.ok{background:var(--ok-soft);color:var(--ok);font-weight:600}
+.feedback.bad{background:var(--bad-soft);color:var(--bad)}
+.feedback.bad strong{font-weight:700}
+.hint-box{background:var(--hint-soft);color:var(--hint);border-radius:var(--radius);padding:var(--s4) var(--s5);margin-top:var(--s5);font-size:var(--text-sm);display:none}
+.hint-box.show{display:block;animation:fade .2s ease}
+.solution{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:var(--s5);margin-top:var(--s5);font-size:var(--text-sm);display:none;
+}
+.solution.show{display:block;animation:fade .2s ease}
+.solution h4{font-size:var(--text-sm);font-weight:700;margin-bottom:var(--s3);color:var(--accent)}
+.solution ol{padding-left:var(--s5);display:grid;gap:var(--s2)}
+.solution .sci{font-weight:600}
+/* ---------- score ---------- */
+.score-bar{
+  display:flex;gap:var(--s5);align-items:center;flex-wrap:wrap;
+  margin-top:var(--s5);padding-top:var(--s4);border-top:1px dashed var(--line);
+  font-size:var(--text-sm);color:var(--ink-2);
+}
+.score-bar b{color:var(--ink);font-variant-numeric:tabular-nums}
+.chip-ok{color:var(--ok)} .chip-bad{color:var(--bad)}
+.streak-flame{color:var(--amber);font-weight:700}
+/* ---------- theory page ---------- */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s5)}
+.mini-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow)}
+.mini-card h3{font-family:var(--font-display);font-size:var(--text-base);font-weight:700;margin-bottom:var(--s3);display:flex;align-items:center;gap:var(--s2)}
+.mini-card p, .mini-card li{font-size:var(--text-sm);color:var(--ink-2)}
+.mini-card ul,.mini-card ol{padding-left:var(--s5);display:grid;gap:var(--s2);margin-top:var(--s2)}
+.mini-card .ejemplo{
+  margin-top:var(--s3);background:var(--surface-2);border-radius:10px;padding:var(--s3) var(--s4);
+  font-size:var(--text-sm);color:var(--ink);
+}
+.mini-card .ejemplo b{color:var(--accent)}
+.tag{
+  display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--amber-soft);color:var(--amber);border-radius:6px;padding:2px 8px;margin-bottom:var(--s3);
+}
+.tag.blue{background:var(--accent-soft);color:var(--accent)}
+.formula-hero{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:var(--s8);text-align:center;margin-bottom:var(--s6);
+}
+.formula-hero .formula{
+  font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;letter-spacing:.01em;
+}
+.formula-hero .formula .m{color:var(--accent)}
+.formula-hero .formula .e{color:var(--amber)}
+.formula-hero p{font-size:var(--text-sm);color:var(--ink-2);margin-top:var(--s3);max-width:560px;margin-inline:auto}
+.leyenda{display:flex;gap:var(--s6);justify-content:center;flex-wrap:wrap;margin-top:var(--s4);font-size:var(--text-sm)}
+.leyenda span b.m{color:var(--accent)} .leyenda span b.e{color:var(--amber)}
+/* escala del universo */
+.escala{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.escala-item{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:var(--s3) var(--s4);
+  font-size:var(--text-xs);color:var(--ink-2);
+}
+.escala-item .sci{display:block;font-size:var(--text-sm);font-weight:700;color:var(--ink);margin-bottom:2px}
+.errores li{margin-bottom:var(--s2)}
+.errores .no{color:var(--bad);font-weight:600}
+.errores .si{color:var(--ok);font-weight:600}
+/* ---------- reto ---------- */
+.reto-progress{display:flex;gap:6px;margin:var(--s4) 0}
+.reto-progress .dot{width:100%;height:8px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line)}
+.reto-progress .dot.ok{background:var(--ok);border-color:var(--ok)}
+.reto-progress .dot.bad{background:var(--bad);border-color:var(--bad)}
+.reto-progress .dot.now{background:var(--accent);border-color:var(--accent)}
+.reto-final{text-align:center;padding:var(--s8) var(--s4)}
+.reto-final .nota{font-family:var(--font-display);font-size:var(--text-xl);font-weight:800;color:var(--accent)}
+.reto-final p{color:var(--ink-2);margin-top:var(--s3);font-size:var(--text-sm)}
+footer{
+  max-width:1060px;margin:0 auto;padding:var(--s6) var(--s5) var(--s10);
+  font-size:var(--text-xs);color:var(--ink-3);text-align:center;
+}
+@media (max-width:640px){
+  header{padding-top:var(--s4)}
+  .header-tools{margin-left:0}
+  input[type="text"]{width:130px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" aria-hidden="true">
+    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" aria-label="Logotipo ×10ⁿ">
+      <rect x="1.5" y="1.5" width="43" height="43" rx="11" stroke="var(--accent)" stroke-width="3"/>
+      <text x="9" y="31" font-family="Cabinet Grotesk, sans-serif" font-weight="800" font-size="19" fill="var(--accent)">10</text>
+      <circle cx="35" cy="14" r="4.5" fill="var(--amber)"/>
+    </svg>
+  </div>
+  <div class="title-block">
+    <h1>Entrenador de Notación Científica</h1>
+    <p>Matemáticas · 1º de Bachillerato</p>
+  </div>
+  <div class="header-tools">
+    <div class="diff-select">
+      <label for="difficulty">Nivel</label>
+      <select id="difficulty" aria-label="Nivel de dificultad">
+        <option value="1">Básico</option>
+        <option value="2" selected>Intermedio</option>
+        <option value="3">Avanzado</option>
+      </select>
+    </div>
+    <button id="theme-btn" aria-label="Cambiar tema claro/oscuro" title="Tema claro/oscuro">
+      <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Secciones del entrenador">
+  <button class="tab-btn active" data-tab="teoria">📖 Guía teórica</button>
+  <button class="tab-btn" data-tab="a-sci">Número → Notación</button>
+  <button class="tab-btn" data-tab="a-dec">Notación → Número</button>
+  <button class="tab-btn" data-tab="magnitud">Orden de magnitud</button>
+  <button class="tab-btn" data-tab="operaciones">Operaciones</button>
+  <button class="tab-btn" data-tab="reto">🏆 Reto final</button>
+</nav>
+
+<main>
+
+<!-- ==================== TEORÍA ==================== -->
+<section class="panel active" id="panel-teoria">
+  <div class="formula-hero">
+    <div class="formula"><span class="m">a</span> × 10<sup class="e">n</sup></div>
+    <p>Un número está en <strong>notación científica</strong> cuando se escribe como una mantisa por una potencia de diez.</p>
+    <div class="leyenda">
+      <span><b class="m">a</b> = mantisa, con <b>1 ≤ a &lt; 10</b> (una sola cifra distinta de cero antes de la coma)</span>
+      <span><b class="e">n</b> = exponente, un número <b>entero</b> (positivo o negativo)</span>
+    </div>
+  </div>
+
+  <h2 class="section">Cómo convertir un número</h2>
+  <div class="grid-2">
+    <div class="mini-card">
+      <span class="tag blue">Números grandes → exponente positivo</span>
+      <p>Desplaza la coma hacia la <strong>izquierda</strong> hasta dejar una sola cifra distinta de cero delante. El número de posiciones desplazadas es el exponente, con signo <strong>positivo</strong>.</p>
+      <div class="ejemplo">
+        149.600.000.000 m (distancia Tierra–Sol)<br>
+        La coma se mueve <b>11 posiciones</b> a la izquierda →
+        <span class="sci"><b>1,496 × 10<sup>11</sup></b> m</span>
+      </div>
+    </div>
+    <div class="mini-card">
+      <span class="tag blue">Números pequeños → exponente negativo</span>
+      <p>Desplaza la coma hacia la <strong>derecha</strong> hasta pasar la primera cifra distinta de cero. El número de posiciones desplazadas es el exponente, con signo <strong>negativo</strong>.</p>
+      <div class="ejemplo">
+        0,000000067 m (tamaño de un virus grande)<br>
+        La coma se mueve <b>8 posiciones</b> a la derecha →
+        <span class="sci"><b>6,7 × 10<sup>−8</sup></b> m</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section">La escala del universo</h2>
+  <p style="font-size:var(--text-sm);color:var(--ink-2)">La notación científica permite comparar magnitudes extremas de un vistazo: basta con mirar el exponente, que indica el <strong>orden de magnitud</strong>.</p>
+  <div class="escala">
+    <div class="escala-item"><span class="sci">9,1 × 10<sup>−31</sup> kg</span>masa del electrón</div>
+    <div class="escala-item"><span class="sci">5,3 × 10<sup>−11</sup> m</span>radio del átomo de H</div>
+    <div class="escala-item"><span class="sci">2 × 10<sup>−6</sup> m</span>tamaño de una bacteria</div>
+    <div class="escala-item"><span class="sci">7 × 10<sup>−5</sup> m</span>grosor de un cabello</div>
+    <div class="escala-item"><span class="sci">8,1 × 10<sup>9</sup></span>población mundial</div>
+    <div class="escala-item"><span class="sci">3 × 10<sup>8</sup> m/s</span>velocidad de la luz</div>
+    <div class="escala-item"><span class="sci">5,97 × 10<sup>24</sup> kg</span>masa de la Tierra</div>
+    <div class="escala-item"><span class="sci">9,5 × 10<sup>20</sup> m</span>diámetro de la Vía Láctea</div>
+  </div>
+
+  <h2 class="section">Cambiar el orden de magnitud (la regla del balancín)</h2>
+  <div class="grid-2">
+    <div class="mini-card">
+      <h3>⚖️ La regla</h3>
+      <p>A veces conviene escribir el mismo número con <strong>otro exponente</strong> (por ejemplo, para sumar o restar). El valor no cambia si compensamos: <strong>lo que sube el exponente, baja la mantisa</strong> (y al revés), como un balancín.</p>
+      <ul>
+        <li>Si el exponente <strong>sube k unidades</strong> → la coma de la mantisa se mueve <strong>k posiciones a la izquierda</strong>.</li>
+        <li>Si el exponente <strong>baja k unidades</strong> → la coma de la mantisa se mueve <strong>k posiciones a la derecha</strong>.</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <h3>✏️ Ejemplo</h3>
+      <p>Queremos expresar <span class="sci">2,43 × 10<sup>2</sup></span> con exponente 3:</p>
+      <div class="ejemplo">
+        El exponente sube 1 unidad (de 2 a 3), así que la coma se mueve 1 posición a la izquierda:<br>
+        <span class="sci"><b>2,43 × 10<sup>2</sup> = 0,243 × 10<sup>3</sup></b></span>
+      </div>
+      <p style="margin-top:var(--s3)">Ambas expresiones valen 243. Ojo: <span class="sci">0,243 × 10<sup>3</sup></span> <strong>no</strong> está en notación científica estricta (la mantisa es menor que 1), pero es un paso intermedio imprescindible en sumas y restas.</p>
+    </div>
+  </div>
+
+  <h2 class="section">Operaciones en notación científica</h2>
+  <div class="grid-2">
+    <div class="mini-card">
+      <h3>➕ Suma y ➖ resta</h3>
+      <ol>
+        <li><strong>Iguala los exponentes</strong> (usa la regla del balancín; suele ser cómodo pasar todo al exponente mayor).</li>
+        <li>Suma o resta <strong>solo las mantisas</strong>.</li>
+        <li><strong>Normaliza</strong> el resultado si hace falta (mantisa entre 1 y 10).</li>
+      </ol>
+      <div class="ejemplo">
+        <span class="sci">9,76 × 10<sup>3</sup> + 2,43 × 10<sup>2</sup></span><br>
+        = <span class="sci">9,76 × 10<sup>3</sup> + 0,243 × 10<sup>3</sup></span><br>
+        = <span class="sci">10,003 × 10<sup>3</sup></span> = <span class="sci"><b>1,0003 × 10<sup>4</sup></b></span>
+      </div>
+    </div>
+    <div class="mini-card">
+      <h3>✖️ Multiplicación y ➗ división</h3>
+      <ol>
+        <li><strong>Multiplica (o divide) las mantisas</strong> entre sí.</li>
+        <li><strong>Suma (o resta) los exponentes</strong>: 10<sup>a</sup> · 10<sup>b</sup> = 10<sup>a+b</sup> y 10<sup>a</sup> / 10<sup>b</sup> = 10<sup>a−b</sup>.</li>
+        <li><strong>Normaliza</strong> el resultado si hace falta.</li>
+      </ol>
+      <div class="ejemplo">
+        <span class="sci">(4 × 10<sup>5</sup>) · (6 × 10<sup>−2</sup>)</span>
+        = <span class="sci">24 × 10<sup>3</sup></span>
+        = <span class="sci"><b>2,4 × 10<sup>4</sup></b></span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section">Errores frecuentes</h2>
+  <div class="mini-card">
+    <ul class="errores">
+      <li><span class="no">✗</span> Escribir <span class="sci">24 × 10<sup>3</sup></span> como resultado final. <span class="si">✓</span> La mantisa debe cumplir 1 ≤ a &lt; 10: se normaliza a <span class="sci">2,4 × 10<sup>4</sup></span>.</li>
+      <li><span class="no">✗</span> Sumar mantisas con exponentes distintos («9,76 + 2,43»). <span class="si">✓</span> Primero hay que igualar los exponentes.</li>
+      <li><span class="no">✗</span> Confundir el signo del exponente: exponente negativo significa número <strong>pequeño</strong> (entre 0 y 1), no número negativo.</li>
+      <li><span class="no">✗</span> Al mover la coma a la izquierda, restar al exponente. <span class="si">✓</span> Coma a la izquierda ⇒ el exponente <strong>aumenta</strong>.</li>
+      <li><span class="no">✗</span> Multiplicar los exponentes en un producto. <span class="si">✓</span> Los exponentes se <strong>suman</strong> (propiedad de las potencias).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== NÚMERO → NOTACIÓN ==================== -->
+<section class="panel" id="panel-a-sci">
+  <div class="theory-pill">💡 <strong>Recuerda:</strong> desplaza la coma hasta dejar <strong>una sola cifra distinta de cero</strong> delante. Coma a la <strong>izquierda</strong> ⇒ exponente <strong>positivo</strong> (número grande); coma a la <strong>derecha</strong> ⇒ exponente <strong>negativo</strong> (número pequeño). Cuenta las posiciones: ese es el exponente.</div>
+  <div class="card" id="ex-a-sci"></div>
+</section>
+
+<!-- ==================== NOTACIÓN → NÚMERO ==================== -->
+<section class="panel" id="panel-a-dec">
+  <div class="theory-pill">💡 <strong>Recuerda:</strong> el exponente te dice cuántas posiciones mover la coma de la mantisa. Exponente <strong>positivo</strong> ⇒ coma a la <strong>derecha</strong> (rellena con ceros). Exponente <strong>negativo</strong> ⇒ coma a la <strong>izquierda</strong> (el número empieza por «0,0…»). Puedes escribir puntos de millar si te ayudan.</div>
+  <div class="card" id="ex-a-dec"></div>
+</section>
+
+<!-- ==================== ORDEN DE MAGNITUD ==================== -->
+<section class="panel" id="panel-magnitud">
+  <div class="theory-pill">💡 <strong>Regla del balancín:</strong> el valor no cambia si compensas mantisa y exponente. Si el exponente <strong>sube k</strong> unidades, la coma se mueve <strong>k posiciones a la izquierda</strong>; si <strong>baja k</strong>, la coma va <strong>k a la derecha</strong>. Esta destreza es la clave para sumar y restar en notación científica.</div>
+  <div class="card" id="ex-magnitud"></div>
+</section>
+
+<!-- ==================== OPERACIONES ==================== -->
+<section class="panel" id="panel-operaciones">
+  <div class="theory-pill">💡 <strong>Recuerda:</strong> en <strong>sumas y restas</strong>, iguala primero los exponentes y opera solo con las mantisas. En <strong>multiplicaciones y divisiones</strong>, opera las mantisas entre sí y <strong>suma o resta los exponentes</strong>. Al final, normaliza la mantisa (1 ≤ a &lt; 10). Puedes redondear la mantisa a 3 decimales.</div>
+  <div class="answer-row" style="margin-bottom:var(--s4)">
+    <label for="op-select">Tipo de operación</label>
+    <select id="op-select">
+      <option value="mix" selected>Aleatoria</option>
+      <option value="add">Suma</option>
+      <option value="sub">Resta</option>
+      <option value="mul">Multiplicación</option>
+      <option value="div">División</option>
+    </select>
+  </div>
+  <div class="card" id="ex-operaciones"></div>
+</section>
+
+<!-- ==================== RETO ==================== -->
+<section class="panel" id="panel-reto">
+  <div class="theory-pill">🏆 <strong>Reto final:</strong> 10 preguntas aleatorias de todos los tipos, al nivel de dificultad elegido arriba. Sin pistas ni soluciones hasta responder. ¿Listo para demostrar lo que sabes?</div>
+  <div class="card" id="ex-reto"></div>
+</section>
+
+</main>
+
+<footer>Herramienta didáctica de matemáticas · 1º Bachillerato · Funciona sin conexión: guarda este archivo y ábrelo con doble clic en cualquier navegador.</footer>
+
+<script>
+"use strict";
+/* =============== utilidades =============== */
+const $ = s => document.querySelector(s);
+
+const DIFF = {
+  1:{emin:2, emax:4,  dec:1},
+  2:{emin:2, emax:8,  dec:2},
+  3:{emin:3, emax:15, dec:3}
+};
+let currentDiff = 2;
+$('#difficulty').addEventListener('change', e => { currentDiff = +e.target.value; regenAll(); });
+
+function rnd(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+function choice(arr){ return arr[rnd(0,arr.length-1)]; }
+
+/* mantisa aleatoria como string "3,47" (última cifra decimal ≠ 0) */
+function randMantissaStr(maxDec){
+  const nDec = rnd(0, maxDec);
+  let s = String(rnd(1,9));
+  if(nDec>0){
+    let decs = '';
+    for(let i=0;i<nDec-1;i++) decs += String(rnd(0,9));
+    decs += String(rnd(1,9));
+    s += ',' + decs;
+  }
+  return s;
+}
+function mantissaVal(mStr){ return parseFloat(mStr.replace(',','.')); }
+
+/* formatea un float como mantisa española, hasta 6 decimales significativos */
+function fmt(x, maxDec=6){
+  let v = parseFloat(x.toFixed(maxDec));
+  return String(v).replace('.', ',').replace('-','−');
+}
+function fmtExp(e){ return String(e).replace('-','−'); }
+function sciHTML(mStr, e){ return `<span class="sci">${mStr} × 10<sup>${fmtExp(e)}</sup></span>`; }
+function sciFromVal(m, e, maxDec=6){ return sciHTML(fmt(m,maxDec), e); }
+
+/* número decimal completo a partir de mantisa-string y exponente (sin errores de coma flotante) */
+function decimalString(mStr, e){
+  const digits = mStr.replace(',','');
+  if(e >= 0){
+    let intPart, frac='';
+    if(digits.length <= e+1){ intPart = digits + '0'.repeat(e+1-digits.length); }
+    else { intPart = digits.slice(0, e+1); frac = digits.slice(e+1); }
+    intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return intPart + (frac ? ','+frac : '');
+  } else {
+    return '0,' + '0'.repeat(-e-1) + digits;
+  }
+}
+
+/* interpreta la entrada del alumno: admite coma o punto decimal y puntos de millar */
+function parseNum(input){
+  if(input == null) return NaN;
+  let s = String(input).trim().replace(/\s|\u00A0/g,'').replace(/−/g,'-');
+  if(s === '') return NaN;
+  if(s.includes(',')){ s = s.replace(/\./g,'').replace(',', '.'); }
+  else {
+    const dots = (s.match(/\./g)||[]).length;
+    if(dots > 1) s = s.replace(/\./g,'');
+  }
+  if(!/^-?\d*\.?\d+$/.test(s)) return NaN;
+  return parseFloat(s);
+}
+function parseInt10(input){
+  if(input == null) return NaN;
+  let s = String(input).trim().replace(/\s/g,'').replace(/−/g,'-').replace(/\+/g,'');
+  if(!/^-?\d+$/.test(s)) return NaN;
+  return parseInt(s,10);
+}
+function approx(a, b, tol=1e-9){
+  if(b === 0) return Math.abs(a) < tol;
+  return Math.abs(a-b)/Math.abs(b) < tol;
+}
+function normalize(v){
+  if(v === 0) return [0,0];
+  let e = Math.floor(Math.log10(Math.abs(v)));
+  let m = v / Math.pow(10, e);
+  if(Math.abs(m) >= 10){ m /= 10; e++; }
+  if(Math.abs(m) < 1){ m *= 10; e--; }
+  return [m, e];
+}
+
+/* contextos reales: [etiqueta, mantisa-string, exponente, unidad] */
+const CONTEXTS = [
+  ['la velocidad de la luz', '3', 8, 'm/s'],
+  ['la distancia Tierra–Sol', '1,496', 11, 'm'],
+  ['la masa de la Tierra', '5,97', 24, 'kg'],
+  ['el número de Avogadro', '6,022', 23, 'partículas/mol'],
+  ['la población mundial', '8,1', 9, 'personas'],
+  ['el diámetro de la Vía Láctea', '9,5', 20, 'm'],
+  ['el grosor de un cabello humano', '7', -5, 'm'],
+  ['el tamaño de una bacteria', '2', -6, 'm'],
+  ['el tamaño de un virus', '1,2', -7, 'm'],
+  ['el radio del átomo de hidrógeno', '5,3', -11, 'm'],
+  ['la carga del electrón', '1,6', -19, 'C'],
+  ['la masa de un grano de polen', '2,5', -8, 'kg'],
+  ['la capacidad de un disco duro', '2', 12, 'bytes'],
+  ['el diámetro de un glóbulo rojo', '8', -6, 'm']
+];
+
+/* =============== generadores de preguntas =============== */
+
+/* 1) Número decimal → notación científica */
+function genConvToSci(diff){
+  const d = DIFF[diff];
+  let mStr, e, contextLabel = null, unit = '';
+  const usable = CONTEXTS.filter(c => Math.abs(c[2]) <= d.emax && Math.abs(c[2]) >= d.emin && (c[1].replace(',','').length <= d.dec+1));
+  if(usable.length && Math.random() < 0.35){
+    const c = choice(usable);
+    contextLabel = c[0]; mStr = c[1]; e = c[2]; unit = c[3];
+  } else {
+    mStr = randMantissaStr(d.dec);
+    const sign = Math.random() < 0.5 ? 1 : -1;
+    e = sign * rnd(d.emin, d.emax);
+  }
+  const decStr = decimalString(mStr, e);
+  const dir = e >= 0 ? 'izquierda' : 'derecha';
+  const m0 = mantissaVal(mStr);
+  return {
+    tipo: 'Número → Notación',
+    promptHTML: (contextLabel
+      ? `<p class="exercise-context">El valor de ${contextLabel} es:</p>`
+      : `<p class="exercise-context">Expresa este número en notación científica:</p>`)
+      + `<div class="exercise-prompt big-number">${decStr}${unit ? ' <span style="font-weight:500;color:var(--ink-2)">'+unit+'</span>' : ''}</div>`,
+    fields: 'sci',
+    hint: `El número es ${e>=0?'grande':'pequeño (menor que 1)'}, así que el exponente será ${e>=0?'positivo':'negativo'}. Mueve la coma hacia la ${dir} hasta dejar una sola cifra distinta de cero delante y cuenta las posiciones.`,
+    check(ans){
+      const m = parseNum(ans.m), ex = parseInt10(ans.e);
+      if(isNaN(m) || isNaN(ex)) return {ok:false, msg:'Revisa que hayas escrito la mantisa (puedes usar coma decimal) y el exponente (número entero).'};
+      const target = m0 * Math.pow(10, e);
+      const val = m * Math.pow(10, ex);
+      if(approx(val, target)){
+        if(m >= 1 && m < 10 && ex === e) return {ok:true};
+        return {ok:false, msg:`El <strong>valor</strong> es correcto, pero no está en notación científica estricta: la mantisa debe cumplir <strong>1 ≤ a &lt; 10</strong>. La forma correcta es ${sciHTML(mStr,e)}.`};
+      }
+      return {ok:false, msg:'No coincide con el valor del número. Consulta la solución paso a paso y prueba con una nueva pregunta.'};
+    },
+    solutionHTML: `<h4>Solución paso a paso</h4><ol>
+      <li>Localiza la primera cifra distinta de cero: <strong>${mStr[0]}</strong>. La coma debe quedar justo después de ella.</li>
+      <li>Desde su posición actual, la coma se desplaza <strong>${Math.abs(e)} ${Math.abs(e)===1?'posición':'posiciones'} hacia la ${dir}</strong>.</li>
+      <li>Coma hacia la ${dir} ⇒ exponente ${e>=0?'<strong>positivo</strong> (el número es grande)':'<strong>negativo</strong> (el número es menor que 1)'}: n = ${fmtExp(e)}.</li>
+      <li>Resultado: ${decStr} = ${sciHTML(mStr,e)}${unit? ' '+unit : ''}.</li></ol>`
+  };
+}
+
+/* 2) Notación científica → número decimal */
+function genSciToDec(diff){
+  const d = DIFF[diff];
+  const mStr = randMantissaStr(d.dec);
+  const sign = Math.random() < 0.5 ? 1 : -1;
+  const e = sign * rnd(d.emin, d.emax);
+  const decStr = decimalString(mStr, e);
+  const target = mantissaVal(mStr) * Math.pow(10, e);
+  return {
+    tipo: 'Notación → Número',
+    promptHTML: `<p class="exercise-context">Escribe este número en forma decimal completa:</p>
+      <div class="exercise-prompt big-number">${sciHTML(mStr, e)}</div>`,
+    fields: 'dec',
+    hint: `El exponente es ${fmtExp(e)}: mueve la coma de la mantisa ${Math.abs(e)} ${Math.abs(e)===1?'posición':'posiciones'} hacia la ${e>=0?'derecha, rellenando con ceros':'izquierda; el número empezará por «0,0…»'}.`,
+    check(ans){
+      const v = parseNum(ans.d);
+      if(isNaN(v)) return {ok:false, msg:'No he podido interpretar el número. Usa cifras y, si hace falta, coma decimal (por ejemplo: 0,00035 o 149.600.000).'};
+      if(approx(v, target)) return {ok:true};
+      return {ok:false, msg:`No coincide. Comprueba cuántas posiciones has movido la coma y en qué dirección.`};
+    },
+    solutionHTML: `<h4>Solución paso a paso</h4><ol>
+      <li>La mantisa es ${mStr} y el exponente ${fmtExp(e)}.</li>
+      <li>Exponente ${e>=0?'positivo':'negativo'} ⇒ la coma se mueve <strong>${Math.abs(e)} ${Math.abs(e)===1?'posición':'posiciones'} hacia la ${e>=0?'derecha':'izquierda'}</strong>${e>=0?', rellenando con ceros si faltan cifras':', añadiendo ceros tras el «0,»'}.</li>
+      <li>Resultado: ${sciHTML(mStr,e)} = <strong>${decStr}</strong>.</li></ol>`
+  };
+}
+
+/* 3) Cambiar el orden de magnitud */
+function genMagnitud(diff){
+  const d = DIFF[diff];
+  const mStr = randMantissaStr(Math.min(d.dec,2));
+  const sign = Math.random() < 0.5 ? 1 : -1;
+  const e0 = sign * rnd(0, d.emax-3);
+  let delta = 0;
+  while(delta === 0) delta = rnd(-3, 3);
+  if(diff === 1) delta = Math.sign(delta) * Math.min(Math.abs(delta), 2);
+  const e1 = e0 + delta;
+  const m0 = mantissaVal(mStr);
+  const m1 = m0 * Math.pow(10, -delta);
+  const dir = delta > 0 ? 'izquierda' : 'derecha';
+  return {
+    tipo: 'Orden de magnitud',
+    promptHTML: `<p class="exercise-context">Completa la igualdad con la mantisa que falta (el valor no debe cambiar):</p>
+      <div class="exercise-prompt big-number">${sciHTML(mStr, e0)} &nbsp;=&nbsp; <span style="color:var(--amber)">?</span> × 10<sup>${fmtExp(e1)}</sup></div>`,
+    fields: 'mag',
+    fieldExp: e1,
+    hint: `El exponente ${delta>0?'sube':'baja'} ${Math.abs(delta)} ${Math.abs(delta)===1?'unidad':'unidades'} (de ${fmtExp(e0)} a ${fmtExp(e1)}). Para compensar, mueve la coma de la mantisa ${Math.abs(delta)} ${Math.abs(delta)===1?'posición':'posiciones'} hacia la ${dir}.`,
+    check(ans){
+      const m = parseNum(ans.m);
+      if(isNaN(m)) return {ok:false, msg:'Escribe la nueva mantisa (puedes usar coma decimal, por ejemplo 0,243).'};
+      if(approx(m, m1, 1e-9)) return {ok:true};
+      if(approx(m * Math.pow(10,e1), m0 * Math.pow(10,e0))) return {ok:true};
+      return {ok:false, msg:`No coincide: con esa mantisa el valor cambia. Recuerda el balancín: si el exponente ${delta>0?'sube':'baja'}, la mantisa debe hacerse ${delta>0?'más pequeña':'más grande'}.`};
+    },
+    solutionHTML: `<h4>Solución paso a paso</h4><ol>
+      <li>El exponente pasa de ${fmtExp(e0)} a ${fmtExp(e1)}: ${delta>0?'sube':'baja'} <strong>${Math.abs(delta)} ${Math.abs(delta)===1?'unidad':'unidades'}</strong>.</li>
+      <li>Regla del balancín: la coma de la mantisa se mueve <strong>${Math.abs(delta)} ${Math.abs(delta)===1?'posición':'posiciones'} hacia la ${dir}</strong> para compensar.</li>
+      <li>${mStr} → <strong>${fmt(m1,8)}</strong></li>
+      <li>Comprobación: ${sciHTML(mStr,e0)} = ${sciHTML(fmt(m1,8), e1)} — el valor es el mismo.</li></ol>`
+  };
+}
+
+/* 4) Operaciones */
+function genOperacion(diff, opWanted){
+  const d = DIFF[diff];
+  const op = (opWanted && opWanted !== 'mix') ? opWanted : choice(['add','sub','mul','div']);
+  const maxDec = Math.min(d.dec, 2);
+  let m1s = randMantissaStr(maxDec), m2s = randMantissaStr(maxDec);
+  let m1 = mantissaVal(m1s), m2 = mantissaVal(m2s);
+  let e1, e2;
+  const eCap = Math.max(3, Math.floor(d.emax*0.75));
+  if(op === 'add' || op === 'sub'){
+    const s = Math.random() < 0.5 ? 1 : -1;
+    e1 = s * rnd(0, eCap);
+    e2 = e1 - rnd(0, Math.min(3, diff+1));
+    if(op === 'sub' && m1*Math.pow(10,e1) < m2*Math.pow(10,e2)){
+      [m1s,m2s]=[m2s,m1s]; [m1,m2]=[m2,m1]; [e1,e2]=[e2,e1];
+    }
+  } else {
+    e1 = (Math.random()<0.5?1:-1) * rnd(0, eCap);
+    e2 = (Math.random()<0.5?1:-1) * rnd(0, eCap);
+  }
+  const symbols = {add:'+', sub:'−', mul:'·', div:':'};
+  const names = {add:'suma', sub:'resta', mul:'multiplicación', div:'división'};
+  let v;
+  if(op==='add') v = m1*Math.pow(10,e1) + m2*Math.pow(10,e2);
+  else if(op==='sub') v = m1*Math.pow(10,e1) - m2*Math.pow(10,e2);
+  else if(op==='mul') v = (m1*m2) * Math.pow(10, e1+e2);
+  else v = (m1/m2) * Math.pow(10, e1-e2);
+  const [mr, er] = normalize(v);
+
+  /* pasos de la solución */
+  let steps;
+  if(op==='add' || op==='sub'){
+    const eMax = Math.max(e1,e2);
+    const a1 = m1 * Math.pow(10, e1-eMax);
+    const a2 = m2 * Math.pow(10, e2-eMax);
+    const raw = op==='add' ? a1+a2 : a1-a2;
+    steps = `<ol>
+      <li><strong>Iguala los exponentes</strong> al mayor (10<sup>${fmtExp(eMax)}</sup>): ${sciFromVal(a1,eMax,8)} y ${sciFromVal(a2,eMax,8)}.</li>
+      <li><strong>Opera las mantisas</strong>: ${fmt(a1,8)} ${symbols[op]} ${fmt(a2,8)} = ${fmt(raw,8)} ⇒ ${sciFromVal(raw,eMax,8)}.</li>
+      <li>${(raw>=1&&raw<10)?'La mantisa ya está entre 1 y 10: el resultado ya está normalizado.':'<strong>Normaliza</strong> la mantisa (debe cumplir 1 ≤ a &lt; 10).'}</li>
+      <li>Resultado: <strong>${sciFromVal(mr,er,4)}</strong>.</li></ol>`;
+  } else {
+    const rawM = op==='mul' ? m1*m2 : m1/m2;
+    const rawE = op==='mul' ? e1+e2 : e1-e2;
+    steps = `<ol>
+      <li><strong>Opera las mantisas</strong>: ${m1s} ${symbols[op]} ${m2s} = ${fmt(rawM,4)}.</li>
+      <li><strong>${op==='mul'?'Suma':'Resta'} los exponentes</strong>: ${fmtExp(e1)} ${op==='mul'?'+':'−'} (${fmtExp(e2)}) = ${fmtExp(rawE)} ⇒ ${sciFromVal(rawM,rawE,4)}.</li>
+      <li>${(Math.abs(rawM)>=1&&Math.abs(rawM)<10)?'La mantisa ya está entre 1 y 10: no hace falta normalizar.':'<strong>Normaliza</strong> la mantisa (debe cumplir 1 ≤ a &lt; 10).'}</li>
+      <li>Resultado: <strong>${sciFromVal(mr,er,4)}</strong> <span style="color:var(--ink-3)">(mantisa redondeada, si procede)</span>.</li></ol>`;
+  }
+
+  return {
+    tipo: 'Operaciones',
+    promptHTML: `<p class="exercise-context">Calcula esta ${names[op]} y expresa el resultado en notación científica (puedes redondear la mantisa a 3 decimales):</p>
+      <div class="exercise-prompt big-number">(${sciHTML(m1s,e1)}) ${symbols[op]} (${sciHTML(m2s,e2)})</div>`,
+    fields: 'sci',
+    hint: (op==='add'||op==='sub')
+      ? 'Pasa los dos términos al mismo exponente (el mayor es lo más cómodo) usando la regla del balancín, opera las mantisas y normaliza al final.'
+      : `Opera las mantisas entre sí (${m1s} ${symbols[op]} ${m2s}) y ${op==='mul'?'suma':'resta'} los exponentes. Cuidado con los signos. Normaliza al final.`,
+    check(ans){
+      const m = parseNum(ans.m), ex = parseInt10(ans.e);
+      if(isNaN(m) || isNaN(ex)) return {ok:false, msg:'Revisa la mantisa (coma decimal permitida) y el exponente (número entero, con signo si es negativo).'};
+      const val = m * Math.pow(10, ex);
+      if(approx(val, v, 5e-3)){
+        if(Math.abs(m) >= 1 && Math.abs(m) < 10) return {ok:true};
+        return {ok:false, msg:`El <strong>valor</strong> es correcto, pero la mantisa debe cumplir <strong>1 ≤ a &lt; 10</strong>. Normalizado: ${sciFromVal(mr,er,4)}.`};
+      }
+      return {ok:false, msg:'El resultado no coincide. Revisa la solución paso a paso: el fallo más habitual está en igualar exponentes (sumas/restas) o en los signos de los exponentes (productos/divisiones).'};
+    },
+    solutionHTML: `<h4>Solución paso a paso</h4>${steps}`
+  };
+}
+
+/* =============== renderizador de ejercicios =============== */
+function makeTrainer(containerId, generator){
+  const box = document.getElementById(containerId);
+  const state = {ok:0, bad:0, streak:0, answered:false, q:null};
+
+  function inputsHTML(q){
+    if(q.fields === 'sci'){
+      return `<div class="answer-row">
+        <label>Respuesta:</label>
+        <input type="text" id="${containerId}-m" placeholder="mantisa" autocomplete="off" inputmode="decimal" aria-label="Mantisa">
+        <span class="times-ten">× 10<sup><input type="text" class="exp-input" id="${containerId}-e" placeholder="exp." autocomplete="off" aria-label="Exponente"></sup></span>
+      </div>`;
+    }
+    if(q.fields === 'mag'){
+      return `<div class="answer-row">
+        <label>Respuesta:</label>
+        <input type="text" id="${containerId}-m" placeholder="nueva mantisa" autocomplete="off" inputmode="decimal" aria-label="Nueva mantisa">
+        <span class="times-ten">× 10<sup>${fmtExp(q.fieldExp)}</sup></span>
+      </div>`;
+    }
+    return `<div class="answer-row">
+      <label>Respuesta:</label>
+      <input type="text" id="${containerId}-d" placeholder="número decimal completo" style="width:280px" autocomplete="off" inputmode="decimal" aria-label="Número decimal">
+    </div>`;
+  }
+
+  function readAnswers(){
+    return {
+      m: $(`#${containerId}-m`) ? $(`#${containerId}-m`).value : null,
+      e: $(`#${containerId}-e`) ? $(`#${containerId}-e`).value : null,
+      d: $(`#${containerId}-d`) ? $(`#${containerId}-d`).value : null
+    };
+  }
+
+  function render(){
+    state.q = generator();
+    state.answered = false;
+    box.innerHTML = `
+      ${state.q.promptHTML}
+      ${inputsHTML(state.q)}
+      <div class="btn-row">
+        <button class="action btn-primary" id="${containerId}-check">Comprobar</button>
+        <button class="action btn-ghost" id="${containerId}-hint">💡 Pista</button>
+        <button class="action btn-ghost" id="${containerId}-sol">Ver solución</button>
+        <button class="action btn-ghost" id="${containerId}-next">Nueva pregunta →</button>
+      </div>
+      <div class="feedback" id="${containerId}-fb" role="status"></div>
+      <div class="hint-box" id="${containerId}-hb"></div>
+      <div class="solution" id="${containerId}-sb">${state.q.solutionHTML}</div>
+      <div class="score-bar">
+        <span>✔ Aciertos: <b class="chip-ok">${state.ok}</b></span>
+        <span>✘ Fallos: <b class="chip-bad">${state.bad}</b></span>
+        <span>Racha: <b class="streak-flame">${state.streak}${state.streak>=3?' 🔥':''}</b></span>
+      </div>`;
+    $(`#${containerId}-check`).addEventListener('click', check);
+    $(`#${containerId}-hint`).addEventListener('click', ()=> $(`#${containerId}-hb`).classList.add('show'), {once:false});
+    $(`#${containerId}-hb`).textContent = '💡 ' + state.q.hint;
+    $(`#${containerId}-sol`).addEventListener('click', ()=>{
+      $(`#${containerId}-sb`).classList.add('show');
+      if(!state.answered){ state.answered = true; state.bad++; state.streak = 0; updateScore(); }
+    });
+    $(`#${containerId}-next`).addEventListener('click', render);
+    box.querySelectorAll('input').forEach(inp => inp.addEventListener('keydown', ev => { if(ev.key === 'Enter') check(); }));
+    const first = box.querySelector('input'); if(first) first.focus();
+  }
+
+  function updateScore(){
+    box.querySelector('.score-bar').innerHTML = `
+      <span>✔ Aciertos: <b class="chip-ok">${state.ok}</b></span>
+      <span>✘ Fallos: <b class="chip-bad">${state.bad}</b></span>
+      <span>Racha: <b class="streak-flame">${state.streak}${state.streak>=3?' 🔥':''}</b></span>`;
+  }
+
+  function check(){
+    const res = state.q.check(readAnswers());
+    const fb = $(`#${containerId}-fb`);
+    fb.classList.remove('ok','bad'); fb.classList.add('show');
+    if(res.ok){
+      fb.classList.add('ok');
+      fb.innerHTML = choice(['¡Correcto! 🎉','¡Muy bien! ✅','¡Exacto! 👏','¡Perfecto! 🙌']);
+      if(!state.answered){ state.ok++; state.streak++; }
+      state.answered = true;
+    } else {
+      fb.classList.add('bad');
+      fb.innerHTML = '<strong>No es correcto.</strong> ' + res.msg;
+      if(!state.answered){ state.bad++; state.streak = 0; }
+      state.answered = true;
+    }
+    updateScore();
+  }
+
+  return {render};
+}
+
+/* =============== reto final =============== */
+function makeReto(containerId){
+  const box = document.getElementById(containerId);
+  const TOTAL = 10;
+  let idx, results, q, answered;
+
+  function generators(){
+    return [
+      () => genConvToSci(currentDiff),
+      () => genSciToDec(currentDiff),
+      () => genMagnitud(currentDiff),
+      () => genOperacion(currentDiff, 'mix')
+    ];
+  }
+
+  function start(){
+    idx = 0; results = [];
+    next();
+  }
+
+  function progressHTML(){
+    let dots = '';
+    for(let i=0;i<TOTAL;i++){
+      let cls = 'dot';
+      if(i < results.length) cls += results[i] ? ' ok' : ' bad';
+      else if(i === results.length) cls += ' now';
+      dots += `<div class="${cls}"></div>`;
+    }
+    return `<div class="reto-progress" aria-label="Progreso del reto">${dots}</div>`;
+  }
+
+  function inputsHTML(){
+    if(q.fields === 'sci'){
+      return `<div class="answer-row"><label>Respuesta:</label>
+        <input type="text" id="${containerId}-m" placeholder="mantisa" autocomplete="off" inputmode="decimal" aria-label="Mantisa">
+        <span class="times-ten">× 10<sup><input type="text" class="exp-input" id="${containerId}-e" placeholder="exp." autocomplete="off" aria-label="Exponente"></sup></span></div>`;
+    }
+    if(q.fields === 'mag'){
+      return `<div class="answer-row"><label>Respuesta:</label>
+        <input type="text" id="${containerId}-m" placeholder="nueva mantisa" autocomplete="off" inputmode="decimal" aria-label="Nueva mantisa">
+        <span class="times-ten">× 10<sup>${fmtExp(q.fieldExp)}</sup></span></div>`;
+    }
+    return `<div class="answer-row"><label>Respuesta:</label>
+      <input type="text" id="${containerId}-d" placeholder="número decimal completo" style="width:280px" autocomplete="off" inputmode="decimal" aria-label="Número decimal"></div>`;
+  }
+
+  function next(){
+    if(results.length >= TOTAL){ return finish(); }
+    q = choice(generators())();
+    answered = false;
+    box.innerHTML = `
+      <p class="exercise-context" style="font-weight:600;color:var(--accent)">Pregunta ${results.length+1} de ${TOTAL} · ${q.tipo}</p>
+      ${progressHTML()}
+      ${q.promptHTML}
+      ${inputsHTML()}
+      <div class="btn-row">
+        <button class="action btn-primary" id="${containerId}-check">Comprobar</button>
+      </div>
+      <div class="feedback" id="${containerId}-fb" role="status"></div>
+      <div class="solution" id="${containerId}-sb">${q.solutionHTML}</div>`;
+    $(`#${containerId}-check`).addEventListener('click', check);
+    box.querySelectorAll('input').forEach(inp => inp.addEventListener('keydown', ev => { if(ev.key === 'Enter' && !answered) check(); }));
+    const first = box.querySelector('input'); if(first) first.focus();
+  }
+
+  function check(){
+    if(answered) return;
+    const ans = {
+      m: $(`#${containerId}-m`) ? $(`#${containerId}-m`).value : null,
+      e: $(`#${containerId}-e`) ? $(`#${containerId}-e`).value : null,
+      d: $(`#${containerId}-d`) ? $(`#${containerId}-d`).value : null
+    };
+    const res = q.check(ans);
+    answered = true;
+    results.push(!!res.ok);
+    const fb = $(`#${containerId}-fb`);
+    fb.classList.add('show', res.ok ? 'ok' : 'bad');
+    fb.innerHTML = res.ok ? '¡Correcto! ✅' : '<strong>No es correcto.</strong> ' + (res.msg || '');
+    if(!res.ok) $(`#${containerId}-sb`).classList.add('show');
+    const btn = $(`#${containerId}-check`);
+    btn.textContent = results.length >= TOTAL ? 'Ver resultado final →' : 'Siguiente pregunta →';
+    btn.removeEventListener('click', check);
+    btn.addEventListener('click', next);
+    btn.focus();
+  }
+
+  function finish(){
+    const score = results.filter(Boolean).length;
+    let msg;
+    if(score >= 9) msg = '¡Excelente! Dominas la notación científica. 🏅';
+    else if(score >= 7) msg = '¡Muy bien! Solo te falta pulir algún detalle. 💪';
+    else if(score >= 5) msg = 'Vas por buen camino. Repasa la regla del balancín y las sumas con exponentes distintos.';
+    else msg = 'No te desanimes: vuelve a la guía teórica, practica cada modo por separado y reinténtalo.';
+    box.innerHTML = `
+      ${progressHTML()}
+      <div class="reto-final">
+        <div class="nota">${score} / ${TOTAL}</div>
+        <p>${msg}</p>
+        <div class="btn-row" style="justify-content:center;margin-top:var(--s6)">
+          <button class="action btn-primary" id="${containerId}-again">Repetir el reto</button>
+        </div>
+      </div>`;
+    $(`#${containerId}-again`).addEventListener('click', start);
+  }
+
+  function renderIntro(){
+    box.innerHTML = `
+      <div class="reto-final">
+        <p style="font-size:var(--text-base);color:var(--ink)">10 preguntas aleatorias · nivel <strong id="${containerId}-lvl"></strong> · conversiones, órdenes de magnitud y operaciones.</p>
+        <div class="btn-row" style="justify-content:center;margin-top:var(--s6)">
+          <button class="action btn-primary" id="${containerId}-start">Comenzar el reto</button>
+        </div>
+      </div>`;
+    $(`#${containerId}-lvl`).textContent = {1:'Básico',2:'Intermedio',3:'Avanzado'}[currentDiff];
+    $(`#${containerId}-start`).addEventListener('click', start);
+  }
+
+  return {render: renderIntro};
+}
+
+/* =============== instancias =============== */
+const trainers = {
+  'ex-a-sci': makeTrainer('ex-a-sci', () => genConvToSci(currentDiff)),
+  'ex-a-dec': makeTrainer('ex-a-dec', () => genSciToDec(currentDiff)),
+  'ex-magnitud': makeTrainer('ex-magnitud', () => genMagnitud(currentDiff)),
+  'ex-operaciones': makeTrainer('ex-operaciones', () => genOperacion(currentDiff, $('#op-select') ? $('#op-select').value : 'mix')),
+  'ex-reto': makeReto('ex-reto')
+};
+function regenAll(){ Object.values(trainers).forEach(t => t.render()); }
+regenAll();
+$('#op-select').addEventListener('change', () => trainers['ex-operaciones'].render());
+
+/* =============== pestañas =============== */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =============== tema claro/oscuro =============== */
+let dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+function applyTheme(){
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  $('#icon-moon').style.display = dark ? 'none' : 'block';
+  $('#icon-sun').style.display = dark ? 'block' : 'none';
+}
+$('#theme-btn').addEventListener('click', () => { dark = !dark; applyTheme(); });
+applyTheme();
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://perplexity.localhost","http://localhost:1420","http://127.0.0.1:1420","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script>
+</body>
+</html>
+```

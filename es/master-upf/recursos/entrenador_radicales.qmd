@@ -1,0 +1,1544 @@
+---
+title: "Entrenador de Radicales"
+subtitle: "Entrenador de Radicales para mejorar la destreza de las operaciones matemáticas con radicales"
+filename: entrenador_radicales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Entrenador de Radicales para mejorar la destreza de las operaciones matemáticas con radicales con diversos niveles de dificultad.
+categories: [matemáticas]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Acerca de este entrenador de Radicales
+
+### Introducción
+
+El **Entrenador de Radicales** es una aplicación interactiva dirigida al alumnado de 1º de Bachillerato, centrada en la práctica del álgebra de radicales: valor numérico, potencias de exponente racional, simplificación, extracción e introducción de factores, operaciones con radicales, sumas y restas, racionalización de denominadores y ecuaciones con radicales. Funciona completamente sin conexión a internet y genera ejercicios de forma aleatoria en nueve categorías distintas, con cuatro niveles de dificultad progresiva (Fácil, Medio, Difícil y Experto). Incluye respuestas de tipo numérico, de radical estructurado (coeficiente, índice y radicando) y de opción múltiple, además de un modo examen cronometrado, un modo de repaso de fallos y un generador de exámenes imprimibles en PDF.
+
+### Finalidad
+
+La finalidad de esta herramienta es consolidar el manejo de las propiedades de los radicales y su relación con las potencias de exponente racional, proporcionando retroalimentación inmediata sobre cada respuesta y facilitando la autocorrección mediante pistas progresivas, resoluciones paso a paso y un formulario teórico de referencia. Al cubrir desde el cálculo de valores numéricos hasta la racionalización de binomios y las ecuaciones con radicales, la aplicación acompaña al alumnado en todo el recorrido del bloque de álgebra de radicales de Bachillerato.
+
+### Objetivos
+
+Esta herramienta persigue los siguientes objetivos:
+
+- Practicar el cálculo del valor numérico de radicales, incluyendo raíces de índice par e impar, radicandos negativos y fracciones.
+- Trabajar la conversión entre radicales y potencias de exponente racional, aplicando las propiedades de las potencias.
+- Entrenar la simplificación de radicales mediante la descomposición en factores primos y la reducción del índice.
+- Practicar la extracción e introducción de factores dentro y fuera del radical, tanto con números como con expresiones literales.
+- Resolver productos, cocientes y radicales anidados, incluyendo casos con distinto índice mediante reducción a índice común.
+- Sumar y restar radicales semejantes, identificando cuándo es necesario extraer factores previamente.
+- Racionalizar denominadores monómicos y binómicos, incluyendo el uso del conjugado.
+- Resolver ecuaciones con radicales y con potencias, comprobando la validez de las soluciones obtenidas.
+- Ofrecer al profesorado un panel de rendimiento por categoría, un historial exportable en CSV y exámenes imprimibles con dos modelos distintos (A y B).
+
+### Instrucciones de uso
+
+**Para el alumnado:**
+
+1. Elige una **categoría** (Valor numérico, Potencias radicales, Simplificar, Extraer factores, Introducir factores, Producto y cociente, Sumas y restas, Racionalización o Ecuaciones) y un **nivel de dificultad** (Fácil, Medio, Difícil o Experto) en las pestañas superiores.
+2. Lee el enunciado y responde según el tipo de pregunta: escribe un **valor numérico**, completa los campos de **coeficiente, índice y radicando**, o selecciona una de las **opciones múltiples** propuestas.
+3. Pulsa **Comprobar** para verificar tu respuesta; la aplicación mostrará si es correcta o incorrecta mediante una ventana emergente.
+4. Si necesitas ayuda, usa el botón **Pista** para recibir ayudas progresivas, o **Ver resolución** para consultar el desarrollo completo del ejercicio paso a paso.
+5. Consulta el botón **Teoría** en cualquier momento para repasar las reglas y propiedades de la categoría activa, o el **formulario rápido** disponible en la parte inferior de la página.
+6. Además del modo práctica libre, puedes activar el modo **Examen** (10 preguntas cronometradas) o el modo **Repasar fallos**, que muestra únicamente los ejercicios que has fallado con anterioridad.
+
+**Para el profesorado:**
+
+El panel de **rendimiento por categoría** y el **historial exportable a CSV** recogen datos objetivos de cada comprobación realizada por el alumnado. El botón **Examen imprimible (PDF)** permite generar un examen en papel con enunciados, espacio para operar y una hoja de soluciones, pudiendo configurar el nivel, el número de preguntas, el espacio de trabajo, la inclusión de pistas y pasos, y la generación de dos modelos distintos (A y B) para evitar copias entre estudiantes.
+
+```{=html}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrenador de Radicales · 1º Bachillerato</title>
+<style>
+:root{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--bg:#f4f6fb;--card:#fff;}
+*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+body{margin:0;background:var(--bg);color:var(--navy);}
+header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
+header h1{margin:0;font-size:1.3rem;}
+header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
+.container{max-width:900px;margin:20px auto;padding:0 16px;}
+.mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
+.mode-btn.active{background:var(--blue);color:#fff;}
+.mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
+.mode-btn.repaso.active{background:var(--purple);color:#fff;}
+.level-bar{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
+.level-label{font-size:.78rem;color:#667;font-weight:600;margin-right:2px;}
+.lvl{padding:6px 14px;border-radius:16px;border:2px solid #ccd6ec;background:#fff;cursor:pointer;font-weight:700;font-size:.78rem;color:#667;}
+.lvl[data-l="facil"].active{background:var(--green);border-color:var(--green);color:#fff;}
+.lvl[data-l="medio"].active{background:var(--orange);border-color:var(--orange);color:#fff;}
+.lvl[data-l="dificil"].active{background:var(--red);border-color:var(--red);color:#fff;}
+.lvl[data-l="experto"].active{background:var(--purple);border-color:var(--purple);color:#fff;}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;justify-content:center;}
+.tab{padding:9px 15px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.85rem;font-weight:600;border:2px solid var(--blue);}
+.tab.active{background:var(--blue);color:#fff;}
+.card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
+.stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.stats b{color:var(--navy);}
+.exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
+.qtag{text-align:center;font-size:.72rem;color:#8892a8;letter-spacing:.04em;text-transform:uppercase;font-weight:700;}
+.question{font-size:1.25rem;text-align:center;margin:16px 0 20px;font-weight:500;color:var(--navy);line-height:2.1;}
+.question b{color:var(--blue);font-weight:700;}
+/* --- notación matemática --- */
+.radical{white-space:nowrap;display:inline-block;margin-left:.24em;}
+.ridx{font-size:.62em;vertical-align:.45em;margin-right:-.22em;font-weight:600;}
+.radicand .radical{position:relative;top:.18em;}
+.rsign{font-size:1.08em;}
+.radicand{border-top:1.6px solid currentColor;padding:2px 4px 0 2px;margin-left:-1px;}
+.frac{display:inline-block;vertical-align:middle;text-align:center;font-size:.85em;margin:0 3px;line-height:1.15;}
+.frac .num{display:block;padding:0 4px;}
+.frac .den{display:block;padding:0 4px;border-top:1.5px solid currentColor;}
+sup{font-size:.7em;}
+sub{font-size:.7em;}
+/* --- respuestas --- */
+.ans-group{display:none;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;align-items:center;}
+.ans-group.show{display:flex;}
+.field{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.field label{font-size:.68rem;color:#7a86a0;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+input[type=text]{padding:9px 12px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:150px;text-align:center;}
+input.small{width:88px;}
+.preview{text-align:center;font-size:1.05rem;color:var(--teal);min-height:26px;margin-bottom:6px;}
+.mc-grid{display:none;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.mc-grid.show{display:grid;}
+.mc-opt{border:2px solid #ccd6ec;border-radius:10px;padding:12px 14px;background:#fff;cursor:pointer;font-size:1rem;text-align:center;line-height:1.9;}
+.mc-opt:hover{border-color:var(--blue);}
+.mc-opt.sel{border-color:var(--blue);background:#eaf1ff;}
+.mc-opt.ok{border-color:var(--green);background:#e8f7ec;}
+.mc-opt.ko{border-color:var(--red);background:#fdecea;}
+.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
+.btn-check{background:var(--blue);color:#fff;}
+.btn-hint{background:var(--orange);color:#fff;}
+.btn-steps{background:var(--purple);color:#fff;}
+.btn-teoria{background:var(--teal);color:#fff;}
+.btn-next{background:var(--navy);color:#fff;}
+button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
+.feedback{text-align:center;font-size:.9rem;margin-top:8px;min-height:20px;font-weight:600;}
+.hint-box,.steps-box,.teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 16px;border-radius:8px;margin-top:12px;font-size:.88rem;display:none;line-height:2;}
+.steps-box{background:#f1ecff;border-left:4px solid var(--purple);}
+.teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
+.teoria-box h4{margin:0 0 6px;font-size:.95rem;color:var(--teal);}
+.ref-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px;}
+.ref-table th,.ref-table td{border:1px solid #dde3f0;padding:8px;text-align:left;}
+.ref-table th{background:var(--navy);color:#fff;}
+.section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
+.error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
+.error-log th,.error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
+.error-log th{background:#e4e9f7;}
+.pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
+.pct-bar div{height:100%;border-radius:6px;}
+.export-btn{background:var(--green);color:#fff;margin-top:10px;}
+.reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
+.timer{font-weight:700;color:var(--orange);}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
+.modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:480px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+.modal.correct{border-top:8px solid var(--green);}
+.modal.incorrect{border-top:8px solid var(--red);}
+.modal-icon{font-size:2.4rem;margin-bottom:8px;}
+.modal-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
+.modal.correct .modal-title{color:var(--green);}
+.modal.incorrect .modal-title{color:var(--red);}
+.modal-text{font-size:.95rem;color:#444;margin-bottom:12px;line-height:2;}
+.modal-steps{font-size:.85rem;text-align:left;background:#f1ecff;border-left:4px solid var(--purple);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:none;line-height:2;}
+.modal button{background:var(--navy);color:#fff;width:100%;}
+.exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:620px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+.exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
+.exam-grade.aprobado{color:var(--green);}
+.exam-grade.suspenso{color:var(--red);}
+.exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
+.exam-modal th,.exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
+.exam-modal th{background:#e4e9f7;}
+.exam-modal .btn-row button{color:#fff;}
+footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
+@media(max-width:620px){.mc-grid{grid-template-columns:1fr;}.question{font-size:1.1rem;}}
+/* ---------- examen imprimible ---------- */
+.mode-btn.imprimir{border-color:#0f766e;color:#0f766e;}
+.mode-btn.imprimir.active,.mode-btn.imprimir:hover{background:#0f766e;color:#fff;}
+.print-modal{background:#fff;border-radius:14px;padding:22px 26px;max-width:460px;width:92%;box-shadow:0 18px 50px rgba(0,0,0,.3);}
+.popt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0;font-size:.9rem;color:var(--navy);}
+.popt select,.popt input[type=text]{padding:7px 10px;border:1.5px solid #ccd6ec;border-radius:8px;font-size:.9rem;font-family:inherit;min-width:190px;}
+.popt.check{justify-content:flex-start;gap:8px;}
+.popt.check label{font-weight:500;}
+#printWrap{display:none;position:fixed;inset:0;background:#e9edf6;overflow:auto;z-index:200;padding:0 0 60px;}
+#printWrap.show{display:block;}
+.print-toolbar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;font-weight:600;font-size:.9rem;}
+.print-toolbar button{background:var(--green);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;margin-left:8px;font-family:inherit;font-size:.85rem;}
+.print-toolbar button.sec{background:#37507a;}
+.sheet{background:#fff;max-width:820px;margin:22px auto;padding:38px 44px;box-shadow:0 6px 22px rgba(0,0,0,.12);color:#16233d;}
+.sheet h2{font-size:1.25rem;margin:0 0 2px;text-align:center;}
+.sheet .sub{text-align:center;font-size:.82rem;color:#5b6a86;margin-bottom:14px;}
+.sheet .idline{display:flex;gap:18px;font-size:.85rem;border:1px solid #b9c4d8;border-radius:8px;padding:10px 12px;margin-bottom:12px;}
+.sheet .idline span{flex:1;border-bottom:1px solid #8794ad;padding-bottom:2px;}
+.sheet .instr{font-size:.78rem;color:#5b6a86;border-left:3px solid var(--blue);padding:6px 10px;margin-bottom:18px;background:#f6f9ff;}
+.pq{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid;}
+.pq-head{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:2;}
+.pq-num{font-weight:700;color:var(--blue);min-width:26px;}
+.pq-pts{margin-left:auto;font-size:.72rem;color:#8892a8;white-space:nowrap;}
+.pq-hint{font-size:.75rem;color:#8a6d1f;background:#fff8e6;border-radius:6px;padding:3px 8px;margin:2px 0 0 36px;display:inline-block;}
+.pq-space{border:1px dashed #c3ccdd;border-radius:6px;margin:6px 0 14px 36px;}
+.pq-mc{margin:4px 0 10px 36px;font-size:.9rem;line-height:2.1;}
+.pq-mc div{margin:2px 0;}
+.sol-item{font-size:.86rem;line-height:1.95;padding:7px 0;border-bottom:1px solid #e6ebf5;page-break-inside:avoid;break-inside:avoid;}
+.sol-item .ans{color:#0f766e;font-weight:700;}
+.sol-steps{font-size:.8rem;color:#42506b;background:#f6f9ff;border-radius:6px;padding:6px 10px;margin-top:4px;}
+.page-break{page-break-before:always;break-before:page;}
+@media print{
+  @page{size:A4;margin:14mm 13mm;}
+  body{background:#fff!important;}
+  header,.container,.overlay,footer{display:none!important;}
+  #printWrap{display:block!important;position:static;padding:0;background:#fff;overflow:visible;}
+  .no-print{display:none!important;}
+  .sheet{box-shadow:none;margin:0;padding:0;max-width:none;}
+  .sheet+.sheet{page-break-before:always;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>√ Entrenador de Radicales</h1>
+  <p>Álgebra de radicales · 1º de Bachillerato</p>
+</header>
+<div class="container">
+  <div class="mode-bar">
+    <button class="mode-btn active" id="modePractica" onclick="setMode('practica')">📘 Práctica</button>
+    <button class="mode-btn" id="modeExamen" onclick="setMode('examen')">📝 Examen (10 preguntas)</button>
+    <button class="mode-btn repaso" id="modeRepaso" onclick="setMode('repaso')">🔁 Repasar fallos (<span id="failCount">0</span>)</button>
+    <button class="mode-btn imprimir" id="modeImprimir" onclick="openPrintDialog()">🖨️ Examen imprimible (PDF)</button>
+  </div>
+  <div class="level-bar" id="levelBar">
+    <span class="level-label">NIVEL:</span>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="card">
+    <div class="exam-progress" id="examProgress"></div>
+    <div class="stats">
+      <span>Puntuación: <b id="score">0</b> / <b id="total">0</b></span>
+      <span>Racha: <b id="streak">0</b> 🔥 (mejor: <b id="bestStreak">0</b>)</span>
+      <span>⏱ <span class="timer" id="timerVal">0s</span></span>
+    </div>
+    <div class="qtag" id="qtag"></div>
+    <div class="question" id="question">Elige una categoría para empezar</div>
+
+    <div class="ans-group" id="ansNum">
+      <input type="text" id="inNum" placeholder="Ej: 5, -3, 2/3" onkeydown="if(event.key==='Enter')checkAnswer()">
+    </div>
+    <div class="ans-group" id="ansRad2">
+      <div class="field"><label>Índice</label><input type="text" class="small" id="inIdx2" oninput="updatePreview()" onkeydown="if(event.key==='Enter')checkAnswer()"></div>
+      <div class="field"><label>Radicando</label><input type="text" class="small" id="inRad2" oninput="updatePreview()" onkeydown="if(event.key==='Enter')checkAnswer()"></div>
+    </div>
+    <div class="ans-group" id="ansRad3">
+      <div class="field"><label>Coeficiente</label><input type="text" class="small" id="inCoef" oninput="updatePreview()" onkeydown="if(event.key==='Enter')checkAnswer()"></div>
+      <div class="field"><label>Índice</label><input type="text" class="small" id="inIdx3" oninput="updatePreview()" onkeydown="if(event.key==='Enter')checkAnswer()"></div>
+      <div class="field"><label>Radicando</label><input type="text" class="small" id="inRad3" oninput="updatePreview()" onkeydown="if(event.key==='Enter')checkAnswer()"></div>
+    </div>
+    <div class="mc-grid" id="ansMC"></div>
+    <div class="preview" id="preview"></div>
+
+    <div class="btn-row">
+      <button class="btn-check" id="checkBtn" onclick="checkAnswer()">Comprobar</button>
+      <button class="btn-hint" id="hintBtn" onclick="nextHintLevel()">💡 Pista</button>
+      <button class="btn-steps" id="stepsBtn" onclick="toggleSteps()" disabled>📋 Ver resolución</button>
+      <button class="btn-teoria" id="teoriaBtn" onclick="toggleTeoria()">📚 Teoría</button>
+      <button class="btn-next" id="nextBtn" onclick="skipQuestion()">Siguiente →</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="hint-box" id="hintBox"></div>
+    <div class="steps-box" id="stepsBox"></div>
+    <div class="teoria-box" id="teoriaBox"></div>
+  </div>
+
+  <div class="card error-log">
+    <div class="section-title">📊 Rendimiento por categoría</div>
+    <table id="errorTable">
+      <thead><tr><th>Categoría</th><th>Aciertos</th><th>Intentos</th><th>%</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <button class="export-btn" onclick="exportCSV()">⬇ Exportar historial (CSV)</button>
+    <button class="reset-btn" onclick="resetState()">🗑 Reiniciar sesión</button>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📖 Formulario rápido de radicales</div>
+    <table class="ref-table" id="refTable"></table>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modalBox">
+    <div class="modal-icon" id="modalIcon"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-text" id="modalText"></div>
+    <div class="modal-steps" id="modalSteps"></div>
+    <button onclick="closeModal()">Siguiente pregunta</button>
+  </div>
+</div>
+<div class="overlay" id="examOverlay">
+  <div class="exam-modal">
+    <div class="section-title">📝 Resultado del examen</div>
+    <div class="exam-grade" id="examGrade"></div>
+    <div style="text-align:center;font-size:.85rem;color:#555;" id="examMeta"></div>
+    <table>
+      <thead><tr><th>#</th><th>Pregunta</th><th>Tu respuesta</th><th>Correcta</th><th></th></tr></thead>
+      <tbody id="examTableBody"></tbody>
+    </table>
+    <div class="btn-row">
+      <button style="background:var(--blue)" onclick="startExam()">🔄 Repetir examen</button>
+      <button style="background:var(--navy)" onclick="exitExam()">📘 Volver a práctica</button>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="printOverlay">
+  <div class="print-modal">
+    <div class="section-title">🖨️ Generar examen imprimible</div>
+    <div class="popt">
+      <label>Nivel</label>
+      <select id="pLevel">
+        <option value="facil">Fácil</option>
+        <option value="medio" selected>Medio</option>
+        <option value="dificil">Difícil</option>
+        <option value="experto">Experto</option>
+        <option value="mixto">Mixto (progresivo)</option>
+      </select>
+    </div>
+    <div class="popt">
+      <label>Nº de preguntas</label>
+      <select id="pCount"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
+    </div>
+    <div class="popt">
+      <label>Espacio para operar</label>
+      <select id="pSpace"><option value="70">Pequeño</option><option value="110" selected>Normal</option><option value="165">Amplio</option></select>
+    </div>
+    <div class="popt">
+      <label>Modelos</label>
+      <select id="pModels"><option value="1" selected>Solo modelo A</option><option value="2">Modelos A y B (distintos)</option></select>
+    </div>
+    <div class="popt check"><input type="checkbox" id="pSolutions" checked><label for="pSolutions">Incluir hoja de soluciones</label></div>
+    <div class="popt check"><input type="checkbox" id="pSteps" checked><label for="pSteps">Incluir resolución paso a paso</label></div>
+    <div class="popt check"><input type="checkbox" id="pHints"><label for="pHints">Incluir una pista bajo cada enunciado</label></div>
+    <div class="popt"><label>Centro / profesor</label><input type="text" id="pTeacher" placeholder="(opcional)"></div>
+    <div class="btn-row">
+      <button style="background:var(--blue)" onclick="buildPrintExam()">📄 Generar</button>
+      <button style="background:var(--navy)" onclick="closePrintDialog()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div id="printWrap">
+  <div class="print-toolbar no-print">
+    <span>Vista previa del examen</span>
+    <div>
+      <button onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+      <button class="sec" onclick="buildPrintExam()">🔄 Otra versión</button>
+      <button class="sec" onclick="closePrintView()">✕ Cerrar</button>
+    </div>
+  </div>
+  <div id="printSheet"></div>
+</div>
+
+<footer>Herramienta offline · No requiere conexión a internet · v2</footer>
+<script>
+/* ==========================================================
+   ENTRENADOR DE RADICALES · 1º Bachillerato
+   ========================================================== */
+
+/* ---------- notación matemática ---------- */
+function R(idx, inner){
+  const i = (idx && idx!=2) ? `<sup class="ridx">${idx}</sup>` : '';
+  return `<span class="radical">${i}<span class="rsign">√</span><span class="radicand">${inner}</span></span>`;
+}
+function F(n,d){ return `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`; }
+function P(b,e){ return `${b}<sup>${e}</sup>`; }
+
+/* ---------- utilidades numéricas ---------- */
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){const t=b;b=a%b;a=t;}return a;}
+function rnd(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function choice(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function shuffle(a){return a.slice().sort(()=>Math.random()-0.5);}
+function round2(x){return parseFloat(x.toFixed(2));}
+function factorize(n){
+  n=Math.abs(n); const f={};
+  for(let p=2;p*p<=n;p++){ while(n%p===0){ f[p]=(f[p]||0)+1; n/=p; } }
+  if(n>1) f[n]=(f[n]||0)+1;
+  return f;
+}
+function factorStr(n){
+  const f=factorize(n); const parts=[];
+  Object.keys(f).map(Number).sort((a,b)=>a-b).forEach(p=>{ parts.push(f[p]===1?`${p}`:`${p}<sup>${f[p]}</sup>`); });
+  return parts.join('·');
+}
+/* extrae factores manteniendo el índice */
+function extract(N,k){
+  const neg = N<0; const f=factorize(N);
+  let out=1, inn=1;
+  Object.keys(f).map(Number).forEach(p=>{ out*=Math.pow(p,Math.floor(f[p]/k)); inn*=Math.pow(p,f[p]%k); });
+  return {coef:(neg&&k%2===1)?-out:out, rad:inn, idx:k};
+}
+/* extrae factores y además reduce el índice */
+function simplifyFull(N,k){
+  const e=extract(N,k);
+  if(e.rad===1) return {coef:e.coef, rad:1, idx:1};
+  const f=factorize(e.rad);
+  let g=k; Object.keys(f).forEach(p=>{ g=gcd(g,f[p]); });
+  let inn=1; Object.keys(f).map(Number).forEach(p=>{ inn*=Math.pow(p,f[p]/g); });
+  return {coef:e.coef, rad:inn, idx:k/g};
+}
+/* fracción a partir de decimal (para mostrar soluciones) */
+function fracStr(x){
+  if(Number.isInteger(x)) return ''+x;
+  for(let d=2;d<=200;d++){ const n=x*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+'/'+d; }
+  return (''+parseFloat(x.toFixed(4))).replace('.',',');
+}
+function fracHtml(x){
+  if(Number.isInteger(x)) return ''+x;
+  for(let d=2;d<=200;d++){ const n=x*d; if(Math.abs(n-Math.round(n))<1e-9){ const nn=Math.round(n); return (nn<0?'−':'')+F(Math.abs(nn),d); } }
+  return (''+parseFloat(x.toFixed(4))).replace('.',',');
+}
+function coefHtml(c, radHtml){
+  if(c===1) return radHtml;
+  if(c===-1) return '−'+radHtml;
+  return (c<0?'−':'')+Math.abs(c)+radHtml;
+}
+
+/* ---------- estructura de categorías y niveles ---------- */
+const LEVELS=[{id:'facil',label:'Fácil'},{id:'medio',label:'Medio'},{id:'dificil',label:'Difícil'},{id:'experto',label:'Experto'}];
+const categories=[
+ {id:'aleatorio',label:'🎲 Aleatorio'},
+ {id:'valor',label:'Valor numérico'},
+ {id:'potencias',label:'Potencias ↔ radicales'},
+ {id:'simplificar',label:'Simplificar'},
+ {id:'extraer',label:'Extraer factores'},
+ {id:'introducir',label:'Introducir factores'},
+ {id:'operaciones',label:'Producto y cociente'},
+ {id:'sumas',label:'Sumas y restas'},
+ {id:'racionalizar',label:'Racionalización'},
+ {id:'ecuaciones',label:'Ecuaciones'}
+];
+const realCategories=categories.filter(c=>c.id!=='aleatorio');
+const catLabel={}; realCategories.forEach(c=>catLabel[c.id]=c.label);
+
+/* ---------- teoría ---------- */
+const TEORIA={
+ valor:`<h4>📚 Definición de radical</h4>
+ ${R('n','a')} = b &nbsp;⇔&nbsp; b<sup>n</sup> = a<br>
+ • Si el <b>índice es impar</b>, la raíz existe siempre (también de números negativos): ${R(3,'−27')} = −3.<br>
+ • Si el <b>índice es par</b>, solo existe para radicandos positivos, y la raíz aritmética es la positiva: ${R(2,'81')} = 9 (aunque (−9)² = 81 también).<br>
+ • Ojo con el signo delante: −${R(2,'64')} = −8, pero ${R(2,'−64')} no existe en ℝ.<br>
+ • Raíz de una fracción: ${R('n',F('a','b'))} = ${F(R('n','a'),R('n','b'))}`,
+
+ potencias:`<h4>📚 Potencias de exponente racional</h4>
+ ${R('n',P('a','m'))} = a<sup>m/n</sup> &nbsp;&nbsp;y&nbsp;&nbsp; ${F(1,R('n',P('a','m')))} = a<sup>−m/n</sup><br>
+ Ejemplos: ${R(2,P('a',3))} = a<sup>3/2</sup> &nbsp;·&nbsp; ${R(5,P(9,4))} = 9<sup>4/5</sup> &nbsp;·&nbsp; ${F(1,R(4,P(7,3)))} = 7<sup>−3/4</sup><br>
+ Con esta notación, todas las propiedades de las potencias sirven para los radicales:<br>
+ a<sup>p</sup>·a<sup>q</sup> = a<sup>p+q</sup> &nbsp;|&nbsp; a<sup>p</sup>/a<sup>q</sup> = a<sup>p−q</sup> &nbsp;|&nbsp; (a<sup>p</sup>)<sup>q</sup> = a<sup>p·q</sup><br>
+ <b>Truco:</b> pasa todo a exponente fraccionario, opera con fracciones y vuelve a radical.`,
+
+ simplificar:`<h4>📚 Radicales equivalentes y simplificación</h4>
+ <b>Propiedad fundamental:</b> ${R('n',P('a','m'))} = ${R('n·p',P('a','m·p'))} — si multiplicas (o divides) índice y exponente por el mismo número, el radical no cambia.<br>
+ <b>Simplificar</b> = dividir índice y exponentes por su máximo común divisor:<br>
+ ${R(6,27)} = ${R(6,P(3,3))} = ${R(2,3)} &nbsp;(dividimos 6 y 3 entre 3)<br>
+ ${R(8,625)} = ${R(8,P(5,4))} = ${R(2,5)}<br>
+ <b>Estrategia:</b> descompón el radicando en factores primos, extrae lo que puedas y después reduce el índice.`,
+
+ extraer:`<h4>📚 Extraer factores del radical</h4>
+ Descompón el radicando en factores primos y saca cada factor cuyo exponente sea ≥ que el índice:<br>
+ ${R('n',P('a','n·q+r'))} = a<sup>q</sup>·${R('n',P('a','r'))}<br>
+ Ejemplo: ${R(2,125)} = ${R(2,'5<sup>3</sup>')} = ${R(2,'5<sup>2</sup>·5')} = 5${R(2,5)}<br>
+ Ejemplo: ${R(3,1080)} = ${R(3,'2<sup>3</sup>·3<sup>3</sup>·5')} = 2·3·${R(3,5)} = 6${R(3,5)}<br>
+ Con letras (positivas): ${R(2,'32x<sup>3</sup>y<sup>2</sup>')} = 4xy${R(2,'2x')}<br>
+ <b>Regla práctica:</b> divide cada exponente entre el índice → el cociente sale fuera, el resto se queda dentro.`,
+
+ introducir:`<h4>📚 Introducir factores en el radical</h4>
+ Un factor que está fuera entra elevado al índice:<br>
+ a·${R('n','b')} = ${R('n',P('a','n')+'·b')}<br>
+ Ejemplos: 2${R(3,5)} = ${R(3,'2<sup>3</sup>·5')} = ${R(3,40)} &nbsp;·&nbsp; 3${R(2,6)} = ${R(2,'9·6')} = ${R(2,54)}<br>
+ Con fracciones: ${F(3,5)}${R(2,2)} = ${R(2,F(9,25)+'·2')} = ${R(2,F(18,25))}<br>
+ <b>Cuidado con el signo:</b> si el índice es par, un coeficiente negativo <u>no</u> puede entrar sin más (−2${R(2,3)} ≠ ${R(2,12)}).`,
+
+ operaciones:`<h4>📚 Producto, cociente y radicales anidados</h4>
+ <b>Mismo índice:</b> ${R('n','a')}·${R('n','b')} = ${R('n','a·b')} &nbsp;&nbsp; ${F(R('n','a'),R('n','b'))} = ${R('n',F('a','b'))}<br>
+ <b>Distinto índice:</b> reduce a índice común (mcm) usando radicales equivalentes:<br>
+ ${R(2,3)}·${R(4,3)} = ${R(4,'3<sup>2</sup>')}·${R(4,3)} = ${R(4,27)}<br>
+ <b>Radical de un radical:</b> se multiplican los índices:<br>
+ ${R('m',R('n','a'))} = ${R('m·n','a')} &nbsp; → &nbsp; ${R(3,R(4,2))} = ${R(12,2)}<br>
+ <b>Truco de exponentes:</b> ${R(2,3)}·${R(4,3)} = 3<sup>1/2</sup>·3<sup>1/4</sup> = 3<sup>3/4</sup> = ${R(4,'3<sup>3</sup>')}`,
+
+ sumas:`<h4>📚 Sumas y restas de radicales</h4>
+ Solo se pueden sumar o restar <b>radicales semejantes</b> (mismo índice y mismo radicando):<br>
+ 3${R(2,5)} + 2${R(2,5)} = 5${R(2,5)} &nbsp;&nbsp;pero&nbsp;&nbsp; ${R(2,2)} + ${R(2,3)} <u>no</u> se puede simplificar.<br>
+ <b>Estrategia:</b> extrae factores de cada radical para que aparezcan radicales semejantes:<br>
+ ${R(2,12)} + ${R(2,27)} = 2${R(2,3)} + 3${R(2,3)} = 5${R(2,3)}<br>
+ Con letras: ${R(2,'x<sup>3</sup>')} + ${R(2,'16x<sup>7</sup>')} + ${R(2,'x')} = x${R(2,'x')} + 4x<sup>3</sup>${R(2,'x')} + ${R(2,'x')} = (4x<sup>3</sup>+x+1)${R(2,'x')}<br>
+ <b>Error típico:</b> ${R(2,'a+b')} ≠ ${R(2,'a')}+${R(2,'b')}`,
+
+ racionalizar:`<h4>📚 Racionalización de denominadores</h4>
+ <b>Caso 1 — denominador ${R(2,'a')}:</b> multiplica numerador y denominador por ${R(2,'a')}<br>
+ ${F(1,R(2,5))} = ${F(R(2,5),R(2,5)+'·'+R(2,5))} = ${F(R(2,5),5)}<br>
+ <b>Caso 2 — denominador ${R('n',P('a','m'))}:</b> multiplica por ${R('n',P('a','n−m'))} para completar el exponente<br>
+ ${F(5,R(3,2))} = ${F('5·'+R(3,'2<sup>2</sup>'),R(3,'2<sup>3</sup>'))} = ${F('5'+R(3,4),2)}<br>
+ <b>Caso 3 — denominador binomio:</b> multiplica por el <b>conjugado</b> (cambia el signo central)<br>
+ ${F(2,R(2,5)+'−'+R(2,3))} = ${F('2('+R(2,5)+'+'+R(2,3)+')','('+R(2,5)+')<sup>2</sup>−('+R(2,3)+')<sup>2</sup>')} = ${F('2('+R(2,5)+'+'+R(2,3)+')',2)} = ${R(2,5)}+${R(2,3)}<br>
+ Recuerda: (a+b)(a−b) = a² − b², que elimina las raíces.`,
+
+ ecuaciones:`<h4>📚 Ecuaciones con radicales y potencias</h4>
+ <b>Tipo x<sup>n</sup> = a:</b> x = ${R('n','a')}. Si n es par hay <b>dos</b> soluciones (±) y ninguna si a &lt; 0; si n es impar hay una sola.<br>
+ x² = 16 → x = ±4 &nbsp;|&nbsp; x⁵ = 32 → x = 2 &nbsp;|&nbsp; x² + 9 = 0 → sin solución real<br>
+ <b>Tipo ${R(2,'expresión')} = ...:</b><br>
+ 1) Aísla el radical en un miembro.<br>
+ 2) Eleva los dos miembros al índice.<br>
+ 3) Resuelve la ecuación resultante.<br>
+ 4) ⚠ <b>COMPRUEBA</b> las soluciones en la ecuación original: al elevar al cuadrado pueden aparecer <b>soluciones extrañas</b>.<br>
+ Ejemplo: ${R(2,'x+7')} = x−5 → x+7 = x²−10x+25 → x²−11x+18 = 0 → x = 9 o x = 2.<br>
+ x = 2 no vale (${R(2,9)} = 3 ≠ −3). Solución: x = 9.`
+};
+
+/* ---------- formulario rápido ---------- */
+const REF=[
+ ['Definición', `${R('n','a')} = b ⇔ b<sup>n</sup> = a`],
+ ['Exponente racional', `${R('n',P('a','m'))} = a<sup>m/n</sup>`],
+ ['Radicales equivalentes', `${R('n',P('a','m'))} = ${R('n·p',P('a','m·p'))}`],
+ ['Producto', `${R('n','a')}·${R('n','b')} = ${R('n','a·b')}`],
+ ['Cociente', `${F(R('n','a'),R('n','b'))} = ${R('n',F('a','b'))}`],
+ ['Potencia', `(${R('n','a')})<sup>p</sup> = ${R('n',P('a','p'))}`],
+ ['Radical de radical', `${R('m',R('n','a'))} = ${R('m·n','a')}`],
+ ['Extraer factores', `${R('n',P('a','n·q+r'))} = a<sup>q</sup>·${R('n',P('a','r'))}`],
+ ['Introducir factores', `a·${R('n','b')} = ${R('n',P('a','n')+'·b')}`],
+ ['Racionalizar (monomio)', `${F(1,R('n',P('a','m')))} = ${F(R('n',P('a','n−m')),'a')}`],
+ ['Racionalizar (binomio)', `multiplica por el conjugado: (a+b)(a−b) = a²−b²`],
+ ['Suma de radicales', `solo si son semejantes: p${R('n','a')} + q${R('n','a')} = (p+q)${R('n','a')}`]
+];
+
+/* ==========================================================
+   GENERADORES DE PREGUNTAS
+   ========================================================== */
+
+/* ---------- 1. VALOR NUMÉRICO ---------- */
+function genValor(level){
+  if(level==='facil'){
+    const k=rnd(2,20), n=k*k;
+    return {type:'num', answer:k, tol:1e-6,
+      qHtml:`Calcula el valor de <b>${R(2,n)}</b>`,
+      hints:[`Busca el número que elevado al cuadrado da ${n}.`,
+             `${k-1}² = ${(k-1)*(k-1)}, ${k}² = ${n}.`],
+      steps:`${R(2,n)} = ${k} porque ${k}² = ${n}.`};
+  }
+  if(level==='medio'){
+    const pool=[
+      {i:3,n:8,a:2},{i:3,n:27,a:3},{i:3,n:64,a:4},{i:3,n:125,a:5},{i:3,n:216,a:6},{i:3,n:343,a:7},
+      {i:4,n:16,a:2},{i:4,n:81,a:3},{i:4,n:625,a:5},
+      {i:3,n:-27,a:-3},{i:3,n:-8,a:-2},{i:3,n:-125,a:-5}
+    ];
+    const p=choice(pool);
+    const neg = Math.random()<0.25 && p.n>0;
+    const ans = neg ? -p.a : p.a;
+    const q = neg ? `−${R(p.i,p.n)}` : R(p.i,p.n);
+    return {type:'num', answer:ans, tol:1e-6,
+      qHtml:`Calcula el valor de <b>${q}</b>`,
+      hints:[`${R(p.i,'a')} = b significa que b<sup>${p.i}</sup> = a.${p.n<0?' Como el índice es impar, la raíz de un negativo sí existe.':''}`,
+             `Prueba: ${Math.abs(p.a)}<sup>${p.i}</sup> = ${Math.abs(p.n)}.`],
+      steps:`${q} = ${ans} porque ${p.a}<sup>${p.i}</sup> = ${p.n}.${neg?'<br>El signo − de delante multiplica al resultado de la raíz.':''}`};
+  }
+  if(level==='dificil'){
+    const pool=[
+      {q:R(5,32),a:2,s:`${R(5,32)} = ${R(5,'2<sup>5</sup>')} = 2`},
+      {q:R(5,-32),a:-2,s:`${R(5,-32)} = ${R(5,'(−2)<sup>5</sup>')} = −2 (índice impar)`},
+      {q:R(5,243),a:3,s:`${R(5,243)} = ${R(5,'3<sup>5</sup>')} = 3`},
+      {q:R(6,64),a:2,s:`${R(6,64)} = ${R(6,'2<sup>6</sup>')} = 2`},
+      {q:R(2,F(1,25)),a:0.2,s:`${R(2,F(1,25))} = ${F(R(2,1),R(2,25))} = ${F(1,5)}`},
+      {q:R(3,F(8,27)),a:2/3,s:`${R(3,F(8,27))} = ${F(R(3,8),R(3,27))} = ${F(2,3)}`},
+      {q:R(4,F(16,81)),a:2/3,s:`${R(4,F(16,81))} = ${F(R(4,16),R(4,81))} = ${F(2,3)}`},
+      {q:R(2,'0,25'),a:0.5,s:`${R(2,'0,25')} = ${R(2,F(1,4))} = ${F(1,2)} = 0,5`},
+      {q:R(3,F(-1,8)),a:-0.5,s:`${R(3,F(-1,8))} = −${F(1,2)} porque (−½)³ = −⅛`}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.a, tol:1e-6,
+      qHtml:`Calcula el valor de <b>${p.q}</b> <span style="font-size:.8rem;color:#7a86a0">(puedes escribir fracciones: 2/3)</span>`,
+      hints:[`La raíz de una fracción es la fracción de las raíces: ${R('n',F('a','b'))} = ${F(R('n','a'),R('n','b'))}.`,
+             `Descompón el radicando en factores primos y busca la potencia adecuada.`],
+      steps:p.s};
+  }
+  const pool=[
+    {q:`${R(3,-8)} · ${R(2,16)}`, a:-8, s:`${R(3,-8)} · ${R(2,16)} = (−2)·4 = −8`},
+    {q:`${R(2,81)} − ${R(3,125)}`, a:4, s:`${R(2,81)} − ${R(3,125)} = 9 − 5 = 4`},
+    {q:`(${R(4,16)})<sup>3</sup>`, a:8, s:`(${R(4,16)})<sup>3</sup> = 2<sup>3</sup> = 8`},
+    {q:`${R(5,-243)} + ${R(2,49)}`, a:4, s:`${R(5,-243)} + ${R(2,49)} = −3 + 7 = 4`},
+    {q:`${F(R(3,-64),R(2,4))}`, a:-2, s:`${F(R(3,-64),R(2,4))} = ${F('−4',2)} = −2`},
+    {q:`${R(2,'2<sup>6</sup>·3<sup>2</sup>')}`, a:24, s:`${R(2,'2<sup>6</sup>·3<sup>2</sup>')} = 2<sup>3</sup>·3 = 8·3 = 24`},
+    {q:`${R(3,'2<sup>6</sup>·5<sup>3</sup>')}`, a:20, s:`${R(3,'2<sup>6</sup>·5<sup>3</sup>')} = 2<sup>2</sup>·5 = 4·5 = 20`},
+    {q:`${R(2,'0,64')} · ${R(3,1000)}`, a:8, s:`${R(2,'0,64')} · ${R(3,1000)} = 0,8 · 10 = 8`}
+  ];
+  const p=choice(pool);
+  return {type:'num', answer:p.a, tol:1e-6,
+    qHtml:`Calcula: <b>${p.q}</b>`,
+    hints:[`Calcula cada raíz por separado y después opera.`,
+           `Descompón cada radicando en factores primos: ${R('n',P('a','n'))} = a.`],
+    steps:p.s};
+}
+
+/* ---------- 2. POTENCIAS ↔ RADICALES ---------- */
+function genPotencias(level){
+  if(level==='facil'){
+    if(Math.random()<0.5){
+      const a=choice([2,3,5,7,'a','x']), m=rnd(2,5), n=choice([2,3]);
+      return {type:'num', answer:m/n, tol:1e-6,
+        qHtml:`Expresa como potencia de exponente fraccionario:<br><b>${R(n,P(a,m))} = ${a}<sup>?</sup></b><br><span style="font-size:.8rem;color:#7a86a0">Escribe el exponente como fracción (ej: 3/2)</span>`,
+        hints:[`Regla: ${R('n',P('a','m'))} = a<sup>m/n</sup>. El exponente del radicando va arriba y el índice abajo.`,
+               `Aquí m = ${m} y n = ${n}.`],
+        steps:`${R(n,P(a,m))} = ${a}<sup>${m}/${n}</sup>`};
+    }
+    const a=choice([2,3,5,7]), n=choice([2,3,4,5]);
+    const opts=[
+      {html:R(n,a), ok:true},
+      {html:R(1/1===1?n:n,P(a,n)), ok:false, why:`Eso sería a<sup>n/n</sup> = ${a}.`},
+      {html:P(a,n), ok:false, why:`Un exponente fraccionario 1/${n} indica raíz, no potencia ${n}.`},
+      {html:F(1,R(n,a)), ok:false, why:`El exponente sería negativo (−1/${n}) para que apareciera el inverso.`}
+    ];
+    return {type:'mc', options:shuffle(opts),
+      qHtml:`Expresa en forma de radical: <b>${a}<sup>1/${n}</sup></b>`,
+      hints:[`a<sup>1/n</sup> = ${R('n','a')}: el denominador del exponente es el índice de la raíz.`,
+             `Como el exponente es 1/${n}, el índice es ${n} y el radicando ${a}.`],
+      steps:`${a}<sup>1/${n}</sup> = ${R(n,a)} (denominador → índice, numerador → exponente del radicando)`};
+  }
+  if(level==='medio'){
+    const a=choice([2,3,5,7,9,'a','x']), m=rnd(2,6), n=choice([3,4,5,6]);
+    const inv=Math.random()<0.5;
+    if(inv){
+      return {type:'num', answer:-m/n, tol:1e-6,
+        qHtml:`Expresa como potencia de exponente fraccionario:<br><b>${F(1,R(n,P(a,m)))} = ${a}<sup>?</sup></b><br><span style="font-size:.8rem;color:#7a86a0">Escribe el exponente como fracción (ej: -3/4)</span>`,
+        hints:[`Primero: ${R('n',P('a','m'))} = a<sup>m/n</sup>. Después, 1/a<sup>p</sup> = a<sup>−p</sup>.`,
+               `${F(1,R(n,P(a,m)))} = ${F(1,a+'<sup>'+m+'/'+n+'</sup>')} = ${a}<sup>−${m}/${n}</sup>`],
+        steps:`${F(1,R(n,P(a,m)))} = ${F(1,a+'<sup>'+m+'/'+n+'</sup>')} = ${a}<sup>−${m}/${n}</sup>`};
+    }
+    return {type:'num', answer:m/n, tol:1e-6,
+      qHtml:`Expresa como potencia de exponente fraccionario:<br><b>${R(n,P(a,m))} = ${a}<sup>?</sup></b><br><span style="font-size:.8rem;color:#7a86a0">Escribe el exponente como fracción</span>`,
+      hints:[`Regla: ${R('n',P('a','m'))} = a<sup>m/n</sup>.`,`Aquí m = ${m} y n = ${n}.`],
+      steps:`${R(n,P(a,m))} = ${a}<sup>${m}/${n}</sup>`};
+  }
+  if(level==='dificil'){
+    const pool=[
+      {b:9,e:'5/2',v:243,s:`9<sup>5/2</sup> = (${R(2,9)})<sup>5</sup> = 3<sup>5</sup> = 243`},
+      {b:9,e:'-5/2',v:1/243,s:`9<sup>−5/2</sup> = ${F(1,'9<sup>5/2</sup>')} = ${F(1,'3<sup>5</sup>')} = ${F(1,243)}`},
+      {b:81,e:'-3/4',v:1/27,s:`81<sup>−3/4</sup> = ${F(1,'(' + R(4,81) + ')<sup>3</sup>')} = ${F(1,'3<sup>3</sup>')} = ${F(1,27)}`},
+      {b:8,e:'-2/3',v:1/4,s:`8<sup>−2/3</sup> = ${F(1,'(' + R(3,8) + ')<sup>2</sup>')} = ${F(1,'2<sup>2</sup>')} = ${F(1,4)}`},
+      {b:16,e:'3/4',v:8,s:`16<sup>3/4</sup> = (${R(4,16)})<sup>3</sup> = 2<sup>3</sup> = 8`},
+      {b:27,e:'-2/3',v:1/9,s:`27<sup>−2/3</sup> = ${F(1,'(' + R(3,27) + ')<sup>2</sup>')} = ${F(1,9)}`},
+      {b:32,e:'3/5',v:8,s:`32<sup>3/5</sup> = (${R(5,32)})<sup>3</sup> = 2<sup>3</sup> = 8`},
+      {b:25,e:'-3/2',v:1/125,s:`25<sup>−3/2</sup> = ${F(1,'(' + R(2,25) + ')<sup>3</sup>')} = ${F(1,125)}`}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.v, tol:1e-9,
+      qHtml:`Calcula el valor numérico de <b>${p.b}<sup>${p.e.replace('-','−')}</sup></b><br><span style="font-size:.8rem;color:#7a86a0">Escribe fracciones así: 1/27</span>`,
+      hints:[`a<sup>m/n</sup> = (${R('n','a')})<sup>m</sup>: primero la raíz, después la potencia.`,
+             `Si el exponente es negativo, calcula el inverso: a<sup>−p</sup> = 1/a<sup>p</sup>.`],
+      steps:p.s};
+  }
+  const pool=[
+    {q:F(1,R(5,27)), base:3, a:-3/5, s:`${F(1,R(5,27))} = ${F(1,R(5,'3<sup>3</sup>'))} = ${F(1,'3<sup>3/5</sup>')} = 3<sup>−3/5</sup>`},
+    {q:F(1,R(3,243)), base:3, a:-5/3, s:`${F(1,R(3,243))} = ${F(1,R(3,'3<sup>5</sup>'))} = ${F(1,'3<sup>5/3</sup>')} = 3<sup>−5/3</sup>`},
+    {q:R(5,P(9,4)), base:3, a:8/5, s:`${R(5,P(9,4))} = ${R(5,'(3<sup>2</sup>)<sup>4</sup>')} = ${R(5,'3<sup>8</sup>')} = 3<sup>8/5</sup>`},
+    {q:R(2,R(3,P(3,2))), base:3, a:1/3, s:`${R(2,R(3,P(3,2)))} = ${R(6,'3<sup>2</sup>')} = 3<sup>2/6</sup> = 3<sup>1/3</sup>`},
+    {q:F(1,R(4,P(2,6))), base:2, a:-3/2, s:`${F(1,R(4,P(2,6)))} = ${F(1,'2<sup>6/4</sup>')} = ${F(1,'2<sup>3/2</sup>')} = 2<sup>−3/2</sup>`},
+    {q:`${R(3,4)}·${R(2,2)}`, base:2, a:7/6, s:`${R(3,4)}·${R(2,2)} = 2<sup>2/3</sup>·2<sup>1/2</sup> = 2<sup>2/3+1/2</sup> = 2<sup>7/6</sup>`},
+    {q:F(R(2,125),R(3,5)), base:5, a:7/6, s:`${F(R(2,125),R(3,5))} = ${F('5<sup>3/2</sup>','5<sup>1/3</sup>')} = 5<sup>3/2−1/3</sup> = 5<sup>7/6</sup>`}
+  ];
+  const p=choice(pool);
+  return {type:'num', answer:p.a, tol:1e-9,
+    qHtml:`Expresa como potencia de base ${p.base}:<br><b>${p.q} = ${p.base}<sup>?</sup></b><br><span style="font-size:.8rem;color:#7a86a0">Escribe el exponente como fracción (ej: -3/5)</span>`,
+    hints:[`Escribe el radicando como potencia de ${p.base} y pasa a exponente fraccionario.`,
+           `Recuerda: ${R('n',P('a','m'))} = a<sup>m/n</sup>, ${F(1,'a<sup>p</sup>')} = a<sup>−p</sup>, y a<sup>p</sup>·a<sup>q</sup> = a<sup>p+q</sup>.`],
+    steps:p.s};
+}
+
+/* ---------- 3. SIMPLIFICAR ---------- */
+function genSimplificar(level){
+  let N,k;
+  if(level==='facil'){
+    const m=choice([2,3,5,6,7,10,11]); const c=rnd(2,7); N=c*c*m; k=2;
+  } else if(level==='medio'){
+    const pool=[[16,3],[54,3],[250,3],[32,4],[128,5],[48,4],[135,3],[162,4],[96,5],[243,4]];
+    const p=choice(pool); N=p[0]; k=p[1];
+  } else if(level==='dificil'){
+    const pool=[[27,6],[625,8],[8,6],[125,9],[81,12],[100,4],[49,6],[32,10],[64,9],[16,8],[729,12]];
+    const p=choice(pool); N=p[0]; k=p[1];
+  } else {
+    const pool=[[324,4],[1296,8],[576,6],[144,6],[216,9],[400,4],[3125,10],[2916,6],[10000,8]];
+    const p=choice(pool); N=p[0]; k=p[1];
+  }
+  const r=simplifyFull(N,k);
+  if(r.rad===1 || r.idx===1) return genSimplificar(level);
+  const ex=extract(N,k);
+  return {type:'rad3', ansCoef:r.coef, ansIdx:r.idx, ansRad:r.rad,
+    qHtml:`Simplifica al máximo: <b>${R(k,N)}</b>`,
+    hints:[`Descompón el radicando en factores primos: ${N} = ${factorStr(N)}.`,
+           `Extrae del radical los factores con exponente ≥ ${k} y después reduce el índice dividiendo índice y exponentes por su m.c.d.`],
+    steps:`${R(k,N)} = ${R(k,factorStr(N))}`
+      + (ex.coef!==1 ? `<br>Extraemos factores: = ${coefHtml(ex.coef,R(k,ex.rad))}` : '')
+      + (r.idx!==k ? `<br>Reducimos el índice (dividimos entre ${k/r.idx}): = ${coefHtml(r.coef,R(r.idx,r.rad))}` : '')
+      + `<br><b>Resultado: ${coefHtml(r.coef,R(r.idx,r.rad))}</b>`,
+    note:'Si no queda coeficiente fuera, escribe 1.'};
+}
+
+/* ---------- 4. EXTRAER FACTORES ---------- */
+const EXTRAER_VAR=[
+  {q:R(2,'32x<sup>3</sup>y<sup>2</sup>'), ok:'4xy'+R(2,'2x'),
+   ko:['4xy'+R(2,'2'),'2xy'+R(2,'8x'),'4x'+R(2,'2xy')],
+   s:`${R(2,'32x<sup>3</sup>y<sup>2</sup>')} = ${R(2,'2<sup>5</sup>x<sup>3</sup>y<sup>2</sup>')}<br>2<sup>5</sup>: sale 2<sup>2</sup>=4, queda 2 · x<sup>3</sup>: sale x, queda x · y<sup>2</sup>: sale y<br>= 4xy${R(2,'2x')}`},
+  {q:R(3,'125x<sup>7</sup>y<sup>2</sup>'), ok:'5x<sup>2</sup>'+R(3,'xy<sup>2</sup>'),
+   ko:['5x<sup>2</sup>y'+R(3,'x'),'25x<sup>2</sup>'+R(3,'xy<sup>2</sup>'),'5x<sup>3</sup>'+R(3,'y<sup>2</sup>')],
+   s:`${R(3,'125x<sup>7</sup>y<sup>2</sup>')} = ${R(3,'5<sup>3</sup>x<sup>7</sup>y<sup>2</sup>')}<br>5<sup>3</sup>: sale 5 · x<sup>7</sup>: 7 = 3·2+1 → sale x<sup>2</sup>, queda x · y<sup>2</sup>: se queda dentro<br>= 5x<sup>2</sup>${R(3,'xy<sup>2</sup>')}`},
+  {q:R(2,'50a<sup>3</sup>b<sup>4</sup>'), ok:'5ab<sup>2</sup>'+R(2,'2a'),
+   ko:['5ab<sup>2</sup>'+R(2,'2'),'25ab<sup>2</sup>'+R(2,'2a'),'5a<sup>2</sup>b'+R(2,'2a')],
+   s:`${R(2,'50a<sup>3</sup>b<sup>4</sup>')} = ${R(2,'2·5<sup>2</sup>a<sup>3</sup>b<sup>4</sup>')} = 5ab<sup>2</sup>${R(2,'2a')}`},
+  {q:R(3,'5<sup>5</sup>x<sup>6</sup>'), ok:'5x<sup>2</sup>'+R(3,'25'),
+   ko:['25x<sup>2</sup>'+R(3,'5'),'5x<sup>3</sup>'+R(3,'25'),'5x<sup>2</sup>'+R(3,'5')],
+   s:`${R(3,'5<sup>5</sup>x<sup>6</sup>')}: 5<sup>5</sup> → 5 = 3+2, sale 5 y queda 5<sup>2</sup>=25 · x<sup>6</sup> → sale x<sup>2</sup><br>= 5x<sup>2</sup>${R(3,25)}`}
+];
+const EXTRAER_EXP=[
+  {q:R(4,'x<sup>12</sup>y<sup>9</sup>z<sup>19</sup>'), ok:'x<sup>3</sup>y<sup>2</sup>z<sup>4</sup>'+R(4,'yz<sup>3</sup>'),
+   ko:['x<sup>3</sup>y<sup>2</sup>z<sup>4</sup>'+R(4,'y<sup>2</sup>z<sup>3</sup>'),'x<sup>4</sup>y<sup>2</sup>z<sup>4</sup>'+R(4,'yz<sup>3</sup>'),'x<sup>3</sup>y<sup>3</sup>z<sup>5</sup>'+R(4,'z<sup>3</sup>')],
+   s:`Dividimos cada exponente entre 4:<br>x<sup>12</sup>: 12 = 4·3 → sale x<sup>3</sup><br>y<sup>9</sup>: 9 = 4·2+1 → sale y<sup>2</sup>, queda y<br>z<sup>19</sup>: 19 = 4·4+3 → sale z<sup>4</sup>, queda z<sup>3</sup><br>= x<sup>3</sup>y<sup>2</sup>z<sup>4</sup>${R(4,'yz<sup>3</sup>')}`},
+  {q:R(4,'256x<sup>3</sup>y<sup>15</sup>'), ok:'4y<sup>3</sup>'+R(4,'x<sup>3</sup>y<sup>3</sup>'),
+   ko:['4y<sup>3</sup>'+R(4,'x<sup>3</sup>y'),'4xy<sup>3</sup>'+R(4,'y<sup>3</sup>'),'16y<sup>3</sup>'+R(4,'x<sup>3</sup>y<sup>3</sup>')],
+   s:`256 = 2<sup>8</sup> → sale 2<sup>2</sup> = 4<br>x<sup>3</sup>: 3 &lt; 4 → se queda dentro<br>y<sup>15</sup>: 15 = 4·3+3 → sale y<sup>3</sup>, queda y<sup>3</sup><br>= 4y<sup>3</sup>${R(4,'x<sup>3</sup>y<sup>3</sup>')}`},
+  {q:R(5,'729x<sup>4</sup>y<sup>22</sup>z<sup>15</sup>'), ok:'3y<sup>4</sup>z<sup>3</sup>'+R(5,'3x<sup>4</sup>y<sup>2</sup>'),
+   ko:['3y<sup>4</sup>z<sup>3</sup>'+R(5,'x<sup>4</sup>y<sup>2</sup>'),'9y<sup>4</sup>z<sup>3</sup>'+R(5,'3x<sup>4</sup>y<sup>2</sup>'),'3y<sup>4</sup>z<sup>3</sup>'+R(5,'3x<sup>4</sup>y<sup>3</sup>')],
+   s:`729 = 3<sup>6</sup>: 6 = 5+1 → sale 3, queda 3<br>x<sup>4</sup>: 4 &lt; 5 → dentro<br>y<sup>22</sup>: 22 = 5·4+2 → sale y<sup>4</sup>, queda y<sup>2</sup><br>z<sup>15</sup>: 15 = 5·3 → sale z<sup>3</sup><br>= 3y<sup>4</sup>z<sup>3</sup>${R(5,'3x<sup>4</sup>y<sup>2</sup>')}`},
+  {q:R(3,'−54a<sup>7</sup>b<sup>3</sup>'), ok:'−3a<sup>2</sup>b'+R(3,'2a'),
+   ko:['3a<sup>2</sup>b'+R(3,'2a'),'−3a<sup>2</sup>b'+R(3,'2'),'−9a<sup>2</sup>b'+R(3,'2a')],
+   s:`−54 = −2·3<sup>3</sup> → sale −3, queda 2 (índice impar: el signo sale)<br>a<sup>7</sup>: 7 = 3·2+1 → sale a<sup>2</sup>, queda a<br>b<sup>3</sup>: sale b<br>= −3a<sup>2</sup>b${R(3,'2a')}`}
+];
+function genExtraer(level){
+  if(level==='facil'||level==='medio'){
+    let N,k;
+    if(level==='facil'){
+      const pool=[125,80,50,72,98,45,200,108,175,242,300];
+      N=choice(pool); k=2;
+    } else {
+      const pool=[[250,3],[1080,3],[224,4],[720,4],[189,3],[3528,2],[486,5],[64000,3],[135,3],[512,4]];
+      const p=choice(pool); N=p[0]; k=p[1];
+    }
+    const e=extract(N,k);
+    if(e.coef===1||e.rad===1) return genExtraer(level);
+    return {type:'rad3', ansCoef:e.coef, ansIdx:k, ansRad:e.rad,
+      qHtml:`Extrae todos los factores posibles: <b>${R(k,N)}</b>`,
+      hints:[`Descompón en factores primos: ${N} = ${factorStr(N)}.`,
+             `Divide cada exponente entre ${k}: el cociente sale fuera y el resto se queda dentro.`],
+      steps:`${R(k,N)} = ${R(k,factorStr(N))} = ${coefHtml(e.coef,R(k,e.rad))}`,
+      note:'El índice no cambia al extraer factores.'};
+  }
+  const p = level==='dificil' ? choice(EXTRAER_VAR) : choice(EXTRAER_EXP);
+  const opts=[{html:p.ok,ok:true}].concat(p.ko.map(k=>({html:k,ok:false})));
+  return {type:'mc', options:shuffle(opts),
+    qHtml:`Extrae todos los factores posibles (todas las letras son positivas):<br><b>${p.q}</b>`,
+    hints:[`Descompón el número en factores primos y divide cada exponente entre el índice.`,
+           `El cociente de la división sale fuera del radical; el resto se queda dentro.`],
+    steps:p.s};
+}
+
+/* ---------- 5. INTRODUCIR FACTORES ---------- */
+const INTRO_VAR=[
+  {q:'a'+R(2,F('4a−1','2a')), ok:R(2,F('a(4a−1)',2)),
+   ko:[R(2,F('4a−1',2)),R(2,F('a<sup>2</sup>(4a−1)','2')),R(2,'a(4a−1)')],
+   s:`a${R(2,F('4a−1','2a'))} = ${R(2,'a<sup>2</sup>·'+F('4a−1','2a'))} = ${R(2,F('a(4a−1)',2))}`},
+  {q:'−a<sup>2</sup>'+R(3,'a'), ok:'−'+R(3,'a<sup>7</sup>'),
+   ko:[R(3,'−a<sup>7</sup>')+' con signo +','−'+R(3,'a<sup>6</sup>'),'−'+R(3,'a<sup>5</sup>')],
+   s:`−a<sup>2</sup>${R(3,'a')} = −${R(3,'(a<sup>2</sup>)<sup>3</sup>·a')} = −${R(3,'a<sup>6</sup>·a')} = −${R(3,'a<sup>7</sup>')}`},
+  {q:F(2,'a')+R(2,F('3a',8)), ok:R(2,F(3,'2a')),
+   ko:[R(2,F('3a','2a<sup>2</sup>')),R(2,F(3,'2a<sup>2</sup>')),R(2,F('12a','8a'))],
+   s:`${F(2,'a')}${R(2,F('3a',8))} = ${R(2,F(4,'a<sup>2</sup>')+'·'+F('3a',8))} = ${R(2,F('12a','8a<sup>2</sup>'))} = ${R(2,F(3,'2a'))}`}
+];
+function genIntroducir(level){
+  if(level==='experto' && Math.random()<0.5){
+    const p=choice(INTRO_VAR);
+    const opts=[{html:p.ok,ok:true}].concat(p.ko.map(k=>({html:k,ok:false})));
+    return {type:'mc', options:shuffle(opts),
+      qHtml:`Introduce el factor dentro del radical y simplifica (letras positivas):<br><b>${p.q}</b>`,
+      hints:[`El factor de fuera entra elevado al índice: a·${R('n','b')} = ${R('n',P('a','n')+'·b')}.`,
+             `Después simplifica la fracción del radicando.`],
+      steps:p.s};
+  }
+  let c,k,r,ansRad;
+  if(level==='facil'){
+    const pool=[[2,3,5],[3,2,6],[5,2,2],[2,2,7],[4,2,3],[3,3,2],[2,3,3],[5,2,3]];
+    const p=choice(pool); c=p[0]; k=p[1]; r=p[2];
+  } else if(level==='medio'){
+    const pool=[[3,5,15],[4,4,20],[2,3,7],[3,4,2],[2,6,3],[2,5,3],[3,3,4],[2,4,5]];
+    const p=choice(pool); c=p[0]; k=p[1]; r=p[2];
+  } else if(level==='dificil'){
+    const pool=[[3/5,2,2],[1/2,4,6],[5,3,1/5],[3/5,3,2/3],[2/3,3,7],[1/2,2,8],[2/3,2,6],[1/4,2,32]];
+    const p=choice(pool); c=p[0]; k=p[1]; r=p[2];
+  } else {
+    const pool=[[8,4,8],[2,3,1/4],[3/2,4,16/9],[5,4,2/25],[4,3,3/8],[6,3,1/9]];
+    const p=choice(pool); c=p[0]; k=p[1]; r=p[2];
+  }
+  ansRad = Math.pow(c,k)*r;
+  const cH = fracHtml(c), rH = fracHtml(r);
+  return {type:'num', answer:ansRad, tol:1e-9,
+    qHtml:`Introduce el factor dentro del radical:<br><b>${cH}${R(k,rH)} = ${R(k,'?')}</b><br><span style="font-size:.8rem;color:#7a86a0">Escribe solo el radicando (admite fracciones: 18/25)</span>`,
+    hints:[`El factor entra elevado al índice: a·${R('n','b')} = ${R('n',P('a','n')+'·b')}.`,
+           `Calcula (${fracStr(c)})<sup>${k}</sup> = ${fracStr(Math.pow(c,k))} y multiplícalo por ${fracStr(r)}.`],
+    steps:`${cH}${R(k,rH)} = ${R(k,'('+fracStr(c)+')<sup>'+k+'</sup>·'+fracStr(r))} = ${R(k,fracStr(Math.pow(c,k))+'·'+fracStr(r))} = ${R(k,fracHtml(ansRad))}`};
+}
+
+/* ---------- 6. PRODUCTO Y COCIENTE ---------- */
+const OPER_MC=[
+  {q:`${R(2,R(4,F('x','5y')))} : ${R(2,R(4,F('3x','y<sup>2</sup>')))}`, ok:R(8,F('y',15)),
+   ko:[R(8,F('y','15x')),R(4,F('y',15)),R(8,F('3x','5y'))],
+   s:`${R(2,R(4,'A'))} = ${R(8,'A')}, así que dividimos los radicandos con índice 8:<br>
+      ${R(8,F('x','5y'))} : ${R(8,F('3x','y<sup>2</sup>'))} = ${R(8,F('x','5y')+' · '+F('y<sup>2</sup>','3x'))} = ${R(8,F('xy<sup>2</sup>','15xy'))} = ${R(8,F('y',15))}`},
+  {q:`${F(R(4,'x<sup>3</sup>y<sup>3</sup>')+'·'+R(3,'x<sup>4</sup>y<sup>5</sup>'),R(6,'x<sup>5</sup>y<sup>4</sup>'))}`, ok:'xy'+R(4,'xy<sup>3</sup>'),
+   ko:['xy'+R(4,'x<sup>3</sup>y'),'x<sup>2</sup>y'+R(4,'xy<sup>3</sup>'),'xy'+R(12,'x<sup>3</sup>y<sup>9</sup>')],
+   s:`Índice común: m.c.m.(4,3,6) = 12<br>
+      = ${R(12,F('(x<sup>3</sup>y<sup>3</sup>)<sup>3</sup>·(x<sup>4</sup>y<sup>5</sup>)<sup>4</sup>','(x<sup>5</sup>y<sup>4</sup>)<sup>2</sup>'))} = ${R(12,F('x<sup>25</sup>y<sup>29</sup>','x<sup>10</sup>y<sup>8</sup>'))} = ${R(12,'x<sup>15</sup>y<sup>21</sup>')}<br>
+      Extraemos: 15 = 12+3, 21 = 12+9 → = xy${R(12,'x<sup>3</sup>y<sup>9</sup>')} = xy${R(4,'xy<sup>3</sup>')}`},
+  {q:`${R(2,F(3,'x'))} · ${R(3,F('x<sup>2</sup>',8))} · ${R(4,F(9,5))}`, ok:F(3,2)+R(12,F('x<sup>2</sup>','5<sup>3</sup>')),
+   ko:[F(3,2)+R(12,F('x<sup>2</sup>','5<sup>2</sup>')),F(2,3)+R(12,F('x<sup>2</sup>','5<sup>3</sup>')),R(12,F('3x<sup>2</sup>','5<sup>3</sup>'))],
+   s:`Índice común 12:<br>= ${R(12,'('+F(3,'x')+')<sup>6</sup>·('+F('x<sup>2</sup>',8)+')<sup>4</sup>·('+F(9,5)+')<sup>3</sup>')} = ${R(12,F('3<sup>6</sup>·x<sup>8</sup>·3<sup>6</sup>','x<sup>6</sup>·2<sup>12</sup>·5<sup>3</sup>'))} = ${R(12,F('3<sup>12</sup>·x<sup>2</sup>','2<sup>12</sup>·5<sup>3</sup>'))} = ${F(3,2)}${R(12,F('x<sup>2</sup>','5<sup>3</sup>'))}`},
+  {q:`(${R(3,'a<sup>6</sup>·b<sup>9</sup>')})<sup>2</sup>`, ok:'a<sup>4</sup>b<sup>6</sup>',
+   ko:['a<sup>4</sup>b<sup>9</sup>','a<sup>12</sup>b<sup>18</sup>','a<sup>2</sup>b<sup>3</sup>'],
+   s:`${R(3,'a<sup>6</sup>b<sup>9</sup>')} = a<sup>6/3</sup>b<sup>9/3</sup> = a<sup>2</sup>b<sup>3</sup><br>(a<sup>2</sup>b<sup>3</sup>)<sup>2</sup> = a<sup>4</sup>b<sup>6</sup>`},
+  {q:`(${R(12,'(x+1)<sup>3</sup>')})<sup>2</sup>`, ok:R(2,'x+1'),
+   ko:[R(12,'(x+1)<sup>6</sup>')+' (sin simplificar el índice)',R(6,'x+1'),R(4,'(x+1)<sup>3</sup>')],
+   s:`(${R(12,'(x+1)<sup>3</sup>')})<sup>2</sup> = ${R(12,'(x+1)<sup>6</sup>')} = (x+1)<sup>6/12</sup> = (x+1)<sup>1/2</sup> = ${R(2,'x+1')}`}
+];
+function genOperaciones(level){
+  if(level==='experto' && Math.random()<0.5){
+    const p=choice(OPER_MC);
+    const opts=[{html:p.ok,ok:true}].concat(p.ko.map(k=>({html:k,ok:false})));
+    return {type:'mc', options:shuffle(opts),
+      qHtml:`Opera y simplifica (letras positivas):<br><b>${p.q}</b>`,
+      hints:[`Pasa todo a exponente fraccionario o reduce a índice común (m.c.m. de los índices).`,
+             `Recuerda: ${R('m',R('n','a'))} = ${R('m·n','a')} y ${R('n',P('a','m'))} = a<sup>m/n</sup>.`],
+      steps:p.s};
+  }
+  let pool;
+  if(level==='facil'){
+    pool=[
+      {q:`${R(2,2)} · ${R(2,5)}`, i:2, r:10, s:`${R(2,2)}·${R(2,5)} = ${R(2,'2·5')} = ${R(2,10)}`},
+      {q:`${R(2,3)} · ${R(2,6)}`, i:2, r:18, s:`${R(2,3)}·${R(2,6)} = ${R(2,18)}`},
+      {q:`${R(2,7)} · ${R(2,3)}`, i:2, r:21, s:`${R(2,7)}·${R(2,3)} = ${R(2,21)}`},
+      {q:`${F(R(2,30),R(2,5))}`, i:2, r:6, s:`${F(R(2,30),R(2,5))} = ${R(2,F(30,5))} = ${R(2,6)}`},
+      {q:`${F(R(2,24),R(2,3))}`, i:2, r:8, s:`${F(R(2,24),R(2,3))} = ${R(2,8)}`},
+      {q:`${R(3,4)} · ${R(3,6)}`, i:3, r:24, s:`${R(3,4)}·${R(3,6)} = ${R(3,24)}`},
+      {q:`${F(R(3,40),R(3,5))}`, i:3, r:8, s:`${F(R(3,40),R(3,5))} = ${R(3,8)}`}
+    ];
+  } else if(level==='medio'){
+    pool=[
+      {q:`${R(2,3)} · ${R(4,3)}`, i:4, r:27, s:`${R(2,3)}·${R(4,3)} = ${R(4,'3<sup>2</sup>')}·${R(4,3)} = ${R(4,27)}<br>(o bien 3<sup>1/2</sup>·3<sup>1/4</sup> = 3<sup>3/4</sup>)`},
+      {q:`${R(3,2)} · ${R(2,2)}`, i:6, r:32, s:`2<sup>1/3</sup>·2<sup>1/2</sup> = 2<sup>5/6</sup> = ${R(6,'2<sup>5</sup>')} = ${R(6,32)}`},
+      {q:`${F(R(2,5),R(3,5))}`, i:6, r:5, s:`5<sup>1/2</sup>/5<sup>1/3</sup> = 5<sup>1/6</sup> = ${R(6,5)}`},
+      {q:`${R(3,9)} · ${R(2,3)}`, i:6, r:2187, s:`3<sup>2/3</sup>·3<sup>1/2</sup> = 3<sup>7/6</sup> = ${R(6,'3<sup>7</sup>')} = ${R(6,2187)}`},
+      {q:`${R(3,F(2,3))} · ${R(3,F(3,4))}`, i:3, r:0.5, s:`${R(3,F(2,3))}·${R(3,F(3,4))} = ${R(3,F(2,3)+'·'+F(3,4))} = ${R(3,F(6,12))} = ${R(3,F(1,2))}`},
+      {q:`${F(R(2,F(5,3)),R(2,F(2,3)))}`, i:2, r:2.5, s:`${R(2,F(5,3))} : ${R(2,F(2,3))} = ${R(2,F(5,3)+' : '+F(2,3))} = ${R(2,F(15,6))} = ${R(2,F(5,2))}`}
+    ];
+  } else if(level==='dificil'){
+    pool=[
+      {q:`${R(5,'3'+R(2,5))}`, i:10, r:45, s:`3${R(2,5)} = ${R(2,'9·5')} = ${R(2,45)}<br>${R(5,R(2,45))} = ${R(10,45)}`},
+      {q:`${R(2,F(R(2,2),R(3,2)))}`, i:12, r:2, s:`${F(R(2,2),R(3,2))} = 2<sup>1/2−1/3</sup> = 2<sup>1/6</sup><br>${R(2,'2<sup>1/6</sup>')} = 2<sup>1/12</sup> = ${R(12,2)}`},
+      {q:`${R(2,R(2,R(2,3)))}`, i:8, r:3, s:`${R(2,R(2,R(2,3)))} = ${R(8,3)} (se multiplican los índices: 2·2·2 = 8)`},
+      {q:`${R(3,R(4,2))}`, i:12, r:2, s:`${R(3,R(4,2))} = ${R(12,2)} (3·4 = 12)`},
+      {q:`${F(1,R(2,R(2,5)))}`, i:4, r:0.2, s:`${R(2,R(2,5))} = ${R(4,5)}<br>${F(1,R(4,5))} = ${R(4,F(1,5))}`},
+      {q:`${R(2,'3·'+R(3,3))}`, i:3, r:9, s:`3·3<sup>1/3</sup> = 3<sup>4/3</sup><br>${R(2,'3<sup>4/3</sup>')} = 3<sup>2/3</sup> = ${R(3,'3<sup>2</sup>')} = ${R(3,9)}`},
+      {q:`${R(4,R(2,5))}`, i:8, r:5, s:`${R(4,R(2,5))} = ${R(8,5)}`}
+    ];
+  } else {
+    pool=[
+      {q:`${R(2,2)} · ${R(3,3)}`, i:6, r:72, s:`2<sup>1/2</sup>·3<sup>1/3</sup> = ${R(6,'2<sup>3</sup>')}·${R(6,'3<sup>2</sup>')} = ${R(6,'8·9')} = ${R(6,72)}`},
+      {q:`${R(2,3)} · ${R(3,2)}`, i:6, r:108, s:`${R(6,'3<sup>3</sup>')}·${R(6,'2<sup>2</sup>')} = ${R(6,'27·4')} = ${R(6,108)}`},
+      {q:`${F(R(3,2),R(2,3))}`, i:6, r:4/27, s:`${F('2<sup>1/3</sup>','3<sup>1/2</sup>')} = ${F(R(6,'2<sup>2</sup>'),R(6,'3<sup>3</sup>'))} = ${R(6,F(4,27))}`},
+      {q:`${R(2,2)} · ${R(3,5)} · ${R(6,3)}`, i:6, r:600, s:`${R(6,'2<sup>3</sup>')}·${R(6,'5<sup>2</sup>')}·${R(6,3)} = ${R(6,'8·25·3')} = ${R(6,600)}`},
+      {q:`${R(4,5)} · ${R(2,2)}`, i:4, r:20, s:`${R(4,5)}·${R(4,'2<sup>2</sup>')} = ${R(4,'5·4')} = ${R(4,20)}`},
+      {q:`${R(3,R(2,F(1,2)))}`, i:6, r:0.5, s:`${R(3,R(2,F(1,2)))} = ${R(6,F(1,2))}`}
+    ];
+  }
+  const p=choice(pool);
+  return {type:'rad2', ansIdx:p.i, ansRad:p.r,
+    qHtml:`Expresa con un solo radical del <b>menor índice posible</b>:<br><b>${p.q}</b>`,
+    hints:[`Pasa cada radical a exponente fraccionario: ${R('n',P('a','m'))} = a<sup>m/n</sup>.`,
+           `Suma o resta los exponentes (índice común = m.c.m. de los índices) y vuelve a escribirlo como radical.`],
+    steps:p.s,
+    note:'No hace falta extraer factores del radicando.'};
+}
+
+/* ---------- 7. SUMAS Y RESTAS ---------- */
+function genSumas(level){
+  if(level==='facil'){
+    const r=choice([2,3,5,6,7,10]); const a=rnd(2,9), b=rnd(2,9);
+    const minus=Math.random()<0.4;
+    const ans = minus ? a-b : a+b;
+    if(minus && ans===0) return genSumas(level);
+    return {type:'num', answer:ans, tol:1e-9,
+      qHtml:`Calcula: <b>${a}${R(2,r)} ${minus?'−':'+'} ${b}${R(2,r)} = ? · ${R(2,r)}</b><br><span style="font-size:.8rem;color:#7a86a0">Escribe solo el coeficiente</span>`,
+      hints:[`Son radicales semejantes (mismo índice y mismo radicando): se suman los coeficientes.`,
+             `${a} ${minus?'−':'+'} ${b} = ${ans}`],
+      steps:`${a}${R(2,r)} ${minus?'−':'+'} ${b}${R(2,r)} = (${a} ${minus?'−':'+'} ${b})${R(2,r)} = ${ans}${R(2,r)}`};
+  }
+  if(level==='medio'){
+    const pool=[
+      {t:[12,27], sg:[1,1], base:3, s:`${R(2,12)} = 2${R(2,3)} ; ${R(2,27)} = 3${R(2,3)}<br>2+3 = 5 → 5${R(2,3)}`, a:5},
+      {t:[50,8], sg:[1,-1], base:2, s:`${R(2,50)} = 5${R(2,2)} ; ${R(2,8)} = 2${R(2,2)}<br>5−2 = 3 → 3${R(2,2)}`, a:3},
+      {t:[45,20], sg:[1,1], base:5, s:`${R(2,45)} = 3${R(2,5)} ; ${R(2,20)} = 2${R(2,5)}<br>3+2 = 5 → 5${R(2,5)}`, a:5},
+      {t:[98,32], sg:[1,-1], base:2, s:`${R(2,98)} = 7${R(2,2)} ; ${R(2,32)} = 4${R(2,2)}<br>7−4 = 3 → 3${R(2,2)}`, a:3},
+      {t:[75,48], sg:[1,-1], base:3, s:`${R(2,75)} = 5${R(2,3)} ; ${R(2,48)} = 4${R(2,3)}<br>5−4 = 1 → ${R(2,3)}`, a:1},
+      {t:[18,72], sg:[1,1], base:2, s:`${R(2,18)} = 3${R(2,2)} ; ${R(2,72)} = 6${R(2,2)}<br>3+6 = 9 → 9${R(2,2)}`, a:9}
+    ];
+    const p=choice(pool);
+    const q=`${R(2,p.t[0])} ${p.sg[1]>0?'+':'−'} ${R(2,p.t[1])}`;
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Calcula: <b>${q} = ? · ${R(2,p.base)}</b><br><span style="font-size:.8rem;color:#7a86a0">Escribe solo el coeficiente</span>`,
+      hints:[`No son semejantes tal cual: extrae factores de cada radical para que aparezca ${R(2,p.base)}.`,
+             `Descompón: ${p.t[0]} = ${factorStr(p.t[0])} y ${p.t[1]} = ${factorStr(p.t[1])}.`],
+      steps:p.s};
+  }
+  if(level==='dificil'){
+    const pool=[
+      {q:`${R(2,8)} + ${R(2,18)} − ${R(2,32)}`, base:2, a:1, s:`2${R(2,2)} + 3${R(2,2)} − 4${R(2,2)} = (2+3−4)${R(2,2)} = ${R(2,2)}`},
+      {q:`2${R(2,45)} − ${R(2,20)} + ${R(2,80)}`, base:5, a:8, s:`2·3${R(2,5)} − 2${R(2,5)} + 4${R(2,5)} = (6−2+4)${R(2,5)} = 8${R(2,5)}`},
+      {q:`${R(2,27)} + ${R(2,48)} − ${R(2,75)}`, base:3, a:2, s:`3${R(2,3)} + 4${R(2,3)} − 5${R(2,3)} = 2${R(2,3)}`},
+      {q:`5${R(2,12)} − 2${R(2,75)} + ${R(2,27)}`, base:3, a:3, s:`5·2${R(2,3)} − 2·5${R(2,3)} + 3${R(2,3)} = (10−10+3)${R(2,3)} = 3${R(2,3)}`},
+      {q:`${R(3,54)} + ${R(3,16)}`, base:2, idx:3, a:5, s:`${R(3,54)} = 3${R(3,2)} ; ${R(3,16)} = 2${R(3,2)}<br>3+2 = 5 → 5${R(3,2)}`},
+      {q:`${R(3,24)} − ${R(3,81)} + ${R(3,375)}`, base:3, idx:3, a:4, s:`2${R(3,3)} − 3${R(3,3)} + 5${R(3,3)} = 4${R(3,3)}`}
+    ];
+    const p=choice(pool); const idx=p.idx||2;
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Calcula: <b>${p.q} = ? · ${R(idx,p.base)}</b><br><span style="font-size:.8rem;color:#7a86a0">Escribe solo el coeficiente</span>`,
+      hints:[`Extrae factores de cada radical hasta que todos tengan radicando ${p.base}.`,
+             `Después suma y resta los coeficientes.`],
+      steps:p.s};
+  }
+  if(Math.random()<0.5){
+    const pool=[
+      {q:`3${R(2,'8a')} − ${R(2,'2a')} + ${R(2,'50a')}`, base:'2a', a:10, s:`3·2${R(2,'2a')} − ${R(2,'2a')} + 5${R(2,'2a')} = (6−1+5)${R(2,'2a')} = 10${R(2,'2a')}`},
+      {q:`${R(2,'12x')} + ${R(2,'27x')} − ${R(2,'75x')}`, base:'3x', a:0, s:`2${R(2,'3x')} + 3${R(2,'3x')} − 5${R(2,'3x')} = 0`},
+      {q:`${R(2,'18b<sup>3</sup>')} + b${R(2,'32b')}`, base:'2b', a:7, s:`${R(2,'18b<sup>3</sup>')} = 3b${R(2,'2b')} ; b${R(2,'32b')} = 4b${R(2,'2b')}<br>3b+4b = 7b → 7b${R(2,'2b')}`, coefTxt:'b'}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Calcula (letras positivas): <b>${p.q} = ? · ${p.coefTxt||''}${R(2,p.base)}</b><br><span style="font-size:.8rem;color:#7a86a0">Escribe solo el coeficiente numérico</span>`,
+      hints:[`Extrae factores de cada radical para obtener radicales semejantes con radicando ${p.base}.`,
+             `Después suma y resta los coeficientes.`],
+      steps:p.s};
+  }
+  const pool=[
+    {q:`${R(2,'x<sup>3</sup>')} + ${R(2,'16x<sup>7</sup>')} + ${R(2,'x')}`, ok:'(4x<sup>3</sup>+x+1)'+R(2,'x'),
+     ko:['(4x<sup>3</sup>+x)'+R(2,'x'),'(16x<sup>3</sup>+x+1)'+R(2,'x'),'(4x<sup>4</sup>+x+1)'+R(2,'x')],
+     s:`${R(2,'x<sup>3</sup>')} = x${R(2,'x')} ; ${R(2,'16x<sup>7</sup>')} = 4x<sup>3</sup>${R(2,'x')} ; ${R(2,'x')} = 1·${R(2,'x')}<br>Sumamos coeficientes: (x + 4x<sup>3</sup> + 1)${R(2,'x')} = (4x<sup>3</sup>+x+1)${R(2,'x')}`},
+    {q:`${R(2,'9a<sup>3</sup>')} − ${R(2,'a<sup>5</sup>')}`, ok:'(3a−a<sup>2</sup>)'+R(2,'a'),
+     ko:['(3a−a<sup>3</sup>)'+R(2,'a'),'(9a−a<sup>2</sup>)'+R(2,'a'),'(3a<sup>2</sup>−a)'+R(2,'a')],
+     s:`${R(2,'9a<sup>3</sup>')} = 3a${R(2,'a')} ; ${R(2,'a<sup>5</sup>')} = a<sup>2</sup>${R(2,'a')}<br>= (3a − a<sup>2</sup>)${R(2,'a')}`}
+  ];
+  const p=choice(pool);
+  const opts=[{html:p.ok,ok:true}].concat(p.ko.map(k=>({html:k,ok:false})));
+  return {type:'mc', options:shuffle(opts),
+    qHtml:`Opera y simplifica (letras positivas):<br><b>${p.q}</b>`,
+    hints:[`Extrae factores de cada radical para obtener radicales semejantes.`,
+           `Saca factor común el radical y suma los coeficientes.`],
+    steps:p.s};
+}
+
+/* ---------- 8. RACIONALIZACIÓN ---------- */
+const RACIONAL={
+ facil:[
+  {q:F(1,R(2,5)), ok:F(R(2,5),5), ko:[F(R(2,5),25),F(5,R(2,5)),R(2,5)],
+   s:`${F(1,R(2,5))} = ${F('1·'+R(2,5),R(2,5)+'·'+R(2,5))} = ${F(R(2,5),5)}`},
+  {q:F(3,R(2,2)), ok:F('3'+R(2,2),2), ko:[F('3'+R(2,2),4),F('3'+R(2,2),'2'+R(2,2)),F(R(2,2),2)],
+   s:`${F(3,R(2,2))} = ${F('3'+R(2,2),R(2,2)+'·'+R(2,2))} = ${F('3'+R(2,2),2)}`},
+  {q:F(6,R(2,3)), ok:'2'+R(2,3), ko:[F('6'+R(2,3),9),F('2'+R(2,3),3),'3'+R(2,3)],
+   s:`${F(6,R(2,3))} = ${F('6'+R(2,3),3)} = 2${R(2,3)}`},
+  {q:F(5,R(2,5)), ok:R(2,5), ko:[F(R(2,5),5),'5'+R(2,5),F('5'+R(2,5),25)],
+   s:`${F(5,R(2,5))} = ${F('5'+R(2,5),5)} = ${R(2,5)}`},
+  {q:F(2,R(2,8)), ok:F(R(2,2),2), ko:[F('2'+R(2,8),8),F(R(2,8),4),F(R(2,2),4)],
+   s:`${R(2,8)} = 2${R(2,2)} → ${F(2,'2'+R(2,2))} = ${F(1,R(2,2))} = ${F(R(2,2),2)}`}
+ ],
+ medio:[
+  {q:F(5,R(3,2)), ok:F('5'+R(3,4),2), ko:[F('5'+R(3,2),2),F('5'+R(3,4),4),F(R(3,4),2)],
+   s:`Multiplicamos por ${R(3,'2<sup>2</sup>')} para completar 2<sup>3</sup>:<br>${F(5,R(3,2))} = ${F('5'+R(3,'2<sup>2</sup>'),R(3,'2<sup>3</sup>'))} = ${F('5'+R(3,4),2)}`},
+  {q:F(2,R(3,3)), ok:F('2'+R(3,9),3), ko:[F('2'+R(3,3),3),F('2'+R(3,9),9),F(R(3,9),3)],
+   s:`${F(2,R(3,3))} = ${F('2'+R(3,'3<sup>2</sup>'),R(3,'3<sup>3</sup>'))} = ${F('2'+R(3,9),3)}`},
+  {q:F(1,R(4,8)), ok:F(R(4,2),2), ko:[F(R(4,8),8),F(R(4,2),4),F(R(4,4),2)],
+   s:`8 = 2<sup>3</sup>, falta un 2 para llegar a 2<sup>4</sup>:<br>${F(1,R(4,'2<sup>3</sup>'))} = ${F(R(4,2),R(4,'2<sup>4</sup>'))} = ${F(R(4,2),2)}`},
+  {q:F(3,R(5,'2<sup>2</sup>')), ok:F('3'+R(5,8),2), ko:[F('3'+R(5,4),2),F('3'+R(5,8),8),F(R(5,8),2)],
+   s:`Faltan 3 factores 2 para llegar a 2<sup>5</sup>:<br>${F(3,R(5,'2<sup>2</sup>'))} = ${F('3'+R(5,'2<sup>3</sup>'),R(5,'2<sup>5</sup>'))} = ${F('3'+R(5,8),2)}`}
+ ],
+ dificil:[
+  {q:F(2,R(2,5)+' − '+R(2,3)), ok:R(2,5)+' + '+R(2,3), ko:[R(2,5)+' − '+R(2,3),F('2('+R(2,5)+' + '+R(2,3)+')',8),F(R(2,5)+' + '+R(2,3),2)],
+   s:`Multiplicamos por el conjugado ${R(2,5)}+${R(2,3)}:<br>${F('2('+R(2,5)+'+'+R(2,3)+')','5 − 3')} = ${F('2('+R(2,5)+'+'+R(2,3)+')',2)} = ${R(2,5)}+${R(2,3)}`},
+  {q:F(3,R(2,7)+' + 2'), ok:R(2,7)+' − 2', ko:[R(2,7)+' + 2',F('3('+R(2,7)+' − 2)',11),F('3('+R(2,7)+' − 2)',5)],
+   s:`Conjugado: ${R(2,7)}−2 → denominador (${R(2,7)})²−2² = 7−4 = 3<br>${F('3('+R(2,7)+'−2)',3)} = ${R(2,7)}−2`},
+  {q:F(1,R(2,3)+' − '+R(2,2)), ok:R(2,3)+' + '+R(2,2), ko:[R(2,3)+' − '+R(2,2),F(R(2,3)+' + '+R(2,2),5),F(1,R(2,3)+' + '+R(2,2))],
+   s:`Denominador: (${R(2,3)})²−(${R(2,2)})² = 3−2 = 1<br>Resultado: ${R(2,3)}+${R(2,2)}`},
+  {q:F('x + 3y',R(2,'x')+' − '+R(2,'2y')), ok:F('(x+3y)('+R(2,'x')+' + '+R(2,'2y')+')','x − 2y'),
+   ko:[F('(x+3y)('+R(2,'x')+' − '+R(2,'2y')+')','x − 2y'),F('(x+3y)('+R(2,'x')+' + '+R(2,'2y')+')','x + 2y'),F('(x+3y)('+R(2,'x')+' + '+R(2,'2y')+')','x<sup>2</sup> − 2y<sup>2</sup>')],
+   s:`Multiplicamos por el conjugado ${R(2,'x')}+${R(2,'2y')}:<br>Denominador: (${R(2,'x')})² − (${R(2,'2y')})² = x − 2y<br>= ${F('(x+3y)('+R(2,'x')+'+'+R(2,'2y')+')','x − 2y')}`}
+ ],
+ experto:[
+  {q:F('3'+R(2,3)+' + 2'+R(2,2),R(2,3)+' + '+R(2,2)), ok:'5 − '+R(2,6),
+   ko:['5 + '+R(2,6),'13 − '+R(2,6),F('5 − '+R(2,6),5)],
+   s:`Conjugado ${R(2,3)}−${R(2,2)}; denominador: 3−2 = 1<br>(3${R(2,3)}+2${R(2,2)})(${R(2,3)}−${R(2,2)}) = 9 − 3${R(2,6)} + 2${R(2,6)} − 4 = 5 − ${R(2,6)}`},
+  {q:F('5'+R(2,5)+' − 2'+R(2,2),R(2,5)+' − 2'), ok:'25 + 10'+R(2,5)+' − 2'+R(2,10)+' − 4'+R(2,2),
+   ko:['25 − 10'+R(2,5)+' + 2'+R(2,10)+' − 4'+R(2,2),F('25 + 10'+R(2,5)+' − 2'+R(2,10)+' − 4'+R(2,2),9),'5 + 10'+R(2,5)+' − 4'+R(2,2)],
+   s:`Conjugado ${R(2,5)}+2; denominador: (${R(2,5)})²−2² = 5−4 = 1<br>(5${R(2,5)}−2${R(2,2)})(${R(2,5)}+2) = 25 + 10${R(2,5)} − 2${R(2,10)} − 4${R(2,2)}`},
+  {q:F(R(2,'a')+' + '+R(2,'b'),R(2,'a')+' − '+R(2,'b')), ok:F('a + 2'+R(2,'ab')+' + b','a − b'),
+   ko:[F('a + b','a − b'),F('a − 2'+R(2,'ab')+' + b','a − b'),F('a + 2'+R(2,'ab')+' + b','a + b')],
+   s:`Multiplicamos numerador y denominador por ${R(2,'a')}+${R(2,'b')}:<br>Numerador: (${R(2,'a')}+${R(2,'b')})² = a + 2${R(2,'ab')} + b<br>Denominador: a − b`}
+ ]
+};
+function genRacionalizar(level){
+  const p=choice(RACIONAL[level]);
+  const opts=[{html:p.ok,ok:true}].concat(p.ko.map(k=>({html:k,ok:false})));
+  return {type:'mc', options:shuffle(opts),
+    qHtml:`Racionaliza y simplifica:<br><b>${p.q}</b>`,
+    hints:[level==='dificil'||level==='experto'
+        ? `El denominador es un binomio: multiplica numerador y denominador por su <b>conjugado</b> (cambia el signo del medio).`
+        : `Multiplica numerador y denominador por el radical que falta para que el exponente del radicando iguale al índice.`,
+      `Recuerda: (a+b)(a−b) = a² − b², y ${R('n',P('a','m'))}·${R('n',P('a','n−m'))} = a.`],
+    steps:p.s};
+}
+
+/* ---------- 9. ECUACIONES ---------- */
+function genEcuaciones(level){
+  if(level==='facil'){
+    const pool=[
+      {q:'x<sup>2</sup> = 16', a:4, txt:'positiva', s:`x = ±${R(2,16)} = ±4. La solución positiva es x = 4.`},
+      {q:'x<sup>3</sup> = −8', a:-2, txt:null, s:`x = ${R(3,-8)} = −2 (índice impar: solución única).`},
+      {q:'x<sup>5</sup> = 32', a:2, txt:null, s:`x = ${R(5,32)} = 2.`},
+      {q:'x<sup>4</sup> = 81', a:3, txt:'positiva', s:`x = ±${R(4,81)} = ±3. La positiva es x = 3.`},
+      {q:'x<sup>3</sup> + 8 = 0', a:-2, txt:null, s:`x<sup>3</sup> = −8 → x = ${R(3,-8)} = −2.`},
+      {q:'x<sup>2</sup> = 49', a:7, txt:'positiva', s:`x = ±7. La positiva es x = 7.`}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Resuelve${p.txt?' (escribe la solución '+p.txt+')':''}: <b>${p.q}</b>`,
+      hints:[`Despeja x aplicando la raíz del índice correspondiente.`,
+             `Si el exponente es par hay dos soluciones (±); si es impar, solo una.`],
+      steps:p.s};
+  }
+  if(level==='medio'){
+    const pool=[
+      {q:`${R(2,'x')} = 7`, a:49, s:`Elevamos al cuadrado: x = 7² = 49.<br>Comprobación: ${R(2,49)} = 7 ✓`},
+      {q:`${R(2,'2x + 3')} = 5`, a:11, s:`2x+3 = 25 → 2x = 22 → x = 11.<br>Comprobación: ${R(2,25)} = 5 ✓`},
+      {q:`${R(3,'x − 1')} = 2`, a:9, s:`x−1 = 2³ = 8 → x = 9.<br>Comprobación: ${R(3,8)} = 2 ✓`},
+      {q:`${R(2,'3x − 2')} = 4`, a:6, s:`3x−2 = 16 → 3x = 18 → x = 6.<br>Comprobación: ${R(2,16)} = 4 ✓`},
+      {q:'x<sup>5</sup> − 243 = 0', a:3, s:`x<sup>5</sup> = 243 → x = ${R(5,243)} = 3.`},
+      {q:`${R(4,'x + 1')} = 3`, a:80, s:`x+1 = 3⁴ = 81 → x = 80.<br>Comprobación: ${R(4,81)} = 3 ✓`}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Resuelve: <b>${p.q}</b>`,
+      hints:[`Aísla el radical y eleva los dos miembros al índice de la raíz.`,
+             `Después despeja x y comprueba el resultado en la ecuación original.`],
+      steps:p.s};
+  }
+  if(level==='dificil'){
+    const pool=[
+      {q:`${R(2,'x + 7')} = x − 5`, a:9,
+       s:`Elevamos al cuadrado: x+7 = x²−10x+25 → x²−11x+18 = 0<br>x = 9 o x = 2<br>⚠ x = 2: ${R(2,9)} = 3 pero x−5 = −3 ✗<br><b>Solución: x = 9</b>`},
+      {q:`${R(2,'3x + 1')} = x − 1`, a:5,
+       s:`3x+1 = x²−2x+1 → x²−5x = 0 → x = 0 o x = 5<br>⚠ x = 0: ${R(2,1)} = 1 pero x−1 = −1 ✗<br><b>Solución: x = 5</b>`},
+      {q:`${R(2,'x + 4')} + 2 = x`, a:5,
+       s:`Aislamos: ${R(2,'x+4')} = x−2 → x+4 = x²−4x+4 → x²−5x = 0 → x = 0 o x = 5<br>⚠ x = 0: ${R(2,4)}+2 = 4 ≠ 0 ✗<br><b>Solución: x = 5</b>`},
+      {q:`${R(2,'5x + 1')} = x + 1`, a:3,
+       s:`5x+1 = x²+2x+1 → x²−3x = 0 → x = 0 o x = 3<br>Ambas cumplen el signo, pero x = 0 da ${R(2,1)} = 1 ✓ y x = 3 da ${R(2,16)} = 4 ✓<br><b>Solución mayor: x = 3</b>`, txt:'la solución mayor'},
+      {q:'x<sup>2/3</sup> = 4', a:8, s:`x<sup>2/3</sup> = 4 → x = 4<sup>3/2</sup> = (${R(2,4)})³ = 8.<br>Comprobación: ${R(3,'8<sup>2</sup>')} = ${R(3,64)} = 4 ✓`}
+    ];
+    const p=choice(pool);
+    return {type:'num', answer:p.a, tol:1e-9,
+      qHtml:`Resuelve${p.txt?' ('+p.txt+')':''}: <b>${p.q}</b><br><span style="font-size:.8rem;color:#7a86a0">⚠ Comprueba las soluciones en la ecuación original</span>`,
+      hints:[`Aísla el radical y eleva al cuadrado los dos miembros: aparecerá una ecuación de 2º grado.`,
+             `Resuelve con la fórmula general y <b>comprueba</b> cada solución: al elevar al cuadrado pueden salir soluciones extrañas.`],
+      steps:p.s};
+  }
+  const pool=[
+    {q:`${R(2,'x')} + ${R(2,'x + 5')} = 5`, a:4,
+     s:`Aislamos: ${R(2,'x+5')} = 5 − ${R(2,'x')}<br>Elevamos: x+5 = 25 − 10${R(2,'x')} + x → 10${R(2,'x')} = 20 → ${R(2,'x')} = 2 → x = 4<br>Comprobación: 2 + 3 = 5 ✓`},
+    {q:`${R(2,'x + 3')} + ${R(2,'x − 2')} = 5`, a:6,
+     s:`Aislamos: ${R(2,'x+3')} = 5 − ${R(2,'x−2')}<br>x+3 = 25 − 10${R(2,'x−2')} + x − 2 → 10${R(2,'x−2')} = 20 → x−2 = 4 → x = 6<br>Comprobación: 3 + 2 = 5 ✓`},
+    {q:`${R(2,'2x + 3')} − ${R(2,'x − 2')} = 2`, a:11, txt:'la solución mayor',
+     s:`2x+3 = 4 + 4${R(2,'x−2')} + x−2 → x+1 = 4${R(2,'x−2')}<br>x²+2x+1 = 16x−32 → x²−14x+33 = 0 → x = 11 o x = 3<br>Ambas son válidas; la mayor es x = 11 (${R(2,25)}−${R(2,9)} = 5−3 = 2 ✓)`},
+    {q:'x<sup>3/4</sup> = 27', a:81,
+     s:`x = 27<sup>4/3</sup> = (${R(3,27)})<sup>4</sup> = 3<sup>4</sup> = 81.<br>Comprobación: ${R(4,'81<sup>3</sup>')} = ${R(4,'(3<sup>4</sup>)<sup>3</sup>')} = 3<sup>3</sup> = 27 ✓`},
+    {q:`${R(2,'x')} − ${R(2,'x − 16')} = 2`, a:25,
+     s:`Aislamos: ${R(2,'x')} = 2 + ${R(2,'x−16')}<br>x = 4 + 4${R(2,'x−16')} + x − 16 → 12 = 4${R(2,'x−16')} → ${R(2,'x−16')} = 3 → x − 16 = 9 → x = 25<br>Comprobación: ${R(2,25)} − ${R(2,9)} = 5 − 3 = 2 ✓`},
+    {q:`${R(2,'x + 1')} + ${R(2,'x + 6')} = 5`, a:3,
+     s:`Aislamos: ${R(2,'x+6')} = 5 − ${R(2,'x+1')}<br>x+6 = 25 − 10${R(2,'x+1')} + x + 1 → 10${R(2,'x+1')} = 20 → x+1 = 4 → x = 3<br>Comprobación: 2 + 3 = 5 ✓`}
+  ];
+  const p=choice(pool);
+  return {type:'num', answer:p.a, tol:1e-9,
+    qHtml:`Resuelve${p.txt?' ('+p.txt+')':''}: <b>${p.q}</b><br><span style="font-size:.8rem;color:#7a86a0">⚠ Comprueba las soluciones en la ecuación original</span>`,
+    hints:[`Con dos radicales: aísla uno en un miembro y eleva al cuadrado; quedará un solo radical.`,
+           `Vuelve a aislar el radical restante y eleva otra vez. Después comprueba las soluciones.`],
+    steps:p.s};
+}
+
+const generators={
+  valor:genValor, potencias:genPotencias, simplificar:genSimplificar,
+  extraer:genExtraer, introducir:genIntroducir, operaciones:genOperaciones,
+  sumas:genSumas, racionalizar:genRacionalizar, ecuaciones:genEcuaciones
+};
+
+/* ==========================================================
+   EXAMEN IMPRIMIBLE (PDF)
+   ========================================================== */
+const LETRAS=['a','b','c','d','e'];
+function openPrintDialog(){
+  const sel=document.getElementById('pLevel');
+  if(sel && currentLevel) sel.value=currentLevel;
+  document.getElementById('printOverlay').style.display='flex';
+}
+function closePrintDialog(){ document.getElementById('printOverlay').style.display='none'; }
+function closePrintView(){ document.getElementById('printWrap').classList.remove('show'); document.body.style.overflow=''; }
+
+function printLevelsFor(n, levelOpt){
+  if(levelOpt!=='mixto') return new Array(n).fill(levelOpt);
+  const seq=['facil','medio','dificil','experto'], out=[];
+  for(let i=0;i<n;i++) out.push(seq[Math.min(3, Math.floor(i*4/n))]);
+  return out;
+}
+function printQuestions(n, levelOpt){
+  const levels=printLevelsFor(n, levelOpt), qs=[];
+  let bag=[];
+  for(let i=0;i<n;i++){
+    if(bag.length===0) bag=shuffle(realCategories.slice());
+    const c=bag.pop(), lv=levels[i];
+    const q=generators[c.id](lv); q.cat=c.id; q.level=lv;
+    qs.push(q);
+  }
+  return qs;
+}
+function printQuestionBlock(q, i, space, withHint){
+  let html=`<div class="pq"><div class="pq-head"><span class="pq-num">${i+1}.</span>`+
+    `<span>${q.qHtml}</span><span class="pq-pts">${catLabel[q.cat]}</span></div>`;
+  if(withHint && q.hints && q.hints.length) html+=`<div class="pq-hint">💡 ${q.hints[0]}</div>`;
+  if(q.type==='mc'){
+    html+='<div class="pq-mc">'+q.options.map((o,k)=>`<div>${LETRAS[k]}) &nbsp;${o.html}</div>`).join('')+
+      '</div><div class="pq-space" style="height:'+Math.round(space*0.45)+'px"></div>';
+  } else {
+    html+=`<div class="pq-space" style="height:${space}px"></div>`;
+  }
+  return html+'</div>';
+}
+function printSolutionBlock(q, i, withSteps){
+  let html=`<div class="sol-item"><b>${i+1}.</b> ${q.qHtml}<br>`+
+    `<span class="ans">Solución: ${q.type==='mc'
+        ? LETRAS[q.options.findIndex(o=>o.ok)]+') '+q.options.find(o=>o.ok).html
+        : answerHtml(q)}</span>`;
+  if(withSteps && q.steps) html+=`<div class="sol-steps">${q.steps}</div>`;
+  return html+'</div>';
+}
+function printModelSheets(qs, opts, modelo){
+  const hoy=new Date().toLocaleDateString('es-ES');
+  const nivelTxt = opts.level==='mixto' ? 'Mixto (dificultad progresiva)' : LEVELS.find(l=>l.id===opts.level).label;
+  const punt=Math.round(10/qs.length*100)/100;
+  let h=`<div class="sheet">
+    <h2>Examen de radicales${modelo?' · Modelo '+modelo:''}</h2>
+    <div class="sub">1º de Bachillerato · Nivel: ${nivelTxt} · ${qs.length} preguntas${opts.teacher?' · '+opts.teacher:''}</div>
+    <div class="idline"><span>Nombre y apellidos:</span><span style="max-width:120px">Grupo:</span><span style="max-width:130px">Fecha: ${hoy}</span></div>
+    <div class="instr">Escribe todos los pasos en el espacio reservado. Cada pregunta vale ${(''+punt).replace('.',',')} punto${punt===1?'':'s'}.
+      Simplifica siempre el resultado al máximo, racionaliza los denominadores y comprueba las soluciones de las ecuaciones.
+      En las preguntas con opciones, rodea la letra correcta.</div>`;
+  qs.forEach((q,i)=>{ h+=printQuestionBlock(q,i,opts.space,opts.hints); });
+  h+=`<div style="margin-top:18px;text-align:right;font-size:.8rem;color:#5b6a86">Nota: ______ / 10</div></div>`;
+  if(opts.solutions){
+    h+=`<div class="sheet">
+      <h2>Hoja de soluciones${modelo?' · Modelo '+modelo:''}</h2>
+      <div class="sub">Examen de radicales · Nivel: ${nivelTxt} · Uso del profesorado</div>`;
+    qs.forEach((q,i)=>{ h+=printSolutionBlock(q,i,opts.steps); });
+    h+=`<div style="margin-top:14px;font-size:.75rem;color:#5b6a86">Criterio sugerido: ${(''+punt).replace('.',',')} punto${punt===1?'':'s'} por pregunta;
+      valora el procedimiento aunque el resultado final sea incorrecto.</div></div>`;
+  }
+  return h;
+}
+function buildPrintExam(){
+  const opts={
+    level:document.getElementById('pLevel').value,
+    count:parseInt(document.getElementById('pCount').value,10),
+    space:parseInt(document.getElementById('pSpace').value,10),
+    models:parseInt(document.getElementById('pModels').value,10),
+    solutions:document.getElementById('pSolutions').checked,
+    steps:document.getElementById('pSteps').checked,
+    hints:document.getElementById('pHints').checked,
+    teacher:(document.getElementById('pTeacher').value||'').trim()
+  };
+  let html='';
+  if(opts.models===2){
+    html += printModelSheets(printQuestions(opts.count,opts.level), opts, 'A');
+    html += printModelSheets(printQuestions(opts.count,opts.level), opts, 'B');
+  } else {
+    html = printModelSheets(printQuestions(opts.count,opts.level), opts, '');
+  }
+  document.getElementById('printSheet').innerHTML=html;
+  closePrintDialog();
+  const w=document.getElementById('printWrap');
+  w.classList.add('show'); w.scrollTop=0; document.body.style.overflow='hidden';
+}
+
+/* ==========================================================
+   MOTOR DE LA APLICACIÓN
+   ========================================================== */
+let currentCat='aleatorio', currentLevel='facil', current=null, actualCat=null;
+let score=0, total=0, streak=0, bestStreak=0, hintLevel=0, answered=false, mode='practica';
+let mcSelected=-1, timerSec=0, timerInterval=null;
+let stats={}; realCategories.forEach(c=>stats[c.id]={correct:0,attempts:0});
+let history=[], failedQueue=[], exam=null;
+
+const $=id=>document.getElementById(id);
+const tabsEl=$('tabs'), levelBar=$('levelBar'), questionEl=$('question'), qtagEl=$('qtag');
+const feedbackEl=$('feedback'), hintBox=$('hintBox'), stepsBox=$('stepsBox'), teoriaBox=$('teoriaBox');
+const hintBtn=$('hintBtn'), stepsBtn=$('stepsBtn'), teoriaBtn=$('teoriaBtn'), checkBtn=$('checkBtn');
+const overlayEl=$('overlay'), modalBox=$('modalBox'), modalIcon=$('modalIcon'), modalTitle=$('modalTitle');
+const modalText=$('modalText'), modalSteps=$('modalSteps');
+const examOverlay=$('examOverlay'), examGrade=$('examGrade'), examMeta=$('examMeta');
+const examTableBody=$('examTableBody'), examProgress=$('examProgress');
+const statsBody=document.querySelector('#errorTable tbody');
+const previewEl=$('preview');
+const groups={num:$('ansNum'), rad2:$('ansRad2'), rad3:$('ansRad3'), mc:$('ansMC')};
+
+/* ---------- persistencia ---------- */
+const KEY='radicales_trainer_v1';
+function saveState(){
+  try{ localStorage.setItem(KEY, JSON.stringify({score,total,streak,bestStreak,currentCat,currentLevel,stats,history,failedQueue})); }catch(e){}
+}
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(!s) return;
+    score=s.score||0; total=s.total||0; streak=s.streak||0; bestStreak=s.bestStreak||0;
+    currentCat=s.currentCat||'aleatorio'; currentLevel=s.currentLevel||'facil';
+    if(s.stats) realCategories.forEach(c=>{ if(s.stats[c.id]) stats[c.id]=s.stats[c.id]; });
+    history=s.history||[]; failedQueue=s.failedQueue||[];
+  }catch(e){}
+}
+function resetState(){
+  if(!confirm('¿Seguro que quieres reiniciar? Se borrarán todos los datos de esta sesión.')) return;
+  localStorage.removeItem(KEY);
+  score=0; total=0; streak=0; bestStreak=0; history=[]; failedQueue=[]; exam=null;
+  realCategories.forEach(c=>stats[c.id]={correct:0,attempts:0});
+  setModeUI('practica'); updateHeaderStats(); updateFailCount(); updateStatsTable(); renderTabs(); newQuestion();
+}
+
+/* ---------- render de interfaz ---------- */
+function renderLevels(){
+  levelBar.querySelectorAll('.lvl').forEach(b=>b.remove());
+  LEVELS.forEach(l=>{
+    const b=document.createElement('button');
+    b.className='lvl'+(l.id===currentLevel?' active':''); b.dataset.l=l.id; b.textContent=l.label;
+    b.onclick=()=>{ if(mode==='examen'){alert('Termina o sal del examen para cambiar de nivel.');return;} currentLevel=l.id; renderLevels(); saveState(); if(mode!=='repaso') newQuestion(); };
+    levelBar.appendChild(b);
+  });
+}
+function renderTabs(){
+  tabsEl.innerHTML='';
+  categories.forEach(c=>{
+    const b=document.createElement('button');
+    b.className='tab'+(c.id===currentCat?' active':''); b.textContent=c.label;
+    b.onclick=()=>{ if(mode==='examen') return; currentCat=c.id; if(mode==='repaso') setModeUI('practica'); renderTabs(); newQuestion(); };
+    tabsEl.appendChild(b);
+  });
+}
+function renderRef(){
+  const t=$('refTable');
+  t.innerHTML='<tr><th>Concepto</th><th>Fórmula</th></tr>'+REF.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+}
+
+/* ---------- modos ---------- */
+function setModeUI(m){
+  mode=m;
+  $('modePractica').classList.toggle('active', m==='practica');
+  $('modeExamen').classList.toggle('active', m==='examen');
+  $('modeRepaso').classList.toggle('active', m==='repaso');
+  const inExam = m==='examen';
+  hintBtn.style.display = inExam ? 'none' : 'inline-block';
+  stepsBtn.style.display = inExam ? 'none' : 'inline-block';
+  teoriaBtn.style.display = inExam ? 'none' : 'inline-block';
+  tabsEl.style.display = (m==='practica') ? 'flex' : 'none';
+  examProgress.style.display = inExam ? 'block' : 'none';
+}
+function setMode(m){
+  if(m==='examen'){ startExam(); return; }
+  if(m==='repaso'){
+    if(failedQueue.length===0){ alert('¡No tienes fallos pendientes de repasar! 🎉'); return; }
+    exam=null; setModeUI('repaso'); newQuestion(); return;
+  }
+  exam=null; setModeUI('practica'); renderTabs(); newQuestion();
+}
+
+/* ---------- selección adaptativa ---------- */
+function pickAdaptiveCat(){
+  const w=realCategories.map(c=>{ const s=stats[c.id]; return s.attempts===0?2:Math.max(0.5, 2-(s.correct/s.attempts)*2); });
+  let r=Math.random()*w.reduce((a,b)=>a+b,0);
+  for(let i=0;i<realCategories.length;i++){ r-=w[i]; if(r<=0) return realCategories[i].id; }
+  return realCategories[0].id;
+}
+
+/* ---------- temporizador ---------- */
+function startTimer(){
+  clearInterval(timerInterval); timerSec=0; $('timerVal').textContent='0s';
+  timerInterval=setInterval(()=>{ timerSec++; $('timerVal').textContent=timerSec+'s'; },1000);
+}
+
+/* ---------- nueva pregunta ---------- */
+function newQuestion(){
+  if(mode==='examen' && exam){
+    if(exam.idx>=exam.questions.length){ finishExam(); return; }
+    current=exam.questions[exam.idx]; actualCat=current.cat;
+    examProgress.textContent=`Pregunta ${exam.idx+1} de ${exam.questions.length} · Nivel ${LEVELS.find(l=>l.id===exam.level).label}`;
+  } else if(mode==='repaso'){
+    if(failedQueue.length===0){ alert('¡Has repasado todos tus fallos! 🎉'); setModeUI('practica'); newQuestion(); return; }
+    current=failedQueue[0]; actualCat=current.cat;
+  } else {
+    actualCat = currentCat==='aleatorio' ? pickAdaptiveCat() : currentCat;
+    current=generators[actualCat](currentLevel);
+    current.cat=actualCat; current.level=currentLevel;
+  }
+  hintLevel=0; answered=false; mcSelected=-1;
+  qtagEl.textContent = `${catLabel[actualCat]} · ${LEVELS.find(l=>l.id===(current.level||currentLevel)).label}`;
+  questionEl.innerHTML=current.qHtml;
+  Object.values(groups).forEach(g=>g.classList.remove('show'));
+  ['inNum','inIdx2','inRad2','inCoef','inIdx3','inRad3'].forEach(id=>{ $(id).value=''; $(id).disabled=false; });
+  previewEl.innerHTML = current.note ? `<span style="font-size:.78rem;color:#8892a8">${current.note}</span>` : '';
+  if(current.type==='mc'){
+    groups.mc.classList.add('show');
+    groups.mc.innerHTML='';
+    current.options.forEach((o,i)=>{
+      const d=document.createElement('div');
+      d.className='mc-opt'; d.innerHTML=o.html;
+      d.onclick=()=>{ if(answered) return; mcSelected=i; groups.mc.querySelectorAll('.mc-opt').forEach(x=>x.classList.remove('sel')); d.classList.add('sel'); };
+      groups.mc.appendChild(d);
+    });
+  } else {
+    groups[current.type].classList.add('show');
+  }
+  feedbackEl.textContent=''; hintBox.style.display='none'; stepsBox.style.display='none'; teoriaBox.style.display='none';
+  stepsBtn.disabled=true; hintBtn.disabled=false; checkBtn.disabled=false;
+  startTimer();
+  if(current.type==='num') $('inNum').focus();
+  else if(current.type==='rad2') $('inIdx2').focus();
+  else if(current.type==='rad3') $('inCoef').focus();
+}
+function skipQuestion(){
+  if(mode==='examen' && exam && !answered){ grade(null,'—'); return; }
+  newQuestion();
+}
+
+/* ---------- pistas / resolución / teoría ---------- */
+function nextHintLevel(){
+  if(!current || answered || hintLevel>=current.hints.length) return;
+  hintBox.style.display='block'; hintBox.innerHTML=current.hints[hintLevel]; hintLevel++;
+  if(hintLevel>=current.hints.length) hintBtn.disabled=true;
+}
+function toggleSteps(){
+  const open=stepsBox.style.display==='block';
+  stepsBox.style.display=open?'none':'block';
+  if(!open) stepsBox.innerHTML=current.steps;
+}
+function toggleTeoria(){
+  const open=teoriaBox.style.display==='block';
+  teoriaBox.style.display=open?'none':'block';
+  if(!open) teoriaBox.innerHTML=TEORIA[actualCat]||TEORIA.valor;
+}
+
+/* ---------- parseo y vista previa ---------- */
+function parseInput(str){
+  if(str===null||str===undefined) return NaN;
+  str=(''+str).trim().replace(/−/g,'-').replace(/,/g,'.').replace(/\s+/g,'');
+  if(str==='') return NaN;
+  const f=/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/.exec(str);
+  if(f){ const n=parseFloat(f[1]), d=parseFloat(f[2]); return d===0?NaN:n/d; }
+  const v=parseFloat(str);
+  return /^-?\d*\.?\d+$/.test(str) ? v : NaN;
+}
+function updatePreview(){
+  if(!current||answered) return;
+  if(current.type==='rad2'){
+    const i=$('inIdx2').value.trim(), r=$('inRad2').value.trim();
+    previewEl.innerHTML = (i||r) ? 'Tu respuesta: '+R(i||'n', r||'?') : (current.note?`<span style="font-size:.78rem;color:#8892a8">${current.note}</span>`:'');
+  } else if(current.type==='rad3'){
+    const c=$('inCoef').value.trim(), i=$('inIdx3').value.trim(), r=$('inRad3').value.trim();
+    previewEl.innerHTML = (c||i||r) ? 'Tu respuesta: '+(c&&c!=='1'?c:'')+R(i||'n', r||'?') : (current.note?`<span style="font-size:.78rem;color:#8892a8">${current.note}</span>`:'');
+  }
+}
+
+/* ---------- comprobación ---------- */
+function answerHtml(q){
+  if(q.type==='num') return fracHtml(q.answer);
+  if(q.type==='rad2') return R(q.ansIdx, fracHtml(q.ansRad));
+  if(q.type==='rad3') return coefHtml(q.ansCoef, R(q.ansIdx, fracHtml(q.ansRad)));
+  const ok=q.options.find(o=>o.ok); return ok?ok.html:'';
+}
+function userHtml(q,u){
+  if(u===null) return '—';
+  if(q.type==='num') return fracHtml(u.v);
+  if(q.type==='rad2') return R(isNaN(u.i)?'?':fracStr(u.i), isNaN(u.r)?'?':fracStr(u.r));
+  if(q.type==='rad3') return (isNaN(u.c)?'?':(u.c===1?'':fracStr(u.c)))+R(isNaN(u.i)?'?':fracStr(u.i), isNaN(u.r)?'?':fracStr(u.r));
+  return u.i>=0 ? q.options[u.i].html : '—';
+}
+function checkAnswer(){
+  if(!current||answered) return;
+  let u=null, extra='';
+  if(current.type==='num'){
+    const v=parseInput($('inNum').value);
+    if(isNaN(v)){ feedbackEl.style.color='var(--red)'; feedbackEl.textContent='⚠ Escribe un número o una fracción (ej: 5, -3, 2/3).'; return; }
+    u={v};
+  } else if(current.type==='rad2'){
+    const i=parseInput($('inIdx2').value), r=parseInput($('inRad2').value);
+    if(isNaN(i)||isNaN(r)){ feedbackEl.style.color='var(--red)'; feedbackEl.textContent='⚠ Completa el índice y el radicando.'; return; }
+    u={i,r};
+    if(Math.abs(i-current.ansIdx)>1e-9 && Math.abs(Math.pow(r,1/i)-Math.pow(current.ansRad,1/current.ansIdx))<1e-6)
+      extra='El valor es correcto, pero el índice no es el mínimo posible.';
+  } else if(current.type==='rad3'){
+    const c=parseInput($('inCoef').value), i=parseInput($('inIdx3').value), r=parseInput($('inRad3').value);
+    if(isNaN(c)||isNaN(i)||isNaN(r)){ feedbackEl.style.color='var(--red)'; feedbackEl.textContent='⚠ Completa coeficiente, índice y radicando (si no hay coeficiente, escribe 1).'; return; }
+    u={c,i,r};
+  } else {
+    if(mcSelected<0){ feedbackEl.style.color='var(--red)'; feedbackEl.textContent='⚠ Selecciona una opción.'; return; }
+    u={i:mcSelected};
+  }
+  grade(u, null, extra);
+}
+function isCorrect(q,u){
+  if(u===null) return false;
+  if(q.type==='num') return Math.abs(u.v-q.answer)<=(q.tol||1e-9);
+  if(q.type==='rad2') return Math.abs(u.i-q.ansIdx)<1e-9 && Math.abs(u.r-q.ansRad)<1e-9;
+  if(q.type==='rad3') return Math.abs(u.c-q.ansCoef)<1e-9 && Math.abs(u.i-q.ansIdx)<1e-9 && Math.abs(u.r-q.ansRad)<1e-9;
+  return q.options[u.i] && q.options[u.i].ok===true;
+}
+function grade(u, skipLabel, extra){
+  answered=true; checkBtn.disabled=true; clearInterval(timerInterval);
+  const correct=isCorrect(current,u);
+  total++; stats[actualCat].attempts++;
+  if(correct){ score++; streak++; stats[actualCat].correct++; if(streak>bestStreak) bestStreak=streak; }
+  else streak=0;
+  updateHeaderStats();
+  ['inNum','inIdx2','inRad2','inCoef','inIdx3','inRad3'].forEach(id=>$(id).disabled=true);
+  stepsBtn.disabled=false;
+  if(current.type==='mc'){
+    groups.mc.querySelectorAll('.mc-opt').forEach((d,i)=>{
+      if(current.options[i].ok) d.classList.add('ok');
+      else if(u&&u.i===i) d.classList.add('ko');
+    });
+  }
+  history.push({categoria:actualCat, nivel:current.level||currentLevel, modo:mode,
+    pregunta:mathPlain(current.qHtml), correcta:mathPlain(answerHtml(current)),
+    tuya:mathPlain(userHtml(current,u)), acierto:correct, tiempo:timerSec, pistas:hintLevel});
+
+  if(mode==='repaso'){
+    if(correct) failedQueue.shift(); else failedQueue.push(failedQueue.shift());
+    updateFailCount();
+  } else if(!correct){
+    const copy=Object.assign({},current); copy.cat=actualCat;
+    failedQueue.push(copy); if(failedQueue.length>40) failedQueue.shift();
+    updateFailCount();
+  }
+  updateStatsTable(); saveState();
+
+  if(mode==='examen'&&exam){
+    exam.results.push({qHtml:current.qHtml, user:userHtml(current,u), correctAns:answerHtml(current), ok:correct});
+    if(correct) exam.correct++;
+    exam.time+=timerSec; exam.idx++;
+    if(exam.idx>=exam.questions.length) finishExam(); else newQuestion();
+    return;
+  }
+  showModal(correct, extra);
+}
+
+/* ---------- modal ---------- */
+function showModal(correct, extra){
+  modalBox.className='modal '+(correct?'correct':'incorrect');
+  modalIcon.textContent = correct?'✅':'❌';
+  modalTitle.textContent = correct?'¡Correcto!':'Incorrecto';
+  modalText.innerHTML = correct
+    ? `Muy bien: ${answerHtml(current)}${streak>=5?'<br>¡Racha de '+streak+'! 🔥':''}`
+    : `La respuesta correcta es <b>${answerHtml(current)}</b>.${extra?'<br><i style="font-size:.85rem">'+extra+'</i>':''}<br>Revisa la resolución:`;
+  if(!correct){ modalSteps.style.display='block'; modalSteps.innerHTML=current.steps; }
+  else modalSteps.style.display='none';
+  overlayEl.style.display='flex';
+}
+function closeModal(){ overlayEl.style.display='none'; newQuestion(); }
+
+/* ---------- examen ---------- */
+function startExam(){
+  examOverlay.style.display='none';
+  const qs=[];
+  shuffle(realCategories).forEach(c=>{ const q=generators[c.id](currentLevel); q.cat=c.id; q.level=currentLevel; qs.push(q); });
+  const extra=shuffle(realCategories).slice(0,1);
+  extra.forEach(c=>{ const q=generators[c.id](currentLevel); q.cat=c.id; q.level=currentLevel; qs.push(q); });
+  exam={questions:shuffle(qs).slice(0,10), idx:0, correct:0, results:[], time:0, level:currentLevel};
+  setModeUI('examen'); newQuestion();
+}
+function finishExam(){
+  clearInterval(timerInterval);
+  const n=exam.questions.length, nota=Math.round(exam.correct/n*100)/10;
+  examGrade.textContent=`Nota: ${(''+nota).replace('.',',')} / 10`;
+  examGrade.className='exam-grade '+(nota>=5?'aprobado':'suspenso');
+  const m=Math.floor(exam.time/60), s=exam.time%60;
+  examMeta.textContent=`${exam.correct} aciertos de ${n} · Nivel ${LEVELS.find(l=>l.id===exam.level).label} · Tiempo: ${m>0?m+' min ':''}${s} s`;
+  examTableBody.innerHTML='';
+  exam.results.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${i+1}</td><td style="text-align:left">${r.qHtml}</td><td>${r.user}</td><td>${r.correctAns}</td><td>${r.ok?'✅':'❌'}</td>`;
+    examTableBody.appendChild(tr);
+  });
+  examOverlay.style.display='flex';
+}
+function exitExam(){ examOverlay.style.display='none'; exam=null; setModeUI('practica'); renderTabs(); newQuestion(); }
+
+/* ---------- estadísticas ---------- */
+function updateHeaderStats(){
+  $('score').textContent=score; $('total').textContent=total;
+  $('streak').textContent=streak; $('bestStreak').textContent=bestStreak;
+}
+function updateFailCount(){ $('failCount').textContent=failedQueue.length; }
+function updateStatsTable(){
+  statsBody.innerHTML='';
+  realCategories.forEach(c=>{
+    const s=stats[c.id], pct=s.attempts>0?Math.round(s.correct/s.attempts*100):0;
+    const col=s.attempts===0?'#ccd6ec':(pct>=75?'var(--green)':(pct>=50?'var(--orange)':'var(--red)'));
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="text-align:left">${c.label}</td><td>${s.correct}</td><td>${s.attempts}</td>`+
+      `<td>${s.attempts>0?pct+'%':'—'}<div class="pct-bar"><div style="width:${pct}%;background:${col}"></div></div></td>`;
+    statsBody.appendChild(tr);
+  });
+}
+function mathPlain(html){
+  const t=document.createElement('div');
+  t.innerHTML=html.replace(/<sup class="ridx">(.*?)<\/sup>/g,'[$1]')
+                  .replace(/<sup>(.*?)<\/sup>/g,'^($1)')
+                  .replace(/<span class="num">(.*?)<\/span>/g,'($1)/')
+                  .replace(/<span class="den">(.*?)<\/span>/g,'($1)')
+                  .replace(/<br\s*\/?>/g,' ');
+  return (t.textContent||'').replace(/\s+/g,' ').trim();
+}
+function exportCSV(){
+  if(history.length===0){ alert('No hay historial para exportar todavía.'); return; }
+  let csv='Categoria,Nivel,Modo,Pregunta,RespuestaCorrecta,TuRespuesta,Acierto,TiempoSeg,Pistas\n';
+  const e=s=>('"'+(''+s).replace(/"/g,'""')+'"');
+  history.forEach(h=>{
+    csv+=[e(catLabel[h.categoria]||h.categoria),e(h.nivel),e(h.modo),e(h.pregunta),e(h.correcta),e(h.tuya),e(h.acierto?'SI':'NO'),e(h.tiempo),e(h.pistas)].join(',')+'\n';
+  });
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='historial_radicales.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
+}
+
+/* ---------- arranque ---------- */
+loadState();
+renderLevels(); renderTabs(); renderRef();
+updateHeaderStats(); updateFailCount(); updateStatsTable();
+newQuestion();
+</script>
+</body>
+</html>
+```

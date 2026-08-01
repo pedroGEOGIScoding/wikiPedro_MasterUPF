@@ -1,0 +1,1451 @@
+---
+title: "La Recta Real o de los números reales, Teoremas de Pitágoras y Tales"
+subtitle: "Herramienta para calcular longitudes y números en la recta numérica o recta real de los números reales"
+filename: recta_real_pitagoras_tales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Herramienta para para explicar la forma de construir, calcular longitudes y números en la recta real
+categories: [matemáticas]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Herramienta interactiva para explicar la recta real de los números reales
+
+
+**La recta real: Pitágoras y Tales** es una herramienta interactiva de aula pensada para 1º de Bachillerato que permite construir geométricamente, con regla y compás, cualquier número real (entero, fraccionario o irracional) sobre una recta numérica. A partir de una expresión introducida por el alumnado, la aplicación genera de forma automática una animación paso a paso que muestra cómo situar ese número de manera exacta, combinando el teorema de Pitágoras y el teorema de Tales.
+
+La herramienta está disponible en castellano y catalán, funciona directamente en el navegador sin instalación previa, e incluye un modo de proyección pensado para explicar la construcción en la pizarra digital del aula.
+
+## Finalidad y objetivos
+
+La finalidad de este recurso es que el alumnado comprenda que los números reales no son solo un dibujo aproximado sobre una recta, sino que muchos de ellos —incluidos los irracionales como las raíces cuadradas— pueden representarse de forma **exacta** mediante construcciones geométricas clásicas. La herramienta traduce el razonamiento abstracto de la representación de números en un proceso visual, manipulable y guiado, ideal para trabajar en el aula de manera individual o proyectada.
+
+Entre los objetivos didácticos concretos destacan:
+
+- Comprender por qué toda raíz cuadrada de un número natural puede construirse encadenando triángulos rectángulos, aplicando el teorema de Pitágoras a catetos de longitud entera.
+- Entender el papel del teorema de Tales para dividir un segmento en partes iguales y así representar fracciones y multiplicar o escalar longitudes con precisión.
+- Diferenciar entre una aproximación decimal (por ejemplo, medir 3,46 cm con una regla) y una construcción geométrica exacta de un número irracional.
+- Identificar si un número dado es racional o irracional, situarlo entre dos enteros consecutivos y estimar su valor aproximado, reforzando la comprensión del orden en la recta real.
+- Detectar y corregir errores conceptuales frecuentes, como confundir el cateto nuevo con la hipotenusa anterior al encadenar triángulos, o no centrar el compás en el origen al trasladar longitudes.
+- Comparar varios números reales sobre una misma recta para practicar su ordenación y visualizar sus posiciones relativas.
+
+## Instrucciones de uso
+
+La interfaz se organiza en un panel lateral de configuración y una zona central donde se despliega la construcción paso a paso.
+
+### Introducción del número
+
+En el campo de texto superior se escribe la expresión que se quiere representar, admitiendo enteros, fracciones y raíces cuadradas (por ejemplo, `sqrt12`, `-2+sqrt10`, `1+sqrt10/3` o `7/4`). Un teclado auxiliar con los símbolos más habituales (raíz, fracción, paréntesis) facilita la escritura, y al pulsar **"Construir"** la herramienta genera automáticamente el plan de construcción. También se puede partir de una lista de **ejemplos del libro** ya preparados como acceso rápido.
+
+### Opciones didácticas
+
+El panel de opciones permite personalizar la experiencia: elegir el criterio de descomposición en cuadrados (el mayor cuadrado primero, como en el libro de texto, o el mínimo número de triángulos posible), activar o desactivar la animación del trazado, revelar los pasos progresivamente o mostrar todos a la vez, incluir preguntas guía con autocorrección para el alumnado, mostrar la comprobación numérica de cada triángulo y activar una cuadrícula de fondo o la simplificación de la raíz.
+
+### Modo ejercicios
+
+La sección **"Modo ejercicios"** genera automáticamente números aleatorios de dificultad creciente (fácil, medio o con reto de Tales) para practicar la construcción sin depender de ejemplos fijos, ideal para dinámicas de clase o evaluación formativa.
+
+### Seguimiento de los pasos
+
+Una vez construido el número, aparece una barra de progreso con botones **"Anterior"**, **"Siguiente"** y **"Mostrar todo"** para navegar por las tarjetas de pasos, cada una con una explicación textual, la figura animada correspondiente y, si está activado, una pregunta guía con retroalimentación inmediata.
+
+### Recta comparativa
+
+La sección **"Recta comparativa"** permite añadir varios números construidos a una misma recta numérica, con control de zoom, para compararlos visualmente y comprobar su orden creciente.
+
+### Herramientas adicionales
+
+En la parte superior se encuentran los botones **"Teoría"**, que abre una ventana con la explicación formal de los teoremas de Pitágoras y Tales y los errores frecuentes del alumnado; **"Proyectar"**, que amplía la interfaz para su uso en pizarra digital; e **"Imprimir"**, para generar una versión en papel de la construcción realizada.
+
+```{=html}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La recta real: Pitágoras y Tales · v4</title>
+<style>
+/* ===============================================================
+   La recta real · Pitágoras y Tales · v4
+   Paleta escolar: verde recta, azul cateto nuevo, negro hipotenusa,
+   rojo punto resultado (igual que el libro de texto).
+   =============================================================== */
+:root{
+  --bg:#eef3f8;
+  --ink:#12212e;
+  --ink-soft:#4a6072;
+  --line:#d7e2ec;
+  --card:#ffffff;
+  --green:#28a745;
+  --blue:#1f9ad6;
+  --black:#1a1a1a;
+  --red:#e03131;
+  --accent:#1259a8;
+  --accent-soft:#e7f0fb;
+  --warn:#fff4e0;
+  --shadow:0 1px 2px rgba(18,33,46,.06),0 8px 24px rgba(18,33,46,.07);
+  --r:14px;
+  --fs:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Source Sans 3',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:var(--fs);
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.5;
+}
+h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.2;margin:0}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 22px;background:#fff;border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:40;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:42px;height:42px;flex:0 0 42px;border-radius:12px;
+  background:linear-gradient(145deg,var(--accent),#1f9ad6);
+  color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700;
+  font-family:'Source Serif 4',serif;
+}
+.topbar h1{font-size:19px}
+.topbar p{margin:0;font-size:12.5px;color:var(--ink-soft)}
+.topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid transparent}
+button.primary{background:var(--accent);color:#fff;padding:9px 16px;font-weight:600}
+button.primary:hover{background:#0e4a8f}
+button.ghost{background:#fff;border:1px solid var(--line);color:var(--ink);padding:8px 14px}
+button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:8px 12px;color:var(--ink-soft);border-radius:0;font-weight:600}
+.seg button.on{background:var(--accent);color:#fff}
+
+/* ---------- Layout ---------- */
+.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:20px;padding:20px;align-items:start}
+.panel{display:flex;flex-direction:column;gap:14px;position:sticky;top:82px}
+.stage{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.card h2{font-size:16px;margin-bottom:10px}
+
+.inputrow{display:flex;gap:8px}
+.inputrow input{
+  flex:1;min-width:0;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;background:#fbfdff;
+}
+.inputrow input:focus{outline:0;border-color:var(--accent);background:#fff}
+.keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.keypad button{background:#f4f8fc;border:1px solid var(--line);padding:8px 0;font-weight:600;color:var(--ink)}
+.keypad button:hover{background:var(--accent-soft);border-color:var(--accent)}
+.keypad .wide{grid-column:span 4;font-weight:400;font-size:14px}
+.hint{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
+.hint code{background:#f1f5f9;padding:1px 5px;border-radius:5px}
+.err{margin-top:10px;background:#fdecec;border:1px solid #f7c4c4;color:#a12020;padding:10px 12px;border-radius:10px;font-size:14px}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip,.chips button{
+  background:#f4f8fc;border:1px solid var(--line);color:var(--ink);
+  padding:6px 11px;border-radius:999px;font-size:13.5px;
+}
+.chip:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.opt{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:10px}
+.opt select{display:block;width:100%;margin-top:4px;padding:8px;border:1px solid var(--line);border-radius:9px;background:#fbfdff;font:inherit;font-size:13.5px;color:var(--ink)}
+.check{display:flex;align-items:center;gap:8px;font-size:13.5px;margin:6px 0;cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--accent)}
+.pool{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pool .tag{background:var(--accent-soft);border:1px solid #bcd7f5;color:var(--accent);padding:4px 9px;border-radius:8px;font-size:13px;display:flex;gap:6px;align-items:center}
+.pool .tag button{border:0;background:transparent;color:#7089a5;padding:0 2px;font-size:15px;line-height:1}
+
+/* ---------- Resumen del número ---------- */
+.summary{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+.summary .big{font-family:'Source Serif 4',serif;font-size:34px;line-height:1.25;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.summary .approx{font-size:19px;color:var(--ink-soft)}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badge{font-size:12.5px;padding:4px 10px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);color:var(--ink-soft)}
+.badge.irr{background:#f3e8ff;border-color:#dcc6f5;color:#6b21a8}
+.badge.rat{background:#e6f6ec;border-color:#bfe6cd;color:#1c7c3c}
+.badge.int{background:#fff4e0;border-color:#f3ddb0;color:#8a5a00}
+.summary .plan{margin-top:12px;font-size:14px;color:var(--ink-soft)}
+.summary .plan b{color:var(--ink)}
+
+/* ---------- Barra de pasos ---------- */
+.stepbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;box-shadow:var(--shadow);flex-wrap:wrap}
+.dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.dots span{width:26px;height:8px;border-radius:99px;background:#dde7f0}
+.dots span.on{background:var(--accent)}
+
+/* ---------- Tarjetas de paso ---------- */
+.steps{display:flex;flex-direction:column;gap:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+.step.hidden-step{display:none}
+.step-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.step-num{
+  flex:0 0 auto;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
+}
+.step-head h3{font-size:18px}
+.step .txt{font-size:15px;color:#2c4356;margin:8px 0 0;max-width:74ch}
+.step .txt b{color:var(--ink)}
+.fig{margin:14px 0 4px;overflow:hidden;border-radius:12px;background:#fff}
+.fig svg{display:block;width:100%;height:auto}
+.formula{
+  font-family:'Source Serif 4',serif;font-size:20px;background:#f7fafd;border-left:4px solid var(--blue);
+  padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0;display:inline-block;
+}
+table.tbl{border-collapse:collapse;font-size:14px;margin-top:12px;width:100%;max-width:560px}
+table.tbl th,table.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+table.tbl th{background:#f4f8fc;font-weight:600;color:var(--ink-soft)}
+table.tbl td.ok{color:#1c7c3c;font-weight:600}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:8px}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px}
+.figtools{display:flex;gap:6px;margin-top:8px}
+.figtools button{background:#f4f8fc;border:1px solid var(--line);font-size:12.5px;padding:4px 10px;border-radius:8px;color:var(--ink-soft)}
+.figtools button:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- Preguntas guía ---------- */
+.quiz{background:#fbfdff;border:1px dashed #b9cfe6;border-radius:12px;padding:14px 16px;margin-top:14px}
+.quiz h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+.q{margin:10px 0}
+.q p{margin:0 0 6px;font-size:14.5px}
+.q .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.q input[type=text]{width:110px;padding:7px 9px;border:1.5px solid var(--line);border-radius:9px;font-family:ui-monospace,monospace}
+.q .opts{display:flex;gap:6px;flex-wrap:wrap}
+.q .opts button{background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:9px;font-size:14px}
+.q .opts button.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+.fb{font-size:14px;margin-top:6px;font-weight:600}
+.fb.good{color:#1c7c3c}
+.fb.bad{color:#c22}
+.fb .why{display:block;font-weight:400;color:var(--ink-soft);margin-top:2px}
+
+/* ---------- Recta comparativa ---------- */
+.linecard h2{margin-bottom:8px}
+.zoomrow{display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--ink-soft)}
+.zoomrow input[type=range]{width:220px;accent-color:var(--accent)}
+.order{margin-top:10px;font-family:'Source Serif 4',serif;font-size:19px}
+.order .lt{color:var(--ink-soft);margin:0 8px}
+
+/* ---------- Modal teoría ---------- */
+.modal{position:fixed;inset:0;background:rgba(18,33,46,.55);display:grid;place-items:center;z-index:60;padding:20px}
+.modal-box{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:86vh;overflow:auto;padding:28px 32px;position:relative}
+.modal-x{position:absolute;top:12px;right:14px;background:#f1f5f9;border:0;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;color:var(--ink-soft)}
+.modal-box h2{font-size:24px;margin-bottom:6px}
+.modal-box h3{font-size:17px;margin:20px 0 4px;color:var(--accent)}
+.modal-box p,.modal-box li{font-size:15px;color:#2c4356}
+.modal-box .formula{font-size:19px}
+
+/* ---------- Modo proyección ---------- */
+body.present{--fs:20px}
+body.present .panel,body.present .topbar{display:none}
+body.present .layout{grid-template-columns:minmax(0,1fr);padding:14px 26px}
+body.present .step .txt{font-size:19px;max-width:none}
+body.present .summary .big{font-size:44px}
+body.present .step-head h3{font-size:24px}
+body.present .formula{font-size:26px}
+body.present table.tbl{font-size:17px;max-width:100%}
+.presentbar{position:fixed;bottom:16px;right:16px;z-index:70}
+
+/* ---------- Animación de trazado ---------- */
+.anim{stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:dash .75s ease forwards;animation-delay:var(--d,0s)}
+@keyframes dash{to{stroke-dashoffset:0}}
+.fade{opacity:0;animation:fade .5s ease forwards;animation-delay:var(--d,0s)}
+@keyframes fade{to{opacity:1}}
+.pop{transform-box:fill-box;transform-origin:center;opacity:0;animation:pop .45s cubic-bezier(.2,1.5,.4,1) forwards;animation-delay:var(--d,0s)}
+@keyframes pop{0%{opacity:0;transform:scale(.2)}100%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.anim,.fade,.pop{animation:none;opacity:1;stroke-dashoffset:0}}
+
+/* ---------- SVG ---------- */
+text{font-family:'Source Sans 3',sans-serif;font-size:15px;fill:var(--ink)}
+text.lbl{font-weight:700}
+text.halo{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+text.serif{font-family:'Source Serif 4',serif}
+
+/* ---------- Impresión ---------- */
+@media print{
+  .topbar,.panel,.stepbar,.figtools,.presentbar,.quiz .opts button,.zoomrow{display:none!important}
+  body{background:#fff}
+  .layout{grid-template-columns:1fr;padding:0;gap:10px}
+  .card,.step,.summary{box-shadow:none;border-color:#ccc;break-inside:avoid;page-break-inside:avoid}
+  .step.hidden-step{display:block!important}
+}
+
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr}
+  .panel{position:static}
+}
+
+/* ---------- Fracciones apiladas ---------- */
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:-0.45em;line-height:1.05;margin:0 .12em}
+.fr>span:first-child{padding:0 .25em}
+.fr>span:last-child{border-top:1.6px solid currentColor;padding:0 .25em}
+.summary .fr{font-size:.72em}
+.step .txt .fr,.order .fr,.pool .fr{font-size:.8em}
+.chk{overflow-x:auto}
+
+[hidden]{display:none!important}
+
+.ordv{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:17px;color:#1f3a4d}
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">√</span>
+    <div>
+      <h1>La recta real</h1>
+      <p>Construcción geométrica con Pitágoras y Tales · 1.º de Bachillerato</p>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="seg" role="group" aria-label="Idioma">
+      <button data-lang="es" class="on">ES</button>
+      <button data-lang="ca">CA</button>
+    </div>
+    <button id="btn-theory" class="ghost" data-i18n="btnTheory">Teoría</button>
+    <button id="btn-present" class="ghost" data-i18n="btnPresent">Proyectar</button>
+    <button id="btn-print" class="ghost" data-i18n="btnPrint">Imprimir</button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ============ PANEL IZQUIERDO ============ -->
+  <aside class="panel" id="panel">
+    <section class="card">
+      <h2 data-i18n="inputTitle">1. Escribe un número real</h2>
+      <div class="inputrow">
+        <input id="expr" type="text" spellcheck="false" autocomplete="off"
+               placeholder="sqrt(12)" value="sqrt(12)" aria-label="Expresión">
+        <button id="go" class="primary" data-i18n="btnBuild">Construir</button>
+      </div>
+      <div class="keypad" id="keypad">
+        <button data-ins="sqrt(">√( )</button>
+        <button data-ins="+">+</button>
+        <button data-ins="-">−</button>
+        <button data-ins="*">×</button>
+        <button data-ins="/">÷</button>
+        <button data-ins="(">(</button>
+        <button data-ins=")">)</button>
+        <button id="clear-in" class="wide" data-i18n="btnClear">Borrar</button>
+      </div>
+      <p class="hint" data-i18n="inputHint">Admite enteros, fracciones y raíces: <code>sqrt(12)</code>, <code>-2+sqrt(10)</code>, <code>(1+sqrt(10))/3</code>, <code>2*sqrt(5)/3</code>, <code>7/4</code>.</p>
+      <div id="err" class="err" hidden></div>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="exTitle">Ejemplos del libro</h2>
+      <div class="chips" id="examples"></div>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="optTitle">Opciones didácticas</h2>
+      <label class="opt"><span data-i18n="optDecomp">Descomposición en cuadrados</span>
+        <select id="opt-decomp">
+          <option value="greedy" data-i18n="optGreedy">Como el libro (mayor cuadrado primero)</option>
+          <option value="min" data-i18n="optMin">Mínimo número de triángulos</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="opt-anim" checked><span data-i18n="optAnim">Animar el trazado</span></label>
+      <label class="check"><input type="checkbox" id="opt-step" checked><span data-i18n="optStep">Revelar paso a paso</span></label>
+      <label class="check"><input type="checkbox" id="opt-quiz" checked><span data-i18n="optQuiz">Preguntas guía para el alumnado</span></label>
+      <label class="check"><input type="checkbox" id="opt-check" checked><span data-i18n="optCheck">Mostrar comprobación numérica</span></label>
+      <label class="check"><input type="checkbox" id="opt-grid"><span data-i18n="optGrid">Cuadrícula de fondo</span></label>
+      <label class="check"><input type="checkbox" id="opt-simp"><span data-i18n="optSimp">Simplificar la raíz (√12 = 2√3)</span></label>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="quizTitle">Modo ejercicios</h2>
+      <p class="hint" data-i18n="quizHint">Genera un número al azar para practicar la construcción en clase.</p>
+      <div class="chips">
+        <button id="rnd-easy" class="chip" data-i18n="rndEasy">Fácil √n</button>
+        <button id="rnd-med" class="chip" data-i18n="rndMed">Medio a+√n</button>
+        <button id="rnd-hard" class="chip" data-i18n="rndHard">Reto con Tales</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="lineTitle">Recta comparativa</h2>
+      <p class="hint" data-i18n="lineHint">Añade varios números a una misma recta para compararlos y ordenarlos.</p>
+      <div class="chips">
+        <button id="add-line" class="chip" data-i18n="btnAddLine">+ Añadir a la recta</button>
+        <button id="clr-line" class="chip" data-i18n="btnClrLine">Vaciar</button>
+      </div>
+      <div id="pool" class="pool"></div>
+    </section>
+  </aside>
+
+  <!-- ============ ZONA CENTRAL ============ -->
+  <section class="stage">
+    <div id="summary" class="summary"></div>
+
+    <div id="stepbar" class="stepbar" hidden>
+      <button id="prev" class="ghost">◀ <span data-i18n="btnPrev">Anterior</span></button>
+      <div class="dots" id="dots"></div>
+      <button id="next" class="primary"><span data-i18n="btnNext">Siguiente</span> ▶</button>
+      <button id="all" class="ghost" data-i18n="btnAll">Mostrar todo</button>
+    </div>
+
+    <div id="steps" class="steps"></div>
+
+    <div id="linebox" class="card linecard" hidden>
+      <h2 data-i18n="cmpTitle">Recta real comparativa</h2>
+      <div class="zoomrow">
+        <label><span data-i18n="zoom">Zoom</span>
+          <input type="range" id="zoom" min="0" max="100" value="40">
+        </label>
+        <span id="zoomval" class="mono"></span>
+      </div>
+      <div id="cmpline"></div>
+      <div id="order" class="order"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ TEORÍA ============ -->
+<div class="modal" id="theory" hidden>
+  <div class="modal-box">
+    <button class="modal-x" id="theory-x" aria-label="Cerrar">×</button>
+    <div id="theory-body"></div>
+  </div>
+</div>
+
+<div id="presentbar" class="presentbar" hidden>
+  <button id="present-exit" class="ghost" data-i18n="btnExit">Salir de proyección</button>
+</div>
+
+<script>
+/* ==========================================================================
+   LA RECTA REAL · Construcción geométrica con Pitágoras y Tales · v4
+   Herramienta de aula para 1.º de Bachillerato
+   --------------------------------------------------------------------------
+   Estructura del código
+     1. Idiomas (ES / CA)
+     2. Aritmética exacta: fracciones y números de la forma a + b·√k
+     3. Analizador (parser) de la expresión del alumnado
+     4. Descomposición de un entero en suma de cuadrados
+     5. Motor de figuras SVG (con animación y etiquetas separadas del eje)
+     6. Generador del plan de construcción y de las tarjetas de pasos
+     7. Preguntas guía con autocorrección
+     8. Recta comparativa con zoom
+     9. Interfaz: ejemplos, generador de ejercicios, teoría, proyección
+   ========================================================================== */
+
+/* ============================ 1. IDIOMAS ================================ */
+const STR = {
+  es: {
+    btnTheory:'Teoría', btnPresent:'Proyectar', btnPrint:'Imprimir', btnExit:'Salir de proyección',
+    inputTitle:'1. Escribe un número real', btnBuild:'Construir', btnClear:'Borrar',
+    inputHint:'Admite enteros, fracciones y raíces: <code>sqrt(12)</code>, <code>-2+sqrt(10)</code>, <code>(1+sqrt(10))/3</code>, <code>2*sqrt(5)/3</code>, <code>7/4</code>.',
+    exTitle:'Ejemplos del libro', optTitle:'Opciones didácticas',
+    optDecomp:'Descomposición en cuadrados', optGreedy:'Como el libro (mayor cuadrado primero)',
+    optMin:'Mínimo número de triángulos', optAnim:'Animar el trazado', optStep:'Revelar paso a paso',
+    optQuiz:'Preguntas guía para el alumnado', optCheck:'Mostrar comprobación numérica',
+    optGrid:'Cuadrícula de fondo', optSimp:'Simplificar la raíz (√12 = 2√3)',
+    quizTitle:'Modo ejercicios', quizHint:'Genera un número al azar para practicar la construcción en clase.',
+    rndEasy:'Fácil √n', rndMed:'Medio a+√n', rndHard:'Reto con Tales',
+    lineTitle:'Recta comparativa', lineHint:'Añade varios números a una misma recta para compararlos y ordenarlos.',
+    btnAddLine:'+ Añadir a la recta', btnClrLine:'Vaciar',
+    btnPrev:'Anterior', btnNext:'Siguiente', btnAll:'Mostrar todo',
+    cmpTitle:'Recta real comparativa', zoom:'Zoom', order:'Orden creciente',
+    step:'Paso', of:'de', irr:'Irracional', rat:'Racional', integer:'Entero',
+    approx:'valor aproximado', exact:'valor exacto',
+    planTitle:'Plan de construcción:', tools:'Descargar', copy:'Copiar',
+    legAxis:'Recta real', legNew:'Cateto nuevo', legHyp:'Hipotenusas', legRes:'Punto buscado',
+    /* --- textos de pasos --- */
+    sAnalysisT:'Leemos el número y planificamos la construcción',
+    sAnalysis:(v,plan)=>`El número que hay que representar es <b>${v}</b>. Antes de dibujar, conviene reconocer su estructura: la parte entera o fraccionaria indica <b>desde dónde</b> medimos, y la raíz indica <b>qué longitud</b> hay que construir, porque no se puede medir con la regla graduada. ${plan}`,
+    sDecompT:(k)=>`Descomponemos ${k} como suma de cuadrados perfectos`,
+    sDecomp:(k,txt,n)=>`Para dibujar √${k} con regla y compás necesitamos que ${k} sea suma de cuadrados, ya que cada cuadrado se convertirá en un <b>cateto</b> de longitud entera. ${txt} Con esos <b>${n+1} catetos</b> ${n+1===2?'formamos':'iremos formando'} <b>${n} ${n===1?'triángulo rectángulo':'triángulos rectángulos encadenados'}</b>${n===1?'.':': cada nueva hipotenusa se apoya en la anterior, de modo que '+(n+1)+' catetos generan '+n+' triángulos.'}`,
+    sTri1T:'Primer triángulo rectángulo sobre la recta real',
+    sTri1:(a,b,r)=>`Tomamos los dos primeros cuadrados: el cateto horizontal mide <b>${a}</b> y se apoya directamente sobre la recta real, desde el 0; el cateto vertical mide <b>${b}</b> y se levanta perpendicularmente en el punto ${a}. Por el teorema de Pitágoras, la hipotenusa mide √(${a}²+${b}²) = <b>√${r}</b>.`,
+    sTriNT:(i)=>`Encadenamos el triángulo ${i}`,
+    sTriN:(c,hp,hn)=>`La hipotenusa anterior (√${hp}) pasa a ser ahora un <b>cateto</b>, y sobre su extremo levantamos un cateto <b>perpendicular</b> de longitud <b>${c}</b>. La nueva hipotenusa, que también parte del origen, mide √(${hp}+${c}²) = <b>√${hn}</b>. Esta es la idea clave: cada paso reutiliza lo ya construido.`,
+    sArcT:(k)=>`Trasladamos √${k} a la recta con el compás`,
+    sArc:(k,d)=>`La longitud √${k} ya existe en el dibujo, pero está inclinada. Con el compás centrado en <b>0</b> y radio igual a la última hipotenusa, trazamos un arco: como todos los puntos del arco están a distancia √${k} del origen, el punto donde corta la parte positiva de la recta es exactamente <b>√${k} ≈ ${d}</b>.`,
+    sMulT:(p)=>`Multiplicamos la longitud por ${p}`,
+    sMul:(p,len)=>`Para obtener ${p}·${len} llevamos la longitud ${len} con el compás <b>${p} veces seguidas</b> sobre la recta, empezando en el 0. Es una suma de segmentos iguales, no hace falta Tales todavía.`,
+    sDivT:(q)=>`Dividimos el segmento en ${q} partes iguales (Tales)`,
+    sDiv:(q,len,res)=>`Aquí ya no basta el compás: hay que <b>dividir</b> una longitud, y eso lo resuelve el <b>teorema de Tales</b>. Desde el 0 trazamos una semirrecta auxiliar cualquiera y marcamos sobre ella <b>${q} segmentos iguales</b>. Unimos la última marca con el extremo del segmento ${len} y trazamos <b>paralelas</b> a esa recta por las demás marcas: al cortar la recta real la dividen en ${q} partes iguales, y cada una mide ${res}.`,
+    sTakeT:(p,q)=>p<q?`Tomamos ${p} de las ${q} partes`:`Llevamos ${p} veces la parte 1/${q}`,
+    sTake:(p,q)=>p<q
+      ?`De las ${q} partes iguales que ha creado Tales, nos quedamos con <b>${p}</b>, contando desde el origen.`
+      :`Como ${p} &gt; ${q}, la fracción es mayor que la unidad: transportamos con el compás <b>${p} veces</b> seguidas la parte <b>1/${q}</b>, empezando en el 0.`,
+    sStartT:(a)=>`Situamos el punto de partida ${a}`,
+    sStart:(a,q,p,dir)=>`El punto desde el que hay que medir también es fraccionario: <b>${a}</b>. Aplicamos otra vez Tales: dividimos la unidad en <b>${q}</b> partes iguales y transportamos <b>${p}</b> de esas partes ${dir} desde el 0.`,
+    sTransT:'Trasladamos la longitud al punto de partida',
+    sTrans:(a,len,dir,res)=>`La longitud construida (${len}) hay que colocarla <b>a partir del ${a}</b> y no del 0. Con el compás la transportamos ${dir} desde ${a}, y así obtenemos el punto <b>${res}</b>. Sumar traslada a la derecha y restar a la izquierda: el origen del segmento cambia, la longitud no.`,
+    sFinalT:'Resultado sobre la recta real',
+    sFinal:(v,d,lo,hi)=>`El punto rojo representa <b>${v} ≈ ${d}</b>. Está entre <b>${lo}</b> y <b>${hi}</b>, lo que permite comprobar rápidamente si la construcción es razonable antes de dar por buena la figura.`,
+    /* --- comprobación --- */
+    chkT:'Comprobación numérica',
+    chkHead:['Triángulo','Cateto conocido','Cateto nuevo','Hipotenusa','Valor'],
+    /* --- preguntas --- */
+    qTitle:'Pregunta guía', qCheck:'Comprobar',
+    q1:(a,b)=>`Antes de mirar el resultado: ¿cuánto mide la hipotenusa de este triángulo? Escribe el radicando de √&nbsp;(es decir, ${a}²+${b}² ).`,
+    q2:'¿Por qué el arco corta la recta exactamente en la raíz?',
+    q2o:['Porque el arco mide lo mismo que la recta','Porque todos los puntos del arco están a la misma distancia del centro','Porque el compás siempre corta en números enteros'],
+    q2ok:1,
+    q3:'¿Entre qué dos enteros consecutivos está el punto?',
+    q4:'¿El número es racional o irracional?', q4o:['Racional','Irracional'],
+    q5:'Valor aproximado con 2 decimales:',
+    good:'¡Correcto!', bad:'Todavía no. ',
+    whyInt:(lo,hi)=>`Basta comparar con los cuadrados perfectos más cercanos: el punto está entre ${lo} y ${hi}.`,
+    whyRat:(irr)=>irr?'Es irracional: su expresión decimal no acaba ni se repite periódicamente, aunque el punto sí se puede dibujar exactamente.':'Es racional: se puede escribir como cociente de dos enteros.',
+    whyApp:(d)=>`El valor con dos decimales es ${d}.`,
+    /* --- errores --- */
+    eEmpty:'Escribe una expresión, por ejemplo sqrt(12).',
+    eSyntax:'No entiendo la expresión. Revisa los paréntesis y usa sqrt( ) para las raíces.',
+    eTwoRoots:'Por ahora la construcción admite un solo tipo de raíz. Prueba con expresiones como (1+sqrt(10))/3.',
+    eNeg:'No se puede calcular la raíz cuadrada de un número negativo en los números reales.',
+    eRootOfRoot:'Solo se admiten raíces de números racionales (por ejemplo sqrt(10) o sqrt(4/9)).',
+    eDiv0:'No se puede dividir entre cero.',
+    eBig:'Usa números más pequeños (radicando menor que 400) para que la figura sea legible en clase.',
+    /* --- plan --- */
+    planPyt:(k)=>`construir √${k} con triángulos rectángulos (Pitágoras)`,
+    planMul:(p)=>`multiplicar la longitud por ${p} con el compás`,
+    planDiv:(q)=>`dividir en ${q} partes iguales (Tales)`,
+    planTrans:(a)=>`trasladar el segmento al punto ${a}`,
+    planNone:'situar directamente el punto sobre la recta',
+    planIntro:'Habrá que ',
+    moveLbl:'trasladamos con el compás',
+    sRefT:(len)=>`Reflejamos ${len} respecto al 0`,
+    sRef:(len,res)=>`El signo negativo indica que la longitud se mide <b>hacia la izquierda</b> del origen. Con el compás centrado en 0 llevamos la misma longitud ${len} al otro lado: los puntos ${len} y ${res} son <b>simétricos</b> respecto del 0, así que tienen el mismo valor absoluto y signos opuestos.`,
+    /* --- teoría --- */
+    theory:`<h2>Dos teoremas para dibujar números</h2>
+      <p>En 1.º de Bachillerato la recta real deja de ser un dibujo aproximado: cada número real ocupa <b>un único punto</b>, y muchos de esos puntos se pueden construir de forma <b>exacta</b> con regla y compás. Estos son los dos teoremas que lo permiten.</p>
+      <h3>Teorema de Pitágoras · genera raíces</h3>
+      <p>En un triángulo rectángulo, <span class="formula">h² = a² + b²</span></p>
+      <p>Por tanto, si tomamos catetos de longitud entera obtenemos hipotenusas de longitud √(a²+b²). Encadenando triángulos (usando cada hipotenusa como cateto del siguiente) se consigue cualquier √n con n entero, porque todo entero es suma de, como máximo, cuatro cuadrados (teorema de Lagrange).</p>
+      <h3>Teorema de Tales · divide y escala</h3>
+      <p>Si varias rectas paralelas cortan a dos rectas secantes, los segmentos correspondientes son proporcionales. Consecuencia práctica: permite dividir un segmento en <b>n partes iguales</b> sin medir, y por tanto construir fracciones de una longitud, como <sup>1</sup>⁄<sub>3</sub>(1+√10).</p>
+      <h3>El papel del compás</h3>
+      <p>El compás <b>transporta</b> longitudes sin deformarlas: sirve para llevar una hipotenusa inclinada sobre la recta real (por eso el arco final) y para trasladar un segmento a otro punto de origen.</p>
+      <h3>Errores frecuentes del alumnado</h3>
+      <ul>
+        <li>Creer que √12 se dibuja "midiendo 3,46 cm": eso es una aproximación, no una construcción.</li>
+        <li>Confundir el cateto nuevo con la hipotenusa anterior al encadenar triángulos.</li>
+        <li>Olvidar que el arco final debe tener el centro <b>en el 0</b>, no en el extremo del último cateto.</li>
+        <li>Aplicar Tales con marcas auxiliares desiguales: deben ser exactamente iguales entre sí.</li>
+        <li>Trasladar el segmento desde el 0 cuando la expresión indica otro punto de partida (por ejemplo −2 + √10).</li>
+      </ul>`
+  },
+  ca: {
+    btnTheory:'Teoria', btnPresent:'Projectar', btnPrint:'Imprimir', btnExit:'Sortir de projecció',
+    inputTitle:'1. Escriu un nombre real', btnBuild:'Construir', btnClear:'Esborrar',
+    inputHint:'Admet enters, fraccions i arrels: <code>sqrt(12)</code>, <code>-2+sqrt(10)</code>, <code>(1+sqrt(10))/3</code>, <code>2*sqrt(5)/3</code>, <code>7/4</code>.',
+    exTitle:'Exemples del llibre', optTitle:'Opcions didàctiques',
+    optDecomp:'Descomposició en quadrats', optGreedy:'Com el llibre (quadrat més gran primer)',
+    optMin:'Mínim nombre de triangles', optAnim:'Animar el traçat', optStep:'Revelar pas a pas',
+    optQuiz:'Preguntes guia per a l\'alumnat', optCheck:'Mostrar comprovació numèrica',
+    optGrid:'Quadrícula de fons', optSimp:'Simplificar l\'arrel (√12 = 2√3)',
+    quizTitle:'Mode exercicis', quizHint:'Genera un nombre a l\'atzar per practicar la construcció a classe.',
+    rndEasy:'Fàcil √n', rndMed:'Mitjà a+√n', rndHard:'Repte amb Tales',
+    lineTitle:'Recta comparativa', lineHint:'Afegeix diversos nombres a una mateixa recta per comparar-los i ordenar-los.',
+    btnAddLine:'+ Afegir a la recta', btnClrLine:'Buidar',
+    btnPrev:'Anterior', btnNext:'Següent', btnAll:'Mostrar-ho tot',
+    cmpTitle:'Recta real comparativa', zoom:'Zoom', order:'Ordre creixent',
+    step:'Pas', of:'de', irr:'Irracional', rat:'Racional', integer:'Enter',
+    approx:'valor aproximat', exact:'valor exacte',
+    planTitle:'Pla de construcció:', tools:'Descarregar', copy:'Copiar',
+    legAxis:'Recta real', legNew:'Catet nou', legHyp:'Hipotenuses', legRes:'Punt buscat',
+    sAnalysisT:'Llegim el nombre i planifiquem la construcció',
+    sAnalysis:(v,plan)=>`El nombre que cal representar és <b>${v}</b>. Abans de dibuixar, cal reconèixer la seva estructura: la part entera o fraccionària indica <b>des d\'on</b> mesurem, i l\'arrel indica <b>quina longitud</b> cal construir, perquè no es pot mesurar amb el regle graduat. ${plan}`,
+    sDecompT:(k)=>`Descomponem ${k} com a suma de quadrats perfectes`,
+    sDecomp:(k,txt,n)=>`Per dibuixar √${k} amb regle i compàs necessitem que ${k} sigui suma de quadrats, ja que cada quadrat es convertirà en un <b>catet</b> de longitud entera. ${txt} Amb aquests <b>${n+1} catets</b> ${n+1===2?'formem':'anirem formant'} <b>${n} ${n===1?'triangle rectangle':'triangles rectangles encadenats'}</b>${n===1?'.':": cada nova hipotenusa es recolza en l'anterior, de manera que "+(n+1)+' catets generen '+n+' triangles.'}`,
+    sTri1T:'Primer triangle rectangle sobre la recta real',
+    sTri1:(a,b,r)=>`Prenem els dos primers quadrats: el catet horitzontal mesura <b>${a}</b> i es recolza directament sobre la recta real, des del 0; el catet vertical mesura <b>${b}</b> i s\'aixeca perpendicularment al punt ${a}. Pel teorema de Pitàgores, la hipotenusa mesura √(${a}²+${b}²) = <b>√${r}</b>.`,
+    sTriNT:(i)=>`Encadenem el triangle ${i}`,
+    sTriN:(c,hp,hn)=>`La hipotenusa anterior (√${hp}) passa a ser ara un <b>catet</b>, i sobre el seu extrem aixequem un catet <b>perpendicular</b> de longitud <b>${c}</b>. La nova hipotenusa, que també surt de l\'origen, mesura √(${hp}+${c}²) = <b>√${hn}</b>. Aquesta és la idea clau: cada pas reutilitza el que ja s\'ha construït.`,
+    sArcT:(k)=>`Traslladem √${k} a la recta amb el compàs`,
+    sArc:(k,d)=>`La longitud √${k} ja existeix al dibuix, però està inclinada. Amb el compàs centrat al <b>0</b> i radi igual a l\'última hipotenusa, tracem un arc: com que tots els punts de l\'arc són a distància √${k} de l\'origen, el punt on talla la part positiva de la recta és exactament <b>√${k} ≈ ${d}</b>.`,
+    sMulT:(p)=>`Multipliquem la longitud per ${p}`,
+    sMul:(p,len)=>`Per obtenir ${p}·${len} portem la longitud ${len} amb el compàs <b>${p} vegades seguides</b> sobre la recta, començant al 0. És una suma de segments iguals, encara no cal Tales.`,
+    sDivT:(q)=>`Dividim el segment en ${q} parts iguals (Tales)`,
+    sDiv:(q,len,res)=>`Aquí ja no n\'hi ha prou amb el compàs: cal <b>dividir</b> una longitud, i això ho resol el <b>teorema de Tales</b>. Des del 0 tracem una semirecta auxiliar qualsevol i hi marquem <b>${q} segments iguals</b>. Unim l\'última marca amb l\'extrem del segment ${len} i tracem <b>paral·leles</b> a aquesta recta per les altres marques: al tallar la recta real la divideixen en ${q} parts iguals, i cadascuna mesura ${res}.`,
+    sTakeT:(p,q)=>p<q?`Prenem ${p} de les ${q} parts`:`Portem ${p} vegades la part 1/${q}`,
+    sTake:(p,q)=>p<q
+      ?`De les ${q} parts iguals que ha creat Tales, ens quedem amb <b>${p}</b>, comptant des de l\'origen.`
+      :`Com que ${p} &gt; ${q}, la fracció és més gran que la unitat: transportem amb el compàs <b>${p} vegades</b> seguides la part <b>1/${q}</b>, començant al 0.`,
+    sStartT:(a)=>`Situem el punt de partida ${a}`,
+    sStart:(a,q,p,dir)=>`El punt des del qual cal mesurar també és fraccionari: <b>${a}</b>. Apliquem un altre cop Tales: dividim la unitat en <b>${q}</b> parts iguals i transportem <b>${p}</b> d\'aquestes parts ${dir} des del 0.`,
+    sTransT:'Traslladem la longitud al punt de partida',
+    sTrans:(a,len,dir,res)=>`La longitud construïda (${len}) cal col·locar-la <b>a partir del ${a}</b> i no del 0. Amb el compàs la transportem ${dir} des de ${a}, i així obtenim el punt <b>${res}</b>. Sumar trasllada a la dreta i restar a l\'esquerra: l\'origen del segment canvia, la longitud no.`,
+    sFinalT:'Resultat sobre la recta real',
+    sFinal:(v,d,lo,hi)=>`El punt vermell representa <b>${v} ≈ ${d}</b>. És entre <b>${lo}</b> i <b>${hi}</b>, cosa que permet comprovar de seguida si la construcció és raonable abans de donar per bona la figura.`,
+    chkT:'Comprovació numèrica',
+    chkHead:['Triangle','Catet conegut','Catet nou','Hipotenusa','Valor'],
+    qTitle:'Pregunta guia', qCheck:'Comprovar',
+    q1:(a,b)=>`Abans de mirar el resultat: quant mesura la hipotenusa d\'aquest triangle? Escriu el radicand de √&nbsp;(és a dir, ${a}²+${b}² ).`,
+    q2:'Per què l\'arc talla la recta exactament a l\'arrel?',
+    q2o:['Perquè l\'arc mesura el mateix que la recta','Perquè tots els punts de l\'arc són a la mateixa distància del centre','Perquè el compàs sempre talla en nombres enters'],
+    q2ok:1,
+    q3:'Entre quins dos enters consecutius es troba el punt?',
+    q4:'El nombre és racional o irracional?', q4o:['Racional','Irracional'],
+    q5:'Valor aproximat amb 2 decimals:',
+    good:'Correcte!', bad:'Encara no. ',
+    whyInt:(lo,hi)=>`Només cal comparar amb els quadrats perfectes més propers: el punt és entre ${lo} i ${hi}.`,
+    whyRat:(irr)=>irr?'És irracional: la seva expressió decimal no acaba ni es repeteix periòdicament, tot i que el punt sí que es pot dibuixar exactament.':'És racional: es pot escriure com a quocient de dos enters.',
+    whyApp:(d)=>`El valor amb dos decimals és ${d}.`,
+    eEmpty:'Escriu una expressió, per exemple sqrt(12).',
+    eSyntax:'No entenc l\'expressió. Revisa els parèntesis i fes servir sqrt( ) per a les arrels.',
+    eTwoRoots:'Ara mateix la construcció admet un sol tipus d\'arrel. Prova amb expressions com (1+sqrt(10))/3.',
+    eNeg:'No es pot calcular l\'arrel quadrada d\'un nombre negatiu dins els nombres reals.',
+    eRootOfRoot:'Només s\'admeten arrels de nombres racionals (per exemple sqrt(10) o sqrt(4/9)).',
+    eDiv0:'No es pot dividir entre zero.',
+    eBig:'Fes servir nombres més petits (radicand menor que 400) perquè la figura sigui llegible a classe.',
+    planPyt:(k)=>`construir √${k} amb triangles rectangles (Pitàgores)`,
+    planMul:(p)=>`multiplicar la longitud per ${p} amb el compàs`,
+    planDiv:(q)=>`dividir en ${q} parts iguals (Tales)`,
+    planTrans:(a)=>`traslladar el segment al punt ${a}`,
+    planNone:'situar directament el punt sobre la recta',
+    planIntro:'Caldrà ',
+    moveLbl:'traslladem amb el compàs',
+    sRefT:(len)=>`Reflectim ${len} respecte del 0`,
+    sRef:(len,res)=>`El signe negatiu indica que la longitud es mesura <b>cap a l'esquerra</b> de l'origen. Amb el compàs centrat al 0 portem la mateixa longitud ${len} a l'altre costat: els punts ${len} i ${res} són <b>simètrics</b> respecte del 0, per tant tenen el mateix valor absolut i signes oposats.`,
+    theory:`<h2>Dos teoremes per dibuixar nombres</h2>
+      <p>A 1r de Batxillerat la recta real deixa de ser un dibuix aproximat: cada nombre real ocupa <b>un únic punt</b>, i molts d\'aquests punts es poden construir de manera <b>exacta</b> amb regle i compàs. Aquests són els dos teoremes que ho permeten.</p>
+      <h3>Teorema de Pitàgores · genera arrels</h3>
+      <p>En un triangle rectangle, <span class="formula">h² = a² + b²</span></p>
+      <p>Per tant, si prenem catets de longitud entera obtenim hipotenuses de longitud √(a²+b²). Encadenant triangles (fent servir cada hipotenusa com a catet del següent) s\'aconsegueix qualsevol √n amb n enter, perquè tot enter és suma de, com a màxim, quatre quadrats (teorema de Lagrange).</p>
+      <h3>Teorema de Tales · divideix i escala</h3>
+      <p>Si diverses rectes paral·leles tallen dues rectes secants, els segments corresponents són proporcionals. Conseqüència pràctica: permet dividir un segment en <b>n parts iguals</b> sense mesurar, i per tant construir fraccions d\'una longitud, com <sup>1</sup>⁄<sub>3</sub>(1+√10).</p>
+      <h3>El paper del compàs</h3>
+      <p>El compàs <b>transporta</b> longituds sense deformar-les: serveix per portar una hipotenusa inclinada sobre la recta real (per això l\'arc final) i per traslladar un segment a un altre punt d\'origen.</p>
+      <h3>Errors freqüents de l\'alumnat</h3>
+      <ul>
+        <li>Creure que √12 es dibuixa "mesurant 3,46 cm": això és una aproximació, no una construcció.</li>
+        <li>Confondre el catet nou amb la hipotenusa anterior en encadenar triangles.</li>
+        <li>Oblidar que l\'arc final ha de tenir el centre <b>al 0</b>, no a l\'extrem de l\'últim catet.</li>
+        <li>Aplicar Tales amb marques auxiliars desiguals: han de ser exactament iguals entre elles.</li>
+        <li>Traslladar el segment des del 0 quan l\'expressió indica un altre punt de partida (per exemple −2 + √10).</li>
+      </ul>`
+  }
+};
+let LANG = 'es';
+const T = () => STR[LANG];
+
+/* ================ 2. ARITMÉTICA EXACTA ================================== */
+const gcd = (a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b];}return a||1;};
+function fr(n,d=1){
+  if(d===0) throw {code:'eDiv0'};
+  if(d<0){n=-n;d=-d;}
+  const g=gcd(n,d);
+  return {n:n/g,d:d/g};
+}
+const frAdd=(x,y)=>fr(x.n*y.d+y.n*x.d, x.d*y.d);
+const frSub=(x,y)=>fr(x.n*y.d-y.n*x.d, x.d*y.d);
+const frMul=(x,y)=>fr(x.n*y.n, x.d*y.d);
+const frDiv=(x,y)=>{ if(y.n===0) throw {code:'eDiv0'}; return fr(x.n*y.d, x.d*y.n); };
+const frVal=x=>x.n/x.d;
+const frZero=x=>x.n===0;
+const frIsInt=x=>x.d===1;
+const frNeg=x=>fr(-x.n,x.d);
+const frAbs=x=>fr(Math.abs(x.n),x.d);
+
+/* Número de la forma a + b·√m, con m entero libre de cuadrados (m=1 → racional) */
+function S(a,b=fr(0),m=1){
+  if(m===1){ a=frAdd(a,b); b=fr(0); }
+  if(frZero(b)) m=1;
+  return {a,b,m};
+}
+function sAdd(x,y){
+  if(x.m!==1&&y.m!==1&&x.m!==y.m) throw {code:'eTwoRoots'};
+  const m = x.m!==1?x.m:y.m;
+  return S(frAdd(x.a,y.a), frAdd(x.b,y.b), m);
+}
+function sSub(x,y){ return sAdd(x, S(frNeg(y.a), frNeg(y.b), y.m)); }
+function sMul(x,y){
+  if(x.m!==1&&y.m!==1&&x.m!==y.m) throw {code:'eTwoRoots'};
+  const m = x.m!==1?x.m:y.m;
+  // (a1+b1√m)(a2+b2√m) = a1a2 + b1b2·m + (a1b2+a2b1)√m
+  const a = frAdd(frMul(x.a,y.a), frMul(frMul(x.b,y.b), fr(m)));
+  const b = frAdd(frMul(x.a,y.b), frMul(y.a,x.b));
+  return S(a,b,m);
+}
+function sDiv(x,y){
+  if(frZero(y.a)&&frZero(y.b)) throw {code:'eDiv0'};
+  if(y.m===1) return S(frDiv(x.a,y.a), frDiv(x.b,y.a), x.m);
+  // racionalizamos: multiplicar por el conjugado
+  const conj = S(y.a, frNeg(y.b), y.m);
+  const den = sMul(y,conj);            // racional
+  const num = sMul(x,conj);
+  return S(frDiv(num.a,den.a), frDiv(num.b,den.a), num.m);
+}
+/* raíz cuadrada de un racional → k·√m simplificado. Devuelve {val, rawRadicand} */
+function sSqrt(x){
+  if(x.m!==1) throw {code:'eRootOfRoot'};
+  if(frVal(x.a)<0) throw {code:'eNeg'};
+  const p=x.a.n, q=x.a.d;              // √(p/q) = √(p·q)/q
+  const k=p*q;
+  if(k>160000) throw {code:'eBig'};
+  let s=1,m=k;
+  for(let i=Math.floor(Math.sqrt(k));i>=2;i--){ if(m%(i*i)===0){ s=i; m=m/(i*i); break; } }
+  return { val:S(fr(0), fr(s,q), m), radicand:k };
+}
+
+/* ================ 3. PARSER ============================================= */
+function parse(src){
+  const s = src.replace(/√/g,'sqrt').replace(/,/g,'.').replace(/\s+/g,'');
+  if(!s) throw {code:'eEmpty'};
+  let i=0; const roots=[];               // radicandos "tal cual" que escribe el alumnado
+  const peek=()=>s[i];
+  function expr(){
+    let v=term();
+    while(peek()==='+'||peek()==='-'){ const op=s[i++]; const r=term(); v = op==='+'?sAdd(v,r):sSub(v,r); }
+    return v;
+  }
+  function term(){
+    let v=unary();
+    for(;;){
+      if(peek()==='*'||peek()==='/'){ const op=s[i++]; const r=unary(); v = op==='*'?sMul(v,r):sDiv(v,r); }
+      else if(peek()==='('||/[0-9s]/.test(peek()||'')){ const r=unary(); v=sMul(v,r); } // producto implícito
+      else break;
+    }
+    return v;
+  }
+  function unary(){
+    if(peek()==='-'){ i++; const v=unary(); return S(frNeg(v.a),frNeg(v.b),v.m); }
+    if(peek()==='+'){ i++; return unary(); }
+    return power();
+  }
+  function power(){
+    let v=atom();
+    if(peek()==='^'){
+      i++; let e=''; while(/[0-9]/.test(peek()||'')) e+=s[i++];
+      const n=parseInt(e||'0',10); if(!e||n>6) throw {code:'eSyntax'};
+      let r=S(fr(1)); for(let j=0;j<n;j++) r=sMul(r,v); v=r;
+    }
+    return v;
+  }
+  function atom(){
+    if(s.startsWith('sqrt',i)){
+      i+=4;
+      if(peek()!=='(') throw {code:'eSyntax'};
+      i++; const v=expr();
+      if(peek()!==')') throw {code:'eSyntax'};
+      i++;
+      const r=sSqrt(v); roots.push(r.radicand);
+      return r.val;
+    }
+    if(peek()==='('){ i++; const v=expr(); if(peek()!==')') throw {code:'eSyntax'}; i++; return v; }
+    let num=''; while(/[0-9.]/.test(peek()||'')) num+=s[i++];
+    if(!num) throw {code:'eSyntax'};
+    if(num.includes('.')){
+      const dec=num.split('.')[1].length;
+      return S(fr(Math.round(parseFloat(num)*10**dec), 10**dec));
+    }
+    if(+num>1e6) throw {code:'eBig'};
+    return S(fr(parseInt(num,10)));
+  }
+  const v=expr();
+  if(i<s.length) throw {code:'eSyntax'};
+  return { val:v, roots:[...new Set(roots)] };
+}
+
+/* ================ 4. SUMA DE CUADRADOS ================================== */
+function greedySquares(n){
+  const out=[]; let r=n;
+  while(r>0){ const s=Math.floor(Math.sqrt(r)); out.push(s); r-=s*s; }
+  return out;
+}
+function minSquares(n){
+  const lim=Math.floor(Math.sqrt(n));
+  for(let a=lim;a>=1;a--) if(a*a===n) return [a];
+  for(let a=lim;a>=1;a--){ const r=n-a*a; const b=Math.round(Math.sqrt(r)); if(b>=1&&b*b===r&&b<=a) return [a,b]; }
+  for(let a=lim;a>=1;a--) for(let b=Math.min(a,Math.floor(Math.sqrt(n-a*a)));b>=1;b--){
+    const r=n-a*a-b*b; const c=Math.round(Math.sqrt(r)); if(c>=1&&c*c===r&&c<=b) return [a,b,c];
+  }
+  for(let a=lim;a>=1;a--) for(let b=Math.min(a,Math.floor(Math.sqrt(n-a*a)));b>=1;b--)
+    for(let c=Math.min(b,Math.floor(Math.sqrt(Math.max(0,n-a*a-b*b))));c>=1;c--){
+      const r=n-a*a-b*b-c*c; const d=Math.round(Math.sqrt(r)); if(d>=1&&d*d===r&&d<=c) return [a,b,c,d];
+    }
+  return greedySquares(n);
+}
+/* cadena de triángulos a partir de la lista de catetos */
+function chain(cats){
+  const out=[];
+  let apex={x:cats[1]?cats[0]:cats[0], y:cats[1]||0};
+  out.push({from:{x:cats[0],y:0}, to:apex, cat:cats[1], hPrev:cats[0]*cats[0], rad:cats[0]*cats[0]+cats[1]*cats[1], apex});
+  for(let k=2;k<cats.length;k++){
+    const prev=out[out.length-1].apex;
+    const L=Math.hypot(prev.x,prev.y);
+    const u={x:prev.x/L,y:prev.y/L}, nrm={x:-u.y,y:u.x};
+    const to={x:prev.x+cats[k]*nrm.x, y:prev.y+cats[k]*nrm.y};
+    out.push({from:prev,to,cat:cats[k],hPrev:Math.round(L*L),rad:Math.round(L*L+cats[k]*cats[k]),apex:to});
+  }
+  return out;
+}
+
+/* ================ 5. MOTOR DE FIGURAS SVG =============================== */
+const C = {axis:'#28a745', neo:'#1f9ad6', hyp:'#1a1a1a', res:'#e03131', aux:'#8a6bd1', dim:'#9db3c6'};
+function Fig(o){
+  const w = o.w||880;
+  const pad = Object.assign({l:58,r:58,t:44,b:82}, o.pad||{});
+  const xmin=o.xmin, xmax=o.xmax, ymin=o.ymin!==undefined?o.ymin:-0.1, ymax=o.ymax;
+  const maxH = o.maxH||400;
+  let u = (w-pad.l-pad.r)/(xmax-xmin);
+  /* si la figura queda demasiado alta, reducimos la escala y la centramos */
+  const uMax = (maxH-pad.t-pad.b)/(ymax-ymin);
+  let shift = 0;
+  if(u>uMax && uMax>10){ shift = ((w-pad.l-pad.r)-(xmax-xmin)*uMax)/2; u = uMax; }
+  const h = Math.max(150,(ymax-ymin)*u + pad.t + pad.b);
+  const X=x=>+(pad.l+shift+(x-xmin)*u).toFixed(2);
+  const Y=y=>+(pad.t+(ymax-y)*u).toFixed(2);
+  const body=[]; let dly = o.delay0||0;
+  let animOn = !!o.anim;
+  const step = o.stepDelay===undefined?0.28:o.stepDelay;
+
+  function animAttr(len,extra){
+    if(!animOn) return '';
+    const d=dly; if(extra!==false) dly+=step;
+    return ` class="anim" style="--L:${len}px;--d:${d}s"`;
+  }
+  function fadeAttr(cls='fade',extra){
+    if(!animOn) return cls==='fade'?'':` class="${cls}"`;
+    const d=dly; if(extra!==false) dly+=step;
+    return ` class="${cls}" style="--d:${d}s"`;
+  }
+  const api = {
+    u, X, Y,
+    setAnim(v){ animOn = v && !!o.anim; if(v) dly=0; return api; },
+    grid(){
+      if(!o.grid) return api;
+      const g=[];
+      for(let x=Math.ceil(xmin);x<=Math.floor(xmax);x++) g.push(`<line x1="${X(x)}" y1="${Y(ymin)}" x2="${X(x)}" y2="${Y(ymax)}"/>`);
+      for(let y=Math.ceil(ymin);y<=Math.floor(ymax);y++) g.push(`<line x1="${X(xmin)}" y1="${Y(y)}" x2="${X(xmax)}" y2="${Y(y)}"/>`);
+      body.push(`<g stroke="#e6eef6" stroke-width="1">${g.join('')}</g>`);
+      return api;
+    },
+    axis(opts={}){
+      const from=opts.from!==undefined?opts.from:xmin+0.05, to=opts.to!==undefined?opts.to:xmax-0.05;
+      body.push(`<line x1="${X(from)}" y1="${Y(0)}" x2="${X(to)}" y2="${Y(0)}" stroke="${C.axis}" stroke-width="4" stroke-linecap="round"/>`);
+      const t0=opts.t0!==undefined?opts.t0:Math.ceil(from), t1=opts.t1!==undefined?opts.t1:Math.floor(to);
+      const skip=opts.skip||[];
+      for(let x=t0;x<=t1;x++){
+        body.push(`<line x1="${X(x)}" y1="${Y(0)-9}" x2="${X(x)}" y2="${Y(0)+9}" stroke="#5b7285" stroke-width="2"/>`);
+        if(!skip.some(s=>Math.abs(s-x)<0.26)) body.push(`<text class="halo" x="${X(x)}" y="${Y(0)+30}" text-anchor="middle" fill="#41586b">${x<0?'−'+Math.abs(x):x}</text>`);
+      }
+      return api;
+    },
+    seg(p,q,color,width=2.5,dash=null,cls){
+      const len=Math.hypot(X(q.x)-X(p.x), Y(q.y)-Y(p.y));
+      body.push(`<line x1="${X(p.x)}" y1="${Y(p.y)}" x2="${X(q.x)}" y2="${Y(q.y)}" stroke="${color}" stroke-width="${width}" stroke-linecap="round"${dash?` stroke-dasharray="${dash}"`:''}${dash?fadeAttr('fade'):animAttr(len)}/>`);
+      return api;
+    },
+    /* etiqueta de un segmento desplazada por la normal, con halo blanco */
+    segLabel(p,q,txt,off=20,color='#12212e',flip=1,size=null){
+      const x1=X(p.x),y1=Y(p.y),x2=X(q.x),y2=Y(q.y);
+      const L=Math.hypot(x2-x1,y2-y1)||1;
+      const nx=-(y2-y1)/L*off*flip, ny=(x2-x1)/L*off*flip;
+      body.push(`<text class="halo lbl serif" x="${(x1+x2)/2+nx}" y="${(y1+y2)/2+ny+5}" text-anchor="middle" fill="${color}"${size?` font-size="${size}"`:''}${fadeAttr('fade',false)}>${txt}</text>`);
+      return api;
+    },
+    /* llave inferior para el cateto que se apoya en la recta (evita solapes) */
+    brace(x0,x1,txt,depth=52,color=C.neo){
+      const y=Y(0)+depth, a=X(x0), b=X(x1);
+      body.push(`<path d="M ${a} ${y-9} L ${a} ${y} L ${b} ${y} L ${b} ${y-9}" fill="none" stroke="${color}" stroke-width="2"${fadeAttr('fade',false)}/>`);
+      body.push(`<text class="halo lbl serif" x="${(a+b)/2}" y="${y+21}" text-anchor="middle" fill="${color}"${fadeAttr('fade',false)}>${txt}</text>`);
+      return api;
+    },
+    right(v,d1,d2,size=13){
+      const s=size;
+      const p1={x:X(v.x)+d1.x*s, y:Y(v.y)-d1.y*s};
+      const p2={x:X(v.x)+(d1.x+d2.x)*s, y:Y(v.y)-(d1.y+d2.y)*s};
+      const p3={x:X(v.x)+d2.x*s, y:Y(v.y)-d2.y*s};
+      body.push(`<path d="M ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${p3.x} ${p3.y}" fill="none" stroke="#7b8fa1" stroke-width="1.6"${fadeAttr('fade',false)}/>`);
+      return api;
+    },
+    arc(cx,cy,r,a1,a2,color=C.res,dash='6 5'){
+      const n=90,pts=[];
+      for(let i=0;i<=n;i++){ const a=a1+(a2-a1)*i/n; pts.push(`${X(cx+r*Math.cos(a))},${Y(cy+r*Math.sin(a))}`); }
+      const len=Math.abs(a2-a1)*r*u;
+      body.push(`<polyline points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="2.2" stroke-dasharray="${dash}"${animAttr(len)}/>`);
+      return api;
+    },
+    dot(x,y,color=C.res,r=5.5){
+      body.push(`<circle cx="${X(x)}" cy="${Y(y)}" r="${r}" fill="${color}" stroke="#fff" stroke-width="1.6"${fadeAttr('pop',false)}/>`);
+      return api;
+    },
+    text(x,y,txt,{dx=0,dy=0,anchor='middle',color='#12212e',cls='halo lbl serif',size=null}={}){
+      body.push(`<text class="${cls}" x="${X(x)+dx}" y="${Y(y)+dy}" text-anchor="${anchor}" fill="${color}"${size?` font-size="${size}"`:''}${fadeAttr('fade',false)}>${txt}</text>`);
+      return api;
+    },
+    px(txt,px,py,{anchor='middle',color='#12212e',cls='halo lbl serif',size=null}={}){
+      body.push(`<text class="${cls}" x="${px}" y="${py}" text-anchor="${anchor}" fill="${color}"${size?` font-size="${size}"`:''}${fadeAttr('fade',false)}>${txt}</text>`);
+      return api;
+    },
+    tick(x,label,color=C.res){
+      body.push(`<line x1="${X(x)}" y1="${Y(0)-11}" x2="${X(x)}" y2="${Y(0)+11}" stroke="${color}" stroke-width="2.4"${fadeAttr('fade',false)}/>`);
+      if(label) body.push(`<text class="halo lbl serif" x="${X(x)}" y="${Y(0)+34}" text-anchor="middle" fill="${color}"${fadeAttr('fade',false)}>${label}</text>`);
+      return api;
+    },
+    tickUp(x,label,color=C.res){
+      body.push(`<line x1="${X(x)}" y1="${Y(0)-12}" x2="${X(x)}" y2="${Y(0)+12}" stroke="${color}" stroke-width="2.4"${fadeAttr('fade',false)}/>`);
+      if(label) body.push(`<text class="halo lbl serif" x="${X(x)}" y="${Y(0)-22}" text-anchor="middle" fill="${color}"${fadeAttr('fade',false)}>${label}</text>`);
+      return api;
+    },
+    bracket(x0,x1,txt,up=26,color=C.aux){
+      const y=Y(0)-up, a=X(x0), b=X(x1);
+      body.push(`<path d="M ${a} ${y+8} L ${a} ${y} L ${b} ${y} L ${b} ${y+8}" fill="none" stroke="${color}" stroke-width="1.8"${fadeAttr('fade',false)}/>`);
+      body.push(`<text class="halo lbl serif" x="${(a+b)/2}" y="${y-7}" text-anchor="middle" fill="${color}"${fadeAttr('fade',false)}>${txt}</text>`);
+      return api;
+    },
+    arrow(p,q,color=C.neo){
+      body.push(`<defs><marker id="ah${body.length}" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 z" fill="${color}"/></marker></defs>`);
+      body.push(`<line x1="${X(p.x)}" y1="${Y(p.y)}" x2="${X(q.x)}" y2="${Y(q.y)}" stroke="${color}" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah${body.length-1})"${fadeAttr('fade',false)}/>`);
+      return api;
+    },
+    svg(){
+      return `<svg viewBox="0 0 ${w} ${h.toFixed(0)}" xmlns="http://www.w3.org/2000/svg" role="img">`+
+             `<rect width="${w}" height="${h.toFixed(0)}" fill="#ffffff"/>`+body.join('')+`</svg>`;
+    },
+    get delay(){ return dly; }
+  };
+  api.grid();
+  return api;
+}
+
+/* ================ FORMATOS ============================================== */
+const sup={0:'⁰',1:'¹',2:'²',3:'³',4:'⁴',5:'⁵',6:'⁶',7:'⁷',8:'⁸',9:'⁹'};
+const minus = n => (n<0?'−'+Math.abs(n):''+n);
+function frTxt(f){ return f.d===1?minus(f.n):`${minus(f.n)}/${f.d}`; }
+function frHTML(f){ return f.d===1?minus(f.n):fracHTML(minus(f.n),f.d); }
+function fracHTML(n,d){ return `<span class="fr"><span>${n}</span><span>${d}</span></span>`; }
+/* valor a + (p/q)√k en texto plano (para SVG) y en HTML (para el texto) */
+function valTxt(a,b,k,html=false){
+  const parts=[];
+  const rootTxt = k===1?null:`√${k}`;
+  if(k===1||frZero(b)) return html?frHTML(a):frTxt(a);
+  const bb=frAbs(b), sign=b.n<0?'−':'';
+  let coef;
+  if(bb.d===1) coef = (bb.n===1?'':bb.n)+rootTxt;
+  else coef = html?fracHTML((bb.n===1?'':bb.n)+rootTxt, bb.d):`${(bb.n===1?'':bb.n)+rootTxt}/${bb.d}`;
+  if(frZero(a)) return sign+coef;
+  const aTxt = html?frHTML(a):frTxt(a);
+  return `${aTxt} ${b.n<0?'−':'+'} ${coef}`;
+}
+const dec=(x,n=4)=>x.toFixed(n).replace(/\.?0+$/,'').replace('.',',').replace(/^-/,'−');
+const dec2=x=>x.toFixed(2).replace('.',',').replace(/^-/,'−');
+
+/* ================ 6. PLAN Y PASOS ======================================= */
+let STATE = { steps:[], shown:0, pool:[] };
+
+function build(){
+  const src=document.getElementById('expr').value;
+  const errBox=document.getElementById('err');
+  errBox.hidden=true;
+  let parsed;
+  try{ parsed=parse(src); }
+  catch(e){ errBox.textContent = T()[e.code]||T().eSyntax; errBox.hidden=false; return; }
+
+  const simplify=document.getElementById('opt-simp').checked;
+  let {a,b,m}=parsed.val;
+  /* radicando de construcción: el que ha escrito el alumnado (didáctico) o el simplificado */
+  let k=m, bK=b;
+  if(!simplify && parsed.roots.length===1 && m!==1){
+    const raw=parsed.roots[0];
+    const s=Math.round(Math.sqrt(raw/m));
+    if(s>=1 && s*s*m===raw){ k=raw; bK=frDiv(b,fr(s)); }
+  }
+  if(k>400){ errBox.textContent=T().eBig; errBox.hidden=false; return; }
+
+  const value = frVal(a) + frVal(bK)*Math.sqrt(k);
+  const irr = k!==1 && !frZero(bK);
+  const data = {src, a, b:bK, k, value, irr};
+
+  renderSummary(data);
+  STATE.steps = makeSteps(data);
+  renderSteps();
+}
+
+function planText(data){
+  const t=T(), bits=[];
+  const bb=frAbs(data.b);
+  if(data.k!==1) bits.push(t.planPyt(data.k));
+  if(bb.n>1) bits.push(t.planMul(bb.n));
+  if(bb.d>1) bits.push(t.planDiv(bb.d));
+  if(!frZero(data.a)) bits.push(t.planTrans(frTxt(data.a)));
+  if(!bits.length) bits.push(t.planNone);
+  return t.planIntro + bits.join(', ') + '.';
+}
+
+function renderSummary(d){
+  const t=T();
+  const cls = !d.irr ? (frIsInt(d.a)?'int':'rat') : 'irr';
+  const label = !d.irr ? (frIsInt(d.a)?t.integer:t.rat) : t.irr;
+  document.getElementById('summary').innerHTML = `
+    <div class="big"><span>${valTxt(d.a,d.b,d.k,true)}</span><span class="approx">≈ ${dec(d.value,6)}</span></div>
+    <div class="badges">
+      <span class="badge ${cls}">${label}</span>
+      <span class="badge">${Math.floor(d.value)} &lt; x &lt; ${Math.floor(d.value)+1}</span>
+      <span class="badge">${t.approx}: ${dec2(d.value)}</span>
+    </div>
+    <div class="plan"><b>${t.planTitle}</b> ${planText(d)}</div>`;
+}
+
+/* --- figura de Tales: dividir un segmento de longitud L en q partes --- */
+function figTales(F,L,q,curTxt){
+  const f=F({xmin:-0.55, xmax:L+0.95, ymax:L*0.78+0.55, pad:{t:30,b:150,l:58,r:58}, maxH:460});
+  const d0=(L/q)*1.05, ang=54*Math.PI/180;
+  const M=j=>({x:d0*j*Math.cos(ang), y:d0*j*Math.sin(ang)});
+  f.setAnim(false);
+  f.axis({from:-0.35,to:L+0.75});
+  f.seg({x:0,y:0},{x:L,y:0},'#63c2e8',6);
+  f.brace(0,L,curTxt,96,'#7ba7cf');
+  f.setAnim(true);
+  f.seg({x:0,y:0}, M(q+0.3), C.aux, 2);                    // semirrecta auxiliar
+  f.seg(M(q), {x:L,y:0}, '#41586b', 2);                     // une la última marca con el extremo
+  for(let j=1;j<=q;j++){
+    const p=M(j);
+    if(j<q) f.seg(p,{x:L*j/q,y:0},'#9db3c6',1.6,'5 4');     // paralelas
+    f.dot(p.x,p.y,C.aux,4.2);
+    if(j<q) f.dot(L*j/q,0,'#41586b',4);
+    f.px(`${j}`, f.X(p.x)-15, f.Y(p.y)+5, {color:C.aux,size:13});
+  }
+  f.seg({x:0,y:0},{x:L/q,y:0},C.res,6);
+  f.brace(0,L/q,`${curTxt}/${q}`,52,C.res);
+  f.dot(L/q,0,C.res,5.5);
+  return f.svg();
+}
+/* --- figura: tomar p de las q partes (admite p>q y sentido negativo) --- */
+function figTakeParts(F,L,q,p,label,neg=false){
+  const s=neg?-1:1, un=L/q, total=p*un*s;
+  const nMax=Math.max(p,q);
+  const lo=Math.min(0,total)-0.75, hi=Math.max(L,total,0)+0.85;
+  const f=F({xmin:lo, xmax:hi, ymax:0.5, pad:{t:24,b:112,l:58,r:58}, maxH:260});
+  f.setAnim(false);
+  f.axis({from:lo+0.2,to:hi-0.2,skip:[total]});
+  f.setAnim(true);
+  for(let j=0;j<nMax;j++)
+    f.seg({x:j*un*s,y:0},{x:(j+1)*un*s,y:0}, j<p?C.neo:'#dbe6ef', j<p?6:4);
+  for(let j=1;j<=nMax;j++) f.dot(j*un*s,0,'#41586b',3.4);
+  f.brace(Math.min(0,total),Math.max(0,total),label,54,C.res);
+  f.dot(total,0); f.tick(total,'');
+  return f.svg();
+}
+
+/* --- construcción de la lista de pasos --- */
+function makeSteps(d){
+  const t=T(), steps=[];
+  const anim=document.getElementById('opt-anim').checked;
+  const grid=document.getElementById('opt-grid').checked;
+  const showChk=document.getElementById('opt-check').checked;
+  const quiz=document.getElementById('opt-quiz').checked;
+  const mode=document.getElementById('opt-decomp').value;
+  const bb=frAbs(d.b), sgn=d.b.n<0?-1:1;
+  const F=o=>Fig(Object.assign({anim,grid},o));
+
+  /* --- paso 0: análisis (solo si el número no es una raíz pelada) --- */
+  const bare = frZero(d.a) && bb.n===1 && bb.d===1 && d.k!==1 && d.b.n>0;
+  if(!bare) steps.push({title:t.sAnalysisT, txt:t.sAnalysis(valTxt(d.a,d.b,d.k,true), planText(d)), fig:null});
+
+  let curLen = 1, curTxt='1';           // longitud construida hasta ahora
+  let talesShown = false;               // ¿ya se ha explicado la división de Tales?
+  if(d.k!==1){
+    /* ---- Pitágoras ---- */
+    const cats = mode==='min'?minSquares(d.k):greedySquares(d.k);
+    const tri = chain(cats);
+    const sq = cats.map(c=>`${c}${sup[2]}`).join(' + ');
+    steps.push({
+      title:t.sDecompT(d.k),
+      txt:t.sDecomp(d.k, `<span class="formula">${d.k} = ${sq}</span>`, tri.length),
+      fig:null
+    });
+    const R=Math.sqrt(d.k);
+    const bbox=(n)=>{
+      const xs=[0,cats[0],R+0.4], ys=[0];
+      tri.slice(0,n).forEach(s=>{xs.push(s.to.x);ys.push(s.to.y);});
+      return {xmin:Math.min(...xs)-0.7, xmax:Math.max(...xs)+0.7, ymax:Math.max(...ys)+0.38, pad:{t:26,b:82,l:58,r:58}};
+    };
+    for(let n=1;n<=tri.length;n++){
+      const s=tri[n-1], bx=bbox(n);
+      const f=F(Object.assign({},bx));
+      f.setAnim(false);
+      f.axis({from:bx.xmin+0.2,to:bx.xmax-0.2});
+      f.seg({x:0,y:0},{x:cats[0],y:0},C.neo,5);          // cateto horizontal sobre la recta
+      f.brace(0,cats[0],`${cats[0]}`);                   // etiqueta separada del eje
+      for(let j=0;j<n-1;j++){                            // triángulos ya construidos
+        const e=tri[j];
+        f.seg({x:0,y:0}, e.to, '#9aa8b4', 1.7);
+        f.seg(e.from, e.to, '#8fc9e8', 2.4);
+        f.segLabel(e.from,e.to,`${e.cat}`,20,'#5aa8cf',1);
+      }
+      f.setAnim(true);                                   // lo nuevo de este paso
+      f.seg(s.from, s.to, C.neo, 4);
+      f.seg({x:0,y:0}, s.to, C.hyp, 2.6);
+      f.segLabel(s.from,s.to,`${s.cat}`,26,C.neo,1);
+      f.segLabel({x:0,y:0}, s.to, `√${s.rad}`, 24, C.hyp, -1);
+      f.right(n===1?{x:cats[0],y:0}:s.from,
+              n===1?{x:-1,y:0}:norm(sub({x:0,y:0},s.from),1),
+              n===1?{x:0,y:1}:norm(sub(s.to,s.from),1));
+      const isLast = n===tri.length;
+      steps.push({
+        title: n===1?t.sTri1T:t.sTriNT(n),
+        txt: n===1?t.sTri1(cats[0],cats[1],s.rad):t.sTriN(s.cat,s.hPrev,s.rad),
+        fig:f.svg(),
+        legend:true,
+        table: showChk&&isLast?chkTable(tri):null,
+        quiz: quiz&&n===1?{type:'root', a:cats[0], b:cats[1], ans:s.rad}:null
+      });
+      if(isLast){
+        /* --- paso del arco: fondo atenuado, arco animado --- */
+        const g=F(Object.assign({},bbox(tri.length)));
+        g.setAnim(false);
+        g.axis({from:bbox(tri.length).xmin+0.2,to:bbox(tri.length).xmax-0.2,skip:[R]});
+        g.seg({x:0,y:0},{x:cats[0],y:0},'#cfe8f7',5);
+        tri.forEach(e=>{ g.seg({x:0,y:0},e.to,'#cbd5de',1.6); g.seg(e.from,e.to,'#cfe8f7',2.4); });
+        const last=tri[tri.length-1];
+        g.seg({x:0,y:0},last.to,C.hyp,3);
+        g.segLabel({x:0,y:0},last.to,`√${d.k}`,24,C.hyp,-1);
+        g.dot(0,0,'#41586b',4.5);
+        g.setAnim(true);
+        g.arc(0,0,R,Math.atan2(last.to.y,last.to.x),0);
+        g.dot(R,0); g.tick(R,`√${d.k}`);
+        steps.push({
+          title:t.sArcT(d.k), txt:t.sArc(d.k,dec2(R)), fig:g.svg(), legend:true,
+          quiz: quiz?{type:'choice', q:t.q2, opts:t.q2o, ok:t.q2ok}:null
+        });
+      }
+    }
+    curLen=R; curTxt=`√${d.k}`;
+  }
+
+  /* ---- multiplicar por p con el compás (cuando no hay denominador) ---- */
+  if(bb.d===1 && bb.n>1){
+    const p=bb.n, L=curLen;
+    const f=F({xmin:-0.6, xmax:p*L+0.8, ymax:L*0.55+0.9});
+    f.setAnim(false);
+    f.axis({from:-0.4,to:p*L+0.6});
+    f.setAnim(true);
+    for(let j=0;j<p;j++){
+      f.seg({x:j*L,y:0},{x:(j+1)*L,y:0}, j%2?C.neo:'#63c2e8',6);
+      f.arc(j*L,0,L,0.30,0.80,C.aux,'4 4');
+      f.px(`${curTxt}`, f.X(j*L+L/2), f.Y(0)+50, {color:'#41586b',size:14});
+    }
+    f.dot(p*L,0); f.tick(p*L, `${p}${curTxt}`);
+    steps.push({title:t.sMulT(p), txt:t.sMul(p,curTxt), fig:f.svg()});
+    curLen=p*L; curTxt=`${p}${curTxt}`;
+  }
+
+  /* ---- dividir en q partes con Tales y tomar p ---- */
+  if(bb.d>1){
+    const q=bb.d, p=bb.n, L=curLen;
+    steps.push({title:t.sDivT(q), txt:t.sDiv(q,curTxt,`${curTxt}/${q}`), fig:figTales(F,L,q,curTxt)});
+    talesShown=true;
+    if(p!==1) steps.push({title:t.sTakeT(p,q), txt:t.sTake(p,q), fig:figTakeParts(F,L,q,p,valTxt(fr(0),bb,d.k))});
+    curLen=L*p/q; curTxt=valTxt(fr(0),bb,d.k);
+  }
+
+  /* ---- si el punto de partida es fraccionario, hay que construirlo ---- */
+  if(!frZero(d.a) && !frIsInt(d.a)){
+    const aa=frAbs(d.a), q=aa.d, p=aa.n;
+    const dir = d.a.n<0 ? (LANG==='es'?'hacia la izquierda':'cap a l\'esquerra') : (LANG==='es'?'hacia la derecha':'cap a la dreta');
+    if(!talesShown){   // si Tales aún no ha aparecido, mostramos la división completa
+      steps.push({title:t.sDivT(q), txt:t.sDiv(q,'1',`1/${q}`), fig:figTales(F,1,q,'1')});
+      talesShown=true;
+    }
+    steps.push({
+      title:t.sStartT(frTxt(d.a)),
+      txt:t.sStart(frTxt(d.a),q,p,dir),
+      fig:figTakeParts(F,1,q,p,frTxt(d.a),d.a.n<0)
+    });
+  }
+
+  /* ---- simetría respecto al 0 (números negativos sin traslación) ---- */
+  if(frZero(d.a) && sgn<0 && !frZero(d.b)){
+    const L=curLen;
+    const f=F({xmin:-L-0.9, xmax:L+0.9, ymax:L+0.3, pad:{t:30,b:96,l:58,r:58}, maxH:330});
+    f.setAnim(false);
+    f.axis({from:-L-0.6,to:L+0.6,skip:[L,-L]});
+    f.seg({x:0,y:0},{x:L,y:0},'#cfe8f7',6);
+    f.tickUp(L,curTxt,'#7ba7cf');
+    f.dot(0,0,'#41586b',4.5);
+    f.setAnim(true);
+    f.arc(0,0,L,0,Math.PI,C.aux,'6 5');
+    f.seg({x:0,y:0},{x:-L,y:0},C.neo,6);
+    f.dot(-L,0);
+    f.tickUp(-L,'−'+curTxt);
+    steps.push({title:t.sRefT(curTxt), txt:t.sRef(curTxt,'−'+curTxt), fig:f.svg()});
+  }
+
+  /* ---- traslación (solo si hay una longitud construida que mover) ---- */
+  if(!frZero(d.a) && !frZero(d.b)){
+    const A=frVal(d.a), len=curLen, res=A+sgn*len;
+    const lo=Math.min(0,A,res)-0.9, hi=Math.max(0,A,res,len)+0.9;
+    const f=F({xmin:lo, xmax:hi, ymax:0.85, pad:{t:30,b:96,l:58,r:58}, maxH:290});
+    f.setAnim(false);
+    f.axis({from:lo+0.25,to:hi-0.25,skip:[A,res]});
+    f.seg({x:0,y:0},{x:sgn>0?len:-len,y:0},'#cfe8f7',6);
+    f.bracket(Math.min(0,sgn>0?len:-len),Math.max(0,sgn>0?len:-len),curTxt,26,'#7ba7cf');
+    f.tick(A, frTxt(d.a),'#41586b');
+    f.dot(A,0,'#41586b',4.5);
+    f.setAnim(true);
+    f.seg({x:A,y:0},{x:res,y:0},C.neo,6);
+    f.arrow({x:(sgn>0?len:-len)/2,y:0.45},{x:(A+res)/2,y:0.14});
+    f.px(t.moveLbl, f.X(((sgn>0?len:-len)/2+(A+res)/2)/2), f.Y(0.55), {color:C.neo,size:13,cls:'halo'});
+    f.dot(res,0);
+    f.tickUp(res, valTxt(d.a,d.b,d.k));
+    steps.push({
+      title:t.sTransT,
+      txt:t.sTrans(frTxt(d.a), curTxt, sgn>0?(LANG==='es'?'hacia la derecha':'cap a la dreta'):(LANG==='es'?'hacia la izquierda':'cap a l\'esquerra'), valTxt(d.a,d.b,d.k,true)),
+      fig:f.svg()
+    });
+  }
+
+  /* ---- resultado final ---- */
+  const v=d.value, lo=Math.floor(v), hi=lo+1;
+  const xm=Math.min(-0.7,v-1.6), xM=Math.max(1.2,v+1.6);
+  const f=F({xmin:xm,xmax:xM,ymax:0.75,pad:{t:46,b:86,l:58,r:58},maxH:260});
+  f.setAnim(false);
+  f.axis({from:xm+0.25,to:xM-0.25,skip:[v]});
+  f.setAnim(true);
+  f.seg({x:lo,y:0},{x:hi,y:0},'#ffd9d9',7);
+  f.dot(v,0); f.tickUp(v, valTxt(d.a,d.b,d.k));
+  f.px(`≈ ${dec2(v)}`, f.X(v), f.Y(0)+58, {color:C.res,size:15});
+  steps.push({
+    title:t.sFinalT, txt:t.sFinal(valTxt(d.a,d.b,d.k,true), dec2(v), lo, hi), fig:f.svg(),
+    quiz: quiz?{type:'final', lo, hi, irr:d.irr, v}:null
+  });
+  return steps;
+}
+const sub=(p,q)=>({x:p.x-q.x,y:p.y-q.y});
+const norm=(v,s=1)=>{const L=Math.hypot(v.x,v.y)||1;return {x:v.x/L*s,y:v.y/L*s};};
+
+function chkTable(tri){
+  const t=T();
+  let rows=tri.map((s,i)=>`<tr><td>${i+1}</td><td>${i===0?s.hPrev===0?'':Math.sqrt(s.hPrev):'√'+s.hPrev}</td><td>${s.cat}</td><td>√${s.rad}</td><td class="ok">${dec2(Math.sqrt(s.rad))}</td></tr>`).join('');
+  return `<div class="chk"><table class="tbl"><thead><tr>${t.chkHead.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+/* --- pintar los pasos --- */
+function renderSteps(){
+  const box=document.getElementById('steps');
+  const stepwise=document.getElementById('opt-step').checked;
+  STATE.shown = stepwise?1:STATE.steps.length;
+  box.innerHTML = STATE.steps.map((s,i)=>`
+    <article class="step" data-i="${i}">
+      <div class="step-head"><span class="step-num">${T().step} ${i+1}</span><h3>${s.title}</h3></div>
+      <p class="txt">${s.txt}</p>
+      ${s.fig?`<div class="fig">${s.fig}</div>`:''}
+      ${s.legend?legendHTML():''}
+      ${s.fig?`<div class="figtools"><button data-dl="svg">SVG</button><button data-dl="png">PNG</button></div>`:''}
+      ${s.table||''}
+      ${s.quiz?quizHTML(s.quiz,i):''}
+    </article>`).join('');
+  document.getElementById('stepbar').hidden = !stepwise;
+  document.getElementById('dots').innerHTML = STATE.steps.map((_,i)=>`<span class="${i<STATE.shown?'on':''}"></span>`).join('');
+  applyVisibility();
+  document.getElementById('linebox').hidden = STATE.pool.length===0;
+}
+function legendHTML(){
+  const t=T();
+  return `<div class="legend">
+    <span><i style="border-color:${C.axis}"></i>${t.legAxis}</span>
+    <span><i style="border-color:${C.neo}"></i>${t.legNew}</span>
+    <span><i style="border-color:${C.hyp}"></i>${t.legHyp}</span>
+    <span><i style="border-color:${C.res}"></i>${t.legRes}</span></div>`;
+}
+function applyVisibility(){
+  document.querySelectorAll('.step').forEach(el=>{
+    const i=+el.dataset.i;
+    el.classList.toggle('hidden-step', i>=STATE.shown && document.getElementById('opt-step').checked);
+  });
+  document.getElementById('dots').innerHTML = STATE.steps.map((_,i)=>`<span class="${i<STATE.shown?'on':''}"></span>`).join('');
+  const last=document.querySelector(`.step[data-i="${STATE.shown-1}"]`);
+  if(last && STATE.shown>1) last.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ================ 7. PREGUNTAS GUÍA ===================================== */
+function quizHTML(q,i){
+  const t=T();
+  if(q.type==='root') return `<div class="quiz" data-q="${i}"><h4>${t.qTitle}</h4>
+    <div class="q"><p>${t.q1(q.a,q.b)}</p><div class="row">√<input type="text" data-k="root" inputmode="numeric"><button class="chip" data-check="root">${t.qCheck}</button></div><div class="fb" data-fb="root"></div></div></div>`;
+  if(q.type==='choice') return `<div class="quiz" data-q="${i}"><h4>${t.qTitle}</h4>
+    <div class="q"><p>${q.q}</p><div class="opts">${q.opts.map((o,j)=>`<button data-opt="${j}">${o}</button>`).join('')}</div><div class="fb" data-fb="choice"></div></div></div>`;
+  return `<div class="quiz" data-q="${i}"><h4>${t.qTitle}</h4>
+    <div class="q"><p>${t.q3}</p><div class="row"><input type="text" data-k="lo"> &lt; x &lt; <input type="text" data-k="hi"><button class="chip" data-check="int">${t.qCheck}</button></div><div class="fb" data-fb="int"></div></div>
+    <div class="q"><p>${t.q4}</p><div class="opts">${t.q4o.map((o,j)=>`<button data-opt="${j}" data-kind="rat">${o}</button>`).join('')}</div><div class="fb" data-fb="rat"></div></div>
+    <div class="q"><p>${t.q5}</p><div class="row"><input type="text" data-k="app"><button class="chip" data-check="app">${t.qCheck}</button></div><div class="fb" data-fb="app"></div></div></div>`;
+}
+document.addEventListener('click',e=>{
+  const t=T();
+  const btn=e.target.closest('button'); if(!btn) return;
+  const quizBox=btn.closest('.quiz');
+  if(quizBox){
+    const i=+quizBox.dataset.q, q=STATE.steps[i].quiz;
+    const val=k=>(quizBox.querySelector(`[data-k="${k}"]`)?.value||'').replace(',','.').trim();
+    const say=(k,ok,why='')=>{const el=quizBox.querySelector(`[data-fb="${k}"]`);el.className='fb '+(ok?'good':'bad');el.innerHTML=(ok?t.good:t.bad)+(why?`<span class="why">${why}</span>`:'');};
+    if(btn.dataset.check==='root') say('root', +val('root')===q.ans, `${q.a}² + ${q.b}² = ${q.ans}`);
+    if(btn.dataset.check==='int'){ const ok=+val('lo')===q.lo && +val('hi')===q.hi; say('int',ok,ok?'':t.whyInt(q.lo,q.hi)); }
+    if(btn.dataset.check==='app'){ const ok=Math.abs(parseFloat(val('app'))-q.v)<0.005; say('app',ok,ok?'':t.whyApp(dec2(q.v))); }
+    if(btn.dataset.opt!==undefined){
+      const grp=btn.parentElement; grp.querySelectorAll('button').forEach(b=>b.classList.remove('sel')); btn.classList.add('sel');
+      if(btn.dataset.kind==='rat'){ const ok=(+btn.dataset.opt===1)===q.irr; say('rat',ok,t.whyRat(q.irr)); }
+      else { const ok=+btn.dataset.opt===q.ok; say('choice',ok,ok?'':t.q2o[q.ok]); }
+    }
+    return;
+  }
+  if(btn.dataset.dl){ downloadFig(btn, btn.dataset.dl); }
+});
+
+/* --- descargar figura --- */
+function downloadFig(btn,kind){
+  const svgEl=btn.closest('.step').querySelector('svg');
+  const src=new XMLSerializer().serializeToString(svgEl);
+  const name='recta-real-'+(+btn.closest('.step').dataset.i+1);
+  if(kind==='svg'){
+    const url=URL.createObjectURL(new Blob([src],{type:'image/svg+xml'}));
+    const a=document.createElement('a'); a.href=url; a.download=name+'.svg'; a.click(); URL.revokeObjectURL(url); return;
+  }
+  const vb=svgEl.viewBox.baseVal, sc=2;
+  const img=new Image();
+  img.onload=()=>{
+    const c=document.createElement('canvas'); c.width=vb.width*sc; c.height=vb.height*sc;
+    const cx=c.getContext('2d'); cx.fillStyle='#fff'; cx.fillRect(0,0,c.width,c.height);
+    cx.drawImage(img,0,0,c.width,c.height);
+    const a=document.createElement('a'); a.href=c.toDataURL('image/png'); a.download=name+'.png'; a.click();
+  };
+  img.src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(src)));
+}
+
+/* ================ 8. RECTA COMPARATIVA ================================== */
+function renderPool(){
+  const box=document.getElementById('pool');
+  box.innerHTML=STATE.pool.map((p,i)=>`<span class="tag">${p.html}<button data-rm="${i}">×</button></span>`).join('');
+  box.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{STATE.pool.splice(+b.dataset.rm,1);renderPool();drawCmp();});
+  document.getElementById('linebox').hidden=STATE.pool.length===0;
+  drawCmp();
+}
+function drawCmp(){
+  if(!STATE.pool.length) return;
+  const z=+document.getElementById('zoom').value;
+  const vals=STATE.pool.map(p=>p.v);
+  const lo=Math.min(...vals), hi=Math.max(...vals);
+  const span=hi-lo;
+  const pad=span<1e-9? 1.2 : Math.max(0.35, span*(1.05-z/105));
+  const xm=Math.floor(lo-pad), xM=Math.ceil(hi+pad);
+  const f=Fig({xmin:xm,xmax:xM,ymax:0.42,pad:{t:56,b:88,l:56,r:56},anim:false,maxH:230});
+  f.axis({from:xm+0.2,to:xM-0.2});
+  const order=[...STATE.pool].sort((a,b)=>a.v-b.v);
+  const cols=['#e03131','#1f9ad6','#8a5a00','#6b21a8','#1c7c3c','#c2255c'];
+  STATE.pool.forEach((p,i)=>{
+    const c=cols[i%cols.length];
+    f.dot(p.v,0,c,5.5);
+    const up=(i%2===0);
+    f.px(p.txt, f.X(p.v), up?f.Y(0)-24:f.Y(0)+50, {color:c,size:15});
+    f.px(dec2(p.v), f.X(p.v), up?f.Y(0)-44:f.Y(0)+70, {color:'#7089a5',size:12.5,cls:'halo'});
+  });
+  document.getElementById('cmpline').innerHTML=f.svg();
+  document.getElementById('zoomval').textContent=`[${xm}, ${xM}]`;
+  document.getElementById('order').innerHTML=`<b style="font-family:'Source Sans 3';font-size:14px;color:#4a6072">${T().order}:</b> `+
+    order.map(p=>`<span class="ordv">${p.txt}</span>`).join('<span class="lt">&lt;</span>');
+}
+
+/* ================ 9. INTERFAZ =========================================== */
+const EXAMPLES=[
+  {label:'√12', e:'sqrt(12)'},
+  {label:'√10', e:'sqrt(10)'},
+  {label:'−2+√10', e:'-2+sqrt(10)'},
+  {label:'1+√10', e:'1+sqrt(10)'},
+  {label:'(1+√10)/3', e:'(1+sqrt(10))/3'},
+  {label:'−2+(1+√10)/3', e:'-2+(1+sqrt(10))/3'},
+  {label:'−2+2(1+√10)/3', e:'-2+2*(1+sqrt(10))/3'},
+  {label:'√2', e:'sqrt(2)'},
+  {label:'2√5/3', e:'2*sqrt(5)/3'},
+  {label:'7/4', e:'7/4'},
+  {label:'√29', e:'sqrt(29)'}
+];
+function paintExamples(){
+  document.getElementById('examples').innerHTML=EXAMPLES.map(x=>`<button class="chip" data-e="${x.e}">${x.label}</button>`).join('');
+  document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{document.getElementById('expr').value=b.dataset.e;build();});
+}
+function applyLang(){
+  const t=T();
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{ if(t[el.dataset.i18n]) el.innerHTML=t[el.dataset.i18n]; });
+  document.getElementById('theory-body').innerHTML=t.theory;
+  document.querySelectorAll('#opt-decomp option').forEach(o=>{ if(t[o.dataset.i18n]) o.textContent=t[o.dataset.i18n]; });
+  document.querySelectorAll('.seg [data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
+  paintExamples();
+  build();
+  renderPool();
+}
+/* --- generador de ejercicios --- */
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+function newExercise(level){
+  const nonSquare=()=>{let n;do{n=rnd(2,40);}while(Number.isInteger(Math.sqrt(n)));return n;};
+  let e;
+  if(level==='easy') e=`sqrt(${nonSquare()})`;
+  else if(level==='med'){ let a=rnd(-4,4)||2; e=`${a}${a<0?'':'+'}${a<0?'+':''}sqrt(${nonSquare()})`.replace('--','-'); e=`${a}+sqrt(${nonSquare()})`; }
+  else { const q=rnd(2,4), p=rnd(1,q-1)||1, a=rnd(-3,3); e=`${a?a+'+':''}${p>1?p+'*':''}(1+sqrt(${nonSquare()}))/${q}`; }
+  document.getElementById('expr').value=e;
+  build();
+}
+/* --- eventos --- */
+document.getElementById('go').onclick=build;
+document.getElementById('expr').addEventListener('keydown',e=>{if(e.key==='Enter')build();});
+document.getElementById('clear-in').onclick=()=>{document.getElementById('expr').value='';document.getElementById('expr').focus();};
+document.querySelectorAll('[data-ins]').forEach(b=>b.onclick=()=>{
+  const inp=document.getElementById('expr');
+  const p=inp.selectionStart??inp.value.length;
+  inp.value=inp.value.slice(0,p)+b.dataset.ins+inp.value.slice(inp.selectionEnd??p);
+  inp.focus(); inp.selectionStart=inp.selectionEnd=p+b.dataset.ins.length;
+});
+['opt-decomp','opt-anim','opt-step','opt-quiz','opt-check','opt-grid','opt-simp'].forEach(id=>{
+  document.addEventListener('change',e=>{ if(e.target.id===id) build(); });
+});
+document.getElementById('next').onclick=()=>{ if(STATE.shown<STATE.steps.length){STATE.shown++;applyVisibility();} };
+document.getElementById('prev').onclick=()=>{ if(STATE.shown>1){STATE.shown--;applyVisibility();} };
+document.getElementById('all').onclick=()=>{ STATE.shown=STATE.steps.length; applyVisibility(); };
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT') return;
+  if(e.key==='ArrowRight') document.getElementById('next').click();
+  if(e.key==='ArrowLeft') document.getElementById('prev').click();
+});
+document.getElementById('rnd-easy').onclick=()=>newExercise('easy');
+document.getElementById('rnd-med').onclick=()=>newExercise('med');
+document.getElementById('rnd-hard').onclick=()=>newExercise('hard');
+document.getElementById('add-line').onclick=()=>{
+  try{
+    const p=parse(document.getElementById('expr').value);
+    let {a,b,m}=p.val, k=m,bK=b;
+    if(p.roots.length===1&&m!==1){const s=Math.round(Math.sqrt(p.roots[0]/m)); if(s*s*m===p.roots[0]){k=p.roots[0];bK=frDiv(b,fr(s));}}
+    const v=frVal(a)+frVal(bK)*Math.sqrt(k);
+    STATE.pool.push({v, txt:valTxt(a,bK,k), html:valTxt(a,bK,k,true)});
+    renderPool();
+  }catch(err){}
+};
+document.getElementById('clr-line').onclick=()=>{STATE.pool=[];renderPool();};
+document.getElementById('zoom').oninput=drawCmp;
+document.getElementById('btn-theory').onclick=()=>document.getElementById('theory').hidden=false;
+document.getElementById('theory-x').onclick=()=>document.getElementById('theory').hidden=true;
+document.getElementById('theory').onclick=e=>{if(e.target.id==='theory')document.getElementById('theory').hidden=true;};
+document.getElementById('btn-present').onclick=()=>{document.body.classList.add('present');document.getElementById('presentbar').hidden=false;};
+document.getElementById('present-exit').onclick=()=>{document.body.classList.remove('present');document.getElementById('presentbar').hidden=true;};
+document.getElementById('btn-print').onclick=()=>{const s=STATE.shown;STATE.shown=STATE.steps.length;applyVisibility();setTimeout(()=>window.print(),120);};
+document.querySelectorAll('.seg [data-lang]').forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;applyLang();});
+
+applyLang();
+
+</script>
+</body>
+</html>
+```

@@ -1,0 +1,951 @@
+---
+title: "Entrenador de Logaritmos y Neperianos"
+subtitle: "Entrenador para mejorar la destreza de las operaciones matemáticas con logaritmos y neperianos"
+filename: entrenador_logaritmos_neperianos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Calculadora para mejorar la destreza de las operaciones matemáticas con números en notación científica
+categories: [matemáticas]
+toc: true
+number-sections: true
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+## Acerca de este entrenador de Logaritmos y Neperianos
+
+### Introducción
+
+El **Entrenador de Logaritmos y Neperianos** es una aplicación interactiva dirigida al alumnado de 1º de Bachillerato de Matemáticas CCSS, centrada en la práctica del cálculo con logaritmos decimales y neperianos. Funciona sin conexión a internet y genera ejercicios de forma aleatoria en ocho categorías, que van desde logaritmos exactos hasta ecuaciones logarítmicas, exponenciales y aplicaciones reales, con niveles de dificultad progresiva (Fácil, Medio, Difícil y Reto). Incorpora además un modo examen cronometrado de 10 preguntas, un modo de repaso de fallos adaptativo y un panel de rendimiento por categoría con historial exportable.
+
+### Finalidad
+
+La finalidad de esta herramienta es afianzar el manejo de la definición y las propiedades de los logaritmos, así como su aplicación práctica en contextos científicos y económicos, mediante la resolución de ejercicios con corrección automática y retroalimentación inmediata. Al combinar pistas progresivas, resoluciones paso a paso y un formulario teórico de consulta, la aplicación acompaña al alumnado tanto en el aprendizaje inicial como en el repaso previo a un examen.
+
+### Objetivos
+
+Esta herramienta persigue los siguientes objetivos:
+
+- Practicar el cálculo de logaritmos exactos, incluyendo casos especiales como \( \log_b b \), \( \log_b 1 \) y logaritmos de fracciones.
+- Aplicar las propiedades del producto, cociente, potencia y raíz de los logaritmos para simplificar expresiones.
+- Realizar cambios de base utilizando la fórmula \( \log_b a = \dfrac{\log_c a}{\log_c b} \).
+- Trabajar el logaritmo neperiano (ln), su relación con el logaritmo decimal y sus propiedades características.
+- Resolver ecuaciones logarítmicas y exponenciales, aplicando la definición de logaritmo y comprobando el dominio de las soluciones.
+- Conectar los logaritmos con aplicaciones reales, como el pH en química, la escala Richter, los decibelios, el interés compuesto o la desintegración radiactiva.
+- Ofrecer al profesorado un panel de rendimiento por categoría y un historial exportable en CSV con datos objetivos de cada comprobación.
+
+### Instrucciones de uso
+
+Para practicar con la herramienta, sigue estos pasos:
+
+1. Elige una **categoría** (Aleatorio, Logaritmos exactos, Propiedades, Cambio de base, Neperianos, Ecuaciones logarítmicas, Ecuaciones exponenciales o Aplicaciones reales) en las pestañas superiores; en el modo Aleatorio, la aplicación selecciona automáticamente la categoría según tu rendimiento previo.
+2. Lee el enunciado y escribe el resultado en el cuadro de respuesta, admitiendo números enteros, decimales o fracciones (por ejemplo, `3`, `-2` o `2/3`), y pulsa **Comprobar**.
+3. Si necesitas ayuda, usa el botón **Pista** para recibir ayudas progresivas, o **Ver resolución** para consultar el desarrollo completo del ejercicio paso a paso una vez respondido.
+4. Consulta el botón **Teoría** en cualquier momento para repasar la definición, las propiedades y los casos especiales de la categoría activa.
+5. Además del modo práctica libre, puedes activar el modo **Examen** (10 preguntas cronometradas, con al menos una de cada categoría) o el modo **Repasar fallos**, que muestra únicamente los ejercicios que has fallado anteriormente.
+6. Revisa tu progreso en el panel de **rendimiento por categoría**, que registra aciertos e intentos, y exporta tu historial completo en formato CSV con el botón correspondiente.
+
+El formulario rápido incluido en la propia herramienta resume las fórmulas esenciales —definición, casos especiales, propiedades del producto, cociente, potencia, raíz, cambio de base y la relación entre logaritmo decimal y neperiano— como apoyo constante durante la práctica.
+
+```{=html}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrenador de Logaritmos y Neperianos · v6</title>
+<style>
+:root{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--bg:#f4f6fb;--card:#fff;}
+*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+body{margin:0;background:var(--bg);color:var(--navy);}
+header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
+header h1{margin:0;font-size:1.3rem;}
+header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
+.container{max-width:860px;margin:20px auto;padding:0 16px;}
+.mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
+.mode-btn.active{background:var(--blue);color:#fff;}
+.mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
+.mode-btn.repaso.active{background:var(--purple);color:#fff;}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;justify-content:center;}
+.tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.9rem;font-weight:600;border:2px solid var(--blue);}
+.tab.active{background:var(--blue);color:#fff;}
+.badge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:12px;}
+.badge-facil{background:#e3f6e8;color:var(--green);}
+.badge-medio{background:#fdeee0;color:var(--orange);}
+.badge-dificil{background:#fbe4e2;color:var(--red);}
+.badge-reto{background:#e6e0fa;color:var(--purple);}
+.tab.active .badge-facil{background:#fff;color:var(--green);}
+.tab.active .badge-medio{background:#fff;color:var(--orange);}
+.tab.active .badge-dificil{background:#fff;color:var(--red);}
+.tab.active .badge-reto{background:#fff;color:var(--purple);}
+.card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
+.stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.stats b{color:var(--navy);}
+.exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
+.question{font-size:1.3rem;text-align:center;margin:22px 0;font-weight:500;color:var(--navy);line-height:1.5;}
+.question b{color:var(--blue);font-weight:700;}
+.answer-row{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
+input[type=text]{padding:10px 14px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:170px;text-align:center;}
+button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
+.btn-check{background:var(--blue);color:#fff;}
+.btn-hint{background:var(--orange);color:#fff;}
+.btn-steps{background:var(--purple);color:#fff;}
+.btn-teoria{background:var(--teal);color:#fff;}
+.btn-next{background:var(--navy);color:#fff;}
+button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
+.feedback{text-align:center;font-size:.9rem;margin-top:8px;min-height:20px;font-weight:600;}
+.hint-box,.steps-box,.teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 14px;border-radius:8px;margin-top:12px;font-size:.85rem;display:none;white-space:pre-line;line-height:1.5;}
+.steps-box{background:#f1ecff;border-left:4px solid var(--purple);}
+.teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
+.ref-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px;}
+.ref-table th,.ref-table td{border:1px solid #dde3f0;padding:7px;text-align:left;}
+.ref-table th{background:var(--navy);color:#fff;}
+.section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
+.error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
+.error-log th,.error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
+.error-log th{background:#e4e9f7;}
+.pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
+.pct-bar div{height:100%;border-radius:6px;}
+.export-btn{background:var(--green);color:#fff;margin-top:10px;}
+.reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
+.timer{font-weight:700;color:var(--orange);}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
+.modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:420px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+.modal.correct{border-top:8px solid var(--green);}
+.modal.incorrect{border-top:8px solid var(--red);}
+.modal-icon{font-size:2.4rem;margin-bottom:8px;}
+.modal-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
+.modal.correct .modal-title{color:var(--green);}
+.modal.incorrect .modal-title{color:var(--red);}
+.modal-text{font-size:.9rem;color:#444;margin-bottom:12px;}
+.modal-steps{font-size:.8rem;text-align:left;background:#f1ecff;border-left:4px solid var(--purple);border-radius:8px;padding:10px 12px;margin-bottom:14px;white-space:pre-line;display:none;line-height:1.5;}
+.modal button{background:var(--navy);color:#fff;width:100%;}
+.exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:560px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+.exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
+.exam-grade.aprobado{color:var(--green);}
+.exam-grade.suspenso{color:var(--red);}
+.exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
+.exam-modal th,.exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
+.exam-modal th{background:#e4e9f7;}
+.exam-modal .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.exam-modal button{color:#fff;}
+footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>🧮 Entrenador de Logaritmos y Neperianos</h1>
+  <p>1º de Bachillerato · Matemáticas CCSS · v6</p>
+</header>
+<div class="container">
+  <div class="mode-bar">
+    <button class="mode-btn active" id="modePractica" onclick="setMode('practica')">📘 Modo Práctica</button>
+    <button class="mode-btn" id="modeExamen" onclick="setMode('examen')">📝 Examen (10 preguntas)</button>
+    <button class="mode-btn repaso" id="modeRepaso" onclick="setMode('repaso')">🔁 Repasar fallos (<span id="failCount">0</span>)</button>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="card">
+    <div class="exam-progress" id="examProgress"></div>
+    <div class="stats">
+      <span>Puntuación: <b id="score">0</b> / <b id="total">0</b></span>
+      <span>Racha: <b id="streak">0</b> 🔥 (mejor: <b id="bestStreak">0</b>)</span>
+      <span>⏱ <span class="timer" id="timerVal">0s</span></span>
+    </div>
+    <div class="question" id="question">Elige una categoría para empezar</div>
+    <div class="answer-row">
+      <input type="text" id="answerInput" placeholder="Ej: 3, -2, 2/3, 0.5" onkeydown="if(event.key==='Enter')checkAnswer()">
+    </div>
+    <div class="answer-row">
+      <button class="btn-check" id="checkBtn" onclick="checkAnswer()">Comprobar</button>
+      <button class="btn-hint" id="hintBtn" onclick="nextHintLevel()">💡 Pista</button>
+      <button class="btn-steps" id="stepsBtn" onclick="toggleSteps()" disabled>📋 Ver resolución</button>
+      <button class="btn-teoria" id="teoriaBtn" onclick="toggleTeoria()">📚 Teoría</button>
+      <button class="btn-next" id="nextBtn" onclick="skipQuestion()">Siguiente →</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="hint-box" id="hintBox"></div>
+    <div class="steps-box" id="stepsBox"></div>
+    <div class="teoria-box" id="teoriaBox"></div>
+  </div>
+  <div class="card error-log">
+    <div class="section-title">📊 Rendimiento por categoría</div>
+    <table id="errorTable">
+      <thead><tr><th>Categoría</th><th>Aciertos</th><th>Intentos</th><th>%</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <button class="export-btn" onclick="exportCSV()">⬇ Exportar historial (CSV)</button>
+    <button class="reset-btn" onclick="resetState()">🗑 Reiniciar sesión</button>
+  </div>
+  <div class="card">
+    <div class="section-title">📖 Formulario rápido</div>
+    <table class="ref-table">
+      <tr><th>Concepto</th><th>Fórmula</th></tr>
+      <tr><td>Definición</td><td>log<sub>b</sub>(x)=n ⇔ b<sup>n</sup>=x</td></tr>
+      <tr><td>Casos especiales</td><td>log<sub>b</sub>(b)=1 &nbsp;|&nbsp; log<sub>b</sub>(1)=0</td></tr>
+      <tr><td>Producto</td><td>log<sub>b</sub>(x·y)=log<sub>b</sub>(x)+log<sub>b</sub>(y)</td></tr>
+      <tr><td>Cociente</td><td>log<sub>b</sub>(x/y)=log<sub>b</sub>(x)−log<sub>b</sub>(y)</td></tr>
+      <tr><td>Potencia</td><td>log<sub>b</sub>(x<sup>y</sup>)=y·log<sub>b</sub>(x)</td></tr>
+      <tr><td>Raíz</td><td>log<sub>b</sub>(<sup>n</sup>√x)=log<sub>b</sub>(x)/n</td></tr>
+      <tr><td>Cambio de base</td><td>log<sub>b</sub>(a)=log<sub>c</sub>(a)/log<sub>c</sub>(b)</td></tr>
+      <tr><td>Relación log–ln</td><td>ln(x)=log(x)·ln(10)≈log(x)×2,3026</td></tr>
+      <tr><td>Dominio</td><td>log<sub>b</sub>(x) solo existe si x&gt;0 (¡comprueba las soluciones!)</td></tr>
+    </table>
+  </div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="modal" id="modalBox">
+    <div class="modal-icon" id="modalIcon"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-text" id="modalText"></div>
+    <div class="modal-steps" id="modalSteps"></div>
+    <button onclick="closeModal()">Siguiente pregunta</button>
+  </div>
+</div>
+<div class="overlay" id="examOverlay">
+  <div class="exam-modal">
+    <div class="section-title">📝 Resultado del examen</div>
+    <div class="exam-grade" id="examGrade"></div>
+    <div style="text-align:center;font-size:.85rem;color:#555;" id="examMeta"></div>
+    <table>
+      <thead><tr><th>#</th><th>Pregunta</th><th>Tu respuesta</th><th>Correcta</th><th></th></tr></thead>
+      <tbody id="examTableBody"></tbody>
+    </table>
+    <div class="btn-row">
+      <button style="background:var(--blue)" onclick="startExam()">🔄 Repetir examen</button>
+      <button style="background:var(--navy)" onclick="exitExam()">📘 Volver a práctica</button>
+    </div>
+  </div>
+</div>
+<footer>Herramienta offline · No requiere conexión a internet · v6</footer>
+
+<script>
+const categories=[
+ {id:'aleatorio',label:'🎲 Aleatorio',dif:'medio',difLabel:'Repaso'},
+ {id:'exacto',label:'Logaritmos exactos',dif:'facil',difLabel:'Fácil'},
+ {id:'propiedades',label:'Propiedades',dif:'facil',difLabel:'Fácil'},
+ {id:'cambioBase',label:'Cambio de base',dif:'medio',difLabel:'Medio'},
+ {id:'neperiano',label:'Neperianos',dif:'medio',difLabel:'Medio'},
+ {id:'ecuacionesLog',label:'Ecuaciones logarítmicas',dif:'dificil',difLabel:'Difícil'},
+ {id:'ecuacionesExp',label:'Ecuaciones exponenciales',dif:'dificil',difLabel:'Difícil'},
+ {id:'aplicaciones',label:'🌍 Aplicaciones reales',dif:'reto',difLabel:'Reto'}
+];
+const realCategories=categories.filter(c=>c.id!=='aleatorio');
+const catLabel={}; realCategories.forEach(c=>catLabel[c.id]=c.label);
+
+let currentCat='aleatorio', current=null, score=0, total=0, streak=0, bestStreak=0, hintLevel=0, answered=false, mode='practica';
+let actualCat=null;
+let timerSec=0, timerInterval=null;
+let stats={}; realCategories.forEach(c=>stats[c.id]={correct:0,attempts:0});
+let history=[];
+let failedQueue=[];
+let exam=null; // {questions:[], idx, correct, results:[], time}
+
+const TEORIA={
+ exacto:`📚 DEFINICIÓN DE LOGARITMO
+El logaritmo es la operación inversa de la potencia:
+log_b(x) = n  ⇔  bⁿ = x
+"¿A qué exponente hay que elevar la base b para obtener x?"
+
+Ejemplo: log₂(32) = 5 porque 2⁵ = 32.
+
+Casos que debes memorizar:
+• log_b(b) = 1  (porque b¹ = b)
+• log_b(1) = 0  (porque b⁰ = 1)
+• log_b(1/x) = −log_b(x)
+• log_b(√x) = log_b(x)/2
+
+⚠ El logaritmo solo existe para x > 0.`,
+ propiedades:`📚 PROPIEDADES DE LOS LOGARITMOS
+1) Producto:  log(x·y) = log(x) + log(y)
+2) Cociente:  log(x/y) = log(x) − log(y)
+3) Potencia:  log(xʸ) = y·log(x)
+4) Raíz:      log(ⁿ√x) = log(x)/n
+
+Estas propiedades transforman productos en sumas y potencias en multiplicaciones: por eso los logaritmos se inventaron para simplificar cálculos.
+
+Ejemplo: log(72) = log(8·9) = log(2³) + log(3²) = 3·log(2) + 2·log(3).`,
+ cambioBase:`📚 CAMBIO DE BASE
+La calculadora solo tiene log (base 10) y ln (base e). Para cualquier otra base:
+log_b(a) = log(a) / log(b) = ln(a) / ln(b)
+
+Ejemplo: log₃(7) = log(7)/log(3) = 0,8451/0,4771 ≈ 1,77.
+
+Truco para comprobar: 3¹·⁷⁷ debería dar ≈ 7.`,
+ neperiano:`📚 LOGARITMO NEPERIANO (ln)
+Es el logaritmo de base e ≈ 2,71828 (número de Euler).
+Aparece en crecimiento continuo: poblaciones, interés continuo, desintegración radiactiva.
+
+Propiedades clave:
+• ln(e) = 1, ln(1) = 0
+• ln(eⁿ) = n  (ln y eˣ son funciones inversas)
+• Cumple las mismas propiedades que log.
+
+Relación con log:
+ln(x) = log(x) · ln(10) ≈ log(x) × 2,3026
+log(x) = ln(x) / 2,3026`,
+ ecuacionesLog:`📚 ECUACIONES LOGARÍTMICAS
+Estrategia general:
+1) Agrupa los logaritmos con las propiedades (suma→producto, resta→cociente).
+2) Aplica la definición: log_b(x) = n ⇔ x = bⁿ.
+3) Si hay log en ambos lados con la misma base: iguala los argumentos.
+4) ⚠ COMPRUEBA las soluciones: el argumento de un log debe ser SIEMPRE positivo. Descarta las soluciones que den argumentos negativos o cero.
+
+Ejemplo: log(x) + log(x−3) = 1
+→ log(x(x−3)) = 1 → x² − 3x = 10 → x = 5 o x = −2.
+x = −2 se descarta (log de negativo). Solución: x = 5.`,
+ ecuacionesExp:`📚 ECUACIONES EXPONENCIALES
+Caso 1 — Se puede igualar bases: 2ˣ = 32 → 2ˣ = 2⁵ → x = 5.
+Caso 2 — No se puede: toma logaritmos en ambos lados.
+3ˣ = 7 → x·log(3) = log(7) → x = log(7)/log(3) ≈ 1,77.
+
+Recuerda: la incógnita "baja" del exponente gracias a la propiedad de la potencia: log(3ˣ) = x·log(3).`,
+ aplicaciones:`📚 LOGARITMOS EN LA VIDA REAL
+• Química (pH): pH = −log[H⁺]. Cada unidad de pH es ×10 en acidez.
+• Sismología (Richter): M = log(A/A₀). Un terremoto de magnitud 6 tiene una amplitud 10 veces mayor que uno de 5.
+• Sonido (decibelios): dB = 10·log(I/I₀).
+• Economía (interés compuesto): C = C₀·(1+r)ᵗ → para despejar t se usan logaritmos: t = log(C/C₀)/log(1+r).
+• Biología: crecimiento de poblaciones y desintegración radiactiva (vida media).
+
+Los logaritmos sirven para "comprimir" escalas enormes y para despejar incógnitas que están en el exponente.`
+};
+
+const STORAGE_KEY='log_trainer_state_v6';
+function saveState(){
+  const state={score,total,streak,bestStreak,currentCat,stats,history,failedQueue};
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}
+}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const s=JSON.parse(raw);
+    score=s.score||0; total=s.total||0; streak=s.streak||0; bestStreak=s.bestStreak||0;
+    currentCat=s.currentCat||'aleatorio';
+    if(s.stats) realCategories.forEach(c=>{ if(s.stats[c.id]) stats[c.id]=s.stats[c.id]; });
+    if(s.history) history=s.history;
+    if(s.failedQueue) failedQueue=s.failedQueue;
+  }catch(e){}
+}
+function resetState(){
+  if(!confirm('¿Seguro que quieres reiniciar? Se borrarán todos los datos de esta sesión.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  score=0; total=0; streak=0; bestStreak=0; currentCat='aleatorio'; failedQueue=[]; history=[];
+  realCategories.forEach(c=>stats[c.id]={correct:0,attempts:0});
+  setMode('practica');
+  updateHeaderStats(); renderTabs(); updateStatsTable(); updateFailCount(); newQuestion();
+}
+
+const tabsEl=document.getElementById('tabs');
+const scoreEl=document.getElementById('score');
+const totalEl=document.getElementById('total');
+const streakEl=document.getElementById('streak');
+const bestStreakEl=document.getElementById('bestStreak');
+const timerEl=document.getElementById('timerVal');
+const questionEl=document.getElementById('question');
+const answerEl=document.getElementById('answerInput');
+const feedbackEl=document.getElementById('feedback');
+const hintBox=document.getElementById('hintBox');
+const stepsBox=document.getElementById('stepsBox');
+const teoriaBox=document.getElementById('teoriaBox');
+const hintBtn=document.getElementById('hintBtn');
+const stepsBtn=document.getElementById('stepsBtn');
+const teoriaBtn=document.getElementById('teoriaBtn');
+const nextBtn=document.getElementById('nextBtn');
+const overlayEl=document.getElementById('overlay');
+const modalBox=document.getElementById('modalBox');
+const modalIcon=document.getElementById('modalIcon');
+const modalTitle=document.getElementById('modalTitle');
+const modalText=document.getElementById('modalText');
+const modalSteps=document.getElementById('modalSteps');
+const examOverlay=document.getElementById('examOverlay');
+const examGrade=document.getElementById('examGrade');
+const examMeta=document.getElementById('examMeta');
+const examTableBody=document.getElementById('examTableBody');
+const examProgress=document.getElementById('examProgress');
+const modePracticaBtn=document.getElementById('modePractica');
+const modeExamenBtn=document.getElementById('modeExamen');
+const modeRepasoBtn=document.getElementById('modeRepaso');
+const failCountEl=document.getElementById('failCount');
+const statsBody=document.querySelector('#errorTable tbody');
+const checkBtn=document.getElementById('checkBtn');
+
+function stripHtml(html){
+  const tmp=document.createElement('div');
+  tmp.innerHTML=html;
+  return tmp.textContent||'';
+}
+function mathPlain(html){
+  return stripHtml(html.replace(/<sub>(.*?)<\/sub>/g,'_$1').replace(/<sup>(.*?)<\/sup>/g,'^($1)'));
+}
+function renderTabs(){
+  tabsEl.innerHTML='';
+  categories.forEach(c=>{
+    const b=document.createElement('button');
+    b.className='tab'+(c.id===currentCat?' active':'');
+    b.innerHTML=`<span>${c.label}</span><span class="badge badge-${c.dif}">${c.difLabel}</span>`;
+    b.onclick=()=>{ if(mode==='examen') return; currentCat=c.id; if(mode==='repaso') setModeUI('practica'); renderTabs(); newQuestion(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function setModeUI(m){
+  mode=m;
+  modePracticaBtn.classList.toggle('active', m==='practica');
+  modeExamenBtn.classList.toggle('active', m==='examen');
+  modeRepasoBtn.classList.toggle('active', m==='repaso');
+  const inExam = m==='examen';
+  hintBtn.style.display = inExam ? 'none' : 'inline-block';
+  stepsBtn.style.display = inExam ? 'none' : 'inline-block';
+  teoriaBtn.style.display = inExam ? 'none' : 'inline-block';
+  tabsEl.style.display = (m==='practica') ? 'flex' : 'none';
+  examProgress.style.display = inExam ? 'block' : 'none';
+}
+
+function setMode(m){
+  if(m==='examen'){ startExam(); return; }
+  if(m==='repaso'){
+    if(failedQueue.length===0){ alert('¡No tienes fallos pendientes de repasar! 🎉'); return; }
+    exam=null; setModeUI('repaso'); newQuestion(); return;
+  }
+  exam=null; setModeUI('practica'); newQuestion();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timerSec=0;
+  timerEl.textContent='0s';
+  timerInterval=setInterval(()=>{ timerSec++; timerEl.textContent=timerSec+'s'; },1000);
+}
+
+function rnd(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function choice(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function round2(x){return parseFloat(x.toFixed(2));}
+
+const LOG10={2:0.3010,3:0.4771,4:0.6021,5:0.6990,6:0.7782,7:0.8451,8:0.9031,9:0.9542,10:1,11:1.0414,12:1.0792,13:1.1139,14:1.1461,15:1.1761};
+
+function genExacto(_d){
+  if(_d>10) return{qHtml:`Calcula: <b>log<sub>2</sub>(8)</b> = ?`,answer:3,tol:0.01,hints:['2³=8'],steps:'log₂(8)=3'};
+  const tipo=choice(['normal','special','negative','root']);
+  if(tipo==='special'){
+    const sp=choice(['logb_b','logb_1','log1_any']);
+    if(sp==='logb_b'){const b=choice([2,3,4,5,6,7,8,9,10]);return{qHtml:`Calcula: <b>log<sub>${b}</sub>(${b})</b> = ?`,answer:1,tol:0.01,hints:[`Recuerda: log_b(b) = 1 siempre, porque b¹ = b.`,`${b}¹ = ${b}, así que log_${b}(${b}) = 1.`],steps:`Por definición, log_${b}(${b}) = 1, ya que ${b}¹ = ${b}.`};}
+    if(sp==='logb_1'){const b=choice([2,3,4,5,6,7,8,9,10]);return{qHtml:`Calcula: <b>log<sub>${b}</sub>(1)</b> = ?`,answer:0,tol:0.01,hints:[`Recuerda: log_b(1) = 0 siempre, porque b⁰ = 1.`,`${b}⁰ = 1, así que log_${b}(1) = 0.`],steps:`Por definición, log_${b}(1) = 0, ya que ${b}⁰ = 1.`};}
+    return{qHtml:`Calcula: <b>log<sub>10</sub>(1)</b> = ?`,answer:0,tol:0.01,hints:[`Recuerda: log(1) = 0 siempre.`,`10⁰ = 1.`],steps:`log(1) = 0, ya que 10⁰ = 1.`};
+  }
+  if(tipo==='negative'){
+    const base=choice([2,3,5,10]);const n=rnd(1,3);const x=Math.pow(base,n);
+    return{qHtml:`Calcula: <b>log<sub>${base}</sub>(1/${x})</b> = ?`,answer:-n,tol:0.01,hints:[`Recuerda: log_b(1/x) = −log_b(x).`,`1/${x} = ${base}^(−${n}), así que el resultado es −${n}.`],steps:`log_${base}(1/${x}) = log_${base}(${base}^(−${n})) = −${n}.`};
+  }
+  if(tipo==='root'){
+    const pairs=[[4,2,0.5],[8,2,1.5],[27,3,1.5],[16,2,2],[25,5,1],[32,2,2.5],[100,10,1],[1000,10,1.5]];
+    const[x,base,ans]=choice(pairs);
+    return{qHtml:`Calcula: <b>log<sub>${base}</sub>(√${x})</b> = ?`,answer:ans,tol:0.01,hints:[`Recuerda: √x = x^(1/2), así que log_b(√x) = (1/2)·log_b(x).`,`√${x} = ${x}^(1/2). Primero calcula log_${base}(${x}) y luego divide entre 2.`],steps:`log_${base}(√${x}) = (1/2)·log_${base}(${x}) = (1/2)·${ans*2} = ${ans}.`};
+  }
+  const base=choice([2,3,4,5,6,7,8,9,10]);
+  const n=rnd(1,base<=4?6:4);
+  const x=Math.pow(base,n);
+  if(x>1000000) return genExacto((_d||0)+1);
+  return {
+    qHtml:`Calcula: <b>log<sub>${base}</sub>(${x})</b> = ?`,
+    answer:n,tol:0.01,
+    hints:[`Pregúntate: ¿a qué exponente hay que elevar ${base} para obtener ${x}?`,`Comprueba: ${base}¹=${base}, ${base}²=${base*base}, ... hasta llegar a ${x}.`],
+    steps:`Por definición, log_${base}(${x}) = n ⇔ ${base}ⁿ = ${x}.\nProbando exponentes: ${base}^${n} = ${x}.\nPor tanto, log_${base}(${x}) = ${n}.`
+  };
+}
+
+function genPropiedades(){
+  const tipo=choice(['producto','cociente','potencia','raiz','prod_pot','coc_pot','triple_prod']);
+  const nums=[2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  const a=choice(nums);const b=choice(nums.filter(v=>v!==a));
+  if(tipo==='producto'){
+    const la=LOG10[a],lb=LOG10[b];const val=round2(la+lb);
+    return{qHtml:`Sabiendo que log(${a})=${la} y log(${b})=${lb}, calcula <b>log(${a*b})</b>`,answer:val,tol:0.01,hints:[`Usa la propiedad del producto: log(x·y)=log(x)+log(y).`,`Sustituye: log(${a})+log(${b}) = ${la} + ${lb}.`],steps:`log(${a*b}) = log(${a}·${b}) = log(${a}) + log(${b}) = ${la} + ${lb} = ${val}.`};
+  }
+  if(tipo==='cociente'){
+    const la=LOG10[a],lb=LOG10[b];const val=round2(la-lb);
+    return{qHtml:`Sabiendo que log(${a})=${la} y log(${b})=${lb}, calcula <b>log(${a}/${b})</b>`,answer:val,tol:0.01,hints:[`Usa la propiedad del cociente: log(x/y)=log(x)−log(y).`,`Sustituye: log(${a})−log(${b}) = ${la} − ${lb}.`],steps:`log(${a}/${b}) = log(${a}) − log(${b}) = ${la} − ${lb} = ${val}.`};
+  }
+  if(tipo==='potencia'){
+    const exp=rnd(2,5);const la=LOG10[a];const val=round2(la*exp);
+    return{qHtml:`Sabiendo que log(${a})=${la}, calcula <b>log(${a}<sup>${exp}</sup>)</b>`,answer:val,tol:0.01,hints:[`Usa la propiedad de la potencia: log(xʸ)=y·log(x).`,`Sustituye: ${exp} × log(${a}) = ${exp} × ${la}.`],steps:`log(${a}^${exp}) = ${exp}·log(${a}) = ${exp}·${la} = ${val}.`};
+  }
+  if(tipo==='raiz'){
+    const n=choice([2,3]);const la=LOG10[a];const val=round2(la/n);const label=n===2?'√':'³√';
+    return{qHtml:`Sabiendo que log(${a})=${la}, calcula <b>log(${label}${a})</b>`,answer:val,tol:0.02,hints:[`Recuerda: ${label}x = x^(1/${n}), así que log(${label}x) = log(x)/${n}.`,`Sustituye: log(${a})/${n} = ${la}/${n}.`],steps:`log(${label}${a}) = log(${a})/${n} = ${la}/${n} = ${val}.`};
+  }
+  if(tipo==='prod_pot'){
+    const exp=rnd(2,3);const la=LOG10[a],lb=LOG10[b];const val=round2(la*exp+lb);
+    return{qHtml:`Sabiendo que log(${a})=${la} y log(${b})=${lb}, calcula <b>log(${a}<sup>${exp}</sup>·${b})</b>`,answer:val,tol:0.02,hints:[`Descompón: log(${a}^${exp}·${b}) = ${exp}·log(${a}) + log(${b}).`,`Sustituye: ${exp}×${la} + ${lb}.`],steps:`log(${a}^${exp}·${b}) = ${exp}·log(${a}) + log(${b}) = ${exp}·${la} + ${lb} = ${round2(la*exp)} + ${lb} = ${val}.`};
+  }
+  if(tipo==='coc_pot'){
+    const exp=rnd(2,3);const la=LOG10[a],lb=LOG10[b];const val=round2(la-lb*exp);
+    return{qHtml:`Sabiendo que log(${a})=${la} y log(${b})=${lb}, calcula <b>log(${a}/${b}<sup>${exp}</sup>)</b>`,answer:val,tol:0.02,hints:[`Descompón: log(${a}/${b}^${exp}) = log(${a}) − ${exp}·log(${b}).`,`Sustituye: ${la} − ${exp}×${lb}.`],steps:`log(${a}/${b}^${exp}) = log(${a}) − ${exp}·log(${b}) = ${la} − ${exp}·${lb} = ${la} − ${round2(lb*exp)} = ${val}.`};
+  }
+  const c=choice(nums.filter(v=>v!==a&&v!==b));
+  const la=LOG10[a],lb=LOG10[b],lc=LOG10[c];const val=round2(la+lb+lc);
+  return{qHtml:`Sabiendo que log(${a})=${la}, log(${b})=${lb} y log(${c})=${lc}, calcula <b>log(${a}·${b}·${c})</b>`,answer:val,tol:0.02,hints:[`Aplica la propiedad del producto dos veces: log(x·y·z)=log(x)+log(y)+log(z).`,`Sustituye: ${la} + ${lb} + ${lc}.`],steps:`log(${a}·${b}·${c}) = log(${a}) + log(${b}) + log(${c}) = ${la} + ${lb} + ${lc} = ${val}.`};
+}
+
+function genCambioBase(){
+  const base=choice([2,3,4,5,6,7,8,9]);
+  const arg=choice([2,3,4,5,6,7,8,9,11,12,13,14,15,17,19,20].filter(v=>v!==base));
+  const val=round2(Math.log(arg)/Math.log(base));
+  if(Number.isInteger(val)) return genCambioBase();
+  return {
+    qHtml:`Calcula <b>log<sub>${base}</sub>(${arg})</b> usando cambio de base (redondea a 2 decimales)`,
+    answer:val, tol:0.02,
+    hints:[`Fórmula de cambio de base: log_b(a) = log_c(a)/log_c(b), usando c=10.`,`log_${base}(${arg}) = log(${arg}) / log(${base}) = ${round2(Math.log10(arg))} / ${round2(Math.log10(base))}.`],
+    steps:`log_${base}(${arg}) = log(${arg})/log(${base}) = ${round2(Math.log10(arg))}/${round2(Math.log10(base))} ≈ ${val}.`
+  };
+}
+
+function genNeperiano(){
+  const tipo=choice(['log-to-ln','ln-to-log','ln-e-power','ln-product','ln-e-root']);
+  const vals=[2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  if(tipo==='ln-e-power'){
+    const n=choice([1,2,3,4,5,-1,-2,-3]);
+    return{qHtml:`Calcula: <b>ln(e<sup>${n}</sup>)</b> = ?`,answer:n,tol:0.01,hints:[`Recuerda: ln(eⁿ) = n, porque ln y eˣ son funciones inversas.`,`Aplica directamente: ln(e^${n}) = ${n}.`],steps:`ln(e^${n}) = ${n}, por ser ln la función inversa de eˣ.`};
+  }
+  if(tipo==='ln-e-root'){
+    const pairs=[[2,0.5],[3,1/3],[4,0.25]];
+    const [n,ans]=choice(pairs);
+    const lbl=n===2?'√e':(n===3?'³√e':'⁴√e');
+    return{qHtml:`Calcula: <b>ln(${lbl})</b> = ?`,answer:round2(ans),tol:0.02,hints:[`Recuerda: ${lbl} = e^(1/${n}).`,`ln(e^(1/${n})) = 1/${n}.`],steps:`ln(${lbl}) = ln(e^(1/${n})) = 1/${n} ≈ ${round2(ans)}.`};
+  }
+  if(tipo==='ln-product'){
+    const a=choice(vals.slice(0,8)),b=choice(vals.slice(0,8).filter(v=>v!==a));
+    const la=round2(Math.log(a)),lb=round2(Math.log(b));const res=round2(la+lb);
+    return{qHtml:`Sabiendo que ln(${a})≈${la} y ln(${b})≈${lb}, calcula <b>ln(${a*b})</b>`,answer:res,tol:0.02,hints:[`Usa la propiedad: ln(x·y) = ln(x) + ln(y).`,`Sustituye: ${la} + ${lb}.`],steps:`ln(${a*b}) = ln(${a}) + ln(${b}) = ${la} + ${lb} = ${res}.`};
+  }
+  const val=choice(vals);
+  if(tipo==='log-to-ln'){
+    const lg=LOG10[val]!==undefined?LOG10[val]:round2(Math.log10(val));
+    const exact=round2(Math.log(val));
+    const displayed=round2(lg*2.3026);
+    return{qHtml:`Sabiendo que log(${val})=${lg}, calcula <b>ln(${val})</b>`,answer:exact,tol:Math.max(0.02,Math.abs(exact-displayed)+0.01),hints:[`Usa la relación ln(x) = log(x) × ln(10), y ln(10)≈2,3026.`,`Multiplica: ${lg} × 2,3026.`],steps:`ln(${val}) = log(${val}) × 2,3026 = ${lg} × 2,3026 ≈ ${displayed}.`};
+  }
+  const ln=round2(Math.log(val));
+  const exact=round2(Math.log10(val));
+  const displayed=round2(ln/2.3026);
+  return{qHtml:`Sabiendo que ln(${val})=${ln}, calcula <b>log(${val})</b>`,answer:exact,tol:Math.max(0.02,Math.abs(exact-displayed)+0.01),hints:[`Usa la relación log(x) = ln(x) / ln(10), y ln(10)≈2,3026.`,`Divide: ${ln} / 2,3026.`],steps:`log(${val}) = ln(${val}) / 2,3026 = ${ln} / 2,3026 ≈ ${displayed}.`};
+}
+
+function genEcuacionesLog(_d){
+  if(_d>10) return{qHtml:`Resuelve: <b>log<sub>2</sub>(x) = 3</b>`,answer:8,tol:0.01,hints:['x=2³'],steps:'x=2³=8'};
+  const tipo=choice(['basic','sum','diff','negative','cuadratica','ambos_lados']);
+  if(tipo==='basic'){
+    const base=choice([2,3,4,5,6,7,8,9,10]);const n=rnd(1,base<=3?5:4);const x=Math.pow(base,n);
+    if(x>100000) return genEcuacionesLog((_d||0)+1);
+    return{qHtml:`Resuelve: <b>log<sub>${base}</sub>(x) = ${n}</b>`,answer:x,tol:0.01,hints:[`Aplica la definición: log_b(x)=n ⇔ x=bⁿ.`,`Calcula ${base}^${n}.`],steps:`log_${base}(x) = ${n} ⇔ x = ${base}^${n} = ${x}.\nComprobación de dominio: x = ${x} > 0 ✓`};
+  }
+  if(tipo==='sum'){
+    const base=choice([2,3,5,10]);const a=rnd(1,3),b=rnd(1,3);const va=Math.pow(base,a),vb=Math.pow(base,b);const ans=va*vb;
+    return{qHtml:`Resuelve: <b>log<sub>${base}</sub>(x) = log<sub>${base}</sub>(${va}) + log<sub>${base}</sub>(${vb})</b>`,answer:ans,tol:0.01,hints:[`Usa la propiedad: log(a)+log(b) = log(a·b).`,`Simplifica el lado derecho: log_${base}(${va}·${vb}) = log_${base}(${ans}).`],steps:`log_${base}(x) = log_${base}(${va}) + log_${base}(${vb}) = log_${base}(${va}·${vb}) = log_${base}(${ans}).\nIgualando argumentos: x = ${ans}.\nComprobación: x = ${ans} > 0 ✓`};
+  }
+  if(tipo==='diff'){
+    const base=choice([2,3,5,10]);const a=rnd(2,4),b=rnd(1,a-1);const va=Math.pow(base,a),vb=Math.pow(base,b);const ans=va/vb;
+    return{qHtml:`Resuelve: <b>log<sub>${base}</sub>(x) = log<sub>${base}</sub>(${va}) − log<sub>${base}</sub>(${vb})</b>`,answer:ans,tol:0.01,hints:[`Usa la propiedad: log(a)−log(b) = log(a/b).`,`Simplifica: log_${base}(${va}/${vb}) = log_${base}(${ans}).`],steps:`log_${base}(x) = log_${base}(${va}/${vb}) = log_${base}(${ans}).\nIgualando argumentos: x = ${ans}.\nComprobación: x = ${ans} > 0 ✓`};
+  }
+  if(tipo==='cuadratica'){
+    // log_base(x) + log_base(x - a) = rhs, con solución entera positiva
+    const casos=[
+      {base:10,a:3,rhs:1,sol:5},   // x(x-3)=10
+      {base:10,a:9,rhs:1,sol:10},  // x(x-9)=10
+      {base:2,a:2,rhs:3,sol:4},    // x(x-2)=8
+      {base:2,a:6,rhs:4,sol:8},    // x(x-6)=16
+      {base:2,a:7,rhs:3,sol:8},    // x(x-7)=8
+      {base:3,a:2,rhs:1,sol:3},    // x(x-2)=3
+      {base:5,a:4,rhs:1,sol:5},    // x(x-4)=5
+      {base:3,a:8,rhs:2,sol:9}     // x(x-8)=9
+    ];
+    const c=choice(casos);
+    const prod=Math.pow(c.base,c.rhs);
+    const otra=round2((c.a-Math.sqrt(c.a*c.a+4*prod))/2);
+    const baseTxt=c.base===10?'log':`log<sub>${c.base}</sub>`;
+    const basePlain=c.base===10?'log':`log_${c.base}`;
+    return{qHtml:`Resuelve: <b>${baseTxt}(x) + ${baseTxt}(x − ${c.a}) = ${c.rhs}</b>`,answer:c.sol,tol:0.01,
+      hints:[`Agrupa con la propiedad del producto: ${basePlain}(x(x−${c.a})) = ${c.rhs}.`,`Aplica la definición: x(x−${c.a}) = ${c.base}^${c.rhs} = ${prod}. Resuelve la ecuación de 2º grado y descarta la solución negativa.`],
+      steps:`${basePlain}(x) + ${basePlain}(x−${c.a}) = ${c.rhs}\n→ ${basePlain}(x·(x−${c.a})) = ${c.rhs}\n→ x² − ${c.a}x = ${prod}\n→ x² − ${c.a}x − ${prod} = 0\nSoluciones: x = ${c.sol} y x ≈ ${otra}.\n⚠ Comprobación de dominio: x ≈ ${otra} se descarta (daría log de un número negativo).\nSolución válida: x = ${c.sol}.`};
+  }
+  if(tipo==='ambos_lados'){
+    const base=choice([10,2,3]);const k=rnd(2,5);const b2=rnd(1,10);
+    const sol=b2; // log(kx) = log(k) + log(x) trivial; usamos log(x+a)=log(b)
+    const a2=rnd(1,6);
+    const baseTxt=base===10?'log':`log<sub>${base}</sub>`;
+    const basePlain=base===10?'log':`log_${base}`;
+    return{qHtml:`Resuelve: <b>${baseTxt}(x + ${a2}) = ${baseTxt}(${b2+a2})</b>`,answer:b2,tol:0.01,
+      hints:[`Si ${basePlain}(A) = ${basePlain}(B), entonces A = B (misma base).`,`Iguala argumentos: x + ${a2} = ${b2+a2}.`],
+      steps:`${basePlain}(x+${a2}) = ${basePlain}(${b2+a2})\nIgualando argumentos: x + ${a2} = ${b2+a2}\n→ x = ${b2}.\nComprobación: x+${a2} = ${b2+a2} > 0 ✓`};
+  }
+  const base=choice([2,3,5,10]);const n=rnd(1,3);const ans=1/Math.pow(base,n);
+  return{qHtml:`Resuelve: <b>log<sub>${base}</sub>(x) = −${n}</b>`,answer:ans,tol:0.01,hints:[`Aplica la definición: log_b(x)=−n ⇔ x=b^(−n)=1/bⁿ.`,`Calcula 1/${base}^${n} = 1/${Math.pow(base,n)}.`],steps:`log_${base}(x) = −${n} ⇔ x = ${base}^(−${n}) = 1/${Math.pow(base,n)} = ${ans}.\nComprobación: x > 0 ✓`};
+}
+
+function genEcuacionesExp(_d){
+  if(_d>10) return{qHtml:`Resuelve: <b>2<sup>x</sup> = 8</b>`,answer:3,tol:0.01,hints:['2³=8'],steps:'2ˣ=8, x=3'};
+  const tipo=choice(['find_base','find_exp','log_needed','shifted']);
+  if(tipo==='find_exp'){
+    const base=choice([2,3,4,5,10]);const n=rnd(1,base<=3?6:4);const x=Math.pow(base,n);
+    if(x>1000000) return genEcuacionesExp((_d||0)+1);
+    return{qHtml:`Resuelve: <b>${base}<sup>x</sup> = ${x}</b>`,answer:n,tol:0.01,hints:[`Pregúntate: ¿a qué exponente hay que elevar ${base} para obtener ${x}?`,`Prueba: ${base}¹=${base}, ${base}²=${base*base}... hasta ${x}.`],steps:`${base}ˣ = ${x}.\nComo ${base}^${n} = ${x}, entonces x = ${n}.`};
+  }
+  if(tipo==='log_needed'){
+    const base=choice([2,3,5,7]);
+    const cands=[3,5,6,7,10,12,15,20,30,50,100].filter(c=>{
+      const v=Math.log(c)/Math.log(base);
+      return Math.abs(v-Math.round(v))>0.05;
+    });
+    const c=choice(cands);
+    const ans=round2(Math.log(c)/Math.log(base));
+    return{qHtml:`Resuelve con logaritmos: <b>${base}<sup>x</sup> = ${c}</b> (redondea a 2 decimales)`,answer:ans,tol:0.02,
+      hints:[`${c} no es una potencia exacta de ${base}: toma logaritmos en ambos lados.`,`log(${base}ˣ) = log(${c}) → x·log(${base}) = log(${c}) → x = log(${c})/log(${base}).`],
+      steps:`${base}ˣ = ${c}\nTomando log: x·log(${base}) = log(${c})\nx = log(${c})/log(${base}) = ${round2(Math.log10(c))}/${round2(Math.log10(base))} ≈ ${ans}.`};
+  }
+  if(tipo==='shifted'){
+    const base=choice([2,3,5,10]);const k=rnd(1,3);const m=rnd(2,5);const val=Math.pow(base,m);
+    return{qHtml:`Resuelve: <b>${base}<sup>x+${k}</sup> = ${val}</b>`,answer:m-k,tol:0.01,
+      hints:[`Expresa ${val} como potencia de ${base}: ${val} = ${base}^${m}.`,`Iguala exponentes: x + ${k} = ${m}.`],
+      steps:`${base}^(x+${k}) = ${val} = ${base}^${m}\nIgualando exponentes: x + ${k} = ${m}\n→ x = ${m-k}.`};
+  }
+  const factores={4:[2,2],8:[2,3],9:[3,2],16:[2,4],25:[5,2],27:[3,3],32:[2,5],36:[6,2],49:[7,2],64:[2,6],81:[3,4],100:[10,2],121:[11,2],125:[5,3],128:[2,7],216:[6,3],243:[3,5],256:[2,8],343:[7,3],512:[2,9],625:[5,4],729:[3,6],1000:[10,3],1024:[2,10]};
+  const x=choice(Object.keys(factores).map(Number));
+  const [base,n]=factores[x];
+  return {
+    qHtml:`Resuelve: <b>b<sup>${n}</sup> = ${x}</b>, con b&gt;0`,
+    answer:base, tol:0.01,
+    hints:[`Aplica raíz ${n}-ésima en ambos lados: b = ${n}√(${x}).`,`Piensa qué número elevado a ${n} da ${x}.`],
+    steps:`b^${n} = ${x} ⇒ b = ${n}√(${x}) = ${base}.`
+  };
+}
+
+function genAplicaciones(){
+  const tipo=choice(['ph','ph_coef','richter','decibelios','interes','bacterias','vida_media']);
+  if(tipo==='ph'){
+    const n=rnd(2,7);
+    return{qHtml:`Química: el pH mide la acidez: <b>pH = −log[H⁺]</b>. Una disolución tiene [H⁺] = 10<sup>−${n}</sup> mol/L. ¿Cuál es su pH?`,answer:n,tol:0.01,
+      hints:[`Sustituye en la fórmula: pH = −log(10^(−${n})).`,`Recuerda: log(10ⁿ) = n, así que −log(10^(−${n})) = ${n}.`],
+      steps:`pH = −log[H⁺] = −log(10^(−${n})) = −(−${n}) = ${n}.\nUn pH de ${n} indica una disolución ${n<7?'ácida':'neutra'}.`};
+  }
+  if(tipo==='ph_coef'){
+    const c=choice([2,3,4,5]);const n=rnd(3,6);
+    const lc=LOG10[c];
+    const ans=round2(n-lc);
+    return{qHtml:`Química: <b>pH = −log[H⁺]</b>. Una disolución tiene [H⁺] = ${c}·10<sup>−${n}</sup> mol/L. Sabiendo que log(${c})=${lc}, calcula su pH (2 decimales).`,answer:ans,tol:0.02,
+      hints:[`Descompón: log(${c}·10^(−${n})) = log(${c}) + log(10^(−${n})) = ${lc} − ${n}.`,`pH = −(${lc} − ${n}) = ${n} − ${lc}.`],
+      steps:`pH = −log(${c}·10^(−${n})) = −[log(${c}) + log(10^(−${n}))] = −[${lc} − ${n}] = ${n} − ${lc} = ${ans}.`};
+  }
+  if(tipo==='richter'){
+    const n=rnd(2,5);
+    return{qHtml:`Sismología: la magnitud Richter es <b>M = log(A/A₀)</b>. Un terremoto tiene una amplitud ${Math.pow(10,n).toLocaleString('es-ES')} veces mayor que la de referencia (A = ${Math.pow(10,n).toLocaleString('es-ES')}·A₀). ¿Cuál es su magnitud?`,answer:n,tol:0.01,
+      hints:[`Sustituye: M = log(${Math.pow(10,n)}·A₀/A₀) = log(${Math.pow(10,n)}).`,`${Math.pow(10,n)} = 10^${n}, y log(10^${n}) = ${n}.`],
+      steps:`M = log(A/A₀) = log(${Math.pow(10,n)}) = log(10^${n}) = ${n}.\nCada unidad de magnitud multiplica la amplitud por 10.`};
+  }
+  if(tipo==='decibelios'){
+    const n=rnd(3,12);
+    return{qHtml:`Acústica: el nivel sonoro es <b>L = 10·log(I/I₀)</b> dB. Un sonido tiene intensidad I = 10<sup>${n}</sup>·I₀. ¿Cuántos decibelios son?`,answer:10*n,tol:0.01,
+      hints:[`Sustituye: L = 10·log(10^${n}).`,`log(10^${n}) = ${n}, así que L = 10·${n}.`],
+      steps:`L = 10·log(I/I₀) = 10·log(10^${n}) = 10·${n} = ${10*n} dB.`};
+  }
+  if(tipo==='interes'){
+    const r=choice([2,3,4,5,6,8,10]);
+    const t=round2(Math.log10(2)/Math.log10(1+r/100));
+    return{qHtml:`Economía: inviertes un capital al <b>${r}% de interés compuesto anual</b>: C = C₀·(1,0${r===10?'':r})ᵗ. ¿Cuántos años tardará en <b>duplicarse</b>? (2 decimales)`,answer:t,tol:0.2,
+      hints:[`Plantea: C₀·(1+0,0${r===10?'':r})ᵗ = 2·C₀ → (${(1+r/100).toLocaleString('es-ES')})ᵗ = 2.`,`Toma logaritmos: t·log(${(1+r/100).toLocaleString('es-ES')}) = log(2) → t = log(2)/log(${(1+r/100).toLocaleString('es-ES')}).`],
+      steps:`(${(1+r/100).toLocaleString('es-ES')})ᵗ = 2\nTomando log: t·log(${(1+r/100).toLocaleString('es-ES')}) = log(2)\nt = log(2)/log(${(1+r/100).toLocaleString('es-ES')}) = ${round2(Math.log10(2))}/${round2(Math.log10(1+r/100))} ≈ ${t} años.\n(Regla del 72: 72/${r} ≈ ${round2(72/r)}, una buena aproximación.)`};
+  }
+  if(tipo==='bacterias'){
+    const k=rnd(3,8);
+    const mult=Math.pow(2,k);
+    return{qHtml:`Biología: una población de bacterias <b>se duplica cada hora</b>: N = N₀·2ᵗ. ¿Cuántas horas tardará en multiplicarse por ${mult.toLocaleString('es-ES')}?`,answer:k,tol:0.01,
+      hints:[`Plantea: 2ᵗ = ${mult}.`,`Expresa ${mult} como potencia de 2: ${mult} = 2^${k}.`],
+      steps:`N₀·2ᵗ = ${mult}·N₀ → 2ᵗ = ${mult} = 2^${k}\n→ t = ${k} horas.\n(Con logaritmos: t = log(${mult})/log(2) = ${k}.)`};
+  }
+  const T=choice([10,25,30,50]);const k=rnd(2,4);
+  const frac=Math.pow(2,k);
+  return{qHtml:`Física: una sustancia radiactiva tiene una <b>vida media de ${T} años</b> (cada ${T} años queda la mitad). ¿Cuántos años deben pasar para que quede <b>1/${frac}</b> de la cantidad inicial?`,answer:k*T,tol:0.01,
+    hints:[`1/${frac} = (1/2)^${k}: han de pasar ${k} periodos de vida media.`,`Multiplica: ${k} × ${T} años.`],
+    steps:`Queda (1/2)ⁿ tras n vidas medias.\n(1/2)ⁿ = 1/${frac} = (1/2)^${k} → n = ${k}.\nTiempo = ${k} × ${T} = ${k*T} años.\n(Con logaritmos: n = log(${frac})/log(2) = ${k}.)`};
+}
+
+const generators={
+  exacto:genExacto,
+  propiedades:genPropiedades,
+  cambioBase:genCambioBase,
+  neperiano:genNeperiano,
+  ecuacionesLog:genEcuacionesLog,
+  ecuacionesExp:genEcuacionesExp,
+  aplicaciones:genAplicaciones
+};
+
+function pickAdaptiveCat(){
+  const weights=realCategories.map(c=>{
+    const s=stats[c.id];
+    if(s.attempts===0) return 2;
+    return Math.max(0.5, 2 - (s.correct/s.attempts)*2);
+  });
+  const totalW=weights.reduce((a,b)=>a+b,0);
+  let r=Math.random()*totalW;
+  for(let i=0;i<realCategories.length;i++){
+    r-=weights[i];
+    if(r<=0) return realCategories[i].id;
+  }
+  return realCategories[0].id;
+}
+
+function newQuestion(){
+  if(mode==='examen' && exam){
+    if(exam.idx>=exam.questions.length){ finishExam(); return; }
+    const q=exam.questions[exam.idx];
+    actualCat=q.cat; current=q;
+    examProgress.textContent=`Pregunta ${exam.idx+1} de ${exam.questions.length}`;
+  } else if(mode==='repaso'){
+    if(failedQueue.length===0){
+      alert('¡Has repasado todos tus fallos! 🎉');
+      setModeUI('practica'); newQuestion(); return;
+    }
+    const q=failedQueue[0];
+    actualCat=q.cat; current=q;
+  } else if(currentCat==='aleatorio'){
+    actualCat=pickAdaptiveCat();
+    current=generators[actualCat]();
+  } else {
+    actualCat=currentCat;
+    current=generators[currentCat]();
+  }
+  hintLevel=0; answered=false;
+  questionEl.innerHTML=current.qHtml;
+  answerEl.value='';
+  answerEl.disabled=false;
+  feedbackEl.textContent='';
+  hintBox.style.display='none'; hintBox.textContent='';
+  stepsBox.style.display='none';
+  teoriaBox.style.display='none';
+  stepsBtn.disabled=true;
+  hintBtn.disabled=false;
+  checkBtn.disabled=false;
+  startTimer();
+  answerEl.focus();
+}
+
+function skipQuestion(){
+  if(mode==='examen' && exam && !answered){
+    // saltar en examen cuenta como fallo (respuesta en blanco)
+    registerAnswer(NaN,'—');
+    return;
+  }
+  newQuestion();
+}
+
+function nextHintLevel(){
+  if(!current || answered) return;
+  if(hintLevel>=current.hints.length){return;}
+  hintBox.style.display='block';
+  hintBox.textContent=current.hints[hintLevel];
+  hintLevel++;
+  if(hintLevel>=current.hints.length){ hintBtn.disabled=true; }
+}
+
+function toggleSteps(){
+  stepsBox.style.display = stepsBox.style.display==='block' ? 'none' : 'block';
+  stepsBox.textContent=current.steps;
+}
+
+function toggleTeoria(){
+  const open=teoriaBox.style.display==='block';
+  teoriaBox.style.display = open ? 'none' : 'block';
+  if(!open){
+    const key=(actualCat && TEORIA[actualCat]) ? actualCat : (TEORIA[currentCat]?currentCat:'exacto');
+    teoriaBox.textContent=TEORIA[key];
+  }
+}
+
+function parseInput(str){
+  str=str.trim().replace(/,/g,'.').replace(/\s+/g,'');
+  const frac=/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/.exec(str);
+  if(frac){
+    const num=parseFloat(frac[1]),den=parseFloat(frac[2]);
+    if(den===0||isNaN(num)||isNaN(den)) return NaN;
+    return num/den;
+  }
+  return parseFloat(str);
+}
+
+function checkAnswer(){
+  if(!current || answered) return;
+  const raw=answerEl.value.trim();
+  const val=parseInput(raw);
+  if(isNaN(val)){
+    feedbackEl.textContent='⚠ Introduce un número o fracción válida (ej: 3, -2, 2/3).';
+    feedbackEl.style.color='var(--red)';
+    return;
+  }
+  registerAnswer(val,raw);
+}
+
+function registerAnswer(val,rawDisplay){
+  checkBtn.disabled=true;
+  answered=true;
+  clearInterval(timerInterval);
+  const correct = !isNaN(val) && Math.abs(val-current.answer)<=current.tol;
+  total++; stats[actualCat].attempts++;
+  if(correct){
+    score++; streak++; stats[actualCat].correct++;
+    if(streak>bestStreak) bestStreak=streak;
+  } else {
+    streak=0;
+  }
+  updateHeaderStats();
+  answerEl.disabled=true;
+  stepsBtn.disabled=false;
+  history.push({categoria:actualCat, modo:mode, pregunta:mathPlain(current.qHtml), respuestaCorrecta:current.answer, respuestaUsuario:isNaN(val)?'—':val, acierto:correct, tiempo:timerSec, pistasUsadas:hintLevel});
+
+  if(mode==='repaso'){
+    if(correct){ failedQueue.shift(); }
+    else { failedQueue.push(failedQueue.shift()); }
+    updateFailCount();
+  } else if(!correct){
+    // guardar la pregunta fallada para repaso (máx 30)
+    failedQueue.push({qHtml:current.qHtml,answer:current.answer,tol:current.tol,hints:current.hints,steps:current.steps,cat:actualCat});
+    if(failedQueue.length>30) failedQueue.shift();
+    updateFailCount();
+  }
+
+  if(mode==='examen' && exam){
+    exam.results.push({qHtml:current.qHtml, user:isNaN(val)?'—':(rawDisplay||val), correctAns:formatAnswer(current.answer), ok:correct});
+    if(correct) exam.correct++;
+    exam.time+=timerSec;
+    exam.idx++;
+    updateStatsTable(); saveState();
+    if(exam.idx>=exam.questions.length){ finishExam(); }
+    else { newQuestion(); }
+    return;
+  }
+
+  updateStatsTable();
+  saveState();
+  showModal(correct);
+}
+
+function updateHeaderStats(){
+  scoreEl.textContent=score;
+  totalEl.textContent=total;
+  streakEl.textContent=streak;
+  bestStreakEl.textContent=bestStreak;
+}
+function updateFailCount(){ failCountEl.textContent=failedQueue.length; }
+
+function formatAnswer(ans){
+  if(Number.isInteger(ans)) return ''+ans;
+  for(let d=2;d<=12;d++){
+    const num=ans*d;
+    if(Math.abs(num-Math.round(num))<0.0001){
+      return Math.round(num)+'/'+d;
+    }
+  }
+  return (''+parseFloat(ans.toFixed(4))).replace('.',',');
+}
+
+function showModal(correct){
+  const display=formatAnswer(current.answer);
+  modalBox.className='modal '+(correct?'correct':'incorrect');
+  modalIcon.textContent = correct ? '✅' : '❌';
+  modalTitle.textContent = correct ? '¡Correcto!' : 'Incorrecto';
+  modalText.textContent = correct
+    ? `Muy bien, la respuesta era ${display}.${streak>=5?' ¡Racha de '+streak+'! 🔥':''}`
+    : `La respuesta correcta era ${display}. Revisa la resolución paso a paso:`;
+  if(!correct && mode!=='examen'){
+    modalSteps.style.display='block';
+    modalSteps.textContent=current.steps;
+  } else {
+    modalSteps.style.display='none';
+  }
+  overlayEl.style.display='flex';
+}
+
+function closeModal(){
+  overlayEl.style.display='none';
+  newQuestion();
+}
+
+/* ===== EXAMEN ===== */
+function startExam(){
+  examOverlay.style.display='none';
+  const qs=[];
+  // 10 preguntas: al menos una de cada categoría (7) + 3 aleatorias
+  const shuffled=[...realCategories].sort(()=>Math.random()-0.5);
+  shuffled.forEach(c=>{ const q=generators[c.id](); q.cat=c.id; qs.push(q); });
+  for(let i=0;i<3;i++){ const c=choice(realCategories); const q=generators[c.id](); q.cat=c.id; qs.push(q); }
+  qs.sort(()=>Math.random()-0.5);
+  exam={questions:qs, idx:0, correct:0, results:[], time:0};
+  setModeUI('examen');
+  newQuestion();
+}
+
+function finishExam(){
+  clearInterval(timerInterval);
+  const n=exam.questions.length;
+  const nota=round2(exam.correct/n*10);
+  examGrade.textContent=`Nota: ${(''+nota).replace('.',',')} / 10`;
+  examGrade.className='exam-grade '+(nota>=5?'aprobado':'suspenso');
+  const mins=Math.floor(exam.time/60), secs=exam.time%60;
+  examMeta.textContent=`${exam.correct} aciertos de ${n} · Tiempo total: ${mins>0?mins+' min ':''}${secs} s`;
+  examTableBody.innerHTML='';
+  exam.results.forEach((r,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${i+1}</td><td style="text-align:left">${r.qHtml}</td><td>${r.user}</td><td>${r.correctAns}</td><td>${r.ok?'✅':'❌'}</td>`;
+    examTableBody.appendChild(tr);
+  });
+  examOverlay.style.display='flex';
+}
+
+function exitExam(){
+  examOverlay.style.display='none';
+  exam=null;
+  setModeUI('practica');
+  newQuestion();
+}
+
+function updateStatsTable(){
+  statsBody.innerHTML='';
+  realCategories.forEach(c=>{
+    const s=stats[c.id];
+    const pct = s.attempts>0 ? Math.round((s.correct/s.attempts)*100) : 0;
+    const color = s.attempts===0 ? '#ccd6ec' : (pct>=75?'var(--green)':(pct>=50?'var(--orange)':'var(--red)'));
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="text-align:left">${c.label}</td><td>${s.correct}</td><td>${s.attempts}</td><td>${s.attempts>0?pct+'%':'—'}<div class="pct-bar"><div style="width:${pct}%;background:${color}"></div></div></td>`;
+    statsBody.appendChild(tr);
+  });
+}
+
+function exportCSV(){
+  if(history.length===0){alert('No hay historial para exportar todavía.');return;}
+  let csv='Categoria,Modo,Pregunta,RespuestaCorrecta,RespuestaUsuario,Acierto,TiempoSeg,PistasUsadas\n';
+  history.forEach(h=>{
+    const esc=(s)=>('' + s).replace(/"/g,'""');
+    csv+=`"${esc(catLabel[h.categoria]||h.categoria)}","${esc(h.modo||'practica')}","${esc(h.pregunta)}","${esc(h.respuestaCorrecta)}","${esc(h.respuestaUsuario)}","${esc(h.acierto)}","${esc(h.tiempo)}","${esc(h.pistasUsadas!==undefined?h.pistasUsadas:'')}"\n`;
+  });
+  const blob=new Blob(["\uFEFF"+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='historial_logaritmos.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+loadState();
+updateHeaderStats();
+updateFailCount();
+renderTabs();
+updateStatsTable();
+newQuestion();
+</script>
+</body>
+</html>
+```

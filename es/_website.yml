@@ -167,16 +167,30 @@ website:
         - icon: linkedin
           href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
-        - master-upf/recursos/edulinks.qmd
-        - master-upf/recursos/writing.qmd
-        - master-upf/recursos/how-to-take-notes.qmd
-        - master-upf/recursos/eso-competencias-ciencias.qmd
-        - master-upf/recursos/bach-competencias-ciencias.qmd
-        - master-upf/recursos/calculate-climate-stripes.qmd
-        - master-upf/recursos/timelapse-videos.qmd
-        - master-upf/recursos/timelapse-cdse.qmd
-        - master-upf/recursos/solar_system_visor.qmd
-
+        - section: "Recursos"
+          contents:
+          - master-upf/recursos/edulinks.qmd
+          - master-upf/recursos/writing.qmd
+          - master-upf/recursos/how-to-take-notes.qmd
+          - master-upf/recursos/eso-competencias-ciencias.qmd
+          - master-upf/recursos/bach-competencias-ciencias.qmd
+        - text: "---"
+        - section: "Recursos Didácticos GeoCiencias"
+          contents:
+          - master-upf/recursos/calculate-climate-stripes.qmd
+          - master-upf/recursos/timelapse-videos.qmd
+          - master-upf/recursos/timelapse-cdse.qmd
+          - master-upf/recursos/solar_system_visor.qmd
+        - text: "---"
+        - section: "Recursos Didácticos de Matemáticas"
+          contents:
+          - master-upf/recursos/calculadora_notacion_cientifica.qmd
+          - master-upf/recursos/factorizacion_mcd_mcm.qmd
+          - master-upf/recursos/recta_real_pitagoras_tales.qmd
+          - master-upf/recursos/calculadora_poligonos_regulares.qmd
+          - master-upf/recursos/entrenador_fracciones_algebraicas.qmd
+          - master-upf/recursos/entrenador_radicales.qmd
+          - master-upf/recursos/entrenador_logaritmos_neperianos.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
