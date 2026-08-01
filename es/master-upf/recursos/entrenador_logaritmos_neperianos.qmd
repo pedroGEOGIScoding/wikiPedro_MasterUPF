@@ -54,92 +54,85 @@ Para practicar con la herramienta, sigue estos pasos:
 El formulario rápido incluido en la propia herramienta resume las fórmulas esenciales —definición, casos especiales, propiedades del producto, cociente, potencia, raíz, cambio de base y la relación entre logaritmo decimal y neperiano— como apoyo constante durante la práctica.
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Entrenador de Logaritmos y Neperianos · v6</title>
+<div id="tool-logaritmos" class="math-tool-wrapper">
 <style>
 :root{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--bg:#f4f6fb;--card:#fff;}
 *{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
-body{margin:0;background:var(--bg);color:var(--navy);}
-header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
-header h1{margin:0;font-size:1.3rem;}
-header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
-.container{max-width:860px;margin:20px auto;padding:0 16px;}
-.mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
-.mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
-.mode-btn.active{background:var(--blue);color:#fff;}
-.mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
-.mode-btn.repaso.active{background:var(--purple);color:#fff;}
-.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;justify-content:center;}
-.tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.9rem;font-weight:600;border:2px solid var(--blue);}
-.tab.active{background:var(--blue);color:#fff;}
-.badge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:12px;}
-.badge-facil{background:#e3f6e8;color:var(--green);}
-.badge-medio{background:#fdeee0;color:var(--orange);}
-.badge-dificil{background:#fbe4e2;color:var(--red);}
-.badge-reto{background:#e6e0fa;color:var(--purple);}
-.tab.active .badge-facil{background:#fff;color:var(--green);}
-.tab.active .badge-medio{background:#fff;color:var(--orange);}
-.tab.active .badge-dificil{background:#fff;color:var(--red);}
-.tab.active .badge-reto{background:#fff;color:var(--purple);}
-.card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
-.stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
-.stats b{color:var(--navy);}
-.exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
-.question{font-size:1.3rem;text-align:center;margin:22px 0;font-weight:500;color:var(--navy);line-height:1.5;}
-.question b{color:var(--blue);font-weight:700;}
-.answer-row{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
-input[type=text]{padding:10px 14px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:170px;text-align:center;}
-button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
-.btn-check{background:var(--blue);color:#fff;}
-.btn-hint{background:var(--orange);color:#fff;}
-.btn-steps{background:var(--purple);color:#fff;}
-.btn-teoria{background:var(--teal);color:#fff;}
-.btn-next{background:var(--navy);color:#fff;}
-button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
-.feedback{text-align:center;font-size:.9rem;margin-top:8px;min-height:20px;font-weight:600;}
-.hint-box,.steps-box,.teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 14px;border-radius:8px;margin-top:12px;font-size:.85rem;display:none;white-space:pre-line;line-height:1.5;}
-.steps-box{background:#f1ecff;border-left:4px solid var(--purple);}
-.teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
-.ref-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px;}
-.ref-table th,.ref-table td{border:1px solid #dde3f0;padding:7px;text-align:left;}
-.ref-table th{background:var(--navy);color:#fff;}
-.section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
-.error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
-.error-log th,.error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
-.error-log th{background:#e4e9f7;}
-.pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
-.pct-bar div{height:100%;border-radius:6px;}
-.export-btn{background:var(--green);color:#fff;margin-top:10px;}
-.reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
-.timer{font-weight:700;color:var(--orange);}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
-.modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:420px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
-.modal.correct{border-top:8px solid var(--green);}
-.modal.incorrect{border-top:8px solid var(--red);}
-.modal-icon{font-size:2.4rem;margin-bottom:8px;}
-.modal-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
-.modal.correct .modal-title{color:var(--green);}
-.modal.incorrect .modal-title{color:var(--red);}
-.modal-text{font-size:.9rem;color:#444;margin-bottom:12px;}
-.modal-steps{font-size:.8rem;text-align:left;background:#f1ecff;border-left:4px solid var(--purple);border-radius:8px;padding:10px 12px;margin-bottom:14px;white-space:pre-line;display:none;line-height:1.5;}
-.modal button{background:var(--navy);color:#fff;width:100%;}
-.exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:560px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
-.exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
-.exam-grade.aprobado{color:var(--green);}
-.exam-grade.suspenso{color:var(--red);}
-.exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
-.exam-modal th,.exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
-.exam-modal th{background:#e4e9f7;}
-.exam-modal .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.exam-modal button{color:#fff;}
-footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
+#tool-logaritmos{margin:0;background:var(--bg);color:var(--navy);}
+#tool-logaritmos header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
+#tool-logaritmos header h1{margin:0;font-size:1.3rem;}
+#tool-logaritmos header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
+#tool-logaritmos .container{max-width:860px;margin:20px auto;padding:0 16px;}
+#tool-logaritmos .mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+#tool-logaritmos .mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
+#tool-logaritmos .mode-btn.active{background:var(--blue);color:#fff;}
+#tool-logaritmos .mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
+#tool-logaritmos .mode-btn.repaso.active{background:var(--purple);color:#fff;}
+#tool-logaritmos .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;justify-content:center;}
+#tool-logaritmos .tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.9rem;font-weight:600;border:2px solid var(--blue);}
+#tool-logaritmos .tab.active{background:var(--blue);color:#fff;}
+#tool-logaritmos .badge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:12px;}
+#tool-logaritmos .badge-facil{background:#e3f6e8;color:var(--green);}
+#tool-logaritmos .badge-medio{background:#fdeee0;color:var(--orange);}
+#tool-logaritmos .badge-dificil{background:#fbe4e2;color:var(--red);}
+#tool-logaritmos .badge-reto{background:#e6e0fa;color:var(--purple);}
+#tool-logaritmos .tab.active .badge-facil{background:#fff;color:var(--green);}
+#tool-logaritmos .tab.active .badge-medio{background:#fff;color:var(--orange);}
+#tool-logaritmos .tab.active .badge-dificil{background:#fff;color:var(--red);}
+#tool-logaritmos .tab.active .badge-reto{background:#fff;color:var(--purple);}
+#tool-logaritmos .card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
+#tool-logaritmos .stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+#tool-logaritmos .stats b{color:var(--navy);}
+#tool-logaritmos .exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
+#tool-logaritmos .question{font-size:1.3rem;text-align:center;margin:22px 0;font-weight:500;color:var(--navy);line-height:1.5;}
+#tool-logaritmos .question b{color:var(--blue);font-weight:700;}
+#tool-logaritmos .answer-row{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
+#tool-logaritmos input[type=text]{padding:10px 14px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:170px;text-align:center;}
+#tool-logaritmos button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
+#tool-logaritmos .btn-check{background:var(--blue);color:#fff;}
+#tool-logaritmos .btn-hint{background:var(--orange);color:#fff;}
+#tool-logaritmos .btn-steps{background:var(--purple);color:#fff;}
+#tool-logaritmos .btn-teoria{background:var(--teal);color:#fff;}
+#tool-logaritmos .btn-next{background:var(--navy);color:#fff;}
+#tool-logaritmos button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
+#tool-logaritmos .feedback{text-align:center;font-size:.9rem;margin-top:8px;min-height:20px;font-weight:600;}
+#tool-logaritmos .hint-box, #tool-logaritmos .steps-box, #tool-logaritmos .teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 14px;border-radius:8px;margin-top:12px;font-size:.85rem;display:none;white-space:pre-line;line-height:1.5;}
+#tool-logaritmos .steps-box{background:#f1ecff;border-left:4px solid var(--purple);}
+#tool-logaritmos .teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
+#tool-logaritmos .ref-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px;}
+#tool-logaritmos .ref-table th, #tool-logaritmos .ref-table td{border:1px solid #dde3f0;padding:7px;text-align:left;}
+#tool-logaritmos .ref-table th{background:var(--navy);color:#fff;}
+#tool-logaritmos .section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
+#tool-logaritmos .error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
+#tool-logaritmos .error-log th, #tool-logaritmos .error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
+#tool-logaritmos .error-log th{background:#e4e9f7;}
+#tool-logaritmos .pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
+#tool-logaritmos .pct-bar div{height:100%;border-radius:6px;}
+#tool-logaritmos .export-btn{background:var(--green);color:#fff;margin-top:10px;}
+#tool-logaritmos .reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
+#tool-logaritmos .timer{font-weight:700;color:var(--orange);}
+#tool-logaritmos .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
+#tool-logaritmos .modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:420px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+#tool-logaritmos .modal.correct{border-top:8px solid var(--green);}
+#tool-logaritmos .modal.incorrect{border-top:8px solid var(--red);}
+#tool-logaritmos .modal-icon{font-size:2.4rem;margin-bottom:8px;}
+#tool-logaritmos .modal-title{font-size:1.15rem;font-weight:700;margin-bottom:6px;}
+#tool-logaritmos .modal.correct .modal-title{color:var(--green);}
+#tool-logaritmos .modal.incorrect .modal-title{color:var(--red);}
+#tool-logaritmos .modal-text{font-size:.9rem;color:#444;margin-bottom:12px;}
+#tool-logaritmos .modal-steps{font-size:.8rem;text-align:left;background:#f1ecff;border-left:4px solid var(--purple);border-radius:8px;padding:10px 12px;margin-bottom:14px;white-space:pre-line;display:none;line-height:1.5;}
+#tool-logaritmos .modal button{background:var(--navy);color:#fff;width:100%;}
+#tool-logaritmos .exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:560px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+#tool-logaritmos .exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
+#tool-logaritmos .exam-grade.aprobado{color:var(--green);}
+#tool-logaritmos .exam-grade.suspenso{color:var(--red);}
+#tool-logaritmos .exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
+#tool-logaritmos .exam-modal th, #tool-logaritmos .exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
+#tool-logaritmos .exam-modal th{background:#e4e9f7;}
+#tool-logaritmos .exam-modal .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+#tool-logaritmos .exam-modal button{color:#fff;}
+#tool-logaritmos footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
 </style>
-</head>
-<body>
 <header>
   <h1>🧮 Entrenador de Logaritmos y Neperianos</h1>
   <p>1º de Bachillerato · Matemáticas CCSS · v6</p>
@@ -946,6 +939,5 @@ renderTabs();
 updateStatsTable();
 newQuestion();
 </script>
-</body>
-</html>
+</div>
 ```

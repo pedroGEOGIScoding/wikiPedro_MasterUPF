@@ -16,6 +16,7 @@ lightbox:
   desc-position: bottom
   loop: false
 format: html
+html-table-processing: none
 ---
 
 ## Acerca de esta Herramienta de Factorización, MCD y mcm
@@ -55,48 +56,45 @@ A continuación se muestra una tabla de exponentes que compara, para cada factor
 El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los resultados anteriores, dejando la herramienta lista para introducir un nuevo conjunto de números.
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Factorización, MCD y mcm</title>
+<div id="tool-factorizacion" class="math-tool-wrapper">
 <style>
-  * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-  body {
-    margin: 0; padding: 0;
-    background: linear-gradient(135deg,#1e3c72,#2a5298);
-    min-height: 100vh;
-    display: flex; justify-content: center; align-items: flex-start;
-    padding: 30px 10px;
+  #tool-factorizacion * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+  #tool-factorizacion {
+    margin: 0; padding: 20px;
+    background: var(--bs-body-bg, #f8f9fa);
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    max-width: 100%;
+    overflow: hidden;
   }
-  .card {
-    background: #fff;
-    max-width: 900px;
+  #tool-factorizacion .card {
+    background: transparent;
+    max-width: 100%;
     width: 100%;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-    padding: 30px 35px;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
   }
-  h1 {
+  #tool-factorizacion h1 {
     text-align: center;
-    color: #1e3c72;
+    color: #2a5298;
     margin-top: 0;
-    font-size: 26px;
+    font-size: 24px;
   }
-  p.subtitle {
+  #tool-factorizacion p.subtitle {
     text-align: center;
     color: #555;
     margin-top: -8px;
     margin-bottom: 25px;
     font-size: 14px;
   }
-  .input-area {
+  #tool-factorizacion .input-area {
     display: flex;
     gap: 10px;
     margin-bottom: 15px;
     flex-wrap: wrap;
   }
-  .input-area input[type=text] {
+  #tool-factorizacion .input-area input[type=text] {
     flex: 1;
     padding: 12px 14px;
     border: 2px solid #ccc;
@@ -104,8 +102,8 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     font-size: 16px;
     min-width: 250px;
   }
-  .input-area input[type=text]:focus { border-color: #2a5298; outline: none; }
-  button {
+  #tool-factorizacion .input-area input[type=text]:focus { border-color: #2a5298; outline: none; }
+  #tool-factorizacion button {
     background: #2a5298;
     color: #fff;
     border: none;
@@ -115,17 +113,17 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     cursor: pointer;
     transition: background .2s;
   }
-  button:hover { background: #1e3c72; }
-  button.secondary {
+  #tool-factorizacion button:hover { background: #1e3c72; }
+  #tool-factorizacion button.secondary {
     background: #888;
   }
-  button.secondary:hover { background: #666; }
-  .hint {
+  #tool-factorizacion button.secondary:hover { background: #666; }
+  #tool-factorizacion .hint {
     font-size: 13px;
     color: #777;
     margin-bottom: 20px;
   }
-  .error {
+  #tool-factorizacion .error {
     background: #ffe0e0;
     color: #a10000;
     border: 1px solid #ffb3b3;
@@ -134,31 +132,31 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     margin-bottom: 15px;
     display: none;
   }
-  .results {
+  #tool-factorizacion .results {
     display: none;
   }
-  .section {
+  #tool-factorizacion .section {
     margin-top: 25px;
   }
-  .section h2 {
-    color: #1e3c72;
-    border-bottom: 2px solid #2a5298;
+  #tool-factorizacion .section h2 {
+    color: #2a5298;
+    border-bottom: 2px solid #dee2e6;
     padding-bottom: 6px;
     font-size: 20px;
   }
-  table {
+  #tool-factorizacion table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
   }
-  th, td {
+  #tool-factorizacion th, #tool-factorizacion td {
     border: 1px solid #ddd;
     padding: 8px 12px;
     text-align: center;
     font-size: 15px;
   }
-  th { background: #eef2fa; color: #1e3c72; }
-  .factor-tree {
+  #tool-factorizacion th { background: #f0f4f8; color: #2a5298; }
+  #tool-factorizacion .factor-tree {
     font-family: 'Courier New', monospace;
     background: #f7f9fc;
     border: 1px solid #ddd;
@@ -169,7 +167,7 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     font-size: 15px;
     overflow-x: auto;
   }
-  .result-box {
+  #tool-factorizacion .result-box {
     display: inline-block;
     background: #eef7ee;
     border: 1px solid #a8d8a8;
@@ -179,8 +177,8 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     font-size: 17px;
     color: #1a5c1a;
   }
-  .result-box b { font-size: 22px; }
-  .steps {
+  #tool-factorizacion .result-box b { font-size: 22px; }
+  #tool-factorizacion .steps {
     background: #fdfdf2;
     border: 1px solid #e6e6a8;
     border-radius: 8px;
@@ -189,18 +187,16 @@ El botón **"Limpiar"** borra el contenido del campo de entrada y oculta los res
     font-size: 14px;
     color: #555;
   }
-  .chip {
+  #tool-factorizacion .chip {
     display: inline-block;
-    background: #dbe6ff;
-    color: #1e3c72;
+    background: #e8eef5;
+    color: #2a5298;
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 14px;
     margin: 2px;
   }
 </style>
-</head>
-<body>
 <div class="card">
   <h1>Factorización, MCD y mcm</h1>
   <p class="subtitle">Introduce un grupo de números naturales para descomponerlos en factores primos y calcular su Máximo Común Divisor (MCD) y su mínimo común múltiplo (mcm).</p>
@@ -387,6 +383,5 @@ document.getElementById('numbersInput').addEventListener('keyup', function(e){
   if (e.key === 'Enter') calcular();
 });
 </script>
-</body>
-</html>
+</div>
 ```

@@ -55,127 +55,122 @@ Esta herramienta persigue los siguientes objetivos:
 El panel de **rendimiento por categoría** y el **historial exportable a CSV** registran datos objetivos de cada comprobación, no autoevaluaciones del alumnado. El botón **Examen imprimible (PDF)** permite generar un examen en papel con enunciados, espacio para operar y una hoja de soluciones lista para imprimir o guardar como PDF, pudiendo elegir el nivel, el número de preguntas, el espacio de trabajo, la inclusión de pistas y pasos, y la generación de dos modelos distintos (A y B) para evitar copias entre estudiantes.
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Entrenador de Fracciones Algebraicas · 1º Bachillerato</title>
+<div id="tool-fracciones" class="math-tool-wrapper">
 <style>
 :root{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--bg:#f4f6fb;--card:#fff;}
 *{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
-body{margin:0;background:var(--bg);color:var(--navy);}
-header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
-header h1{margin:0;font-size:1.3rem;}
-header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
-.container{max-width:900px;margin:20px auto;padding:0 16px;}
-.mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
-.mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
-.mode-btn.active{background:var(--blue);color:#fff;}
-.mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
-.mode-btn.repaso.active{background:var(--purple);color:#fff;}
-.mode-btn.imprimir{border-color:#0f766e;color:#0f766e;}
-.mode-btn.imprimir:hover{background:#0f766e;color:#fff;}
-.level-bar{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
-.level-label{font-size:.78rem;color:#667;font-weight:600;margin-right:2px;}
-.lvl{padding:6px 14px;border-radius:16px;border:2px solid #ccd6ec;background:#fff;cursor:pointer;font-weight:700;font-size:.78rem;color:#667;}
-.lvl[data-l="facil"].active{background:var(--green);border-color:var(--green);color:#fff;}
-.lvl[data-l="medio"].active{background:var(--orange);border-color:var(--orange);color:#fff;}
-.lvl[data-l="dificil"].active{background:var(--red);border-color:var(--red);color:#fff;}
-.lvl[data-l="todos"].active{background:var(--navy);border-color:var(--navy);color:#fff;}
-.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;justify-content:center;}
-.tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.9rem;font-weight:600;border:2px solid var(--blue);}
-.tab.active{background:var(--blue);color:#fff;}
-.badge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:12px;}
-.badge-facil{background:#e3f6e8;color:var(--green);}
-.badge-medio{background:#fdeee0;color:var(--orange);}
-.badge-dificil{background:#fbe4e2;color:var(--red);}
-.badge-reto{background:#e6e0fa;color:var(--purple);}
-.tab.active .badge-facil{background:#fff;color:var(--green);}
-.tab.active .badge-medio{background:#fff;color:var(--orange);}
-.tab.active .badge-dificil{background:#fff;color:var(--red);}
-.tab.active .badge-reto{background:#fff;color:var(--purple);}
-.card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
-.info-box{background:#eef2fb;border-radius:10px;padding:12px 16px;font-size:.82rem;color:#3a4a6b;margin-bottom:16px;line-height:1.7;}
-.info-box summary{cursor:pointer;font-weight:700;color:var(--navy);}
-.exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
-.stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
-.stats b{color:var(--navy);}
-.timer{font-weight:700;color:var(--orange);}
-.qtag{text-align:center;font-size:.72rem;color:#8892a8;letter-spacing:.04em;text-transform:uppercase;font-weight:700;margin-bottom:2px;}
-.instructions{text-align:center;font-size:.82rem;color:#666;margin-bottom:10px;background:#eef2fb;border-radius:8px;padding:8px 12px;}
-.ejemplo-toggle{display:block;margin:0 auto 12px;background:#fff;border:2px dashed var(--teal);color:var(--teal);}
-.question{font-size:1.3rem;text-align:center;margin:20px 0;font-weight:600;color:var(--navy);line-height:1.7;}
-.question .op{font-size:1rem;color:#777;font-weight:500;display:block;margin-bottom:10px;}
-.frac{display:inline-block;vertical-align:middle;text-align:center;margin:0 6px;}
-.frac .num{display:block;padding:0 6px 3px;border-bottom:2px solid var(--navy);}
-.frac .den{display:block;padding:3px 6px 0;}
-.answer-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 4px;}
-.answer-row input[type=text]{padding:10px 14px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:230px;text-align:center;}
-.answer-row input[type=text]:focus{outline:none;border-color:var(--blue);}
-.syntax-hint{text-align:center;font-size:.72rem;color:#8892a8;margin-bottom:10px;}
-.btn-row{display:flex;gap:10px;justify-content:center;margin-bottom:6px;flex-wrap:wrap;}
-button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
-.btn-check{background:var(--blue);color:#fff;}
-.btn-hint{background:var(--orange);color:#fff;}
-.btn-solucion{background:var(--purple);color:#fff;}
-.btn-teoria{background:var(--teal);color:#fff;}
-.btn-next{background:var(--navy);color:#fff;}
-button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
-.feedback{text-align:center;font-size:.92rem;margin-top:10px;min-height:20px;font-weight:600;}
-.hint-box,.solucion-box,.teoria-box,.ejemplo-box{background:#fff6ea;border-left:4px solid var(--orange);padding:14px 16px;border-radius:8px;margin-top:14px;font-size:.9rem;display:none;white-space:pre-line;line-height:1.75;}
-.solucion-box{background:#f1ecff;border-left:4px solid var(--purple);}
-.teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
-.ejemplo-box{background:#eaf3ff;border-left:4px solid var(--blue);white-space:normal;}
-.ejemplo-box b.step{color:var(--blue);}
-.solucion-box .final{font-weight:700;color:var(--purple);margin-top:8px;display:block;}
-.ref-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px;}
-.ref-table th,.ref-table td{border:1px solid #dde3f0;padding:7px;text-align:left;}
-.ref-table th{background:var(--navy);color:#fff;}
-.section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
-.error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
-.error-log th,.error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
-.error-log th{background:#e4e9f7;}
-.pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
-.pct-bar div{height:100%;border-radius:6px;}
-.export-btn{background:var(--green);color:#fff;margin-top:10px;}
-.reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
-footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
-.exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:640px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
-.exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
-.exam-grade.aprobado{color:var(--green);}
-.exam-grade.suspenso{color:var(--red);}
-.exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
-.exam-modal th,.exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
-.exam-modal th{background:#e4e9f7;}
-/* ---------- examen imprimible ---------- */
+#tool-fracciones{margin:0;background:var(--bg);color:var(--navy);}
+#tool-fracciones header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
+#tool-fracciones header h1{margin:0;font-size:1.3rem;}
+#tool-fracciones header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
+#tool-fracciones .container{max-width:900px;margin:20px auto;padding:0 16px;}
+#tool-fracciones .mode-bar{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+#tool-fracciones .mode-btn{padding:8px 16px;border:2px solid var(--blue);border-radius:20px;background:#fff;color:var(--blue);cursor:pointer;font-weight:600;font-size:.85rem;}
+#tool-fracciones .mode-btn.active{background:var(--blue);color:#fff;}
+#tool-fracciones .mode-btn.repaso{border-color:var(--purple);color:var(--purple);}
+#tool-fracciones .mode-btn.repaso.active{background:var(--purple);color:#fff;}
+#tool-fracciones .mode-btn.imprimir{border-color:#0f766e;color:#0f766e;}
+#tool-fracciones .mode-btn.imprimir:hover{background:#0f766e;color:#fff;}
+#tool-fracciones .level-bar{display:flex;justify-content:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
+#tool-fracciones .level-label{font-size:.78rem;color:#667;font-weight:600;margin-right:2px;}
+#tool-fracciones .lvl{padding:6px 14px;border-radius:16px;border:2px solid #ccd6ec;background:#fff;cursor:pointer;font-weight:700;font-size:.78rem;color:#667;}
+#tool-fracciones .lvl[data-l="facil"].active{background:var(--green);border-color:var(--green);color:#fff;}
+#tool-fracciones .lvl[data-l="medio"].active{background:var(--orange);border-color:var(--orange);color:#fff;}
+#tool-fracciones .lvl[data-l="dificil"].active{background:var(--red);border-color:var(--red);color:#fff;}
+#tool-fracciones .lvl[data-l="todos"].active{background:var(--navy);border-color:var(--navy);color:#fff;}
+#tool-fracciones .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;justify-content:center;}
+#tool-fracciones .tab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:24px;background:#fff;color:var(--navy);cursor:pointer;font-size:.9rem;font-weight:600;border:2px solid var(--blue);}
+#tool-fracciones .tab.active{background:var(--blue);color:#fff;}
+#tool-fracciones .badge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:12px;}
+#tool-fracciones .badge-facil{background:#e3f6e8;color:var(--green);}
+#tool-fracciones .badge-medio{background:#fdeee0;color:var(--orange);}
+#tool-fracciones .badge-dificil{background:#fbe4e2;color:var(--red);}
+#tool-fracciones .badge-reto{background:#e6e0fa;color:var(--purple);}
+#tool-fracciones .tab.active .badge-facil{background:#fff;color:var(--green);}
+#tool-fracciones .tab.active .badge-medio{background:#fff;color:var(--orange);}
+#tool-fracciones .tab.active .badge-dificil{background:#fff;color:var(--red);}
+#tool-fracciones .tab.active .badge-reto{background:#fff;color:var(--purple);}
+#tool-fracciones .card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:18px;}
+#tool-fracciones .info-box{background:#eef2fb;border-radius:10px;padding:12px 16px;font-size:.82rem;color:#3a4a6b;margin-bottom:16px;line-height:1.7;}
+#tool-fracciones .info-box summary{cursor:pointer;font-weight:700;color:var(--navy);}
+#tool-fracciones .exam-progress{display:none;text-align:center;font-weight:700;color:var(--purple);font-size:.9rem;margin-bottom:6px;}
+#tool-fracciones .stats{display:flex;justify-content:space-between;font-size:.82rem;color:#555;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+#tool-fracciones .stats b{color:var(--navy);}
+#tool-fracciones .timer{font-weight:700;color:var(--orange);}
+#tool-fracciones .qtag{text-align:center;font-size:.72rem;color:#8892a8;letter-spacing:.04em;text-transform:uppercase;font-weight:700;margin-bottom:2px;}
+#tool-fracciones .instructions{text-align:center;font-size:.82rem;color:#666;margin-bottom:10px;background:#eef2fb;border-radius:8px;padding:8px 12px;}
+#tool-fracciones .ejemplo-toggle{display:block;margin:0 auto 12px;background:#fff;border:2px dashed var(--teal);color:var(--teal);}
+#tool-fracciones .question{font-size:1.3rem;text-align:center;margin:20px 0;font-weight:600;color:var(--navy);line-height:1.7;}
+#tool-fracciones .question .op{font-size:1rem;color:#777;font-weight:500;display:block;margin-bottom:10px;}
+#tool-fracciones .frac{display:inline-block;vertical-align:middle;text-align:center;margin:0 6px;}
+#tool-fracciones .frac .num{display:block;padding:0 6px 3px;border-bottom:2px solid var(--navy);}
+#tool-fracciones .frac .den{display:block;padding:3px 6px 0;}
+#tool-fracciones .answer-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 4px;}
+#tool-fracciones .answer-row input[type=text]{padding:10px 14px;border:2px solid #ccd6ec;border-radius:8px;font-size:1rem;width:230px;text-align:center;}
+#tool-fracciones .answer-row input[type=text]:focus{outline:none;border-color:var(--blue);}
+#tool-fracciones .syntax-hint{text-align:center;font-size:.72rem;color:#8892a8;margin-bottom:10px;}
+#tool-fracciones .btn-row{display:flex;gap:10px;justify-content:center;margin-bottom:6px;flex-wrap:wrap;}
+#tool-fracciones button{padding:9px 16px;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;}
+#tool-fracciones .btn-check{background:var(--blue);color:#fff;}
+#tool-fracciones .btn-hint{background:var(--orange);color:#fff;}
+#tool-fracciones .btn-solucion{background:var(--purple);color:#fff;}
+#tool-fracciones .btn-teoria{background:var(--teal);color:#fff;}
+#tool-fracciones .btn-next{background:var(--navy);color:#fff;}
+#tool-fracciones button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
+#tool-fracciones .feedback{text-align:center;font-size:.92rem;margin-top:10px;min-height:20px;font-weight:600;}
+#tool-fracciones .hint-box, #tool-fracciones .solucion-box, #tool-fracciones .teoria-box, #tool-fracciones .ejemplo-box{background:#fff6ea;border-left:4px solid var(--orange);padding:14px 16px;border-radius:8px;margin-top:14px;font-size:.9rem;display:none;white-space:pre-line;line-height:1.75;}
+#tool-fracciones .solucion-box{background:#f1ecff;border-left:4px solid var(--purple);}
+#tool-fracciones .teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
+#tool-fracciones .ejemplo-box{background:#eaf3ff;border-left:4px solid var(--blue);white-space:normal;}
+#tool-fracciones .ejemplo-box b.step{color:var(--blue);}
+#tool-fracciones .solucion-box .final{font-weight:700;color:var(--purple);margin-top:8px;display:block;}
+#tool-fracciones .ref-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px;}
+#tool-fracciones .ref-table th, #tool-fracciones .ref-table td{border:1px solid #dde3f0;padding:7px;text-align:left;}
+#tool-fracciones .ref-table th{background:var(--navy);color:#fff;}
+#tool-fracciones .section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
+#tool-fracciones .error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
+#tool-fracciones .error-log th, #tool-fracciones .error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
+#tool-fracciones .error-log th{background:#e4e9f7;}
+#tool-fracciones .pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
+#tool-fracciones .pct-bar div{height:100%;border-radius:6px;}
+#tool-fracciones .export-btn{background:var(--green);color:#fff;margin-top:10px;}
+#tool-fracciones .reset-btn{background:var(--red);color:#fff;margin-top:10px;margin-left:8px;}
+#tool-fracciones footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
+#tool-fracciones .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:14px;}
+#tool-fracciones .exam-modal{background:#fff;border-radius:14px;padding:24px 28px;max-width:640px;width:100%;box-shadow:0 8px 30px rgba(0,0,0,.3);max-height:88vh;overflow-y:auto;}
+#tool-fracciones .exam-grade{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0;}
+#tool-fracciones .exam-grade.aprobado{color:var(--green);}
+#tool-fracciones .exam-grade.suspenso{color:var(--red);}
+#tool-fracciones .exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
+#tool-fracciones .exam-modal th, #tool-fracciones .exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
+#tool-fracciones .exam-modal th{background:#e4e9f7;}
+#tool-fracciones /* ---------- examen imprimible ---------- */
 .print-modal{background:#fff;border-radius:14px;padding:22px 26px;max-width:460px;width:92%;box-shadow:0 18px 50px rgba(0,0,0,.3);}
-.popt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0;font-size:.9rem;color:var(--navy);}
-.popt select,.popt input[type=text]{padding:7px 10px;border:1.5px solid #ccd6ec;border-radius:8px;font-size:.9rem;font-family:inherit;min-width:190px;}
-.popt.check{justify-content:flex-start;gap:8px;}
-.popt.check label{font-weight:500;}
-#printWrap{display:none;position:fixed;inset:0;background:#e9edf6;overflow:auto;z-index:200;padding:0 0 60px;}
-#printWrap.show{display:block;}
-.print-toolbar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;font-weight:600;font-size:.9rem;flex-wrap:wrap;gap:8px;}
-.print-toolbar button{background:var(--green);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;margin-left:8px;font-family:inherit;font-size:.85rem;}
-.print-toolbar button.sec{background:#37507a;}
-.sheet{background:#fff;max-width:820px;margin:22px auto;padding:38px 44px;box-shadow:0 6px 22px rgba(0,0,0,.12);color:#16233d;}
-.sheet h2{font-size:1.25rem;margin:0 0 2px;text-align:center;}
-.sheet .sub{text-align:center;font-size:.82rem;color:#5b6a86;margin-bottom:14px;}
-.sheet .idline{display:flex;gap:18px;font-size:.85rem;border:1px solid #b9c4d8;border-radius:8px;padding:10px 12px;margin-bottom:12px;}
-.sheet .idline span{flex:1;border-bottom:1px solid #8794ad;padding-bottom:2px;}
-.sheet .instr{font-size:.78rem;color:#5b6a86;border-left:3px solid var(--blue);padding:6px 10px;margin-bottom:18px;background:#f6f9ff;}
-.pq{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid;}
-.pq-head{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:2;}
-.pq-num{font-weight:700;color:var(--blue);min-width:26px;}
-.pq-pts{margin-left:auto;font-size:.72rem;color:#8892a8;white-space:nowrap;}
-.pq-hint{font-size:.75rem;color:#8a6d1f;background:#fff8e6;border-radius:6px;padding:3px 8px;margin:2px 0 0 36px;display:inline-block;}
-.pq-space{border:1px dashed #c3ccdd;border-radius:6px;margin:6px 0 14px 36px;}
-.sol-item{font-size:.86rem;line-height:1.95;padding:7px 0;border-bottom:1px solid #e6ebf5;page-break-inside:avoid;break-inside:avoid;}
-.sol-item .ans{color:#0f766e;font-weight:700;}
-.sol-steps{font-size:.8rem;color:#42506b;background:#f6f9ff;border-radius:6px;padding:6px 10px;margin-top:4px;white-space:pre-line;}
-@media print{
+#tool-fracciones .popt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0;font-size:.9rem;color:var(--navy);}
+#tool-fracciones .popt select, #tool-fracciones .popt input[type=text]{padding:7px 10px;border:1.5px solid #ccd6ec;border-radius:8px;font-size:.9rem;font-family:inherit;min-width:190px;}
+#tool-fracciones .popt.check{justify-content:flex-start;gap:8px;}
+#tool-fracciones .popt.check label{font-weight:500;}
+#tool-fracciones #printWrap{display:none;position:fixed;inset:0;background:#e9edf6;overflow:auto;z-index:200;padding:0 0 60px;}
+#tool-fracciones #printWrap.show{display:block;}
+#tool-fracciones .print-toolbar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;font-weight:600;font-size:.9rem;flex-wrap:wrap;gap:8px;}
+#tool-fracciones .print-toolbar button{background:var(--green);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;margin-left:8px;font-family:inherit;font-size:.85rem;}
+#tool-fracciones .print-toolbar button.sec{background:#37507a;}
+#tool-fracciones .sheet{background:#fff;max-width:820px;margin:22px auto;padding:38px 44px;box-shadow:0 6px 22px rgba(0,0,0,.12);color:#16233d;}
+#tool-fracciones .sheet h2{font-size:1.25rem;margin:0 0 2px;text-align:center;}
+#tool-fracciones .sheet .sub{text-align:center;font-size:.82rem;color:#5b6a86;margin-bottom:14px;}
+#tool-fracciones .sheet .idline{display:flex;gap:18px;font-size:.85rem;border:1px solid #b9c4d8;border-radius:8px;padding:10px 12px;margin-bottom:12px;}
+#tool-fracciones .sheet .idline span{flex:1;border-bottom:1px solid #8794ad;padding-bottom:2px;}
+#tool-fracciones .sheet .instr{font-size:.78rem;color:#5b6a86;border-left:3px solid var(--blue);padding:6px 10px;margin-bottom:18px;background:#f6f9ff;}
+#tool-fracciones .pq{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid;}
+#tool-fracciones .pq-head{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:2;}
+#tool-fracciones .pq-num{font-weight:700;color:var(--blue);min-width:26px;}
+#tool-fracciones .pq-pts{margin-left:auto;font-size:.72rem;color:#8892a8;white-space:nowrap;}
+#tool-fracciones .pq-hint{font-size:.75rem;color:#8a6d1f;background:#fff8e6;border-radius:6px;padding:3px 8px;margin:2px 0 0 36px;display:inline-block;}
+#tool-fracciones .pq-space{border:1px dashed #c3ccdd;border-radius:6px;margin:6px 0 14px 36px;}
+#tool-fracciones .sol-item{font-size:.86rem;line-height:1.95;padding:7px 0;border-bottom:1px solid #e6ebf5;page-break-inside:avoid;break-inside:avoid;}
+#tool-fracciones .sol-item .ans{color:#0f766e;font-weight:700;}
+#tool-fracciones .sol-steps{font-size:.8rem;color:#42506b;background:#f6f9ff;border-radius:6px;padding:6px 10px;margin-top:4px;white-space:pre-line;}
+#tool-fracciones @media print{
   @page{size:A4;margin:14mm 13mm;}
   body{background:#fff!important;}
   header,.container,.overlay,footer{display:none!important;}
@@ -185,8 +180,6 @@ footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
   .sheet+.sheet{page-break-before:always;}
 }
 </style>
-</head>
-<body>
 <header>
 <h1>Entrenador de Fracciones Algebraicas</h1>
 <p>1° de Bachillerato · Resuelve en papel y comprueba aquí · Funciona sin conexión a internet</p>
@@ -1065,6 +1058,5 @@ updateFailCount();
 setModeUI('practica');
 newQuestion();
 </script>
-</body>
-</html>
+</div>
 ```

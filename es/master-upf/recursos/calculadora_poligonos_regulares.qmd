@@ -16,6 +16,7 @@ lightbox:
   desc-position: bottom
   loop: false
 format: html
+html-table-processing: none
 ---
 
 ## Calculadora de Polígonos Regulares
@@ -50,14 +51,7 @@ Para utilizar la calculadora, sigue estos pasos:
 Esta secuencia permite pasar de un solo dato inicial a una caracterización geométrica completa del polígono, favoreciendo tanto el cálculo rápido como la comprensión conceptual.
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calculadora de Polígonos Regulares</title>
-<meta name="description" content="Calculadora interactiva de polígonos regulares: ángulos, apotema, radio, altura, perímetro, área, coordenadas de los vértices y fórmulas paso a paso. Herramienta educativa para ESO y Bachillerato." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3l11.3 6.5v13L16 29 4.7 22.5v-13z' fill='none' stroke='%232f3ea8' stroke-width='2.4'/%3E%3Cpath d='M16 16h11.3' stroke='%23c2410c' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%232f3ea8'/%3E%3C/svg%3E" />
+<div id="tool-poligonos" class="math-tool-wrapper">
 <link rel="preconnect" href="https://api.fontshare.com" />
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
 <style>/* KaTeX 0.16.11 (MIT) — fuentes woff2 incrustadas */
@@ -74,7 +68,7 @@ Esta secuencia permite pasar de un solo dato inicial a una caracterización geom
    azul-índigo, colores dedicados a cada elemento geométrico.
    ============================================================ */
 
-:root {
+#tool-poligonos {
   /* Escala tipográfica fluida */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
@@ -108,8 +102,7 @@ Esta secuencia permite pasar de un solo dato inicial a una caracterización geom
 }
 
 /* ---------- Tema claro ---------- */
-:root,
-[data-theme='light'] {
+#tool-poligonos {
   --color-bg: #f4f5f1;
   --color-surface: #fdfdfa;
   --color-surface-2: #f9faf6;
@@ -143,8 +136,8 @@ Esta secuencia permite pasar de un solo dato inicial a una caracterización geom
   --shadow-md: 0 4px 14px rgba(27, 32, 51, 0.07);
 }
 
-/* ---------- Tema oscuro ---------- */
-[data-theme='dark'] {
+/* ---------- Tema oscuro: sigue al conmutador del propio sitio Quarto ---------- */
+body.quarto-dark #tool-poligonos {
   --color-bg: #14161d;
   --color-surface: #1a1d26;
   --color-surface-2: #1e222c;
@@ -178,27 +171,11 @@ Esta secuencia permite pasar de un solo dato inicial a una caracterización geom
   --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    color-scheme: dark;
-  }
-}
-
-/* ---------- Base ---------- */
-*,
-*::before,
-*::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100dvh;
+/* ---------- Base ----------
+   A partir de aquí TODO el CSS va anidado dentro de #tool-poligonos, de modo
+   que la herramienta no pueda alterar el fondo ni la tipografía de la página.
+   ------------------------------------------------------------------------ */
+#tool-poligonos {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.6;
@@ -209,7 +186,14 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 24px 24px, 24px 24px;
-}
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 svg { display: block; }
 button, input { font: inherit; color: inherit; }
@@ -226,9 +210,7 @@ button, input { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--color-border);
   background: color-mix(in srgb, var(--color-surface) 88%, transparent);
   backdrop-filter: blur(8px);
-  position: sticky;
-  top: 0;
-  z-index: 20;
+  position: relative;
 }
 .header-inner {
   display: flex;
@@ -711,9 +693,8 @@ select:focus-visible {
 .txt-area { fill: var(--color-primary); }
 .txt-perim { fill: var(--color-text-muted); }
 
+}
 </style>
-</head>
-<body>
 
 <header class="site-header">
   <div class="wrap header-inner">
@@ -729,9 +710,6 @@ select:focus-visible {
         <p>Geometría plana · ESO y Bachillerato</p>
       </div>
     </div>
-    <button class="theme-toggle" data-theme-toggle aria-label="Cambiar a modo oscuro">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </button>
   </div>
 </header>
 
@@ -924,23 +902,6 @@ select:focus-visible {
 
 (function () {
   'use strict';
-
-  /* ---------- Tema claro / oscuro ---------- */
-  (function theme() {
-    var btn = document.querySelector('[data-theme-toggle]');
-    var root = document.documentElement;
-    var mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    var sun = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-    var moon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    function apply() {
-      root.setAttribute('data-theme', mode);
-      if (!btn) return;
-      btn.innerHTML = mode === 'dark' ? sun : moon;
-      btn.setAttribute('aria-label', mode === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
-    }
-    apply();
-    if (btn) btn.addEventListener('click', function () { mode = mode === 'dark' ? 'light' : 'dark'; apply(); });
-  })();
 
   /* ---------- Utilidades numéricas ---------- */
   var NOMBRES = {
@@ -1489,6 +1450,5 @@ select:focus-visible {
 })();
 
 </script>
-</body>
-</html>
+</div>
 ```

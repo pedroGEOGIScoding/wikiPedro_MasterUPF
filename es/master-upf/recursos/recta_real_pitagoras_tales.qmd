@@ -16,6 +16,7 @@ lightbox:
   desc-position: bottom
   loop: false
 format: html
+html-table-processing: none
 ---
 
 ## Herramienta interactiva para explicar la recta real de los números reales
@@ -67,19 +68,14 @@ La sección **"Recta comparativa"** permite añadir varios números construidos 
 En la parte superior se encuentran los botones **"Teoría"**, que abre una ventana con la explicación formal de los teoremas de Pitágoras y Tales y los errores frecuentes del alumnado; **"Proyectar"**, que amplía la interfaz para su uso en pizarra digital; e **"Imprimir"**, para generar una versión en papel de la construcción realizada.
 
 ```{=html}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La recta real: Pitágoras y Tales · v4</title>
+<div id="tool-recta" class="math-tool-wrapper">
 <style>
 /* ===============================================================
    La recta real · Pitágoras y Tales · v4
    Paleta escolar: verde recta, azul cateto nuevo, negro hipotenusa,
    rojo punto resultado (igual que el libro de texto).
    =============================================================== */
-:root{
+#tool-recta{
   --bg:#eef3f8;
   --ink:#12212e;
   --ink-soft:#4a6072;
@@ -95,216 +91,206 @@ En la parte superior se encuentran los botones **"Teoría"**, que abre una venta
   --shadow:0 1px 2px rgba(18,33,46,.06),0 8px 24px rgba(18,33,46,.07);
   --r:14px;
   --fs:16px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
+  margin:0;padding:0;
   font-family:'Source Sans 3',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   font-size:var(--fs);
   color:var(--ink);
   background:var(--bg);
   line-height:1.5;
+  max-width:100%;
+  overflow-x:clip;
+  border-radius:var(--r);
+  position:relative;
 }
-h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.2;margin:0}
-code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+#tool-recta *{box-sizing:border-box}
+/* Neutraliza las clases de rejilla que Quarto pueda inyectar en el contenedor
+   (page-columns / page-full), que lo sacarían del cuerpo hacia los márgenes. */
+#tool-recta.page-columns{display:block;grid-template-columns:none}
+#tool-recta.page-full,#tool-recta.page-columns{grid-column:body-content-start / body-content-end}
+#tool-recta h1, #tool-recta h2, #tool-recta h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.2;margin:0}
+#tool-recta code, #tool-recta .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
 
-/* ---------- Topbar ---------- */
-.topbar{
+#tool-recta .topbar{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   padding:12px 22px;background:#fff;border-bottom:1px solid var(--line);
-  position:sticky;top:0;z-index:40;
+  position:relative;z-index:40;
 }
-.brand{display:flex;align-items:center;gap:14px}
-.logo{
+#tool-recta .brand{display:flex;align-items:center;gap:14px}
+#tool-recta .logo{
   width:42px;height:42px;flex:0 0 42px;border-radius:12px;
   background:linear-gradient(145deg,var(--accent),#1f9ad6);
   color:#fff;display:grid;place-items:center;font-size:24px;font-weight:700;
   font-family:'Source Serif 4',serif;
 }
-.topbar h1{font-size:19px}
-.topbar p{margin:0;font-size:12.5px;color:var(--ink-soft)}
-.topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#tool-recta .topbar h1{font-size:19px}
+#tool-recta .topbar p{margin:0;font-size:12.5px;color:var(--ink-soft)}
+#tool-recta .topbar-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
-button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid transparent}
-button.primary{background:var(--accent);color:#fff;padding:9px 16px;font-weight:600}
-button.primary:hover{background:#0e4a8f}
-button.ghost{background:#fff;border:1px solid var(--line);color:var(--ink);padding:8px 14px}
-button.ghost:hover{border-color:var(--accent);color:var(--accent)}
-.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.seg button{border:0;background:#fff;padding:8px 12px;color:var(--ink-soft);border-radius:0;font-weight:600}
-.seg button.on{background:var(--accent);color:#fff}
+#tool-recta button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid transparent}
+#tool-recta button.primary{background:var(--accent);color:#fff;padding:9px 16px;font-weight:600}
+#tool-recta button.primary:hover{background:#0e4a8f}
+#tool-recta button.ghost{background:#fff;border:1px solid var(--line);color:var(--ink);padding:8px 14px}
+#tool-recta button.ghost:hover{border-color:var(--accent);color:var(--accent)}
+#tool-recta .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+#tool-recta .seg button{border:0;background:#fff;padding:8px 12px;color:var(--ink-soft);border-radius:0;font-weight:600}
+#tool-recta .seg button.on{background:var(--accent);color:#fff}
 
-/* ---------- Layout ---------- */
-.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:20px;padding:20px;align-items:start}
-.panel{display:flex;flex-direction:column;gap:14px;position:sticky;top:82px}
-.stage{display:flex;flex-direction:column;gap:16px;min-width:0}
+#tool-recta .layout{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:20px;padding:20px;align-items:start;max-width:100%}
+#tool-recta .panel{display:flex;flex-direction:column;gap:14px;position:sticky;top:82px}
+#tool-recta .stage{display:flex;flex-direction:column;gap:16px;min-width:0}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
-.card h2{font-size:16px;margin-bottom:10px}
+#tool-recta .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+#tool-recta .card h2{font-size:16px;margin-bottom:10px}
 
-.inputrow{display:flex;gap:8px}
-.inputrow input{
+#tool-recta .inputrow{display:flex;gap:8px}
+#tool-recta .inputrow input{
   flex:1;min-width:0;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;
   font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;background:#fbfdff;
 }
-.inputrow input:focus{outline:0;border-color:var(--accent);background:#fff}
-.keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
-.keypad button{background:#f4f8fc;border:1px solid var(--line);padding:8px 0;font-weight:600;color:var(--ink)}
-.keypad button:hover{background:var(--accent-soft);border-color:var(--accent)}
-.keypad .wide{grid-column:span 4;font-weight:400;font-size:14px}
-.hint{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
-.hint code{background:#f1f5f9;padding:1px 5px;border-radius:5px}
-.err{margin-top:10px;background:#fdecec;border:1px solid #f7c4c4;color:#a12020;padding:10px 12px;border-radius:10px;font-size:14px}
+#tool-recta .inputrow input:focus{outline:0;border-color:var(--accent);background:#fff}
+#tool-recta .keypad{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+#tool-recta .keypad button{background:#f4f8fc;border:1px solid var(--line);padding:8px 0;font-weight:600;color:var(--ink)}
+#tool-recta .keypad button:hover{background:var(--accent-soft);border-color:var(--accent)}
+#tool-recta .keypad .wide{grid-column:span 4;font-weight:400;font-size:14px}
+#tool-recta .hint{font-size:13px;color:var(--ink-soft);margin:10px 0 0}
+#tool-recta .hint code{background:#f1f5f9;padding:1px 5px;border-radius:5px}
+#tool-recta .err{margin-top:10px;background:#fdecec;border:1px solid #f7c4c4;color:#a12020;padding:10px 12px;border-radius:10px;font-size:14px}
 
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip,.chips button{
+#tool-recta .chips{display:flex;flex-wrap:wrap;gap:6px}
+#tool-recta .chip, #tool-recta .chips button{
   background:#f4f8fc;border:1px solid var(--line);color:var(--ink);
   padding:6px 11px;border-radius:999px;font-size:13.5px;
 }
-.chip:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.opt{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:10px}
-.opt select{display:block;width:100%;margin-top:4px;padding:8px;border:1px solid var(--line);border-radius:9px;background:#fbfdff;font:inherit;font-size:13.5px;color:var(--ink)}
-.check{display:flex;align-items:center;gap:8px;font-size:13.5px;margin:6px 0;cursor:pointer}
-.check input{width:16px;height:16px;accent-color:var(--accent)}
-.pool{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.pool .tag{background:var(--accent-soft);border:1px solid #bcd7f5;color:var(--accent);padding:4px 9px;border-radius:8px;font-size:13px;display:flex;gap:6px;align-items:center}
-.pool .tag button{border:0;background:transparent;color:#7089a5;padding:0 2px;font-size:15px;line-height:1}
+#tool-recta .chip:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+#tool-recta .opt{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:10px}
+#tool-recta .opt select{display:block;width:100%;margin-top:4px;padding:8px;border:1px solid var(--line);border-radius:9px;background:#fbfdff;font:inherit;font-size:13.5px;color:var(--ink)}
+#tool-recta .check{display:flex;align-items:center;gap:8px;font-size:13.5px;margin:6px 0;cursor:pointer}
+#tool-recta .check input{width:16px;height:16px;accent-color:var(--accent)}
+#tool-recta .pool{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+#tool-recta .pool .tag{background:var(--accent-soft);border:1px solid #bcd7f5;color:var(--accent);padding:4px 9px;border-radius:8px;font-size:13px;display:flex;gap:6px;align-items:center}
+#tool-recta .pool .tag button{border:0;background:transparent;color:#7089a5;padding:0 2px;font-size:15px;line-height:1}
 
-/* ---------- Resumen del número ---------- */
-.summary{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
-.summary .big{font-family:'Source Serif 4',serif;font-size:34px;line-height:1.25;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.summary .approx{font-size:19px;color:var(--ink-soft)}
-.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.badge{font-size:12.5px;padding:4px 10px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);color:var(--ink-soft)}
-.badge.irr{background:#f3e8ff;border-color:#dcc6f5;color:#6b21a8}
-.badge.rat{background:#e6f6ec;border-color:#bfe6cd;color:#1c7c3c}
-.badge.int{background:#fff4e0;border-color:#f3ddb0;color:#8a5a00}
-.summary .plan{margin-top:12px;font-size:14px;color:var(--ink-soft)}
-.summary .plan b{color:var(--ink)}
+#tool-recta .summary{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+#tool-recta .summary .big{font-family:'Source Serif 4',serif;font-size:34px;line-height:1.25;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+#tool-recta .summary .approx{font-size:19px;color:var(--ink-soft)}
+#tool-recta .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+#tool-recta .badge{font-size:12.5px;padding:4px 10px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);color:var(--ink-soft)}
+#tool-recta .badge.irr{background:#f3e8ff;border-color:#dcc6f5;color:#6b21a8}
+#tool-recta .badge.rat{background:#e6f6ec;border-color:#bfe6cd;color:#1c7c3c}
+#tool-recta .badge.int{background:#fff4e0;border-color:#f3ddb0;color:#8a5a00}
+#tool-recta .summary .plan{margin-top:12px;font-size:14px;color:var(--ink-soft)}
+#tool-recta .summary .plan b{color:var(--ink)}
 
-/* ---------- Barra de pasos ---------- */
-.stepbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;box-shadow:var(--shadow);flex-wrap:wrap}
-.dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
-.dots span{width:26px;height:8px;border-radius:99px;background:#dde7f0}
-.dots span.on{background:var(--accent)}
+#tool-recta .stepbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;box-shadow:var(--shadow);flex-wrap:wrap}
+#tool-recta .dots{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+#tool-recta .dots span{width:26px;height:8px;border-radius:99px;background:#dde7f0}
+#tool-recta .dots span.on{background:var(--accent)}
 
-/* ---------- Tarjetas de paso ---------- */
-.steps{display:flex;flex-direction:column;gap:16px}
-.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
-.step.hidden-step{display:none}
-.step-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-.step-num{
+#tool-recta .steps{display:flex;flex-direction:column;gap:16px}
+#tool-recta .step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+#tool-recta .step.hidden-step{display:none}
+#tool-recta .step-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+#tool-recta .step-num{
   flex:0 0 auto;background:var(--accent);color:#fff;font-size:12px;font-weight:700;
   letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
 }
-.step-head h3{font-size:18px}
-.step .txt{font-size:15px;color:#2c4356;margin:8px 0 0;max-width:74ch}
-.step .txt b{color:var(--ink)}
-.fig{margin:14px 0 4px;overflow:hidden;border-radius:12px;background:#fff}
-.fig svg{display:block;width:100%;height:auto}
-.formula{
+#tool-recta .step-head h3{font-size:18px}
+#tool-recta .step .txt{font-size:15px;color:#2c4356;margin:8px 0 0;max-width:74ch}
+#tool-recta .step .txt b{color:var(--ink)}
+#tool-recta .fig{margin:14px 0 4px;overflow:hidden;border-radius:12px;background:#fff}
+#tool-recta .fig svg{display:block;width:100%;height:auto}
+#tool-recta .formula{
   font-family:'Source Serif 4',serif;font-size:20px;background:#f7fafd;border-left:4px solid var(--blue);
   padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0;display:inline-block;
 }
-table.tbl{border-collapse:collapse;font-size:14px;margin-top:12px;width:100%;max-width:560px}
-table.tbl th,table.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center}
-table.tbl th{background:#f4f8fc;font-weight:600;color:var(--ink-soft)}
-table.tbl td.ok{color:#1c7c3c;font-weight:600}
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:8px}
-.legend i{display:inline-block;width:22px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px}
-.figtools{display:flex;gap:6px;margin-top:8px}
-.figtools button{background:#f4f8fc;border:1px solid var(--line);font-size:12.5px;padding:4px 10px;border-radius:8px;color:var(--ink-soft)}
-.figtools button:hover{color:var(--accent);border-color:var(--accent)}
+#tool-recta table.tbl{border-collapse:collapse;font-size:14px;margin-top:12px;width:100%;max-width:560px}
+#tool-recta table.tbl th, #tool-recta table.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+#tool-recta table.tbl th{background:#f4f8fc;font-weight:600;color:var(--ink-soft)}
+#tool-recta table.tbl td.ok{color:#1c7c3c;font-weight:600}
+#tool-recta .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:8px}
+#tool-recta .legend i{display:inline-block;width:22px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px}
+#tool-recta .figtools{display:flex;gap:6px;margin-top:8px}
+#tool-recta .figtools button{background:#f4f8fc;border:1px solid var(--line);font-size:12.5px;padding:4px 10px;border-radius:8px;color:var(--ink-soft)}
+#tool-recta .figtools button:hover{color:var(--accent);border-color:var(--accent)}
 
-/* ---------- Preguntas guía ---------- */
-.quiz{background:#fbfdff;border:1px dashed #b9cfe6;border-radius:12px;padding:14px 16px;margin-top:14px}
-.quiz h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
-.q{margin:10px 0}
-.q p{margin:0 0 6px;font-size:14.5px}
-.q .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.q input[type=text]{width:110px;padding:7px 9px;border:1.5px solid var(--line);border-radius:9px;font-family:ui-monospace,monospace}
-.q .opts{display:flex;gap:6px;flex-wrap:wrap}
-.q .opts button{background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:9px;font-size:14px}
-.q .opts button.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
-.fb{font-size:14px;margin-top:6px;font-weight:600}
-.fb.good{color:#1c7c3c}
-.fb.bad{color:#c22}
-.fb .why{display:block;font-weight:400;color:var(--ink-soft);margin-top:2px}
+#tool-recta .quiz{background:#fbfdff;border:1px dashed #b9cfe6;border-radius:12px;padding:14px 16px;margin-top:14px}
+#tool-recta .quiz h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+#tool-recta .q{margin:10px 0}
+#tool-recta .q p{margin:0 0 6px;font-size:14.5px}
+#tool-recta .q .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#tool-recta .q input[type=text]{width:110px;padding:7px 9px;border:1.5px solid var(--line);border-radius:9px;font-family:ui-monospace,monospace}
+#tool-recta .q .opts{display:flex;gap:6px;flex-wrap:wrap}
+#tool-recta .q .opts button{background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:9px;font-size:14px}
+#tool-recta .q .opts button.sel{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:600}
+#tool-recta .fb{font-size:14px;margin-top:6px;font-weight:600}
+#tool-recta .fb.good{color:#1c7c3c}
+#tool-recta .fb.bad{color:#c22}
+#tool-recta .fb .why{display:block;font-weight:400;color:var(--ink-soft);margin-top:2px}
 
-/* ---------- Recta comparativa ---------- */
-.linecard h2{margin-bottom:8px}
-.zoomrow{display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--ink-soft)}
-.zoomrow input[type=range]{width:220px;accent-color:var(--accent)}
-.order{margin-top:10px;font-family:'Source Serif 4',serif;font-size:19px}
-.order .lt{color:var(--ink-soft);margin:0 8px}
+#tool-recta .linecard h2{margin-bottom:8px}
+#tool-recta .zoomrow{display:flex;align-items:center;gap:14px;font-size:13.5px;color:var(--ink-soft)}
+#tool-recta .zoomrow input[type=range]{width:220px;accent-color:var(--accent)}
+#tool-recta .order{margin-top:10px;font-family:'Source Serif 4',serif;font-size:19px}
+#tool-recta .order .lt{color:var(--ink-soft);margin:0 8px}
 
-/* ---------- Modal teoría ---------- */
-.modal{position:fixed;inset:0;background:rgba(18,33,46,.55);display:grid;place-items:center;z-index:60;padding:20px}
-.modal-box{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:86vh;overflow:auto;padding:28px 32px;position:relative}
-.modal-x{position:absolute;top:12px;right:14px;background:#f1f5f9;border:0;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;color:var(--ink-soft)}
-.modal-box h2{font-size:24px;margin-bottom:6px}
-.modal-box h3{font-size:17px;margin:20px 0 4px;color:var(--accent)}
-.modal-box p,.modal-box li{font-size:15px;color:#2c4356}
-.modal-box .formula{font-size:19px}
+#tool-recta .modal{position:fixed;inset:0;background:rgba(18,33,46,.55);display:grid;place-items:center;z-index:9999;padding:20px}
+#tool-recta .modal-box{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:86vh;overflow:auto;padding:28px 32px;position:relative}
+#tool-recta .modal-x{position:absolute;top:12px;right:14px;background:#f1f5f9;border:0;width:32px;height:32px;border-radius:50%;font-size:20px;line-height:1;color:var(--ink-soft)}
+#tool-recta .modal-box h2{font-size:24px;margin-bottom:6px}
+#tool-recta .modal-box h3{font-size:17px;margin:20px 0 4px;color:var(--accent)}
+#tool-recta .modal-box p, #tool-recta .modal-box li{font-size:15px;color:#2c4356}
+#tool-recta .modal-box .formula{font-size:19px}
 
-/* ---------- Modo proyección ---------- */
-body.present{--fs:20px}
-body.present .panel,body.present .topbar{display:none}
-body.present .layout{grid-template-columns:minmax(0,1fr);padding:14px 26px}
-body.present .step .txt{font-size:19px;max-width:none}
-body.present .summary .big{font-size:44px}
-body.present .step-head h3{font-size:24px}
-body.present .formula{font-size:26px}
-body.present table.tbl{font-size:17px;max-width:100%}
-.presentbar{position:fixed;bottom:16px;right:16px;z-index:70}
+#tool-recta.present{--fs:20px}
+#tool-recta.present .panel, #tool-recta.present .topbar{display:none}
+#tool-recta.present .layout{grid-template-columns:minmax(0,1fr);padding:14px 26px}
+#tool-recta.present .step .txt{font-size:19px;max-width:none}
+#tool-recta.present .summary .big{font-size:44px}
+#tool-recta.present .step-head h3{font-size:24px}
+#tool-recta.present .formula{font-size:26px}
+#tool-recta.present table.tbl{font-size:17px;max-width:100%}
+#tool-recta .presentbar{position:absolute;bottom:16px;right:16px;z-index:70}
 
-/* ---------- Animación de trazado ---------- */
-.anim{stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:dash .75s ease forwards;animation-delay:var(--d,0s)}
+#tool-recta .anim{stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:dash .75s ease forwards;animation-delay:var(--d,0s)}
+#tool-recta .fade{opacity:0;animation:fade .5s ease forwards;animation-delay:var(--d,0s)}
+#tool-recta .pop{transform-box:fill-box;transform-origin:center;opacity:0;animation:pop .45s cubic-bezier(.2,1.5,.4,1) forwards;animation-delay:var(--d,0s)}
 @keyframes dash{to{stroke-dashoffset:0}}
-.fade{opacity:0;animation:fade .5s ease forwards;animation-delay:var(--d,0s)}
 @keyframes fade{to{opacity:1}}
-.pop{transform-box:fill-box;transform-origin:center;opacity:0;animation:pop .45s cubic-bezier(.2,1.5,.4,1) forwards;animation-delay:var(--d,0s)}
 @keyframes pop{0%{opacity:0;transform:scale(.2)}100%{opacity:1;transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){.anim,.fade,.pop{animation:none;opacity:1;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  #tool-recta .anim,#tool-recta .fade,#tool-recta .pop{animation:none;opacity:1;stroke-dashoffset:0}
+}
 
-/* ---------- SVG ---------- */
-text{font-family:'Source Sans 3',sans-serif;font-size:15px;fill:var(--ink)}
-text.lbl{font-weight:700}
-text.halo{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
-text.serif{font-family:'Source Serif 4',serif}
+#tool-recta text{font-family:'Source Sans 3',sans-serif;font-size:15px;fill:var(--ink)}
+#tool-recta text.lbl{font-weight:700}
+#tool-recta text.halo{paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+#tool-recta text.serif{font-family:'Source Serif 4',serif}
 
-/* ---------- Impresión ---------- */
 @media print{
-  .topbar,.panel,.stepbar,.figtools,.presentbar,.quiz .opts button,.zoomrow{display:none!important}
-  body{background:#fff}
-  .layout{grid-template-columns:1fr;padding:0;gap:10px}
-  .card,.step,.summary{box-shadow:none;border-color:#ccc;break-inside:avoid;page-break-inside:avoid}
-  .step.hidden-step{display:block!important}
+  #tool-recta .topbar,#tool-recta .panel,#tool-recta .stepbar,#tool-recta .figtools,#tool-recta .presentbar,#tool-recta .quiz .opts button,#tool-recta .zoomrow{display:none!important}
+  #tool-recta{background:#fff}
+  #tool-recta .layout{grid-template-columns:1fr;padding:0;gap:10px}
+  #tool-recta .card,#tool-recta .step,#tool-recta .summary{box-shadow:none;border-color:#ccc;break-inside:avoid;page-break-inside:avoid}
+  #tool-recta .step.hidden-step{display:block!important}
+  #tool-recta .modal{display:none!important}
 }
 
 @media (max-width:980px){
-  .layout{grid-template-columns:1fr}
-  .panel{position:static}
+  #tool-recta .layout{grid-template-columns:1fr}
+  #tool-recta .panel{position:static}
 }
+#tool-recta .fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:-0.45em;line-height:1.05;margin:0 .12em}
+#tool-recta .fr>span:first-child{padding:0 .25em}
+#tool-recta .fr>span:last-child{border-top:1.6px solid currentColor;padding:0 .25em}
+#tool-recta .summary .fr{font-size:.72em}
+#tool-recta .step .txt .fr, #tool-recta .order .fr, #tool-recta .pool .fr{font-size:.8em}
+#tool-recta .chk{overflow-x:auto}
 
-/* ---------- Fracciones apiladas ---------- */
-.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:-0.45em;line-height:1.05;margin:0 .12em}
-.fr>span:first-child{padding:0 .25em}
-.fr>span:last-child{border-top:1.6px solid currentColor;padding:0 .25em}
-.summary .fr{font-size:.72em}
-.step .txt .fr,.order .fr,.pool .fr{font-size:.8em}
-.chk{overflow-x:auto}
+#tool-recta [hidden]{display:none!important}
 
-[hidden]{display:none!important}
-
-.ordv{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:17px;color:#1f3a4d}
+#tool-recta .ordv{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:17px;color:#1f3a4d}
 
 </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-</head>
-<body>
 
 <header class="topbar">
   <div class="brand">
@@ -328,7 +314,7 @@ text.serif{font-family:'Source Serif 4',serif}
 <main class="layout">
 
   <!-- ============ PANEL IZQUIERDO ============ -->
-  <aside class="panel" id="panel">
+  <div class="panel" id="panel">
     <section class="card">
       <h2 data-i18n="inputTitle">1. Escribe un número real</h2>
       <div class="inputrow">
@@ -390,7 +376,7 @@ text.serif{font-family:'Source Serif 4',serif}
       </div>
       <div id="pool" class="pool"></div>
     </section>
-  </aside>
+  </div>
 
   <!-- ============ ZONA CENTRAL ============ -->
   <section class="stage">
@@ -1264,12 +1250,12 @@ function legendHTML(){
     <span><i style="border-color:${C.res}"></i>${t.legRes}</span></div>`;
 }
 function applyVisibility(){
-  document.querySelectorAll('.step').forEach(el=>{
+  document.querySelectorAll('#tool-recta .step').forEach(el=>{
     const i=+el.dataset.i;
     el.classList.toggle('hidden-step', i>=STATE.shown && document.getElementById('opt-step').checked);
   });
   document.getElementById('dots').innerHTML = STATE.steps.map((_,i)=>`<span class="${i<STATE.shown?'on':''}"></span>`).join('');
-  const last=document.querySelector(`.step[data-i="${STATE.shown-1}"]`);
+  const last=document.querySelector(`#tool-recta .step[data-i="${STATE.shown-1}"]`);
   if(last && STATE.shown>1) last.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
@@ -1286,6 +1272,7 @@ function quizHTML(q,i){
     <div class="q"><p>${t.q5}</p><div class="row"><input type="text" data-k="app"><button class="chip" data-check="app">${t.qCheck}</button></div><div class="fb" data-fb="app"></div></div></div>`;
 }
 document.addEventListener('click',e=>{
+  if(!document.getElementById('tool-recta').contains(e.target)) return;
   const t=T();
   const btn=e.target.closest('button'); if(!btn) return;
   const quizBox=btn.closest('.quiz');
@@ -1375,15 +1362,15 @@ const EXAMPLES=[
 ];
 function paintExamples(){
   document.getElementById('examples').innerHTML=EXAMPLES.map(x=>`<button class="chip" data-e="${x.e}">${x.label}</button>`).join('');
-  document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{document.getElementById('expr').value=b.dataset.e;build();});
+  document.querySelectorAll('#tool-recta [data-e]').forEach(b=>b.onclick=()=>{document.getElementById('expr').value=b.dataset.e;build();});
 }
 function applyLang(){
   const t=T();
-  document.documentElement.lang=LANG;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ if(t[el.dataset.i18n]) el.innerHTML=t[el.dataset.i18n]; });
+  document.getElementById('tool-recta').lang=LANG;
+  document.querySelectorAll('#tool-recta [data-i18n]').forEach(el=>{ if(t[el.dataset.i18n]) el.innerHTML=t[el.dataset.i18n]; });
   document.getElementById('theory-body').innerHTML=t.theory;
-  document.querySelectorAll('#opt-decomp option').forEach(o=>{ if(t[o.dataset.i18n]) o.textContent=t[o.dataset.i18n]; });
-  document.querySelectorAll('.seg [data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
+  document.querySelectorAll('#tool-recta #opt-decomp option').forEach(o=>{ if(t[o.dataset.i18n]) o.textContent=t[o.dataset.i18n]; });
+  document.querySelectorAll('#tool-recta .seg [data-lang]').forEach(b=>b.classList.toggle('on',b.dataset.lang===LANG));
   paintExamples();
   build();
   renderPool();
@@ -1403,19 +1390,20 @@ function newExercise(level){
 document.getElementById('go').onclick=build;
 document.getElementById('expr').addEventListener('keydown',e=>{if(e.key==='Enter')build();});
 document.getElementById('clear-in').onclick=()=>{document.getElementById('expr').value='';document.getElementById('expr').focus();};
-document.querySelectorAll('[data-ins]').forEach(b=>b.onclick=()=>{
+document.querySelectorAll('#tool-recta [data-ins]').forEach(b=>b.onclick=()=>{
   const inp=document.getElementById('expr');
   const p=inp.selectionStart??inp.value.length;
   inp.value=inp.value.slice(0,p)+b.dataset.ins+inp.value.slice(inp.selectionEnd??p);
   inp.focus(); inp.selectionStart=inp.selectionEnd=p+b.dataset.ins.length;
 });
 ['opt-decomp','opt-anim','opt-step','opt-quiz','opt-check','opt-grid','opt-simp'].forEach(id=>{
-  document.addEventListener('change',e=>{ if(e.target.id===id) build(); });
+  document.addEventListener('change',e=>{ if(!document.getElementById('tool-recta').contains(e.target)) return; if(e.target.id===id) build(); });
 });
 document.getElementById('next').onclick=()=>{ if(STATE.shown<STATE.steps.length){STATE.shown++;applyVisibility();} };
 document.getElementById('prev').onclick=()=>{ if(STATE.shown>1){STATE.shown--;applyVisibility();} };
 document.getElementById('all').onclick=()=>{ STATE.shown=STATE.steps.length; applyVisibility(); };
 document.addEventListener('keydown',e=>{
+  if(!document.getElementById('tool-recta').contains(e.target)) return;
   if(e.target.tagName==='INPUT') return;
   if(e.key==='ArrowRight') document.getElementById('next').click();
   if(e.key==='ArrowLeft') document.getElementById('prev').click();
@@ -1438,14 +1426,13 @@ document.getElementById('zoom').oninput=drawCmp;
 document.getElementById('btn-theory').onclick=()=>document.getElementById('theory').hidden=false;
 document.getElementById('theory-x').onclick=()=>document.getElementById('theory').hidden=true;
 document.getElementById('theory').onclick=e=>{if(e.target.id==='theory')document.getElementById('theory').hidden=true;};
-document.getElementById('btn-present').onclick=()=>{document.body.classList.add('present');document.getElementById('presentbar').hidden=false;};
-document.getElementById('present-exit').onclick=()=>{document.body.classList.remove('present');document.getElementById('presentbar').hidden=true;};
+document.getElementById('btn-present').onclick=()=>{document.getElementById('tool-recta').classList.add('present');document.getElementById('presentbar').hidden=false;};
+document.getElementById('present-exit').onclick=()=>{document.getElementById('tool-recta').classList.remove('present');document.getElementById('presentbar').hidden=true;};
 document.getElementById('btn-print').onclick=()=>{const s=STATE.shown;STATE.shown=STATE.steps.length;applyVisibility();setTimeout(()=>window.print(),120);};
-document.querySelectorAll('.seg [data-lang]').forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;applyLang();});
+document.querySelectorAll('#tool-recta .seg [data-lang]').forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;applyLang();});
 
 applyLang();
 
 </script>
-</body>
-</html>
+</div>
 ```
