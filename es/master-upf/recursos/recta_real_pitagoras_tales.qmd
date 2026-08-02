@@ -267,12 +267,25 @@ En la parte superior se encuentran los botones **"Teoría"**, que abre una venta
 #tool-recta text.serif{font-family:'Source Serif 4',serif}
 
 @media print{
+  /* ---- When printing the tool, hide everything except #print-wrap ---- */
+  body.printing-tool > *:not(#print-wrap){display:none!important}
+  #print-wrap{display:block!important}
+
+  /* ---- Tool-internal: hide controls, show all steps ---- */
   #tool-recta .topbar,#tool-recta .panel,#tool-recta .stepbar,#tool-recta .figtools,#tool-recta .presentbar,#tool-recta .quiz .opts button,#tool-recta .zoomrow{display:none!important}
-  #tool-recta{background:#fff}
-  #tool-recta .layout{grid-template-columns:1fr;padding:0;gap:10px}
-  #tool-recta .card,#tool-recta .step,#tool-recta .summary{box-shadow:none;border-color:#ccc;break-inside:avoid;page-break-inside:avoid}
+  #tool-recta{background:#fff;border-radius:0;overflow:visible!important;max-width:none!important;border:none!important}
+  #tool-recta .layout{display:block!important;grid-template-columns:none!important;padding:0;gap:10px;max-width:100%}
+  #tool-recta .stage{display:block!important}
+  #tool-recta .card,#tool-recta .step,#tool-recta .summary{box-shadow:none;border:1px solid #ccc}
   #tool-recta .step.hidden-step{display:block!important}
   #tool-recta .modal{display:none!important}
+
+  /* ---- Fix SVG/chart clipping ---- */
+  #tool-recta .anim,#tool-recta .fade,#tool-recta .pop{animation:none!important;opacity:1!important;stroke-dashoffset:0!important;stroke-dasharray:none!important}
+  #tool-recta .step{overflow:visible!important;border-radius:0!important;break-inside:auto;page-break-inside:auto}
+  #tool-recta .fig{overflow:visible!important;border-radius:0;margin:16px 0;padding:10px 0;break-inside:avoid;page-break-inside:avoid}
+  #tool-recta .fig svg{display:block;width:100%;max-width:100%;height:auto;overflow:visible!important}
+  #tool-recta .step .txt{break-inside:avoid}
 }
 
 @media (max-width:980px){
@@ -296,8 +309,8 @@ En la parte superior se encuentran los botones **"Teoría"**, que abre una venta
   <div class="brand">
     <span class="logo">√</span>
     <div>
-      <h1>La recta real</h1>
-      <p>Construcción geométrica con Pitágoras y Tales · 1.º de Bachillerato</p>
+      <h1>La recta real o recta numérica</h1>
+      <p>Construcción geométrica con Pitágoras y Tales</p>
     </div>
   </div>
   <div class="topbar-actions">
@@ -1428,7 +1441,22 @@ document.getElementById('theory-x').onclick=()=>document.getElementById('theory'
 document.getElementById('theory').onclick=e=>{if(e.target.id==='theory')document.getElementById('theory').hidden=true;};
 document.getElementById('btn-present').onclick=()=>{document.getElementById('tool-recta').classList.add('present');document.getElementById('presentbar').hidden=false;};
 document.getElementById('present-exit').onclick=()=>{document.getElementById('tool-recta').classList.remove('present');document.getElementById('presentbar').hidden=true;};
-document.getElementById('btn-print').onclick=()=>{const s=STATE.shown;STATE.shown=STATE.steps.length;applyVisibility();setTimeout(()=>window.print(),120);};
+document.getElementById('btn-print').onclick=()=>{
+  const prev=STATE.shown;STATE.shown=STATE.steps.length;applyVisibility();
+  const tool=document.getElementById('tool-recta');
+  const parent=tool.parentNode,next=tool.nextSibling;
+  const wrap=document.createElement('div');wrap.id='print-wrap';
+  wrap.appendChild(tool);document.body.appendChild(wrap);
+  document.body.classList.add('printing-tool');
+  const cleanup=()=>{
+    document.body.classList.remove('printing-tool');
+    if(next)parent.insertBefore(tool,next);else parent.appendChild(tool);
+    wrap.remove();STATE.shown=prev;applyVisibility();
+    window.removeEventListener('afterprint',cleanup);
+  };
+  window.addEventListener('afterprint',cleanup);
+  setTimeout(()=>window.print(),150);
+};
 document.querySelectorAll('#tool-recta .seg [data-lang]').forEach(b=>b.onclick=()=>{LANG=b.dataset.lang;applyLang();});
 
 applyLang();

@@ -303,8 +303,8 @@ nav.tabs{
     </svg>
   </div>
   <div class="title-block">
-    <h1>Entrenador de Notación Científica</h1>
-    <p>Matemáticas · 1º de Bachillerato</p>
+    <h1>Entrenador para trabajar la Notación Científica</h1>
+    <p>Matemáticas · Bachillerato</p>
   </div>
   <div class="header-tools">
     <div class="diff-select">

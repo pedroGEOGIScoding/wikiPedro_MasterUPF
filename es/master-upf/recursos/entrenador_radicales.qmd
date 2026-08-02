@@ -16,6 +16,7 @@ lightbox:
   desc-position: bottom
   loop: false
 format: html
+html-table-processing: none
 ---
 
 ## Acerca de este entrenador de Radicales
@@ -60,10 +61,10 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 ```{=html}
 <div id="tool-radicales" class="math-tool-wrapper">
 <style>
-:root{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--bg:#f4f6fb;--card:#fff;}
-*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
-#tool-radicales{margin:0;background:var(--bg);color:var(--navy);}
-#tool-radicales header{background:var(--navy);color:#fff;padding:18px;text-align:center;}
+#tool-radicales{--navy:#1b2a4a;--blue:#2f6fed;--orange:#ef8354;--green:#2e9e4f;--red:#e0483e;--purple:#6c4fd6;--teal:#0e8f83;--card:#fff;}
+#tool-radicales *{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+#tool-radicales{margin:0;background:transparent;color:var(--navy);}
+#tool-radicales header{background:transparent;border-bottom:2px solid var(--navy);color:var(--navy);padding:18px;text-align:center;}
 #tool-radicales header h1{margin:0;font-size:1.3rem;}
 #tool-radicales header p{margin:4px 0 0;font-size:.8rem;opacity:.85;}
 #tool-radicales .container{max-width:900px;margin:20px auto;padding:0 16px;}
@@ -89,8 +90,7 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 #tool-radicales .qtag{text-align:center;font-size:.72rem;color:#8892a8;letter-spacing:.04em;text-transform:uppercase;font-weight:700;}
 #tool-radicales .question{font-size:1.25rem;text-align:center;margin:16px 0 20px;font-weight:500;color:var(--navy);line-height:2.1;}
 #tool-radicales .question b{color:var(--blue);font-weight:700;}
-#tool-radicales /* --- notación matemática --- */
-.radical{white-space:nowrap;display:inline-block;margin-left:.24em;}
+#tool-radicales .radical{white-space:nowrap;display:inline-block;margin-left:.24em;}
 #tool-radicales .ridx{font-size:.62em;vertical-align:.45em;margin-right:-.22em;font-weight:600;}
 #tool-radicales .radicand .radical{position:relative;top:.18em;}
 #tool-radicales .rsign{font-size:1.08em;}
@@ -100,8 +100,7 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 #tool-radicales .frac .den{display:block;padding:0 4px;border-top:1.5px solid currentColor;}
 #tool-radicales sup{font-size:.7em;}
 #tool-radicales sub{font-size:.7em;}
-#tool-radicales /* --- respuestas --- */
-.ans-group{display:none;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;align-items:center;}
+#tool-radicales .ans-group{display:none;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;align-items:center;}
 #tool-radicales .ans-group.show{display:flex;}
 #tool-radicales .field{display:flex;flex-direction:column;align-items:center;gap:3px;}
 #tool-radicales .field label{font-size:.68rem;color:#7a86a0;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
@@ -124,16 +123,16 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 #tool-radicales .btn-next{background:var(--navy);color:#fff;}
 #tool-radicales button:disabled{background:#ccc!important;color:#888!important;cursor:not-allowed;}
 #tool-radicales .feedback{text-align:center;font-size:.9rem;margin-top:8px;min-height:20px;font-weight:600;}
-#tool-radicales .hint-box, #tool-radicales .steps-box, #tool-radicales .teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 16px;border-radius:8px;margin-top:12px;font-size:.88rem;display:none;line-height:2;}
+#tool-radicales .hint-box,#tool-radicales .steps-box,#tool-radicales .teoria-box{background:#fff6ea;border-left:4px solid var(--orange);padding:12px 16px;border-radius:8px;margin-top:12px;font-size:.88rem;display:none;line-height:2;}
 #tool-radicales .steps-box{background:#f1ecff;border-left:4px solid var(--purple);}
 #tool-radicales .teoria-box{background:#e7f6f4;border-left:4px solid var(--teal);}
 #tool-radicales .teoria-box h4{margin:0 0 6px;font-size:.95rem;color:var(--teal);}
 #tool-radicales .ref-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px;}
-#tool-radicales .ref-table th, #tool-radicales .ref-table td{border:1px solid #dde3f0;padding:8px;text-align:left;}
+#tool-radicales .ref-table th,#tool-radicales .ref-table td{border:1px solid #dde3f0;padding:8px;text-align:left;}
 #tool-radicales .ref-table th{background:var(--navy);color:#fff;}
 #tool-radicales .section-title{font-size:1rem;color:var(--navy);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:6px;}
 #tool-radicales .error-log table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.82rem;}
-#tool-radicales .error-log th, #tool-radicales .error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
+#tool-radicales .error-log th,#tool-radicales .error-log td{border:1px solid #dde3f0;padding:6px;text-align:center;}
 #tool-radicales .error-log th{background:#e4e9f7;}
 #tool-radicales .pct-bar{background:#e8ecf5;border-radius:6px;height:8px;overflow:hidden;margin-top:3px;}
 #tool-radicales .pct-bar div{height:100%;border-radius:6px;}
@@ -156,52 +155,53 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 #tool-radicales .exam-grade.aprobado{color:var(--green);}
 #tool-radicales .exam-grade.suspenso{color:var(--red);}
 #tool-radicales .exam-modal table{width:100%;border-collapse:collapse;font-size:.78rem;margin:12px 0;}
-#tool-radicales .exam-modal th, #tool-radicales .exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
+#tool-radicales .exam-modal th,#tool-radicales .exam-modal td{border:1px solid #dde3f0;padding:5px 6px;text-align:center;}
 #tool-radicales .exam-modal th{background:#e4e9f7;}
 #tool-radicales .exam-modal .btn-row button{color:#fff;}
 #tool-radicales footer{text-align:center;font-size:.7rem;color:#888;padding:16px;}
-#tool-radicales @media(max-width:620px){.mc-grid{grid-template-columns:1fr;}.question{font-size:1.1rem;}}
-#tool-radicales /* ---------- examen imprimible ---------- */
-.mode-btn.imprimir{border-color:#0f766e;color:#0f766e;}
-#tool-radicales .mode-btn.imprimir.active, #tool-radicales .mode-btn.imprimir:hover{background:#0f766e;color:#fff;}
+@media(max-width:620px){#tool-radicales .mc-grid{grid-template-columns:1fr;}#tool-radicales .question{font-size:1.1rem;}}
+#tool-radicales .mode-btn.imprimir{border-color:#0f766e;color:#0f766e;}
+#tool-radicales .mode-btn.imprimir.active,#tool-radicales .mode-btn.imprimir:hover{background:#0f766e;color:#fff;}
 #tool-radicales .print-modal{background:#fff;border-radius:14px;padding:22px 26px;max-width:460px;width:92%;box-shadow:0 18px 50px rgba(0,0,0,.3);}
 #tool-radicales .popt{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0;font-size:.9rem;color:var(--navy);}
-#tool-radicales .popt select, #tool-radicales .popt input[type=text]{padding:7px 10px;border:1.5px solid #ccd6ec;border-radius:8px;font-size:.9rem;font-family:inherit;min-width:190px;}
+#tool-radicales .popt select,#tool-radicales .popt input[type=text]{padding:7px 10px;border:1.5px solid #ccd6ec;border-radius:8px;font-size:.9rem;font-family:inherit;min-width:190px;}
 #tool-radicales .popt.check{justify-content:flex-start;gap:8px;}
 #tool-radicales .popt.check label{font-weight:500;}
-#tool-radicales #printWrap{display:none;position:fixed;inset:0;background:#e9edf6;overflow:auto;z-index:200;padding:0 0 60px;}
-#tool-radicales #printWrap.show{display:block;}
-#tool-radicales .print-toolbar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;font-weight:600;font-size:.9rem;}
-#tool-radicales .print-toolbar button{background:var(--green);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;margin-left:8px;font-family:inherit;font-size:.85rem;}
-#tool-radicales .print-toolbar button.sec{background:#37507a;}
-#tool-radicales .sheet{background:#fff;max-width:820px;margin:22px auto;padding:38px 44px;box-shadow:0 6px 22px rgba(0,0,0,.12);color:#16233d;}
-#tool-radicales .sheet h2{font-size:1.25rem;margin:0 0 2px;text-align:center;}
-#tool-radicales .sheet .sub{text-align:center;font-size:.82rem;color:#5b6a86;margin-bottom:14px;}
-#tool-radicales .sheet .idline{display:flex;gap:18px;font-size:.85rem;border:1px solid #b9c4d8;border-radius:8px;padding:10px 12px;margin-bottom:12px;}
-#tool-radicales .sheet .idline span{flex:1;border-bottom:1px solid #8794ad;padding-bottom:2px;}
-#tool-radicales .sheet .instr{font-size:.78rem;color:#5b6a86;border-left:3px solid var(--blue);padding:6px 10px;margin-bottom:18px;background:#f6f9ff;}
-#tool-radicales .pq{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid;}
-#tool-radicales .pq-head{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:2;}
-#tool-radicales .pq-num{font-weight:700;color:var(--blue);min-width:26px;}
-#tool-radicales .pq-pts{margin-left:auto;font-size:.72rem;color:#8892a8;white-space:nowrap;}
-#tool-radicales .pq-hint{font-size:.75rem;color:#8a6d1f;background:#fff8e6;border-radius:6px;padding:3px 8px;margin:2px 0 0 36px;display:inline-block;}
-#tool-radicales .pq-space{border:1px dashed #c3ccdd;border-radius:6px;margin:6px 0 14px 36px;}
-#tool-radicales .pq-mc{margin:4px 0 10px 36px;font-size:.9rem;line-height:2.1;}
-#tool-radicales .pq-mc div{margin:2px 0;}
-#tool-radicales .sol-item{font-size:.86rem;line-height:1.95;padding:7px 0;border-bottom:1px solid #e6ebf5;page-break-inside:avoid;break-inside:avoid;}
-#tool-radicales .sol-item .ans{color:#0f766e;font-weight:700;}
-#tool-radicales .sol-steps{font-size:.8rem;color:#42506b;background:#f6f9ff;border-radius:6px;padding:6px 10px;margin-top:4px;}
-#tool-radicales .page-break{page-break-before:always;break-before:page;}
-#tool-radicales @media print{
+#printWrap{display:none;position:fixed;inset:0;background:#e9edf6;overflow:auto;z-index:200;padding:0 0 60px;}
+#printWrap.show{display:block;}
+#printWrap .print-toolbar{position:sticky;top:0;z-index:5;background:#1b2a4a;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;font-weight:600;font-size:.9rem;}
+#printWrap .print-toolbar button{background:#2e9e4f;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:600;cursor:pointer;margin-left:8px;font-family:inherit;font-size:.85rem;}
+#printWrap .print-toolbar button.sec{background:#37507a;}
+#printWrap .sheet{background:#fff;max-width:820px;margin:22px auto;padding:38px 44px;box-shadow:0 6px 22px rgba(0,0,0,.12);color:#16233d;}
+#printWrap .sheet h2{font-size:1.25rem;margin:0 0 2px;text-align:center;}
+#printWrap .sheet .sub{text-align:center;font-size:.82rem;color:#5b6a86;margin-bottom:14px;}
+#printWrap .sheet .idline{display:flex;gap:18px;font-size:.85rem;border:1px solid #b9c4d8;border-radius:8px;padding:10px 12px;margin-bottom:12px;}
+#printWrap .sheet .idline span{flex:1;border-bottom:1px solid #8794ad;padding-bottom:2px;}
+#printWrap .sheet .instr{font-size:.78rem;color:#5b6a86;border-left:3px solid #2f6fed;padding:6px 10px;margin-bottom:18px;background:#f6f9ff;}
+#printWrap .pq{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid;}
+#printWrap .pq-head{display:flex;gap:10px;align-items:flex-start;font-size:.98rem;line-height:2;}
+#printWrap .pq-num{font-weight:700;color:#2f6fed;min-width:26px;}
+#printWrap .pq-pts{margin-left:auto;font-size:.72rem;color:#8892a8;white-space:nowrap;}
+#printWrap .pq-hint{font-size:.75rem;color:#8a6d1f;background:#fff8e6;border-radius:6px;padding:3px 8px;margin:2px 0 0 36px;display:inline-block;}
+#printWrap .pq-space{border:1px dashed #c3ccdd;border-radius:6px;margin:6px 0 14px 36px;}
+#printWrap .pq-mc{margin:4px 0 10px 36px;font-size:.9rem;line-height:2.1;}
+#printWrap .pq-mc div{margin:2px 0;}
+#printWrap .sol-item{font-size:.86rem;line-height:1.95;padding:7px 0;border-bottom:1px solid #e6ebf5;page-break-inside:avoid;break-inside:avoid;}
+#printWrap .sol-item .ans{color:#0f766e;font-weight:700;}
+#printWrap .sol-steps{font-size:.8rem;color:#42506b;background:#f6f9ff;border-radius:6px;padding:6px 10px;margin-top:4px;}
+#printWrap .page-break{page-break-before:always;break-before:page;}
+@media print{
   @page{size:A4;margin:14mm 13mm;}
   body{background:#fff!important;}
-  header,.container,.overlay,footer{display:none!important;}
-  #printWrap{display:block!important;position:static;padding:0;background:#fff;overflow:visible;}
-  .no-print{display:none!important;}
-  .sheet{box-shadow:none;margin:0;padding:0;max-width:none;}
-  .sheet+.sheet{page-break-before:always;}
+  body *{visibility:hidden;}
+  #printWrap,#printWrap *{visibility:visible;}
+  #printWrap{display:block!important;position:absolute;left:0;top:0;width:100%;padding:0;background:#fff;overflow:visible;}
+  #printWrap .no-print{display:none!important;}
+  #printWrap .sheet{box-shadow:none;margin:0;padding:0;max-width:none;}
+  #printWrap .sheet+.sheet{page-break-before:always;}
 }
 </style>
+
 <header>
   <h1>√ Entrenador de Radicales</h1>
   <p>Álgebra de radicales · 1º de Bachillerato</p>
@@ -344,6 +344,7 @@ El panel de **rendimiento por categoría** y el **historial exportable a CSV** r
 </div>
 
 <footer>Herramienta offline · No requiere conexión a internet · v2</footer>
+
 <script>
 /* ==========================================================
    ENTRENADOR DE RADICALES · 1º Bachillerato
@@ -374,14 +375,12 @@ function factorStr(n){
   Object.keys(f).map(Number).sort((a,b)=>a-b).forEach(p=>{ parts.push(f[p]===1?`${p}`:`${p}<sup>${f[p]}</sup>`); });
   return parts.join('·');
 }
-/* extrae factores manteniendo el índice */
 function extract(N,k){
   const neg = N<0; const f=factorize(N);
   let out=1, inn=1;
   Object.keys(f).map(Number).forEach(p=>{ out*=Math.pow(p,Math.floor(f[p]/k)); inn*=Math.pow(p,f[p]%k); });
   return {coef:(neg&&k%2===1)?-out:out, rad:inn, idx:k};
 }
-/* extrae factores y además reduce el índice */
 function simplifyFull(N,k){
   const e=extract(N,k);
   if(e.rad===1) return {coef:e.coef, rad:1, idx:1};
@@ -390,7 +389,6 @@ function simplifyFull(N,k){
   let inn=1; Object.keys(f).map(Number).forEach(p=>{ inn*=Math.pow(p,f[p]/g); });
   return {coef:e.coef, rad:inn, idx:k/g};
 }
-/* fracción a partir de decimal (para mostrar soluciones) */
 function fracStr(x){
   if(Number.isInteger(x)) return ''+x;
   for(let d=2;d<=200;d++){ const n=x*d; if(Math.abs(n-Math.round(n))<1e-9) return Math.round(n)+'/'+d; }
@@ -514,7 +512,6 @@ const REF=[
  ['Racionalizar (binomio)', `multiplica por el conjugado: (a+b)(a−b) = a²−b²`],
  ['Suma de radicales', `solo si son semejantes: p${R('n','a')} + q${R('n','a')} = (p+q)${R('n','a')}`]
 ];
-
 /* ==========================================================
    GENERADORES DE PREGUNTAS
    ========================================================== */
@@ -791,13 +788,10 @@ function genIntroducir(level){
 const OPER_MC=[
   {q:`${R(2,R(4,F('x','5y')))} : ${R(2,R(4,F('3x','y<sup>2</sup>')))}`, ok:R(8,F('y',15)),
    ko:[R(8,F('y','15x')),R(4,F('y',15)),R(8,F('3x','5y'))],
-   s:`${R(2,R(4,'A'))} = ${R(8,'A')}, así que dividimos los radicandos con índice 8:<br>
-      ${R(8,F('x','5y'))} : ${R(8,F('3x','y<sup>2</sup>'))} = ${R(8,F('x','5y')+' · '+F('y<sup>2</sup>','3x'))} = ${R(8,F('xy<sup>2</sup>','15xy'))} = ${R(8,F('y',15))}`},
+   s:`${R(2,R(4,'A'))} = ${R(8,'A')}, así que dividimos los radicandos con índice 8:<br>${R(8,F('x','5y'))} : ${R(8,F('3x','y<sup>2</sup>'))} = ${R(8,F('x','5y')+' · '+F('y<sup>2</sup>','3x'))} = ${R(8,F('xy<sup>2</sup>','15xy'))} = ${R(8,F('y',15))}`},
   {q:`${F(R(4,'x<sup>3</sup>y<sup>3</sup>')+'·'+R(3,'x<sup>4</sup>y<sup>5</sup>'),R(6,'x<sup>5</sup>y<sup>4</sup>'))}`, ok:'xy'+R(4,'xy<sup>3</sup>'),
    ko:['xy'+R(4,'x<sup>3</sup>y'),'x<sup>2</sup>y'+R(4,'xy<sup>3</sup>'),'xy'+R(12,'x<sup>3</sup>y<sup>9</sup>')],
-   s:`Índice común: m.c.m.(4,3,6) = 12<br>
-      = ${R(12,F('(x<sup>3</sup>y<sup>3</sup>)<sup>3</sup>·(x<sup>4</sup>y<sup>5</sup>)<sup>4</sup>','(x<sup>5</sup>y<sup>4</sup>)<sup>2</sup>'))} = ${R(12,F('x<sup>25</sup>y<sup>29</sup>','x<sup>10</sup>y<sup>8</sup>'))} = ${R(12,'x<sup>15</sup>y<sup>21</sup>')}<br>
-      Extraemos: 15 = 12+3, 21 = 12+9 → = xy${R(12,'x<sup>3</sup>y<sup>9</sup>')} = xy${R(4,'xy<sup>3</sup>')}`},
+   s:`Índice común: m.c.m.(4,3,6) = 12<br>= ${R(12,F('(x<sup>3</sup>y<sup>3</sup>)<sup>3</sup>·(x<sup>4</sup>y<sup>5</sup>)<sup>4</sup>','(x<sup>5</sup>y<sup>4</sup>)<sup>2</sup>'))} = ${R(12,F('x<sup>25</sup>y<sup>29</sup>','x<sup>10</sup>y<sup>8</sup>'))} = ${R(12,'x<sup>15</sup>y<sup>21</sup>')}<br>Extraemos: 15 = 12+3, 21 = 12+9 → = xy${R(12,'x<sup>3</sup>y<sup>9</sup>')} = xy${R(4,'xy<sup>3</sup>')}`},
   {q:`${R(2,F(3,'x'))} · ${R(3,F('x<sup>2</sup>',8))} · ${R(4,F(9,5))}`, ok:F(3,2)+R(12,F('x<sup>2</sup>','5<sup>3</sup>')),
    ko:[F(3,2)+R(12,F('x<sup>2</sup>','5<sup>2</sup>')),F(2,3)+R(12,F('x<sup>2</sup>','5<sup>3</sup>')),R(12,F('3x<sup>2</sup>','5<sup>3</sup>'))],
    s:`Índice común 12:<br>= ${R(12,'('+F(3,'x')+')<sup>6</sup>·('+F('x<sup>2</sup>',8)+')<sup>4</sup>·('+F(9,5)+')<sup>3</sup>')} = ${R(12,F('3<sup>6</sup>·x<sup>8</sup>·3<sup>6</sup>','x<sup>6</sup>·2<sup>12</sup>·5<sup>3</sup>'))} = ${R(12,F('3<sup>12</sup>·x<sup>2</sup>','2<sup>12</sup>·5<sup>3</sup>'))} = ${F(3,2)}${R(12,F('x<sup>2</sup>','5<sup>3</sup>'))}`},
@@ -1082,7 +1076,6 @@ const generators={
   extraer:genExtraer, introducir:genIntroducir, operaciones:genOperaciones,
   sumas:genSumas, racionalizar:genRacionalizar, ecuaciones:genEcuaciones
 };
-
 /* ==========================================================
    EXAMEN IMPRIMIBLE (PDF)
    ========================================================== */
