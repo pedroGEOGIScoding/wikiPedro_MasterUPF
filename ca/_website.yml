@@ -177,7 +177,6 @@ website:
         - master-upf/recursos/timelapse-videos.qmd
         - master-upf/recursos/timelapse-cdse.qmd
         - master-upf/recursos/solar_system_visor.qmd
-        - master-upf/recursos/planificador-escolar.qmd
     - id: "about"
       title: "Sobre mí"
       style: "docked"

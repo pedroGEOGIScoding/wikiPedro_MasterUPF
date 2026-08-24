@@ -191,7 +191,6 @@ website:
           - master-upf/recursos/entrenador_fracciones_algebraicas.qmd
           - master-upf/recursos/entrenador_radicales.qmd
           - master-upf/recursos/entrenador_logaritmos_neperianos.qmd
-          - master-upf/recursos/planificador-escolar.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
