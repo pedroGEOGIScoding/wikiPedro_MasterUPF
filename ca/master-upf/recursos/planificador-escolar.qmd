@@ -1,0 +1,60 @@
+---
+title: "Planificador escolar"
+subtitle: "Horari de classes, calendari acadèmic i repartiment del temari"
+filename: planificador-escolar
+description: "Eina interactiva per organitzar l'horari setmanal, el calendari del curs i la distribució dels temes i subtemes per sessions"
+page-layout: full
+toc: false
+sidebar: false
+lang: ca
+---
+
+Permet construir l'horari de classes, marcar el calendari acadèmic del curs
+(trimestres, vacances, festius i dies de lliure disposició) i repartir el temari
+de cada assignatura entre les sessions disponibles, amb un diagrama de Gantt que
+mostra l'avenç previst i el real. Funciona completament dins del navegador: **no
+s'envia cap dada a cap servidor**.
+
+[Obrir a pantalla completa](../../apps/planificador/index.html){target="_blank"} ·
+[Descarregar per fer-la servir sense connexió](../../apps/planificador/index.html){download="Planificador-Escolar.html"}
+
+::: {.column-screen}
+<iframe id="planificador-frame" src="../../apps/planificador/index.html"
+        title="Planificador escolar"
+        style="width:100%;height:calc(100vh - 140px);min-height:600px;border:0;display:block"
+        loading="lazy"></iframe>
+:::
+
+```{=html}
+<script>
+// sincronitzar el tema del lloc amb el planificador incrustat
+(() => {
+  const frame = document.getElementById('planificador-frame');
+  if (!frame) return;
+  const detect = () =>
+    document.body.classList.contains('quarto-dark') ? 'dark' :
+    document.body.classList.contains('quarto-light') ? 'light' : null;
+  const send = () => {
+    const t = detect();
+    if (!t || !frame.contentWindow) return;
+    frame.contentWindow.postMessage({ type: 'planificador-theme', theme: t }, '*');
+  };
+  frame.addEventListener('load', send);
+  send();
+  new MutationObserver(send).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+```
+
+::: {.callout-tip collapse="true"}
+## Com es desen les dades
+
+Tota la informació es desa únicament al navegador de qui fa servir l'eina, i es
+pot exportar i importar en un fitxer JSON des de **Configuració → Còpia de
+seguretat**.
+
+El planificador és, a més, un únic fitxer HTML autònom: un cop descarregat es pot
+obrir amb doble clic des de qualsevol ordinador, sense instal·lar res i sense
+connexió a internet. La versió descarregada desa les seves dades per separat de
+la versió d'aquesta pàgina.
+:::

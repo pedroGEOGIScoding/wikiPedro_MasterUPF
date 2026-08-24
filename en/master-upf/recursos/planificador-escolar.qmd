@@ -1,0 +1,59 @@
+---
+title: "School planner"
+subtitle: "Class timetable, academic calendar and syllabus planning"
+filename: planificador-escolar
+description: "Interactive tool to organise the weekly timetable, the school-year calendar and the distribution of topics and subtopics across teaching sessions."
+page-layout: full
+toc: false
+sidebar: false
+lang: en
+---
+
+It lets you build the class timetable, mark the academic calendar of the school
+year (terms, holidays, public holidays and free-disposal days) and spread the
+syllabus of each subject across the available sessions, with a Gantt chart
+showing both the planned and the actual progress. It runs entirely inside the
+browser: **no data is sent to any server**.
+
+[Open full screen](../../apps/planificador/index.html){target="_blank"} ·
+[Download for offline use](../../apps/planificador/index.html){download="Planificador-Escolar.html"}
+
+::: {.column-screen}
+<iframe id="planificador-frame" src="../../apps/planificador/index.html"
+        title="School planner"
+        style="width:100%;height:calc(100vh - 140px);min-height:600px;border:0;display:block"
+        loading="lazy"></iframe>
+:::
+
+```{=html}
+<script>
+// keep the embedded planner in sync with the site theme
+(() => {
+  const frame = document.getElementById('planificador-frame');
+  if (!frame) return;
+  const detect = () =>
+    document.body.classList.contains('quarto-dark') ? 'dark' :
+    document.body.classList.contains('quarto-light') ? 'light' : null;
+  const send = () => {
+    const t = detect();
+    if (!t || !frame.contentWindow) return;
+    frame.contentWindow.postMessage({ type: 'planificador-theme', theme: t }, '*');
+  };
+  frame.addEventListener('load', send);
+  send();
+  new MutationObserver(send).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+```
+
+::: {.callout-tip collapse="true"}
+## How the data is stored
+
+All information is stored only in the browser of whoever uses the tool, and can
+be exported to and imported from a JSON file under **Settings → Backup**.
+
+The planner is also a single self-contained HTML file: once downloaded it can be
+opened by double-clicking on any computer, with nothing to install and no
+internet connection. The downloaded copy keeps its data separately from the copy
+on this page.
+:::
