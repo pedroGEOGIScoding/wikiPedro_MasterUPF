@@ -1,0 +1,237 @@
+<!-- =====================================================================
+     MOTOR COMÚN DE LOS APPLETS — Unidad de Funciones (1.º BATX CCSS)
+     Se incluye al principio de cada parte con:
+         include funciones-motor.qmd
+     No renderizar este archivo por separado (no tiene cabecera YAML).
+     Requiere: format html con OJS (nativo en Quarto).
+     ===================================================================== -->
+
+```{ojs}
+//| echo: false
+math = require("mathjs@12")
+
+motor = ({
+  // --- Números reales seguros -------------------------------------------
+  real(v) { return (typeof v === "number" && Number.isFinite(v)) ? v : NaN; },
+
+  // --- Parser de expresiones escritas por el alumnado --------------------
+  compilar(txt) {
+    try {
+      const c = math.compile(txt);
+      c.evaluate({x: 1, y: 1, t: 1, a: 1, b: 1, c: 1, k: 1, m: 1, n: 1, p: 1, r: 1, A: 1, w: 1, f: 1});
+      return c;
+    } catch (e) { return null; }
+  },
+  ev(comp, vars) {
+    if (!comp) return NaN;
+    try { return this.real(comp.evaluate(vars)); } catch (e) { return NaN; }
+  },
+  // Devuelve una función x -> y a partir de texto + parámetros
+  fun(txt, pars = {}) {
+    const c = this.compilar(txt);
+    return c ? (x => this.ev(c, {...pars, x})) : (() => NaN);
+  },
+
+  // --- Muestreo ---------------------------------------------------------
+  malla(f, a, b, n = 700) {
+    const out = [];
+    for (let i = 0; i <= n; i++) {
+      const x = a + (b - a) * i / n;
+      const y = f(x);
+      out.push({x, y: Number.isFinite(y) ? y : null});
+    }
+    return out;
+  },
+  mallaParam(g, a, b, n = 700) {
+    const out = [];
+    for (let i = 0; i <= n; i++) {
+      const t = a + (b - a) * i / n;
+      out.push(g(t));
+    }
+    return out;
+  },
+  // Trocea el muestreo en tramos continuos (corta en huecos y saltos grandes)
+  tramos(f, a, b, n = 900, salto = 25) {
+    const pts = this.malla(f, a, b, n), out = [];
+    let acc = [];
+    for (const p of pts) {
+      if (p.y === null || (acc.length && Math.abs(p.y - acc[acc.length - 1].y) > salto)) {
+        if (acc.length > 1) out.push(acc);
+        acc = p.y === null ? [] : [p];
+      } else acc.push(p);
+    }
+    if (acc.length > 1) out.push(acc);
+    return out;
+  },
+
+  // --- Cortes con rectas ------------------------------------------------
+  cortesVert(pts, x0) {
+    const r = [];
+    for (let i = 1; i < pts.length; i++) {
+      const p = pts[i - 1], q = pts[i];
+      if (![p.x, p.y, q.x, q.y].every(Number.isFinite)) continue;
+      const d1 = p.x - x0, d2 = q.x - x0;
+      if (d1 === 0) r.push(p.y);
+      else if (d1 * d2 < 0) r.push(p.y + (q.y - p.y) * d1 / (d1 - d2));
+    }
+    return r.sort((u, v) => u - v).filter((v, i, ar) => i === 0 || Math.abs(v - ar[i - 1]) > 1e-6);
+  },
+  cortesHoriz(f, y0, a, b, n = 1600) {
+    return this.ceros(x => f(x) - y0, a, b, n);
+  },
+
+  // --- Ceros por bisección ---------------------------------------------
+  ceros(f, a, b, n = 1600) {
+    const r = [];
+    let x0 = a, y0 = f(a);
+    for (let i = 1; i <= n; i++) {
+      const x1 = a + (b - a) * i / n, y1 = f(x1);
+      if (Number.isFinite(y0) && Number.isFinite(y1)) {
+        if (y0 === 0) r.push(x0);
+        else if (y0 * y1 < 0) {
+          let lo = x0, hi = x1;
+          for (let k = 0; k < 60; k++) {
+            const md = (lo + hi) / 2;
+            if (f(lo) * f(md) <= 0) hi = md; else lo = md;
+          }
+          const z = (lo + hi) / 2;
+          if (Math.abs(f(z)) < 1e-3) r.push(z);   // descarta asíntotas
+        }
+      }
+      x0 = x1; y0 = y1;
+    }
+    return r.filter((v, i, ar) => i === 0 || Math.abs(v - ar[i - 1]) > 1e-5);
+  },
+
+  // --- Dominio numérico -------------------------------------------------
+  dominio(f, a = -12, b = 12, n = 4800) {
+    const iv = [], h = (b - a) / n;
+    let ini = null;
+    for (let i = 0; i <= n; i++) {
+      const x = a + i * h, y = f(x);
+      const ok = Number.isFinite(y) && Math.abs(y) < 1e9;
+      if (ok && ini === null) ini = x;
+      if (!ok && ini !== null) { iv.push([ini, x - h]); ini = null; }
+    }
+    if (ini !== null) iv.push([ini, b]);
+    return iv.filter(([p, q]) => q - p > 2 * h);
+  },
+  // Recorrido numérico (tramos de valores alcanzados)
+  recorrido(f, a = -12, b = 12, n = 6000) {
+    const ys = [];
+    for (let i = 0; i <= n; i++) {
+      const y = f(a + (b - a) * i / n);
+      if (Number.isFinite(y) && Math.abs(y) < 1e9) ys.push(y);
+    }
+    if (!ys.length) return [];
+    ys.sort((u, v) => u - v);
+    const iv = []; let ini = ys[0], ant = ys[0];
+    const tol = (ys[ys.length - 1] - ys[0]) / 120 + 1e-9;
+    for (const y of ys) {
+      if (y - ant > tol) { iv.push([ini, ant]); ini = y; }
+      ant = y;
+    }
+    iv.push([ini, ant]);
+    return iv;
+  },
+
+  // --- Derivadas numéricas ---------------------------------------------
+  d1(f, h = 1e-4) { return x => (f(x + h) - f(x - h)) / (2 * h); },
+  d2(f, h = 1e-3) { return x => (f(x + h) - 2 * f(x) + f(x - h)) / (h * h); },
+
+  // --- Intervalos de signo de una función g (sirve para f, f' y f'') ----
+  signoIntervalos(g, a, b, n = 900) {
+    const out = []; let ini = a, sg = Math.sign(g(a));
+    for (let i = 1; i <= n; i++) {
+      const x = a + (b - a) * i / n, s = Math.sign(g(x));
+      if (!Number.isFinite(g(x))) { if (sg !== 0) out.push([ini, x, sg]); ini = x; sg = 0; continue; }
+      if (s !== sg && s !== 0) {
+        if (sg !== 0) out.push([ini, x, sg]);
+        ini = x; sg = s;
+      }
+    }
+    out.push([ini, b, sg]);
+    return out.filter(([p, q]) => q - p > (b - a) / 200);
+  },
+
+  // --- Extremos relativos (por comparación local) ----------------------
+  extremos(f, a, b, n = 900) {
+    const res = [], h = (b - a) / n;
+    for (let i = 2; i < n - 1; i++) {
+      const x = a + i * h;
+      const y0 = f(x - h), y1 = f(x), y2 = f(x + h);
+      if (![y0, y1, y2].every(Number.isFinite)) continue;
+      if (y1 > y0 && y1 > y2) res.push({x, y: y1, tipo: "máximo"});
+      if (y1 < y0 && y1 < y2) res.push({x, y: y1, tipo: "mínimo"});
+    }
+    return res.filter((v, i, ar) => i === 0 || Math.abs(v.x - ar[i - 1].x) > 5 * h);
+  },
+
+  // --- Cotas en un intervalo -------------------------------------------
+  cotas(f, a, b, n = 2000) {
+    let mn = Infinity, mx = -Infinity, xmn = null, xmx = null;
+    for (let i = 0; i <= n; i++) {
+      const x = a + (b - a) * i / n, y = f(x);
+      if (!Number.isFinite(y)) continue;
+      if (y < mn) { mn = y; xmn = x; }
+      if (y > mx) { mx = y; xmx = x; }
+    }
+    return {mn, mx, xmn, xmx};
+  }
+})
+
+// ---------------------- Utilidades de formato y dibujo -----------------
+fm = v => Number.isFinite(v) ? (Math.round(v * 1000) / 1000).toString().replace(".", ",") : "—"
+
+fmIv = iv => iv.length === 0 ? "∅"
+  : iv.map(([p, q]) => `${p <= -11.97 ? "(−∞" : "[" + fm(p)}, ${q >= 11.97 ? "+∞)" : fm(q) + "]"}`).join(" ∪ ")
+
+trazo = (pts, color = "#2563eb", ancho = 2.6, guion = null) =>
+  Plot.line(pts, {x: "x", y: "y", stroke: color, strokeWidth: ancho, strokeDasharray: guion})
+
+trazos = (lista, color = "#2563eb", ancho = 2.6) =>
+  lista.map(t => Plot.line(t, {x: "x", y: "y", stroke: color, strokeWidth: ancho}))
+
+lienzo = (marcas, xd = [-8, 8], yd = [-8, 8], ex = "x →", ey = "↑ y", alto = 420) =>
+  Plot.plot({width: 680, height: alto, grid: true, marginLeft: 50, marginBottom: 42,
+    x: {domain: xd, label: ex}, y: {domain: yd, label: ey},
+    marks: [Plot.ruleY([0], {stroke: "#111"}), Plot.ruleX([0], {stroke: "#111"}), ...marcas]})
+
+etiqueta = (x, y, texto, color = "#dc2626", dy = -13) =>
+  Plot.text([{x, y, t: texto}], {x: "x", y: "y", text: "t", dy, fill: color, fontWeight: "bold"})
+```
+
+::: {.callout-important collapse="false"}
+## 📝 Cómo escribir funciones en los applets (guía de sintaxis)
+
+Todos los applets con casilla de texto usan el mismo intérprete, así que **esta guía sirve para todos**. Escribe la expresión sin el `y =` ni el `f(x) =`.
+
+| Quieres escribir | Se teclea | Ejemplo válido |
+|---|---|---|
+| $x^{2}$, $x^{5}$ | `x^2`, `x^5` | `x^3 - 3x` |
+| $3x$ (producto) | `3x` o `3*x` | `2x^2 + 5x - 3` |
+| fracción | `/` con paréntesis | `(2x + 3)/(x - 1)` |
+| $\sqrt{x}$ | `sqrt(x)` | `sqrt(9 - x^2)` |
+| $\sqrt[3]{x}$ | `cbrt(x)` o `nthRoot(x, 3)` | `cbrt(x - 1)` |
+| $\lvert x\rvert$ | `abs(x)` | `abs(x^2 - 4)` |
+| $\ln x$ (neperiano) | `log(x)` | `log(x + 2)` |
+| $\log_{10} x$ | `log10(x)` | `log10(x)` |
+| $\log_{2} x$ | `log(x, 2)` | `log(x + 1, 2)` |
+| $e^{x}$ | `exp(x)` o `e^x` | `exp(-x^2)` |
+| $2^{x}$ | `2^x` | `1000 · 1.03^x` → `1000*1.03^x` |
+| $\operatorname{sen} x$, $\cos x$, $\tan x$ | `sin(x)`, `cos(x)`, `tan(x)` | `2sin(x) + 1` |
+| parte entera | `floor(x)` | `5*floor(x/40)` |
+| número $\pi$ | `pi` | `sin(pi*x)` |
+
+**Reglas de oro**
+
+1. El **decimal se escribe con punto**: `1.03`, no `1,03`.
+2. Los paréntesis nunca sobran: `1/(x+1)` es distinto de `1/x+1`.
+3. `log(x)` es el logaritmo **neperiano**. Si quieres el decimal, `log10(x)`.
+4. Puedes usar los **parámetros de los deslizadores** dentro de tu expresión: si el applet tiene barras `a`, `b`, `c`, escribe `a*x^2 + b*x + c` y muévelas.
+5. Si el borde de la casilla se pone rojo o la gráfica desaparece, hay un error de sintaxis: revisa paréntesis y `*`.
+
+**Cinco expresiones para copiar y probar**
+
+`x^2 - 4x + 3` · `(x^2 - 1)/(x - 2)` · `sqrt(x + 3)` · `log(x - 1)` · `abs(x^2 - 9)`
+:::

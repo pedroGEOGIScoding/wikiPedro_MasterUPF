@@ -1,0 +1,1011 @@
+---
+title: "Funciones I · Concepto y características"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Capítulo de Funciones (Parte 1 de 2)"
+filename: funciones-parte1
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Concepto y características de las funciones
+categories: [matemáticas, bachillerato, funciones]
+toc: true
+number-sections: true
+page-layout: article
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+{{< include funciones-motor.qmd >}}
+
+::: {.callout-note}
+## Qué vas a aprender en esta primera parte
+Aquí construimos el **lenguaje**: el plano donde dibujamos, los intervalos donde vive el dominio, la definición precisa de función y las **doce características** que hay que saber leer en cualquier gráfica. La segunda parte es el catálogo de familias de funciones y el álgebra de funciones.
+
+Cada apartado trae: definición formal → ejemplo con los cálculos hechos → **Simulador manipulable** → errores frecuentes → pensamiento crítico → actividades.
+:::
+
+# El escenario: el plano y la recta real
+
+## El plano euclídeo y los cuadrantes
+
+Trabajaremos con funciones $f:\mathbb{R}\to\mathbb{R}$, cuyas gráficas viven en el plano
+$$\mathbb{R}^{2}=\{(x,y): x\in\mathbb{R},\ y\in\mathbb{R}\}$$
+
+Dos rectas perpendiculares graduadas —el **eje de abscisas** (horizontal, de las $x$) y el **eje de ordenadas** (vertical, de las $y$)— se cortan en el **origen** $O(0,0)$ y dividen el plano en cuatro **cuadrantes**, numerados en sentido contrario a las agujas del reloj:
+
+| Cuadrante | Signos |
+|---|---|
+| I | $x>0$, $y>0$ |
+| II | $x<0$, $y>0$ |
+| III | $x<0$, $y<0$ |
+| IV | $x>0$, $y<0$ |
+
+::: {.callout-warning}
+## Cuidado con la coma decimal
+El punto de abscisa $3$ y ordenada $2{,}1$ **no** se escribe $(3,2,1)$, que es ambiguo. En estos apuntes usaremos $(3;\,2{,}1)$ o directamente notación con punto decimal en los Simuladores.
+:::
+
+## Distancia entre dos puntos
+
+Si $P_1=(x_1,y_1)$ y $P_2=(x_2,y_2)$, el segmento que los une es la hipotenusa de un triángulo rectángulo de catetos $x_2-x_1$ e $y_2-y_1$. Por el teorema de Pitágoras:
+
+$$d(P_1,P_2)=\sqrt{(x_2-x_1)^{2}+(y_2-y_1)^{2}}$$
+
+**Ejemplo resuelto.** Distancia entre $(3,6)$ y $(2,9)$:
+$$d=\sqrt{(3-2)^{2}+(6-9)^{2}}=\sqrt{1+9}=\sqrt{10}\approx 3{,}162$$
+
+Da igual el orden de los puntos: al elevar al cuadrado, el signo desaparece.
+
+## Simulador 1 · Puntos, cuadrantes y distancia
+
+```{ojs}
+//| echo: false
+viewof A1_x1 = Inputs.range([-8, 8], {value: 3, step: 0.5, label: "x₁"})
+viewof A1_y1 = Inputs.range([-8, 8], {value: 6, step: 0.5, label: "y₁"})
+viewof A1_x2 = Inputs.range([-8, 8], {value: 2, step: 0.5, label: "x₂"})
+viewof A1_y2 = Inputs.range([-8, 8], {value: -1, step: 0.5, label: "y₂"})
+viewof A1_ver = Inputs.checkbox(["triángulo de Pitágoras", "proyecciones sobre los ejes"], {value: ["triángulo de Pitágoras"], label: "Mostrar"})
+```
+
+```{ojs}
+//| echo: false
+A1_cuad = (x, y) => x === 0 || y === 0 ? "sobre un eje" : (x > 0 ? (y > 0 ? "I" : "IV") : (y > 0 ? "II" : "III"))
+A1_d = Math.hypot(A1_x2 - A1_x1, A1_y2 - A1_y1)
+
+A1_plot = {
+  const m = [
+    Plot.link([{x1: A1_x1, y1: A1_y1, x2: A1_x2, y2: A1_y2}],
+      {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#dc2626", strokeWidth: 2.5}),
+    Plot.dot([{x: A1_x1, y: A1_y1}, {x: A1_x2, y: A1_y2}], {x: "x", y: "y", fill: "#2563eb", r: 6}),
+    etiqueta(A1_x1, A1_y1, `P₁(${fm(A1_x1)}; ${fm(A1_y1)})`, "#2563eb"),
+    etiqueta(A1_x2, A1_y2, `P₂(${fm(A1_x2)}; ${fm(A1_y2)})`, "#2563eb")
+  ];
+  if (A1_ver.includes("triángulo de Pitágoras")) {
+    m.push(Plot.link([{x1: A1_x1, y1: A1_y1, x2: A1_x2, y2: A1_y1}, {x1: A1_x2, y1: A1_y1, x2: A1_x2, y2: A1_y2}],
+      {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#059669", strokeDasharray: "5,4", strokeWidth: 2}));
+    m.push(etiqueta((A1_x1 + A1_x2) / 2, A1_y1, `Δx = ${fm(Math.abs(A1_x2 - A1_x1))}`, "#059669"));
+    m.push(etiqueta(A1_x2, (A1_y1 + A1_y2) / 2, `Δy = ${fm(Math.abs(A1_y2 - A1_y1))}`, "#059669", 0));
+  }
+  if (A1_ver.includes("proyecciones sobre los ejes"))
+    m.push(Plot.link([{x1: A1_x1, y1: A1_y1, x2: A1_x1, y2: 0}, {x1: A1_x1, y1: A1_y1, x2: 0, y2: A1_y1},
+                      {x1: A1_x2, y1: A1_y2, x2: A1_x2, y2: 0}, {x1: A1_x2, y1: A1_y2, x2: 0, y2: A1_y2}],
+      {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#9ca3af", strokeDasharray: "2,3"}));
+  return lienzo(m, [-9, 9], [-9, 9]);
+}
+
+A1_txt = md`P₁ está en el cuadrante **${A1_cuad(A1_x1, A1_y1)}** y P₂ en el **${A1_cuad(A1_x2, A1_y2)}**.
+
+d(P₁, P₂) = √((${fm(A1_x2)} − ${fm(A1_x1)})² + (${fm(A1_y2)} − ${fm(A1_y1)})²) = √(${fm((A1_x2 - A1_x1) ** 2)} + ${fm((A1_y2 - A1_y1) ** 2)}) = √${fm((A1_x2 - A1_x1) ** 2 + (A1_y2 - A1_y1) ** 2)} = **${fm(A1_d)}**`
+```
+
+::: {.callout-tip}
+## Reto
+Coloca los dos puntos en la misma vertical. ¿Qué le pasa al triángulo verde? Comprueba que la fórmula sigue dando el resultado correcto aunque el dibujo de la demostración ya no valga.
+:::
+
+# Intervalos de la recta real
+
+El dominio de una función casi nunca es un conjunto de puntos aislados: son **trozos conexos** de la recta real.
+
+**Definición.** Un **intervalo** es un trozo conexo de $\mathbb{R}$: entre sus dos extremos no falta ningún punto interior. Si el extremo entra se escribe con **corchete**; si no entra, con **paréntesis**.
+
+| Tipo | Notación | Extremos |
+|---|---|---|
+| Abierto | $(a,b)$ | ni $a$ ni $b$ entran |
+| Cerrado | $[a,b]$ | ambos entran |
+| Semiabierto | $(a,b]$ o $[a,b)$ | entra solo uno |
+| Infinito | $(-\infty,b)$, $[a,+\infty)$, $\mathbb{R}$ | algún extremo es infinito |
+
+**Longitud** del intervalo de extremos $a$ y $b$: $b-a$ (infinita si un extremo lo es).
+
+::: {.callout-note}
+## Por qué el infinito siempre lleva paréntesis
+Escribimos $(-\infty,b]$ y nunca $[-\infty,b]$: trabajamos con la recta real $\mathbb{R}$, no con la ampliada, y $-\infty$ **no es un número**, así que no puede "entrar" en el intervalo.
+:::
+
+::: {.callout-important}
+## La reflexión más profunda del apartado
+En $[3,7]$ el primer elemento es $3$ y el último es $7$: sin discusión. Pero ¿cuál es el primer elemento de $(3,7)$? No es $3$ (no entra), no es $3{,}0001$ (porque $3{,}00000001$ está más cerca), ni ese, ni el siguiente… **En un intervalo abierto no existe primer ni último elemento**: entre el extremo y cualquier punto que propongas quedan infinitos números. Esta es la razón por la que en Análisis se trabaja tan a gusto con intervalos cerrados.
+:::
+
+## Simulador 2 · Intervalos y pertenencia
+
+```{ojs}
+//| echo: false
+viewof A2_a = Inputs.range([-8, 8], {value: -2, step: 0.5, label: "Extremo a"})
+viewof A2_b = Inputs.range([-8, 8], {value: 5, step: 0.5, label: "Extremo b"})
+viewof A2_tipo = Inputs.radio(new Map([["(a, b)", "aa"], ["[a, b]", "cc"], ["[a, b)", "ca"], ["(a, b]", "ac"],
+  ["(−∞, b]", "ib"], ["[a, +∞)", "ai"]]), {value: "ca", label: "Tipo de intervalo"})
+viewof A2_p = Inputs.range([-9, 9], {value: 5, step: 0.25, label: "Punto de prueba p"})
+```
+
+```{ojs}
+//| echo: false
+A2_info = {
+  const {a, b} = {a: Math.min(A2_a, A2_b), b: Math.max(A2_a, A2_b)};
+  const T = {aa: [a, b, false, false, `(${fm(a)}, ${fm(b)})`],
+             cc: [a, b, true, true, `[${fm(a)}, ${fm(b)}]`],
+             ca: [a, b, true, false, `[${fm(a)}, ${fm(b)})`],
+             ac: [a, b, false, true, `(${fm(a)}, ${fm(b)}]`],
+             ib: [-9, b, false, true, `(−∞, ${fm(b)}]`],
+             ai: [a, 9, true, false, `[${fm(a)}, +∞)`]}[A2_tipo];
+  const [i, s, ci, cs, txt] = T;
+  const dentro = (A2_p > i || (ci && A2_p === i)) && (A2_p < s || (cs && A2_p === s));
+  const longitud = (A2_tipo === "ib" || A2_tipo === "ai") ? "infinita" : fm(s - i);
+  return {i, s, ci, cs, txt, dentro, longitud};
+}
+
+A2_plot = Plot.plot({width: 680, height: 150, marginLeft: 40,
+  x: {domain: [-9.5, 9.5], label: "recta real →", ticks: 19}, y: {axis: null, domain: [-1, 1]},
+  marks: [
+    Plot.ruleY([0], {stroke: "#111"}),
+    Plot.rectY([{x1: A2_info.i, x2: A2_info.s}], {x1: "x1", x2: "x2", y1: -0.18, y2: 0.18, fill: "#2563eb", fillOpacity: 0.25}),
+    Plot.dot([{x: A2_info.i}], {x: "x", y: 0, r: 7, fill: A2_info.ci ? "#2563eb" : "white", stroke: "#2563eb", strokeWidth: 2.5}),
+    Plot.dot([{x: A2_info.s}], {x: "x", y: 0, r: 7, fill: A2_info.cs ? "#2563eb" : "white", stroke: "#2563eb", strokeWidth: 2.5}),
+    Plot.dot([{x: A2_p}], {x: "x", y: 0.5, r: 6, fill: A2_info.dentro ? "#059669" : "#dc2626", symbol: "triangle2"}),
+    Plot.text([{x: A2_p, y: 0.8, t: `p = ${fm(A2_p)}`}], {x: "x", y: "y", text: "t", fill: "#111", fontWeight: "bold"})
+  ]})
+
+A2_txt = md`Intervalo **${A2_info.txt}** · longitud **${A2_info.longitud}** · punto relleno = extremo que entra, punto hueco = extremo que no entra.
+
+**p = ${fm(A2_p)} ${A2_info.dentro ? "✅ SÍ pertenece" : "❌ NO pertenece"} al intervalo.**`
+```
+
+::: {.callout-tip}
+## Reto
+Pon $p$ exactamente igual a $b$ y ve cambiando entre $[a,b)$ y $[a,b]$. Un solo punto decide. ¿Se te ocurre un contexto real (una beca, una nota de corte, un tramo de impuestos) donde ese único punto tenga consecuencias?
+:::
+
+# Las tres formas de presentar una función
+
+Una función puede venir dada de tres maneras, y conviene saber pasar de una a otra:
+
+- **Tabla de valores.** Solo conocemos algunos pares. Ejemplo real: soltamos una pelota desde 10 m y medimos el espacio recorrido. Para estimar valores intermedios hay que **interpolar** (Parte 2).
+- **Expresión algebraica o analítica.** Ejemplo: el volumen de líquido en un cilindro de radio 3 cm según la altura $x$ es $y=9\pi x$.
+- **Gráfica.** A veces la da directamente un aparato: un **electrocardiograma** o un **sismograma** son funciones de las que no conocemos ninguna fórmula. Y sin embargo son funciones perfectamente legítimas.
+
+::: {.callout-important}
+## Pensamiento crítico
+¡Existen funciones que **no** se pueden escribir con ninguna fórmula! Si un electrocardiograma es una función sin expresión algebraica, ¿qué significa entonces "resolver" o "estudiar" esa función? ¿Qué herramientas nos quedan?
+:::
+
+## Rectas: la pendiente y su ángulo
+
+**Definición.** Toda recta no vertical se escribe $y=mx+n$, donde $n$ es la ordenada del punto de corte con el eje $Y$ y **la pendiente $m$ es lo que sube o baja la $y$ cada vez que la $x$ avanza una unidad**:
+
+$$m=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1},\qquad \tan\alpha=\frac{\Delta y}{\Delta x}\ \Rightarrow\ \alpha=\arctan m$$
+
+**Ejemplo resuelto.** En $y=3x-1$: con $x=0$ sale $y=-1$ y con $x=1$ sale $y=2$, luego
+$$m=\frac{2-(-1)}{1-0}=3,\qquad \alpha=\arctan 3\approx 71{,}565^{\circ}$$
+
+**Ejemplo resuelto 2.** Para representar $4x+3y=20$ conviene despejar: $y=\frac{20-4x}{3}$. Buscamos coordenadas enteras: con $x=2$ sale $y=4$; y a partir de ahí, **cada 3 unidades a la derecha, 4 hacia abajo**.
+
+## Simulador 3 · Recta, pendiente, ángulo y tabla de valores
+
+```{ojs}
+//| echo: false
+viewof A3_m = Inputs.range([-4, 4], {value: 3, step: 0.25, label: "Pendiente m"})
+viewof A3_n = Inputs.range([-8, 8], {value: -1, step: 0.5, label: "Ordenada en el origen n"})
+viewof A3_paso = Inputs.range([1, 4], {value: 1, step: 1, label: "Salto Δx del 'escalón'"})
+```
+
+```{ojs}
+//| echo: false
+A3_tabla = d3.range(-3, 4).map(x => ({x, y: A3_m * x + A3_n}))
+
+A3_plot = {
+  const esc = [];
+  for (let k = 0; k < 3; k++) {
+    const x0 = k * A3_paso, y0 = A3_m * x0 + A3_n;
+    esc.push({x1: x0, y1: y0, x2: x0 + A3_paso, y2: y0},
+             {x1: x0 + A3_paso, y1: y0, x2: x0 + A3_paso, y2: A3_m * (x0 + A3_paso) + A3_n});
+  }
+  return lienzo([
+    trazo(motor.malla(x => A3_m * x + A3_n, -9, 9)),
+    Plot.link(esc, {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#059669", strokeWidth: 2}),
+    Plot.dot(A3_tabla, {x: "x", y: "y", fill: "#dc2626", r: 4}),
+    ...lienzoPunto(0, A3_n)
+  ], [-9, 9], [-9, 9]);
+}
+
+lienzoPunto = (x, y) => [Plot.dot([{x, y}], {x: "x", y: "y", fill: "#7c3aed", r: 6}),
+  etiqueta(x, y, `(0; ${fm(y)})`, "#7c3aed")]
+
+A3_txt = md`**y = ${fm(A3_m)}x ${A3_n >= 0 ? "+ " + fm(A3_n) : "− " + fm(-A3_n)}**
+
+- Corta al eje Y en (0; ${fm(A3_n)}) y al eje X en x = ${A3_m !== 0 ? fm(-A3_n / A3_m) : "no corta (recta horizontal)"}.
+- Escalones verdes: por cada **Δx = ${A3_paso}** la y varía **Δy = ${fm(A3_m * A3_paso)}** → m = Δy/Δx = ${fm(A3_m * A3_paso)}/${A3_paso} = **${fm(A3_m)}**.
+- Ángulo con el eje X: α = arctan(${fm(A3_m)}) = **${fm(Math.atan(A3_m) * 180 / Math.PI)}°**.
+- Tabla de valores: ${A3_tabla.map(p => `(${p.x}, ${fm(p.y)})`).join(" · ")}`
+```
+
+# Aplicación, función y el test de la recta vertical
+
+## De aplicación a función
+
+**Definición (aplicación).** Una aplicación $f$ de un conjunto $A$ en un conjunto $B$ es una correspondencia que a cada $a\in A$ le asigna **un solo** elemento $b\in B$, llamado $f(a)$.
+
+La idea clave: **de cada elemento de $A$ sale una sola flecha**. No importa que a algún elemento de $B$ no le llegue ninguna, o que le lleguen varias.
+
+**Definición (función real de variable real).** Es una aplicación $f:X\to Y$ con $X,Y\subseteq\mathbb{R}$. Escribimos $y=f(x)$, y también:
+$$f:\mathbb{R}\to\mathbb{R},\qquad x\longmapsto y=f(x)$$
+
+Otra forma de decirlo, más cercana: una función es una relación entre dos magnitudes tal que a cada valor de la independiente le corresponde **como mucho un** valor de la dependiente. Es una **máquina** que coge un número y lo transforma.
+
+**Definición (grafo o gráfica).** $G(f)=\{(x,f(x)):x\in\operatorname{Dom}f\}$, el conjunto de pares representados en el plano.
+
+::: {.callout-warning}
+## Dos ejemplos que aclaran mucho
+- $\pm\sqrt{x}$ **no es función**: los negativos no tienen imagen y, además, para $x>0$ habría que decidir entre la raíz positiva y la negativa. Un punto no puede tener dos imágenes.
+- $-\sqrt{x^{2}+1}$ **sí es función**: $x^{2}+1$ es siempre positivo, la raíz siempre existe y elegimos sin ambigüedad la determinación negativa.
+:::
+
+::: {.callout-note}
+## Nota fundamental sobre la notación
+Dada la expresión $5x+4$, es exactamente lo mismo escribir $f(x)=5x+4$ que $y=5x+4$. La diferencia es de matiz: $f(x)$ subraya que es *la imagen del punto $x$*, mientras que $y$ subraya que es *la altura del punto en el dibujo*. Por eso decimos $y=f(x)$: **la altura es la imagen**.
+:::
+
+## Simulador 4 · Test de la recta vertical
+
+```{ojs}
+//| echo: false
+viewof A4_modo = Inputs.radio(new Map([["📚 Ejemplos guiados", "guia"], ["✏️ Escribir mi expresión", "libre"]]), {value: "guia", label: "Modo"})
+
+viewof A4_ej = Inputs.select(new Map([
+  ["1 · Recta:  y = m·x + n", "recta"],
+  ["2 · Parábola vertical:  y = a·x² + b·x + c", "parabola"],
+  ["3 · Parábola tumbada:  x = a·y² + b·y + c", "tumbada"],
+  ["4 · Circunferencia:  x² + y² = r²", "circ"],
+  ["5 · Cúbica tumbada:  x = y³ − 3y", "cubica"]
+]), {label: "Curva", value: "tumbada", disabled: A4_modo !== "guia"})
+
+viewof A4_orient = Inputs.radio(new Map([["y = f(x)", "fx"], ["x = g(y)", "gy"]]),
+  {value: "gy", label: "Forma de mi expresión", disabled: A4_modo !== "libre"})
+viewof A4_txt = Inputs.text({label: "Expresión", value: "a*y^2 + b*y + c", width: 430,
+  placeholder: "usa x o y y los parámetros a, b, c, m, n, r", disabled: A4_modo !== "libre", submit: false})
+
+viewof A4_a = Inputs.range([-3, 3], {value: 1, step: 0.25, label: "a"})
+viewof A4_b = Inputs.range([-6, 6], {value: 0, step: 0.25, label: "b"})
+viewof A4_c = Inputs.range([-6, 6], {value: -2, step: 0.25, label: "c"})
+viewof A4_m = Inputs.range([-4, 4], {value: 1.5, step: 0.25, label: "m"})
+viewof A4_n = Inputs.range([-6, 6], {value: 1, step: 0.25, label: "n"})
+viewof A4_r = Inputs.range([1, 7], {value: 4, step: 0.25, label: "r (radio)"})
+viewof A4_pos = Inputs.range([-8, 8], {value: 1, step: 0.05, label: "◀ Recta vertical  x =  ▶"})
+```
+
+```{ojs}
+//| echo: false
+A4_P = ({a: A4_a, b: A4_b, c: A4_c, m: A4_m, n: A4_n, r: A4_r})
+A4_comp = A4_modo === "libre" ? motor.compilar(A4_txt) : null
+
+A4_curva = {
+  const P = A4_P;
+  if (A4_modo === "libre") {
+    if (!A4_comp) return {pts: [], et: "⚠️ expresión no válida", tipo: "error"};
+    return A4_orient === "fx"
+      ? {pts: motor.mallaParam(x => ({x, y: motor.ev(A4_comp, {...P, x})}), -9, 9, 900), et: `y = ${A4_txt}`, tipo: "fx"}
+      : {pts: motor.mallaParam(y => ({x: motor.ev(A4_comp, {...P, y}), y}), -9, 9, 900), et: `x = ${A4_txt}`, tipo: "gy"};
+  }
+  if (A4_ej === "recta") return {pts: motor.mallaParam(x => ({x, y: P.m * x + P.n}), -9, 9), et: `y = ${fm(P.m)}x ${P.n >= 0 ? "+ " + fm(P.n) : "− " + fm(-P.n)}`, tipo: "fx"};
+  if (A4_ej === "parabola") return {pts: motor.mallaParam(x => ({x, y: P.a * x * x + P.b * x + P.c}), -9, 9), et: `y = ${fm(P.a)}x² + ${fm(P.b)}x + ${fm(P.c)}`, tipo: "fx"};
+  if (A4_ej === "tumbada") return {pts: motor.mallaParam(y => ({x: P.a * y * y + P.b * y + P.c, y}), -9, 9), et: `x = ${fm(P.a)}y² + ${fm(P.b)}y + ${fm(P.c)}`, tipo: "gy"};
+  if (A4_ej === "circ") return {pts: motor.mallaParam(t => ({x: P.r * Math.cos(t), y: P.r * Math.sin(t)}), 0, 2 * Math.PI, 900), et: `x² + y² = ${fm(P.r ** 2)}`, tipo: "cerrada"};
+  return {pts: motor.mallaParam(y => ({x: y ** 3 - 3 * y, y}), -3.2, 3.2, 900), et: "x = y³ − 3y", tipo: "gy"};
+}
+
+A4_cortes = motor.cortesVert(A4_curva.pts, A4_pos)
+A4_peor = {
+  let mx = 0, donde = null;
+  for (let i = 0; i <= 320; i++) {
+    const x0 = -8 + 16 * i / 320, k = motor.cortesVert(A4_curva.pts, x0).length;
+    if (k > mx) { mx = k; donde = x0; }
+  }
+  return {mx, donde};
+}
+
+A4_plot = lienzo([
+  trazo(A4_curva.pts.filter(p => Number.isFinite(p.x) && Number.isFinite(p.y))),
+  Plot.ruleX([A4_pos], {stroke: "#dc2626", strokeDasharray: "5,4", strokeWidth: 2}),
+  Plot.dot(A4_cortes.map(y => ({x: A4_pos, y})), {x: "x", y: "y", fill: "#dc2626", r: 6}),
+  Plot.text(A4_cortes.map(y => ({x: A4_pos, y, t: `y = ${fm(y)}`})), {x: "x", y: "y", text: "t", dx: 45, fill: "#dc2626", fontWeight: "bold"})
+], [-9, 9], [-9, 9])
+
+A4_txt2 = md`### ${A4_curva.et}
+
+**Cortes en x = ${fm(A4_pos)}: ${A4_cortes.length}** ${A4_cortes.length ? "→ y = " + A4_cortes.map(fm).join(" , ") : "(aquí la recta no toca la curva: ese x no tiene imagen)"}
+
+${A4_curva.tipo === "error"
+  ? "⚠️ Revisa la sintaxis (mira la guía del principio del tema)."
+  : A4_peor.mx > 1
+    ? `❌ **NO es una función.** Hay posiciones (por ejemplo x ≈ ${fm(A4_peor.donde)}) donde la vertical corta **${A4_peor.mx} veces**: a un solo x le corresponderían ${A4_peor.mx} imágenes.`
+    : `✅ **Compatible con ser función.** En todo el barrido de x ∈ [−8, 8] la vertical nunca corta más de una vez.`}`
+```
+
+::: {.callout-tip}
+## Cuatro retos
+1. En la parábola tumbada pon $a=0$: ¿por qué pasa a ser función de golpe?
+2. En la circunferencia sitúa la recta en $x=r$ exactamente: hay **un solo** corte. ¿Basta para llamarla función? Justifica que un único contraejemplo destruye la propiedad.
+3. En la cúbica tumbada, busca posiciones con 3 cortes y con 1. ¿Entre qué valores de $x$ hay tres?
+4. En modo libre, escribe una expresión `x = g(y)` que **sí** sea función.
+:::
+
+# Inyectiva, suprayectiva, biyectiva
+
+**Inyectiva.** Dos elementos distintos del conjunto inicial no pueden tener la misma imagen: a cada elemento del conjunto final le llega **como máximo una** flecha. Gráficamente: **ninguna recta horizontal corta más de una vez**.
+
+**Suprayectiva (sobreyectiva).** Todo elemento del conjunto final tiene al menos una preimagen: no queda ningún valor de $y$ sin alcanzar. Gráficamente: **toda recta horizontal corta al menos una vez**.
+
+**Biyectiva.** Inyectiva y suprayectiva a la vez: a cada valor de $y$ le llega **exactamente una** flecha.
+
+::: {.callout-note}
+## Por qué esto importa tanto
+Solo las funciones **inyectivas** tienen inversa. Todo el apartado de función inversa (Parte 2) depende de este test.
+:::
+
+## Simulador 5 · Test de la recta horizontal
+
+```{ojs}
+//| echo: false
+viewof A5_modo = Inputs.radio(new Map([["📚 Ejemplos guiados", "guia"], ["✏️ Mi expresión", "libre"]]), {value: "guia", label: "Modo"})
+viewof A5_ej = Inputs.select(new Map([
+  ["y = 2x − 1  (biyectiva)", "recta"],
+  ["y = x²  (ni inyectiva ni suprayectiva)", "cua"],
+  ["y = x³  (biyectiva)", "cub"],
+  ["y = 2^x  (inyectiva, no suprayectiva)", "exp"],
+  ["y = x³ − 3x  (suprayectiva, no inyectiva)", "cubica"]
+]), {value: "cua", label: "Función", disabled: A5_modo !== "guia"})
+viewof A5_txt = Inputs.text({label: "f(x) =", value: "x^2 - 2x", width: 400, disabled: A5_modo !== "libre", submit: false})
+viewof A5_h = Inputs.range([-8, 8], {value: 4, step: 0.05, label: "◀ Recta horizontal  y =  ▶"})
+```
+
+```{ojs}
+//| echo: false
+A5_f = A5_modo === "libre" ? motor.fun(A5_txt)
+  : ({recta: x => 2 * x - 1, cua: x => x * x, cub: x => x ** 3, exp: x => 2 ** x, cubica: x => x ** 3 - 3 * x})[A5_ej]
+A5_pre = motor.cortesHoriz(A5_f, A5_h, -9, 9)
+
+A5_diag = {
+  let maxc = 0, sin = 0, tot = 0;
+  for (let i = 0; i <= 200; i++) {
+    const y0 = -8 + 16 * i / 200, k = motor.cortesHoriz(A5_f, y0, -9, 9, 900).length;
+    maxc = Math.max(maxc, k); tot++; if (k === 0) sin++;
+  }
+  return {iny: maxc <= 1, sup: sin === 0};
+}
+
+A5_plot = lienzo([
+  ...trazos(motor.tramos(A5_f, -9, 9)),
+  Plot.ruleY([A5_h], {stroke: "#059669", strokeDasharray: "5,4", strokeWidth: 2}),
+  Plot.dot(A5_pre.map(x => ({x, y: A5_h})), {x: "x", y: "y", fill: "#059669", r: 6}),
+  Plot.text(A5_pre.map(x => ({x, y: A5_h, t: `x = ${fm(x)}`})), {x: "x", y: "y", text: "t", dy: 16, fill: "#059669", fontWeight: "bold"})
+], [-9, 9], [-9, 9])
+
+A5_txt2 = md`**Preimágenes de y = ${fm(A5_h)}: ${A5_pre.length}** ${A5_pre.length ? "→ x = " + A5_pre.map(fm).join(" , ") : "→ ese valor de y NO se alcanza"}
+
+Diagnóstico del barrido completo en y ∈ [−8, 8]:
+
+- ${A5_diag.iny ? "✅ **Inyectiva**: ninguna horizontal corta más de una vez." : "❌ **No inyectiva**: hay horizontales con dos o más cortes, luego dos x distintos comparten imagen."}
+- ${A5_diag.sup ? "✅ **Suprayectiva** (en el rango explorado): toda horizontal corta al menos una vez." : "❌ **No suprayectiva**: hay valores de y que no se alcanzan nunca."}
+- ${A5_diag.iny && A5_diag.sup ? "🎯 Por tanto es **biyectiva**: tiene función inversa." : "Por tanto **no es biyectiva** tal como está definida. Restringiendo el dominio o el conjunto final, a veces se consigue."}`
+```
+
+::: {.callout-tip}
+## Reto de conjunto final
+$y=x^{2}$ no es suprayectiva sobre $\mathbb{R}$, pero **sí** lo es sobre $[0,+\infty)$. Cambiar el conjunto final cambia la respuesta: la suprayectividad no es una propiedad de la fórmula, sino del **par** fórmula–conjunto final. ¿Ocurre lo mismo con la inyectividad?
+:::
+
+# Dominio
+
+**Definición.** El **dominio** o campo de existencia de $f$ es el conjunto de valores que tienen imagen:
+$$\operatorname{Dom}(f)=\{x\in\mathbb{R}:\exists\,f(x)\}$$
+
+La clave es localizar los puntos que **no** tienen imagen, y son fáciles de detectar porque provocan una de las **tres únicas operaciones imposibles en $\mathbb{R}$**:
+
+1. **División por cero.**
+2. **Raíz de índice par con radicando negativo.**
+3. **Logaritmo de cero o de un número negativo.**
+
+Si en la expresión no aparece ninguna división, ni raíz par, ni logaritmo, el dominio es **todo $\mathbb{R}$**.
+
+| Tipo | Dominio |
+|---|---|
+| Polinómica | $\mathbb{R}$ |
+| Racional | $\mathbb{R}\setminus\{\text{polos}\}$, polos = ceros del denominador |
+| Irracional de índice par | $\{x:\text{radicando}\ge 0\}$ |
+| Irracional de índice impar | igual que el radicando |
+| Exponencial | $\mathbb{R}$ menos los puntos problemáticos del exponente |
+| Logarítmica | $\{x:\text{argumento}>0\}$ |
+| A trozos | unión de los trozos, quitando los puntos problemáticos de cada fórmula |
+
+**Ejemplos resueltos.**
+
+- $f(x)=\dfrac{x^{2}-5}{x^{2}-13}$: polos en $x=\pm\sqrt{13}$, luego $\operatorname{Dom}f=\mathbb{R}\setminus\{-\sqrt{13},\sqrt{13}\}$.
+- $g(x)=\sqrt{x^{2}-4}$: $x^{2}-4\ge0\Rightarrow \operatorname{Dom}g=(-\infty,-2]\cup[2,+\infty)$.
+- $h(x)=\log(x-1)$: $x-1>0\Rightarrow \operatorname{Dom}h=(1,+\infty)$.
+- $k(x)=\dfrac{\sqrt{x+2}}{x-3}$: dos condiciones, $\operatorname{Dom}k=[-2,3)\cup(3,+\infty)$.
+- $l(x)=\dfrac{1}{\sqrt{9-x^{2}}}$: aquí el radicando debe ser **estrictamente** positivo, $\operatorname{Dom}l=(-3,3)$.
+
+**Lectura gráfica del dominio.** Traza la vertical por un punto del eje $X$: si **corta** a la gráfica, ese $x$ está en el dominio (su imagen es la ordenada del corte); si **no corta**, no está.
+
+## Simulador 6 · Dominio: los puntos prohibidos
+
+```{ojs}
+//| echo: false
+viewof A6_modo = Inputs.radio(new Map([["📚 Cinco familias", "guia"], ["✏️ Mi expresión", "libre"]]), {value: "guia", label: "Modo"})
+viewof A6_ej = Inputs.select(new Map([
+  ["1 · Racional:  (m·x + n)/(a·x² + b·x + c)", "racional"],
+  ["2 · Radical par:  √(a·x² + b·x + c)", "radical"],
+  ["3 · Logaritmo:  log(m·x + n)", "log"],
+  ["4 · Mixta:  √(x − a)/(x − b)", "mixta"],
+  ["5 · Radical en el denominador:  1/√(a·x² + b·x + c)", "invrad"]
+]), {value: "racional", label: "Familia", disabled: A6_modo !== "guia"})
+viewof A6_txt = Inputs.text({label: "f(x) =", value: "sqrt(x - a)/(x - b)", width: 430,
+  placeholder: "log(x^2 - 4)   ·   1/sqrt(9 - x^2)", disabled: A6_modo !== "libre", submit: false})
+viewof A6_a = Inputs.range([-4, 4], {value: 1, step: 0.25, label: "a"})
+viewof A6_b = Inputs.range([-6, 6], {value: 0, step: 0.25, label: "b"})
+viewof A6_c = Inputs.range([-9, 9], {value: -4, step: 0.25, label: "c"})
+viewof A6_m = Inputs.range([-4, 4], {value: 1, step: 0.25, label: "m"})
+viewof A6_n = Inputs.range([-6, 6], {value: 2, step: 0.25, label: "n"})
+```
+
+```{ojs}
+//| echo: false
+A6_P = ({a: A6_a, b: A6_b, c: A6_c, m: A6_m, n: A6_n})
+A6_caso = {
+  const {a, b, c, m, n} = A6_P;
+  const raices = (A2, B2, C2) => A2 === 0 ? (B2 === 0 ? [] : [-C2 / B2])
+    : (B2 * B2 - 4 * A2 * C2 < 0 ? [] : [(-B2 - Math.sqrt(B2 * B2 - 4 * A2 * C2)) / (2 * A2), (-B2 + Math.sqrt(B2 * B2 - 4 * A2 * C2)) / (2 * A2)]);
+  if (A6_modo === "libre")
+    return {f: motor.fun(A6_txt, A6_P), int: null, et: `f(x) = ${A6_txt}`,
+            regla: "Dominio obtenido por **detección numérica**.", pts: []};
+  const T = {
+    racional: {f: x => (m * x + n) / (a * x * x + b * x + c), int: x => a * x * x + b * x + c,
+      et: `f(x) = (${fm(m)}x + ${fm(n)})/(${fm(a)}x² + ${fm(b)}x + ${fm(c)})`,
+      regla: "**Denominador ≠ 0**: se excluyen los polos (ceros del denominador).", pts: raices(a, b, c)},
+    radical: {f: x => Math.sqrt(a * x * x + b * x + c), int: x => a * x * x + b * x + c,
+      et: `f(x) = √(${fm(a)}x² + ${fm(b)}x + ${fm(c)})`,
+      regla: "**Radicando ≥ 0**: solo existe donde la curva gris está sobre el eje X (el 0 sí entra).", pts: raices(a, b, c)},
+    log: {f: x => (m * x + n > 0 ? Math.log(m * x + n) : NaN), int: x => m * x + n,
+      et: `f(x) = ln(${fm(m)}x + ${fm(n)})`,
+      regla: "**Argumento > 0 estricto**: el logaritmo de 0 y de negativos no existe.", pts: m !== 0 ? [-n / m] : []},
+    mixta: {f: x => Math.sqrt(x - a) / (x - b), int: x => x - a,
+      et: `f(x) = √(x − ${fm(a)})/(x − ${fm(b)})`,
+      regla: "**Dos condiciones simultáneas**: x − a ≥ 0 y x − b ≠ 0.", pts: [a, b]},
+    invrad: {f: x => (a * x * x + b * x + c > 0 ? 1 / Math.sqrt(a * x * x + b * x + c) : NaN), int: x => a * x * x + b * x + c,
+      et: `f(x) = 1/√(${fm(a)}x² + ${fm(b)}x + ${fm(c)})`,
+      regla: "**Radicando > 0 estricto**: al estar debajo, el 0 también se prohíbe.", pts: raices(a, b, c)}
+  };
+  return T[A6_ej];
+}
+A6_dom = motor.dominio(A6_caso.f)
+
+A6_plot = lienzo([
+  Plot.rectY(A6_dom.map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -10, y2: 10, fill: "#059669", fillOpacity: 0.09}),
+  ...(A6_caso.int ? [trazo(motor.malla(A6_caso.int, -12, 12), "#9ca3af", 1.7, "5,4")] : []),
+  ...trazos(motor.tramos(A6_caso.f, -12, 12)),
+  Plot.ruleX(A6_caso.pts.filter(Number.isFinite), {stroke: "#dc2626", strokeDasharray: "4,4"}),
+  Plot.dot(A6_caso.pts.filter(Number.isFinite).map(x => ({x, y: 0})), {x: "x", y: "y", stroke: "#dc2626", fill: "white", r: 5, strokeWidth: 2})
+], [-12, 12], [-10, 10])
+
+A6_txt2 = md`### ${A6_caso.et}
+
+${A6_caso.regla}
+
+**Dominio (franja verde):** ${fmIv(A6_dom)}
+
+${A6_caso.pts.length ? `Puntos críticos (rojo): x = ${A6_caso.pts.filter(Number.isFinite).map(fm).join(" , ")}. Decide en cada uno si entra (corchete) o no (paréntesis).` : "Sin puntos críticos en este caso."}`
+```
+
+::: {.callout-tip}
+## Cinco retos
+1. En la familia 1, consigue dominio $\mathbb{R}$ sin tocar el numerador. ¿Qué debe cumplir el discriminante?
+2. En la 2, consigue $(-\infty,-2]\cup[2,+\infty)$ y luego $[-2,2]$. ¿Qué papel juega el signo de $a$?
+3. Compara la 2 y la 5 con los mismos $a$, $b$, $c$: ¿en qué se diferencian exactamente los dominios y por qué?
+4. En la 4, pon $b<a$: ¿por qué desaparece el punto prohibido?
+5. En modo libre, predice y comprueba los dominios de `log(x^2 - 4)` y de `log(x)^2 - 4`.
+:::
+
+# Recorrido o imagen
+
+**Definición.** $\operatorname{Im}(f)$ es el conjunto de valores que toma la variable dependiente, es decir, los $y$ que son imagen de algún $x$.
+
+Calcularlo suele ser **más difícil** que el dominio. Tres estrategias:
+
+- **Por propiedades de la función**: $f(x)=ax+b$ con $a\ne0$ tiene $\operatorname{Im}=\mathbb{R}$; $f(x)=x^{2}$ tiene $\operatorname{Im}=[0,+\infty)$; $f(x)=a^{x}$ tiene $\operatorname{Im}=(0,+\infty)$; $f(x)=\log_a x$ tiene $\operatorname{Im}=\mathbb{R}$.
+- **Con la inversa**: si $f$ tiene inversa, $\operatorname{Im}(f)=\operatorname{Dom}(f^{-1})$.
+- **Gráficamente**: traza rectas **horizontales**; los valores de $y$ cuya horizontal no corta la gráfica **no** están en la imagen.
+
+**Ejemplo resuelto.** $f(x)=x^{2}-4x+1$. Vértice en $x_V=2$, $f(2)=-3$, y abre hacia arriba, así que $\operatorname{Im}f=[-3,+\infty)$.
+
+## Simulador 7 · Recorrido con el barrido horizontal
+
+```{ojs}
+//| echo: false
+viewof A7_txt = Inputs.text({label: "f(x) =", value: "x^2 - 4x + 1", width: 430,
+  placeholder: "prueba:  1/x  ·  exp(x)  ·  x^2/(x^2+1)  ·  sqrt(x)", submit: false})
+viewof A7_h = Inputs.range([-10, 10], {value: -3, step: 0.1, label: "◀ Recta horizontal  y =  ▶"})
+```
+
+```{ojs}
+//| echo: false
+A7_f = motor.fun(A7_txt)
+A7_pre = motor.cortesHoriz(A7_f, A7_h, -12, 12)
+A7_rec = motor.recorrido(A7_f)
+
+A7_plot = lienzo([
+  Plot.rectY(A7_rec.map(([y1, y2]) => ({y1: Math.max(y1, -12), y2: Math.min(y2, 12)})),
+    {x1: -12, x2: 12, y1: "y1", y2: "y2", fill: "#7c3aed", fillOpacity: 0.08}),
+  ...trazos(motor.tramos(A7_f, -12, 12)),
+  Plot.ruleY([A7_h], {stroke: "#059669", strokeDasharray: "5,4", strokeWidth: 2}),
+  Plot.dot(A7_pre.map(x => ({x, y: A7_h})), {x: "x", y: "y", fill: "#059669", r: 6})
+], [-12, 12], [-12, 12])
+
+A7_txt2 = md`**Dominio:** ${fmIv(motor.dominio(A7_f))}
+
+**Recorrido (franja violeta, estimado en x ∈ [−12, 12]):** ${fmIv(A7_rec)}
+
+La horizontal y = ${fm(A7_h)} tiene **${A7_pre.length} preimagen(es)**${A7_pre.length ? ": x = " + A7_pre.map(fm).join(" , ") : " → ese valor NO pertenece a la imagen"}.`
+```
+
+::: {.callout-warning}
+## Honestidad numérica
+El Simulador estima el recorrido explorando $x\in[-12,12]$. Para $f(x)=x^{2}$ dirá $[0,144]$ cuando la respuesta correcta es $[0,+\infty)$. **El ordenador ve una ventana; tú tienes que razonar sobre todo $\mathbb{R}$.** Úsalo para confirmar ideas, no para sustituirlas.
+:::
+
+# Puntos de corte con los ejes y signo
+
+## Cortes
+
+- Con el eje **$Y$**: se obtiene dando $x=0$, siempre que $0\in\operatorname{Dom}f$. Es el punto $(0,f(0))$, y **es único** por la propia definición de función.
+- Con el eje **$X$** (los **ceros** o raíces): resolver $f(x)=0$.
+
+Por familias:
+
+| Tipo | Corte con $OY$ | Cortes con $OX$ |
+|---|---|---|
+| Polinómica | $(0,f(0))$ | soluciones de $P(x)=0$ |
+| Racional | si $0\in\operatorname{Dom}$ | **numerador** $=0$ |
+| Irracional | si $0\in\operatorname{Dom}$ | **radicando** $=0$ |
+| Exponencial $a^{g(x)}$ | si $0\in\operatorname{Dom}$ | **nunca** |
+| Logarítmica $\log_a g(x)$ | si $0\in\operatorname{Dom}$ | **argumento** $=1$ |
+
+**Ejemplos resueltos.**
+
+- $p(x)=x^{2}-4x+3$: $p(0)=3$ → $(0,3)$; ceros $x=1$ y $x=3$.
+- $g(x)=\dfrac{x^{2}-9}{x-2}$: $g(0)=\frac{-9}{-2}=4{,}5$; ceros donde $x^{2}-9=0$, es decir $x=\pm3$.
+- $f(x)=2^{x}-1$: nunca vale... cuidado, aquí **sí** hay cero: $2^{x}=1\Rightarrow x=0$. Lo que nunca se anula es $a^{x}$ **a secas**.
+- $f(x)=\log_2(x-3)$: cero donde el argumento vale 1, $x-3=1\Rightarrow x=4$.
+
+## Signo
+
+Los intervalos de signo son oro puro para representar una función. Para estudiarlos hay que reunir:
+
+1. los puntos que **no están en el dominio** (allí puede haber cambio de signo sin pasar por cero),
+2. los **ceros** de la función,
+3. en las funciones a trozos, los **puntos de cambio de definición**.
+
+Con esos puntos se divide la recta y se prueba un valor en cada intervalo.
+
+Reglas rápidas: una raíz de índice **par** es positiva en todo su dominio (salvo en sus ceros); una **exponencial** es siempre positiva; una raíz de índice **impar** tiene el signo del radicando.
+
+## Simulador 8 · Ceros, corte con OY y tabla de signos
+
+```{ojs}
+//| echo: false
+viewof A8_txt = Inputs.text({label: "f(x) =", value: "(x^2 - 9)/(x - 2)", width: 440,
+  placeholder: "x^3 - 4x  ·  log(x-1)  ·  2^x - 8  ·  sqrt(x+1) - 2", submit: false})
+```
+
+```{ojs}
+//| echo: false
+A8_f = motor.fun(A8_txt)
+A8_ceros = motor.ceros(A8_f, -12, 12)
+A8_f0 = A8_f(0)
+A8_signos = motor.signoIntervalos(A8_f, -12, 12)
+
+A8_plot = lienzo([
+  Plot.rectY(A8_signos.filter(s => s[2] > 0).map(([x1, x2]) => ({x1, x2})),
+    {x1: "x1", x2: "x2", y1: 0, y2: 10, fill: "#059669", fillOpacity: 0.12}),
+  Plot.rectY(A8_signos.filter(s => s[2] < 0).map(([x1, x2]) => ({x1, x2})),
+    {x1: "x1", x2: "x2", y1: -10, y2: 0, fill: "#dc2626", fillOpacity: 0.12}),
+  ...trazos(motor.tramos(A8_f, -12, 12)),
+  Plot.dot(A8_ceros.map(x => ({x, y: 0})), {x: "x", y: "y", fill: "#dc2626", r: 6}),
+  ...(Number.isFinite(A8_f0) ? [Plot.dot([{x: 0, y: A8_f0}], {x: "x", y: "y", fill: "#7c3aed", r: 6}),
+      etiqueta(0, A8_f0, `(0; ${fm(A8_f0)})`, "#7c3aed")] : [])
+], [-12, 12], [-10, 10])
+
+A8_txt2 = md`- **Corte con OY:** ${Number.isFinite(A8_f0) ? `(0; ${fm(A8_f0)})` : "no hay, porque 0 no está en el dominio"}
+- **Ceros (cortes con OX):** ${A8_ceros.length ? A8_ceros.map(z => `x = ${fm(z)}`).join(" · ") : "ninguno en [−12, 12]"}
+- **Signo:** ${A8_signos.map(([p, q, s]) => `${s > 0 ? "➕" : s < 0 ? "➖" : "·"} en (${fm(p)}, ${fm(q)})`).join("  |  ")}
+
+Verde = zona donde f es positiva; rojo = zona donde es negativa. Fíjate en que el signo puede cambiar **también** en un punto que no está en el dominio, sin que la función valga cero allí.`
+```
+
+# Simetría y periodicidad
+
+## Funciones pares e impares
+
+- **Par**: $f(-x)=f(x)$ para todo $x$ del dominio. Simétrica respecto al **eje $Y$**.
+- **Impar**: $f(-x)=-f(x)$. Simétrica respecto al **origen**.
+- La mayoría de funciones **no** son ni pares ni impares.
+
+**Ejemplos resueltos.**
+
+$f(x)=\dfrac{x^{2}}{x^{2}+1}$: $f(-x)=\dfrac{x^{2}}{x^{2}+1}=f(x)$ → **par**.
+
+$g(x)=\dfrac{x^{3}}{x^{2}-1}$: $g(-x)=\dfrac{-x^{3}}{x^{2}-1}=-g(x)$ → **impar**.
+
+$h(x)=x^{2}+x$: $h(-x)=x^{2}-x$, distinto de $h(x)$ y de $-h(x)$ → **ninguna**.
+
+Detectar simetría **reduce a la mitad** el trabajo de representar.
+
+## Periodicidad
+
+$f$ es **periódica de periodo $T>0$** si $f(x+T)=f(x)$ para todo $x$ del dominio. Basta estudiarla en un intervalo de longitud $T$.
+
+## Simulador 9 · Simetría y periodicidad
+
+```{ojs}
+//| echo: false
+viewof A9_tipo = Inputs.radio(new Map([["Simetría", "sim"], ["Periodicidad", "per"]]), {value: "sim", label: "Estudiar"})
+viewof A9_txt = Inputs.text({label: "f(x) =", value: "x^3 - 3x", width: 430,
+  placeholder: "x^4 - 3x^2  ·  x^2/(x^2+1)  ·  x^2 + x  ·  sin(x)", submit: false, disabled: A9_tipo !== "sim"})
+viewof A9_ver = Inputs.checkbox(["f(−x)", "−f(x)"], {value: ["f(−x)"], label: "Superponer", disabled: A9_tipo !== "sim"})
+viewof A9_T = Inputs.range([1, 6], {value: 3, step: 0.5, label: "Periodo T", disabled: A9_tipo !== "per"})
+viewof A9_h = Inputs.range([0.5, 3], {value: 1.5, step: 0.25, label: "Altura del patrón", disabled: A9_tipo !== "per"})
+```
+
+```{ojs}
+//| echo: false
+A9_f = motor.fun(A9_txt)
+A9_clase = {
+  const xs = [0.31, 0.87, 1.7, 2.9, 4.1].filter(x => Number.isFinite(A9_f(x)) && Number.isFinite(A9_f(-x)));
+  if (!xs.length) return "no se puede decidir (faltan puntos simétricos en el dominio)";
+  const par = xs.every(x => Math.abs(A9_f(-x) - A9_f(x)) < 1e-7);
+  const imp = xs.every(x => Math.abs(A9_f(-x) + A9_f(x)) < 1e-7);
+  return par && imp ? "es la función nula" : par ? "**PAR** → simétrica respecto al eje Y" : imp ? "**IMPAR** → simétrica respecto al origen" : "**ni par ni impar** (el caso más frecuente)";
+}
+
+A9_plot = {
+  if (A9_tipo === "per") {
+    const g = x => { const r = ((x % A9_T) + A9_T) % A9_T; return A9_h * (1 - Math.abs(2 * r / A9_T - 1)); };
+    return lienzo([trazo(motor.malla(g, -12, 12, 1400)),
+      Plot.ruleX(d3.range(-4, 5).map(k => k * A9_T), {stroke: "#dc2626", strokeDasharray: "2,4"})],
+      [-12, 12], [-1, 4], "x →", "↑ y", 300);
+  }
+  const m = [...trazos(motor.tramos(A9_f, -9, 9))];
+  if (A9_ver.includes("f(−x)")) m.push(...trazos(motor.tramos(x => A9_f(-x), -9, 9), "#f59e0b"));
+  if (A9_ver.includes("−f(x)")) m.push(...trazos(motor.tramos(x => -A9_f(x), -9, 9), "#059669"));
+  return lienzo(m, [-9, 9], [-12, 12]);
+}
+
+A9_txt2 = md`${A9_tipo === "sim"
+  ? `**f(x) = ${A9_txt} → ${A9_clase}.**  Azul = f, naranja = f(−x), verde = −f(x). Si azul y naranja coinciden, es par; si azul y verde coinciden, es impar.`
+  : `Periodo **T = ${fm(A9_T)}**: f(x + ${fm(A9_T)}) = f(x). Conociendo la función en un solo intervalo de longitud ${fm(A9_T)} (entre dos líneas rojas) la conoces entera.`}`
+```
+
+::: {.callout-tip}
+## Pensamiento crítico
+La temperatura media mensual de Gavà es *casi* periódica con $T=12$ meses. ¿Es exactamente periódica? ¿Qué consecuencias tiene esa diferencia si usamos el modelo para predecir el año 2050?
+:::
+
+# Continuidad
+
+**Idea intuitiva.** $f$ es **continua en un punto** si podemos dibujar su gráfica en ese punto **sin levantar el lápiz del papel**. Es continua en un intervalo si lo es en todos sus puntos.
+
+Tipos de discontinuidad que veremos:
+
+| Tipo | Qué ocurre | Ejemplo |
+|---|---|---|
+| **Evitable** | hay un "agujero": el límite existe pero falta el punto o está desplazado | $\dfrac{x^{2}-1}{x-1}$ en $x=1$ |
+| **De salto finito** | la gráfica salta de una altura a otra | $E(x)$ en cada entero |
+| **De salto infinito (asíntota)** | la función se dispara | $\dfrac{1}{x}$ en $x=0$ |
+
+**Ejemplo resuelto.** $f(x)=\dfrac{x^{2}-1}{x-1}$. Simplificando, $f(x)=x+1$ **para todo $x\ne1$**. La gráfica es la recta $y=x+1$ con un agujero en $(1,2)$: discontinuidad **evitable**, porque bastaría definir $f(1)=2$ para arreglarla.
+
+## Simulador 10 · Los tres tipos de discontinuidad
+
+```{ojs}
+//| echo: false
+viewof A10_tipo = Inputs.radio(new Map([
+  ["Evitable (agujero)", "ev"], ["Salto finito", "salto"], ["Salto infinito (asíntota)", "inf"], ["Continua", "cont"]]),
+  {value: "ev", label: "Situación en x = c"})
+viewof A10_c = Inputs.range([-4, 4], {value: 1, step: 0.5, label: "Punto c"})
+viewof A10_salto = Inputs.range([0, 6], {value: 3, step: 0.25, label: "Tamaño del salto (solo salto finito)"})
+viewof A10_val = Inputs.range([-6, 6], {value: 4, step: 0.5, label: "Valor asignado f(c) (solo evitable)"})
+```
+
+```{ojs}
+//| echo: false
+A10_lim = A10_c + 1
+
+A10_plot = {
+  const c = A10_c, m = [];
+  if (A10_tipo === "ev") {
+    m.push(trazo(motor.malla(x => x + 1, -8, c - 0.005)), trazo(motor.malla(x => x + 1, c + 0.005, 8)));
+    m.push(Plot.dot([{x: c, y: A10_lim}], {x: "x", y: "y", stroke: "#2563eb", fill: "white", r: 6, strokeWidth: 2.5}));
+    m.push(Plot.dot([{x: c, y: A10_val}], {x: "x", y: "y", fill: "#dc2626", r: 6}));
+    m.push(etiqueta(c, A10_val, `f(c) = ${fm(A10_val)}`));
+  }
+  if (A10_tipo === "salto") {
+    m.push(trazo(motor.malla(x => x + 1, -8, c)), trazo(motor.malla(x => x + 1 + A10_salto, c, 8)));
+    m.push(Plot.dot([{x: c, y: A10_lim}], {x: "x", y: "y", fill: "#2563eb", r: 6}));
+    m.push(Plot.dot([{x: c, y: A10_lim + A10_salto}], {x: "x", y: "y", stroke: "#dc2626", fill: "white", r: 6, strokeWidth: 2.5}));
+  }
+  if (A10_tipo === "inf") {
+    m.push(...trazos(motor.tramos(x => 1 / (x - c), -8, 8, 1400)));
+    m.push(Plot.ruleX([c], {stroke: "#dc2626", strokeDasharray: "5,4", strokeWidth: 2}));
+  }
+  if (A10_tipo === "cont") m.push(trazo(motor.malla(x => x + 1, -8, 8)), Plot.dot([{x: c, y: A10_lim}], {x: "x", y: "y", fill: "#059669", r: 6}));
+  return lienzo(m, [-8, 8], [-8, 8]);
+}
+
+A10_txt = md`${({
+  ev: `**Discontinuidad evitable en x = ${fm(A10_c)}.** Al acercarnos por los dos lados la función tiende a ${fm(A10_lim)} (círculo hueco), pero el valor asignado es ${fm(A10_val)}. Se llama *evitable* porque bastaría **redefinir f(c) = ${fm(A10_lim)}** para cerrar el agujero. Prueba a mover el valor asignado hasta ${fm(A10_lim)}: la discontinuidad desaparece.`,
+  salto: `**Salto finito de ${fm(A10_salto)} unidades en x = ${fm(A10_c)}.** Por la izquierda la función tiende a ${fm(A10_lim)}; por la derecha, a ${fm(A10_lim + A10_salto)}. Ningún valor que asignemos a f(c) arregla esto: hay que levantar el lápiz. Con salto 0 recuperas la continuidad.`,
+  inf: `**Salto infinito (asíntota vertical) en x = ${fm(A10_c)}.** La función crece sin límite a un lado y decrece sin límite al otro. El punto ni siquiera está en el dominio.`,
+  cont: `**Continua en x = ${fm(A10_c)}:** el trazo pasa por el punto sin interrupción y f(c) = ${fm(A10_lim)} coincide con lo que "esperaba" la gráfica.`
+})[A10_tipo]}`
+```
+
+::: {.callout-note}
+## Adelanto
+La herramienta que convierte esta intuición en cálculo se llama **límite**, y es el tema siguiente. Aquí nos basta con reconocer los tres tipos a la vista.
+:::
+
+# Monotonía y extremos
+
+**Definiciones.** En un intervalo $I$:
+
+- $f$ es **creciente** si al aumentar $x$ aumenta $f(x)$: $x_1<x_2\Rightarrow f(x_1)\le f(x_2)$ (estrictamente creciente si $<$).
+- $f$ es **decreciente** si al aumentar $x$ disminuye $f(x)$.
+- $f$ es **constante** si toma siempre el mismo valor.
+
+**Extremos relativos (o locales).** $f$ tiene un **máximo relativo** en $x_0$ si en un entorno de $x_0$ ningún valor supera a $f(x_0)$; **mínimo relativo** si ninguno es menor. Son los puntos donde la función **cambia de crecer a decrecer** o al revés.
+
+**Extremos absolutos.** El **máximo absoluto** es el mayor valor que alcanza la función en todo su dominio (o en el intervalo estudiado); el **mínimo absoluto**, el menor.
+
+::: {.callout-warning}
+## Error clásico
+Todo extremo absoluto alcanzado en el interior del dominio es también relativo, pero **un extremo relativo puede no ser absoluto**. En $f(x)=x^{3}-3x$ hay un máximo relativo en $x=-1$ con valor $2$… y la función llega a valer $1000$ en $x=10$.
+:::
+
+## Simulador 11 · Crecimiento, decrecimiento y extremos
+
+```{ojs}
+//| echo: false
+viewof A11_txt = Inputs.text({label: "f(x) =", value: "x^3 - 3x", width: 440,
+  placeholder: "x^4 - 4x^2  ·  x/(x^2+1)  ·  x^3 - 6x^2 + 9x  ·  sin(x)", submit: false})
+viewof A11_rango = Inputs.range([2, 12], {value: 5, step: 0.5, label: "Ventana de estudio [−R, R],  R ="})
+```
+
+```{ojs}
+//| echo: false
+A11_f = motor.fun(A11_txt)
+A11_mon = motor.signoIntervalos(motor.d1(A11_f), -A11_rango, A11_rango)
+A11_ext = motor.extremos(A11_f, -A11_rango, A11_rango)
+A11_cot = motor.cotas(A11_f, -A11_rango, A11_rango)
+
+A11_plot = lienzo([
+  Plot.rectY(A11_mon.filter(s => s[2] > 0).map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -20, y2: 20, fill: "#059669", fillOpacity: 0.10}),
+  Plot.rectY(A11_mon.filter(s => s[2] < 0).map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -20, y2: 20, fill: "#f59e0b", fillOpacity: 0.13}),
+  ...trazos(motor.tramos(A11_f, -A11_rango, A11_rango)),
+  Plot.dot(A11_ext, {x: "x", y: "y", fill: d => d.tipo === "máximo" ? "#dc2626" : "#2563eb", r: 6}),
+  Plot.text(A11_ext.map(e => ({x: e.x, y: e.y, t: `${e.tipo === "máximo" ? "MÁX" : "mín"} (${fm(e.x)}; ${fm(e.y)})`})),
+    {x: "x", y: "y", text: "t", dy: -14, fontWeight: "bold"})
+], [-A11_rango, A11_rango], [A11_cot.mn - 2, A11_cot.mx + 2])
+
+A11_txt2 = md`- 🟩 **Creciente** en: ${A11_mon.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+- 🟧 **Decreciente** en: ${A11_mon.filter(s => s[2] < 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+- **Extremos relativos detectados:** ${A11_ext.length ? A11_ext.map(e => `${e.tipo} en (${fm(e.x)}; ${fm(e.y)})`).join(" · ") : "ninguno en esta ventana"}
+- **En la ventana [−${fm(A11_rango)}, ${fm(A11_rango)}]:** valor mayor ${fm(A11_cot.mx)} (en x = ${fm(A11_cot.xmx)}), valor menor ${fm(A11_cot.mn)} (en x = ${fm(A11_cot.xmn)}).
+
+Observa la regla de oro: **los extremos relativos están exactamente donde el color cambia**, es decir, donde la función pasa de crecer a decrecer o al contrario.`
+```
+
+::: {.callout-tip}
+## Reto
+Escribe `x^3` y busca extremos: no hay ninguno, aunque en $x=0$ la función "se aplana". Ahora amplía la ventana con `x^3 - 3x`: los extremos relativos siguen ahí, pero los valores mayor y menor de la ventana se van a los bordes. ¿Qué te dice esto sobre la diferencia entre relativo y absoluto?
+:::
+
+# Acotación
+
+**Definiciones.**
+
+- $f$ está **acotada superiormente** si existe $K$ con $f(x)\le K$ para todo $x$; $K$ es una **cota superior**.
+- $f$ está **acotada inferiormente** si existe $k$ con $f(x)\ge k$; $k$ es una **cota inferior**.
+- $f$ está **acotada** si lo está por arriba y por abajo.
+
+Las cotas no son únicas: si $10$ es cota superior, también lo son $11$, $100$… La cota superior más pequeña es el **supremo**; si además se alcanza, es el **máximo absoluto**.
+
+**Ejemplos.** $\operatorname{sen} x$ está acotada: $-1\le \operatorname{sen}x\le 1$. $x^{2}$ está acotada inferiormente (por $0$) pero no superiormente. $\dfrac{x^{2}}{x^{2}+1}$ está acotada entre $0$ y $1$, y **nunca alcanza el 1**: tiene supremo pero no máximo.
+
+## Simulador 12 · Cotas, supremo y máximo
+
+```{ojs}
+//| echo: false
+viewof A12_txt = Inputs.text({label: "f(x) =", value: "x^2/(x^2 + 1)", width: 440,
+  placeholder: "sin(x)  ·  x^2  ·  1/(1 + x^2)  ·  x^3 - 3x", submit: false})
+viewof A12_a = Inputs.range([-10, 0], {value: -6, step: 0.5, label: "Intervalo: extremo a"})
+viewof A12_b = Inputs.range([0, 10], {value: 6, step: 0.5, label: "Intervalo: extremo b"})
+viewof A12_K = Inputs.range([-6, 10], {value: 1, step: 0.1, label: "Cota de prueba K"})
+```
+
+```{ojs}
+//| echo: false
+A12_f = motor.fun(A12_txt)
+A12_c = motor.cotas(A12_f, A12_a, A12_b)
+A12_esCota = A12_c.mx <= A12_K + 1e-9
+
+A12_plot = lienzo([
+  Plot.rectY([{x1: A12_a, x2: A12_b}], {x1: "x1", x2: "x2", y1: -12, y2: 12, fill: "#e5e7eb", fillOpacity: 0.5}),
+  ...trazos(motor.tramos(A12_f, A12_a, A12_b)),
+  Plot.ruleY([A12_K], {stroke: A12_esCota ? "#059669" : "#dc2626", strokeWidth: 2.5, strokeDasharray: "6,4"}),
+  Plot.ruleY([A12_c.mx], {stroke: "#7c3aed", strokeDasharray: "2,3"}),
+  Plot.ruleY([A12_c.mn], {stroke: "#7c3aed", strokeDasharray: "2,3"}),
+  Plot.dot([{x: A12_c.xmx, y: A12_c.mx}, {x: A12_c.xmn, y: A12_c.mn}], {x: "x", y: "y", fill: "#7c3aed", r: 6})
+], [-12, 12], [-12, 12])
+
+A12_txt2 = md`En el intervalo [${fm(A12_a)}, ${fm(A12_b)}]:
+
+- valor **mayor** alcanzado: ${fm(A12_c.mx)} en x = ${fm(A12_c.xmx)} → candidato a **máximo absoluto**
+- valor **menor** alcanzado: ${fm(A12_c.mn)} en x = ${fm(A12_c.xmn)} → candidato a **mínimo absoluto**
+- La recta K = ${fm(A12_K)} ${A12_esCota ? "✅ **es cota superior**: toda la gráfica queda por debajo (o justo encima)." : "❌ **no es cota superior**: parte de la gráfica la supera."}
+
+Sube K poco a poco hasta que se vuelva verde: el primer valor que funciona es el **supremo**. Si además la gráfica lo toca, es el **máximo**.`
+```
+
+# Tasa de variación media
+
+Antes de las derivadas, esta es la herramienta para medir **cuánto cambia** una función.
+
+**Definición.** La tasa de variación media de $f$ en $[a,b]$ es
+
+$$\operatorname{TVM}[a,b]=\frac{f(b)-f(a)}{b-a}$$
+
+y coincide con la **pendiente de la recta secante** que pasa por $(a,f(a))$ y $(b,f(b))$.
+
+**Ejemplo resuelto.** El número de socios de un club sigue $S(t)=t^{2}+10t+50$ ($t$ en años). Entre $t=1$ y $t=4$:
+$$\operatorname{TVM}[1,4]=\frac{S(4)-S(1)}{4-1}=\frac{(16+40+50)-(1+10+50)}{3}=\frac{106-61}{3}=15$$
+
+Interpretación: en ese periodo el club creció **una media de 15 socios por año**. Ojo: es una media, no un ritmo constante; entre $t=3$ y $t=4$ el crecimiento real es de $17$ socios.
+
+## Simulador 13 · Secante, TVM y el paso al límite
+
+```{ojs}
+//| echo: false
+viewof A13_txt = Inputs.text({label: "f(x) =", value: "x^2 + 10x + 50", width: 430,
+  placeholder: "x^2  ·  1000*1.03^x  ·  sqrt(x)  ·  x^3 - 3x", submit: false})
+viewof A13_a = Inputs.range([-6, 6], {value: 1, step: 0.1, label: "a"})
+viewof A13_b = Inputs.range([-6, 6], {value: 4, step: 0.1, label: "b"})
+```
+
+```{ojs}
+//| echo: false
+A13_f = motor.fun(A13_txt)
+A13_tvm = (A13_f(A13_b) - A13_f(A13_a)) / (A13_b - A13_a)
+A13_esc = motor.cotas(A13_f, Math.min(A13_a, A13_b) - 1, Math.max(A13_a, A13_b) + 1)
+
+A13_plot = lienzo([
+  ...trazos(motor.tramos(A13_f, -7, 7)),
+  trazo(motor.malla(x => A13_f(A13_a) + A13_tvm * (x - A13_a), -7, 7), "#dc2626", 2, "6,4"),
+  Plot.link([{x1: A13_a, y1: A13_f(A13_a), x2: A13_b, y2: A13_f(A13_a)},
+             {x1: A13_b, y1: A13_f(A13_a), x2: A13_b, y2: A13_f(A13_b)}],
+    {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#059669", strokeWidth: 2}),
+  Plot.dot([{x: A13_a, y: A13_f(A13_a)}, {x: A13_b, y: A13_f(A13_b)}], {x: "x", y: "y", fill: "#dc2626", r: 6})
+], [-7, 7], [A13_esc.mn - 3, A13_esc.mx + 3])
+
+A13_txt2 = md`TVM[${fm(A13_a)}, ${fm(A13_b)}] = (f(${fm(A13_b)}) − f(${fm(A13_a)}))/(${fm(A13_b)} − ${fm(A13_a)}) = (${fm(A13_f(A13_b))} − ${fm(A13_f(A13_a))})/${fm(A13_b - A13_a)} = **${fm(A13_tvm)}**
+
+Los cateto verdes son Δx = ${fm(A13_b - A13_a)} y Δy = ${fm(A13_f(A13_b) - A13_f(A13_a))}: la TVM es su cociente, o sea **la pendiente de la secante roja**.
+
+🔭 Acerca b hacia a lo más que puedas. La secante se va pareciendo a la **tangente** y la TVM se acerca a ${fm(motor.d1(A13_f)(A13_a))}, que es la **derivada** en a. Acabas de asomarte al tema 7.`
+```
+
+# Curvatura: cóncava y convexa
+
+**Idea gráfica.** Una función es **convexa** ($\cup$) en un intervalo si el segmento que une dos puntos cualesquiera de su gráfica queda **por encima** de la curva. Es **cóncava** ($\cap$) si queda por debajo. Los puntos donde cambia la curvatura son los **puntos de inflexión**.
+
+::: {.callout-warning}
+## Aviso de vocabulario
+Hay libros que intercambian los nombres de cóncava y convexa. En estos apuntes usamos: **convexa = $\cup$** (como un vaso que recoge agua), **cóncava = $\cap$**. Lo importante es la forma, no la etiqueta; en el examen dibuja $\cup$ o $\cap$ y no habrá dudas.
+:::
+
+## Simulador 14 · La cuerda que delata la curvatura
+
+```{ojs}
+//| echo: false
+viewof A14_txt = Inputs.text({label: "f(x) =", value: "x^3 - 3x", width: 430,
+  placeholder: "x^2  ·  -x^2  ·  x^4 - 4x^2  ·  exp(x)  ·  log(x)", submit: false})
+viewof A14_p = Inputs.range([-5, 5], {value: -2.5, step: 0.1, label: "Punto p de la cuerda"})
+viewof A14_q = Inputs.range([-5, 5], {value: 0.5, step: 0.1, label: "Punto q de la cuerda"})
+```
+
+```{ojs}
+//| echo: false
+A14_f = motor.fun(A14_txt)
+A14_cur = motor.signoIntervalos(motor.d2(A14_f), -6, 6)
+A14_infl = motor.ceros(motor.d2(A14_f), -6, 6, 900)
+A14_esc = motor.cotas(A14_f, -6, 6)
+A14_medio = (A14_p + A14_q) / 2
+A14_cuerda = (A14_f(A14_p) + A14_f(A14_q)) / 2
+
+A14_plot = lienzo([
+  Plot.rectY(A14_cur.filter(s => s[2] > 0).map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -30, y2: 30, fill: "#2563eb", fillOpacity: 0.09}),
+  Plot.rectY(A14_cur.filter(s => s[2] < 0).map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -30, y2: 30, fill: "#f59e0b", fillOpacity: 0.12}),
+  ...trazos(motor.tramos(A14_f, -6, 6)),
+  Plot.link([{x1: A14_p, y1: A14_f(A14_p), x2: A14_q, y2: A14_f(A14_q)}],
+    {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#dc2626", strokeWidth: 2.5}),
+  Plot.dot([{x: A14_p, y: A14_f(A14_p)}, {x: A14_q, y: A14_f(A14_q)}], {x: "x", y: "y", fill: "#dc2626", r: 5}),
+  Plot.dot([{x: A14_medio, y: A14_cuerda}, {x: A14_medio, y: A14_f(A14_medio)}], {x: "x", y: "y", fill: "#111", r: 4}),
+  Plot.dot(A14_infl.map(x => ({x, y: A14_f(x)})), {x: "x", y: "y", stroke: "#7c3aed", fill: "white", r: 7, strokeWidth: 2.5})
+], [-6, 6], [A14_esc.mn - 2, A14_esc.mx + 2])
+
+A14_txt2 = md`- 🟦 **Convexa (∪)** en: ${A14_cur.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+- 🟧 **Cóncava (∩)** en: ${A14_cur.filter(s => s[2] < 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+- ⚪ **Puntos de inflexión** (círculos violeta): ${A14_infl.length ? A14_infl.map(x => `x = ${fm(x)}`).join(" · ") : "ninguno"}
+
+En el punto medio de la cuerda: la cuerda vale ${fm(A14_cuerda)} y la función ${fm(A14_f(A14_medio))}. ${A14_cuerda > A14_f(A14_medio) ? "La cuerda va **por encima** → en este tramo la función es **convexa (∪)**." : A14_cuerda < A14_f(A14_medio) ? "La cuerda va **por debajo** → en este tramo la función es **cóncava (∩)**." : "Cuerda y función coinciden: tramo recto."}
+
+Prueba a poner los dos extremos de la cuerda **a los lados de un punto de inflexión**: ahí el criterio de la cuerda se vuelve confuso, y por eso la curvatura hay que estudiarla **tramo a tramo**.`
+```
+
+# Resumen de la Parte 1
+
+| Característica | Qué se pregunta | Cómo se obtiene |
+|---|---|---|
+| Dominio | ¿qué $x$ tienen imagen? | evitar división por 0, raíz par negativa y $\log\le0$ |
+| Recorrido | ¿qué $y$ se alcanzan? | propiedades, inversa o rectas horizontales |
+| Cortes con los ejes | $(0,f(0))$ y ceros | dar $x=0$; resolver $f(x)=0$ |
+| Signo | ¿dónde es $+$ y dónde $-$? | ceros + puntos fuera del dominio + tabla |
+| Simetría | par, impar o ninguna | comparar $f(-x)$ con $f(x)$ y $-f(x)$ |
+| Periodicidad | ¿se repite? | buscar $T$ con $f(x+T)=f(x)$ |
+| Continuidad | ¿se dibuja sin levantar el lápiz? | evitable / salto finito / salto infinito |
+| Monotonía | ¿crece o decrece? | comparar valores; luego, signo de $f'$ |
+| Extremos | máximos y mínimos | donde cambia la monotonía |
+| Acotación | ¿hay techo y suelo? | buscar cotas $k\le f(x)\le K$ |
+| TVM | ¿a qué ritmo cambia? | $\dfrac{f(b)-f(a)}{b-a}$ |
+| Curvatura | ¿$\cup$ o $\cap$? | posición de la cuerda; luego, signo de $f''$ |
+| Inyectividad | ¿tiene inversa? | test de la recta horizontal |
+
+# Actividades de la Parte 1
+
+1. Calcula la distancia entre $(-3,4)$ y $(5,-2)$ y di en qué cuadrante está cada punto.
+2. Escribe con notación de intervalos: "los números mayores que $-2$ y menores o iguales que $7$". ¿Cuál es su longitud?
+3. Justifica por qué $x^{2}+y^{2}=25$ no define una función, dando un valor de $x$ con dos imágenes.
+4. Halla el dominio de: a) $\dfrac{2x-5}{x^{2}-3x}$ b) $\sqrt{16-x^{2}}$ c) $\log(x^{2}-1)$ d) $\dfrac{\sqrt{x+4}}{x^{2}-4}$ e) $\sqrt[3]{x-2}$
+5. Estudia la simetría de: a) $x^{4}-2x^{2}$ b) $\dfrac{x}{x^{2}+1}$ c) $x^{3}+x^{2}$
+6. Halla los cortes con los ejes y la tabla de signos de $f(x)=\dfrac{x^{2}-4}{x-1}$.
+7. Di si $f(x)=\dfrac{3x-1}{2}$ es inyectiva, suprayectiva y biyectiva, y justifica cada respuesta con el test gráfico.
+8. La población de un pueblo pasó de $2\,400$ habitantes en 2015 a $3\,150$ en 2023. Calcula la TVM e interpreta el resultado con unidades.
+9. Dibuja a mano una función continua en $\mathbb{R}$, acotada entre $-2$ y $5$, con un máximo relativo que no sea absoluto.
+10. Clasifica la discontinuidad de $f(x)=\dfrac{x^{2}-9}{x-3}$ en $x=3$ y explica cómo la evitarías.
+
+::: {.callout-note}
+## Continúa en la Parte 2
+Catálogo de familias de funciones (polinómicas, racionales, irracionales, exponenciales, logarítmicas, trigonométricas, a trozos), álgebra de funciones (operaciones, composición, inversa), interpolación y extrapolación, transformaciones, oferta y demanda, teoremas de Bolzano y Weierstrass, y curiosidades.
+:::

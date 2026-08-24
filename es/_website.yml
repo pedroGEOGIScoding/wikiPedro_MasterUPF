@@ -191,6 +191,11 @@ website:
           - master-upf/recursos/entrenador_fracciones_algebraicas.qmd
           - master-upf/recursos/entrenador_radicales.qmd
           - master-upf/recursos/entrenador_logaritmos_neperianos.qmd
+        - text: "---"
+        - section: "1 Batx Mates CCSS"
+          contents:
+          - master-upf/recursos/1-BatxMatesCCSS/funciones-parte1.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones-parte2.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
