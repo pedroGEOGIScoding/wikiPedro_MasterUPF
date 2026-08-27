@@ -19,7 +19,7 @@ lightbox:
 format: html
 ---
 
-{{< include funciones-motor.qmd >}}
+{{< include _funciones-motor.qmd >}}
 
 ::: {.callout-note}
 ## De dónde venimos y a dónde vamos
@@ -97,7 +97,7 @@ B15_plot = lienzo([
   ...(B15_grado === 2 && B15_a2 !== 0 ? [Plot.ruleX([-B15_a1 / (2 * B15_a2)], {stroke: "#7c3aed", strokeDasharray: "3,3"})] : [])
 ], [-10, 10], [Math.max(B15_esc.mn - 3, -40), Math.min(B15_esc.mx + 3, 40)])
 
-B15_txt = md`**Grado ${B15_grado}** · cortes con OX: ${B15_ceros.length ? B15_ceros.map(fm).join(" · ") : "ninguno"} (como máximo podrían ser ${B15_grado}) · corte con OY: (0; ${fm(B15_a0)}) · extremos relativos: ${B15_ext.length} (como máximo ${B15_grado - 1})
+B15_txt = mdx`**Grado ${B15_grado}** · cortes con OX: ${B15_ceros.length ? B15_ceros.map(fm).join(" · ") : "ninguno"} (como máximo podrían ser ${B15_grado}) · corte con OY: (0; ${fm(B15_a0)}) · extremos relativos: ${B15_ext.length} (como máximo ${B15_grado - 1})
 
 ${B15_grado === 2 && B15_a2 !== 0
   ? `Vértice: x = −b/2a = −${fm(B15_a1)}/(2·${fm(B15_a2)}) = **${fm(-B15_a1 / (2 * B15_a2))}**, y = **${fm(B15_f(-B15_a1 / (2 * B15_a2)))}**. Δ = ${fm(B15_a1 ** 2 - 4 * B15_a2 * B15_a0)} → ${B15_a1 ** 2 - 4 * B15_a2 * B15_a0 > 0 ? "dos cortes" : B15_a1 ** 2 - 4 * B15_a2 * B15_a0 === 0 ? "un corte (tangente al eje)" : "ningún corte con OX"}. Recorrido: ${B15_a2 > 0 ? `[${fm(B15_f(-B15_a1 / (2 * B15_a2)))}, +∞)` : `(−∞, ${fm(B15_f(-B15_a1 / (2 * B15_a2)))}]`}.`
@@ -145,14 +145,14 @@ B16_plot = lienzo([
   Plot.ruleY(B16_ah, {stroke: "#059669", strokeDasharray: "6,4", strokeWidth: 2})
 ], [-14, 14], [-14, 14])
 
-B16_txt2 = md`- **Dominio:** ${fmIv(B16_dom)}
+B16_txt2 = mdx`- **Dominio:** ${fmIv(B16_dom)}
 - **Asíntotas verticales** (rojo): ${B16_av.length ? B16_av.map(v => `x = ${fm(v)}`).join(" · ") : "ninguna"}
 - **Asíntota horizontal** (verde): ${B16_ah.length ? `y = ${fm(B16_ah[0])}` : "no hay (la función no se estabiliza; puede tener asíntota oblicua)"}
 
 ${B16_modo === "hip"
   ? (B16_c === 0 ? "Con c = 0 el denominador es constante: **ya no es hipérbola, es una recta**." 
     : `Es la hipérbola k/x trasladada: cociente = ${fm(B16_a / B16_c)} y resto sobre (x ${B16_d >= 0 ? "+ " + fm(B16_d / B16_c) : "− " + fm(-B16_d / B16_c)}).`)
-  : "Prueba `(x^2+1)/x`: no tiene asíntota horizontal porque el numerador tiene grado mayor. Ahí aparece una **asíntota oblicua**, que estudiarás con los límites."}`
+  : "Prueba **(x^2+1)/x**: no tiene asíntota horizontal porque el numerador tiene grado mayor. Ahí aparece una **asíntota oblicua**, que estudiarás con los límites."}`
 ```
 
 # Funciones irracionales (con radicales)
@@ -191,7 +191,7 @@ B17_plot = lienzo([
   Plot.rectY(B17_dom.map(([x1, x2]) => ({x1, x2})), {x1: "x1", x2: "x2", y1: -10, y2: 10, fill: "#059669", fillOpacity: 0.07})
 ], [-12, 12], [-10, 10])
 
-B17_txt2 = md`**${B17_ind === 2 ? "√" : "∛"}(${B17_txt})** · Dominio: ${fmIv(B17_dom)} · Recorrido: ${fmIv(motor.recorrido(B17_f))}
+B17_txt2 = mdx`**${B17_ind === 2 ? "√" : "∛"}(${B17_txt})** · Dominio: ${fmIv(B17_dom)} · Recorrido: ${fmIv(motor.recorrido(B17_f))}
 
 La curva **gris** es el radicando. ${B17_ind === 2
   ? "Con índice par la función azul solo existe donde la gris está **sobre el eje X** (zona verde) y siempre es **positiva**."
@@ -242,7 +242,7 @@ B18_plot = lienzo([
   etiqueta(0, 1, "(0; 1)"), etiqueta(1, B18_base, `(1; ${fm(B18_base)})`)
 ], [-5, 5], [-1, 10])
 
-B18_txt = md`- Base a = ${fm(B18_base)} → **${B18_base > 1 ? "creciente" : B18_base < 1 ? "decreciente" : "constante"}**; siempre positiva; pasa por (0; 1) y (1; ${fm(B18_base)}). La naranja es a⁻ˣ.
+B18_txt = mdx`- Base a = ${fm(B18_base)} → **${B18_base > 1 ? "creciente" : B18_base < 1 ? "decreciente" : "constante"}**; siempre positiva; pasa por (0; 1) y (1; ${fm(B18_base)}). La naranja es a⁻ˣ.
 - **Capital final:** ${fm(B18_C0)} · (1 + ${fm(B18_i)}/100)^${B18_t} = **${fm(Math.round(B18_cap * 100) / 100)} €** (intereses: ${fm(Math.round((B18_cap - B18_C0) * 100) / 100)} €).
 - **Duplicación:** t = log 2 / log(1 + i) = **${fm(Math.log(2) / Math.log(1 + B18_i / 100))} años** (la regla del 70 estima 70/${fm(B18_i)} = ${fm(70 / B18_i)}).
 - Ganancia en los 5 **primeros** años: ${fm(Math.round((B18_C0 * (1 + B18_i / 100) ** 5 - B18_C0) * 100) / 100)} € · en los 5 **últimos**: ${fm(Math.round((B18_cap - B18_C0 * (1 + B18_i / 100) ** Math.max(B18_t - 5, 0)) * 100) / 100)} €.`
@@ -293,7 +293,7 @@ B19_plot = lienzo([
   Plot.dot([{x: 1, y: 0}, {x: 0, y: 1}, {x: B19_a, y: 1}, {x: 1, y: B19_a}], {x: "x", y: "y", fill: "#7c3aed", r: 5})
 ], [-6, 6], [-6, 6])
 
-B19_txt = md`**log_${fm(B19_base)}(x)** (naranja) y **${fm(B19_base)}ˣ** (azul) son simétricas respecto a y = x (línea negra).
+B19_txt = mdx`**log_${fm(B19_base)}(x)** (naranja) y **${fm(B19_base)}ˣ** (azul) son simétricas respecto a y = x (línea negra).
 
 - Dominio del logaritmo: (0, +∞) · Recorrido: ℝ · Asíntota vertical x = 0 · **${B19_base > 1 ? "Creciente" : "Decreciente"}**
 - Pasa por (1; 0) y por (${fm(B19_base)}; 1). La exponencial pasa por los puntos intercambiados: (0; 1) y (1; ${fm(B19_base)}).
@@ -333,7 +333,7 @@ B20_plot = lienzo([
   Plot.ruleX(d3.range(-3, 4).map(k => k * B20_T - B20_fase / B20_w), {stroke: "#dc2626", strokeDasharray: "2,4"})
 ], [-10, 10], [-6, 6])
 
-B20_txt = md`**y = ${fm(B20_A)}·${B20_tipo}(${fm(B20_w)}x ${B20_fase >= 0 ? "+ " + fm(B20_fase) : "− " + fm(-B20_fase)})**
+B20_txt = mdx`**y = ${fm(B20_A)}·${B20_tipo}(${fm(B20_w)}x ${B20_fase >= 0 ? "+ " + fm(B20_fase) : "− " + fm(-B20_fase)})**
 
 - Periodo: T = ${B20_tipo === "tan" ? "π/ω" : "2π/ω"} = **${fm(B20_T)}** · ${B20_tipo !== "tan" ? `Recorrido: [−${fm(B20_A)}, ${fm(B20_A)}] (líneas violeta)` : "Recorrido: ℝ, con asíntotas verticales"}
 - Sube ω y el patrón se **comprime**; sube A y se **estira** verticalmente; mueve φ y toda la onda se **desplaza** horizontalmente.`
@@ -408,7 +408,7 @@ B21_plot = {
       Plot.dot([{x: B21_gasto, y: B21_cheque * Math.floor(B21_gasto / B21_tramo)}], {x: "x", y: "y", fill: "#dc2626", r: 7})]});
 }
 
-B21_txt2 = md`${({
+B21_txt2 = mdx`${({
   trozos: "Cada trozo se dibuja **solo en su intervalo**. Punto lleno = valor incluido; hueco = excluido. Sobre cada vertical hay un único punto lleno: sigue siendo una función. En x = −1 hay **salto finito**; en x = 2 es continua.",
   abs: `**|${B21_txt}|** · El valor absoluto **refleja hacia arriba** todo lo que estaba bajo el eje X. Los puntos rojos (donde el interior vale 0) son los **picos** de la gráfica, y en ellos la función es continua pero "pica": no tiene tangente única. Ceros del interior: ${motor.ceros(B21_g, -8, 8).map(fm).join(" · ") || "ninguno"}.`,
   ent: `**R(x) = ${B21_cheque}·E(x/${B21_tramo})** · Gastando **${B21_gasto} €** recibes **${B21_cheque * Math.floor(B21_gasto / B21_tramo)} €**. Prueba ${B21_tramo - 1} € y luego ${B21_tramo} €: **un euro más vale ${B21_cheque} euros**. Ese es el incentivo de salto de toda función escalonada.`
@@ -465,7 +465,7 @@ B22_plot = lienzo([
   Plot.dot([{x: B22_x, y: B22_F(B22_x)}, {x: B22_x, y: B22_G(B22_x)}, {x: B22_x, y: B22_H(B22_x)}], {x: "x", y: "y", fill: "#dc2626", r: 5})
 ], [-10, 10], [-15, 15])
 
-B22_txt = md`**(f ${B22_sim} g)(${fm(B22_x)}) = ${fm(B22_F(B22_x))} ${B22_sim} ${fm(B22_G(B22_x))} = ${fm(B22_H(B22_x))}**
+B22_txt = mdx`**(f ${B22_sim} g)(${fm(B22_x)}) = ${fm(B22_F(B22_x))} ${B22_sim} ${fm(B22_G(B22_x))} = ${fm(B22_H(B22_x))}**
 
 - Dominio de f: ${fmIv(motor.dominio(B22_F))} · Dominio de g: ${fmIv(motor.dominio(B22_G))}
 - Dominio del resultado: ${fmIv(motor.dominio(B22_H))} ${B22_op === "c" ? "→ fíjate en que además se han quitado los **ceros de g**." : "→ es la **intersección** de los dos dominios."}
@@ -517,7 +517,7 @@ B23_plot = lienzo([
   Plot.dot([{x: B23_x, y: B23_FG(B23_x)}, {x: B23_x, y: B23_GF(B23_x)}], {x: "x", y: "y", fill: "#dc2626", r: 5})
 ], [-10, 12], [-12, 12])
 
-B23_txt = md`Azul = **(f ∘ g)(x) = f(g(x))** · Naranja = **(g ∘ f)(x) = g(f(x))** · Grises = f y g originales
+B23_txt = mdx`Azul = **(f ∘ g)(x) = f(g(x))** · Naranja = **(g ∘ f)(x) = g(f(x))** · Grises = f y g originales
 
 Rastro para x = ${fm(B23_x)}:
 
@@ -580,7 +580,7 @@ B24_plot = lienzo([
       Plot.ruleY([9], {stroke: "#7c3aed", strokeDasharray: "4,4"})] : [])
 ], [-6, 6], [-6, 10])
 
-B24_txt = md`**${B24_c.inv}**
+B24_txt = mdx`**${B24_c.inv}**
 
 El punto (${fm(B24_x)}; ${fm(B24_c.f(B24_x))}) de f se convierte en (${fm(B24_c.f(B24_x))}; ${fm(B24_x)}) de f⁻¹: **se intercambian las coordenadas**, y la recta y = x es el espejo.
 
@@ -653,7 +653,7 @@ B25_plot = Plot.plot({width: 680, height: 400, grid: true, marginLeft: 50,
     Plot.dot([{x: B25_t, y: B25_lin(B25_t)}, {x: B25_t, y: B25_cua(B25_t)}], {x: "x", y: "y", fill: "#dc2626", r: 5})
   ]})
 
-B25_txt = md`Parábola ajustada: **p(t) = ${fm(B25_a)}t² + ${fm(B25_b)}t + ${fm(B25_y0)}** · Recta (con los dos primeros datos): **y = ${fm(B25_y0)} + ${fm((B25_y1 - B25_y0) / 20)}t**
+B25_txt = mdx`Parábola ajustada: **p(t) = ${fm(B25_a)}t² + ${fm(B25_b)}t + ${fm(B25_y0)}** · Recta (con los dos primeros datos): **y = ${fm(B25_y0)} + ${fm((B25_y1 - B25_y0) / 20)}t**
 
 En **t = ${B25_t}**: estimación lineal **${fm(B25_lin(B25_t))}**, cuadrática **${fm(B25_cua(B25_t))}**, diferencia **${fm(Math.abs(B25_cua(B25_t) - B25_lin(B25_t)))}**.
 
@@ -699,7 +699,7 @@ B26_plot = lienzo([
   ...trazos(motor.tramos(B26_g, -10, 10, 1600, 30))
 ], [-10, 10], [-10, 12])
 
-B26_txt2 = md`**y = ${B26_abs ? "|" : ""}${fm(B26_A)}·f(x ${B26_h >= 0 ? "− " + fm(B26_h) : "+ " + fm(-B26_h)}) ${B26_v >= 0 ? "+ " + fm(B26_v) : "− " + fm(-B26_v)}${B26_abs ? "|" : ""}** con f(x) = ${B26_txt}
+B26_txt2 = mdx`**y = ${B26_abs ? "|" : ""}${fm(B26_A)}·f(x ${B26_h >= 0 ? "− " + fm(B26_h) : "+ " + fm(-B26_h)}) ${B26_v >= 0 ? "+ " + fm(B26_v) : "− " + fm(-B26_v)}${B26_abs ? "|" : ""}** con f(x) = ${B26_txt}
 
 Gris = original, azul = transformada. Comprueba la trampa clásica: con **k = 2** la gráfica se va a la **derecha**, aunque en la fórmula aparezca un menos. Con **A negativo** la gráfica se **da la vuelta**.`
 ```
@@ -750,7 +750,7 @@ B27_plot = Plot.plot({width: 680, height: 420, grid: true, marginLeft: 50,
     Plot.dot([{x: B27_p, y: B27_D(B27_p)}, {x: B27_p, y: B27_S(B27_p)}], {x: "x", y: "y", fill: "#111", r: 5})
   ]})
 
-B27_txt = md`**Demanda** D(p) = ${fm(B27_d0)} − ${fm(B27_dm)}p (roja, decreciente) · **Oferta** S(p) = ${fm(B27_s0)} + ${fm(B27_sm)}p (azul, creciente)
+B27_txt = mdx`**Demanda** D(p) = ${fm(B27_d0)} − ${fm(B27_dm)}p (roja, decreciente) · **Oferta** S(p) = ${fm(B27_s0)} + ${fm(B27_sm)}p (azul, creciente)
 
 Equilibrio: ${fm(B27_d0)} − ${fm(B27_dm)}p = ${fm(B27_s0)} + ${fm(B27_sm)}p → p* = **${fm(B27_pe)} €**, q* = **${fm(B27_qe)} miles de unidades**.
 
@@ -799,7 +799,7 @@ B28_plot = lienzo([
   Plot.ruleY([B28_c.mx, B28_c.mn], {stroke: "#7c3aed", strokeDasharray: "2,4"})
 ], [-9, 9], [-15, 15])
 
-B28_txt2 = md`**Bolzano.** f(${fm(B28_a)}) = ${fm(B28_fa)} y f(${fm(B28_b)}) = ${fm(B28_fb)} → producto ${fm(B28_fa * B28_fb)}.
+B28_txt2 = mdx`**Bolzano.** f(${fm(B28_a)}) = ${fm(B28_fa)} y f(${fm(B28_b)}) = ${fm(B28_fb)} → producto ${fm(B28_fa * B28_fb)}.
 ${!B28_cont
   ? "❌ La función **no es continua** en todo el intervalo (hay puntos fuera del dominio), así que el teorema **no se puede aplicar**: aunque haya cambio de signo, no garantiza nada."
   : B28_fa * B28_fb < 0
@@ -808,7 +808,7 @@ ${!B28_cont
 
 **Weierstrass.** ${B28_cont
   ? `✅ Continua en el cerrado [${fm(Math.min(B28_a, B28_b))}, ${fm(Math.max(B28_a, B28_b))}] → alcanza **máximo absoluto ${fm(B28_c.mx)}** (en x = ${fm(B28_c.xmx)}) y **mínimo absoluto ${fm(B28_c.mn)}** (en x = ${fm(B28_c.xmn)}), puntos violeta.`
-  : "❌ Sin continuidad en todo el cerrado no hay garantía: prueba `1/x` con a = −1 y b = 1 y verás que la función se dispara sin alcanzar máximo ni mínimo."}
+  : "❌ Sin continuidad en todo el cerrado no hay garantía: prueba **1/x** con **a = −1** y **b = 1** y verás que la función se dispara sin alcanzar máximo ni mínimo."}
 
 🔬 Método de bisección: si Bolzano se cumple, parte el intervalo por la mitad, mira dónde sigue habiendo cambio de signo y repite. Así calcula las raíces tu calculadora.`
 ```
@@ -847,7 +847,7 @@ B29_plot = Plot.plot({width: 560, height: 560, grid: true, marginLeft: 50, aspec
     Plot.dot([{x: B29_x0, y: B29_y0}], {x: "x", y: "y", fill: "#dc2626", r: 5}),
     ...(B29_mitad === "todo" ? [Plot.ruleX([B29_x0], {stroke: "#dc2626", strokeDasharray: "4,4"})] : [])]})
 
-B29_txt = md`${B29_tipo === "cir"
+B29_txt = mdx`${B29_tipo === "cir"
   ? `**(x − ${fm(B29_x0)})² + (y − ${fm(B29_y0)})² = ${fm(B29_r ** 2)}** · centro (${fm(B29_x0)}; ${fm(B29_y0)}), radio ${fm(B29_r)}`
   : `**(x − ${fm(B29_x0)})²/${fm(B29_A ** 2)} + (y − ${fm(B29_y0)})²/${fm(B29_B ** 2)} = 1** · semiejes a = ${fm(B29_A)} y b = ${fm(B29_B)}`}
 

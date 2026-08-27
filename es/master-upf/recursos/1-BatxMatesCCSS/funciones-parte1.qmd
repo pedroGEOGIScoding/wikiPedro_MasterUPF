@@ -19,7 +19,7 @@ lightbox:
 format: html
 ---
 
-{{< include funciones-motor.qmd >}}
+{{< include _funciones-motor.qmd >}}
 
 ::: {.callout-note}
 ## Qué vas a aprender en esta primera parte
@@ -97,7 +97,7 @@ A1_plot = {
   return lienzo(m, [-9, 9], [-9, 9]);
 }
 
-A1_txt = md`P₁ está en el cuadrante **${A1_cuad(A1_x1, A1_y1)}** y P₂ en el **${A1_cuad(A1_x2, A1_y2)}**.
+A1_txt = mdx`P₁ está en el cuadrante **${A1_cuad(A1_x1, A1_y1)}** y P₂ en el **${A1_cuad(A1_x2, A1_y2)}**.
 
 d(P₁, P₂) = √((${fm(A1_x2)} − ${fm(A1_x1)})² + (${fm(A1_y2)} − ${fm(A1_y1)})²) = √(${fm((A1_x2 - A1_x1) ** 2)} + ${fm((A1_y2 - A1_y1) ** 2)}) = √${fm((A1_x2 - A1_x1) ** 2 + (A1_y2 - A1_y1) ** 2)} = **${fm(A1_d)}**`
 ```
@@ -170,7 +170,7 @@ A2_plot = Plot.plot({width: 680, height: 150, marginLeft: 40,
     Plot.text([{x: A2_p, y: 0.8, t: `p = ${fm(A2_p)}`}], {x: "x", y: "y", text: "t", fill: "#111", fontWeight: "bold"})
   ]})
 
-A2_txt = md`Intervalo **${A2_info.txt}** · longitud **${A2_info.longitud}** · punto relleno = extremo que entra, punto hueco = extremo que no entra.
+A2_txt = mdx`Intervalo **${A2_info.txt}** · longitud **${A2_info.longitud}** · punto relleno = extremo que entra, punto hueco = extremo que no entra.
 
 **p = ${fm(A2_p)} ${A2_info.dentro ? "✅ SÍ pertenece" : "❌ NO pertenece"} al intervalo.**`
 ```
@@ -235,7 +235,7 @@ A3_plot = {
 lienzoPunto = (x, y) => [Plot.dot([{x, y}], {x: "x", y: "y", fill: "#7c3aed", r: 6}),
   etiqueta(x, y, `(0; ${fm(y)})`, "#7c3aed")]
 
-A3_txt = md`**y = ${fm(A3_m)}x ${A3_n >= 0 ? "+ " + fm(A3_n) : "− " + fm(-A3_n)}**
+A3_txt = mdx`**y = ${fm(A3_m)}x ${A3_n >= 0 ? "+ " + fm(A3_n) : "− " + fm(-A3_n)}**
 
 - Corta al eje Y en (0; ${fm(A3_n)}) y al eje X en x = ${A3_m !== 0 ? fm(-A3_n / A3_m) : "no corta (recta horizontal)"}.
 - Escalones verdes: por cada **Δx = ${A3_paso}** la y varía **Δy = ${fm(A3_m * A3_paso)}** → m = Δy/Δx = ${fm(A3_m * A3_paso)}/${A3_paso} = **${fm(A3_m)}**.
@@ -334,7 +334,7 @@ A4_plot = lienzo([
   Plot.text(A4_cortes.map(y => ({x: A4_pos, y, t: `y = ${fm(y)}`})), {x: "x", y: "y", text: "t", dx: 45, fill: "#dc2626", fontWeight: "bold"})
 ], [-9, 9], [-9, 9])
 
-A4_txt2 = md`### ${A4_curva.et}
+A4_txt2 = mdx`### ${A4_curva.et}
 
 **Cortes en x = ${fm(A4_pos)}: ${A4_cortes.length}** ${A4_cortes.length ? "→ y = " + A4_cortes.map(fm).join(" , ") : "(aquí la recta no toca la curva: ese x no tiene imagen)"}
 
@@ -404,7 +404,7 @@ A5_plot = lienzo([
   Plot.text(A5_pre.map(x => ({x, y: A5_h, t: `x = ${fm(x)}`})), {x: "x", y: "y", text: "t", dy: 16, fill: "#059669", fontWeight: "bold"})
 ], [-9, 9], [-9, 9])
 
-A5_txt2 = md`**Preimágenes de y = ${fm(A5_h)}: ${A5_pre.length}** ${A5_pre.length ? "→ x = " + A5_pre.map(fm).join(" , ") : "→ ese valor de y NO se alcanza"}
+A5_txt2 = mdx`**Preimágenes de y = ${fm(A5_h)}: ${A5_pre.length}** ${A5_pre.length ? "→ x = " + A5_pre.map(fm).join(" , ") : "→ ese valor de y NO se alcanza"}
 
 Diagnóstico del barrido completo en y ∈ [−8, 8]:
 
@@ -511,7 +511,7 @@ A6_plot = lienzo([
   Plot.dot(A6_caso.pts.filter(Number.isFinite).map(x => ({x, y: 0})), {x: "x", y: "y", stroke: "#dc2626", fill: "white", r: 5, strokeWidth: 2})
 ], [-12, 12], [-10, 10])
 
-A6_txt2 = md`### ${A6_caso.et}
+A6_txt2 = mdx`### ${A6_caso.et}
 
 ${A6_caso.regla}
 
@@ -564,7 +564,7 @@ A7_plot = lienzo([
   Plot.dot(A7_pre.map(x => ({x, y: A7_h})), {x: "x", y: "y", fill: "#059669", r: 6})
 ], [-12, 12], [-12, 12])
 
-A7_txt2 = md`**Dominio:** ${fmIv(motor.dominio(A7_f))}
+A7_txt2 = mdx`**Dominio:** ${fmIv(motor.dominio(A7_f))}
 
 **Recorrido (franja violeta, estimado en x ∈ [−12, 12]):** ${fmIv(A7_rec)}
 
@@ -638,7 +638,7 @@ A8_plot = lienzo([
       etiqueta(0, A8_f0, `(0; ${fm(A8_f0)})`, "#7c3aed")] : [])
 ], [-12, 12], [-10, 10])
 
-A8_txt2 = md`- **Corte con OY:** ${Number.isFinite(A8_f0) ? `(0; ${fm(A8_f0)})` : "no hay, porque 0 no está en el dominio"}
+A8_txt2 = mdx`- **Corte con OY:** ${Number.isFinite(A8_f0) ? `(0; ${fm(A8_f0)})` : "no hay, porque 0 no está en el dominio"}
 - **Ceros (cortes con OX):** ${A8_ceros.length ? A8_ceros.map(z => `x = ${fm(z)}`).join(" · ") : "ninguno en [−12, 12]"}
 - **Signo:** ${A8_signos.map(([p, q, s]) => `${s > 0 ? "➕" : s < 0 ? "➖" : "·"} en (${fm(p)}, ${fm(q)})`).join("  |  ")}
 
@@ -703,7 +703,7 @@ A9_plot = {
   return lienzo(m, [-9, 9], [-12, 12]);
 }
 
-A9_txt2 = md`${A9_tipo === "sim"
+A9_txt2 = mdx`${A9_tipo === "sim"
   ? `**f(x) = ${A9_txt} → ${A9_clase}.**  Azul = f, naranja = f(−x), verde = −f(x). Si azul y naranja coinciden, es par; si azul y verde coinciden, es impar.`
   : `Periodo **T = ${fm(A9_T)}**: f(x + ${fm(A9_T)}) = f(x). Conociendo la función en un solo intervalo de longitud ${fm(A9_T)} (entre dos líneas rojas) la conoces entera.`}`
 ```
@@ -764,7 +764,7 @@ A10_plot = {
   return lienzo(m, [-8, 8], [-8, 8]);
 }
 
-A10_txt = md`${({
+A10_txt = mdx`${({
   ev: `**Discontinuidad evitable en x = ${fm(A10_c)}.** Al acercarnos por los dos lados la función tiende a ${fm(A10_lim)} (círculo hueco), pero el valor asignado es ${fm(A10_val)}. Se llama *evitable* porque bastaría **redefinir f(c) = ${fm(A10_lim)}** para cerrar el agujero. Prueba a mover el valor asignado hasta ${fm(A10_lim)}: la discontinuidad desaparece.`,
   salto: `**Salto finito de ${fm(A10_salto)} unidades en x = ${fm(A10_c)}.** Por la izquierda la función tiende a ${fm(A10_lim)}; por la derecha, a ${fm(A10_lim + A10_salto)}. Ningún valor que asignemos a f(c) arregla esto: hay que levantar el lápiz. Con salto 0 recuperas la continuidad.`,
   inf: `**Salto infinito (asíntota vertical) en x = ${fm(A10_c)}.** La función crece sin límite a un lado y decrece sin límite al otro. El punto ni siquiera está en el dominio.`,
@@ -819,7 +819,7 @@ A11_plot = lienzo([
     {x: "x", y: "y", text: "t", dy: -14, fontWeight: "bold"})
 ], [-A11_rango, A11_rango], [A11_cot.mn - 2, A11_cot.mx + 2])
 
-A11_txt2 = md`- 🟩 **Creciente** en: ${A11_mon.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+A11_txt2 = mdx`- 🟩 **Creciente** en: ${A11_mon.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
 - 🟧 **Decreciente** en: ${A11_mon.filter(s => s[2] < 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
 - **Extremos relativos detectados:** ${A11_ext.length ? A11_ext.map(e => `${e.tipo} en (${fm(e.x)}; ${fm(e.y)})`).join(" · ") : "ninguno en esta ventana"}
 - **En la ventana [−${fm(A11_rango)}, ${fm(A11_rango)}]:** valor mayor ${fm(A11_cot.mx)} (en x = ${fm(A11_cot.xmx)}), valor menor ${fm(A11_cot.mn)} (en x = ${fm(A11_cot.xmn)}).
@@ -870,7 +870,7 @@ A12_plot = lienzo([
   Plot.dot([{x: A12_c.xmx, y: A12_c.mx}, {x: A12_c.xmn, y: A12_c.mn}], {x: "x", y: "y", fill: "#7c3aed", r: 6})
 ], [-12, 12], [-12, 12])
 
-A12_txt2 = md`En el intervalo [${fm(A12_a)}, ${fm(A12_b)}]:
+A12_txt2 = mdx`En el intervalo [${fm(A12_a)}, ${fm(A12_b)}]:
 
 - valor **mayor** alcanzado: ${fm(A12_c.mx)} en x = ${fm(A12_c.xmx)} → candidato a **máximo absoluto**
 - valor **menor** alcanzado: ${fm(A12_c.mn)} en x = ${fm(A12_c.xmn)} → candidato a **mínimo absoluto**
@@ -919,7 +919,7 @@ A13_plot = lienzo([
   Plot.dot([{x: A13_a, y: A13_f(A13_a)}, {x: A13_b, y: A13_f(A13_b)}], {x: "x", y: "y", fill: "#dc2626", r: 6})
 ], [-7, 7], [A13_esc.mn - 3, A13_esc.mx + 3])
 
-A13_txt2 = md`TVM[${fm(A13_a)}, ${fm(A13_b)}] = (f(${fm(A13_b)}) − f(${fm(A13_a)}))/(${fm(A13_b)} − ${fm(A13_a)}) = (${fm(A13_f(A13_b))} − ${fm(A13_f(A13_a))})/${fm(A13_b - A13_a)} = **${fm(A13_tvm)}**
+A13_txt2 = mdx`TVM[${fm(A13_a)}, ${fm(A13_b)}] = (f(${fm(A13_b)}) − f(${fm(A13_a)}))/(${fm(A13_b)} − ${fm(A13_a)}) = (${fm(A13_f(A13_b))} − ${fm(A13_f(A13_a))})/${fm(A13_b - A13_a)} = **${fm(A13_tvm)}**
 
 Los cateto verdes son Δx = ${fm(A13_b - A13_a)} y Δy = ${fm(A13_f(A13_b) - A13_f(A13_a))}: la TVM es su cociente, o sea **la pendiente de la secante roja**.
 
@@ -965,7 +965,7 @@ A14_plot = lienzo([
   Plot.dot(A14_infl.map(x => ({x, y: A14_f(x)})), {x: "x", y: "y", stroke: "#7c3aed", fill: "white", r: 7, strokeWidth: 2.5})
 ], [-6, 6], [A14_esc.mn - 2, A14_esc.mx + 2])
 
-A14_txt2 = md`- 🟦 **Convexa (∪)** en: ${A14_cur.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
+A14_txt2 = mdx`- 🟦 **Convexa (∪)** en: ${A14_cur.filter(s => s[2] > 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
 - 🟧 **Cóncava (∩)** en: ${A14_cur.filter(s => s[2] < 0).map(([p, q]) => `(${fm(p)}, ${fm(q)})`).join(" ∪ ") || "ningún tramo"}
 - ⚪ **Puntos de inflexión** (círculos violeta): ${A14_infl.length ? A14_infl.map(x => `x = ${fm(x)}`).join(" · ") : "ninguno"}
 

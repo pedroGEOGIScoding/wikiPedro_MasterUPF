@@ -19,7 +19,7 @@ lightbox:
 format: html
 ---
 
-{{< include reales-motor.qmd >}}
+{{< include _reales-motor.qmd >}}
 
 ::: {.callout-note}
 ## De qué va esta parte
@@ -82,7 +82,7 @@ S1_plot = {
   ], [lo, hi], 220);
 }
 
-S1_txt = md`**${S1_num} = ${fx(S1_v, 10)}…** aproximado a las **${S1_orden}**:
+S1_txt = mdx`**${S1_num} = ${fx(S1_v, 10)}…** aproximado a las **${S1_orden}**:
 
 | Tipo | Valor | ¿Por encima o por debajo? | Error absoluto |
 |---|---|---|---|
@@ -136,8 +136,8 @@ viewof S2_apr2 = Inputs.text({label: "Medida B · valor aproximado", value: "125
 
 ```{ojs}
 //| echo: false
-S2_A = {r: lector.valor(S2_real1), a: lector.valor(S2_apr1)}
-S2_B = {r: lector.valor(S2_real2), a: lector.valor(S2_apr2)}
+S2_A = ({r: lector.valor(S2_real1), a: lector.valor(S2_apr1)})
+S2_B = ({r: lector.valor(S2_real2), a: lector.valor(S2_apr2)})
 S2_calc = m => ({ea: num.eAbs(m.r, m.a), er: num.eRel(m.r, m.a)})
 S2_cA = S2_calc(S2_A)
 S2_cB = S2_calc(S2_B)
@@ -152,7 +152,7 @@ S2_plot = Plot.plot({width: 680, height: 260, marginLeft: 90, grid: true,
       {y: "y", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})
   ]})
 
-S2_txt = md`| | Medida A | Medida B |
+S2_txt = mdx`| | Medida A | Medida B |
 |---|---|---|
 | Valor real | ${fm(S2_A.r)} | ${fm(S2_B.r)} |
 | Valor aproximado | ${fm(S2_A.a)} | ${fm(S2_B.a)} |
@@ -227,7 +227,7 @@ S3_plot = Plot.plot({width: 680, height: 200, marginLeft: 60, grid: true,
     Plot.text([{x: S3_ea, y: -0.3, t: `error real = ${fx(S3_ea, 8)}`}], {x: "x", y: "y", text: "t", fill: "#2563eb", fontWeight: "bold"})
   ]})
 
-S3_txt = md`**${S3_num} = ${fx(S3_v, 10)}… ≈ ${fm(S3_ap)}** (${S3_tipo === "red" ? "redondeo" : "truncamiento"} con ${S3_k} decimal(es))
+S3_txt = mdx`**${S3_num} = ${fx(S3_v, 10)}… ≈ ${fm(S3_ap)}** (${S3_tipo === "red" ? "redondeo" : "truncamiento"} con ${S3_k} decimal(es))
 
 - Cota del error absoluto: ${S3_tipo === "red" ? `½ · 10^(−${S3_k})` : `10^(−${S3_k})`} = **${fx(S3_cota, 8)}**
 - Error absoluto realmente cometido: **${fx(S3_ea, 8)}** ${S3_ea < S3_cota ? "✅ menor que la cota, como garantiza la teoría" : "⚠️ revisa el caso"}
@@ -261,7 +261,7 @@ S4_plot = recta([
   marcaTexto(S4_hi, 0, fm(S4_hi), "#059669", 24)
 ], [S4_val - S4_orden * 1.6, S4_val + S4_orden * 1.6], 200)
 
-S4_txt = md`Si el valor real se redondeó a las **${["unidades", "decenas", "centenas", "décimas", "centésimas"].find((_, i) => [1, 10, 100, 0.1, 0.01][i] === S4_orden)}** y salió **${fm(S4_val)}**, entonces el valor real está en
+S4_txt = mdx`Si el valor real se redondeó a las **${["unidades", "decenas", "centenas", "décimas", "centésimas"].find((_, i) => [1, 10, 100, 0.1, 0.01][i] === S4_orden)}** y salió **${fm(S4_val)}**, entonces el valor real está en
 
 $$[\,${fm(S4_lo)},\ ${fm(S4_hi)}\,)$$
 
@@ -317,10 +317,10 @@ viewof S5_e = Inputs.range([-15, 15], {value: -6, step: 1, label: "Exponente b",
 S5_out = {
   if (S5_dir === "dc") {
     const v = lector.valor(S5_txt);
-    if (!Number.isFinite(v)) return md`⚠️ Número no válido.`;
+    if (!Number.isFinite(v)) return mdx`⚠️ Número no válido.`;
     const c = num.cientifica(v);
     const cifras = Math.abs(c.e);
-    return md`**${S5_txt} = ${fx(c.m, 8)} · 10^${c.e}**
+    return mdx`**${S5_txt} = ${fx(c.m, 8)} · 10^${c.e}**
 
 - Mantisa: **${fx(c.m, 8)}** → ¿está en [1, 10)? ${Math.abs(c.m) >= 1 && Math.abs(c.m) < 10 ? "✅ sí" : "❌ no"}
 - Orden de magnitud: **${c.e}** ${c.e > 0 ? "(positivo, porque la parte entera no es cero)" : c.e < 0 ? "(negativo, porque la parte entera es cero)" : ""}
@@ -330,7 +330,7 @@ S5_out = {
   const v = S5_m * 10 ** S5_e;
   const ok = Math.abs(S5_m) >= 1 && Math.abs(S5_m) < 10;
   const c = num.cientifica(v);
-  return md`**${fm(S5_m)} · 10^${S5_e} = ${v.toExponential(6).replace("e", " · 10^").replace(".", ",")} = ${Math.abs(S5_e) < 8 ? fx(v, 12) : "(demasiadas cifras para escribirlo entero)"}**
+  return mdx`**${fm(S5_m)} · 10^${S5_e} = ${v.toExponential(6).replace("e", " · 10^").replace(".", ",")} = ${Math.abs(S5_e) < 8 ? fx(v, 12) : "(demasiadas cifras para escribirlo entero)"}**
 
 ${ok ? "✅ La mantisa está en [1, 10): **es notación científica correcta**."
   : `❌ La mantisa ${fm(S5_m)} **no** está en [1, 10), así que esto todavía no es notación científica. Reajustado: **${fx(c.m, 8)} · 10^${c.e}**.`}
@@ -361,7 +361,7 @@ S6_txt = {
   const sim = ({s: "+", r: "−", p: "·", c: ":"})[S6_op];
   const E = Math.max(S6_e1, S6_e2);
   const pasos = (S6_op === "s" || S6_op === "r")
-    ? md`**Paso 1 — igualar el orden de magnitud.** Llevamos ambos a 10^${E}:
+    ? mdx`**Paso 1 — igualar el orden de magnitud.** Llevamos ambos a 10^${E}:
 
 - ${fm(S6_m1)} · 10^${S6_e1} = ${fx(S6_v1 / 10 ** E, 8)} · 10^${E}
 - ${fm(S6_m2)} · 10^${S6_e2} = ${fx(S6_v2 / 10 ** E, 8)} · 10^${E}
@@ -371,12 +371,12 @@ S6_txt = {
 (${fx(S6_v1 / 10 ** E, 8)} ${sim} ${fx(S6_v2 / 10 ** E, 8)}) · 10^${E} = **${fx(S6_res / 10 ** E, 8)} · 10^${E}**
 
 **Paso 3 — reajustar** si la mantisa se ha salido de [1, 10): resultado final **${fx(S6_c.m, 8)} · 10^${S6_c.e}**`
-    : md`**Paso 1 — operar las mantisas:** ${fm(S6_m1)} ${sim} ${fm(S6_m2)} = **${fx(S6_op === "p" ? S6_m1 * S6_m2 : S6_m1 / S6_m2, 8)}**
+    : mdx`**Paso 1 — operar las mantisas:** ${fm(S6_m1)} ${sim} ${fm(S6_m2)} = **${fx(S6_op === "p" ? S6_m1 * S6_m2 : S6_m1 / S6_m2, 8)}**
 
 **Paso 2 — operar las potencias de 10:** 10^${S6_e1} ${sim} 10^${S6_e2} → exponente ${S6_op === "p" ? `${S6_e1} + ${S6_e2} = ${S6_e1 + S6_e2}` : `${S6_e1} − ${S6_e2} = ${S6_e1 - S6_e2}`}
 
 **Paso 3 — juntar y reajustar:** ${fx(S6_op === "p" ? S6_m1 * S6_m2 : S6_m1 / S6_m2, 6)} · 10^${S6_op === "p" ? S6_e1 + S6_e2 : S6_e1 - S6_e2} = **${fx(S6_c.m, 8)} · 10^${S6_c.e}**`;
-  return md`## ${fm(S6_m1)}·10^${S6_e1} ${sim} ${fm(S6_m2)}·10^${S6_e2}
+  return mdx`## ${fm(S6_m1)}·10^${S6_e1} ${sim} ${fm(S6_m2)}·10^${S6_e2}
 
 ${pasos}
 
@@ -411,9 +411,9 @@ S7_tabla = S7_sel.map(k => ({obj: k, m: num.cientifica(S7_datos.get(k)).m, e: nu
 S7_plot = S7_tabla.length ? Plot.plot({width: 680, height: 60 + S7_tabla.length * 30, marginLeft: 170, grid: true,
   x: {type: "log", label: "metros (escala logarítmica) →"}, y: {domain: S7_tabla.map(d => d.obj), label: null},
   marks: [Plot.barX(S7_tabla, {y: "obj", x: "v", fill: "#2563eb", fillOpacity: 0.8}),
-    Plot.text(S7_tabla.map(d => ({...d, t: `10^${d.e}`})), {y: "obj", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})]}) : md`Selecciona algún objeto.`
+    Plot.text(S7_tabla.map(d => ({...d, t: `10^${d.e}`})), {y: "obj", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})]}) : mdx`Selecciona algún objeto.`
 
-S7_txt = md`| Objeto | Medida (m) | Notación científica | Orden |
+S7_txt = mdx`| Objeto | Medida (m) | Notación científica | Orden |
 |---|---|---|---|
 ${S7_tabla.map(d => `| ${d.obj} | ${d.v.toExponential(2).replace(".", ",")} | ${fx(d.m, 4)} · 10^${d.e} | ${d.e} |`).join("\n")}
 

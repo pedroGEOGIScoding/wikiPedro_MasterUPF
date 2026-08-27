@@ -1,7 +1,7 @@
 <!-- =====================================================================
      MOTOR COMÚN — Unidad 1: Números reales (1.º BATX CCSS)
      Inclúyelo al principio de cada parte con:
-         {{< include reales-motor.qmd >}}
+         {{</* include _reales-motor.qmd */>}}
      Este archivo NO se renderiza solo (no tiene YAML) y empieza por "_"
      para que Quarto no lo publique como página independiente.
      ===================================================================== -->
@@ -197,3 +197,95 @@ Los applets que tienen **casilla de texto** aceptan estas formas. Escribe solo e
 
 **Para copiar y probar:** `22/7` · `sqrt(2)` · `pi` · `(1+sqrt(5))/2` · `0.1234567891011` · `2^-4` · `nthRoot(72, 2)`
 :::
+
+
+//| echo: false
+// mdx: como md, pero compone las fórmulas con MathJax. Necesario porque
+// Quarto solo tipografía el contenido estático al cargar la página, y el
+// texto de los applets se inserta después.
+mdx = (strings, ...valores) => {
+  const el = md(strings, ...valores);
+  const componer = () => {
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise([el]).catch(() => {});
+    }
+  };
+  if (window.MathJax && window.MathJax.startup && window.MathJax.startup.promise) {
+    window.MathJax.startup.promise.then(componer);
+  } else {
+    setTimeout(componer, 400);
+  }
+  return el;
+}
+
+```{ojs}
+//| echo: false
+// ---------------------------------------------------------------------
+// tex2uni: convierte LaTeX sencillo en Unicode, para que las formulas
+// generadas por los applets se vean sin depender de MathJax.
+// ---------------------------------------------------------------------
+tex2uni = (entrada) => {
+  const SUP = {"0":"\u2070","1":"\u00b9","2":"\u00b2","3":"\u00b3","4":"\u2074","5":"\u2075",
+               "6":"\u2076","7":"\u2077","8":"\u2078","9":"\u2079","+":"\u207a","-":"\u207b",
+               "(":"\u207d",")":"\u207e","n":"\u207f","i":"\u2071","m":"\u1d50","x":"\u02e3",
+               "p":"\u1d56","q":"\u1d57","a":"\u1d43","b":"\u1d47","c":"\u1d9c",".":"\u00b7",",":"\u00b7"};
+  const SUB = {"0":"\u2080","1":"\u2081","2":"\u2082","3":"\u2083","4":"\u2084","5":"\u2085",
+               "6":"\u2086","7":"\u2087","8":"\u2088","9":"\u2089","+":"\u208a","-":"\u208b",
+               "(":"\u208d",")":"\u208e","a":"\u2090","e":"\u2091","n":"\u2099","x":"\u2093",
+               "o":"\u2092","i":"\u1d62","r":"\u1d63","v":"\u1d65"};
+  const aSup = t => [...t].every(c => c in SUP) ? [...t].map(c => SUP[c]).join("") : "^(" + t + ")";
+  const aSub = t => [...t].every(c => c in SUB) ? [...t].map(c => SUB[c]).join("") : "_" + t;
+  const envolver = t => (t.length > 1 && !/^[\w.,]+$/.test(t)) ? "(" + t + ")" : t;
+
+  let x = entrada;
+
+  // --- simbolos (el \\ inicial es opcional por si se perdio al interpolar)
+  const SIMBOLOS = [
+    [/\\?operatorname\s*/g, ""], [/\\?mathrm\s*/g, ""], [/\\?displaystyle\s*/g, ""],
+    [/\\?mathbb\{R\}/g, "\u211d"], [/\\?mathbb\{N\}/g, "\u2115"],
+    [/\\?mathbb\{Z\}/g, "\u2124"], [/\\?mathbb\{Q\}/g, "\u211a"],
+    [/\\?infty/g, "\u221e"], [/\\?cdot/g, "\u00b7"], [/\\?times/g, "\u00d7"],
+    [/\\?div\b/g, "\u00f7"], [/\\?pm\b/g, "\u00b1"],
+    [/\\?leq\b|\\?le\b/g, "\u2264"], [/\\?geq\b|\\?ge\b/g, "\u2265"],
+    [/\\?neq\b|\\?ne\b/g, "\u2260"], [/\\?approx/g, "\u2248"], [/\\?equiv/g, "\u2261"],
+    [/\\?varnothing|\\?emptyset/g, "\u2205"], [/\\?cup/g, "\u222a"], [/\\?cap/g, "\u2229"],
+    [/\\?subset/g, "\u2282"], [/\\?notin/g, "\u2209"], [/\\?in\b/g, "\u2208"],
+    [/\\?Rightarrow/g, "\u21d2"], [/\\?rightarrow|\\?to\b/g, "\u2192"],
+    [/\\?longmapsto|\\?mapsto/g, "\u27fc"], [/\\?iff/g, "\u27fa"],
+    [/\\?varphi/g, "\u03c6"], [/\\?alpha/g, "\u03b1"], [/\\?beta/g, "\u03b2"],
+    [/\\?Delta/g, "\u0394"], [/\\?delta/g, "\u03b4"], [/\\?pi\b/g, "\u03c0"],
+    [/\\?ldots|\\?dots|\\?cdots/g, "\u2026"],
+    [/\\?left\s*/g, ""], [/\\?right\s*/g, ""], [/\\?quad|\\?qquad/g, "   "],
+    [/\\?text\{([^{}]*)\}/g, "$1"], [/\\?,/g, " "], [/\\?;/g, " "], [/\\?!/g, ""]
+  ];
+  for (const [re_, a] of SIMBOLOS) x = x.replace(re_, a);
+
+  // --- estructuras: se repite para resolver anidamientos de dentro afuera
+  for (let k = 0; k < 4; k++) {
+    x = x.replace(/\\?sqrt\[([^\[\]]*)\]\{([^{}]*)\}/g, (m, i, r) => aSup(i.trim()) + "\u221a" + envolver(r.trim()));
+    x = x.replace(/\\?sqrt\{([^{}]*)\}/g, (m, r) => "\u221a" + envolver(r.trim()));
+    x = x.replace(/\\?d?frac\{([^{}]*)\}\{([^{}]*)\}/g, (m, a, b) => envolver(a.trim()) + "/" + envolver(b.trim()));
+    x = x.replace(/\^\{([^{}]*)\}/g, (m, t) => aSup(t.trim()));
+    x = x.replace(/_\{([^{}]*)\}/g, (m, t) => aSub(t.trim()));
+    x = x.replace(/\^(-?[0-9a-z])/g, (m, t) => aSup(t));
+    x = x.replace(/_(-?[0-9a-z])/g, (m, t) => aSub(t));
+  }
+
+  // --- limpieza final: delimitadores, comandos sobrantes y llaves
+  x = x.replace(/\$\$/g, "").replace(/\$/g, "");
+  x = x.replace(/\\([A-Za-z]+)/g, "$1");
+  x = x.replace(/\\/g, "");
+  x = x.replace(/[{}]/g, "");
+  return x;
+}
+
+// ---------------------------------------------------------------------
+// mdx: usalo igual que md. Traduce las formulas y, si MathJax esta
+// disponible, tambien intenta componer lo que quede.
+// ---------------------------------------------------------------------
+mdx = (strings, ...valores) => {
+  const bruto = strings.reduce(
+    (acc, trozo, i) => acc + trozo + (i < valores.length ? String(valores[i]) : ""), "");
+  return md([tex2uni(bruto)]);
+}
+```

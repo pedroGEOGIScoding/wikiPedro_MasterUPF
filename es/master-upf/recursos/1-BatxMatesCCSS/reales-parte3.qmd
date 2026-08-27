@@ -19,7 +19,7 @@ lightbox:
 format: html
 ---
 
-{{< include reales-motor.qmd >}}
+{{< include _reales-motor.qmd >}}
 
 ::: {.callout-note}
 ## La idea que sostiene toda esta parte
@@ -70,7 +70,7 @@ T1_plot = Plot.plot({width: 680, height: 300, grid: true, marginLeft: 70,
     Plot.ruleX([0], {stroke: "#111"}), Plot.ruleY([1], {stroke: "#059669", strokeDasharray: "4,4"})
   ]})
 
-T1_txt = md`**${fm(T1_a)}^${T1_n} = ${Number.isFinite(T1_a ** T1_n) ? fx(T1_a ** T1_n, 8) : "no definido"}**
+T1_txt = mdx`**${fm(T1_a)}^${T1_n} = ${Number.isFinite(T1_a ** T1_n) ? fx(T1_a ** T1_n, 8) : "no definido"}**
 
 ${T1_n > 0 ? `Significa multiplicar ${fm(T1_a)} por sí mismo **${T1_n} veces**: ${Array(Math.min(T1_n, 6)).fill(fm(T1_a)).join(" · ")}${T1_n > 6 ? " · …" : ""} = ${fx(T1_a ** T1_n, 6)}`
   : T1_n === 0 ? `Exponente **cero**: el resultado es **1** para cualquier base distinta de 0. ¿Por qué? Porque ${fm(T1_a)}^1 : ${fm(T1_a)}^1 = ${fm(T1_a)}^0, y cualquier número dividido entre sí mismo es 1.`
@@ -150,7 +150,7 @@ T2_test = {
   return {...T, igual};
 }
 
-T2_txt = md`| | Expresión | Valor |
+T2_txt = mdx`| | Expresión | Valor |
 |---|---|---|
 | Lado izquierdo | ${T2_test.li} | **${fx(T2_test.izq, 8)}** |
 | Lado derecho | ${T2_test.ld} | **${fx(T2_test.der, 8)}** |
@@ -215,7 +215,7 @@ T3_plot = {
   ], [-lim, lim], [Math.min(-Math.abs(T3_a) * 1.4, -2), Math.max(Math.abs(T3_a) * 1.6, 2)], "x →", `↑ y = x^${T3_n}`, 380);
 }
 
-T3_txt = md`## $\\sqrt[${T3_n}]{${T3_a}}$ → **${T3_raices.length} raíz(es) real(es)**
+T3_txt = mdx`## $\\sqrt[${T3_n}]{${T3_a}}$ → **${T3_raices.length} raíz(es) real(es)**
 
 Buscar $\\sqrt[${T3_n}]{${T3_a}}$ es preguntar: **¿qué número elevado a ${T3_n} da ${T3_a}?** Gráficamente, es cortar la curva $y=x^{${T3_n}}$ con la recta horizontal $y=${T3_a}$.
 
@@ -263,7 +263,7 @@ T4_plot = lienzo([
     {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#dc2626", strokeDasharray: "3,3"})
 ], [0, 3], [0, 3], "x →", "↑ y", 380)
 
-T4_txt = md`## ${fm(T4_a)}^(${T4_m}/${T4_n}) = $\\sqrt[${T4_n}]{${fm(T4_a)}^{${T4_m}}}$ = **${fx(T4_val, 8)}**
+T4_txt = mdx`## ${fm(T4_a)}^(${T4_m}/${T4_n}) = $\\sqrt[${T4_n}]{${fm(T4_a)}^{${T4_m}}}$ = **${fx(T4_val, 8)}**
 
 Las tres lecturas del mismo número:
 
@@ -315,7 +315,7 @@ T5_f = num.canonica(T5_m, T5_n)
 T5_ent = Math.floor(T5_f.n / T5_f.d)
 T5_resto = T5_f.n - T5_ent * T5_f.d
 
-T5_txt = md`## Radical de partida: $\\sqrt[${T5_n}]{${T5_a}^{${T5_m}}}$
+T5_txt = mdx`## Radical de partida: $\\sqrt[${T5_n}]{${T5_a}^{${T5_m}}}$
 
 **Paso 1 — pasar a potencia:** ${T5_a}^(${T5_m}/${T5_n})
 
@@ -381,7 +381,7 @@ T6_out = {
   if (T6_modo === "ex") {
     const s = num.simplificaRadical(T6_rad, T6_idx);
     const f = num.factorizar(T6_rad);
-    return md`## Extraer de $\\sqrt[${T6_idx}]{${T6_rad}}$
+    return mdx`## Extraer de $\\sqrt[${T6_idx}]{${T6_rad}}$
 
 **Paso 1 — factores primos:** ${T6_rad} = ${num.factStr(T6_rad)}
 
@@ -397,7 +397,7 @@ ${s && s.dentro === 1 ? "🎯 El radical ha desaparecido del todo: el radicando 
   }
   if (T6_modo === "in") {
     const dentro = T6_c ** T6_idx * T6_b;
-    return md`## Introducir en ${T6_c}·$\\sqrt[${T6_idx}]{${T6_b}}$
+    return mdx`## Introducir en ${T6_c}·$\\sqrt[${T6_idx}]{${T6_b}}$
 
 **Regla:** el coeficiente entra **elevado al índice**.
 
@@ -409,7 +409,7 @@ Y de vuelta, extrayendo: $\\sqrt[${T6_idx}]{${dentro}}$ = **${num.radStr(num.sim
   }
   const v1 = T6_c * Math.pow(T6_b, 1 / T6_idx), v2 = T6_c2 * Math.pow(T6_b2, 1 / T6_idx);
   const d1 = T6_c ** T6_idx * T6_b, d2 = T6_c2 ** T6_idx * T6_b2;
-  return md`## ¿Qué es mayor, ${T6_c}$\\sqrt[${T6_idx}]{${T6_b}}$ o ${T6_c2}$\\sqrt[${T6_idx}]{${T6_b2}}$?
+  return mdx`## ¿Qué es mayor, ${T6_c}$\\sqrt[${T6_idx}]{${T6_b}}$ o ${T6_c2}$\\sqrt[${T6_idx}]{${T6_b2}}$?
 
 **Truco: introducir los coeficientes** y comparar solo los radicandos (mismo índice).
 
@@ -466,7 +466,7 @@ T7_out = {
   const va = Math.pow(T7_a, 1 / T7_na), vb = Math.pow(T7_b, 1 / T7_nb);
   if (T7_op === "s") {
     const dentro = T7_a + T7_b;
-    return md`## ⚠️ $\\sqrt[${T7_na}]{${T7_a}} + \\sqrt[${T7_nb}]{${T7_b}}$
+    return mdx`## ⚠️ $\\sqrt[${T7_na}]{${T7_a}} + \\sqrt[${T7_nb}]{${T7_b}}$
 
 | Lo que algunos escriben | Lo que vale de verdad |
 |---|---|
@@ -479,7 +479,7 @@ ${T7_na === T7_nb && T7_a === T7_b ? `Eso sí: si los radicales son **semejantes
   const A = T7_a ** ea, B = T7_b ** eb;
   const dentro = T7_op === "p" ? A * B : A / B;
   const s = Number.isInteger(dentro) ? num.simplificaRadical(dentro, M) : null;
-  return md`## $\\sqrt[${T7_na}]{${T7_a}} ${T7_op === "p" ? "\\cdot" : ":"} \\sqrt[${T7_nb}]{${T7_b}}$
+  return mdx`## $\\sqrt[${T7_na}]{${T7_a}} ${T7_op === "p" ? "\\cdot" : ":"} \\sqrt[${T7_nb}]{${T7_b}}$
 
 ${T7_na === T7_nb
   ? `**Los índices ya coinciden**, así que se opera directamente el radicando:`
@@ -532,7 +532,7 @@ T8_grupos = d3.rollups(T8_terminos, v => d3.sum(v, d => d.fuera), d => d.dentro)
   .sort((a, b) => a[0] - b[0])
 T8_valor = d3.sum(T8_terminos, d => d.fuera * Math.sqrt(d.dentro))
 
-T8_txt = md`## ${T8_terminos.map(t => `${t.k > 0 ? "+" : "−"} ${Math.abs(t.k) === 1 ? "" : Math.abs(t.k)}√${t.r}`).join(" ").replace(/^\+ /, "")}
+T8_txt = mdx`## ${T8_terminos.map(t => `${t.k > 0 ? "+" : "−"} ${Math.abs(t.k) === 1 ? "" : Math.abs(t.k)}√${t.r}`).join(" ").replace(/^\+ /, "")}
 
 **Paso 1 — extraer factores de cada radical:**
 
@@ -586,7 +586,7 @@ T9_out = {
   if (T9_caso === "mono") {
     const s = num.simplificaRadical(T9_num * T9_a, 1);
     const g = num.mcd(T9_num, T9_a);
-    return md`## $\\dfrac{${T9_num}}{\\sqrt{${T9_a}}}$
+    return mdx`## $\\dfrac{${T9_num}}{\\sqrt{${T9_a}}}$
 
 **Paso 1 — multiplicar arriba y abajo por $\\sqrt{${T9_a}}$** (multiplicar por 1 disfrazado, así que el valor no cambia):
 
@@ -602,7 +602,7 @@ Comprobación: ${T9_num}/${fx(Math.sqrt(T9_a), 6)} = ${fx(T9_num / Math.sqrt(T9_
   }
   if (T9_caso === "monon") {
     const falta = T9_n - 1;
-    return md`## $\\dfrac{${T9_num}}{\\sqrt[${T9_n}]{${T9_a}}}$
+    return mdx`## $\\dfrac{${T9_num}}{\\sqrt[${T9_n}]{${T9_a}}}$
 
 **Idea clave:** al denominador le falta exponente para completar el índice. Como dentro hay ${T9_a}^1 y el índice es ${T9_n}, hay que multiplicar por $\\sqrt[${T9_n}]{${T9_a}^{${falta}}}$ para llegar a ${T9_a}^${T9_n}.
 
@@ -614,7 +614,7 @@ Comprobación: ${T9_num}/${fx(Math.pow(T9_a, 1 / T9_n), 6)} = ${fx(T9_num / Math
   }
   const den = T9_a - T9_b;
   const sg = T9_signo > 0 ? "+" : "−", sgc = T9_signo > 0 ? "−" : "+";
-  return md`## $\\dfrac{${T9_num}}{\\sqrt{${T9_a}} ${sg} \\sqrt{${T9_b}}}$
+  return mdx`## $\\dfrac{${T9_num}}{\\sqrt{${T9_a}} ${sg} \\sqrt{${T9_b}}}$
 
 **Paso 1 — multiplicar por el conjugado** $\\sqrt{${T9_a}} ${sgc} \\sqrt{${T9_b}}$:
 
@@ -682,7 +682,7 @@ TA_plot = lienzo([
   marcaTexto(TA_real, TA_b, `log = ${fx(TA_real, 4)}`, "#dc2626", -16)
 ], [-6, 8], [-10, Math.max(TA_b * 1.6, 20)], "exponente →", `↑ ${TA_base}^exponente`, 400)
 
-TA_txt = md`## ¿A qué exponente hay que elevar **${TA_base}** para obtener **${fm(TA_b)}**?
+TA_txt = mdx`## ¿A qué exponente hay que elevar **${TA_base}** para obtener **${fm(TA_b)}**?
 
 Tu apuesta: ${TA_base}^${fm(TA_mi)} = **${fx(TA_mio, 6)}** · Objetivo: **${fm(TA_b)}** · Te desvías en ${fx(TA_err, 6)}
 
@@ -762,7 +762,7 @@ TB_test = {
   return {...T, igual: Math.abs(T.izq - T.der) < 1e-9};
 }
 
-TB_txt = md`| | Expresión | Valor |
+TB_txt = mdx`| | Expresión | Valor |
 |---|---|---|
 | Izquierda | ${TB_test.li} | **${fx(TB_test.izq, 8)}** |
 | Derecha | ${TB_test.ld} | **${fx(TB_test.der, 8)}** |
@@ -797,7 +797,7 @@ TC_v = lector.valor(TC_txt)
 TC_log = Math.log(TC_v) / Math.log(TC_base)
 TC_ent = Math.abs(TC_log - Math.round(TC_log)) < 1e-9
 
-TC_txt2 = md`## $\\log_{${TC_base === Math.E ? "e" : TC_base}} ${fm(TC_v)} = $ **${fx(TC_log, 8)}**
+TC_txt2 = mdx`## $\\log_{${TC_base === Math.E ? "e" : TC_base}} ${fm(TC_v)} = $ **${fx(TC_log, 8)}**
 
 ${TC_v <= 0
   ? "❌ **No existe.** Solo hay logaritmos de números **estrictamente positivos**: no hay ningún exponente que convierta una base positiva en un número negativo o en cero."

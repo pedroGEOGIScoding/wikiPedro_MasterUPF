@@ -19,7 +19,7 @@ lightbox:
 format: html
 ---
 
-{{< include reales-motor.qmd >}}
+{{< include _reales-motor.qmd >}}
 
 ::: {.callout-note}
 ## Cómo se usa este tema
@@ -83,7 +83,7 @@ R1_plot = Plot.plot({width: 680, height: 260, marginLeft: 50,
     Plot.text(R1_optimo.map((v, i) => ({i: i + 1, v, t: `${v}`})), {x: "i", y: "v", text: "t", dy: -10, fontWeight: "bold"})
   ]})
 
-R1_txt = md`**Tu propuesta:** te quedas ${R1_mio} y das 1 premio a ${R1_reparto} compañeros → reparte ${R1_test.total} premios de ${R1_P} y consigue ${R1_test.votos} votos, cuando hacen falta **${R1_test.necesarios}**.
+R1_txt = mdx`**Tu propuesta:** te quedas ${R1_mio} y das 1 premio a ${R1_reparto} compañeros → reparte ${R1_test.total} premios de ${R1_P} y consigue ${R1_test.votos} votos, cuando hacen falta **${R1_test.necesarios}**.
 
 ${!R1_test.cabe ? "❌ **Imposible:** estás repartiendo más premios de los que hay."
   : R1_test.pasa ? "✅ **Aprobada.** Y ahora la pregunta buena: ¿podrías quedarte con **más**?"
@@ -175,7 +175,7 @@ R2_plot = recta([
     marcaTexto(R2_info.v, 0, `${fm(R2_info.v)}`, "#dc2626", -18)] : [])
 ], [-3.5, 3.5], 150)
 
-R2_txt2 = md`## ${R2_entrada === "IRR1" ? "0,1234567891011…" : R2_entrada === "IRR2" ? "1,2468101214…" : R2_entrada} → **${R2_info.clase}**
+R2_txt2 = mdx`## ${R2_entrada === "IRR1" ? "0,1234567891011…" : R2_entrada === "IRR2" ? "1,2468101214…" : R2_entrada} → **${R2_info.clase}**
 
 - Conjunto mínimo al que pertenece: **${R2_info.conj}**
 - Expresión decimal: ${R2_info.dec}${R2_info.expl ? ` · tipo: **${R2_info.expl.tipo}**` : ""}
@@ -219,9 +219,9 @@ R3_plot = R3_can ? Plot.plot({width: 680, height: 130, marginLeft: 50,
   y: {axis: null, domain: [-1, 1]},
   marks: [Plot.ruleY([0], {stroke: "#111"}), Plot.tickX(d3.range(-1, 6)),
     Plot.dot([{x: R3_can.n / R3_can.d, y: 0}], {x: "x", y: "y", r: 9, fill: "#dc2626"}),
-    marcaTexto(R3_can.n / R3_can.d, 0, num.frac(R3_can.n, R3_can.d), "#dc2626", -20)]}) : md`—`
+    marcaTexto(R3_can.n / R3_can.d, 0, num.frac(R3_can.n, R3_can.d), "#dc2626", -20)]}) : mdx`—`
 
-R3_txt = md`${R3_b === 0
+R3_txt = mdx`${R3_b === 0
   ? "❌ **Denominador 0: la fracción no existe.** Un poco más abajo verás por qué no se puede dividir entre cero."
   : `**${R3_a}/${R3_b}** · mcd(|${R3_a}|, |${R3_b}|) = **${num.mcd(R3_a, R3_b)}**
 
@@ -265,7 +265,7 @@ viewof R4_per = Inputs.text({label: "Periodo (cifras que se repiten)", value: "5
 R4_out = {
   if (R4_dir === "fd") {
     const e = num.expansion(R4_p, R4_q);
-    return md`**${R4_p}/${R4_q} = ${num.expStr(e)}**
+    return mdx`**${R4_p}/${R4_q} = ${num.expStr(e)}**
 
 - Tipo: **${e.tipo}** ${e.per ? `· periodo **${e.per}** (${e.per.length} cifra(s))` : ""} ${e.ante ? `· anteperiodo **${e.ante}**` : ""}
 - Fracción canónica: ${num.frac(R4_p, R4_q)}
@@ -276,10 +276,10 @@ R4_out = {
   const ent = R4_ent.replace(/\D/g, "") || "0";
   const ante = R4_ante.replace(/\D/g, "");
   const per = R4_per.replace(/\D/g, "");
-  if (!per) return md`⚠️ Escribe al menos una cifra de periodo (para un decimal exacto la fracción es directa: las cifras entre una potencia de 10).`;
+  if (!per) return mdx`⚠️ Escribe al menos una cifra de periodo (para un decimal exacto la fracción es directa: las cifras entre una potencia de 10).`;
   const f = num.generatriz(ent, ante, per);
   const nueves = "9".repeat(per.length), ceros = "0".repeat(ante.length);
-  return md`**${ent},${ante}(${per}) = ${num.frac(f.n, f.d)}**
+  return mdx`**${ent},${ante}(${per}) = ${num.frac(f.n, f.d)}**
 
 Desarrollo paso a paso:
 
@@ -354,7 +354,7 @@ R5_plot = Plot.plot({width: 680, height: 300, grid: true, marginLeft: 60,
     {x: "q", y: "e", stroke: "#2563eb"}),
     Plot.dot([{q: R5_mejor.q, e: Math.max(R5_mejor.err, 1e-12)}], {x: "q", y: "e", fill: "#dc2626", r: 6})]})
 
-R5_txt = md`Valor "real": **${fx(R5_v, 10)}…**
+R5_txt = mdx`Valor "real": **${fx(R5_v, 10)}…**
 
 Mejor aproximación con denominador ≤ ${R5_qmax}: **${R5_mejor.p}/${R5_mejor.q} = ${fx(R5_mejor.p / R5_mejor.q, 10)}**, con error **${fx(R5_mejor.err, 10)}**.
 
@@ -409,13 +409,13 @@ R6_plot = {
   ], [lo - d * 0.15, hi + d * 0.15], 170);
 }
 
-R6_txt = md`a = ${fx(R6_va, 10)} · b = ${fx(R6_vb, 10)} · distancia inicial = ${fx(Math.abs(R6_vb - R6_va), 10)}
+R6_txt = mdx`a = ${fx(R6_va, 10)} · b = ${fx(R6_vb, 10)} · distancia inicial = ${fx(Math.abs(R6_vb - R6_va), 10)}
 
 Medias sucesivas: ${R6_serie.length ? R6_serie.map(m => fx(m, 8)).join(" → ") : "(sube el deslizador)"}
 
 ${R6_serie.length ? `Tras ${R6_pasos} pasos sigues teniendo un hueco de ${fx(Math.abs(R6_serie[R6_serie.length - 1] - Math.min(R6_va, R6_vb)), 10)}, y **dentro de él caben otros infinitos números**. Por eso decimos que ℝ es denso: este proceso **nunca termina**.` : ""}
 
-🧠 Pon `a = 0.333` y `b = 1/3`: aunque parecen casi iguales, entre ellos siguen cabiendo infinitos números. Ahora prueba `a = 1/3` y `b = 1/3`: ¿cuántos números hay entre ellos?`
+🧠 Pon **a = 0.333** y **b = 1/3**: aunque parecen casi iguales, entre ellos siguen cabiendo infinitos números. Ahora prueba **a = 1/3** y **b = 1/3**: ¿cuántos números hay entre ellos?`
 ```
 
 ## Representar $\sqrt{n}$ con regla y compás
@@ -489,7 +489,7 @@ R7_plot = {
     marks: [Plot.ruleY([0], {stroke: "#111", strokeWidth: 1.6}), Plot.ruleX([0], {stroke: "#111"}), ...m]});
 }
 
-R7_txt = md`**${R7_n} = ${R7_desc.map(k => `${k}²`).join(" + ")} = ${R7_desc.map(k => k * k).join(" + ")}**
+R7_txt = mdx`**${R7_n} = ${R7_desc.map(k => `${k}²`).join(" + ")} = ${R7_desc.map(k => k * k).join(" + ")}**
 
 Hipotenusas que se van formando: ${R7_desc.map((_, i) => `√${R7_desc.slice(0, i + 1).reduce((s, k) => s + k * k, 0)}`).slice(1).join(" → ") || "(una sola)"}
 
@@ -554,7 +554,7 @@ R8_va = lector.valor(R8_a)
 R8_vb = lector.valor(R8_b)
 R8_out = {
   const a = R8_va, b = R8_vb, c = R8_c, ok = "✅", no = "❌";
-  if (R8_que === "prop") return md`| Propiedad | Lado izquierdo | Lado derecho | ¿Se cumple? |
+  if (R8_que === "prop") return mdx`| Propiedad | Lado izquierdo | Lado derecho | ¿Se cumple? |
 |---|---|---|---|
 | Asociativa (+) | (a+b)+c = ${fx((a + b) + c)} | a+(b+c) = ${fx(a + (b + c))} | ${Math.abs((a + b) + c - (a + (b + c))) < 1e-12 ? ok : no} |
 | Asociativa (·) | (a·b)·c = ${fx((a * b) * c)} | a·(b·c) = ${fx(a * (b * c))} | ${Math.abs((a * b) * c - a * (b * c)) < 1e-9 ? ok : no} |
@@ -567,7 +567,7 @@ R8_out = {
 
   if (R8_que === "orden") {
     const rel = Math.abs(a - b) < 1e-12 ? "a = b" : a < b ? "a < b" : "a > b";
-    return md`**${fx(a)} y ${fx(b)}** → relación: **${rel}** (porque b − a = ${fx(b - a)} es ${b - a > 0 ? "positivo" : b - a < 0 ? "negativo" : "cero"})
+    return mdx`**${fx(a)} y ${fx(b)}** → relación: **${rel}** (porque b − a = ${fx(b - a)} es ${b - a > 0 ? "positivo" : b - a < 0 ? "negativo" : "cero"})
 
 | Operación con c = ${fm(c)} | Resultado | ¿Se mantiene el orden? |
 |---|---|---|
@@ -576,7 +576,7 @@ R8_out = {
 
 🔑 Este es **el** detalle que arruina inecuaciones enteras: al multiplicar o dividir por un número **negativo**, hay que dar la vuelta al signo de la desigualdad. Mueve c de positivo a negativo y observa el cambio.`;
   }
-  return md`**Intentemos calcular ${fx(a)} / 0.**
+  return mdx`**Intentemos calcular ${fx(a)} / 0.**
 
 Por definición, ${fx(a)}/0 = c significaría que **${fx(a)} = 0 · c**.
 
@@ -642,7 +642,7 @@ R9_out = {
         marcaTexto(R9_y, 0, `y = ${fm(R9_y)}`, "#2563eb", 22),
         marcaTexto((R9_x + R9_y) / 2, 0, `Dist = ${fm(d)}`, "#dc2626", -34)
       ], [-11, 11]),
-      txt: md`Dist(${fm(R9_x)}, ${fm(R9_y)}) = |${fm(R9_x)} − (${fm(R9_y)})| = |${fm(R9_x - R9_y)}| = **${fm(d)}**
+      txt: mdx`Dist(${fm(R9_x)}, ${fm(R9_y)}) = |${fm(R9_x)} − (${fm(R9_y)})| = |${fm(R9_x - R9_y)}| = **${fm(d)}**
 
 Comprobación de la **simetría**: Dist(y, x) = |${fm(R9_y)} − (${fm(R9_x)})| = |${fm(R9_y - R9_x)}| = ${fm(Math.abs(R9_y - R9_x))} ✔ mismo resultado.
 
@@ -658,7 +658,7 @@ Comprobación de la **simetría**: Dist(y, x) = |${fm(R9_y)} − (${fm(R9_x)})| 
         marcaTexto(a - r, 0, `${fm(a - r)}`, "#059669", 22),
         marcaTexto(a + r, 0, `${fm(a + r)}`, "#059669", 22)
       ], [-11, 11]),
-      txt: md`**|x − ${fm(a)}| < ${fm(r)}** ⟺ x está a menos de ${fm(r)} unidades de ${fm(a)} ⟺ **x ∈ (${fm(a - r)}, ${fm(a + r)})**
+      txt: mdx`**|x − ${fm(a)}| < ${fm(r)}** ⟺ x está a menos de ${fm(r)} unidades de ${fm(a)} ⟺ **x ∈ (${fm(a - r)}, ${fm(a + r)})**
 
 Las tres lecturas del mismo hecho:
 
@@ -677,7 +677,7 @@ Con ≤ en lugar de <, los extremos entrarían y el intervalo sería cerrado [${
         Plot.text([{y: 1, v: s, t: `|x|+|y| = ${fm(s)}`}, {y: 0, v: i, t: `|x+y| = ${fm(i)}`}],
           {y: "y", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})
       ]}),
-    txt: md`**Desigualdad triangular:** |x + y| ≤ |x| + |y|
+    txt: mdx`**Desigualdad triangular:** |x + y| ≤ |x| + |y|
 
 Con x = ${fm(R9_x)} e y = ${fm(R9_y)}: |${fm(R9_x + R9_y)}| = **${fm(i)}** ≤ ${fm(Math.abs(R9_x))} + ${fm(Math.abs(R9_y))} = **${fm(s)}** ${i <= s + 1e-12 ? "✅" : "❌"}
 
@@ -783,7 +783,7 @@ R10_plot = Plot.plot({width: 680, height: 260, marginLeft: 60,
       Plot.rectY([{x1: R10_A.lo, x2: R10_A.hi}, {x1: R10_B.lo, x2: R10_B.hi}], {x1: "x1", x2: "x2", y1: -0.15, y2: 0.15, fill: "#059669", fillOpacity: 0.45})] : [])
   ]})
 
-R10_txt = md`**A = ${R10_A.txt}** · **B = ${R10_B.txt}**
+R10_txt = mdx`**A = ${R10_A.txt}** · **B = ${R10_B.txt}**
 
 ### ${R10_op === "u" ? "A ∪ B" : "A ∩ B"} = ${R10_res.txt}
 
@@ -828,7 +828,7 @@ R11_plot = recta([
   Plot.dot([{x: R11_test, y: -0.45}], {x: "x", y: "y", r: 6, fill: R11_dentro ? "#059669" : "#dc2626", symbol: "triangle2"})
 ], [-11, 11], 210)
 
-R11_txt = md`**E(${fm(R11_E.a)}, ${fm(R11_E.r)}) = (${fm(R11_E.a - R11_E.r)}, ${fm(R11_E.a + R11_E.r)}) = { x : |x − ${fm(R11_E.a)}| < ${fm(R11_E.r)} }**
+R11_txt = mdx`**E(${fm(R11_E.a)}, ${fm(R11_E.r)}) = (${fm(R11_E.a - R11_E.r)}, ${fm(R11_E.a + R11_E.r)}) = { x : |x − ${fm(R11_E.a)}| < ${fm(R11_E.r)} }**
 
 ${R11_dir === "ie"
   ? `Conversión: el intervalo (${fm(Math.min(R11_b, R11_cc))}, ${fm(Math.max(R11_b, R11_cc))}) tiene centro (b+c)/2 = **${fm(R11_E.a)}** y radio (c−b)/2 = **${fm(R11_E.r)}**.`
