@@ -199,6 +199,13 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/reales-parte3.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones-parte1.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones-parte2.qmd
+        - text: "---"
+        - section: "2 Batx Mates CCSS"
+          contents:
+          - master-upf/recursos/2-BatxMatesCCSS/matrices-01.qmd
+          - master-upf/recursos/2-BatxMatesCCSS/matrices-02.qmd
+          - master-upf/recursos/2-BatxMatesCCSS/matrices-03.qmd
+          - master-upf/recursos/2-BatxMatesCCSS/matrices-04.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

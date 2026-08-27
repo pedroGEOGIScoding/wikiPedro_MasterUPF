@@ -1,0 +1,425 @@
+---
+title: "Matrices (II): operaciones"
+subtitle: "Suma, producto por un escalar, producto de matrices, traspuesta y potencias"
+filename: matrices-02
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Operaciones con matrices
+categories: [matemáticas, bachillerato, matrices]
+toc: true
+number-sections: true
+page-layout: article
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+{{< include _matrices-helpers.qmd >}}
+
+## Actividad de introducción: la tabla de la Liga
+
+La clasificación de una liga se publica en dos tablas: resultados **en casa** y resultados **fuera** (partidos jugados, ganados, empatados, perdidos de cada equipo). Para obtener la tabla **total** hay que sumar celda a celda las dos tablas, siempre que los equipos estén en el mismo orden [file:5].
+
+Después, el sistema de puntuación (3 puntos por victoria, 1 por empate, 0 por derrota y 0 por jugar) se puede escribir como una matriz columna, y multiplicándola por la tabla de resultados se obtienen los puntos de cada equipo. Fíjate en las dimensiones: una tabla $20 \times 4$ por una matriz $4 \times 1$ da una matriz $20 \times 1$ (los puntos de los 20 equipos).
+
+::: {.callout-note}
+## La lectura clave
+- **Sumar** matrices = combinar dos tablas con la misma estructura.
+- **Multiplicar** matrices = aplicar un "conversor" a una tabla (resultados → puntos, juguetes → premios, premios → euros).
+:::
+
+## Suma y resta de matrices
+
+Dadas $A, B \in \mathcal{M}_{m \times n}$, la suma $A + B$ es la matriz de la **misma dimensión** cuyos elementos son la suma de los que ocupan la misma posición [file:5]:
+
+$$
+C = A + B \iff c_{ij} = a_{ij} + b_{ij}
+$$
+
+$$
+\begin{pmatrix} 3 & 1 & -2 \\ 4 & -3 & 0 \end{pmatrix} +
+\begin{pmatrix} 2 & 1 & 3 \\ 4 & -3 & 5 \end{pmatrix} =
+\begin{pmatrix} 5 & 2 & 1 \\ 8 & -6 & 5 \end{pmatrix}
+$$
+
+::: {.callout-important}
+## Condición imprescindible
+**Sólo se suman matrices de la misma dimensión.** Una $2\times 3$ y una $3\times 2$ no se pueden sumar. La resta se define como $A - B = A + (-B)$.
+:::
+
+Como la suma de matrices hereda las propiedades de la suma de números reales:
+
+- **Asociativa**: $(A + B) + C = A + (B + C)$
+- **Conmutativa**: $A + B = B + A$
+- **Elemento neutro**: la matriz nula, $A + 0 = A$
+- **Elemento opuesto**: $A + (-A) = 0$
+
+## Producto de un número por una matriz
+
+El producto de $k \in \mathbb{R}$ por $A = (a_{ij})$ es la matriz $kA = (k \cdot a_{ij})$: se multiplica **cada** elemento [file:5].
+
+$$
+5 \cdot \begin{pmatrix} 1 & 2 & -4 \\ -3 & 1 & 0 \end{pmatrix} = \begin{pmatrix} 5 & 10 & -20 \\ -15 & 5 & 0 \end{pmatrix}
+$$
+
+Propiedades: $k(A + B) = kA + kB$, $(k + l)A = kA + lA$, $(k \cdot l)A = k(l A)$ y $1 \cdot A = A$. Con estas dos operaciones, $(\mathcal{M}_{m \times n}, +, \cdot k)$ tiene estructura de **espacio vectorial** [file:5].
+
+::: {.callout-caution}
+## Pensamiento crítico
+Si $kA = 0$ (matriz nula), ¿podemos concluir que $A = 0$? ¿Y que $k = 0$? Compara con lo que sabes de números reales: en $\mathbb{R}$, $k \cdot a = 0 \Rightarrow k = 0$ o $a = 0$. Comprueba si aquí pasa lo mismo.
+:::
+
+## Applet 4 · Combinación lineal $\lambda A + \mu B$
+
+::: {.applet}
+#### ➕ Suma, resta y producto por un número
+
+::: {.applet-instr}
+**Cómo escribir los datos**
+
+- Matrices: filas separadas por `;` o salto de línea; elementos separados por espacios o comas. Se aceptan fracciones (`1/2`) y decimales con punto (`0.5`).
+- Los coeficientes $\lambda$ y $\mu$ se ajustan con los deslizadores (admiten valores negativos y medios).
+
+**Prueba a**: poner $\lambda = 1$, $\mu = -1$ para calcular $A - B$; poner $\mu = 0$ para ver sólo $\lambda A$; escribir dos matrices de dimensiones distintas para ver el mensaje de error.
+:::
+
+```{ojs}
+//| echo: false
+viewof sA = Inputs.textarea({label: "Matriz A", rows: 3, value: "3 1 -2\n4 -3 0", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof sB = Inputs.textarea({label: "Matriz B", rows: 3, value: "2 1 3\n4 -3 5", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof lam = Inputs.range([-5, 5], {label: "λ (multiplica a A)", step: 0.5, value: 1})
+```
+
+```{ojs}
+//| echo: false
+viewof mu = Inputs.range([-5, 5], {label: "μ (multiplica a B)", step: 0.5, value: 1})
+```
+
+```{ojs}
+//| echo: false
+salidaSuma = {
+  const a = Mx.parseMatrix(sA), b = Mx.parseMatrix(sB);
+  if (a.error) return Mx.err("En A: " + a.error);
+  if (b.error) return Mx.err("En B: " + b.error);
+  if (a.rows !== b.rows || a.cols !== b.cols)
+    return Mx.err("A es " + a.dim + " y B es " + b.dim + ": no se pueden sumar. La suma exige la MISMA dimensión.");
+  const L = Mx.parseEntry(String(lam)), Mu = Mx.parseEntry(String(mu));
+  const R = Mx.addM(Mx.scaleM(L, a.M), Mx.scaleM(Mu, b.M));
+  const detalle = a.M.map((r, i) => r.map((x, j) =>
+    Mx.par(L) + "·" + Mx.par(x) + " + " + Mx.par(Mu) + "·" + Mx.par(b.M[i][j]) + " = " + Mx.str(R[i][j])));
+  return html`<div class="mx-out">
+    <div class="mx-flex">${Mx.view(a.M, {name: "A ="})}${Mx.view(b.M, {name: "B ="})}</div>
+    <div class="mx-flex"><b>${Mx.str(L)}·A + ${Mx.str(Mu)}·B =</b>${Mx.view(R)}</div>
+    <details><summary>Ver el cálculo elemento a elemento</summary>
+      <table class="mx-tab"><tbody>${detalle.map(r => html`<tr>${r.map(t => html`<td style="text-align:left;font-size:.82rem">${t}</td>`)}</tr>`)}</tbody></table>
+    </details>
+    ${Mx.info("Comprueba la propiedad conmutativa: intercambia los textos de A y B y también λ y μ. ¿Obtienes lo mismo?")}
+  </div>`;
+}
+```
+:::
+
+## Producto de matrices
+
+Es la operación más delicada del tema. Sean $A$ de dimensión $m \times n$ y $B$ de dimensión $n \times p$ —el número de **columnas de $A$** debe coincidir con el número de **filas de $B$**—. Entonces $A \cdot B$ es una matriz $C$ de dimensión $m \times p$ con [file:5]:
+
+$$
+c_{ij} = \sum_{k=1}^{n} a_{ik} \, b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj}
+$$
+
+Es decir: **el elemento $c_{ij}$ se obtiene multiplicando la fila $i$ de $A$ por la columna $j$ de $B$**, término a término, y sumando.
+
+### Ejemplo desarrollado paso a paso
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}_{2\times 3}, \qquad
+B = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}_{3\times 2}
+$$
+
+$$
+A \cdot B = \begin{pmatrix}
+1\cdot 1 + 2\cdot 3 + 3\cdot 5 & 1\cdot 2 + 2\cdot 4 + 3\cdot 6 \\
+4\cdot 1 + 5\cdot 3 + 6\cdot 5 & 4\cdot 2 + 5\cdot 4 + 6\cdot 6
+\end{pmatrix}
+= \begin{pmatrix} 22 & 28 \\ 49 & 64 \end{pmatrix}_{2\times 2}
+$$
+
+::: {.callout-important}
+## La regla de las dimensiones
+$$
+\underbrace{(m \times \mathbf{n})}_{A} \cdot \underbrace{(\mathbf{n} \times p)}_{B} = (m \times p)
+$$
+Los números **de dentro** deben coincidir (si no, el producto no existe); los **de fuera** dan la dimensión del resultado.
+:::
+
+### El producto NO es conmutativo
+
+En general $A \cdot B \neq B \cdot A$, y puede ocurrir que uno de los dos productos ni siquiera esté definido [file:5]. Si $A$ es $m \times n$, para que existan ambos productos $B$ debe ser $n \times m$; entonces $A\cdot B$ es $m \times m$ y $B \cdot A$ es $n \times n$: ¡ni las dimensiones coinciden!
+
+Para matrices cuadradas de orden $n$ sí valen:
+
+- **Asociativa**: $(A \cdot B)\cdot C = A \cdot (B \cdot C)$
+- **Elemento neutro**: $A \cdot I = I \cdot A = A$
+- **Distributiva** respecto de la suma: $A(B + C) = AB + AC$
+
+::: {.callout-caution}
+## Pensamiento crítico: lo que se rompe al pasar de $\mathbb{R}$ a las matrices
+1. **No conmutatividad**: $AB \neq BA$. Consecuencia: $(A+B)^2 = A^2 + AB + BA + B^2$, y **no** $A^2 + 2AB + B^2$.
+2. **Divisores de cero**: existen matrices no nulas con $A \cdot B = 0$. Prueba $A = \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}$, $B = \begin{pmatrix} 1 & -1 \\ -1 & 1\end{pmatrix}$ en el Applet 5.
+3. **No se puede cancelar**: de $AB = AC$ **no** se deduce $B = C$ (sólo si $A$ tiene inversa, como veremos en la parte III).
+:::
+
+## Applet 5 · Producto de matrices paso a paso
+
+::: {.applet}
+#### ✖️ Multiplica y mira cómo nace cada elemento
+
+::: {.applet-instr}
+**Instrucciones**
+
+1. Escribe $A$ y $B$ (formato habitual: `1 2 3 ; 4 5 6`).
+2. El applet comprueba la compatibilidad de dimensiones y avisa si no se pueden multiplicar.
+3. Mueve los deslizadores **i** y **j** para ver, resaltados, la fila de $A$ y la columna de $B$ que generan $c_{ij}$, junto al cálculo escrito.
+4. Se calculan también $B\cdot A$ (si existe) y la comparación $AB$ vs $BA$.
+
+**Ejemplos para probar**
+
+- `1 2 3 ; 4 5 6` y `1 2 ; 3 4 ; 5 6` → producto $2\times 2$.
+- `1 1 ; 1 1` y `1 -1 ; -1 1` → ¡producto nulo con factores no nulos!
+- `1 2 ; 3 4` y `0 1 ; 1 0` → comprueba que $AB \neq BA$.
+:::
+
+```{ojs}
+//| echo: false
+viewof pA = Inputs.textarea({label: "Matriz A", rows: 3, value: "1 2 3\n4 5 6", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof pB = Inputs.textarea({label: "Matriz B", rows: 4, value: "1 2\n3 4\n5 6", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof pi = Inputs.range([1, 6], {label: "Fila i de A", step: 1, value: 1})
+```
+
+```{ojs}
+//| echo: false
+viewof pj = Inputs.range([1, 6], {label: "Columna j de B", step: 1, value: 1})
+```
+
+```{ojs}
+//| echo: false
+salidaProd = {
+  const a = Mx.parseMatrix(pA), b = Mx.parseMatrix(pB);
+  if (a.error) return Mx.err("En A: " + a.error);
+  if (b.error) return Mx.err("En B: " + b.error);
+  const compat = a.cols === b.rows;
+  const head = html`<p><span class="mx-badge">Dimensiones</span> A es ${a.dim} y B es ${b.dim}.
+    ${compat ? "Columnas de A = filas de B = " + a.cols + " ✅ El producto A·B existe y es " + a.rows + "×" + b.cols + "."
+             : "Columnas de A (" + a.cols + ") ≠ filas de B (" + b.rows + ") ❌ El producto A·B NO está definido."}</p>`;
+  if (!compat) return html`<div class="mx-out">${head}<div class="mx-flex">${Mx.view(a.M, {name: "A ="})}${Mx.view(b.M, {name: "B ="})}</div>
+    ${Mx.err("Para poder multiplicar A·B necesitas que B tenga " + a.cols + " filas.")}</div>`;
+  const i = Math.min(pi, a.rows) - 1, j = Math.min(pj, b.cols) - 1;
+  const AB = Mx.mulM(a.M, b.M);
+  const puedeBA = b.cols === a.rows;
+  const BA = puedeBA ? Mx.mulM(b.M, a.M) : null;
+  return html`<div class="mx-out">${head}
+    <div class="mx-flex">${Mx.view(a.M, {name: "A =", hiRow: i})}${Mx.view(b.M, {name: "B =", hiCol: j})}
+      <b>=</b>${Mx.view(AB, {hi: [i, j]})}</div>
+    <div class="mx-info" style="font-family:ui-monospace,monospace">${Mx.prodDetail(a.M, b.M, i, j)}</div>
+    <details><summary>Ver todos los elementos del producto desarrollados</summary>
+      <div style="font-family:ui-monospace,monospace;font-size:.84rem">
+        ${AB.map((r, ii) => r.map((_, jj) => html`<div>${Mx.prodDetail(a.M, b.M, ii, jj)}</div>`))}</div>
+    </details>
+    <hr>
+    ${puedeBA
+      ? html`<div class="mx-flex"><b>B·A =</b>${Mx.view(BA)}</div>
+         ${(BA.length === AB.length && BA[0].length === AB[0].length && Mx.eqM(AB, BA))
+            ? Mx.ok("En este caso concreto A·B = B·A: las matrices CONMUTAN (es la excepción, no la regla).")
+            : Mx.err("A·B ≠ B·A: el producto de matrices NO es conmutativo. " + (BA.length !== AB.length ? "¡Ni siquiera tienen la misma dimensión!" : ""))}`
+      : Mx.info("El producto B·A no está definido (B es " + b.dim + " y A es " + a.dim + "). Que exista A·B no garantiza que exista B·A.")}
+  </div>`;
+}
+```
+:::
+
+## Matriz traspuesta
+
+Dada $A$ de dimensión $m \times n$, su **traspuesta** $A^{t}$ es la matriz $n \times m$ que se obtiene cambiando filas por columnas [file:5]:
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6\end{pmatrix} \Longrightarrow
+A^{t} = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}
+$$
+
+Propiedades:
+
+$$
+(A^{t})^{t} = A, \qquad (A + B)^{t} = A^{t} + B^{t}, \qquad (k A)^{t} = k A^{t}, \qquad \boxed{(A \cdot B)^{t} = B^{t} \cdot A^{t}}
+$$
+
+::: {.callout-important}
+## Fíjate en el orden
+Al trasponer un producto **se invierte el orden de los factores**. Es un error muy frecuente escribir $(AB)^t = A^t B^t$: normalmente ni las dimensiones cuadran.
+:::
+
+Una matriz cuadrada es **simétrica** si $A = A^{t}$ y **antisimétrica** si $A = -A^{t}$ [file:5].
+
+## Applet 6 · Traspuesta, simetría y la ley $(AB)^t = B^t A^t$
+
+::: {.applet}
+#### 🔁 Trasponer y comprobar propiedades
+
+::: {.applet-instr}
+Escribe $A$ y $B$ (formato habitual). El applet muestra $A^t$, clasifica $A$ como simétrica/antisimétrica y **verifica numéricamente** las dos versiones de la traspuesta de un producto, para que compruebes cuál es la correcta.
+
+Prueba con `1 3 -1 ; 3 5 4 ; -1 4 0` (simétrica) y con `1 2 ; 0 -1 ; 3 1` junto a `2 1 0 ; -1 3 4`.
+:::
+
+```{ojs}
+//| echo: false
+viewof tA = Inputs.textarea({label: "Matriz A", rows: 3, value: "1 2\n0 -1\n3 1", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof tB = Inputs.textarea({label: "Matriz B", rows: 3, value: "2 1 0\n-1 3 4", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+salidaTrans = {
+  const a = Mx.parseMatrix(tA), b = Mx.parseMatrix(tB);
+  if (a.error) return Mx.err("En A: " + a.error);
+  if (b.error) return Mx.err("En B: " + b.error);
+  const At = Mx.trans(a.M), Bt = Mx.trans(b.M);
+  const cuad = a.rows === a.cols;
+  const sim = cuad && Mx.eqM(a.M, At);
+  const anti = cuad && Mx.eqM(a.M, Mx.scaleM(Mx.rat(-1), At));
+  let bloque = Mx.info("Para comparar (A·B)ᵗ con Bᵗ·Aᵗ necesitas que A·B exista: columnas de A = filas de B.");
+  if (a.cols === b.rows) {
+    const AB = Mx.mulM(a.M, b.M), ABt = Mx.trans(AB), BtAt = Mx.mulM(Bt, At);
+    const otro = (a.rows === b.cols) ? Mx.mulM(At, Bt) : null;
+    bloque = html`<div>
+      <div class="mx-flex"><b>(A·B)ᵗ =</b>${Mx.view(ABt)}<b>Bᵗ·Aᵗ =</b>${Mx.view(BtAt)}</div>
+      ${Mx.eqM(ABt, BtAt) ? Mx.ok("(A·B)ᵗ = Bᵗ·Aᵗ ✔ La propiedad se cumple (invirtiendo el orden).") : Mx.err("Revisa los datos.")}
+      ${otro ? html`<div class="mx-flex"><b>Aᵗ·Bᵗ =</b>${Mx.view(otro)}</div>
+        ${Mx.eqM(ABt, otro) ? Mx.info("Aquí coinciden por casualidad: no es una propiedad general.")
+                            : Mx.err("Aᵗ·Bᵗ ≠ (A·B)ᵗ: escribir la propiedad sin invertir el orden es un ERROR.")}`
+        : Mx.info("El producto Aᵗ·Bᵗ ni siquiera está definido: la versión 'sin invertir el orden' es imposible.")}
+    </div>`;
+  }
+  return html`<div class="mx-out">
+    <div class="mx-flex">${Mx.view(a.M, {name: "A ="})}${Mx.view(At, {name: "Aᵗ ="})}</div>
+    ${sim ? Mx.ok("A es SIMÉTRICA: A = Aᵗ.") : anti ? Mx.ok("A es ANTISIMÉTRICA: A = −Aᵗ (y su diagonal es nula).")
+      : cuad ? Mx.info("A es cuadrada pero ni simétrica ni antisimétrica.") : Mx.info("A es rectangular (" + a.dim + "), así que no tiene sentido preguntar si es simétrica.")}
+    ${bloque}
+  </div>`;
+}
+```
+:::
+
+## Potencias de una matriz
+
+Si $A$ es cuadrada, se define $A^{0} = I$, $A^{1} = A$ y $A^{n} = A^{n-1}\cdot A$. Las potencias sólo tienen sentido para matrices **cuadradas** (si no, las dimensiones no encajan).
+
+Casos especiales interesantes:
+
+- $A$ es **idempotente** si $A^2 = A$.
+- $A$ es **nilpotente** de índice $k$ si $A^k = 0$ con $A^{k-1} \neq 0$. Ejemplo: $\begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix}^2 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$.
+- $A$ es **involutiva** si $A^2 = I$.
+
+::: {.callout-note collappse="false" collapse="true"}
+## Técnica de examen: hallar $A^{n}$ buscando el patrón
+Con $A = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}$:
+$$
+A^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}, \quad
+A^3 = \begin{pmatrix} 1 & 3 \\ 0 & 1\end{pmatrix}, \quad \ldots, \quad
+A^{n} = \begin{pmatrix} 1 & n \\ 0 & 1\end{pmatrix}
+$$
+La estrategia es: calcular $A^2$, $A^3$, $A^4$, **conjeturar** la fórmula general y comprobarla (idealmente por inducción). El Applet 7 te da las potencias sucesivas para que hagas tú la conjetura.
+:::
+
+## Applet 7 · Potencias sucesivas y búsqueda de patrones
+
+::: {.applet}
+#### ⏫ $A^{n}$ y detección automática de casos especiales
+
+::: {.applet-instr}
+**Instrucciones**: escribe una matriz **cuadrada** y elige el exponente máximo. Verás la lista $A^1, A^2, \ldots, A^{n}$ para que descubras el patrón, y el applet te avisará si la matriz es idempotente, nilpotente, involutiva o periódica.
+
+**Matrices para investigar**
+
+- `1 1 ; 0 1` → aparece la sucesión de los naturales.
+- `0 1 ; 0 0` → nilpotente.
+- `0 1 ; 1 0` → involutiva (se repite con período 2).
+- `1 0 0 ; 0 1 0 ; 0 0 1` → identidad: todas las potencias iguales.
+- `2 0 ; 0 3` → diagonal: fíjate en que basta elevar la diagonal.
+:::
+
+```{ojs}
+//| echo: false
+viewof powA = Inputs.textarea({label: "Matriz cuadrada A", rows: 3, value: "1 1\n0 1", spellcheck: false})
+```
+
+```{ojs}
+//| echo: false
+viewof powN = Inputs.range([1, 8], {label: "Exponente máximo n", step: 1, value: 5})
+```
+
+```{ojs}
+//| echo: false
+salidaPow = {
+  const a = Mx.parseMatrix(powA);
+  if (a.error) return Mx.err(a.error);
+  if (a.rows !== a.cols) return Mx.err("Sólo se pueden calcular potencias de matrices CUADRADAS. La tuya es " + a.dim + ".");
+  const lista = [];
+  let P = Mx.ident(a.rows);
+  for (let k = 1; k <= powN; k++) { P = Mx.mulM(P, a.M); lista.push({k, P: Mx.clone(P)}); }
+  const A2 = lista[1] ? lista[1].P : Mx.mulM(a.M, a.M);
+  const idem = Mx.eqM(A2, a.M);
+  const invo = Mx.eqM(A2, Mx.ident(a.rows));
+  const nil = lista.find(o => Mx.eqM(o.P, Mx.zeros(a.rows, a.rows)));
+  const per = lista.slice(1).find(o => Mx.eqM(o.P, a.M));
+  return html`<div class="mx-out">
+    <div class="mx-flex">${lista.map(o => html`<div>${Mx.view(o.P, {name: "A^" + o.k + " ="})}</div>`)}</div>
+    ${idem ? Mx.ok("A es IDEMPOTENTE: A² = A, luego Aⁿ = A para todo n ≥ 1.") : ""}
+    ${invo ? Mx.ok("A es INVOLUTIVA: A² = I. Las potencias se repiten con período 2 (A, I, A, I, …).") : ""}
+    ${nil ? Mx.ok("A es NILPOTENTE: A^" + nil.k + " = 0 (matriz nula). A partir de ahí todas las potencias son nulas.") : ""}
+    ${(!idem && !invo && !nil && per) ? Mx.ok("Las potencias son PERIÓDICAS: A^" + per.k + " = A.") : ""}
+    ${Mx.info("Escribe con palabras la fórmula que crees que tiene Aⁿ y compruébala subiendo el exponente. ¿Sabrías demostrarla por inducción?")}
+  </div>`;
+}
+```
+:::
+
+## Actividades propuestas
+
+Con $A = \begin{pmatrix} 2 & 1 & 0 \\ 3 & 0 & 9 \\ -2 & 0 & 7\end{pmatrix}$, $B = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & 2 \\ 3 & 3 & 3\end{pmatrix}$ y $C = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 4 & 5 \\ -7 & 3 & 3\end{pmatrix}$ [file:5]:
+
+1. Calcula $A + 3B$ y $2A + B - 5C$.
+2. Calcula $A \cdot B$ y $B \cdot A$. ¿Es el producto conmutativo?
+3. Calcula $3A^{t} - B^{2}$.
+4. Comprueba con el Applet 5 que $(A+B)^2 \neq A^2 + 2AB + B^2$ y explica por qué.
+5. Halla todas las matrices $X$ de orden 2 que cumplan $X \cdot \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0\end{pmatrix}$. ¿Cuántas hay?
+6. Una empresa tiene dos tiendas. En enero la tienda 1 vendió 30 camisas, 20 pantalones y 15 chaquetas; la tienda 2, 25, 30 y 10. En febrero: 40, 15, 20 y 35, 25, 12. Los precios son 20 €, 35 € y 60 € respectivamente. Escribe las matrices y usa el Applet 5 para obtener la facturación de cada tienda en el trimestre.
+
+::: {.callout-tip}
+## Continúa
+En la **parte III** llegan la matriz inversa (por sistemas, por Gauss-Jordan y por adjuntos), los determinantes, el rango y las ecuaciones matriciales.
+:::
