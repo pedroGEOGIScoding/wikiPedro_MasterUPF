@@ -1,0 +1,863 @@
+---
+title: "Números reales I · Conjuntos, recta real e intervalos"
+subtitle: "Matemáticas Aplicadas a las CCSS I · 1.º de Bachillerato — Unidad 1 (Parte 1 de 3)"
+filename: reales-parte1
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Números reales
+categories: [matemáticas, bachillerato, números reales]
+toc: true
+number-sections: true
+page-layout: article
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+{{< include reales-motor.qmd >}}
+
+::: {.callout-note}
+## Cómo se usa este tema
+Los apuntes están pensados para **jugar primero y formalizar después**. En cada apartado encontrarás la definición, un ejemplo con todos los cálculos y un **applet manipulable**: cambia los números, rompe la regla, busca el caso raro. Cuando algo no salga como esperabas, habrás aprendido.
+
+Tres partes: **1)** conjuntos numéricos, recta real e intervalos · **2)** aproximación, errores y notación científica · **3)** potencias, radicales y logaritmos.
+:::
+
+# Reto de apertura: el poder de la mayoría
+
+Diez *influencers* reciben diez premios. Se reparten así: empezando por quien lleva **menos** tiempo y acabando por quien lleva más, cada uno hace una propuesta que se vota. Si al menos el **50 %** vota a favor, se reparte; si no, quien ha propuesto es expulsado y propone el siguiente.
+
+Nadie vota una propuesta que le expulse, ni una en la que reciba menos premios que los demás. **¿Qué debe proponer el primero para que le aprueben y salir lo mejor parado?**
+
+## Applet 1 · Simulador del reparto
+
+```{ojs}
+//| echo: false
+viewof R1_n = Inputs.range([1, 12], {value: 10, step: 1, label: "Número de influencers"})
+viewof R1_P = Inputs.range([1, 20], {value: 10, step: 1, label: "Número de premios"})
+viewof R1_mio = Inputs.range([0, 20], {value: 6, step: 1, label: "Premios que quiero quedarme"})
+viewof R1_reparto = Inputs.range([0, 11], {value: 4, step: 1, label: "A cuántos compañeros doy 1 premio"})
+```
+
+```{ojs}
+//| echo: false
+R1_optimo = {
+  // Inducción hacia atrás: cada votante acepta si gana MÁS que en la ronda siguiente
+  const memo = new Map();
+  const f = k => {
+    if (memo.has(k)) return memo.get(k);
+    let res;
+    if (k === 1) res = [R1_P];
+    else {
+      const necesarios = Math.ceil(k / 2);          // votos que hacen falta (50 %)
+      const compra = necesarios - 1;                 // aparte del suyo
+      const sig = f(k - 1);                          // qué pasaría si le expulsan
+      const idx = d3.range(k - 1).map(i => ({i, v: sig[i] ?? 0}))
+        .sort((a, b) => a.v - b.v).slice(0, compra).map(o => o.i);
+      res = new Array(k).fill(0);
+      res[0] = R1_P - compra;
+      for (const i of idx) res[i + 1] = 1;
+    }
+    memo.set(k, res);
+    return res;
+  };
+  return f(R1_n);
+}
+
+R1_test = {
+  const necesarios = Math.ceil(R1_n / 2);
+  const total = R1_mio + R1_reparto;
+  const votos = 1 + Math.min(R1_reparto, R1_n - 1);
+  return {necesarios, total, votos, cabe: total <= R1_P, pasa: votos >= necesarios && total <= R1_P};
+}
+
+R1_plot = Plot.plot({width: 680, height: 260, marginLeft: 50,
+  x: {label: "influencer (1 = quien propone) →", ticks: R1_n}, y: {label: "↑ premios", domain: [0, R1_P + 1]},
+  marks: [
+    Plot.barY(R1_optimo.map((v, i) => ({i: i + 1, v})), {x: "i", y: "v", fill: "#2563eb", fillOpacity: 0.85}),
+    Plot.text(R1_optimo.map((v, i) => ({i: i + 1, v, t: `${v}`})), {x: "i", y: "v", text: "t", dy: -10, fontWeight: "bold"})
+  ]})
+
+R1_txt = md`**Tu propuesta:** te quedas ${R1_mio} y das 1 premio a ${R1_reparto} compañeros → reparte ${R1_test.total} premios de ${R1_P} y consigue ${R1_test.votos} votos, cuando hacen falta **${R1_test.necesarios}**.
+
+${!R1_test.cabe ? "❌ **Imposible:** estás repartiendo más premios de los que hay."
+  : R1_test.pasa ? "✅ **Aprobada.** Y ahora la pregunta buena: ¿podrías quedarte con **más**?"
+  : "❌ **Rechazada:** no reúnes el 50 % de los votos. Serás expulsado y propondrá el siguiente."}
+
+**Solución óptima calculada por inducción hacia atrás** (gráfico): el primero se queda **${R1_optimo[0]}** premios y da 1 premio a ${R1_optimo.filter(v => v === 1).length} compañeros.
+
+🔑 La clave del razonamiento: piensa **al revés**. Si quedaran 2 personas, la que propone se lo queda todo (su propio voto ya es el 50 %). Sabiendo eso, quien propone antes solo necesita comprar a los que **no ganarían nada** en la ronda siguiente, y les basta con **un** premio.`
+```
+
+::: {.callout-note}
+## Simplificación honesta del modelo
+El applet usa la regla "cada votante acepta si gana más que en la ronda siguiente". La condición del enunciado *"nadie vota una propuesta con la que reciba menos premios que los demás"* endurece el problema. Discutid en clase si esa condición cambia la solución y por qué la teoría de juegos necesita hipótesis tan precisas sobre el comportamiento.
+:::
+
+# Los conjuntos numéricos
+
+## De $\mathbb{N}$ a $\mathbb{R}$
+
+| Conjunto | Símbolo | Qué contiene |
+|---|---|---|
+| Naturales | $\mathbb{N}$ | $1,2,3,\dots$ (para contar) |
+| Enteros | $\mathbb{Z}$ | naturales, el cero y los negativos |
+| Racionales | $\mathbb{Q}$ | todo lo que se puede escribir como $\frac{a}{b}$ con $a,b\in\mathbb{Z}$, $b\ne0$ |
+| Irracionales | $\mathbb{I}$ | los que **no** se pueden escribir como fracción |
+| Reales | $\mathbb{R}$ | $\mathbb{Q}\cup\mathbb{I}$ |
+
+Las inclusiones son **estrictas**: $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$, y además $\mathbb{I}\subset\mathbb{R}$, pero $\mathbb{Q}\cap\mathbb{I}=\varnothing$.
+
+**La regla práctica para clasificar.** Fíjate en la expresión decimal:
+
+- **finita** (decimal exacto) → racional
+- **infinita periódica** → racional
+- **infinita no periódica** → **irracional**
+
+Y en las fracciones y raíces: $\frac{15}{5}=3$ es entero; $\frac{8}{3}$ es racional no entero; $\sqrt{16}=4$ es entero, pero $\sqrt{7}$ es irracional. En general, **si $n$ no es un cuadrado perfecto, $\sqrt{n}$ es irracional**.
+
+**Ejemplo resuelto.** Clasifica $4$; $-2$; $0$; $0{,}432$; $0{,}4\overline{32}$; $0{,}432432243222\dots$; $\frac{15}{5}$; $\frac{8}{3}$; $\sqrt{16}$; $\sqrt{7}$.
+
+$4\in\mathbb{N}$ · $-2\in\mathbb{Z}$ · $0\in\mathbb{Z}$ · $0{,}432\in\mathbb{Q}$ (exacto) · $0{,}4\overline{32}\in\mathbb{Q}$ (periódico) · $0{,}432432243222\dots\in\mathbb{I}$ (infinito **no** periódico) · $\frac{15}{5}=3\in\mathbb{Z}$ · $\frac{8}{3}\in\mathbb{Q}$ · $\sqrt{16}=4\in\mathbb{Z}$ · $\sqrt{7}\in\mathbb{I}$.
+
+## Applet 2 · Clasificador de números
+
+```{ojs}
+//| echo: false
+viewof R2_modo = Inputs.radio(new Map([["📚 Galería de ejemplos", "gal"], ["✏️ Escribir mi número", "libre"]]), {value: "gal", label: "Modo"})
+viewof R2_ej = Inputs.select(new Map([
+  ["7", "7"], ["-121", "-121"], ["0", "0"], ["15/5", "15/5"], ["8/3", "8/3"],
+  ["2/7", "2/7"], ["31/9", "31/9"], ["0.432", "0.432"], ["sqrt(16)", "sqrt(16)"],
+  ["sqrt(7)", "sqrt(7)"], ["pi", "pi"], ["e", "e"], ["(1+sqrt(5))/2", "(1+sqrt(5))/2"],
+  ["0.1234567891011...", "IRR1"], ["1.2468101214...", "IRR2"]
+]), {value: "8/3", label: "Ejemplo", disabled: R2_modo !== "gal"})
+viewof R2_txt = Inputs.text({label: "Mi número", value: "22/7", width: 320,
+  placeholder: "7/12 · sqrt(2) · pi · 2^-3 · 0.75", submit: false, disabled: R2_modo !== "libre"})
+```
+
+```{ojs}
+//| echo: false
+R2_entrada = R2_modo === "gal" ? R2_ej : R2_txt
+R2_irr = R2_entrada === "IRR1" || R2_entrada === "IRR2"
+
+R2_info = {
+  if (R2_irr) return {v: R2_entrada === "IRR1" ? 0.1234567891011 : 1.2468101214,
+    clase: "IRRACIONAL", conj: "ℝ (irracional)", motivo: R2_entrada === "IRR1"
+      ? "Tras la coma se escriben **todos los números naturales seguidos**: 1, 2, 3, 4… Nunca se repite un bloque, así que no es periódico ni exacto."
+      : "Tras la coma se escriben **todos los pares seguidos**: 2, 4, 6, 8, 10… Infinitas cifras sin periodo.", dec: "regla de formación"};
+  const v = lector.valor(R2_entrada);
+  if (!Number.isFinite(v)) return {v: NaN, clase: "no válido", conj: "—", motivo: "Revisa la sintaxis (mira la guía del principio).", dec: "—"};
+  // ¿Es una fracción exacta escrita como p/q?
+  const mf = R2_entrada.match(/^\s*(-?\d+)\s*\/\s*(-?\d+)\s*$/);
+  let expl = null, frac = null;
+  if (mf) { frac = num.canonica(+mf[1], +mf[2]); expl = num.expansion(+mf[1], +mf[2]); }
+  else if (Math.abs(v - Math.round(v)) < 1e-12) { frac = {n: Math.round(v), d: 1}; expl = num.expansion(Math.round(v), 1); }
+  const esEntero = Math.abs(v - Math.round(v)) < 1e-12;
+  const esRacional = frac !== null;
+  if (esEntero) return {v, clase: v > 0 ? "NATURAL" : "ENTERO", conj: v > 0 ? "ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ" : "ℤ ⊂ ℚ ⊂ ℝ",
+    motivo: v > 0 ? "Es positivo y sin decimales: sirve para contar." : "Sin decimales, pero no positivo: no es natural.", dec: `${v}`, frac, expl};
+  if (esRacional) return {v, clase: "RACIONAL", conj: "ℚ ⊂ ℝ",
+    motivo: `Se escribe como fracción **${num.frac(frac.n, frac.d)}**, así que su expresión decimal es ${expl.tipo}.`,
+    dec: num.expStr(expl), frac, expl};
+  return {v, clase: "probablemente IRRACIONAL", conj: "ℝ (irracional)",
+    motivo: "No es un decimal exacto ni se ha escrito como fracción. Cuidado: el ordenador solo ve unas cifras, **la irracionalidad se demuestra, no se mide**.",
+    dec: fx(v, 12)};
+}
+
+R2_plot = recta([
+  Plot.tickX(d3.range(-3, 4), {x: d => d, stroke: "#9ca3af"}),
+  ...(Number.isFinite(R2_info.v) ? [Plot.dot([{x: R2_info.v, y: 0}], {x: "x", y: "y", r: 8, fill: "#dc2626"}),
+    marcaTexto(R2_info.v, 0, `${fm(R2_info.v)}`, "#dc2626", -18)] : [])
+], [-3.5, 3.5], 150)
+
+R2_txt2 = md`## ${R2_entrada === "IRR1" ? "0,1234567891011…" : R2_entrada === "IRR2" ? "1,2468101214…" : R2_entrada} → **${R2_info.clase}**
+
+- Conjunto mínimo al que pertenece: **${R2_info.conj}**
+- Expresión decimal: ${R2_info.dec}${R2_info.expl ? ` · tipo: **${R2_info.expl.tipo}**` : ""}
+- ${R2_info.motivo}`
+```
+
+::: {.callout-tip}
+## Juega a romperlo
+1. Escribe `sqrt(16)` y luego `sqrt(17)`: uno es entero y el otro irracional. ¿Cuáles son los siguientes cuadrados perfectos?
+2. Prueba `2/7`, `1/3`, `31/9`, `1/6`: mira el **tipo** de decimal periódico de cada uno. ¿Ves alguna relación con el denominador?
+3. Escribe `sqrt(2)*sqrt(2)`: el applet dirá que es 2. Dos irracionales cuyo producto es racional. ¿Contradice algo de lo que has leído?
+:::
+
+# Fracciones equivalentes y representante canónico
+
+Dos fracciones son **equivalentes** cuando tienen el mismo valor numérico:
+$$\frac{a}{b}=\frac{c}{d}\iff a\cdot d=b\cdot c$$
+
+Cada conjunto de fracciones equivalentes representa **un único número racional**. Cualquiera de ellas es un representante, y la **fracción irreducible con denominador positivo** es el **representante canónico**.
+
+**Ejemplo resuelto.** $\dfrac{3}{4}=\dfrac{-3}{-4}=\dfrac{6}{8}=\dfrac{9}{12}=\dfrac{-6}{-8}=\dots$ El representante canónico es $\dfrac{3}{4}$.
+
+Todo entero $m$ es una fracción: $m=\dfrac{m}{1}$.
+
+## Applet 3 · Del montón de fracciones al representante canónico
+
+```{ojs}
+//| echo: false
+viewof R3_a = Inputs.range([-60, 60], {value: 24, step: 1, label: "Numerador a"})
+viewof R3_b = Inputs.range([-60, 60], {value: -60, step: 1, label: "Denominador b"})
+viewof R3_amp = Inputs.range([1, 8], {value: 3, step: 1, label: "Factor de amplificación"})
+```
+
+```{ojs}
+//| echo: false
+R3_can = num.canonica(R3_a, R3_b)
+R3_lista = R3_can ? d3.range(1, 6).map(k => `${R3_can.n * k}/${R3_can.d * k}`) : []
+
+R3_plot = R3_can ? Plot.plot({width: 680, height: 130, marginLeft: 50,
+  x: {domain: [-1, 5], label: "recta real: todas las fracciones equivalentes caen en el MISMO punto →"},
+  y: {axis: null, domain: [-1, 1]},
+  marks: [Plot.ruleY([0], {stroke: "#111"}), Plot.tickX(d3.range(-1, 6)),
+    Plot.dot([{x: R3_can.n / R3_can.d, y: 0}], {x: "x", y: "y", r: 9, fill: "#dc2626"}),
+    marcaTexto(R3_can.n / R3_can.d, 0, num.frac(R3_can.n, R3_can.d), "#dc2626", -20)]}) : md`—`
+
+R3_txt = md`${R3_b === 0
+  ? "❌ **Denominador 0: la fracción no existe.** Un poco más abajo verás por qué no se puede dividir entre cero."
+  : `**${R3_a}/${R3_b}** · mcd(|${R3_a}|, |${R3_b}|) = **${num.mcd(R3_a, R3_b)}**
+
+- Representante **canónico**: **${num.frac(R3_a, R3_b)}** (irreducible y con denominador positivo)
+- Valor decimal: ${num.expStr(num.expansion(R3_a, R3_b))}
+- Amplificando por ${R3_amp}: ${R3_can.n * R3_amp}/${R3_can.d * R3_amp} — la misma cantidad escrita de otra forma
+- Otros representantes del mismo número: ${R3_lista.join(" = ")} = …
+
+Mueve los deslizadores hasta que el numerador y el denominador sean **primos entre sí**: entonces el mcd vale 1 y ya estás en el canónico.`}`
+```
+
+# Decimales periódicos y fracción generatriz
+
+Al dividir el numerador entre el denominador, un racional siempre da un entero, un **decimal exacto** o un **decimal periódico**. Y al revés: cualquier decimal de ese tipo se puede escribir como fracción, la **fracción generatriz**.
+
+**Receta.** Si el número es $N=\text{ent},\text{ante}\,\overline{\text{per}}$:
+$$\text{fracción}=\frac{\text{(todas las cifras)}-\text{(cifras sin el periodo)}}{\underbrace{9\cdots9}_{\text{cifras del periodo}}\underbrace{0\cdots0}_{\text{cifras del anteperiodo}}}$$
+
+**Ejemplos resueltos.**
+
+$2{,}\overline{4}=\dfrac{24-2}{9}=\dfrac{22}{9}$ y $6{,}\overline{5}=\dfrac{65-6}{9}=\dfrac{59}{9}$. Su suma:
+$$2{,}\overline{4}+6{,}\overline{5}=\frac{22}{9}+\frac{59}{9}=\frac{81}{9}=9$$
+
+$10{,}3-7{,}2\overline{5}$: como $7{,}2\overline{5}=\dfrac{725-72}{90}=\dfrac{653}{90}$,
+$$10{,}3-7{,}2\overline{5}=\frac{103}{10}-\frac{653}{90}=\frac{927-653}{90}=\frac{274}{90}=\frac{137}{45}=3{,}0\overline{4}$$
+
+## Applet 4 · Ida y vuelta: fracción ↔ decimal periódico
+
+```{ojs}
+//| echo: false
+viewof R4_dir = Inputs.radio(new Map([["Fracción → decimal", "fd"], ["Decimal periódico → fracción", "df"]]), {value: "fd", label: "Dirección"})
+viewof R4_p = Inputs.range([-200, 200], {value: 22, step: 1, label: "Numerador", disabled: R4_dir !== "fd"})
+viewof R4_q = Inputs.range([1, 60], {value: 9, step: 1, label: "Denominador", disabled: R4_dir !== "fd"})
+viewof R4_ent = Inputs.text({label: "Parte entera", value: "7", width: 120, submit: false, disabled: R4_dir !== "df"})
+viewof R4_ante = Inputs.text({label: "Anteperiodo (cifras que NO se repiten)", value: "2", width: 200, submit: false, disabled: R4_dir !== "df"})
+viewof R4_per = Inputs.text({label: "Periodo (cifras que se repiten)", value: "5", width: 200, submit: false, disabled: R4_dir !== "df"})
+```
+
+```{ojs}
+//| echo: false
+R4_out = {
+  if (R4_dir === "fd") {
+    const e = num.expansion(R4_p, R4_q);
+    return md`**${R4_p}/${R4_q} = ${num.expStr(e)}**
+
+- Tipo: **${e.tipo}** ${e.per ? `· periodo **${e.per}** (${e.per.length} cifra(s))` : ""} ${e.ante ? `· anteperiodo **${e.ante}**` : ""}
+- Fracción canónica: ${num.frac(R4_p, R4_q)}
+- Factores del denominador: ${num.factStr(num.canonica(R4_p, R4_q).d)}
+
+🔍 **Descubre la regla:** prueba denominadores 2, 4, 5, 8, 10, 20 (solo factores 2 y 5) y luego 3, 6, 7, 9, 11. ¿Cuándo sale **exacto** y cuándo **periódico**?`;
+  }
+  const ent = R4_ent.replace(/\D/g, "") || "0";
+  const ante = R4_ante.replace(/\D/g, "");
+  const per = R4_per.replace(/\D/g, "");
+  if (!per) return md`⚠️ Escribe al menos una cifra de periodo (para un decimal exacto la fracción es directa: las cifras entre una potencia de 10).`;
+  const f = num.generatriz(ent, ante, per);
+  const nueves = "9".repeat(per.length), ceros = "0".repeat(ante.length);
+  return md`**${ent},${ante}(${per}) = ${num.frac(f.n, f.d)}**
+
+Desarrollo paso a paso:
+
+1. Todas las cifras juntas: **${ent}${ante}${per}**
+2. Cifras sin el periodo: **${ent}${ante}**
+3. Numerador: ${ent}${ante}${per} − ${ent}${ante} = **${parseInt(ent + ante + per, 10) - parseInt(ent + ante, 10)}**
+4. Denominador: **${nueves}${ceros}** (un 9 por cifra del periodo y un 0 por cifra del anteperiodo)
+5. Simplificando: **${num.frac(f.n, f.d)}**
+
+Comprobación: ${num.frac(f.n, f.d)} = ${num.expStr(num.expansion(f.n, f.d))} ✔`;
+}
+```
+
+# Los números irracionales
+
+Los irracionales tienen infinitas cifras decimales que **no** se repiten periódicamente. Hay infinitos, y algunos son famosos:
+
+$$\pi=3{,}1415926\dots\qquad \varphi=\frac{1+\sqrt5}{2}=1{,}6180339\dots\qquad e=2{,}71828182\dots$$
+
+## Dos métodos para fabricar irracionales
+
+**Método 1: una regla de formación.** Escribes las cifras siguiendo un patrón que nunca se repite en bloque:
+
+| Número | Regla |
+|---|---|
+| $0{,}1234567891011\dots$ | tras la coma, todos los naturales seguidos |
+| $1{,}2468101214\dots$ | tras la coma, todos los pares seguidos |
+| $0{,}101001000100001\dots$ | ceros cada vez más largos entre unos |
+
+**Método 2: operar un racional con un irracional.** Si $a$ es racional (no nulo en el producto) y $b$ irracional, entonces $a+b$ y $a\cdot b$ son **irracionales**. Así, si $\sqrt5$ es irracional, también lo son $1+\sqrt5$, $3\sqrt5$, $\frac{\sqrt5}{3}$ y $\varphi=\frac{1+\sqrt5}{2}$.
+
+## Demostración: $\sqrt2$ no es racional
+
+Supongamos que sí lo fuera. Entonces se podría escribir como fracción **irreducible**:
+$$\sqrt2=\frac{a}{b}\ \Rightarrow\ 2=\frac{a^{2}}{b^{2}}\ \Rightarrow\ a^{2}=2b^{2}$$
+
+Luego $a^{2}$ es par, así que $a$ es par: $a=2k$. Sustituyendo: $4k^{2}=2b^{2}\Rightarrow b^{2}=2k^{2}$, y por el mismo argumento $b$ también es par. Pero entonces $a$ y $b$ son **ambos pares** y la fracción no era irreducible. Contradicción. Por tanto $\sqrt2\notin\mathbb{Q}$.
+
+::: {.callout-important}
+## Pensamiento crítico
+Esta demostración es del tipo **reducción al absurdo**: suponemos lo contrario y llegamos a un imposible. Ninguna calculadora podría demostrar esto: por muchas cifras que muestre, siempre quedan infinitas por ver. La irracionalidad **se demuestra con lógica, no se comprueba con decimales**.
+:::
+
+## Applet 5 · Persiguiendo a $\sqrt2$ con fracciones
+
+```{ojs}
+//| echo: false
+viewof R5_obj = Inputs.select(new Map([["√2", "sqrt(2)"], ["π", "pi"], ["φ = (1+√5)/2", "(1+sqrt(5))/2"], ["e", "e"], ["√3", "sqrt(3)"]]), {value: "sqrt(2)", label: "Irracional a perseguir"})
+viewof R5_qmax = Inputs.range([2, 200], {value: 12, step: 1, label: "Denominador máximo permitido"})
+```
+
+```{ojs}
+//| echo: false
+R5_v = lector.valor(R5_obj)
+R5_mejor = {
+  let best = null;
+  for (let q = 1; q <= R5_qmax; q++) {
+    const p = Math.round(R5_v * q), err = Math.abs(R5_v - p / q);
+    if (!best || err < best.err - 1e-15) best = {p, q, err};
+  }
+  return best;
+}
+R5_tabla = d3.range(1, Math.min(R5_qmax, 12) + 1).map(q => {
+  const p = Math.round(R5_v * q);
+  return {q, frac: `${p}/${q}`, valor: p / q, err: Math.abs(R5_v - p / q)};
+})
+
+R5_plot = Plot.plot({width: 680, height: 300, grid: true, marginLeft: 60,
+  x: {label: "denominador q →", domain: [1, R5_qmax]},
+  y: {label: "↑ error |irracional − p/q|", type: "log"},
+  marks: [Plot.line(d3.range(1, R5_qmax + 1).map(q => ({q, e: Math.max(Math.abs(R5_v - Math.round(R5_v * q) / q), 1e-12)})),
+    {x: "q", y: "e", stroke: "#2563eb"}),
+    Plot.dot([{q: R5_mejor.q, e: Math.max(R5_mejor.err, 1e-12)}], {x: "q", y: "e", fill: "#dc2626", r: 6})]})
+
+R5_txt = md`Valor "real": **${fx(R5_v, 10)}…**
+
+Mejor aproximación con denominador ≤ ${R5_qmax}: **${R5_mejor.p}/${R5_mejor.q} = ${fx(R5_mejor.p / R5_mejor.q, 10)}**, con error **${fx(R5_mejor.err, 10)}**.
+
+| q | mejor p/q | valor | error |
+|---|---|---|---|
+${R5_tabla.map(r => `| ${r.q} | ${r.frac} | ${fx(r.valor, 8)} | ${fx(r.err, 8)} |`).join("\n")}
+
+🎯 El error **baja pero nunca llega a cero**, por muy grande que hagas el denominador. Esa es exactamente la diferencia entre *aproximar* y *ser igual*. Con π, fíjate en lo bien que funciona 22/7 y, más adelante, 355/113.`
+```
+
+# La recta real
+
+Los números reales **llenan completamente** la recta: cada punto de la recta se corresponde con un número real, racional o irracional, y no queda ningún hueco.
+
+## Densidad
+
+Entre dos números reales distintos siempre hay **infinitos** números reales. La demostración es un truco de una línea: si $a<b$, entonces
+$$a<\frac{a+b}{2}<b$$
+la media está entre los dos. Y ese proceso se puede repetir tantas veces como se quiera. Curiosamente, tanto $\mathbb{Q}$ como $\mathbb{I}$ son **densos** en $\mathbb{R}$: entre dos racionales hay irracionales y entre dos irracionales hay racionales.
+
+**Ejemplo resuelto.** Tres números entre $\frac{301}{200}$ y $\frac{302}{200}$: las medias sucesivas dan $\frac{603}{400}$, luego $\frac{1207}{800}$, luego $\frac{2413}{1600}$…
+
+**Ejemplo resuelto 2 (sin decimales).** Un irracional entre $-\sqrt2$ y $\sqrt2$: por ejemplo $\dfrac{\sqrt2}{2}$, o $\pi-3$.
+
+## Applet 6 · La máquina de la densidad
+
+```{ojs}
+//| echo: false
+viewof R6_a = Inputs.text({label: "Extremo a", value: "1.5", width: 200, submit: false})
+viewof R6_b = Inputs.text({label: "Extremo b", value: "sqrt(2)", width: 200, submit: false})
+viewof R6_pasos = Inputs.range([0, 12], {value: 3, step: 1, label: "Nº de veces que tomo la media"})
+```
+
+```{ojs}
+//| echo: false
+R6_va = lector.valor(R6_a)
+R6_vb = lector.valor(R6_b)
+R6_serie = {
+  let lo = Math.min(R6_va, R6_vb), hi = Math.max(R6_va, R6_vb);
+  const out = [];
+  for (let i = 0; i < R6_pasos; i++) { const m = (lo + hi) / 2; out.push(m); hi = m; }
+  return out;
+}
+
+R6_plot = {
+  const lo = Math.min(R6_va, R6_vb), hi = Math.max(R6_va, R6_vb), d = (hi - lo) || 1;
+  return recta([
+    banda(lo, hi, "#2563eb", 0.15),
+    extremo(lo, true), extremo(hi, true),
+    ...R6_serie.map((m, i) => Plot.dot([{x: m, y: 0}], {x: "x", y: "y", r: 6 - i * 0.3, fill: "#dc2626", fillOpacity: 1 - i * 0.06})),
+    marcaTexto(lo, 0, "a", "#2563eb", -18), marcaTexto(hi, 0, "b", "#2563eb", -18)
+  ], [lo - d * 0.15, hi + d * 0.15], 170);
+}
+
+R6_txt = md`a = ${fx(R6_va, 10)} · b = ${fx(R6_vb, 10)} · distancia inicial = ${fx(Math.abs(R6_vb - R6_va), 10)}
+
+Medias sucesivas: ${R6_serie.length ? R6_serie.map(m => fx(m, 8)).join(" → ") : "(sube el deslizador)"}
+
+${R6_serie.length ? `Tras ${R6_pasos} pasos sigues teniendo un hueco de ${fx(Math.abs(R6_serie[R6_serie.length - 1] - Math.min(R6_va, R6_vb)), 10)}, y **dentro de él caben otros infinitos números**. Por eso decimos que ℝ es denso: este proceso **nunca termina**.` : ""}
+
+🧠 Pon `a = 0.333` y `b = 1/3`: aunque parecen casi iguales, entre ellos siguen cabiendo infinitos números. Ahora prueba `a = 1/3` y `b = 1/3`: ¿cuántos números hay entre ellos?`
+```
+
+## Representar $\sqrt{n}$ con regla y compás
+
+**Procedimiento.** Para colocar $\sqrt{n}$ exactamente en la recta real:
+
+1. Descompón $n$ como **suma de cuadrados perfectos**.
+2. Con los dos primeros cuadrados, construye los catetos de un triángulo rectángulo apoyado en la recta.
+3. Usa el cuadrado siguiente como cateto de un triángulo nuevo, cuya otra medida es la hipotenusa anterior.
+4. Repite hasta agotar los cuadrados.
+5. Con centro en $O$ y radio la última hipotenusa, traza un arco que corte la recta real: ese punto es $\sqrt{n}$.
+
+**Ejemplo resuelto.** $\sqrt{12}$: como $12=3^{2}+3=3^{2}+1^{2}+1^{2}+1^{2}$, los catetos son $3$ y $1$ (hipotenusa $\sqrt{10}$), luego añadimos catetos $1$ y $1$ hasta llegar a $\sqrt{12}$.
+
+## Applet 7 · Construcción de $\sqrt{n}$ en la recta real
+
+```{ojs}
+//| echo: false
+viewof R7_n = Inputs.range([2, 40], {value: 12, step: 1, label: "Quiero representar √n con n ="})
+viewof R7_ver = Inputs.checkbox(["radios", "arco final", "etiquetas"], {value: ["radios", "arco final", "etiquetas"], label: "Mostrar"})
+```
+
+```{ojs}
+//| echo: false
+R7_desc = {
+  let r = R7_n; const cuad = [];
+  while (r > 0) {
+    let k = Math.floor(Math.sqrt(r));
+    if (k * k > r) k--;
+    if (k < 1) k = 1;
+    cuad.push(k); r -= k * k;
+  }
+  return cuad;
+}
+
+R7_cadena = {
+  const pts = [{x: 0, y: 0}];
+  let p = {x: R7_desc[0], y: 0};
+  pts.push(p);
+  const seg = [{x1: 0, y1: 0, x2: p.x, y2: 0}];
+  for (let i = 1; i < R7_desc.length; i++) {
+    const r = Math.hypot(p.x, p.y), L = R7_desc[i];
+    const u = {x: -p.y / r, y: p.x / r};
+    const q = {x: p.x + L * u.x, y: p.y + L * u.y};
+    seg.push({x1: p.x, y1: p.y, x2: q.x, y2: q.y});
+    pts.push(q); p = q;
+  }
+  return {pts, seg, radio: Math.hypot(p.x, p.y), fin: p};
+}
+
+R7_plot = {
+  const R = R7_cadena.radio, lim = Math.max(R + 1.5, 4);
+  const arco = d3.range(0, 91).map(g => {
+    const t = Math.atan2(R7_cadena.fin.y, R7_cadena.fin.x) * (1 - g / 90);
+    return {x: R * Math.cos(t), y: R * Math.sin(t)};
+  });
+  const m = [
+    Plot.link(R7_cadena.seg, {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#2563eb", strokeWidth: 2.4}),
+    Plot.dot(R7_cadena.pts, {x: "x", y: "y", r: 3.5, fill: "#2563eb"}),
+    Plot.dot([{x: R, y: 0}], {x: "x", y: "y", r: 7, fill: "#dc2626"})
+  ];
+  if (R7_ver.includes("radios"))
+    m.push(Plot.link(R7_cadena.pts.slice(1).map(q => ({x1: 0, y1: 0, x2: q.x, y2: q.y})),
+      {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#9ca3af", strokeDasharray: "3,3"}));
+  if (R7_ver.includes("arco final")) m.push(trazo(arco, "#dc2626", 2, "5,4"));
+  if (R7_ver.includes("etiquetas"))
+    m.push(marcaTexto(R, 0, `√${R7_n} ≈ ${fx(R, 4)}`, "#dc2626", 18),
+      ...R7_cadena.seg.map((s, i) => marcaTexto((s.x1 + s.x2) / 2, (s.y1 + s.y2) / 2, `${R7_desc[i]}`, "#2563eb", -10)));
+  return Plot.plot({width: 660, height: 460, grid: true, marginLeft: 45, aspectRatio: 1,
+    x: {domain: [-1, lim], label: "recta real →"}, y: {domain: [-1, lim - 1], label: "↑"},
+    marks: [Plot.ruleY([0], {stroke: "#111", strokeWidth: 1.6}), Plot.ruleX([0], {stroke: "#111"}), ...m]});
+}
+
+R7_txt = md`**${R7_n} = ${R7_desc.map(k => `${k}²`).join(" + ")} = ${R7_desc.map(k => k * k).join(" + ")}**
+
+Hipotenusas que se van formando: ${R7_desc.map((_, i) => `√${R7_desc.slice(0, i + 1).reduce((s, k) => s + k * k, 0)}`).slice(1).join(" → ") || "(una sola)"}
+
+El arco rojo con centro en 0 y radio **√${R7_n} ≈ ${fx(R7_cadena.radio, 6)}** corta a la recta real justo en el punto buscado. Fíjate en que la construcción es **exacta**: no hemos usado ni una sola aproximación decimal, solo el **teorema de Pitágoras**.
+
+🎲 Prueba n = 2 (el caso más simple: catetos 1 y 1), n = 5, n = 10 y n = 13. Con n cuadrado perfecto (4, 9, 16, 25…) el resultado cae sobre un entero: compruébalo.`
+```
+
+# Propiedades de las operaciones y orden
+
+## Propiedades
+
+Los reales cumplen las mismas propiedades que los racionales:
+
+| Propiedad | Suma | Multiplicación |
+|---|---|---|
+| Asociativa | $(a+b)+c=a+(b+c)$ | $(ab)c=a(bc)$ |
+| Elemento neutro | $a+0=a$ | $a\cdot1=a$ |
+| Opuesto / inverso | $a+(-a)=0$ | $a\cdot\frac{1}{a}=1$ ($a\ne0$) |
+| Conmutativa | $a+b=b+a$ | $ab=ba$ |
+| Distributiva | $a(b+c)=ab+ac$ | — |
+
+El opuesto y el inverso son **únicos** para cada real. Y el $0$ **no tiene inverso**.
+
+::: {.callout-important}
+## ¿Por qué no se puede dividir entre cero?
+$\dfrac{a}{b}=c$ significa $a=b\cdot c$. Si $b=0$ solo hay dos casos, y los dos son inaceptables:
+
+- Si $a=0$, **cualquier** valor de $c$ cumple $0=0\cdot c$: habría infinitos cocientes.
+- Si $a\ne0$, **ningún** valor de $c$ cumple $a=0\cdot c$: es imposible encontrar cociente.
+
+En ambos casos la división queda indefinida. No es un capricho: es que no hay respuesta única.
+:::
+
+**Ejemplo resuelto (distributiva para ahorrar cálculo).** $99^{2}=(100-1)^{2}=100^{2}-2\cdot100+1=10\,000-200+1=9\,801$, sin hacer la multiplicación.
+
+**Ejemplo resuelto 2 (sacar factor común).**
+$$\frac{15}{64}-\frac{45}{56}+\frac{135}{88}=\frac{3\cdot5}{2^{6}}-\frac{3^{2}\cdot5}{2^{3}\cdot7}+\frac{3^{3}\cdot5}{2^{3}\cdot11}=\frac{3\cdot5}{2^{3}}\left(\frac{1}{2^{3}}-\frac{3}{7}+\frac{9}{11}\right)$$
+
+## Relación de orden
+
+Dados $a,b\in\mathbb{R}$: $a<b$ cuando $b-a$ es **positivo**, y $a>b$ cuando $b-a$ es negativo. Propiedades:
+
+- **Transitiva**: si $a\le b$ y $b\le c$, entonces $a\le c$.
+- **Orden total**: siempre ocurre $a<b$, $a=b$ o $a>b$.
+- **Monótona respecto a la suma**: si $a\le b$, entonces $a+c\le b+c$ para cualquier $c$.
+- **Respecto al producto**: si $a\le b$ y $c>0$, entonces $ac\le bc$. Pero si $c<0$, **la desigualdad se invierte**: $ac\ge bc$.
+
+## Applet 8 · Laboratorio de propiedades y de orden
+
+```{ojs}
+//| echo: false
+viewof R8_que = Inputs.radio(new Map([["Propiedades de las operaciones", "prop"], ["Relación de orden", "orden"], ["División entre cero", "cero"]]), {value: "prop", label: "Experimento"})
+viewof R8_a = Inputs.text({label: "a =", value: "2/3", width: 160, submit: false})
+viewof R8_b = Inputs.text({label: "b =", value: "-5/4", width: 160, submit: false})
+viewof R8_c = Inputs.range([-5, 5], {value: -2, step: 0.25, label: "c ="})
+```
+
+```{ojs}
+//| echo: false
+R8_va = lector.valor(R8_a)
+R8_vb = lector.valor(R8_b)
+R8_out = {
+  const a = R8_va, b = R8_vb, c = R8_c, ok = "✅", no = "❌";
+  if (R8_que === "prop") return md`| Propiedad | Lado izquierdo | Lado derecho | ¿Se cumple? |
+|---|---|---|---|
+| Asociativa (+) | (a+b)+c = ${fx((a + b) + c)} | a+(b+c) = ${fx(a + (b + c))} | ${Math.abs((a + b) + c - (a + (b + c))) < 1e-12 ? ok : no} |
+| Asociativa (·) | (a·b)·c = ${fx((a * b) * c)} | a·(b·c) = ${fx(a * (b * c))} | ${Math.abs((a * b) * c - a * (b * c)) < 1e-9 ? ok : no} |
+| Conmutativa (+) | a+b = ${fx(a + b)} | b+a = ${fx(b + a)} | ${ok} |
+| Distributiva | a·(b+c) = ${fx(a * (b + c))} | a·b + a·c = ${fx(a * b + a * c)} | ${Math.abs(a * (b + c) - (a * b + a * c)) < 1e-9 ? ok : no} |
+| Opuesto | a + (−a) = ${fx(a + (-a))} | 0 | ${ok} |
+| Inverso | a · (1/a) = ${a !== 0 ? fx(a * (1 / a)) : "no existe"} | 1 | ${a !== 0 ? ok : no + " (a = 0 no tiene inverso)"} |
+
+⚠️ **Trampa para investigar:** ¿existe la propiedad "distributiva de la potencia sobre la suma"? Comprueba si $(a+b)^2 = a^2+b^2$ con tus valores: ${Math.abs((a + b) ** 2 - (a * a + b * b)) < 1e-9 ? "aquí coincide, ¡busca otros valores!" : `${fx((a + b) ** 2)} ≠ ${fx(a * a + b * b)}, así que **NO existe**.`}`;
+
+  if (R8_que === "orden") {
+    const rel = Math.abs(a - b) < 1e-12 ? "a = b" : a < b ? "a < b" : "a > b";
+    return md`**${fx(a)} y ${fx(b)}** → relación: **${rel}** (porque b − a = ${fx(b - a)} es ${b - a > 0 ? "positivo" : b - a < 0 ? "negativo" : "cero"})
+
+| Operación con c = ${fm(c)} | Resultado | ¿Se mantiene el orden? |
+|---|---|---|
+| Sumar c | ${fx(a + c)} ${a + c < b + c ? "<" : a + c > b + c ? ">" : "="} ${fx(b + c)} | ${((a < b) === (a + c < b + c)) ? "✅ sí, **siempre**" : "—"} |
+| Multiplicar por c | ${fx(a * c)} ${a * c < b * c ? "<" : a * c > b * c ? ">" : "="} ${fx(b * c)} | ${c > 0 ? "✅ se mantiene (c > 0)" : c < 0 ? "🔄 **se invierte** (c < 0)" : "todo vale 0 (c = 0)"} |
+
+🔑 Este es **el** detalle que arruina inecuaciones enteras: al multiplicar o dividir por un número **negativo**, hay que dar la vuelta al signo de la desigualdad. Mueve c de positivo a negativo y observa el cambio.`;
+  }
+  return md`**Intentemos calcular ${fx(a)} / 0.**
+
+Por definición, ${fx(a)}/0 = c significaría que **${fx(a)} = 0 · c**.
+
+${Math.abs(a) < 1e-12
+  ? "- Como a = 0, la igualdad 0 = 0·c la cumple **cualquier** c: c = 1, c = 7, c = −340… **Habría infinitos cocientes**, así que no hay un resultado único."
+  : `- Como a = ${fx(a)} ≠ 0, necesitaríamos que 0·c = ${fx(a)}. Pero 0·c = 0 siempre, sea c lo que sea. **No existe ningún cociente posible.**`}
+
+Prueba a poner a = 0 y luego a ≠ 0 para ver los **dos** motivos distintos por los que la división entre cero está prohibida. Y fíjate en que ninguno de los dos es "porque lo dice el profe".`
+}
+```
+
+# Valor absoluto y distancia
+
+## Valor absoluto
+
+$$\lvert a\rvert=\begin{cases}-a & \text{si } a<0\\ \ \ a & \text{si } a\ge0\end{cases}$$
+
+Es la **distancia del número al cero**: $\lvert3\rvert=3$ y $\lvert-3\rvert=3$.
+
+**Propiedades.**
+
+- $\lvert a\rvert\ge0$ siempre
+- $\lvert a\rvert=\lvert-a\rvert$
+- $\lvert a\rvert=0\iff a=0$
+- $\lvert a\cdot b\rvert=\lvert a\rvert\cdot\lvert b\rvert$
+- $\lvert a+b\rvert\le\lvert a\rvert+\lvert b\rvert$ (**desigualdad triangular**)
+
+## Distancia entre dos reales
+
+$$\operatorname{Dist}(x,y)=\lvert x-y\rvert$$
+
+**Ejemplos resueltos.**
+
+$\operatorname{Dist}(3,8)=\lvert8-3\rvert=5$ · $\operatorname{Dist}(-2,-9)=\lvert-9+2\rvert=\lvert-7\rvert=7$ · $\operatorname{Dist}(-1,5)=\lvert5+1\rvert=6$ · $\operatorname{Dist}(-9,5)=\lvert5+9\rvert=14$
+
+**Propiedades de la distancia.** $\operatorname{Dist}(x,y)\ge0$; vale $0$ solo si $x=y$; es **simétrica**, $\operatorname{Dist}(x,y)=\operatorname{Dist}(y,x)$; y cumple la desigualdad triangular $\operatorname{Dist}(x,y)\le\operatorname{Dist}(x,z)+\operatorname{Dist}(z,y)$.
+
+## La traducción que hay que dominar
+
+$$\lvert x-a\rvert<r \iff \text{"} x \text{ está a menos de } r \text{ del punto } a\text{"} \iff x\in(a-r,\ a+r)$$
+
+**Ejemplo resuelto.** $\lvert x\rvert\le3$ significa "la distancia de $x$ a $0$ es a lo sumo 3", es decir $x\in[-3,3]$. Y $\lvert x-3\rvert\le1$ significa $x\in[2,4]$.
+
+## Applet 9 · Valor absoluto, distancia y desigualdades
+
+```{ojs}
+//| echo: false
+viewof R9_modo = Inputs.radio(new Map([["Distancia entre dos números", "dist"], ["Desigualdad |x − a| < r", "des"], ["Desigualdad triangular", "tri"]]), {value: "dist", label: "Experimento"})
+viewof R9_x = Inputs.range([-10, 10], {value: -9, step: 0.25, label: "x  (o el punto a)"})
+viewof R9_y = Inputs.range([-10, 10], {value: 5, step: 0.25, label: "y  (o el radio r, si es positivo)"})
+viewof R9_z = Inputs.range([-10, 10], {value: 1, step: 0.25, label: "z  (punto intermedio, solo en triangular)"})
+```
+
+```{ojs}
+//| echo: false
+R9_out = {
+  if (R9_modo === "dist") {
+    const d = Math.abs(R9_x - R9_y);
+    return {plot: recta([
+        banda(Math.min(R9_x, R9_y), Math.max(R9_x, R9_y), "#f59e0b", 0.25),
+        Plot.dot([{x: R9_x, y: 0}, {x: R9_y, y: 0}], {x: "x", y: "y", r: 7, fill: "#2563eb"}),
+        marcaTexto(R9_x, 0, `x = ${fm(R9_x)}`, "#2563eb", -18),
+        marcaTexto(R9_y, 0, `y = ${fm(R9_y)}`, "#2563eb", 22),
+        marcaTexto((R9_x + R9_y) / 2, 0, `Dist = ${fm(d)}`, "#dc2626", -34)
+      ], [-11, 11]),
+      txt: md`Dist(${fm(R9_x)}, ${fm(R9_y)}) = |${fm(R9_x)} − (${fm(R9_y)})| = |${fm(R9_x - R9_y)}| = **${fm(d)}**
+
+Comprobación de la **simetría**: Dist(y, x) = |${fm(R9_y)} − (${fm(R9_x)})| = |${fm(R9_y - R9_x)}| = ${fm(Math.abs(R9_y - R9_x))} ✔ mismo resultado.
+
+🎯 Intenta conseguir distancia 0. ¿De cuántas formas puedes hacerlo?`};
+  }
+  if (R9_modo === "des") {
+    const a = R9_x, r = Math.abs(R9_y);
+    return {plot: recta([
+        banda(a - r, a + r, "#059669", 0.2),
+        extremo(a - r, false, "#059669"), extremo(a + r, false, "#059669"),
+        Plot.dot([{x: a, y: 0}], {x: "x", y: "y", r: 6, fill: "#dc2626"}),
+        marcaTexto(a, 0, `a = ${fm(a)}`, "#dc2626", -18),
+        marcaTexto(a - r, 0, `${fm(a - r)}`, "#059669", 22),
+        marcaTexto(a + r, 0, `${fm(a + r)}`, "#059669", 22)
+      ], [-11, 11]),
+      txt: md`**|x − ${fm(a)}| < ${fm(r)}** ⟺ x está a menos de ${fm(r)} unidades de ${fm(a)} ⟺ **x ∈ (${fm(a - r)}, ${fm(a + r)})**
+
+Las tres lecturas del mismo hecho:
+
+- Con **valor absoluto**: |x − ${fm(a)}| < ${fm(r)}
+- Con **desigualdades**: ${fm(a - r)} < x < ${fm(a + r)}
+- Con **intervalo**: (${fm(a - r)}, ${fm(a + r)}), de centro ${fm(a)} y radio ${fm(r)}
+
+Con ≤ en lugar de <, los extremos entrarían y el intervalo sería cerrado [${fm(a - r)}, ${fm(a + r)}].`};
+  }
+  const i = Math.abs(R9_x + R9_y), s = Math.abs(R9_x) + Math.abs(R9_y);
+  return {plot: Plot.plot({width: 680, height: 220, marginLeft: 60,
+      x: {label: "valor →", domain: [0, Math.max(s, 1) * 1.15]}, y: {axis: null, domain: [-0.6, 1.6]},
+      marks: [
+        Plot.barX([{y: 1, v: s}], {y: "y", x: "v", fill: "#f59e0b", fillOpacity: 0.85, height: 0.4}),
+        Plot.barX([{y: 0, v: i}], {y: "y", x: "v", fill: "#2563eb", fillOpacity: 0.85, height: 0.4}),
+        Plot.text([{y: 1, v: s, t: `|x|+|y| = ${fm(s)}`}, {y: 0, v: i, t: `|x+y| = ${fm(i)}`}],
+          {y: "y", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})
+      ]}),
+    txt: md`**Desigualdad triangular:** |x + y| ≤ |x| + |y|
+
+Con x = ${fm(R9_x)} e y = ${fm(R9_y)}: |${fm(R9_x + R9_y)}| = **${fm(i)}** ≤ ${fm(Math.abs(R9_x))} + ${fm(Math.abs(R9_y))} = **${fm(s)}** ${i <= s + 1e-12 ? "✅" : "❌"}
+
+${Math.abs(i - s) < 1e-12
+  ? "🎯 Aquí se da la **igualdad**. ¿Qué tienen en común x e y para que esto pase? (Mira sus signos.)"
+  : "Ahora consigue que se dé la **igualdad**: prueba con dos números del mismo signo."}
+
+Con la versión de distancias: Dist(${fm(R9_x)}, ${fm(R9_y)}) = ${fm(Math.abs(R9_x - R9_y))} ≤ Dist(${fm(R9_x)}, ${fm(R9_z)}) + Dist(${fm(R9_z)}, ${fm(R9_y)}) = ${fm(Math.abs(R9_x - R9_z))} + ${fm(Math.abs(R9_z - R9_y))} = ${fm(Math.abs(R9_x - R9_z) + Math.abs(R9_z - R9_y))} ${Math.abs(R9_x - R9_y) <= Math.abs(R9_x - R9_z) + Math.abs(R9_z - R9_y) + 1e-12 ? "✅" : "❌"}. **Ir por un punto intermedio nunca acorta el camino**, y solo empata si z está entre x e y.`};
+}
+
+R9_plot = R9_out.plot
+R9_txt = R9_out.txt
+```
+
+# Intervalos, semirrectas y entornos
+
+**Definición.** Un **intervalo** es un conjunto de números reales que se corresponde con los puntos de un segmento o de una semirrecta de la recta real. Está determinado por sus **extremos**.
+
+| Tipo | Notación | Conjunto |
+|---|---|---|
+| Abierto | $(a,b)$ | $\{x: a<x<b\}$ |
+| Cerrado | $[a,b]$ | $\{x: a\le x\le b\}$ |
+| Semiabierto | $(a,b]$ | $\{x: a<x\le b\}$ |
+| Semiabierto | $[a,b)$ | $\{x: a\le x<b\}$ |
+| Semirrecta abierta | $(a,+\infty)$ | $\{x: a<x\}$ |
+| Semirrecta cerrada | $[a,+\infty)$ | $\{x: a\le x\}$ |
+| Semirrecta abierta | $(-\infty,b)$ | $\{x: x<b\}$ |
+| Semirrecta cerrada | $(-\infty,b]$ | $\{x: x\le b\}$ |
+
+Y $\mathbb{R}=(-\infty,+\infty)$.
+
+**Ejemplo resuelto.** Escribe de todas las formas posibles: "números menores que 3" $=\{x:x<3\}=(-\infty,3)$. Y $\{x:\lvert x\rvert\le3\}=[-3,3]$.
+
+## Entornos
+
+**Definición.** El **entorno de centro $a$ y radio $r$** es el conjunto de números que están a distancia menor que $r$ de $a$:
+$$E(a,r)=(a-r,\ a+r)=\{x:\lvert x-a\rvert<r\}$$
+
+Y al revés: cualquier intervalo abierto $(b,c)$ es el entorno de centro el punto medio y radio la semiamplitud:
+$$(b,c)=E\!\left(\frac{b+c}{2},\ \frac{c-b}{2}\right)$$
+
+**Ejemplo resuelto.** $(-8,12)=E\!\left(\dfrac{-8+12}{2},\ \dfrac{12-(-8)}{2}\right)=E(2,10)$.
+
+## Applet 10 · Intervalos: tipos, unión e intersección
+
+```{ojs}
+//| echo: false
+viewof R10_a1 = Inputs.range([-10, 10], {value: -1, step: 0.5, label: "Intervalo A: extremo izquierdo"})
+viewof R10_b1 = Inputs.range([-10, 10], {value: 5, step: 0.5, label: "Intervalo A: extremo derecho"})
+viewof R10_t1 = Inputs.radio(new Map([["( )", "aa"], ["[ ]", "cc"], ["[ )", "ca"], ["( ]", "ac"]]), {value: "cc", label: "A es de tipo"})
+viewof R10_a2 = Inputs.range([-10, 10], {value: 2, step: 0.5, label: "Intervalo B: extremo izquierdo"})
+viewof R10_b2 = Inputs.range([-10, 10], {value: 7, step: 0.5, label: "Intervalo B: extremo derecho"})
+viewof R10_t2 = Inputs.radio(new Map([["( )", "aa"], ["[ ]", "cc"], ["[ )", "ca"], ["( ]", "ac"]]), {value: "aa", label: "B es de tipo"})
+viewof R10_op = Inputs.radio(new Map([["Unión A ∪ B", "u"], ["Intersección A ∩ B", "i"]]), {value: "u", label: "Operación"})
+```
+
+```{ojs}
+//| echo: false
+R10_mk = (a, b, t) => {
+  const lo = Math.min(a, b), hi = Math.max(a, b);
+  const ci = t === "cc" || t === "ca", cs = t === "cc" || t === "ac";
+  return {lo, hi, ci, cs, txt: `${ci ? "[" : "("}${fm(lo)}, ${fm(hi)}${cs ? "]" : ")"}`};
+}
+R10_A = R10_mk(R10_a1, R10_b1, R10_t1)
+R10_B = R10_mk(R10_a2, R10_b2, R10_t2)
+
+R10_res = {
+  const A = R10_A, B = R10_B;
+  const dentro = (I, x) => (x > I.lo || (I.ci && x === I.lo)) && (x < I.hi || (I.cs && x === I.hi));
+  if (R10_op === "i") {
+    const lo = Math.max(A.lo, B.lo), hi = Math.min(A.hi, B.hi);
+    if (lo > hi) return {vacio: true, txt: "∅ (conjunto vacío)"};
+    const ci = dentro(A, lo) && dentro(B, lo), cs = dentro(A, hi) && dentro(B, hi);
+    if (lo === hi && !(ci && cs)) return {vacio: true, txt: "∅ (conjunto vacío)"};
+    return {vacio: false, lo, hi, ci, cs, txt: `${ci ? "[" : "("}${fm(lo)}, ${fm(hi)}${cs ? "]" : ")"}`};
+  }
+  const solapan = A.hi > B.lo || (A.hi === B.lo && (A.cs || B.ci));
+  const solapan2 = B.hi > A.lo || (B.hi === A.lo && (B.cs || A.ci));
+  if (!(solapan && solapan2)) return {vacio: false, disjunto: true, txt: `${A.txt} ∪ ${B.txt}  (no se puede escribir como un solo intervalo)`};
+  const lo = Math.min(A.lo, B.lo), hi = Math.max(A.hi, B.hi);
+  const ci = (A.lo < B.lo ? A.ci : B.lo < A.lo ? B.ci : (A.ci || B.ci));
+  const cs = (A.hi > B.hi ? A.cs : B.hi > A.hi ? B.cs : (A.cs || B.cs));
+  return {vacio: false, lo, hi, ci, cs, txt: `${ci ? "[" : "("}${fm(lo)}, ${fm(hi)}${cs ? "]" : ")"}`};
+}
+
+R10_plot = Plot.plot({width: 680, height: 260, marginLeft: 60,
+  x: {domain: [-11, 11], label: "recta real →", ticks: 11}, y: {axis: null, domain: [-0.5, 3.5]},
+  marks: [
+    Plot.ruleY([0, 1, 2], {stroke: "#d1d5db"}),
+    Plot.text([{x: -10.5, y: 2.35, t: "A"}, {x: -10.5, y: 1.35, t: "B"}, {x: -10.5, y: 0.35, t: R10_op === "u" ? "A ∪ B" : "A ∩ B"}],
+      {x: "x", y: "y", text: "t", fontWeight: "bold", textAnchor: "start"}),
+    Plot.rectY([{x1: R10_A.lo, x2: R10_A.hi}], {x1: "x1", x2: "x2", y1: 1.85, y2: 2.15, fill: "#2563eb", fillOpacity: 0.3}),
+    Plot.dot([{x: R10_A.lo, y: 2}], {x: "x", y: "y", r: 6, fill: R10_A.ci ? "#2563eb" : "white", stroke: "#2563eb", strokeWidth: 2.5}),
+    Plot.dot([{x: R10_A.hi, y: 2}], {x: "x", y: "y", r: 6, fill: R10_A.cs ? "#2563eb" : "white", stroke: "#2563eb", strokeWidth: 2.5}),
+    Plot.rectY([{x1: R10_B.lo, x2: R10_B.hi}], {x1: "x1", x2: "x2", y1: 0.85, y2: 1.15, fill: "#f59e0b", fillOpacity: 0.35}),
+    Plot.dot([{x: R10_B.lo, y: 1}], {x: "x", y: "y", r: 6, fill: R10_B.ci ? "#f59e0b" : "white", stroke: "#f59e0b", strokeWidth: 2.5}),
+    Plot.dot([{x: R10_B.hi, y: 1}], {x: "x", y: "y", r: 6, fill: R10_B.cs ? "#f59e0b" : "white", stroke: "#f59e0b", strokeWidth: 2.5}),
+    ...(R10_res.vacio || R10_res.disjunto ? [] : [
+      Plot.rectY([{x1: R10_res.lo, x2: R10_res.hi}], {x1: "x1", x2: "x2", y1: -0.15, y2: 0.15, fill: "#059669", fillOpacity: 0.45}),
+      Plot.dot([{x: R10_res.lo, y: 0}], {x: "x", y: "y", r: 6, fill: R10_res.ci ? "#059669" : "white", stroke: "#059669", strokeWidth: 2.5}),
+      Plot.dot([{x: R10_res.hi, y: 0}], {x: "x", y: "y", r: 6, fill: R10_res.cs ? "#059669" : "white", stroke: "#059669", strokeWidth: 2.5})]),
+    ...(R10_res.disjunto ? [
+      Plot.rectY([{x1: R10_A.lo, x2: R10_A.hi}, {x1: R10_B.lo, x2: R10_B.hi}], {x1: "x1", x2: "x2", y1: -0.15, y2: 0.15, fill: "#059669", fillOpacity: 0.45})] : [])
+  ]})
+
+R10_txt = md`**A = ${R10_A.txt}** · **B = ${R10_B.txt}**
+
+### ${R10_op === "u" ? "A ∪ B" : "A ∩ B"} = ${R10_res.txt}
+
+${R10_op === "u"
+  ? (R10_res.disjunto
+      ? "Los dos intervalos **no se tocan**, así que la unión se deja indicada: no hay una sola línea continua."
+      : "Los intervalos se solapan (o se tocan), así que la unión **sí** se puede escribir como un único intervalo. Mira con cuidado si cada extremo entra o no.")
+  : (R10_res.vacio
+      ? "No comparten ningún punto: la intersección es **vacía**."
+      : "La intersección es la parte **común**. Un extremo pertenece solo si pertenece a **los dos** intervalos.")}
+
+🔬 Experimento fino: pon A = [−1, 5] y B = (5, 7). ¿La unión es [−1, 7)? Ahora cambia B a [5, 7). ¿Cambia algo? **Un solo punto decide si la unión es un intervalo o dos.**`
+```
+
+## Applet 11 · Entornos: del centro y el radio al intervalo (y vuelta)
+
+```{ojs}
+//| echo: false
+viewof R11_dir = Inputs.radio(new Map([["Entorno → intervalo", "ei"], ["Intervalo → entorno", "ie"]]), {value: "ei", label: "Dirección"})
+viewof R11_c = Inputs.range([-8, 8], {value: 2, step: 0.25, label: "Centro a", disabled: R11_dir !== "ei"})
+viewof R11_r = Inputs.range([0.25, 8], {value: 3, step: 0.25, label: "Radio r", disabled: R11_dir !== "ei"})
+viewof R11_b = Inputs.range([-10, 10], {value: -8, step: 0.5, label: "Extremo b", disabled: R11_dir !== "ie"})
+viewof R11_cc = Inputs.range([-10, 10], {value: 4, step: 0.5, label: "Extremo c", disabled: R11_dir !== "ie"})
+viewof R11_test = Inputs.range([-10, 10], {value: 4.5, step: 0.05, label: "Punto de prueba x"})
+```
+
+```{ojs}
+//| echo: false
+R11_E = R11_dir === "ei"
+  ? {a: R11_c, r: R11_r}
+  : {a: (Math.min(R11_b, R11_cc) + Math.max(R11_b, R11_cc)) / 2, r: Math.abs(R11_cc - R11_b) / 2}
+R11_dentro = Math.abs(R11_test - R11_E.a) < R11_E.r
+
+R11_plot = recta([
+  banda(R11_E.a - R11_E.r, R11_E.a + R11_E.r, "#059669", 0.2),
+  extremo(R11_E.a - R11_E.r, false, "#059669"), extremo(R11_E.a + R11_E.r, false, "#059669"),
+  Plot.dot([{x: R11_E.a, y: 0}], {x: "x", y: "y", r: 7, fill: "#dc2626"}),
+  Plot.link([{x1: R11_E.a, y1: 0.32, x2: R11_E.a + R11_E.r, y2: 0.32}],
+    {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#dc2626", strokeWidth: 2, marker: "arrow"}),
+  marcaTexto(R11_E.a + R11_E.r / 2, 0.32, `r = ${fm(R11_E.r)}`, "#dc2626", -10),
+  marcaTexto(R11_E.a, 0, `a = ${fm(R11_E.a)}`, "#dc2626", 22),
+  Plot.dot([{x: R11_test, y: -0.45}], {x: "x", y: "y", r: 6, fill: R11_dentro ? "#059669" : "#dc2626", symbol: "triangle2"})
+], [-11, 11], 210)
+
+R11_txt = md`**E(${fm(R11_E.a)}, ${fm(R11_E.r)}) = (${fm(R11_E.a - R11_E.r)}, ${fm(R11_E.a + R11_E.r)}) = { x : |x − ${fm(R11_E.a)}| < ${fm(R11_E.r)} }**
+
+${R11_dir === "ie"
+  ? `Conversión: el intervalo (${fm(Math.min(R11_b, R11_cc))}, ${fm(Math.max(R11_b, R11_cc))}) tiene centro (b+c)/2 = **${fm(R11_E.a)}** y radio (c−b)/2 = **${fm(R11_E.r)}**.`
+  : `Al revés: este entorno es el intervalo abierto de extremos a − r y a + r.`}
+
+Punto de prueba x = ${fm(R11_test)}: su distancia al centro es |${fm(R11_test)} − ${fm(R11_E.a)}| = **${fm(Math.abs(R11_test - R11_E.a))}**, que ${R11_dentro ? `es menor que r = ${fm(R11_E.r)} → ✅ **pertenece** al entorno` : `NO es menor que r = ${fm(R11_E.r)} → ❌ **no pertenece**`}.
+
+🎯 Coloca x exactamente en un extremo. ¿Pertenece? Los entornos son **siempre abiertos**: el radio marca lo que queda estrictamente dentro.`
+```
+
+# Actividades de la Parte 1
+
+1. Clasifica en el conjunto numérico **mínimo**: $\dfrac{37}{9}$; $-121$; $0$; $\sqrt{12}$; $-\sqrt[3]{27}$; $0{,}\overline{1}$; $4{,}35$; $-3{,}25$; $\sqrt7$.
+2. Halla el representante canónico de $\dfrac{24}{-60}$ y escribe otros tres representantes del mismo racional.
+3. ¿Cuántos números racionales distintos hay en la secuencia $\dfrac{12}{24}$, $\dfrac{2}{39}$, $\dfrac{1}{-60}$, $\dfrac{25}{10}$, $\dfrac{5}{10}$?
+4. Pasa a fracción y opera: a) $2{,}\overline{7}+4{,}\overline{3}$ b) $20{,}\overline{21}-7{,}\overline{5}$ c) $1{,}\overline{2}\cdot2{,}\overline{1}$
+5. Escribe cuatro irracionales indicando su regla de formación.
+6. Encuentra un irracional entre $-\sqrt2$ y $\sqrt2$ **sin** usar decimales, y otro entre $3{,}14$ y $\pi$.
+7. Razona si es cierto: a) la raíz cuadrada de un irracional es irracional; b) el cuadrado de un irracional no es racional.
+8. Representa en la recta real, con la construcción de Pitágoras: $\sqrt{11}$, $\sqrt{101}$, $\sqrt5$.
+9. Con la propiedad distributiva y sin hacer los cuadrados, calcula $99^{2}$, $999^{2}$ y $9\,999^{2}$.
+10. Ordena de menor a mayor: $\dfrac{22}{9}$; $2{,}\overline{4}$; $\dfrac{2827}{900}$; $\pi$; $\sqrt{10}$.
+11. Calcula: $\operatorname{Dist}(5,9)$; $\operatorname{Dist}(-2{,}3;-4{,}5)$; $\operatorname{Dist}\!\left(-\frac15,\frac95\right)$; $\operatorname{Dist}(-3{,}\overline{27};6{,}\overline{27})$.
+12. Escribe de todas las formas que sepas: a) números menores que $\pi$; b) mayores que $3$ y menores o iguales que $7$; c) el conjunto $\{x:\lvert x-3\rvert\le1\}$.
+13. Halla $[-4,2]\cap(-2,4)$, $[1,5]\cap(7,9)$, $(-4,-2]\cup(-3,0]$ y $[2,8]\cup[-2,0)$.
+14. Escribe como entorno: $(-3,5)$, $\left(-\frac83,\frac83\right)$, $(1{,}9;\,2{,}1)$.
+15. ¿Por qué $\dfrac{0}{0}$ no vale $1$? Explícalo con la definición de división.
+
+::: {.callout-note}
+## Continúa en la Parte 2
+Aproximaciones (truncamiento, redondeo, por defecto y por exceso), cifras significativas, errores absoluto y relativo, cotas de error y notación científica.
+:::

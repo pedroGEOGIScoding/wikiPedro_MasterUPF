@@ -194,6 +194,9 @@ website:
         - text: "---"
         - section: "1 Batx Mates CCSS"
           contents:
+          - master-upf/recursos/1-BatxMatesCCSS/reales-parte1.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/reales-parte2.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/reales-parte3.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones-parte1.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones-parte2.qmd
     - id: "about"

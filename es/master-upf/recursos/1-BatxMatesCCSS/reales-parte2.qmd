@@ -1,0 +1,443 @@
+---
+title: "Números reales II · Aproximación, errores y notación científica"
+subtitle: "Matemáticas Aplicadas a las CCSS I · 1.º de Bachillerato — Unidad 1 (Parte 2 de 3)"
+filename: reales-parte2
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Números reales
+categories: [matemáticas, bachillerato, números reales]
+toc: true
+number-sections: true
+page-layout: article
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format: html
+---
+
+{{< include reales-motor.qmd >}}
+
+::: {.callout-note}
+## De qué va esta parte
+Con $\pi$, con $\sqrt3$ o con $2{,}\overline{7}$ es **imposible** trabajar escribiendo todas sus cifras. Así que aproximamos… y al aproximar cometemos un error. Aquí aprendemos a aproximar bien, a **medir** el error y a **acotarlo**, que es lo que de verdad se hace en ciencias sociales cuando se dice "el paro es del $11{,}2\ \%$ con un margen de error del $0{,}3$".
+:::
+
+# Aproximaciones
+
+Cuando un número tiene demasiadas cifras (o infinitas), lo sustituimos por otro cercano que simplifique los cálculos: una **aproximación**.
+
+| Tipo | Cómo se hace | ¿Queda por encima o por debajo? |
+|---|---|---|
+| **Truncamiento** (por defecto) | se eliminan las cifras a partir del orden elegido | por **debajo** del número (si es positivo) |
+| **Por exceso** | se eliminan las cifras y se **aumenta en 1** la última que queda | por **encima** |
+| **Redondeo** | se elige la mejor de las dos anteriores: si la primera cifra suprimida es $\ge5$ se aumenta, y si es $<5$ se deja igual | la **más cercana** |
+
+**Ejemplo resuelto.** Aproxima a las centésimas:
+
+| Número | Redondeo | Truncamiento | Por exceso |
+|---|---|---|---|
+| $4{,}635$ | $4{,}64$ | $4{,}63$ | $4{,}64$ |
+| $3{,}57\overline{1}$ | $3{,}57$ | $3{,}57$ | $3{,}58$ |
+| $\sqrt3=1{,}732\dots$ | $1{,}73$ | $1{,}73$ | $1{,}74$ |
+
+Fíjate en $\sqrt2=1{,}41421356\dots$ a las centésimas: la cifra de las centésimas es $1$ y la siguiente es $4<5$, así que se deja tal cual: $\sqrt2\approx1{,}41$.
+
+## Cifras significativas
+
+Una aproximación tiene $n$ **cifras significativas** si hay $n$ dígitos desde el primero **no nulo** hasta la última cifra escrita. Así, $2{,}6$ tiene 2 cifras significativas; $7{,}460$ tiene 4; y $0{,}015$ tiene solo 2 (los ceros de la izquierda **no** cuentan).
+
+## Applet 12 · Laboratorio de aproximaciones
+
+```{ojs}
+//| echo: false
+viewof S1_num = Inputs.text({label: "Número a aproximar", value: "pi", width: 300,
+  placeholder: "pi · sqrt(3) · 4.635 · 22/7 · 1234.5678", submit: false})
+viewof S1_k = Inputs.range([0, 6], {value: 2, step: 1, label: "Orden: nº de decimales que conservo"})
+```
+
+```{ojs}
+//| echo: false
+S1_v = lector.valor(S1_num)
+S1_red = num.redondea(S1_v, S1_k)
+S1_tru = num.trunca(S1_v, S1_k)
+S1_exc = num.porExceso(S1_v, S1_k)
+S1_orden = ["unidades", "décimas", "centésimas", "milésimas", "diezmilésimas", "cienmilésimas", "millonésimas"][S1_k]
+
+S1_plot = {
+  const d = 10 ** -S1_k, lo = S1_tru - d * 0.6, hi = S1_exc + d * 0.6;
+  return recta([
+    banda(S1_tru, S1_exc, "#e5e7eb", 0.9, -0.12, 0.12),
+    Plot.dot([{x: S1_tru, y: 0}], {x: "x", y: "y", r: 7, fill: "#f59e0b"}),
+    Plot.dot([{x: S1_exc, y: 0}], {x: "x", y: "y", r: 7, fill: "#7c3aed"}),
+    Plot.dot([{x: S1_v, y: 0}], {x: "x", y: "y", r: 8, fill: "#dc2626", symbol: "diamond"}),
+    Plot.dot([{x: (S1_tru + S1_exc) / 2, y: 0}], {x: "x", y: "y", r: 4, fill: "#111"}),
+    marcaTexto(S1_tru, 0, `defecto ${fm(S1_tru)}`, "#f59e0b", 24),
+    marcaTexto(S1_exc, 0, `exceso ${fm(S1_exc)}`, "#7c3aed", 24),
+    marcaTexto(S1_v, 0, `real ${fx(S1_v, 8)}`, "#dc2626", -20),
+    marcaTexto((S1_tru + S1_exc) / 2, 0, "punto medio", "#111", -40)
+  ], [lo, hi], 220);
+}
+
+S1_txt = md`**${S1_num} = ${fx(S1_v, 10)}…** aproximado a las **${S1_orden}**:
+
+| Tipo | Valor | ¿Por encima o por debajo? | Error absoluto |
+|---|---|---|---|
+| Truncamiento (defecto) | **${fm(S1_tru)}** | por debajo | ${fx(Math.abs(S1_v - S1_tru), 8)} |
+| Por exceso | **${fm(S1_exc)}** | por encima | ${fx(Math.abs(S1_v - S1_exc), 8)} |
+| **Redondeo** | **${fm(S1_red)}** | ${S1_red > S1_v ? "por encima" : S1_red < S1_v ? "por debajo" : "exacto"} | ${fx(Math.abs(S1_v - S1_red), 8)} |
+
+El redondeo coincide con el **${Math.abs(S1_v - S1_tru) <= Math.abs(S1_v - S1_exc) ? "truncamiento" : "valor por exceso"}**, porque el número real cae ${S1_v < (S1_tru + S1_exc) / 2 ? "**antes**" : "**después**"} del punto medio del intervalo.
+
+Cifras significativas del redondeo **${fm(S1_red)}**: ${num.cifrasSig(String(S1_red))}.
+
+🎯 **Regla que puedes descubrir tú:** el redondeo **nunca** puede tener un error mayor que la mitad de una unidad del último orden, aquí ${fx(0.5 * 10 ** -S1_k, 8)}. Prueba varios números y comprueba que jamás se pasa de ese límite.`
+```
+
+::: {.callout-warning}
+## Error frecuente
+Redondear a las centésimas **no** es "quedarse con dos decimales y ya". Con $4{,}635$ hay que mirar la cifra siguiente ($5$) y **subir**: $4{,}64$. Truncar sí es cortar: $4{,}63$.
+:::
+
+# Errores absoluto y relativo
+
+**Definiciones.**
+
+$$E_a=\lvert V_{\text{real}}-V_{\text{aproximado}}\rvert \qquad\qquad E_r=\frac{E_a}{\lvert V_{\text{real}}\rvert}$$
+
+- El **error absoluto** tiene las mismas unidades que la magnitud (metros, euros, habitantes).
+- El **error relativo** no tiene unidades: expresa el error **por cada unidad medida**. Multiplicado por 100 da el **porcentaje de error**.
+
+Si no se conoce el valor real, en el error relativo se sustituye por el aproximado (la diferencia es pequeña).
+
+**Ejemplo resuelto.** Redondeamos $2{,}387$ a las centésimas: $2{,}39$.
+$$E_a=\lvert2{,}387-2{,}39\rvert=0{,}003\qquad E_r=\frac{0{,}003}{2{,}387}=0{,}0013=0{,}13\ \%$$
+
+**Ejemplo resuelto 2.** $\sqrt3\approx1{,}73$:
+$$E_a=\lvert1{,}7320508\dots-1{,}73\rvert=0{,}0020508\qquad E_r=\frac{0{,}0020508}{1{,}7320508}=0{,}00118=0{,}118\ \%$$
+
+::: {.callout-important}
+## Por qué el error relativo es el que importa
+Equivocarse en $1$ cm midiendo un lápiz es un desastre; equivocarse en $1$ cm midiendo la distancia entre Gavà y Barcelona es una precisión asombrosa. **El mismo error absoluto, errores relativos completamente distintos.** Por eso en ciencias sociales los márgenes se dan en porcentaje.
+:::
+
+## Applet 13 · Los dos errores, cara a cara
+
+```{ojs}
+//| echo: false
+viewof S2_real1 = Inputs.text({label: "Medida A · valor real", value: "17.5", width: 200, submit: false})
+viewof S2_apr1 = Inputs.text({label: "Medida A · valor aproximado", value: "18", width: 200, submit: false})
+viewof S2_real2 = Inputs.text({label: "Medida B · valor real", value: "12500", width: 200, submit: false})
+viewof S2_apr2 = Inputs.text({label: "Medida B · valor aproximado", value: "12500.5", width: 200, submit: false})
+```
+
+```{ojs}
+//| echo: false
+S2_A = {r: lector.valor(S2_real1), a: lector.valor(S2_apr1)}
+S2_B = {r: lector.valor(S2_real2), a: lector.valor(S2_apr2)}
+S2_calc = m => ({ea: num.eAbs(m.r, m.a), er: num.eRel(m.r, m.a)})
+S2_cA = S2_calc(S2_A)
+S2_cB = S2_calc(S2_B)
+
+S2_plot = Plot.plot({width: 680, height: 260, marginLeft: 90, grid: true,
+  x: {label: "error relativo (%) →"}, y: {label: null, domain: ["Medida A", "Medida B"]},
+  marks: [
+    Plot.barX([{y: "Medida A", v: S2_cA.er * 100}, {y: "Medida B", v: S2_cB.er * 100}],
+      {y: "y", x: "v", fill: d => d.y === "Medida A" ? "#2563eb" : "#f59e0b", fillOpacity: 0.85}),
+    Plot.text([{y: "Medida A", v: S2_cA.er * 100, t: `${fx(S2_cA.er * 100, 4)} %`},
+               {y: "Medida B", v: S2_cB.er * 100, t: `${fx(S2_cB.er * 100, 4)} %`}],
+      {y: "y", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})
+  ]})
+
+S2_txt = md`| | Medida A | Medida B |
+|---|---|---|
+| Valor real | ${fm(S2_A.r)} | ${fm(S2_B.r)} |
+| Valor aproximado | ${fm(S2_A.a)} | ${fm(S2_B.a)} |
+| **Error absoluto** | ${fx(S2_cA.ea, 8)} | ${fx(S2_cB.ea, 8)} |
+| **Error relativo** | ${fx(S2_cA.er, 8)} = ${fx(S2_cA.er * 100, 5)} % | ${fx(S2_cB.er, 8)} = ${fx(S2_cB.er * 100, 5)} % |
+
+${Math.abs(S2_cA.ea - S2_cB.ea) < 1e-9
+  ? "🎯 **¡Mismo error absoluto, distinto error relativo!** Justo el fenómeno que hace imprescindible al relativo."
+  : S2_cA.er > S2_cB.er
+    ? `La medida **A es peor**: comete ${fx(S2_cA.er / S2_cB.er, 2)} veces más error por unidad, aunque en absoluto la diferencia sea otra historia.`
+    : `La medida **B es peor** en términos relativos, con ${fx(S2_cB.er / S2_cA.er, 2)} veces más error por unidad.`}
+
+🧪 **Reto:** consigue que las dos medidas tengan **el mismo error absoluto** pero que una tenga un error relativo **100 veces mayor** que la otra. Pista: cambia los órdenes de magnitud de los valores reales.`
+```
+
+# Acotación de errores
+
+Muchas veces **no conocemos** el error exacto (¡no sabemos el valor real!), pero sí podemos garantizar que no pasa de cierto valor. Ese valor es una **cota**.
+
+Una cota puede ser superior o inferior: $2{,}8$ m es una cota superior de la altura de una persona y $0{,}2$ m es una cota inferior. La edad máxima del carné joven, $30$ años, es una cota.
+
+**Cota del error absoluto al redondear.** Si redondeamos a un orden $n$ (es decir, a $10^{n}$):
+$$E_a<\frac{1}{2}\cdot10^{n}$$
+
+Es decir, **el error absoluto es menor que media unidad del último orden conservado**:
+
+| Aproximación a | Cota de $E_a$ |
+|---|---|
+| décimas | $0{,}05$ |
+| centésimas | $0{,}005$ |
+| milésimas | $0{,}0005$ |
+
+**Ejemplo resuelto.** $\pi=3{,}14159265\dots\approx3{,}14$ (centésimas):
+$$E_a=\lvert\pi-3{,}14\rvert<\frac{1}{2}\cdot10^{-2}=0{,}005$$
+
+**Cota del error relativo.** Si $E$ es una cota del error absoluto,
+$$E_r<\left\lvert\frac{E}{V_{\text{aproximado}}-E}\right\rvert$$
+
+**Ejemplo resuelto.** Para $\pi\approx3{,}14$ con $E=0{,}005$:
+$$E_r<\frac{0{,}005}{3{,}14-0{,}005}=\frac{0{,}005}{3{,}135}=0{,}0016=0{,}16\ \%$$
+
+::: {.callout-warning}
+## Truncar es peor que redondear
+Al **truncar** a un orden $n$, la cota es el doble: $E_a<10^{n}$. Al truncar a las décimas puedes equivocarte hasta en $0{,}1$; redondeando, como mucho en $0{,}05$. Por eso el redondeo es "la mejor de las aproximaciones".
+:::
+
+## Applet 14 · Cotas de error
+
+```{ojs}
+//| echo: false
+viewof S3_num = Inputs.text({label: "Número", value: "sqrt(2)", width: 260,
+  placeholder: "pi · sqrt(2) · 2/3 · 1.23456", submit: false})
+viewof S3_k = Inputs.range([0, 5], {value: 2, step: 1, label: "Orden (nº de decimales)"})
+viewof S3_tipo = Inputs.radio(new Map([["Redondeo", "red"], ["Truncamiento", "tru"]]), {value: "red", label: "Método"})
+```
+
+```{ojs}
+//| echo: false
+S3_v = lector.valor(S3_num)
+S3_ap = S3_tipo === "red" ? num.redondea(S3_v, S3_k) : num.trunca(S3_v, S3_k)
+S3_cota = (S3_tipo === "red" ? 0.5 : 1) * 10 ** -S3_k
+S3_ea = Math.abs(S3_v - S3_ap)
+S3_cotaR = S3_cota / Math.abs(S3_ap - S3_cota)
+
+S3_plot = Plot.plot({width: 680, height: 200, marginLeft: 60, grid: true,
+  x: {label: "error absoluto →", domain: [0, S3_cota * 1.35]}, y: {axis: null, domain: [-0.6, 1.6]},
+  marks: [
+    Plot.barX([{y: 0.6, v: S3_cota}], {y: "y", x: "v", fill: "#e5e7eb", height: 0.9}),
+    Plot.barX([{y: 0.6, v: S3_ea}], {y: "y", x: "v", fill: "#2563eb", fillOpacity: 0.9, height: 0.5}),
+    Plot.ruleX([S3_cota], {stroke: "#dc2626", strokeWidth: 3}),
+    Plot.text([{x: S3_cota, y: 1.3, t: `cota = ${fx(S3_cota, 8)}`}], {x: "x", y: "y", text: "t", fill: "#dc2626", fontWeight: "bold", textAnchor: "end", dx: -6}),
+    Plot.text([{x: S3_ea, y: -0.3, t: `error real = ${fx(S3_ea, 8)}`}], {x: "x", y: "y", text: "t", fill: "#2563eb", fontWeight: "bold"})
+  ]})
+
+S3_txt = md`**${S3_num} = ${fx(S3_v, 10)}… ≈ ${fm(S3_ap)}** (${S3_tipo === "red" ? "redondeo" : "truncamiento"} con ${S3_k} decimal(es))
+
+- Cota del error absoluto: ${S3_tipo === "red" ? `½ · 10^(−${S3_k})` : `10^(−${S3_k})`} = **${fx(S3_cota, 8)}**
+- Error absoluto realmente cometido: **${fx(S3_ea, 8)}** ${S3_ea < S3_cota ? "✅ menor que la cota, como garantiza la teoría" : "⚠️ revisa el caso"}
+- Cota del error relativo: ${fx(S3_cota, 8)} / (${fm(S3_ap)} − ${fx(S3_cota, 8)}) = **${fx(S3_cotaR, 8)} = ${fx(S3_cotaR * 100, 4)} %**
+
+🔬 Cambia de **redondeo** a **truncamiento** sin tocar nada más: la cota se **duplica**. Esa es, en una sola imagen, la razón por la que redondeamos en lugar de cortar.`
+```
+
+## Applet 15 · El problema inverso: ¿qué sé de la medida?
+
+Cuando en un periódico leemos "la población, redondeada a las decenas, es de $310$ habitantes", no sabemos la población exacta, pero sí **entre qué valores está**.
+
+```{ojs}
+//| echo: false
+viewof S4_val = Inputs.range([10, 1000], {value: 310, step: 10, label: "Valor publicado"})
+viewof S4_orden = Inputs.select(new Map([["unidades", 1], ["decenas", 10], ["centenas", 100], ["décimas", 0.1], ["centésimas", 0.01]]), {value: 10, label: "Redondeado a"})
+```
+
+```{ojs}
+//| echo: false
+S4_semi = S4_orden / 2
+S4_lo = S4_val - S4_semi
+S4_hi = S4_val + S4_semi
+
+S4_plot = recta([
+  banda(S4_lo, S4_hi, "#059669", 0.22),
+  extremo(S4_lo, true, "#059669"), extremo(S4_hi, false, "#059669"),
+  Plot.dot([{x: S4_val, y: 0}], {x: "x", y: "y", r: 8, fill: "#dc2626"}),
+  marcaTexto(S4_val, 0, `publicado: ${fm(S4_val)}`, "#dc2626", -20),
+  marcaTexto(S4_lo, 0, fm(S4_lo), "#059669", 24),
+  marcaTexto(S4_hi, 0, fm(S4_hi), "#059669", 24)
+], [S4_val - S4_orden * 1.6, S4_val + S4_orden * 1.6], 200)
+
+S4_txt = md`Si el valor real se redondeó a las **${["unidades", "decenas", "centenas", "décimas", "centésimas"].find((_, i) => [1, 10, 100, 0.1, 0.01][i] === S4_orden)}** y salió **${fm(S4_val)}**, entonces el valor real está en
+
+$$[\,${fm(S4_lo)},\ ${fm(S4_hi)}\,)$$
+
+- No sé la cifra exacta, pero **sí sé** que el error absoluto es menor que **${fm(S4_semi)}**.
+- Cota del error relativo: ${fm(S4_semi)}/${fm(S4_val)} ≈ **${fx(S4_semi / S4_val * 100, 4)} %**.
+
+🧠 Pregunta seria: con estos datos, ¿podrías afirmar que el pueblo tiene exactamente 310 habitantes? ¿Y que tiene más de 300? ¿Y más de 306? Contesta usando **solo** el intervalo, no la intuición.`
+```
+
+# Notación científica
+
+**Definición.** Un número en notación científica tiene la forma
+$$a\cdot10^{b}$$
+donde $\lvert a\rvert$ es un decimal exacto del intervalo $[1,10)$ y $b$ es un entero. El término $a$ es la **mantisa** y $b$ es el **orden de magnitud**.
+
+## Cómo escribirlo
+
+1. Si la parte entera es distinta de cero, el exponente será **positivo**; si la parte entera es cero, **negativo**.
+2. Cuenta las cifras desde la primera distinta de cero hasta las unidades (sin contar la de las unidades). Ese número, salvo el signo, es el exponente.
+3. Escribe el número con **una sola cifra entera** distinta de cero, y la potencia de 10.
+
+**Ejemplos resueltos.** $-2\,365\,000=-2{,}365\cdot10^{6}$ y $0{,}00000154=1{,}54\cdot10^{-6}$.
+
+## Operaciones
+
+- **Sumar y restar**: hay que llevarlos antes al **mismo orden de magnitud**.
+- **Multiplicar y dividir**: se operan las mantisas por un lado y las potencias de 10 por otro.
+
+**Ejemplo resuelto 1.**
+$$9{,}76\cdot10^{5}+2{,}43\cdot10^{4}-3{,}1\cdot10^{2}=(9{,}76+0{,}243-0{,}0031)\cdot10^{5}=10{,}0069\cdot10^{5}=1{,}00069\cdot10^{6}$$
+
+**Ejemplo resuelto 2.**
+$$\left(2{,}1\cdot10^{-2}\cdot3{,}2\cdot10^{5}\right):\left(8\cdot10^{4}\right)=\frac{2{,}1\cdot3{,}2}{8}\cdot10^{-2+5-4}=0{,}84\cdot10^{-1}=8{,}4\cdot10^{-2}$$
+
+::: {.callout-warning}
+## El paso que casi todos olvidan
+Al operar puede salir un número que **ya no está** en notación científica, porque la mantisa se sale de $[1,10)$: $7{,}06\cdot10^{11}+5{,}2\cdot10^{11}=12{,}26\cdot10^{11}$, y hay que reajustar a $1{,}226\cdot10^{12}$. Igual pasa con $0{,}84\cdot10^{-1}=8{,}4\cdot10^{-2}$.
+:::
+
+## Applet 16 · Conversor de notación científica
+
+```{ojs}
+//| echo: false
+viewof S5_dir = Inputs.radio(new Map([["Decimal → científica", "dc"], ["Científica → decimal", "cd"]]), {value: "dc", label: "Dirección"})
+viewof S5_txt = Inputs.text({label: "Número decimal", value: "0.00000154", width: 300,
+  placeholder: "-2365000 · 0.00000154 · 500000000000", submit: false, disabled: S5_dir !== "dc"})
+viewof S5_m = Inputs.range([-9.99, 9.99], {value: 1.54, step: 0.01, label: "Mantisa a", disabled: S5_dir !== "cd"})
+viewof S5_e = Inputs.range([-15, 15], {value: -6, step: 1, label: "Exponente b", disabled: S5_dir !== "cd"})
+```
+
+```{ojs}
+//| echo: false
+S5_out = {
+  if (S5_dir === "dc") {
+    const v = lector.valor(S5_txt);
+    if (!Number.isFinite(v)) return md`⚠️ Número no válido.`;
+    const c = num.cientifica(v);
+    const cifras = Math.abs(c.e);
+    return md`**${S5_txt} = ${fx(c.m, 8)} · 10^${c.e}**
+
+- Mantisa: **${fx(c.m, 8)}** → ¿está en [1, 10)? ${Math.abs(c.m) >= 1 && Math.abs(c.m) < 10 ? "✅ sí" : "❌ no"}
+- Orden de magnitud: **${c.e}** ${c.e > 0 ? "(positivo, porque la parte entera no es cero)" : c.e < 0 ? "(negativo, porque la parte entera es cero)" : ""}
+- Has movido la coma **${cifras}** lugar(es) hacia la ${c.e > 0 ? "izquierda" : "derecha"}.
+- Cifras significativas: ${num.cifrasSig(String(c.m))}`;
+  }
+  const v = S5_m * 10 ** S5_e;
+  const ok = Math.abs(S5_m) >= 1 && Math.abs(S5_m) < 10;
+  const c = num.cientifica(v);
+  return md`**${fm(S5_m)} · 10^${S5_e} = ${v.toExponential(6).replace("e", " · 10^").replace(".", ",")} = ${Math.abs(S5_e) < 8 ? fx(v, 12) : "(demasiadas cifras para escribirlo entero)"}**
+
+${ok ? "✅ La mantisa está en [1, 10): **es notación científica correcta**."
+  : `❌ La mantisa ${fm(S5_m)} **no** está en [1, 10), así que esto todavía no es notación científica. Reajustado: **${fx(c.m, 8)} · 10^${c.e}**.`}
+
+🎯 Pon la mantisa en 12,26 (es decir, muévela hasta 9,99 y observa el aviso). Este es exactamente el error que aparece al sumar dos números en notación científica.`;
+}
+```
+
+## Applet 17 · Operaciones en notación científica, paso a paso
+
+```{ojs}
+//| echo: false
+viewof S6_m1 = Inputs.range([1, 9.99], {value: 9.76, step: 0.01, label: "Mantisa 1"})
+viewof S6_e1 = Inputs.range([-12, 12], {value: 5, step: 1, label: "Exponente 1"})
+viewof S6_m2 = Inputs.range([1, 9.99], {value: 2.43, step: 0.01, label: "Mantisa 2"})
+viewof S6_e2 = Inputs.range([-12, 12], {value: 4, step: 1, label: "Exponente 2"})
+viewof S6_op = Inputs.radio(new Map([["Suma +", "s"], ["Resta −", "r"], ["Producto ·", "p"], ["Cociente :", "c"]]), {value: "s", label: "Operación"})
+```
+
+```{ojs}
+//| echo: false
+S6_v1 = S6_m1 * 10 ** S6_e1
+S6_v2 = S6_m2 * 10 ** S6_e2
+S6_res = ({s: S6_v1 + S6_v2, r: S6_v1 - S6_v2, p: S6_v1 * S6_v2, c: S6_v1 / S6_v2})[S6_op]
+S6_c = num.cientifica(S6_res)
+
+S6_txt = {
+  const sim = ({s: "+", r: "−", p: "·", c: ":"})[S6_op];
+  const E = Math.max(S6_e1, S6_e2);
+  const pasos = (S6_op === "s" || S6_op === "r")
+    ? md`**Paso 1 — igualar el orden de magnitud.** Llevamos ambos a 10^${E}:
+
+- ${fm(S6_m1)} · 10^${S6_e1} = ${fx(S6_v1 / 10 ** E, 8)} · 10^${E}
+- ${fm(S6_m2)} · 10^${S6_e2} = ${fx(S6_v2 / 10 ** E, 8)} · 10^${E}
+
+**Paso 2 — operar las mantisas** (el orden se queda quieto):
+
+(${fx(S6_v1 / 10 ** E, 8)} ${sim} ${fx(S6_v2 / 10 ** E, 8)}) · 10^${E} = **${fx(S6_res / 10 ** E, 8)} · 10^${E}**
+
+**Paso 3 — reajustar** si la mantisa se ha salido de [1, 10): resultado final **${fx(S6_c.m, 8)} · 10^${S6_c.e}**`
+    : md`**Paso 1 — operar las mantisas:** ${fm(S6_m1)} ${sim} ${fm(S6_m2)} = **${fx(S6_op === "p" ? S6_m1 * S6_m2 : S6_m1 / S6_m2, 8)}**
+
+**Paso 2 — operar las potencias de 10:** 10^${S6_e1} ${sim} 10^${S6_e2} → exponente ${S6_op === "p" ? `${S6_e1} + ${S6_e2} = ${S6_e1 + S6_e2}` : `${S6_e1} − ${S6_e2} = ${S6_e1 - S6_e2}`}
+
+**Paso 3 — juntar y reajustar:** ${fx(S6_op === "p" ? S6_m1 * S6_m2 : S6_m1 / S6_m2, 6)} · 10^${S6_op === "p" ? S6_e1 + S6_e2 : S6_e1 - S6_e2} = **${fx(S6_c.m, 8)} · 10^${S6_c.e}**`;
+  return md`## ${fm(S6_m1)}·10^${S6_e1} ${sim} ${fm(S6_m2)}·10^${S6_e2}
+
+${pasos}
+
+${Math.abs(num.cientifica(S6_op === "p" ? S6_m1 * S6_m2 : S6_op === "c" ? S6_m1 / S6_m2 : S6_res / 10 ** Math.max(S6_e1, S6_e2)).e) > 0 ? "⚠️ Aquí ha hecho falta **reajustar** la mantisa. Es el paso que más se olvida." : "✅ La mantisa ya estaba en [1, 10): no hay que reajustar."}`;
+}
+```
+
+## Applet 18 · Órdenes de magnitud: del electrón al universo
+
+Comparar tamaños escritos con todas sus cifras es imposible. Con potencias de 10, inmediato.
+
+```{ojs}
+//| echo: false
+viewof S7_sel = Inputs.checkbox(
+  ["radio del protón", "átomo de hidrógeno", "virus", "glóbulo rojo", "grosor de un pelo", "hormiga",
+   "altura de una persona", "Torre Eiffel", "Gavà–Barcelona", "radio de la Tierra", "Tierra–Sol", "año luz", "Vía Láctea"],
+  {value: ["átomo de hidrógeno", "glóbulo rojo", "altura de una persona", "radio de la Tierra", "año luz"],
+   label: "Objetos a comparar"})
+```
+
+```{ojs}
+//| echo: false
+S7_datos = new Map([
+  ["radio del protón", 8.4e-16], ["átomo de hidrógeno", 1.06e-10], ["virus", 1e-7],
+  ["glóbulo rojo", 7e-6], ["grosor de un pelo", 7e-5], ["hormiga", 5e-3],
+  ["altura de una persona", 1.7], ["Torre Eiffel", 3.3e2], ["Gavà–Barcelona", 1.8e4],
+  ["radio de la Tierra", 6.371e6], ["Tierra–Sol", 1.496e11], ["año luz", 9.461e15], ["Vía Láctea", 9.5e20]
+])
+S7_tabla = S7_sel.map(k => ({obj: k, m: num.cientifica(S7_datos.get(k)).m, e: num.cientifica(S7_datos.get(k)).e, v: S7_datos.get(k)}))
+  .sort((a, b) => a.v - b.v)
+
+S7_plot = S7_tabla.length ? Plot.plot({width: 680, height: 60 + S7_tabla.length * 30, marginLeft: 170, grid: true,
+  x: {type: "log", label: "metros (escala logarítmica) →"}, y: {domain: S7_tabla.map(d => d.obj), label: null},
+  marks: [Plot.barX(S7_tabla, {y: "obj", x: "v", fill: "#2563eb", fillOpacity: 0.8}),
+    Plot.text(S7_tabla.map(d => ({...d, t: `10^${d.e}`})), {y: "obj", x: "v", text: "t", dx: 8, textAnchor: "start", fontWeight: "bold"})]}) : md`Selecciona algún objeto.`
+
+S7_txt = md`| Objeto | Medida (m) | Notación científica | Orden |
+|---|---|---|---|
+${S7_tabla.map(d => `| ${d.obj} | ${d.v.toExponential(2).replace(".", ",")} | ${fx(d.m, 4)} · 10^${d.e} | ${d.e} |`).join("\n")}
+
+${S7_tabla.length >= 2 ? `🔭 Entre **${S7_tabla[0].obj}** y **${S7_tabla[S7_tabla.length - 1].obj}** hay ${S7_tabla[S7_tabla.length - 1].e - S7_tabla[0].e} órdenes de magnitud: uno es **10^${S7_tabla[S7_tabla.length - 1].e - S7_tabla[0].e}** veces mayor que el otro. Intenta escribir ese número con todas sus cifras y entenderás para qué se inventó la notación científica.` : ""}
+
+📏 Fíjate en la escala del gráfico: es **logarítmica**, así que cada paso igual de ancho multiplica por 10. Es la única manera de que un protón y una galaxia quepan en el mismo dibujo.`
+```
+
+# Actividades de la Parte 2
+
+1. Escribe $\sqrt3$ en forma decimal y sus aproximaciones por exceso y por defecto a las diezmilésimas y a las cienmilésimas.
+2. Aproxima a las centésimas por redondeo, truncamiento y exceso: $4{,}635$; $3{,}57\overline{1}$; $\sqrt3$; $\pi$; $\frac{22}{7}$.
+3. Di cuántas cifras significativas tienen: $2{,}6$; $7{,}460$; $0{,}015$; $0{,}0300$; $1\,200$.
+4. Calcula los errores absoluto y relativo al redondear $2{,}387$ a las centésimas y al truncarlo.
+5. Calcula las cotas de error absoluto y relativo al redondear $\sqrt2$ a) a las centésimas b) a las milésimas.
+6. Piensa y explica una situación en la que dos medidas tengan **el mismo error absoluto** pero errores relativos muy distintos.
+7. La población de una localidad, redondeada a las decenas, es de $310$ habitantes. ¿Puedes dar el error exacto? ¿Y una cota del error?
+8. Calcula una cota del error absoluto al **truncar** un número a las décimas. ¿Y a las centésimas? Compárala con la del redondeo.
+9. Escribe en notación científica: $0{,}0000085$; $500\,000\,000\,000$; $3\,194\,000\,000$; $0{,}000000000479$.
+10. Opera y da el resultado en notación científica: a) $(5{,}2\cdot10^{4}+4{,}75\cdot10^{-2}):(8{,}05\cdot10^{-3})$ b) $3{,}79\cdot10^{5}\cdot0{,}73\cdot10^{3}-6{,}54\cdot10^{-2}$
+11. Un archivo pesa $2{,}4$ GB. Exprésalo en bytes con notación científica sabiendo que $1$ GB $=10^{9}$ bytes.
+12. Indica dos ejemplos de medida de tu vida diaria y da una cota de error razonable para cada uno, justificándola.
+
+::: {.callout-note}
+## Continúa en la Parte 3
+Potencias de exponente entero y fraccionario, radicales (simplificar, extraer, introducir, operar, racionalizar) y logaritmos con todas sus propiedades.
+:::

@@ -1,0 +1,199 @@
+<!-- =====================================================================
+     MOTOR COMÚN — Unidad 1: Números reales (1.º BATX CCSS)
+     Inclúyelo al principio de cada parte con:
+         {{< include reales-motor.qmd >}}
+     Este archivo NO se renderiza solo (no tiene YAML) y empieza por "_"
+     para que Quarto no lo publique como página independiente.
+     ===================================================================== -->
+
+```{ojs}
+//| echo: false
+math = require("mathjs@12")
+
+// ============================ ARITMÉTICA EXACTA ========================
+num = ({
+  mcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { [a, b] = [b, a % b]; } return a || 1; },
+  mcm(a, b) { return Math.abs(a * b) / this.mcd(a, b); },
+
+  // Fracción canónica: irreducible y con denominador positivo
+  canonica(a, b) {
+    if (b === 0) return null;
+    const g = this.mcd(a, b), s = b < 0 ? -1 : 1;
+    return {n: s * a / g, d: s * b / g};
+  },
+  frac(a, b) { const f = this.canonica(a, b); return f ? (f.d === 1 ? `${f.n}` : `${f.n}/${f.d}`) : "no existe"; },
+
+  // Descomposición en factores primos
+  factorizar(n) {
+    n = Math.abs(Math.round(n));
+    const f = [];
+    if (n <= 1) return n === 1 ? [] : [];
+    for (let p = 2; p * p <= n; p++) {
+      let e = 0;
+      while (n % p === 0) { n /= p; e++; }
+      if (e) f.push([p, e]);
+    }
+    if (n > 1) f.push([n, 1]);
+    return f;
+  },
+  factStr(n) {
+    const f = this.factorizar(n);
+    return f.length ? f.map(([p, e]) => e === 1 ? `${p}` : `${p}^${e}`).join(" · ") : `${n}`;
+  },
+
+  // División larga: detecta parte entera, anteperiodo y periodo
+  expansion(p, q) {
+    const signo = (p < 0) !== (q < 0) ? "−" : "";
+    p = Math.abs(p); q = Math.abs(q);
+    if (q === 0) return null;
+    const entera = Math.floor(p / q);
+    let r = p % q, dec = "", vistos = new Map(), inicio = -1;
+    while (r !== 0 && dec.length < 40) {
+      if (vistos.has(r)) { inicio = vistos.get(r); break; }
+      vistos.set(r, dec.length);
+      r *= 10;
+      dec += Math.floor(r / q);
+      r = r % q;
+    }
+    if (r === 0) return {signo, entera, ante: dec, per: "", tipo: dec === "" ? "entero" : "exacto"};
+    return {signo, entera, ante: dec.slice(0, inicio), per: dec.slice(inicio),
+            tipo: inicio === 0 ? "periódico puro" : "periódico mixto"};
+  },
+  expStr(e) {
+    if (!e) return "—";
+    if (e.tipo === "entero") return `${e.signo}${e.entera}`;
+    return `${e.signo}${e.entera},${e.ante}${e.per ? "(" + e.per + ")" : ""}`;
+  },
+
+  // Fracción generatriz a partir de entera, anteperiodo y periodo (como cadenas)
+  generatriz(ent, ante, per) {
+    const A = `${ent}${ante}${per}`, B = `${ent}${ante}`;
+    const numer = parseInt(A || "0", 10) - parseInt(B || "0", 10);
+    const denom = parseInt("9".repeat(per.length) + "0".repeat(ante.length), 10) || 1;
+    return this.canonica(numer, denom);
+  },
+
+  // Radicales: n^(1/idx) simplificado -> fuera · raíz(dentro)
+  simplificaRadical(n, idx) {
+    if (n < 0 && idx % 2 === 0) return null;
+    const s = n < 0 ? -1 : 1;
+    const f = this.factorizar(Math.abs(n));
+    let fuera = 1, dentro = 1;
+    for (const [p, e] of f) { fuera *= p ** Math.floor(e / idx); dentro *= p ** (e % idx); }
+    return {signo: s, fuera, dentro, idx};
+  },
+  radStr(r) {
+    if (!r) return "no existe en ℝ";
+    const raiz = r.dentro === 1 ? "" : (r.idx === 2 ? `√${r.dentro}` : `⁽${r.idx}⁾√${r.dentro}`);
+    const co = r.fuera === 1 && raiz ? "" : `${r.signo < 0 ? "−" : ""}${r.fuera}`;
+    return (co + (co && raiz ? "·" : "") + raiz) || "1";
+  },
+
+  // Notación científica
+  cientifica(x) {
+    if (x === 0) return {m: 0, e: 0};
+    const e = Math.floor(Math.log10(Math.abs(x)));
+    return {m: x / 10 ** e, e};
+  },
+
+  // Aproximaciones a un orden dado (orden = nº de decimales)
+  trunca(x, k) { const f = 10 ** k; return (x < 0 ? Math.ceil(x * f) : Math.floor(x * f)) / f; },
+  porExceso(x, k) { const f = 10 ** k; return (x < 0 ? Math.floor(x * f) : Math.ceil(x * f)) / f; },
+  redondea(x, k) { const f = 10 ** k; return Math.round(x * f) / f; },
+
+  // Errores
+  eAbs(real, aprox) { return Math.abs(real - aprox); },
+  eRel(real, aprox) { return real === 0 ? NaN : Math.abs(real - aprox) / Math.abs(real); },
+
+  // Cifras significativas de un número escrito como cadena
+  cifrasSig(s) {
+    s = s.replace("−", "-").replace(",", ".").trim();
+    let t = s.replace("-", "");
+    if (t.includes(".")) {
+      t = t.replace(".", "");
+      t = t.replace(/^0+/, "");
+      return t.length;
+    }
+    t = t.replace(/^0+/, "");
+    return t.replace(/0+$/, "").length || 1;
+  }
+})
+
+// ==================== EXPRESIONES ESCRITAS POR EL ALUMNADO =============
+lector = ({
+  compilar(txt) {
+    try { const c = math.compile(txt); c.evaluate({x: 1, a: 1, b: 1, n: 1}); return c; }
+    catch (e) { return null; }
+  },
+  valor(txt, vars = {}) {
+    const c = this.compilar(txt);
+    if (!c) return NaN;
+    try { const v = c.evaluate(vars); return typeof v === "number" && Number.isFinite(v) ? v : NaN; }
+    catch (e) { return NaN; }
+  },
+  fun(txt, pars = {}) { const c = this.compilar(txt); return c ? (x => { try { const v = c.evaluate({...pars, x}); return typeof v === "number" ? v : NaN; } catch (e) { return NaN; } }) : (() => NaN); }
+})
+
+// ============================ FORMATO Y DIBUJO =========================
+fx = (v, k = 6) => Number.isFinite(v) ? v.toFixed(k).replace(/0+$/, "").replace(/\.$/, "").replace(".", ",") : "—"
+fm = v => Number.isFinite(v) ? (Math.round(v * 1e6) / 1e6).toString().replace(".", ",") : "—"
+
+malla = (f, a, b, n = 700) => {
+  const o = [];
+  for (let i = 0; i <= n; i++) { const x = a + (b - a) * i / n, y = f(x); o.push({x, y: Number.isFinite(y) ? y : null}); }
+  return o;
+}
+trazo = (pts, color = "#2563eb", ancho = 2.6, guion = null) =>
+  Plot.line(pts, {x: "x", y: "y", stroke: color, strokeWidth: ancho, strokeDasharray: guion})
+
+lienzo = (marcas, xd = [-8, 8], yd = [-8, 8], ex = "x →", ey = "↑ y", alto = 400) =>
+  Plot.plot({width: 680, height: alto, grid: true, marginLeft: 50, marginBottom: 42,
+    x: {domain: xd, label: ex}, y: {domain: yd, label: ey},
+    marks: [Plot.ruleY([0], {stroke: "#111"}), Plot.ruleX([0], {stroke: "#111"}), ...marcas]})
+
+// Recta real: dibuja una recta numérica con marcas, intervalos y puntos
+recta = (marcas, xd = [-10, 10], alto = 170, etiqueta = "recta real →") =>
+  Plot.plot({width: 680, height: alto, marginLeft: 40, marginBottom: 40,
+    x: {domain: xd, label: etiqueta, ticks: 11}, y: {axis: null, domain: [-1, 1]},
+    marks: [Plot.ruleY([0], {stroke: "#111", strokeWidth: 1.5}), ...marcas]})
+
+banda = (a, b, color = "#2563eb", op = 0.22, y1 = -0.18, y2 = 0.18) =>
+  Plot.rectY([{x1: a, x2: b}], {x1: "x1", x2: "x2", y1, y2, fill: color, fillOpacity: op})
+
+extremo = (x, cerrado, color = "#2563eb", y = 0) =>
+  Plot.dot([{x, y}], {x: "x", y: "y", r: 7, fill: cerrado ? color : "white", stroke: color, strokeWidth: 2.5})
+
+marcaTexto = (x, y, t, color = "#dc2626", dy = -14) =>
+  Plot.text([{x, y, t}], {x: "x", y: "y", text: "t", dy, fill: color, fontWeight: "bold"})
+```
+
+::: {.callout-important}
+## 📝 Cómo escribir los números y expresiones en los applets
+
+Los applets que tienen **casilla de texto** aceptan estas formas. Escribe solo el número o la expresión, sin el signo `=`.
+
+| Quieres escribir | Se teclea | Ejemplos |
+|---|---|---|
+| Un decimal | con **punto**, no coma | `2.75`, `-0.004` |
+| Una fracción | `/` | `7/12`, `-24/60` |
+| Una potencia | `^` | `2^10`, `5^-3` |
+| Raíz cuadrada | `sqrt( )` | `sqrt(2)`, `sqrt(50)` |
+| Raíz de índice $n$ | `nthRoot( , n)` | `nthRoot(24, 3)` |
+| Valor absoluto | `abs( )` | `abs(-7)` |
+| Número $\pi$ | `pi` | `pi/2` |
+| Número $e$ | `e` | `e^2` |
+| Razón áurea | `(1 + sqrt(5))/2` | — |
+| Logaritmo neperiano | `log( )` | `log(e)` |
+| Logaritmo decimal | `log10( )` | `log10(1000)` |
+| Logaritmo en base $a$ | `log( , a)` | `log(243, 3)` |
+| Notación científica | `e` entre mantisa y exponente | `1.54e-6`, `2.365e6` |
+
+**Cuatro reglas de oro**
+
+1. **Punto decimal, no coma**: `1.732`, nunca `1,732`. En los resultados sí verás coma, porque es la notación española.
+2. Los paréntesis nunca sobran: `1/(2+3)` no es lo mismo que `1/2+3`.
+3. Para multiplicar puedes pegar los factores (`3sqrt(2)`) o usar `*` (`3*sqrt(2)`).
+4. `log(x)` es el logaritmo **neperiano**. El decimal es `log10(x)` y el de base $a$ es `log(x, a)`.
+
+**Para copiar y probar:** `22/7` · `sqrt(2)` · `pi` · `(1+sqrt(5))/2` · `0.1234567891011` · `2^-4` · `nthRoot(72, 2)`
+:::
