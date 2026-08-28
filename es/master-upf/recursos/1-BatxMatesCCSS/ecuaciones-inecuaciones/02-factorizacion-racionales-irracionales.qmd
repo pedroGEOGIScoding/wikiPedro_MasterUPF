@@ -17,7 +17,7 @@ lightbox:
 format:
   html:
     include-after-body: assets/_scripts.html
-    html-math-method: mathjax
+    html-math-method: katex
 ---
 
 ## Factorización de ecuaciones (Cuando el dominio y la comprobación forman parte del método)

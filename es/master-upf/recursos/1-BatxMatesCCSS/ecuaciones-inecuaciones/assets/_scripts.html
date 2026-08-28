@@ -1,40 +1,76 @@
 <!-- =====================================================================
      _scripts.html — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
 
-     Se inyecta al final de <body> en las paginas del tema
-     (via  format: html: include-after-body  en cada .qmd).
+     Se inyecta al final de <body> en las paginas del tema, mediante
+     format: html: include-after-body en cada .qmd.
 
-     ORDEN OBLIGATORIO:
-       1) applets.css        -> estilos comunes (.applet, .ap-head, ...)
-       2) poly-applets.js    -> motor algebraico exacto del tema de
-                                polinomios; publica window.POLY
-       3) eq-applets.js      -> applets de ecuaciones e inecuaciones;
-                                consume window.POLY y publica window.EQAPP
+     ORDEN OBLIGATORIO
+       1) applets.css                 estilos comunes (.applet, .ap-*)
+       2) katex.min.css               tipografia matematica
+       3) katex.min.js                motor de composicion, sincrono
+       4) auto-render.min.js          define window.renderMathInElement
+       5) poly-applets.js             motor algebraico -> window.POLY
+       6) eq-applets.js               applets del tema -> window.EQAPP
+
+     POR QUE KATEX
+     Los applets reescriben su salida en cada pulsacion de tecla. KaTeX
+     compone de forma sincrona, de modo que basta llamar a
+     renderMathInElement despues de escribir el HTML. Con MathJax habria
+     que orquestar llamadas asincronas en cada actualizacion.
 
      poly-applets.js se carga desde la carpeta del tema de polinomios
-     para NO duplicar el motor. Si algun dia mueves esa carpeta, solo
-     hay que corregir esta ruta.
+     para no duplicar el motor. Si mueves esa carpeta, corrige la ruta.
 
      Los applets de polinomios usan  data-applet="clave".
-     Los applets de este tema usan   data-applet-eq="clave".
-     Al ser atributos distintos, los dos modulos nunca se pisan aunque
-     coincidan en la misma pagina.
+     Los de este tema usan           data-applet-eq="clave".
      ===================================================================== -->
 
 <link rel="stylesheet" href="assets/applets.css">
 
-<script src="../polinomios/assets/poly-applets.js"></script>
-<script src="assets/eq-applets.js"></script>
+<!-- ---------------------------------------------------------------
+     KaTeX desde CDN. Las integrity son las de la version 0.16.11.
+     Si actualizas la version, actualiza tambien los hashes o quitalos.
+     --------------------------------------------------------------- -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      crossorigin="anonymous">
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        crossorigin="anonymous"></script>
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"></script>
+
+<!-- ---------------------------------------------------------------
+     VARIANTE LOCAL, para dar clase sin conexion.
+     Descarga katex.tar.gz de https://github.com/KaTeX/KaTeX/releases
+     y copia en assets/katex/ los archivos katex.min.css, katex.min.js,
+     contrib/auto-render.min.js y la carpeta fonts/. Despues comenta
+     las tres etiquetas de CDN de arriba y descomenta estas tres.
+
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/contrib/auto-render.min.js"></script>
+     --------------------------------------------------------------- -->
+
+<!-- Motor algebraico exacto reutilizado del tema de polinomios. -->
+<script defer src="../polinomios/assets/poly-applets.js"></script>
+
+<!-- Applets de ecuaciones e inecuaciones. -->
+<script defer src="assets/eq-applets.js"></script>
 
 <script>
-  /* Aviso claro en pantalla si el motor de polinomios no ha llegado.
-     Sin el, eq-applets.js sigue funcionando con su parser de respaldo,
-     pero conviene saberlo al preparar la clase. */
-  (function () {
-    window.addEventListener('load', function () {
-      if (!window.POLY) {
-        console.warn('[ecuaciones] window.POLY no disponible: eq-applets.js usa el parser de respaldo.');
-      }
-    });
-  })();
+  /* Avisos en consola para la fase de preparacion de la clase.
+     No afectan al alumnado: los applets degradan con elegancia. */
+  window.addEventListener('load', function () {
+    if (!window.katex) {
+      console.warn('[ecuaciones] KaTeX no se ha cargado: la notacion de los applets se vera como texto LaTeX.');
+    }
+    if (!window.renderMathInElement) {
+      console.warn('[ecuaciones] auto-render de KaTeX no disponible: revisa la ruta de contrib/auto-render.min.js.');
+    }
+    if (!window.POLY) {
+      console.warn('[ecuaciones] window.POLY no disponible: eq-applets.js usa su parser de respaldo.');
+    }
+  });
 </script>

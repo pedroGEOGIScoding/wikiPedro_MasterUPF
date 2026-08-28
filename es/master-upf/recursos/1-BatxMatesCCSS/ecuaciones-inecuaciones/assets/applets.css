@@ -1,8 +1,10 @@
 /* =====================================================================
-   applets.css — Ecuaciones e inecuaciones · 1r Batx Mates CCSS
-   Copia de la hoja usada en el tema de polinomios, con las mismas
-   clases (.applet, .ap-head, .ap-title, .ap-help, .ap-err) para que
-   el aspecto visual del sitio sea identico entre temas.
+   applets.css — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
+   VERSION 3 — limpia. La notacion matematica la compone KaTeX, de modo
+   que ya NO hay reglas propias para fracciones, radicales, superindices
+   ni subindices. Se conservan las mismas clases que en el tema de
+   polinomios (.applet, .ap-head, .ap-title, .ap-help, .ap-err) para que
+   el aspecto del sitio sea homogeneo entre temas.
    ===================================================================== */
 
 :root {
@@ -43,11 +45,11 @@
   margin: 0;
   padding-left: 1.15rem;
   font-size: 0.92rem;
-  line-height: 1.45;
+  line-height: 1.5;
   color: #475569;
 }
 
-.ap-help li { margin: 0.22rem 0; }
+.ap-help li { margin: 0.25rem 0; }
 
 .ap-help code,
 .applet code {
@@ -112,12 +114,9 @@
   font-size: 0.9rem;
   cursor: pointer;
 }
-
 .ap-btn:hover { filter: brightness(0.9); }
 .ap-btn.ap-alt { background: var(--ap-tertiary); }
 .ap-btn.ap-grey { background: #64748b; }
-
-.ap-range { flex: 1 1 10rem; }
 
 /* ---------- salidas ---------- */
 .ap-out {
@@ -128,18 +127,26 @@
   border-radius: 9px;
   overflow-x: auto;
   font-size: 0.96rem;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 .ap-step {
-  margin: 0.3rem 0;
+  margin: 0.34rem 0;
   padding-left: 0.7rem;
   border-left: 3px solid #e2e8f0;
+}
+
+.ap-step.ap-warn {
+  border-left-color: var(--ap-orange);
+  background: #fffaf0;
+  padding: 0.4rem 0.6rem 0.4rem 0.7rem;
+  border-radius: 0 6px 6px 0;
 }
 
 .ap-key { font-weight: 700; color: var(--ap-primary); }
 .ap-ok { color: var(--ap-tertiary); font-weight: 700; }
 .ap-bad { color: var(--ap-secondary); font-weight: 700; }
+.ap-note { font-size: 0.9em; color: #64748b; }
 
 .ap-chip {
   display: inline-block;
@@ -148,10 +155,8 @@
   border-radius: 999px;
   background: #eafaf1;
   color: #106b52;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-weight: 600;
 }
-
 .ap-chip.ap-chip-bad { background: #fdecee; color: #a4172a; }
 
 .ap-err {
@@ -172,20 +177,17 @@
   margin: 0.6rem 0;
   font-size: 0.9rem;
 }
-
 .ap-tbl th {
   background: #334155;
   color: #fff;
   padding: 0.35rem 0.45rem;
   font-weight: 600;
 }
-
 .ap-tbl td {
   border-bottom: 1px solid #eef2f7;
-  padding: 0.35rem 0.45rem;
+  padding: 0.4rem 0.45rem;
   text-align: center;
 }
-
 .ap-tbl tr.ap-sel-row td { background: #eafaf1; font-weight: 600; }
 
 /* ---------- figuras ---------- */
@@ -193,58 +195,29 @@
   display: block;
   width: 100%;
   max-width: 520px;
-  margin: 0.6rem auto 0;
+  margin: 0.7rem auto 0.2rem;
   background: #fff;
   border: 1px solid var(--ap-line);
   border-radius: 9px;
 }
 
+/* ---------- ajustes finos sobre KaTeX ---------- */
+/* KaTeX aporta toda la tipografia matematica. Solo se retocan detalles
+   de integracion con el resto del applet. */
+.applet .katex { font-size: 1.06em; }
+
+/* Las formulas de bloque dentro de un paso no deben separarse tanto. */
+.applet .katex-display { margin: 0.5rem 0; }
+
+/* En las celdas de la tabla de signos conviene el tamano normal. */
+.ap-tbl .katex { font-size: 1em; }
+
+/* Color coherente para los avisos de sintaxis que marque KaTeX. */
+.applet .katex-error { color: var(--ap-secondary) !important; }
+
 @media (max-width: 640px) {
   .applet { padding: 0.8rem 0.75rem 0.9rem; }
   .ap-lab { min-width: 100%; }
   .ap-in { flex: 1 1 100%; }
+  .ap-out { font-size: 0.92rem; }
 }
-
-/* ---------- notación matemática en HTML (sin MathJax) ---------- */
-.ap-m {
-  font-family: "Latin Modern Math", "Cambria Math", Georgia, "Times New Roman", serif;
-  font-size: 1.06em;
-  white-space: nowrap;
-}
-.ap-m sup { font-size: 0.7em; vertical-align: 0.55em; line-height: 0; }
-.ap-m sub { font-size: 0.7em; vertical-align: -0.25em; line-height: 0; }
-
-.ap-frac {
-  display: inline-flex;
-  flex-direction: column;
-  vertical-align: middle;
-  text-align: center;
-  margin: 0 0.18em;
-  font-size: 0.94em;
-}
-.ap-frac .ap-num { padding: 0 0.3em; border-bottom: 1.3px solid currentColor; }
-.ap-frac .ap-den { padding: 0 0.3em; }
-
-/* ---------- radical robusto: la barra siempre por encima del exponente ---------- */
-.ap-rad {
-  display: inline-flex;
-  align-items: flex-start;
-  white-space: nowrap;
-}
-.ap-rad > .ap-radc {
-  border-top: 1.3px solid currentColor;
-  padding-top: 0.5em;
-  padding-right: 0.26em;
-  padding-bottom: 0;
-  padding-left: 0.12em;
-  margin-left: -0.05em;
-  line-height: 1.25;
-}
-
-.ap-rad > .ap-radc sup {
-  font-size: 0.6em;
-  vertical-align: 0.32em;
-  line-height: 1;
-}
-
-.ap-step.ap-warn { border-left-color: var(--ap-orange); background: #fffaf0; }

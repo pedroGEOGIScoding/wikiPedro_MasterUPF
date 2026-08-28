@@ -17,7 +17,7 @@ lightbox:
 format:
   html:
     include-after-body: assets/_scripts.html
-    html-math-method: mathjax
+    html-math-method: katex
 ---
 
 <div data-applet-eq="diagnostico"></div>
