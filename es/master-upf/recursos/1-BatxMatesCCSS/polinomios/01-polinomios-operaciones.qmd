@@ -241,9 +241,9 @@ donde los coeficientes forman una fila del **triángulo de Pascal**. Las identid
 
 <div data-applet-x="newton"></div>
 
-::: {.callout-tip title="Actividad guiada con los applets 3 y 16"}
+::: {.callout-tip title="Actividad guiada con los applets 3 y 4"}
 1. Desarrolla `(2x-3)^2` y comprueba que el applet reconoce el cuadrado de una diferencia. Después teclea `4x^2+9` y observa que **no** lo reconoce: explica por qué.
-2. Con el applet 16, pon $n=4$ y $a=-3$: ¿por qué los signos se alternan? Relaciónalo con $(-3)^k$.
+2. Con el applet 4, pon $n=4$ y $a=-3$: ¿por qué los signos se alternan? Relaciónalo con $(-3)^k$.
 3. Comprueba que la suma de los números de la fila $n$ del triángulo de Pascal es $2^n$. Sugerencia: evalúa $(1+1)^n$.
 :::
 
@@ -299,7 +299,7 @@ Como el resto no es cero, $x-1$ **no** es factor del dividendo. Y una observaci�
 
 <div data-applet="division"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 4"}
+::: {.callout-tip title="Actividad guiada con el applet 5"}
 1. Divide `x^4-3x^2+2` entre `x^2-1`: comprueba que la división es exacta y escribe la factorización que acabas de obtener.
 2. Divide `x^5-1` entre `x-1`. ¿Reconoces el cociente? Compáralo con el cociente de `x^4-1` entre `x-1` y generaliza.
 3. Divide un polinomio de grado 5 entre uno de grado 5 distinto. ¿Qué grado tiene el cociente? ¿Y el resto?

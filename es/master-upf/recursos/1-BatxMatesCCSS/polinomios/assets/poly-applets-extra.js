@@ -133,9 +133,9 @@
     });
   };
 
-  /* ---------- 15. De la factorizacion a la ecuacion ---------- */
+  /* ---------- 12. De la factorizacion a la ecuacion ---------- */
   X.ecuacion = function (root) {
-    root.innerHTML = head('Applet 15 · De la factorizacion a la ecuacion polinomica', [
+    root.innerHTML = head('Applet 12 · De la factorizacion a la ecuacion polinomica', [
       'Escribe la ecuacion en la forma <b>P(x) = 0</b>, tecleando solo P(x). Ejemplos: <code>x^3-4x^2+5x-2</code>, <code>2x^3-3x^2-11x+6</code>, <code>x^4-10x^2+9</code>, <code>x^4-5x^2+6</code>.',
       'El applet factoriza y aplica la <b>ley del producto nulo</b>: un producto es cero si y solo si alguno de sus factores es cero. Cada factor genera una ecuacion sencilla.',
       'Prueba una <b>bicuadrada</b> como <code>x^4-10x^2+9</code> y compara: el cambio \\(t=x^2\\) y la factorizacion llevan al mismo sitio.',
@@ -169,9 +169,9 @@
     });
   };
 
-  /* ---------- 16. Triangulo de Pascal interactivo ---------- */
+  /* ---------- 4. Triangulo de Pascal interactivo ---------- */
   X.newton = function (root) {
-    root.innerHTML = head('Applet 16 · Triangulo de Pascal y potencias de un binomio', [
+    root.innerHTML = head('Applet 4 · Triangulo de Pascal y potencias de un binomio', [
       'Mueve el deslizador para elegir el exponente n y ver la fila correspondiente del triangulo de Pascal junto al desarrollo de \\((x+a)^n\\).',
       'Cambia el valor de <b>a</b> (puede ser negativo: escribe <code>-3</code>) y observa como se alternan los signos.',
       'Relacion con el tema: estas potencias aparecen cuando un polinomio tiene una raiz multiple, porque entonces contiene un factor \\((x-r)^m\\).'

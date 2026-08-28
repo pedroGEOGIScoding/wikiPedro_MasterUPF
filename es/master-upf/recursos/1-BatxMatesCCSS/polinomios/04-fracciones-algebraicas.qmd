@@ -87,7 +87,7 @@ Simplificar es dividir numerador y denominador por su mcd. Si el mcd es $1$, la 
 
 <div data-applet="fracsimplifica"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 11"}
+::: {.callout-tip title="Actividad guiada con el applet 14"}
 1. Simplifica $\dfrac{x^3-3x^2+2x}{x^3-x}$ tecleando `x^3-3x^2+2x` y `x^3-x`. Comprueba en la tabla que en $x=0$ y $x=1$ la fracción original no existe y la simplificada sí.
 2. Simplifica $\dfrac{x^2-4x+4}{x^2-4}$. ¿Qué factor se cancela? ¿Qué valores quedan prohibidos?
 3. Intenta simplificar `x+2` entre `x`. El applet dirá que el mcd es $1$: la fracción es irreducible. Relaciónalo con el error típico anterior.
@@ -152,7 +152,7 @@ Atención al cociente: al invertir la segunda fracción, **su numerador pasa al 
 
 <div data-applet="fracopera"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 12"}
+::: {.callout-tip title="Actividad guiada con el applet 15"}
 1. Reproduce el ejemplo 4.3 y después el 4.4. Comprueba que el applet detecta la cancelación final.
 2. Calcula $\dfrac{1}{x^2-4x}+\dfrac{3}{x-4}$ y comprueba que el resultado es $\dfrac{3x+1}{x(x-4)}$.
 3. Calcula $\dfrac{x}{x^2-1}-\dfrac{1}{x-1}$. El numerador se simplifica hasta una constante: explica por qué.
@@ -192,7 +192,7 @@ Lo que ha ocurrido es que al multiplicar por $x-1$ hemos multiplicado por cero, 
 
 <div data-applet="errores"></div>
 
-::: {.callout-tip title="Cómo aprovechar el applet 14"}
+::: {.callout-tip title="Cómo aprovechar el applet 16"}
 No lo uses como un test de puntuación. Úsalo así: antes de pulsar, escribe en el cuaderno **qué contraejemplo numérico** usarías para desmontar la afirmación si fuera falsa. Después comprueba. Lo que se entrena aquí no es memoria, es criterio.
 :::
 

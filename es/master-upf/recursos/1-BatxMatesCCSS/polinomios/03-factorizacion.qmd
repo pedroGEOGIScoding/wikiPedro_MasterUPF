@@ -111,12 +111,12 @@ En este curso el criterio práctico es: se factoriza hasta llegar a factores de 
 
 <div data-applet="factoriza"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 9"}
+::: {.callout-tip title="Actividad guiada con el applet 10"}
 1. Factoriza `x^3+5x^2-x-5`, `x^3-4x^2+5x-2` y `2x^3-3x^2-11x+6`. Compara las dos escrituras que ofrece el applet (factores mónicos con fracciones frente a factores de coeficientes enteros): comprueba multiplicando que ambas dan el mismo polinomio.
 2. Factoriza `3x^4-3x^2` a mano y después con el applet: ¿cuántas veces es raíz $x=0$?
 3. Factoriza `x^4+x^2+1`. El applet no encuentra raíces racionales, pero sí lo descompone en dos factores de grado 2. Multiplícalos para comprobarlo.
 4. Prueba `x^2+x+1`: lee el discriminante y explica por qué la gráfica no toca el eje.
-5. Reto de multiplicidad: construye un polinomio de grado 5 con una raíz triple en $x=2$ y dos simples en $0$ y $-1$. Escríbelo factorizado, desarróllalo con el applet 2 y vuelve a factorizarlo con el 9.
+5. Reto de multiplicidad: construye un polinomio de grado 5 con una raíz triple en $x=2$ y dos simples en $0$ y $-1$. Escríbelo factorizado, desarróllalo con el applet 2 y vuelve a factorizarlo con el 10.
 :::
 
 ## Máximo común divisor y mínimo común múltiplo
@@ -146,7 +146,7 @@ Existe un algoritmo que calcula el mcd **sin factorizar**: el algoritmo de Eucli
 
 <div data-applet="mcdmcm"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 10"}
+::: {.callout-tip title="Actividad guiada con el applet 11"}
 1. Calcula mcd y mcm de `x^2-4` y `x^2+4x+4`. ¿Cuál es el factor común?
 2. Calcula mcd y mcm de `x^2-1` y `x^2+1`. ¿Qué significa que el mcd sea $1$?
 3. Anota el mcm de `x^2-4` y `x+2`: ese polinomio será el mínimo común denominador cuando sumemos $\dfrac{2}{x^2-4}+\dfrac{1}{x+2}$ en el capítulo siguiente.
@@ -174,7 +174,7 @@ Durante siglos se buscaron fórmulas generales para las ecuaciones de tercer, cu
 
 <div data-applet-x="ecuacion"></div>
 
-::: {.callout-tip title="Actividad guiada con el applet 15"}
+::: {.callout-tip title="Actividad guiada con el applet 12"}
 1. Resuelve `x^3-4x^2+5x-2` y observa el tratamiento de la solución doble.
 2. Resuelve `x^4-10x^2+9` de dos maneras: por cambio de variable a mano y con el applet. ¿Coinciden?
 3. Resuelve `x^4-5x^2+6`: el applet indica que las soluciones son irracionales. Escríbelas con radicales.

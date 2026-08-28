@@ -38,6 +38,7 @@ website:
       - sidebar:portfolio
       - sidebar:masterUPF
       - sidebar:recursos
+      - sidebar:maths
       - sidebar:about
       - text: "Mapa del sitio {{< fa solid sitemap >}}"
         href: master-upf/listing-pages.qmd
@@ -79,13 +80,6 @@ website:
       background: light
       collapse-level: 0
       align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
         - section: "Documentación General Master UPF"
           contents:
@@ -152,20 +146,12 @@ website:
             - section: "Trabajo fin de master"
               contents:
               - master-upf/practicum/practicas-tfm.qmd
-
     - id: "recursos"
       title: "Recursos {{< fa solid gears >}}"
       style: "docked"
       background: light
       collapse-level: 1
       align: center
-      tools:
-        - icon: envelope
-          href: mailto:pedromartinezduran@gmail.com
-        - icon: github
-          href: https://github.com/pedroGEOGIScoding/
-        - icon: linkedin
-          href: https://www.linkedin.com/in/pedromartinezduran/
       contents:
         - section: "Recursos"
           contents:
@@ -181,7 +167,13 @@ website:
           - master-upf/recursos/timelapse-videos.qmd
           - master-upf/recursos/timelapse-cdse.qmd
           - master-upf/recursos/solar_system_visor.qmd
-        - text: "---"
+    - id: "maths"
+      title: "Matemáticas {{< fa solid infinity >}}"
+      style: "docked"
+      background: light
+      collapse-level: 1
+      align: center
+      contents:
         - section: "Recursos Didácticos de Matemáticas"
           contents:
           - master-upf/recursos/calculadora_notacion_cientifica.qmd

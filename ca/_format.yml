@@ -156,6 +156,6 @@ format:
       sidebar-width: 500px
       body-width: 1400px
       margin-width: 400px
-      gutter-width: 2rem
-    page-layout: full
+      gutter-width: 2.5em
+    # page-layout: full
     cap-location: bottom

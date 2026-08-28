@@ -584,42 +584,9 @@
     });
   };
 
-  /* ---------- A3. Identidades notables y binomio de Newton ---------- */
-  B.notables = function (root) {
-    root.innerHTML = head('Applet 3 · Identidades notables y binomio de Newton', [
-      'Escribe una expresion con parentesis y potencias y pulsa <b>Desarrollar</b>. Ejemplos: <code>(2x-3)^2</code>, <code>(x+5)^3</code>, <code>(x+4)(x-4)</code>, <code>(x+2)^5</code>.',
-      'El applet desarrolla y, ademas, intenta <b>reconocer</b> si el resultado procede de una identidad notable (cuadrado de suma o diferencia, suma por diferencia, cubos).',
-      'Compara siempre \\((a+b)^2\\) con \\(a^2+b^2\\) evaluando en un valor concreto: es la mejor vacuna contra el error mas frecuente del algebra.'
-    ]) + inputRow([
-      { label: 'Expresion:', cls: 'inp-p', value: '(2x-3)^2', size: 26 },
-      { label: 'x =', cls: 'inp-a', value: '3', size: 5 }
-    ], 'Desarrollar') + '<div class="out"></div>';
-
-    wire(root, function (r, out) {
-      var p = parsePoly(val(r, 'inp-p')), a = parseR(val(r, 'inp-a'));
-      var f = factorize(p), rec = [];
-      if (pDeg(p) === 2) {
-        var A = p[2], Bc = p[1], C = p[0];
-        var sA = Math.sqrt(rNum(A)), sC = Math.sqrt(Math.abs(rNum(C)));
-        if (rNum(A) > 0 && rNum(C) > 0 && Math.abs(2 * sA * sC - Math.abs(rNum(Bc))) < 1e-9) {
-          rec.push('Es el ' + (rNum(Bc) > 0 ? 'cuadrado de una suma' : 'cuadrado de una diferencia') +
-            ': \\(' + pTex(p) + ' = \\left(' + pTex([R(0), R(1)]).replace('x', '') + '\\right)\\)'.replace(/.*/, '') +
-            ' \\(\\left(' + (sA === 1 ? '' : sA) + 'x ' + (rNum(Bc) > 0 ? '+' : '-') + ' ' + sC + '\\right)^{2}\\)');
-        }
-        if (rIsZero(Bc) && rNum(C) < 0 && Math.abs(sA - Math.round(sA)) < 1e-9 && Math.abs(sC - Math.round(sC)) < 1e-9) {
-          rec.push('Es una <b>suma por diferencia</b>: \\(a^2-b^2=(a+b)(a-b)\\).');
-        }
-      }
-      out.innerHTML = '<div class="ap-formula">\\(' + val(r, 'inp-p').replace(/\^(\d+)/g, '^{$1}') + ' = ' + pTex(p) + '\\)</div>' +
-        '<p class="ap-note">Factorizada: \\(' + pTex(p) + ' = ' + factorTex(f, 'entero') + '\\)</p>' +
-        (rec.length ? '<div class="ap-ok">' + rec.join('<br>') + '</div>' : '<p class="ap-note">No se reconoce una identidad notable estandar en el resultado.</p>') +
-        '<p class="ap-note">Control numerico en \\(x = ' + rTex(a) + '\\): el desarrollo vale \\(' + rTex(pEval(p, a)) + '\\).</p>';
-    });
-  };
-
-  /* ---------- A4. Division larga ---------- */
+  /* ---------- A5. Division larga ---------- */
   B.division = function (root) {
-    root.innerHTML = head('Applet 4 · Division entera de polinomios, paso a paso', [
+    root.innerHTML = head('Applet 5 · Division entera de polinomios, paso a paso', [
       'Escribe dividendo y divisor. Ejemplo del libro: <code>x^6-2x^4+3x^3-2x+6</code> entre <code>x-1</code>.',
       'Prueba tambien divisores de grado mayor que 1: <code>x^4-3x^2+2</code> entre <code>x^2-1</code>.',
       'Cada fila muestra el monomio del cociente, el producto que se resta y el nuevo resto parcial. El proceso para cuando grado(resto) &lt; grado(divisor).',
@@ -648,9 +615,9 @@
     });
   };
 
-  /* ---------- A5. Ruffini ---------- */
+  /* ---------- A7. Ruffini ---------- */
   B.ruffini = function (root) {
-    root.innerHTML = head('Applet 5 · Regla de Ruffini (incluidos los casos dificiles)', [
+    root.innerHTML = head('Applet 7 · Regla de Ruffini (incluidos los casos dificiles)', [
       'Escribe el polinomio y el numero <b>&alpha;</b> por el que divides. Divides entre <b>x &minus; &alpha;</b>: si quieres dividir entre <b>x + 2</b>, escribe &alpha; = <code>-2</code>.',
       'Ejemplos: <code>x^3-4x^2+5x-2</code> con &alpha; = 1; <code>2x^3-3x^2-11x+6</code> con &alpha; = 1/2; <code>x^4-10x^2+9</code> con &alpha; = 3.',
       'Caso dificil (divisor <b>ax &minus; b</b>): elige el modo no monico. Para dividir <code>2x^3-3x^2-11x+6</code> entre <code>2x-1</code>, usa &alpha; = 1/2 y el applet te muestra como corregir el cociente dividiendo entre 2.',
@@ -725,9 +692,9 @@
     });
   };
 
-  /* ---------- A7. Candidatos a raiz ---------- */
+  /* ---------- A9. Candidatos a raiz ---------- */
   B.raices = function (root) {
-    root.innerHTML = head('Applet 7 · Cazador de raices: candidatos racionales', [
+    root.innerHTML = head('Applet 9 · Cazador de raices: candidatos racionales', [
       'Escribe un polinomio con coeficientes enteros o fraccionarios: <code>2x^3-3x^2-11x+6</code>, <code>6x^3+7x^2-9x+2</code>, <code>x^3-4x^2+5x-2</code>, <code>x^4-5x^2+6</code>.',
       'El applet calcula los divisores del termino independiente y del coeficiente principal y construye <b>todos</b> los candidatos \\(\\pm p/q\\). Despues prueba uno a uno.',
       'Lee el resultado con ojo critico: la lista de candidatos es una <b>criba</b>, no una garantia. Puede que ninguno sea raiz (por ejemplo en \\(x^2-2\\)).',
@@ -796,9 +763,9 @@
     wire(root, run);
   };
 
-  /* ---------- A9. Factorizacion completa ---------- */
+  /* ---------- A10. Factorizacion completa ---------- */
   B.factoriza = function (root) {
-    root.innerHTML = head('Applet 9 · Factorizacion completa con estrategia', [
+    root.innerHTML = head('Applet 10 · Factorizacion completa con estrategia', [
       'Escribe el polinomio: <code>x^3+5x^2-x-5</code>, <code>x^3-4x^2+5x-2</code>, <code>2x^3-3x^2-11x+6</code>, <code>x^4-2x^3-8x^2+18x-9</code>, <code>x^4-5x^2+6</code>, <code>3x^4-3x^2</code>.',
       'El applet aplica la estrategia del tema: factor comun &rarr; identidades &rarr; Ruffini con candidatos racionales &rarr; grado 2 con la formula.',
       'Se muestran dos escrituras: con factores <b>monicos</b> \\((x-\\frac{1}{2})\\) y con factores <b>enteros</b> \\((2x-1)\\). Ambas son correctas; la segunda es la habitual en los libros.',
@@ -836,9 +803,9 @@
     });
   };
 
-  /* ---------- A10. MCD y mcm ---------- */
+  /* ---------- A11. MCD y mcm ---------- */
   B.mcdmcm = function (root) {
-    root.innerHTML = head('Applet 10 · Maximo comun divisor y minimo comun multiplo de polinomios', [
+    root.innerHTML = head('Applet 11 · Maximo comun divisor y minimo comun multiplo de polinomios', [
       'Escribe dos polinomios: <code>x^3-x</code> y <code>x^2-2x+1</code>; o <code>x^2-4</code> y <code>x^2+4x+4</code>.',
       'El applet factoriza cada uno, toma los factores <b>comunes</b> (mcd) y <b>todos</b> con el mayor exponente (mcm), como con los numeros.',
       'El mcm es la clave para sumar fracciones algebraicas: es el <b>minimo comun denominador</b>.',
@@ -863,9 +830,9 @@
     });
   };
 
-  /* ---------- A11. Simplificar fracciones algebraicas ---------- */
+  /* ---------- A14. Simplificar fracciones algebraicas ---------- */
   B.fracsimplifica = function (root) {
-    root.innerHTML = head('Applet 11 · Laboratorio de simplificacion de fracciones algebraicas', [
+    root.innerHTML = head('Applet 14 · Laboratorio de simplificacion de fracciones algebraicas', [
       'Escribe numerador y denominador. Ejemplos: <code>x^3-3x^2+2x</code> y <code>x^3-x</code>; <code>x^2-4</code> y <code>x^2-4x+4</code>; <code>x^2+2x+1</code> y <code>x+1</code>.',
       'El applet factoriza los dos, cancela los factores comunes y, muy importante, muestra los <b>valores prohibidos</b> del denominador ORIGINAL.',
       'Compara los valores de la fraccion inicial y de la simplificada en la tabla: coinciden en todos los puntos... menos en los valores prohibidos, donde la inicial no existe.',
@@ -898,9 +865,9 @@
     });
   };
 
-  /* ---------- A12. Operar con fracciones algebraicas ---------- */
+  /* ---------- A15. Operar con fracciones algebraicas ---------- */
   B.fracopera = function (root) {
-    root.innerHTML = head('Applet 12 · Suma, resta, producto y cociente de fracciones algebraicas', [
+    root.innerHTML = head('Applet 15 · Suma, resta, producto y cociente de fracciones algebraicas', [
       'Escribe las dos fracciones por separado (numeradores y denominadores) y elige la operacion.',
       'Ejemplos preparados: \\(\\frac{2}{x^2-4}+\\frac{1}{x+2}\\) da \\(\\frac{x}{(x-2)(x+2)}\\); \\(\\frac{x^2-1}{x^2+2x}\\cdot\\frac{x+2}{x-1}\\) da \\(\\frac{x+1}{x}\\).',
       'El applet muestra el <b>minimo comun denominador</b>, la operacion sin simplificar y el resultado simplificado con su dominio.',
@@ -989,7 +956,7 @@
     });
   };
 
-  /* ---------- A14. Detector de errores ---------- */
+  /* ---------- A16. Detector de errores ---------- */
   B.errores = function (root) {
     var items = [
       { q: 'Al desarrollar: \\((x+3)^2 = x^2+9\\)', bad: true, why: 'Falta el doble producto: \\((x+3)^2=x^2+6x+9\\). Comprueba con \\(x=1\\): \\(16 \\neq 10\\).' },
@@ -1003,7 +970,7 @@
       { q: '\\(\\sqrt{x^2-9} = x-3\\)', bad: true, why: 'No hay ninguna identidad que permita eso: \\(x^2-9=(x-3)(x+3)\\) y la raiz no se reparte en sumas. Con \\(x=5\\): \\(4 \\neq 2\\).' },
       { q: 'La fraccion \\(\\dfrac{x^2-1}{x-1}\\) es igual a \\(x+1\\) para todo x distinto de 1', bad: false, why: 'Correcto, y la precision "distinto de 1" es imprescindible: en \\(x=1\\) la fraccion no existe aunque \\(x+1\\) si.' }
     ];
-    var html = head('Applet 14 · Detector de errores (pensamiento critico)', [
+    var html = head('Applet 16 · Detector de errores (pensamiento critico)', [
       'Para cada afirmacion decide si es <b>correcta</b> o contiene un <b>error</b>, pulsando el boton correspondiente.',
       'Tras responder aparece la justificacion. Cuando puedas, comprueba el error <b>evaluando en un numero</b>: es la tecnica mas rapida para desmontar una identidad falsa.',
       'Objetivo: aprender a dudar de las manipulaciones automaticas y validar siempre con un contraejemplo.'

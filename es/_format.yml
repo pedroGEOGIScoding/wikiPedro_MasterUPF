@@ -155,7 +155,7 @@ format:
     grid:
       sidebar-width: 500px
       body-width: 1400px
-      margin-width: 400px
-      gutter-width: 2rem
-    page-layout: full
+      margin-width: 300px
+      gutter-width: 2.5em
+    # page-layout: article
     cap-location: bottom
