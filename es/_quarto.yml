@@ -3,6 +3,7 @@ project:
   output-dir: ../docs/es
   resources:
     - files/**
+    - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
 
   preview:
 #    port: 3000                  # Port number for local preview server (default random 3000-8000)
