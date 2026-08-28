@@ -1,0 +1,288 @@
+---
+title: "Inecuaciones con dos incógnitas y recintos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones (Parte 3 de 3)"
+filename: 03-inecuaciones-dos-incognitas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Tercera parte del tema de sistemas de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las inecuaciones lineales con dos incógnitas, los sistemas de inecuaciones y los recintos del plano
+categories: [inecuaciones, dos incógnitas, semiplanos, recintos, programación lineal, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué este apartado importa tanto: De la recta al semiplano, y del semiplano a la región factible
+
+Los apuntes de referencia lo dicen sin rodeos: la resolución gráfica de los sistemas de inecuaciones de primer grado con dos incógnitas, es decir los **recintos**, supondrá por sí sola un tema completo de álgebra en el curso siguiente y tiene un peso considerable en las pruebas de acceso.
+
+Aquí construimos los cimientos. La idea es una sola y se enuncia en una frase: **una inecuación con dos incógnitas divide el plano en dos mitades, y un sistema de inecuaciones se queda con la intersección de las mitades buenas**.
+
+## Inecuaciones lineales con dos incógnitas
+
+### Definición
+
+Una inecuación lineal con dos incógnitas es una desigualdad de una de estas formas:
+
+$$
+ax+by\leq c,\qquad ax+by<c,\qquad ax+by\geq c,\qquad ax+by>c,
+$$
+
+donde $a$ y $b$ no son ambos nulos. Una **solución** es cada par $(x_{0},y_{0})$ que hace cierta la desigualdad.
+
+La diferencia con las inecuaciones de una incógnita es de naturaleza, no de grado: allí la solución era un trozo de la recta real, aquí es un trozo del plano.
+
+### La recta frontera y el semiplano
+
+La ecuación $ax+by=c$ es una recta que parte el plano en dos regiones. En una de ellas se cumple $ax+by<c$ y en la otra $ax+by>c$. La recta misma es la **frontera**, donde se da la igualdad.
+
+Por tanto el conjunto solución de una inecuación lineal con dos incógnitas es un **semiplano**.
+
+### Método de resolución
+
+1. Dibuja la recta frontera $ax+by=c$. Para ello despeja $y$, o bien halla los cortes con los ejes haciendo $x=0$ y luego $y=0$.
+2. Dibuja la frontera **continua** si la desigualdad admite el igual, y **discontinua** si es estricta.
+3. Elige un punto de prueba que no esté en la recta, preferiblemente el origen $(0,0)$ por comodidad.
+4. Sustituye. Si el punto cumple la desigualdad, el semiplano solución es el que lo contiene; si no, es el otro.
+5. Sombrea el semiplano bueno.
+
+### Ejemplo de cálculo
+
+Resolvemos $2x+3y\leq 6$.
+
+La recta frontera es $2x+3y=6$. Sus cortes con los ejes son $(3,0)$, haciendo $y=0$, y $(0,2)$, haciendo $x=0$. Como la desigualdad admite el igual, la dibujamos continua.
+
+Probamos el origen:
+
+$$
+2\cdot 0+3\cdot 0=0\leq 6\ \text{es cierto},
+$$
+
+luego el semiplano solución es el que contiene al origen, es decir el que queda por debajo de la recta.
+
+::: {.callout-note title="Casos con un coeficiente nulo"}
+Si $a=0$ la inecuación es del tipo $by\leq c$ y la frontera es una recta **horizontal**. Si $b=0$ es del tipo $ax\leq c$ y la frontera es **vertical**. Son los casos más frecuentes en los problemas, porque las condiciones $x\geq 0$ e $y\geq 0$ aparecen casi siempre.
+:::
+
+::: {.callout-important title="Cuidado al despejar"}
+Si despejas $y$ dividiendo por $b$ y ese coeficiente es **negativo**, la desigualdad cambia de sentido. Es el mismo error de siempre, ahora con dos variables. El método del punto de prueba evita ese riesgo por completo, y por eso es el recomendado.
+:::
+
+<div data-applet-sys="semiplano"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet del semiplano"}
+1. Reproduce $2x+3y\leq 6$ y comprueba que el semiplano sombreado contiene al origen.
+2. Cambia el signo a $\geq$ sin tocar nada más. La recta no se mueve y la región salta al otro lado. Explica por qué.
+3. Prueba $y\leq 2$ poniendo $a=0$, $b=1$, $c=2$, y luego $x\geq -1$ con $a=1$, $b=0$, $c=-1$. Identifica las fronteras horizontal y vertical.
+4. Con $2x+3y\leq 6$, cambia el punto de prueba a $(4,4)$. El applet dirá que no cumple. ¿Cambia la región solución? ¿Cambia el razonamiento?
+5. Busca una inecuación cuya frontera pase por el origen, por ejemplo $x-y\geq 0$. ¿Por qué ya no sirve $(0,0)$ como punto de prueba? Elige otro.
+:::
+
+## Sistemas de inecuaciones y recintos
+
+### Definición
+
+Un **sistema de inecuaciones lineales con dos incógnitas** es un conjunto de inecuaciones del que buscamos las soluciones comunes. Su conjunto solución se llama **recinto** o región factible.
+
+Como cada inecuación aporta un semiplano, el recinto es la **intersección** de todos ellos. Y una intersección de semiplanos es siempre una región **convexa**: si tomas dos puntos del recinto, el segmento que los une queda entero dentro.
+
+### Método de resolución
+
+1. Dibuja la frontera de cada inecuación en los mismos ejes.
+2. Determina el semiplano de cada una con el punto de prueba.
+3. Sombrea la zona común a todas.
+4. Calcula los **vértices** del recinto resolviendo los sistemas de dos ecuaciones que forman las rectas que se cortan en cada esquina.
+5. Decide si el recinto es acotado o no acotado, y si es vacío.
+
+### Vocabulario imprescindible
+
+| Término | Significado |
+|---|---|
+| Recinto | Conjunto de puntos que cumplen todas las inecuaciones |
+| Vértice | Punto donde se cortan dos fronteras y que pertenece al recinto |
+| Acotado | El recinto cabe dentro de un círculo suficientemente grande |
+| No acotado | El recinto se prolonga indefinidamente en alguna dirección |
+| Vacío | Ningún punto cumple todas las condiciones a la vez |
+
+### Ejemplo de cálculo
+
+Resolvemos el sistema
+
+$$
+\left\{
+\begin{array}{l}
+x\geq 0\\
+y\geq 0\\
+x+y\leq 6\\
+2x+y\leq 8
+\end{array}
+\right.
+$$
+
+Las dos primeras condiciones nos confinan al **primer cuadrante**. La tercera es el semiplano bajo la recta que pasa por $(6,0)$ y $(0,6)$. La cuarta es el semiplano bajo la recta que pasa por $(4,0)$ y $(0,8)$.
+
+Los vértices se obtienen resolviendo sistemas de dos ecuaciones:
+
+- $x=0$ con $y=0$ da $(0,0)$.
+- $x=0$ con $x+y=6$ da $(0,6)$.
+- $x+y=6$ con $2x+y=8$ da, restando, $x=2$ y por tanto $(2,4)$.
+- $y=0$ con $2x+y=8$ da $(4,0)$.
+
+El recinto es un cuadrilátero acotado con vértices $(0,0)$, $(4,0)$, $(2,4)$ y $(0,6)$.
+
+::: {.callout-note title="Por qué los vértices se calculan con sistemas"}
+Aquí se cierra el círculo del tema. Cada esquina del recinto es la solución de un sistema de dos ecuaciones lineales, exactamente los que aprendiste a resolver en la primera página. Las inecuaciones dicen **dónde** está la región; las ecuaciones dicen **exactamente** dónde están sus esquinas.
+:::
+
+<div data-applet-sys="recinto"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet del recinto"}
+1. Reproduce el ejemplo con las cuatro restricciones activas y comprueba los cuatro vértices calculados a mano.
+2. Desactiva la casilla de la cuarta restricción. ¿Cuántos vértices quedan? ¿Sigue siendo acotado?
+3. Desactiva también la segunda, $y\geq 0$. Observa que el recinto se escapa hacia abajo: ha pasado a ser no acotado.
+4. Con las cuatro activas, cambia $x+y\leq 6$ por $x+y\leq 1$. ¿Qué le ocurre al vértice $(2,4)$? ¿Por qué desaparece?
+5. Ahora pon $x+y\geq 6$ junto con $2x+y\leq 8$ y $x\geq 0$, $y\geq 0$. Comprueba si el recinto se queda vacío y razona la contradicción.
+6. Fabrica un recinto triangular con exactamente tres vértices.
+7. Fabrica un recinto no acotado que sí tenga dos vértices.
+:::
+
+::: {.callout-caution title="Pensamiento crítico"}
+Un recinto vacío y un recinto no acotado son situaciones muy distintas, aunque las dos incomodan. El vacío significa que las condiciones se contradicen y el problema no tiene respuesta. El no acotado significa que hay respuestas, incluso infinitas, pero que alguna magnitud puede crecer sin límite, lo que en un problema real suele indicar que falta una restricción por escribir.
+:::
+
+## Guía práctica para dibujar rectas
+
+Los apuntes dedican un apartado de ampliación a esto, y con razón: casi todos los fallos en los recintos son fallos de dibujo, no de razonamiento.
+
+### Tres estrategias
+
+**Por los cortes con los ejes.** Es la más rápida para $ax+by=c$. Haz $x=0$ y obtienes el corte con el eje vertical; haz $y=0$ y obtienes el corte con el horizontal. Une los dos puntos. No funciona si la recta pasa por el origen, porque los dos cortes coinciden.
+
+**Por pendiente y ordenada en el origen.** Despeja $y=mx+n$. El número $n$ te da el punto $(0,n)$, y desde ahí avanzas una unidad a la derecha y subes $m$. Si $m$ es negativo, bajas.
+
+**Por tabla de valores.** Elige dos valores cómodos de $x$, calcula sus $y$ y une. Es la más segura cuando aparecen fracciones: escoge valores de $x$ que sean múltiplos del denominador.
+
+### Casos especiales
+
+| Ecuación | Recta |
+|---|---|
+| $y=k$ | Horizontal a la altura $k$ |
+| $x=k$ | Vertical a la abscisa $k$ |
+| $y=mx$ | Pasa por el origen |
+| $x=0$ | Es el eje vertical |
+| $y=0$ | Es el eje horizontal |
+
+::: {.callout-note title="Truco de comprobación"}
+Una vez dibujada la recta, toma un punto cualquiera de ella y sustitúyelo en la ecuación. Si no la cumple, la has dibujado mal. Cuesta cinco segundos y evita arrastrar el error a todo el recinto.
+:::
+
+## Antesala de la programación lineal
+
+Los recintos no son un ejercicio de dibujo: son el escenario donde se resuelven problemas de decisión. La pregunta habitual no es solo qué puntos cumplen las condiciones, sino **cuál de ellos es el mejor** según algún criterio.
+
+Ese criterio se expresa con una función lineal, llamada función objetivo:
+
+$$
+F(x,y)=\alpha x+\beta y.
+$$
+
+Y hay un resultado, que en segundo demostrarás con más detalle, de enorme utilidad práctica: **si el recinto es acotado, el máximo y el mínimo de una función lineal se alcanzan siempre en un vértice**. Por eso basta evaluar $F$ en cada esquina y comparar, en lugar de examinar infinitos puntos.
+
+### Ejemplo de cálculo
+
+Sobre el recinto anterior, con vértices $(0,0)$, $(4,0)$, $(2,4)$ y $(0,6)$, maximizamos $F(x,y)=3x+y$:
+
+| Vértice | $F(x,y)=3x+y$ |
+|---|---|
+| $(0,0)$ | $0$ |
+| $(4,0)$ | $12$ |
+| $(2,4)$ | $10$ |
+| $(0,6)$ | $6$ |
+
+El máximo es $12$ y se alcanza en $(4,0)$. Si cambiásemos la función a $F(x,y)=x+3y$, el máximo pasaría a $(0,6)$. **El recinto no cambia; el vértice ganador depende de la función objetivo.**
+
+<div data-applet-sys="optimiza"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de optimización"}
+1. Con $\alpha=3$ y $\beta=1$, comprueba la tabla del ejemplo y localiza el vértice del máximo.
+2. Cambia a $\alpha=1$, $\beta=3$. ¿Qué vértice gana ahora? Explica por qué sin hacer cuentas, mirando qué variable pesa más.
+3. Prueba $\alpha=1$, $\beta=1$. Verás dos vértices con el mismo valor. Eso significa que **todo el segmento** que los une es óptimo. Razónalo.
+4. Modifica las cotas de las dos restricciones y observa cómo se desplazan los vértices y el máximo.
+5. Pon $\alpha$ y $\beta$ negativos. ¿Dónde se sitúa entonces el máximo?
+:::
+
+## Problemas con recintos
+
+El esquema de modelado es siempre el mismo:
+
+1. Nombra las incógnitas con precisión, indicando la unidad.
+2. Escribe una inecuación por cada limitación del enunciado.
+3. Añade las condiciones de no negatividad si las magnitudes lo exigen.
+4. Dibuja el recinto y halla sus vértices.
+5. Interpreta la respuesta en el contexto, comprobando que tiene sentido.
+
+### Un problema para plantear
+
+Dos agricultores plantan patatas. El primero tiene tres bancales y cultiva diez plantas en cada uno. El segundo tiene dos bancales y siembra seis plantas en cada uno. Al recoger la cosecha, el primero obtiene más de $60$ kg de patatas y el segundo menos de $30$ kg.
+
+¿Pueden afirmar que han obtenido $3$ kg de patatas por planta? Llama $x$ al rendimiento por planta del primero e $y$ al del segundo, escribe las dos inecuaciones y decide.
+
+### Otro para pensar
+
+Cada día compro tres barras de pan, pago con una moneda de dos euros y me devuelven cambio. Hoy he comprado cinco barras y he dado tres euros, pero no ha sido suficiente. ¿Puede costar una barra $0{,}60$ euros? ¿Y $0{,}65$?
+
+::: {.callout-note title="Detalle que se pasa por alto"}
+En muchos problemas las incógnitas solo admiten valores **enteros**: número de billetes, de plantas, de personas. El recinto sigue siendo útil para localizar la región, pero después hay que quedarse con los puntos de coordenadas enteras que contiene. Esa distinción es la frontera entre la programación lineal continua y la entera.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Sombrear el semiplano contrario por no haber comprobado el punto de prueba.
+2. Usar el origen como punto de prueba cuando la frontera pasa justo por él.
+3. Dibujar la frontera continua en una desigualdad estricta.
+4. Al despejar $y$, dividir por un coeficiente negativo sin invertir el sentido de la desigualdad.
+5. Confundir el recinto con la unión de los semiplanos en lugar de su intersección.
+6. Olvidar las condiciones $x\geq 0$ e $y\geq 0$ cuando el contexto las impone.
+7. Dar como vértice el corte de dos rectas que en realidad queda fuera del recinto.
+8. Evaluar la función objetivo solo en algunos vértices.
+9. Confundir un recinto vacío con un error de cálculo, o al contrario.
+
+## Autoevaluación
+
+::: {.callout-note collapse="true" title="1. Semiplano"}
+Resuelve $x-2y\geq 4$. Frontera por $(4,0)$ y $(0,-2)$. El origen da $0\geq 4$, falso, luego el semiplano bueno es el que **no** contiene al origen.
+:::
+
+::: {.callout-note collapse="true" title="2. Recinto triangular"}
+Halla los vértices de $\left\{x\geq 0;\ y\geq 0;\ 3x+2y\leq 12\right.$. Resultado: $(0,0)$, $(4,0)$ y $(0,6)$.
+:::
+
+::: {.callout-note collapse="true" title="3. Recinto vacío"}
+Comprueba que $\left\{x+y\leq 1;\ x+y\geq 4\right.$ no tiene solución. Las dos rectas son paralelas y los semiplanos no se solapan.
+:::
+
+::: {.callout-note collapse="true" title="4. Recinto no acotado"}
+Describe $\left\{x\geq 0;\ y\geq 0;\ x+y\geq 3\right.$. Es no acotado, con vértices $(3,0)$ y $(0,3)$.
+:::
+
+::: {.callout-note collapse="true" title="5. Optimización"}
+Sobre el recinto del ejercicio 2, halla el máximo de $F(x,y)=2x+3y$. Valores: $0$, $8$ y $18$. Máximo $18$ en $(0,6)$.
+:::
+
+::: {.callout-note collapse="true" title="6. Sistema mixto"}
+Resuelve $\left\{y\leq x+2;\ y\geq x-2;\ -2\leq x\leq 2\right.$ y describe la figura obtenida.
+:::
+
+## Cierre del tema
+
+Este tema ha recorrido un camino de ida y vuelta. Empezamos buscando el punto donde dos rectas se cortan, pasamos por curvas que se cortan en más de un punto, y terminamos describiendo regiones enteras del plano.
+
+La herramienta no ha cambiado: seguimos resolviendo ecuaciones lineales. Lo que ha cambiado es la pregunta. Una ecuación pregunta dónde coinciden dos condiciones; un sistema, dónde coinciden varias; una inecuación, qué lado cumple una condición; y un recinto, qué zona cumple todas a la vez. Con esa última pregunta se abre la programación lineal, que es matemática aplicada a decidir.
