@@ -18,7 +18,6 @@ lightbox:
   loop: false
 format:
   html:
-    css: assets/applets.css
     include-after-body: assets/_scripts.html
     html-math-method: mathjax
 ---
