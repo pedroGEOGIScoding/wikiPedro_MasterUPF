@@ -27,31 +27,11 @@
 
 <link rel="stylesheet" href="assets/applets.css">
 
-<!-- ---------------------------------------------------------------
-     KaTeX desde CDN. Las integrity son las de la version 0.16.11.
-     Si actualizas la version, actualiza tambien los hashes o quitalos.
-     --------------------------------------------------------------- -->
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-      crossorigin="anonymous">
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-        crossorigin="anonymous"></script>
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-        crossorigin="anonymous"></script>
-
-<!-- ---------------------------------------------------------------
-     VARIANTE LOCAL, para dar clase sin conexion.
-     Descarga katex.tar.gz de https://github.com/KaTeX/KaTeX/releases
-     y copia en assets/katex/ los archivos katex.min.css, katex.min.js,
-     contrib/auto-render.min.js y la carpeta fonts/. Despues comenta
-     las tres etiquetas de CDN de arriba y descomenta estas tres.
-
+<!-- KaTeX servido localmente: sin dependencia de red externa. -->
 <link rel="stylesheet" href="assets/katex/katex.min.css">
 <script defer src="assets/katex/katex.min.js"></script>
 <script defer src="assets/katex/contrib/auto-render.min.js"></script>
-     --------------------------------------------------------------- -->
+
 
 <!-- Motor algebraico exacto reutilizado del tema de polinomios. -->
 <script defer src="../polinomios/assets/poly-applets.js"></script>

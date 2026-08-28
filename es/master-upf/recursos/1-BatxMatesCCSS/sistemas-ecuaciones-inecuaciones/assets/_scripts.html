@@ -1,52 +1,9 @@
-<!-- =====================================================================
-     _scripts.html — SISTEMAS DE ECUACIONES E INECUACIONES
-     1r Batx Mates CCSS
-
-     Se inyecta al final de <body> en las paginas del tema, mediante
-     format: html: include-after-body en cada .qmd.
-
-     ORDEN OBLIGATORIO
-       1) applets.css      REUTILIZADA del tema de ecuaciones e
-                           inecuaciones: no se duplica la hoja de estilos
-       2) katex.min.css    tipografia matematica
-       3) katex.min.js     motor de composicion, sincrono
-       4) auto-render      define window.renderMathInElement
-       5) poly-applets.js  motor algebraico exacto -> window.POLY
-       6) sys-applets.js   applets del tema -> window.SYSAPP
-
-     ATENCION AL FICHERO _quarto.yml
-     Como este tema toma la hoja de estilos y el motor de otras dos
-     carpetas, en es/_quarto.yml deben figurar los tres directorios de
-     assets bajo resources. Ver la nota al final de este archivo.
-
-     ATRIBUTOS DE INSERCION, todos distintos para que los tres modulos
-     puedan convivir en una misma pagina sin pisarse:
-       polinomios                data-applet="clave"
-       ecuaciones e inecuaciones data-applet-eq="clave"
-       sistemas                  data-applet-sys="clave"
-     ===================================================================== -->
-
-<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/applets.css">
-
-<!-- KaTeX desde CDN. Version 0.16.11. -->
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-      crossorigin="anonymous">
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-        crossorigin="anonymous"></script>
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-        crossorigin="anonymous"></script>
-
-<!-- ---------------------------------------------------------------
-     VARIANTE LOCAL para dar clase sin conexion. Si ya copiaste KaTeX
-     en la carpeta del tema anterior, apunta ahi y no lo dupliques:
+<!-- KaTeX servido localmente: sin dependencia de red externa. -->
 
 <link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/katex/katex.min.css">
 <script defer src="../ecuaciones-inecuaciones/assets/katex/katex.min.js"></script>
 <script defer src="../ecuaciones-inecuaciones/assets/katex/contrib/auto-render.min.js"></script>
-     --------------------------------------------------------------- -->
+
 
 <!-- Motor algebraico exacto del tema de polinomios. -->
 <script defer src="../polinomios/assets/poly-applets.js"></script>
