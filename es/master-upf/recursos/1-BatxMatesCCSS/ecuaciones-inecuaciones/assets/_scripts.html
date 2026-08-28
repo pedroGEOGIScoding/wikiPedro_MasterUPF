@@ -1,0 +1,40 @@
+<!-- =====================================================================
+     _scripts.html — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
+
+     Se inyecta al final de <body> en las paginas del tema
+     (via  format: html: include-after-body  en cada .qmd).
+
+     ORDEN OBLIGATORIO:
+       1) applets.css        -> estilos comunes (.applet, .ap-head, ...)
+       2) poly-applets.js    -> motor algebraico exacto del tema de
+                                polinomios; publica window.POLY
+       3) eq-applets.js      -> applets de ecuaciones e inecuaciones;
+                                consume window.POLY y publica window.EQAPP
+
+     poly-applets.js se carga desde la carpeta del tema de polinomios
+     para NO duplicar el motor. Si algun dia mueves esa carpeta, solo
+     hay que corregir esta ruta.
+
+     Los applets de polinomios usan  data-applet="clave".
+     Los applets de este tema usan   data-applet-eq="clave".
+     Al ser atributos distintos, los dos modulos nunca se pisan aunque
+     coincidan en la misma pagina.
+     ===================================================================== -->
+
+<link rel="stylesheet" href="assets/applets.css">
+
+<script src="../polinomios/assets/poly-applets.js"></script>
+<script src="assets/eq-applets.js"></script>
+
+<script>
+  /* Aviso claro en pantalla si el motor de polinomios no ha llegado.
+     Sin el, eq-applets.js sigue funcionando con su parser de respaldo,
+     pero conviene saberlo al preparar la clase. */
+  (function () {
+    window.addEventListener('load', function () {
+      if (!window.POLY) {
+        console.warn('[ecuaciones] window.POLY no disponible: eq-applets.js usa el parser de respaldo.');
+      }
+    });
+  })();
+</script>

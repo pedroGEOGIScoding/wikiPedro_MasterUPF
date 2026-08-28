@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Concepto y características de las funciones
-categories: [matemáticas, bachillerato, funciones]
+categories: [matemáticas, bachillerato, funciones, 1 Batx CCSS]
 toc: true
 number-sections: true
 page-layout: article

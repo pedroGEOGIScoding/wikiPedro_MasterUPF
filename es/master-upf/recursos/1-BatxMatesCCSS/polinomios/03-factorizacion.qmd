@@ -6,7 +6,7 @@ author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Factorización de polinomios
-categories: [matemáticas, bachillerato, polinomios, factorización]
+categories: [matemáticas, bachillerato, polinomios, factorización, 1 Batx CCSS]
 toc: true
 number-sections: true
 page-layout: article

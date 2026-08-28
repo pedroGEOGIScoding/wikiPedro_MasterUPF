@@ -265,3 +265,8 @@
   .ap-row, .ap-btn { display: none; }
   .ap-help { display: block; }
 }
+
+/* el radical necesita más aire cuando su contenido lleva exponentes */
+.ap-rad .ap-radc { padding-top: 0.22em; }
+.ap-rad .ap-radc sup { font-size: 0.62em; vertical-align: 0.38em; }
+.ap-m .ap-frac .ap-num { padding-bottom: 0.08em; }

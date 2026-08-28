@@ -1,0 +1,337 @@
+---
+title: "Inecuaciones con una incógnita"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones (Parte 4 de 4)"
+filename: 04-inecuaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cuarta parte del tema de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las desigualdades, las inecuaciones de primer grado y las inecuaciones cuadráticas con una incógnita
+categories: [inecuaciones, desigualdades, intervalos, tabla de signos, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: mathjax
+---
+
+## Desigualdades (De buscar puntos a describir regiones de la recta real)
+
+Dados dos números reales $A$ y $B$, el orden total de $\mathbb{R}$ garantiza que solo puede ocurrir una de tres cosas: que sean iguales, que uno sea estrictamente menor, o que uno sea estrictamente mayor. De ahí los símbolos $<$, $>$, $\leq$ y $\geq$.
+
+Conviene leer las desigualdades como posiciones en la recta real: $A<B$ significa que $A$ está a la izquierda de $B$. Y una desigualdad flexible como $A\leq B$ es cierta si se da una de las dos posibilidades, aunque solo se dé una: por ejemplo, $2\leq 4$ es cierta porque $2<4$.
+
+### Operaciones válidas
+
+- Si se suman o restan miembro a miembro dos desigualdades del mismo sentido, el resultado conserva el sentido.
+- Si se multiplican o dividen los dos miembros por un número **positivo**, el sentido se conserva.
+- Si se multiplican o dividen los dos miembros por un número **negativo**, la desigualdad **cambia de sentido**.
+
+::: {.callout-important title="La única regla realmente nueva del tema"}
+Todo lo que sabemos hacer con ecuaciones sigue valiendo: lo que suma pasa restando, lo que multiplica pasa dividiendo. Lo único nuevo, y es fundamental, es que al multiplicar o dividir por un número negativo hay que invertir el símbolo. Compara estas dos situaciones:
+
+$$
+\frac{x}{2}\leq 8\ \Longleftrightarrow\ x\leq 2\cdot 8,
+\qquad
+\frac{x}{-2}\leq 8\ \Longleftrightarrow\ x\geq (-2)\cdot 8.
+$$
+:::
+
+También hay transformaciones que dependen del caso. De $4\leq 9$ se deduce $\sqrt4\leq\sqrt9$, pero de $-3<1$ **no** se deduce nada parecido al tomar valores absolutos, porque $|-3|=3>1=|1|$.
+
+::: {.callout-note title="Detalle fino"}
+Si combinamos dos desigualdades, una estricta y otra flexible, el resultado es estricto. De $A\leq B$ y $C<D$ se sigue $A+C<B+D$.
+:::
+
+## Inecuaciones y conjunto solución
+
+Una **inecuación** en la incógnita $x$ es una desigualdad entre dos expresiones algebraicas. Una **solución** es cualquier valor real que hace cierta la desigualdad numérica, y el **conjunto solución** está formado por todas ellas. **Resolver** una inecuación consiste en determinar si tiene solución y, en tal caso, describir ese conjunto.
+
+Dos inecuaciones son **equivalentes** si tienen el mismo conjunto solución. Cuidado con las apariencias: $x^{2}<4$ y $x^{2}\leq 4$ **no** son equivalentes, porque $-2$ y $2$ pertenecen a la segunda y no a la primera.
+
+### Las tres escrituras de un mismo conjunto
+
+| Desigualdad | Intervalo | Extremo |
+|---|---|---|
+| $x<a$ | $(-\infty,a)$ | Abierto |
+| $x\leq a$ | $(-\infty,a]$ | Cerrado |
+| $x>a$ | $(a,+\infty)$ | Abierto |
+| $x\geq a$ | $[a,+\infty)$ | Cerrado |
+| $a<x<b$ | $(a,b)$ | Ambos abiertos |
+| $a\leq x\leq b$ | $[a,b]$ | Ambos cerrados |
+
+<div data-applet-eq="intervalos"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de intervalos"}
+1. Construye $[-2,3)$ y escribe a mano la desigualdad equivalente antes de leerla en la salida.
+2. Marca el extremo izquierdo como $-\infty$ y el derecho como $5$ cerrado. ¿Qué desigualdad obtienes?
+3. Marca los dos extremos como infinitos. ¿Qué conjunto representa?
+4. Pon el extremo izquierdo mayor que el derecho y lee el aviso. Explica por qué el conjunto sería vacío.
+5. Dibuja el conjunto de los números cuya distancia al origen es menor que $3$. ¿Qué intervalo es?
+:::
+
+## Inecuaciones de primer grado con una incógnita
+
+Es toda inecuación equivalente a una del tipo
+
+$$
+ax+b\leq 0,\qquad ax+b<0,\qquad ax+b\geq 0,\qquad ax+b>0.
+$$
+
+Para simplificar la teoría suele suponerse $a>0$, lo cual no supone ninguna restricción: si $a$ fuese negativo, multiplicamos todo por $-1$ invirtiendo el símbolo. Por ejemplo, $-3x+1<0$ es lo mismo que $3x-1>0$.
+
+Con $a>0$, el conjunto solución de $ax+b\leq 0$ es
+
+$$
+\left(-\infty,\ -\frac{b}{a}\right],
+$$
+
+y el de $ax+b\geq 0$ es
+
+$$
+\left[-\frac{b}{a},\ +\infty\right).
+$$
+
+Si la desigualdad fuese estricta, los extremos quedarían fuera y los intervalos serían abiertos.
+
+### Dos caminos, el mismo resultado
+
+Resolvemos $-3x\leq 9$ de dos maneras, porque la primera justifica la segunda.
+
+**Primera forma, sin multiplicar por negativos.** Pasamos $-3x$ al segundo miembro:
+
+$$
+0\leq 9+3x\ \Longrightarrow\ -9\leq 3x\ \Longrightarrow\ -3\leq x,
+$$
+
+es decir $x\geq -3$.
+
+**Segunda forma, dividiendo por $-3$.** Al dividir por un número negativo cambiamos el sentido:
+
+$$
+x\geq \frac{9}{-3}=-3.
+$$
+
+Partíamos de un $\leq$ y hemos terminado con un $\geq$, y todo por haber dividido entre un número negativo.
+
+### Ejemplo de cálculo
+
+Resolvemos $5-3(2x-1)>-4x-8$. Quitamos paréntesis y agrupamos:
+
+$$
+5-6x+3>-4x-8\ \Longrightarrow\ 8-6x+4x+8>0\ \Longrightarrow\ -2x+16>0,
+$$
+
+$$
+2x<16\ \Longrightarrow\ x<8,
+$$
+
+de modo que el conjunto solución es $(-\infty,8)$.
+
+::: {.callout-note title="Método alternativo por intervalos"}
+También se puede resolver $ax+b\leq 0$ hallando la raíz $x=-b/a$, que parte la recta en dos intervalos, y probando un punto cualquiera de cada uno. El intervalo donde la desigualdad se cumple es la solución. Este segundo método es el que generalizaremos para grados superiores.
+:::
+
+<div data-applet-eq="inecuacion1"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de primer grado"}
+1. Resuelve `-3x<=9`. Busca en la salida el aviso naranja y comprueba que aparece justo en el paso de la división.
+2. Resuelve `3x<=9` y compara con el caso anterior. ¿En cuál se invierte el símbolo y por qué?
+3. Teclea `5-3(2x-1)>-4x-8` y verifica el ejemplo resuelto paso a paso.
+4. Compara `2x-4<0` con `2x-4<=0`. Fíjate en el círculo del extremo: relleno o hueco. Escribe la diferencia entre los dos conjuntos solución.
+5. Prueba `4x+5(x-1)<=3(x+2)+4` y expresa la solución en las tres escrituras: desigualdad, intervalo y dibujo.
+6. Escribe una inecuación cuya solución sea todo $\mathbb{R}$ y otra cuya solución sea el conjunto vacío. Pista: haz que la incógnita desaparezca.
+:::
+
+## Inecuaciones cuadráticas con una incógnita
+
+Es toda inecuación equivalente a una del tipo
+
+$$
+ax^{2}+bx+c\leq 0
+$$
+
+o sus variantes con $<$, $>$ y $\geq$. Si $a$ fuese cero, en realidad tendríamos una inecuación de primer grado.
+
+### Lo que hay que recordar de la parábola
+
+La función $f(x)=ax^{2}+bx+c$ es una parábola. Si $a>0$ abre hacia arriba y alcanza un mínimo en el vértice; si $a<0$ abre hacia abajo. El discriminante $\Delta=b^{2}-4ac$ indica si la parábola corta el eje horizontal en dos puntos, es tangente a él, o no lo toca.
+
+Y si $x_{1}$ y $x_{2}$ son las raíces, se tiene la factorización
+
+$$
+ax^{2}+bx+c=a(x-x_{1})(x-x_{2}),
+$$
+
+que explica por qué el signo solo puede cambiar al atravesar una raíz.
+
+### Método de resolución
+
+1. Desarrolla hasta obtener la forma reducida, con cero en un miembro.
+2. Resuelve la **ecuación** asociada $ax^{2}+bx+c=0$.
+3. Las raíces dividen la recta real en intervalos. Con dos raíces se forman tres intervalos; con una raíz doble, dos; sin raíces reales, uno solo.
+4. Toma un punto interior de cada intervalo y comprueba si cumple la inecuación. Si se cumple en un punto, se cumple en todo el intervalo, porque la expresión mantiene el signo entre raíces consecutivas.
+5. El conjunto solución es la unión de los intervalos donde se cumple.
+6. Decide si las raíces entran: entran con $\leq$ y $\geq$, no entran con $<$ y $>$.
+
+### Ejemplo de cálculo
+
+Resolvemos $2x^{2}-7x+40\geq x^{2}+5x+5$. Primero reducimos:
+
+$$
+2x^{2}-7x+40-x^{2}-5x-5\geq 0\ \Longrightarrow\ x^{2}-12x+35\geq 0.
+$$
+
+Resolvemos la ecuación asociada:
+
+$$
+x^{2}-12x+35=0\ \Longrightarrow\ x=\frac{12\pm 2}{2}\ \Longrightarrow\ x_{1}=5,\quad x_{2}=7.
+$$
+
+Las raíces generan tres intervalos y probamos un punto en cada uno:
+
+| Intervalo | Punto | Valor de $x^{2}-12x+35$ | ¿Cumple $\geq 0$? |
+|---|---|---|---|
+| $(-\infty,5)$ | $3$ | $9-36+35=8$ | Sí |
+| $(5,7)$ | $6$ | $36-72+35=-1$ | No |
+| $(7,+\infty)$ | $8$ | $64-96+35=3$ | Sí |
+
+Como la desigualdad admite la igualdad, las raíces pertenecen a la solución:
+
+$$
+S=(-\infty,5]\cup[7,+\infty).
+$$
+
+### Los tres casos según el discriminante
+
+Con $a>0$, la lectura gráfica lo resuelve casi todo:
+
+- **Dos raíces distintas.** La expresión es positiva fuera de las raíces y negativa entre ellas. Así, $-x^{2}+x+2>0$ equivale a $x^{2}-x-2<0$, cuyas raíces son $-1$ y $2$, y la solución es $(-1,2)$.
+- **Raíz doble.** La parábola es tangente al eje, y la expresión es positiva salvo en ese punto, donde vale cero. Por eso $x^{2}-2x+1\geq 0$ tiene solución $\mathbb{R}$, mientras que $x^{2}-2x+1>0$ excluye $x=1$.
+- **Sin raíces reales.** La parábola queda íntegramente por encima del eje. Así, $x^{2}+2x+3<0$ tiene solución $\varnothing$, mientras que $x^{2}+2x+3>0$ tiene solución $\mathbb{R}$.
+
+::: {.callout-caution title="Pensamiento crítico: el engaño de dividir por una expresión"}
+Observa este razonamiento aparentemente correcto:
+
+$$
+(x-4)^{2}\geq 0\ \Longrightarrow\ x(x-4)\geq 4(x-4)\ \Longrightarrow\ x\geq 4.
+$$
+
+La conclusión es absurda, porque afirmaría que todo número es mayor o igual que $4$. El fallo está en el último paso: se ha dividido por $x-4$, que es positivo para $x>4$, **negativo** para $x<4$ y cero para $x=4$. Nunca se divide una desigualdad por una expresión cuyo signo desconocemos.
+:::
+
+### Aplicación: dominios de funciones con raíz
+
+Calcular el dominio de $f(x)=\sqrt{x^{2}-2x-3}$ es exactamente resolver una inecuación cuadrática, porque una raíz cuadrada solo existe si el radicando no es negativo. Resolvemos $x^{2}-2x-3\geq 0$, cuyas raíces son $-1$ y $3$, y obtenemos
+
+$$
+D(f)=(-\infty,-1]\cup[3,+\infty).
+$$
+
+En cambio, el dominio de $f(x)=\sqrt{x^{2}+1}$ es todo $\mathbb{R}$, porque $x^{2}+1>0$ para cualquier $x$. Y el de $f(x)=\sqrt{1-x^{2}}$ es el intervalo $[-1,1]$.
+
+<div data-applet-eq="inecuacion2"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de inecuaciones cuadráticas"}
+1. Resuelve `2x^2-7x+40>=x^2+5x+5` y compara la tabla de signos del applet con la del ejemplo resuelto. ¿Coinciden los puntos de prueba? No hace falta que coincidan: cualquier punto interior sirve.
+2. Compara `x^2-3x+2<=0` con `x^2-3x+2>=0`. Escribe los dos conjuntos y comprueba que su unión es $\mathbb{R}$ y su intersección son las dos raíces.
+3. Prueba `4x^2-4x+1<0` y después `4x^2-4x+1<=0`. Explica la diferencia entre el conjunto vacío y un conjunto con un solo punto.
+4. Teclea `x^2+2x+3<0` y luego `x^2+2x+3>0`. Relaciona las respuestas con la posición de la parábola respecto del eje.
+5. Prueba `x(x+5)(x+3)(x-2)(x-6)>=0`. Cuenta los intervalos que aparecen y comprueba que los signos se alternan. ¿Por qué se alternan cuando todas las raíces son simples?
+6. Usa el applet para hallar el dominio de $\sqrt{x^{2}-2x-3}$ escribiendo `x^2-2x-3>=0`.
+7. Busca una inecuación cuadrática cuya solución sea exactamente $(-3,3)$.
+:::
+
+## Errores frecuentes en esta parte
+
+1. No invertir el símbolo al multiplicar o dividir por un número negativo.
+2. Dividir una desigualdad por una expresión con incógnita sin discutir su signo.
+3. Cerrar un extremo en una desigualdad estricta, o abrirlo en una flexible.
+4. Dar como solución solo un intervalo cuando la respuesta es una unión de dos.
+5. Confundir la unión con la intersección al escribir el resultado.
+6. Resolver la ecuación asociada y olvidar el estudio del signo.
+7. Escribir $(-\infty,5]\cup[7,+\infty)$ como si fuera un único intervalo $[5,7]$.
+8. Suponer que si la parábola no corta el eje entonces no hay solución: puede ocurrir justo lo contrario y ser toda la recta real.
+
+## Retos de cierre
+
+### Reto 1 · La cinta alrededor de la Tierra
+
+Rodeamos la Tierra con una cinta por el ecuador, cuya longitud supera los $40\,000$ km. Colocamos encima otra cinta que mide un metro más, de modo que la distancia entre ambas sea uniforme. ¿Cabría un gato entre las dos?
+
+La primera cinta mide $2\pi R$ metros y la segunda $2\pi R+1$, luego el radio de la segunda es
+
+$$
+\frac{2\pi R+1}{2\pi}=R+\frac{1}{2\pi}.
+$$
+
+La separación es
+
+$$
+\left(R+\frac{1}{2\pi}\right)-R=\frac{1}{2\pi}\approx 0{,}16\ \text{metros},
+$$
+
+es decir unos $16$ cm, **independientemente del radio de la Tierra**. Efectivamente, un gato pasa por un hueco de $16$ cm. ¿Por qué falla tanto la intuición aquí?
+
+### Reto 2 · El discriminante como inecuación
+
+Determina para qué valores de $k$ la ecuación $x^{2}+kx+9=0$ no tiene solución real. Plantea $\Delta<0$, llega a $k^{2}-36<0$ y resuélvelo con el método de intervalos. El resultado es $k\in(-6,6)$.
+
+### Reto 3 · Modelo con cociente
+
+En un supermercado, el número de clientes atendidos por dependiente y hora se estima con
+
+$$
+C=\frac{40d}{d+3},
+$$
+
+donde $d$ son los días que lleva trabajando. Un dependiente empieza a ser rentable cuando atiende $32$ clientes por hora. ¿Cuándo ocurre? Y una pregunta más interesante: ¿qué sucede con $C$ cuando $d$ crece mucho? Interpreta el resultado.
+
+### Reto 4 · Bolsas sin etiqueta
+
+En una tienda hay bolsas de arroz sin peso indicado. Se sabe que dos bolsas pesan menos de $1$ kg y que cuatro bolsas pesan más de $3$ kg. Plantea las dos inecuaciones, resuélvelas por separado y decide si una bolsa puede pesar medio kilo, y si puede pesar $600$ g.
+
+## Autoevaluación
+
+::: {.callout-note collapse="true" title="1. Inecuación de primer grado"}
+Resuelve $3x-5<4x-7$. Resultado: $x>2$, es decir $(2,+\infty)$.
+:::
+
+::: {.callout-note collapse="true" title="2. Con paréntesis"}
+Resuelve $5-(2-3x)\geq 2(3x-5)+x$. Resultado: $x\leq \dfrac{13}{4}$, es decir $\left(-\infty,\tfrac{13}{4}\right]$.
+:::
+
+::: {.callout-note collapse="true" title="3. Cuadrática con dos raíces"}
+Resuelve $x^{2}-9<0$. Resultado: $(-3,3)$.
+:::
+
+::: {.callout-note collapse="true" title="4. Cuadrática sin solución"}
+Resuelve $x^{2}+2\leq 0$. Resultado: $\varnothing$, porque $x^{2}+2$ es siempre positivo.
+:::
+
+::: {.callout-note collapse="true" title="5. Factorizada"}
+Resuelve $(x-3)(x+4)\geq 0$. Resultado: $(-\infty,-4]\cup[3,+\infty)$.
+:::
+
+::: {.callout-note collapse="true" title="6. Raíz doble"}
+Resuelve $4x^{2}-4x+1<0$. Resultado: $\varnothing$. Con $\leq$ sería $\left\{\tfrac12\right\}$.
+:::
+
+::: {.callout-note collapse="true" title="7. Dominio"}
+Halla el dominio de $f(x)=\sqrt{x^{2}-1}$. Resultado: $(-\infty,-1]\cup[1,+\infty)$.
+:::
+
+::: {.callout-note collapse="true" title="8. Grado superior"}
+Resuelve $(x-2)(x-3)(x^{2}-2)\geq 0$ estudiando el signo en cada intervalo determinado por las cuatro raíces.
+:::
+
+## Cierre del tema
+
+Una ecuación pregunta cuándo dos expresiones coinciden; una inecuación pregunta en qué región una supera a la otra. En los dos casos el trabajo no consiste en encadenar símbolos, sino en conservar el significado: dominio, equivalencia, signo, comprobación e interpretación.
+
+El siguiente tema retomará estas mismas herramientas para trabajar con **sistemas de ecuaciones e inecuaciones**, donde en lugar de una condición habrá varias que deben cumplirse a la vez.

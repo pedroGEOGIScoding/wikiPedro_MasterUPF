@@ -1,0 +1,250 @@
+/* =====================================================================
+   applets.css — Ecuaciones e inecuaciones · 1r Batx Mates CCSS
+   Copia de la hoja usada en el tema de polinomios, con las mismas
+   clases (.applet, .ap-head, .ap-title, .ap-help, .ap-err) para que
+   el aspecto visual del sitio sea identico entre temas.
+   ===================================================================== */
+
+:root {
+  --ap-primary: #2a76dd;
+  --ap-secondary: #e63946;
+  --ap-tertiary: #2a9d8f;
+  --ap-purple: #8e44ad;
+  --ap-orange: #f4a261;
+  --ap-ink: #1f2937;
+  --ap-soft: #f8fbff;
+  --ap-line: #dde3ec;
+}
+
+/* ---------- contenedor ---------- */
+.applet {
+  border: 1px solid var(--ap-line);
+  border-left: 6px solid var(--ap-primary);
+  border-radius: 12px;
+  padding: 1rem 1.1rem 1.15rem;
+  margin: 1.4rem 0;
+  background: linear-gradient(180deg, #ffffff, var(--ap-soft));
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+  color: var(--ap-ink);
+}
+
+/* ---------- cabecera e instrucciones ---------- */
+.ap-head { margin-bottom: 0.85rem; }
+
+.ap-title {
+  margin: 0 0 0.55rem 0;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--ap-primary);
+  letter-spacing: 0.1px;
+}
+
+.ap-help {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #475569;
+}
+
+.ap-help li { margin: 0.22rem 0; }
+
+.ap-help code,
+.applet code {
+  background: #eef3fb;
+  border: 1px solid #d7e2f4;
+  border-radius: 4px;
+  padding: 0.05rem 0.32rem;
+  font-size: 0.9em;
+  color: #14396f;
+}
+
+/* ---------- controles ---------- */
+.ap-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.5rem 0;
+}
+
+.ap-lab {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #334155;
+  min-width: 4.4rem;
+}
+
+.ap-in {
+  flex: 1 1 12rem;
+  min-width: 5rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid #c3cddd;
+  border-radius: 7px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.94rem;
+  background: #fff;
+}
+
+.ap-in.ap-mini { flex: 0 0 5.2rem; text-align: center; }
+
+.ap-in:focus {
+  outline: none;
+  border-color: var(--ap-primary);
+  box-shadow: 0 0 0 3px rgba(42, 118, 221, 0.16);
+}
+
+.ap-sel {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #c3cddd;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 0.94rem;
+}
+
+.ap-btn {
+  padding: 0.42rem 0.85rem;
+  border: none;
+  border-radius: 7px;
+  background: var(--ap-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.ap-btn:hover { filter: brightness(0.9); }
+.ap-btn.ap-alt { background: var(--ap-tertiary); }
+.ap-btn.ap-grey { background: #64748b; }
+
+.ap-range { flex: 1 1 10rem; }
+
+/* ---------- salidas ---------- */
+.ap-out {
+  margin-top: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  background: #fff;
+  border: 1px solid var(--ap-line);
+  border-radius: 9px;
+  overflow-x: auto;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.ap-step {
+  margin: 0.3rem 0;
+  padding-left: 0.7rem;
+  border-left: 3px solid #e2e8f0;
+}
+
+.ap-key { font-weight: 700; color: var(--ap-primary); }
+.ap-ok { color: var(--ap-tertiary); font-weight: 700; }
+.ap-bad { color: var(--ap-secondary); font-weight: 700; }
+
+.ap-chip {
+  display: inline-block;
+  margin: 0.15rem 0.2rem 0.15rem 0;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: #eafaf1;
+  color: #106b52;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ap-chip.ap-chip-bad { background: #fdecee; color: #a4172a; }
+
+.ap-err {
+  margin-top: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #f3c4c9;
+  border-left: 5px solid var(--ap-secondary);
+  border-radius: 8px;
+  background: #fff5f6;
+  color: #8f1b28;
+  font-size: 0.92rem;
+}
+
+/* ---------- tablas de signo ---------- */
+.ap-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6rem 0;
+  font-size: 0.9rem;
+}
+
+.ap-tbl th {
+  background: #334155;
+  color: #fff;
+  padding: 0.35rem 0.45rem;
+  font-weight: 600;
+}
+
+.ap-tbl td {
+  border-bottom: 1px solid #eef2f7;
+  padding: 0.35rem 0.45rem;
+  text-align: center;
+}
+
+.ap-tbl tr.ap-sel-row td { background: #eafaf1; font-weight: 600; }
+
+/* ---------- figuras ---------- */
+.ap-fig {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 0.6rem auto 0;
+  background: #fff;
+  border: 1px solid var(--ap-line);
+  border-radius: 9px;
+}
+
+@media (max-width: 640px) {
+  .applet { padding: 0.8rem 0.75rem 0.9rem; }
+  .ap-lab { min-width: 100%; }
+  .ap-in { flex: 1 1 100%; }
+}
+
+/* ---------- notación matemática en HTML (sin MathJax) ---------- */
+.ap-m {
+  font-family: "Latin Modern Math", "Cambria Math", Georgia, "Times New Roman", serif;
+  font-size: 1.06em;
+  white-space: nowrap;
+}
+.ap-m sup { font-size: 0.7em; vertical-align: 0.55em; line-height: 0; }
+.ap-m sub { font-size: 0.7em; vertical-align: -0.25em; line-height: 0; }
+
+.ap-frac {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  margin: 0 0.18em;
+  font-size: 0.94em;
+}
+.ap-frac .ap-num { padding: 0 0.3em; border-bottom: 1.3px solid currentColor; }
+.ap-frac .ap-den { padding: 0 0.3em; }
+
+/* ---------- radical robusto: la barra siempre por encima del exponente ---------- */
+.ap-rad {
+  display: inline-flex;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+.ap-rad > .ap-radc {
+  border-top: 1.3px solid currentColor;
+  padding-top: 0.5em;
+  padding-right: 0.26em;
+  padding-bottom: 0;
+  padding-left: 0.12em;
+  margin-left: -0.05em;
+  line-height: 1.25;
+}
+
+.ap-rad > .ap-radc sup {
+  font-size: 0.6em;
+  vertical-align: 0.32em;
+  line-height: 1;
+}
+
+.ap-step.ap-warn { border-left-color: var(--ap-orange); background: #fffaf0; }

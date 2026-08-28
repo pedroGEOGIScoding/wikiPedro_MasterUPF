@@ -195,6 +195,10 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-fracciones-algebraicas.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte1.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte2.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-cuadraticas-bicuadradas.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/02-factorizacion-racionales-irracionales.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/03-exponenciales-logaritmicas.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/04-inecuaciones.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
