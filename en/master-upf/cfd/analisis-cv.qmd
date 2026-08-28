@@ -9,7 +9,7 @@ description: Analysis of the CV's of the Natural Sciences specialties (Biology a
 categories: [analysis, CV, resume]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

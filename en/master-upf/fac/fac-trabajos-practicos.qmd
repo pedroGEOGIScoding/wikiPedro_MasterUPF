@@ -9,7 +9,7 @@ description:  Analyze why experimental work is done in science classes (purpose 
 categories: [practice, laboratory, experiment, learning, teaching]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

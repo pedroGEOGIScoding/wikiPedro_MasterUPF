@@ -9,7 +9,7 @@ description: Situación de aprendizaje de 7 sesiones para 4 ESO sobre el origen 
 categories: [Situación de aprendizaje, Practicum, ESO, Biología, Geología, Ciencia Naturales]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

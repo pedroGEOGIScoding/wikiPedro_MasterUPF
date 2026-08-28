@@ -9,7 +9,7 @@ description: Eina interactiva per generar timelapses d'imatges Landsat des del n
 categories: [teledetecció, visualització, dades]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

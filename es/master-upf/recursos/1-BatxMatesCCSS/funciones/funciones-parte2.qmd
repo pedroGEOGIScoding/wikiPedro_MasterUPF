@@ -10,7 +10,7 @@ categories: [matemáticas, bachillerato, funciones]
 toc: true
 number-sections: true
 page-layout: article
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

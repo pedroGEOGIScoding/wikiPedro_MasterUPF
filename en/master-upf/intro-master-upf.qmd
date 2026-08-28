@@ -9,7 +9,7 @@ description: Integrated guide to the Master's Degree in Secondary Teacher Traini
 categories: [guide, master]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

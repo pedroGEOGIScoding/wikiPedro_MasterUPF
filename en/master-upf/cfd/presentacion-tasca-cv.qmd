@@ -9,7 +9,7 @@ description: Practice of presenting the learning situation
 categories: [presentation, complementary, discipline]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

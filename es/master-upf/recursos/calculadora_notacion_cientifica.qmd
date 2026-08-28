@@ -9,7 +9,7 @@ description: Calculadora para mejorar la destreza de las operaciones matemática
 categories: [matemáticas]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

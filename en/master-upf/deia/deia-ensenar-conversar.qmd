@@ -9,7 +9,7 @@ description: Subject focused on working on conversational competence in teaching
 categories: [design, innovation, learning, discuss, broom, ESETE, open questions]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

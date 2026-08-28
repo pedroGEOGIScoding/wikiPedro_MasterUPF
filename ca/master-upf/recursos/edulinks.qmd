@@ -9,7 +9,7 @@ description: Enllaços de suport educatiu
 categories: [educació, Internet, enllaços]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

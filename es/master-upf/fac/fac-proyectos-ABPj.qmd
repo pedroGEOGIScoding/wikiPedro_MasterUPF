@@ -9,7 +9,7 @@ description: El concepto de ABPj, tambien determinar las oportunidades, las nece
 categories: [proyectos, ABPj, aprendizaje, enseñanza, proyectos interdisciplinarios]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

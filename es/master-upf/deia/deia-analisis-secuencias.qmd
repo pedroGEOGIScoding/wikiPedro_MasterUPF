@@ -9,7 +9,7 @@ description: Asignatura centrada en el diseño y evaluación de situaciones de a
 categories: [diseño, innovación, aprendizaje, secuencias, análisis]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

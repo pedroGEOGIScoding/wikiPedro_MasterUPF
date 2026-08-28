@@ -9,7 +9,7 @@ description: Es treballa la importància de les idees prèvies dels alumnes en e
 categories: [idees prèvies, aprenentatge, ensenyament]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

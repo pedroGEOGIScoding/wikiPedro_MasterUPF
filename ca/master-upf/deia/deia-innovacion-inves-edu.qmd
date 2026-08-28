@@ -9,7 +9,7 @@ description: Tema enfocat a donar a conèixer què és la pràctica reflexiva i 
 categories: [disseny, innovació, aprenentatge, pràctica reflexiva, recerca-acció, observació, aula]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Asignatura que cubre los aspectos especificos del currículum de Ge
 categories: [complementos, disciplinar, geología]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

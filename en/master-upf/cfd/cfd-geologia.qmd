@@ -9,7 +9,7 @@ description: Subject that covers the specific aspects of the Geology curriculum 
 categories: [accessories, discipline, geology]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

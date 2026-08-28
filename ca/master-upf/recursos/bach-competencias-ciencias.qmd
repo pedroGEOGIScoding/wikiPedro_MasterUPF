@@ -11,7 +11,7 @@ toc: false
 toc-location: right
 number-sections: false
 page-layout: article
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

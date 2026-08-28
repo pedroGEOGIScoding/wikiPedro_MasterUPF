@@ -9,7 +9,7 @@ description: Se trabaja la importancia de las ideas previas del alumnado en su a
 categories: [ideas previas, aprendizaje, enseñanza]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

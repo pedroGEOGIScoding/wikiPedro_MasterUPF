@@ -9,7 +9,7 @@ description: Eina interactiva per generar timelapses d'imatges Sentinel-2 des de
 categories: [teledetecció, visualització, dades, canvi climàtic, copernicus]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

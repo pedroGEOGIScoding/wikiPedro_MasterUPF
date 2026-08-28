@@ -9,7 +9,7 @@ description: Análisis de los CV's de las especialidades de Ciencias Naturales (
 categories: [análisis, currículum]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

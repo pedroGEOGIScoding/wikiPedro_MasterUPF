@@ -9,7 +9,7 @@ description: Trabajo fin de máster sobre deconstrucción de pseudociencia ense�
 categories: [TFM, pseudociencia, Practicum, Biología, Geología, Ciencia Naturales]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

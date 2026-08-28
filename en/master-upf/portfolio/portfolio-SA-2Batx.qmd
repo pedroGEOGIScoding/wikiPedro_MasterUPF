@@ -9,7 +9,7 @@ description: Learning situation of 10 sessions for 2nd year of baccalaureate on 
 categories: [Learning situation, Practicum, Climate Change, ODS 13, baccalaureate, Natural Sciences]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Acquisition of skills related to professional teaching practice
 categories: [practicum, observation, assessment, competencies]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

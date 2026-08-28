@@ -9,7 +9,7 @@ description: Asignatura centrada en trabajar la competencia conversacional en el
 categories: [diseño, innovación, aprendizaje, conversar, scoba, ESETE, preguntas abiertas]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

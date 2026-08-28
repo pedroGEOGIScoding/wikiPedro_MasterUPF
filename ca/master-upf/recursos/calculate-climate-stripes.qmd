@@ -9,7 +9,7 @@ description: Eina interactiva per generar visualitzacions de franges climàtique
 categories: [clima, visualització, dades]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

@@ -9,7 +9,7 @@ description: Anàlisi dels currículums de les especialitats de Ciències Natura
 categories: [anàlisi, CV, currículum]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

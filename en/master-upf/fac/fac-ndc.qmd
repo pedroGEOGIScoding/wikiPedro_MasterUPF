@@ -9,7 +9,7 @@ description: How does science know what it knows? How do you build knowledge? Wh
 categories: [nature, learning, teaching, science]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

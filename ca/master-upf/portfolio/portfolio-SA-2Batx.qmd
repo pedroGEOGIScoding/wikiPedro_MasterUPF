@@ -9,7 +9,7 @@ description: Situació d'aprenentatge de 10 sessions per a 2 de Batxillerat sobr
 categories: [Situació d'aprenentatge, Practicum, Canvi Climàtic, ODS 13, Batxillerat, Ciències Naturals]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Interactive tool to generate Sentinel-2 image timelapses from the b
 categories: [remote sensing, visualization, data, climate change, copernicus]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

@@ -9,7 +9,7 @@ description: Asignatura centrada en dar a conocer qué es la práctica reflexiva
 categories: [diseño, innovación, aprendizaje, práctica reflexiva, investigación-acción, observación, aula]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

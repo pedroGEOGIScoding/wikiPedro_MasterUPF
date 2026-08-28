@@ -14,9 +14,15 @@
   }
 
   function mj(el) {
-    (function go(t) {
-      if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]).catch(function () {});
-      else if (t < 30) setTimeout(function () { go(t + 1); }, 300);
+    (function go(tries) {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        if (window.MathJax.typesetClear) {
+          try { window.MathJax.typesetClear([el]); } catch (e) { /* sin efecto en v3 antiguas */ }
+        }
+        window.MathJax.typesetPromise([el]).catch(function (e) { console.warn('MathJax:', e); });
+      } else if (tries < 30) {
+        setTimeout(function () { go(tries + 1); }, 300);
+      }
     })(0);
   }
 
@@ -197,7 +203,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-applet-x]'), function (node) {
       var k = node.getAttribute('data-applet-x');
       node.classList.add('applet');
-      if (X[k]) { try { X[k](node); } catch (e) { node.innerHTML = '<div class="ap-err">Error al construir el applet "' + k + '": ' + e.message + '</div>'; } }
+      if (X[k]) { try { X[k](node); mj(node); } catch (e) { node.innerHTML = '<div class="ap-err">Error al construir el applet "' + k + '": ' + e.message + '</div>'; } }
       else node.innerHTML = '<div class="ap-err">No existe el applet de ampliacion "' + k + '".</div>';
     });
   });

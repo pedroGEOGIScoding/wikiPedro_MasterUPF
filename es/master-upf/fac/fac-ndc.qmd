@@ -9,7 +9,7 @@ description: ¿Cómo sabe la ciencia lo que sabe? ¿Cómo construye el conocimie
 categories: [naturaleza, aprendizaje, enseñanza, ciencia]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

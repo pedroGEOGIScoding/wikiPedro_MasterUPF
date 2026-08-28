@@ -9,7 +9,7 @@ description: Herramienta interactiva para visializar el sistema solar y via Lact
 categories: [sistema solar, visualización, recurso]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

@@ -9,7 +9,7 @@ description: Información completa sobre el Trabajo Final de Máster del Máster
 categories: [tfm, investigación, innovación, practicum]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

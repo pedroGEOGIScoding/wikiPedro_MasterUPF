@@ -9,7 +9,7 @@ description: Assignatura centrada en el disseny i avaluació de situacions d'apr
 categories: [disseny, innovació, aprenentatge]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

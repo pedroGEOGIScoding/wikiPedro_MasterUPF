@@ -9,7 +9,7 @@ description: Portafoli personal amb reflexions sobre l'observació en un centre 
 categories: [cartera, reflexions]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

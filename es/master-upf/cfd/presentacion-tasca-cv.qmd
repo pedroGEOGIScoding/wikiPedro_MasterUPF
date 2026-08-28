@@ -9,7 +9,7 @@ description: Práctica de la presentación de la situación de aprendizaje
 categories: [presentación, complementos, disciplinar]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

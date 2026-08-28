@@ -9,7 +9,7 @@ description: Master's thesis on deconstructing pseudoscience by teaching science
 categories: [Master's Thesis, pseudoscience, Practicum, Biology, Geology, Natural Science, Critical thinking, Heterogeneous groups]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

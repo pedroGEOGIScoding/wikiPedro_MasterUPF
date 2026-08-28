@@ -9,7 +9,7 @@ description: Assignatura que treballa les bases fonamentals de l'ensenyament de 
 categories: [fonamentals, aprenentatge, ensenyament, ciències]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

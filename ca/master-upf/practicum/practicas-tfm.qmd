@@ -9,7 +9,7 @@ description: Informació completa sobre el Treball Final de Màster del Màster 
 categories: [tfm, investigació, innovació, pràctica]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

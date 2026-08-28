@@ -9,7 +9,7 @@ description: Herramienta interactiva para generar timelapses de imágenes Landsa
 categories: [teledetección, visualización, datos, cambio climático]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

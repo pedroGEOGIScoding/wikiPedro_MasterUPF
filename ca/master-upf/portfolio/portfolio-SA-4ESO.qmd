@@ -9,7 +9,7 @@ description: Situació d'aprenentatge de 7 sesions per a 4 ESO sobre l'origen de
 categories: [Situació d'aprenentatge, Practicum, ESO, Biologia, Geologia, Ciencia Natural]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Guia integrada del Màster Universitari en Formació del Professora
 categories: [guia, mestre]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

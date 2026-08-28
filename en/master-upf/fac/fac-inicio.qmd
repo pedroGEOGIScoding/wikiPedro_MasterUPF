@@ -9,7 +9,7 @@ description: Subject that works on the fundamental bases of science teaching, pr
 categories: [fundamentals, learning, teaching, science]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

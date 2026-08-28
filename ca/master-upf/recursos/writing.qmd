@@ -9,7 +9,7 @@ description: Sobre com escriure correctament
 categories: [escriptura, Internet, enllaços]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

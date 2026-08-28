@@ -9,7 +9,7 @@ description: educational project
 categories: [education, educational system, regulations, teaching, tutor, tutoring, NESE, dyslexia, ADD, ADHD, educational resources]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

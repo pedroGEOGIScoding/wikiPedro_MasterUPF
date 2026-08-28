@@ -9,7 +9,7 @@ description: Organizational and psychopedagogical foundations of the educational
 categories: [educational framework, educational project, educational system]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

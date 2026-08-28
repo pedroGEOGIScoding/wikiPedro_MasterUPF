@@ -9,7 +9,7 @@ description: The importance of students' previous ideas is worked on in their le
 categories: [previous ideas, learning, teaching]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

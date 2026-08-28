@@ -9,7 +9,7 @@ description: Calculadora de polígonos regulares para calcular ángulos, apotema
 categories: [matemáticas]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Subject that addresses the management of the learning environment i
 categories: [management, classroom, learning, bonding, routines, boundaries, motivation]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Subject focused on making known what reflective practice and action
 categories: [design, innovation, learning, reflective practice, action research, observation, classroom]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

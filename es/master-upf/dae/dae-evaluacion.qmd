@@ -9,7 +9,7 @@ description: Asignatura que aborda la evaluación de los aprendizajes
 categories: [evaluación, aprendizaje, educación]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

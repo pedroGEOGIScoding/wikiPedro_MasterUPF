@@ -9,7 +9,7 @@ description: The concept of PBLj will also determine the opportunities, needs an
 categories: [projects, ABPj, learning, teaching, interdisciplinary projects]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

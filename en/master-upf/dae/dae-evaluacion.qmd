@@ -9,7 +9,7 @@ description: Addressing the assessment of learning
 categories: [assessment, learning, education]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

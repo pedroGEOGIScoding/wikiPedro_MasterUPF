@@ -9,7 +9,7 @@ description: Portfolio personal con reflexiones sobre la observación en centro 
 categories: [portfolio, reflexiones]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

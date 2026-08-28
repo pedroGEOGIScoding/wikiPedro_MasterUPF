@@ -9,7 +9,7 @@ description: Eina interactiva per a visualitzar el sistema solar i via Lactea pe
 categories: [sistema solar, visualització, recurs]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

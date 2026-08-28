@@ -9,7 +9,7 @@ description: Assignatura que complementa la formació disciplinària en cièncie
 categories: [complementaris, disciplina]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

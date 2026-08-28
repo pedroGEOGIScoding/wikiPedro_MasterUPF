@@ -9,7 +9,7 @@ description: Calculadora para ayudar a entender la descomposición factorial, MC
 categories: [matemáticas]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

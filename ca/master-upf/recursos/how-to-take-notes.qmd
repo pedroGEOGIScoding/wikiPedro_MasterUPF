@@ -9,7 +9,7 @@ description: Sobre com prendre notes correctament
 categories: [notes, Internet, enllaços]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

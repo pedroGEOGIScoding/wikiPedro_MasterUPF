@@ -9,7 +9,7 @@ description: Assignatura que aborda la gestió de l'ambient d'aprenentatge a l'a
 categories: [gestio, ambient, aprenentatge, vincle, rutines, límits, motivació]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

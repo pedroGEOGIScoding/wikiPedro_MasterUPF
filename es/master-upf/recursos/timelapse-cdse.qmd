@@ -9,7 +9,7 @@ description: Herramienta interactiva para generar timelapses de imágenes Sentin
 categories: [teledetección, visualización, datos, cambio climático, copernicus]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

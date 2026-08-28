@@ -9,7 +9,7 @@ description: Assignatura que aborda l'ús de les eines digitals en l'ensenyament
 categories: [eines, digitals, educacio]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

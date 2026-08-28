@@ -9,7 +9,7 @@ description: Com sap la ciència el que sap? Com es construeix el coneixement? Q
 categories: [natura, aprenentatge, ensenyament, ciència]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

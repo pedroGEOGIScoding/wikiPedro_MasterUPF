@@ -9,7 +9,7 @@ description: Asignatura que aborda la gestión del ambiente de aprendizaje en el
 categories: [gestión, ambiente, aprendizaje, vínculo, rutinas, límites, motivación]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

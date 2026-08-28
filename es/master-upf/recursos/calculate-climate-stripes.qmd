@@ -9,7 +9,7 @@ description: Herramienta interactiva para generar visualizaciones de franjas cli
 categories: [clima, visualización, datos]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

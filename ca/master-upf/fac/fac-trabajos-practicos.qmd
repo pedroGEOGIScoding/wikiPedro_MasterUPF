@@ -9,7 +9,7 @@ description:  Analitzar per què es fa el treball experimental a les classes de 
 categories: [pràctica, laboratori, experiment, aprenentatge, ensenyament]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

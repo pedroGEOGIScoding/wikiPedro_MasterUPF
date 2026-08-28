@@ -9,7 +9,7 @@ description: Assignatura que abasta els aspectes específics del pla d'estudis d
 categories: [accessoris, disciplina, geologia]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

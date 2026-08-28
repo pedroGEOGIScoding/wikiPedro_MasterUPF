@@ -9,7 +9,7 @@ description: Pràctica de presentació de la situació d'aprenentatge
 categories: [presentació, accessoris, disciplina]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

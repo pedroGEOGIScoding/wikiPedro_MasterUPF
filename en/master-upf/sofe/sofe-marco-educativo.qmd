@@ -9,7 +9,7 @@ description: Context and regulations of the Catalan educational system for teach
 categories: [education, educational system, regulations, teaching, employment, training, higher education, educational policy]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

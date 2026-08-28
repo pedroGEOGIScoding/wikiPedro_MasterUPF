@@ -9,7 +9,7 @@ description: projecte educatiu
 categories: [educació, sistema educatiu, normatives, l'ensenyament, tutor, tutoria, NESE, dislèxia, AFEGIR, TDAH, recursos educatius]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

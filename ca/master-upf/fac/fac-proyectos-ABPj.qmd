@@ -9,7 +9,7 @@ description: El concepte de PBLj també determinarà les oportunitats, necessita
 categories: [projectes, ABPj, aprenentatge, ensenyament, projectes interdisciplinaris]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

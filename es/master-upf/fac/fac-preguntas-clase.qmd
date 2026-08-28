@@ -9,7 +9,7 @@ description: Asignatura que trabaja las bases fundamentales de la didáctica de 
 categories: [fundamentos, aprendizaje, enseñanza, ciencias]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

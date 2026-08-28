@@ -9,7 +9,7 @@ description: Assignatura enfocada a treballar la competència conversacional en 
 categories: [disseny, innovació, aprenentatge, discutir, escombra, ESETE, preguntes obertes]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

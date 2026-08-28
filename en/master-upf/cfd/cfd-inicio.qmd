@@ -9,7 +9,7 @@ description: Subject that complements disciplinary training in natural sciences 
 categories: [complementary, discipline]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

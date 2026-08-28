@@ -9,7 +9,7 @@ description: El Aprendizaje Basado en Problemas (ABP) es una técnica didáctica
 categories: [ABP, aprendizaje, enseñanza, problemas]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

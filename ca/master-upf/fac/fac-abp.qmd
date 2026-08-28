@@ -9,7 +9,7 @@ description: L'aprenentatge basat en problemes (ABP) és una tècnica d'ensenyam
 categories: [ABP, aprenentatge, l'ensenyament, qüestions]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

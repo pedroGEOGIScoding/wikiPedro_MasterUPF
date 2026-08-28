@@ -9,7 +9,7 @@ description: Complete information about the Final Master's Project of the Master
 categories: [tfm, investigation, innovation, practicum]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

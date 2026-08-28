@@ -9,7 +9,7 @@ description: Guía integrada del Máster de Formación del Profesorado de Secund
 categories: [guía, máster]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

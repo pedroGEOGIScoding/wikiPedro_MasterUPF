@@ -9,7 +9,7 @@ description: Adquisició de competències relacionades amb la pràctica docent p
 categories: [pràctica, observació, valoració, competències]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

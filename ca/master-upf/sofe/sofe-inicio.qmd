@@ -9,7 +9,7 @@ description: Fonaments organitzatius i psicopedagògics de la funció educativa 
 categories: [marc educatiu, projecte educatiu, sistema educatiu]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

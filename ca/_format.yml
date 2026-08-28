@@ -141,7 +141,6 @@ format:
     theme:
       light: [minty, style-assets/light-styles.scss]
       dark: [slate, style-assets/dark-styles.scss]
-    line-numbers: true
     linestretch: 1.5
     toc: true
     toc-title: "En aquesta pàgina trobaràs"
@@ -150,7 +149,7 @@ format:
     number-sections: true
     smooth-scroll: true
     code-link: true
-    code-line-numbers: "true"
+    code-line-numbers: true
     code-overflow: "wrap"
     code-annotations: below
     grid:

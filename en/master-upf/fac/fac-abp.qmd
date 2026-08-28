@@ -9,7 +9,7 @@ description: Problem-Based Learning (PBL) is a student-centered teaching techniq
 categories: [ABP, learning, teaching, issues]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

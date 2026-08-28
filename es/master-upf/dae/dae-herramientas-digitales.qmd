@@ -9,7 +9,7 @@ description: Asignatura que aborda el uso de las herramientas digitales en la en
 categories: [herramientas, digitales, educación]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

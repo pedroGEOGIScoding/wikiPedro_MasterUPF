@@ -9,7 +9,7 @@ description: Contexto y normativa del sistema educativo catalán para docentes q
 categories: [educación, sistema educativo, normativa, docencia, empleo, formación, educación superior, política educativa]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

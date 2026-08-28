@@ -9,7 +9,7 @@ description: Módulo que aborda la gestión del aula presencial, la evaluación 
 categories: [desarrollo, aprendizaje, educación]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

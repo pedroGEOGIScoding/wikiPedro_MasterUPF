@@ -9,7 +9,7 @@ description: Treball fi de màster sobre deconstrucció de pseudociència enseny
 categories: [TFM, pseudociència, Practicum, Biologia, Geologia, Ciència Natural, Pensament crític, Grups heterogenis]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

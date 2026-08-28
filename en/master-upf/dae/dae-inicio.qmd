@@ -9,7 +9,7 @@ description: Module that addresses the management of the face-to-face classroom,
 categories: [development, learning, education]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

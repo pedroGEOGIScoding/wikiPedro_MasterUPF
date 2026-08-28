@@ -9,7 +9,7 @@ description: Learning situation of 7 sessions for 4 ESO about the origin of the 
 categories: [Learning situation, Practicum, ESO, Biology, Geology, Natural Science]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

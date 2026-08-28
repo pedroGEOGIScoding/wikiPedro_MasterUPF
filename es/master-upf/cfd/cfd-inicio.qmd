@@ -9,7 +9,7 @@ description: Asignatura que complementa la formación disciplinar en ciencias na
 categories: [complementos, disciplinar]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

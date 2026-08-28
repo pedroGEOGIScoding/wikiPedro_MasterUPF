@@ -9,7 +9,7 @@ description: Interactive tool to generate Landsat image timelapses from the brow
 categories: [remote sensing, visualization, data]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 

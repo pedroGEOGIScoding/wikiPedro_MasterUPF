@@ -9,7 +9,7 @@ description:  Analizar por qué se hace trabajo experimental en las clases de ci
 categories: [práctica, laboratorio, experimento, aprendizaje, enseñanza]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

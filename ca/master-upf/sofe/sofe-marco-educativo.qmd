@@ -9,7 +9,7 @@ description: Context i normativa del sistema educatiu català per al professorat
 categories: [educació, sistema educatiu, normatives, l'ensenyament, ocupació, formació, educació superior, política educativa]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -21,6 +21,9 @@
   function mj(el) {
     (function go(tries) {
       if (window.MathJax && window.MathJax.typesetPromise) {
+        if (window.MathJax.typesetClear) {
+          try { window.MathJax.typesetClear([el]); } catch (e) { /* sin efecto en v3 antiguas */ }
+        }
         window.MathJax.typesetPromise([el]).catch(function (e) { console.warn('MathJax:', e); });
       } else if (tries < 30) {
         setTimeout(function () { go(tries + 1); }, 300);
@@ -648,10 +651,10 @@
   /* ---------- A5. Ruffini ---------- */
   B.ruffini = function (root) {
     root.innerHTML = head('Applet 5 · Regla de Ruffini (incluidos los casos dificiles)', [
-      'Escribe el polinomio y el numero \\(\\alpha\\) por el que divides. Divides entre \\(x-\\alpha\\): si quieres dividir entre \\(x+2\\), escribe \\(\\alpha = -2\\).',
-      'Ejemplos: <code>x^3-4x^2+5x-2</code> con \\(\\alpha=1\\); <code>2x^3-3x^2-11x+6</code> con \\(\\alpha=1/2\\); <code>x^4-10x^2+9</code> con \\(\\alpha=3\\).',
-      'Caso dificil (divisor \\(ax-b\\)): marca la casilla del divisor no monico. Para dividir \\(2x^3-3x^2-11x+6\\) entre \\(2x-1\\), usa \\(\\alpha=1/2\\) y el applet te muestra como corregir el cociente dividiendo entre 2.',
-      'Fijate en la ultima casilla: <b>es el resto</b>, y coincide con \\(P(\\alpha)\\). Ahi esta el teorema del resto en accion.'
+      'Escribe el polinomio y el numero <b>&alpha;</b> por el que divides. Divides entre <b>x &minus; &alpha;</b>: si quieres dividir entre <b>x + 2</b>, escribe &alpha; = <code>-2</code>.',
+      'Ejemplos: <code>x^3-4x^2+5x-2</code> con &alpha; = 1; <code>2x^3-3x^2-11x+6</code> con &alpha; = 1/2; <code>x^4-10x^2+9</code> con &alpha; = 3.',
+      'Caso dificil (divisor <b>ax &minus; b</b>): elige el modo no monico. Para dividir <code>2x^3-3x^2-11x+6</code> entre <code>2x-1</code>, usa &alpha; = 1/2 y el applet te muestra como corregir el cociente dividiendo entre 2.',
+      'Fijate en la ultima casilla: <b>es el resto</b>, y coincide con <b>P(&alpha;)</b>. Ahi esta el teorema del resto en accion.'
     ]) + inputRow([
       { label: 'P(x) =', cls: 'inp-p', value: '2x^3-3x^2-11x+6', size: 26 },
       { label: '\u03b1 =', cls: 'inp-a', value: '1/2', size: 6 },
@@ -1037,7 +1040,7 @@
       var key = node.getAttribute('data-applet');
       node.classList.add('applet');
       if (B[key]) {
-        try { B[key](node); }
+        try { B[key](node); mj(node); }
         catch (e) { node.innerHTML = errBox('fallo al construir el applet "' + key + '": ' + e.message); }
       } else {
         node.innerHTML = errBox('no existe ningun applet con la clave "' + key + '".');

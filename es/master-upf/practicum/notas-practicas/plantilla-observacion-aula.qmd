@@ -9,7 +9,7 @@ description: Plantilla completa para la observación sistemática del alumnado e
 categories: [practicum, observación, aula]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

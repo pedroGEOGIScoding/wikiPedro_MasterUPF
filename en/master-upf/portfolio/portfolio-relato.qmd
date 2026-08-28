@@ -9,7 +9,7 @@ description: Personal portfolio with reflections on observation in an educationa
 categories: [portfolio, reflections, practicum]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

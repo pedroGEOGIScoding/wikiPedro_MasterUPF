@@ -9,7 +9,7 @@ description: About how to write properly
 categories: [writing, Internet, links]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

@@ -9,7 +9,7 @@ description: Mòdul que aborda la gestió de l'aula presencial, l'avaluació del
 categories: [desenvolupament, aprenentatge, educació]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

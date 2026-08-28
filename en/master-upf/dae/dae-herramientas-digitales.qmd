@@ -9,7 +9,7 @@ description: Course that addresses the use of digital tools in teaching
 categories: [tools, digital, education]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

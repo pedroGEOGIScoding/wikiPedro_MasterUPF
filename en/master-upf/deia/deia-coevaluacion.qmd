@@ -9,7 +9,7 @@ description: Subject focused on the design and evaluation of learning situations
 categories: [design, innovation, learning]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

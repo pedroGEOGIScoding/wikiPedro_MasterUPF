@@ -9,7 +9,7 @@ description: Situación de aprendizaje de 10 sesiones para 2 de Bachillerato sob
 categories: [Situación de aprendizaje, Practicum, Cambio Climatico, ODS 13, Bachillerato, Ciencia Naturales]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 lightbox:
   match: auto
   effect: fade

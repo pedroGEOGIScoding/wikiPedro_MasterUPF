@@ -9,7 +9,7 @@ description: Interactive tool to generate warming stripes visualizations from te
 categories: [climate, visualization, data]
 toc: true
 number-sections: true
-highlight-style: pygments
+
 format: html
 ---
 
