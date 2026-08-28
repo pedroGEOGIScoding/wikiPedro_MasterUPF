@@ -1,0 +1,30 @@
+<!-- =====================================================================
+     _scripts.html
+     Se inyecta al final de <body> en todas las paginas del libro
+     (via  format: html: include-after-body  en _quarto.yml).
+
+     ORDEN OBLIGATORIO:
+       1) poly-applets.js        -> motor algebraico exacto + applets 1..14
+       2) poly-applets-extra.js  -> modulo de ampliacion (applets 3, 15, 16)
+                                    usa la API publica window.POLY
+
+     No se usa OJS ni Observable: son scripts clasicos, sin dependencias
+     externas mas alla de MathJax, que ya carga Quarto.
+     ===================================================================== -->
+
+<script src="assets/poly-applets.js"></script>
+<script src="assets/poly-applets-extra.js"></script>
+
+<script>
+  /* Aviso de diagnostico en consola: ayuda a detectar rutas mal puestas
+     cuando el libro se publica en un subdirectorio (GitHub Pages, etc.). */
+  window.addEventListener('load', function () {
+    if (!window.POLY) {
+      console.error('[Polinomios] No se ha cargado assets/poly-applets.js. ' +
+        'Revisa la ruta en _scripts.html o el valor de site-url si publicas en un subdirectorio.');
+    } else {
+      console.info('[Polinomios] Motor algebraico listo. Prueba en consola: ' +
+        'POLY.tex(POLY.factorize(POLY.parse("x^3-4x^2+5x-2")).original)');
+    }
+  });
+</script>

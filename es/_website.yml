@@ -194,11 +194,15 @@ website:
         - text: "---"
         - section: "1 Batx Mates CCSS"
           contents:
-          - master-upf/recursos/1-BatxMatesCCSS/reales-parte1.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/reales-parte2.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/reales-parte3.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones-parte1.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones-parte2.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/reales-parte1.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/reales-parte2.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/reales-parte3.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-raices-polinomio.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-factorizacion.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-fracciones-algebraicas.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte1.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte2.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:

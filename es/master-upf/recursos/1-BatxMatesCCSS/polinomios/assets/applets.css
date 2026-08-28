@@ -1,0 +1,267 @@
+/* =====================================================================
+   applets.css — estilos de los applets del tema
+   "Polinomios y fracciones algebraicas" (1r Batx · Mat. CCSS I)
+   Paleta coherente con la presentacion de Potencias y Radicales.
+   ===================================================================== */
+
+:root {
+  --ap-primary: #2a76dd;
+  --ap-secondary: #e63946;
+  --ap-tertiary: #2a9d8f;
+  --ap-purple: #8e44ad;
+  --ap-orange: #f4a261;
+  --ap-ink: #253238;
+  --ap-soft: #f7f9fc;
+}
+
+/* ---------- contenedor ---------- */
+.applet {
+  border: 1px solid #dde3ec;
+  border-left: 6px solid var(--ap-primary);
+  border-radius: 10px;
+  background: #fff;
+  padding: 16px 18px 18px;
+  margin: 28px 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+  font-size: .95rem;
+}
+
+.ap-head { margin-bottom: 10px; }
+
+.ap-title {
+  margin: 0 0 8px;
+  color: var(--ap-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.ap-sub {
+  margin: 18px 0 8px;
+  color: var(--ap-purple);
+  font-size: .98rem;
+}
+
+/* ---------- instrucciones ---------- */
+.ap-help {
+  background: var(--ap-soft);
+  border: 1px dashed #c9d6ea;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: .88rem;
+}
+
+.ap-help summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ap-primary);
+  outline: none;
+}
+
+.ap-help ul { margin: 8px 0 2px 1.1em; padding: 0; }
+.ap-help li { margin: 5px 0; line-height: 1.45; }
+
+.ap-help code,
+.applet code {
+  background: #eef3fb;
+  border: 1px solid #d9e4f5;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: .86em;
+  color: #1b3c68;
+}
+
+/* ---------- controles ---------- */
+.ap-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #fbfcfe;
+  border: 1px solid #e6ecf5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 12px 0;
+}
+
+.ap-row label {
+  font-weight: 600;
+  color: #40525e;
+  font-size: .88rem;
+  margin: 0;
+}
+
+.ap-row input[type="text"],
+.ap-row input:not([type]),
+.ap-row select {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem;
+  padding: 6px 8px;
+  border: 1px solid #bcc9da;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ap-ink);
+}
+
+.ap-row input:focus,
+.ap-row select:focus {
+  outline: 2px solid rgba(42, 118, 221, .35);
+  border-color: var(--ap-primary);
+}
+
+.ap-row input[type="range"] { width: 130px; accent-color: var(--ap-primary); }
+
+.ap-btn {
+  background: var(--ap-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-weight: 600;
+  font-size: .88rem;
+  cursor: pointer;
+  transition: filter .15s ease;
+}
+
+.ap-btn:hover { filter: brightness(.9); }
+.ap-btn.ap-small { padding: 4px 10px; font-size: .82rem; background: var(--ap-tertiary); margin-top: 6px; }
+
+/* ---------- salidas ---------- */
+.out { margin-top: 6px; }
+
+.ap-formula {
+  background: #fff;
+  border: 2px solid var(--ap-tertiary);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.ap-list { margin: 10px 0 4px 1.1em; padding: 0; }
+.ap-list li { margin: 6px 0; line-height: 1.5; }
+
+.ap-note {
+  background: #f0f8ff;
+  border-left: 4px solid var(--ap-primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.ap-warn {
+  background: #fff9e6;
+  border-left: 4px solid var(--ap-orange);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  font-size: .9rem;
+}
+
+.ap-ok {
+  background: #f0fcf5;
+  border-left: 4px solid var(--ap-tertiary);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: .9rem;
+}
+
+.ap-err {
+  background: #fdf0f1;
+  border-left: 4px solid var(--ap-secondary);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: .9rem;
+  color: #7d1620;
+}
+
+.ap-tick { color: var(--ap-tertiary); font-weight: 700; }
+.ap-cross { color: var(--ap-secondary); font-weight: 700; }
+
+/* ---------- tablas ---------- */
+.ap-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: .85rem;
+  background: #fff;
+}
+
+.ap-tbl th {
+  background: #33475b;
+  color: #fff;
+  padding: 6px 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.ap-tbl td {
+  border-bottom: 1px solid #eceff3;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.ap-tbl tr:nth-child(even) td { background: #fafbfd; }
+
+.ap-tbl td.ap-hl,
+.ap-tbl .ap-hl {
+  background: #fff3cd !important;
+  font-weight: 700;
+  border: 2px solid var(--ap-orange);
+}
+
+.ap-pos { color: var(--ap-tertiary); font-weight: 700; font-size: 1.1rem; }
+.ap-neg { color: var(--ap-secondary); font-weight: 700; font-size: 1.1rem; }
+
+.ap-ruffini td { min-width: 54px; }
+.ap-ruffini tr:nth-child(3) td { border-top: 2px solid #33475b; }
+
+/* ---------- canvas ---------- */
+.ap-canvas {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  margin: 14px auto 0;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ---------- quiz ---------- */
+.ap-quiz { margin-top: 10px; }
+
+.ap-qitem {
+  border: 1px solid #e6ecf5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  background: #fcfdff;
+}
+
+.ap-qtext { margin-bottom: 8px; line-height: 1.5; }
+.ap-qfb { margin-top: 8px; font-size: .88rem; }
+.ap-qfb:empty { display: none; }
+
+/* ---------- triangulo de Pascal ---------- */
+.ap-pascal-wrap {
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin: 12px 0;
+  line-height: 1.7;
+}
+
+.ap-pascal { letter-spacing: .5px; color: #5a6b78; }
+.ap-pascal.ap-hl { color: var(--ap-purple); font-weight: 700; background: #f9f0ff; border-radius: 6px; }
+
+/* ---------- impresion ---------- */
+@media print {
+  .applet { box-shadow: none; page-break-inside: avoid; }
+  .ap-row, .ap-btn { display: none; }
+  .ap-help { display: block; }
+}

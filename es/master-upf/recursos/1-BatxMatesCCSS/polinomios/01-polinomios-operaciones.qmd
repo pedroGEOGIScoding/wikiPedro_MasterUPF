@@ -1,0 +1,334 @@
+---
+title: "Polinomios y operaciones con polinomios"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios (Parte 1 de 4)"
+filename: 01-polinomios-operaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Concepto, características y operaciones con polinomios
+categories: [matemáticas, bachillerato, polinomios]
+toc: true
+number-sections: true
+page-layout: article
+highlight-style: pygments
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    css: assets/applets.css
+    include-after-body: assets/_scripts.html
+    html-math-method: mathjax
+---
+
+> "Me gustan los polinomios, pero solo hasta cierto grado."
+>
+> Y una cita menos bromista, de Hipatia de Alejandría: *comprender las cosas que nos rodean es la mejor preparación para comprender las cosas que hay más allá*.
+
+# Polinomios: de la expresión algebraica al objeto matemático
+
+El concepto de polinomio aparece desde 3º de ESO. Buena parte de lo que sigue es, por tanto, un repaso; pero hay ampliaciones importantes y, sobre todo, hay una manera nueva de mirar: los polinomios como **objetos con los que se opera**, casi como si fueran números.
+
+## Sintaxis de entrada de los applets manipulativos
+
+Todos los applets comparten el mismo intérprete algebraico. Conviene proyectar esta tabla la primera vez que se usan en clase.
+
+| Quieres escribir | Se teclea | Comentario |
+|---|---|---|
+| $4x^3-2x^2-2x+1$ | `4x^3-2x^2-2x+1` | El signo de multiplicar entre número y $x$ es opcional |
+| $x^{2}$ | `x^2` o `x²` | Se aceptan los superíndices $²$, $³$ y $⁴$ |
+| $(x+1)(x-2)^2$ | `(x+1)(x-2)^2` | El producto de paréntesis se desarrolla automáticamente |
+| $\tfrac{1}{2}x^2-\tfrac{3}{4}$ | `(1/2)x^2-3/4` | El coeficiente fraccionario **debe ir entre paréntesis** |
+| $-\tfrac{5}{2}$ como valor de $x$ | `-5/2` o `-2.5` | En las casillas de números se admiten fracciones y decimales |
+| $2x^3\cdot 5$ | `2x^3*5` | El asterisco es opcional, pero nunca molesta |
+
+::: {.callout-important title="Dos errores de sintaxis que conviene anticipar"}
+1. `1/2x^2` **no** se interpreta como $\frac{1}{2}x^2$, sino como $1$ dividido entre $2x^2$, que no es un polinomio. Escribe siempre `(1/2)x^2`.
+2. Los paréntesis deben cerrarse. Si el applet muestra un aviso rojo, no está roto: te está diciendo exactamente qué carácter no ha entendido.
+:::
+
+
+## De la expresión algebraica al polinomio
+
+### Monomios: los ladrillos
+
+Un **monomio** es el producto de un número real por una potencia de la indeterminada. El número se llama **coeficiente** y la parte con letras, **parte literal**.
+
+$$-7x^3 \qquad 5x \qquad \tfrac{1}{2}x^{4} \qquad 8$$
+
+El último caso, $8$, es un monomio de grado $0$: un número solo también es un monomio.
+
+### Definición formal de polinomio
+
+::: {.callout-note title="Definición (polinomio de grado n en la variable x)"}
+Un polinomio $P(x)$ de grado $n$ en la variable $x$ es una expresión algebraica de la forma
+
+$$P(x)=a_n x^{n}+a_{n-1}x^{n-1}+a_{n-2}x^{n-2}+\cdots+a_2x^2+a_1x+a_0,$$
+
+donde $x \in \mathbb{R}$ y los $a_i \in \mathbb{R}$ para todo $i=0,1,\dots,n$. A $x$ se le llama **variable** porque puede valer cualquier número real; a cada $a_i$, número real fijo, se le llama **coeficiente**. Para que el grado sea exactamente $n$ se exige $a_n \neq 0$.
+:::
+
+Detalles de notación que ahorran muchos disgustos:
+
+- Los **subíndices casan con los exponentes**: $a_k$ acompaña siempre a $x^k$. Así, $a_1$ va con $x=x^1$ y $a_0$ con $x^0=1$.
+- El coeficiente $a_n$ se llama **coeficiente principal**; el coeficiente $a_0$, **término independiente**. A diferencia del principal, $a_0$ **sí** puede ser cero.
+- Si el polinomio se reduce al término independiente, $P(x)=a_0$, su grado es $0$. Los polinomios de grado cero son, exactamente, los números reales no nulos.
+- El **polinomio nulo** es el que tiene todos sus coeficientes iguales a cero. Se escribe $0(x)$ y no se le asigna grado (o se le asigna $-\infty$ por convenio).
+- Un polinomio es **mónico** cuando su coeficiente principal vale $1$.
+- Al conjunto de los polinomios con coeficientes reales en la variable $x$ se le designa $\mathbb{R}[x]$; al de los de grado $n$, $\mathbb{R}_n[x]$.
+
+### Ordenar no cambia el polinomio, pero cambia tu vida
+
+El orden de los sumandos no altera la suma, así que
+
+$$P(x)=7x^3-5x^4-4x^2+8x+1 \qquad\text{y}\qquad Q(x)=7x^3-4x^2+1+8x-5x^4$$
+
+son **el mismo polinomio**. Pero conviene escribirlo ordenado de mayor a menor grado:
+
+$$P(x)=-5x^4+7x^3-4x^2+8x+1.$$
+
+Ordenado, el grado y el coeficiente principal se leen de un vistazo, y las operaciones en columna se colocan solas.
+
+### Número de términos
+
+| Nombre | Términos | Ejemplo |
+|---|---|---|
+| Monomio | 1 | $-7x^3$ |
+| Binomio | 2 | $8x^2+5x$ |
+| Trinomio | 3 | $4y^3-3y+7$ |
+| Cuatrinomio | 4 | $x^3+2x^2-x+5$ |
+
+A partir de cuatro términos se dice simplemente *polinomio*: *poli* (varios) + *nomio* (términos).
+
+### Valor numérico: el polinomio como máquina
+
+Si fijamos un valor concreto de la variable, aparece un número real: el **valor numérico** del polinomio en ese punto. Esto permite ver un polinomio como una función real de variable real,
+
+$$P:\mathbb{R}\longrightarrow \mathbb{R}, \qquad x \longmapsto P(x),$$
+
+idea que será central cuando estudiemos funciones más adelante en el curso.
+
+::: {.callout-note title="Ejemplo resuelto 1.1"}
+Sea $P(x)=4x^3-2x^2-2x+1$. Calculemos su valor numérico en varios puntos, con todos los pasos:
+
+$$P(-3)=4(-3)^3-2(-3)^2-2(-3)+1=-108-18+6+1=-119$$
+$$P(-2)=4(-8)-2(4)-2(-2)+1=-32-8+4+1=-35$$
+$$P(-1)=4(-1)-2(1)-2(-1)+1=-4-2+2+1=-3$$
+$$P(0)=1 \qquad P(1)=4-2-2+1=1 \qquad P(2)=32-8-4+1=21$$
+$$P(10)=4000-200-20+1=3781$$
+
+Observa la diferencia esencial: los coeficientes $4$, $-2$, $-2$, $1$ **no cambian nunca**; la $x$ puede valer cualquier cosa.
+:::
+
+::: {.callout-important title="Error típico"}
+$-2x^2$ evaluado en $x=-3$ es $-2\cdot(-3)^2=-2\cdot 9=-18$, no $+18$. El exponente afecta solo a lo que hay dentro del paréntesis; el signo del coeficiente se aplica después. Lo mismo ocurre con $(-2)^4=16$ frente a $-2^4=-16$.
+:::
+
+<div data-applet="anatomia"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet 1"}
+1. Teclea `1-7x^3+4x+8x^4+6x^5` y comprueba que el applet lo reescribe ordenado como $6x^5+8x^4-7x^3+4x+1$. ¿Ha cambiado el polinomio o solo su aspecto?
+2. Escribe `x^5-3x^2` y observa qué dice de "completo o incompleto" y por qué el término independiente es $0$.
+3. Busca un polinomio de grado 4 cuyo valor numérico en $x=0$ sea $-7$. ¿Hay uno solo o infinitos? Justifícalo mirando qué coeficiente decide $P(0)$.
+:::
+
+## Suma y resta de polinomios
+
+Como un polinomio es una suma de monomios, la suma de dos polinomios es otro polinomio: se suman los monomios **con la misma parte literal**, es decir, los coeficientes de la misma potencia.
+
+::: {.callout-note title="Ejemplo resuelto 1.2 (suma en columna)"}
+$$
+\begin{array}{r}
+x^8-x^7-x^6\phantom{{}+8x^4}-2x^3+5x^2\phantom{{}-2x}-1\\[2pt]
++\;\;8x^4-6x^3\phantom{{}+5x^2}-2x+1\\[2pt]
+\hline
+x^8-x^7-x^6+8x^4-8x^3+5x^2-2x\phantom{{}+0}\\
+\end{array}
+$$
+
+Colocando cada potencia en su columna, sumar polinomios se reduce a sumar números. Fíjate en que los términos $-1$ y $+1$ se cancelan: el resultado no tiene término independiente.
+:::
+
+### Propiedades
+
+Con la suma, $\mathbb{R}[x]$ forma un **grupo conmutativo**:
+
+- **Cerrada**: la suma de dos polinomios es un polinomio.
+- **Asociativa**: $[P+Q]+R=P+[Q+R]$.
+- **Elemento neutro**: el polinomio nulo, $P+0=P$.
+- **Elemento opuesto**: $-P$ se obtiene cambiando el signo de cada coeficiente, y $P+(-P)=0$.
+- **Conmutativa**: $P+Q=Q+P$.
+
+Todas se heredan de las propiedades de los números reales, así que no hay nada nuevo que memorizar: **los polinomios se suman como se suman los números**.
+
+::: {.callout-warning title="Nota muy importante sobre el grado de una suma"}
+Al sumar dos polinomios, el grado del resultado es normalmente el mayor de los dos grados. Pero puede **bajar** si los coeficientes principales son opuestos:
+
+$$(3x^3+4x^2-1)+(-3x^3+5x-3)=4x^2+5x-4,$$
+
+que tiene grado $2$ y no $3$. Lo que **nunca jamás** ocurre es que el grado suba.
+:::
+
+## Producto por un número y producto de polinomios
+
+**Producto por un escalar**: se multiplica cada coeficiente por el número. El grado no cambia (si el número no es cero).
+
+**Producto de polinomios**: se multiplican todos los sumandos de uno por todos los del otro, usando
+
+$$(a x^{n})\cdot(b x^{m})=(ab)\,x^{\,n+m},$$
+
+y después se agrupan los términos de la misma potencia.
+
+::: {.callout-note title="Definición y grado del producto"}
+Si $P$ tiene grado $n$ y $Q$ tiene grado $m$, entonces $P\cdot Q$ tiene grado $n+m$. Razón: el término de mayor grado del producto es $a_n b_m x^{n+m}$, y $a_n b_m \neq 0$ porque ambos coeficientes principales son no nulos.
+:::
+
+::: {.callout-note title="Ejemplo resuelto 1.3"}
+$$(x+5)\big[(x+1)(x-1)\big]=(x+5)(x^2-1)=x^3-x+5x^2-5=x^3+5x^2-x-5$$
+
+Se ha usado la identidad notable $(a+b)(a-b)=a^2-b^2$ para ahorrar trabajo. Guarda este resultado: en el capítulo 3 lo leeremos al revés y será una factorización.
+:::
+
+<div data-applet="operaciones"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet 2"}
+1. Comprueba la regla de los grados con `x^3+2x` y `x^4-1`: el producto debe tener grado $7$.
+2. Encuentra dos polinomios de grado 3 cuya suma tenga grado 1. ¿Cuántas condiciones tienes que imponer?
+3. Multiplica `x^2+x+1` por `x-1`. El resultado, $x^3-1$, es sorprendentemente limpio. ¿Ocurre lo mismo con `x^3+x^2+x+1` por `x-1`? Formula una conjetura general.
+:::
+
+## Potencias e identidades notables
+
+Las **potencias enteras** de un polinomio son productos reiterados: $P(x)^3=P(x)\cdot P(x)\cdot P(x)$. El grado se multiplica: $\operatorname{grado}(P^k)=k\cdot\operatorname{grado}(P)$.
+
+### Las identidades notables
+
+Estas igualdades no son fórmulas nuevas: son productos ya hechos que conviene reconocer al instante, porque **sirven en las dos direcciones**, para desarrollar y para factorizar.
+
+$$(a+b)^2=a^2+2ab+b^2$$
+$$(a-b)^2=a^2-2ab+b^2$$
+$$a^2-b^2=(a+b)(a-b)$$
+$$(x+a)(x+b)=x^2+(a+b)x+ab$$
+$$(a+b)^3=a^3+3a^2b+3ab^2+b^3$$
+$$(a-b)^3=a^3-3a^2b+3ab^2-b^3$$
+$$(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc$$
+$$a^3+b^3=(a+b)(a^2-ab+b^2)$$
+$$a^3-b^3=(a-b)(a^2+ab+b^2)$$
+$$a^4-b^4=(a^2+b^2)(a+b)(a-b)$$
+
+Las tres primeras son **imprescindibles**; las tres siguientes, muy recomendables.
+
+De ellas se derivan los cocientes notables, que anticipan la división de polinomios:
+
+$$\frac{a^2-b^2}{a+b}=a-b, \qquad \frac{a^3-b^3}{a-b}=a^2+ab+b^2, \qquad \frac{a^3+b^3}{a+b}=a^2-ab+b^2.$$
+
+::: {.callout-important title="El error más caro del álgebra"}
+$$(a+b)^2 \neq a^2+b^2.$$
+
+Falta el doble producto. Y no hace falta creerlo por autoridad: con $a=3$ y $b=4$ tenemos $(3+4)^2=49$ mientras que $3^2+4^2=25$. **Un contraejemplo numérico vale más que diez explicaciones.** La misma técnica desmonta $\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}$ y $\frac{1}{a+b}\neq\frac{1}{a}+\frac{1}{b}$.
+:::
+
+### Binomio de Newton
+
+Cuando hay que elevar un binomio a una potencia alta, no se multiplica siete veces: se usa
+
+$$(A+B)^n=\binom{n}{0}A^n+\binom{n}{1}A^{n-1}B+\binom{n}{2}A^{n-2}B^2+\cdots+\binom{n}{n-1}AB^{n-1}+\binom{n}{n}B^n,$$
+
+donde los coeficientes forman una fila del **triángulo de Pascal**. Las identidades notables del cuadrado y del cubo son, simplemente, los casos $n=2$ y $n=3$.
+
+<div data-applet-x="notables"></div>
+
+<div data-applet-x="newton"></div>
+
+::: {.callout-tip title="Actividad guiada con los applets 3 y 16"}
+1. Desarrolla `(2x-3)^2` y comprueba que el applet reconoce el cuadrado de una diferencia. Después teclea `4x^2+9` y observa que **no** lo reconoce: explica por qué.
+2. Con el applet 16, pon $n=4$ y $a=-3$: ¿por qué los signos se alternan? Relaciónalo con $(-3)^k$.
+3. Comprueba que la suma de los números de la fila $n$ del triángulo de Pascal es $2^n$. Sugerencia: evalúa $(1+1)^n$.
+:::
+
+## División entera de polinomios
+
+::: {.callout-note title="Teorema de la división entera en R[x]"}
+Dados dos polinomios $D(x)$ (dividendo) y $d(x)$ (divisor, no nulo), existen **dos únicos** polinomios $c(x)$ (cociente) y $r(x)$ (resto) tales que
+
+$$D(x)=d(x)\cdot c(x)+r(x), \qquad \text{con } \operatorname{grado}(r) < \operatorname{grado}(d).$$
+
+Es la traducción exacta de la división entera de números enteros: $a=cb+r$ con $0\le |r| < |b|$.
+:::
+
+Consecuencias inmediatas:
+
+- El grado del divisor no puede superar el del dividendo (si lo supera, el cociente es $0$ y el resto es el propio dividendo).
+- $\operatorname{grado}(c)=\operatorname{grado}(D)-\operatorname{grado}(d)$.
+- Si $r(x)=0$, la división es **exacta**: decimos que $d(x)$ es un **factor** o **divisor** de $D(x)$, y que $D(x)$ es **divisible** por $d(x)$. Este caso es la puerta de entrada a la factorización.
+
+### Algoritmo, con un ejemplo completo
+
+::: {.callout-note title="Ejemplo resuelto 1.4"}
+Dividamos $x^6-2x^4+3x^3-2x+6$ entre $x-1$.
+
+$$
+\begin{array}{rl}
+x^6-2x^4+3x^3-2x+6 & \;\big|\;\underline{x-1}\\
+\underline{-x^6+x^5}\phantom{-2x^4+3x^3-2x+6} & \; x^5+x^4-x^3+2x^2+2x\\
+x^5-2x^4+3x^3-2x+6 & \\
+\underline{-x^5+x^4}\phantom{-2x^4+3x^3-2x} & \\
+-x^4+3x^3-2x+6 & \\
+\underline{+x^4-x^3}\phantom{+3x^3-2x+6} & \\
+2x^3-2x+6 & \\
+\underline{-2x^3+2x^2}\phantom{-2x+6} & \\
+2x^2-2x+6 & \\
+\underline{-2x^2+2x}\phantom{+6} & \\
+6\phantom{x^2-2x+} &
+\end{array}
+$$
+
+Cociente $c(x)=x^5+x^4-x^3+2x^2+2x$ y resto $r=6$. Comprobación obligatoria:
+
+$$(x-1)(x^5+x^4-x^3+2x^2+2x)+6=x^6-2x^4+3x^3-2x+6.$$
+
+Como el resto no es cero, $x-1$ **no** es factor del dividendo. Y una observación que en el capítulo 2 se convertirá en teorema: el valor del dividendo en $x=1$ es $1-2+3-2+6=6$, que es exactamente el resto.
+:::
+
+::: {.callout-important title="Errores típicos en la división"}
+- **Olvidar los huecos.** Si falta una potencia, hay que reservar su columna con un $0$. Dividir $x^4-1$ entre $x-1$ escribiendo solo dos términos lleva al desastre.
+- **Restar mal.** Se resta el producto completo; el error más frecuente es cambiar el signo de un solo término.
+- **Parar demasiado pronto o demasiado tarde.** Se para cuando el grado del resto es **menor** que el del divisor, ni antes ni después.
+:::
+
+<div data-applet="division"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet 4"}
+1. Divide `x^4-3x^2+2` entre `x^2-1`: comprueba que la división es exacta y escribe la factorización que acabas de obtener.
+2. Divide `x^5-1` entre `x-1`. ¿Reconoces el cociente? Compáralo con el cociente de `x^4-1` entre `x-1` y generaliza.
+3. Divide un polinomio de grado 5 entre uno de grado 5 distinto. ¿Qué grado tiene el cociente? ¿Y el resto?
+4. Pensamiento crítico: si al dividir $D$ entre $d$ el resto es $0$, ¿es cierto que al dividir $d$ entre $D$ el resto también será $0$? Prueba con `x^2-1` y `x-1`.
+:::
+
+## Síntesis del capítulo
+
+| Operación | Cómo se hace | Grado del resultado |
+|---|---|---|
+| Suma y resta | Coeficientes de la misma potencia | El mayor de los dos, o menor si se cancelan los principales; nunca mayor |
+| Producto por un número | Cada coeficiente por el número | El mismo (si el número no es $0$) |
+| Producto | Todos por todos y agrupar | Suma de los grados |
+| Potencia $k$-ésima | Producto reiterado o binomio de Newton | $k$ veces el grado |
+| División entera | Algoritmo de la caja | $\operatorname{grado}(D)-\operatorname{grado}(d)$ para el cociente; el resto, de grado menor que el divisor |
+
+## Ejercicios propuestos
+
+1. Ordena y clasifica: $R(x)=4x^6-2x^4-3x^2-2x+1$. Indica grado, coeficiente principal, término independiente y qué coeficientes son nulos.
+2. Dados $P(x)=2x^3-5x+1$ y $Q(x)=-2x^3+x^2+4$, calcula $P+Q$, $P-Q$ y $P\cdot Q$, y comprueba los grados.
+3. Desarrolla sin multiplicar término a término: $(3x-5)^2$, $(x+2)^3$, $(2x+7)(2x-7)$, $(x-1)^4$.
+4. Divide $2x^4-x^3+3x-1$ entre $x^2+2$ y verifica la identidad de la división.
+5. Halla $a$ para que $x^3+ax^2-4$ sea divisible por $x-2$. (Pista: usa el valor numérico en $x=2$; en el capítulo 2 entenderás por qué funciona.)
+
+::: {.callout-note collapse="true" title="Soluciones (ábrelas después de intentarlo)"}
+1. Grado $6$; coeficiente principal $4$; término independiente $1$; son nulos $a_5$ y $a_3$. Es un polinomio incompleto.
+2. $P+Q=x^2-5x+5$ (grado $2$: se han cancelado los términos de grado 3). $P-Q=4x^3-x^2-5x-3$ (grado 3). $P\cdot Q$ tiene grado $6$.
+3. $9x^2-30x+25$; $x^3+6x^2+12x+8$; $4x^2-49$; $x^4-4x^3+6x^2-4x+1$.
+4. Cociente $2x^2-x-4$, resto $5x+7$. Comprobación: $(x^2+2)(2x^2-x-4)+5x+7=2x^4-x^3+3x-1$.
+5. $P(2)=8+4a-4=0 \Rightarrow a=-1$.
+:::
