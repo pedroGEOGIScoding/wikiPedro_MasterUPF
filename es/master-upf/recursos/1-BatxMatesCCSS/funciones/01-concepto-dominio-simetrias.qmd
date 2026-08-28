@@ -1,0 +1,255 @@
+---
+title: "Funciones: concepto, dominio y simetrías"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 1 de 4)"
+filename: 01-concepto-dominio-simetrias
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Primera parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al concepto de función real de variable real, al dominio y el recorrido, y al estudio de las simetrías par e impar
+categories: [funciones, dominio, recorrido, simetría, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un torneo con truco
+
+Cuenta la leyenda que en el País de las Maravillas se reunían cada año todos los magos y magas para celebrar una fiesta que terminaba en un torneo. Se sentaban formando un círculo, se numeraban, y la primera persona tomaba la única varita del torneo. Con ella hacía desaparecer a la segunda y pasaba la varita a la tercera. La tercera hacía desaparecer a la cuarta y pasaba la varita a la quinta. Y así hasta que quedaba una sola persona, que ganaba.
+
+El primer año se presentaron $13$ participantes y ganó la joven Alicia. El segundo año fueron $100$ y volvió a ganar. Alicia ganaba siempre, con independencia de cuántos se presentaran.
+
+¿En qué posición se colocaba? Y sobre todo: **¿qué función relaciona el número de participantes con la posición ganadora?** Ese es el tipo de pregunta que este tema aprende a responder.
+
+## Funciones reales de variable real
+
+Con este tema dejamos atrás los contenidos algebraicos y entramos en el análisis matemático.
+
+::: {.callout-note title="Definición"}
+Una **función real de variable real** $f$ es una relación que asocia a cada número real $x$ **un único** número real $y=f(x)$. Se escribe
+
+$$
+f:\mathbb{R}\longrightarrow\mathbb{R},\qquad x\longmapsto y=f(x).
+$$
+
+La variable $x$ se llama **independiente** y la variable $y$, **dependiente**.
+:::
+
+La palabra clave de la definición es **único**. Si a un valor de $x$ le correspondieran dos valores de $y$, no tendríamos una función.
+
+### Tres formas de expresar una función
+
+| Forma | En qué consiste |
+|---|---|
+| Expresión analítica | Una fórmula, como $y=2x-1$ |
+| Tabla de valores | Parejas relacionadas, en dos columnas |
+| Gráfica | El conjunto de puntos $\left(x,f(x)\right)$ del plano |
+
+Nótese que escribir $f(x)=2x-1$ y escribir $y=2x-1$ es exactamente lo mismo. La primera notación subraya que $2x-1$ es una función; la segunda, que la **altura** del punto de abscisa $x$ vale $2x-1$.
+
+::: {.callout-important title="Límite de la tabla de valores"}
+La tabla es una buena aproximación a la gráfica, pero no está exenta de error: **desconocemos qué pasa entre dos puntos consecutivos**. El error se reduce dando más puntos y más próximos, pero para eso hay que conocer la expresión analítica.
+:::
+
+<div data-applet-fn="maquina"></div>
+
+::: {.callout-tip title="Actividad guiada con la máquina de funciones"}
+1. Escribe `7.5x`, que modela el precio de la tela a $7{,}50$ euros el metro. Completa la tabla para $0{,}5$, $1$, $1{,}5$, $2$ y $2{,}5$ metros y comprueba que cada longitud tiene un único precio.
+2. Cambia a `x^2-3` con paso $1$. Compara la tabla con la gráfica: ¿podrías haber adivinado la forma solo con la tabla?
+3. Escribe `1/x` y pon la entrada en $0$. Lee el aviso: ese valor no está en el dominio.
+4. Prueba `sqrt(x)` con entrada $-4$. ¿Por qué no existe la imagen?
+:::
+
+### Criterio de la recta vertical
+
+Una gráfica representa una función si **ninguna recta vertical la corta en más de un punto**. Es la traducción geométrica de la unicidad de la imagen.
+
+Por eso la circunferencia $x^2+y^2=9$ no es la gráfica de una función, y tampoco lo es la relación $y=\pm\sqrt{x}$: para un mismo $x$ habría dos valores de $y$.
+
+::: {.callout-caution title="Pensamiento crítico"}
+Piensa en estas tres relaciones y decide cuáles son funciones. Primera: la cantidad de fruta que compra una familia, en kilos, y el número de piezas que entran. Segunda: los kilos de fruta y el precio total de la compra. Tercera: los kilos de fruta y el precio de un kilo.
+
+La segunda sí lo es. La tercera también, aunque sea constante. La primera no, porque dos kilos de fruta pueden corresponder a un número muy variable de piezas.
+:::
+
+<div data-applet-fn="esfuncion"></div>
+
+::: {.callout-tip title="Actividad guiada con el criterio de la recta vertical"}
+1. Elige la parábola y mueve la recta vertical por todo el recorrido. ¿Cuántos cortes encuentras siempre?
+2. Cambia a la circunferencia. Localiza los valores de $x$ donde hay dos cortes, uno solo, y ninguno.
+3. Con la relación $\pm\sqrt{x}$, sitúa la recta en $x=0$. Es el único sitio donde hay un solo corte. ¿Basta eso para que sea función?
+4. Con la cúbica $x^{3}-3x$ hay tres cortes con el eje horizontal, pero solo uno con cada vertical. Explica por qué eso sí es una función.
+:::
+
+## Dominio y recorrido
+
+::: {.callout-note title="Definición"}
+Dada una función $f$:
+
+- El **dominio** es el conjunto de valores para los que la función está definida. Se escribe $\operatorname{Dom} f$.
+- El **recorrido** o imagen es el conjunto de valores que la función alcanza. Se escribe $\operatorname{Im} f$.
+:::
+
+Gráficamente, el dominio se lee proyectando la gráfica sobre el eje horizontal, y el recorrido proyectándola sobre el eje vertical.
+
+### Cómo se calcula el dominio
+
+No hace falta la gráfica: basta mirar la expresión analítica y localizar dónde podría haber problemas.
+
+| Operación presente | Condición que impone |
+|---|---|
+| Solo polinomios | Ninguna, el dominio es $\mathbb{R}$ |
+| Incógnita en un denominador | El denominador no puede anularse |
+| Raíz de índice **par** | El radicando debe ser mayor o igual que cero |
+| Raíz de índice **impar** | Ninguna condición nueva |
+| Logaritmo | El argumento debe ser estrictamente positivo |
+| Valor absoluto | Ninguna condición |
+
+### Ejemplos de cálculo
+
+$$
+f(x)=3x^{2}+2x-7\ \Longrightarrow\ \operatorname{Dom} f=\mathbb{R}.
+$$
+
+$$
+f(x)=\frac{3}{x+1}\ \Longrightarrow\ x+1\neq 0\ \Longrightarrow\ \operatorname{Dom} f=\mathbb{R}-\{-1\}.
+$$
+
+$$
+f(x)=\sqrt{x-1}\ \Longrightarrow\ x-1\geq 0\ \Longrightarrow\ \operatorname{Dom} f=[1,+\infty).
+$$
+
+$$
+f(x)=\log(x+1)\ \Longrightarrow\ x+1>0\ \Longrightarrow\ \operatorname{Dom} f=(-1,+\infty).
+$$
+
+$$
+f(x)=\frac{1}{\ln x}\ \Longrightarrow\ x>0\ \text{y}\ x\neq 1\ \Longrightarrow\ \operatorname{Dom} f=(0,+\infty)-\{1\}.
+$$
+
+El último caso combina dos condiciones: el logaritmo exige argumento positivo, y además el denominador no puede anularse, lo que ocurre cuando $\ln x=0$, es decir en $x=1$.
+
+::: {.callout-note title="Un dominio que es una unión de intervalos"}
+Para $f(x)=\sqrt{x^{2}-1}$ hay que resolver la inecuación $x^{2}-1\geq 0$. Las raíces son $-1$ y $1$, y estudiando el signo se obtiene
+
+$$
+\operatorname{Dom} f=(-\infty,-1]\cup[1,+\infty).
+$$
+
+Aquí se ve por qué el tema de inecuaciones era necesario antes de este: **calcular dominios es resolver inecuaciones**.
+:::
+
+<div data-applet-fn="dominio"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de dominios"}
+1. Recorre los cinco ejemplos del apartado y compara las pistas del applet con las condiciones que has escrito tú.
+2. Prueba `(x^4+4)/(x^2-4)`. ¿Cuántos puntos hay que excluir y por qué?
+3. Prueba `x/(x^2+9)`. El denominador nunca se anula: el dominio es todo $\mathbb{R}$. Razónalo sin la gráfica.
+4. Compara `sqrt(x^2-1)` con `cbrt(x^2-1)`. Solo cambia el índice, y el dominio cambia por completo.
+5. Prueba `log(x-16)` y localiza la frontera del dominio.
+6. Prueba `exp(1/x)`. Hay una única exclusión, y no la provoca la exponencial.
+:::
+
+<div data-applet-fn="recorrido"></div>
+
+::: {.callout-tip title="Actividad guiada con dominio y recorrido en la gráfica"}
+1. Con `x^2-3`, lee el recorrido en la ventana $[-6,6]$ y compáralo con el mínimo de la parábola.
+2. Con `sqrt(x)`, observa que dominio y recorrido son ambos $[0,+\infty)$ pero por razones distintas.
+3. Compara `exp(x)` con `ln(x)`. Sus dominios y recorridos están intercambiados. Guarda esa observación: reaparecerá con la función inversa.
+4. Con `1/x`, mira los cortes con los ejes. No hay ninguno: explica por qué.
+5. Amplía la ventana en `x^2-3` y comprueba que el recorrido observado crece. ¿Está acotado por arriba?
+:::
+
+<div data-applet-fn="proyecciones"></div>
+
+::: {.callout-tip title="Actividad guiada con las proyecciones"}
+1. Con la semicircunferencia, tapa la pantalla y predice dónde caerán las dos sombras antes de activarlas.
+2. Cambia a `1/x`. ¿Por qué las dos sombras están partidas en dos trozos?
+3. Compara `exp(x)` con `ln(x)`. Las sombras están intercambiadas: relaciónalo con la función inversa.
+4. Con `x^2-4`, comprueba que el recorrido empieza en el mínimo y no en cero.
+5. Amplía la ventana en `x^3` y observa que la sombra morada se alarga sin límite.
+:::
+
+### Ejemplo de GeoGebra
+
+<div class="gg-embed">
+  <iframe src="https://www.geogebra.org/material/iframe/id/tj4huygj/width/800/height/500/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false"
+        loading="lazy" allowfullscreen
+        title="Dominio y recorrido de una función">
+  </iframe>
+</div>
+
+
+## Funciones simétricas
+
+::: {.callout-note title="Definición"}
+Dada una función $f$, se dice que es:
+
+- **Simétrica respecto del eje vertical** si para cualquier $x$ del dominio se cumple $f(-x)=f(x)$. Estas funciones se llaman **pares**.
+- **Simétrica respecto del origen** si para cualquier $x$ del dominio se cumple $f(-x)=-f(x)$. Estas funciones se llaman **impares**.
+:::
+
+### Método de estudio
+
+Se sustituye $x$ por $-x$ en la expresión y se compara el resultado con la función original y con su opuesta.
+
+**Ejemplo primero.** Sea $f(x)=\dfrac{1}{x}$.
+
+$$
+f(-x)=\frac{1}{-x}=-\frac{1}{x}=-f(x),
+$$
+
+luego es **impar**, simétrica respecto del origen.
+
+**Ejemplo segundo.** Sea $g(x)=\sqrt{x^{2}-1}$.
+
+$$
+g(-x)=\sqrt{(-x)^{2}-1}=\sqrt{x^{2}-1}=g(x),
+$$
+
+luego es **par**, simétrica respecto del eje vertical.
+
+::: {.callout-important title="Lo más frecuente es no tener simetría"}
+Muchas funciones no son pares ni impares. Con $f(x)=x-1$ tenemos $f(-x)=-x-1$, que no coincide ni con $f(x)$ ni con $-f(x)=-x+1$. No es un defecto: la mayoría de funciones no presenta ninguna de las dos simetrías.
+:::
+
+::: {.callout-note title="Regla práctica con los exponentes"}
+En un polinomio, si todos los exponentes son **pares** la función es par; si todos son **impares**, es impar. Basta un solo término que rompa la paridad para que se pierda la simetría. Por eso $x^{2}-6x-7$ no es par, aunque tenga un término cuadrático.
+:::
+
+### Funciones periódicas
+
+Una función es **periódica de periodo** $T>0$ si su gráfica se repite en intervalos de longitud $T$. Conocida la gráfica en un intervalo de longitud $T$, el resto se construye trasladándola a derecha e izquierda.
+
+Es la propiedad característica de las funciones trigonométricas, que no forman parte de este curso, pero también aparece en modelos estacionales: ventas por trimestres, temperaturas mensuales, afluencia turística.
+
+<div data-applet-fn="simetria"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de simetrías"}
+1. Comprueba los dos ejemplos resueltos, `1/x` y `sqrt(x^2-1)`, y lee la tabla de valores opuestos.
+2. Prueba `x-1`. El applet dirá que no hay simetría. Localiza en la tabla la pareja de valores que lo demuestra.
+3. Prueba `3/x^2`, `x^4-2x^2` y `2x^3-5x`. Clasifícalas antes de mirar el resultado, usando solo los exponentes.
+4. Prueba `x^2+x`. ¿Por qué el término lineal arruina la paridad?
+5. Reto: busca una función que sea par **e** impar a la vez. Solo hay una familia, y el applet la reconoce.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Creer que una relación es función porque tiene una fórmula, sin comprobar la unicidad de la imagen.
+2. Confundir dominio con recorrido, o leerlos en el eje equivocado.
+3. Olvidar que en las raíces de índice par el radicando puede ser cero, no solo positivo.
+4. Escribir el dominio de $\dfrac{1}{\ln x}$ como $(0,+\infty)$, sin excluir el $1$.
+5. Dar el dominio de $\sqrt{x^{2}-1}$ como un solo intervalo, cuando es una unión de dos.
+6. Concluir que una función es par porque tiene un término al cuadrado.
+7. Comprobar la simetría en un solo valor de $x$ y generalizar.
+
+## Continúa el tema
+
+La siguiente página estudia los tipos de funciones algebraicas más importantes: **polinómicas, afines y cuadráticas**, junto con la interpolación lineal y cuadrática, que permite estimar valores de una función cuya fórmula desconocemos.

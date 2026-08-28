@@ -1,0 +1,270 @@
+---
+title: "Funciones polinómicas e interpolación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 2 de 4)"
+filename: 02-polinomicas-lineal-cuadratica-interpolacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Segunda parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las funciones polinómicas, la función afín y lineal, la función cuadrática y la interpolación lineal y cuadrática
+categories: [funciones, polinómicas, afín, cuadrática, interpolación, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Funciones polinómicas
+
+Una función polinómica es aquella cuya expresión analítica es un polinomio:
+
+$$
+f(x)=a_{n}x^{n}+a_{n-1}x^{n-1}+\ldots+a_{1}x+a_{0}.
+$$
+
+Su dominio es **siempre** todo $\mathbb{R}$, porque un polinomio se puede evaluar en cualquier número real. No hay denominadores, ni raíces, ni logaritmos que impongan condiciones.
+
+### Lo que dice el grado
+
+| Grado | Nombre | Gráfica |
+|---|---|---|
+| $0$ | Constante | Recta horizontal |
+| $1$ | Afín o lineal | Recta |
+| $2$ | Cuadrática | Parábola |
+| $3$ | Cúbica | Curva con hasta dos cambios de dirección |
+
+Dos observaciones útiles. El número de cortes con el eje horizontal **nunca supera el grado**, porque esos cortes son las raíces del polinomio. Y el corte con el eje vertical es siempre el término independiente, porque $f(0)=a_{0}$.
+
+<div data-applet-fn="polinomica"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de polinómicas"}
+1. Con $a=1$, $b=0$, $c=-3$, $d=0$ obtienes $x^{3}-3x$. Cuenta los cortes con el eje horizontal y compáralo con el grado.
+2. Pon $a=0$: la función baja a grado dos. Pon también $b=0$: baja a grado uno. Observa cómo cambia el número máximo de cortes.
+3. Mueve solo $d$. La gráfica se desplaza verticalmente sin cambiar de forma. Guarda esa idea para las transformaciones.
+4. Compara las ramas de un polinomio de grado tres con las de uno de grado dos. En grado impar salen en direcciones opuestas.
+:::
+
+## Función afín y función lineal
+
+Las funciones polinómicas de primer grado se llaman **afines** y son del tipo
+
+$$
+f(x)=mx+n.
+$$
+
+Su gráfica es una recta de pendiente $m$ que pasa por el punto $(0,n)$. El número $n$ se llama **ordenada en el origen**.
+
+### Casos particulares
+
+- Si $m=0$, la función $f(x)=n$ se llama **constante**, y su gráfica es una recta paralela al eje horizontal.
+- Si $n=0$, la función $f(x)=mx$ se llama **lineal**, y su gráfica pasa por el origen. Es la función de proporcionalidad directa.
+- Si $m\neq0$ y $n\neq0$, la recta es creciente cuando $m>0$ y decreciente cuando $m<0$.
+
+::: {.callout-note title="Qué es exactamente la pendiente"}
+La pendiente es la variación de $y$ cuando $x$ aumenta **una** unidad:
+
+$$
+m=\frac{\Delta y}{\Delta x}=\frac{y_{2}-y_{1}}{x_{2}-x_{1}}.
+$$
+
+Y está ligada a la trigonometría: $m=\tan\alpha$, donde $\alpha$ es el ángulo que la recta forma con el eje horizontal. Por tanto $\alpha=\arctan m$.
+:::
+
+### Ejemplo de cálculo
+
+Para $y=3x-1$, damos dos valores. Con $x=0$ obtenemos $y=-1$, luego pasa por $(0,-1)$. Con $x=1$ obtenemos $y=2$, luego pasa por $(1,2)$. La pendiente es
+
+$$
+m=\frac{2-(-1)}{1-0}=3,
+$$
+
+que coincide con el coeficiente de $x$, como debía ser. El ángulo con el eje horizontal es $\arctan 3\approx 71{,}57^{\circ}$.
+
+<div data-applet-fn="afin"></div>
+
+::: {.callout-tip title="Actividad guiada con el applet de la función afín"}
+1. Reproduce $y=3x-1$ y verifica la pendiente, el corte con el eje vertical y el ángulo.
+2. Pon $m=0$ y $n=2$. ¿Qué tipo de función es? ¿Corta al eje horizontal?
+3. Pon $n=0$ y mueve $m$. Todas las rectas pasan por el mismo punto: ¿cuál?
+4. Busca la recta que pasa por $(0,4)$ y corta al eje horizontal en $x=2$.
+5. Compara $m=2$ con $m=-2$. El ángulo cambia de signo: interprétalo.
+:::
+
+<div data-applet-fn="rectados"></div>
+
+::: {.callout-tip title="Actividad guiada con la recta por dos puntos"}
+1. Con $(0,-1)$ y $(1,2)$ recupera $y=3x-1$.
+2. Con $(-1,0)$ y $(0,2)$ obtén la recta y comprueba que su ángulo es $\arctan 2\approx 63{,}43^{\circ}$.
+3. Pon los dos puntos con la misma abscisa. Lee el aviso: la recta sería vertical y no es una función.
+4. Pon los dos puntos con la misma ordenada. La pendiente vale cero: función constante.
+5. Calcula la distancia entre $(3,6)$ y $(2,9)$ y comprueba que vale $\sqrt{10}$.
+:::
+
+## Función cuadrática
+
+Las funciones polinómicas de segundo grado se llaman **cuadráticas**:
+
+$$
+f(x)=ax^{2}+bx+c,\qquad a\neq 0.
+$$
+
+Su gráfica es una **parábola**, y su dominio es $\mathbb{R}$.
+
+### Elementos que hay que saber localizar
+
+El **vértice** tiene abscisa
+
+$$
+x_{V}=-\frac{b}{2a},
+$$
+
+y su ordenada se obtiene sustituyendo, o bien con la fórmula
+
+$$
+y_{V}=-\frac{b^{2}-4ac}{4a}.
+$$
+
+Además:
+
+- Si $a>0$, el vértice es un **mínimo** y las ramas abren hacia arriba.
+- Si $a<0$, el vértice es un **máximo** y las ramas abren hacia abajo.
+- Cuanto mayor es $|a|$, más cerradas son las ramas.
+- La recta vertical $x=x_{V}$ es el **eje de simetría** de la parábola.
+- El recorrido es $[y_{V},+\infty)$ si $a>0$, y $(-\infty,y_{V}]$ si $a<0$.
+
+### Ejemplo de cálculo
+
+Representamos $f(x)=-x^{2}+4x-1$.
+
+$$
+x_{V}=-\frac{4}{2\cdot(-1)}=2,\qquad y_{V}=f(2)=-4+8-1=3.
+$$
+
+El vértice es $V(2,3)$ y, como $a=-1<0$, se trata de un **máximo**. Construyendo una tabla de valores alrededor del vértice se dibuja la parábola con precisión.
+
+### Forma canónica
+
+Toda parábola se puede escribir como
+
+$$
+f(x)=a\left(x-h\right)^{2}+k,
+$$
+
+donde $(h,k)$ es **directamente** el vértice. Esta escritura ahorra cálculos y anticipa el apartado de transformaciones: $h$ traslada en horizontal y $k$ en vertical.
+
+<div data-applet-fn="cuadratica"></div>
+
+::: {.callout-tip title="Actividad guiada con la función cuadrática"}
+1. Reproduce $f(x)=-x^{2}+4x-1$ y comprueba el vértice $V(2,3)$ y que es un máximo.
+2. Mantén $b$ y $c$ y cambia $a$ de $-1$ a $1$. El vértice pasa de máximo a mínimo. ¿Se mueve también de sitio?
+3. Prueba $a=1$, $b=-1$, $c=-2$, que es $x^{2}-x-2$. Localiza los dos cortes con el eje horizontal.
+4. Busca coeficientes para que la parábola no corte el eje horizontal. Comprueba el signo del discriminante.
+5. Aumenta $|a|$ manteniendo el vértice y observa cómo se cierran las ramas.
+6. Representa a la vez, mentalmente, $f(x)=3x-1$ y $g(x)=5x+4$ y halla su punto de corte. Después compruébalo resolviendo el sistema.
+:::
+
+<div data-applet-fn="canonica"></div>
+
+::: {.callout-tip title="Actividad guiada con la forma canónica"}
+1. Con $a=1$, $h=2$, $k=-3$, desarrolla a mano la expresión y compárala con la que muestra el applet.
+2. Mueve $h$ y $k$ sin tocar $a$. La forma no cambia: solo se traslada.
+3. Busca los valores de $h$ y $k$ que hacen que la parábola sea tangente al eje horizontal.
+4. Escribe $x^{2}-6x+5$ en forma canónica completando cuadrados y verifica con el applet.
+:::
+
+## Interpolación y extrapolación
+
+Hasta ahora conocíamos la fórmula de la función. Pero muchas veces solo tenemos **datos**, y necesitamos estimar valores intermedios.
+
+::: {.callout-note title="Definición"}
+La **interpolación** permite conocer de manera aproximada valores intermedios que toma una función desconocida a partir de datos conocidos. Cuando el valor buscado queda **fuera** del intervalo conocido, pero muy próximo, se habla de **extrapolación**.
+:::
+
+### Interpolación lineal
+
+Si conocemos dos puntos $(x_{0},y_{0})$ y $(x_{1},y_{1})$ de una función cuya expresión desconocemos, para $x\in[x_{0},x_{1}]$ estimamos
+
+$$
+f(x)=y_{0}+\frac{y_{1}-y_{0}}{x_{1}-x_{0}}\left(x-x_{0}\right).
+$$
+
+Es simplemente la recta que pasa por los dos puntos conocidos.
+
+**Ejemplo de cálculo.** La población española en miles de habitantes fue de $18\,617$ en 1900 y de $21\,389$ en 1920. Estimemos la de 1910:
+
+$$
+f(1910)=18\,617+\frac{21\,389-18\,617}{1920-1900}\left(1910-1900\right)=20\,003,
+$$
+
+es decir unos $20\,003\,000$ habitantes.
+
+::: {.callout-important title="La fiabilidad depende de la distancia"}
+En la interpolación lineal se cumplen dos cosas: se desconoce la expresión analítica de la función, y **cuanto más próximos estén $x_{0}$ y $x_{1}$, menor es el error** de suponer que la función es una recta en ese tramo.
+:::
+
+### Interpolación cuadrática
+
+Si conocemos **tres** puntos no alineados, podemos ajustar una parábola $f(x)=ax^{2}+bx+c$ imponiendo que pase por los tres. Eso obliga a resolver un sistema de tres ecuaciones con tres incógnitas, exactamente lo que se aprende con el método de Gauss.
+
+**Ejemplo de cálculo.** Con los datos de población de 1900, 1920 y 1940, el sistema es
+
+$$
+\left\{
+\begin{array}{l}
+18\,617=a\cdot 1900^{2}+b\cdot 1900+c\\
+21\,389=a\cdot 1920^{2}+b\cdot 1920+c\\
+26\,014=a\cdot 1940^{2}+b\cdot 1940+c
+\end{array}
+\right.
+$$
+
+Resolviéndolo y evaluando en 1910 se obtiene una estimación de unos $20\,679$ miles de habitantes, algo distinta de la que daba la interpolación lineal.
+
+::: {.callout-caution title="Pensamiento crítico"}
+Los dos métodos dan resultados diferentes para el mismo año: $20\,003$ frente a $20\,679$. ¿Cuál es mejor? No hay una respuesta automática. La parábola usa más información, pero también supone una forma concreta de crecimiento. Con datos casi lineales, la recta es más prudente. Interpolar siempre es **modelizar**, y modelizar siempre es decidir.
+:::
+
+### Extrapolación
+
+Con los datos de población de 2019, 2020 y 2021 se puede estimar la de 2022 prolongando la recta del último tramo. La técnica es idéntica; lo que cambia es la confianza: fuera del intervalo conocido no hay nada que garantice que la tendencia continúe.
+
+<div data-applet-fn="interlineal"></div>
+
+::: {.callout-tip title="Actividad guiada con la interpolación lineal"}
+1. Reproduce el ejemplo de 1910 y comprueba el valor $20\,003$.
+2. Estima la población de 1970 a partir de los datos de 1960, que eran $30\,583$, y de 1981, que eran $37\,743$. Debe salir unos $33\,993$ miles.
+3. Estima $\sqrt{10}$ tomando $(9,3)$ y $(16,4)$. Compara con el valor real y calcula el error.
+4. Repite la estimación de $\sqrt{10}$ con $(9,3)$ y $(11,\sqrt{11})$. ¿Mejora el resultado? Relaciónalo con la distancia entre los puntos.
+5. Pide un valor fuera del intervalo y observa el aviso de extrapolación.
+:::
+
+<div data-applet-fn="intercuadratica"></div>
+
+::: {.callout-tip title="Actividad guiada con la interpolación cuadrática"}
+1. Con los beneficios $(2017,12315)$, $(2019,16240)$ y $(2021,23230)$, estima 2018.
+2. Compara ese resultado con la interpolación lineal entre 2017 y 2019. ¿Cuál es mayor? ¿Por qué?
+3. Comprueba que la parábola pasa exactamente por los tres puntos dados. El applet lo verifica.
+4. Pon tres puntos alineados y observa qué ocurre con el coeficiente $a$.
+5. Reto: estima $\sqrt{10}$ con tres puntos, $(4,2)$, $(9,3)$ y $(16,4)$, y compara con la interpolación lineal.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Creer que una función polinómica puede tener puntos excluidos del dominio.
+2. Confundir función lineal con función afín: la lineal pasa por el origen.
+3. Calcular el vértice como $x=\dfrac{b}{2a}$, olvidando el signo menos.
+4. Dar el recorrido de una parábola como $\mathbb{R}$.
+5. Interpretar la pendiente como el valor de $y$, en lugar de como su variación.
+6. En la forma canónica, leer el vértice como $(-h,k)$.
+7. Interpolar con puntos que no encierran el valor buscado, sin advertir que se está extrapolando.
+8. Presentar una estimación interpolada como si fuera un dato exacto.
+
+## Continúa el tema
+
+La página siguiente aborda las funciones **racionales, con radicales, la función inversa, las definidas a trozos y el valor absoluto**, donde el dominio deja de ser todo $\mathbb{R}$ y aparecen las asíntotas.

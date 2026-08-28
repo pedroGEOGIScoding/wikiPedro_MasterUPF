@@ -1,0 +1,274 @@
+---
+title: "Operaciones, composición y transformaciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 4 de 4)"
+filename: 04-operaciones-composicion-transformaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cuarta parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las operaciones con funciones, la composición de funciones y las transformaciones elementales de gráficas
+categories: [funciones, operaciones, composición, transformaciones, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Operaciones con funciones
+
+Dadas dos funciones $f$ y $g$, se pueden combinar **punto a punto** para obtener funciones nuevas.
+
+$$
+\left(f+g\right)(x)=f(x)+g(x),\qquad \left(f-g\right)(x)=f(x)-g(x),
+$$
+
+$$
+\left(f\cdot g\right)(x)=f(x)\cdot g(x),\qquad \left(\frac{f}{g}\right)(x)=\frac{f(x)}{g(x)}.
+$$
+
+### La cuestión del dominio
+
+Para que el resultado exista en un punto, **las dos funciones deben existir en ese punto**. Por tanto
+
+$$
+\operatorname{Dom}(f+g)=\operatorname{Dom}(f-g)=\operatorname{Dom}(f\cdot g)=\operatorname{Dom} f\cap\operatorname{Dom} g.
+$$
+
+En el cociente hay una condición añadida:
+
+$$
+\operatorname{Dom}\left(\frac{f}{g}\right)=\left\{x\in\operatorname{Dom} f\cap\operatorname{Dom} g\ :\ g(x)\neq 0\right\}.
+$$
+
+### Ejemplo de cálculo
+
+Sean $f(x)=x^{2}-2x$ y $g(x)=\dfrac{3}{x}$.
+
+$$
+\left(f+g\right)(x)=x^{2}-2x+\frac{3}{x}=\frac{x^{3}-2x^{2}+3}{x},
+$$
+
+$$
+\left(f\cdot g\right)(x)=\left(x^{2}-2x\right)\cdot\frac{3}{x}=\frac{3x^{3}-6x}{x}=3x-6,
+$$
+
+$$
+\left(\frac{f}{g}\right)(x)=\frac{x^{2}-2x}{\dfrac{3}{x}}=\frac{x^{3}-2x^{2}}{3}.
+$$
+
+Evaluando: $\left(f+g\right)(1)=2$, $\left(f\cdot g\right)(2)=0$ y $\left(\dfrac{f}{g}\right)(-1)=-1$.
+
+::: {.callout-caution title="Pensamiento crítico: simplificar cambia el dominio"}
+En el producto hemos simplificado y obtenido $3x-6$, que está definida en todo $\mathbb{R}$. Pero la función original $\left(f\cdot g\right)$ **no existe en $x=0$**, porque $g$ no existe ahí. La expresión simplificada y la función no son el mismo objeto: coinciden en todos los puntos del dominio original, pero el dominio hay que arrastrarlo desde el principio.
+
+Es exactamente el mismo fenómeno que ya viste al simplificar fracciones algebraicas.
+:::
+
+::: {.callout-note title="Un caso para pensar"}
+Dadas $f(x)=x+2$ y $g(x)=\ln(x+1)$, ¿se puede calcular $\left(\dfrac{f}{g}\right)(-2)$? No: el logaritmo exige $x+1>0$, es decir $x>-1$, y $-2$ no cumple la condición. El punto queda fuera del dominio antes de plantearse el cociente.
+:::
+
+<div data-applet-fn="operaciones"></div>
+
+::: {.callout-tip title="Actividad guiada con las operaciones"}
+1. Reproduce el ejemplo con `x^2-2x` y `3/x`. Comprueba $\left(f\cdot g\right)(2)=0$ y $\left(f+g\right)(1)=2$.
+2. Pon la operación en cociente y localiza los ceros de $g$ que el applet marca en rojo.
+3. Cambia a `sqrt(x)` y `x/(x+1)`. ¿Cuál es la intersección de los dominios? Evalúa en $4$ y en $-1$.
+4. Con la suma, evalúa en $x=0$ y explica el aviso.
+5. Observa las curvas grises: son las funciones de partida. Localiza los puntos donde el resultado azul desaparece.
+:::
+
+## Composición de funciones
+
+Componer es **aplicar una función al resultado de otra**:
+
+$$
+\left(g\circ f\right)(x)=g\left(f(x)\right).
+$$
+
+Se lee «$g$ compuesta con $f$», y actúa primero $f$ y después $g$. Ese orden inverso al de la escritura es la principal fuente de confusión.
+
+### Condición de existencia
+
+Para que exista $\left(g\circ f\right)(x)$ hacen falta dos cosas: que $x$ pertenezca al dominio de $f$, y que el valor $f(x)$ pertenezca al dominio de $g$.
+
+### Ejemplo de cálculo
+
+Sean $f(x)=x-3$ y $g(x)=\sqrt{x}$.
+
+$$
+\left(g\circ f\right)(x)=g\left(x-3\right)=\sqrt{x-3},
+$$
+
+que existe solo si $x-3\geq 0$, es decir en $[3,+\infty)$. En cambio
+
+$$
+\left(f\circ g\right)(x)=f\left(\sqrt{x}\right)=\sqrt{x}-3,
+$$
+
+que existe en $[0,+\infty)$. **Las dos composiciones son funciones distintas y con dominios distintos.**
+
+::: {.callout-important title="La composición no es conmutativa"}
+En general $g\circ f\neq f\circ g$. Con $f(x)=x+1$ y $g(x)=x^{2}$:
+
+$$
+\left(g\circ f\right)(x)=\left(x+1\right)^{2}=x^{2}+2x+1,
+$$
+
+$$
+\left(f\circ g\right)(x)=x^{2}+1.
+$$
+
+Coinciden solo si $x=0$. Comprobar la composición en un único punto **no demuestra** que las dos coincidan.
+:::
+
+### La composición y la función inversa
+
+Aquí se cierra una idea de la página anterior. Si $g$ es la inversa de $f$, entonces componerlas devuelve el punto de partida:
+
+$$
+\left(f^{-1}\circ f\right)(x)=x,\qquad \left(f\circ f^{-1}\right)(x)=x.
+$$
+
+Esa es, de hecho, la definición precisa de función inversa, y explica por qué las gráficas son simétricas respecto de la recta $y=x$: esa recta es la función identidad.
+
+<div data-applet-fn="composicion"></div>
+
+::: {.callout-tip title="Actividad guiada con la composición"}
+1. Con `x-3` y `sqrt(x)`, sigue el valor $7$ paso a paso: primero por $f$, después por $g$.
+2. Sigue ahora el valor $1$. El applet avisa de que no existe. ¿En qué paso falla?
+3. Compara las dos composiciones en $x=2$ y comprueba que no coinciden.
+4. Prueba `x+1` con `x^2` y encuentra el único valor donde las dos composiciones coinciden.
+5. Prueba `3x+9` con `x/3-3`. Las dos composiciones dan la recta $y=x$: son funciones inversas.
+6. Busca un par de funciones para las que la composición no exista en ningún punto.
+:::
+
+## Transformaciones elementales
+
+Si conocemos la gráfica de $y=f(x)$, podemos obtener las de otras funciones **sin calcular ninguna tabla de valores**.
+
+### Las cuatro transformaciones básicas
+
+| Función | Efecto |
+|---|---|
+| $f(x)+k$ con $k>0$ | Traslación vertical de $k$ unidades hacia arriba |
+| $f(x)-k$ con $k>0$ | Traslación vertical de $k$ unidades hacia abajo |
+| $f(x-h)$ con $h>0$ | Traslación horizontal de $h$ unidades hacia la **derecha** |
+| $f(x+h)$ con $h>0$ | Traslación horizontal de $h$ unidades hacia la **izquierda** |
+| $-f(x)$ | Simetría respecto del eje horizontal |
+| $f(-x)$ | Simetría respecto del eje vertical |
+| $a\,f(x)$ con $|a|>1$ | Estiramiento vertical |
+| $a\,f(x)$ con $0<|a|<1$ | Achatamiento vertical |
+
+::: {.callout-important title="El error más repetido del tema"}
+En la traslación horizontal el signo va **al contrario** de lo que sugiere la intuición: $f(x-3)$ desplaza la gráfica **tres unidades a la derecha**, no a la izquierda.
+
+La razón es sencilla si se piensa en un punto: la nueva función alcanza en $x=3$ el valor que la antigua alcanzaba en $x=0$. Para obtener el mismo resultado hay que entrar con un valor mayor, así que la gráfica se ha movido hacia la derecha.
+:::
+
+### Ejemplo de cálculo
+
+Partimos de $f(x)=x^{2}-2x+1$ y obtenemos:
+
+- $g(x)=x^{2}-2x+3$, que es $f(x)+2$: traslación de dos unidades hacia arriba.
+- $h(x)=x^{2}-2x-2$, que es $f(x)-3$: traslación de tres unidades hacia abajo.
+- $i(x)=\left(x-1\right)^{2}-2\left(x-1\right)+1$, que es $f(x-1)$: traslación de una unidad hacia la derecha.
+- $j(x)=x^{2}+2x+1$, que es $f(-x)$: simetría respecto del eje vertical.
+
+Observa que el cuarto caso también se puede ver como $\left(x+1\right)^{2}$ frente a $\left(x-1\right)^{2}$, lo que confirma la reflexión.
+
+### Cómo se combinan
+
+Cuando hay varias transformaciones a la vez, conviene escribir la función en la forma
+
+$$
+g(x)=a\,f\left(x-h\right)+k
+$$
+
+e interpretarla en este orden: primero la traslación horizontal, después el factor vertical y por último la traslación vertical.
+
+::: {.callout-note title="Conexión con la forma canónica"}
+La forma canónica de la parábola, $f(x)=a\left(x-h\right)^{2}+k$, no era un truco aislado: es exactamente este esquema aplicado a $y=x^{2}$. El vértice se lee de golpe porque $h$ y $k$ **son** las traslaciones.
+:::
+
+<div data-applet-fn="transformaciones"></div>
+
+::: {.callout-tip title="Actividad guiada con las transformaciones"}
+1. Con `x^2`, mueve solo $k$. La parábola sube y baja sin cambiar de forma.
+2. Mueve solo $h$ hacia valores positivos y comprueba que la gráfica va hacia la **derecha**, aunque en la fórmula aparezca un signo menos.
+3. Pon $a=-1$ y observa la reflexión respecto del eje horizontal. Después pon $a=0{,}25$ y describe el achatamiento.
+4. Activa la reflexión en $x$ con `x^2`. No cambia nada: explica por qué, usando la simetría de la parábola.
+5. Repite la prueba anterior con `x^3` o `sqrt(x)`, donde sí se aprecia.
+6. Reproduce los cuatro casos del ejemplo resuelto a partir de `x^2-2x+1`.
+7. Reto: partiendo de `1/x`, consigue una función con asíntota vertical en $x=2$ y horizontal en $y=-1$.
+:::
+
+## Cuadro de síntesis del tema
+
+| Familia | Dominio típico | Rasgo distintivo |
+|---|---|---|
+| Polinómica | $\mathbb{R}$ | Sin restricciones; cortes $\leq$ grado |
+| Afín | $\mathbb{R}$ | Recta; pendiente constante |
+| Cuadrática | $\mathbb{R}$ | Parábola; vértice y eje de simetría |
+| Racional | $\mathbb{R}$ menos ceros del denominador | Asíntotas |
+| Con radical par | Donde el radicando no es negativo | Dominio restringido |
+| A trozos | Unión de los tramos | Posibles saltos en las fronteras |
+| Valor absoluto | El de la función interior | Nunca negativa |
+| Parte entera | $\mathbb{R}$ | Escalonada, discontinua en los enteros |
+
+## Errores frecuentes en esta parte
+
+1. Dar como dominio de $f+g$ la unión de los dominios en lugar de su intersección.
+2. En el cociente, olvidar excluir los ceros del divisor.
+3. Simplificar una operación y quedarse con el dominio de la expresión simplificada.
+4. Escribir $\left(g\circ f\right)(x)=f\left(g(x)\right)$, invirtiendo el orden.
+5. Concluir que dos composiciones son iguales tras comprobarlo en un solo punto.
+6. Trasladar $f(x-3)$ hacia la izquierda.
+7. Confundir $a\,f(x)$, que estira en vertical, con $f(ax)$, que comprime en horizontal.
+8. Aplicar las transformaciones en un orden arbitrario cuando se combinan varias.
+
+## Autoevaluación del tema completo
+
+::: {.callout-note collapse="true" title="1. Dominio"}
+Halla el dominio de $f(x)=\dfrac{\sqrt{x+2}}{x-3}$. Resultado: $[-2,+\infty)-\{3\}$. Dos condiciones a la vez.
+:::
+
+::: {.callout-note collapse="true" title="2. Simetría"}
+Clasifica $f(x)=\dfrac{3}{x^{2}}$. Es par, porque $f(-x)=f(x)$.
+:::
+
+::: {.callout-note collapse="true" title="3. Cuadrática"}
+Halla el vértice y el recorrido de $f(x)=x^{2}-6x+5$. Vértice $(3,-4)$, mínimo, recorrido $[-4,+\infty)$.
+:::
+
+::: {.callout-note collapse="true" title="4. Interpolación"}
+Estima $\sqrt{10}$ interpolando entre $(9,3)$ y $(16,4)$. Resultado aproximado $3{,}143$, frente al valor real $3{,}162$.
+:::
+
+::: {.callout-note collapse="true" title="5. Racional"}
+Escribe las asíntotas de $f(x)=\dfrac{3}{x-2}+1$. Vertical $x=2$ y horizontal $y=1$.
+:::
+
+::: {.callout-note collapse="true" title="6. Inversa"}
+Calcula la inversa de $f(x)=\dfrac{x}{2}+1$. Resultado: $f^{-1}(x)=2x-2$.
+:::
+
+::: {.callout-note collapse="true" title="7. Composición"}
+Con $f(x)=2x$ y $g(x)=x+3$, halla las dos composiciones. Resultados: $\left(g\circ f\right)(x)=2x+3$ y $\left(f\circ g\right)(x)=2x+6$.
+:::
+
+::: {.callout-note collapse="true" title="8. Transformación"}
+Describe cómo pasar de $y=\sqrt{x}$ a $y=-\sqrt{x-4}+1$. Traslación de cuatro unidades a la derecha, reflexión respecto del eje horizontal y traslación de una unidad hacia arriba.
+:::
+
+## Cierre del tema
+
+Una función es una regla que asigna a cada entrada una única salida. Todo lo demás de este tema son preguntas sobre esa regla: dónde tiene sentido aplicarla, qué valores alcanza, si guarda alguna simetría, cómo se comporta al alejarnos, y cómo construir reglas nuevas combinando las que ya conocemos.
+
+Con esto queda montado el andamio del análisis matemático. Los temas siguientes, **límites y continuidad** y después **derivadas**, no añaden objetos nuevos: preguntan con mucha más precisión por el comportamiento de estas mismas funciones.

@@ -1,0 +1,291 @@
+---
+title: "Racionales, radicales, inversa y funciones a trozos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 3 de 4)"
+filename: 03-racionales-radicales-inversa-trozos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Tercera parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las funciones racionales y sus asíntotas, las funciones con radicales, la función inversa, las funciones definidas a trozos, el valor absoluto y la parte entera
+categories: [funciones, racionales, asíntotas, radicales, función inversa, a trozos, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Funciones racionales
+
+Las **funciones racionales** son aquellas cuya expresión analítica es un cociente de polinomios:
+
+$$
+f(x)=\frac{P(x)}{Q(x)},\qquad Q(x)\not\equiv 0.
+$$
+
+Su dominio es $\mathbb{R}$ menos los valores que anulan el denominador.
+
+### La proporcionalidad inversa
+
+El caso básico es
+
+$$
+f(x)=\frac{k}{x},\qquad k\neq 0,
+$$
+
+cuya gráfica es una **hipérbola**. Sus características son un catálogo completo de ideas nuevas:
+
+- El dominio es $\mathbb{R}-\{0\}$, porque no está definida en $x=0$. Se dice que allí hay una **asíntota vertical**.
+- A medida que $|x|$ crece, la función se acerca a $y=0$. Se dice que allí hay una **asíntota horizontal**.
+- La gráfica **no corta** ninguno de los ejes de coordenadas.
+- Es una función **impar**, simétrica respecto del origen.
+- Si $k>0$, la gráfica ocupa el primer y el tercer cuadrante, y es decreciente en cada rama.
+- Si $k<0$, ocupa el segundo y el cuarto, y es creciente en cada rama.
+
+::: {.callout-important title="Un detalle que se corrige poco"}
+No es correcto decir que $f(x)=\dfrac{1}{x}$ es decreciente. Lo es **en cada una de sus dos ramas**, pero no en todo el dominio, porque el dominio está partido: al pasar de $x=-1$ a $x=1$ la función salta de $-1$ a $1$, es decir, aumenta. La monotonía solo se puede afirmar dentro de intervalos contenidos en el dominio.
+:::
+
+### Asíntotas desplazadas
+
+Con la forma
+
+$$
+f(x)=\frac{k}{x-p}+q
+$$
+
+la asíntota vertical pasa a $x=p$ y la horizontal a $y=q$. El recorrido es entonces $\mathbb{R}-\{q\}$.
+
+Este es el puente hacia el tema de límites: una asíntota describe **hacia dónde tiende** la función sin llegar nunca.
+
+<div data-applet-fn="racional"></div>
+
+::: {.callout-tip title="Actividad guiada con las funciones racionales"}
+1. Con $k=2$, $p=0$, $q=0$ tienes $f(x)=\dfrac{2}{x}$. Localiza las dos asíntotas y comprueba que la gráfica está en el primer y tercer cuadrante.
+2. Cambia $k$ a $-2$. La gráfica salta al segundo y cuarto cuadrante y la monotonía se invierte.
+3. Mueve $p$ a $3$. La asíntota vertical viaja con él. ¿Cuál es ahora el dominio?
+4. Mueve $q$ a $2$. Ahora la gráfica **sí** corta al eje horizontal. Halla el punto de corte resolviendo $f(x)=0$.
+5. Prueba valores grandes de $k$ y observa que la hipérbola se aleja de los ejes.
+6. Con $p=q=0$, verifica en el applet de simetrías que la función es impar.
+:::
+
+## Funciones con radicales
+
+Son las funciones en cuya expresión aparece la variable bajo un signo radical, $f(x)=\sqrt[n]{g(x)}$.
+
+| Índice | Dominio |
+|---|---|
+| $n$ **par** | El intervalo donde $g(x)\geq 0$ |
+| $n$ **impar** | El dominio de $g$ |
+
+### Ejemplos de cálculo
+
+$$
+f(x)=\sqrt{x-1}\ \Longrightarrow\ x-1\geq 0\ \Longrightarrow\ \operatorname{Dom} f=[1,+\infty).
+$$
+
+$$
+f(x)=\sqrt{x^{2}-1}\ \Longrightarrow\ x^{2}-1\geq 0\ \Longrightarrow\ \operatorname{Dom} f=(-\infty,-1]\cup[1,+\infty).
+$$
+
+$$
+f(x)=\sqrt[3]{x}\ \Longrightarrow\ \operatorname{Dom} f=\mathbb{R}.
+$$
+
+En el segundo caso hay que estudiar el signo de $x^{2}-1$: es negativo entre $-1$ y $1$, y ahí la función no existe.
+
+::: {.callout-important title="Por qué solo se toma la raíz positiva"}
+En $f(x)=\sqrt[n]{g(x)}$ con $n$ par, solo se considera el resultado **positivo** de la raíz. Si se tomara también el negativo, cada valor de $x$ tendría dos imágenes y no sería una función. Ese es el motivo profundo, no un capricho de notación.
+:::
+
+<div data-applet-fn="radical"></div>
+
+::: {.callout-tip title="Actividad guiada con las funciones con radicales"}
+1. Con radicando `x-1` e índice par, comprueba que el dominio empieza en $1$.
+2. Con radicando `x^2-1`, localiza el intervalo prohibido y relaciónalo con la inecuación $x^{2}-1\geq 0$.
+3. Con el mismo radicando, cambia a índice impar. El dominio pasa a ser todo $\mathbb{R}$. Explica por qué.
+4. Prueba `x^2+1` con índice par. No hay nada prohibido: razónalo sin la gráfica.
+5. Prueba `36-x^2` con índice par y describe el dominio como intervalo cerrado.
+6. Fíjate en la curva gris discontinua, que es el radicando. Donde queda por debajo del eje y el índice es par, la función desaparece.
+:::
+
+## Función inversa
+
+::: {.callout-note title="Definición"}
+La **función inversa** de $f$ es una función $f^{-1}$ tal que si $f(a)=b$, entonces $f^{-1}(b)=a$. Deshace lo que $f$ hace.
+:::
+
+### Cómo se calcula
+
+1. Escribe la función en la forma $y=f(x)$.
+2. Intercambia $x$ por $y$ en los dos miembros.
+3. Despeja $y$.
+
+### Ejemplos de cálculo
+
+**Caso afín.** Sea $f(x)=3x+9$.
+
+$$
+y=3x+9\ \longrightarrow\ x=3y+9\ \longrightarrow\ y=\frac{x-9}{3}=\frac{1}{3}x-3.
+$$
+
+**Caso racional.** Sea $g(x)=\dfrac{5x}{2x-1}$.
+
+$$
+x=\frac{5y}{2y-1}\ \longrightarrow\ x\left(2y-1\right)=5y\ \longrightarrow\ y\left(2x-5\right)=x\ \longrightarrow\ y=\frac{x}{2x-5}.
+$$
+
+**Caso con radical.** Sea $h(x)=\sqrt{x+2}$.
+
+$$
+x=\sqrt{y+2}\ \longrightarrow\ x^{2}=y+2\ \longrightarrow\ y=x^{2}-2.
+$$
+
+### Las dos propiedades clave
+
+Las gráficas de una función y de su inversa son **simétricas respecto de la recta** $y=x$. Y además
+
+$$
+\operatorname{Dom} f^{-1}=\operatorname{Im} f,\qquad \operatorname{Im} f^{-1}=\operatorname{Dom} f.
+$$
+
+Se ve muy bien con la raíz cuadrada: $f(x)=\sqrt{x}$ tiene dominio y recorrido $[0,+\infty)$, y su inversa es $f^{-1}(x)=x^{2}$, pero **restringida** a $x\geq0$.
+
+::: {.callout-caution title="Pensamiento crítico"}
+La función $f(x)=x^{2}$ definida en todo $\mathbb{R}$ **no tiene inversa**, porque no es inyectiva: $f(2)=f(-2)=4$, así que $f^{-1}(4)$ tendría dos candidatos. Solo al restringir el dominio a $x\geq0$ aparece la inversa $\sqrt{x}$. Moraleja: la existencia de inversa no es una propiedad de la fórmula, sino de la fórmula **junto con su dominio**.
+:::
+
+<div data-applet-fn="inversa"></div>
+
+::: {.callout-tip title="Actividad guiada con la función inversa"}
+1. Empieza con $3x+9$ y sigue los pasos del proceso. Comprueba la simetría respecto de la recta gris.
+2. Pasa a $\sqrt{x+2}$. Observa que la inversa es una parábola, pero solo la mitad. ¿Por qué solo la mitad?
+3. Prueba el caso racional y localiza las dos exclusiones, una en cada función. No coinciden.
+4. Elige $x^{2}$ con $x\geq0$ y razona qué pasaría sin esa restricción.
+5. Verifica en cualquier caso que aplicar $f$ y después $f^{-1}$ devuelve el número de partida.
+:::
+
+## Funciones definidas a trozos
+
+Muchas situaciones reales no se pueden escribir con una única expresión: tarifas telefónicas, tramos del impuesto sobre la renta, portes según el peso.
+
+::: {.callout-note title="Definición"}
+Una función **definida a trozos** es una función que tiene distintas expresiones analíticas según el intervalo en que se encuentre la variable independiente.
+:::
+
+### Cómo se representa
+
+Se dibuja cada expresión **solo en su tramo**, prestando especial atención al valor de la función en los extremos de los intervalos. Ahí se decide si la gráfica se puede trazar sin levantar el lápiz, es decir, si es continua.
+
+### Ejemplo de cálculo
+
+$$
+f(x)=\left\{
+\begin{array}{ll}
+x^{2} & \text{si } x\leq 1\\
+0{,}5x & \text{si } 1<x\leq 4\\
+\log_{2}x & \text{si } x>4
+\end{array}
+\right.
+$$
+
+En el primer tramo hay una parábola de vértice $(0,0)$, y en el extremo $f(1)=1$. En el segundo tramo hay una recta creciente, con $f(1)=0{,}5$ y $f(4)=2$. En el tercero, una función logarítmica creciente con $f(4)=2$.
+
+Observa el detalle importante: en $x=1$ el tramo izquierdo llega a $1$ y el derecho arranca en $0{,}5$, así que **hay un salto**. En cambio en $x=4$ los dos tramos valen $2$, y la gráfica encaja.
+
+<div data-applet-fn="trozos"></div>
+
+::: {.callout-tip title="Actividad guiada con las funciones a trozos"}
+1. Reproduce el ejemplo con `x^2`, `0.5x` y `log(x)/log(2)`, con cortes en $1$ y $4$. Localiza el salto y el encaje.
+2. Modifica el segundo tramo a `x` y comprueba si desaparece el salto en $x=1$.
+3. Construye la función que vale $2$ si $x<-2$, `x^2-7` si $-2\leq x\leq0$, y `-7-x` si $x>0$. Calcula $f(-3)$, $f(-2)$ y $f(1)$.
+4. Prueba `2`, `x^2-6x+9` y `5` con cortes en $2$ y $4$. Halla $f(3)$ y $f(10)$.
+5. Reto: ajusta un tramo para que los tres encajen y la gráfica se pueda dibujar sin levantar el lápiz.
+:::
+
+## Función valor absoluto
+
+La función valor absoluto asocia a cada número real su valor absoluto, y es un caso particular de función a trozos:
+
+$$
+f(x)=|x|=\left\{
+\begin{array}{ll}
+x & \text{si } x\geq 0\\
+-x & \text{si } x<0
+\end{array}
+\right.
+$$
+
+Su gráfica está formada por dos semirrectas que se juntan en el origen, una decreciente y otra creciente.
+
+### Dos transformaciones que no hay que confundir
+
+| Expresión | Efecto sobre la gráfica |
+|---|---|
+| $\left|f(x)\right|$ | Refleja hacia arriba la parte que estaba por debajo del eje horizontal |
+| $f\left(|x|\right)$ | Borra la parte izquierda y la sustituye por el reflejo de la derecha |
+
+La primera nunca es negativa. La segunda es **siempre par**.
+
+<div data-applet-fn="absoluto"></div>
+
+::: {.callout-tip title="Actividad guiada con el valor absoluto"}
+1. Con `x^2-4`, compara las tres curvas. ¿En qué intervalo se diferencian $f$ y $\left|f\right|$?
+2. Con `x-2`, observa el pico que aparece en $\left|f(x)\right|$. ¿En qué punto se forma y por qué?
+3. Con `x^3`, la diferencia entre las dos transformaciones es máxima. Descríbela con tus palabras.
+4. Busca una función para la que $\left|f(x)\right|=f(x)$ en todo su dominio. ¿Qué condición cumple?
+5. Comprueba en la tabla que $f\left(|x|\right)$ da el mismo valor en $x$ y en $-x$.
+:::
+
+## Función parte entera
+
+La función parte entera asocia a cada número real el mayor entero menor o igual que él, y se escribe $f(x)=\left[x\right]$. Es una función a trozos con **infinitos tramos constantes**, y su gráfica tiene forma de escalera.
+
+De forma general,
+
+$$
+f(x)=n\ \text{ si }\ x\in[n,n+1),\qquad n\in\mathbb{Z}.
+$$
+
+### Ejemplo de cálculo
+
+Un supermercado entrega un vale de $5$ euros por cada $40$ euros de compra. La cantidad recibida en vales es
+
+$$
+f(x)=5\left[\frac{x}{40}\right].
+$$
+
+Con una compra de $95$ euros, $\left[\dfrac{95}{40}\right]=\left[2{,}375\right]=2$, luego el cliente recibe $10$ euros.
+
+La función parte decimal, $f(x)=x-\left[x\right]$, es **periódica de periodo** $1$, y es un ejemplo sencillísimo de la periodicidad que vimos en la primera página.
+
+<div data-applet-fn="parteentera"></div>
+
+::: {.callout-tip title="Actividad guiada con la parte entera"}
+1. Reproduce el ejemplo del supermercado y comprueba que con $95$ euros se reciben $10$.
+2. Averigua cuánto habría que gastar para recibir $15$ euros. ¿Hay un único valor o un intervalo?
+3. Con una compra de $79$ euros, ¿cuánto se pierde por no llegar a $80$?
+4. Modela este otro caso: correos cobra $0{,}30$ euros por los primeros $25$ gramos y $0{,}20$ por cada $25$ gramos o fracción adicional. Ajusta los parámetros y descríbelo.
+5. Explica por qué esta función no es continua en ningún número entero.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Decir que $\dfrac{1}{x}$ es decreciente en todo su dominio.
+2. Afirmar que una función corta a su asíntota.
+3. Dar el dominio de $\sqrt{x^{2}-1}$ como un único intervalo.
+4. Olvidar que la raíz de índice impar no impone restricciones.
+5. Al calcular la inversa, no intercambiar las variables y limitarse a despejar.
+6. Dar como inversa de $x^{2}$ la función $\sqrt{x}$ sin restringir el dominio.
+7. Confundir $\left|f(x)\right|$ con $f\left(|x|\right)$.
+8. En una función a trozos, dibujar cada expresión en todo el eje en lugar de solo en su tramo.
+9. No comprobar el valor de la función en las fronteras de los tramos.
+
+## Continúa el tema
+
+La última página trata las **operaciones con funciones, la composición y las transformaciones elementales**, tres herramientas que permiten construir funciones nuevas a partir de las que ya conoces.

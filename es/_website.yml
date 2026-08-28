@@ -200,8 +200,10 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-lineales.qmd
           - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/02-sistemas-no-lineales.qmd
           - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/03-inecuaciones-dos-incognitas.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte1.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/funciones-parte2.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/01-concepto-dominio-simetrias.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/02-polinomicas-lineal-cuadratica-interpolacion.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/03-racionales-radicales-inversa-trozos.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/funciones/04-operaciones-composicion-transformaciones.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
