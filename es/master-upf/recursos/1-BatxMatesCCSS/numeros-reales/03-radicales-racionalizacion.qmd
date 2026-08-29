@@ -1,0 +1,326 @@
+---
+title: "Radicales y racionalización"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales (Parte 3 de 4)"
+filename: 03-radicales-racionalizacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Tercera parte del tema de números reales de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los radicales, las potencias de exponente fraccionario, las propiedades de los radicales y la racionalización de denominadores
+categories: [números reales, radicales, potencias, exponente racional, racionalización, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Definición de radical
+
+::: {.callout-note title="Definición"}
+Dado un número real $a$, se llama **raíz $n$-ésima** de $a$ a cualquier número real $b$ que verifique $b^{n}=a$. Se representa
+
+$$
+\sqrt[n]{a}=b\ \Longleftrightarrow\ b^{n}=a,
+$$
+
+y la expresión $\sqrt[n]{a}$ se llama **radical de índice $n$** de $a$.
+:::
+
+La radicación y la potenciación son operaciones inversas. En la potenciación conocemos la base y el exponente y buscamos la potencia; en la radicación conocemos la potencia y el exponente, y buscamos la base.
+
+### Cuántas raíces reales existen
+
+| Radicando | Índice | Número de raíces reales |
+|---|---|---|
+| $a>0$ | impar | $1$, positiva |
+| $a>0$ | par | $2$, una positiva y su opuesta |
+| $a=0$ | cualquiera | $1$, porque $\sqrt[n]{0}=0$ |
+| $a<0$ | impar | $1$, negativa |
+| $a<0$ | par | ninguna en $\mathbb{R}$ |
+
+Por ejemplo, $16$ tiene **dos** raíces cuadradas, porque $4^{2}=16$ y $(-4)^{2}=16$. En cambio $64$ tiene una única raíz cúbica, $4$, y $-64$ también una, que es $-4$.
+
+::: {.callout-important title="El signo dentro y el signo fuera"}
+No es lo mismo $-\sqrt{64}$ que $\sqrt{-64}$. El primero vale $-8$ y existe sin problema; el segundo **no existe** en los números reales.
+
+Añade a esto que la calculadora, con índice par, solo devuelve la raíz positiva. La negativa la tienes que escribir tú.
+:::
+
+<div data-applet-rex="valorradical"></div>
+
+::: {.callout-tip title="Actividad guiada con el número de raíces"}
+1. Recorre las cinco filas de la tabla cambiando radicando e índice, y comprueba cada caso.
+2. Decide si son ciertas estas igualdades del libro: $\sqrt[4]{-16}=-2$; $\sqrt[4]{256}=\pm4$; $\sqrt[6]{1000000}=\pm1000$; $\sqrt[5]{32}=\pm2$. Solo una lo es.
+3. Calcula el valor de $\sqrt[4]{16}$, $\sqrt[3]{-64}$, $\sqrt[4]{-10000}$ y $\sqrt[5]{243}$.
+4. Explica por qué con índice impar el signo del radicando se conserva en la raíz.
+:::
+
+## Potencias de exponente fraccionario
+
+Aquí está el puente que simplifica todo el apartado:
+
+$$
+a^{\frac{m}{n}}=\sqrt[n]{a^{m}},\qquad a^{-\frac{m}{n}}=\frac{1}{\sqrt[n]{a^{m}}}.
+$$
+
+Todo radical es una potencia disfrazada. Al pasarlo a potencia **reutilizamos las propiedades de las potencias** y desaparece la necesidad de aprender reglas nuevas.
+
+$$
+\sqrt[3]{7^{2}}=7^{2/3},\qquad \sqrt[4]{(-16)^{3}}=(-16)^{3/4},\qquad \sqrt{12}=12^{1/2}.
+$$
+
+::: {.callout-note title="Las siete propiedades que lo gobiernan todo"}
+$$
+a^{0}=1,\quad a^{1}=a,\quad a^{m}a^{n}=a^{m+n},\quad \frac{a^{m}}{a^{n}}=a^{m-n},
+$$
+
+$$
+\left(a^{m}\right)^{n}=a^{mn},\quad (ab)^{n}=a^{n}b^{n},\quad a^{-n}=\frac{1}{a^{n}}.
+$$
+:::
+
+::: {.callout-caution title="El error más caro del tema"}
+$$
+(-2)^{4}=(-2)(-2)(-2)(-2)=+16,\qquad -2^{4}=-(2\cdot2\cdot2\cdot2)=-16.
+$$
+
+Sin paréntesis, el signo **no** entra en la base. Regla práctica: una potencia de $-1$ vale $1$ con exponente par y $-1$ con exponente impar.
+:::
+
+<div data-applet-rex="potencias"></div>
+
+::: {.callout-tip title="Actividad guiada con el exponente fraccionario"}
+1. Transforma en potencia: $\sqrt[3]{7^{2}}$, $\sqrt{12}$, $\sqrt[5]{9^{4}}$. Y al revés: $2^{3/4}$, $5^{-1/2}$.
+2. Prueba con exponente negativo y observa cómo la potencia pasa al denominador.
+3. Con base $8$, exponente $2$ e índice $3$, comprueba que el resultado es $4$. Razónalo: $8^{2/3}=\left(2^{3}\right)^{2/3}=2^{2}$.
+4. Calcula $\left[(-27)^{2}:9^{3}\right]^{2}$ descomponiendo en factores primos. El resultado es más sencillo de lo que parece.
+:::
+
+## Radicales equivalentes y simplificación
+
+Dos radicales son **equivalentes** cuando, expresados como potencia de exponente fraccionario, tienen la misma base y exponentes equivalentes:
+
+$$
+\sqrt[n]{a^{m}}=\sqrt[n\cdot p]{a^{m\cdot p}}\qquad\text{porque}\qquad \frac{m}{n}=\frac{mp}{np}.
+$$
+
+**Simplificar** un radical consiste en expresarlo con el índice más pequeño posible y extraer todos los factores que se puedan.
+
+### Ejemplos de cálculo
+
+$$
+\sqrt[6]{27}=\sqrt[6]{3^{3}}=3^{3/6}=3^{1/2}=\sqrt{3},
+$$
+
+$$
+\sqrt[8]{625}=\sqrt[8]{5^{4}}=5^{4/8}=5^{1/2}=\sqrt{5}.
+$$
+
+Cuando la fracción del exponente es **impropia**, se separa en parte entera más parte propia:
+
+$$
+\sqrt[3]{2^{16}}=2^{16/3}=2^{5+\frac{1}{3}}=2^{5}\sqrt[3]{2}.
+$$
+
+::: {.callout-caution title="Pensamiento crítico"}
+Al amplificar el índice puede cambiar el **número de raíces**. Los radicales $\sqrt[3]{-1}$ y $\sqrt[6]{(-1)^{2}}$ son formalmente equivalentes, pero el primero vale $-1$ y el segundo vale $1$.
+
+Equivalencia formal no es equivalencia de soluciones. Es exactamente el mismo fenómeno que al simplificar una fracción algebraica: la expresión cambia de dominio.
+:::
+
+<div data-applet-rex="equivalentes"></div>
+
+::: {.callout-tip title="Actividad guiada con radicales equivalentes"}
+1. Comprueba si son equivalentes: $\sqrt[6]{3^{4}}$ y $\sqrt[3]{3^{2}}$; $\sqrt[10]{2^{5}}$ y $\sqrt{2}$; $\sqrt[4]{36}$ y $\sqrt{6}$.
+2. Simplifica $\sqrt[6]{27}$ y $\sqrt[8]{625}$ y verifica los ejemplos.
+3. Mueve el factor de amplificación y confirma que el valor numérico no cambia nunca.
+4. Prueba con exponente mayor que el índice y observa cómo el applet separa la parte entera.
+:::
+
+## Extraer e introducir factores
+
+**Extraer.** Se descompone el radicando en factores primos y se divide cada exponente entre el índice: el cociente sale fuera, el resto se queda dentro.
+
+$$
+\sqrt[n]{a^{\,nq+r}}=a^{q}\sqrt[n]{a^{\,r}}.
+$$
+
+$$
+\sqrt{72}=\sqrt{2^{3}\cdot3^{2}}=2\cdot3\sqrt{2}=6\sqrt{2},\qquad \sqrt[3]{24}=\sqrt[3]{2^{3}\cdot3}=2\sqrt[3]{3}.
+$$
+
+**Introducir.** Un factor que está fuera entra elevado al índice:
+
+$$
+c\sqrt[n]{b}=\sqrt[n]{c^{n}b}.
+$$
+
+::: {.callout-note title="Para qué sirve introducir factores"}
+Sobre todo para **comparar**. ¿Qué es mayor, $3\sqrt{2}$ o $2\sqrt{5}$? Introduciendo los coeficientes se convierte en comparar $\sqrt{18}$ con $\sqrt{20}$, y la respuesta es inmediata: gana $2\sqrt{5}$.
+:::
+
+::: {.callout-important title="Cuidado con el signo al introducir"}
+Si el índice es par, un coeficiente negativo **no** puede entrar sin más: $-2\sqrt{3}\neq\sqrt{12}$, porque el segundo miembro es positivo.
+:::
+
+<div data-applet-rex="extraer"></div>
+
+::: {.callout-tip title="Actividad guiada con extraer e introducir"}
+1. Extrae factores de $\sqrt{72}$, $\sqrt[3]{24}$ y $\sqrt[3]{1080}$. El último da $6\sqrt[3]{5}$.
+2. Introduce factores en $2\sqrt[3]{5}$ y en $3\sqrt{6}$.
+3. Resuelve el reto de comparación con el applet: $3\sqrt{2}$ frente a $2\sqrt{5}$.
+4. Extrae factores de $\sqrt{500}$ y de $\sqrt[4]{162}$, y comprueba la reducción de índice cuando la hay.
+:::
+
+## Operaciones con radicales
+
+### Producto y cociente
+
+Con el **mismo índice**:
+
+$$
+\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab},\qquad \frac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\frac{a}{b}}.
+$$
+
+$$
+\sqrt{2}\cdot\sqrt{18}=\sqrt{36}=6,\qquad \frac{\sqrt[3]{54}}{\sqrt[3]{2}}=\sqrt[3]{27}=3.
+$$
+
+Con **índices distintos** hay que igualarlos primero, usando radicales equivalentes con el mínimo común múltiplo:
+
+$$
+\sqrt{3}\cdot\sqrt[4]{3}=\sqrt[4]{3^{2}}\cdot\sqrt[4]{3}=\sqrt[4]{27}.
+$$
+
+O más rápido con exponentes: $3^{1/2}\cdot3^{1/4}=3^{3/4}=\sqrt[4]{3^{3}}$.
+
+### Potencia de un radical y radical de un radical
+
+$$
+\left(\sqrt[n]{a}\right)^{p}=\sqrt[n]{a^{p}},\qquad \sqrt[m]{\sqrt[n]{a}}=\sqrt[m\cdot n]{a}.
+$$
+
+En el radical de un radical los índices se **multiplican**, nunca se suman: $\sqrt[5]{\sqrt[4]{a}}=\sqrt[20]{a}$, porque $\left(a^{1/4}\right)^{1/5}=a^{1/20}$.
+
+::: {.callout-caution title="Lo que no existe"}
+$$
+\sqrt{a+b}\neq\sqrt{a}+\sqrt{b}.
+$$
+
+Contraejemplo inmediato: $\sqrt{9+16}=\sqrt{25}=5$, mientras que $\sqrt{9}+\sqrt{16}=3+4=7$.
+
+La radicación se lleva bien con productos y cocientes, y **no** se lleva con sumas. Este error, en sus mil disfraces, es el más frecuente de todo el bloque de álgebra.
+:::
+
+<div data-applet-rex="operarad"></div>
+
+::: {.callout-tip title="Actividad guiada con las operaciones"}
+1. Calcula $\sqrt{2}\cdot\sqrt{18}$ y $\dfrac{\sqrt[3]{54}}{\sqrt[3]{2}}$, y comprueba que salen números enteros.
+2. Multiplica $\sqrt{3}$ por $\sqrt[4]{3}$ y observa cómo el applet iguala los índices con el mínimo común múltiplo.
+3. Usa el modo de radical de radical con $\sqrt[3]{\sqrt[4]{2}}$ y confirma que da $\sqrt[12]{2}$.
+4. Comprueba el contraejemplo de la suma calculando por separado $\sqrt{25}$, $\sqrt{9}$ y $\sqrt{16}$.
+:::
+
+## Sumas y restas de radicales
+
+Solo se pueden sumar o restar radicales **semejantes**, es decir, con el mismo índice y el mismo radicando:
+
+$$
+p\sqrt[n]{a}+q\sqrt[n]{a}=(p+q)\sqrt[n]{a}.
+$$
+
+Así, $3\sqrt{5}+2\sqrt{5}=5\sqrt{5}$, pero $\sqrt{2}+\sqrt{3}$ no se puede simplificar.
+
+### Estrategia
+
+Si a primera vista no son semejantes, **extrae factores** y vuelve a mirar. Casi siempre esconden el mismo radicando.
+
+$$
+\sqrt{50}+\sqrt{18}-\sqrt{8}=5\sqrt{2}+3\sqrt{2}-2\sqrt{2}=6\sqrt{2}.
+$$
+
+Comprobación numérica: $6\sqrt{2}\approx 8{,}485$, y también $7{,}071+4{,}243-2{,}828=8{,}486$. Cuadra.
+
+::: {.callout-note title="Es lo mismo que sumar monomios"}
+Sumar radicales semejantes es idéntico a sumar monomios semejantes, $3x+5x=8x$. Si el radicando cambia, es como si cambiara la letra: $3x+5y$ no se puede reducir.
+:::
+
+<div data-applet-rex="sumarad"></div>
+
+::: {.callout-tip title="Actividad guiada con las sumas"}
+1. Reproduce $\sqrt{50}+\sqrt{18}-\sqrt{8}$ y comprueba que da $6\sqrt{2}$.
+2. Calcula $\sqrt{12}+\sqrt{27}$ y $\sqrt{45}-\sqrt{20}$.
+3. Pon tres radicandos que **no** se puedan agrupar y observa que el applet lo advierte.
+4. Comprueba la verificación numérica en cada caso: debe coincidir con el resultado simbólico.
+:::
+
+## Racionalización
+
+Racionalizar consiste en escribir una fracción **sin radicales en el denominador**, multiplicando numerador y denominador por la misma cantidad.
+
+### Caso monomio con índice dos
+
+Se multiplica por el propio radical:
+
+$$
+\frac{1}{\sqrt{5}}=\frac{\sqrt{5}}{\sqrt{5}\cdot\sqrt{5}}=\frac{\sqrt{5}}{5}.
+$$
+
+### Caso monomio con índice $n$
+
+Se multiplica por $\sqrt[n]{a^{\,n-m}}$ para completar el exponente:
+
+$$
+\frac{5}{\sqrt[3]{2}}=\frac{5\sqrt[3]{2^{2}}}{\sqrt[3]{2^{3}}}=\frac{5\sqrt[3]{4}}{2}.
+$$
+
+### Caso binomio
+
+Se multiplica por el **conjugado**, cambiando el signo central, y funciona porque $(a+b)(a-b)=a^{2}-b^{2}$ elimina las raíces:
+
+$$
+\frac{2}{\sqrt{5}-\sqrt{3}}=\frac{2\left(\sqrt{5}+\sqrt{3}\right)}{\left(\sqrt{5}\right)^{2}-\left(\sqrt{3}\right)^{2}}=\frac{2\left(\sqrt{5}+\sqrt{3}\right)}{2}=\sqrt{5}+\sqrt{3}.
+$$
+
+::: {.callout-note title="Para qué se racionaliza"}
+No cambia el valor de la fracción, solo su aspecto. Se hace por tres motivos: **comparar** expresiones con más facilidad, **sumar** fracciones con radicales, y **estimar** el valor mentalmente, porque dividir entre un entero es más fácil que dividir entre un irracional.
+:::
+
+<div data-applet-rex="racionaliza"></div>
+
+::: {.callout-tip title="Actividad guiada con la racionalización"}
+1. Racionaliza $\dfrac{1}{\sqrt{5}}$ y $\dfrac{5}{\sqrt[3]{2}}$ siguiendo los pasos del applet.
+2. Pasa al caso binomio y racionaliza $\dfrac{2}{\sqrt{5}-\sqrt{3}}$. Comprueba el resultado sorprendentemente limpio.
+3. Prueba con el segundo radicando mayor que el primero y observa el aviso sobre el signo del denominador.
+4. Racionaliza $\dfrac{3}{\sqrt[4]{2^{3}}}$ y explica qué exponente falta para completar el índice.
+5. Verifica en todos los casos la comprobación numérica que muestra el applet.
+:::
+
+::: {.callout-tip title="Herramienta de entrenamiento"}
+Para practicar todo este apartado con corrección automática, pistas graduadas, resolución paso a paso, examen de diez preguntas, repaso de fallos y generador de exámenes imprimibles en PDF, usa el [Entrenador de Radicales](../../entrenador_radicales.html).
+
+Cubre diez categorías: valor numérico, potencias y radicales, simplificar, extraer, introducir, producto y cociente, sumas y restas, racionalización y ecuaciones, con cuatro niveles de dificultad.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Escribir $\sqrt[4]{-16}=-2$, cuando esa raíz no existe en los reales.
+2. Dar $\sqrt{16}=\pm4$ como resultado de la raíz aritmética, que es solo $4$.
+3. Confundir $-\sqrt{64}$ con $\sqrt{-64}$.
+4. Escribir $(-2)^{4}$ y $-2^{4}$ como si fuesen lo mismo.
+5. Sumar los índices al hacer un radical de radical, en lugar de multiplicarlos.
+6. Aplicar $\sqrt{a+b}=\sqrt{a}+\sqrt{b}$.
+7. Sumar radicales no semejantes sin extraer factores antes.
+8. Introducir un coeficiente negativo en un radical de índice par.
+9. Al racionalizar con índice $n$, multiplicar por el radical entero en lugar de por el que completa el exponente.
+10. Olvidar el paréntesis en el numerador al usar el conjugado.
+
+## Continúa el tema
+
+La última página cierra el tema con los **logaritmos decimales y neperianos**, que nacieron precisamente para convertir productos en sumas y que, además, permiten despejar incógnitas que están en el exponente.

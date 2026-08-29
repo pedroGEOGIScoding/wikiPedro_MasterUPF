@@ -7,6 +7,7 @@ project:
     - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/funciones/assets/**
+    - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/assets/**
 
   preview:
 #    port: 3000                  # Port number for local preview server (default random 3000-8000)

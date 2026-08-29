@@ -1,0 +1,59 @@
+<!-- =====================================================================
+     _scripts.html — NÚMEROS REALES · 1r Batx Mates CCSS
+
+     Se inyecta al final de <body> en las páginas del tema, mediante
+     format: html: include-after-body en cada .qmd.
+
+     ORDEN OBLIGATORIO
+       1) applets.css        REUTILIZADA del tema de ecuaciones
+       2) katex.min.css      KaTeX servido en LOCAL, sin CDN
+       3) katex.min.js
+       4) auto-render        define window.renderMathInElement
+       5) re-applets.js       módulo 1 -> window.REAL
+       6) re-applets-extra.js módulo de ampliación -> window.REALX
+
+     ATRIBUTOS DE INSERCIÓN, uno por módulo, para que no se pisen:
+       polinomios                 data-applet="clave"
+       ecuaciones e inecuaciones  data-applet-eq="clave"
+       sistemas                   data-applet-sys="clave"
+       funciones                  data-applet-fn="clave"
+       números reales             data-applet-re="clave"
+       números reales, ampliación data-applet-rex="clave"
+
+     RECORDATORIO PARA es/_quarto.yml
+       resources:
+         - files/**
+         - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/funciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/assets/**
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/applets.css">
+
+<!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
+<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/katex/katex.min.css">
+<script defer src="../ecuaciones-inecuaciones/assets/katex/katex.min.js"></script>
+<script defer src="../ecuaciones-inecuaciones/assets/katex/contrib/auto-render.min.js"></script>
+
+<!-- Módulo principal y módulo de ampliación, en este orden. -->
+<script defer src="assets/re-applets.js"></script>
+<script defer src="assets/re-applets-extra.js"></script>
+
+<script>
+  window.addEventListener('load', function () {
+    if (!window.katex) {
+      console.warn('[reales] KaTeX no cargado: revisa ../ecuaciones-inecuaciones/assets/katex/.');
+    }
+    if (!window.renderMathInElement) {
+      console.warn('[reales] auto-render no disponible.');
+    }
+    if (!window.REAL) {
+      console.warn('[reales] re-applets.js no se ha cargado.');
+    }
+    if (!window.REALX) {
+      console.warn('[reales] re-applets-extra.js no se ha cargado.');
+    }
+  });
+</script>

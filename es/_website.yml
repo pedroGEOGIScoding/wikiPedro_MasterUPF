@@ -186,7 +186,10 @@ website:
         - text: "---"
         - section: "1 Batx Mates CCSS"
           contents:
-
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/01-racionales-irracionales-reales-intervalos.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/02-notacion-cientifica-aprox.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/03-radicales-racionalizacion.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/04-logaritmos.qmd
           - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd
           - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-raices-polinomio.qmd
           - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-factorizacion.qmd
