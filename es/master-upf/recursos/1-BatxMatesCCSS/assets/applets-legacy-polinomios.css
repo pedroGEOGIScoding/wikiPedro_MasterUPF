@@ -195,9 +195,9 @@
 /* ---------- tablas a todo el ancho ---------- */
 .tema-polinomios .ap-tbl {
   display: table;
-  width: 100%;
-  max-width: none;
-  margin: 12px 0;
+  width: auto;
+  max-width: 100%;
+  margin: 12px auto;
   font-size: 0.85rem;
   background: #fff;
 }

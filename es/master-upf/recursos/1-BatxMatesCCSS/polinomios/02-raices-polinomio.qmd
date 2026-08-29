@@ -69,6 +69,10 @@ $$P(x)=(x-\alpha)\,c(x)+r.$$
 
 Esta igualdad es válida para todo valor de $x$; en particular para $x=\alpha$:
 
+::: {.callout-note title="Un símbolo nuevo"}
+El cuadrado negro $\blacksquare$ marca el **final de una demostración**. Se llama tombstone o símbolo de Halmos (lo popularizó Paul Halmos), y en Unicode es el carácter U+220E, «end of proof» y es la forma moderna de escribir Q.E.D., del latín *quod erat demonstrandum*, «lo que se quería demostrar». Cuando lo veas, la argumentación ha terminado.
+:::
+
 $$P(\alpha)=(\alpha-\alpha)\,c(\alpha)+r=0\cdot c(\alpha)+r=r. \qquad \blacksquare$$
 
 La demostración es de una elegancia total: no calcula nada, solo sustituye un número bien elegido.

@@ -90,6 +90,9 @@
     return nt(y);
   }
 
+  /* Envuelve los negativos en parentesis, para sustituir valores en formulas. */
+  function par(x) { return x < 0 ? '\\left(' + qt(x) + '\\right)' : qt(x); }
+
   function snap(x) {
     for (var d = 1; d <= 48; d++) {
       var p = x * d;
@@ -98,6 +101,34 @@
     return x;
   }
 
+  /* Coeficiente delante de una incognita: omite el 1 y el -1. */
+  function coefV(a, v) {
+    if (a === 1) return v;
+    if (a === -1) return '-' + v;
+    return qt(a) + v;
+  }
+
+  /* Fraccion que se simplifica cuando el denominador vale 1 o -1. */
+  function fracT(num, den) {
+    if (den === 1) return num;
+    if (den === -1) return '-\\left(' + num + '\\right)';
+    return '\\dfrac{' + num + '}{' + den + '}';
+  }
+
+  /* Numerador del tipo c-av, con los signos ya compuestos. */
+  function numAisla(c, a, v) {
+    v = v || 'x';
+    if (nz(a) === 0) return qt(c);
+    var aa = Math.abs(a), t = (aa === 1 ? v : qt(aa) + v);
+    if (nz(c) === 0) return (a > 0 ? '-' : '') + t;
+    return qt(c) + (a > 0 ? '-' : '+') + t;
+  }
+
+  /* Producto de un coeficiente por un parentesis, con signo delante. */
+  function prodT(k, cuerpo) {
+    var ak = Math.abs(k), sg = (k < 0 ? '-' : '+');
+    return sg + (ak === 1 ? '' : qt(ak) + '\\cdot') + '\\left(' + cuerpo + '\\right)';
+  }
   /* Termino lineal con signo, para escribir ax+by=c con buen aspecto. */
   function lin2(a, b, c) {
     var s = '';
@@ -363,11 +394,11 @@
       var cl = classify(a1, b1, c1, a2, b2, c2);
 
       if (Math.abs(b1) > 1e-12) {
-        h += step('Aislamos ' + T('y') + ' en la primera: ' +
-          T('y=\\dfrac{' + qt(c1) + '-' + (a1 === 1 ? '' : qt(a1)) + 'x}{' + qt(b1) + '}'));
+        var numY = numAisla(c1, a1), fracY = fracT(numY, b1);
+        h += step('Aislamos ' + T('y') + ' en la primera: ' + T('y=' + fracY));
         h += step('Sustituimos en la segunda: ' +
-          T(lin2(a2, 0, 0).replace('=0', '') + '+' + qt(b2) + '\\cdot\\dfrac{' + qt(c1) + '-' +
-            qt(a1) + 'x}{' + qt(b1) + '}=' + qt(c2)));
+          T((nz(a2) === 0 ? '' : coefV(a2, 'x')) +
+            (nz(b2) === 0 ? '' : prodT(b2, fracY)) + '=' + qt(c2)));
         var A = a2 * b1 - b2 * a1, B = c2 * b1 - b2 * c1;
         h += step('Multiplicando por ' + T(qt(b1)) + ' y agrupando: ' + T(qt(A) + 'x=' + qt(B)));
         if (Math.abs(A) < 1e-12) {
@@ -419,13 +450,12 @@
           ' es cero. Usa sustituci\u00f3n o reducci\u00f3n.');
       }
       h += step('Aislamos ' + T('y') + ' en las dos: ' +
-        T('y=\\dfrac{' + qt(c1) + '-' + qt(a1) + 'x}{' + qt(b1) + '}') + ' y ' +
-        T('y=\\dfrac{' + qt(c2) + '-' + qt(a2) + 'x}{' + qt(b2) + '}'));
+        T('y=' + fracT(numAisla(c1, a1), b1)) + ' y ' +
+        T('y=' + fracT(numAisla(c2, a2), b2)));
       h += step('Igualamos las dos expresiones y multiplicamos en cruz:');
-      var A = (c1 - 0) * 0; /* placeholder para claridad */
       var Ax = a2 * b1 - a1 * b2, Bx = c2 * b1 - c1 * b2;
-      h += step(T(qt(b2) + '\\left(' + qt(c1) + '-' + qt(a1) + 'x\\right)=' +
-        qt(b1) + '\\left(' + qt(c2) + '-' + qt(a2) + 'x\\right)'));
+      h += step(T(coefV(b2, '\\left(' + numAisla(c1, a1) + '\\right)') + '=' +
+        coefV(b1, '\\left(' + numAisla(c2, a2) + '\\right)')));
       h += step('Agrupando: ' + T(qt(Ax) + 'x=' + qt(Bx)));
       if (Math.abs(Ax) < 1e-12) {
         h += step(Math.abs(Bx) < 1e-12
@@ -537,7 +567,7 @@
       var cl = classify(a1, b1, c1, a2, b2, c2);
       var h = step('Sistema: ' + T(sysTex(a1, b1, c1, a2, b2, c2)));
       h += step('Determinante de los coeficientes: ' +
-        T('a_{1}b_{2}-a_{2}b_{1}=' + qt(a1) + '\\cdot' + qt(b2) + '-' + qt(a2) + '\\cdot' + qt(b1) +
+        T('a_{1}b_{2}-a_{2}b_{1}=' + par(a1) + '\\cdot' + par(b2) + '-' + par(a2) + '\\cdot' + par(b1) +
           '=' + nt(a1 * b2 - a2 * b1)));
       h += step(key('Diagn\u00f3stico: ') + classifyText(cl));
 
@@ -546,7 +576,7 @@
       } else if (cl.type === 'CI') {
         h += step('Las dos ecuaciones dan la misma informaci\u00f3n. Tomamos una y expresamos la soluci\u00f3n con un par\u00e1metro:');
         if (Math.abs(b1) > 1e-12) {
-          h += step(TD('x=\\lambda,\\qquad y=\\dfrac{' + qt(c1) + '-' + qt(a1) + '\\lambda}{' + qt(b1) + '},\\qquad \\lambda\\in\\mathbb{R}'));
+          h += step(TD('x=\\lambda,\\qquad y=' + fracT(numAisla(c1, a1, '\\lambda'), b1) + ',\\qquad \\lambda\\in\\mathbb{R}'));
         } else if (Math.abs(a1) > 1e-12) {
           h += step(TD('x=' + qt(c1 / a1) + ',\\qquad y=\\lambda,\\qquad \\lambda\\in\\mathbb{R}'));
         } else {

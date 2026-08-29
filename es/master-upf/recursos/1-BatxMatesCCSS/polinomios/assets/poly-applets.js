@@ -536,7 +536,7 @@
       out.innerHTML =
         '<div class="ap-formula">\\(P(x) = ' + pTex(p) + '\\)</div>' +
         '<ul class="ap-list">' +
-        '<li>Grado: <b>' + (n < 0 ? 'polinomio nulo' : n) + '</b>' + (n >= 0 ? ' — hay ' + (n + 1) + ' coeficientes posibles, de \\(a_{' + n + '}\\) a \\(a_0\\)' : '') + '</li>' +
+        '<li>Grado: <b>' + (n < 0 ? 'polinomio nulo' : n) + '</b>' + (n >= 0 ? ' — hay ' + (n + 1) + ' coeficientes, de \\(a_{' + n + '}\\) a \\(a_0\\)' : '') + '</li>' +
         '<li>Coeficiente principal \\(a_{' + n + '} = ' + rTex(pLead(p)) + '\\) ' + (rEq(pLead(p), R(1)) ? '(el polinomio es <b>monico</b>)' : '(no es monico)') + '</li>' +
         '<li>Termino independiente \\(a_0 = ' + rTex(p[0]) + '\\)' + (rIsZero(p[0]) ? ' — al ser 0, <b>x = 0 es raiz</b> y se puede sacar factor comun x' : '') + '</li>' +
         '<li>Numero de terminos no nulos: <b>' + p.filter(function (c) { return !rIsZero(c); }).length + '</b> ' +
