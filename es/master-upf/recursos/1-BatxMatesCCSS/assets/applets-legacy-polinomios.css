@@ -1,0 +1,274 @@
+/* =====================================================================
+   applets-legacy-polinomios.css
+   Ubicación: 1-BatxMatesCCSS/assets/applets-legacy-polinomios.css
+
+   POR QUÉ EXISTE ESTA HOJA
+     El tema de polinomios fue el primero del curso y nació con otra
+     convención de clases. Tres de ellas tienen el mismo nombre que en
+     la hoja común pero significado OPUESTO:
+
+       clase       en polinomios            en la hoja común
+       .ap-note    caja de bloque azul      texto gris en línea
+       .ap-warn    caja de bloque ámbar     modificador de .ap-step
+       .ap-ok      caja de bloque verde     texto verde en línea
+
+     Además usa siete clases que ningún otro tema necesita:
+       .ap-sub .ap-formula .ap-list .ap-tick .ap-cross
+       .ap-pos .ap-neg .ap-hl .ap-canvas .ap-ruffini
+       .ap-quiz .ap-qitem .ap-qtext .ap-qfb
+       .ap-pascal-wrap .ap-pascal
+
+   CÓMO SE USA
+     Todos los selectores van precedidos por .tema-polinomios, de modo
+     que estas reglas NO pueden afectar a ningún otro tema aunque la
+     hoja se cargue en toda la web.
+
+     En cada .qmd del tema de polinomios hay que añadir esa clase al
+     cuerpo de la página, en el encabezado YAML:
+
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           body-classes: tema-polinomios
+
+     Si tu versión de Quarto no admite body-classes, la alternativa es
+     envolver el contenido, o añadir al final de su _scripts.html:
+
+       <script>document.body.classList.add('tema-polinomios');</script>
+
+   ORDEN DE CARGA en el _scripts.html de polinomios
+     1) ../assets/applets.css                       hoja común
+     2) ../assets/applets-legacy-polinomios.css     esta hoja
+     3) KaTeX
+     4) sus módulos JS
+
+   OBJETIVO A MEDIO PLAZO
+     Migrar los applets de polinomios a las clases de la hoja común y
+     borrar este archivo. Mientras eso no ocurra, esta hoja garantiza
+     que el tema antiguo se vea igual que siempre.
+   ===================================================================== */
+
+/* ---------- subtítulos ---------- */
+.tema-polinomios .ap-sub {
+  margin: 18px 0 8px;
+  color: var(--ap-purple);
+  font-size: 0.98rem;
+}
+
+/* ---------- instrucciones desplegables ---------- */
+/* En polinomios las instrucciones iban dentro de un <details>. */
+.tema-polinomios .ap-help {
+  background: #f7f9fc;
+  border: 1px dashed #c9d6ea;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  color: inherit;
+  padding-left: 12px;
+}
+
+.tema-polinomios .ap-help summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ap-primary);
+  outline: none;
+}
+
+.tema-polinomios .ap-help ul { margin: 8px 0 2px 1.1em; padding: 0; }
+.tema-polinomios .ap-help li { margin: 5px 0; line-height: 1.45; }
+
+/* ---------- controles con caja ---------- */
+.tema-polinomios .ap-row {
+  background: #fbfcfe;
+  border: 1px solid #e6ecf5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  gap: 8px;
+}
+
+.tema-polinomios .ap-row label {
+  font-weight: 600;
+  color: #40525e;
+  font-size: 0.88rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.tema-polinomios .ap-row input[type="text"],
+.tema-polinomios .ap-row input:not([type]),
+.tema-polinomios .ap-row select {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border: 1px solid #bcc9da;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ap-ink);
+}
+
+.tema-polinomios .ap-row input:focus,
+.tema-polinomios .ap-row select:focus {
+  outline: 2px solid rgba(42, 118, 221, 0.35);
+  border-color: var(--ap-primary);
+}
+
+.tema-polinomios .ap-row input[type="range"] {
+  width: 130px;
+  accent-color: var(--ap-primary);
+}
+
+.tema-polinomios .ap-btn { transition: filter 0.15s ease; }
+.tema-polinomios .ap-btn.ap-small {
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  background: var(--ap-tertiary);
+  margin-top: 6px;
+}
+
+/* ---------- salidas ---------- */
+.tema-polinomios .out { margin-top: 6px; }
+
+.tema-polinomios .ap-formula {
+  background: #fff;
+  border: 2px solid var(--ap-tertiary);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.tema-polinomios .ap-list { margin: 10px 0 4px 1.1em; padding: 0; }
+.tema-polinomios .ap-list li { margin: 6px 0; line-height: 1.5; }
+
+/* ---------- LAS TRES CLASES EN CONFLICTO ---------- */
+/* Aquí recuperan su significado original de CAJA DE BLOQUE. */
+.tema-polinomios .ap-note {
+  display: block;
+  background: #f0f8ff;
+  border-left: 4px solid var(--ap-primary);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.tema-polinomios .ap-warn {
+  display: block;
+  background: #fff9e6;
+  border-left: 4px solid var(--ap-orange);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+.tema-polinomios .ap-ok {
+  display: block;
+  background: #f0fcf5;
+  border-left: 4px solid var(--ap-tertiary);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  color: inherit;
+  font-weight: normal;
+}
+
+.tema-polinomios .ap-err {
+  background: #fdf0f1;
+  border: none;
+  border-left: 4px solid var(--ap-secondary);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  color: #7d1620;
+}
+
+.tema-polinomios .ap-tick { color: var(--ap-tertiary); font-weight: 700; }
+.tema-polinomios .ap-cross { color: var(--ap-secondary); font-weight: 700; }
+
+/* ---------- tablas a todo el ancho ---------- */
+.tema-polinomios .ap-tbl {
+  display: table;
+  width: 100%;
+  max-width: none;
+  margin: 12px 0;
+  font-size: 0.85rem;
+  background: #fff;
+}
+
+.tema-polinomios .ap-tbl th { padding: 6px 8px; }
+.tema-polinomios .ap-tbl td {
+  border-bottom: 1px solid #eceff3;
+  padding: 6px 8px;
+}
+
+.tema-polinomios .ap-tbl tr:nth-child(even) td { background: #fafbfd; }
+
+.tema-polinomios .ap-tbl td.ap-hl,
+.tema-polinomios .ap-tbl .ap-hl {
+  background: #fff3cd !important;
+  font-weight: 700;
+  border: 2px solid var(--ap-orange);
+}
+
+.tema-polinomios .ap-pos { color: var(--ap-tertiary); font-weight: 700; font-size: 1.1rem; }
+.tema-polinomios .ap-neg { color: var(--ap-secondary); font-weight: 700; font-size: 1.1rem; }
+
+/* ---------- regla de Ruffini ---------- */
+.tema-polinomios .ap-ruffini td { min-width: 54px; }
+.tema-polinomios .ap-ruffini tr:nth-child(3) td { border-top: 2px solid #33475b; }
+
+/* ---------- canvas ---------- */
+.tema-polinomios .ap-canvas {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  margin: 14px auto 0;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ---------- cuestionarios ---------- */
+.tema-polinomios .ap-quiz { margin-top: 10px; }
+
+.tema-polinomios .ap-qitem {
+  border: 1px solid #e6ecf5;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  background: #fcfdff;
+}
+
+.tema-polinomios .ap-qtext { margin-bottom: 8px; line-height: 1.5; }
+.tema-polinomios .ap-qfb { margin-top: 8px; font-size: 0.88rem; }
+.tema-polinomios .ap-qfb:empty { display: none; }
+
+/* ---------- triángulo de Pascal ---------- */
+.tema-polinomios .ap-pascal-wrap {
+  text-align: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  margin: 12px 0;
+  line-height: 1.7;
+}
+
+.tema-polinomios .ap-pascal { letter-spacing: 0.5px; color: #5a6b78; }
+.tema-polinomios .ap-pascal.ap-hl {
+  color: var(--ap-purple);
+  font-weight: 700;
+  background: #f9f0ff;
+  border-radius: 6px;
+}
+
+/* ---------- impresión ---------- */
+@media print {
+  .tema-polinomios .ap-row { display: none; }
+  .tema-polinomios .ap-help { display: block; }
+}

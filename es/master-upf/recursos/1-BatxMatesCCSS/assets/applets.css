@@ -1,10 +1,36 @@
 /* =====================================================================
-   applets.css — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
-   VERSION 3 — limpia. La notacion matematica la compone KaTeX, de modo
-   que ya NO hay reglas propias para fracciones, radicales, superindices
-   ni subindices. Se conservan las mismas clases que en el tema de
-   polinomios (.applet, .ap-head, .ap-title, .ap-help, .ap-err) para que
-   el aspecto del sitio sea homogeneo entre temas.
+   applets.css — HOJA COMÚN DE LOS APPLETS · 1r Batx Mates CCSS
+   Ubicación: 1-BatxMatesCCSS/assets/applets.css
+
+   VERSIÓN 4 · unificada
+     Base tomada de la versión 3 del tema de ecuaciones e inecuaciones,
+     que es la que usan cinco de los seis temas del curso.
+
+     La notación matemática la compone KaTeX, de modo que aquí NO hay
+     reglas propias para fracciones, radicales, superíndices ni
+     subíndices. Solo se retocan detalles de integración.
+
+   LA USAN
+     polinomios · ecuaciones-inecuaciones · sistemas · funciones
+     numeros-reales · limites
+
+   OJO CON POLINOMIOS
+     El tema de polinomios nació con otra convención: usaba .ap-note,
+     .ap-warn y .ap-ok como CAJAS DE BLOQUE, mientras que aquí son
+     elementos EN LÍNEA. Sus reglas antiguas viven en la hoja
+     applets-legacy-polinomios.css, con todos los selectores precedidos
+     por .tema-polinomios para que no afecten a los demás temas.
+     No añadas aquí reglas con esos tres nombres pensando en polinomios.
+
+   CLASES DE ESTA HOJA
+     contenedor    .applet
+     cabecera      .ap-head .ap-title .ap-help
+     controles     .ap-row .ap-lab .ap-in .ap-in.ap-mini .ap-sel .ap-btn
+     salidas       .ap-out .ap-step .ap-step.ap-warn
+     énfasis       .ap-key .ap-ok .ap-bad .ap-note .ap-chip .ap-err
+     tablas        .ap-tbl .ap-tbl tr.ap-sel-row
+     figuras       .ap-fig
+     incrustados   .gg-embed
    ===================================================================== */
 
 :root {
@@ -143,6 +169,7 @@
   border-radius: 0 6px 6px 0;
 }
 
+/* Énfasis EN LÍNEA. No son cajas de bloque: ver el aviso de cabecera. */
 .ap-key { font-weight: 700; color: var(--ap-primary); }
 .ap-ok { color: var(--ap-tertiary); font-weight: 700; }
 .ap-bad { color: var(--ap-secondary); font-weight: 700; }
@@ -170,22 +197,27 @@
   font-size: 0.92rem;
 }
 
-/* ---------- tablas de signo ---------- */
+/* ---------- tablas de datos y de signo ---------- */
+/* Anchura ajustada al contenido y centrada, para que las columnas no
+   queden separadas en exceso en pantallas grandes. */
 .ap-tbl {
-  width: 100%;
+  display: table;
+  width: auto;
+  max-width: 100%;
   border-collapse: collapse;
-  margin: 0.6rem 0;
+  margin: 0.6rem auto;
   font-size: 0.9rem;
 }
 .ap-tbl th {
   background: #334155;
   color: #fff;
-  padding: 0.35rem 0.45rem;
+  padding: 0.35rem 1.1rem;
   font-weight: 600;
+  text-align: center;
 }
 .ap-tbl td {
   border-bottom: 1px solid #eef2f7;
-  padding: 0.4rem 0.45rem;
+  padding: 0.4rem 1.1rem;
   text-align: center;
 }
 .ap-tbl tr.ap-sel-row td { background: #eafaf1; font-weight: 600; }
@@ -202,25 +234,10 @@
 }
 
 /* ---------- ajustes finos sobre KaTeX ---------- */
-/* KaTeX aporta toda la tipografia matematica. Solo se retocan detalles
-   de integracion con el resto del applet. */
 .applet .katex { font-size: 1.06em; }
-
-/* Las formulas de bloque dentro de un paso no deben separarse tanto. */
 .applet .katex-display { margin: 0.5rem 0; }
-
-/* En las celdas de la tabla de signos conviene el tamano normal. */
 .ap-tbl .katex { font-size: 1em; }
-
-/* Color coherente para los avisos de sintaxis que marque KaTeX. */
 .applet .katex-error { color: var(--ap-secondary) !important; }
-
-@media (max-width: 640px) {
-  .applet { padding: 0.8rem 0.75rem 0.9rem; }
-  .ap-lab { min-width: 100%; }
-  .ap-in { flex: 1 1 100%; }
-  .ap-out { font-size: 0.92rem; }
-}
 
 /* ---------- applets externos incrustados ---------- */
 .gg-embed {
@@ -241,17 +258,29 @@
   border: 0;
 }
 
-/* ---------- Tablas de datos dentro de los applets ---------- */
-/* Ajuste al contenido en lugar de ocupar todo el ancho, para que las
-   columnas no queden separadas en exceso en pantallas grandes. */
-.applet .ap-tbl {
-  width: auto;
-  max-width: 100%;
-  margin-inline: auto;
-}
-.applet .ap-tbl th,
-.applet .ap-tbl td {
-  padding-inline: 1.1rem;
+/* ---------- responsivo ---------- */
+@media (max-width: 640px) {
+  .applet { padding: 0.8rem 0.75rem 0.9rem; }
+  .ap-lab { min-width: 100%; }
+  .ap-in { flex: 1 1 100%; }
+  .ap-out { font-size: 0.92rem; }
+  .ap-tbl { font-size: 0.84rem; }
+  .ap-tbl th,
+  .ap-tbl td { padding-inline: 0.5rem; }
 }
 
-.applet .ap-tbl { display: table; }
+/* ---------- impresión ---------- */
+/* Se conservan los enunciados y los resultados, y se ocultan los
+   controles, que en papel no sirven para nada. */
+@media print {
+  .applet {
+    box-shadow: none;
+    background: #fff;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .ap-row { display: none; }
+  .ap-btn { display: none; }
+  .ap-help { display: block; }
+  .ap-out { border-color: #ccc; }
+}
