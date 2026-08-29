@@ -115,6 +115,15 @@
     return '\\dfrac{' + num + '}{' + den + '}';
   }
 
+  /* Expresion c+kv, ordenada para que el primer termino sea positivo. */
+  function binT(c, k, v) {
+    v = v || 'x';
+    if (nz(k) === 0) return qt(c);
+    if (nz(c) === 0) return coefV(k, v);
+    if (c < 0 && k > 0) return coefV(k, v) + '-' + qt(-c);
+    return qt(c) + (k > 0 ? '+' : '-') + coefV(Math.abs(k), v);
+  }
+
   /* Numerador del tipo c-av, con los signos ya compuestos. */
   function numAisla(c, a, v) {
     v = v || 'x';
@@ -394,13 +403,14 @@
       var cl = classify(a1, b1, c1, a2, b2, c2);
 
       if (Math.abs(b1) > 1e-12) {
-        var numY = numAisla(c1, a1), fracY = fracT(numY, b1);
+        var s1 = b1 < 0 ? -1 : 1, d1 = Math.abs(b1);
+        var numY = binT(c1 * s1, -a1 * s1), fracY = fracT(numY, d1);
         h += step('Aislamos ' + T('y') + ' en la primera: ' + T('y=' + fracY));
         h += step('Sustituimos en la segunda: ' +
           T((nz(a2) === 0 ? '' : coefV(a2, 'x')) +
             (nz(b2) === 0 ? '' : prodT(b2, fracY)) + '=' + qt(c2)));
-        var A = a2 * b1 - b2 * a1, B = c2 * b1 - b2 * c1;
-        h += step('Multiplicando por ' + T(qt(b1)) + ' y agrupando: ' + T(qt(A) + 'x=' + qt(B)));
+        var A = a2 * d1 - b2 * a1 * s1, B = c2 * d1 - b2 * c1 * s1;
+        h += step('Multiplicando por ' + T(qt(d1)) + ' y agrupando: ' + T(coefV(A, 'x') + '=' + qt(B)));
         if (Math.abs(A) < 1e-12) {
           h += step(Math.abs(B) < 1e-12
             ? ok('Se obtiene $0=0$') + ': el sistema es compatible indeterminado.'
@@ -449,14 +459,18 @@
           ' en las dos ecuaciones, porque alg\u00fan coeficiente de ' + T('y') +
           ' es cero. Usa sustituci\u00f3n o reducci\u00f3n.');
       }
+      var t1 = b1 < 0 ? -1 : 1, t2 = b2 < 0 ? -1 : 1;
+      var e1 = Math.abs(b1), e2 = Math.abs(b2);
+      var g1 = binT(c1 * t1, -a1 * t1), g2 = binT(c2 * t2, -a2 * t2);
       h += step('Aislamos ' + T('y') + ' en las dos: ' +
-        T('y=' + fracT(numAisla(c1, a1), b1)) + ' y ' +
-        T('y=' + fracT(numAisla(c2, a2), b2)));
+        T('y=' + fracT(g1, e1)) + ' y ' +
+        T('y=' + fracT(g2, e2)));
       h += step('Igualamos las dos expresiones y multiplicamos en cruz:');
-      var Ax = a2 * b1 - a1 * b2, Bx = c2 * b1 - c1 * b2;
-      h += step(T(coefV(b2, '\\left(' + numAisla(c1, a1) + '\\right)') + '=' +
-        coefV(b1, '\\left(' + numAisla(c2, a2) + '\\right)')));
-      h += step('Agrupando: ' + T(qt(Ax) + 'x=' + qt(Bx)));
+      var Ax = a2 * t2 * e1 - a1 * t1 * e2, Bx = c2 * t2 * e1 - c1 * t1 * e2;
+      if (Ax < 0) { Ax = -Ax; Bx = -Bx; }
+      h += step(T(coefV(e2, '\\left(' + g1 + '\\right)') + '=' +
+        coefV(e1, '\\left(' + g2 + '\\right)')));
+      h += step('Agrupando: ' + T(coefV(Ax, 'x') + '=' + qt(Bx)));
       if (Math.abs(Ax) < 1e-12) {
         h += step(Math.abs(Bx) < 1e-12
           ? ok('Identidad $0=0$') + ': infinitas soluciones, las rectas son coincidentes.'

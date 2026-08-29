@@ -79,7 +79,8 @@ Resolver el sistema equivale entonces a buscar los puntos comunes a las dos rect
 
 Consiste en **aislar una incógnita** en una de las ecuaciones y sustituir su valor en la otra.
 
-Resolvemos $\left\{x+y=1;\ 2x-3y=2\right.$:
+Resolvemos
+$$\left\{\begin{array}{l} x+y=1 \\ 2x-3y=2 \end{array}\right.$$
 
 $$
 x+y=1\ \Longrightarrow\ y=1-x,
