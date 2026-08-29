@@ -25,19 +25,20 @@
      RECORDATORIO PARA es/_quarto.yml
        resources:
          - files/**
+         - master-upf/recursos/1-BatxMatesCCSS/assets/**
          - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
          - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
          - master-upf/recursos/1-BatxMatesCCSS/funciones/assets/**
      ===================================================================== -->
 
-<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/applets.css">
+<link rel="stylesheet" href="../assets/applets.css">
 
 <!-- KaTeX servido en local desde la carpeta del tema de ecuaciones:
      una sola copia para todo el sitio, sin dependencia de red. -->
-<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/katex/katex.min.css">
-<script defer src="../ecuaciones-inecuaciones/assets/katex/katex.min.js"></script>
-<script defer src="../ecuaciones-inecuaciones/assets/katex/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/contrib/auto-render.min.js"></script>
 
 <!-- Applets de funciones. -->
 <script defer src="assets/fn-applets.js"></script>
@@ -45,7 +46,7 @@
 <script>
   window.addEventListener('load', function () {
     if (!window.katex) {
-      console.warn('[funciones] KaTeX no cargado: revisa la ruta a ../ecuaciones-inecuaciones/assets/katex/.');
+      console.warn('[funciones] KaTeX no cargado: revisa la ruta a ../assets/katex/.');
     }
     if (!window.renderMathInElement) {
       console.warn('[funciones] auto-render no disponible.');

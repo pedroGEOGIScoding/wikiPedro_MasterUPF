@@ -3,6 +3,7 @@ project:
   output-dir: ../docs/es
   resources:
     - files/**
+    - master-upf/recursos/1-BatxMatesCCSS/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**

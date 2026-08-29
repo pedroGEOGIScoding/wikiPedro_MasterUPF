@@ -269,6 +269,24 @@
   .ap-tbl td { padding-inline: 0.5rem; }
 }
 
+/* ---------- deslizadores ---------- */
+/* Se usan con las clases ap-in y ap-range juntas. Aquí se anula el
+   marco heredado de ap-in, que está pensado para campos de texto. */
+.ap-in.ap-range {
+  flex: 1 1 10rem;
+  min-width: 8rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  accent-color: var(--ap-primary);
+  cursor: pointer;
+}
+.ap-in.ap-range:focus {
+  outline: 2px solid rgba(42, 118, 221, 0.35);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
 /* ---------- impresión ---------- */
 /* Se conservan los enunciados y los resultados, y se ocultan los
    controles, que en papel no sirven para nada. */
