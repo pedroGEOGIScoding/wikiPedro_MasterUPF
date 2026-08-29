@@ -1,0 +1,441 @@
+---
+title: "Ramas infinitas, asíntotas y continuidad"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 5 de 5)"
+filename: 05-asintotas-continuidad
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Quinta parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las ramas infinitas, las asíntotas verticales horizontales y oblicuas, la continuidad de una función y los tipos de discontinuidad
+categories: [límites, asíntotas, ramas infinitas, continuidad, discontinuidad, Bolzano, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-lim="diagnostico"></div>
+
+## Ramas infinitas
+
+::: {.callout-note title="Definiciones"}
+En la gráfica de una función pueden existir tramos en los que la función se aleja indefinidamente. Esos tramos se llaman **ramas infinitas**.
+
+Cuando una rama infinita se acerca indefinidamente a una recta, esa recta se llama **asíntota** y la rama es **asintótica**. Cuando una rama infinita no se acerca a ninguna recta, se llama **rama parabólica**.
+:::
+
+Todo el trabajo de las páginas anteriores encuentra aquí su recompensa: cada límite que calculabas se traduce ahora en información **gráfica** directamente utilizable.
+
+## Asíntotas verticales
+
+::: {.callout-note title="Definición"}
+Una función $f(x)$ tiene una **asíntota vertical** en $x=c$ si
+
+$$
+\lim_{x \to c}f(x)=\pm\infty.
+$$
+:::
+
+En una función racional se buscan las **raíces del denominador** que no anulen también el numerador. Después se calculan los límites laterales para conocer la posición de la rama.
+
+### Ejemplo de cálculo
+
+Sea $f(x)=\dfrac{1-x}{x-2}$. El denominador se anula en $x=2$, y ahí el numerador vale $-1\neq 0$, luego
+
+$$
+\lim_{x \to 2}\frac{1-x}{x-2}=\frac{-1}{0}=\infty,
+$$
+
+y hay asíntota vertical en $x=2$. Para los signos, con $x$ ligeramente menor que $2$ el numerador es negativo y el denominador negativo, luego el cociente es positivo:
+
+$$
+\lim_{x \to 2^{-}}\frac{1-x}{x-2}=+\infty,\qquad \lim_{x \to 2^{+}}\frac{1-x}{x-2}=-\infty.
+$$
+
+::: {.callout-important title="Cuando el numerador también se anula"}
+Si en la raíz del denominador el numerador **también** vale cero, aparece $\tfrac{0}{0}$ y hay que simplificar antes de concluir.
+
+Puede ocurrir que tras simplificar no haya asíntota, sino un simple **hueco** en la gráfica. Es la discontinuidad evitable que veremos más adelante. Comprobarlo es obligatorio: dar por hecho que toda raíz del denominador produce asíntota es un error clásico.
+:::
+
+<div data-applet-limx="asvertical"></div>
+
+::: {.callout-tip title="Actividad guiada con asíntotas verticales"}
+1. Reproduce el ejemplo con `-1,1` entre `1,-2` y comprueba los dos signos.
+2. Prueba `1,0` entre `1,0,1`, es decir $\dfrac{x}{x^{2}+1}$. No hay asíntota vertical: el denominador nunca se anula.
+3. Prueba `1,0,-9` entre `1,0,-1`, que tiene **dos** asíntotas verticales.
+4. Prueba `1,-1` entre `1,-1`, es decir $\dfrac{x-1}{x-1}$. El numerador también se anula: el applet te avisa.
+5. Cuenta cuántas asíntotas verticales puede tener una función racional. ¿Hay un tope?
+:::
+
+## Asíntotas horizontales
+
+::: {.callout-note title="Definición"}
+Una función $f(x)$ tiene una **asíntota horizontal** en $y=k$ si
+
+$$
+\lim_{x \to \infty}f(x)=k,
+$$
+
+con $k$ finito.
+:::
+
+Para determinar la posición de la rama respecto de la asíntota se calcula el signo de $f(x)-k$ con valores de $x$ positivos y negativos de valor absoluto muy grande.
+
+### Ejemplo de cálculo
+
+Sea $f(x)=\dfrac{2x^{2}+1}{x^{2}-3x}$. Los grados coinciden, luego
+
+$$
+\lim_{x \to \infty}\frac{2x^{2}+1}{x^{2}-3x}=\frac{2}{1}=2,
+$$
+
+y hay asíntota horizontal en $y=2$. Para la posición,
+
+$$
+f(x)-2=\frac{2x^{2}+1}{x^{2}-3x}-2=\frac{6x+1}{x^{2}-3x}.
+$$
+
+Con $x \to +\infty$ ese cociente es positivo, luego la curva queda **por encima** de la asíntota. Con $x \to -\infty$ es negativo, luego queda **por debajo**.
+
+::: {.callout-note title="Cuántas asíntotas horizontales puede haber"}
+¿Puede una función tener dos asíntotas horizontales distintas? **Sí**, una hacia cada infinito. Por ejemplo $f(x)=\dfrac{x}{\sqrt{x^{2}+1}}$ tiende a $1$ y a $-1$.
+
+¿Y tres? **No**, porque solo hay dos infinitos a los que tender. Este razonamiento tan simple es un buen ejercicio de rigor.
+:::
+
+<div data-applet-limx="ashorizontal"></div>
+
+::: {.callout-tip title="Actividad guiada con asíntotas horizontales"}
+1. Reproduce el ejemplo con `2,0,1` entre `1,-3,0` y comprueba la posición a cada lado.
+2. Prueba `3,0,-1` entre `2,0,-1` y `1,-2,0` entre `1,0,-3,5`, del libro.
+3. Prueba `2,-1` entre `1,0`, es decir $\dfrac{2x-1}{x}$.
+4. Prueba `1,0,0` entre `1,1`, donde el grado de arriba es mayor: no hay asíntota horizontal.
+5. Pon un ejemplo de función con asíntota horizontal en $y=1$, otro en $y=-1$ y otro sin asíntota horizontal.
+:::
+
+## Asíntotas oblicuas
+
+::: {.callout-note title="Definición"}
+Una función $f(x)$ tiene una **asíntota oblicua** $y=mx+n$ si
+
+$$
+\lim_{x \to \infty}\frac{f(x)}{x}=m\neq 0\qquad\text{y}\qquad \lim_{x \to \infty}\left[f(x)-mx\right]=n.
+$$
+:::
+
+En una función racional aparece exactamente cuando el grado del numerador es **una unidad mayor** que el del denominador.
+
+### Ejemplo de cálculo
+
+Sea $f(x)=\dfrac{2x^{2}-1}{x+1}$. Primero calculamos $m$:
+
+$$
+\lim_{x \to \infty}\frac{f(x)}{x}=\lim_{x \to \infty}\frac{2x^{2}-1}{x^{2}+x}=2\neq 0\ \Longrightarrow\ m=2.
+$$
+
+Después $n$:
+
+$$
+\lim_{x \to \infty}\left[\frac{2x^{2}-1}{x+1}-2x\right]=\lim_{x \to \infty}\frac{-2x-1}{x+1}=-2\ \Longrightarrow\ n=-2.
+$$
+
+Luego la asíntota oblicua es $y=2x-2$.
+
+::: {.callout-note title="La vía rápida: dividir polinomios"}
+Hay un atajo que ahorra los dos límites. Al dividir el numerador entre el denominador,
+
+$$
+\frac{2x^{2}-1}{x+1}=2x-2+\frac{1}{x+1},
+$$
+
+y el resto $\dfrac{1}{x+1}$ tiende a cero. Por tanto la función se parece cada vez más al **cociente** $2x-2$, que es precisamente la asíntota.
+
+Esta interpretación es la más útil de todas: la asíntota oblicua es el cociente de la división, y el resto mide la distancia entre la curva y la recta.
+:::
+
+<div data-applet-limx="asoblicua"></div>
+
+::: {.callout-tip title="Actividad guiada con asíntotas oblicuas"}
+1. Reproduce el ejemplo con `2,0,-1` entre `1,1`. Debe salir $y=2x-2$.
+2. Prueba `1,0,0` entre `1,-1`, es decir $\dfrac{x^{2}}{x-1}$.
+3. Prueba `3,0,2,0` entre `1,0,-9`, del libro.
+4. Prueba `1,0,0,0` entre `1,1`. La diferencia de grados es tres: no hay oblicua, sino rama parabólica.
+5. Comprueba con la división de polinomios que el cociente coincide con la asíntota en cada caso.
+:::
+
+::: {.callout-important title="Una regla que evita mucho trabajo inútil"}
+Una función racional **no** puede tener a la vez asíntota horizontal y asíntota oblicua, porque las dos describen el mismo comportamiento en el infinito y solo puede haber uno.
+
+Por eso el orden de trabajo es siempre este. Si el grado de arriba es menor o igual, hay horizontal y no hay oblicua. Si es una unidad mayor, hay oblicua y no hay horizontal. Si es dos o más unidades mayor, no hay ninguna de las dos y aparece una rama parabólica.
+:::
+
+<div data-applet-limx="ramas"></div>
+
+::: {.callout-tip title="Actividad guiada con la clasificación de ramas"}
+1. Prueba los tres casos: `1,0` entre `1,-1`; `2,0,-1` entre `1,1`; `1,0,0,0` entre `1,1`.
+2. Para cada uno, predice **antes** de mirar el resultado qué tipo de asíntota habrá.
+3. Busca una función con dos asíntotas verticales y una horizontal.
+4. Busca una función con rama parabólica y comprueba que la gráfica no se pega a ninguna recta.
+:::
+
+## Continuidad de una función
+
+::: {.callout-note title="Definición"}
+Una función $f(x)$ es **continua** en un punto $x=a$ si se cumplen las tres condiciones:
+
+- existe $f(a)$,
+- existe $\lim_{x \to a}f(x)$,
+- y además $f(a)=\lim_{x \to a}f(x)$.
+
+Si una función no es continua en un punto, se dice que presenta una **discontinuidad** en ese punto. Una función es continua en un intervalo si es continua en todos los puntos del intervalo.
+:::
+
+La idea intuitiva es que una función es continua en un punto si se puede dibujar ahí **sin levantar el lápiz del papel**. La definición formal le da precisión a esa imagen.
+
+::: {.callout-important title="Las tres condiciones son necesarias"}
+Es tentador quedarse solo con la tercera, pero las tres hacen falta y cada una puede fallar por separado.
+
+En $f(x)=\dfrac{x^{2}-1}{x-1}$ con $a=1$ falla la **primera**: el límite existe y vale $2$, pero la función no está definida.
+
+En una función a trozos con un escalón falla la **segunda**: la función está definida, pero el límite no existe.
+
+Y puede fallar solo la **tercera**, si la función está definida y el límite existe pero no coinciden. Es el caso de una función con un punto «desplazado».
+:::
+
+<div data-applet-limx="continuidad"></div>
+
+::: {.callout-tip title="Actividad guiada con las tres condiciones"}
+1. Prueba `x^2` en $x=2$. Las tres condiciones se cumplen: es continua.
+2. Prueba `(x^2-1)/(x-1)` en $x=1$. Falla la primera condición.
+3. Prueba `1/x` en $x=0$. Falla la segunda, y de forma dramática.
+4. Prueba `abs(x)/x` en $x=0$. También falla la segunda, pero por otro motivo.
+5. En cada caso, lee la tabla de las tres condiciones y localiza exactamente cuál se rompe.
+:::
+
+## Continuidad en las funciones elementales
+
+Cada familia tiene su regla, y conocerlas ahorra muchísimo trabajo.
+
+| Familia | Dónde es continua |
+|---|---|
+| Polinómicas | En todo $\mathbb{R}$ |
+| Racionales | Salvo donde se anula el denominador |
+| Radicales de índice par | Donde el radicando es mayor o igual que cero |
+| Radicales de índice impar | En todo $\mathbb{R}$ |
+| Exponenciales | En todo $\mathbb{R}$ |
+| Logarítmicas | Donde el argumento es estrictamente positivo |
+| Trigonométricas | Todas salvo la tangente, que falla en $x=\dfrac{\pi}{2}+k\pi$ |
+
+### Ejemplos de cálculo
+
+$$
+f(x)=\frac{1-x}{x-2}:\ \ x-2=0\ \Longrightarrow\ x=2,\ \text{ continua en } \mathbb{R}-\left\{2\right\},
+$$
+
+$$
+f(x)=\sqrt{x+1}:\ \ x+1\geq 0\ \Longrightarrow\ \text{ continua en } \left[-1,+\infty\right),
+$$
+
+$$
+f(x)=\log(x+3):\ \ x+3>0\ \Longrightarrow\ \text{ continua en } \left(-3,+\infty\right).
+$$
+
+Fíjate en la diferencia entre el segundo y el tercero: la raíz admite el cero y el logaritmo no. Ese detalle cambia el corchete por el paréntesis.
+
+<div data-applet-limx="trozoscont"></div>
+
+::: {.callout-tip title="Actividad guiada con las familias de funciones"}
+1. Reproduce los tres ejemplos: `(1-x)/(x-2)`, `sqrt(x+1)` y `log(x+3)`.
+2. Prueba `ln(1-x^2)`. El argumento es positivo solo en un intervalo: ¿cuál?
+3. Prueba `exp(x+2)` y `(2*x-1)/(x+3)`, del libro.
+4. Prueba `1/sqrt(x-1)`. Aquí hay dos restricciones a la vez: radicando y denominador.
+5. Escribe el dominio de continuidad a mano antes de mirar el resultado.
+:::
+
+## Tipos de discontinuidad
+
+### Discontinuidad evitable
+
+Existe $\lim_{x \to a}f(x)$, es decir, los dos laterales coinciden, pero se da una de estas dos situaciones. O el límite no coincide con el valor de la función, $f(a)\neq\lim_{x \to a}f(x)$, o la función no está definida en ese punto.
+
+Se llama evitable porque **bastaría redefinir un solo valor** para arreglarla.
+
+### Discontinuidad de salto finito
+
+En el punto $a$ no existe $\lim_{x \to a}f(x)$ porque, aunque existen, los límites laterales **no coinciden**:
+
+$$
+\lim_{x \to a^{-}}f(x)\neq\lim_{x \to a^{+}}f(x).
+$$
+
+El **salto** es la diferencia entre los dos. Esta discontinuidad no se puede evitar tocando un solo valor: el hueco no es un punto, es un escalón.
+
+### Discontinuidad de salto infinito
+
+La función tiene una **asíntota vertical** en el punto, es decir, uno o los dos límites laterales son infinitos.
+
+$$
+\lim_{x \to a^{-}}f(x)=\pm\infty\qquad\text{o}\qquad \lim_{x \to a^{+}}f(x)=\pm\infty.
+$$
+
+::: {.callout-note title="El orden de comprobación en un examen"}
+Primero mira si algún lateral es infinito. Si lo es, es **salto infinito** y ya has terminado.
+
+Si los dos son finitos y distintos, es **salto finito**, y conviene dar el valor del salto.
+
+Si los dos son finitos e iguales pero no coinciden con $f(a)$, o la función no está definida ahí, es **evitable**, y hay que decir qué valor habría que asignar.
+:::
+
+<div data-applet-limx="discontinuidad"></div>
+
+::: {.callout-tip title="Actividad guiada con los tipos de discontinuidad"}
+1. Recorre los tres tipos con el punto $a=1$ y observa las tres figuras.
+2. En la evitable, di qué valor habría que asignar a $f(1)$ para arreglarla.
+3. En el salto finito, mide el salto y comprueba que coincide con el que indica el applet.
+4. En el salto infinito, identifica la asíntota vertical.
+5. Cambia el punto a $a=-2$ y comprueba que la clasificación no depende de dónde ocurra.
+:::
+
+## Propiedades de las funciones continuas
+
+La continuidad no es solo una etiqueta: tiene consecuencias potentes.
+
+::: {.callout-note title="Teorema de Bolzano"}
+Si $f$ es continua en un intervalo cerrado $\left[a,b\right]$ y toma **signos distintos** en los extremos, es decir $f(a)\cdot f(b)<0$, entonces existe al menos un punto $c\in\left(a,b\right)$ tal que $f(c)=0$.
+:::
+
+Su utilidad práctica es enorme: permite **localizar soluciones** de ecuaciones que no se saben resolver algebraicamente.
+
+### Ejemplo de cálculo
+
+La ecuación $x^{3}-x-1=0$ no tiene solución racional sencilla. Pero la función $f(x)=x^{3}-x-1$ es continua, y
+
+$$
+f(1)=-1<0,\qquad f(2)=5>0.
+$$
+
+Luego existe una solución en el intervalo $\left(1,2\right)$. Dividiendo el intervalo por la mitad repetidamente se puede acotar la solución con toda la precisión que se quiera.
+
+::: {.callout-note title="Aquí se juntan dos temas"}
+El método de bisección no da el valor exacto: da un valor con **error acotado**. Y la cota es exactamente la mitad de la longitud del intervalo en cada paso.
+
+Es el mismo lenguaje del tema de números reales, con sus cotas de error absoluto. La continuidad garantiza que la solución existe; la acotación de errores dice con qué precisión la conocemos.
+:::
+
+<div data-applet-limx="bolzano"></div>
+
+::: {.callout-tip title="Actividad guiada con el teorema de Bolzano"}
+1. Reproduce el ejemplo con `x^3-x-1` en $\left[1,2\right]$ y ocho pasos.
+2. Aumenta a veinte pasos y observa cómo se reduce el error. ¿Cuántas cifras exactas obtienes?
+3. Prueba `x^2-2` en $\left[1,2\right]$. Estás calculando $\sqrt{2}$ con el teorema de Bolzano.
+4. Prueba `exp(x)-3` en $\left[0,2\right]$. Estás calculando $\ln 3$.
+5. Prueba `x^2-4` en $\left[-3,3\right]$. Los signos son iguales: el teorema no dice nada, aunque **sí** hay soluciones. Razona por qué no es una contradicción.
+:::
+
+::: {.callout-caution title="Pensamiento crítico"}
+El teorema de Bolzano da una condición **suficiente**, no necesaria. Si los signos coinciden, el teorema no afirma nada: puede haber soluciones o puede no haberlas.
+
+Confundir «si se cumple la hipótesis, entonces hay raíz» con «si hay raíz, entonces se cumple la hipótesis» es el error lógico más frecuente con este teorema, y también uno de los más frecuentes en el razonamiento cotidiano.
+:::
+
+## Estudio completo de una función
+
+<div data-applet-limx="resumen"></div>
+
+::: {.callout-tip title="Actividad guiada con el estudio completo"}
+1. Analiza $\dfrac{x^{2}-9}{x^{2}-1}$ con `1,0,-9` entre `1,0,-1`. Tiene dos asíntotas verticales y una horizontal.
+2. Analiza $\dfrac{2x^{2}+1}{x^{2}-3x}$ con `2,0,1` entre `1,-3,0`, el ejemplo del libro.
+3. Analiza $\dfrac{2x^{2}-1}{x+1}$ con `2,0,-1` entre `1,1`. Aquí hay oblicua.
+4. Analiza $\dfrac{x^{2}-1}{x-1}$ con `1,0,-1` entre `1,-1`. Hay una discontinuidad **evitable**, no una asíntota.
+5. Hazlo primero a mano en un papel, con los siete pasos, y usa el applet solo para autocorregirte.
+:::
+
+## Guion de examen
+
+Este es el orden de trabajo que se espera en una pregunta de estudio de función.
+
+1. **Dominio.** Resolver la ecuación del denominador igual a cero, o la inecuación del radicando o del argumento del logaritmo.
+2. **Límites en el infinito.** Comparar grados y obtener el comportamiento a cada lado.
+3. **Asíntotas verticales.** Raíces del denominador que no anulen el numerador, con los dos laterales y su signo.
+4. **Asíntota horizontal.** Si el grado de arriba es menor o igual que el de abajo.
+5. **Asíntota oblicua.** Solo si el grado de arriba es una unidad mayor. Se obtiene dividiendo.
+6. **Continuidad.** Continua en todo su dominio, indicando el conjunto.
+7. **Clasificación de las discontinuidades.** Evitable, salto finito o salto infinito.
+
+## Errores frecuentes en esta parte
+
+1. Suponer que toda raíz del denominador da asíntota vertical, sin comprobar el numerador.
+2. Dar la asíntota vertical sin estudiar los signos de los laterales.
+3. Buscar asíntota horizontal y oblicua a la vez.
+4. Al hallar la oblicua, olvidar calcular $n$ y quedarse solo con $m$.
+5. Decir que hay asíntota oblicua cuando la diferencia de grados es dos o más.
+6. Confundir rama parabólica con asíntota.
+7. Afirmar que una función es continua porque existe el límite, sin comprobar el valor.
+8. Clasificar como evitable una discontinuidad en la que los laterales no coinciden.
+9. Aplicar Bolzano sin comprobar la continuidad en el intervalo cerrado.
+10. Deducir que no hay solución cuando Bolzano no se puede aplicar.
+
+## Autoevaluación del tema completo
+
+::: {.callout-note collapse="true" title="1. Límite de una sucesión"}
+Calcula $\lim_{n \to \infty}\dfrac{3n^{2}-5}{4n^{2}}$. Resultado: $\dfrac{3}{4}$.
+:::
+
+::: {.callout-note collapse="true" title="2. Límite de un polinomio"}
+Calcula $\lim_{n \to \infty}\left(-2n^{2}-5n+3\right)$. Resultado: $-\infty$.
+:::
+
+::: {.callout-note collapse="true" title="3. Indeterminación infinito menos infinito"}
+Calcula $\lim_{n \to \infty}\left(\sqrt{n^{2}+4}-\sqrt{n^{2}-3}\right)$. Resultado: $0$.
+:::
+
+::: {.callout-note collapse="true" title="4. Indeterminación cero partido cero"}
+Calcula $\lim_{x \to 1}\dfrac{x^{2}-1}{x^{3}-1}$. Resultado: $\dfrac{2}{3}$.
+:::
+
+::: {.callout-note collapse="true" title="5. Indeterminación uno elevado a infinito"}
+Calcula $\lim_{x \to +\infty}\left(\dfrac{2x+3}{2x}\right)^{3x-2}$. Resultado: $e^{9/2}$.
+:::
+
+::: {.callout-note collapse="true" title="6. Límites laterales"}
+Calcula los laterales de $\dfrac{3}{x+1}$ en $x=-1$. Resultados: $-\infty$ y $+\infty$, luego no existe el límite.
+:::
+
+::: {.callout-note collapse="true" title="7. Asíntota horizontal y posición"}
+Halla la asíntota horizontal de $\dfrac{2x^{2}+1}{x^{2}-3x}$ y la posición de las ramas. Resultado: $y=2$, por encima hacia $+\infty$ y por debajo hacia $-\infty$.
+:::
+
+::: {.callout-note collapse="true" title="8. Asíntota oblicua"}
+Halla la asíntota oblicua de $\dfrac{2x^{2}-1}{x+1}$. Resultado: $y=2x-2$.
+:::
+
+::: {.callout-note collapse="true" title="9. Continuidad"}
+Estudia la continuidad de $\sqrt{x+1}$ y de $\log(x+3)$. Resultados: $\left[-1,+\infty\right)$ y $\left(-3,+\infty\right)$.
+:::
+
+::: {.callout-note collapse="true" title="10. Tipo de discontinuidad"}
+Clasifica la discontinuidad de $\dfrac{x^{2}-1}{x-1}$ en $x=1$. Resultado: evitable, bastaría definir $f(1)=2$.
+:::
+
+## Cierre del tema
+
+Este tema ha construido una sola idea, y la ha llevado hasta el final. La idea es que se puede hablar con rigor de aquello a lo que **nos acercamos** sin necesidad de llegar.
+
+Empezamos con sucesiones, donde el infinito aparece de la forma más sencilla posible. Descubrimos que el infinito no se comporta como un número, y de ahí nacieron las indeterminaciones, que no son un obstáculo sino un aviso: la forma no basta, hay que mirar el contenido.
+
+Después trasladamos todo a funciones, y aparecieron los límites laterales, que permiten estudiar el comportamiento a cada lado de un punto problemático. Con ellos se obtienen las asíntotas, que convierten el cálculo en información gráfica.
+
+Y terminamos con la continuidad, que une el límite con el valor de la función. Ese vínculo es el que hace posible el tema siguiente. La **derivada** se define como un límite, precisamente del tipo $\tfrac{0}{0}$:
+
+$$
+f'(a)=\lim_{h \to 0}\frac{f(a+h)-f(a)}{h}.
+$$
+
+Todo lo que has aprendido aquí sobre resolver indeterminaciones se va a usar desde la primera página del próximo tema.

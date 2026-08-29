@@ -1,0 +1,62 @@
+<!-- =====================================================================
+     _scripts.html — LÍMITES DE UNA FUNCIÓN · 1r Batx Mates CCSS
+
+     Se inyecta al final de <body> en las páginas del tema, mediante
+     format: html: include-after-body en cada .qmd.
+
+     ORDEN OBLIGATORIO
+       1) applets.css          REUTILIZADA del tema de ecuaciones
+       2) katex.min.css        KaTeX servido en LOCAL, sin CDN
+       3) katex.min.js
+       4) auto-render          define window.renderMathInElement
+       5) lim-applets.js       módulo 1 -> window.LIM
+       6) lim-applets-extra.js módulo de ampliación -> window.LIMX
+
+     ATRIBUTOS DE INSERCIÓN, uno por módulo, para que no se pisen:
+       polinomios                 data-applet="clave"
+       ecuaciones e inecuaciones  data-applet-eq="clave"
+       sistemas                   data-applet-sys="clave"
+       funciones                  data-applet-fn="clave"
+       números reales             data-applet-re="clave"
+       números reales, ampliación data-applet-rex="clave"
+       límites                    data-applet-lim="clave"
+       límites, ampliación        data-applet-limx="clave"
+
+     RECORDATORIO PARA es/_quarto.yml
+       resources:
+         - files/**
+         - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/funciones/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/limites/assets/**
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/applets.css">
+
+<!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
+<link rel="stylesheet" href="../ecuaciones-inecuaciones/assets/katex/katex.min.css">
+<script defer src="../ecuaciones-inecuaciones/assets/katex/katex.min.js"></script>
+<script defer src="../ecuaciones-inecuaciones/assets/katex/contrib/auto-render.min.js"></script>
+
+<!-- Módulo principal y módulo de ampliación, en este orden. -->
+<script defer src="assets/lim-applets.js"></script>
+<script defer src="assets/lim-applets-extra.js"></script>
+
+<script>
+  window.addEventListener('load', function () {
+    if (!window.katex) {
+      console.warn('[limites] KaTeX no cargado: revisa ../ecuaciones-inecuaciones/assets/katex/.');
+    }
+    if (!window.renderMathInElement) {
+      console.warn('[limites] auto-render no disponible.');
+    }
+    if (!window.LIM) {
+      console.warn('[limites] lim-applets.js no se ha cargado.');
+    }
+    if (!window.LIMX) {
+      console.warn('[limites] lim-applets-extra.js no se ha cargado.');
+    }
+  });
+</script>

@@ -205,6 +205,11 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/funciones/02-polinomicas-lineal-cuadratica-interpolacion.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones/03-racionales-radicales-inversa-trozos.qmd
           - master-upf/recursos/1-BatxMatesCCSS/funciones/04-operaciones-composicion-transformaciones.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/limites/01-sucesiones-limite-sucesion.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/limites/02-calculo-operaciones-limites.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/limites/03-indeterminaciones.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/limites/04-limite-funcion-infinito-punto.qmd
+          -  master-upf/recursos/1-BatxMatesCCSS/limites/05-asintotas-continuidad.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:

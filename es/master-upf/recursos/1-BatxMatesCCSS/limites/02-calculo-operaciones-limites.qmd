@@ -1,0 +1,265 @@
+---
+title: "Cálculo de límites y operaciones con límites"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 2 de 5)"
+filename: 02-calculo-operaciones-limites
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Segunda parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al cálculo de límites de potencias, polinomios y cocientes de polinomios, y a las operaciones con límites
+categories: [límites, potencias, polinomios, cocientes, operaciones, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-lim="diagnostico"></div>
+
+## Límite de potencias
+
+Hay que distinguir con cuidado dos familias que se parecen mucho en la escritura y no se parecen en nada en el comportamiento.
+
+### Base variable, exponente fijo
+
+$$
+\lim_{n \to \infty} n^{k}=
+\left\{
+\begin{array}{ll}
++\infty & \text{si } k>0\\
+1 & \text{si } k=0\\
+0 & \text{si } k<0
+\end{array}
+\right.
+$$
+
+El caso $k<0$ se entiende reescribiendo la potencia: $n^{-2}=\dfrac{1}{n^{2}}$, y al crecer el denominador el cociente tiende a cero.
+
+### Base fija, exponente variable
+
+$$
+\lim_{n \to \infty} k^{n}=
+\left\{
+\begin{array}{ll}
++\infty & \text{si } k>1\\
+1 & \text{si } k=1\\
+0 & \text{si } -1<k<1\\
+\text{no existe} & \text{si } k\leq -1
+\end{array}
+\right.
+$$
+
+### Ejemplos de cálculo
+
+$$
+\lim_{n \to \infty} n^{2}=+\infty,\qquad \lim_{n \to \infty} n^{-2}=\lim_{n \to \infty}\frac{1}{n^{2}}=0,
+$$
+
+$$
+\lim_{n \to \infty}\left(\frac{1}{2}\right)^{n}=0\ \text{ porque } 0<\frac{1}{2}<1,\qquad \lim_{n \to \infty}(-2)^{n}\ \text{ no existe.}
+$$
+
+::: {.callout-important title="El caso más delicado"}
+Cuando $k\leq -1$ la sucesión alterna de signo. Con $k=-1$ obtenemos $-1,1,-1,1,\ldots$, que no se acerca a ningún valor. Con $k=-2$ obtenemos $-2,4,-8,16,\ldots$, que alterna **y además** crece en valor absoluto.
+
+En ninguno de los dos casos hay límite, ni finito ni infinito. Decir que «tiende a infinito» sería incorrecto, porque no se puede predecir el signo de un término avanzado.
+:::
+
+<div data-applet-lim="limpot"></div>
+
+::: {.callout-tip title="Actividad guiada con las potencias"}
+1. Recorre los dos tipos con $k=2$, $k=0$, $k=-2$, $k=0{,}5$, $k=1$ y $k=-2$.
+2. Calcula $\lim \sqrt[3]{n}$, que es $\lim n^{1/3}$. ¿Qué signo tiene el exponente?
+3. Prueba $k^{n}$ con $k=0{,}9$ y con $k=1{,}1$. La diferencia es mínima y el resultado, opuesto.
+4. Reto: ¿cuánto vale $\lim \left(-\dfrac{1}{2}\right)^{n}$? Fíjate en que el valor absoluto decrece.
+:::
+
+## Límite de un polinomio
+
+::: {.callout-note title="Regla"}
+El límite de un polinomio en el infinito coincide con el límite de su **monomio de mayor grado**:
+
+$$
+\lim_{n \to \infty}\left(a_{k}n^{k}+a_{k-1}n^{k-1}+\cdots+a_{1}n+a_{0}\right)=\lim_{n \to \infty} a_{k}n^{k}.
+$$
+:::
+
+### Ejemplos de cálculo
+
+$$
+\lim_{n \to \infty}\left(3n^{2}-5n+3\right)=\lim_{n \to \infty} 3n^{2}=3\cdot(+\infty)=+\infty,
+$$
+
+$$
+\lim_{n \to \infty}\left(-2n^{2}-5n+3\right)=\lim_{n \to \infty}\left(-2n^{2}\right)=(-2)\cdot(+\infty)=-\infty.
+$$
+
+Solo el coeficiente principal decide el signo del resultado. Los demás términos son irrelevantes en el infinito, por grandes que sean sus coeficientes.
+
+<div data-applet-lim="limpoli"></div>
+
+::: {.callout-tip title="Actividad guiada con los polinomios"}
+1. Escribe `3,-5,3` y comprueba que el límite es $+\infty$.
+2. Cambia a `-2,-5,3` y observa que solo cambia el signo del resultado.
+3. Prueba `-0.5,0,-2,7`, que corresponde a $-\tfrac{1}{2}n^{3}-2n+7$.
+4. Mira la última columna de la tabla, el cociente entre el polinomio y su monomio principal. Tiende a uno: esa es la justificación de la regla.
+:::
+
+## Límite de un cociente de polinomios
+
+Todo se reduce a **comparar los grados**.
+
+| Comparación | Límite |
+|---|---|
+| $\operatorname{grado}(P)>\operatorname{grado}(Q)$ | $\pm\infty$, con el signo del cociente de coeficientes principales |
+| $\operatorname{grado}(P)=\operatorname{grado}(Q)$ | El cociente de los coeficientes principales |
+| $\operatorname{grado}(P)<\operatorname{grado}(Q)$ | $0$ |
+
+La justificación es la del apartado anterior. Cuando $n$ se hace muy grande, arriba y abajo mandan los monomios principales, así que basta simplificar:
+
+$$
+\lim_{n \to \infty}\frac{a_{m}n^{m}+\cdots}{b_{k}n^{k}+\cdots}=\lim_{n \to \infty}\frac{a_{m}n^{m}}{b_{k}n^{k}}.
+$$
+
+### Ejemplos de cálculo
+
+$$
+\lim_{n \to \infty}\frac{3n^{2}-5n}{4n-5}=\lim_{n \to \infty}\frac{3n^{2}}{4n}=+\infty,
+$$
+
+$$
+\lim_{n \to \infty}\frac{3n^{2}-5}{4n^{2}}=\lim_{n \to \infty}\frac{3n^{2}}{4n^{2}}=\frac{3}{4},
+$$
+
+$$
+\lim_{n \to \infty}\frac{3n-4}{4n^{2}-5}=\lim_{n \to \infty}\frac{3n}{4n^{2}}=0.
+$$
+
+<div data-applet-lim="limcoc"></div>
+
+::: {.callout-tip title="Actividad guiada con los cocientes"}
+1. Reproduce los tres ejemplos anteriores con `3,-5,0` entre `4,-5`, luego `3,0,-5` entre `4,0,0`, y `3,-4` entre `4,0,-5`.
+2. Escribe sin hacer cálculos el valor de $\lim \dfrac{5x^{2}-3x+2}{2x^{2}-5x+1}$ y compruébalo.
+3. Prueba `8,0` entre `2,3,-1`, que corresponde a $\dfrac{8n}{2n^{2}+3n-1}$.
+4. Un caso curioso del libro: $\dfrac{(n-1)^{10}}{(n+2)^{10}}$. Sin desarrollar, ¿cuánto vale el límite? Los dos tienen grado $10$ y coeficiente principal $1$.
+5. Fíjate en la velocidad de convergencia con `1,0` entre `1,1000`. Con $n=10$ el valor engaña.
+:::
+
+::: {.callout-caution title="Pensamiento crítico"}
+Esta regla es la primera herramienta seria del tema, y también la primera tentación de aplicarla mecánicamente.
+
+Considera $\lim \dfrac{\sqrt{n^{3}}}{n^{2}}$. Los grados aparentes son $3$ y $2$, y la regla mal aplicada daría infinito. Pero el grado real del numerador es $\tfrac{3}{2}$, porque la raíz divide el exponente entre su índice. El límite es cero.
+
+**Comparar grados exige saber cuál es el grado de verdad.** Volveremos sobre esto en la página de indeterminaciones.
+:::
+
+## Operaciones con límites
+
+::: {.callout-note title="Propiedades"}
+Si $a_{n}$ y $b_{n}$ son dos sucesiones cuyos límites **existen**, y la operación entre esos límites está definida, se cumple:
+
+$$
+\lim\left(a_{n}+b_{n}\right)=\lim a_{n}+\lim b_{n},\qquad \lim\left(a_{n}-b_{n}\right)=\lim a_{n}-\lim b_{n},
+$$
+
+$$
+\lim\left(a_{n}\cdot b_{n}\right)=\lim a_{n}\cdot\lim b_{n},\qquad \lim\frac{a_{n}}{b_{n}}=\frac{\lim a_{n}}{\lim b_{n}}\ \text{ si }\lim b_{n}\neq 0,
+$$
+
+$$
+\lim\left(a_{n}\right)^{b_{n}}=\left(\lim a_{n}\right)^{\lim b_{n}},\qquad \lim \sqrt[k]{a_{n}}=\sqrt[k]{\lim a_{n}},
+$$
+
+$$
+\lim \log_{b} a_{n}=\log_{b}\left(\lim a_{n}\right),\qquad \lim \ln a_{n}=\ln\left(\lim a_{n}\right).
+$$
+:::
+
+Un caso particular muy usado: si una de las funciones es una constante,
+
+$$
+\lim\left(K\cdot a_{n}\right)=K\cdot\lim a_{n}.
+$$
+
+### Ejemplos de cálculo
+
+$$
+\lim_{n \to \infty}\left(\frac{4n+1}{2n}+\frac{3n^{2}}{n^{2}-3}\right)=2+3=5,
+$$
+
+$$
+\lim_{n \to \infty}\left(\frac{4n^{3}-1}{4n^{2}}\cdot\frac{n^{2}}{3n^{2}+1}\right)=(+\infty)\cdot\frac{1}{3}=+\infty,
+$$
+
+$$
+\lim_{n \to \infty}\log_{2}\left(\frac{4n^{3}-1}{2n^{3}}\right)^{3}=3\log_{2} 2=3,
+$$
+
+$$
+\lim_{n \to \infty}\left(\frac{2n^{3}-1}{3n^{3}}\right)^{n}=\left(\frac{2}{3}\right)^{+\infty}=0.
+$$
+
+Fíjate en el último: el límite de la base es $\tfrac{2}{3}$, menor que uno, y el exponente crece, luego la potencia tiende a cero. Aquí las propiedades funcionan sin problema porque la operación resultante **está definida**.
+
+<div data-applet-lim="operlim"></div>
+
+::: {.callout-tip title="Actividad guiada con las operaciones"}
+1. Reproduce el primer ejemplo con `(4*n+1)/(2*n)` y `3*n^2/(n^2-3)`, en modo suma.
+2. Calcula $\lim\left(\dfrac{3n^{2}-1}{n^{3}}-\dfrac{4n^{5}}{2n^{4}+3}\right)$ con la resta.
+3. Prueba `(2*n^3-1)/(3*n^3)` elevado a `n` y comprueba que tiende a cero.
+4. Ahora prueba `(n+1)/n` elevado a `n`. El applet te avisará de que hay una **indeterminación**: es el tema de la página siguiente.
+5. Calcula $\lim \ln\dfrac{n^{2}+3}{2n^{2}}$ razonando primero cuánto vale el argumento.
+:::
+
+::: {.callout-important title="La condición que se olvida"}
+Todas estas propiedades exigen dos requisitos. Primero, que **los dos límites existan**. Segundo, que **la operación entre ellos esté definida**.
+
+Si el primer límite es $+\infty$ y el segundo también, la suma está definida y vale $+\infty$. Pero la resta no lo está: es $\infty-\infty$, una indeterminación.
+
+Por eso el applet, cuando detecta uno de esos casos, se niega a aplicar la regla y te lo advierte. No es un fallo: es matemáticamente lo correcto.
+:::
+
+## Lo que sí está determinado
+
+Antes de estudiar las indeterminaciones conviene tener claro lo que **no** lo es. Estas operaciones tienen resultado sin necesidad de trabajar más.
+
+**Suma con infinito.** $k+\infty=+\infty$ y $+\infty+\infty=+\infty$.
+
+**Producto con infinito**, siempre que $k\neq 0$. $k\cdot\infty=\infty$.
+
+**Cociente con infinito.** $\dfrac{k}{\infty}=0$ y $\dfrac{\infty}{k}=\infty$.
+
+**Cociente con cero**, siempre que $k\neq 0$. $\dfrac{0}{k}=0$ y $\dfrac{k}{0}=\infty$.
+
+**Potencias con infinito.** $k^{+\infty}=+\infty$ si $k>1$, vale $1$ si $k=1$, vale $0$ si $-1<k<1$ y no existe si $k\leq-1$. Además $(+\infty)^{+\infty}=+\infty$ y $(+\infty)^{-\infty}=0$.
+
+**Raíces con infinito.** $\sqrt[k]{+\infty}=+\infty$. Y $\sqrt[k]{-\infty}$ vale $-\infty$ si el índice es impar, y no existe si es par.
+
+::: {.callout-note title="Un caso que merece atención"}
+¿Por qué $\dfrac{k}{0}=\infty$ cuando $k\neq 0$?
+
+Piensa en $\dfrac{1}{0{,}1}=10$, $\dfrac{1}{0{,}01}=100$, $\dfrac{1}{0{,}001}=1000$. Al dividir entre algo cada vez más pequeño, el cociente crece sin tope. Ese es el significado exacto de la expresión.
+
+Y ahora la pregunta interesante: ¿cuánto vale $\dfrac{0}{0}$? Aquí los dos efectos compiten, y por eso es indeterminado. Es el asunto de la página siguiente.
+:::
+
+## Errores frecuentes en esta parte
+
+1. Confundir $n^{k}$ con $k^{n}$, que tienen reglas completamente distintas.
+2. Decir que $(-2)^{n}$ tiende a infinito, cuando no tiene límite.
+3. Aplicar la comparación de grados sin tener en cuenta los radicales.
+4. Creer que el término de mayor coeficiente manda, en lugar del de mayor grado.
+5. Al comparar grados iguales, dar como límite $1$ en lugar del cociente de coeficientes.
+6. Aplicar las propiedades de las operaciones cuando alguno de los límites es infinito, sin comprobar que la operación está definida.
+7. Escribir $\dfrac{\infty}{\infty}=1$.
+8. Escribir $1^{\infty}=1$.
+
+## Continúa el tema
+
+La siguiente página se dedica por completo a las **indeterminaciones** y a los métodos para resolverlas. Verás las siete que marca el currículo y, sobre todo, aparecerá el número $e$ en el lugar donde realmente nace.

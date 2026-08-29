@@ -1,0 +1,398 @@
+---
+title: "Indeterminaciones y su resolución"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 3 de 5)"
+filename: 03-indeterminaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Tercera parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los tipos de indeterminaciones y a los métodos para resolverlas, incluido el número e
+categories: [límites, indeterminaciones, número e, conjugado, factorización, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-lim="diagnostico"></div>
+
+## Qué es una indeterminación
+
+En algunos casos, al calcular límites se obtienen expresiones que no permiten determinar si el límite existe ni cuál es su resultado. Esas expresiones se llaman **indeterminaciones**.
+
+::: {.callout-important title="Indeterminado no significa inexistente"}
+Es la confusión más extendida del tema y conviene desactivarla ya.
+
+Indeterminado significa **todavía no determinado**: hace falta realizar operaciones previas para poder decidir si el límite existe y cuál es su valor. En la mayoría de los casos el límite existe perfectamente.
+
+Mira estos tres, todos del tipo $\infty-\infty$:
+
+$$
+\lim_{x \to +\infty}\left(x^{2}-x\right)=+\infty,\qquad \lim_{x \to +\infty}\left(x-x\right)=0,\qquad \lim_{x \to +\infty}\left(x-x^{2}\right)=-\infty.
+$$
+
+La misma expresión formal da tres resultados distintos. Por eso es indeterminada: la forma no basta, hay que mirar el contenido.
+:::
+
+## Las siete indeterminaciones
+
+$$
+\infty-\infty,\qquad 0\cdot\infty,\qquad \frac{0}{0},\qquad \frac{\infty}{\infty},\qquad 1^{\infty},\qquad 0^{0},\qquad \infty^{0}.
+$$
+
+Cada una admite variantes según los signos, pero el tipo es el mismo. Así, $(+\infty)-(+\infty)$, $(-\infty)-(-\infty)$ y $(-\infty)+(+\infty)$ son todas del tipo $\infty-\infty$.
+
+### Ejemplos de identificación
+
+$$
+\lim_{n \to \infty}\left(\frac{n^{2}}{2n}+\frac{1-2n^{3}}{n^{2}+2}\right)=(+\infty)+(-\infty)\ \longrightarrow\ \text{indeterminado},
+$$
+
+$$
+\lim_{n \to \infty}\left(\frac{1}{2}\right)^{n}(2n+1)=0\cdot(+\infty)\ \longrightarrow\ \text{indeterminado},
+$$
+
+$$
+\lim_{n \to \infty}\frac{2^{n}}{n}=\frac{+\infty}{+\infty}\ \longrightarrow\ \text{indeterminado},
+$$
+
+$$
+\lim_{n \to \infty}\left(\frac{n+1}{n}\right)^{n}=1^{\infty}\ \longrightarrow\ \text{indeterminado}.
+$$
+
+En cambio este **no** lo es, aunque se parezca mucho:
+
+$$
+\lim_{n \to \infty}\left(\frac{2}{5}\right)^{n}\cdot\frac{2n+1}{n}=0\cdot 2=0.
+$$
+
+<div data-applet-lim="tablaops"></div>
+
+::: {.callout-tip title="Actividad guiada con la tabla de operaciones"}
+1. Recorre las cinco combinaciones de suma y resta con infinitos. ¿Cuándo aparece la indeterminación?
+2. Prueba producto con cero e infinito, y después producto con un número e infinito. Solo uno es indeterminado.
+3. Prueba potencia con base uno y exponente infinito, y compárala con base $k$ y exponente infinito.
+4. Localiza las siete indeterminaciones del tema usando solo este applet.
+5. Reto: ¿por qué $0^{+\infty}=0$ no es indeterminado y en cambio $0^{0}$ sí lo es?
+:::
+
+<div data-applet-lim="clasifind"></div>
+
+::: {.callout-tip title="Actividad guiada con el clasificador"}
+1. Escribe `(1/2)^n*(2*n+1)` y comprueba que el límite es cero, pese a ser del tipo $0\cdot\infty$.
+2. Prueba `2^n/n`, del tipo $\tfrac{\infty}{\infty}$. Aquí gana la exponencial: crece más deprisa que cualquier polinomio.
+3. Prueba `n/2^n`. Es la misma competición al revés.
+4. Escribe `((n+1)/n)^n` y anota el valor al que se acerca. Lo reconocerás al final de esta página.
+:::
+
+## Indeterminación infinito partido infinito
+
+Aparece sobre todo en cocientes de polinomios y, muy especialmente, cuando hay **radicales**. Se resuelve dividiendo numerador y denominador entre la **mayor potencia de $n$ del denominador**.
+
+::: {.callout-important title="El truco de los grados con radicales"}
+El exponente de las $n$ que están bajo una raíz queda **dividido entre el índice** de la raíz:
+
+$$
+\sqrt{n^{3}}=n^{3/2}\ \text{ tiene grado } \frac{3}{2},\qquad \sqrt[3]{n^{2}}=n^{2/3}\ \text{ tiene grado } \frac{2}{3}.
+$$
+
+Con esto, todo el apartado se reduce a comparar dos fracciones.
+:::
+
+### Ejemplos de cálculo
+
+Primer caso, con grado mayor arriba:
+
+$$
+\lim_{n \to \infty}\frac{2n-1}{\sqrt[3]{n^{2}-3n+1}}.
+$$
+
+El numerador tiene grado $1$ y el denominador grado $\tfrac{2}{3}$. Dividiendo entre $n^{2/3}$,
+
+$$
+\lim_{n \to \infty}\frac{\dfrac{2n-1}{n^{2/3}}}{\dfrac{\sqrt[3]{n^{2}-3n+1}}{n^{2/3}}}=\frac{+\infty}{1}=+\infty.
+$$
+
+Segundo caso, con grado mayor abajo:
+
+$$
+\lim_{n \to \infty}\frac{\sqrt{n^{3}+5n^{2}}}{n^{2}+3}.
+$$
+
+El numerador tiene grado $\tfrac{3}{2}$ y el denominador grado $2$. Como $\tfrac{3}{2}<2$, el límite es $0$.
+
+<div data-applet-lim="indinfinf"></div>
+
+::: {.callout-tip title="Actividad guiada con infinito partido infinito"}
+1. Reproduce los dos ejemplos anteriores con `(2*n-1)/(n^2-3*n+1)^(1/3)` y `sqrt(n^3+5*n^2)/(n^2+3)`.
+2. Calcula $\lim \dfrac{\sqrt{8n^{4}+3n-1}}{3n^{2}-1}$. Los grados son $2$ y $2$: el límite es el cociente de coeficientes.
+3. Prueba $\dfrac{n+3}{\sqrt[4]{n^{4}-3n^{3}+5n^{2}-1}}$, del libro. ¿Qué grado tiene el denominador?
+4. Escribe los grados a mano antes de mirar el resultado del applet. Esa es la destreza que se evalúa.
+:::
+
+## Indeterminación infinito menos infinito
+
+Aparece en dos situaciones, cada una con su método.
+
+**Diferencia de cocientes de polinomios.** Se efectúa la resta de fracciones buscando denominador común, y después se comparan grados.
+
+**Diferencia de radicales.** Se multiplica y divide por el **conjugado**, es decir, por la suma de los radicales.
+
+$$
+\sqrt{A}-\sqrt{B}=\frac{\left(\sqrt{A}-\sqrt{B}\right)\left(\sqrt{A}+\sqrt{B}\right)}{\sqrt{A}+\sqrt{B}}=\frac{A-B}{\sqrt{A}+\sqrt{B}}.
+$$
+
+### Ejemplos de cálculo
+
+Con cocientes:
+
+$$
+\lim_{n \to \infty}\left(\frac{2n^{2}}{2n+1}-\frac{n^{3}}{n^{2}+1}\right)=\lim_{n \to \infty}\frac{-n^{3}+2n^{2}}{2n^{3}+n^{2}+2n+1}=-\frac{1}{2}.
+$$
+
+Con radicales:
+
+$$
+\lim_{n \to \infty}\left(\sqrt{n^{2}+4}-\sqrt{n^{2}-3}\right)=\lim_{n \to \infty}\frac{7}{\sqrt{n^{2}+4}+\sqrt{n^{2}-3}}=\frac{7}{+\infty}=0.
+$$
+
+Fíjate en lo elegante del segundo: tras multiplicar por el conjugado, el numerador se convierte en la **constante** $7$, y el denominador crece sin tope.
+
+::: {.callout-note title="Cuándo hay indeterminación de verdad"}
+La indeterminación $\infty-\infty$ **solo** se obtiene si las expresiones que se restan tienen el **mismo grado**.
+
+Por eso $\lim\left(2n-\sqrt{n^{2}-1}\right)$ no es realmente conflictivo: el primer término tiene grado $1$ y el segundo también, así que sí hay que trabajar. En cambio $\lim\left(n^{2}-n\right)$ se resuelve directamente sacando factor común, porque los grados son distintos y gana el mayor.
+:::
+
+<div data-applet-lim="indrestas"></div>
+
+::: {.callout-tip title="Actividad guiada con infinito menos infinito"}
+1. Reproduce los dos ejemplos: `2*n^2/(2*n+1)-n^3/(n^2+1)` con el método de fracciones, y `sqrt(n^2+4)-sqrt(n^2-3)` con el conjugado.
+2. Calcula $\lim\left(\sqrt{n+1}-\sqrt{n}\right)$ y $\lim\left(2n-\sqrt{n^{2}-1}\right)$.
+3. Prueba $\lim\left(\sqrt{3n+1}-n\right)$. Aquí los grados son distintos: ¿hace falta el conjugado?
+4. Lee el aviso sobre la aritmética del ordenador y observa la tabla con valores enormes. Es un ejemplo real de por qué el cálculo simbólico es más fiable que el numérico.
+:::
+
+## Indeterminación cero partido cero
+
+Se produce en cocientes $\dfrac{P(x)}{Q(x)}$ en un punto $c$ donde $P(c)=0$ y $Q(c)=0$. Se resuelve **factorizando y simplificando**.
+
+::: {.callout-note title="El resultado que lo hace posible"}
+Si un polinomio $P(x)$ toma el valor cero en $x=c$, entonces es **divisible** entre $x-c$:
+
+$$
+P(c)=0\ \Longrightarrow\ P(x)=\left(x-c\right)P_{1}(x).
+$$
+
+Es el teorema del factor, del tema de polinomios. Aquí encuentra su aplicación más útil: si los dos polinomios se anulan en $c$, los dos tienen el factor $x-c$, y ese factor se puede simplificar.
+:::
+
+### Ejemplos de cálculo
+
+$$
+\lim_{x \to 1}\frac{x^{2}-1}{x^{3}-1}=\lim_{x \to 1}\frac{\left(x-1\right)\left(x+1\right)}{\left(x-1\right)\left(x^{2}+x+1\right)}=\lim_{x \to 1}\frac{x+1}{x^{2}+x+1}=\frac{2}{3}.
+$$
+
+$$
+\lim_{x \to -1}\frac{x^{2}-2x-3}{x^{2}+x-2}=\lim_{x \to -1}\frac{\left(x-3\right)\left(x+1\right)}{\left(x+2\right)\left(x+1\right)}=\lim_{x \to -1}\frac{x-3}{x+2}=\frac{-4}{1}=-4.
+$$
+
+Cuando aparece una **raíz**, se multiplica por el conjugado:
+
+$$
+\lim_{x \to 1}\frac{\sqrt{x^{2}+5}-\sqrt{x+5}}{x-1}.
+$$
+
+::: {.callout-important title="La idea más importante de todo el tema"}
+En el primer ejemplo, la función $\dfrac{x^{2}-1}{x^{3}-1}$ **no existe** en $x=1$: al sustituir sale $\tfrac{0}{0}$, que no es un número.
+
+Y sin embargo el límite existe y vale $\tfrac{2}{3}$.
+
+Esto no es una paradoja: es exactamente lo que significa un límite. El límite describe el comportamiento en los **alrededores** del punto, no en el punto. La definición formal excluye deliberadamente el propio punto, escribiendo $0<\left|x-a\right|<\delta$.
+:::
+
+<div data-applet-lim="indcero"></div>
+
+::: {.callout-tip title="Actividad guiada con cero partido cero"}
+1. Reproduce el primer ejemplo con `1,0,-1` entre `1,0,0,-1` en $c=1$.
+2. Calcula $\lim_{x \to 3}\dfrac{x^{2}-6x+9}{x^{2}-9}$ con `1,-6,9` entre `1,0,-9` en $c=3$.
+3. Prueba `1,-2,1,0` entre `1,-3,2` en $c=1$, que corresponde a $\dfrac{x^{3}-2x^{2}+x}{x^{2}-3x+2}$.
+4. Cambia el punto a uno donde el denominador se anule pero el numerador no. El applet cambia de estrategia: aparece una asíntota.
+5. Fíjate en la tabla de valores próximos: la función se acerca al límite desde los dos lados, aunque en el punto no exista.
+:::
+
+## Indeterminación cero por infinito
+
+Suele darse en productos $f(x)\cdot g(x)$ donde uno tiende a cero y el otro a infinito. Se resuelve **operando y simplificando**.
+
+### Ejemplo de cálculo
+
+$$
+\lim_{x \to -3}\left(x^{2}+6x+9\right)\cdot\frac{1}{3x+9}.
+$$
+
+Factorizando, $x^{2}+6x+9=\left(x+3\right)^{2}$ y $3x+9=3\left(x+3\right)$, luego
+
+$$
+\left(x+3\right)^{2}\cdot\frac{1}{3\left(x+3\right)}=\frac{x+3}{3},
+$$
+
+y ahora sí se puede sustituir:
+
+$$
+\lim_{x \to -3}\frac{x+3}{3}=\frac{0}{3}=0.
+$$
+
+::: {.callout-note title="Una reescritura que siempre funciona"}
+La indeterminación $0\cdot\infty$ se puede transformar siempre en otra conocida, pasando uno de los factores al denominador:
+
+$$
+f\cdot g=\frac{f}{\ \dfrac{1}{g}\ }.
+$$
+
+Si $f\to 0$ y $g\to\infty$, entonces $\tfrac{1}{g}\to 0$, y el cociente queda del tipo $\tfrac{0}{0}$. Es útil saberlo: reduce siete casos a menos casos.
+:::
+
+<div data-applet-lim="indceroinf"></div>
+
+::: {.callout-tip title="Actividad guiada con cero por infinito"}
+1. Reproduce el ejemplo con `(x^2+6*x+9)*(1/(3*x+9))` en el punto $-3$.
+2. Prueba `(1/2)^n*(2*n+1)` en modo infinito. Aquí gana el cero.
+3. Prueba `n*(1/2)^n` y después `n^10*(1/2)^n`. Sorprendentemente, los dos dan cero: la exponencial siempre gana.
+4. Reto: escribe un producto del tipo $0\cdot\infty$ cuyo límite sea $5$. Piensa en $\dfrac{5}{n}\cdot n$.
+:::
+
+## El número e
+
+::: {.callout-note title="Definición"}
+$$
+e=\lim_{n \to \infty}\left(1+\frac{1}{n}\right)^{n}\approx 2{,}718282.
+$$
+:::
+
+Se trata de una sucesión **siempre creciente y acotada**, y por eso tiene límite. Sus primeros términos son
+
+$$
+a_{1}=\left(1+1\right)^{1}=2,\qquad a_{2}=\left(1+\frac{1}{2}\right)^{2}=\frac{9}{4}=2{,}25,\qquad a_{100}=1{,}01^{100}=2{,}70481\ldots
+$$
+
+Más en general, si $f(n)\to\infty$, entonces
+
+$$
+\lim_{n \to \infty}\left(1+\frac{1}{f(n)}\right)^{f(n)}=e.
+$$
+
+Y una variante que hay que conocer, porque cambia el resultado:
+
+$$
+\lim_{n \to \infty}\left(1-\frac{1}{n}\right)^{n}=e^{-1}=\frac{1}{e}.
+$$
+
+<div data-applet-lim="numeroe"></div>
+
+::: {.callout-tip title="Actividad guiada con el número e"}
+1. Con numerador $1$ y signo más, comprueba la definición y la lentísima convergencia.
+2. Cambia el signo a menos y comprueba que el resultado es $e^{-1}\approx 0{,}3679$.
+3. Pon numerador $3$ y signo más: el resultado debe ser $e^{3}\approx 20{,}09$.
+4. Fíjate en la columna de la base: se acerca a uno, pero **nunca es uno**. Ahí está la clave de todo.
+:::
+
+::: {.callout-caution title="Pensamiento crítico"}
+¿Por qué $1^{\infty}$ no vale $1$?
+
+Si la base fuese exactamente $1$, el resultado sería exactamente $1$, por muchas veces que la multiplicaras. Pero la base **no es** uno: se acerca a uno. Y el exponente crece tan deprisa que compensa esa diferencia minúscula.
+
+Es una competición entre una base que apenas supera la unidad y un exponente que tiende a infinito. Del equilibrio exacto entre las dos nace el número $e$, uno de los números más importantes de las matemáticas.
+:::
+
+## Indeterminación uno elevado a infinito
+
+Se reconoce porque la **base tiende a uno** y el **exponente tiende a infinito**. Se resuelve transformando la expresión hasta que aparezca la definición del número $e$.
+
+### El método completo
+
+$$
+\lim_{n \to \infty}\left(\frac{2n^{2}+1}{2n^{2}-2}\right)^{3n^{2}}.
+$$
+
+Primero se escribe la base como $1+\text{algo}$:
+
+$$
+\frac{2n^{2}+1}{2n^{2}-2}=1+\frac{3}{2n^{2}-2}=1+\frac{1}{\dfrac{2n^{2}-2}{3}}.
+$$
+
+Después se fuerza que el exponente coincida con ese denominador, multiplicando y dividiendo por él:
+
+$$
+\left[\left(1+\frac{1}{\dfrac{2n^{2}-2}{3}}\right)^{\frac{2n^{2}-2}{3}}\right]^{\frac{3\cdot 3n^{2}}{2n^{2}-2}}.
+$$
+
+El corchete tiende a $e$, y el nuevo exponente tiende a $\tfrac{9}{2}$, luego el límite es $e^{9/2}$.
+
+### La fórmula rápida
+
+$$
+\lim f(x)^{g(x)}=e^{\lim g(x)\left[f(x)-1\right]}\qquad\text{cuando } \lim f(x)=1.
+$$
+
+Comprobémosla con el ejemplo del libro:
+
+$$
+\lim_{x \to +\infty}\left(\frac{2x+3}{2x}\right)^{3x-2}=e^{\lim\left(3x-2\right)\left(\frac{2x+3}{2x}-1\right)}=e^{\lim\frac{9x-6}{2x}}=e^{9/2}.
+$$
+
+::: {.callout-important title="Cuándo se puede usar la fórmula"}
+La fórmula solo vale si **la base tiende a uno**. Si no, no hay indeterminación y basta aplicar la propiedad de la potencia.
+
+Además existe una fórmula más general, válida siempre:
+
+$$
+\lim f(x)^{g(x)}=e^{\lim\left[g(x)\cdot\ln f(x)\right]},
+$$
+
+pero para el caso $1^{\infty}$ la primera es más rápida y suficiente en este curso.
+:::
+
+<div data-applet-lim="ind1inf"></div>
+
+::: {.callout-tip title="Actividad guiada con uno elevado a infinito"}
+1. Reproduce el ejemplo del libro con base `(2*x+3)/(2*x)` y exponente `3*x-2`. Debe salir $e^{9/2}$.
+2. Prueba base `(x+3)/(x+1)` y exponente `x-2`. El resultado es $e^{2}$.
+3. Calcula $\lim\left(1+\dfrac{5}{n}\right)^{n}$ con base `1+5/x` y exponente `x`.
+4. Prueba base `(2*x+3)/(2*x)` con exponente `x^2`. El exponente ya no tiende a un número finito: ¿qué ocurre?
+5. Pon una base que **no** tienda a uno, por ejemplo `(3*x+1)/(2*x)`, y observa que el applet te dice que no hay indeterminación.
+:::
+
+## Cuadro resumen de estrategias
+
+| Indeterminación | Estrategia |
+|---|---|
+| $\dfrac{\infty}{\infty}$ | Comparar grados, o dividir entre la mayor potencia del denominador |
+| $\infty-\infty$ con cocientes | Restar las fracciones y comparar grados |
+| $\infty-\infty$ con radicales | Multiplicar y dividir por el conjugado |
+| $\dfrac{0}{0}$ con polinomios | Factorizar y simplificar el factor común |
+| $\dfrac{0}{0}$ con radicales | Multiplicar y dividir por el conjugado |
+| $0\cdot\infty$ | Operar y simplificar, o pasar un factor al denominador |
+| $1^{\infty}$ | Buscar el número $e$, o aplicar la fórmula rápida |
+| $0^{0}$ y $\infty^{0}$ | Tomar logaritmos |
+
+## Errores frecuentes en esta parte
+
+1. Decir que una indeterminación significa que el límite no existe.
+2. Escribir $\dfrac{\infty}{\infty}=1$ o $\infty-\infty=0$.
+3. Escribir $1^{\infty}=1$.
+4. Comparar grados sin dividir el exponente entre el índice de la raíz.
+5. Multiplicar por el conjugado y olvidar que en el numerador queda una **diferencia** de cuadrados.
+6. Simplificar el factor $x-c$ y creer que la función original sí existe en $c$.
+7. Aplicar la fórmula rápida de $1^{\infty}$ cuando la base no tiende a uno.
+8. Al buscar el número $e$, no hacer coincidir el exponente con el denominador.
+
+## Continúa el tema
+
+La siguiente página traslada todo esto a las **funciones**, con el límite en el infinito, el límite en un punto y los límites laterales. Verás que apenas hay que aprender nada nuevo: solo cambiar la $n$ por la $x$ y añadir la posibilidad de ir hacia $-\infty$.

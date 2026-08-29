@@ -1,0 +1,199 @@
+---
+title: "Sucesiones y límite de una sucesión"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 1 de 5)"
+filename: 01-sucesiones-limite-sucesion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Primera parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las sucesiones, la monotonía y la acotación, y al concepto de límite de una sucesión
+categories: [límites, sucesiones, monotonía, acotación, infinito, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-lim="diagnostico"></div>
+
+## Triángulos infinitos
+
+El **triángulo de Sierpinski** se construye de forma recurrente. Se parte de un triángulo equilátero y se unen entre sí los puntos medios de sus lados, obteniendo cuatro triángulos equiláteros iguales. Si se quita el color al triángulo central, tenemos la primera iteración.
+
+Las demás iteraciones se obtienen repitiendo el mismo proceso en cada uno de los triángulos con color. Repitiendo el proceso **infinitas veces** se obtiene el triángulo de Sierpinski.
+
+¿Cuántas veces es mayor la zona verde que la zona blanca al repetir el patrón infinitas veces?
+
+La respuesta desafía la intuición, y por eso este reto abre el tema. Vas a descubrir que trabajar con el infinito obliga a revisar propiedades que parecían evidentes.
+
+<div data-applet-lim="sierpinski"></div>
+
+::: {.callout-tip title="Actividad guiada con el triángulo de Sierpinski"}
+1. Recorre las iteraciones de $0$ a $10$ y anota el área coloreada en cada paso.
+2. ¿A partir de qué iteración el área verde es menor que el uno por ciento del triángulo inicial?
+3. Calcula el límite $\lim_{n \to \infty}\left(\dfrac{3}{4}\right)^{n}$ y razona por qué vale cero.
+4. Reto conceptual: si el área tiende a cero, ¿significa que al final no queda nada? Piensa cuántos puntos tiene la figura.
+:::
+
+## Sucesiones
+
+::: {.callout-note title="Definición"}
+Una **sucesión** es un conjunto de números reales que se pueden numerar:
+
+$$
+a_{1},\ a_{2},\ a_{3},\ \ldots,\ a_{n},\ \ldots\qquad \text{con } n\in\mathbb{N}.
+$$
+
+Cada uno de los elementos que forman la sucesión se llama **término**. El **término general** es una expresión algebraica que permite calcular cualquier término sabiendo el lugar que ocupa, y se representa $a_{n}$.
+:::
+
+Por ejemplo, en la sucesión $3, 6, 9, 12, 15, 18, \ldots$ cada término es el triple del lugar que ocupa, luego $a_{n}=3n$. De ahí se obtiene directamente
+
+$$
+a_{10}=3\cdot 10=30,\qquad a_{62}=3\cdot 62=186.
+$$
+
+::: {.callout-note title="Una sucesión es una función"}
+Se puede considerar una sucesión como una **función** que asocia a cada número natural $n$ un número real $a_{n}$:
+
+$$
+f:\mathbb{N}\to\mathbb{R},\qquad n\mapsto a_{n}.
+$$
+
+Esta idea es la razón de que el tema empiece por sucesiones. Todo lo que aprendas aquí se traslada después a funciones cambiando la $n$ por la $x$, con una sola novedad: la $x$ también podrá ir hacia $-\infty$.
+:::
+
+<div data-applet-lim="sucesion"></div>
+
+::: {.callout-tip title="Actividad guiada con los términos"}
+1. Halla el término general y calcula $a_{5}$ y $a_{10}$ de: $1,3,5,7,\ldots$; $\dfrac{3}{5},\dfrac{7}{15},\dfrac{11}{45},\ldots$; $1,\dfrac{-1}{4},\dfrac{1}{9},\dfrac{-3}{16},\ldots$; $0,2,6,12,20,\ldots$
+2. Escribe `3*n` y comprueba los valores $a_{10}=30$ y $a_{62}=186$ del ejemplo.
+3. Prueba `(-1)^n*n` y observa cómo alternan los signos según la paridad.
+4. Escribe `(1+1/n)^n` y fíjate en los valores: volverás a encontrarte esta sucesión en el apartado de indeterminaciones.
+:::
+
+## Monotonía y acotación
+
+::: {.callout-note title="Definiciones"}
+Si cada término de una sucesión es mayor que el anterior, es decir $a_{n}<a_{n+1}$ para todo $n$, se dice que la sucesión es **monótona creciente**. Si $a_{n}>a_{n+1}$ para todo $n$, es **monótona decreciente**.
+
+Si todos los términos son menores que un número y además mayores que otro, se dice que la sucesión está **acotada**.
+:::
+
+Conviene distinguir las dos cotas por separado. Si $a_{n}<k$ para todo $n$, la sucesión está **acotada superiormente**; si $a_{n}>k$ para todo $n$, está **acotada inferiormente**.
+
+### Ejemplos
+
+| Sucesión | Monotonía | Acotación |
+|---|---|---|
+| $1,2,3,4,5,6,\ldots$ | Creciente | Acotada inferiormente |
+| $a_{n}=(-1)^{n}$ | No es monótona | Acotada |
+| $a_{n}=\dfrac{1}{n}$ | Decreciente | Acotada |
+| $a_{n}=n^{2}$ | Creciente | No acotada |
+
+<div data-applet-lim="monotonia"></div>
+
+::: {.callout-tip title="Actividad guiada con monotonía y acotación"}
+1. Escribe una sucesión decreciente y acotada inferiormente, y compruébala.
+2. Escribe una sucesión acotada superior e inferiormente que **no** sea monótona.
+3. Escribe una sucesión no acotada. ¿Puede ser acotada y no monótona a la vez?
+4. Prueba `(-1)^n*3/n`. No es monótona, está acotada y además tiene límite. Los tres conceptos son independientes.
+:::
+
+::: {.callout-caution title="Pensamiento crítico"}
+El applet analiza los sesenta primeros términos. Eso **no es una demostración**.
+
+Considera la sucesión $a_{n}=\dfrac{n^{2}}{n^{2}+1}$. Los primeros términos crecen, y podríamos conjeturar que crece siempre. En este caso acertaríamos, pero es fácil construir sucesiones que crecen durante los primeros mil términos y luego decrecen.
+
+Comprobar casos particulares sirve para **conjeturar**, nunca para demostrar. Es una de las lecciones metodológicas más importantes del curso.
+:::
+
+## Límite de una sucesión
+
+::: {.callout-note title="Definición"}
+El **límite** de una sucesión de números reales de término general $a_{n}$ es un número real $a$ cuando, para valores muy grandes de $n$, los términos correspondientes de la sucesión se aproximan a él. Se escribe
+
+$$
+\lim_{n \to \infty} a_{n} = a,
+$$
+
+y se lee «el límite de la sucesión $a_{n}$, cuando $n$ tiende a infinito, es $a$».
+:::
+
+El límite de una sucesión, **si existe, es único**.
+
+### Los cuatro comportamientos posibles
+
+Con $a_{n}=\dfrac{1}{n}$ los términos son $1;\ 0{,}5;\ 0{,}3;\ 0{,}25;\ 0{,}2;\ \ldots$ y se hacen cada vez más pequeños y próximos a cero:
+
+$$
+\lim_{n \to \infty}\frac{1}{n}=0.
+$$
+
+Con $a_{n}=n^{2}-1$ los términos son $0, 3, 8, 15, 24, \ldots$ y la sucesión crece indefinidamente:
+
+$$
+\lim_{n \to \infty}\left(n^{2}-1\right)=+\infty.
+$$
+
+Con $a_{n}=-2^{n}$ los términos son negativos y su valor absoluto cada vez mayor:
+
+$$
+\lim_{n \to \infty}\left(-2^{n}\right)=-\infty.
+$$
+
+Con $a_{n}=(-1)^{n}\cdot n$ los términos son $-1, 2, -3, 4, -5, 6, \ldots$ Los que ocupan posición par son positivos y los de posición impar negativos. **No se puede determinar** el valor de un término con $n$ muy grande, luego la sucesión **no tiene límite**.
+
+::: {.callout-important title="El infinito no es un número real"}
+Cuando escribimos $\lim a_{n}=+\infty$ no estamos diciendo que el límite sea un número. Estamos describiendo un comportamiento: los términos crecen sin tope.
+
+Por eso, en sentido estricto, también se dice que en ese caso **el límite no existe**. Conocemos perfectamente lo que hace la sucesión, pero no hay ningún número real al que se acerque.
+
+Y observa un detalle de notación: al trabajar con sucesiones no se escribe el signo del infinito en $n$, porque $n$ es natural y solo puede crecer hacia valores positivos.
+:::
+
+<div data-applet-lim="limsuc"></div>
+
+::: {.callout-tip title="Actividad guiada con el límite de una sucesión"}
+1. Reproduce los cuatro comportamientos: `1/n`, `n^2-1`, `-2^n` y `(-1)^n*n`.
+2. Calcula el límite de `(3*n-1)/(2*n+5)`. La tabla debe acercarse a $1{,}5$.
+3. Prueba `(-1)^(2*n)/4` y `(-1/2)^n`. Los dos convergen, aunque uno alterna de signo.
+4. Escribe sucesiones cuyos límites sean $0$, $+\infty$, $-\infty$, $4$, $-3$ y $0{,}5$. Después una que no tenga límite.
+5. Si el límite de $a_{n}$ es $3$, ¿cuál será el límite de $a_{n}+5$? ¿Y el de $2-a_{n}$? Compruébalo.
+:::
+
+::: {.callout-note title="Una tabla no es una demostración, pero enseña mucho"}
+Fíjate en la columna de valores del applet cuando calculas $\lim \dfrac{3n-1}{2n+5}$. Con $n=10$ vale aproximadamente $1{,}16$, y con $n=1000$ vale $1{,}497$. La convergencia es **lenta**.
+
+Eso tiene una consecuencia práctica importante: que un límite valga cero no significa que los términos sean pequeños desde el principio. Confundir el comportamiento asintótico con el comportamiento inicial es un error frecuente en interpretación de datos.
+:::
+
+## Por qué empezamos aquí
+
+Este apartado puede parecer un preámbulo, pero es el corazón del tema. Las tres ideas que acabas de ver van a reaparecer en todas las páginas siguientes.
+
+**Primera.** El límite describe una **tendencia**, no un valor alcanzado. Los términos se acercan; no hace falta que lleguen.
+
+**Segunda.** El infinito no se comporta como un número. Sumar, restar o dividir infinitos exige un cuidado especial, y de ahí nacerán las indeterminaciones.
+
+**Tercera.** Una sucesión es una función definida sobre los naturales. Cuando en la página cuarta estudiemos $\lim_{x \to +\infty}f(x)$, veremos que se resuelve **exactamente igual**, sustituyendo $n$ por $x$.
+
+## Errores frecuentes en esta parte
+
+1. Confundir el término general con un término concreto.
+2. Creer que una sucesión acotada tiene siempre límite, como muestra $(-1)^{n}$.
+3. Creer que una sucesión con límite tiene que ser monótona.
+4. Escribir $+\infty$ como si fuese un número real y operar con él sin cuidado.
+5. Deducir la monotonía de los primeros términos sin justificarla.
+6. Confundir «tiende a cero» con «vale cero».
+7. Decir que $(-1)^{n}\cdot n$ tiende a infinito, cuando en realidad no tiene límite.
+
+## Continúa el tema
+
+La siguiente página desarrolla el **cálculo de límites y las operaciones con límites**, con las dos tablas fundamentales de potencias y la regla de comparación de grados para cocientes de polinomios.

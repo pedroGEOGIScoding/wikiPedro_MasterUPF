@@ -1,0 +1,332 @@
+---
+title: "Límite de una función en el infinito y en un punto"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 4 de 5)"
+filename: 04-limite-funcion-infinito-punto
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cuarta parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al límite de una función en el infinito, al límite en un punto, a los límites laterales y a las funciones definidas a trozos
+categories: [límites, límites laterales, infinito, funciones a trozos, epsilon delta, 1 Batx CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-lim="diagnostico"></div>
+
+## Idea intuitiva de límite
+
+Un límite se puede definir como aquel lugar al que, si no llegamos, seremos capaces de **acercarnos todo lo que queramos**.
+
+En sentido matemático, el límite de una función en un punto tiene el sentido de «lugar» hacia el que se dirige el valor de $f(x)$ cuando la variable independiente se aproxima a un valor determinado.
+
+### Ejemplo de aproximación
+
+Estimemos $\lim_{x \to 2}\left(x^{2}-3\right)$ dando valores próximos a $2$.
+
+| $x$ | $3$ | $2{,}5$ | $2{,}1$ | $2{,}01$ | $2{,}001$ |
+|---|---|---|---|---|---|
+| $f(x)$ | $6$ | $3{,}25$ | $1{,}41$ | $1{,}0401$ | $1{,}004001$ |
+
+| $x$ | $1$ | $1{,}5$ | $1{,}9$ | $1{,}99$ | $1{,}999$ |
+|---|---|---|---|---|---|
+| $f(x)$ | $-2$ | $-0{,}75$ | $0{,}61$ | $0{,}9601$ | $0{,}996001$ |
+
+Al aproximarnos a $2$ con valores **mayores**, la función se acerca a $1$ desde arriba. Al aproximarnos con valores **menores**, se acerca a $1$ desde abajo. Concluimos que
+
+$$
+\lim_{x \to 2}\left(x^{2}-3\right)=1.
+$$
+
+<div data-applet-limx="definicion"></div>
+
+::: {.callout-tip title="Actividad guiada con la aproximación"}
+1. Reproduce el ejemplo con `x^2-3` en el punto $2$ y compara con las dos tablas.
+2. Prueba `(x^2-1)/(x-1)` en $x=1$. La función **no existe** ahí, y sin embargo el límite es $2$.
+3. Prueba `sin(x)/x` en $x=0$. El resultado es $1$, uno de los límites más famosos de las matemáticas.
+4. Prueba `abs(x)/x` en $x=0$. Aquí los dos lados discrepan: no hay límite.
+5. Compara siempre las dos últimas líneas del applet: el límite y el valor de la función son cosas distintas.
+:::
+
+## La definición rigurosa
+
+::: {.callout-note title="Definición"}
+Dada una función $f(x)$ y un punto $x=a$, se dice que el límite de $f(x)$ cuando $x$ se aproxima a $a$ es $L$, y se escribe $\lim_{x \to a}f(x)=L$, si
+
+para todo $\varepsilon>0$ existe un $\delta>0$ tal que, siempre que $0<\left|x-a\right|<\delta$, se cumple $\left|f(x)-L\right|<\varepsilon$.
+:::
+
+Es una definición con un alto nivel de abstracción, y no es la que usaremos para calcular. Pero conviene entender su mecánica al menos una vez, porque explica **qué** estamos afirmando cuando escribimos un límite.
+
+### Traducción a lenguaje llano
+
+Dibuja una banda horizontal de altura $\varepsilon$ centrada en $L$. La definición dice que, por estrecha que sea esa banda, siempre puedes encontrar una banda vertical de anchura $\delta$ centrada en $a$ donde la función **no se escapa** de la banda horizontal.
+
+Y como esto se puede hacer para cualquier $\varepsilon$, se concluye que $L$ es el límite.
+
+### Ejemplo de uso
+
+Comprobemos que $\lim_{x \to 1}\left(2x+3\right)=5$. Elegimos un $\varepsilon$ cualquiera e imponemos la condición:
+
+$$
+\left|f(x)-L\right|<\varepsilon\ \Longleftrightarrow\ \left|2x+3-5\right|<\varepsilon\ \Longleftrightarrow\ 2\left|x-1\right|<\varepsilon\ \Longleftrightarrow\ \left|x-1\right|<\frac{\varepsilon}{2}.
+$$
+
+Basta tomar $\delta=\dfrac{\varepsilon}{2}$ para que se verifique la definición.
+
+::: {.callout-note title="Por qué la desigualdad es estricta por la izquierda"}
+En la definición aparece $0<\left|x-a\right|$, y ese cero no está por casualidad. Sirve para **excluir el propio punto** $x=a$ del estudio.
+
+Esa exclusión es lo que permite hablar del límite de una función en un punto donde la función no existe. Y es, en el fondo, la razón de que los límites sean útiles.
+:::
+
+<div data-applet-limx="epsilondelta"></div>
+
+::: {.callout-tip title="Actividad guiada con épsilon y delta"}
+1. Reproduce el ejemplo con `2*x+3` en $x=1$ y $\varepsilon=0{,}4$. El delta debe rondar $0{,}2$.
+2. Divide $\varepsilon$ entre diez y observa qué le ocurre a $\delta$. La relación $\delta=\varepsilon/2$ se mantiene.
+3. Prueba `x^2` en $x=1$. Ahora la relación entre $\delta$ y $\varepsilon$ no es tan sencilla.
+4. Usa la definición para probar que $\lim_{x \to 1} x=1$. ¿Qué delta sirve?
+:::
+
+## Límite de una función en el infinito
+
+Si consideramos la expresión algebraica de una función $f(x)$ como el término general de una sucesión, el límite de la función cuando $x$ tiende a infinito **coincide** con el límite de la sucesión.
+
+::: {.callout-note title="Definiciones"}
+$$
+\lim_{x \to +\infty}f(x)=L
+$$
+
+cuando, para valores muy grandes de $x$, los valores de la función se aproximan al número $L$. Y análogamente hacia $-\infty$.
+
+También puede ocurrir que los valores de la función crezcan indefinidamente, y entonces $\lim_{x \to +\infty}f(x)=+\infty$, o que decrezcan indefinidamente, y entonces vale $-\infty$.
+:::
+
+### Ejemplos de cálculo
+
+Con $f(x)=\dfrac{2}{x}$, cuando $x$ toma valores muy grandes la función se acerca a cero, y lo mismo con valores muy pequeños:
+
+$$
+\lim_{x \to +\infty}\frac{2}{x}=0,\qquad \lim_{x \to -\infty}\frac{2}{x}=0.
+$$
+
+Con $f(x)=\dfrac{4x^{3}+2x}{x^{3}-7}$ se sustituye $x$ por $n$ cuando $x \to +\infty$, y por $-n$ cuando $x \to -\infty$:
+
+$$
+\lim_{x \to +\infty}\frac{4x^{3}+2x}{x^{3}-7}=\frac{4}{1}=4,\qquad \lim_{x \to -\infty}\frac{4x^{3}+2x}{x^{3}-7}=\lim_{n \to \infty}\frac{-4n^{3}-2n}{-n^{3}-7}=4.
+$$
+
+::: {.callout-note title="En la práctica no se sustituye"}
+El grado de los polinomios decide el límite, así que la sustitución de $x$ por $\pm n$ **no se hace** y se da directamente el resultado. Basta comparar grados, exactamente igual que con sucesiones.
+
+La única precaución nueva aparece con grados **impares**: ahí el signo sí cambia al ir hacia $-\infty$. Compruébalo con $x^{3}$.
+:::
+
+<div data-applet-limx="liminf"></div>
+
+::: {.callout-tip title="Actividad guiada con el límite en el infinito"}
+1. Reproduce los dos ejemplos con `2/x` y `(4*x^3+2*x)/(x^3-7)`.
+2. Calcula $\lim_{x \to +\infty}\dfrac{3x^{2}+2x-1}{x-2-6x^{2}}$ y comprueba que los dos lados coinciden.
+3. Prueba `x^3`. Los dos límites son distintos, y esa es la novedad respecto a las sucesiones.
+4. Prueba `exp(x)`. Muy asimétrica: hacia $+\infty$ crece sin tope y hacia $-\infty$ tiende a cero.
+5. Prueba `(2*x^2+1)/(x^2-3*x)` y anota el valor: reaparecerá en la página de asíntotas.
+:::
+
+## Límites laterales
+
+Para estudiar cómo se aproxima una función a un punto hay que considerar la aproximación **por la izquierda**, con valores menores que él, y **por la derecha**, con valores mayores.
+
+::: {.callout-note title="Notación"}
+$$
+\lim_{x \to c^{-}}f(x)=L\qquad\text{límite por la izquierda},
+$$
+
+$$
+\lim_{x \to c^{+}}f(x)=L\qquad\text{límite por la derecha}.
+$$
+:::
+
+### Condición de existencia
+
+::: {.callout-important title="Necesario y suficiente"}
+Para que una función tenga límite en un punto es **necesario y suficiente** que existan los dos límites laterales y que **coincidan**:
+
+$$
+\lim_{x \to a}f(x)=L\ \Longleftrightarrow\ \lim_{x \to a^{-}}f(x)=L=\lim_{x \to a^{+}}f(x).
+$$
+
+Si los dos laterales existen pero son distintos, **no** se puede decir que la función tenga límite en ese punto, aunque sepamos perfectamente lo que hace a cada lado.
+:::
+
+### Ejemplo de cálculo
+
+Con $f(x)=\dfrac{3}{x+1}$ en $x=-1$:
+
+$$
+\lim_{x \to -1^{-}}\frac{3}{x+1}=-\infty,\qquad \lim_{x \to -1^{+}}\frac{3}{x+1}=+\infty.
+$$
+
+Los dos laterales son infinitos de signo contrario, luego no existe el límite. Pero conocemos exactamente el comportamiento, y esa información será la que use el apartado de asíntotas.
+
+<div data-applet-limx="laterales"></div>
+
+::: {.callout-tip title="Actividad guiada con los laterales"}
+1. Reproduce el ejemplo con `3/(x+1)` en $x=-1$.
+2. Prueba `abs(x)/x` en $x=0$. Los laterales valen $-1$ y $1$: hay un salto de dos unidades.
+3. Prueba `1/x^2` en $x=0$. Aquí los dos laterales sí coinciden, y valen $+\infty$.
+4. Prueba `(-2*x+1)/(x-1)` en $x=1$, del libro.
+5. Reto: construye una función cuyos laterales en $x=0$ sean $+\infty$ y un número finito.
+:::
+
+## Límite de una función en un punto
+
+El procedimiento del libro tiene dos pasos, y conviene aplicarlo siempre en ese orden.
+
+**Primero.** Se sustituye en la función el valor del que se quiere calcular el límite. Si se obtiene un número, ese es el resultado.
+
+**Segundo.** Si se obtiene infinito, hay que calcular los **límites laterales** para conocer el comportamiento a cada lado.
+
+### Ejemplo completo
+
+Sea $f(x)=\dfrac{x+2}{x-2}$.
+
+En $x=-1$ la sustitución funciona:
+
+$$
+\lim_{x \to -1}\frac{x+2}{x-2}=\frac{-1+2}{-1-2}=-\frac{1}{3}.
+$$
+
+En $x=2$ el denominador se anula y el numerador no, luego sale infinito y hay que estudiar los laterales. Para decidir el signo se sustituye un valor muy próximo:
+
+$$
+x=1{,}99\ \Longrightarrow\ \frac{1{,}99+2}{1{,}99-2}<0\ \Longrightarrow\ \lim_{x \to 2^{-}}\frac{x+2}{x-2}=-\infty,
+$$
+
+$$
+x=2{,}01\ \Longrightarrow\ \frac{2{,}01+2}{2{,}01-2}>0\ \Longrightarrow\ \lim_{x \to 2^{+}}\frac{x+2}{x-2}=+\infty.
+$$
+
+Los laterales son distintos, luego **no existe** $\lim_{x \to 2}f(x)$.
+
+::: {.callout-note title="El truco del signo, sin calculadora"}
+No hace falta hacer la división. Basta mirar el signo del numerador y del denominador por separado.
+
+Con $x$ ligeramente menor que $2$, el numerador es positivo, cercano a $4$, y el denominador es negativo, muy pequeño. Positivo entre negativo pequeño da un negativo enorme, es decir $-\infty$.
+
+Este razonamiento de signos es lo que se evalúa en el examen, no el uso de la calculadora.
+:::
+
+<div data-applet-limx="limpunto"></div>
+
+::: {.callout-tip title="Actividad guiada con el límite en un punto"}
+1. Reproduce el ejemplo con `(x+2)/(x-2)` en $x=-1$ y luego en $x=2$.
+2. Calcula $\lim_{x \to 1}\dfrac{3x-1}{x^{2}-2x+3}$ con `(3*x-1)/(x^2-2*x+3)` en $x=1$.
+3. Prueba `(x^2-1)/(x+1)` en $x=-1$. Aquí sale $\tfrac{0}{0}$: hay que factorizar.
+4. Razona si existe el límite de $\dfrac{x-2}{x+3}+\dfrac{x+3}{x-2}$ en $x=2$, $x=3$, $x=-3$ y $x=4$.
+5. En cada caso, decide **a mano** el signo de cada lateral antes de leer el resultado del applet.
+:::
+
+## Funciones definidas a trozos
+
+En una función definida a trozos hay que preguntarse siempre lo mismo: **¿en este punto cambia la expresión algebraica?**
+
+Si cambia, se calculan los dos laterales usando la rama que corresponde a cada lado. Si no cambia, basta sustituir.
+
+### Ejemplo de cálculo
+
+$$
+f(x)=\left\{
+\begin{array}{ll}
+x^{3}-2x+3 & \text{si } x<1\\
+3x-2 & \text{si } x\geq 1
+\end{array}
+\right.
+$$
+
+En $x=1$ la expresión sí cambia. Por la izquierda usamos la primera rama:
+
+$$
+\lim_{x \to 1^{-}}\left(x^{3}-2x+3\right)=1-2+3=2.
+$$
+
+Por la derecha usamos la segunda:
+
+$$
+\lim_{x \to 1^{+}}\left(3x-2\right)=3-2=1.
+$$
+
+Los dos laterales son distintos, luego **no existe** el límite en $x=1$.
+
+En cambio, en $x=0$ la expresión no cambia, así que se sustituye directamente en la rama que corresponde.
+
+::: {.callout-caution title="Pensamiento crítico"}
+Considera esta variante, también del libro:
+
+$$
+f(x)=\left\{
+\begin{array}{ll}
+x^{3} & \text{si } x<1\\
+3x-2 & \text{si } x>1
+\end{array}
+\right.
+$$
+
+Aquí los dos laterales valen $1$, luego el límite **sí existe** y vale $1$. Y sin embargo la función **no está definida** en $x=1$: fíjate en que ninguna de las dos condiciones incluye el igual.
+
+Tener límite y estar definida son propiedades independientes. La página siguiente, dedicada a la continuidad, se construye precisamente sobre esa distinción.
+:::
+
+<div data-applet-limx="trozos"></div>
+
+::: {.callout-tip title="Actividad guiada con funciones a trozos"}
+1. Reproduce el ejemplo con `x^3-2*x+3` y `3*x-2` en $c=1$. Los laterales deben ser $2$ y $1$.
+2. Cambia la primera rama a `x^3`. Ahora los laterales coinciden y valen $1$.
+3. Prueba `x-1` y `-2*x^2+4` en $c=-1$, del libro. Después consulta el punto $0$, donde no hay cambio de rama.
+4. Prueba `3*x+4` y `1-x^2` en $c=-2$ y calcula los laterales.
+5. Busca los valores que hacen que los dos laterales coincidan modificando una rama. Es el ejercicio típico de continuidad.
+:::
+
+## Tipos de límites según los valores
+
+Combinando lo que puede hacer la variable independiente con lo que puede hacer la función salen cuatro posibilidades.
+
+| | Variable finita | Variable infinita |
+|---|---|---|
+| **Límite finito** | $\lim_{x \to a}f(x)=L$ | $\lim_{x \to \infty}f(x)=L$ |
+| **Límite infinito** | $\lim_{x \to a}f(x)=\infty$ | $\lim_{x \to \infty}f(x)=\infty$ |
+
+Con $f(x)=\dfrac{1}{x}$ se pueden ver tres de los cuatro casos:
+
+$$
+\lim_{x \to 1}\frac{1}{x}=1,\qquad \lim_{x \to \infty}\frac{1}{x}=0,\qquad \lim_{x \to 0}\frac{1}{x}=\infty.
+$$
+
+Y con $f(x)=x^{2}$ se ve el cuarto:
+
+$$
+\lim_{x \to \infty}x^{2}=+\infty.
+$$
+
+## Errores frecuentes en esta parte
+
+1. Creer que para calcular un límite en un punto hay que evaluar la función en ese punto.
+2. Decir que el límite no existe porque la función no está definida ahí.
+3. Afirmar que existe el límite cuando los laterales son $-\infty$ y $+\infty$.
+4. Al ir hacia $-\infty$, olvidar que en los grados impares cambia el signo.
+5. En una función a trozos, usar la rama equivocada para un lateral.
+6. En una función a trozos, calcular los laterales en un punto donde la expresión **no** cambia.
+7. Decidir el signo de un lateral sin comprobar los signos de numerador y denominador.
+8. Confundir $\lim_{x \to a}f(x)$ con $f(a)$ cuando la función es discontinua.
+
+## Continúa el tema
+
+La siguiente página cierra el tema con las **ramas infinitas, las asíntotas y la continuidad**. Todo lo que has calculado aquí se convertirá allí en información gráfica, y los límites laterales pasarán a ser la herramienta para clasificar discontinuidades.
