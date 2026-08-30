@@ -1,0 +1,55 @@
+<!-- =====================================================================
+     _scripts.html — APLICACIONES DE LA DERIVADA · 1r Batx Mates CCSS
+     Ubicacion: 1-BatxMatesCCSS/aplicaciones-derivada/assets/_scripts.html
+
+     COMO SE USA
+       Se carga con include-after-body desde el encabezado de cada .qmd
+       del tema, de modo que cuando se ejecuta el DOM ya existe.
+
+           format:
+             html:
+               include-after-body: assets/_scripts.html
+               html-math-method: katex
+
+     RUTAS
+       ../assets/   recursos compartidos por todo el curso (CSS y KaTeX)
+       assets/      motor propio de este tema
+
+     ORDEN DE CARGA
+       1) applets.css              clases .applet, .ap-row, .ap-out, ...
+       2) katex.min.css            estilos de las formulas
+       3) katex.min.js             renderizador, en local, sin red
+       4) auto-render.min.js       barrido de $...$ en el texto del .qmd
+       5) apl-applets.js           motor unico del tema -> window.APL
+
+     CONVENIO DE MARCADO
+       Un applet se coloca en el .qmd con un bloque de division vacio:
+
+           ::: {data-applet-apl="monotonia"}
+           :::
+
+       El motor busca todos los nodos con data-applet-apl y monta dentro
+       el applet cuya clave coincida. Cada tema del curso usa su propio
+       atributo para que los motores no interfieran entre si:
+
+           numeros reales             data-applet-re="clave"
+           polinomios                 data-applet-poly="clave"
+           ecuaciones                 data-applet-eq="clave"
+           sistemas                   data-applet-sys="clave"
+           funciones                  data-applet-fn="clave"
+           limites                    data-applet-lim="clave"
+           derivadas                  data-applet-der="clave"
+           aplicaciones               data-applet-apl="clave"
+
+     ARRANQUE
+       El motor se carga con defer y espera su turno con setTimeout antes
+       de barrer el documento. Es el criterio unificado de los motores del
+       curso: cualquier modulo de ampliacion que se cargue despues llega
+       a tiempo de registrar sus applets.
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/contrib/auto-render.min.js"></script>
+<script defer src="assets/apl-applets.js"></script>
