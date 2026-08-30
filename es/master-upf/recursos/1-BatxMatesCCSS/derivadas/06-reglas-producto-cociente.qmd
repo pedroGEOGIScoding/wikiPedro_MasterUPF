@@ -1,0 +1,220 @@
+---
+title: "Tema 7.6 Reglas del producto y del cociente"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 6 de 7)"
+filename: 06-reglas-producto-cociente
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: "Reglas del producto y cociente"
+categories: [derivadas, reglas de derivación, potencia, exponencial, logaritmo, trigonometría, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## El error que casi todos cometemos primero
+
+Ya sabes derivar sumas: la derivada de una suma es la suma de las derivadas. Es una regla tan cómoda que la mente la generaliza sin permiso, y aparece esto:
+
+$$
+(f \cdot g)' \stackrel{?}{=} f' \cdot g'
+$$
+
+**Es falso.** Y conviene comprobarlo con un ejemplo tan simple que no admita discusión.
+
+Toma $f(x) = x$ y $g(x) = x$. Su producto es $f(x)\cdot g(x) = x^2$, cuya derivada ya conoces:
+
+$$
+(x^2)' = 2x
+$$
+
+Pero si multiplicaras las derivadas, obtendrías $f'(x) \cdot g'(x) = 1 \cdot 1 = 1$. Y $2x$ no es $1$.
+
+::: {.callout-important}
+## Por qué falla la intuición
+
+Al derivar mides cómo cambia una cantidad. En una suma, cada término cambia por su cuenta y los cambios se suman sin interferir. En un producto no: si creces un factor, el efecto sobre el resultado depende de **cuánto vale el otro factor** en ese momento. Los dos factores se estorban, y la regla tiene que recogerlo.
+:::
+
+## La regla del producto
+
+$$
+\bigl(f(x) \cdot g(x)\bigr)' = f'(x)\cdot g(x) + f(x) \cdot g'(x)
+$$
+
+Se lee así: **derivo el primero por el segundo sin tocar, más el primero sin tocar por la derivada del segundo**. Dos sumandos, y en cada uno solo se deriva un factor.
+
+### De dónde sale
+
+Aplicamos la definición al producto $P(x) = f(x)g(x)$:
+
+$$
+P'(x) = \lim_{h \to 0} \frac{f(x+h)g(x+h) - f(x)g(x)}{h}
+$$
+
+El truco consiste en sumar y restar el mismo término en el numerador, que no cambia nada pero permite agrupar:
+
+$$
+f(x+h)g(x+h) - \underbrace{f(x)g(x+h) + f(x)g(x+h)}_{\text{se cancelan}} - f(x)g(x)
+$$
+
+Agrupando de dos en dos y separando el límite:
+
+$$
+P'(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}\,g(x+h) + f(x)\lim_{h \to 0}\frac{g(x+h)-g(x)}{h}
+$$
+
+El primer límite es $f'(x)$, el segundo es $g'(x)$, y $g(x+h)$ tiende a $g(x)$ por ser continua. Queda la regla.
+
+### Ejemplo resuelto
+
+Deriva $f(x) = (3x^2 - 1)(x^3 + 2x)$.
+
+Identifica las dos piezas y sus derivadas por separado, **antes** de montar nada:
+
+| Pieza | Vale | Su derivada |
+|---|---|---|
+| Primera | $3x^2 - 1$ | $6x$ |
+| Segunda | $x^3 + 2x$ | $3x^2 + 2$ |
+
+Y ahora se sustituye en la fórmula:
+
+$$
+f'(x) = 6x(x^3+2x) + (3x^2-1)(3x^2+2)
+$$
+
+Desarrollando y agrupando:
+
+$$
+f'(x) = 6x^4 + 12x^2 + 9x^4 + 6x^2 - 3x^2 - 2 = 15x^4 + 15x^2 - 2
+$$
+
+::: {.callout-tip}
+## Comprobación que siempre puedes hacer
+
+Este producto se puede multiplicar primero y derivar después: $f(x) = 3x^5 + 6x^3 - x^3 - 2x = 3x^5 + 5x^3 - 2x$, cuya derivada es $15x^4 + 15x^2 - 2$. Coincide. Cuando los factores son polinomios tienes siempre esta vía de verificación, y merece la pena usarla las primeras veces para ganar confianza en la regla.
+:::
+
+::: {data-applet-der="producto"}
+:::
+
+## La regla del cociente
+
+$$
+\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)\cdot g(x) - f(x)\cdot g'(x)}{\bigl(g(x)\bigr)^2}
+$$
+
+Tres detalles que marcan la diferencia entre acertar y fallar:
+
+- En el numerador hay una **resta**, no una suma. Y el orden importa: primero el que lleva $f'$.
+- El denominador va **al cuadrado**, y se escribe sin derivar.
+- La regla solo vale donde $g(x) \neq 0$.
+
+### Ejemplo resuelto
+
+Deriva $f(x) = \dfrac{2x+1}{x^2-3}$.
+
+| Pieza | Vale | Su derivada |
+|---|---|---|
+| Numerador | $2x+1$ | $2$ |
+| Denominador | $x^2-3$ | $2x$ |
+
+$$
+f'(x) = \frac{2(x^2-3) - (2x+1)(2x)}{(x^2-3)^2}
+$$
+
+Desarrollamos solo el numerador y dejamos el denominador factorizado:
+
+$$
+f'(x) = \frac{2x^2 - 6 - 4x^2 - 2x}{(x^2-3)^2} = \frac{-2x^2 - 2x - 6}{(x^2-3)^2}
+$$
+
+::: {.callout-note}
+## No desarrolles el denominador
+
+Escribir $(x^2-3)^2$ es mejor que escribir $x^4 - 6x^2 + 9$. Cuando más adelante busques máximos y mínimos necesitarás resolver $f'(x) = 0$, y para eso solo importa el numerador. Un denominador factorizado también te dice de un vistazo dónde la función no está definida.
+:::
+
+::: {data-applet-der="cocienteregla"}
+:::
+
+## Los cuatro errores que más se repiten
+
+Estos son los fallos que aparecen en los exámenes, en orden de frecuencia:
+
+1. **Multiplicar las derivadas** en un producto, en lugar de aplicar la regla.
+2. **Sumar en vez de restar** en el numerador del cociente.
+3. **Invertir el orden** de la resta y obtener el resultado con el signo cambiado.
+4. **Derivar el denominador** al elevarlo al cuadrado, escribiendo $2g(x)g'(x)$ donde solo debía ir $\bigl(g(x)\bigr)^2$.
+
+::: {.callout-warning}
+## Una fracción no siempre pide la regla del cociente
+
+Si el denominador es un número, no hace falta: $\dfrac{3x^2+x}{5}$ es lo mismo que $\dfrac{1}{5}(3x^2+x)$, y derivas como una constante por una función. La regla del cociente solo es necesaria cuando **hay $x$ en el denominador**.
+:::
+
+::: {data-applet-der="errorcomun"}
+:::
+
+## Ejercicios
+
+Intenta cada uno antes de mirar la solución.
+
+**a)** $f(x) = x^2 \cdot \sqrt{x}$
+
+**b)** $f(x) = \dfrac{x}{x+1}$
+
+**c)** $f(x) = (x^2+1)(x^2-1)$
+
+**d)** $f(x) = \dfrac{x^2-4}{x-2}$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**a)** Con la regla del producto, siendo $(\sqrt{x})' = \dfrac{1}{2\sqrt{x}}$:
+
+$$
+f'(x) = 2x\sqrt{x} + x^2\cdot\frac{1}{2\sqrt{x}} = 2x\sqrt{x} + \frac{x^2}{2\sqrt{x}} = \frac{5}{2}x^{3/2}
+$$
+
+Más rápido: $x^2\sqrt{x} = x^{5/2}$, y por la regla de la potencia $f'(x) = \frac{5}{2}x^{3/2}$. Mismo resultado, la mitad de trabajo.
+
+**b)** Regla del cociente:
+
+$$
+f'(x) = \frac{1\cdot(x+1) - x\cdot 1}{(x+1)^2} = \frac{1}{(x+1)^2}
+$$
+
+Observa que es positiva siempre, así que la función crece en todo su dominio.
+
+**c)** Es una diferencia de cuadrados: $f(x) = x^4 - 1$, y por tanto $f'(x) = 4x^3$. Con la regla del producto sale $2x(x^2-1) + (x^2+1)2x = 4x^3$, igual pero con más pasos.
+
+**d)** Simplifica primero. Para $x \neq 2$ se tiene $f(x) = \dfrac{(x-2)(x+2)}{x-2} = x+2$, luego $f'(x) = 1$. Aplicar la regla del cociente aquí es correcto pero absurdamente laborioso.
+:::
+
+::: {.callout-important}
+## La lección de los ejercicios a, c y d
+
+Antes de aplicar una regla, **mira si puedes simplificar**. Multiplicar los factores, sumar exponentes o cancelar una fracción convierte a menudo un problema de regla del producto o del cociente en una derivada inmediata. La regla es la herramienta de reserva, no la primera opción.
+:::
+
+## Resumen
+
+| Situación | Regla | Resultado |
+|---|---|---|
+| $f + g$ | Suma | $f' + g'$ |
+| $k \cdot f$ con $k$ constante | Constante por función | $k \cdot f'$ |
+| $f \cdot g$ | Producto | $f'g + fg'$ |
+| $\dfrac{f}{g}$ | Cociente | $\dfrac{f'g - fg'}{g^2}$ |
+
+En el próximo apartado verás la regla de la cadena, que es la que permite derivar funciones metidas dentro de otras funciones, como $(3x+1)^5$ o $\sqrt{x^2+1}$.

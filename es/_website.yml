@@ -215,6 +215,8 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/derivadas/03-interpretacion-geometrica.qmd
           - master-upf/recursos/1-BatxMatesCCSS/derivadas/04-funcion-derivada.qmd
           - master-upf/recursos/1-BatxMatesCCSS/derivadas/05-derivadas-funciones-elementales.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/06-reglas-producto-cociente.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/07-regla-de-la-cadena.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
