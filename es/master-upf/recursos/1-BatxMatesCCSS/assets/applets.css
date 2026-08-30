@@ -302,3 +302,9 @@
   .ap-help { display: block; }
   .ap-out { border-color: #ccc; }
 }
+
+/* Tablas de signos del tema de aplicaciones de la derivada. */
+.ap-tabla { border-collapse: collapse; margin: 0.6rem 0; font-size: 0.95rem; }
+.ap-tabla th, .ap-tabla td { border: 1px solid #ddd; padding: 0.25rem 0.6rem; text-align: center; }
+.ap-tabla th { background: #f7f7f7; font-weight: 600; }
+.ap-tabla td:first-child, .ap-tabla th:first-child { text-align: left; background: #fafafa; }
