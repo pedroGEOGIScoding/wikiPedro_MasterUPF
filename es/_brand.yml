@@ -1,7 +1,7 @@
 logo:
   medium:
-    light: images/home/books.png
-    dark: images/home/owl1.png
+    light: images/home/LogoProfeWeb.png
+    dark: images/home/LogoProfeWeb.png
 
 # Hugo Apéro-inspired typography
 typography:

@@ -26,7 +26,7 @@ execute:
   cache: true
   freeze: auto
 
-highlight-style: breezedark
+highlight-style: espresso
 
 editor:
     render-on-save: true
