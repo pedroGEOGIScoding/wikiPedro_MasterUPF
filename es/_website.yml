@@ -243,7 +243,13 @@ website:
           contents:
             - section: "Tema 1 Matrices"
               contents:
-
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/01-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/02-matriz-transpuesta.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/03-operaciones-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/04-rango-matriz.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/05-matriz-inversa.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/06-ecuaciones-matriciales.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/07-aplicaciones-matrices.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

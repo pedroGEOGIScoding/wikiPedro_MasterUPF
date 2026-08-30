@@ -1,0 +1,520 @@
+---
+title: "Tema 1.6 Ecuaciones matriciales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 6 de 7)"
+filename: 06-ecuaciones-matriciales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Resolver AX=B, XA=B y AX+B=C despejando la incógnita con la matriz inversa, respetando el lado por el que se multiplica. Incluye sistemas de ecuaciones matriciales, determinar matrices que cumplen una condición dada y un entrenador con corrección automática.
+categories: [matrices, ecuaciones matriciales, despejar X, sistemas matriciales, entrenador, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuatro objetivos de golpe
+
+De los ocho objetivos del tema, **cuatro** se resuelven en este apartado: las ecuaciones de tipo $AX=B$, de tipo $XA=B$, de tipo $AX+B=C$ y la determinación de matrices que cumplen una condición dada.
+
+Una **ecuación matricial** es una ecuación cuyos coeficientes e incógnitas son matrices. Y todo se apoya en una única idea, con dos precauciones.
+
+::: {.callout-important}
+## La idea y las dos precauciones
+
+**La idea.** Para despejar $X$ se multiplica por la matriz inversa, igual que en $3x=12$ se multiplica por $\tfrac{1}{3}$.
+
+**Precaución 1.** No se puede dividir. La división de matrices no existe: solo existe multiplicar por la inversa, y solo si esa inversa existe.
+
+**Precaución 2.** Hay que respetar **el lado**. Como el producto no es conmutativo, multiplicar por la izquierda y por la derecha dan resultados distintos. Y lo que hagas en un miembro debes hacerlo en el otro por el mismo lado.
+
+Los apuntes de Gonzalo añaden una condición previa que conviene tener presente: **la matriz que multiplica a $X$ ha de ser cuadrada**, porque si no, no tiene inversa y la ecuación no se puede resolver por este camino.
+:::
+
+## Los dos métodos de resolución
+
+Igual que con la inversa, hay dos maneras de atacar una ecuación matricial, y conviene conocer las dos.
+
+### El método directo
+
+Consiste en introducir tantas incógnitas como elementos tenga $X$ y resolver el sistema resultante. Con $A$ y $B$ de orden 2, la incógnita es
+
+$$
+X = \begin{pmatrix} x & y \\ z & t \end{pmatrix}
+$$
+
+y al plantear $AX=B$ salen cuatro ecuaciones que suelen separarse en dos sistemas de dos.
+
+Es **desaconsejable si la dimensión es grande**: una matriz $3\times 3$ exige nueve incógnitas. Pero es imprescindible saberlo, porque en la última sección de esta parte será el único método posible.
+
+### El método matricial
+
+Consiste en tratar la ecuación como si fuera de números reales, despejar $X$, y después operar. Es el recomendable en cuanto la dimensión pasa de 2, y es el que desarrollamos a continuación tipo por tipo.
+
+## El tipo AX = B
+
+La incógnita está multiplicada por $A$ **por la izquierda**. Así que multiplicamos los dos miembros por $A^{-1}$ por la izquierda:
+
+$$
+AX = B \;\Longrightarrow\; A^{-1}AX = A^{-1}B \;\Longrightarrow\; IX = A^{-1}B \;\Longrightarrow\; \boxed{X = A^{-1}B}
+$$
+
+El paso intermedio con la identidad es el que da sentido a todo: $A^{-1}A$ se convierte en $I$, e $I$ desaparece porque es el neutro del producto.
+
+### Ejemplo con los dos métodos
+
+Resuelve $AX = B$ con
+
+$$
+A = \begin{pmatrix} -3 & 4 \\ -7 & 11 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 0 \\ -3 & 4 \end{pmatrix}
+$$
+
+**Por el método directo**, se plantea $X = \begin{pmatrix} x&y\\z&t \end{pmatrix}$, se multiplica y se igualan los elementos, obteniendo dos sistemas de dos ecuaciones con dos incógnitas, uno para $x, z$ y otro para $y, t$.
+
+**Por el método matricial**, se calcula $A^{-1}$ y se multiplica: $X = A^{-1}B$. Los apuntes de Gonzalo resuelven este mismo ejemplo por los dos caminos y llegan, cómo no, al mismo resultado. La lección es que el segundo camino es bastante más corto.
+
+### Otro ejemplo, con números cómodos
+
+Resuelve $AX = B$ con
+
+$$
+A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}, \qquad B = \begin{pmatrix} 3 & 0 \\ 1 & 2 \end{pmatrix}
+$$
+
+Como $|A| = 1 \neq 0$, la inversa existe. Con el atajo de orden 2:
+
+$$
+A^{-1} = \frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}
+$$
+
+Y por tanto
+
+$$
+X = A^{-1}B = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 2 & -2 \\ -1 & 4 \end{pmatrix}
+$$
+
+Comprobación: $A\cdot X = \begin{pmatrix} 3 & 0 \\ 1 & 2 \end{pmatrix} = B$. Correcto.
+
+## El tipo XA = B
+
+Ahora $A$ multiplica **por la derecha**, así que la inversa debe entrar por la derecha:
+
+$$
+XA = B \;\Longrightarrow\; XAA^{-1} = BA^{-1} \;\Longrightarrow\; \boxed{X = BA^{-1}}
+$$
+
+::: {.callout-warning}
+## El error más caro del tema
+
+De $AX = B$ **no** se deduce $X = BA^{-1}$.
+
+Es el fallo más frecuente en la corrección, y lo peor es que no da ningún aviso: el cálculo se puede completar, sale una matriz con aspecto respetable, y está mal.
+
+La regla que lo evita: mira **de qué lado** está la matriz que estorba, y ataca por ese mismo lado. En $AX$, la $A$ está a la izquierda, luego la inversa entra por la izquierda. En $XA$, está a la derecha, luego entra por la derecha.
+
+Y hay una comprobación que lo caza siempre: sustituye tu solución en la ecuación original. Si no sale $B$, revisa el lado.
+:::
+
+### Un ejercicio que enseña esto por las malas
+
+De la hoja de Gonzalo: «¿Por qué hay que premultiplicar $A = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$ para que dé $B = \begin{pmatrix} 5 & 2 \\ 6 & 3 \end{pmatrix}$?»
+
+La palabra **premultiplicar** significa multiplicar por delante, es decir, buscamos $X$ con $XA = B$. Luego $X = BA^{-1}$, con
+
+$$
+A^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}
+\;\Longrightarrow\;
+X = \begin{pmatrix} 5 & 2 \\ 6 & 3 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}
+$$
+
+Compruébalo: $XA$ da exactamente $B$. Y ahora haz el experimento de calcular $A^{-1}B$: te saldrá otra matriz distinta, que **no** cumple la ecuación. Ese contraste, hecho una vez con las manos, se recuerda mejor que cualquier advertencia.
+
+## El tipo AX + B = C
+
+Se despeja en dos etapas: primero se pasa $B$ al otro miembro, y después se multiplica por la inversa.
+
+$$
+AX + B = C \;\Longrightarrow\; AX = C - B \;\Longrightarrow\; \boxed{X = A^{-1}(C - B)}
+$$
+
+::: {.callout-note}
+## Por qué el paréntesis es obligatorio
+
+Escribir $X = A^{-1}C - B$ es incorrecto: la inversa multiplica a **todo** lo que quedó en el miembro derecho, no solo al primer término.
+
+El paréntesis no es tipográfico, es matemático. Y si prefieres desarrollarlo, lo correcto es $X = A^{-1}C - A^{-1}B$, con la inversa aplicada a los dos.
+:::
+
+### El ejercicio del libro de texto
+
+Resuelve $M X + N = P$ siendo
+
+$$
+M = \begin{pmatrix} 2&1&0 \\ 3&0&9 \\ -2&0&7 \end{pmatrix}, \quad
+N = \begin{pmatrix} 1&1&1 \\ 2&2&2 \\ 3&3&3 \end{pmatrix}, \quad
+P = \begin{pmatrix} 0&0&1 \\ 0&1&0 \\ 1&0&0 \end{pmatrix}
+$$
+
+El procedimiento: se calcula $P-N$, se comprueba que $|M|\neq 0$, se halla $M^{-1}$ y se multiplica por la izquierda. Usa el applet eligiendo el tipo $AX+B=C$ para ver el despeje y la comprobación completa.
+
+## Otros tipos que conviene conocer
+
+### AXB = C
+
+Aquí estorban dos matrices, una por cada lado, y hace falta invertir las dos, cada una por su lado:
+
+$$
+AXB = C \;\Longrightarrow\; A^{-1}AXBB^{-1} = A^{-1}CB^{-1} \;\Longrightarrow\; \boxed{X = A^{-1}CB^{-1}}
+$$
+
+### AX = X + B
+
+Este parece distinto, y es el que más se falla, porque hay que agrupar la incógnita:
+
+$$
+AX = X + B \;\Longrightarrow\; AX - X = B
+$$
+
+Y ahora viene el paso delicado. Para sacar factor común de $X$ hay que escribir $X = IX$:
+
+$$
+AX - IX = B \;\Longrightarrow\; (A - I)X = B \;\Longrightarrow\; \boxed{X = (A-I)^{-1}B}
+$$
+
+::: {.callout-important}
+## Factor común con la identidad, nunca con el 1
+
+Escribir $(A - 1)X = B$ es un error de concepto, no de cálculo: $A - 1$ no significa nada, porque no se puede restar un número a una matriz.
+
+Lo que hay que restar es la **matriz identidad**. Y observa que la existencia de la solución ya no depende de que $A$ sea invertible, sino de que lo sea $A - I$, que es una matriz distinta. Puede perfectamente ocurrir que $A$ tenga inversa y $A-I$ no, o al contrario.
+:::
+
+### Ecuaciones con traspuestas dentro
+
+En las hojas de ejercicios y en la PAU aparecen mezclas de todo lo anterior, del tipo
+
+$$
+(A - B^t)\cdot C\cdot X = D, \qquad A^t X B = C, \qquad X A + B = C^t
+$$
+
+No son tipos nuevos: se calcula primero lo que va entre paréntesis, se identifica qué matriz multiplica a $X$ y por qué lado, y se aplica el mismo esquema. Lo único que cambia es que hay más aritmética antes de empezar.
+
+### Applet · Resolutor de ecuaciones matriciales {.unnumbered}
+
+<div data-applet-mat="ecuacion"></div>
+
+## Resumen de los despejes
+
+| Ecuación | Se multiplica por | Solución |
+|---|---|---|
+| $AX = B$ | $A^{-1}$ por la izquierda | $X = A^{-1}B$ |
+| $XA = B$ | $A^{-1}$ por la derecha | $X = BA^{-1}$ |
+| $AX + B = C$ | Restar $B$, luego $A^{-1}$ por la izquierda | $X = A^{-1}(C-B)$ |
+| $XA + B = C$ | Restar $B$, luego $A^{-1}$ por la derecha | $X = (C-B)A^{-1}$ |
+| $AXB = C$ | $A^{-1}$ izquierda y $B^{-1}$ derecha | $X = A^{-1}CB^{-1}$ |
+| $AX = X + B$ | Factor común con $I$ | $X = (A-I)^{-1}B$ |
+| $AX + X = B$ | Factor común con $I$ | $X = (A+I)^{-1}B$ |
+
+::: {.callout-tip}
+## Protocolo de examen, en cinco pasos
+
+1. Identifica **de qué lado** está la matriz que estorba.
+2. Comprueba que es **cuadrada** y calcula su determinante. Si es cero, la ecuación no se resuelve por este método y hay que decirlo.
+3. Calcula la inversa.
+4. Multiplica por el lado correcto y opera.
+5. **Comprueba** sustituyendo en la ecuación original.
+
+El paso 5 no es opcional. Cuesta un minuto y detecta el error del lado equivocado, que es el que más nota cuesta.
+:::
+
+## Sistemas de ecuaciones matriciales
+
+Un paso más: en lugar de una ecuación con una incógnita, dos ecuaciones con dos matrices incógnita.
+
+$$
+\begin{cases} X + Y = A \\ 2X - 2Y = B \end{cases}
+$$
+
+Y aquí la buena noticia: **se resuelven exactamente como los sistemas de números**, por reducción, igualación o sustitución. La razón es que en estos sistemas no aparecen productos de matrices, solo sumas y productos por escalares, así que no hay ningún problema de conmutatividad y las matrices ni siquiera tienen que ser cuadradas.
+
+### Ejemplo de la hoja de ejercicios
+
+Calcula $X$ e $Y$ que verifican
+
+$$
+\begin{cases} X + Y = \begin{pmatrix} 3&2&1 \\ -3&1&-3 \end{pmatrix} \\[6pt] 2X - 2Y = \begin{pmatrix} 6&0&2 \\ -2&-2&2 \end{pmatrix} \end{cases}
+$$
+
+Se resuelve por reducción: multiplicando la primera por 2 y sumando, se elimina $Y$ y sale $4X$; después se despeja $Y$ de la primera. El único cuidado es hacer las operaciones **casilla a casilla** en cada paso.
+
+::: {.callout-warning}
+## Cuándo las matrices sí tienen que ser cuadradas
+
+En el sistema anterior las matrices son $2\times 3$ y no pasa nada, porque lo más complicado que aparece es $2X - 2Y$.
+
+Pero si el sistema contiene un producto, como $AX + 3Y = B$ con $A$ matriz, entonces $A$ **sí** tiene que ser cuadrada, porque en algún momento habrá que multiplicar por su inversa.
+
+Los apuntes de Gonzalo señalan esta distinción explícitamente, y es la clase de matiz que separa un 7 de un 10.
+:::
+
+## Cuando la matriz que multiplica no es cuadrada
+
+Este caso merece atención porque es el ejemplo de un ejercicio **imposible**, y saber reconocerlo es tan valioso como saber resolver.
+
+Los apuntes plantean: dadas
+
+$$
+A = \begin{pmatrix} 1 & 1 \\ -3 & 0 \\ 2 & 1 \end{pmatrix}, \qquad B = \begin{pmatrix} 1 & 3 \\ -2 & 6 \\ -3 & 1 \end{pmatrix}
+$$
+
+resolver $XA = B$.
+
+**Por el método matricial** no se puede: $A$ es $3\times 2$, no es cuadrada, no tiene inversa, y no hay nada que multiplicar.
+
+**Por el método directo** tampoco: como $A$ es $3\times 2$ y $B$ es $3\times 2$, la matriz $X$ debe ser $3\times 3$, con **nueve** incógnitas. Pero al plantear la igualdad solo salen **seis** ecuaciones, porque $B$ tiene seis elementos. Seis ecuaciones y nueve incógnitas: infinitas soluciones o ninguna, pero desde luego no una única solución.
+
+::: {.callout-note}
+## La conclusión que hay que llevarse
+
+La matriz que multiplica a $X$ en una ecuación matricial **ha de ser cuadrada** para poder multiplicarla por su inversa y dejar sola la $X$.
+
+Cuando en un examen te encuentres con una matriz rectangular multiplicando a la incógnita, la respuesta correcta empieza por señalarlo. No es que no sepas resolverlo: es que el problema no tiene solución única y hay que explicar por qué.
+:::
+
+## Determinar matrices que cumplen una condición
+
+Este objetivo es de otra naturaleza, y por eso mucha gente se queda en blanco al verlo. No hay nada que despejar: hay que **plantear un sistema**, con el método directo.
+
+### Ejemplo resuelto de los apuntes
+
+Determina todas las matrices **diagonales** que conmutan con
+
+$$
+M = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}
+$$
+
+Las matrices buscadas son diagonales, así que $A = \begin{pmatrix} a_{11} & 0 \\ 0 & a_{22} \end{pmatrix}$, y deben cumplir $MA = AM$. Calculando los dos productos e igualando elemento a elemento, las ecuaciones de la diagonal se convierten en identidades y se eliminan; de las otras dos sale
+
+$$
+a_{11} = a_{22}
+$$
+
+Por tanto las matrices que cumplen la condición son las de la forma
+
+$$
+A = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} = k\cdot I, \qquad k \in \mathbb{R}
+$$
+
+es decir, las matrices **escalares**. Y esto tiene una lectura conceptual bonita: los múltiplos de la identidad conmutan con absolutamente todo.
+
+### El mismo tipo, sin exigir que sea diagonal
+
+Halla todas las matrices $X$ de orden 2 que conmutan con $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
+
+Escribimos la incógnita con cuatro letras y calculamos los dos productos:
+
+$$
+AX = \begin{pmatrix} x+z & y+t \\ z & t \end{pmatrix}, \qquad XA = \begin{pmatrix} x & x+y \\ z & z+t \end{pmatrix}
+$$
+
+Igualando posición a posición: $x+z=x$ da $z=0$; $y+t = x+y$ da $t=x$; las otras dos no aportan. La solución no es una matriz, sino una **familia infinita**:
+
+$$
+X = \begin{pmatrix} x & y \\ 0 & x \end{pmatrix} \quad \text{con } x, y \in \mathbb{R}
+$$
+
+::: {.callout-note}
+## La respuesta correcta es la familia completa
+
+Un error frecuente consiste en dar un ejemplo, como $X = I$, y quedarse tan tranquilo. Pero la pregunta era «halla **todas** las matrices», y la respuesta debe describir el conjunto entero con sus parámetros.
+
+Fíjate además en lo que ha pasado: las matrices que conmutan con $A$ son precisamente las de la misma forma que $A$, triangulares superiores con la diagonal repetida. Eso no es casualidad, y explorarlo con el applet da bastante intuición.
+:::
+
+### Otras condiciones del mismo estilo
+
+La hoja de ejercicios tiene una colección larga de variantes, y todas se atacan igual:
+
+- Halla las matrices $X$ tales que $X^2 = I$.
+- Halla todas las matrices $M = \begin{pmatrix} a&b\\b&a \end{pmatrix}$ que cumplen $M^2 - 2M = 3I$.
+- Determina las matrices antisimétricas de orden 2 que verifican $A^4 = 16I$.
+- Determina para qué valores de $a$ y $b$ la matriz dada es **ortogonal**, imponiendo $A\cdot A^t = I$.
+- Halla las matrices $X$ tales que $AX = O$ con $A$ singular.
+
+En todos los casos el esquema es idéntico: escribir la incógnita con letras, imponer la condición, igualar posición a posición, resolver el sistema y **describir la familia completa** de soluciones.
+
+### Applet · Matrices que cumplen una condición {.unnumbered}
+
+<div data-applet-mat="condicion"></div>
+
+## Entrenador
+
+Aquí es donde se consolida el tema. Úsalo con un método:
+
+1. Resuelve el ejercicio **en papel**, entero.
+2. Anota qué tipo de despeje has usado y por qué lado.
+3. Teclea la respuesta y comprueba.
+4. Si falla, no pases al siguiente hasta localizar **dónde** estaba el error.
+
+::: {.callout-warning}
+## Por qué el papel primero
+
+Teclear directamente e ir corrigiendo hasta que el applet dé el visto bueno produce la sensación de haber aprendido, sin haber aprendido nada. El día del examen no habrá nadie corrigiendo al instante.
+
+Comprometerte con una respuesta antes de verificarla es precisamente la destreza que se evalúa.
+:::
+
+### Applet · Entrenador de matrices {.unnumbered}
+
+<div data-applet-mat="entrenador"></div>
+
+## Autoevaluación del tema
+
+Antes de dar por cerrado el tema 1, comprueba que puedes hacer esto sin consultar nada:
+
+- Multiplicar dos matrices $3\times 3$ sin dudar del mecanismo fila por columna.
+- Explicar con un contraejemplo por qué $AB \neq BA$.
+- Calcular un rango escalonando, anotando cada transformación con su notación.
+- Calcular una inversa de orden 3 por Gauss-Jordan y comprobarla.
+- Explicar por qué en Gauss-Jordan no se pueden mezclar filas y columnas.
+- Decidir en cinco segundos si en $XA = B$ la inversa entra por la izquierda o por la derecha.
+- Plantear el sistema que sale de $AX = XA$ con $X$ de orden 2.
+- Justificar por qué una matriz con dos filas proporcionales no tiene inversa.
+- Reconocer que una ecuación con matriz rectangular multiplicando a $X$ no tiene solución única.
+
+Si alguna se te resiste, vuelve a la parte correspondiente antes de empezar el tema 2.
+
+## Actividades propuestas
+
+**1.** Resuelve $AX = B$ con $A = \begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$.
+
+**2.** Resuelve $XA = B$ con las mismas matrices y compara el resultado con el de la actividad anterior.
+
+**3.** Resuelve $AX + B = C$ con
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}, \quad C = \begin{pmatrix} 3 & 5 \\ 2 & 4 \end{pmatrix}
+$$
+
+**4.** Resuelve $MX + N = P$ con las matrices $M$, $N$, $P$ del ejemplo del libro que aparece más arriba.
+
+**5.** Resuelve la ecuación matricial $AX - B = C$ con $A = \begin{pmatrix} 1&2\\2&3 \end{pmatrix}$, $B = \begin{pmatrix} 1&0\\2&3 \end{pmatrix}$, $C = \begin{pmatrix} 4&1\\1&5 \end{pmatrix}$.
+
+**6.** Resuelve $XA = B$ con $A = \begin{pmatrix} 0&2&0 \\ 3&0&3 \\ 0&1&2 \end{pmatrix}$ y $B = \begin{pmatrix} 4&2&1 \\ 5&1&3 \end{pmatrix}$. Fíjate primero en las dimensiones para saber cómo será $X$.
+
+**7.** Resuelve $AX = X + B$ con $A = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$ y $B = \begin{pmatrix} 4 & 2 \\ 1 & 3 \end{pmatrix}$.
+
+**8.** Obtén las matrices $X$ e $Y$ que verifican
+
+$$
+\begin{cases} 2X + Y = \begin{pmatrix} 1&4 \\ 2&0 \end{pmatrix} \\[6pt] X - Y = \begin{pmatrix} -1&2 \\ 1&0 \end{pmatrix} \end{cases}
+$$
+
+**9.** Obtén las matrices $A$ y $B$ que verifican
+
+$$
+\begin{cases} A + B = \begin{pmatrix} 3&2&1 \\ -3&1&-3 \end{pmatrix} \\[6pt] 2A - 2B = \begin{pmatrix} 6&0&2 \\ -2&-2&2 \end{pmatrix} \end{cases}
+$$
+
+**10.** Halla todas las matrices de orden 2 que conmutan con $A = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$.
+
+**11.** Halla todas las matrices diagonales que conmutan con $M = \begin{pmatrix} 2&1\\1&0 \end{pmatrix}$.
+
+**12.** Halla todas las matrices $X$ de orden 2 tales que $AX = O$, con $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$. ¿Por qué hay más de una?
+
+**13.** Determina los valores de $a$ y $b$ para que la matriz $A = \begin{pmatrix} a & -a & b \\ a & a & 0 \\ 0 & b & -1 \end{pmatrix}$ sea ortogonal.
+
+**14.** Sea $A$ una matriz de orden 2 con $|A| \neq 0$. Razona si la ecuación $AX = AY$ permite concluir que $X = Y$, y qué ocurre si $|A| = 0$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $|A| = 1$, luego $A^{-1} = \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$ y
+
+$$
+X = A^{-1}B = \begin{pmatrix} 0 & -1 \\ 1 & 3 \end{pmatrix}
+$$
+
+**2.** Ahora $X = BA^{-1} = \begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$.
+
+Compara con la anterior: **son distintas**. Misma $A$, misma $B$, y dos soluciones diferentes según el lado. Esta actividad existe solo para que veas eso con tus propios ojos.
+
+**3.** Primero $C - B = \begin{pmatrix} 2 & 4 \\ 1 & 3 \end{pmatrix}$. Con $A^{-1} = \begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}$:
+
+$$
+X = A^{-1}(C-B) = \begin{pmatrix} 0 & -2 \\ 1 & 3 \end{pmatrix}
+$$
+
+**4.** Es de tipo $MX = P - N$, luego $X = M^{-1}(P-N)$. El determinante de $M$ vale $-39$, así que la inversa existe. Usa el applet del resolutor eligiendo el tipo $AX+B=C$ para ver el despeje completo y la comprobación.
+
+**5.** Se reordena como $AX = B+C$, se calcula la suma, y se multiplica por $A^{-1}$ por la izquierda. El determinante de $A$ es $-1$.
+
+**6.** Aquí hay que pensar antes de calcular. $A$ es $3\times 3$ y $B$ es $2\times 3$, así que en $XA = B$ la matriz $X$ debe ser $2\times 3$. Como $A$ **sí** es cuadrada, el método matricial funciona: $X = BA^{-1}$, con la inversa por la derecha.
+
+**7.** $A - I = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$, cuya inversa es $\begin{pmatrix} \tfrac{1}{2} & 0 \\ 0 & 1 \end{pmatrix}$. Por tanto
+
+$$
+X = (A-I)^{-1}B = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}
+$$
+
+Comprueba que $AX = X + B$ sustituyendo: los dos miembros dan $\begin{pmatrix} 6 & 3 \\ 2 & 6 \end{pmatrix}$.
+
+**8.** Sumando las dos ecuaciones tras multiplicar la segunda por 1, se elimina $Y$: $3X = \begin{pmatrix} 0&6\\3&0 \end{pmatrix}$, luego $X = \begin{pmatrix} 0&2\\1&0 \end{pmatrix}$. Y de la segunda, $Y = X - \begin{pmatrix} -1&2\\1&0 \end{pmatrix} = \begin{pmatrix} 1&0\\0&0 \end{pmatrix}$.
+
+**9.** Dividiendo la segunda ecuación por 2 se obtiene $A - B$, y con la primera se resuelve por reducción:
+
+$$
+A = \begin{pmatrix} 3&1&1 \\ -2&0&-1 \end{pmatrix}, \qquad B = \begin{pmatrix} 0&1&0 \\ -1&1&-2 \end{pmatrix}
+$$
+
+Fíjate en que las matrices son $2\times 3$ y todo funciona: en este sistema no hay ningún producto, así que no hacía falta que fueran cuadradas.
+
+**10.** Planteando $AX = XA$ se obtiene $2y = 3y$ y $3z = 2z$, o sea $y = 0$ y $z = 0$. La familia es
+
+$$
+X = \begin{pmatrix} x & 0 \\ 0 & t \end{pmatrix}
+$$
+
+es decir, exactamente las matrices **diagonales**. Tiene sentido: una matriz diagonal con elementos distintos solo conmuta con las diagonales.
+
+**11.** Como se ha visto en la teoría, salen las matrices **escalares** $k\cdot I$. Compara este resultado con el de la actividad 10 y observa la diferencia: cuanto más «desordenada» es $A$, menos matrices conmutan con ella.
+
+**12.** Las cuatro ecuaciones se reducen a $x + 2z = 0$ y $y + 2t = 0$, luego
+
+$$
+X = \begin{pmatrix} -2z & -2t \\ z & t \end{pmatrix}
+$$
+
+Hay infinitas. Y el motivo es importante: $|A| = 0$, así que $A$ no tiene inversa y no se puede cancelar. Si $A$ fuera invertible, de $AX = O$ se deduciría $X = O$ y habría una única solución. Esta actividad es la aplicación directa de los divisores de cero de la parte 3.
+
+**13.** Imponiendo $A\cdot A^t = I$ y quedándose con las ecuaciones no repetidas se llega a $2a^2 = 1$ y $b=0$, con lo que
+
+$$
+a = \frac{\sqrt{2}}{2} \ \text{ o } \ a = -\frac{\sqrt{2}}{2}, \qquad b = 0
+$$
+
+Y hay que **comprobar** esas soluciones en el resto de las ecuaciones antes de darlas por buenas, que es justo donde falla mucha gente.
+
+**14.** Si $|A|\neq 0$ existe $A^{-1}$, y multiplicando por la izquierda:
+
+$$
+A^{-1}AX = A^{-1}AY \;\Longrightarrow\; X = Y
+$$
+
+Sí se puede concluir. Pero si $|A| = 0$ **no**, y el contraejemplo es la actividad 12: con esa $A$ singular, tanto $X = O$ como infinitas otras matrices cumplen $AX = O$, es decir, $AX = AO$ sin que $X = O$.
+
+Esta actividad resume el tema entero: la posibilidad de cancelar depende por completo de que exista la inversa.
+:::
+
+## Continúa
+
+En la parte 7 ponemos todo esto a trabajar sobre problemas reales: grafos y rutas de GPS, matrices de costes y precios, criptografía y matrices de decisión.
+
+<div data-applet-mat="diagnostico">

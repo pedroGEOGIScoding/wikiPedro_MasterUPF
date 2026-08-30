@@ -1,0 +1,33 @@
+<!-- =====================================================================
+     _scripts.html — TEMA 1 MATRICES · 2.º Batx Mates CCSS
+     Ubicación: 2-BatxMatesCCSS/matrices/assets/_scripts.html
+     Se inserta en cada parte con:
+         format:
+           html:
+             include-after-body: assets/_scripts.html
+             html-math-method: katex
+
+     ORDEN OBLIGATORIO
+       1) applets.css            hoja común del curso, en ../assets
+       2) mat-applets.css        extras propios de este tema (clases .mx-*)
+       3) katex.min.css          KaTeX servido en LOCAL, sin CDN
+       4) katex.min.js           motor de fórmulas, en local
+       5) mat-applets.js         núcleo + applets de las partes 1, 2 y 3
+       6) mat-applets-extra.js   applets de las partes 4, 5 y 6
+
+     NOTA SOBRE LAS RUTAS
+       Las páginas se renderizan en matrices/, así que ../assets apunta
+       a 2-BatxMatesCCSS/assets y assets/ a matrices/assets.
+
+     NOTA SOBRE KaTeX
+       NO se usa auto-render. Cada applet marca sus fórmulas con
+       data-tex y el núcleo llama a katex.render sobre esos nodos.
+       Así una fórmula mal escrita nunca rompe el resto de la página.
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/mat-applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="assets/mat-applets.js"></script>
+<script defer src="assets/mat-applets-extra.js"></script>

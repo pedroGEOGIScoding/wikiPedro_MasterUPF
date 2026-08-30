@@ -211,6 +211,10 @@ $breadcrumb-divider: quote("/");
     text-decoration: none; /* remove underline if any */
 }
 
+.sidebar-logo {
+  display: none !important;
+}
+
 /* Hover effect */
 .sidebar-item-text.sidebar-link.text-start:hover {
     color: #0f2f57;

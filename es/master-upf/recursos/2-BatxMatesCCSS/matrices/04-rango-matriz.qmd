@@ -1,0 +1,394 @@
+---
+title: "Tema 1.4 Rango de una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 4 de 7)"
+filename: 04-rango-matriz
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El rango es el número de filas linealmente independientes de una matriz, es decir, cuánta información no repetida contiene. Se calcula escalonando por Gauss y contando las filas que no se anulan, y es la base del teorema de Rouché-Frobenius del tema siguiente.
+categories: [matrices, rango, método de Gauss, dependencia lineal, discusión con parámetros, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+
+
+## Una pregunta antes de la definición
+
+Mira esta matriz y dime cuánta información contiene:
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}
+$$
+
+Tiene nueve números, pero en realidad hay **una sola** fila de información: la segunda es el doble de la primera y la tercera es el triple. Si te dan la primera fila, las otras dos no aportan nada nuevo.
+
+El rango es la medida precisa de ese fenómeno. Y no es un concepto de adorno: en el tema siguiente decidirá si un sistema de ecuaciones tiene solución única, infinitas o ninguna.
+
+## Dependencia e independencia lineal
+
+Los apuntes de Gonzalo introducen una convención útil: llamar **línea** indistintamente a una fila o a una columna, cuando el razonamiento vale para las dos.
+
+Una línea es **linealmente dependiente** del resto si se puede poner como combinación lineal de las otras, es decir, si existen números reales tales que esa línea es igual a la suma de tantas veces una línea más tantas veces otra, y así sucesivamente.
+
+Una línea es **linealmente independiente** cuando no se puede poner como combinación lineal de las demás.
+
+### Ejemplo con las cuentas hechas
+
+Analiza la dependencia de las filas en
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \\ 2 & 4 \end{pmatrix}
+$$
+
+Es evidente que $F_4 = 2F_1$, luego esas dos filas son dependientes entre sí. Y algo menos evidente: $F_3 = 2F_2 - F_1$, así que la tercera depende de las dos primeras. En cambio $F_1$ y $F_2$ **son independientes entre sí**, porque no hay ningún número $\lambda$ con $(1,2) = \lambda(3,4)$: haría falta a la vez $\lambda = 1/3$ y $\lambda = 1/2$, lo cual es imposible.
+
+Conclusión: en esa matriz hay **dos** filas linealmente independientes y otras dos que dependen de ellas.
+
+::: {.callout-note}
+## Definición de rango
+
+El **rango** de una matriz $A$, escrito $\operatorname{rg}(A)$, es el número de filas o columnas linealmente independientes que tiene, es decir, las que no se pueden expresar como combinación lineal de las restantes.
+
+Y hay un hecho que conviene saber aunque no lo demostremos: el rango por filas siempre coincide con el rango por columnas. Si en una matriz $m\times n$ hay $k$ filas independientes, hay exactamente $k$ columnas independientes. Puedes trabajar con las filas, que es lo cómodo, y el resultado vale igual.
+:::
+
+### Un ejemplo que exige comprobar
+
+El ejemplo del libro de texto es más fino, porque la dependencia no se ve a simple vista:
+
+$$
+A = \begin{pmatrix} 2 & -5 & 3 & -4 \\ 3 & -10 & 2 & 3 \\ 8 & -10 & 7 & 2 \end{pmatrix}
+$$
+
+Ninguna fila es múltiplo de otra, así que hay que probar si una es combinación de las otras dos. Se plantea $F_1 = k_1F_2 + k_2F_3$, se usan los dos primeros elementos para obtener $k_1$ y $k_2$, y después **se comprueba en los elementos restantes**. Si la comprobación falla, no hay dependencia; si cuadra, la hay.
+
+En este caso sale $F_1 = -2F_2 + F_3$, luego $\operatorname{rg}(A)=2$.
+
+::: {.callout-warning}
+## El paso que no se puede saltar
+
+Al plantear la combinación lineal obtienes los coeficientes usando **algunas** ecuaciones, pero debes verificarlos en **todas** las demás.
+
+Si te quedas en «he encontrado $k_1$ y $k_2$ que funcionan en las dos primeras columnas», puedes estar afirmando una dependencia que no existe. Ese es el error clásico de este apartado, y por eso el método de Gauss es preferible: no requiere adivinar coeficientes.
+:::
+
+### Propiedades útiles
+
+- $\operatorname{rg}(A) \leq \min(m,n)$: el rango nunca supera la menor de las dos dimensiones.
+- $\operatorname{rg}(A^t) = \operatorname{rg}(A)$.
+- Las transformaciones elementales **no cambian** el rango. Esta es la propiedad que hace válido todo el método.
+- El rango es cero solo si la matriz es nula.
+
+::: {.callout-tip}
+## Una consecuencia que ahorra trabajo
+
+Si una matriz tiene 4 filas y 3 columnas, como mucho puede tener 3 columnas independientes, y por tanto **no puede tener más de 3 filas independientes**. Su rango es a lo sumo 3.
+
+De ahí sale un atajo que recomiendan los apuntes: si la matriz tiene más filas que columnas, calcula el rango de la **traspuesta**, que es el mismo y da menos trabajo.
+:::
+
+## El método de Gauss
+
+Consiste en transformar la matriz, sin alterar su rango, hasta dejarla **escalonada**: con ceros por debajo de la diagonal. Entonces el rango se lee de un vistazo, contando las filas que no se han anulado.
+
+### Las tres transformaciones permitidas
+
+1. **Intercambiar** dos filas: $F_i \leftrightarrow F_j$.
+2. **Multiplicar o dividir** una fila por un número distinto de cero: $F_i \to a\,F_i$ con $a\neq 0$.
+3. **Sustituir** una fila por la suma de ella y otra, multiplicadas por números no nulos: $F_i \to a\,F_i + b\,F_j$.
+
+::: {.callout-important}
+## La condición «distinto de cero» no es un adorno
+
+Si multiplicas una fila por cero, la conviertes en una fila de ceros y destruyes información: el rango bajaría artificialmente. Esa operación **no** está permitida.
+
+Y hay otra trampa relacionada: no puedes sustituir una fila por una combinación en la que ella misma no aparezca. $F_2 \to F_1 + F_3$ está prohibido. Lo permitido es $F_2 \to F_2 + kF_1$, donde la fila que cambia sigue estando presente.
+:::
+
+::: {.callout-note}
+## Para el rango sí puedes mezclar filas y columnas
+
+Aquí hay un detalle que los apuntes de Gonzalo subrayan y que conviene tener muy claro, porque en la parte 5 será justo al contrario.
+
+Para calcular un **rango** puedes combinar libremente transformaciones por filas y por columnas a lo largo del proceso, eligiendo en cada etapa lo que más te convenga. Lo mismo vale para simplificar un determinante en el tema 2.
+
+En cambio, para calcular una **inversa** por Gauss-Jordan hay que trabajar solo por filas o solo por columnas, sin mezclar. Volveremos sobre esto con un contraejemplo en la parte 5.
+:::
+
+### El orden correcto de los pasos
+
+Este es el consejo más práctico de todo el apartado, y viene de los apuntes de Gonzalo: no basta con usar las transformaciones correctas, hay que hacerlas **en el orden correcto**, o los ceros que ganas en una etapa se pierden en la siguiente.
+
+El orden es: anular la primera columna hacia abajo a partir del pivote $a_{11}$, después la segunda columna hacia abajo a partir de $a_{22}$, después la tercera, y así sucesivamente. Seguir ese orden es fundamental.
+
+### Un ejemplo desarrollado
+
+Calculemos el rango de
+
+$$
+A = \begin{pmatrix} 0 & 1 & 3 \\ 1 & 4 & 1 \\ 1 & 5 & 4 \end{pmatrix}
+$$
+
+Como $a_{11}=0$, empezamos intercambiando filas para tener un pivote útil arriba:
+
+$$
+F_1 \leftrightarrow F_2: \quad \begin{pmatrix} 1 & 4 & 1 \\ 0 & 1 & 3 \\ 1 & 5 & 4 \end{pmatrix}
+$$
+
+Hacemos cero debajo del primer pivote:
+
+$$
+F_3 \to F_3 - F_1: \quad \begin{pmatrix} 1 & 4 & 1 \\ 0 & 1 & 3 \\ 0 & 1 & 3 \end{pmatrix}
+$$
+
+Y ahora debajo del segundo:
+
+$$
+F_3 \to F_3 - F_2: \quad \begin{pmatrix} 1 & 4 & 1 \\ 0 & 1 & 3 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+
+Quedan **dos** filas no nulas, luego $\operatorname{rg}(A) = 2$. Y esa fila de ceros es la huella de que $F_3 = F_1 + F_2$ en la matriz original.
+
+### Otro ejemplo, con el pivote incómodo
+
+El libro de texto propone este, y merece la pena por el detalle del segundo pivote:
+
+$$
+A = \begin{pmatrix} 0 & -2 & 2 & 4 \\ 2 & -1 & -1 & 1 \\ 2 & -2 & 0 & 3 \end{pmatrix}
+$$
+
+Se intercambian las dos primeras filas para tener un pivote no nulo, se anula el primer elemento de la tercera con $F_3 \to F_3 - F_1$, y en el segundo paso se llega a una fila que se anula por completo. El rango es 2.
+
+### Applet · Escalonamiento de Gauss {.unnumbered}
+
+<div data-applet-mat="gauss"></div>
+
+### Applet · Rango de una matriz {.unnumbered}
+
+<div data-applet-mat="rango"></div>
+
+## Estrategia de cálculo
+
+::: {.callout-tip}
+## Antes de escalonar, mira
+
+Un minuto de observación ahorra cinco de cálculo:
+
+- ¿Hay una **fila nula**? Táchala directamente, no aporta al rango.
+- ¿Hay dos filas **iguales o proporcionales**? Una de ellas es redundante.
+- ¿Hay algún **1** cómodo? Colócalo arriba a la izquierda con un intercambio: evitarás fracciones durante todo el proceso.
+- ¿Hay una fila con muchos **ceros**? Aprovéchala como pivote.
+- ¿Hay más filas que columnas? Traspón y trabaja con menos filas.
+
+Y un consejo de escritura: anota siempre la operación que haces, con la notación $F_3 \to F_3 - 2F_1$. En la corrección eso vale puntos aunque el resultado final tenga un error de cálculo.
+:::
+
+::: {.callout-note}
+## Un truco de los apuntes que vale oro
+
+Cuando toca pivotar sobre un número incómodo, como un 3, y en otra posición hay un 1, **muévelo**. Intercambiar dos filas o dos columnas no cambia el rango, así que puedes colocar el 1 en la posición del pivote y evitarte todas las fracciones del resto del ejercicio.
+
+En uno de los ejemplos resueltos de la hoja de Gonzalo se hace exactamente eso dos veces seguidas, con un $F_2\leftrightarrow F_3$ y un $C_2\leftrightarrow C_3$, y el ejercicio pasa de ser tedioso a ser inmediato.
+:::
+
+## El rango en las matrices cuadradas
+
+Para una matriz cuadrada de orden $n$ hay una equivalencia que atravesará los dos temas siguientes:
+
+$$
+|A| \neq 0 \iff \operatorname{rg}(A) = n \iff A \text{ tiene inversa}
+$$
+
+Las tres afirmaciones son la misma cosa dicha de tres maneras. Cuando el determinante se anula, el rango baja, alguna fila depende de las otras y la inversa no existe.
+
+Los apuntes de Gonzalo lo enuncian como proposición: si el determinante de una matriz cuadrada de orden $n$ es distinto de cero, el rango de esa matriz es justamente $n$.
+
+::: {.callout-note}
+## Qué significa esto de verdad
+
+Piensa en una matriz como en un conjunto de datos. Rango máximo significa que **todos** los datos aportan algo. Rango menor que el máximo significa que hay información duplicada disfrazada.
+
+En el tema 3, aplicado a un sistema de ecuaciones, esto se traduce en algo muy concreto: una ecuación que es combinación de las otras no restringe nada, y por eso el sistema pasa de tener solución única a tener infinitas. Ese es el **teorema de Rouché-Frobenius**, y el rango es su ingrediente principal.
+:::
+
+## Discusión con un parámetro
+
+Este es el tipo de ejercicio que más aparece en las pruebas de acceso, y merece su propia sección.
+
+Se trata de calcular el rango cuando la matriz contiene una letra, y el rango **depende** del valor que tome.
+
+### El ejemplo de Marea Verde
+
+Calcula el rango de
+
+$$
+A = \begin{pmatrix} 2 & a \\ 2 & 2 \end{pmatrix}
+$$
+
+según los valores del parámetro $a$.
+
+El rango será como máximo 2, porque la matriz es $2\times 2$. Intercambiamos filas para tener un 1 cómodo... aquí no hay ninguno, así que escalonamos directamente restando la primera fila multiplicada por el factor adecuado. Al hacerlo, el elemento que queda en la posición $(2,2)$ es
+
+$$
+2 - a = 0 \;\Longleftrightarrow\; a = 6
+$$
+
+en la versión del libro, tras normalizar la primera fila. Lo esencial es el resultado:
+
+$$
+\operatorname{rg}(A) = \begin{cases} 2 & \text{si } a \neq 6 \\ 1 & \text{si } a = 6 \end{cases}
+$$
+
+### El mismo ejercicio por determinantes
+
+Cuando la matriz es cuadrada hay un camino más corto, que usarás a partir del tema 2. Se calcula el determinante con el parámetro dentro, se resuelve $|A(a)|=0$ para localizar los **valores críticos**, y después se estudia cada uno por separado sustituyendo.
+
+Por ejemplo, con
+
+$$
+A = \begin{pmatrix} m & 0 & 1 \\ 1 & m & 1 \\ 2 & -1 & 1 \end{pmatrix}
+$$
+
+se llega, tras escalonar, a que el tercer pivote es $-1-m^2$, que **nunca** se anula para ningún $m$ real. Conclusión: $\operatorname{rg}(A)=3$ para cualquier valor de $m$. Un caso instructivo, porque la respuesta correcta es «el rango no depende del parámetro».
+
+::: {.callout-warning}
+## El error que invalida la discusión entera
+
+Al escalonar una matriz con parámetro, **nunca** dividas por una expresión que contenga la letra sin comprobar antes que no se anula.
+
+Si haces $F_2 \to F_2 - \dfrac{2}{a-2}F_1$ estás suponiendo en silencio que $a\neq 2$. Y ese caso, que has excluido sin darte cuenta, es probablemente uno de los que el ejercicio quería que estudiaras.
+
+La forma segura de proceder es al contrario: localizar primero los valores que anulan el pivote o el determinante, y después estudiar cada uno de ellos sustituyendo el valor concreto en la matriz original.
+:::
+
+### Applet · Rango con un parámetro {.unnumbered}
+
+<div data-applet-mat="rangoparam"></div>
+
+::: {.callout-tip}
+## Cómo usar bien este applet
+
+El deslizador solo recorre valores de medio en medio, así que **no** localiza valores críticos como $a = 1/3$. Úsalo para *ver* qué ocurre cuando el rango baja, no para obtener la respuesta.
+
+El procedimiento correcto sigue siendo algebraico: plantear $|A(a)| = 0$, resolver esa ecuación y comprobar con el applet que los valores obtenidos coinciden con los que él detecta. Si no coinciden, uno de los dos se ha equivocado, y merece la pena averiguar quién.
+:::
+
+## Actividades propuestas
+
+**1.** Calcula el rango de cada matriz:
+
+$$
+A = \begin{pmatrix} 2 & 3 \\ 4 & 6 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & 2 \\ 3 & 3 & 3 \end{pmatrix}, \qquad
+C = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 7 \end{pmatrix}
+$$
+
+**2.** Calcula el rango de estas matrices de la hoja de ejercicios:
+
+$$
+\begin{pmatrix} 2&-1&3 \\ 1&2&4 \end{pmatrix}, \quad
+\begin{pmatrix} 1&1&2 \\ 2&1&3 \\ 3&0&5 \end{pmatrix}, \quad
+\begin{pmatrix} 1&0&1 \\ 0&1&1 \\ 1&1&2 \end{pmatrix}, \quad
+\begin{pmatrix} 1&3&2 \\ 3&4&1 \\ 2&1&-1 \end{pmatrix}
+$$
+
+**3.** Calcula el rango de
+
+$$
+D = \begin{pmatrix} 1 & -1 & 2 & 0 \\ 2 & 1 & 1 & 3 \\ 3 & 0 & 3 & 3 \end{pmatrix}
+$$
+
+y di explícitamente qué combinación lineal relaciona las filas, si la hay.
+
+**4.** Completa los elementos que faltan para que las filas sean linealmente **dependientes**:
+
+$$
+\begin{pmatrix} 3 & -1 \\ ? & ? \end{pmatrix}
+$$
+
+y explica cuántas soluciones distintas tiene el problema.
+
+**5.** Discute según los valores de $k$ el rango de
+
+$$
+\begin{pmatrix} 2&0&3 \\ k&0&1 \\ 1&2&3 \end{pmatrix}
+$$
+
+**6.** Discute según los valores de $a$ el rango de
+
+$$
+F = \begin{pmatrix} 1 & 1 & 1 \\ 1 & a & 1 \\ 1 & 1 & a \end{pmatrix}
+$$
+
+**7.** Discute según los valores de $m$ el rango de
+
+$$
+E = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & m \\ 3 & m & 9 \end{pmatrix}
+$$
+
+**8.** Razona si es posible que una matriz de dimensión $3\times 5$ tenga rango 4.
+
+**9.** Si $A$ es cuadrada de orden 4 y $\operatorname{rg}(A) = 3$, ¿cuánto vale $|A|$? ¿Tiene inversa?
+
+**10.** Escribe, si es posible: una matriz de dimensión $2\times 3$ y rango 2; una de $3\times 3$ y rango 1; una de $4\times 3$ y rango 2.
+
+**11.** Considera $A = \begin{pmatrix} 1&2 \\ 3&4 \end{pmatrix}$. Añádele una fila para que el rango sea 3, y después otra distinta para que siga siendo 2. Comprueba las dos.
+
+**12.** Calcula el rango de $A = \begin{pmatrix} 0&1&0&0 \\ 0&0&1&0 \\ 0&0&0&1 \\ 0&0&0&0 \end{pmatrix}$ y calcula además $A^{2015}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $\operatorname{rg}(A)=1$, porque $F_2 = 2F_1$. $\operatorname{rg}(B)=1$, porque las tres filas son proporcionales. $\operatorname{rg}(C)=2$, que es el máximo posible para una matriz $2\times 3$.
+
+**2.** Los cuatro rangos son 2, 2, 2 y 3 respectivamente. La tercera es interesante: $F_3 = F_1+F_2$, y eso explica que el rango no sea máximo aunque a primera vista no se vea.
+
+**3.** Escalonando:
+
+$$
+F_2 \to F_2 - 2F_1, \quad F_3 \to F_3 - 3F_1 \;\Longrightarrow\;
+\begin{pmatrix} 1 & -1 & 2 & 0 \\ 0 & 3 & -3 & 3 \\ 0 & 3 & -3 & 3 \end{pmatrix}
+$$
+
+y ahora $F_3 \to F_3 - F_2$ deja una fila de ceros. Luego $\operatorname{rg}(D) = 2$, y la relación es $F_3 = F_1 + F_2$.
+
+**4.** Basta que la segunda fila sea proporcional a la primera: $(3k, -k)$ para cualquier $k$. Hay **infinitas** soluciones, incluida la fila nula con $k=0$. Y observa que si eliges $k\neq 0$ el rango es 1, mientras que con $k=0$ el rango también es 1: la fila nula no aporta nada.
+
+**5.** El rango es 3 salvo para un valor crítico de $k$, que se obtiene anulando el determinante. Para ese valor concreto el rango baja a 2. Localízalo con el applet y después justifícalo resolviendo $|A(k)|=0$.
+
+**6.** Calculando el determinante, $|F| = (a-1)^2$. Se anula solo en $a=1$.
+
+Si $a \neq 1$, entonces $\operatorname{rg}(F) = 3$. Si $a=1$, las tres filas son idénticas y $\operatorname{rg}(F) = 1$.
+
+Fíjate en que el rango salta de 3 a 1 **sin pasar por 2**. No hay ninguna regla que obligue a bajar de uno en uno, y ese es un detalle que sorprende en el examen.
+
+**7.** El determinante se anula solo en $m=6$. Si $m\neq 6$, el rango es 3. Si $m=6$, la segunda fila resulta ser el doble de la primera y el rango baja a 2.
+
+**8.** No es posible. El rango nunca supera $\min(3,5) = 3$. El razonamiento es inmediato: solo hay tres filas, así que como máximo puede haber tres independientes.
+
+**9.** $|A| = 0$, porque el rango no es máximo, y por tanto **no** tiene inversa. Las tres condiciones de la equivalencia van siempre juntas.
+
+**10.** La primera y la segunda son fáciles: $\begin{pmatrix} 1&0&0\\0&1&0 \end{pmatrix}$ y una matriz con las tres filas iguales. Para la tercera, cuatro filas de tres elementos con solo dos independientes: por ejemplo dos filas cualesquiera independientes y las otras dos, sumas de aquellas.
+
+**11.** Para rango 3 añade una fila que no sea combinación de las dos primeras, por ejemplo $(0\ 0\ 1)$ tras ampliar con una columna, o trabaja con $3\times 2$ y entonces el rango máximo es 2 y no se puede: **lee bien las dimensiones antes de responder**. Con una matriz $3\times 2$ el rango nunca pasa de 2, así que la primera parte del enunciado solo tiene sentido si añades también una columna.
+
+**12.** El rango es **3**: hay tres filas no nulas y son claramente independientes, ya que cada una tiene su 1 en una posición distinta y la cuarta es nula.
+
+En cuanto a la potencia, esta matriz es **nilpotente**: $A^2$ desplaza los unos dos posiciones, $A^3$ tres, y $A^4 = O$. Como $2015 > 4$, se tiene $A^{2015} = O$, la matriz nula de orden 4.
+:::
+
+## Continúa
+
+En la parte 5 llega el concepto que más se parece a «dividir matrices»: la **matriz inversa**, con los métodos que exige el temario y una advertencia importante sobre cómo aplicar Gauss.
+
+<div data-applet-mat="diagnostico">

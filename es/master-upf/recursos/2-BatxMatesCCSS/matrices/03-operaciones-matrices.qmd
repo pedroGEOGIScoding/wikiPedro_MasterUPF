@@ -1,0 +1,529 @@
+---
+title: "Tema 1.3 Operaciones con matrices"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 3 de 7)"
+filename: 03-operaciones-matrices
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Suma, producto por un número, producto de matrices y potencias. La suma no tiene ninguna dificultad; el producto, en cambio, no es conmutativo, admite divisores de cero, invalida los productos notables y obliga a revisar todo lo que dabas por supuesto sobre el álgebra.
+categories: [matrices, suma, producto de matrices, potencias, no conmutativo, inducción, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El apartado que decide el tema
+
+Uno de los ocho objetivos del tema es, literalmente, «calcular el producto de dos matrices». Está formulado así porque es la operación de la que dependen todas las demás: el rango, la inversa y las ecuaciones matriciales se construyen sobre ella.
+
+Y es también la operación que más cuesta, no por dificultad de cálculo, sino porque **funciona de una forma que no esperas**. La suma se comporta como la de los números. El producto, no.
+
+## Actividad de introducción: la Liga de fútbol
+
+Los apuntes de Marea Verde abren este apartado con la tabla de resultados de la Liga española 2014-15, separada en partidos jugados **en casa** y **fuera**, con las columnas de partidos jugados, ganados, empatados y perdidos para cada uno de los 20 equipos.
+
+La primera tarea es completar la columna de totales. Y las preguntas que acompañan a la actividad son más interesantes que el cálculo:
+
+- ¿Qué habría que hacer si los equipos estuvieran **ordenados de forma distinta** en las dos tablas?
+- ¿Qué dimensiones tienen las tablas de partida y la que obtienes?
+- ¿Cómo resolverías el problema **inverso**: dados los totales y los resultados en casa, hallar los de fuera?
+
+Después se introduce el sistema de puntuación: 3 puntos por victoria, 1 por empate y 0 por derrota. Se escribe esa información como una matriz y se usa para calcular los puntos de cada equipo como local, como visitante y en total.
+
+::: {.callout-important}
+## Las dos operaciones del tema, descubiertas en un ejercicio
+
+Fíjate en lo que acabas de hacer, porque es exactamente el contenido de esta parte.
+
+Al **sumar** las tablas de casa y fuera has hecho una suma de matrices: casilla a casilla, con la misma dimensión, y el orden de los equipos tiene que coincidir o el resultado es basura.
+
+Al **combinar** la tabla de resultados con la matriz de puntuación has hecho un producto de matrices: cada fila de resultados se ha cruzado con la columna de puntos. Y observa la clave: las dimensiones. La tabla es $20\times 3$ y la puntuación $3\times 1$; el resultado es $20\times 1$, un punto por equipo.
+
+La pregunta del problema inverso, por cierto, es una **ecuación matricial**, y la resolverás en la parte 6.
+:::
+
+## Suma y resta
+
+Dadas dos matrices de **la misma dimensión**, su suma se obtiene sumando los elementos que ocupan la misma posición:
+
+$$
+\begin{pmatrix} 3 & 1 & -2 \\ 4 & -3 & 0 \end{pmatrix} + \begin{pmatrix} 2 & 1 & 3 \\ 4 & -3 & 5 \end{pmatrix} = \begin{pmatrix} 5 & 2 & 1 \\ 8 & -6 & 5 \end{pmatrix}
+$$
+
+La condición de misma dimensión es esencial: si no la hay, no existe forma de emparejar los elementos y la suma **no está definida**. No es que dé un resultado raro, es que no existe.
+
+### Ejemplo del libro con un caso imposible
+
+Suma, si es posible, estas matrices:
+
+$$
+A = \begin{pmatrix} 3 & -3 & 2 \\ 7 & -5 & 6 \end{pmatrix}, \quad
+B = \begin{pmatrix} 4 & 5 & 0 \\ -2 & 6 & -3 \end{pmatrix}, \quad
+C = \begin{pmatrix} 3 & 2 \\ 4 & 2 \\ 2 & 5 \end{pmatrix}
+$$
+
+$A$ y $B$ tienen la misma dimensión $2\times 3$, luego se pueden sumar y sale $\begin{pmatrix} 7&2&2 \\ 5&1&3 \end{pmatrix}$. Pero **no** es posible sumar $C$ con ninguna de las dos, porque su dimensión es $3\times 2$.
+
+### Propiedades
+
+La suma de matrices es una consecuencia de la suma de números reales, así que hereda sus propiedades:
+
+- **Conmutativa**: $A+B = B+A$.
+- **Asociativa**: $(A+B)+C = A+(B+C)$.
+- **Elemento neutro**: la matriz nula $O$ cumple $A + O = A$.
+- **Elemento opuesto**: $-A$ cumple $A + (-A) = O$.
+
+Restar es sumar la opuesta: $A - B = A + (-B)$.
+
+::: {.callout-note}
+## Un detalle que sí importa
+
+Aunque la suma es conmutativa, la **resta** no lo es: salvo que las matrices sean idénticas, $A-B \neq B-A$. Lo que se cumple es $A-B = -(B-A)$.
+
+Y el conjunto de las matrices $m\times n$ con la suma y el producto por un número tiene estructura de **espacio vectorial**. No entra en el temario de 2.º de CCSS, pero explica por qué todo funciona tan bien en este apartado y tan mal en el siguiente.
+:::
+
+### Applet · Suma y resta de matrices {.unnumbered}
+
+<div data-applet-mat="suma"></div>
+
+## Producto por un número
+
+Multiplicar una matriz por un escalar $k$ significa multiplicar **todos** sus elementos:
+
+$$
+5 \cdot \begin{pmatrix} 3 & 1 & -2 \\ 4 & -3 & 0 \end{pmatrix} = \begin{pmatrix} 15 & 5 & -10 \\ 20 & -15 & 0 \end{pmatrix}
+$$
+
+Las propiedades son las esperables: $k(A+B) = kA + kB$, $(k+l)A = kA + lA$, $k(lA) = (kl)A$ y $1\cdot A = A$.
+
+::: {.callout-tip}
+## Sacar factor común es legal, y ahorra muchísimo
+
+Si una matriz diagonal tiene todos los elementos de la diagonal iguales, se puede sacar el factor fuera:
+
+$$
+\begin{pmatrix} k&0&0\\0&k&0\\0&0&k \end{pmatrix} = k\begin{pmatrix} 1&0&0\\0&1&0\\0&0&1 \end{pmatrix} = k\cdot I
+$$
+
+Y lo mismo con fracciones: en vez de arrastrar denominadores por toda la matriz, sácalos delante. Los apuntes de Gonzalo insisten en que **lo mejor para trabajar con números racionales es sacarlos fuera de la matriz**. Cuando en la parte 5 calcules inversas con fracciones agradecerás esta costumbre.
+:::
+
+::: {.callout-warning}
+## Un aviso que necesitarás en el tema 2
+
+El escalar entra en **todos** los elementos, y eso tiene una consecuencia sobre los determinantes que sorprende a mucha gente.
+
+Si $A$ es de orden $n$, entonces
+
+$$
+|k\cdot A| = k^n \cdot |A|
+$$
+
+y no $k\cdot|A|$. El motivo es que el factor $k$ se puede extraer de cada una de las $n$ filas, y por tanto sale $n$ veces. Con una matriz de orden 3 y $k=2$, el determinante se multiplica por 8.
+
+Hay un ejercicio clásico que explota esto: «sabemos que $|A|=3$ y que $|2A|=48$, ¿cuál es el orden de $A$?». Como $48 = 2^n\cdot 3$, sale $2^n=16$ y por tanto $n=4$.
+:::
+
+### Applet · Producto por un número {.unnumbered}
+
+<div data-applet-mat="escalar"></div>
+
+## Producto de matrices
+
+Aquí está el corazón del tema. Y la primera sorpresa es que **no** se multiplica elemento a elemento.
+
+Para poder multiplicar $A\cdot B$ hace falta que el número de **columnas de $A$** coincida con el número de **filas de $B$**:
+
+$$
+A_{m\times n} \cdot B_{n\times p} = C_{m\times p}
+$$
+
+Las dos dimensiones interiores deben coincidir y desaparecen. Las exteriores sobreviven y dan la dimensión del resultado.
+
+Y el elemento $c_{ij}$ se obtiene combinando la **fila $i$ de $A$** con la **columna $j$ de $B$**:
+
+$$
+c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{in}b_{nj} = \sum_{k=1}^{n} a_{ik}\,b_{kj}
+$$
+
+::: {.callout-tip}
+## La regla del dominó
+
+Escribe las dimensiones seguidas y comprueba si las piezas encajan:
+
+$$
+(2\times \mathbf{3})\cdot(\mathbf{3}\times 4) = 2\times 4 \quad \checkmark
+$$
+$$
+(2\times \mathbf{3})\cdot(\mathbf{2}\times 4) = \text{no existe} \quad \times
+$$
+
+Hazlo **antes** de empezar a calcular. Descubrir a mitad del ejercicio que el producto no existía es una pérdida de tiempo perfectamente evitable.
+
+Y para tres factores, $A\cdot B\cdot C$, las dimensiones deben encadenarse: $(m\times n)(n\times p)(p\times q) = m\times q$.
+:::
+
+### El caso más simple: fila por columna
+
+Antes de atacar el caso general conviene ver el más sencillo, que es el que usan los libros como puerta de entrada. El producto de una matriz **fila** $1\times n$ por una matriz **columna** $n\times 1$ es un **número**:
+
+$$
+\begin{pmatrix} 6 & 2 & 1 \end{pmatrix} \cdot \begin{pmatrix} -2 \\ -3 \\ 11 \end{pmatrix} = 6(-2) + 2(-3) + 1\cdot 11 = -12 - 6 + 11 = -7
+$$
+
+Todo el producto de matrices consiste en repetir esta operación muchas veces, una por cada casilla del resultado.
+
+### Applet · ¿Se pueden multiplicar? {.unnumbered}
+
+<div data-applet-mat="dimensiones"></div>
+
+### Un producto completo, paso a paso
+
+Multipliquemos
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \qquad B = \begin{pmatrix} 0 & 1 \\ -1 & 2 \end{pmatrix}
+$$
+
+Los cuatro elementos del resultado, uno por uno:
+
+$$
+c_{11} = 1\cdot 0 + 2\cdot(-1) = -2, \qquad c_{12} = 1\cdot 1 + 2\cdot 2 = 5
+$$
+$$
+c_{21} = 3\cdot 0 + 4\cdot(-1) = -4, \qquad c_{22} = 3\cdot 1 + 4\cdot 2 = 11
+$$
+
+$$
+A\cdot B = \begin{pmatrix} -2 & 5 \\ -4 & 11 \end{pmatrix}
+$$
+
+Y ahora al revés:
+
+$$
+B\cdot A = \begin{pmatrix} 0\cdot 1 + 1\cdot 3 & 0\cdot 2 + 1\cdot 4 \\ -1\cdot 1 + 2\cdot 3 & -1\cdot 2 + 2\cdot 4 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 5 & 6 \end{pmatrix}
+$$
+
+Los dos resultados existen, tienen la misma dimensión y **no se parecen en nada**.
+
+### El ejemplo rectangular del libro
+
+Este merece hacerlo por el orden que propone el propio texto, en cuatro pasos:
+
+$$
+A = \begin{pmatrix} 5 & -3 & 4 \\ 0 & 1 & 2 \end{pmatrix}, \qquad B = \begin{pmatrix} 4 & 2 \\ 1 & 5 \\ -1 & 3 \end{pmatrix}
+$$
+
+**Primero**, comprobar dimensiones: $A$ es $2\times 3$ y $B$ es $3\times 2$, así que se pueden multiplicar y el resultado será $2\times 2$.
+
+**Segundo**, primera fila de $A$ por primera columna de $B$: $5\cdot 4 + (-3)\cdot 1 + 4\cdot(-1) = 20-3-4 = 13$.
+
+**Tercero**, primera fila de $A$ por segunda columna de $B$: $5\cdot 2 + (-3)\cdot 5 + 4\cdot 3 = 10-15+12 = 7$.
+
+**Cuarto**, se repite con la segunda fila. Y queda
+
+$$
+A\cdot B = \begin{pmatrix} 13 & 7 \\ -1 & 11 \end{pmatrix}
+$$
+
+### Applet · Producto de matrices paso a paso {.unnumbered}
+
+<div data-applet-mat="producto"></div>
+
+## Lo que el producto rompe
+
+Este apartado merece leerse despacio, porque contiene los tres errores que más puntos cuestan en la prueba de acceso.
+
+### 1. El producto no es conmutativo
+
+$$
+A\cdot B \neq B\cdot A
+$$
+
+En general. A veces coinciden, y entonces se dice que las dos matrices **conmutan**, pero es la excepción.
+
+Los apuntes de Gonzalo desmontan el asunto en dos niveles. El primero es de dimensiones: si $A$ es $3\times 4$ y $B$ es $4\times 2$, puedo calcular $A\cdot B$ pero **no** $B\cdot A$, porque 2 no coincide con 3. El segundo es más profundo: aunque las dos sean cuadradas del mismo orden y los dos productos existan, los resultados no tienen por qué coincidir:
+
+$$
+\begin{pmatrix} 2&0\\-1&2 \end{pmatrix}\begin{pmatrix} 3&4\\2&1 \end{pmatrix} = \begin{pmatrix} 6&8\\1&-2 \end{pmatrix}
+\quad\text{pero}\quad
+\begin{pmatrix} 3&4\\2&1 \end{pmatrix}\begin{pmatrix} 2&0\\-1&2 \end{pmatrix} = \begin{pmatrix} 2&8\\3&2 \end{pmatrix}
+$$
+
+::: {.callout-important}
+## La consecuencia práctica
+
+Cuando en la parte 6 despejes $X$ en una ecuación matricial, tendrás que multiplicar por la inversa **por el lado correcto**, y respetarlo en los dos miembros. De $AX=B$ sale $X = A^{-1}B$, nunca $BA^{-1}$.
+
+Todo el apartado de ecuaciones matriciales existe porque el producto no es conmutativo. Si lo fuera, no habría nada que aprender allí.
+:::
+
+### Un ejercicio de examen sobre conmutar
+
+Este tipo aparece muy a menudo. Dadas
+
+$$
+A = \begin{pmatrix} 0 & 2 \\ 3 & 0 \end{pmatrix}, \qquad B = \begin{pmatrix} x & y \\ 6 & 1 \end{pmatrix}
+$$
+
+halla $x$ e $y$ para que $AB = BA$.
+
+Calculamos los dos productos:
+
+$$
+AB = \begin{pmatrix} 12 & 2 \\ 3x & 3y \end{pmatrix}, \qquad BA = \begin{pmatrix} 3y & 2x \\ 3 & 12 \end{pmatrix}
+$$
+
+Igualando posición a posición, que es lo que aprendimos en la parte 1, sale $12=3y$, $2=2x$, $3x=3$ y $3y=12$. Las cuatro ecuaciones son compatibles y dan
+
+$$
+x = 1, \qquad y = 4
+$$
+
+Fíjate en la estructura del ejercicio: es un producto de matrices **más** una igualdad de matrices. Nada nuevo, solo combinado.
+
+### 2. Hay divisores de cero
+
+Con números, si $xy=0$ entonces $x=0$ o $y=0$. Con matrices esto **falla**:
+
+$$
+\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \cdot \begin{pmatrix} 1 & 1 \\ -1 & -1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+$$
+
+Dos matrices no nulas cuyo producto es la matriz nula. Y de aquí se deriva otra pérdida: de $AX = AY$ **no** puedes concluir $X=Y$, porque no puedes «cancelar» la $A$.
+
+### 3. Los productos notables no valen
+
+$$
+(A+B)^2 = (A+B)(A+B) = A^2 + AB + BA + B^2
+$$
+
+y eso **no** es $A^2 + 2AB + B^2$, porque para juntar $AB + BA$ en $2AB$ harían falta matrices que conmuten. Del mismo modo:
+
+$$
+(A+B)(A-B) = A^2 - AB + BA - B^2 \neq A^2 - B^2
+$$
+
+::: {.callout-warning}
+## Esto sale en la PAU tal cual
+
+En las pruebas de acceso de Andalucía aparece literalmente la pregunta: «¿se verifica la igualdad $(A+B)^2 = A^2+B^2+2AB$?», con dos matrices concretas para comprobarlo.
+
+Y en la hoja de Gonzalo hay otra versión: «explica por qué al hablar de matrices no es cierto que suma por diferencia sea igual a diferencia de cuadrados, y pon un ejemplo».
+
+La respuesta completa tiene dos partes: el desarrollo correcto, y **la condición exacta** bajo la cual sí se cumple, que es que $A$ y $B$ conmuten. Quedarse en «no se cumple» deja media respuesta sin dar.
+:::
+
+### Applet · Trampas del producto {.unnumbered}
+
+<div data-applet-mat="noconmuta"></div>
+
+## Propiedades que sí se conservan
+
+Para no dejar la sensación de que el producto es puro caos, esto sí funciona, siempre que las dimensiones lo permitan:
+
+- **Asociativa**: $(A\cdot B)\cdot C = A\cdot(B\cdot C)$.
+- **Distributiva por la izquierda**: $A(B+C) = AB + AC$.
+- **Distributiva por la derecha**: $(B+C)A = BA + CA$.
+- **Elemento neutro** para las cuadradas: $A\cdot I = I\cdot A = A$.
+- **Escalares**: $k(AB) = (kA)B = A(kB)$.
+- **Con la transposición**: $(A\cdot B)^t = B^t\cdot A^t$.
+
+En cambio **no existe** elemento inverso en general: solo unas pocas matrices, y necesariamente cuadradas, tienen inversa. De eso trata la parte 5.
+
+::: {.callout-note}
+## La asociativa es la que salva los cálculos largos
+
+Que el producto sea asociativo significa que en $A\cdot B\cdot C$ puedes elegir por dónde empezar. Y eso no es un detalle estético: si $A$ es $1\times 3$, $B$ es $3\times 3$ y $C$ es $3\times 1$, calcular $(AB)C$ implica muchas menos operaciones que $A(BC)$.
+
+Lo que **nunca** puedes hacer es cambiar el orden de los factores. Reagrupar sí, reordenar no.
+:::
+
+## Potencias de una matriz
+
+Para una matriz cuadrada, $A^n$ es multiplicarla por sí misma $n$ veces. Y aparecen comportamientos que con números serían imposibles, los cuatro tipos que ya nombramos en la parte 1:
+
+| Comportamiento | Condición | Ejemplo |
+|---|---|---|
+| Nilpotente | $A^k = O$ para algún $k$ | $\begin{pmatrix}0&1\\0&0\end{pmatrix}$ |
+| Idempotente | $A^2 = A$ | $\begin{pmatrix}1&0\\0&0\end{pmatrix}$ |
+| Unipotente o involutiva | $A^2 = I$ | $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ |
+| Periódica | $A^{n+p} = A^n$ | $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$, periodo 4 |
+
+### Cómo se calcula $A^{100}$ en un examen
+
+Nadie espera que multipliques cien veces. El ejercicio consiste en calcular las primeras potencias, **detectar el patrón** y justificarlo.
+
+Con $A = \begin{pmatrix}1&1\\0&1\end{pmatrix}$:
+
+$$
+A^2 = \begin{pmatrix}1&2\\0&1\end{pmatrix}, \quad A^3 = \begin{pmatrix}1&3\\0&1\end{pmatrix}, \quad \ldots \quad A^n = \begin{pmatrix}1&n\\0&1\end{pmatrix}
+$$
+
+Los apuntes de Gonzalo advierten de algo importante: **eso no es una demostración, es una intuición**. La demostración se hace por inducción, y en su caso más simple consiste en comprobar la fórmula para $n=1$ y después probar que si vale para $n$ vale para $n+1$:
+
+$$
+A^{n+1} = A^n\cdot A = \begin{pmatrix}1&n\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix} = \begin{pmatrix}1&n+1\\0&1\end{pmatrix}
+$$
+
+Y eso sí es una demostración.
+
+### El truco del periodo
+
+Cuando hay periodicidad, el cálculo de una potencia alta se reduce a una **división con resto**. Un ejemplo de los apuntes: si una matriz cumple $A^3=I$, entonces para hallar $A^{101}$ se divide $101$ entre $3$, que da cociente 33 y resto 2, luego
+
+$$
+A^{101} = \left(A^3\right)^{33}\cdot A^2 = I^{33}\cdot A^2 = A^2
+$$
+
+Y basta con calcular $A^2$, que es inmediato.
+
+### Otro patrón que conviene reconocer
+
+Esta matriz aparece en las hojas de ejercicios con mucha frecuencia:
+
+$$
+A = \begin{pmatrix} 1&1&1 \\ 0&1&1 \\ 0&0&1 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+A^n = \begin{pmatrix} 1 & n & \tfrac{n(n+1)}{2} \\ 0 & 1 & n \\ 0 & 0 & 1 \end{pmatrix}
+$$
+
+Fíjate en la esquina superior derecha: aparecen los **números triangulares** $1, 3, 6, 10, \ldots$, que son las sumas $1+2+\cdots+n$. Calcula $A^2$, $A^3$ y $A^4$ con el applet y verás el patrón emerger.
+
+### Applet · Potencias de una matriz {.unnumbered}
+
+<div data-applet-mat="potencia"></div>
+
+## Actividades propuestas
+
+**1.** Con $A = \begin{pmatrix}2&1\\0&-3\end{pmatrix}$ y $B = \begin{pmatrix}1&4\\-2&0\end{pmatrix}$, calcula $A+B$, $A-B$, $3A$, $AB$ y $BA$.
+
+**2.** Dadas las matrices del libro de texto
+
+$$
+A = \begin{pmatrix} 2&1&0 \\ 9&0&3 \\ 0&2&7 \end{pmatrix}, \quad
+B = \begin{pmatrix} 1&1&1 \\ 2&2&2 \\ 3&3&3 \end{pmatrix}, \quad
+C = \begin{pmatrix} 1&0&0 \\ 2&4&5 \\ 7&3&3 \end{pmatrix}
+$$
+
+calcula $A+3B$ y $2A - B + 5C$.
+
+**3.** Con las matrices $A$ y $B$ de la actividad anterior, calcula $AB$ y $BA$. ¿Es el producto conmutativo?
+
+**4.** Con las mismas $A$ y $B$, calcula $3A^t - B^2$.
+
+**5.** Sean $A$ de dimensión $3\times 2$ y $B$ de dimensión $2\times 4$. Indica qué operaciones existen y con qué dimensión: $A+B$, $AB$, $BA$, $A^tB^t$, $B^tA^t$.
+
+**6.** ¿Es posible que para dos matrices $A$ y $B$ **no cuadradas** existan los dos productos $AB$ y $BA$? Justifica la respuesta y pon un ejemplo si es afirmativa.
+
+**7.** Calcula $A^n$ para $A = \begin{pmatrix}1&0\\3&1\end{pmatrix}$, justificando el patrón por inducción.
+
+**8.** Calcula $A^{50}$ y $A^{97}$ para $A = \begin{pmatrix}0&1\\-1&0\end{pmatrix}$.
+
+**9.** Encuentra los valores de $a$ y $b$ para que $A = \begin{pmatrix}0&1\\-1&0\end{pmatrix}$ conmute con $B = \begin{pmatrix}a&b\\1&0\end{pmatrix}$.
+
+**10.** Dadas $A = \begin{pmatrix} 1&3\\0&1 \end{pmatrix}$ y $B = \begin{pmatrix} 2&1\\0&x \end{pmatrix}$, halla $x$ para que $AB=BA$.
+
+**11.** Encuentra dos matrices no nulas de orden 2 cuyo producto sea la matriz nula, distintas de las del ejemplo del texto.
+
+**12.** Comprueba con $A = \begin{pmatrix}1&2\\0&1\end{pmatrix}$ y $B = \begin{pmatrix}1&0\\1&1\end{pmatrix}$ que $(A+B)^2 \neq A^2 + 2AB + B^2$.
+
+**13.** Demuestra que si $A$ y $B$ conmutan, entonces sí se cumple $(A+B)^2 = A^2 + 2AB + B^2$.
+
+**14.** Si $A$ es cuadrada de orden $n$ y cumple $A^2 = A$, y definimos $B = 2A - I$, calcula $B^2$.
+
+**15.** Halla todas las matrices de orden 2 que conmutan con $A = \begin{pmatrix} 1&1\\0&1 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.**
+
+$$
+A+B = \begin{pmatrix}3&5\\-2&-3\end{pmatrix}, \quad A-B = \begin{pmatrix}1&-3\\2&-3\end{pmatrix}, \quad 3A = \begin{pmatrix}6&3\\0&-9\end{pmatrix}
+$$
+
+$$
+AB = \begin{pmatrix}0&8\\6&0\end{pmatrix}, \qquad BA = \begin{pmatrix}2&-11\\-4&-2\end{pmatrix}
+$$
+
+Los dos productos existen y son distintos.
+
+**2.**
+
+$$
+A+3B = \begin{pmatrix} 5&4&3 \\ 15&6&9 \\ 9&11&16 \end{pmatrix}, \qquad
+2A-B+5C = \begin{pmatrix} 8&1&-1 \\ 26&18&29 \\ 32&16&26 \end{pmatrix}
+$$
+
+Hazlas por partes: primero los productos por escalar, después las sumas casilla a casilla.
+
+**3.** Los dos productos existen porque las dos son de orden 3, y **no coinciden**. El de $AB$ tiene todas las filas con estructura reconocible porque $B$ tiene las filas proporcionales; el de $BA$ no. El producto no es conmutativo.
+
+**4.** Primero se traspone $A$ y se multiplica por 3, después se calcula $B^2$, y por último se resta. Aviso: $B^2$ **no** es la matriz de los cuadrados de los elementos de $B$; es $B\cdot B$.
+
+**5.** $A+B$ no existe, dimensiones distintas. $AB$ es $3\times 4$. $BA$ no existe, porque las columnas de $B$ son 4 y las filas de $A$ son 3. $A^tB^t$ no existe. $B^tA^t$ es $4\times 3$, coherente con ser la traspuesta de $AB$.
+
+**6.** **Sí es posible.** Si $A$ es $m\times n$ y $B$ es $n\times m$ con $m\neq n$, entonces $AB$ es $m\times m$ y $BA$ es $n\times n$. Los dos existen, pero tienen **dimensiones distintas**, así que no se pueden comparar y desde luego no son iguales. Ejemplo con $A$ de $2\times 3$ y $B$ de $3\times 2$.
+
+**7.** Calculando las primeras:
+
+$$
+A^2 = \begin{pmatrix}1&0\\6&1\end{pmatrix}, \quad A^3 = \begin{pmatrix}1&0\\9&1\end{pmatrix} \;\Longrightarrow\; A^n = \begin{pmatrix}1&0\\3n&1\end{pmatrix}
+$$
+
+Y la inducción: se cumple para $n=1$, y si vale para $n$, entonces $A^{n+1}=A^n A$ tiene en la posición $(2,1)$ el valor $3n+3 = 3(n+1)$.
+
+**8.** Esta matriz tiene **periodo 4**: $A^2=-I$, $A^3=-A$, $A^4=I$. Luego $A^{50}$: como $50 = 4\cdot 12 + 2$, sale $A^{50}=A^2=-I$. Y $97 = 4\cdot 24 + 1$, luego $A^{97}=A$.
+
+**9.** Multiplicando en los dos órdenes e igualando se obtiene $a=0$ y $b=-1$, con lo que $B = \begin{pmatrix}0&-1\\1&0\end{pmatrix} = -A$. Tiene sentido: toda matriz conmuta con sus propios múltiplos.
+
+**10.** $AB = \begin{pmatrix} 2 & 1+3x \\ 0 & x \end{pmatrix}$ y $BA = \begin{pmatrix} 2 & 7 \\ 0 & x \end{pmatrix}$. Igualando, $1+3x=7$, luego $x=2$.
+
+**11.** Por ejemplo:
+
+$$
+\begin{pmatrix}1&0\\0&0\end{pmatrix}\cdot\begin{pmatrix}0&0\\0&1\end{pmatrix} = \begin{pmatrix}0&0\\0&0\end{pmatrix}
+$$
+
+**12.** $A+B = \begin{pmatrix}2&2\\1&2\end{pmatrix}$, y su cuadrado es $\begin{pmatrix}6&8\\4&6\end{pmatrix}$. En cambio $A^2 + 2AB + B^2 = \begin{pmatrix}7&8\\3&5\end{pmatrix}$. No coinciden, porque $AB \neq BA$.
+
+**13.** Desarrollando sin suponer nada:
+
+$$
+(A+B)^2 = A^2 + AB + BA + B^2
+$$
+
+Si conmutan, $BA = AB$, luego $AB+BA = 2AB$ y queda la fórmula del binomio. La hipótesis es exactamente lo que se necesita, ni más ni menos.
+
+**14.** Desarrollando con cuidado, y usando que $I$ conmuta con todo:
+
+$$
+B^2 = (2A-I)(2A-I) = 4A^2 - 2A - 2A + I = 4A - 4A + I = I
+$$
+
+donde en el penúltimo paso se ha usado la hipótesis $A^2=A$. Resultado: $B^2 = I$, es decir, $B$ es **unipotente**. Un ejercicio precioso porque encadena tres ideas del tema.
+
+**15.** Planteando $AX=XA$ con $X = \begin{pmatrix} x&y\\z&t \end{pmatrix}$ salen las condiciones $z=0$ y $t=x$, luego
+
+$$
+X = \begin{pmatrix} x&y\\0&x \end{pmatrix}
+$$
+
+Las matrices que conmutan con $A$ son precisamente las de la **misma forma que $A$**: triangulares superiores con la diagonal repetida. Volveremos a este ejercicio en la parte 6 con el applet correspondiente.
+:::
+
+## Continúa
+
+Con la suma y el producto ya en la mano, la parte 4 introduce el **rango**, que mide cuánta información independiente contiene una matriz y se calcula con el método de Gauss.
+
+<div data-applet-mat="diagnostico">

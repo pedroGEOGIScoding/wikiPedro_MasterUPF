@@ -1,0 +1,183 @@
+/* =====================================================================
+   mat-applets.css — EXTRAS DEL TEMA 1 MATRICES · 2.º Batx Mates CCSS
+   Ubicación: 2-BatxMatesCCSS/matrices/assets/mat-applets.css
+
+   Se carga DESPUÉS de ../assets/applets.css y no la sobrescribe:
+   todas las clases propias van con prefijo .mx- para no colisionar
+   con las clases .applet / .ap-row / .ap-out / .ap-err / .ap-tbl
+   de la hoja común del curso.
+   ===================================================================== */
+
+.mx-title {
+  margin: 0 0 .35rem 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+.mx-instr {
+  font-size: .86rem;
+  line-height: 1.45;
+  background: #f6f8fa;
+  border-left: 3px solid #90a4ae;
+  border-radius: 4px;
+  padding: .55rem .7rem;
+  margin-bottom: .7rem;
+}
+
+.mx-instr code {
+  background: #fff;
+  border: 1px solid #dde3e8;
+  border-radius: 3px;
+  padding: 0 .25em;
+  font-size: .92em;
+}
+
+.mx-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1rem;
+  align-items: flex-start;
+  margin-bottom: .6rem;
+}
+
+.mx-field {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #37474f;
+}
+
+.mx-in {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88rem;
+  line-height: 1.35;
+  padding: .35rem .45rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 4px;
+  background: #fff;
+  min-width: 11rem;
+  resize: vertical;
+}
+
+.mx-in:focus {
+  outline: 2px solid #7986cb;
+  outline-offset: 1px;
+}
+
+input[type="range"].mx-in {
+  min-width: 12rem;
+  padding: 0;
+}
+
+.mx-out {
+  font-size: .93rem;
+  line-height: 1.5;
+}
+
+.mx-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .9rem;
+  margin: .45rem 0;
+}
+
+.mx-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem 1.4rem;
+  align-items: center;
+}
+
+.mx-ok, .mx-info, .mx-warn, .mx-bad {
+  border-radius: 4px;
+  padding: .45rem .6rem;
+  margin: .45rem 0;
+  font-size: .9rem;
+  border-left: 3px solid;
+}
+
+.mx-ok   { background: #eaf6ec; border-color: #2e7d32; color: #1b4d20; }
+.mx-info { background: #eef3fa; border-color: #1565c0; color: #10396b; }
+.mx-warn { background: #fff6e5; border-color: #ef6c00; color: #7a3b00; }
+.mx-bad  { background: #fdecec; border-color: #c62828; color: #7f1d1d; }
+
+.mx-badge {
+  display: inline-block;
+  background: #37474f;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  padding: .12rem .45rem;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.mx-steps {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin: .5rem 0;
+}
+
+.mx-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .7rem;
+  padding: .3rem .45rem;
+  border-radius: 4px;
+  background: #fafafa;
+  border: 1px solid #eceff1;
+}
+
+.mx-step-lab {
+  font-size: .82rem;
+  color: #455a64;
+  min-width: 9.5rem;
+}
+
+.mx-pivot { background: #fff8e1; }
+
+.mx-btn {
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  padding: .32rem .8rem;
+  border: 1px solid #37474f;
+  border-radius: 4px;
+  background: #37474f;
+  color: #fff;
+  cursor: pointer;
+}
+
+.mx-btn.mx-sec {
+  background: #fff;
+  color: #37474f;
+}
+
+.mx-btn:hover { filter: brightness(1.12); }
+
+.mx-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .86rem;
+}
+
+.mx-sep {
+  border: 0;
+  border-top: 1px dashed #cfd8dc;
+  margin: .7rem 0;
+}
+
+/* Marca visual de la barra vertical en las matrices ampliadas [A|I] */
+.mx-aug .katex .vertical-separator { opacity: .55; }
+
+@media (max-width: 600px) {
+  .mx-in { min-width: 8.5rem; font-size: .82rem; }
+  .mx-step-lab { min-width: 100%; }
+}
