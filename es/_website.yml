@@ -241,12 +241,9 @@ website:
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
-            - section: "Tema 1 Matrices y determinantes"
+            - section: "Tema 1 Matrices"
               contents:
-              - master-upf/recursos/2-BatxMatesCCSS/matrices/01-matrices-concepto.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices/02-matrices-operaciones.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices/03-matrices-determinantes.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices/04-matrices-aplicaciones.qmd
+
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
