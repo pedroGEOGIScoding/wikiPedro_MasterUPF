@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-re="diagnostico"></div> -->
+
 ## Definición de logaritmo
 
 ::: {.callout-note title="Definición"}

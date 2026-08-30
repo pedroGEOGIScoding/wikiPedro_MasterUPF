@@ -20,7 +20,8 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-re="diagnostico"></div>
+<!-- <div data-applet-re="diagnostico"></div> -->
+
 
 ## El poder de la mayoría
 

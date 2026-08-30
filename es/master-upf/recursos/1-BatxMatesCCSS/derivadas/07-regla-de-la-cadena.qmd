@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-der="diagnostico"></div> -->
+
 ## Antes de la fórmula: aprender a mirar
 
 No vas a poder aplicar la regla de la cadena si primero no reconoces cuándo hace falta. Y eso empieza por distinguir dos expresiones que se parecen mucho en el papel:

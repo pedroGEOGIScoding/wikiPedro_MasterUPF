@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-re="diagnostico"></div> -->
+
 ## Notación científica
 
 ::: {.callout-note title="Definición"}

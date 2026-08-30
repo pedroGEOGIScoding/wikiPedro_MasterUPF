@@ -20,7 +20,7 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-der="diagnostico"></div>
+<!-- <div data-applet-der="diagnostico"></div> -->
 
 ## Por qué la tasa de variación media no basta (Del promedio en un intervalo al valor en un instante)
 

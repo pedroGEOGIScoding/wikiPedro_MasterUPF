@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-eq="diagnostico"></div> -->
+
 ## Factorización de ecuaciones (Cuando el dominio y la comprobación forman parte del método)
 
 ### El principio del producto nulo

@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-re="diagnostico"></div> -->
+
 ## Definición de radical
 
 ::: {.callout-note title="Definición"}

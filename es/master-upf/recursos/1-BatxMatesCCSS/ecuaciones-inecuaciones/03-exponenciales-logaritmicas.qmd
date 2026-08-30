@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-eq="diagnostico"></div> -->
+
 ## Herramientas previas (Cuando la incógnita sube al exponente o entra en el logaritmo)
 
 Estas ecuaciones no requieren técnicas nuevas de despeje, sino manejar con soltura dos familias de propiedades.

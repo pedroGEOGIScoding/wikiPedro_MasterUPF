@@ -20,7 +20,7 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-der="diagnostico"></div>
+<!-- <div data-applet-der="diagnostico"></div> -->
 
 ## Por qué existe este apartado (La tabla que convierte el cálculo en un proceso mecánico)
 

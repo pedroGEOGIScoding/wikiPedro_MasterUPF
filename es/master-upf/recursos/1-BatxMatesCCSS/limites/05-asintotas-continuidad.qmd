@@ -20,7 +20,7 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-lim="diagnostico"></div>
+<!-- <div data-applet-lim="diagnostico"></div> -->
 
 ## Ramas infinitas
 

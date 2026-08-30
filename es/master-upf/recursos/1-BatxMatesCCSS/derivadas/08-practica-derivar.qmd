@@ -1,0 +1,365 @@
+---
+title: "Tema 7.8 Práctica de derivación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 8 de 8)"
+filename: 08-practica-derivar
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Página de práctica del tema de derivadas. La tabla completa de reglas, una estrategia para decidir cuál aplicar en cada caso, un entrenador con corrección automática y una batería de ejercicios mezclados sin avisar de qué regla toca.
+categories: [derivadas, práctica, entrenador, tabla de derivadas, reglas de derivación, repaso, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<!-- <div data-applet-der="diagnostico"></div> -->
+
+## Para qué sirve esta página
+
+Los siete apartados anteriores te han enseñado las reglas una por una. En cada uno sabías de antemano qué regla tocaba, porque era la del título.
+
+En un examen no es así. Te dan una función y **tú** tienes que decidir qué regla aplicar, o cuántas, y en qué orden. Esa decisión es una destreza distinta del cálculo, y solo se adquiere practicando con ejercicios mezclados.
+
+::: {.callout-note}
+## El error que revela falta de práctica
+
+Un alumno que ha estudiado bien la teoría pero no ha practicado mezclado suele fallar así: ve $\sqrt{x^2+1}$ y aplica la fórmula de la raíz olvidando la cadena, o ve $x^2\sqrt{x}$ y monta la regla del producto cuando bastaba sumar exponentes.
+
+No es un fallo de conocimiento: es un fallo de **reconocimiento**. Y se corrige con volumen de ejercicios variados.
+:::
+
+## La tabla completa
+
+Todo lo que necesitas para derivar cualquier función del curso cabe en esta tabla. Consúltala hasta que te la sepas, y luego consúltala de todos modos para comprobar.
+
+### Derivadas de las funciones elementales
+
+| Función | Derivada |
+|---|---|
+| $k$, constante | $0$ |
+| $x$ | $1$ |
+| $x^n$ | $n\,x^{n-1}$ |
+| $\sqrt{x}$ | $\dfrac{1}{2\sqrt{x}}$ |
+| $e^x$ | $e^x$ |
+| $a^x$ | $a^x \ln a$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $\log_a x$ | $\dfrac{1}{x \ln a}$ |
+| $\operatorname{sen} x$ | $\cos x$ |
+| $\cos x$ | $-\operatorname{sen} x$ |
+
+### Reglas de operación
+
+| Situación | Derivada |
+|---|---|
+| $f+g$ | $f'+g'$ |
+| $k \cdot f$ | $k \cdot f'$ |
+| $f \cdot g$ | $f'g+fg'$ |
+| $\dfrac{f}{g}$ | $\dfrac{f'g-fg'}{g^2}$ |
+| $f(u(x))$ | $f'(u)\cdot u'$ |
+
+### Las compuestas más frecuentes
+
+Estas salen de combinar la cadena con las elementales, y aparecen tanto que conviene tenerlas memorizadas ya combinadas:
+
+| Función | Derivada |
+|---|---|
+| $u^n$ | $n\,u^{n-1}\,u'$ |
+| $\sqrt{u}$ | $\dfrac{u'}{2\sqrt{u}}$ |
+| $e^u$ | $e^u \cdot u'$ |
+| $\ln u$ | $\dfrac{u'}{u}$ |
+| $\operatorname{sen} u$ | $\cos u \cdot u'$ |
+| $\cos u$ | $-\operatorname{sen} u \cdot u'$ |
+
+::: {.callout-tip}
+## El patrón común de la columna derecha
+
+Fíjate en que **todas** las compuestas acaban multiplicadas por $u'$. Sin excepción.
+
+Ese factor es la huella de la regla de la cadena, y si al derivar una compuesta no aparece, es que se te ha olvidado. Es la comprobación más rápida que puedes hacer sobre tu propio resultado.
+:::
+
+### Applet · Tabla de derivadas {.unnumbered}
+
+<div data-applet-der="tabla"></div>
+
+## La estrategia de decisión
+
+Antes de escribir nada, mira la función y hazte estas preguntas **en este orden**. La primera que responda sí te dice qué hacer.
+
+**1. ¿Se puede simplificar?**
+
+Si la respuesta es sí, simplifica primero. Es el paso que más trabajo ahorra y el que más gente se salta.
+
+- $x^2\sqrt{x} = x^{5/2}$, y ya es una potencia. No hace falta la regla del producto.
+- $\dfrac{x^2-4}{x-2} = x+2$ para $x \neq 2$. No hace falta la del cociente.
+- $\dfrac{3x^2+x}{5} = \dfrac{1}{5}(3x^2+x)$. Es constante por función.
+- $\dfrac{1}{(2x+1)^2} = (2x+1)^{-2}$. Es una potencia, no un cociente.
+
+**2. ¿Es una suma o resta de varios términos?**
+
+Entonces deriva cada término por separado y no te compliques. Es la regla más cómoda y conviene aprovecharla siempre que se pueda.
+
+**3. ¿Hay algo encerrado en un paréntesis, una raíz o un logaritmo?**
+
+Entonces hay composición y toca la **cadena**. Identifica la función interior antes de escribir nada.
+
+**4. ¿Hay dos bloques con $x$ multiplicándose?**
+
+Entonces es el **producto**. Y si además uno de los factores es compuesto, tendrás que aplicar también la cadena dentro.
+
+**5. ¿Hay $x$ en el denominador y no se puede reescribir como potencia negativa?**
+
+Entonces es el **cociente**.
+
+::: {.callout-important}
+## El orden de las preguntas no es arbitrario
+
+Simplificar va primero porque puede eliminar la necesidad de todo lo demás.
+
+Y la suma va antes que el resto porque descompone el problema en trozos más pequeños: cada término se ataca por separado con su propia estrategia.
+
+Si empiezas preguntándote «¿es producto o cociente?», te saltas los dos atajos más rentables.
+:::
+
+## Ejemplo de aplicación de la estrategia
+
+Deriva $f(x) = \dfrac{\sqrt{x}}{x} + (3x-1)^4$.
+
+**Pregunta 2 primero.** Es una suma de dos términos, así que los separo y los trato de forma independiente.
+
+**Primer término.** Pregunta 1: ¿se puede simplificar?
+
+$$
+\frac{\sqrt{x}}{x} = \frac{x^{1/2}}{x} = x^{-1/2}
+$$
+
+Sí, y con eso deja de ser un cociente. Su derivada es inmediata:
+
+$$
+\left(x^{-1/2}\right)' = -\frac{1}{2}x^{-3/2}
+$$
+
+**Segundo término.** Pregunta 1: no se simplifica de forma útil. Pregunta 3: hay algo encerrado en un paréntesis elevado, así que cadena con $u=3x-1$ y $u'=3$:
+
+$$
+\left((3x-1)^4\right)' = 4(3x-1)^3 \cdot 3 = 12(3x-1)^3
+$$
+
+**Resultado:**
+
+$$
+f'(x) = -\frac{1}{2}x^{-3/2} + 12(3x-1)^3
+$$
+
+::: {.callout-warning}
+## Lo que habría pasado sin la estrategia
+
+Si en el primer término hubieras aplicado directamente la regla del cociente, con $f=\sqrt{x}$ y $g=x$, habrías escrito:
+
+$$
+\frac{\frac{1}{2\sqrt{x}}\cdot x - \sqrt{x}\cdot 1}{x^2}
+$$
+
+Es correcto, pero ahora tienes que simplificar una expresión con fracciones dentro de fracciones y radicales en el denominador. El resultado es el mismo, con cinco veces más trabajo y cinco veces más ocasiones de equivocarse.
+:::
+
+## El entrenador
+
+Aquí es donde se aprende de verdad. El applet propone funciones, tú escribes la derivada y él corrige.
+
+Úsalo así para que sea eficaz:
+
+1. Escribe la derivada **en papel** antes de teclear nada.
+2. Anota mentalmente qué regla has usado y por qué.
+3. Teclea y comprueba.
+4. Si falla, no pases a la siguiente hasta entender **dónde** estaba el error.
+
+::: {.callout-note}
+## Por qué el papel primero
+
+Teclear directamente invita a probar y corregir hasta que el applet dé el visto bueno. Eso genera la ilusión de haber aprendido sin haber aprendido nada, porque en el examen no hay nadie corrigiendo al momento.
+
+Escribirlo antes te obliga a comprometerte con una respuesta, que es lo que tendrás que hacer el día de la prueba.
+:::
+
+### Applet · Entrenador de derivadas {.unnumbered}
+
+<div data-applet-der="entrenador"></div>
+
+## Distinguir producto de composición
+
+Es la confusión que más puntos cuesta en el tema, y merece práctica específica. La pregunta que lo resuelve es simple:
+
+¿Hay un **signo de multiplicar** entre dos bloques con $x$, o hay un bloque **encerrado** dentro de otra operación?
+
+| Expresión | Qué es | Regla |
+|---|---|---|
+| $(x^2+1)(x^3-2)$ | Dos factores | Producto |
+| $(x^2+1)^3$ | Uno dentro de otro | Cadena |
+| $x^2 \cdot \sqrt{x+1}$ | Producto, con cadena dentro | Las dos |
+| $\sqrt{x^2 \cdot (x+1)}$ | Cadena, con producto dentro | Las dos, en otro orden |
+
+### Applet · Producto o cadena {.unnumbered}
+
+<div data-applet-der="productovscadena"></div>
+
+## Los errores más frecuentes
+
+Repasa esta lista antes de cualquier examen. Son, por orden de frecuencia, los fallos que aparecen en las correcciones:
+
+1. **Olvidar el factor $u'$** en la regla de la cadena.
+2. **Multiplicar las derivadas** en un producto, en lugar de aplicar $f'g+fg'$.
+3. **Sumar en vez de restar** en el numerador del cociente.
+4. **Invertir el orden** de esa resta, obteniendo el resultado con el signo cambiado.
+5. **Derivar el denominador** al elevarlo al cuadrado en la regla del cociente.
+6. **Aplicar la regla del cociente** cuando el denominador es un simple número.
+7. **No simplificar** antes de derivar, y ahogarse en el álgebra posterior.
+8. **Derivar la función interior** dentro del primer factor de la cadena, escribiendo $5(3)^4 \cdot 3$ donde debía ir $5(3x+1)^4\cdot 3$.
+
+### Applet · Errores comunes al derivar {.unnumbered}
+
+<div data-applet-der="errorcomun"></div>
+
+## Batería de ejercicios mezclados
+
+No te digo qué regla toca en cada uno. Esa es justamente la parte que hay que entrenar.
+
+**1.** $f(x) = 3x^4 - 2x^2 + 7$
+
+**2.** $f(x) = (2x-5)^6$
+
+**3.** $f(x) = x^3 \cdot e^x$
+
+**4.** $f(x) = \dfrac{x^2}{x+1}$
+
+**5.** $f(x) = \sqrt{4x-3}$
+
+**6.** $f(x) = \dfrac{x^3 \sqrt{x}}{x^2}$
+
+**7.** $f(x) = \ln(x^2+1)$
+
+**8.** $f(x) = (x^2-1)(x^2+1)$
+
+**9.** $f(x) = \dfrac{5}{x^3}$
+
+**10.** $f(x) = x \cdot (x-2)^3$
+
+::: {.callout-note collapse="true"}
+## Soluciones, con la regla usada en cada caso
+
+**1. Suma y potencias.** Cada término por separado:
+
+$$
+f'(x) = 12x^3 - 4x
+$$
+
+La constante 7 desaparece, porque una constante no cambia.
+
+**2. Cadena.** Interior $u=2x-5$ con $u'=2$:
+
+$$
+f'(x) = 6(2x-5)^5 \cdot 2 = 12(2x-5)^5
+$$
+
+**3. Producto.** Con $f=x^3$ y $g=e^x$, recordando que $e^x$ es su propia derivada:
+
+$$
+f'(x) = 3x^2 e^x + x^3 e^x = x^2 e^x(3+x)
+$$
+
+Sacar factor común deja la respuesta más limpia y es lo que se espera.
+
+**4. Cociente.**
+
+$$
+f'(x) = \frac{2x(x+1) - x^2 \cdot 1}{(x+1)^2} = \frac{x^2+2x}{(x+1)^2} = \frac{x(x+2)}{(x+1)^2}
+$$
+
+**5. Cadena con raíz.** Interior $u=4x-3$ con $u'=4$:
+
+$$
+f'(x) = \frac{4}{2\sqrt{4x-3}} = \frac{2}{\sqrt{4x-3}}
+$$
+
+**6. Simplificar primero.** Este era la trampa de la lista:
+
+$$
+\frac{x^3\sqrt{x}}{x^2} = \frac{x^{7/2}}{x^2} = x^{3/2}
+$$
+
+Y ahora es una potencia sin más:
+
+$$
+f'(x) = \frac{3}{2}x^{1/2} = \frac{3\sqrt{x}}{2}
+$$
+
+Aplicar cociente y producto aquí es correcto pero absurdamente largo.
+
+**7. Cadena con logaritmo.** Interior $u=x^2+1$ con $u'=2x$:
+
+$$
+f'(x) = \frac{2x}{x^2+1}
+$$
+
+**8. Simplificar primero.** Es una diferencia de cuadrados:
+
+$$
+f(x) = x^4-1 \ \Longrightarrow \ f'(x) = 4x^3
+$$
+
+Con la regla del producto sale lo mismo, $2x(x^2+1)+(x^2-1)2x = 4x^3$, pero con el doble de pasos.
+
+**9. Potencia negativa.** Reescribimos:
+
+$$
+f(x) = 5x^{-3} \ \Longrightarrow \ f'(x) = -15x^{-4} = \frac{-15}{x^4}
+$$
+
+No hacía falta la regla del cociente en ningún momento.
+
+**10. Producto, con cadena en el segundo factor.**
+
+$$
+f'(x) = 1\cdot(x-2)^3 + x \cdot 3(x-2)^2 = (x-2)^2\bigl[(x-2)+3x\bigr] = (x-2)^2(4x-2)
+$$
+
+Y todavía se puede sacar el 2: $2(x-2)^2(2x-1)$.
+:::
+
+::: {.callout-tip}
+## Lo que revela la lista de soluciones
+
+Cuatro de los diez ejercicios se resuelven **mejor sin la regla que aparentaban pedir**: el 6, el 8 y el 9 se simplifican antes, y el 4 no admite atajo pero conviene dejar el denominador factorizado.
+
+Esa proporción no es casual: es aproximadamente la que encontrarás en un examen. Mirar antes de calcular no es un consejo de estilo, es una técnica de ahorro de tiempo con efecto directo en la nota.
+:::
+
+## Autoevaluación
+
+Antes de dar el tema por sabido, comprueba que puedes hacer estas cinco cosas sin consultar nada:
+
+- Escribir de memoria las cinco reglas de operación.
+- Derivar $(3x+1)^5$ sin olvidar el factor 3.
+- Reconocer en menos de cinco segundos si $x^2\sqrt{x+1}$ es producto, cadena o las dos.
+- Explicar por qué $(f\cdot g)' \neq f' \cdot g'$ con un contraejemplo.
+- Simplificar $\dfrac{x^2-9}{x-3}$ antes de derivar, y decir para qué valor de $x$ no vale esa simplificación.
+
+Si alguna se te resiste, vuelve al apartado correspondiente antes de seguir con el tema 8.
+
+## Una nota sobre el apartado 05
+
+Al preparar esta página he visto que `05-derivadas-funciones-elementales.qmd` contiene una etiqueta suelta de applet de diagnóstico:
+
+```html
+<div data-applet-der="diagnostico"></div>
+```
+
+Es el mismo resto que quitamos del apartado 6, y conviene borrarlo también ahí antes de publicar, porque los alumnos no deberían ver la herramienta de depuración.

@@ -20,7 +20,7 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-der="diagnostico"></div>
+<!-- <div data-applet-der="diagnostico"></div> -->
 
 ## El error que casi todos cometemos primero
 

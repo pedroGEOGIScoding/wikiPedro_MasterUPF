@@ -20,7 +20,7 @@ format:
     html-math-method: katex
 ---
 
-<div data-applet-eq="diagnostico"></div>
+<!-- <div data-applet-eq="diagnostico"></div> -->
 
 ## Antes de empezar (El discriminante como brújula y el cambio de variable como atajo)
 

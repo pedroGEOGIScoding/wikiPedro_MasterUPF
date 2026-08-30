@@ -20,6 +20,8 @@ format:
     html-math-method: katex
 ---
 
+<!-- <div data-applet-eq="diagnostico"></div> -->
+
 ## Desigualdades (De buscar puntos a describir regiones de la recta real)
 
 Dados dos números reales $A$ y $B$, el orden total de $\mathbb{R}$ garantiza que solo puede ocurrir una de tres cosas: que sean iguales, que uno sea estrictamente menor, o que uno sea estrictamente mayor. De ahí los símbolos $<$, $>$, $\leq$ y $\geq$.
