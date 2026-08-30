@@ -1,12 +1,12 @@
 ---
-title: "Matrices (III): determinantes, inversa y rango"
-subtitle: "Determinantes, matriz inversa (Gauss-Jordan y adjuntos), rango y ecuaciones matriciales"
-filename: matrices-03
+title: "Tema 1.3 Matrices: determinantes, inversa y rango"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 3 de 4)"
+filename: 03-matrices-determinantes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Determinantes, inversa y rango de matrices
-categories: [matemáticas, bachillerato, matrices]
+description: Determinantes, matriz inversa (Gauss-Jordan y adjuntos), rango y ecuaciones matriciales
+categories: [matemáticas, bachillerato, matrices, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

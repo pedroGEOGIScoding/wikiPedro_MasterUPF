@@ -1,12 +1,12 @@
 ---
-title: "Matrices (I): concepto, dimensión y tipos"
-subtitle: "2º Bachillerato · Matemáticas Aplicadas a las Ciencias Sociales II · Tema 1"
-filename: matrices-01
+title: "Tema 1.1 Matrices: concepto, dimensión y tipos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 1 de 4)"
+filename: 01-matrices-concepto
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Concepto y características de las matrices
-categories: [matemáticas, bachillerato, matrices]
+categories: [matemáticas, bachillerato, matrices, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

@@ -1,12 +1,12 @@
 ---
-title: "Matrices (II): operaciones"
-subtitle: "Suma, producto por un escalar, producto de matrices, traspuesta y potencias"
-filename: matrices-02
+title: "Tema 1.2 Matrices: operaciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 2 de 4)"
+filename: 02-matrices-operaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Operaciones con matrices
-categories: [matemáticas, bachillerato, matrices]
+description: Operaciones con matrices Suma, producto por un escalar, producto de matrices, traspuesta y potencias
+categories: [matemáticas, bachillerato, matrices, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

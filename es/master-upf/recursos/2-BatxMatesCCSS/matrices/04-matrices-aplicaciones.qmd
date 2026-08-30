@@ -1,12 +1,12 @@
 ---
-title: "Matrices (IV): aplicaciones y autoevaluación"
-subtitle: "Grafos y rutas, matrices de costes, criptografía, evolución de poblaciones y test"
-filename: matrices-04
+title: "Tema 1.4 Matrices: aplicaciones y autoevaluación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 4 de 4)"
+filename: 04-matrices-aplicaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Aplicaciones de las matrices
-categories: [matemáticas, bachillerato, matrices]
+description: Grafos y rutas, matrices de costes, criptografía, evolución de poblaciones y test
+categories: [matemáticas, bachillerato, matrices, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article
