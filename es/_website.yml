@@ -243,10 +243,10 @@ website:
           contents:
             - section: "Tema 1 Matrices y determinantes"
               contents:
-              - master-upf/recursos/2-BatxMatesCCSS/matrices-01.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices-02.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices-03.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/matrices-04.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices/matrices-01.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices/matrices-02.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices/matrices-03.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices/matrices-04.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

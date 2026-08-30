@@ -354,12 +354,4 @@ Antes de dar el tema por sabido, comprueba que puedes hacer estas cinco cosas si
 
 Si alguna se te resiste, vuelve al apartado correspondiente antes de seguir con el tema 8.
 
-## Una nota sobre el apartado 05
 
-Al preparar esta página he visto que `05-derivadas-funciones-elementales.qmd` contiene una etiqueta suelta de applet de diagnóstico:
-
-```html
-<div data-applet-der="diagnostico"></div>
-```
-
-Es el mismo resto que quitamos del apartado 6, y conviene borrarlo también ahí antes de publicar, porque los alumnos no deberían ver la herramienta de depuración.
