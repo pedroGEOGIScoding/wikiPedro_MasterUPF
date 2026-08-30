@@ -1,0 +1,365 @@
+---
+title: "Tema 8.3 Representación gráfica de funciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Aplicaciones de la derivada (Parte 3 de 5)"
+filename: 03-representacion-grafica-funciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El guion completo para dibujar cualquier función sin tabular puntos como dominio, cortes con los ejes, simetrías, asíntotas, monotonía y curvatura. Y el ejercicio inverso, esbozar una gráfica a partir de una lista de características.
+categories: [derivadas, aplicaciones, representación de funciones, dominio, simetría, asíntotas, esbozo, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Dibujar sin tabular
+
+En la enseñanza obligatoria dibujabas funciones haciendo una tabla de valores: elegías unos cuantos $x$, calculabas sus $y$, marcabas los puntos y los unías. Funciona con rectas y parábolas, y con nada más.
+
+El problema es que **una tabla de valores no garantiza nada de lo que pasa entre los puntos**. Podrías tabular $x=-2,-1,0,1,2$ en una función que tenga una asíntota vertical en $x=0{,}5$, no darte cuenta, y unir con una curva suave lo que en realidad se dispara al infinito.
+
+::: {.callout-note}
+## El cambio de método
+
+Ahora vas a hacer lo contrario: primero **deduces** las propiedades de la función, y solo al final dibujas. Los puntos concretos que calcules serán muy pocos, y los elegirás porque son importantes, no porque sean cómodos.
+
+El resultado no es un dibujo aproximado: es una gráfica **justificada**, donde cada tramo tiene detrás una razón que puedes escribir.
+:::
+
+## El guion completo
+
+Seis apartados, en este orden. El orden importa, porque cada paso usa información de los anteriores.
+
+1. **Dominio**
+2. **Cortes con los ejes**
+3. **Simetrías**
+4. **Asíntotas y ramas infinitas**
+5. **Monotonía y extremos**
+6. **Curvatura y puntos de inflexión**
+
+Y con todo eso, el dibujo.
+
+::: {.callout-tip}
+## Por qué este orden
+
+El dominio va primero porque delimita el terreno de juego: no tiene sentido estudiar el crecimiento en puntos donde la función no existe.
+
+Las asíntotas van antes de la monotonía porque te dicen hacia dónde se dirigen las ramas, y eso te ayuda a interpretar la tabla de signos.
+
+Y la curvatura va al final porque es el matiz que redondea el esbozo, no lo que lo estructura.
+:::
+
+## Paso 1: dominio
+
+El dominio es el conjunto de valores de $x$ donde la función existe. En 1.º de bachillerato solo hay tres razones para excluir un valor:
+
+| Situación | Condición | Ejemplo |
+|---|---|---|
+| Denominador nulo | El denominador debe ser distinto de cero | $\dfrac{1}{x-3}$ excluye $x=3$ |
+| Raíz de índice par | El radicando debe ser mayor o igual que cero | $\sqrt{x-1}$ exige $x \geq 1$ |
+| Logaritmo | El argumento debe ser estrictamente positivo | $\ln(x)$ exige $x>0$ |
+
+Un **polinomio** no tiene ninguna de esas tres cosas, así que su dominio es siempre $\mathbb{R}$. Es el caso más cómodo y el del apartado siguiente.
+
+## Paso 2: cortes con los ejes
+
+**Corte con el eje $Y$.** Se obtiene sustituyendo $x=0$. Hay como máximo uno, y no hay ninguno si $0$ no está en el dominio.
+
+$$
+\text{Punto } (0, f(0))
+$$
+
+**Cortes con el eje $X$.** Son las soluciones de $f(x)=0$. Puede haber varios, uno o ninguno.
+
+$$
+f(x) = 0 \ \Longrightarrow \ \text{puntos } (x_i, 0)
+$$
+
+::: {.callout-important}
+## En una fracción, solo el numerador
+
+Para resolver $\dfrac{P(x)}{Q(x)} = 0$ basta con anular el **numerador**, porque una fracción vale cero cuando su numerador vale cero.
+
+Pero hay que comprobar después que esa solución **está en el dominio**. Si anula también el denominador, no es un corte: es un punto excluido.
+:::
+
+## Paso 3: simetrías
+
+Solo se buscan dos tipos, y ambos se comprueban calculando $f(-x)$ y comparándola con $f(x)$.
+
+**Función par.** Si $f(-x) = f(x)$, la gráfica es simétrica respecto del **eje $Y$**. La mitad izquierda es el reflejo de la derecha.
+
+**Función impar.** Si $f(-x) = -f(x)$, la gráfica es simétrica respecto del **origen**. La mitad izquierda es la derecha girada media vuelta.
+
+Si no ocurre ninguna de las dos, se dice que no tiene simetría, y no se investiga más.
+
+::: {.callout-tip}
+## El atajo de los exponentes
+
+En un polinomio la comprobación es inmediata:
+
+- Si **todos** los exponentes son pares, la función es par. Ejemplo: $x^4-3x^2+1$.
+- Si **todos** son impares, la función es impar. Ejemplo: $x^3-2x$.
+- Si están mezclados, no hay simetría. Ejemplo: $x^3+x^2$.
+
+El término constante cuenta como exponente par, porque $5 = 5x^0$.
+:::
+
+::: {.callout-note}
+## Por qué merece la pena buscar simetría
+
+Una simetría **reduce el trabajo a la mitad**. Si sabes que la función es par, estudias solo $x \geq 0$ y dibujas la otra mitad reflejando.
+
+Y funciona como control de errores: si al terminar tu tabla de signos resulta que los tramos no son simétricos y habías detectado simetría par, has cometido un fallo en algún paso.
+:::
+
+## Paso 4: asíntotas y ramas infinitas
+
+Una asíntota es una recta a la que la gráfica se acerca indefinidamente. Hay tres clases, y conviene tenerlas ordenadas.
+
+### Asíntotas verticales
+
+Son rectas $x=a$ donde la función se dispara al infinito:
+
+$$
+\lim_{x \to a} f(x) = \pm\infty
+$$
+
+Se buscan en los puntos que **no están en el dominio**. En una función racional, los ceros del denominador.
+
+Hay que estudiar el comportamiento **por cada lado**, porque no tiene que ser el mismo: la función puede irse a $+\infty$ por la izquierda y a $-\infty$ por la derecha.
+
+### Asíntotas horizontales
+
+Son rectas $y=L$ a las que la función se acerca al alejarse:
+
+$$
+\lim_{x \to \pm\infty} f(x) = L
+$$
+
+Una función tiene como máximo dos, una por cada lado, y lo habitual es que sea la misma.
+
+### Asíntotas oblicuas
+
+Son rectas $y=mx+n$ a las que la gráfica se aproxima al alejarse. Solo pueden existir si **no hay** asíntota horizontal por ese lado: son alternativas, no compatibles.
+
+En una función racional aparecen cuando el grado del numerador supera en **exactamente uno** al del denominador, y se obtienen dividiendo los polinomios.
+
+::: {.callout-warning}
+## Un polinomio no tiene asíntotas
+
+Ninguna de las tres. No tiene verticales porque su dominio es todo $\mathbb{R}$. Y no tiene horizontales ni oblicuas porque sus ramas crecen más rápido que cualquier recta, salvo que el polinomio sea de grado uno, y entonces la función ya **es** una recta.
+
+Lo que un polinomio tiene son **ramas infinitas**, que se describen con límites pero no son asíntotas. Es una distinción que conviene escribir bien.
+:::
+
+## Paso 5: monotonía y extremos
+
+Ya lo dominas del apartado 1. El resumen operativo:
+
+1. Calcular $f'(x)$.
+2. Resolver $f'(x)=0$.
+3. Partir el dominio con esos puntos **y con los puntos excluidos del dominio**.
+4. Estudiar el signo en cada intervalo.
+5. Clasificar los extremos por cambio de signo o con $f''$.
+
+::: {.callout-important}
+## Los puntos excluidos también parten la tabla
+
+Este es un olvido clásico. Si la función tiene una asíntota vertical en $x=2$, ese valor debe aparecer como corte en la tabla de signos aunque $f'(2)$ no valga cero.
+
+La razón es que el signo de $f'$ también puede cambiar al atravesar una discontinuidad, no solo al pasar por un cero.
+:::
+
+## Paso 6: curvatura y puntos de inflexión
+
+Del apartado 2. El resumen:
+
+1. Calcular $f''(x)$.
+2. Resolver $f''(x)=0$.
+3. Partir el dominio con esos puntos y los excluidos.
+4. Estudiar el signo: positivo convexa, negativo cóncava.
+5. Confirmar cada inflexión comprobando el **cambio** de signo.
+
+En funciones racionales la segunda derivada suele ser desagradable de calcular. Si el enunciado no la pide explícitamente, con los cinco primeros pasos ya tienes suficiente para un esbozo correcto.
+
+## El guion aplicado, con un ejemplo completo
+
+Representa $f(x) = \dfrac{x^2}{x^2-1}$.
+
+**1. Dominio.** El denominador $x^2-1$ se anula en $x=-1$ y $x=1$. Por tanto:
+
+$$
+\mathrm{Dom}(f) = \mathbb{R} - \{-1, 1\}
+$$
+
+**2. Cortes.** Anulamos el numerador: $x^2=0$ da $x=0$. Y $0$ sí está en el dominio, luego corta en el origen. Con el eje $Y$: $f(0)=\dfrac{0}{-1}=0$. El único corte es $(0,0)$.
+
+**3. Simetría.** Sustituimos:
+
+$$
+f(-x) = \frac{(-x)^2}{(-x)^2-1} = \frac{x^2}{x^2-1} = f(x)
+$$
+
+Es **par**: simétrica respecto del eje $Y$. Esto ya nos dice que lo que pase en $x=1$ pasará igual en $x=-1$.
+
+**4. Asíntotas.** Verticales en $x=-1$ y $x=1$, porque el numerador no se anula ahí. Y horizontal:
+
+$$
+\lim_{x\to\pm\infty} \frac{x^2}{x^2-1} = 1
+$$
+
+porque los grados son iguales y el cociente de coeficientes principales es $\tfrac{1}{1}$. La asíntota horizontal es $y=1$.
+
+**5. Monotonía.** Por la regla del cociente:
+
+$$
+f'(x) = \frac{2x(x^2-1) - x^2\cdot 2x}{(x^2-1)^2} = \frac{2x^3-2x-2x^3}{(x^2-1)^2} = \frac{-2x}{(x^2-1)^2}
+$$
+
+El denominador está al cuadrado, luego es siempre positivo. El signo lo decide $-2x$: positivo si $x<0$, negativo si $x>0$.
+
+Partiendo con los puntos excluidos y el cero:
+
+| Intervalo | Signo de $f'$ | Comportamiento |
+|---|---|---|
+| $(-\infty,-1)$ | $+$ | crece |
+| $(-1,0)$ | $+$ | crece |
+| $(0,1)$ | $-$ | decrece |
+| $(1,+\infty)$ | $-$ | decrece |
+
+En $x=0$ pasa de crecer a decrecer: hay **máximo relativo** en $(0,0)$.
+
+**6. El dibujo.** Con esto ya se puede trazar. Tres ramas: la izquierda sube desde $y=1$ hacia $+\infty$ pegándose a $x=-1$; la central es una loma con vértice en el origen que baja hacia $-\infty$ por los dos lados; la derecha baja desde $+\infty$ hasta acercarse a $y=1$.
+
+::: {.callout-note}
+## Un detalle que suele sorprender
+
+La rama central tiene un máximo en $(0,0)$, pero ese valor **cero es menor** que el $1$ de la asíntota horizontal.
+
+No hay contradicción: es un máximo **relativo**, el más alto de su entorno. En toda la función no es el mayor valor ni de lejos, porque las ramas laterales llegan a $+\infty$.
+
+Es un buen recordatorio de por qué la palabra «relativo» no es un adorno.
+:::
+
+::: {data-applet-apl="guion"}
+:::
+
+## El ejercicio inverso
+
+Hasta ahora partías de la fórmula. Pero en los exámenes aparece a menudo el problema al revés: te dan una lista de propiedades y te piden **dibujar** una función que las cumpla.
+
+Es un ejercicio distinto y más difícil, porque no hay un procedimiento mecánico. Hay que traducir cada condición a un rasgo del dibujo.
+
+### El diccionario de traducción
+
+| Te dicen | Dibujas |
+|---|---|
+| $\mathrm{Dom}(f)=\mathbb{R}-\{2\}$ | Una recta vertical prohibida en $x=2$ |
+| $f(0)=3$ | El punto $(0,3)$ |
+| $f'(1)=0$ | Tangente horizontal en $x=1$ |
+| $f'(x)>0$ en $(0,2)$ | Ese tramo sube |
+| $f''(x)<0$ en $(0,2)$ | Ese tramo tiene forma de loma |
+| $\lim_{x\to 2^+}f(x)=+\infty$ | La rama derecha sube pegada a $x=2$ |
+| $\lim_{x\to\infty}f(x)=1$ | Se acerca a la horizontal $y=1$ |
+| Máximo en $(1,4)$ | Un pico en ese punto exacto |
+| Es impar | Dibujas la mitad derecha y giras media vuelta |
+
+::: {.callout-tip}
+## El orden para dibujar
+
+1. Marca primero las **asíntotas** con trazo discontinuo. Son el andamio.
+2. Marca los **puntos concretos** que te den: cortes, extremos, inflexiones.
+3. Dibuja las **flechas de tendencia** en cada rama, según los límites.
+4. Y solo entonces une todo con curvas suaves respetando el crecimiento y la curvatura.
+
+Si empiezas dibujando la curva y luego intentas encajar las asíntotas, casi siempre sale mal.
+:::
+
+::: {.callout-warning}
+## No existe «la» solución
+
+En estos ejercicios hay **infinitas** gráficas correctas. Cualquiera que cumpla todas las condiciones vale, y la del profesor es solo una de ellas.
+
+Lo que se corrige no es el parecido con un modelo, sino que tu dibujo cumpla cada condición del enunciado. Por eso conviene repasar la lista al final y comprobarlas una por una.
+:::
+
+::: {data-applet-apl="reconstruye"}
+:::
+
+## Ejercicios
+
+**1.** Halla el dominio de $f(x) = \dfrac{x+1}{x^2-4}$ y sus cortes con los ejes.
+
+**2.** Estudia la simetría de estas tres funciones: $f(x)=x^4-x^2$, $g(x)=x^3+x$, $h(x)=x^2+x$.
+
+**3.** Halla las asíntotas de $f(x)=\dfrac{3x}{x-2}$.
+
+**4.** Representa $f(x) = \dfrac{1}{x^2-1}$ siguiendo el guion completo.
+
+**5.** Dibuja una función continua que cumpla a la vez: $f(-1)=0$, $f(2)=3$, creciente en $(-\infty,2)$, decreciente en $(2,+\infty)$, y con $\lim_{x\to\pm\infty}f(x)=-\infty$.
+
+**6.** ¿Puede una función tener asíntota horizontal $y=2$ y asíntota oblicua a la vez, ambas por el lado derecho? Razona la respuesta.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** El denominador $x^2-4$ se anula en $x=\pm 2$, luego $\mathrm{Dom}(f)=\mathbb{R}-\{-2,2\}$.
+
+Corte con $X$: anulamos el numerador, $x+1=0$ da $x=-1$, que está en el dominio. Punto $(-1,0)$.
+
+Corte con $Y$: $f(0)=\dfrac{1}{-4}=-\tfrac{1}{4}$. Punto $\left(0,-\tfrac{1}{4}\right)$.
+
+**2.** En $f$ todos los exponentes son pares, luego es **par**. En $g$ todos son impares, luego es **impar**. En $h$ están mezclados, así que **no tiene simetría** de estos dos tipos.
+
+Comprobación de $h$: $h(-x)=x^2-x$, que no es igual a $h(x)=x^2+x$ ni a su opuesto $-x^2-x$.
+
+**3.** Vertical: el denominador se anula en $x=2$ y el numerador vale $6 \neq 0$ ahí, luego $x=2$ es asíntota vertical.
+
+Horizontal: los grados son iguales, ambos 1, así que la asíntota es el cociente de coeficientes principales, $y=\dfrac{3}{1}=3$.
+
+No hay oblicua, porque ya hay horizontal.
+
+**4.** Dominio: $\mathbb{R}-\{-1,1\}$.
+
+Cortes: el numerador es la constante 1, que no se anula nunca, luego no corta al eje $X$. Con $Y$: $f(0)=\dfrac{1}{-1}=-1$, punto $(0,-1)$.
+
+Simetría: $f(-x)=\dfrac{1}{x^2-1}=f(x)$, es **par**.
+
+Asíntotas: verticales en $x=\pm 1$, y horizontal $y=0$ porque el grado de arriba es menor.
+
+Monotonía: $f'(x)=\dfrac{-2x}{(x^2-1)^2}$, con el mismo signo que en el ejemplo del texto. Crece en $(-\infty,-1)\cup(-1,0)$ y decrece en $(0,1)\cup(1,+\infty)$. Máximo relativo en $(0,-1)$.
+
+La gráfica tiene tres ramas: las dos laterales van hacia $y=0$ por debajo y suben a $+\infty$ junto a las asíntotas, y la central es una loma con vértice en $(0,-1)$ que baja a $-\infty$ por ambos lados.
+
+**5.** Se trata de una curva con forma de loma única. Sube desde $-\infty$ por la izquierda, pasa por $(-1,0)$, alcanza su máximo en $(2,3)$ y luego baja hacia $-\infty$.
+
+Como es continua y solo hay un cambio de crecimiento, el máximo en $(2,3)$ es además **absoluto**. Y por el teorema de Bolzano, al bajar de 3 hasta $-\infty$ tiene que cruzar el eje otra vez a la derecha de $x=2$, así que hay un segundo corte con el eje $X$ aunque el enunciado no lo mencione.
+
+**6.** No, es imposible.
+
+Si hubiera asíntota horizontal $y=2$ por la derecha, entonces $f(x)$ tiende a 2, un valor finito. Si hubiera oblicua $y=mx+n$ con $m \neq 0$, entonces $f(x)$ tendería a $\pm\infty$.
+
+Una función no puede tender a la vez a un número y al infinito por el mismo lado, porque el límite, cuando existe, es único. Las dos asíntotas son **excluyentes**: o una, o la otra, o ninguna.
+:::
+
+## Resumen del guion
+
+| Paso | Qué se calcula | Herramienta |
+|---|---|---|
+| 1 | Dominio | Denominadores, raíces, logaritmos |
+| 2 | Cortes con los ejes | $f(0)$ y $f(x)=0$ |
+| 3 | Simetrías | Comparar $f(-x)$ con $f(x)$ |
+| 4 | Asíntotas | Límites en los puntos excluidos y en el infinito |
+| 5 | Monotonía y extremos | Signo de $f'$ |
+| 6 | Curvatura e inflexiones | Signo de $f''$ |
+
+En los dos apartados siguientes aplicarás este guion a los dos tipos de función que más aparecen en los exámenes: las **polinómicas**, donde los pasos 1, 3 y 4 se simplifican mucho, y las **racionales**, donde el paso 4 es el protagonista.

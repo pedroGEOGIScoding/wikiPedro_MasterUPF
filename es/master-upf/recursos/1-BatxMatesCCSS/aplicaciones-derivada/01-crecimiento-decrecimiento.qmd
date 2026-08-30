@@ -1,0 +1,443 @@
+---
+title: "Tema 8.1 Crecimiento y decrecimiento"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Aplicaciones de la derivada (Parte 1 de 5)"
+filename: 01-crecimiento-decrecimiento
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El signo de la derivada decide si una función crece o decrece. De ahí salen los puntos críticos, los máximos y mínimos relativos, el criterio de la segunda derivada, el estudio de la monotonía en funciones definidas por partes y la resolución de problemas de optimización.
+categories: [derivadas, aplicaciones, monotonía, crecimiento, máximos, mínimos, extremos, optimización, segunda derivada, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este tema
+
+Hasta ahora has aprendido a **calcular** derivadas. Sabes derivar potencias, productos, cocientes y composiciones. Es una habilidad mecánica y necesaria, pero por sí sola no sirve para nada.
+
+Este tema es el que le da sentido a todo lo anterior. Aquí la derivada deja de ser un ejercicio de cálculo y se convierte en un **instrumento de lectura**: una herramienta que te dice cómo se comporta una función sin necesidad de dibujarla punto por punto.
+
+::: {.callout-note}
+## La idea que sostiene el tema entero
+
+La derivada en un punto es la pendiente de la tangente. Y la pendiente de una recta dice si sube o baja. Por tanto, **el signo de la derivada dice si la función sube o baja**.
+
+Toda la primera parte del tema es esa frase, desarrollada con precisión y consecuencias.
+:::
+
+Al terminar deberás ser capaz de coger una función que no habías visto nunca, y en diez minutos y sin calculadora saber dónde crece, dónde tiene sus picos y valles, cómo se curva y qué forma tiene su gráfica. Esa es la destreza que se evalúa.
+
+## El signo de la derivada y la monotonía
+
+Empecemos por precisar el vocabulario, porque en matemáticas «crecer» tiene un significado exacto.
+
+Una función $f$ es **creciente** en un intervalo si al avanzar hacia la derecha los valores aumentan. Dicho con símbolos: para cualesquiera $x_1 < x_2$ del intervalo se cumple $f(x_1) < f(x_2)$.
+
+Y es **decreciente** si ocurre lo contrario: $x_1 < x_2$ implica $f(x_1) > f(x_2)$.
+
+::: {.callout-important}
+## Crecimiento es una propiedad de intervalos, no de puntos
+
+No tiene sentido decir «la función crece en $x=2$». El crecimiento describe qué pasa **al desplazarse**, y en un único punto no hay desplazamiento posible.
+
+Lo correcto es decir «la función crece en el intervalo $(1,3)$», que contiene a $x=2$. Es un error de redacción que cuesta puntos en los exámenes.
+:::
+
+### El teorema
+
+Sea $f$ una función derivable en un intervalo $I$.
+
+- Si $f'(x) > 0$ para todo $x \in I$, entonces $f$ es **creciente** en $I$.
+- Si $f'(x) < 0$ para todo $x \in I$, entonces $f$ es **decreciente** en $I$.
+- Si $f'(x) = 0$ para todo $x \in I$, entonces $f$ es **constante** en $I$.
+
+### Por qué es cierto
+
+La demostración formal usa el teorema del valor medio, que verás en cursos posteriores. Pero el argumento intuitivo es sólido y conviene entenderlo.
+
+La derivada es el límite del cociente incremental:
+
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+$$
+
+Si ese límite es positivo, entonces para valores pequeños de $h$ el cociente también es positivo. Y un cociente con denominador positivo, $h>0$, solo puede ser positivo si el numerador lo es: $f(x+h) > f(x)$. Es decir, al avanzar un poco hacia la derecha, la función ha subido.
+
+::: {.callout-tip}
+## La imagen del coche
+
+Imagina que $f(t)$ es la posición de un coche en el instante $t$. Entonces $f'(t)$ es su velocidad.
+
+- Velocidad positiva: el coche avanza, la posición aumenta, $f$ crece.
+- Velocidad negativa: el coche retrocede, $f$ decrece.
+- Velocidad cero: el coche está parado en ese instante.
+
+Y aquí está el matiz importante: un coche puede tener velocidad cero en un instante concreto **sin dejar de avanzar** en su recorrido, por ejemplo justo en el momento en que levanta el pie del acelerador y lo vuelve a pisar. Ese caso existe también en las funciones, y lo verás en cuanto pruebes $f(x)=x^3$ en el applet.
+:::
+
+::: {data-applet-apl="monotonia"}
+:::
+
+## Los puntos críticos
+
+Los valores donde la derivada se anula o no existe se llaman **puntos críticos** o **puntos singulares**. Son los únicos lugares donde la función puede cambiar de creciente a decreciente o al revés.
+
+$$
+f'(a) = 0 \quad \text{o bien} \quad f'(a) \text{ no existe}
+$$
+
+Esto es la clave del método: en lugar de comprobar el crecimiento en infinitos puntos, basta con localizar los puntos críticos y estudiar qué pasa **entre** ellos.
+
+### El método de la tabla de signos
+
+Es el procedimiento estándar y hay que dominarlo. Cuatro pasos:
+
+1. Calcular $f'(x)$.
+2. Resolver la ecuación $f'(x)=0$ y localizar también los puntos donde $f'$ no existe.
+3. Con esos valores, partir la recta real en intervalos.
+4. Evaluar el signo de $f'$ en un punto cualquiera de cada intervalo.
+
+El signo de la derivada es constante dentro de cada intervalo, porque solo puede cambiar pasando por cero o por un punto de discontinuidad, y esos son precisamente los cortes que hemos elegido.
+
+### Ejemplo completo
+
+Estudia la monotonía de $f(x) = x^3 - 3x^2 - 9x + 5$.
+
+**Paso 1.** Derivamos:
+
+$$
+f'(x) = 3x^2 - 6x - 9
+$$
+
+**Paso 2.** Igualamos a cero y simplificamos dividiendo entre 3:
+
+$$
+3x^2 - 6x - 9 = 0 \ \Longrightarrow \ x^2 - 2x - 3 = 0 \ \Longrightarrow \ x = -1, \ x = 3
+$$
+
+**Paso 3.** Los puntos críticos parten la recta en tres intervalos: $(-\infty,-1)$, $(-1,3)$ y $(3,+\infty)$.
+
+**Paso 4.** Evaluamos la derivada en un punto de cada uno:
+
+| Intervalo | Punto de prueba | $f'$ en ese punto | Signo | Comportamiento |
+|---|---|---|---|---|
+| $(-\infty,-1)$ | $x=-2$ | $12+12-9=15$ | $+$ | crece |
+| $(-1,3)$ | $x=0$ | $0-0-9=-9$ | $-$ | decrece |
+| $(3,+\infty)$ | $x=4$ | $48-24-9=15$ | $+$ | crece |
+
+**Conclusión.** La función crece en $(-\infty,-1) \cup (3,+\infty)$ y decrece en $(-1,3)$.
+
+::: {.callout-warning}
+## Cuidado con el símbolo de unión
+
+Se escribe $(-\infty,-1) \cup (3,+\infty)$ con unión, porque son dos tramos separados donde ocurre lo mismo.
+
+Nunca escribas $(-\infty,-1) \cap (3,+\infty)$ con intersección: esa intersección es el conjunto vacío, y estarías afirmando que la función no crece en ninguna parte.
+:::
+
+## Máximos y mínimos relativos
+
+Un punto donde la función pasa de crecer a decrecer es un **máximo relativo**. Uno donde pasa de decrecer a crecer es un **mínimo relativo**.
+
+La palabra «relativo», también llamado «local», es esencial: significa que ese valor es el mayor o el menor **comparado con los puntos de su alrededor**, no necesariamente en toda la función.
+
+::: {.callout-note}
+## Relativo frente a absoluto
+
+En la cordillera de los Pirineos, el Aneto es el pico más alto. Pero cada montaña tiene su propia cumbre, que es un máximo relativo: el punto más alto de su entorno.
+
+El Aneto es además el **máximo absoluto** de la cordillera. Una función puede tener muchos máximos relativos y ninguno absoluto, como $f(x)=x^3-3x$, que sube hasta $+\infty$ y baja hasta $-\infty$.
+:::
+
+### Criterio de la primera derivada
+
+Es el que ya has usado con la tabla de signos. Si $f'(a)=0$:
+
+- Si $f'$ pasa de $+$ a $-$ al atravesar $a$, hay **máximo relativo** en $a$.
+- Si $f'$ pasa de $-$ a $+$, hay **mínimo relativo** en $a$.
+- Si $f'$ **no cambia de signo**, no hay extremo: solo una tangente horizontal.
+
+Ese tercer caso es el que más se olvida, y es el que distingue a quien ha entendido el criterio de quien lo aplica de memoria.
+
+### El contraejemplo que hay que conocer
+
+Toma $f(x) = x^3$. Su derivada es $f'(x)=3x^2$, que se anula en $x=0$. Pero $3x^2$ es positiva a ambos lados del cero, porque un cuadrado nunca es negativo.
+
+Conclusión: la función **no deja de crecer** en ningún momento. En $x=0$ tiene tangente horizontal, pero no es ni máximo ni mínimo.
+
+::: {.callout-important}
+## La implicación va en un solo sentido
+
+Si hay extremo relativo en un punto donde la función es derivable, entonces la derivada se anula ahí. Eso es cierto.
+
+Pero al revés **no**: que la derivada se anule no garantiza que haya extremo. Anular la derivada es condición **necesaria**, no suficiente.
+
+En lógica se escribe así: extremo $\Rightarrow f'(a)=0$, pero $f'(a)=0 \nRightarrow$ extremo.
+:::
+
+### Extremos donde la derivada no existe
+
+Los puntos críticos incluyen aquellos donde la derivada no existe, y ahí también puede haber extremos. El ejemplo canónico es el valor absoluto:
+
+$$
+f(x) = |x|
+$$
+
+Tiene un mínimo evidente en $x=0$, donde vale cero y a los lados vale más. Pero no es derivable ahí: por la izquierda la pendiente es $-1$ y por la derecha es $+1$. Hay un **pico**, y en un pico no hay tangente única.
+
+Si buscaras extremos resolviendo solo $f'(x)=0$, te perderías este mínimo. Por eso los puntos críticos son los ceros de la derivada **y** los puntos donde no existe.
+
+## El criterio de la segunda derivada
+
+Construir la tabla de signos funciona siempre, pero es laborioso. Existe un atajo cuando la función se puede derivar dos veces.
+
+Sea $a$ un punto con $f'(a)=0$:
+
+- Si $f''(a) > 0$, hay **mínimo relativo** en $a$.
+- Si $f''(a) < 0$, hay **máximo relativo** en $a$.
+- Si $f''(a) = 0$, el criterio **no decide** y hay que volver a la tabla de signos.
+
+### Cómo recordar el signo sin memorizarlo
+
+Mucha gente confunde qué signo corresponde a cada caso. No hace falta memorizarlo si entiendes de dónde sale.
+
+En un **mínimo** la función viene bajando y se pone a subir. Su pendiente pasa de negativa a positiva, o sea, **la pendiente aumenta**. Y si la pendiente aumenta, su derivada es positiva. Como la pendiente es $f'$, su derivada es $f''$. Luego $f'' > 0$.
+
+En un **máximo** ocurre al contrario: la pendiente pasa de positiva a negativa, disminuye, y por tanto $f'' < 0$.
+
+::: {.callout-tip}
+## Regla mnemotécnica visual
+
+Un mínimo tiene forma de vaso que recoge agua, $\smile$, y $f''>0$ es positivo, «hacia arriba».
+
+Un máximo tiene forma de vaso volcado, $\frown$, y $f''<0$ es negativo, «hacia abajo».
+:::
+
+### Ejemplo comparando los dos criterios
+
+Halla los extremos de $f(x) = x^3 - 6x^2 + 9x$.
+
+Primera derivada:
+
+$$
+f'(x) = 3x^2 - 12x + 9 = 3(x^2-4x+3) = 3(x-1)(x-3)
+$$
+
+Se anula en $x=1$ y $x=3$. Segunda derivada:
+
+$$
+f''(x) = 6x - 12
+$$
+
+Evaluamos:
+
+- $f''(1) = 6-12 = -6 < 0$, luego **máximo** en $x=1$, con $f(1)=1-6+9=4$.
+- $f''(3) = 18-12 = 6 > 0$, luego **mínimo** en $x=3$, con $f(3)=27-54+27=0$.
+
+Dos sustituciones y hemos terminado. La tabla de signos habría dado el mismo resultado con más trabajo.
+
+::: {.callout-warning}
+## Cuándo falla el atajo
+
+Con $f(x)=x^4$ tenemos $f'(x)=4x^3$, que se anula en $x=0$, y $f''(x)=12x^2$, que en cero también vale cero.
+
+El criterio no decide. Pero si mirásemos el signo de $f'=4x^3$, veríamos que pasa de negativo a positivo, así que hay **mínimo** en el origen. Y es evidente: $x^4$ nunca es negativa y vale cero solo en $x=0$.
+
+Moraleja: cuando $f''(a)=0$, el criterio de la segunda derivada no dice «no hay extremo». Dice «no lo sé». Son cosas muy distintas.
+:::
+
+::: {data-applet-apl="extremos2"}
+:::
+
+## Leer las tres gráficas a la vez
+
+Una función, su derivada y su segunda derivada cuentan la misma historia desde tres alturas distintas. Aprender a saltar de una a otra es la destreza más rentable de todo el tema.
+
+Las correspondencias son estas:
+
+| En la gráfica de $f$ | En la gráfica de $f'$ | En la gráfica de $f''$ |
+|---|---|---|
+| Tramo creciente | Está por encima del eje | Sin información directa |
+| Tramo decreciente | Está por debajo del eje | Sin información directa |
+| Máximo o mínimo | Corta el eje horizontal | Cambia de signo su valor |
+| Cambio de curvatura | Tiene un máximo o mínimo | Corta el eje horizontal |
+
+::: {.callout-note}
+## Un desplazamiento de nivel
+
+Fíjate en el patrón: lo que en $f$ es un extremo, en $f'$ es un corte con el eje. Y lo que en $f'$ es un extremo, en $f''$ es un corte con el eje.
+
+Cada vez que derivas, los fenómenos «bajan un nivel». Es una simetría del cálculo que conviene notar, porque significa que puedes resolver preguntas sobre $f$ mirando ceros de $f'$, que es siempre más sencillo.
+:::
+
+::: {data-applet-apl="trescurvas"}
+:::
+
+## Monotonía en funciones definidas por partes
+
+Una función definida por partes se estudia **por trozos**, aplicando en cada uno el método habitual, y prestando atención especial a los puntos de empalme.
+
+Considera:
+
+$$
+f(x) = \begin{cases}
+x^2 & \text{si } x < 1 \\
+2x - 1 & \text{si } x \geq 1
+\end{cases}
+$$
+
+En el primer trozo, $f'(x)=2x$, que en $(-\infty,1)$ es negativa para $x<0$ y positiva para $0<x<1$. Hay un mínimo en $x=0$.
+
+En el segundo trozo, $f'(x)=2$, siempre positiva: crece.
+
+### Los tres controles del punto de empalme
+
+En el punto donde cambia la definición hay que comprobar tres cosas, en este orden:
+
+1. **¿Coinciden los valores?** Por la izquierda $f$ tiende a $1^2=1$. Por la derecha vale $2(1)-1=1$. Coinciden, luego es **continua**.
+2. **¿Coinciden las pendientes?** Por la izquierda $f'$ tiende a $2(1)=2$. Por la derecha vale $2$. Coinciden, luego es **derivable**.
+3. **¿Cambia el crecimiento?** No: crece a ambos lados. No hay extremo ahí.
+
+::: {.callout-important}
+## Continuidad y derivabilidad no son lo mismo
+
+Si los valores no coinciden, hay un **salto**: la función no es continua ni derivable.
+
+Si los valores coinciden pero las pendientes no, la función es continua pero **no derivable**: hay un pico. Y en un pico puede haber un extremo que el método de resolver $f'(x)=0$ nunca encontraría.
+
+Derivable implica continua, pero continua no implica derivable. El valor absoluto es el contraejemplo de bolsillo.
+:::
+
+::: {data-applet-apl="partes"}
+:::
+
+## Problemas de optimización
+
+Aquí es donde el tema deja de ser un ejercicio escolar y se convierte en algo útil. Un problema de optimización pide el valor máximo o mínimo de una magnitud sujeta a una condición.
+
+### El método, en cinco pasos
+
+1. **Identificar** qué se quiere optimizar y llamarlo, por ejemplo, $A$, $V$ o $C$.
+2. **Escribir** esa magnitud en función de las variables del problema.
+3. **Usar la condición** del enunciado para dejar todo en función de **una sola** variable. Este es el paso donde se atasca casi todo el mundo.
+4. **Derivar** e igualar a cero.
+5. **Comprobar** con la segunda derivada que es el tipo de extremo pedido, y **volver al enunciado** para responder lo que se preguntaba.
+
+### Ejemplo resuelto
+
+Con 40 metros de valla queremos cercar un huerto rectangular de área máxima. ¿Qué dimensiones tendrá?
+
+**Magnitud a optimizar.** El área: $A = x \cdot y$, donde $x$ e $y$ son los lados.
+
+**Condición.** El perímetro es 40, así que $2x+2y=40$, es decir $y = 20-x$.
+
+**Una sola variable.** Sustituimos:
+
+$$
+A(x) = x(20-x) = 20x - x^2
+$$
+
+**Derivamos e igualamos a cero:**
+
+$$
+A'(x) = 20 - 2x = 0 \ \Longrightarrow \ x = 10
+$$
+
+**Comprobamos:** $A''(x) = -2 < 0$, luego es máximo.
+
+**Volvemos al enunciado.** Si $x=10$, entonces $y = 20-10 = 10$. El huerto de área máxima es un **cuadrado** de lado 10 metros, con 100 metros cuadrados.
+
+::: {.callout-tip}
+## Un resultado que merece recordarse
+
+De todos los rectángulos con el mismo perímetro, el de área máxima es siempre el cuadrado. No es casualidad de este enunciado: sale igual con cualquier perímetro.
+
+Y si generalizas a figuras cualesquiera, la de área máxima con perímetro fijo es el **círculo**. Es la razón por la que las pompas de jabón son esféricas: minimizan superficie para un volumen dado.
+:::
+
+::: {.callout-warning}
+## No olvides el último paso
+
+El error más frecuente en estos problemas no es de cálculo: es contestar $x=10$ y quedarse ahí.
+
+El enunciado preguntaba por las **dimensiones**, así que hay que dar los dos lados. Si preguntara por el área máxima, habría que dar 100. Lee qué se pide y respóndelo con sus unidades.
+:::
+
+::: {data-applet-apl="optimiza"}
+:::
+
+## Ejercicios
+
+Intenta cada uno completo antes de mirar la solución.
+
+**1.** Estudia la monotonía de $f(x) = x^3 - 12x$ e indica sus extremos relativos.
+
+**2.** Halla los extremos de $f(x) = x^4 - 8x^2 + 3$ usando la segunda derivada.
+
+**3.** Demuestra que $f(x) = x^3 + 2x + 1$ no tiene extremos relativos.
+
+**4.** Estudia la monotonía de $f(x) = \dfrac{x}{x^2+1}$.
+
+**5.** Descompón el número 12 en dos sumandos cuyo producto sea máximo.
+
+**6.** Una función continua cumple $f'(x) > 0$ en $(-\infty,2)$ y $f'(x)<0$ en $(2,+\infty)$. ¿Qué puedes afirmar sobre $x=2$?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $f'(x) = 3x^2-12 = 3(x^2-4)$, que se anula en $x=-2$ y $x=2$.
+
+Signos: en $(-\infty,-2)$ positiva, en $(-2,2)$ negativa, en $(2,+\infty)$ positiva.
+
+Crece en $(-\infty,-2)\cup(2,+\infty)$ y decrece en $(-2,2)$. Máximo relativo en $(-2,16)$ y mínimo relativo en $(2,-16)$.
+
+**2.** $f'(x) = 4x^3-16x = 4x(x^2-4)$, que se anula en $x=-2$, $x=0$ y $x=2$.
+
+$f''(x) = 12x^2-16$. Evaluamos: $f''(-2)=32>0$ mínimo; $f''(0)=-16<0$ máximo; $f''(2)=32>0$ mínimo.
+
+Mínimos en $(-2,-13)$ y $(2,-13)$, máximo en $(0,3)$. La función es par, y por eso los dos mínimos están a la misma altura.
+
+**3.** $f'(x) = 3x^2+2$. Como $3x^2 \geq 0$ para todo $x$, se tiene $f'(x) \geq 2 > 0$ siempre.
+
+La derivada nunca se anula, luego no hay puntos críticos y la función es estrictamente creciente en todo $\mathbb{R}$. Sin cambios de crecimiento no puede haber extremos.
+
+**4.** Por la regla del cociente:
+
+$$
+f'(x) = \frac{1\cdot(x^2+1) - x\cdot 2x}{(x^2+1)^2} = \frac{1-x^2}{(x^2+1)^2}
+$$
+
+El denominador es siempre positivo, así que el signo lo decide $1-x^2$, que se anula en $x=\pm 1$ y es positivo entre ellos.
+
+Crece en $(-1,1)$ y decrece en $(-\infty,-1)\cup(1,+\infty)$. Mínimo en $(-1,-\tfrac{1}{2})$ y máximo en $(1,\tfrac{1}{2})$.
+
+**5.** Si los sumandos son $x$ y $12-x$, el producto es $P(x)=12x-x^2$. Entonces $P'(x)=12-2x=0$ da $x=6$, y $P''=-2<0$ confirma el máximo.
+
+Los sumandos son 6 y 6, con producto 36. Otra vez el reparto simétrico.
+
+**6.** La función crece a la izquierda de 2 y decrece a la derecha, así que en $x=2$ hay un **máximo relativo**.
+
+Ojo al detalle fino: el enunciado dice continua, no derivable. Podría ser que $f'(2)$ no exista y que haya un pico. El máximo está garantizado; la tangente horizontal, no.
+:::
+
+## Resumen
+
+| Concepto | Cómo se detecta |
+|---|---|
+| Crece | $f'(x) > 0$ |
+| Decrece | $f'(x) < 0$ |
+| Punto crítico | $f'(a)=0$ o $f'(a)$ no existe |
+| Máximo relativo | $f'$ pasa de $+$ a $-$, o bien $f''(a)<0$ |
+| Mínimo relativo | $f'$ pasa de $-$ a $+$, o bien $f''(a)>0$ |
+| Sin extremo | $f'(a)=0$ pero sin cambio de signo |
+
+En el apartado siguiente estudiarás qué información añade la segunda derivada más allá de clasificar extremos: la **curvatura**, es decir, hacia dónde se comba la gráfica.

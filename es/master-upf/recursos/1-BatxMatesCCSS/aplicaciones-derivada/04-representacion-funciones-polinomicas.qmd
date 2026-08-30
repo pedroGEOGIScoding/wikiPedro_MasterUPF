@@ -1,0 +1,320 @@
+---
+title: "Tema 8.4 Representación de funciones polinómicas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Aplicaciones de la derivada (Parte 4 de 5)"
+filename: 04-representacion-funciones-polinomicas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: En un polinomio el dominio es todo el conjunto de los reales y no hay asíntotas, así que el guion se reduce a cortes, ramas infinitas, extremos y curvatura. El grado y el signo del coeficiente principal deciden por sí solos la forma general de la gráfica.
+categories: [derivadas, aplicaciones, funciones polinómicas, parábola, cúbica, ramas infinitas, grado, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El caso más cómodo
+
+Aplicar el guion a un polinomio es sencillo porque **tres de los seis pasos son inmediatos**.
+
+| Paso | En un polinomio |
+|---|---|
+| Dominio | Siempre $\mathbb{R}$, sin excepciones |
+| Simetría | Se ve mirando los exponentes |
+| Asíntotas | No tiene ninguna |
+
+Queda por trabajar solo lo esencial: los cortes, hacia dónde se van las ramas, los extremos y la curvatura.
+
+::: {.callout-note}
+## Por qué un polinomio no tiene asíntotas
+
+No tiene verticales porque está definido en todos los puntos: no hay ningún valor prohibido al que acercarse.
+
+Y no tiene horizontales ni oblicuas porque, si el grado es 2 o mayor, crece más deprisa que cualquier recta. Al alejarse, la distancia a cualquier recta que dibujes no se reduce: aumenta sin freno.
+:::
+
+## Las ramas infinitas se deciden con dos datos
+
+Antes de calcular nada, un polinomio ya te dice hacia dónde se van sus extremos. Solo necesitas dos cosas: el **grado** y el **signo del coeficiente principal**.
+
+La razón es que al alejarse mucho del origen, el término de mayor grado domina completamente a los demás. En $x^3-100x$, cuando $x=1000$ el primer término vale mil millones y el segundo cien mil: el segundo es irrelevante.
+
+### Las cuatro posibilidades
+
+Sea $a$ el coeficiente principal y $n$ el grado.
+
+| Grado | Signo de $a$ | Rama izquierda | Rama derecha | Forma |
+|---|---|---|---|---|
+| Par | $a>0$ | $+\infty$ | $+\infty$ | Las dos hacia arriba |
+| Par | $a<0$ | $-\infty$ | $-\infty$ | Las dos hacia abajo |
+| Impar | $a>0$ | $-\infty$ | $+\infty$ | Sube de izquierda a derecha |
+| Impar | $a<0$ | $+\infty$ | $-\infty$ | Baja de izquierda a derecha |
+
+::: {.callout-tip}
+## La regla de la potencia madre
+
+Para recordarlo no memorices la tabla: piensa en el polinomio más simple de ese tipo.
+
+- Grado par con $a>0$: piensa en $x^2$, la parábola con los brazos hacia arriba.
+- Grado impar con $a>0$: piensa en $x^3$, que viene de abajo y se va arriba.
+
+Y si el coeficiente es negativo, la gráfica se **refleja** respecto del eje horizontal. Cualquier polinomio se comporta lejos del origen como su potencia madre.
+:::
+
+## Cuántos extremos puede tener
+
+Aquí hay un resultado que da mucho control sobre el dibujo.
+
+Si $f$ es un polinomio de grado $n$, entonces $f'$ es un polinomio de grado $n-1$. Y un polinomio de grado $n-1$ tiene **como máximo** $n-1$ raíces.
+
+Por tanto: un polinomio de grado $n$ tiene **como máximo $n-1$ extremos relativos**.
+
+| Grado de $f$ | Máximo de extremos | Máximo de inflexiones |
+|---|---|---|
+| 1, recta | 0 | 0 |
+| 2, parábola | 1 | 0 |
+| 3, cúbica | 2 | 1 |
+| 4, cuártica | 3 | 2 |
+
+Y por el mismo argumento aplicado a $f''$, que tiene grado $n-2$, hay como máximo $n-2$ puntos de inflexión.
+
+::: {.callout-important}
+## «Como máximo» no es «exactamente»
+
+Una cúbica puede tener dos extremos, como $x^3-3x$, o ninguno, como $x^3+x$. Lo que no puede tener es tres.
+
+Esta cota sirve de control: si en un ejercicio con una cúbica te salen tres puntos críticos, hay un error de cálculo garantizado en la resolución de $f'(x)=0$.
+:::
+
+::: {.callout-note}
+## Los extremos y las inflexiones se alternan
+
+Entre dos extremos consecutivos hay siempre, al menos, un punto de inflexión. Tiene que ser así: si la función pasa de un máximo a un mínimo, empieza cóncava y termina convexa, luego en algún punto intermedio cambió la curvatura.
+
+Es otra comprobación útil. Si te salen dos extremos y ninguna inflexión, revisa la segunda derivada.
+:::
+
+## Las cúbicas, con detalle
+
+Las funciones de grado 3 son las protagonistas de este tema en 1.º de bachillerato, así que merecen un estudio propio.
+
+$$
+f(x) = ax^3+bx^2+cx+d \qquad \text{con } a \neq 0
+$$
+
+**Derivadas:**
+
+$$
+f'(x) = 3ax^2+2bx+c \qquad f''(x) = 6ax+2b
+$$
+
+**Punto de inflexión.** La segunda derivada es una recta no horizontal, así que se anula en un único punto y cambia de signo ahí. Toda cúbica tiene exactamente un punto de inflexión, situado en:
+
+$$
+x = -\frac{b}{3a}
+$$
+
+**Extremos.** Salen de resolver la ecuación de segundo grado $3ax^2+2bx+c=0$, cuyo discriminante es:
+
+$$
+\Delta = 4b^2-12ac = 4(b^2-3ac)
+$$
+
+Y de su signo dependen tres escenarios:
+
+| Signo de $b^2-3ac$ | Extremos | Forma de la gráfica |
+|---|---|---|
+| Positivo | Dos: un máximo y un mínimo | La típica ese con loma y valle |
+| Cero | Ninguno, pero hay tangente horizontal | Monótona con un aplanamiento |
+| Negativo | Ninguno | Monótona sin aplanamientos |
+
+::: {.callout-note}
+## Toda cúbica es simétrica
+
+Y no respecto de un eje, sino respecto de un **punto**: su propio punto de inflexión.
+
+Igual que la parábola tiene el vértice como centro de su simetría axial, la cúbica tiene la inflexión como centro de su simetría central. Si giras la gráfica media vuelta alrededor de ese punto, obtienes la misma curva.
+
+Esa es la razón profunda de que el máximo y el mínimo de una cúbica estén siempre **a la misma distancia** de la inflexión, uno a cada lado.
+:::
+
+::: {data-applet-apl="familia"}
+:::
+
+## Ejemplo completo con una cúbica
+
+Representa $f(x) = x^3 - 3x^2 + 2$.
+
+**1. Dominio.** Es un polinomio: $\mathrm{Dom}(f)=\mathbb{R}$.
+
+**2. Cortes.** Con el eje $Y$: $f(0)=2$, punto $(0,2)$.
+
+Con el eje $X$ hay que resolver $x^3-3x^2+2=0$. Probamos $x=1$ por Ruffini:
+
+$$
+1 - 3 + 0 + 2 = 0
+$$
+
+Efectivamente $x=1$ es raíz. Dividiendo queda $x^2-2x-2=0$, cuyas soluciones son:
+
+$$
+x = \frac{2 \pm \sqrt{4+8}}{2} = 1 \pm \sqrt{3}
+$$
+
+Es decir, aproximadamente $x \approx -0{,}73$ y $x \approx 2{,}73$. Hay tres cortes con el eje $X$.
+
+**3. Simetría.** Los exponentes son 3, 2 y 0: mezclados. **No hay simetría** par ni impar.
+
+**4. Ramas infinitas.** Grado impar y coeficiente principal positivo:
+
+$$
+\lim_{x\to-\infty}f(x) = -\infty \qquad \lim_{x\to+\infty}f(x)=+\infty
+$$
+
+**5. Extremos.**
+
+$$
+f'(x) = 3x^2-6x = 3x(x-2)
+$$
+
+Se anula en $x=0$ y $x=2$. Con la segunda derivada, $f''(x)=6x-6$:
+
+- $f''(0)=-6<0$, luego **máximo** en $(0,2)$.
+- $f''(2)=6>0$, luego **mínimo** en $(2,-2)$.
+
+**6. Curvatura.** La segunda derivada se anula en $x=1$, y cambia de signo: cóncava a la izquierda, convexa a la derecha. Punto de inflexión en $(1,0)$.
+
+Comprobamos con la fórmula: $x=-\dfrac{b}{3a}=-\dfrac{-3}{3}=1$. Coincide.
+
+**El dibujo.** Viene de $-\infty$ subiendo, alcanza el máximo $(0,2)$, baja atravesando la inflexión $(1,0)$, llega al mínimo $(2,-2)$ y sube hasta $+\infty$.
+
+::: {.callout-tip}
+## Comprobación de la simetría central
+
+El máximo está en $x=0$ y el mínimo en $x=2$. La inflexión está en $x=1$, exactamente en el punto medio.
+
+Y las alturas: el máximo vale 2, el mínimo vale $-2$, y la inflexión vale 0, que es la media. Todo cuadra con la simetría central respecto del punto de inflexión.
+
+Cuando estos números no cuadran, hay un error en algún paso.
+:::
+
+::: {data-applet-apl="repoli"}
+:::
+
+## Las cuárticas
+
+Los polinomios de grado 4 aparecen sobre todo en su versión **bicuadrada**, sin términos impares:
+
+$$
+f(x) = ax^4+bx^2+c
+$$
+
+Esta forma tiene dos ventajas grandes. Es siempre **par**, porque todos los exponentes lo son, así que basta estudiar $x \geq 0$. Y su derivada es factorizable de inmediato:
+
+$$
+f'(x) = 4ax^3+2bx = 2x(2ax^2+b)
+$$
+
+Un factor da $x=0$, que siempre es punto crítico. El otro da $x^2=-\dfrac{b}{2a}$, que tendrá solución real solo si esa fracción es positiva.
+
+### Los dos escenarios
+
+Con $a>0$:
+
+- Si $b<0$, hay **tres extremos**: dos mínimos simétricos y un máximo en el origen. Es la forma de **W**.
+- Si $b>0$, hay **un solo extremo**: un mínimo en el origen. Es una **U** más estrecha que la parábola.
+
+::: {.callout-note}
+## La W y sus dos mínimos gemelos
+
+En $f(x)=x^4-2x^2$ la derivada es $4x^3-4x=4x(x^2-1)$, que se anula en $-1$, $0$ y $1$.
+
+Los dos mínimos están en $x=\pm 1$ y valen lo mismo, $f(\pm 1)=1-2=-1$. Tienen que valer lo mismo porque la función es par.
+
+Ese es el control de errores más rápido en una bicuadrada: si los dos mínimos te salen a distinta altura, has cometido un fallo.
+:::
+
+## Ejercicios
+
+**1.** Sin calcular nada, di hacia dónde van las ramas de $f(x)=-2x^4+3x-1$.
+
+**2.** Representa $f(x)=x^3-12x$ siguiendo el guion completo.
+
+**3.** ¿Cuántos extremos como máximo puede tener un polinomio de grado 5? ¿Y cuántas inflexiones?
+
+**4.** Halla el punto de inflexión de $f(x)=2x^3+6x^2-1$ usando la fórmula, y comprueba el resultado derivando.
+
+**5.** Representa $f(x)=x^4-4x^2$ aprovechando su simetría.
+
+**6.** Determina $a$ y $b$ para que $f(x)=x^3+ax^2+bx$ tenga un extremo relativo en $x=1$ y un punto de inflexión en $x=2$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** Grado 4, par, con coeficiente principal $-2$, negativo. Las dos ramas van hacia $-\infty$.
+
+Los términos $3x$ y $-1$ no influyen en el comportamiento lejano: solo cuenta el de mayor grado.
+
+**2.** Dominio $\mathbb{R}$. Cortes con $Y$ en $(0,0)$.
+
+Con $X$: $x^3-12x = x(x^2-12)=0$ da $x=0$ y $x=\pm 2\sqrt{3} \approx \pm 3{,}46$.
+
+Simetría: exponentes 3 y 1, todos impares, luego es **impar**, simétrica respecto del origen.
+
+Ramas: grado impar y $a>0$, va de $-\infty$ a $+\infty$.
+
+Extremos: $f'(x)=3x^2-12$, que se anula en $x=\pm 2$. Con $f''(x)=6x$: $f''(-2)=-12<0$ máximo en $(-2,16)$, y $f''(2)=12>0$ mínimo en $(2,-16)$.
+
+Inflexión: $f''$ se anula en $x=0$ y cambia de signo. Punto $(0,0)$, que es además el centro de simetría.
+
+Observa que máximo y mínimo son opuestos, $16$ y $-16$, como corresponde a una función impar.
+
+**3.** Como máximo **4 extremos**, porque $f'$ tiene grado 4 y a lo sumo 4 raíces.
+
+Y como máximo **3 inflexiones**, porque $f''$ tiene grado 3.
+
+**4.** Con $a=2$ y $b=6$, la fórmula da:
+
+$$
+x = -\frac{b}{3a} = -\frac{6}{3 \cdot 2} = -1
+$$
+
+Comprobación: $f''(x)=12x+12$, que se anula en $x=-1$ y cambia de signo. Y $f(-1)=-2+6-1=3$, luego el punto de inflexión es $(-1,3)$.
+
+**5.** Es bicuadrada, luego **par**. Estudiamos $x\geq 0$ y reflejamos.
+
+$f'(x)=4x^3-8x=4x(x^2-2)$, que se anula en $x=0$ y $x=\pm\sqrt{2}$.
+
+$f''(x)=12x^2-8$. En $x=0$ vale $-8<0$, máximo en $(0,0)$. En $x=\pm\sqrt{2}$ vale $24-8=16>0$, mínimos en $(\pm\sqrt{2},-4)$.
+
+Los dos mínimos a la misma altura, como debe ser. Cortes con el eje $X$: $x^2(x^2-4)=0$ da $x=0$ y $x=\pm 2$. Forma de W.
+
+**6.** Derivamos: $f'(x)=3x^2+2ax+b$ y $f''(x)=6x+2a$.
+
+De la inflexión en $x=2$: $f''(2)=12+2a=0$, luego $a=-6$.
+
+Del extremo en $x=1$: $f'(1)=3+2a+b=0$. Sustituyendo $a=-6$: $3-12+b=0$, luego $b=9$.
+
+La función es $f(x)=x^3-6x^2+9x$, la misma del apartado 1. Y hay que comprobarlo: $f'(x)=3x^2-12x+9$ se anula en $x=1$ y $x=3$, y $f''(1)=-6\neq 0$, así que en $x=1$ hay un máximo de verdad.
+:::
+
+## Resumen
+
+| Elemento | En un polinomio |
+|---|---|
+| Dominio | Siempre $\mathbb{R}$ |
+| Asíntotas | Ninguna |
+| Simetría | Par si todos los exponentes son pares, impar si todos impares |
+| Ramas infinitas | Las decide el grado y el signo del coeficiente principal |
+| Extremos | Como máximo $n-1$ |
+| Inflexiones | Como máximo $n-2$ |
+| Cúbicas | Exactamente una inflexión, en $x=-\dfrac{b}{3a}$, que es centro de simetría |
+
+En el apartado siguiente estudiarás las funciones **racionales**, donde el dominio deja de ser todo $\mathbb{R}$ y las asíntotas pasan a ser el elemento central del dibujo.

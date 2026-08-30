@@ -1,0 +1,355 @@
+---
+title: "Tema 8.5 Representación de funciones racionales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Aplicaciones de la derivada (Parte 5 de 5)"
+filename: 05-representacion-funciones-racionales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: En un cociente de polinomios las asíntotas son el elemento que estructura la gráfica. Verticales en los ceros del denominador, y horizontal u oblicua según los grados. Con la distinción decisiva entre una asíntota vertical y un simple hueco en la gráfica.
+categories: [derivadas, aplicaciones, funciones racionales, asíntotas, asíntota oblicua, hueco, discontinuidad, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El tipo de función que más aparece
+
+Una función **racional** es un cociente de dos polinomios:
+
+$$
+f(x) = \frac{P(x)}{Q(x)}
+$$
+
+Es el caso estrella de este tema en los exámenes, y por una razón concreta: reúne todas las dificultades del guion en una sola función. Dominio con exclusiones, asíntotas de tres clases, derivada que exige la regla del cociente, y una gráfica partida en varias ramas.
+
+Si dominas las racionales, dominas el tema.
+
+::: {.callout-note}
+## El elemento que lo organiza todo
+
+En un polinomio el esqueleto del dibujo lo daban los extremos. En una racional lo dan las **asíntotas**.
+
+Dibújalas siempre primero, con trazo discontinuo. Son las paredes y los suelos entre los que la gráfica tiene que encajar, y una vez colocadas, el resto casi se dibuja solo.
+:::
+
+## Asíntotas verticales
+
+Se buscan en los valores excluidos del dominio, es decir, en los **ceros del denominador**.
+
+Pero ojo, y esto es lo más importante del apartado: **no todo cero del denominador produce una asíntota**.
+
+### La condición completa
+
+Sea $a$ un valor con $Q(a)=0$. Entonces:
+
+- Si $P(a) \neq 0$, hay **asíntota vertical** en $x=a$.
+- Si $P(a) = 0$ también, hay que simplificar la fracción, y lo más probable es que quede un **hueco**.
+
+::: {.callout-important}
+## Asíntota frente a hueco
+
+Este es el error más repetido del tema. Compara estas dos funciones:
+
+$$
+f(x) = \frac{x+1}{x^2-1} \qquad \text{y} \qquad g(x)=\frac{x-1}{x^2-1}
+$$
+
+Las dos tienen el denominador $x^2-1=(x-1)(x+1)$, que se anula en $\pm 1$. Pero se comportan de forma distinta.
+
+En $f$, el numerador se anula en $x=-1$. Simplificando:
+
+$$
+f(x) = \frac{x+1}{(x-1)(x+1)} = \frac{1}{x-1} \quad \text{para } x \neq -1
+$$
+
+Así que $f$ tiene asíntota vertical en $x=1$, pero en $x=-1$ solo tiene un **hueco**: la función se acerca al valor $-\tfrac{1}{2}$ y simplemente no está definida ahí.
+
+En $g$, el numerador se anula en $x=1$, así que ocurre lo simétrico: asíntota en $x=-1$ y hueco en $x=1$.
+:::
+
+### Cómo se estudia el comportamiento
+
+Una asíntota vertical no se describe diciendo solo dónde está. Hay que decir **hacia dónde se va la función por cada lado**, y no tiene que ser lo mismo:
+
+$$
+\lim_{x\to a^-}f(x) \qquad \text{y} \qquad \lim_{x\to a^+}f(x)
+$$
+
+Para calcularlos basta sustituir un valor muy próximo y mirar el signo del resultado. Con $f(x)=\dfrac{1}{x-1}$:
+
+- Por la izquierda, $x=0{,}99$ da $\dfrac{1}{-0{,}01}=-100$: se va a $-\infty$.
+- Por la derecha, $x=1{,}01$ da $\dfrac{1}{0{,}01}=100$: se va a $+\infty$.
+
+::: {.callout-tip}
+## Solo importa el signo, no el valor
+
+No hace falta calcular el número exacto. Basta con determinar el signo del numerador y del denominador cerca del punto.
+
+En $\dfrac{1}{x-1}$ cerca de $x=1$, el numerador es positivo siempre. El denominador es negativo a la izquierda y positivo a la derecha. Positivo entre negativo da negativo, y positivo entre positivo da positivo. Hecho.
+:::
+
+::: {data-applet-apl="huecos"}
+:::
+
+## Asíntotas horizontales y oblicuas
+
+Estas dos se deciden comparando los **grados** del numerador y del denominador. Y son excluyentes: si hay una, no puede haber la otra.
+
+Sea $n$ el grado de $P$ y $m$ el grado de $Q$.
+
+### Los cuatro casos
+
+| Comparación | Resultado |
+|---|---|
+| $n < m$ | Asíntota horizontal $y=0$ |
+| $n = m$ | Asíntota horizontal $y = \dfrac{a_n}{b_m}$, cociente de coeficientes principales |
+| $n = m+1$ | Asíntota **oblicua**, se obtiene dividiendo |
+| $n > m+1$ | Ni horizontal ni oblicua |
+
+::: {.callout-note}
+## De dónde sale cada caso
+
+Piensa en quién gana la carrera cuando $x$ se hace enorme.
+
+Si el denominador tiene más grado, crece más rápido, la fracción se hace diminuta y tiende a cero. De ahí el $y=0$.
+
+Si los grados son iguales, ambos crecen al mismo ritmo y lo único que queda es la proporción entre sus coeficientes principales. En $\dfrac{3x^2+5}{2x^2-1}$ la asíntota es $y=\tfrac{3}{2}$, y los términos $5$ y $-1$ acaban siendo irrelevantes.
+
+Si el numerador gana por un grado, la fracción crece como una recta, y esa recta es la asíntota oblicua.
+:::
+
+### Cómo se calcula la oblicua
+
+Se divide $P(x)$ entre $Q(x)$. El cociente es la asíntota:
+
+$$
+\frac{P(x)}{Q(x)} = C(x) + \frac{R(x)}{Q(x)}
+$$
+
+Como el resto $R$ tiene menor grado que $Q$, esa segunda fracción tiende a cero al alejarse. Lo que queda es $y = C(x)$, que en este caso es una recta porque el cociente sale de grado 1.
+
+### Ejemplo
+
+Halla la asíntota oblicua de $f(x) = \dfrac{x^2+1}{x}$.
+
+Aquí la división es inmediata sin necesidad de Ruffini:
+
+$$
+\frac{x^2+1}{x} = \frac{x^2}{x} + \frac{1}{x} = x + \frac{1}{x}
+$$
+
+Cuando $x$ crece, el término $\tfrac{1}{x}$ se hace despreciable, y la función se comporta como $y=x$. Esa es la asíntota oblicua.
+
+::: {.callout-tip}
+## Cómo saber por qué lado va la gráfica
+
+Fíjate en el signo del resto. En $f(x)=x+\dfrac{1}{x}$, ese resto es positivo cuando $x>0$, así que la gráfica queda **por encima** de la asíntota en la parte derecha.
+
+Y para $x<0$ el resto es negativo, así que queda **por debajo**. Con esto ya sabes de qué lado dibujar cada rama, sin tabular ni un punto.
+:::
+
+::: {data-applet-apl="asintotas"}
+:::
+
+## Un atajo importante en la derivada
+
+Al derivar una racional aparece siempre esta estructura:
+
+$$
+f'(x) = \frac{P'(x)Q(x) - P(x)Q'(x)}{\bigl(Q(x)\bigr)^2}
+$$
+
+Y el denominador está **al cuadrado**, así que nunca es negativo.
+
+Consecuencia práctica: **el signo de la derivada lo decide solo el numerador**. No hay que estudiar el signo del denominador, únicamente saber dónde se anula para excluirlo.
+
+::: {.callout-important}
+## No desarrolles el denominador
+
+Escribe $\left(x^2-1\right)^2$ y déjalo así. Nunca lo expandas a $x^4-2x^2+1$.
+
+Hay dos razones. Primera, que para resolver $f'(x)=0$ solo necesitas el numerador. Y segunda, que la forma factorizada te enseña de un vistazo dónde están los puntos excluidos.
+
+Desarrollarlo es trabajo extra que además esconde información útil.
+:::
+
+## Ejemplo completo, paso a paso
+
+Representa $f(x) = \dfrac{x^2+1}{x}$.
+
+**1. Dominio.** El denominador se anula en $x=0$:
+
+$$
+\mathrm{Dom}(f) = \mathbb{R}-\{0\}
+$$
+
+**2. Cortes.** El numerador $x^2+1$ nunca se anula, porque $x^2 \geq 0$ implica $x^2+1 \geq 1$. Así que **no corta al eje $X$**.
+
+Y no corta al eje $Y$ porque $x=0$ no está en el dominio. Esta función no toca ningún eje.
+
+**3. Simetría.** Sustituimos:
+
+$$
+f(-x) = \frac{x^2+1}{-x} = -\frac{x^2+1}{x} = -f(x)
+$$
+
+Es **impar**: simétrica respecto del origen. Esto significa que basta estudiar $x>0$ y girar media vuelta.
+
+**4. Asíntotas.** Vertical en $x=0$, porque el numerador vale 1 ahí, distinto de cero. Comportamiento:
+
+- Por la izquierda: numerador positivo, denominador negativo, se va a $-\infty$.
+- Por la derecha: los dos positivos, se va a $+\infty$.
+
+Grados: numerador 2, denominador 1. Como $2 = 1+1$, hay **asíntota oblicua**, que ya calculamos: $y=x$.
+
+**5. Monotonía.** Derivamos:
+
+$$
+f'(x) = \frac{2x \cdot x - (x^2+1)\cdot 1}{x^2} = \frac{2x^2-x^2-1}{x^2} = \frac{x^2-1}{x^2}
+$$
+
+El denominador es positivo, así que el signo lo da $x^2-1$, que se anula en $x=\pm 1$.
+
+Partimos con esos dos valores y con el punto excluido:
+
+| Intervalo | Signo de $x^2-1$ | Comportamiento |
+|---|---|---|
+| $(-\infty,-1)$ | $+$ | crece |
+| $(-1,0)$ | $-$ | decrece |
+| $(0,1)$ | $-$ | decrece |
+| $(1,+\infty)$ | $+$ | crece |
+
+En $x=-1$ pasa de crecer a decrecer: **máximo relativo** en $(-1,-2)$.
+
+En $x=1$ pasa de decrecer a crecer: **mínimo relativo** en $(1,2)$.
+
+**6. El dibujo.** Dos ramas separadas por la asíntota vertical. La izquierda viene desde la oblicua por debajo, alcanza el máximo $(-1,-2)$ y baja hacia $-\infty$. La derecha viene de $+\infty$, llega al mínimo $(1,2)$ y sube pegándose a la oblicua por encima.
+
+::: {.callout-warning}
+## Un máximo por debajo de un mínimo
+
+Fíjate en algo que desconcierta a mucha gente: el máximo vale $-2$ y el mínimo vale $2$. **El máximo está más abajo que el mínimo.**
+
+No es un error. Son extremos **relativos**, cada uno el mayor o menor de su propia rama. Como las dos ramas están separadas por una asíntota, no se comparan entre sí.
+
+Esta situación es habitual en racionales con asíntota oblicua, y es una buena señal de que has entendido lo que significa «relativo».
+:::
+
+::: {data-applet-apl="reprac"}
+:::
+
+## Las funciones de proporcionalidad inversa
+
+El caso más simple de racional merece mención propia:
+
+$$
+f(x) = \frac{k}{x}
+$$
+
+Su gráfica es una **hipérbola** con dos ramas, asíntota vertical $x=0$ y asíntota horizontal $y=0$. Si $k>0$ las ramas están en el primer y tercer cuadrante; si $k<0$, en el segundo y cuarto.
+
+Es impar, no tiene cortes con los ejes, no tiene extremos, y su derivada $f'(x)=-\dfrac{k}{x^2}$ nunca se anula.
+
+::: {.callout-note}
+## Donde aparece esto en la vida real
+
+La proporcionalidad inversa está en todas partes. El tiempo de un viaje frente a la velocidad, la presión de un gas frente a su volumen, la intensidad de la luz frente a la distancia.
+
+Y todas comparten el rasgo característico: al duplicar la causa, el efecto se reduce a la mitad. La asíntota horizontal $y=0$ expresa que el efecto se acerca a cero pero nunca lo alcanza.
+:::
+
+## Ejercicios
+
+**1.** Halla el dominio y las asíntotas de $f(x)=\dfrac{2x-1}{x+3}$.
+
+**2.** Determina si en $x=2$ la función $f(x)=\dfrac{x^2-4}{x-2}$ tiene asíntota o hueco.
+
+**3.** Halla las asíntotas de $f(x)=\dfrac{x^2}{x-1}$.
+
+**4.** Representa $f(x)=\dfrac{x}{x^2+1}$ siguiendo el guion completo.
+
+**5.** ¿Puede una función racional cortar a su asíntota horizontal? Razona la respuesta con un ejemplo.
+
+**6.** Halla $a$ para que $f(x)=\dfrac{ax+1}{x-2}$ tenga asíntota horizontal $y=3$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** El denominador se anula en $x=-3$, luego $\mathrm{Dom}(f)=\mathbb{R}-\{-3\}$.
+
+Vertical: en $x=-3$ el numerador vale $-7\neq 0$, así que sí hay asíntota vertical.
+
+Horizontal: los grados son iguales, ambos 1, luego $y=\dfrac{2}{1}=2$.
+
+**2.** El numerador $x^2-4=(x-2)(x+2)$ también se anula en $x=2$. Simplificando:
+
+$$
+f(x)=\frac{(x-2)(x+2)}{x-2}=x+2 \quad \text{para } x\neq 2
+$$
+
+Es un **hueco**, no una asíntota. La función es la recta $y=x+2$ con un punto quitado en $(2,4)$.
+
+**3.** Vertical en $x=1$, porque el numerador vale 1 ahí.
+
+Grados 2 y 1, con $2=1+1$, luego hay oblicua. Dividiendo $x^2$ entre $x-1$ por Ruffini se obtiene cociente $x+1$ y resto 1:
+
+$$
+f(x)=x+1+\frac{1}{x-1}
+$$
+
+La asíntota oblicua es $y=x+1$.
+
+**4.** Dominio: $x^2+1$ nunca se anula, luego $\mathrm{Dom}(f)=\mathbb{R}$. Es una racional **sin** asíntotas verticales.
+
+Cortes: el numerador se anula en $x=0$, y ese punto está en el dominio. Corta en el origen, que es también el corte con el eje $Y$.
+
+Simetría: $f(-x)=\dfrac{-x}{x^2+1}=-f(x)$, es **impar**.
+
+Asíntotas: grado 1 arriba y 2 abajo, con $1<2$, luego horizontal $y=0$. Sin oblicua.
+
+Monotonía: es la función del ejercicio 4 del apartado 1:
+
+$$
+f'(x)=\frac{1-x^2}{(x^2+1)^2}
+$$
+
+Crece en $(-1,1)$ y decrece fuera. Mínimo en $\left(-1,-\tfrac{1}{2}\right)$ y máximo en $\left(1,\tfrac{1}{2}\right)$.
+
+La gráfica es una curva continua que sube desde $y=0$ por debajo, llega al mínimo, cruza el origen, alcanza el máximo y vuelve hacia $y=0$ por encima.
+
+**5.** **Sí puede**, y este ejercicio 4 es la prueba: su asíntota horizontal es $y=0$ y la función corta el eje $X$ en el origen.
+
+La confusión viene de creer que una asíntota es una frontera infranqueable. No lo es. Una asíntota describe el comportamiento **en el infinito**, y no dice nada sobre lo que ocurre en la zona central de la gráfica.
+
+Lo que no puede hacer una función es cortar una asíntota **vertical**, porque eso exigiría estar definida en un punto que precisamente no está en el dominio.
+
+**6.** Los grados del numerador y del denominador son ambos 1, así que la asíntota horizontal es el cociente de los coeficientes principales:
+
+$$
+y=\frac{a}{1}=a
+$$
+
+Para que valga 3 hace falta $a=3$. La función es $f(x)=\dfrac{3x+1}{x-2}$.
+:::
+
+## Resumen del tema
+
+| Elemento | Cómo se obtiene |
+|---|---|
+| Dominio | Excluir los ceros del denominador |
+| Asíntota vertical | Cero del denominador que **no** anula el numerador |
+| Hueco | Cero que anula numerador y denominador a la vez |
+| Horizontal $y=0$ | Grado de arriba menor que el de abajo |
+| Horizontal $y=a_n/b_m$ | Grados iguales |
+| Oblicua | Grado de arriba justo uno más, se divide |
+| Signo de $f'$ | Lo decide solo el numerador, porque el denominador va al cuadrado |
+
+Con este apartado se cierra el tema y también el bloque de análisis del curso. Has recorrido el camino completo: de la tasa de variación media a la derivada, de la derivada a las reglas de cálculo, y de las reglas a la lectura de una función entera a partir del signo de dos derivadas.

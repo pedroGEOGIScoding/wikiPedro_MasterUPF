@@ -231,6 +231,13 @@ website:
               - master-upf/recursos/1-BatxMatesCCSS/derivadas/05-derivadas-funciones-elementales.qmd
               - master-upf/recursos/1-BatxMatesCCSS/derivadas/06-reglas-producto-cociente.qmd
               - master-upf/recursos/1-BatxMatesCCSS/derivadas/07-regla-de-la-cadena.qmd
+            - section: "Tema 8 Aplicaciones de las derivadas"
+              contents:
+                - master-upf/recursos/1-BatxMatesCCSS/aplicaciones-derivada/01-crecimiento-decrecimiento.qmd
+                - master-upf/recursos/1-BatxMatesCCSS/aplicaciones-derivada/02-concavidad-convexidad.qmd
+                - master-upf/recursos/1-BatxMatesCCSS/aplicaciones-derivada/03-representacion-grafica-funciones.qmd
+                - master-upf/recursos/1-BatxMatesCCSS/aplicaciones-derivada/04-representacion-funciones-polinomicas.qmd
+                - master-upf/recursos/1-BatxMatesCCSS/aplicaciones-derivada/05-representacion-funciones-racionales.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
