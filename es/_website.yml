@@ -186,44 +186,60 @@ website:
         - text: "---"
         - section: "1 Batx Mates CCSS"
           contents:
-          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/01-racionales-irracionales-reales-intervalos.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/02-notacion-cientifica-aprox.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/03-radicales-racionalizacion.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/04-logaritmos.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-raices-polinomio.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-factorizacion.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-fracciones-algebraicas.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-cuadraticas-bicuadradas.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/02-factorizacion-racionales-irracionales.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/03-exponenciales-logaritmicas.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/04-inecuaciones.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-lineales.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/02-sistemas-no-lineales.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/03-inecuaciones-dos-incognitas.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/01-concepto-dominio-simetrias.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/02-polinomicas-lineal-cuadratica-interpolacion.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/03-racionales-radicales-inversa-trozos.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/funciones/04-operaciones-composicion-transformaciones.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/limites/01-sucesiones-limite-sucesion.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/limites/02-calculo-operaciones-limites.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/limites/03-indeterminaciones.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/limites/04-limite-funcion-infinito-punto.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/limites/05-asintotas-continuidad.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/01-tasa-variacion-media.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/02-derivada-en-un-punto.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/03-interpretacion-geometrica.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/04-funcion-derivada.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/05-derivadas-funciones-elementales.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/06-reglas-producto-cociente.qmd
-          - master-upf/recursos/1-BatxMatesCCSS/derivadas/07-regla-de-la-cadena.qmd
+            - section: "Tema 1 Números reales"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/01-racionales-irracionales-reales-intervalos.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/02-notacion-cientifica-aprox.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/03-radicales-racionalizacion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/04-logaritmos.qmd
+            - section: "Tema 2 Polinomios"
+              contents:  
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-raices-polinomio.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-factorizacion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-fracciones-algebraicas.qmd
+            - section: "Tema 3 Ecuaciones e Inecuaciones"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-cuadraticas-bicuadradas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/02-factorizacion-racionales-irracionales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/03-exponenciales-logaritmicas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/04-inecuaciones.qmd
+            - section: "Tema 4 Sistemas de Ecuaciones e Inecuaciones"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/02-sistemas-no-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/03-inecuaciones-dos-incognitas.qmd
+            - section: "Tema 5 Funciones"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/funciones/01-concepto-dominio-simetrias.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/funciones/02-polinomicas-lineal-cuadratica-interpolacion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/funciones/03-racionales-radicales-inversa-trozos.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/funciones/04-operaciones-composicion-transformaciones.qmd
+            - section: "Tema 6 Límites"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/limites/01-sucesiones-limite-sucesion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/limites/02-calculo-operaciones-limites.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/limites/03-indeterminaciones.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/limites/04-limite-funcion-infinito-punto.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/limites/05-asintotas-continuidad.qmd
+            - section: "Tema 7 Derivadas"
+              contents:
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/01-tasa-variacion-media.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/02-derivada-en-un-punto.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/03-interpretacion-geometrica.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/04-funcion-derivada.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/05-derivadas-funciones-elementales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/06-reglas-producto-cociente.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/derivadas/07-regla-de-la-cadena.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:
-          - master-upf/recursos/2-BatxMatesCCSS/matrices-01.qmd
-          - master-upf/recursos/2-BatxMatesCCSS/matrices-02.qmd
-          - master-upf/recursos/2-BatxMatesCCSS/matrices-03.qmd
-          - master-upf/recursos/2-BatxMatesCCSS/matrices-04.qmd
+            - section: "Tema 1 Matrices y determinantes"
+              contents:
+              - master-upf/recursos/2-BatxMatesCCSS/matrices-01.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices-02.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices-03.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/matrices-04.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

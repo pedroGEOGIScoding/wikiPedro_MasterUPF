@@ -1307,8 +1307,11 @@
     });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    setTimeout(boot, 0);
+  }
 
   window.FNAPP = {
     compile: compile, eval: safe, gaps: gaps, range: rangeOf,

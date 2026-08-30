@@ -1081,8 +1081,11 @@
   }
   /* Espera a DOMContentLoaded, que se dispara DESPUÉS de todos los
      scripts con defer. Así el módulo de ampliación ya está presente. */
-  if (document.readyState === 'complete') boot();
-  else document.addEventListener('DOMContentLoaded', boot);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    setTimeout(boot, 0);
+  }
 
   /* API pública para el módulo de ampliación. */
   window.REAL = {
