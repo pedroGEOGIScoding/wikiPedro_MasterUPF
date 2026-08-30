@@ -1,12 +1,12 @@
 ---
-title: "Fracciones algebraicas"
+title: "Tema 2.4 Fracciones algebraicas"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios (Parte 4 de 4)"
 filename: 04-fracciones-algebraicas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Fracciones algebraicas
-categories: [matemáticas, bachillerato, polinomios, fracciones algebraicas, 1 Batx CCSS]
+categories: [matemáticas, bachillerato, polinomios, fracciones algebraicas, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

@@ -1,12 +1,12 @@
 ---
-title: "Notación científica, aproximaciones y errores"
+title: "Tema 1.2 Notación científica, aproximaciones y errores"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales (Parte 2 de 4)"
 filename: 02-notacion-cientifica-aprox
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Segunda parte del tema de números reales de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a la notación científica, las aproximaciones por redondeo y truncamiento, los errores absoluto y relativo y la acotación de errores
-categories: [números reales, notación científica, aproximaciones, errores, cotas, 1 Batx CCSS]
+categories: [números reales, notación científica, aproximaciones, errores, cotas, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

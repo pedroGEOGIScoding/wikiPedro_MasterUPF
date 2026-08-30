@@ -1,12 +1,12 @@
 ---
-title: "Racionales, irracionales, reales e intervalos"
+title: "Tema 1.1 Racionales, irracionales, reales e intervalos"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales (Parte 1 de 4)"
 filename: 01-racionales-irracionales-reales-intervalos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Primera parte del tema de números reales de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los números racionales, los irracionales, la recta real, los intervalos y el valor absoluto
-categories: [números reales, racionales, irracionales, intervalos, valor absoluto, 1 Batx CCSS]
+categories: [números reales, racionales, irracionales, intervalos, valor absoluto, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

@@ -1,12 +1,12 @@
 ---
-title: "Racionales, radicales, inversa y funciones a trozos"
+title: "Tema 5.3 Racionales, radicales, inversa y funciones a trozos"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 3 de 4)"
 filename: 03-racionales-radicales-inversa-trozos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Tercera parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las funciones racionales y sus asíntotas, las funciones con radicales, la función inversa, las funciones definidas a trozos, el valor absoluto y la parte entera
-categories: [funciones, racionales, asíntotas, radicales, función inversa, a trozos, 1 Batx CCSS]
+categories: [funciones, racionales, asíntotas, radicales, función inversa, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

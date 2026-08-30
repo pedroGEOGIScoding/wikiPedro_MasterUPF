@@ -1,12 +1,12 @@
 ---
-title: "Ecuaciones de segundo grado y bicuadradas"
+title: "Tema 3.1 Ecuaciones de segundo grado y bicuadradas"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones (Parte 1 de 4)"
 filename: 01-cuadraticas-bicuadradas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Primera parte del tema de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las ecuaciones de segundo grado, sus propiedades y las ecuaciones bicuadradas
-categories: [ecuaciones, segundo grado, bicuadradas, discriminante, 1 Batx CCSS]
+categories: [ecuaciones, segundo grado, bicuadradas, discriminante, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:
@@ -22,7 +22,7 @@ format:
 
 <div data-applet-eq="diagnostico"></div>
 
-## Antes de empezar. El discriminante como brújula y el cambio de variable como atajo
+## Antes de empezar (El discriminante como brújula y el cambio de variable como atajo)
 
 Una **ecuación** es una igualdad que solo es cierta para determinados valores de la incógnita. Conviene distinguirla de una **identidad**, cierta para todos los valores admisibles, como $2(x+1)=2x+2$.
 

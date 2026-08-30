@@ -1,12 +1,12 @@
 ---
-title: "Factorización de polinomios"
+title: "Tema 2.3 Factorización de polinomios"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios (Parte 3 de 4)"
 filename: 03-factorizacion
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Factorización de polinomios
-categories: [matemáticas, bachillerato, polinomios, factorización, 1 Batx CCSS]
+categories: [matemáticas, bachillerato, polinomios, factorización, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

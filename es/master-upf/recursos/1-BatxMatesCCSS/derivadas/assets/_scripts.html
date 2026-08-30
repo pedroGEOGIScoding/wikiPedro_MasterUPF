@@ -1,0 +1,58 @@
+<!-- =====================================================================
+     _scripts.html — DERIVADA DE UNA FUNCION · 1r Batx Mates CCSS
+
+     Se carga con include-after-body, de modo que cuando se ejecuta
+     el DOM del documento ya existe. Las rutas son relativas a la
+     carpeta del tema, igual que en los temas anteriores.
+
+     ORDEN OBLIGATORIO
+       1) applets.css              hoja comun del curso, carpeta ../assets
+       2) katex.min.css            KaTeX servido en LOCAL, sin CDN
+       3) katex.min.js             motor de composicion, sincrono
+       4) auto-render.min.js       define window.renderMathInElement
+       5) der-applets.js           motor 1 -> window.DER
+       6) der-applets-extra.js     motor 2 -> reutiliza window.DER.core
+
+     ATRIBUTOS DE INSERCION, uno por modulo, para que no se pisen
+       polinomios                 data-applet="clave"
+       ecuaciones e inecuaciones  data-applet-eq="clave"
+       sistemas                   data-applet-sys="clave"
+       funciones                  data-applet-fn="clave"
+       limites                    data-applet-lim="clave"
+       derivadas                  data-applet-der="clave"
+
+     POR QUE KATEX Y NO MATHJAX
+     Los applets reescriben su salida en cada pulsacion de tecla.
+     KaTeX compone de forma sincrona y sin reflujo, de modo que basta
+     llamar a renderMathInElement despues de escribir el HTML. Con
+     MathJax habria que orquestar llamadas asincronas en cada
+     actualizacion, y eso es fragil.
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/contrib/auto-render.min.js"></script>
+<script defer src="assets/der-applets.js"></script>
+<script defer src="assets/der-applets-extra.js"></script>
+
+<script>
+  /* Diagnostico en consola. No altera la pagina: solo avisa al autor
+     si alguna pieza no ha llegado, con el nombre del tema por delante
+     para distinguirlo de los avisos de los otros temas. */
+  window.addEventListener('load', function () {
+    if (!window.katex) {
+      console.warn('[derivadas] KaTeX no cargado: la notacion se vera como texto LaTeX. Revisa ../assets/katex/katex.min.js');
+    }
+    if (!window.renderMathInElement) {
+      console.warn('[derivadas] auto-render no disponible: revisa la ruta de ../assets/katex/contrib/auto-render.min.js');
+    }
+    if (!window.DER) {
+      console.warn('[derivadas] der-applets.js no ha definido window.DER: revisa assets/der-applets.js');
+      return;
+    }
+    var n = document.querySelectorAll('[data-applet-der]').length;
+    var listos = document.querySelectorAll('[data-applet-der][data-der-listo="1"]').length;
+    console.info('[derivadas] applets en la pagina: ' + n + ', montados: ' + listos + '.');
+  });
+</script>

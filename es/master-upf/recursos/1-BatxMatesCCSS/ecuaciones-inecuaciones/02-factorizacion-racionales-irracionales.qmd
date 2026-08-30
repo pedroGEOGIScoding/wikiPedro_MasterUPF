@@ -1,12 +1,12 @@
 ---
-title: "Factorización, ecuaciones racionales e irracionales"
+title: "Tema 3.2 Factorización, ecuaciones racionales e irracionales"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones (Parte 2 de 4)"
 filename: 02-factorizacion-racionales-irracionales
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Segunda parte del tema de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al principio del producto nulo, la resolución por factorización con Ruffini, las ecuaciones con fracciones algebraicas y las ecuaciones con radicales
-categories: [ecuaciones, factorización, Ruffini, racionales, irracionales, 1 Batx CCSS]
+categories: [ecuaciones, factorización, Ruffini, racionales, irracionales, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

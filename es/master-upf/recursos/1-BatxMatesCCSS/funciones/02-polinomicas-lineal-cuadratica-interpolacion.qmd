@@ -1,12 +1,12 @@
 ---
-title: "Funciones polinómicas e interpolación"
+title: "Tema 5.2 Funciones polinómicas e interpolación"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 2 de 4)"
 filename: 02-polinomicas-lineal-cuadratica-interpolacion
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Segunda parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las funciones polinómicas, la función afín y lineal, la función cuadrática y la interpolación lineal y cuadrática
-categories: [funciones, polinómicas, afín, cuadrática, interpolación, 1 Batx CCSS]
+categories: [funciones, polinómicas, afín, cuadrática, interpolación, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

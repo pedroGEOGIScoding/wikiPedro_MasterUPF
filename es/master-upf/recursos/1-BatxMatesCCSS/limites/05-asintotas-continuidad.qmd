@@ -1,12 +1,12 @@
 ---
-title: "Ramas infinitas, asíntotas y continuidad"
+title: "Tema 6.5 Ramas infinitas, asíntotas y continuidad"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 5 de 5)"
 filename: 05-asintotas-continuidad
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Quinta parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las ramas infinitas, las asíntotas verticales horizontales y oblicuas, la continuidad de una función y los tipos de discontinuidad
-categories: [límites, asíntotas, ramas infinitas, continuidad, discontinuidad, Bolzano, 1 Batx CCSS]
+categories: [límites, asíntotas, ramas infinitas, continuidad, discontinuidad, Bolzano, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

@@ -1,12 +1,12 @@
 ---
-title: "Sistemas de ecuaciones lineales"
+title: "Tema 4.1 Sistemas de ecuaciones lineales"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones (Parte 1 de 3)"
 filename: 01-sistemas-lineales
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Primera parte del tema de sistemas de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los sistemas lineales con dos incógnitas, su discusión y el método de Gauss
-categories: [sistemas, ecuaciones lineales, Gauss, discusión, 1 Batx CCSS]
+categories: [sistemas, ecuaciones lineales, Gauss, discusión, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

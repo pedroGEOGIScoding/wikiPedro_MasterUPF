@@ -1,0 +1,420 @@
+---
+title: "Tema 7.3 Interpretación geométrica de la derivada"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 3 de 7)"
+filename: 03-interpretacion-geometrica
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La derivada en un punto es la pendiente de la recta tangente a la gráfica en ese punto. Ecuación de la tangente y de la normal, tangentes con condiciones, signo de la derivada y crecimiento, y la tangente como aproximación lineal.
+categories: [derivadas, recta tangente, recta normal, pendiente, crecimiento, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## El problema de la recta tangente ("La derivada es la pendiente de la recta tangente)
+
+Históricamente, la derivada no nació de un problema de velocidades sino de uno de geometría: **trazar la recta tangente a una curva en uno de sus puntos**. Es el mismo concepto, y aquí veremos por qué.
+
+Empecemos por precisar qué es una tangente, porque la idea de bachillerato elemental —«la recta que toca la curva en un solo punto»— es incorrecta.
+
+::: {.callout-important}
+## Qué es realmente la recta tangente
+
+La recta tangente a una curva en un punto $P$ es aquella que, **en las inmediaciones de $P$**, corta la curva solo en $P$ y deja la curva siempre por encima o siempre por debajo de ella.
+
+Las dos precisiones importan:
+
+- «En las inmediaciones»: la tangente puede volver a cortar la curva **lejos** del punto. Eso no la descalifica.
+- «Siempre por encima o siempre por debajo»: una recta que cruce la curva en $P$, dejándola a un lado y al otro, no es tangente aunque pase por $P$.
+:::
+
+::: {.callout-note}
+## Un ejemplo que rompe la intuición
+
+Toma $f(x)=x^{5}-3x^{2}-5x+3$ en el punto $(-1,4)$. Su recta tangente ahí es $y=6x+10$, y esa recta **vuelve a cortar la curva** en otro punto alejado.
+
+Sigue siendo la tangente en $(-1,4)$. La condición es local, no global. Compruébalo en el applet de tangentes con `x^3-3x` y `a = 1`, que es un caso más manejable.
+:::
+
+## De las secantes a la tangente
+
+Aquí está la conexión con el apartado anterior, y es el argumento central del tema.
+
+Tomemos un punto fijo $P\left(a,f(a)\right)$ y un punto móvil $Q\left(a+h,f(a+h)\right)$. La recta que los une es una **secante**, y ya sabemos cuál es su pendiente: es la tasa de variación media.
+
+$$m_{\text{sec}}=\dfrac{f(a+h)-f(a)}{h}$$
+
+Ahora acerquemos $Q$ hacia $P$, es decir, hagamos $h\to 0$. La secante va girando alrededor de $P$, y en el límite se apoya sobre la curva. Esa recta límite es la tangente.
+
+$$\underbrace{\dfrac{f(a+h)-f(a)}{h}}_{\text{pendiente de la secante}}\quad\xrightarrow[h\to 0]{}\quad\underbrace{f'(a)}_{\text{pendiente de la tangente}}$$
+
+::: {.callout-important}
+## Interpretación geométrica de la derivada
+
+Geométricamente, $f'(a)$ es la **pendiente de la recta tangente** a la gráfica de $f$ en el punto $P\left(a,f(a)\right)$.
+:::
+
+Esta es la frase que hay que saber decir de memoria, y la que da sentido a todo lo que viene después. La derivada, que definimos con un límite abstracto, resulta ser un objeto visible: una inclinación.
+
+::: {.callout-warning}
+## Por qué el límite no se puede sustituir por $h=0$
+
+Si pusiéramos directamente $h=0$, los puntos $P$ y $Q$ serían el mismo, y **por un solo punto pasan infinitas rectas**. No habría manera de elegir una.
+
+El límite es justamente el mecanismo que permite hablar de «la recta por dos puntos infinitamente próximos» sin caer en el absurdo de dos puntos iguales. Newton y Leibniz tardaron años en aclarar esto, y el rigor definitivo llegó siglo y medio más tarde.
+:::
+
+### Applet · De las secantes a la tangente {.unnumbered}
+
+<div data-applet-der="secantes"></div>
+
+## Ecuación de la recta tangente
+
+Para escribir una recta necesitamos dos datos: **un punto** por el que pasa y **su pendiente**. La derivada nos da el segundo, y la propia función el primero.
+
+::: {.callout-important}
+## Ecuación de la recta tangente
+
+La ecuación de la recta tangente a la gráfica de $f$ en el punto $P\left(a,f(a)\right)$ es
+
+$$y-f(a)=f'(a)\cdot\left(x-a\right)$$
+:::
+
+::: {.callout-warning}
+## El error más repetido de todo el tema
+
+No confundas $f(a)$ con $f'(a)$.
+
+- $f(a)$ es la **altura** del punto. Va en el lado izquierdo de la fórmula.
+- $f'(a)$ es la **inclinación** de la recta. Multiplica al paréntesis.
+
+Si los intercambias, obtienes una recta que ni pasa por el punto ni tiene la pendiente correcta. Y hay una comprobación de tres segundos que lo detecta: **sustituye $x=a$ en la recta que has obtenido y debe salir $f(a)$**. Hazla siempre.
+:::
+
+### Ejemplo resuelto 1 · Con la definición
+
+Halla la ecuación de la recta tangente a $f(x)=\dfrac{4}{x-2}$ en el punto de abscisa $x=3$.
+
+**Paso 1 · El incremento de la función.**
+
+$$f(3+h)-f(3)=\dfrac{4}{\left(3+h\right)-2}-\dfrac{4}{1}=\dfrac{4}{h+1}-4=\dfrac{4-4\left(h+1\right)}{h+1}=\dfrac{-4h}{h+1}$$
+
+**Paso 2 · La derivada en el punto.**
+
+$$f'(3)=\lim_{h\to 0}\dfrac{\dfrac{-4h}{h+1}}{h}=\lim_{h\to 0}\dfrac{-4}{h+1}=-4$$
+
+**Paso 3 · La ecuación.** Con $f(3)=4$ y $f'(3)=-4$:
+
+$$y-4=-4\left(x-3\right)\ \Longrightarrow\ y-4=-4x+12\ \Longrightarrow\ y=-4x+16$$
+
+**Comprobación.** Sustituyendo $x=3$: $y=-12+16=4$, que es $f(3)$. Correcto.
+
+### Ejemplo resuelto 2 · Dos puntos de la misma curva
+
+Calcula la ecuación de la recta tangente a $f(x)=x-x^{2}$ en los puntos de abscisa $x=2$ y $x=-3$.
+
+La función derivada es $f'(x)=1-2x$, como se verá en el apartado siguiente.
+
+**En $x=2$:** $f(2)=2-4=-2$ y $f'(2)=1-4=-3$.
+
+$$y-\left(-2\right)=-3\left(x-2\right)\ \Longrightarrow\ y+2=-3x+6\ \Longrightarrow\ y=-3x+4$$
+
+**En $x=-3$:** $f(-3)=-3-9=-12$ y $f'(-3)=1+6=7$.
+
+$$y-\left(-12\right)=7\left(x+3\right)\ \Longrightarrow\ y+12=7x+21\ \Longrightarrow\ y=7x+9$$
+
+Observa el cuidado con los signos: $f(-3)=-12$ es negativo, así que $y-\left(-12\right)$ se convierte en $y+12$. Y $x-\left(-3\right)$ se convierte en $x+3$. Los paréntesis no son adorno.
+
+### Applet · Recta tangente y recta normal {.unnumbered}
+
+<div data-applet-der="tangente"></div>
+
+## Recta normal
+
+::: {.callout-important}
+## Definición · Recta normal
+
+La **recta normal** a una curva en un punto es la perpendicular a la tangente en ese punto. Su ecuación es
+
+$$y-f(a)=\dfrac{-1}{f'(a)}\cdot\left(x-a\right)$$
+
+siempre que $f'(a)\neq 0$.
+:::
+
+La razón es la relación entre pendientes de rectas perpendiculares: si una tiene pendiente $m$, la otra tiene pendiente $-\dfrac{1}{m}$.
+
+Los dos casos extremos merecen atención:
+
+| Si… | La tangente es… | La normal es… |
+|---|---|---|
+| $f'(a)=0$ | horizontal, $y=f(a)$ | vertical, $x=a$ |
+| $f'(a)$ no existe por ser infinita | vertical, $x=a$ | horizontal, $y=f(a)$ |
+
+## Cuatro tipos de problema de tangentes
+
+En los exámenes las tangentes se piden de cuatro maneras distintas. La estrategia cambia según qué dato falte.
+
+### Tipo 1 · Tangente en una abscisa conocida
+
+Es el caso directo. Se calcula $f(a)$, se calcula $f'(a)$ y se aplica la fórmula. Los dos ejemplos anteriores son de este tipo.
+
+### Tipo 2 · Tangente en una ordenada conocida
+
+Halla las tangentes a $f(x)=x^{2}-3$ en los puntos de ordenada $y=1$.
+
+**Paso 1 · Buscar los puntos.** Ahora nos dan la $y$, así que resolvemos:
+
+$$1=x^{2}-3\ \Longrightarrow\ x^{2}=4\ \Longrightarrow\ x=\pm 2$$
+
+Hay **dos** puntos: $\left(-2,1\right)$ y $\left(2,1\right)$. Por tanto habrá dos tangentes.
+
+**Paso 2 · Las pendientes.** Con $f'(x)=2x$:
+
+$$f'(-2)=-4\qquad f'(2)=4$$
+
+**Paso 3 · Las dos ecuaciones.**
+
+$$y-1=-4\left(x+2\right)\ \Longrightarrow\ y=-4x-7$$
+
+$$y-1=4\left(x-2\right)\ \Longrightarrow\ y=4x-7$$
+
+::: {.callout-tip}
+## Lección del tipo 2
+
+Cuando el dato es la ordenada, hay que **resolver una ecuación** y pueden salir varias soluciones. Un alumno que dé una sola tangente ha perdido la mitad del ejercicio.
+:::
+
+### Tipo 3 · Tangentes con una pendiente dada
+
+Determina las tangentes a $f(x)=\dfrac{x}{x^{2}+1}$ que sean paralelas al eje de abscisas.
+
+Ser paralela al eje $x$ significa tener pendiente $0$, así que la condición es $f'(x)=0$.
+
+**Paso 1 · La derivada,** por la regla del cociente del apartado 6:
+
+$$f'(x)=\dfrac{1\cdot\left(x^{2}+1\right)-x\cdot 2x}{\left(x^{2}+1\right)^{2}}=\dfrac{-x^{2}+1}{\left(x^{2}+1\right)^{2}}$$
+
+**Paso 2 · Igualar a la pendiente.** Una fracción es cero cuando su numerador lo es:
+
+$$-x^{2}+1=0\ \Longrightarrow\ x=\pm 1$$
+
+**Paso 3 · Las ordenadas.**
+
+$$f(1)=\dfrac{1}{2}\ \Longrightarrow\ A\left(1,\tfrac{1}{2}\right)\qquad f(-1)=-\dfrac{1}{2}\ \Longrightarrow\ B\left(-1,-\tfrac{1}{2}\right)$$
+
+**Paso 4 · Las tangentes.** Como la pendiente es $0$, son rectas horizontales:
+
+$$y=\dfrac{1}{2}\qquad\text{y}\qquad y=-\dfrac{1}{2}$$
+
+::: {.callout-note}
+## Por qué este tipo es el más importante
+
+Los puntos donde $f'(x)=0$ son los **candidatos a máximo y mínimo**. Este ejercicio, que aquí parece un problema de geometría, es en realidad el motor de todos los problemas de optimización que verás en el próximo tema: cuánto cobrar para maximizar ingresos, qué dimensiones dan el menor coste, cuántas unidades producir.
+:::
+
+### Tipo 4 · Pendientes en los cortes con los ejes
+
+Halla la pendiente de la recta tangente a $f(x)=x^{2}+4x+3$ en los puntos donde corta a los ejes $x$ e $y$.
+
+**Cortes con el eje $x$:** resolvemos $x^{2}+4x+3=0$, que da $x=-1$ y $x=-3$.
+
+**Corte con el eje $y$:** es $x=0$, con $f(0)=3$.
+
+Con $f'(x)=2x+4$:
+
+$$f'(-1)=2\qquad f'(-3)=-2\qquad f'(0)=4$$
+
+Las pendientes son $2$, $-2$ y $4$ respectivamente. Fíjate en que en los dos cortes con el eje $x$ las pendientes son opuestas: es la simetría de la parábola respecto de su vértice, que está en $x=-2$.
+
+## El signo de la derivada y el crecimiento
+
+Esta es la aplicación que más rendimiento da, y se deduce directamente de la interpretación geométrica.
+
+Si $f'(a)>0$, la tangente en $a$ sube. Si $f'(a)<0$, baja. Y como la tangente se apoya en la curva, la curva hace lo mismo.
+
+::: {.callout-important}
+## Criterio de crecimiento
+
+En un intervalo donde $f'(x)>0$, la función $f$ es **creciente**.
+
+En un intervalo donde $f'(x)<0$, la función $f$ es **decreciente**.
+
+Donde $f'(x)=0$, la tangente es horizontal: es un candidato a máximo o mínimo.
+:::
+
+::: {.callout-warning}
+## Dos confusiones frecuentes
+
+**Confusión 1 · Grande no es lo mismo que creciente.** Una función puede valer un millón y estar decreciendo. El signo de $f'$ no informa del tamaño de $f$, solo de su tendencia.
+
+**Confusión 2 · El intervalo tiene que ser un intervalo.** La función $f(x)=\dfrac{1}{x}$ tiene $f'(x)=-\dfrac{1}{x^{2}}$, que es negativa **siempre**. Y sin embargo $f$ no es decreciente en todo su dominio: $f(-1)=-1$ es menor que $f(1)=1$, con $-1<1$.
+
+La razón es que el dominio está **roto** en $x=0$. El criterio se aplica en cada intervalo por separado: $f$ decrece en $\left(-\infty,0\right)$ y decrece en $\left(0,+\infty\right)$, pero no en la unión. Compruébalo en el applet siguiente con `1/x`.
+:::
+
+### Applet · El signo de $f'$ y el crecimiento {.unnumbered}
+
+<div data-applet-der="signo"></div>
+
+## La tangente como aproximación
+
+Si la tangente se pega a la curva cerca del punto, entonces puede **sustituirla** para hacer estimaciones rápidas. Esta idea es la base de una cantidad enorme de matemática aplicada.
+
+::: {.callout-important}
+## Aproximación lineal
+
+Para valores de $x$ próximos a $a$,
+
+$$f(x)\approx f(a)+f'(a)\cdot\left(x-a\right)$$
+:::
+
+### Ejemplo resuelto · Estimar una raíz sin calculadora
+
+Estimemos $\sqrt{4{,}2}$. Tomamos $f(x)=\sqrt{x}$ y $a=4$, porque de $4$ sí sabemos la raíz.
+
+$$f(4)=2\qquad f'(4)=\dfrac{1}{2\sqrt{4}}=\dfrac{1}{4}$$
+
+$$\sqrt{4{,}2}\approx 2+\dfrac{1}{4}\cdot\left(4{,}2-4\right)=2+\dfrac{0{,}2}{4}=2+0{,}05=2{,}05$$
+
+El valor real es $2{,}0493\ldots$, así que el error es de unas cuatro diezmilésimas. Nada mal para un cálculo mental.
+
+### Ejemplo resuelto · La aproximación de la economía
+
+Tomemos $f(x)=e^{x}$ en $a=0$. Como $f(0)=1$ y $f'(0)=1$:
+
+$$e^{x}\approx 1+x\qquad\text{para }x\text{ pequeño}$$
+
+Esta aproximación es la que justifica que, para intereses pequeños, el interés compuesto continuo y el simple den casi lo mismo. Con un $2\%$, $e^{0{,}02}=1{,}0202$ frente a $1{,}02$: dos diezmilésimas de diferencia. Con un $50\%$, en cambio, $e^{0{,}5}=1{,}6487$ frente a $1{,}5$, y la aproximación ya es mala.
+
+::: {.callout-tip}
+## Pensamiento crítico · Hasta dónde se puede extrapolar
+
+Muchos modelos económicos y sociales que se presentan como lineales son, en realidad, la **tangente** a un fenómeno que no lo es. Eso está bien mientras no te alejes del punto donde se ajustó el modelo.
+
+El problema aparece cuando se extrapola: «si las ventas crecen $300$ unidades al mes, en cinco años venderemos $18\,000$ más». Esa frase supone que la tangente vale para siempre, y casi nunca es cierto. Hay saturación de mercado, competencia, cambios de ciclo.
+
+Cuando veas una previsión lineal a largo plazo, pregúntate **en qué punto se calculó la pendiente** y **cuánto te has alejado de él**. El applet siguiente te deja medir exactamente ese error.
+:::
+
+### Applet · La tangente como aproximación {.unnumbered}
+
+<div data-applet-der="aproxima"></div>
+
+## Actividades propuestas
+
+**1.** Calcula la ecuación de la recta tangente a $f(x)=x-x^{2}$ en los puntos de abscisa $x=2$ y $x=-3$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$y=-3x+4$ y $y=7x+9$. Está resuelto en el ejemplo 2 del apartado 3.
+:::
+
+**2.** Halla el punto donde la tangente a $f(x)=x^{2}-x$ corta al eje de abscisas, y escribe las tangentes en esos puntos.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los cortes con el eje $x$ se obtienen de $x^{2}-x=0$, es decir $x\left(x-1\right)=0$, luego $x=0$ y $x=1$.
+
+Con $f'(x)=2x-1$: $f'(0)=-1$ y $f'(1)=1$.
+
+Tangente en $\left(0,0\right)$: $y=-x$.
+
+Tangente en $\left(1,0\right)$: $y-0=1\cdot\left(x-1\right)$, es decir $y=x-1$.
+:::
+
+**3.** Determina las tangentes a $f(x)=x^{3}-3x$ que tengan pendiente $m=0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f'(x)=3x^{2}-3$. Igualando a cero: $3x^{2}=3$, luego $x=\pm 1$.
+
+$f(1)=1-3=-2$ y $f(-1)=-1+3=2$.
+
+Las tangentes son $y=-2$ y $y=2$, dos rectas horizontales.
+
+Esos dos puntos son el mínimo relativo en $\left(1,-2\right)$ y el máximo relativo en $\left(-1,2\right)$. Compruébalo en el applet del signo de $f'$ con `x^3-3x`.
+:::
+
+**4.** Halla la ecuación de la recta tangente a $f(x)=\sin x+2\cos x$ en el punto de abscisa $x=\dfrac{\pi}{2}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f'(x)=\cos x-2\sin x$.
+
+$f\left(\dfrac{\pi}{2}\right)=1+0=1$ y $f'\left(\dfrac{\pi}{2}\right)=0-2=-2$.
+
+$$y-1=-2\left(x-\dfrac{\pi}{2}\right)\ \Longrightarrow\ y=-2x+\pi+1$$
+
+En el applet de tangentes escribe `sin(x)+2cos(x)` y `a = 1.5708`.
+:::
+
+**5.** Determina la ecuación de la recta tangente a $f(x)=\sin 2x-\cos x$ en el punto de abscisa $x=\dfrac{\pi}{2}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por la regla de la cadena del apartado 7, $f'(x)=2\cos 2x+\sin x$.
+
+$f\left(\dfrac{\pi}{2}\right)=\sin\pi-\cos\dfrac{\pi}{2}=0-0=0$.
+
+$f'\left(\dfrac{\pi}{2}\right)=2\cos\pi+\sin\dfrac{\pi}{2}=-2+1=-1$.
+
+$$y-0=-1\left(x-\dfrac{\pi}{2}\right)\ \Longrightarrow\ y=-x+\dfrac{\pi}{2}$$
+:::
+
+**6.** Estima $\sqrt{101}$ usando la aproximación lineal en $a=100$, y calcula el error cometido.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f(100)=10$ y $f'(100)=\dfrac{1}{2\cdot 10}=0{,}05$.
+
+$$\sqrt{101}\approx 10+0{,}05\cdot 1=10{,}05$$
+
+El valor real es $10{,}049875\ldots$, luego el error absoluto es de unas $1{,}2$ cienmilésimas y el error relativo, del $0{,}0012\%$.
+
+La aproximación es tan buena porque $1$ es una distancia diminuta comparada con $100$. Prueba en el applet con `x = 121` y verás cómo empeora.
+:::
+
+**7.** Razona si son verdaderas o falsas estas afirmaciones, y corrige las falsas.
+
+a) Si $f'(a)=0$, entonces $f$ tiene un máximo o un mínimo en $a$.
+b) Si $f'(a)>0$, entonces $f(a)>0$.
+c) La recta tangente a una curva en un punto no puede volver a cortar la curva.
+d) Si $f$ es creciente en un intervalo, su derivada es positiva en él.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) **Falsa.** Es candidato, no seguro. Contraejemplo: $f(x)=x^{3}$ tiene $f'(0)=0$ y en $x=0$ no hay ni máximo ni mínimo, porque la función sigue creciendo. Corrección: si $f'(a)=0$, entonces $a$ es un **candidato** a extremo relativo, y hay que estudiar el signo de $f'$ a ambos lados.
+
+b) **Falsa.** Confunde tendencia con valor. Contraejemplo: $f(x)=x-100$ en $a=0$ tiene $f'(0)=1>0$ y $f(0)=-100<0$. La función sube, pero está muy abajo.
+
+c) **Falsa.** La condición de tangencia es **local**. La tangente a $y=x^{3}-3x$ en $x=1$ vuelve a cortar la curva en otro punto.
+
+d) **Casi verdadera, pero imprecisa.** Puede ser positiva o anularse en puntos aislados. Contraejemplo: $f(x)=x^{3}$ es creciente en $\mathbb{R}$ y sin embargo $f'(0)=0$. Corrección: si $f$ es creciente, entonces $f'(x)\ge 0$.
+:::
+
+## Lo que hay que llevarse de este apartado
+
+- $f'(a)$ es la **pendiente de la recta tangente** en $P\left(a,f(a)\right)$. Es la misma derivada del apartado 2, vista con ojos de geómetra.
+- La tangente es el **límite de las secantes**, y esa es la razón de que el límite no se pueda sustituir por $h=0$.
+- Ecuación de la tangente: $y-f(a)=f'(a)\left(x-a\right)$. Comprueba siempre sustituyendo $x=a$.
+- Los cuatro tipos de problema: abscisa dada, ordenada dada, pendiente dada y cortes con los ejes. En los tipos 2 y 3 suele haber **más de una solución**.
+- $f'>0$ significa creciente y $f'<0$ decreciente, **intervalo por intervalo**, no en la unión de intervalos separados.
+- La tangente aproxima la función cerca del punto, y el error crece al alejarse. Toda extrapolación lineal a largo plazo merece desconfianza.

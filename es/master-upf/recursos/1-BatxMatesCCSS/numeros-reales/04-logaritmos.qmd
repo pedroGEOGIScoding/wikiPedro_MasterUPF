@@ -1,12 +1,12 @@
 ---
-title: "Logaritmos decimales y neperianos"
+title: "Tema 1.4 Logaritmos decimales y neperianos"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales (Parte 4 de 4)"
 filename: 04-logaritmos
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Cuarta parte del tema de números reales de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a la definición de logaritmo, los logaritmos decimales y neperianos, sus propiedades, el cambio de base y las escalas logarítmicas
-categories: [números reales, logaritmos, neperianos, cambio de base, escalas logarítmicas, 1 Batx CCSS]
+categories: [números reales, logaritmos, neperianos, cambio de base, escalas logarítmicas, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

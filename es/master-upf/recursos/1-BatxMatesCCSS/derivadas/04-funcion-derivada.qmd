@@ -1,0 +1,409 @@
+---
+title: "Tema 7.4 Función derivada"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 4 de 7)"
+filename: 04-funcion-derivada
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: "La función derivada asocia a cada punto la derivada de la función en ese punto. Cálculo por definición con x genérica, dominio de la derivada, derivadas sucesivas y las dos primeras reglas de derivación: la suma de funciones y el producto de un número por una función."
+categories: [derivadas, función derivada, reglas de derivación, derivadas sucesivas, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## El problema de repetir el mismo trabajo (De un número a una fórmula válida para todos los puntos)
+
+En el apartado 2 calculamos $f'(4)=\dfrac{1}{4}$ para la función $f(x)=\sqrt{x}$. Nos costó un límite, una multiplicación por el conjugado y cuatro líneas de álgebra.
+
+Ahora imagina que también necesitas $f'(9)$. Y $f'(25)$. Y $f'(100)$. ¿Hay que repetir todo el proceso cada vez?
+
+::: {.callout-tip}
+## La idea que ahorra todo ese trabajo
+
+No calculemos el límite en un punto concreto $a$, sino en un punto **cualquiera** $x$. El resultado no será un número, sino una **fórmula**. Y en esa fórmula podremos sustituir el punto que queramos, sin volver a tomar límites nunca más.
+:::
+
+Hagámoslo con $\sqrt{x}$, copiando el razonamiento del apartado 2 pero con $x$ en lugar de $4$:
+
+$$f'(x)=\lim_{h\to 0}\dfrac{\sqrt{x+h}-\sqrt{x}}{h}=\lim_{h\to 0}\dfrac{\left(\sqrt{x+h}-\sqrt{x}\right)\left(\sqrt{x+h}+\sqrt{x}\right)}{h\left(\sqrt{x+h}+\sqrt{x}\right)}$$
+
+$$f'(x)=\lim_{h\to 0}\dfrac{\left(x+h\right)-x}{h\left(\sqrt{x+h}+\sqrt{x}\right)}=\lim_{h\to 0}\dfrac{h}{h\left(\sqrt{x+h}+\sqrt{x}\right)}=\lim_{h\to 0}\dfrac{1}{\sqrt{x+h}+\sqrt{x}}$$
+
+$$f'(x)=\dfrac{1}{\sqrt{x}+\sqrt{x}}=\dfrac{1}{2\sqrt{x}}$$
+
+Y ya está. Una sola vez, para siempre:
+
+$$f'(9)=\dfrac{1}{2\cdot 3}=\dfrac{1}{6}\qquad f'(25)=\dfrac{1}{2\cdot 5}=\dfrac{1}{10}\qquad f'(100)=\dfrac{1}{2\cdot 10}=\dfrac{1}{20}$$
+
+Tres derivadas sin un solo límite. Ese es el salto conceptual de este apartado.
+
+## Definición
+
+::: {.callout-important}
+## Definición · Función derivada
+
+La **función derivada** de una función $f$ es otra función, que se representa por $f'$, y que asocia a cada punto $x$ la derivada de $f$ en ese punto:
+
+$$\begin{array}{rccl} f' : & \mathbb{R} & \longrightarrow & \mathbb{R} \\ & x & \longmapsto & f'(x)=\lim\limits_{h\to 0}\dfrac{f(x+h)-f(x)}{h} \end{array}$$
+:::
+
+::: {.callout-warning}
+## No confundas los dos objetos
+
+| Objeto | Qué es | Ejemplo |
+|---|---|---|
+| $f'(a)$, derivada **en un punto** | un **número real** | $f'(3)=6$ |
+| $f'$, función derivada | una **función** | $f'(x)=2x$ |
+
+El primero es la pendiente de una recta concreta. El segundo es una máquina que devuelve pendientes.
+
+Cuando se habla de «la derivada» sin más precisión, casi siempre se refiere a la **función** derivada. Es la costumbre habitual, y conviene detectarlo por el contexto.
+:::
+
+### Applet · De un punto a todos los puntos {.unnumbered}
+
+<div data-applet-der="funcionderivada"></div>
+
+### Applet · La definición con $x$ genérica {.unnumbered}
+
+<div data-applet-der="defgeneral"></div>
+
+## Ejemplos resueltos con la definición
+
+### Ejemplo 1 · Una parábola
+
+Hallemos la función derivada de $f(x)=2x^{2}$ y, con ella, $f'(1)$ y $f'(-4)$.
+
+$$f'(x)=\lim_{h\to 0}\dfrac{2\left(x+h\right)^{2}-2x^{2}}{h}=\lim_{h\to 0}\dfrac{2\left(x^{2}+2xh+h^{2}\right)-2x^{2}}{h}$$
+
+$$f'(x)=\lim_{h\to 0}\dfrac{2x^{2}+4xh+2h^{2}-2x^{2}}{h}=\lim_{h\to 0}\dfrac{4xh+2h^{2}}{h}=\lim_{h\to 0}\dfrac{h\left(4x+2h\right)}{h}$$
+
+$$f'(x)=\lim_{h\to 0}\left(4x+2h\right)=4x$$
+
+A partir de aquí, los valores concretos son inmediatos:
+
+$$f'(1)=4\cdot 1=4\qquad f'(-4)=4\cdot\left(-4\right)=-16$$
+
+Observa el paréntesis en $4\cdot\left(-4\right)$. Sin él, la expresión $4\cdot-4$ está mal escrita.
+
+### Ejemplo 2 · Con una constante y una tangente
+
+Calculemos la función derivada de $f(x)=1-3x^{2}$ y la ecuación de la recta tangente en $x=-1$.
+
+$$f'(x)=\lim_{h\to 0}\dfrac{\left[1-3\left(x+h\right)^{2}\right]-\left[1-3x^{2}\right]}{h}$$
+
+$$f'(x)=\lim_{h\to 0}\dfrac{1-3\left(x^{2}+2hx+h^{2}\right)-1+3x^{2}}{h}=\lim_{h\to 0}\dfrac{-6hx-3h^{2}}{h}$$
+
+$$f'(x)=\lim_{h\to 0}\dfrac{h\left(-6x-3h\right)}{h}=\lim_{h\to 0}\left(-6x-3h\right)=-6x$$
+
+Con la función derivada ya podemos escribir la tangente en $x=-1$. Como $f(-1)=1-3=-2$ y $f'(-1)=6$:
+
+$$y-\left(-2\right)=6\left(x-\left(-1\right)\right)\ \Longrightarrow\ y+2=6\left(x+1\right)\ \Longrightarrow\ y=6x+4$$
+
+::: {.callout-note}
+## Fíjate en la ventaja
+
+En el apartado 3 calculábamos cada tangente con su propio límite. Ahora, con $f'(x)=-6x$ en la mano, podemos escribir la tangente en **cualquier** punto de esta parábola en veinte segundos. Eso es lo que hace útil el concepto.
+:::
+
+## El dominio de la función derivada
+
+Aquí hay un detalle que se olvida con frecuencia y que aparece en los exámenes.
+
+::: {.callout-important}
+## El dominio de $f'$ puede ser más pequeño que el de $f$
+
+Para $f(x)=\sqrt{x}$ tenemos $\mathrm{Dom}(f)=[0,+\infty)$, porque la raíz de $0$ existe y vale $0$.
+
+Pero su derivada es $f'(x)=\dfrac{1}{2\sqrt{x}}$, y esa expresión exige $\mathrm{Dom}(f')=(0,+\infty)$: en $x=0$ habría que dividir entre cero.
+:::
+
+Geométricamente la razón es clara: la tangente a $y=\sqrt{x}$ en el origen es **vertical**, y una recta vertical no tiene pendiente. El límite existe, pero es infinito, y la definición exige que sea finito.
+
+Esto añade un tercer motivo de no derivabilidad a los dos del apartado 2:
+
+| Motivo | Qué le pasa a la gráfica | Ejemplo |
+|---|---|---|
+| Salto | no es continua | función a trozos con salto en el punto |
+| Pico | continua, pero dos pendientes laterales distintas | $\left|x\right|$ en $x=0$ |
+| Tangente vertical | continua y sin pico, pero pendiente infinita | $\sqrt{x}$ en $x=0$ |
+
+## Derivadas sucesivas
+
+Si $f'$ es una función, nada impide derivarla otra vez.
+
+::: {.callout-important}
+## Definición · Derivadas sucesivas
+
+La **derivada segunda** de $f$ es la derivada de $f'$, y se escribe $f''$. La **tercera** es la derivada de $f''$, y así sucesivamente:
+
+$$f'\ \longrightarrow\ f''\ \longrightarrow\ f'''\ \longrightarrow\ f^{(4)}\ \longrightarrow\ \ldots$$
+:::
+
+### Qué significa cada una
+
+Esta es la interpretación que hay que entender, y se aprende mejor con el coche:
+
+| Función | Qué mide | En el coche |
+|---|---|---|
+| $f$ | la magnitud | posición |
+| $f'$ | cómo cambia $f$ | velocidad |
+| $f''$ | cómo cambia $f'$ | aceleración |
+
+Si $f'$ dice si la función sube o baja, $f''$ dice si esa subida se está **acelerando o frenando**. En el próximo tema será la herramienta para distinguir máximos de mínimos y para hablar de concavidad.
+
+### Ejemplo resuelto
+
+Calculemos las derivadas sucesivas de $f(x)=x^{3}$.
+
+$$f'(x)=3x^{2}\qquad f''(x)=6x\qquad f'''(x)=6\qquad f^{(4)}(x)=0$$
+
+Y de aquí en adelante, todas cero.
+
+::: {.callout-tip}
+## Una propiedad que identifica a los polinomios
+
+Cada derivada **baja el grado en una unidad**. Un polinomio de grado $n$ tiene, por tanto, derivada de orden $n$ constante y derivada de orden $n+1$ idénticamente nula.
+
+Eso permite reconocer el grado de un polinomio contando cuántas veces hay que derivarlo para que se anule. Y no ocurre con ninguna otra familia de funciones: las potencias negativas, las raíces, las exponenciales y las trigonométricas se pueden derivar indefinidamente sin agotarse nunca.
+:::
+
+Compruébalo con $f(x)=e^{x}$, la única función que se queda igual al derivar, o con $f(x)=\sin x$, cuyas derivadas se repiten con periodo cuatro:
+
+$$\sin x\ \longrightarrow\ \cos x\ \longrightarrow\ -\sin x\ \longrightarrow\ -\cos x\ \longrightarrow\ \sin x$$
+
+### Applet · Derivadas sucesivas {.unnumbered}
+
+<div data-applet-der="sucesivas"></div>
+
+## Las dos primeras reglas de derivación
+
+Antes de la tabla completa del apartado siguiente, dos reglas que se demuestran directamente con la definición y que se usan constantemente.
+
+### Regla de la suma
+
+::: {.callout-important}
+## Derivada de una suma
+
+La derivada de la suma de funciones es la suma de las derivadas:
+
+$$\left[f(x)+g(x)\right]'=f'(x)+g'(x)$$
+:::
+
+**Demostración.** Se aplica la definición y se usa que el límite de una suma es la suma de los límites:
+
+$$\left[f(x)+g(x)\right]'=\lim_{h\to 0}\dfrac{\left[f(x+h)+g(x+h)\right]-\left[f(x)+g(x)\right]}{h}$$
+
+$$=\lim_{h\to 0}\dfrac{f(x+h)-f(x)}{h}+\lim_{h\to 0}\dfrac{g(x+h)-g(x)}{h}=f'(x)+g'(x)$$
+
+**Consecuencia práctica:** cada sumando se deriva por separado, sin que los demás molesten. Es lo que permite derivar un polinomio término a término.
+
+### Regla del producto por un número
+
+::: {.callout-important}
+## Derivada de un número por una función
+
+La derivada del producto de un número por una función es el número por la derivada de la función:
+
+$$\left[k\cdot f(x)\right]'=k\cdot f'(x)$$
+:::
+
+**Demostración.** El número sale del límite como factor común:
+
+$$\left[k\,f(x)\right]'=\lim_{h\to 0}\dfrac{k\,f(x+h)-k\,f(x)}{h}=k\cdot\lim_{h\to 0}\dfrac{f(x+h)-f(x)}{h}=k\,f'(x)$$
+
+**Consecuencia:** también queda demostrada la regla de la resta, porque restar es sumar multiplicado por $-1$:
+
+$$\left[f(x)-g(x)\right]'=f'(x)-g'(x)$$
+
+### Ejemplo resuelto
+
+Calculemos la derivada de $h(x)=x^{2}+x$ usando la regla de la suma.
+
+Definimos $f(x)=x^{2}$ y $g(x)=x$, de modo que $h=f+g$. Aplicando la definición a cada una:
+
+$$f'(x)=\lim_{h\to 0}\dfrac{\left(x+h\right)^{2}-x^{2}}{h}=\lim_{h\to 0}\dfrac{h\left(2x+h\right)}{h}=2x$$
+
+$$g'(x)=\lim_{h\to 0}\dfrac{\left(x+h\right)-x}{h}=\lim_{h\to 0}\dfrac{h}{h}=1$$
+
+Y por tanto:
+
+$$h'(x)=f'(x)+g'(x)=2x+1$$
+
+::: {.callout-warning}
+## La pregunta obligada
+
+Si la suma se deriva trozo a trozo, ¿el producto también? Es decir, ¿es cierto que $\left[f\cdot g\right]'=f'\cdot g'$?
+
+**No lo es.** Y es el error más caro de todo el tema. Tómate un minuto para comprobarlo con $f(x)=g(x)=x$:
+
+- El producto es $f\cdot g=x^{2}$, cuya derivada es $2x$. En $x=5$ vale $10$.
+- Pero $f'\cdot g'=1\cdot 1=1$. En $x=5$ vale $1$.
+
+$10$ y $1$ no se parecen en nada. La regla correcta llega en el apartado 6, y el applet `errorcomun` de ese apartado lo demuestra con cualquier pareja de funciones que quieras probar.
+:::
+
+### Applet · Suma de funciones y producto por un número {.unnumbered}
+
+<div data-applet-der="reglassuma"></div>
+
+## Notación diferencial
+
+Ya vimos en el apartado 1 que la tasa de variación media de $y=f(x)$ en el intervalo $(a,a+h)$ es
+
+$$\dfrac{f(a+h)-f(a)}{h}$$
+
+donde el numerador es el **incremento de la función** y el denominador el **incremento de la variable**. Leibniz decidió llamar a esos incrementos, cuando se hacen infinitamente pequeños, $dy$ y $dx$, y escribió la derivada así:
+
+$$\dfrac{dy}{dx}$$
+
+::: {.callout-warning}
+## $dy$ y $dx$ no son numerador y denominador
+
+Son un **todo inseparable**. La expresión $\dfrac{dy}{dx}$ se lee «derivada de $y$ respecto de $x$» y no se puede partir para hacer operaciones con $dy$ y $dx$ por separado, al menos no en este curso.
+
+La notación es útil, sobre todo, cuando hay varias variables en juego y hay que dejar claro respecto de cuál se deriva.
+:::
+
+Dos ejemplos donde esa precisión importa. La superficie de una esfera de radio $r$ es $S=4\pi r^{2}$, luego
+
+$$\dfrac{dS}{dr}=8\pi r$$
+
+Y el volumen de un cilindro de radio $r$ y altura $h$ es $V=\pi r^{2}h$, que depende de dos variables. Aquí la notación de Lagrange no bastaría:
+
+$$\dfrac{dV}{dr}=2\pi r h\qquad\text{y}\qquad\dfrac{dV}{dh}=\pi r^{2}$$
+
+La primera dice cómo cambia el volumen al engordar el cilindro; la segunda, al estirarlo. Son cosas distintas, y $V'$ sin más sería ambiguo.
+
+## Actividades propuestas
+
+**1.** Utiliza la definición para calcular la función derivada de estas funciones.
+
+a) $f(x)=4x^{2}$ · b) $f(x)=\sqrt{x}$ · c) $f(x)=\dfrac{1}{x}$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f'(x)=8x$, sacando $h$ factor común.
+
+b) $f'(x)=\dfrac{1}{2\sqrt{x}}$, multiplicando por el conjugado. Está desarrollado en el apartado 1 de esta página.
+
+c) Con denominador común:
+
+$$f'(x)=\lim_{h\to 0}\dfrac{\dfrac{1}{x+h}-\dfrac{1}{x}}{h}=\lim_{h\to 0}\dfrac{\dfrac{x-\left(x+h\right)}{x\left(x+h\right)}}{h}=\lim_{h\to 0}\dfrac{-h}{h\,x\left(x+h\right)}=-\dfrac{1}{x^{2}}$$
+
+Observa que es **siempre negativa**: la función decrece en cada una de sus dos ramas.
+:::
+
+**2.** Halla las derivadas segunda y tercera de estas funciones. ¿Qué observas?
+
+a) $f(x)=x^{2}$ · b) $f(x)=x^{3}$ · c) $f(x)=x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f'=2x$, $\quad f''=2$, $\quad f'''=0$.
+
+b) $f'=3x^{2}$, $\quad f''=6x$, $\quad f'''=6$, y la cuarta ya es $0$.
+
+c) $f'=1$, $\quad f''=0$.
+
+**Lo que se observa:** el grado baja de uno en uno, y un polinomio de grado $n$ se anula al derivarlo $n+1$ veces. Cuenta las derivadas hasta el cero y sabrás el grado.
+:::
+
+**3.** Calcula la derivada de estas funciones.
+
+a) $f(x)=x^{3}+x^{2}-x+1$ · b) $f(x)=\dfrac{1}{x}+x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) Cada sumando por separado, aplicando la regla de la suma: $f'(x)=3x^{2}+2x-1$. La derivada del $1$ es cero.
+
+b) $f'(x)=-\dfrac{1}{x^{2}}+1$. Reordenada, $f'(x)=1-\dfrac{1}{x^{2}}$.
+
+Observa que en el apartado a) hemos usado ya la regla de la potencia del apartado siguiente. Con la definición pura habría hecho falta desarrollar $\left(x+h\right)^{3}$, que es perfectamente posible pero laborioso.
+:::
+
+**4.** Calcula la derivada de estas funciones.
+
+a) $f(x)=\dfrac{\sqrt{x}}{x+2}\cdot 0+3x^{2}$ · b) $f(x)=7\sqrt{x}-3\sqrt[3]{x^{2}}$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) La trampa está en el $\cdot 0$: ese sumando es la función nula, así que $f(x)=3x^{2}$ y $f'(x)=6x$. Antes de derivar, **simplifica**.
+
+b) Reescribimos con exponentes y aplicamos la regla del número por la función:
+
+$$f(x)=7x^{1/2}-3x^{2/3}\ \Longrightarrow\ f'(x)=\dfrac{7}{2}x^{-1/2}-2x^{-1/3}=\dfrac{7}{2\sqrt{x}}-\dfrac{2}{\sqrt[3]{x}}$$
+:::
+
+**5.** Ya obtuvimos que la derivada de $f(x)=\dfrac{1}{x}$ es $f'(x)=-\dfrac{1}{x^{2}}$. Úsala para calcular la derivada en $x=1$, $x=4$ y $x=5$. ¿Puedes calcularla en $x=0$? Razona la respuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f'(1)=-1$, $\quad f'(4)=-\dfrac{1}{16}$, $\quad f'(5)=-\dfrac{1}{25}$.
+
+En $x=0$ **no existe**, y por un motivo más básico que en el caso de $\sqrt{x}$: la propia función $f$ no está definida en $0$. No hay punto en la gráfica, así que no hay tangente que trazar.
+
+Recuerda el orden lógico: para que exista la derivada, primero tiene que existir la función y ser continua ahí.
+:::
+
+**6.** En un ejercicio del apartado 1 vimos que los costes de producción por trabajador contratado son $C(x)=x+\sqrt{x}$ y los ingresos por ventas, $I(x)=2x+x^{2}$. Determina la función derivada de los costes y de los beneficios respecto del número de trabajadores. ¿Qué significan?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$C'(x)=1+\dfrac{1}{2\sqrt{x}}$$
+
+$$B(x)=I(x)-C(x)=x^{2}+x-\sqrt{x}\ \Longrightarrow\ B'(x)=2x+1-\dfrac{1}{2\sqrt{x}}$$
+
+**Significado.** $C'(x)$ es el **coste marginal**: lo que aumenta el coste al contratar un trabajador más cuando ya hay $x$. $B'(x)$ es el **beneficio marginal**: lo que aumenta el beneficio en las mismas condiciones.
+
+En economía, la palabra *marginal* significa casi siempre «derivada». Y la decisión de contratar se toma comparando las dos: mientras el beneficio marginal sea positivo, conviene seguir contratando.
+
+::: {.callout-tip}
+## Pensamiento crítico
+
+Fíjate en que $B'(x)=2x+1-\dfrac{1}{2\sqrt{x}}$ crece indefinidamente. El modelo dice que cuanto más grande sea la empresa, más gana por cada nuevo trabajador, y eso **es falso** a partir de cierto tamaño.
+
+Un modelo matemático no sabe dónde deja de ser razonable. Saberlo es tu trabajo.
+:::
+:::
+
+**7.** Verdadero o falso, razonando la respuesta.
+
+a) Si $f$ es derivable, $f'$ también lo es.
+b) Si $f''(a)=0$, entonces $f'$ es constante.
+c) El dominio de $f'$ está siempre contenido en el de $f$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) **Falso.** Que $f$ sea derivable no garantiza que $f'$ lo sea. Hay funciones con primera derivada pero sin segunda en algún punto: basta con que $f'$ tenga un pico.
+
+b) **Falso.** Que la derivada segunda se anule en **un punto** no dice nada sobre todo el intervalo. Para $f(x)=x^{3}$ se tiene $f''(0)=0$ y sin embargo $f'(x)=3x^{2}$ no es constante. La afirmación sería cierta si $f''$ fuese cero en todo un intervalo.
+
+c) **Verdadero.** Para que exista $f'(a)$ hace falta que $f$ sea continua en $a$, y para eso $f$ tiene que estar definida ahí. La inclusión puede ser estricta, como en $\sqrt{x}$, pero nunca al revés.
+:::
+
+## Lo que hay que llevarse de este apartado
+
+- La **función derivada** convierte el cálculo de derivadas en algo mecánico: un límite una vez, y luego sustituir.
+- No confundas $f'(a)$, que es un **número**, con $f'$, que es una **función**.
+- El **dominio de $f'$** puede ser más pequeño que el de $f$. Hay tres motivos de no derivabilidad: salto, pico y tangente vertical.
+- Las **derivadas sucesivas** miden variaciones de variaciones. Un polinomio de grado $n$ se anula al derivarlo $n+1$ veces.
+- La **suma** se deriva trozo a trozo y las **constantes multiplicativas** se conservan. El **producto no**, y eso se ve en el apartado 6.

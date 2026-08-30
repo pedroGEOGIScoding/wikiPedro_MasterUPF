@@ -209,7 +209,12 @@ website:
           - master-upf/recursos/1-BatxMatesCCSS/limites/02-calculo-operaciones-limites.qmd
           - master-upf/recursos/1-BatxMatesCCSS/limites/03-indeterminaciones.qmd
           - master-upf/recursos/1-BatxMatesCCSS/limites/04-limite-funcion-infinito-punto.qmd
-          -  master-upf/recursos/1-BatxMatesCCSS/limites/05-asintotas-continuidad.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/limites/05-asintotas-continuidad.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/01-tasa-variacion-media.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/02-derivada-en-un-punto.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/03-interpretacion-geometrica.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/04-funcion-derivada.qmd
+          - master-upf/recursos/1-BatxMatesCCSS/derivadas/05-derivadas-funciones-elementales.qmd
         - text: "---"
         - section: "2 Batx Mates CCSS"
           contents:

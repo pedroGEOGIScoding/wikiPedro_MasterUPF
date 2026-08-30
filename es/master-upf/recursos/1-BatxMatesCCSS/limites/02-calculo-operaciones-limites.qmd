@@ -1,12 +1,12 @@
 ---
-title: "Cálculo de límites y operaciones con límites"
+title: "Tema 6.2 Cálculo de límites y operaciones con límites"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 2 de 5)"
 filename: 02-calculo-operaciones-limites
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Segunda parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al cálculo de límites de potencias, polinomios y cocientes de polinomios, y a las operaciones con límites
-categories: [límites, potencias, polinomios, cocientes, operaciones, 1 Batx CCSS]
+categories: [límites, potencias, polinomios, cocientes, operaciones, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

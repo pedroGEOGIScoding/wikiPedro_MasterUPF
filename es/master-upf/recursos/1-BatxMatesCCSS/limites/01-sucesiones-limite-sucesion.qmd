@@ -1,12 +1,12 @@
 ---
-title: "Sucesiones y límite de una sucesión"
+title: "Tema 6.1 Sucesiones y límite de una sucesión"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 1 de 5)"
 filename: 01-sucesiones-limite-sucesion
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Primera parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las sucesiones, la monotonía y la acotación, y al concepto de límite de una sucesión
-categories: [límites, sucesiones, monotonía, acotación, infinito, 1 Batx CCSS]
+categories: [límites, sucesiones, monotonía, acotación, infinito, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

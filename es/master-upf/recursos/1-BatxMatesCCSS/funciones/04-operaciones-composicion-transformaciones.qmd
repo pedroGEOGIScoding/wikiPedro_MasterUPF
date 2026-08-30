@@ -1,12 +1,12 @@
 ---
-title: "Operaciones, composición y transformaciones"
+title: "Tema 5.4 Operaciones, composición y transformaciones"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 4 de 4)"
 filename: 04-operaciones-composicion-transformaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Cuarta parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las operaciones con funciones, la composición de funciones y las transformaciones elementales de gráficas
-categories: [funciones, operaciones, composición, transformaciones, 1 Batx CCSS]
+categories: [funciones, operaciones, composición, transformaciones, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

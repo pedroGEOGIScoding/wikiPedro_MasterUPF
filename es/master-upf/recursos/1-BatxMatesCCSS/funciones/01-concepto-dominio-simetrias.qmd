@@ -1,12 +1,12 @@
 ---
-title: "Funciones: concepto, dominio y simetrías"
+title: "Tema 5.1 Funciones: concepto, dominio y simetrías"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Funciones (Parte 1 de 4)"
 filename: 01-concepto-dominio-simetrias
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Primera parte del tema de funciones de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al concepto de función real de variable real, al dominio y el recorrido, y al estudio de las simetrías par e impar
-categories: [funciones, dominio, recorrido, simetría, 1 Batx CCSS]
+categories: [funciones, dominio, recorrido, simetría, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

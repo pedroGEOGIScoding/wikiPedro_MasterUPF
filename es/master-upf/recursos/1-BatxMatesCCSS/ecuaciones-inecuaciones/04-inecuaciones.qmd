@@ -1,12 +1,12 @@
 ---
-title: "Inecuaciones con una incógnita"
+title: "Tema 3.4 Inecuaciones con una incógnita"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones (Parte 4 de 4)"
 filename: 04-inecuaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Cuarta parte del tema de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las desigualdades, las inecuaciones de primer grado y las inecuaciones cuadráticas con una incógnita
-categories: [inecuaciones, desigualdades, intervalos, tabla de signos, 1 Batx CCSS]
+categories: [inecuaciones, desigualdades, intervalos, tabla de signos, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

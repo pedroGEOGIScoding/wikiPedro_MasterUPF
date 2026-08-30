@@ -1,12 +1,12 @@
 ---
-title: "Radicales y racionalización"
+title: "Tema 1.3 Radicales y racionalización"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales (Parte 3 de 4)"
 filename: 03-radicales-racionalizacion
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Tercera parte del tema de números reales de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los radicales, las potencias de exponente fraccionario, las propiedades de los radicales y la racionalización de denominadores
-categories: [números reales, radicales, potencias, exponente racional, racionalización, 1 Batx CCSS]
+categories: [números reales, radicales, potencias, exponente racional, racionalización, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

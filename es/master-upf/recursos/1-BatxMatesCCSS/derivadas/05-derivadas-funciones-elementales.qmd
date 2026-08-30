@@ -1,0 +1,446 @@
+---
+title: "Tema 7.5 Derivadas de funciones elementales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 5 de 7)"
+filename: 05-funciones-elementales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: "Reglas de derivación de las funciones elementales: constante, identidad, potencial, exponencial, logarítmica y trigonométricas. Con la regla de la potencia como pieza central, el papel del logaritmo neperiano de la base y un entrenador para practicar."
+categories: [derivadas, reglas de derivación, potencia, exponencial, logaritmo, trigonometría, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## Por qué existe este apartado (La tabla que convierte el cálculo en un proceso mecánico)
+
+Para calcular la derivada de algunas funciones no hace falta la definición: hay **reglas** que dan el resultado directamente. Todas se demuestran tomando el límite una sola vez, y a partir de ahí se usan sin volver a pensar en límites.
+
+::: {.callout-tip}
+## El cambio de mentalidad
+
+Hasta ahora derivar era un problema de análisis: plantear un límite y resolver una indeterminación. A partir de este apartado, derivar es un **proceso mecánico**: reconocer de qué tipo es la función y aplicar su regla.
+
+Integrar, que veréis en cursos superiores, es otro asunto bien distinto. Pero derivar, una vez sabidas las reglas, es casi siempre cuestión de método y de cuidado con los signos.
+:::
+
+Lo único que hay que poner de tu parte es **memoria** para la tabla y **lectura** para identificar qué tipo de función tienes delante.
+
+### Applet · Tabla de derivadas elementales {.unnumbered}
+
+<div data-applet-der="tabla"></div>
+
+## Las funciones constante e identidad
+
+::: {.callout-important}
+## Las dos más simples
+
+$$f(x)=k\ \Longrightarrow\ f'(x)=0$$
+
+$$f(x)=x\ \Longrightarrow\ f'(x)=1$$
+:::
+
+Las dos son evidentes geométricamente. La recta $y=k$ es horizontal, así que su pendiente es cero en todos sus puntos. La recta $y=x$ tiene pendiente $1$ en todos los suyos.
+
+Y las dos salen de la definición en dos líneas:
+
+$$\left(k\right)'=\lim_{h\to 0}\dfrac{k-k}{h}=\lim_{h\to 0}0=0\qquad\left(x\right)'=\lim_{h\to 0}\dfrac{\left(x+h\right)-x}{h}=\lim_{h\to 0}\dfrac{h}{h}=1$$
+
+::: {.callout-note}
+## Un detalle que conviene tener claro
+
+La recta tangente a una recta, en cualquiera de sus puntos, es **ella misma**. Por eso su pendiente no cambia nunca, y por eso la derivada de una función de primer grado es constante.
+:::
+
+Ejemplos rápidos, combinando con las reglas del apartado anterior:
+
+$$g(x)=-2\ \Longrightarrow\ g'(x)=0\qquad h(x)=4x\ \Longrightarrow\ h'(x)=4\cdot 1=4$$
+
+## La regla de la potencia
+
+Esta es la más importante del tema, y la que más rendimiento da.
+
+::: {.callout-important}
+## Derivada de la función potencial
+
+$$f(x)=x^{n}\ \Longrightarrow\ f'(x)=n\,x^{n-1}$$
+
+El exponente **baja a multiplicar** y se **reduce en una unidad**.
+:::
+
+Y aquí está la clave que muchos alumnos no aprovechan:
+
+::: {.callout-tip}
+## Vale para cualquier exponente
+
+La regla funciona con $n$ entero positivo, entero negativo y fraccionario. Eso significa que **las raíces y las fracciones no necesitan regla propia**: basta reescribirlas como potencias.
+
+$$\sqrt{x}=x^{1/2}\qquad\sqrt[3]{x}=x^{1/3}\qquad\dfrac{1}{x}=x^{-1}\qquad\dfrac{1}{x^{5}}=x^{-5}\qquad\dfrac{1}{\sqrt{x}}=x^{-1/2}$$
+
+Reescribir antes de derivar es el truco de examen más rentable de todo el tema.
+:::
+
+### Tres ejemplos resueltos
+
+**a)** $f(x)=x^{2}$
+
+$$f'(x)=2x^{2-1}=2x$$
+
+**b)** $f(x)=\dfrac{1}{x^{2}}$
+
+Primero reescribimos como potencia, y después derivamos:
+
+$$f(x)=x^{-2}\ \Longrightarrow\ f'(x)=-2x^{-2-1}=-2x^{-3}=-\dfrac{2}{x^{3}}$$
+
+**c)** $f(x)=\sqrt{x}$
+
+$$f(x)=x^{1/2}\ \Longrightarrow\ f'(x)=\dfrac{1}{2}x^{\frac{1}{2}-1}=\dfrac{1}{2}x^{-1/2}=\dfrac{1}{2\sqrt{x}}$$
+
+Y comprobamos que coincide con lo que obtuvimos por definición en el apartado 4. Las dos vías dan lo mismo, como tenía que ser.
+
+### Applet · Regla de la potencia {.unnumbered}
+
+<div data-applet-der="potencial"></div>
+
+::: {.callout-warning}
+## Dos errores frecuentes con esta regla
+
+**Error 1 · Restar mal con exponentes negativos.** Si $n=-2$, entonces $n-1=-3$, no $-1$. Restar uno a un número negativo lo hace **más** negativo.
+
+**Error 2 · Olvidar el signo al bajar el exponente.** En $x^{-2}$ el exponente que baja es $-2$, así que la derivada empieza por $-2$. El resultado es negativo.
+:::
+
+## Exponenciales y logaritmos
+
+Aquí aparece un factor que no está en ninguna otra regla, y que es la causa de la mitad de los errores del tema.
+
+::: {.callout-important}
+## Derivada de la función exponencial
+
+$$f(x)=a^{x}\ \Longrightarrow\ f'(x)=a^{x}\cdot\ln a$$
+
+$$f(x)=e^{x}\ \Longrightarrow\ f'(x)=e^{x}$$
+:::
+
+::: {.callout-important}
+## Derivada de la función logarítmica
+
+$$f(x)=\log_{a}x\ \Longrightarrow\ f'(x)=\dfrac{1}{x\cdot\ln a}$$
+
+$$f(x)=\ln x\ \Longrightarrow\ f'(x)=\dfrac{1}{x}$$
+:::
+
+::: {.callout-tip}
+## Dónde va el $\ln a$
+
+- En la exponencial, **multiplicando**.
+- En la logarítmica, **dividiendo**.
+
+Y los dos casos con base $e$ salen limpios porque $\ln e=1$. Esa es toda la razón de que $e$ se llame *base natural* y de que aparezca en todas las fórmulas de interés compuesto: es la base con la que las derivadas no arrastran factores.
+:::
+
+### Ejemplos resueltos
+
+**a)** $f(x)=2e^{x}$. La constante se conserva:
+
+$$f'(x)=2e^{x}$$
+
+**b)** $f(x)=5^{x}$. Aparece el logaritmo de la base:
+
+$$f'(x)=5^{x}\ln 5$$
+
+**c)** $f(x)=\log_{8}x$:
+
+$$f'(x)=\dfrac{1}{x\ln 8}$$
+
+**d)** $f(x)=\ln x^{2}$. Este merece atención especial.
+
+::: {.callout-tip}
+## Aplica las propiedades de los logaritmos ANTES de derivar
+
+La tentación es derivar $\ln x^{2}$ con la regla de la cadena, y funciona. Pero es mucho más fácil bajar el exponente primero:
+
+$$\ln x^{2}=2\ln x\ \Longrightarrow\ f'(x)=2\cdot\dfrac{1}{x}=\dfrac{2}{x}$$
+
+Cada vez que veas un logaritmo de un producto, de un cociente o de una potencia, **desármalo con las propiedades** antes de derivar. El trabajo se reduce a la mitad.
+:::
+
+### Applet · Exponenciales y logaritmos {.unnumbered}
+
+<div data-applet-der="exponlog"></div>
+
+## Funciones trigonométricas
+
+::: {.callout-important}
+## Las tres derivadas trigonométricas básicas
+
+$$\left(\sin x\right)'=\cos x\qquad\left(\cos x\right)'=-\sin x\qquad\left(\tan x\right)'=\dfrac{1}{\cos^{2}x}=1+\tan^{2}x$$
+:::
+
+::: {.callout-warning}
+## El signo menos del coseno
+
+Es el error más repetido de esta familia. La derivada del seno es el coseno, sin más, pero la del coseno es **menos** el seno.
+
+Una forma de recordarlo: mira la gráfica del coseno a la derecha del origen. Baja. Su derivada tiene que ser negativa ahí, y $-\sin x$ lo es. El coseno sin más sería positivo, y eso contradiría el dibujo.
+:::
+
+Y las derivadas de las funciones trigonométricas inversas, que aparecen menos pero conviene reconocer:
+
+| Función | Derivada |
+|---|---|
+| $\arcsin x$ | $\dfrac{1}{\sqrt{1-x^{2}}}$ |
+| $\arccos x$ | $-\dfrac{1}{\sqrt{1-x^{2}}}$ |
+| $\arctan x$ | $\dfrac{1}{1+x^{2}}$ |
+
+Observa que las dos primeras solo existen para $-1<x<1$, mientras que $\arctan$ es derivable en todo $\mathbb{R}$.
+
+### Ejemplos resueltos
+
+**a)** $f(x)=\sin x-\cos x$
+
+$$f'(x)=\cos x+\sin x$$
+
+Fíjate en el cambio de signo: el $-\cos x$ se deriva como $-\left(-\sin x\right)=+\sin x$.
+
+**b)** $f(x)=3x+\arccos x$
+
+$$f'(x)=3-\dfrac{1}{\sqrt{1-x^{2}}}$$
+
+**c)** $f(x)=\arctan x+\ln x$
+
+$$f'(x)=\dfrac{1}{1+x^{2}}+\dfrac{1}{x}$$
+
+Y si se quiere con denominador común, sumando las dos fracciones:
+
+$$f'(x)=\dfrac{x+1+x^{2}}{x\left(1+x^{2}\right)}=\dfrac{x^{2}+x+1}{x^{3}+x}$$
+
+::: {.callout-important}
+## El ángulo va en radianes
+
+Todas estas fórmulas suponen que $x$ está medido en **radianes**. En grados no valen, y por eso $\left(\sin x\right)'=\cos x$ es una de las razones de fondo para que los radianes sean la unidad estándar en análisis.
+:::
+
+### Applet · Derivadas trigonométricas {.unnumbered}
+
+<div data-applet-der="trigo"></div>
+
+## Tabla completa
+
+::: {.callout-important}
+## Las derivadas que hay que saberse
+
+| Función | Derivada | Función | Derivada |
+|---|---|---|---|
+| $k$ | $0$ | $a^{x}$ | $a^{x}\ln a$ |
+| $x$ | $1$ | $e^{x}$ | $e^{x}$ |
+| $x^{n}$ | $n\,x^{n-1}$ | $\log_{a}x$ | $\dfrac{1}{x\ln a}$ |
+| $\sqrt{x}$ | $\dfrac{1}{2\sqrt{x}}$ | $\ln x$ | $\dfrac{1}{x}$ |
+| $\dfrac{1}{x}$ | $-\dfrac{1}{x^{2}}$ | $\sin x$ | $\cos x$ |
+| $\arcsin x$ | $\dfrac{1}{\sqrt{1-x^{2}}}$ | $\cos x$ | $-\sin x$ |
+| $\arccos x$ | $-\dfrac{1}{\sqrt{1-x^{2}}}$ | $\tan x$ | $\dfrac{1}{\cos^{2}x}$ |
+| $\arctan x$ | $\dfrac{1}{1+x^{2}}$ | | |
+:::
+
+::: {.callout-note}
+## Lo que se exige en este curso
+
+En Matemáticas Aplicadas a las Ciencias Sociales, las derivadas que se piden en exámenes son las de:
+
+- operaciones elementales: suma, resta, producto y cociente de funciones,
+- funciones exponenciales,
+- raíces de todo tipo, y potencias de funciones, de las que las raíces son un caso particular,
+- funciones logarítmicas, en base decimal y neperiana,
+- funciones trigonométricas directas principales: seno, coseno y tangente,
+- funciones elevadas a funciones, para las que se recomienda la derivación logarítmica del apartado 7.
+
+Las trigonométricas inversas se incluyen aquí como referencia para cursos posteriores, no porque vayan a caer en un examen de este curso.
+:::
+
+## Cómo se usa la tabla en la práctica
+
+Tres consejos de método que ahorran errores.
+
+### 1 · Parte las sumas desde el principio
+
+Si la expresión tiene sumas o restas, **cada sumando se deriva como una función aparte**. Antes de mirar nada más, divide la función en trozos pequeños.
+
+$$f(x)=5x^{3}-\dfrac{2}{x}+\ln x\ \Longrightarrow\ f'(x)=15x^{2}+\dfrac{2}{x^{2}}+\dfrac{1}{x}$$
+
+Observa el signo del segundo término: la derivada de $-\dfrac{2}{x}=-2x^{-1}$ es $-2\cdot\left(-1\right)x^{-2}=+\dfrac{2}{x^{2}}$. Dos negativos que se cancelan.
+
+### 2 · Reescribe antes de derivar
+
+Nada de buscar reglas para raíces y fracciones: conviértelas en potencias.
+
+$$f(x)=\sqrt[3]{x^{2}}=x^{2/3}\ \Longrightarrow\ f'(x)=\dfrac{2}{3}x^{-1/3}=\dfrac{2}{3\sqrt[3]{x}}$$
+
+### 3 · Simplifica lo que se pueda antes de empezar
+
+Un cociente con denominador constante no necesita la regla del cociente:
+
+$$f(x)=\dfrac{x^{2}+3x}{5}=\dfrac{1}{5}\left(x^{2}+3x\right)\ \Longrightarrow\ f'(x)=\dfrac{2x+3}{5}$$
+
+Dividir entre $5$ es multiplicar por $\dfrac{1}{5}$, y para eso ya tenemos la regla del apartado 4.
+
+### Applet · Entrenador de derivadas {.unnumbered}
+
+<div data-applet-der="entrenador"></div>
+
+::: {.callout-tip}
+## Cómo aprovechar el entrenador
+
+La comprobación es **numérica**: el applet evalúa tu respuesta y la verdadera en varios puntos y las compara. Eso significa que acepta cualquier forma equivalente. Para $\sqrt{x}$ valen `1/(2sqrt(x))` y también `0.5x^(-0.5)`, porque son la misma función escrita de dos maneras.
+
+Es la actitud correcta ante una derivada: lo que importa es el objeto matemático, no la manera de escribirlo. No hay una única forma «buena».
+:::
+
+## Actividades propuestas
+
+**1.** Escribe las funciones derivadas de estas funciones.
+
+a) $f(x)=x^{24}$ · b) $g(x)=6x^{10}$ · c) $h(x)=\dfrac{6}{7}x^{13}$ · d) $j(x)=3x^{4}-5x^{2}+7$ · e) $p(x)=5x^{3}-x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $24x^{23}$
+
+b) $60x^{9}$
+
+c) $\dfrac{6\cdot 13}{7}x^{12}=\dfrac{78}{7}x^{12}$
+
+d) $12x^{3}-10x$. La derivada del $7$ es cero.
+
+e) $15x^{2}-1$
+:::
+
+**2.** Calcula las derivadas de estas funciones polinómicas.
+
+a) $y=6+x-5x^{2}$ · b) $y=6x^{2}-7x+3x^{5}$ · c) $y=\dfrac{2}{3}x^{7}+\dfrac{8}{5}x^{5}-\dfrac{9}{4}x^{4}$ · d) $y=x^{8}-x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $y'=1-10x$
+
+b) $y'=12x-7+15x^{4}$
+
+c) $y'=\dfrac{14}{3}x^{6}+8x^{4}-9x^{3}$
+
+Detalle del segundo término: $\dfrac{8}{5}\cdot 5=8$. Y del tercero: $\dfrac{9}{4}\cdot 4=9$.
+
+d) $y'=8x^{7}-1$
+:::
+
+**3.** Calcula la derivada de estas funciones.
+
+a) $f(x)=2^{x}$ · b) $f(x)=3^{x}$ · c) $f(x)=\log_{2}x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f'(x)=2^{x}\ln 2$
+
+b) $f'(x)=3^{x}\ln 3$
+
+c) $f'(x)=\dfrac{1}{x\ln 2}$
+
+En los tres aparece $\ln$ de la base. Comprueba en el applet de exponenciales que con base $e$ ese factor desaparece.
+:::
+
+**4.** Halla la derivada de estas funciones.
+
+a) $f(x)=\tan x+\cos x$ · b) $f(x)=\sin x+\tan x$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f'(x)=\dfrac{1}{\cos^{2}x}-\sin x$
+
+b) $f'(x)=\cos x+\dfrac{1}{\cos^{2}x}$
+
+En las dos, la tangente aporta $\dfrac{1}{\cos^{2}x}$, que también se puede escribir $1+\tan^{2}x$.
+:::
+
+**5.** Halla la derivada de estas funciones.
+
+a) $f(x)=\sqrt[5]{x^{3}}$ · b) $f(x)=x^{7}$ · c) $f(x)=\dfrac{1}{x^{4}}$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) Reescribimos: $f(x)=x^{3/5}$, luego
+
+$$f'(x)=\dfrac{3}{5}x^{-2/5}=\dfrac{3}{5\sqrt[5]{x^{2}}}$$
+
+b) $f'(x)=7x^{6}$
+
+c) $f(x)=x^{-4}$, luego $f'(x)=-4x^{-5}=-\dfrac{4}{x^{5}}$
+:::
+
+**6.** Deriva $f(x)=\ln x^{n}$, donde $n$ es un número natural, de dos formas: aplicando primero las propiedades de los logaritmos, y comprobando que el resultado es coherente.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+**Con las propiedades primero.** Bajamos el exponente:
+
+$$f(x)=\ln x^{n}=n\ln x\ \Longrightarrow\ f'(x)=n\cdot\dfrac{1}{x}=\dfrac{n}{x}$$
+
+**Comprobación numérica.** Para $n=3$ y $x=2$, la fórmula da $\dfrac{3}{2}=1{,}5$. Introduce `ln(x^3)` en el applet de la función derivada con $x=2$ y verás ese mismo valor.
+
+Este ejercicio muestra por qué conviene aplicar las propiedades antes: el camino de la izquierda es de una línea, y el de la regla de la cadena, del apartado 7, es de tres.
+:::
+
+**7.** Calcula la derivada de $f(x)=3x^{4}-\dfrac{5}{x^{2}}+2\sqrt{x}-\ln x+e^{x}$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Reescribimos los términos problemáticos como potencias:
+
+$$f(x)=3x^{4}-5x^{-2}+2x^{1/2}-\ln x+e^{x}$$
+
+Y derivamos término a término:
+
+$$f'(x)=12x^{3}+10x^{-3}+x^{-1/2}-\dfrac{1}{x}+e^{x}$$
+
+Es decir:
+
+$$f'(x)=12x^{3}+\dfrac{10}{x^{3}}+\dfrac{1}{\sqrt{x}}-\dfrac{1}{x}+e^{x}$$
+
+Cuidado con el segundo término: la derivada de $-5x^{-2}$ es $-5\cdot\left(-2\right)x^{-3}=+10x^{-3}$. Y con el tercero: $2\cdot\dfrac{1}{2}=1$, así que el coeficiente desaparece.
+:::
+
+**8.** Halla los puntos en los que la tangente a $f(x)=x^{3}-3x$ es horizontal, usando la tabla de este apartado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f'(x)=3x^{2}-3$. Igualamos a cero:
+
+$$3x^{2}-3=0\ \Longrightarrow\ x^{2}=1\ \Longrightarrow\ x=\pm 1$$
+
+$f(1)=1-3=-2$ y $f(-1)=-1+3=2$, luego los puntos son $\left(1,-2\right)$ y $\left(-1,2\right)$.
+
+Es el mismo ejercicio del apartado 3, pero ahora resuelto en tres líneas en lugar de con un límite. Compruébalo en el applet del signo de $f'$ con `x^3-3x`.
+:::
+
+## Lo que hay que llevarse de este apartado
+
+- La **regla de la potencia** $\left(x^{n}\right)'=n\,x^{n-1}$ vale para cualquier exponente. Reescribe raíces y fracciones como potencias y no necesitarás más reglas para ellas.
+- En las **exponenciales** el $\ln a$ multiplica; en las **logarítmicas**, divide. Con base $e$ desaparece, y por eso $e$ es la base natural.
+- La derivada del **coseno lleva signo menos**. Es el error más repetido de la familia trigonométrica.
+- **Aplica las propiedades de los logaritmos antes de derivar.** Un $\ln x^{2}$ convertido en $2\ln x$ ahorra la mitad del trabajo.
+- Parte las sumas desde el principio, reescribe antes de derivar y simplifica lo que puedas. El método evita más errores que la memoria.

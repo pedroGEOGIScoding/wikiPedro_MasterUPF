@@ -1,12 +1,12 @@
 ---
-title: "Ecuaciones exponenciales y logarítmicas"
+title: "Tema 3.3 Ecuaciones exponenciales y logarítmicas"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones (Parte 3 de 4)"
 filename: 03-exponenciales-logaritmicas
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Tercera parte del tema de ecuaciones e inecuaciones de 1º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a las ecuaciones exponenciales y logarítmicas y a sus estrategias de resolución
-categories: [ecuaciones, exponenciales, logaritmos, cambio de variable, 1 Batx CCSS]
+categories: [ecuaciones, exponenciales, logaritmos, cambio de variable, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

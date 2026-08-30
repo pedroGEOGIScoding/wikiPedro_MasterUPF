@@ -1,0 +1,147 @@
+---
+title: "Diagnóstico técnico del tema de derivadas"
+subtitle: "Página de pruebas · No forma parte de los apuntes del alumnado"
+filename: der-00-diagnostico
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Página de verificación de los dos motores de applets del tema de derivadas. Comprueba la carga de KaTeX local, la hoja de estilos común, el analizador de expresiones, el derivador simbólico y el registro de los applets de los dos módulos.
+categories: [derivadas, diagnóstico, pruebas, KaTeX, applets]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+::: {.callout-warning}
+## Esta página es una herramienta de trabajo
+
+No está pensada para el alumnado. Sirve para comprobar, antes de publicar cualquier apartado, que las cinco piezas técnicas del tema funcionan: la hoja de estilos común, KaTeX servido en local, el analizador de expresiones, el derivador simbólico y el registro de los applets de los dos módulos.
+
+Si vas a publicar el sitio, no la enlaces desde ningún menú.
+:::
+
+## Comprobación automática
+
+El applet siguiente no enseña matemáticas: audita la página. Las cuatro primeras filas verifican la carga; las siete siguientes derivan una función conocida y comparan con el valor esperado.
+
+<div data-applet-der="diagnostico"></div>
+
+::: {.callout-note}
+## Cómo leerlo
+
+Las once filas deben salir en verde. Si falla alguna de las cuatro primeras, el problema está en las rutas de `assets/_scripts.html`. Si falla alguna de las siete últimas, el problema está en el derivador simbólico de `der-applets.js`, y hay que arreglarlo antes de seguir escribiendo contenido.
+
+Las siete pruebas están elegidas para cubrir caminos distintos del derivador: la regla del cociente con $1/x$, el exponente fraccionario implícito de $\sqrt{x}$, la exponencial natural, el logaritmo y una polinómica de grado tres.
+:::
+
+## Motor 1 · Apartados 1 a 3
+
+Tres applets de contraste, uno por cada pieza del núcleo. Si los tres responden, el motor 1 está sano.
+
+### Applet · Tasa de variación media {.unnumbered}
+
+Prueba el **analizador** y el **generador de figuras**. Con los valores de partida debe dar $\mathrm{TVM}=3$.
+
+<div data-applet-der="tvm"></div>
+
+### Applet · Recta tangente y recta normal {.unnumbered}
+
+Prueba el **derivador simbólico** y el compositor de rectas. Con `x-x^2` y $a=2$ debe dar exactamente $y=-3x+4$, con el término en $x$ delante.
+
+<div data-applet-der="tangente"></div>
+
+### Applet · El signo de $f'$ y el crecimiento {.unnumbered}
+
+Prueba la **búsqueda de raíces por bisección** y las dos gráficas alineadas. Con `x^3-3x` debe encontrar ceros en $x=-1$ y $x=1$.
+
+<div data-applet-der="signo"></div>
+
+## Motor 2 · Apartados 4 a 7
+
+Estos tres solo aparecen si `der-applets-extra.js` se ha cargado **después** de `der-applets.js` y ha encontrado `window.DER.core`. Si ves «no existe el applet», revisa el orden de carga en `assets/_scripts.html`.
+
+### Applet · Tabla de derivadas elementales {.unnumbered}
+
+Prueba la reutilización del núcleo y el resaltado de fila en `.ap-tbl`.
+
+<div data-applet-der="tabla"></div>
+
+### Applet · Entrenador de derivadas {.unnumbered}
+
+Prueba la comparación numérica de respuestas y el manejo de estado con botones. Pulsa **Otra función** varias veces y comprueba que cambia el enunciado.
+
+<div data-applet-der="entrenador"></div>
+
+### Applet · Regla de la cadena, capa por capa {.unnumbered}
+
+Prueba la sustitución de árboles, que es la operación más delicada del núcleo. Con externa `cos(x)` e interna `x^4`, las dos vías de cálculo de la última tabla deben coincidir.
+
+<div data-applet-der="cadena"></div>
+
+## Prueba de notación en el cuerpo del documento
+
+Esto no depende de los applets, sino de `html-math-method: katex`. Las cuatro expresiones siguientes deben verse compuestas, no como texto con dólares.
+
+En línea: la derivada de $f(x)=x^{2}+x$ en $x=3$ vale $f'(3)=7$.
+
+En bloque:
+
+$$f'(a)=\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$$
+
+Con fracciones anidadas y raíces:
+
+$$\left(\sqrt{x}\right)'=\dfrac{1}{2\sqrt{x}}\qquad\left[\dfrac{f(x)}{g(x)}\right]'=\dfrac{f'(x)\,g(x)-f(x)\,g'(x)}{\left[g(x)\right]^{2}}$$
+
+Con llave de sistema y cierre invisible, que es el patrón que da problemas si se olvida el `\right.`:
+
+$$f(x)=\left\{\begin{array}{ll} 4x-4 & \text{si } x<2 \\ x^{2} & \text{si } x\ge 2 \end{array}\right.$$
+
+Con negativos entre paréntesis, el error tipográfico que corregimos en el tema de sistemas:
+
+$$y-\left(-2\right)=\left(-3\right)\left(x-2\right)$$
+
+## Lista de verificación antes de publicar un apartado
+
+1. Las once filas del diagnóstico, en verde.
+2. Los seis applets de esta página, montados y respondiendo a los cambios de campo.
+3. En la consola, la línea `[derivadas] der-applets-extra.js cargado`.
+4. En la consola, `[derivadas] applets en la página: N, montados: N`, con los dos números iguales.
+5. Ningún aviso rojo en la consola con el prefijo `[derivadas]`.
+6. Las cinco expresiones del apartado anterior, compuestas y sin dólares visibles.
+
+::: {.callout-tip}
+## Orden de carga, que es la causa más frecuente de fallo
+
+El `assets/_scripts.html` debe declarar los recursos en este orden exacto:
+
+1. `../assets/applets.css`
+2. `../assets/katex/katex.min.css`
+3. `../assets/katex/katex.min.js`
+4. `../assets/katex/contrib/auto-render.min.js`
+5. `assets/der-applets.js`
+6. `assets/der-applets-extra.js`
+
+Los dos últimos no son intercambiables: el segundo módulo necesita que el primero haya publicado `window.DER.core`. Si se invierten, el motor 2 avisa en consola y no registra nada, en lugar de fallar a medias, que sería peor.
+:::
+
+::: {.callout-note}
+## Comprobación rápida desde la consola
+
+Con `F12` abierto, estas tres órdenes resumen el estado del sistema:
+
+```js
+typeof window.DER.core.lineT
+window.DER.core.lineT(-3, 4)
+document.querySelectorAll('[data-applet-der]').length
+```
+
+La primera debe responder `"function"`, la segunda `"-3x+4"` y la tercera el número de applets de la página. Si la segunda devuelve otra cosa, el compositor de rectas no está actualizado.
+:::

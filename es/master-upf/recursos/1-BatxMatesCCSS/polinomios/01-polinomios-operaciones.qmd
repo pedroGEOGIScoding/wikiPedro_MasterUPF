@@ -1,12 +1,12 @@
 ---
-title: "Polinomios y operaciones con polinomios"
+title: "Tema 2.1 Polinomios y operaciones con polinomios"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios (Parte 1 de 4)"
 filename: 01-polinomios-operaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Concepto, características y operaciones con polinomios
-categories: [matemáticas, bachillerato, polinomios, 1 Batx CCSS]
+categories: [matemáticas, bachillerato, polinomios, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 page-layout: article

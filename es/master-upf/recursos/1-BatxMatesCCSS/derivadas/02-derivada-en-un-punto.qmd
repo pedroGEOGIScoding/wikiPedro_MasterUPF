@@ -1,0 +1,415 @@
+---
+title: "Tema 7.2 Derivada de una función en un punto"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 2 de 7)"
+filename: 02-derivada-en-un-punto
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La derivada de una función en un punto es el límite de la tasa de variación media cuando el intervalo se hace infinitamente pequeño. Definición, cálculo por los tres trucos de cancelación, derivadas laterales y relación entre continuidad y derivabilidad.
+categories: [derivadas, límite, cociente incremental, derivabilidad, continuidad, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## Por qué la tasa de variación media no basta (Del promedio en un intervalo al valor en un instante)
+
+En el apartado anterior aprendimos a medir el cambio promedio de una función en un intervalo. Es una herramienta útil, pero tiene un límite que aparece en cuanto la pregunta se vuelve precisa.
+
+Volvamos al viaje del apartado 1. Sabemos la velocidad media entre la hora $1$ y la hora $2$, pero **no sabemos a qué velocidad iba el coche exactamente a las 2 horas**. Y hay situaciones en las que esa distinción lo es todo:
+
+- Si un avión sufre un accidente, los peritos no quieren la velocidad media del vuelo: quieren la velocidad **en el instante** del impacto.
+- Los bomberos que fabrican una lona de rescate necesitan saber la velocidad de la persona **en el momento** de caer sobre ella, no su velocidad media de caída.
+- Un radar de tráfico no multa por velocidad media: multa por velocidad instantánea.
+
+::: {.callout-note}
+## ¿Cómo lo hace realmente un radar?
+
+Un radar no sabe calcular una tasa de variación instantánea. Lo que hace es **calcular la tasa de variación media en un intervalo muy, muy pequeño**, tan pequeño que la diferencia es irrelevante para la multa.
+
+Esa idea, sustituir el instante por un intervalo cada vez más corto, es exactamente el paso al límite que vamos a formalizar. La física aplicada llegó antes que el rigor matemático.
+:::
+
+## El experimento del coche multado
+
+Este es el ejemplo que hace clic en la mayoría de los alumnos. La última rama del viaje se ajusta a la función
+
+$$f(x)=0{,}1x^{2}+118x-143{,}3$$
+
+y nos han multado en el instante $t=4$. Queremos saber a qué velocidad íbamos exactamente ahí.
+
+Calculamos velocidades medias en intervalos cada vez más cortos que empiezan en $4$:
+
+| Intervalo | Velocidad media |
+|---|---|
+| $[4,\,5]$ | $118{,}9$ |
+| $[4,\,4{,}1]$ | $118{,}81$ |
+| $[4,\,4{,}01]$ | $118{,}801$ |
+| $[4,\,4{,}001]$ | $118{,}8001$ |
+| $[4,\,4{,}0001]$ | $118{,}80001$ |
+
+Los valores $118{,}9$; $118{,}81$; $118{,}801$; $118{,}8001$; $118{,}80001$ se acercan claramente a **$118{,}8$**.
+
+::: {.callout-warning}
+## «Parece acercarse» no es una demostración
+
+Fíjate en que ninguno de los valores de la tabla es $118{,}8$. Ninguno lo será nunca, por pequeño que hagamos el intervalo, porque para calcular una tasa de variación media necesitamos **dos puntos distintos**.
+
+La tabla sugiere el resultado; no lo prueba. Para asegurarnos hay que calcular el **límite**, y para eso ya tenemos toda la maquinaria del tema anterior.
+:::
+
+### Applet · El cociente incremental cuando $h\to 0$ {.unnumbered}
+
+<div data-applet-der="cociente"></div>
+
+## La definición
+
+::: {.callout-important}
+## Definición · Derivada de una función en un punto
+
+Sea $f$ una función continua en un punto $x=a$. Se llama **derivada de $f$ en el punto $a$**, y se representa por $f'(a)$, al límite
+
+$$f'(a)=\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$$
+
+Si ese límite **existe y es finito**, se dice que $f$ es **derivable** en $x=a$. El símbolo $f'(a)$ se lee «$f$ prima de $a$».
+:::
+
+Es decir: la derivada en un punto es el límite de la tasa de variación media cuando la longitud del intervalo tiende a cero.
+
+### Las dos formas equivalentes
+
+La definición admite otra escritura, igual de válida y a veces más cómoda:
+
+$$f'(a)=\lim_{x\to a}\dfrac{f(x)-f(a)}{x-a}$$
+
+Las dos formas dicen lo mismo. En la primera el segundo punto se llama $a+h$ y acercamos $h$ a cero; en la segunda se llama $x$ y acercamos $x$ a $a$. Si haces el cambio $x=a+h$, una se convierte en la otra.
+
+| Forma | Se usa cuando… |
+|---|---|
+| $\lim\limits_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$ | Es la habitual. Cómoda para desarrollar potencias de $\left(a+h\right)$ y sacar $h$ factor común. |
+| $\lim\limits_{x\to a}\dfrac{f(x)-f(a)}{x-a}$ | Cómoda cuando $f$ es un polinomio y prefieres dividir por Ruffini entre $x-a$. |
+
+::: {.callout-tip}
+## En las dos aparece la misma indeterminación
+
+Sea cual sea la forma que uses, al sustituir aparece $\dfrac{0}{0}$. Y eso es **inevitable y buena señal**: el numerador tiende a cero porque la función es continua, y el denominador tiende a cero por construcción.
+
+Si al sustituir no te sale $\dfrac{0}{0}$, revisa el cálculo: casi seguro has evaluado mal $f(a)$.
+:::
+
+### El resultado del coche, ahora con rigor
+
+Usemos la segunda forma para $f(x)=0{,}1x^{2}+118x-143{,}3$ en $a=4$, sabiendo que $f(4)=330{,}3$:
+
+$$f'(4)=\lim_{x\to 4}\dfrac{\left(0{,}1x^{2}+118x-143{,}3\right)-330{,}3}{x-4}=\lim_{x\to 4}\dfrac{0{,}1x^{2}+118x-473{,}6}{x-4}$$
+
+Es una indeterminación $\dfrac{0}{0}$, así que factorizamos el numerador. Por Ruffini con raíz $4$:
+
+$$0{,}1x^{2}+118x-473{,}6=\left(x-4\right)\left(0{,}1x+118{,}4\right)$$
+
+Sustituyendo y simplificando:
+
+$$f'(4)=\lim_{x\to 4}\dfrac{\left(x-4\right)\left(0{,}1x+118{,}4\right)}{x-4}=\lim_{x\to 4}\left(0{,}1x+118{,}4\right)=0{,}4+118{,}4=118{,}8$$
+
+Confirmado. La tabla apuntaba a $118{,}8$ y el límite lo demuestra. Íbamos a $118{,}8$ km/h, así que la multa está bien puesta.
+
+## Cómo se calcula: los tres trucos de cancelación
+
+Siempre aparece $\dfrac{0}{0}$, así que siempre hay que simplificar. La técnica depende del tipo de función, y en la práctica solo hay tres casos.
+
+### Truco 1 · Sacar $h$ factor común (funciones polinómicas)
+
+Calculemos $f'(3)$ para $f(x)=x^{2}+x$.
+
+$$f(3+h)=\left(3+h\right)^{2}+\left(3+h\right)=9+6h+h^{2}+3+h=h^{2}+7h+12$$
+
+$$f(3)=9+3=12$$
+
+$$f'(3)=\lim_{h\to 0}\dfrac{\left(h^{2}+7h+12\right)-12}{h}=\lim_{h\to 0}\dfrac{h^{2}+7h}{h}=\lim_{h\to 0}\dfrac{h\left(h+7\right)}{h}=\lim_{h\to 0}\left(h+7\right)=7$$
+
+La pendiente de la recta tangente a $y=x^{2}+x$ en $x=3$ vale $7$.
+
+### Truco 2 · Multiplicar por el conjugado (raíces)
+
+Calculemos $f'(4)$ para $f(x)=\sqrt{x}$.
+
+$$f'(4)=\lim_{h\to 0}\dfrac{\sqrt{4+h}-\sqrt{4}}{h}$$
+
+Multiplicamos arriba y abajo por el conjugado $\sqrt{4+h}+\sqrt{4}$:
+
+$$f'(4)=\lim_{h\to 0}\dfrac{\left(\sqrt{4+h}-\sqrt{4}\right)\left(\sqrt{4+h}+\sqrt{4}\right)}{h\left(\sqrt{4+h}+\sqrt{4}\right)}=\lim_{h\to 0}\dfrac{\left(4+h\right)-4}{h\left(\sqrt{4+h}+\sqrt{4}\right)}$$
+
+$$f'(4)=\lim_{h\to 0}\dfrac{h}{h\left(\sqrt{4+h}+\sqrt{4}\right)}=\lim_{h\to 0}\dfrac{1}{\sqrt{4+h}+\sqrt{4}}=\dfrac{1}{2\sqrt{4}}=\dfrac{1}{4}$$
+
+::: {.callout-tip}
+## De un punto a todos los puntos
+
+Si repites el cálculo anterior con una $x$ genérica en lugar del $4$, obtienes
+
+$$\left(\sqrt{x}\right)'=\dfrac{1}{2\sqrt{x}}$$
+
+y entonces ya no hace falta tomar límites nunca más para esta función: la pendiente en $x=9$ es $\dfrac{1}{2\cdot 3}=\dfrac{1}{6}$, sin más. Esa es la idea de **función derivada** del apartado 4, y es la que convierte el cálculo de derivadas en un proceso mecánico.
+
+Fíjate también en algo sutil: el dominio de $\sqrt{x}$ es $x\ge 0$, pero el de su derivada es $x>0$. La derivada puede tener un dominio **más restrictivo** que la función.
+:::
+
+### Truco 3 · Denominador común (fracciones)
+
+Calculemos la derivada de $f(x)=\dfrac{2}{x-1}$ en $x=-1$ y en $x=0$.
+
+**Paso 1 · Comprobar la continuidad.** No se puede derivar donde la función no existe.
+
+$$\lim_{x\to -1}\dfrac{2}{x-1}=\dfrac{2}{-2}=-1=f(-1)\qquad\lim_{x\to 0}\dfrac{2}{x-1}=\dfrac{2}{-1}=-2=f(0)$$
+
+Es continua en los dos puntos. Podemos seguir.
+
+**Paso 2 · El incremento de la función**, con denominador común.
+
+$$f(-1+h)-f(-1)=\dfrac{2}{h-2}-\dfrac{2}{-2}=\dfrac{2}{h-2}+1=\dfrac{2+h-2}{h-2}=\dfrac{h}{h-2}$$
+
+$$f(0+h)-f(0)=\dfrac{2}{h-1}-\dfrac{2}{-1}=\dfrac{2}{h-1}+2=\dfrac{2+2h-2}{h-1}=\dfrac{2h}{h-1}$$
+
+**Paso 3 · El cociente incremental.** Aquí el $h$ del denominador cancela el $h$ del numerador.
+
+$$\dfrac{f(-1+h)-f(-1)}{h}=\dfrac{\dfrac{h}{h-2}}{h}=\dfrac{1}{h-2}\qquad\dfrac{f(0+h)-f(0)}{h}=\dfrac{\dfrac{2h}{h-1}}{h}=\dfrac{2}{h-1}$$
+
+**Paso 4 · El límite.**
+
+$$f'(-1)=\lim_{h\to 0}\dfrac{1}{h-2}=\dfrac{1}{-2}=-\dfrac{1}{2}\qquad f'(0)=\lim_{h\to 0}\dfrac{2}{h-1}=\dfrac{2}{-1}=-2$$
+
+::: {.callout-important}
+## El esquema de cuatro pasos
+
+Los tres trucos comparten la misma estructura, y conviene memorizarla:
+
+1. **Comprobar** que $f$ es continua en el punto.
+2. Calcular el **incremento** $f(a+h)-f(a)$ y simplificarlo.
+3. Dividir entre $h$ para obtener el **cociente incremental**.
+4. Hacer $h\to 0$ y calcular el **límite**.
+:::
+
+### Applet · Derivada por definición, paso a paso {.unnumbered}
+
+<div data-applet-der="definicion"></div>
+
+## Derivadas laterales
+
+Como toda existencia de límite, la derivada exige que **los dos límites laterales existan y coincidan**.
+
+::: {.callout-important}
+## Definición · Derivadas laterales
+
+$$f'(a^{-})=\lim_{h\to 0^{-}}\dfrac{f(a+h)-f(a)}{h}\qquad f'(a^{+})=\lim_{h\to 0^{+}}\dfrac{f(a+h)-f(a)}{h}$$
+
+La función es derivable en $a$ si y solo si las dos existen, son finitas y son iguales. En ese caso, su valor común es $f'(a)$.
+:::
+
+Cuando la función es suave alrededor del punto, los dos laterales coinciden automáticamente y basta con el límite global. Los laterales solo se calculan por separado en dos situaciones: funciones definidas a trozos, y puntos donde se sospecha un pico.
+
+## Continuidad y derivabilidad
+
+Esta es la relación conceptual más importante del apartado, y también la que más se contesta mal en los exámenes.
+
+::: {.callout-important}
+## Teorema
+
+Si $f$ es derivable en $x=a$, entonces $f$ es continua en $x=a$.
+
+El recíproco **es falso**: hay funciones continuas en un punto que no son derivables en él.
+:::
+
+Dicho de otro modo: la continuidad es condición **necesaria pero no suficiente**.
+
+### Por qué es necesaria
+
+Si la función tiene un salto en $a$, entonces $f(a+h)-f(a)$ no tiende a cero cuando $h\to 0$. El numerador se queda en un valor fijo distinto de cero y el denominador tiende a cero, así que el cociente se va a infinito. El límite no es finito, y por tanto no hay derivada.
+
+Geométricamente: **en un salto no se puede apoyar ninguna recta tangente**.
+
+### Por qué no es suficiente: el pico
+
+Considera la función continua $f(x)=\left|x\right|$ en $x=0$. Sus derivadas laterales son
+
+$$f'(0^{-})=\lim_{h\to 0^{-}}\dfrac{\left|h\right|-0}{h}=\lim_{h\to 0^{-}}\dfrac{-h}{h}=-1\qquad f'(0^{+})=\lim_{h\to 0^{+}}\dfrac{h}{h}=1$$
+
+Existen las dos, son finitas, y **no coinciden**. Así que $f$ no es derivable en $0$ pese a ser continua ahí.
+
+::: {.callout-note}
+## Qué se ve en la gráfica de un pico
+
+En un punto donde la función es continua pero tiene un pico, la tangente por la izquierda y la tangente por la derecha son rectas **distintas**. De hecho, en ese punto caben infinitas rectas que cortan la curva solo ahí y la dejan a un mismo lado.
+
+Y precisamente porque caben infinitas, **no hay ninguna que merezca llamarse *la* tangente**. La derivada no existe porque la tangente no es única.
+:::
+
+### Applet · ¿Continua? ¿Derivable? {.unnumbered}
+
+<div data-applet-der="derivabilidad"></div>
+
+## Ejercicio tipo · Derivabilidad con parámetros
+
+Este es el problema de examen clásico. Determina si esta función es derivable en $x=2$, y para qué valores de $a$ y $b$:
+
+$$f(x)=\left\{\begin{array}{ll} 4x+a & \text{si } x<2 \\ bx^{2} & \text{si } x\ge 2 \end{array}\right.$$
+
+**Paso 1 · La continuidad, primero.** Para que sea derivable tiene que ser continua, así que imponemos esa condición antes que nada.
+
+$$\lim_{x\to 2^{-}}f(x)=8+a\qquad\lim_{x\to 2^{+}}f(x)=4b$$
+
+Es continua en $x=2$ si y solo si
+
+$$8+a=4b$$
+
+**Paso 2 · Las derivadas laterales.** Derivamos cada trozo por separado y evaluamos en el punto de cambio.
+
+$$f'(x)=\left\{\begin{array}{ll} 4 & \text{si } x<2 \\ 2bx & \text{si } x>2 \end{array}\right.$$
+
+$$\lim_{x\to 2^{-}}f'(x)=4\qquad\lim_{x\to 2^{+}}f'(x)=4b$$
+
+Es derivable si $4=4b$.
+
+**Paso 3 · Resolver el sistema.** Las dos condiciones juntas:
+
+$$\left\{\begin{array}{l} 4b=4 \\ 8+a=4b \end{array}\right.$$
+
+De la primera, $b=1$. Sustituyendo en la segunda, $8+a=4$, luego $a=-4$.
+
+::: {.callout-tip}
+## La respuesta
+
+La función es derivable en $x=2$ si y solo si $a=-4$ y $b=1$.
+:::
+
+::: {.callout-warning}
+## El error que hay que evitar
+
+Muchos alumnos empiezan por igualar las derivadas laterales y se olvidan de la continuidad. Con solo $4=4b$ obtienes $b=1$, pero $a$ queda libre, y eso es falso: con $a=0$ y $b=1$ la función **tiene un salto** en $x=2$ y no es derivable.
+
+Orden correcto: **continuidad primero, derivabilidad después**. Y las dos condiciones se resuelven como un sistema, no por separado.
+:::
+
+Comprueba este ejercicio en el applet anterior: escribe `4x-4` en el trozo izquierdo, `x^2` en el derecho y `c = 2`. Después cambia el izquierdo a `4x` y observa cómo el diagnóstico cambia.
+
+## Notación
+
+Hay tres formas de escribir lo mismo, y conviene reconocerlas todas porque los libros y las calculadoras las mezclan.
+
+| Notación | Se lee | Autor |
+|---|---|---|
+| $f'(a)$ | «$f$ prima de $a$» | Lagrange |
+| $\left.\dfrac{dy}{dx}\right|_{x=a}$ | «derivada de $y$ respecto de $x$ en $a$» | Leibniz |
+| $Df(a)$ | «$D$ de $f$ en $a$» | Cauchy |
+
+La notación de Leibniz resulta especialmente útil cuando hay varias variables en juego. Por ejemplo, si $S=4\pi r^{2}$ es la superficie de una esfera, se escribe
+
+$$\dfrac{dS}{dr}=8\pi r$$
+
+y si $V=\pi r^{2}h$ es el volumen de un cilindro, se distingue sin ambigüedad entre
+
+$$\dfrac{dV}{dr}=2\pi r h\qquad\text{y}\qquad\dfrac{dV}{dh}=\pi r^{2}$$
+
+## Actividades propuestas
+
+**1.** Utilizando la definición, calcula la derivada en $x=2$ y en $x=-1$ de estas funciones.
+
+a) $f(x)=x+1$ · b) $f(x)=\dfrac{x}{x-3}$ · c) $f(x)=2x^{2}+x$ · d) $f(x)=7$ · e) $f(x)=5x^{2}$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f'(2)=1$ y $f'(-1)=1$. Es una recta: la derivada vale $1$ en todos sus puntos.
+
+b) $f'(2)=-3$ y $f'(-1)=-\dfrac{3}{16}$. Usa denominador común.
+
+c) $f'(2)=9$ y $f'(-1)=-3$. Con la fórmula general, $f'(x)=4x+1$.
+
+d) $f'(2)=0$ y $f'(-1)=0$. Una constante no cambia nunca: su gráfica es horizontal.
+
+e) $f'(2)=20$ y $f'(-1)=-10$.
+:::
+
+**2.** Calcula la derivada de $f(x)=x^{2}+4$ en los puntos $x=1$, $x=-4$, $x=0$, $x=\dfrac{2}{3}$ y $x=-\dfrac{2}{3}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Aplicando la definición con $a$ genérico sale $f'(a)=2a$, luego los valores son $2$, $-8$, $0$, $\dfrac{4}{3}$ y $-\dfrac{4}{3}$.
+
+Observa el caso $x=0$: la derivada se anula. Ahí la tangente es horizontal, y de hecho es el vértice de la parábola.
+:::
+
+**3.** Calcula, aplicando la definición, la derivada de $f(x)=\sqrt{x}$ en $x=1$, $x=9$ y $x=25$. ¿Puedes calcularla en $x=0$? Razona la respuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f'(1)=\dfrac{1}{2}$, $\quad f'(9)=\dfrac{1}{6}$, $\quad f'(25)=\dfrac{1}{10}$.
+
+En $x=0$ **no existe**. La fórmula $\dfrac{1}{2\sqrt{x}}$ obligaría a dividir entre cero, y geométricamente la razón es que la tangente a $y=\sqrt{x}$ en el origen es **vertical**: su pendiente sería infinita, y la definición exige que el límite sea finito.
+
+Es un caso interesante: la función es continua en $0$ y no tiene pico, y sin embargo no es derivable ahí. Un tercer motivo de no derivabilidad, además del salto y del pico.
+:::
+
+**4.** Estudia si es derivable en $x=-1$ la función siguiente, según los valores de $k$.
+
+$$f(x)=\left\{\begin{array}{ll} kx+2 & \text{si } x<-1 \\ x^{2}-x+k & \text{si } x\ge -1 \end{array}\right.$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+**Continuidad:** $\lim\limits_{x\to -1^{-}}f(x)=-k+2$ y $\lim\limits_{x\to -1^{+}}f(x)=1+1+k=2+k$. Igualando, $-k+2=2+k$, luego $k=0$.
+
+**Derivabilidad:** $f'(x)=k$ a la izquierda y $f'(x)=2x-1$ a la derecha, que en $x=-1$ vale $-3$. Igualando, $k=-3$.
+
+Las dos condiciones piden valores **incompatibles**: $k=0$ y $k=-3$. Por tanto **no existe ningún valor de $k$** que haga la función derivable en $x=-1$.
+
+Con $k=0$ es continua pero tiene un pico; con cualquier otro valor ni siquiera es continua.
+:::
+
+**5.** Un ejercicio de interpretación. Una empresa determina que los costes de producción por trabajador contratado son $C(x)=x+\sqrt{x}$. Calcula $C'(100)$ y explica qué significa ese número en el contexto del problema.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Usando las derivadas ya conocidas, $C'(x)=1+\dfrac{1}{2\sqrt{x}}$, luego
+
+$$C'(100)=1+\dfrac{1}{2\cdot 10}=1+0{,}05=1{,}05$$
+
+**Significado:** cuando la empresa tiene ya $100$ trabajadores, contratar uno más incrementa el coste por trabajador en aproximadamente $1{,}05$ unidades. En economía ese valor se llama **coste marginal**, y es una de las aplicaciones más directas de la derivada en ciencias sociales.
+
+Observa que $C'(x)$ decrece al aumentar $x$: cuanto mayor es la empresa, menos crece el coste unitario al añadir un trabajador. El modelo describe una economía de escala.
+:::
+
+**6.** Explica con tus palabras, y sin fórmulas, la diferencia entre estas tres afirmaciones sobre una función $f$ en un punto $a$:
+
+a) $f$ está definida en $a$ · b) $f$ es continua en $a$ · c) $f$ es derivable en $a$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) **Definida:** existe el número $f(a)$. La gráfica tiene un punto ahí.
+
+b) **Continua:** además de existir el punto, la gráfica llega hasta él desde los dos lados sin saltar. Se puede dibujar sin levantar el lápiz.
+
+c) **Derivable:** además de llegar sin saltar, llega **con la misma inclinación** desde los dos lados. La gráfica es suave, sin pico ni tangente vertical.
+
+Cada condición es más exigente que la anterior: derivable implica continua, y continua implica definida. Al revés no funciona en ninguno de los dos pasos.
+:::
+
+## Lo que hay que llevarse de este apartado
+
+- La derivada en un punto es el **límite** de la tasa de variación media cuando el intervalo tiende a cero: $f'(a)=\lim\limits_{h\to 0}\dfrac{f(a+h)-f(a)}{h}$.
+- Siempre aparece la indeterminación $\dfrac{0}{0}$, y siempre hay que simplificar antes de sustituir. Tres trucos: **factor común** para polinomios, **conjugado** para raíces, **denominador común** para fracciones.
+- La derivada existe solo si las dos derivadas **laterales** existen, son finitas y coinciden.
+- **Continuidad es condición necesaria, no suficiente.** Hay tres motivos de no derivabilidad: salto, pico y tangente vertical.
+- En los problemas con parámetros, la continuidad se impone **antes** que la derivabilidad, y las dos condiciones forman un sistema.

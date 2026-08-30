@@ -1,12 +1,12 @@
 ---
-title: "Indeterminaciones y su resolución"
+title: "Tema 6.3 Indeterminaciones y su resolución"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 3 de 5)"
 filename: 03-indeterminaciones
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Tercera parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada a los tipos de indeterminaciones y a los métodos para resolverlas, incluido el número e
-categories: [límites, indeterminaciones, número e, conjugado, factorización, 1 Batx CCSS]
+categories: [límites, indeterminaciones, número e, conjugado, factorización, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:

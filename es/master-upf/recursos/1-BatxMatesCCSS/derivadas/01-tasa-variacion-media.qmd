@@ -1,0 +1,436 @@
+---
+title: "Tema 7.1 Tasa de variación media"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Derivada de una función (Parte 1 de 7)"
+filename: 01-tasa-variacion-media
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La tasa de variación media mide cuánto crece o decrece una función entre dos valores, y coincide con la pendiente de la recta secante que une los dos puntos de la gráfica. Es el primer paso hacia la derivada.
+categories: [derivadas, tasa de variación, secante, pendiente, 1 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+<div data-applet-der="diagnostico"></div>
+
+## De dónde sale este tema (Cómo medimos lo que cambia entre dos momentos)
+
+En el siglo XVII, y casi al mismo tiempo, Newton y Leibniz llegaron al concepto de derivada y con él al **cálculo diferencial**. Aquello fue tan potente que durante décadas se pensó que todo podría conocerse mediante funciones y sus derivadas: es lo que se llamó el *determinismo científico*.
+
+La idea de fondo es sencilla y muy práctica: casi nunca nos interesa solo el valor de una magnitud, sino **cómo está cambiando**.
+
+::: {.callout-note}
+## El ejemplo del parte meteorológico
+
+Para predecir el tiempo no basta con saber la presión atmosférica de este momento. Lo que anuncia buen o mal tiempo son las **variaciones bruscas** de esa presión.
+
+Una caída de $12$ mm de presión no tiene ninguna consecuencia si ocurre a lo largo de cinco días, pero sí la tiene si ocurre en solo $8$ horas. De hecho, el criterio operativo es este: una caída de presión que dure más de tres horas y que sea, en media, superior a $1{,}3$ mm por hora anuncia mal tiempo.
+
+Fíjate en la forma de ese criterio: *milímetros por hora*. Una variación dividida entre un tiempo. Eso es exactamente lo que vamos a definir ahora.
+:::
+
+Lo mismo ocurre con una función de costes, de beneficios o de precios de venta de una empresa. El valor del beneficio de este año dice una cosa; saber si el beneficio **está subiendo o bajando**, y a qué ritmo, dice otra bastante más útil para decidir.
+
+## Tasa de variación y tasa de variación media
+
+Empecemos por la magnitud más simple: cuánto ha cambiado la función entre dos valores de la variable.
+
+::: {.callout-important}
+## Definición · Tasa de variación
+
+Se define la **tasa de variación** de una función $f$ entre los valores $a$ y $b$ como
+
+$$\mathrm{TV}(a,b)=f(b)-f(a)$$
+:::
+
+Este número tiene un problema: no dice nada sobre el **tiempo o el recorrido** en que se ha producido el cambio. Volviendo al parte meteorológico, una caída de $12$ mm de presión es la misma tasa de variación tanto si ocurre en cinco días como si ocurre en ocho horas, y sin embargo su significado es radicalmente distinto.
+
+La corrección es dividir entre el intervalo recorrido.
+
+::: {.callout-important}
+## Definición · Tasa de variación media
+
+Se define la **tasa de variación media** de una función $f$ entre los valores $a$ y $b$ como el cociente
+
+$$\mathrm{TVM}([a,b])=\dfrac{f(b)-f(a)}{b-a}$$
+
+El numerador es el **incremento de la función** y el denominador es el **incremento de la variable**.
+:::
+
+Con esta definición, la lectura es siempre la misma: *cuántas unidades de $y$ por cada unidad de $x$*, en promedio, a lo largo del intervalo.
+
+### Qué significa el signo
+
+Como en el intervalo $[a,b]$ se cumple $b-a>0$, el signo de la tasa de variación media es el signo del numerador:
+
+- Si $\mathrm{TVM}([a,b])>0$, entonces $f(b)>f(a)$: la función acaba más arriba de donde empezó.
+- Si $\mathrm{TVM}([a,b])<0$, entonces $f(b)<f(a)$: la función acaba más abajo.
+- Si $\mathrm{TVM}([a,b])=0$, la función acaba exactamente a la misma altura.
+
+::: {.callout-warning}
+## Cuidado con el caso nulo
+
+Que la tasa de variación media sea cero **no significa que la función no haya cambiado**. Significa que ha vuelto al mismo valor.
+
+La función $f(x)=x^{2}$ en el intervalo $[-2,2]$ tiene
+
+$$\mathrm{TVM}([-2,2])=\dfrac{f(2)-f(-2)}{2-(-2)}=\dfrac{4-4}{4}=0$$
+
+y sin embargo esa función baja hasta $0$ y vuelve a subir hasta $4$. La tasa de variación media solo mira los dos extremos: es ciega a todo lo que pasa por el camino. Recuerda esta limitación, porque es la que nos obligará a inventar la derivada.
+:::
+
+## La interpretación geométrica: es una pendiente
+
+Aquí está la idea que hace que todo el tema encaje.
+
+::: {.callout-important}
+## Propiedad fundamental
+
+La tasa de variación media de una función $f$ en el intervalo $[a,b]$ coincide exactamente con la **pendiente de la recta secante** a la gráfica que pasa por los puntos $A\left(a,f(a)\right)$ y $B\left(b,f(b)\right)$.
+:::
+
+La razón es que la pendiente de la recta que pasa por dos puntos $(x_{0},y_{0})$ y $(x_{1},y_{1})$ se calcula así:
+
+$$m=\dfrac{y_{1}-y_{0}}{x_{1}-x_{0}}$$
+
+y si tomamos $y_{0}=f(a)$ e $y_{1}=f(b)$, obtenemos literalmente la fórmula de la tasa de variación media. No son dos conceptos parecidos: **son el mismo número visto de dos maneras**.
+
+Esta doble lectura es lo que hace que las derivadas sirvan a la vez para problemas de economía, de física y de geometría.
+
+### Ejemplo resuelto 1
+
+Calculemos la tasa de variación media de $f(x)=3x^{2}-2$ en el intervalo $[-1,2]$.
+
+$$\mathrm{TVM}([-1,2])=\dfrac{f(2)-f(-1)}{2-(-1)}=\dfrac{\left(3\cdot 2^{2}-2\right)-\left(3\cdot\left(-1\right)^{2}-2\right)}{2+1}=\dfrac{10-1}{3}=3$$
+
+Observa el paréntesis en $\left(-1\right)^{2}$. Sin él, $-1^{2}$ vale $-1$ y todo el ejercicio se va al suelo.
+
+### Ejemplo resuelto 2
+
+Calculemos la tasa de variación media de $y=x^{2}+3x$ en el intervalo $[1,3]$.
+
+$$\mathrm{TVM}([1,3])=\dfrac{f(3)-f(1)}{3-1}=\dfrac{\left(9+9\right)-\left(1+3\right)}{2}=\dfrac{18-4}{2}=7$$
+
+Comprobemos la interpretación geométrica. La recta que pasa por los puntos $(1,4)$ y $(3,18)$ tiene ecuación
+
+$$y=7x-3$$
+
+y su pendiente es, efectivamente, $7$. Los dos caminos dan el mismo número.
+
+### Ejemplo resuelto 3
+
+La misma función $y=x^{2}+3x$, ahora en el intervalo $[-2,0]$:
+
+$$\mathrm{TVM}([-2,0])=\dfrac{f(0)-f(-2)}{0-(-2)}=\dfrac{0-\left(4-6\right)}{2}=\dfrac{0-\left(-2\right)}{2}=\dfrac{2}{2}=1$$
+
+La recta que pasa por $(-2,-2)$ y $(0,0)$ es $y=x$, de pendiente $1$. Otra vez coinciden.
+
+::: {.callout-tip}
+## Lo que acabamos de descubrir sin darnos cuenta
+
+La misma función ha dado $\mathrm{TVM}=7$ en un intervalo y $\mathrm{TVM}=1$ en otro. Para una función no lineal, **la tasa de variación media depende del intervalo que elijas**. No es una propiedad de la función: es una propiedad de la función *y* del intervalo.
+:::
+
+### Applet · Tasa de variación media {.unnumbered}
+
+<div data-applet-der="tvm"></div>
+
+### Applet · La TVM tramo a tramo {.unnumbered}
+
+<div data-applet-der="tvmtramos"></div>
+
+## El caso de las funciones de primer grado
+
+Hay una familia de funciones para la que la tasa de variación media no depende del intervalo: las de primer grado, $f(x)=mx+n$, cuya gráfica es una recta.
+
+Compruébalo con álgebra:
+
+$$\mathrm{TVM}([a,b])=\dfrac{\left(mb+n\right)-\left(ma+n\right)}{b-a}=\dfrac{m\left(b-a\right)}{b-a}=m$$
+
+El resultado es $m$, la pendiente de la recta, **para cualquier intervalo**. Tiene sentido: si la gráfica es una recta, la secante entre dos puntos cualesquiera de esa recta es la recta misma.
+
+::: {.callout-note}
+## Por qué esto importa tanto
+
+Esta propiedad es la que caracteriza a las funciones lineales entre todas las demás. Y es también la razón de que en la vida real se usen tanto los modelos lineales: son los únicos en los que *una sola cifra de crecimiento* describe honestamente todo el recorrido.
+
+En cuanto el modelo deja de ser lineal, cualquier titular del tipo «la economía crece al $2\%$» está resumiendo con un solo número algo que en realidad cambia de un mes a otro. No es mentira, pero es un promedio, y conviene saberlo.
+:::
+
+## Velocidad media y aceleración media
+
+La tasa de variación media adopta nombres distintos según qué mida la función.
+
+| Si la función relaciona… | Su TVM se llama… | Unidades habituales |
+|---|---|---|
+| tiempo con espacio recorrido | velocidad media | km/h, m/s |
+| tiempo con velocidad | aceleración media | m/s² |
+| unidades producidas con coste | coste medio marginal | €/unidad |
+| tiempo con población | crecimiento medio | habitantes/año |
+
+El caso más intuitivo es el primero. Un coche que tarda $5$ horas en recorrer $550$ km lleva una velocidad media de
+
+$$v_{m}=\dfrac{550}{5}=110\ \mathrm{km/h}$$
+
+### Ejemplo resuelto · La avioneta
+
+Una avioneta hace un recorrido entre dos ciudades modificando su velocidad. De su gráfica tiempo–distancia se leen estos datos: a los $15$ minutos ha recorrido $150$ km, a los $30$ minutos ha recorrido $300$ km y a los $90$ minutos ha recorrido $600$ km.
+
+$$\mathrm{TVM}([15,30])=\dfrac{300-150}{30-15}=\dfrac{150}{15}=10$$
+
+$$\mathrm{TVM}([30,90])=\dfrac{600-300}{90-30}=\dfrac{300}{60}=5$$
+
+Interpretación: en el primer tramo la distancia varía a razón de $10$ km por minuto, y en el segundo a razón de $5$ km por minuto. La avioneta ha reducido su velocidad a la mitad.
+
+### Ejemplo resuelto · Función de costes
+
+Sea $C(x)=x^{2}+7x$ la función de costes, donde $C(x)$ indica el coste de fabricar $x$ unidades.
+
+Entre $0$ y $1\,000$ unidades:
+
+$$\mathrm{TVM}([0,1000])=\dfrac{C(1000)-C(0)}{1000-0}=\dfrac{\left(1\,000\,000+7\,000\right)-0}{1\,000}=\dfrac{1\,007\,000}{1\,000}=1\,007$$
+
+Entre $100$ y $500$ unidades:
+
+$$\mathrm{TVM}([100,500])=\dfrac{C(500)-C(100)}{500-100}=\dfrac{\left(250\,000+3\,500\right)-\left(10\,000+700\right)}{400}=\dfrac{242\,800}{400}=607$$
+
+::: {.callout-tip}
+## Piensa un momento en este resultado
+
+Fabricar unidades sale **más caro por unidad** cuando ya fabricas muchas: $1\,007$ € por unidad en promedio en el primer tramo contra $607$ € en el segundo. Eso es porque el término $x^{2}$ hace que el coste se acelere.
+
+Un modelo así describe una fábrica que se está saturando: horas extra, más averías, materia prima más cara al agotar los proveedores baratos. La forma de la función cuenta una historia económica.
+:::
+
+### Applet · Velocidad media a partir de una tabla {.unnumbered}
+
+<div data-applet-der="velocidad"></div>
+
+## La versión con incremento: el intervalo $[a,a+h]$
+
+A menudo conviene escribir el intervalo no con sus dos extremos, sino con el extremo izquierdo y su **longitud**. Si llamamos $h$ a esa longitud, el intervalo es $[a,a+h]$ y la definición queda así:
+
+$$\mathrm{TVM}([a,a+h])=\dfrac{f(a+h)-f(a)}{\left(a+h\right)-a}=\dfrac{f(a+h)-f(a)}{h}$$
+
+Es la misma fórmula, pero escrita de una manera enormemente más útil, porque ahora **todo depende de un solo parámetro**, $h$. Podemos preguntarnos qué le pasa a ese cociente cuando $h$ se hace pequeño, y ahí es donde nace la derivada, en el apartado siguiente.
+
+::: {.callout-note}
+## La notación de Leibniz
+
+Gottfried Wilhelm Leibniz (1646–1716) se dio cuenta hacia 1673 de que determinar la tangente a una curva depende de la razón entre las diferencias de ordenadas y de abscisas cuando esas diferencias se hacen infinitamente pequeñas. Necesitaba un lenguaje para eso, y el que eligió fue especialmente afortunado: escribió
+
+$$\dfrac{dy}{dx}$$
+
+donde $dy$ y $dx$ **no son numerador y denominador**, sino un todo inseparable. Se lee «derivada de $y$ respecto de $x$».
+
+Leibniz fue también el primero en usar el término *derivar*, en el sentido de «deducir», en una carta dirigida a Newton.
+:::
+
+### Ejemplo resuelto · TVM con incremento
+
+Calculemos $\mathrm{TVM}([2,2+h])$ para $f(x)=x^{2}-x+3$.
+
+$$f(2+h)=\left(2+h\right)^{2}-\left(2+h\right)+3=4+4h+h^{2}-2-h+3=h^{2}+3h+5$$
+
+$$f(2)=4-2+3=5$$
+
+$$\mathrm{TVM}([2,2+h])=\dfrac{\left(h^{2}+3h+5\right)-5}{h}=\dfrac{h^{2}+3h}{h}=\dfrac{h\left(h+3\right)}{h}=h+3$$
+
+Fíjate en lo que ha ocurrido: hemos obtenido una **fórmula** para la tasa de variación media de todos los intervalos que empiezan en $2$. Con $h=1$ da $4$; con $h=0{,}1$ da $3{,}1$; con $h=0{,}01$ da $3{,}01$.
+
+¿Y con $h$ cada vez más pequeño? Parece acercarse a $3$. Guarda ese número: en el apartado siguiente resultará ser $f'(2)$.
+
+## Cuándo la tasa de variación media engaña
+
+Este apartado no está en todos los libros, pero es el más importante para no usar mal la herramienta.
+
+::: {.callout-warning}
+## Tres trampas habituales
+
+**Trampa 1 · El promedio que nadie ha vivido.** Un coche recorre $40$ km en la primera hora y $200$ km en la segunda. Su velocidad media es $120$ km/h, una cifra que el velocímetro puede no haber marcado nunca de forma sostenida.
+
+**Trampa 2 · Elegir el intervalo que conviene.** Mira estas ganancias de una empresa, en miles de euros:
+
+| Año | 2009 | 2010 | 2011 | 2012 | 2013 | 2014 |
+|---|---|---|---|---|---|---|
+| Ganancias | 427 | 503 | 432 | 570 | 470 | 515 |
+
+Entre 2009 y 2014 la tasa de variación media es $\dfrac{515-427}{5}=17{,}6$ miles de euros por año. Entre 2011 y 2014, en cambio, es $\dfrac{515-432}{3}\approx 27{,}6$. La segunda cifra suena mucho mejor, y las dos son correctas. Elegir el punto de partida es una decisión, no un cálculo.
+
+**Trampa 3 · Confundir el máximo con el crecimiento.** En esa misma tabla, las ganancias máximas se dieron en **2012**. Pero la tasa de variación media entre 2012 y 2013 es negativa. Ser el mejor año y estar creciendo son cosas distintas.
+:::
+
+::: {.callout-tip}
+## Pensamiento crítico
+
+Cuando leas en la prensa una cifra del tipo «X ha crecido un Y % de media», hazte siempre tres preguntas: **entre qué dos fechas**, **por qué esas dos fechas** y **qué ha pasado por el camino**. Las tres respuestas están escondidas en la definición de tasa de variación media, y la primera suele estar en la letra pequeña.
+:::
+
+## Actividades propuestas
+
+**1.** Halla la tasa de variación media en los intervalos $[-3,2]$, $[1,5]$ y $[0,3]$ de las funciones siguientes.
+
+a) $y=3x-4$ · b) $y=-2x-3$ · c) $y=0{,}5x+2$ · d) $y=x-1$
+
+A la vista de lo que obtengas, ¿crees que la tasa de variación media de las funciones polinómicas de primer grado es siempre constante e igual a la pendiente de la recta que las representa?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Las tasas son, respectivamente, $3$, $-2$, $0{,}5$ y $1$ **en los tres intervalos**. Sí: para una función de primer grado $f(x)=mx+n$ la tasa de variación media vale $m$ en cualquier intervalo, como se demostró en el apartado 3.
+:::
+
+**2.** Halla la tasa de variación media de $y=x^{2}-1$ en los intervalos $[-3,2]$, $[1,5]$ y $[0,3]$. ¿Es ahora constante?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\mathrm{TVM}([-3,2])=\dfrac{3-8}{5}=-1$, $\quad\mathrm{TVM}([1,5])=\dfrac{24-0}{4}=6$, $\quad\mathrm{TVM}([0,3])=\dfrac{8-(-1)}{3}=3$.
+
+No es constante. La función no es de primer grado, así que su pendiente cambia de un punto a otro.
+:::
+
+**3.** Halla la tasa de variación media de $y=x^{3}+1$ en los intervalos $[-3,2]$, $[1,5]$ y $[0,3]$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\mathrm{TVM}([-3,2])=\dfrac{9-(-26)}{5}=7$, $\quad\mathrm{TVM}([1,5])=\dfrac{126-2}{4}=31$, $\quad\mathrm{TVM}([0,3])=\dfrac{28-1}{3}=9$.
+
+Tampoco es constante, y las diferencias son aún mayores que en el caso cuadrático.
+:::
+
+**4.** Al estudiar el aterrizaje de aviones se graba una película desde que el avión toca tierra hasta que se para, y se miden tiempos y distancias.
+
+| Tiempo (s) | 0 | 2 | 4 | 6 | 8 | 10 | 12 | 14 |
+|---|---|---|---|---|---|---|---|---|
+| Distancia (m) | 0 | 100 | 175 | 230 | 270 | 300 | 325 | 340 |
+
+a) Calcula la velocidad media del avión durante todo el aterrizaje.
+b) Calcula la velocidad media en los intervalos $[0,6]$, $[2,10]$ y $[6,14]$.
+c) ¿Es constante?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $\dfrac{340-0}{14-0}\approx 24{,}29$ m/s.
+
+b) $\dfrac{230}{6}\approx 38{,}33$; $\quad\dfrac{300-100}{8}=25$; $\quad\dfrac{340-230}{8}=13{,}75$ m/s.
+
+c) No lo es, y además va **disminuyendo**, que es exactamente lo que se espera de un avión frenando. Introduce estos datos en el applet de velocidad media para ver la curva.
+:::
+
+**5.** Se estudia la posición de un coche respecto de la salida de un túnel.
+
+| Tiempo (s) | 0 | 5 | 10 | 15 | 20 | 25 | 30 | 35 | 40 |
+|---|---|---|---|---|---|---|---|---|---|
+| Distancia (m) | 0 | 100 | 200 | 290 | 370 | 430 | 510 | 610 | 720 |
+
+a) Calcula la velocidad media en $[0,40]$.
+b) Calcula la velocidad media en $[15,25]$ y en $[20,30]$. ¿Es constante?
+c) Si la velocidad máxima permitida es de $120$ km/h, ¿consideras que ha podido sobrepasarla en algún momento? ¿Y si el límite fuese de $80$ km/h?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $\dfrac{720}{40}=18$ m/s, es decir $18\cdot 3{,}6=64{,}8$ km/h.
+
+b) $\dfrac{430-290}{10}=14$ m/s y $\dfrac{510-370}{10}=14$ m/s. Coinciden por casualidad en estos dos tramos, pero no en todos: en $[35,40]$ la velocidad media es $22$ m/s, o $79{,}2$ km/h.
+
+c) Con límite de $120$ km/h no hay indicio de infracción: ningún tramo se acerca. Con límite de $80$ km/h, en cambio, el último tramo da $79{,}2$ km/h **de media**, y una media de $79{,}2$ es perfectamente compatible con haber pasado de $80$ durante parte del tramo. Aquí la tasa de variación media ya no basta: hace falta la velocidad instantánea, y por eso existe el apartado siguiente.
+:::
+
+**6.** El AVE sale de la estación y aumenta su velocidad hasta llegar a $250$ km/h en $10$ minutos, mantiene esa velocidad constante durante hora y media, y comienza a disminuirla hasta pararse en otros $10$ minutos.
+
+a) Representa la función tiempo–velocidad.
+b) Indica la aceleración media en los primeros $10$ minutos.
+c) Indica la aceleración media entre el minuto $10$ y el minuto $100$.
+d) Determina la aceleración media en los últimos $10$ minutos.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+b) $\dfrac{250-0}{10}=25$ km/h por minuto.
+
+c) $\dfrac{250-250}{90}=0$: la velocidad no cambia, la aceleración media es nula.
+
+d) $\dfrac{0-250}{10}=-25$ km/h por minuto. El signo negativo indica frenada.
+
+Observa que la aceleración media es la tasa de variación media de la **velocidad**, no del espacio.
+:::
+
+**7.** La función de beneficios de una empresa es $B(x)=x^{2}+7x+\sqrt{x}$, donde $B(x)$ es el beneficio al fabricar $x$ unidades. Calcula la tasa de variación media de los beneficios entre $0$ y $100$ unidades, y entre $25$ y $100$ unidades.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$B(0)=0$, $\quad B(25)=625+175+5=805$, $\quad B(100)=10\,000+700+10=10\,710$.
+
+$\mathrm{TVM}([0,100])=\dfrac{10\,710}{100}=107{,}1$
+
+$\mathrm{TVM}([25,100])=\dfrac{10\,710-805}{75}=\dfrac{9\,905}{75}\approx 132{,}07$
+
+El beneficio por unidad crece con el volumen: es lo contrario de lo que pasaba con la función de costes del ejemplo anterior.
+:::
+
+**8.** Una empresa determina que los costes de producción por trabajador contratado son $C(x)=x+\sqrt{x}$ y que los ingresos por ventas, también por trabajador, son $I(x)=2x+x^{2}$. Los beneficios son $B(x)=I(x)-C(x)$. Determina la tasa de variación media de $B$ si se contratan entre $100$ y $2\,500$ trabajadores.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$B(x)=2x+x^{2}-x-\sqrt{x}=x^{2}+x-\sqrt{x}$.
+
+$B(100)=10\,000+100-10=10\,090$
+
+$B(2\,500)=6\,250\,000+2\,500-50=6\,252\,450$
+
+$\mathrm{TVM}([100,2500])=\dfrac{6\,252\,450-10\,090}{2\,400}=\dfrac{6\,242\,360}{2\,400}\approx 2\,600{,}98$
+
+::: {.callout-warning}
+## Nota crítica sobre este modelo
+
+Estas funciones **no son continuas** en la realidad: no se pueden contratar $3{,}7$ trabajadores. Se trata en rigor de funciones escalonadas, y las tratamos como continuas porque el error que se comete es pequeño frente a las cifras manejadas.
+
+Además, el modelo dice que los beneficios crecen indefinidamente al contratar más gente. Eso es falso a partir de cierto punto, y forma parte de tu trabajo como estudiante de ciencias sociales saber dónde deja de valer un modelo.
+:::
+:::
+
+**9.** Calcula la tasa de variación media de $f(x)=x^{2}-x+3$ en los intervalos $[2,3]$, $[2,4]$, $[2,5]$, $[2,6]$, $[3,5]$ y $[3,6]$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$f(2)=5$, $f(3)=9$, $f(4)=15$, $f(5)=23$, $f(6)=33$.
+
+$\mathrm{TVM}([2,3])=4$; $\quad\mathrm{TVM}([2,4])=5$; $\quad\mathrm{TVM}([2,5])=6$; $\quad\mathrm{TVM}([2,6])=7$; $\quad\mathrm{TVM}([3,5])=7$; $\quad\mathrm{TVM}([3,6])=8$.
+
+Observa el patrón de los cuatro primeros: $4$, $5$, $6$, $7$. Cada vez que el intervalo se alarga una unidad, la tasa sube una unidad. Eso no es casualidad, y lo entenderás del todo al calcular $\mathrm{TVM}([2,2+h])=h+3$.
+:::
+
+**10.** Calcula $\mathrm{TVM}([a,a+h])$ de $f(x)=x^{2}-x+3$ para a) $a=2$ y b) $a=3$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $f(2+h)=h^{2}+3h+5$ y $f(2)=5$, luego $\mathrm{TVM}=\dfrac{h^{2}+3h}{h}=h+3$.
+
+b) $f(3+h)=\left(3+h\right)^{2}-\left(3+h\right)+3=h^{2}+5h+9$ y $f(3)=9$, luego $\mathrm{TVM}=\dfrac{h^{2}+5h}{h}=h+5$.
+
+Con $h$ muy pequeño, el primero se acerca a $3$ y el segundo a $5$. Esos dos números serán $f'(2)$ y $f'(3)$.
+:::
+
+## Lo que hay que llevarse de este apartado
+
+- La tasa de variación, $f(b)-f(a)$, mide el cambio; la tasa de variación media lo mide **por unidad de variable**.
+- $\mathrm{TVM}([a,b])$ es la **pendiente de la recta secante** que une $\left(a,f(a)\right)$ con $\left(b,f(b)\right)$. Un número, dos lecturas.
+- Solo es constante para funciones de primer grado. Para las demás, depende del intervalo elegido.
+- Escrita como $\dfrac{f(a+h)-f(a)}{h}$, todo depende de un solo parámetro. Reducir ese $h$ hasta el límite es, literalmente, el apartado siguiente.

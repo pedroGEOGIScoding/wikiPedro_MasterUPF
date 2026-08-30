@@ -1,12 +1,12 @@
 ---
-title: "Límite de una función en el infinito y en un punto"
+title: "Tema 6.4 Límite de una función en el infinito y en un punto"
 subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Límites de una función (Parte 4 de 5)"
 filename: 04-limite-funcion-infinito-punto
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
 description: Cuarta parte del tema de límites de 1.º de Bachillerato de Matemáticas Aplicadas a las Ciencias Sociales, dedicada al límite de una función en el infinito, al límite en un punto, a los límites laterales y a las funciones definidas a trozos
-categories: [límites, límites laterales, infinito, funciones a trozos, epsilon delta, 1 Batx CCSS]
+categories: [límites, límites laterales, infinito, funciones a trozos, epsilon delta, 1 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:
