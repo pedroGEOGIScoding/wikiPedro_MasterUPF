@@ -880,12 +880,18 @@
     var tRg = D.gauss([[R(1), R(1), R(1)], [R(2), R(2), R(2)], [R(3), R(3), R(3)]]).rank === 1;
     var nReg = Object.keys(D.registry).length;
     var cssOk = getComputedStyle(node).paddingTop !== '0px';
+    var esperadas = ['adjunto', 'adjuntos', 'ceros', 'detrango', 'diagnostico',
+      'ecuacion', 'entrenador', 'escalar', 'inversadet', 'invparam', 'matadj',
+      'menor', 'orden23', 'orden4', 'producto', 'props', 'rangomenores',
+      'rangoparam', 'reducir', 'sarrus', 'transforma', 'triangular'];
+    var faltan = esperadas.filter(function (c) { return !D.registry[c]; });
+    h += fila('Applets registrados', String(nReg) + (faltan.length ? ' (faltan: ' + faltan.join(', ') + ')' : ''), faltan.length === 0);
 
     var h = '<h4 class="mx-title">Applet \u00b7 Diagn\u00f3stico del motor</h4><table class="ap-tbl"><tbody>';
     h += fila('N\u00facleo <code>window.DET</code>', window.DET ? 'activo' : 'ausente', !!window.DET);
     h += fila('KaTeX local <code>window.katex</code>', window.katex ? 'cargado' : 'AUSENTE', !!window.katex);
     h += fila('Hoja <code>applets.css</code>', cssOk ? 'aplicada' : 'no aplicada', cssOk);
-    h += fila('Applets registrados', String(nReg), nReg === 22);
+    h += fila('Applets registrados', String(nReg) + (faltan.length ? ' (faltan: ' + faltan.join(', ') + ')' : ''), faltan.length === 0);
     h += fila('Aritm\u00e9tica exacta', '1/3 + 1/6 = 1/2', tA);
     h += fila('Determinante orden 2', '\u22122', tD2);
     h += fila('Propiedad |A| = |At|', 'coinciden', tD3);
