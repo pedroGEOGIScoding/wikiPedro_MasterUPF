@@ -280,6 +280,30 @@ website:
               - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/07-problema-produccion.qmd
               - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/08-problema-dieta.qmd
               - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/09-problema-transporte.qmd
+        - text: "---"
+        - section: "2 Batx Estadistica"
+          contents:
+            - section: "Tema 1 Estadística unidimensional"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/est-uni/
+            - section: "Tema 2 Estadística bidimensional"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/est-bi/
+            - section: "Tema 3 Combinatoria"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/combinatoria/
+            - section: "Tema 4 Probabilidad"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/probabilidad/
+            - section: "Tema 5 Distribuciones binomiales y normales"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/dist-bi-norm/
+            - section: "Tema 6 Teoría de muestras"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/muestras/
+            - section: "Tema 7 Intervalos de confianza"
+              contents:
+                - master-upf/recursos/2-Batx-estadistica/intervalos/
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
