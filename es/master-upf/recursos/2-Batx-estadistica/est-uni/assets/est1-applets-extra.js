@@ -26,7 +26,7 @@
     d = d === undefined ? 3 : d;
     if (!Number.isFinite(x)) return '—';
     var y = Math.round(x * Math.pow(10, d)) / Math.pow(10, d);
-    return String(Object.is(y, -0) ? 0 : y);
+    return String(Object.is(y, -0) ? 0 : y).replace('.', ',');
   };
   var ok = function (m) { return '<div class="mx-ok">' + m + '</div>'; };
   var info = function (m) { return '<div class="mx-info">' + m + '</div>'; };
@@ -69,6 +69,7 @@
       el.className = 'mx-in'; lab.appendChild(el); inputs.appendChild(lab); ctl[f.id] = el;
       el.addEventListener('input', run); el.addEventListener('change', run);
     });
+    S.tex(node);
     function run() {
       var v = {}; Object.keys(ctl).forEach(function (x) { v[x] = ctl[x].value; });
       try { out.innerHTML = compute(v); S.tex(out); }
@@ -226,7 +227,8 @@
 
   function markerLegend(items) {
     return '<ul class="ap-legend">' + items.map(function (m) {
-      return '<li><span class="ap-legend-key">' + markerSymbol(m, 8, 8) + '</span><span>' + esc(m.name) + '</span></li>';
+      return '<li><span class="ap-legend-key"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">' +
+        markerSymbol(m, 8, 8) + '</svg></span><span>' + (m.legendHtml || esc(m.name)) + '</span></li>';
     }).join('') + '</ul>';
   }
 
@@ -244,7 +246,12 @@
     });
     uniques.sort(function (a, b) { return a - b; });
     var maxF = Math.max.apply(null, uniques.map(function (x) { return counts[String(x)]; })) || 1;
-    var body = '<line x1="' + ml + '" y1="' + (H - mb) + '" x2="' + (W - mr) + '" y2="' + (H - mb) + '" stroke="#455a64" stroke-width="2"/>';
+    var yTop = opts.title ? 38 : 20;
+    var body = '';
+    if (opts.title) {
+      body += '<text x="' + ((ml + W - mr) / 2) + '" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#263238">' + esc(opts.title) + '</text>';
+    }
+    body += '<line x1="' + ml + '" y1="' + (H - mb) + '" x2="' + (W - mr) + '" y2="' + (H - mb) + '" stroke="#455a64" stroke-width="2"/>';
     for (var t = 0; t <= 5; t++) {
       var xv = lo + (hi - lo) * t / 5, xt = scale(xv);
       body += '<line x1="' + xt + '" y1="' + (H - mb) + '" x2="' + xt + '" y2="' + (H - mb + 6) + '" stroke="#546e7a"/>' +
@@ -252,24 +259,51 @@
     }
     if (opts.band) {
       var bx1 = scale(opts.band.lo), bx2 = scale(opts.band.hi);
-      body += '<rect x="' + Math.min(bx1, bx2) + '" y="20" width="' + Math.abs(bx2 - bx1) + '" height="' + (H - mb - 20) + '" fill="#c8e6c9" opacity="0.45"/>';
-      body += '<text x="' + ((bx1 + bx2) / 2) + '" y="18" text-anchor="middle" font-size="10" fill="#2e7d32">' + esc(opts.band.label || '') + '</text>';
+      body += '<rect x="' + Math.min(bx1, bx2) + '" y="' + yTop + '" width="' + Math.abs(bx2 - bx1) + '" height="' + (H - mb - yTop) + '" fill="#c8e6c9" opacity="0.45"/>';
+      body += '<text x="' + ((bx1 + bx2) / 2) + '" y="' + (yTop - 4) + '" text-anchor="middle" font-size="10" fill="#2e7d32">' + esc(opts.band.label || '') + '</text>';
     }
     uniques.forEach(function (x) {
       for (var j = 0; j < counts[String(x)]; j++) {
         var yy = H - mb - 10 - j * ((H - mb - 30) / Math.max(1, maxF - 1));
-        body += '<circle cx="' + scale(x) + '" cy="' + yy + '" r="4" fill="#4e79a7" stroke="#1f4e79"/>';
+        body += '<circle cx="' + scale(x) + '" cy="' + yy + '" r="4.6" fill="#fff" stroke="#fff"/>';
+        body += '<circle cx="' + scale(x) + '" cy="' + yy + '" r="3.4" fill="#1f4e79" stroke="#ffffff" stroke-width="0.8"/>';
       }
-      body += '<text x="' + scale(x) + '" y="' + (H - mb + 18) + '" text-anchor="middle" font-size="10">' + fmt(x, 2) + '</text>';
     });
-    (opts.marks || []).forEach(function (m, i) {
-      var xm = scale(m.value), dash = i % 2 ? '6 3' : '3 2';
-      body += '<line x1="' + xm + '" y1="18" x2="' + xm + '" y2="' + (H - mb + 2) + '" stroke="' + m.stroke + '" stroke-width="2" stroke-dasharray="' + dash + '"/>';
-      body += markerSymbol(m, xm, 24);
-      body += '<text x="' + xm + '" y="37" text-anchor="middle" font-size="10" fill="' + m.stroke + '">' + esc(m.label) + '</text>';
+    var marks = (opts.marks || []).map(function (m, i) {
+      return {
+        idx: i,
+        value: m.value,
+        shape: m.shape,
+        stroke: m.stroke,
+        label: m.label,
+        legendHtml: m.legendHtml,
+        name: m.name,
+        xm: Math.max(ml + 12, Math.min(W - mr - 12, scale(m.value)))
+      };
+    }).sort(function (a, b) { return a.xm - b.xm; });
+    var laneRight = [0, 0, 0];
+    marks.forEach(function (m) {
+      var lane = 0;
+      while (lane < laneRight.length && m.xm - laneRight[lane] < 58) lane++;
+      if (lane >= laneRight.length) lane = laneRight.length - 1;
+      laneRight[lane] = m.xm;
+      m.lane = lane;
+      m.anchor = m.xm < ml + 50 ? 'start' : (m.xm > W - mr - 50 ? 'end' : 'middle');
     });
-    return svgWrap(body, W, H, opts.aria || 'Diagrama de puntos') + (opts.marks ? markerLegend(opts.marks.map(function (m) {
-      return { name: m.name + ' (' + m.label + ')', stroke: m.stroke, shape: m.shape };
+    marks.forEach(function (m, i) {
+      var prev = marks[i - 1], next = marks[i + 1];
+      if (prev && m.xm - prev.xm < 34) m.anchor = 'end';
+      if (next && next.xm - m.xm < 34) m.anchor = 'start';
+      var labelY = (opts.title ? 32 : 20) + m.lane * 14;
+      var tx = m.xm + (m.anchor === 'start' ? 7 : m.anchor === 'end' ? -7 : 0);
+      if (m.anchor === 'start') tx = Math.min(tx, W - mr - 8);
+      if (m.anchor === 'end') tx = Math.max(tx, ml + 8);
+      body += '<line x1="' + m.xm + '" y1="' + (yTop - 1) + '" x2="' + m.xm + '" y2="' + (H - mb + 2) + '" stroke="' + m.stroke + '" stroke-width="2.2" stroke-dasharray="4 3"/>';
+      body += markerSymbol(m, m.xm, labelY - 4);
+      body += '<text x="' + tx + '" y="' + (labelY + 10) + '" text-anchor="' + m.anchor + '" font-size="10" fill="' + m.stroke + '">' + esc(m.label) + '</text>';
+    });
+    return svgWrap(body, W, H, opts.aria || 'Diagrama de puntos') + (marks.length ? markerLegend(marks.map(function (m) {
+      return { name: m.name + ' (' + m.label + ')', legendHtml: m.legendHtml, stroke: m.stroke, shape: m.shape };
     })) : '');
   }
 
@@ -298,7 +332,7 @@
     var raw = zs.slice();
     raw.push(z);
     return dotPlot(raw, {
-      marks: [{ value: 0, label: 'media 0', name: 'Media tipificada', stroke: '#2e7d32', shape: 'square' }, { value: z, label: 'z=' + fmt(z, 2), name: 'Valor tipificado x', stroke: '#c62828', shape: 'triangle' }],
+      marks: [{ value: 0, label: 'media=0', name: 'Media tipificada', legendHtml: K('\\bar{z}=0'), stroke: '#2e7d32', shape: 'square' }, { value: z, label: 'z=' + fmt(z, 2), name: 'Valor tipificado x', legendHtml: K('z=' + fmt(z, 2)), stroke: '#c62828', shape: 'triangle' }],
       band: { lo: -1, hi: 1, label: 'zona ±1σ' },
       aria: 'Recta de puntuaciones tipificadas'
     });
@@ -306,7 +340,7 @@
 
   function empiricalBandsSvg(a, c) {
     return dotPlot(a.slice(), {
-      marks: [{ value: c.m, label: 'x̄=' + fmt(c.m, 2), name: 'Media', stroke: '#2e7d32', shape: 'square' }],
+      marks: [{ value: c.m, label: 'media=' + fmt(c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(c.m, 2)), stroke: '#2e7d32', shape: 'square' }],
       band: { lo: c.m - c.sd, hi: c.m + c.sd, label: '±1σ (68%)' },
       aria: 'Datos y banda de una desviación típica'
     });
@@ -328,11 +362,11 @@
       [{ id: 'd', label: 'Datos', rows: 3, value: '2, 0, 3, 4, 0, 1, 2, 3, 0, 2, 4, 0' }],
       function (v) {
         var c = S.calc(S.datos(v.d)), raw = rawFromFreq(c.f);
-        var marks = [{ value: c.m, label: 'x̄=' + fmt(c.m, 2), name: 'Media', stroke: '#1565c0', shape: 'circle' },
-          { value: c.med, label: 'Me=' + fmt(c.med, 2), name: 'Mediana', stroke: '#2e7d32', shape: 'square' }];
-        c.mo.forEach(function (m, i) { marks.push({ value: m, label: 'Mo=' + fmt(m, 2), name: i ? 'Moda adicional' : 'Moda', stroke: '#c62828', shape: 'triangle' }); });
+        var marks = [{ value: c.m, label: 'media=' + fmt(c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(c.m, 2)), stroke: '#1565c0', shape: 'circle' },
+          { value: c.med, label: 'mediana=' + fmt(c.med, 2), name: 'Mediana', legendHtml: K('Q_2=' + fmt(c.med, 2)), stroke: '#2e7d32', shape: 'square' }];
+        c.mo.forEach(function (m, i) { marks.push({ value: m, label: 'moda=' + fmt(m, 2), name: i ? 'Moda adicional' : 'Moda', legendHtml: K('Mo=' + fmt(m, 2)), stroke: '#c62828', shape: 'triangle' }); });
         return split(S.resumen(c) + info('La media usa todos los datos; la mediana resiste mejor los valores extremos.'),
-          dotPlot(raw, { marks: marks, aria: 'Datos con media, mediana y moda' }));
+          dotPlot(raw, { title: 'Distribución y medidas de centralización', marks: marks, aria: 'Datos con media, mediana y moda' }));
       });
   };
 
@@ -342,10 +376,10 @@
       [{ id: 'd', label: 'Datos', rows: 3, value: '2, 0, 3, 4, 0, 1, 2, 3, 0, 2, 4, 0' }],
       function (v) {
         var c = S.calc(S.datos(v.d)), raw = rawFromFreq(c.f);
-        return split('<p>Media ' + K(c.m.toFixed(2)) + ' · mediana ' + K(c.med) + ' · desviación típica ' + K(c.sd.toFixed(2)) + '</p>' +
+        return split('<p>' + K('\\bar{x}=' + fmt(c.m, 2)) + ' · ' + K('Me=' + fmt(c.med, 2)) + ' · ' + K('\\sigma=' + fmt(c.sd, 2)) + '</p>' +
           warn('Un extremo arrastra la media y aumenta la dispersión, aunque apenas cambie la mediana.'),
           dotPlot(raw, {
-            marks: [{ value: c.m, label: 'x̄=' + fmt(c.m, 2), name: 'Media', stroke: '#1565c0', shape: 'circle' }, { value: c.med, label: 'Me=' + fmt(c.med, 2), name: 'Mediana', stroke: '#2e7d32', shape: 'square' }],
+            marks: [{ value: c.m, label: 'media=' + fmt(c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(c.m, 2)), stroke: '#1565c0', shape: 'circle' }, { value: c.med, label: 'mediana=' + fmt(c.med, 2), name: 'Mediana', legendHtml: K('Me=' + fmt(c.med, 2)), stroke: '#2e7d32', shape: 'square' }],
             aria: 'Sensibilidad de media y mediana a atípicos'
           }));
       });
@@ -359,9 +393,9 @@
         var c = S.calc(S.datos(v.d)), raw = rawFromFreq(c.f);
         return split(S.resumen(c) + info('Q₁=P₂₅, Q₂=Me=P₅₀ y Q₃=P₇₅. El RIC contiene el 50 % central.'),
           dotPlot(raw, {
-            marks: [{ value: c.q1, label: 'Q1=' + fmt(c.q1, 2), name: 'Primer cuartil', stroke: '#1565c0', shape: 'circle' },
-              { value: c.med, label: 'Q2=' + fmt(c.med, 2), name: 'Mediana (Q2)', stroke: '#2e7d32', shape: 'square' },
-              { value: c.q3, label: 'Q3=' + fmt(c.q3, 2), name: 'Tercer cuartil', stroke: '#c62828', shape: 'triangle' }],
+            marks: [{ value: c.q1, label: 'Q₁=' + fmt(c.q1, 2), name: 'Primer cuartil', legendHtml: K('Q_1=' + fmt(c.q1, 2)), stroke: '#1565c0', shape: 'circle' },
+              { value: c.med, label: 'Q₂=' + fmt(c.med, 2), name: 'Mediana (Q₂)', legendHtml: K('Q_2=' + fmt(c.med, 2)), stroke: '#2e7d32', shape: 'square' },
+              { value: c.q3, label: 'Q₃=' + fmt(c.q3, 2), name: 'Tercer cuartil', legendHtml: K('Q_3=' + fmt(c.q3, 2)), stroke: '#c62828', shape: 'triangle' }],
             band: { lo: c.q1, hi: c.q3, label: '50% central (RIC)' },
             aria: 'Cuartiles sobre recta numérica'
           }));
@@ -376,7 +410,7 @@
         var c = S.calc(S.datos(v.d)), raw = rawFromFreq(c.f);
         return split(S.resumen(c) + info('El recorrido usa solo extremos; el RIC ignora la mitad exterior; σ usa todos los datos.'),
           dotPlot(raw, {
-            marks: [{ value: c.m, label: 'x̄=' + fmt(c.m, 2), name: 'Media', stroke: '#2e7d32', shape: 'square' }],
+            marks: [{ value: c.m, label: 'media=' + fmt(c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(c.m, 2)), stroke: '#2e7d32', shape: 'square' }],
             band: { lo: c.m - c.sd, hi: c.m + c.sd, label: 'intervalo ±σ' },
             aria: 'Dispersión respecto de la media'
           }));
@@ -385,14 +419,14 @@
 
   R.intervalo = function (node) {
     shell(node, 'Intervalo central',
-      'Se calcula [x̄−σ,x̄+σ] y cuántos datos caen dentro.',
+      'Se calcula ' + K('[\\bar{x}-\\sigma,\\bar{x}+\\sigma]') + ' y cuántos datos caen dentro.',
       [{ id: 'd', label: 'Datos', rows: 3, value: '2, 0, 3, 4, 0, 1, 2, 3, 0, 2, 4, 0' }],
       function (v) {
         var c = S.calc(S.datos(v.d)), lo = c.m - c.sd, hi = c.m + c.sd, raw = rawFromFreq(c.f);
         var k = raw.filter(function (x) { return x > lo && x < hi; }).length;
-        return split(S.resumen(c) + KD('[' + lo.toFixed(2) + ',\\;' + hi.toFixed(2) + ']') + '<div class="mx-ok">Dentro del intervalo: ' + k + ' de ' + c.n + ' datos (' + (100 * k / c.n).toFixed(1) + ' %).</div>',
+        return split(S.resumen(c) + KD('[' + fmt(lo, 2) + ',\\;' + fmt(hi, 2) + ']') + '<div class="mx-ok">Dentro del intervalo: ' + k + ' de ' + c.n + ' datos (' + fmt(100 * k / c.n, 1) + ' %).</div>',
           dotPlot(raw, {
-            marks: [{ value: c.m, label: 'x̄=' + fmt(c.m, 2), name: 'Media', stroke: '#2e7d32', shape: 'square' }],
+            marks: [{ value: c.m, label: 'media=' + fmt(c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(c.m, 2)), stroke: '#2e7d32', shape: 'square' }],
             band: { lo: lo, hi: hi, label: 'intervalo central' },
             aria: 'Intervalo central alrededor de la media'
           }));
@@ -527,7 +561,7 @@
       '<button class="mx-btn" type="button">Comprobar</button><button class="mx-btn mx-sec" type="button">Otro ejercicio</button></div><div class="mx-out ap-out"></div>';
     var sel = node.querySelector('select'), inp = node.querySelector('input'), btn = node.querySelectorAll('button'), out = node.querySelector('.mx-out'), actual;
     function vista(baseMsg) {
-      var marks = [{ value: actual.c.m, label: 'x̄=' + fmt(actual.c.m, 2), name: 'Media', stroke: '#1565c0', shape: 'circle' }, { value: actual.c.med, label: 'Me=' + fmt(actual.c.med, 2), name: 'Mediana', stroke: '#2e7d32', shape: 'square' }];
+      var marks = [{ value: actual.c.m, label: 'media=' + fmt(actual.c.m, 2), name: 'Media', legendHtml: K('\\bar{x}=' + fmt(actual.c.m, 2)), stroke: '#1565c0', shape: 'circle' }, { value: actual.c.med, label: 'mediana=' + fmt(actual.c.med, 2), name: 'Mediana', legendHtml: K('Me=' + fmt(actual.c.med, 2)), stroke: '#2e7d32', shape: 'square' }];
       out.innerHTML = split('<p><b>Datos:</b> ' + actual.a.join(', ') + '</p>' + baseMsg,
         dotPlot(actual.a.slice().sort(function (x, y) { return x - y; }), { marks: marks, aria: 'Datos del ejercicio del entrenador' }));
       S.tex(out);
@@ -548,7 +582,7 @@
       row('Applets registrados', Object.keys(R).length + (missing.length ? ' · faltan: ' + missing.join(', ') : ''), !missing.length) +
       row('Media de 0,1,2,3', fmt(c.m, 1), Math.abs(c.m - 1.5) < 1e-12) +
       row('Desviación típica', '' + fmt(c.sd, 6), Math.abs(c.sd - Math.sqrt(1.25)) < 1e-9) +
-      row('Cuartiles', 'Q1=' + fmt(c.q1, 2) + ', Q3=' + fmt(c.q3, 2), Number.isFinite(c.q1) && Number.isFinite(c.q3)) +
+      row('Cuartiles', 'Q₁=' + fmt(c.q1, 2) + ', Q₃=' + fmt(c.q3, 2), Number.isFinite(c.q1) && Number.isFinite(c.q3)) +
       '</tbody></table><p class="mx-mono" data-est-count>contando applets…</p>';
     setTimeout(function () { var a = document.querySelectorAll('[data-applet-est1]').length, b = document.querySelectorAll('[data-applet-est1][data-mounted="1"]').length, e = node.querySelector('[data-est-count]'); if (e) { e.textContent = 'applets en la página: ' + a + ', montados: ' + b + (a === b ? ' ✓' : ' ✗'); e.style.color = a === b ? '#1b5e20' : '#b71c1c'; e.style.fontWeight = '600'; } }, 120);
   };
