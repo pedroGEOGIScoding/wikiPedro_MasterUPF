@@ -1,0 +1,146 @@
+---
+title: "Tema 1.1 Introducción y variables estadísticas"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 1 de 8)"
+filename: 01-introduccion-variables
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La estadística unidimensional estudia una característica de cada individuo. Esta primera parte fija el vocabulario imprescindible: población, individuo, muestra, carácter, modalidad y tipos de variables estadísticas.
+categories: [estadística, estadística unidimensional, población, muestra, variables estadísticas, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La pregunta de todo el tema
+
+La estadística estudia cómo **recoger, ordenar, analizar e interpretar datos**. En este tema aprenderás estadística descriptiva: convertir una lista desordenada de valores en una tabla, unos gráficos y unos números que permitan entenderla.
+
+La secuencia es siempre la misma:
+
+1. Decidir qué se está estudiando y qué tipo de dato es.
+2. Ordenar y contar los datos en una tabla de frecuencias.
+3. Resumirlos con parámetros y gráficos.
+4. Interpretar el resultado con sentido crítico.
+
+::: {.callout-important}
+## Un cálculo correcto puede dar una conclusión mala
+
+La media, la mediana o un gráfico no «hablan solos». Solo tienen significado si sabes qué población se estudió, qué variable se midió y cómo se recogieron los datos.
+
+Una media de 5 horas diarias de móvil no significa que todos usen el móvil cinco horas. Puede ocultar un grupo grande de una hora y otro pequeño de doce. Por eso este tema no consiste en aplicar fórmulas: consiste en **describir datos sin engañarte**.
+:::
+
+## Dos ramas de la estadística
+
+La **estadística descriptiva** recoge, organiza, visualiza y resume los datos observados. Sus resúmenes pueden ser numéricos, como la media o la desviación típica, y gráficos, como un histograma o un diagrama de caja.
+
+La **inferencia estadística** usa una muestra para extraer conclusiones sobre toda una población, incorporando azar e incertidumbre. Los intervalos de confianza y los contrastes de hipótesis pertenecen a esa rama y aparecerán en temas posteriores.
+
+::: {.callout-note}
+## El nombre tiene historia
+
+«Estadística» procede de términos relacionados con el Estado. Durante siglos la recogida de datos se vinculó a censos, impuestos y administración pública. Hoy sigue existiendo esa función, pero la estadística se usa también en salud, deporte, economía, ciencias sociales, empresas e inteligencia artificial.
+:::
+
+## Población, individuo y muestra
+
+| Concepto | Significado | Ejemplo: uso del móvil entre adolescentes catalanes |
+|---|---|---|
+| Población | Conjunto total sobre el que queremos concluir | Todos los adolescentes catalanes |
+| Individuo | Cada elemento de la población | Una adolescente o un adolescente concreto |
+| Tamaño | Número de individuos de la población, escrito normalmente \(N\) | Número total de adolescentes |
+| Muestra | Subconjunto que observamos | Las 1000 personas encuestadas |
+| Tamaño muestral | Número de individuos de la muestra, escrito \(n\) | \(n=1000\) |
+| Carácter estadístico | Propiedad estudiada en cada individuo | Tiempo diario de uso del móvil |
+
+::: {.callout-tip}
+## La población no tiene por qué ser personas
+
+Puede estar formada por hogares, coches, empresas, hospitales, partidos, árboles, llamadas telefónicas o incluso opiniones. «Individuo» significa aquí un elemento de estudio, no necesariamente una persona.
+:::
+
+### Ejercicio para pensar
+
+Queremos conocer el tiempo medio de sueño de los estudiantes de 2.º de Bachillerato de un centro.
+
+- ¿Cuál es la población?
+- ¿Quién es un individuo?
+- ¿Cuál es el carácter estadístico?
+- Si encuestamos a 30 estudiantes elegidos al azar, ¿cuál es la muestra?
+- ¿Sería representativa una encuesta hecha solo al alumnado que llega tarde?
+
+::: {.callout-warning}
+## Tamaño no equivale a representatividad
+
+Una muestra enorme puede ser mala si está sesgada. Preguntar a 5000 seguidores de una cuenta de videojuegos no permite describir a todos los adolescentes.
+
+Y una muestra de menor tamaño puede ser útil si se ha elegido de forma aleatoria y representa la diversidad de la población. En estadística importa cuánta información se obtiene y también **de quién** se obtiene.
+:::
+
+## Caracteres y variables
+
+Un **carácter estadístico** es la propiedad que se observa. Sus posibles presentaciones se llaman **modalidades**.
+
+Si el carácter se expresa numéricamente, se llama **variable estadística** y cada modalidad es un valor.
+
+### Variables cualitativas
+
+Describen categorías, no cantidades medibles directamente.
+
+- **Nominales**: no tienen orden natural. Ejemplos: nacionalidad, color de pelo o equipo favorito.
+- **Ordinales**: sus categorías admiten orden. Ejemplos: nivel de satisfacción bajo, medio y alto; calificación insuficiente, suficiente, bien, notable y sobresaliente.
+- **Dicotómicas**: tienen dos modalidades. Ejemplos: sí/no, aprobado/suspenso.
+
+### Variables cuantitativas
+
+Se expresan con números porque se cuentan o se miden.
+
+- **Discretas**: entre dos valores consecutivos no hay valores intermedios. Normalmente proceden de contar: número de hermanos, goles, coches por familia o páginas de un libro.
+- **Continuas**: pueden tomar cualquier valor intermedio en un intervalo. Normalmente proceden de medir: estatura, peso, temperatura, tiempo o distancia.
+
+::: {.callout-important}
+## La misma realidad puede producir dos variables distintas
+
+«Edad» es continua si se mide con precisión: 16,2 años, 16,25 años, 16,251 años.
+
+«Edad en años cumplidos» es discreta: 16, 17, 18… La diferencia no está en la persona, sino en **cómo se registra** el dato. Al redondear se pierde información, y a veces esa pérdida es irrelevante; otras, como en medicina o deporte, no.
+:::
+
+### Applet · Clasificador de variables {.unnumbered}
+
+<div data-applet-est1="clasificador"></div>
+
+## Estadística unidimensional
+
+Una variable es **unidimensional** cuando estudiamos una sola característica de cada individuo. Por ejemplo, el número de goles de un equipo en sus partidos, el peso de una muestra de atunes o las horas de estudio de una clase.
+
+Se representa mediante una letra, habitualmente \(X\), y queda determinada por los datos:
+
+\[
+X=(x_1,x_2,\ldots,x_n)
+\]
+
+El siguiente tema añadirá una segunda característica y trabajará con parejas \((x_i,y_i)\). Aquí nos concentramos en entender muy bien una sola.
+
+## Actividades
+
+**1.** Clasifica: nacionalidad, nota de un examen, calificación cualitativa del curso, número de vecinos de un edificio, tiempo diario de televisión, contenido de una botella de agua y edad en años cumplidos.
+
+**2.** En una investigación sobre consumo de café entre estudiantes, identifica población, individuo, carácter, modalidad y una muestra posible.
+
+**3.** Explica por qué «número de libros leídos el último año» es discreta, aunque una persona pueda haber leído solo parte de un libro.
+
+**4.** Inventa una variable cualitativa nominal, una ordinal, una cuantitativa discreta y una continua relacionadas con tu instituto.
+
+## Continúa
+
+La parte 2 transforma los datos en la herramienta básica de la estadística descriptiva: la **tabla de frecuencias**.
