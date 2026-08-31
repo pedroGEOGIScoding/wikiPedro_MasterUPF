@@ -1,0 +1,192 @@
+---
+title: "Tema 3.5 Regla de Cramer"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 5 de 9)"
+filename: 05-regla-de-cramer
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La regla de Cramer da cada incógnita como un cociente de determinantes, sin escalonar y sin depender de las demás. Exige tantas ecuaciones como incógnitas y determinante no nulo, y su gran ventaja es que se puede calcular una sola incógnita si es lo único que se pide.
+categories: [sistemas de ecuaciones, regla de Cramer, determinantes, sistema de Cramer, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Una fórmula para cada incógnita
+
+Gauss obtiene las incógnitas en cadena: primero la última, y con ella la anterior. Cramer hace algo distinto: da **una fórmula independiente para cada una**.
+
+Eso tiene una consecuencia muy práctica. Si un examen pide solo el valor de $z$, con Cramer calculas dos determinantes y has terminado. Con Gauss tendrías que resolver el sistema completo.
+
+## El enunciado
+
+Dado un sistema de $n$ ecuaciones con $n$ incógnitas, si el determinante de la matriz de coeficientes es **distinto de cero**, entonces el sistema es compatible determinado y su solución es [cite:file:245]:
+
+$$
+x_i = \frac{|A_i|}{|A|}
+$$
+
+donde $A_i$ es la matriz que resulta de **sustituir en $A$ la columna de los coeficientes de $x_i$ por la columna de los términos independientes** [cite:file:245].
+
+::: {.callout-important}
+## Las dos condiciones, y por qué basta con ellas
+
+**Tantas ecuaciones como incógnitas**, para que $A$ sea cuadrada y tenga determinante.
+
+**$|A| \neq 0$**, para poder dividir.
+
+Y fíjate en lo que se deduce gratis: si $|A| \neq 0$, entonces $\operatorname{rg}(A) = \operatorname{rg}(A^{*}) = n$ y, por Rouché-Frobenius, el sistema es **compatible determinado** [cite:file:245]. La propia condición de Cramer garantiza que la solución existe y es única.
+
+A los sistemas que cumplen las dos condiciones se les llama **sistemas de Cramer**.
+:::
+
+### Applet · ¿Se puede aplicar Cramer? {.unnumbered}
+
+<div data-applet-sis="cramercheck"></div>
+
+## De dónde sale la fórmula
+
+No es un conjuro. Sale de resolver el sistema con la matriz inversa, que ya vimos en la parte 2 [cite:file:245].
+
+Partiendo de $X = A^{-1}B$ y sustituyendo $A^{-1}$ por su expresión con la adjunta traspuesta:
+
+$$
+x_i = \frac{A_{1i}b_1 + A_{2i}b_2 + \cdots + A_{ni}b_n}{|A|}
+$$
+
+Y el numerador es exactamente el **desarrollo por adjuntos** de un determinante: el de la matriz $A$ con su columna $i$ sustituida por los $b$ [cite:file:245].
+
+::: {.callout-note}
+## El tema 2 trabajando para el tema 3
+
+Ahí está la conexión. El desarrollo por adjuntos, que en el tema anterior parecía una técnica de cálculo, es lo que hace que la regla de Cramer funcione.
+
+Si en su momento te preguntaste para qué servía desarrollar un determinante por una fila, esta es la respuesta.
+:::
+
+## Ejemplo desarrollado del libro
+
+Resolvamos con Cramer
+
+$$
+\left\{\begin{aligned} 2x-3y+z &= -2 \\ -2x-2z &= 0 \\ 3x-2y-3z &= 4 \end{aligned}\right.
+$$
+
+**Paso 1.** Comprobamos las condiciones. Hay tres ecuaciones y tres incógnitas, y el determinante de la matriz de coeficientes vale $|A| = 32 \neq 0$. Se puede aplicar [cite:file:245].
+
+**Paso 2.** Calculamos un determinante por incógnita, sustituyendo la columna correspondiente:
+
+$$
+|A_x| = \begin{vmatrix} \mathbf{-2} & -3 & 1 \\ \mathbf{0} & 0 & -2 \\ \mathbf{4} & -2 & -3 \end{vmatrix} = 32
+$$
+
+y análogamente $|A_y| = 32$ y $|A_z| = -32$ [cite:file:245].
+
+**Paso 3.** Dividimos:
+
+$$
+x = \frac{32}{32} = 1, \qquad y = \frac{32}{32} = 1, \qquad z = \frac{-32}{32} = -1
+$$
+
+::: {.callout-tip}
+## El denominador es siempre el mismo
+
+$|A|$ se calcula **una sola vez** y sirve para todas las incógnitas. Lo que cambia de una a otra es solo el numerador.
+
+Ese detalle, además de ahorrar trabajo, es una comprobación: si en algún momento te sale un denominador distinto para dos incógnitas, has cometido un error.
+:::
+
+::: {.callout-warning}
+## Los dos errores clásicos
+
+**Sustituir la columna equivocada.** Para $y$ se cambia la **segunda** columna, no la primera. Parece obvio y es el fallo más frecuente, sobre todo con cuatro incógnitas.
+
+**Olvidar comprobar $|A| \neq 0$ antes de empezar.** Si el determinante es cero, todos los cocientes son inválidos y el trabajo está perdido. Calcula $|A|$ **primero**, siempre.
+:::
+
+### Applet · Regla de Cramer {.unnumbered}
+
+<div data-applet-sis="cramer"></div>
+
+## Cuándo elegir Cramer y cuándo Gauss
+
+| Situación | Método recomendado |
+|---|---|
+| Piden solo una incógnita | Cramer, sin duda |
+| Sistema $2\times 2$ o $3\times 3$ con números cómodos | Cramer |
+| Sistema con fracciones incómodas | Gauss |
+| Sistema no cuadrado | Gauss, o Cramer generalizado |
+| Hay que **discutir**, no solo resolver | Rouché-Frobenius |
+| Sistema $4\times 4$ o mayor | Gauss |
+
+::: {.callout-note}
+## Un cálculo que conviene hacer
+
+Para un sistema $3\times 3$, Cramer exige **cuatro** determinantes de orden 3. Cada uno son seis productos de tres factores por Sarrus, así que unas setenta multiplicaciones en total.
+
+Gauss, en el mismo sistema, ronda las veinte operaciones. Cramer es más elegante y más mecánico, pero no más rápido. Su ventaja real es otra: la independencia de cada incógnita.
+:::
+
+## Actividades propuestas
+
+**1.** Evalúa si se puede aplicar la regla de Cramer en estos sistemas y, si es posible, resuélvelos [cite:file:245]:
+
+$$
+\text{a) } \left\{\begin{aligned} x+y+z &= -2 \\ -y+z &= -4 \\ -2x+z &= -3 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x+2y+z+t &= 0 \\ x-3y+z-2t &= -2 \\ -2y+3t &= -3 \end{aligned}\right.
+$$
+
+**2.** Resuelve por Cramer [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} 2x+y &= 2 \\ -3x-2y &= -1 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} 2a-3b &= 6 \\ -a+5b &= -3 \end{aligned}\right.
+$$
+
+**3.** Resuelve por Cramer, si es posible [cite:file:245]:
+
+$$
+\left\{\begin{aligned} -x+2y-z &= 2 \\ x-y+2z &= 1 \\ -2x+z &= -1 \end{aligned}\right.
+$$
+
+**4.** Escribe dos sistemas de ecuaciones lineales en los que se pueda aplicar Cramer y que cumplan: el primero, tener **tres** ecuaciones; el segundo, tener **cuatro** incógnitas [cite:file:245].
+
+**5.** En el sistema de la actividad 3, calcula **solo** el valor de $z$, sin resolver el resto. Compara el trabajo con haberlo resuelto entero.
+
+**6.** Si en un sistema de Cramer todos los términos independientes son cero, ¿qué solución da la regla? Razónalo mirando los numeradores.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** En a hay tres ecuaciones y tres incógnitas; calcula $|A|$ y, si no se anula, aplica Cramer. En b hay **tres** ecuaciones y **cuatro** incógnitas, así que $A$ no es cuadrada y Cramer directo **no se puede aplicar**: habrá que esperar a la parte 6.
+
+**2.** En a, $|A| = -1$, y la solución es $x=3$, $y=-4$. En b, $|A| = 7$, y sale $a=3$, $b=0$. Comprueba las dos sustituyendo.
+
+**3.** Calcula primero $|A|$. Si no se anula, los tres cocientes dan la solución. El applet muestra los cuatro determinantes con la columna sustituida marcada.
+
+**4.** Para el primero, cualquier sistema $3\times 3$ con determinante no nulo, por ejemplo con matriz identidad ampliada. Para el segundo, hacen falta **cuatro** ecuaciones además de las cuatro incógnitas: la condición de Cramer es que haya tantas de unas como de otras.
+
+Este ejercicio comprueba si has entendido la condición, no si sabes calcular.
+
+**5.** Solo hacen falta dos determinantes: $|A|$ y $|A_z|$. Frente a los cuatro que exigiría el sistema completo, es la mitad del trabajo.
+
+Esta es la ventaja real de Cramer, y la razón de que siga usándose habiendo métodos más rápidos.
+
+**6.** Todos los numeradores tienen una columna **entera de ceros**, así que todos los determinantes $|A_i|$ valen cero. Por tanto la solución es $x_1 = x_2 = \cdots = 0$: la **solución trivial**.
+
+Y es coherente: un sistema con todos los términos independientes nulos es homogéneo, y si además es de Cramer, la trivial es su única solución. De eso trata la parte 7.
+:::
+
+## Continúa
+
+Cramer parecía limitado a sistemas cuadrados con determinante no nulo. La parte 6 rompe esa limitación con una idea sencilla: **convertir cualquier sistema compatible en uno de Cramer**.

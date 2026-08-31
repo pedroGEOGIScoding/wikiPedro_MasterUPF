@@ -1,0 +1,203 @@
+---
+title: "Tema 3.2 Expresión matricial de un sistema"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 2 de 9)"
+filename: 02-expresion-matricial
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Todo sistema de ecuaciones lineales se resume en la expresión AX=B, con la matriz de coeficientes, la de incógnitas y la de términos independientes. Cuando A tiene inversa, el sistema se resuelve despejando X como en una ecuación de primer grado.
+categories: [sistemas de ecuaciones, expresión matricial, matriz ampliada, matriz inversa, AX=B, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué conviene pasar a matrices
+
+En el tema 1 vimos que una igualdad entre matrices condensa muchas ecuaciones a la vez. Ahora vamos a usar eso al revés: **convertir un sistema en una sola igualdad matricial**.
+
+La ventaja no es solo estética. Una buena idea es sustituir los sistemas por sus coeficientes y trabajar con matrices; y otra buena idea es simplificar esas matrices consiguiendo que muchos coeficientes sean nulos, que es en lo que va a consistir el método de Gauss [cite:file:250].
+
+## Las tres matrices
+
+Dado un sistema de $m$ ecuaciones con $n$ incógnitas, se definen tres matrices [cite:file:245]:
+
+$$
+\underbrace{\begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}}_{A,\ \text{coeficientes}}
+\cdot
+\underbrace{\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}}_{X,\ \text{incógnitas}}
+=
+\underbrace{\begin{pmatrix} b_1 \\ \vdots \\ b_m \end{pmatrix}}_{B,\ \text{términos independientes}}
+$$
+
+Y el sistema completo se resume en
+
+$$
+A\cdot X = B
+$$
+
+::: {.callout-important}
+## Comprueba que el producto reproduce el sistema
+
+No te creas la fórmula: multiplica. Al hacer $A\cdot X$ obtienes una matriz columna cuya primera fila es exactamente $a_{11}x_1 + \cdots + a_{1n}x_n$, es decir, el miembro izquierdo de la primera ecuación.
+
+Igualarla a $B$ significa igualar fila a fila, y eso son las $m$ ecuaciones del sistema. La expresión matricial no es una notación caprichosa: es **el mismo sistema** escrito de otra manera.
+:::
+
+## La matriz ampliada
+
+Se llama **matriz ampliada** del sistema, y se escribe $A^{*}$, a la matriz formada por los coeficientes de las incógnitas **y** los términos independientes de cada ecuación [cite:file:245]:
+
+$$
+A^{*} = \left(\begin{array}{ccc|c} a_{11} & \cdots & a_{1n} & b_1 \\ \vdots & \ddots & \vdots & \vdots \\ a_{m1} & \cdots & a_{mn} & b_m \end{array}\right)
+$$
+
+La línea vertical no es obligatoria, pero conviene dibujarla: recuerda que la última columna juega un papel distinto.
+
+::: {.callout-note}
+## La matriz ampliada es la protagonista del tema
+
+Sobre ella se trabaja en Gauss, y su rango es la mitad del teorema de Rouché-Frobenius. Es, con diferencia, el objeto que más vas a manejar en las nueve partes.
+
+Y fíjate en un detalle que usaremos mucho: $A^{*}$ tiene exactamente **una columna más** que $A$. Por eso su rango solo puede ser igual al de $A$ o uno más. No hay otra posibilidad.
+:::
+
+### Applet · Expresión matricial {.unnumbered}
+
+<div data-applet-sis="matricial"></div>
+
+## Resolver despejando X
+
+Si el sistema se escribe $AX = B$, es tentador despejar $X$ como en una ecuación de primer grado. Y se puede, con dos condiciones:
+
+$$
+AX = B \;\Longrightarrow\; A^{-1}AX = A^{-1}B \;\Longrightarrow\; IX = A^{-1}B \;\Longrightarrow\; \boxed{X = A^{-1}B}
+$$
+
+::: {.callout-important}
+## Las dos condiciones, y lo que significan
+
+Para que exista $A^{-1}$ hacen falta dos cosas [cite:file:250]:
+
+**Que $A$ sea cuadrada**, es decir, que el sistema tenga **tantas ecuaciones como incógnitas**.
+
+**Que $|A| \neq 0$**, es decir, que las ecuaciones sean linealmente independientes.
+
+Y esas condiciones no son un tecnicismo. Nos están diciendo algo sobre el sistema: para que tenga solución única, el número de ecuaciones **linealmente independientes** debe coincidir con el número de incógnitas [cite:file:250].
+:::
+
+### Ejemplo del libro
+
+Resolvamos matricialmente
+
+$$
+\left\{\begin{aligned} x+y-z &= 0 \\ -2x-y+z &= -1 \\ x-y+2z &= 0 \end{aligned}\right.
+$$
+
+La matriz de coeficientes tiene determinante $|A| = 1 \neq 0$, así que existe $A^{-1}$ [cite:file:245]. Calculándola y multiplicando:
+
+$$
+X = A^{-1}B = \begin{pmatrix} -1 & -1 & 0 \\ 5 & 3 & 1 \\ 3 & 2 & 1 \end{pmatrix}\begin{pmatrix} 0 \\ -1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ -3 \\ -2 \end{pmatrix}
+$$
+
+Luego $x=1$, $y=-3$, $z=-2$ [cite:file:245].
+
+::: {.callout-warning}
+## Cuidado con el orden y con el determinante
+
+Es $X = A^{-1}B$, con la inversa **a la izquierda**. Escribir $BA^{-1}$ daría otra cosa, o directamente no existiría, porque las dimensiones no encajan.
+
+Y si $|A| = 0$, este método **no se puede aplicar**. Eso no significa que el sistema no tenga solución: puede ser incompatible o compatible indeterminado. Para saberlo hacen falta Gauss o Rouché-Frobenius, y de ahí que este método sea el más limitado de los tres del tema.
+:::
+
+### Applet · Resolver con la matriz inversa {.unnumbered}
+
+<div data-applet-sis="inversamat"></div>
+
+## Comparación con los otros métodos
+
+| Método | Cuándo sirve | Ventaja |
+|---|---|---|
+| Matriz inversa | Solo si $A$ es cuadrada y $\lvert A\rvert \neq 0$ | Elegante y directo |
+| Gauss | **Siempre** | Además clasifica el sistema |
+| Cramer | Cuadrado con $\lvert A\rvert \neq 0$, o generalizado | Da cada incógnita por separado |
+
+::: {.callout-tip}
+## Cuándo elegir la matriz inversa
+
+Casi nunca, si el objetivo es solo resolver: calcular una inversa de orden 3 cuesta más que escalonar.
+
+Pero hay un caso en que es la mejor opción: cuando tienes que resolver **varios sistemas con la misma matriz $A$** y distintos términos independientes. Calculas $A^{-1}$ una vez y luego solo multiplicas. Es exactamente lo que hace un ordenador cuando resuelve el mismo modelo con datos nuevos.
+:::
+
+## Actividades propuestas
+
+**1.** Escribe mediante ecuaciones el sistema cuya expresión matricial es [cite:file:245]:
+
+$$
+\begin{pmatrix} 1 & 2 & -1 \\ 1 & -2 & 1 \\ 0 & -2 & 0 \end{pmatrix}\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \\ -2 \end{pmatrix}
+$$
+
+**2.** Determina la expresión matricial de este sistema y resuélvelo como una ecuación matricial [cite:file:245]:
+
+$$
+\left\{\begin{aligned} -3x+y+2z &= 0 \\ -x-2y+z &= -2 \\ x-y+z &= 1 \end{aligned}\right.
+$$
+
+**3.** Escribe en forma matricial [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} x+2y-3z &= -2 \\ -x-y+2z &= 3 \\ 3y-5z &= 0 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} 6x+y &= 15 \\ 2x-3y &= 8 \end{aligned}\right.
+$$
+
+**4.** Resuelve mediante la matriz inversa [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} 2x-y &= 0 \\ -5x+3y &= -1 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x-4y &= 10 \\ -2x+5y &= -11 \end{aligned}\right.
+$$
+
+**5.** ¿Puede resolverse por el método de la matriz inversa un sistema de dos ecuaciones y tres incógnitas? Razona la respuesta.
+
+**6.** Un sistema $MX = N$ tiene tres incógnitas y se sabe que $\operatorname{rg}(M) = 2$. ¿Puede tener solución única? [cite:file:250]
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** El sistema es
+
+$$
+\left\{\begin{aligned} x+2y-z &= 1 \\ x-2y+z &= 0 \\ -2y &= -2 \end{aligned}\right.
+$$
+
+Fíjate en la tercera ecuación: los ceros de la matriz significan que $x$ y $z$ **no aparecen** en ella. Es el error de lectura más común.
+
+**2.** El determinante de la matriz de coeficientes no se anula, así que existe la inversa y el sistema tiene solución única. Compruébala con el applet, que muestra la inversa y la verificación.
+
+**3.** En a la matriz de coeficientes es $\begin{pmatrix} 1&2&-3 \\ -1&-1&2 \\ 0&3&-5 \end{pmatrix}$ y en b es $\begin{pmatrix} 6&1 \\ 2&-3 \end{pmatrix}$. Cuidado en a con la tercera ecuación: el coeficiente de $x$ es **cero**, no se omite.
+
+**4.** En a, $|A| = 1$ y la solución es $x=-1$, $y=-2$. En b, $|A| = -3$ y la solución es $x=-2$, $y=-3$. Comprueba las dos sustituyendo.
+
+**5.** No. Con dos ecuaciones y tres incógnitas la matriz $A$ es $2\times 3$, no es cuadrada y por tanto no tiene inversa. El método exige el mismo número de ecuaciones que de incógnitas [cite:file:250].
+
+Y hay una razón de fondo: con menos ecuaciones que incógnitas el sistema, si es compatible, tiene **infinitas** soluciones, y una única matriz $X$ no podría representarlas todas.
+
+**6.** No puede tener solución única. Si el rango de $M$ es 2 y hay tres incógnitas, el rango es menor que el número de incógnitas, así que el sistema es incompatible o compatible indeterminado.
+
+La justificación completa la tendrás en la parte 4, con Rouché-Frobenius.
+:::
+
+## Continúa
+
+La parte 3 presenta el método que sí funciona **siempre**, sin condiciones: el **método de Gauss**.

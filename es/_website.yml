@@ -258,6 +258,17 @@ website:
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/04-desarrollo-por-adjuntos.qmd
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/05-rango-por-menores.qmd
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/06-inversa-con-determinantes.qmd
+            - section: "Tema 3 Sistemas de ecuaciones"
+              contents:
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/01-sistemas-ecuaciones-lineales.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/02-expresion-matricial.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/03-metodo-de-gauss.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/04-teorema-rouche-frobenius.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/05-regla-de-cramer.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/06-generalizacion-de-cramer.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/07-sistemas-homogeneos.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/08-sistemas-con-parametros.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas/09-resolucion-de-problemas.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

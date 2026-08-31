@@ -1,0 +1,209 @@
+---
+title: "Tema 3.6 Generalización de la regla de Cramer"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 6 de 9)"
+filename: 06-generalizacion-de-cramer
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La regla de Cramer sirve para cualquier sistema compatible, sin importar el número de ecuaciones ni de incógnitas. La clave es quedarse con tantas ecuaciones como indique el rango y pasar al segundo miembro las incógnitas que sobran, convirtiéndolas en parámetros.
+categories: [sistemas de ecuaciones, Cramer generalizado, compatible indeterminado, parámetros, menor no nulo, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Levantar la restricción
+
+La regla de Cramer, tal como la vimos, solo servía para sistemas cuadrados con determinante no nulo. Ahora vamos a ver que sirve para **cualquier sistema compatible**, sin tener en cuenta el número de ecuaciones ni de incógnitas [cite:file:245].
+
+Y no hace falta ningún teorema nuevo. Solo una idea: si el sistema no es de Cramer, **lo convertimos** en uno que sí lo sea.
+
+## La estrategia, en tres pasos
+
+::: {.callout-important}
+## Los tres pasos del método
+
+**Paso 1.** Comprobar con Rouché-Frobenius que el sistema es **compatible**, y calcular el rango $r$.
+
+**Paso 2.** Quedarse con $r$ ecuaciones, las que forman un menor no nulo de orden $r$, y **descartar** las demás: son combinación de esas y no aportan nada.
+
+**Paso 3.** Pasar al **segundo miembro** las incógnitas que sobran, tratándolas como si fueran números. Lo que queda es un sistema de Cramer de $r\times r$, y se resuelve como tal [cite:file:245].
+:::
+
+Al final, la solución depende de las incógnitas que pasaron al otro lado, que se convierten en los parámetros.
+
+## Ejemplo desarrollado del libro
+
+Resolvamos
+
+$$
+\left\{\begin{aligned} 3x+y-z &= 2 \\ -2x+y-z &= 1 \\ x+2y-2z &= 3 \end{aligned}\right.
+$$
+
+**Paso 1.** El determinante de la matriz de coeficientes vale cero, así que no es un sistema de Cramer. Pero encontramos un menor de orden 2 no nulo:
+
+$$
+\begin{vmatrix} 3 & 1 \\ -2 & 1 \end{vmatrix} = 5 \neq 0
+$$
+
+y todos los menores de orden 3 se anulan. Luego $\operatorname{rg}(A) = \operatorname{rg}(A^{*}) = 2 < 3$ incógnitas: el sistema es **compatible indeterminado** [cite:file:245].
+
+**Paso 2.** El menor no nulo lo forman las dos primeras ecuaciones y las columnas de $x$ e $y$. Nos quedamos con esas dos ecuaciones y eliminamos la tercera.
+
+**Paso 3.** Pasamos $z$ al segundo miembro:
+
+$$
+\left\{\begin{aligned} 3x+y &= 2+z \\ -2x+y &= 1+z \end{aligned}\right.
+$$
+
+Y ahora sí es un sistema de Cramer de orden 2, con determinante $5$. Aplicando la regla:
+
+$$
+x = \frac{1}{5}, \qquad y = \frac{5z+7}{5}
+$$
+
+**La solución** es, con $z = \lambda$ tomando cualquier valor real [cite:file:245]:
+
+$$
+\left\{\begin{aligned} x &= \tfrac{1}{5} \\ y &= \tfrac{5\lambda+7}{5} \\ z &= \lambda \end{aligned}\right.
+$$
+
+::: {.callout-note}
+## Fíjate en lo que ha pasado con x
+
+La incógnita $x$ vale $1/5$ **siempre**, independientemente del parámetro. Aunque el sistema tenga infinitas soluciones, hay una parte de la respuesta que está completamente determinada.
+
+Eso ocurre a menudo y desconcierta: «si hay infinitas soluciones, ¿cómo puede $x$ tener un valor fijo?». La respuesta es que las infinitas soluciones se diferencian solo en $y$ y $z$, no en $x$.
+:::
+
+## La condición al elegir
+
+::: {.callout-warning}
+## No vale cualquier elección de parámetros
+
+Las incógnitas que se quedan en el primer miembro deben formar un menor **distinto de cero**. Si eliges mal, el sistema reducido no tiene solución única y el método se atasca.
+
+En el ejemplo anterior nos quedamos con $x$ e $y$ porque el menor de sus columnas valía $5$. Si hubiéramos intentado quedarnos con $y$ y $z$, el menor correspondiente es
+
+$$
+\begin{vmatrix} 1 & -1 \\ 1 & -1 \end{vmatrix} = 0
+$$
+
+y no habría funcionado. La elección **no es libre**: hay que comprobar el menor.
+:::
+
+::: {.callout-tip}
+## Cómo elegir bien a la primera
+
+Busca el menor de orden $r$ **más sencillo posible** que no se anule, con unos y ceros si los hay. Las incógnitas de sus columnas son las que se quedan; las demás, al segundo miembro.
+
+Y una vez elegido, no lo cambies a mitad del ejercicio: rehacer el planteamiento es la forma más rápida de mezclar signos.
+:::
+
+### Applet · Cramer generalizado {.unnumbered}
+
+<div data-applet-sis="cramergen"></div>
+
+## Cuando hay más incógnitas que ecuaciones
+
+El método vale igual, y la fuente lo ilustra con un caso llamativo [cite:file:225]. En un sistema de **dos** ecuaciones con **tres** incógnitas:
+
+$$
+\left\{\begin{aligned} 2x+y+z &= 3 \\ 3x+2y+4z &= 0 \end{aligned}\right.
+$$
+
+A priori no se podría aplicar Cramer, porque la matriz de coeficientes es $2\times 3$ y no tiene determinante [cite:file:225]. Pero llamando $z = \lambda$ y pasándola al otro lado:
+
+$$
+\left\{\begin{aligned} 2x+y &= 3-\lambda \\ 3x+2y &= -4\lambda \end{aligned}\right.
+$$
+
+Ya es cuadrado, y Cramer funciona. La solución depende de $\lambda$, y el conjunto de soluciones forma una **recta** en el espacio [cite:file:225].
+
+::: {.callout-note}
+## Y con cuatro incógnitas, dos parámetros
+
+Si el sistema tiene dos ecuaciones y cuatro incógnitas, pasan dos incógnitas al segundo miembro y la solución depende de **dos** parámetros [cite:file:225].
+
+La estructura es la misma, solo cambia la dimensión. Y es el mismo recuento de la parte 4: número de parámetros igual a incógnitas menos rango.
+:::
+
+## Cuándo usar cada cosa, resumen del tema hasta aquí
+
+| Sistema | Método más práctico |
+|---|---|
+| Cuadrado con $\lvert A\rvert \neq 0$ | Cramer directo, o Gauss |
+| Cuadrado con $\lvert A\rvert = 0$ | Rouché-Frobenius para clasificar, luego Gauss o Cramer generalizado |
+| No cuadrado | Rouché-Frobenius y después Cramer generalizado o Gauss |
+| Piden una sola incógnita | Cramer, en cualquiera de sus formas |
+| Hay parámetros | Rouché-Frobenius para discutir, Cramer para resolver |
+
+## Actividades propuestas
+
+**1.** Resuelve mediante la regla de Cramer generalizada [cite:file:245]:
+
+$$
+\text{a) } \left\{\begin{aligned} 3x+2y-3z &= 0 \\ x-y+4z &= 1 \\ 2x+3y-7z &= -1 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x+y-z &= 0 \\ x-y+z &= 1 \\ 2x+4y-4z &= -1 \end{aligned}\right.
+$$
+
+**2.** Resuelve con Cramer este sistema de cuatro incógnitas [cite:file:245]:
+
+$$
+\left\{\begin{aligned} 2x+y-3z+2t &= 4 \\ -x-3y+z-2t &= 0 \\ x-2y-2z &= 4 \\ 3x+4y-4z+4t &= 4 \end{aligned}\right.
+$$
+
+**3.** Resuelve por Cramer el sistema de dos ecuaciones y tres incógnitas [cite:file:225]:
+
+$$
+\left\{\begin{aligned} 2x+y+z &= 3 \\ 3x+2y+4z &= 0 \end{aligned}\right.
+$$
+
+**4.** En el sistema de la actividad 3, comprueba qué ocurre si intentas pasar $x$ al segundo miembro en lugar de $z$. ¿Funciona? ¿Por qué?
+
+**5.** Un sistema tiene cuatro ecuaciones, tres incógnitas y rango 2. ¿Cuántas ecuaciones puedes descartar? ¿De cuántos parámetros dependerá la solución?
+
+**6.** Resuelve por Cramer generalizado y expresa la solución de **dos formas distintas**, eligiendo parámetros diferentes:
+
+$$
+\left\{\begin{aligned} x+y+z &= 3 \\ x-y &= 1 \end{aligned}\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** En los dos apartados hay que empezar comprobando el rango. Si sale 2 con tres incógnitas, el sistema es compatible indeterminado y la solución depende de un parámetro. El applet muestra el rango, los pivotes y la solución paramétrica.
+
+**2.** Cuatro ecuaciones y cuatro incógnitas, así que primero comprueba si $|A| \neq 0$. Si se anula, hay que calcular el rango y aplicar la generalización.
+
+**3.** Con $z=\lambda$ queda un sistema $2\times 2$ de determinante $1$. Resolviendo, $x = 6-2\lambda$ y $y = -9+3\lambda$, o expresiones equivalentes según cómo se ordene [cite:file:225].
+
+**4.** También funciona, siempre que el menor de las columnas de $y$ y $z$ no se anule. Compruébalo:
+
+$$
+\begin{vmatrix} 1 & 1 \\ 2 & 4 \end{vmatrix} = 2 \neq 0
+$$
+
+Sí se puede. Y obtendrás una expresión con aspecto distinto que describe **exactamente el mismo conjunto** de soluciones. Es la observación de la parte 4 sobre la libertad de elegir parámetros.
+
+**5.** Puedes descartar **dos** ecuaciones, quedándote con las dos que dan el rango. Y la solución dependerá de $3-2=1$ parámetro.
+
+**6.** Tomando $z=\lambda$: $x = 2-\tfrac{\lambda}{2}$, $y = 1-\tfrac{\lambda}{2}$, $z=\lambda$.
+
+Tomando $y=\mu$: $x = 1+\mu$, $y=\mu$, $z = 2-2\mu$.
+
+Las dos son correctas y describen la misma recta. Sustituye $\lambda = 0$ en la primera y $\mu = 1$ en la segunda: obtendrás el mismo punto. Ese ejercicio suele disipar de golpe la desconfianza ante dos respuestas distintas.
+:::
+
+## Continúa
+
+La parte 7 estudia un tipo especial de sistema que siempre es compatible y donde la pregunta es otra: los **sistemas homogéneos**.

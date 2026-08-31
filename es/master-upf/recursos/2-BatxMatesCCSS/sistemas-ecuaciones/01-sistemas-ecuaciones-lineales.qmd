@@ -1,0 +1,225 @@
+---
+title: "Tema 3.1 Sistemas de ecuaciones lineales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 1 de 9)"
+filename: 01-sistemas-ecuaciones-lineales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué es una ecuación lineal, qué es un sistema y cómo se clasifican según el número de soluciones. Aquí se fija el vocabulario que estructura las nueve partes del tema y se ve la interpretación geométrica con dos incógnitas.
+categories: [sistemas de ecuaciones, ecuación lineal, compatible, incompatible, sistemas escalonados, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El problema que abre el tema
+
+Tienes tarifa de llamadas ilimitadas, pero los datos se pagan. En 20 días has gastado **1292 MB** usando solo tres aplicaciones, y el móvil te dice cuánto tiempo has estado en cada una: 5 horas en YouTube, 20 en Twitter y 6 en Instagram. ¿Cuántos megabytes consume cada aplicación por hora de uso? [cite:file:245]
+
+Llamando $Y$, $T$ e $I$ a esos consumos, la información se traduce en una ecuación:
+
+$$
+5Y + 20T + 6I = 1292
+$$
+
+Y aquí aparece el asunto central del tema: **una sola ecuación con tres incógnitas tiene infinitas soluciones**. Para tener una respuesta única hacen falta al menos dos ecuaciones más [cite:file:245].
+
+::: {.callout-note}
+## Los ocho objetivos del tema
+
+Resolver un sistema por Gauss; discutirlo y resolverlo con un parámetro por Gauss; discutirlo con el teorema de Rouché-Frobenius; resolver un sistema compatible con la regla de Cramer; resolverlo con Cramer en general; discutir y resolver un sistema homogéneo; discutir un sistema con parámetros por Rouché-Frobenius; y resolver un sistema con parámetros por Cramer.
+
+Ocho objetivos y **tres herramientas**: Gauss, Rouché-Frobenius y Cramer. El tema consiste en aprender cuándo usar cada una.
+:::
+
+## Ecuación lineal
+
+Una **ecuación lineal** con incógnitas $x_1, x_2, \ldots, x_n$ es una igualdad de la forma
+
+$$
+a_1x_1 + a_2x_2 + \cdots + a_nx_n = b
+$$
+
+donde los números $a_1, \ldots, a_n$ son los **coeficientes** y $b$ es el **término independiente** [cite:file:245].
+
+Una **solución** es cada conjunto de valores que hacen que la igualdad se cumpla.
+
+::: {.callout-important}
+## Qué no es lineal
+
+En una ecuación lineal **no** pueden aparecer una incógnita al cuadrado, el producto de dos incógnitas, ni funciones trigonométricas o logarítmicas [cite:file:245].
+
+Cada incógnita aparece sola, multiplicada por un número y nada más. Esa restricción es lo que hace que todo el tema funcione: si hubiera cuadrados, ninguno de los tres métodos serviría.
+:::
+
+### Ejemplo del libro
+
+En la ecuación $2x_1 - x_2 + x_3 - 3x_4 = 6$ los coeficientes son $2$, $-1$, $1$ y $-3$, y el término independiente es $6$. Una solución es $x_1=3$, $x_2=x_3=x_4=0$, porque $2\cdot 3 = 6$ [cite:file:245].
+
+Y hay infinitas más: basta dar valores arbitrarios a tres incógnitas y despejar la cuarta.
+
+### Applet · Una ecuación lineal {.unnumbered}
+
+<div data-applet-sis="ecuacionlineal"></div>
+
+## Sistema de ecuaciones lineales
+
+Un **sistema de $m$ ecuaciones lineales con $n$ incógnitas** es el conjunto de $m$ ecuaciones lineales con las mismas $n$ incógnitas, del que se busca una solución **común** [cite:file:245].
+
+$$
+\left\{\begin{aligned}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2 \\
+&\;\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m
+\end{aligned}\right.
+$$
+
+::: {.callout-tip}
+## Cómo se nombran las incógnitas
+
+Con dos incógnitas se usan $x$ e $y$. Con tres, $x$, $y$ y $z$. Con cuatro, $x$, $y$, $z$ y $t$. Y con más de cuatro se añaden subíndices: $x_1, x_2, \ldots, x_n$ [cite:file:245].
+:::
+
+## Clasificación
+
+Los sistemas se clasifican según el **número de soluciones**:
+
+- **Incompatibles**, si no tienen solución.
+- **Compatibles**, si tienen solución. Y dentro de estos:
+  - **Determinados**, si la solución es única.
+  - **Indeterminados**, si hay más de una, y entonces hay infinitas.
+
+Se abrevian **SI**, **SCD** y **SCI**, y esas tres siglas van a aparecer en todo el tema.
+
+### Los tres casos, con ejemplos del libro
+
+**Compatible determinado.** El sistema $x+y=2$, $2x-y=-2$ tiene la solución única $x=0$, $y=2$ [cite:file:245].
+
+**Compatible indeterminado.** El sistema $x+y=2$, $-2x-2y=-4$ tiene infinitas soluciones, porque la segunda ecuación es la primera multiplicada por $-2$ y no aporta nada nuevo. Se expresa tomando una incógnita como parámetro: $x = 2-t$, $y=t$ [cite:file:245].
+
+**Incompatible.** El sistema $x+y=2$, $-x-y=-3$ no tiene solución: al sumar las dos ecuaciones queda $0=-1$, que es absurdo [cite:file:245].
+
+### Applet · Clasificador de sistemas {.unnumbered}
+
+<div data-applet-sis="clasifica"></div>
+
+## Interpretación geométrica
+
+Con **dos** incógnitas cada ecuación es una **recta** en el plano, y resolver el sistema es buscar el punto de corte. Solo hay tres posibilidades:
+
+| Posición de las rectas | Tipo | Soluciones |
+|---|---|---|
+| Secantes, se cortan en un punto | SCD | una |
+| Coincidentes, son la misma recta | SCI | infinitas |
+| Paralelas distintas | SI | ninguna |
+
+::: {.callout-note}
+## Y con tres incógnitas, ¿qué pasa?
+
+Con tres incógnitas cada ecuación es un **plano** en el espacio, y con más de tres es un **hiperplano** que ya no se puede dibujar [cite:file:250].
+
+Ahí está la razón de ser del tema. La intuición geométrica se agota enseguida, pero el álgebra sigue funcionando igual con tres incógnitas que con un millón. De hecho, los mismos procedimientos que vas a aprender aquí se usan para resolver sistemas con un millón de ecuaciones, ahora con ordenadores [cite:file:250].
+:::
+
+### Applet · Interpretación gráfica {.unnumbered}
+
+<div data-applet-sis="grafico2"></div>
+
+## Sistemas escalonados
+
+Un sistema está **escalonado** cuando cada ecuación tiene al menos una incógnita menos que la anterior [cite:file:245]. Se resuelve empezando por la última ecuación y subiendo.
+
+### Ejemplo del libro
+
+$$
+\left\{\begin{aligned}
+3x - y + 2z &= 0 \\
+y - z &= 1 \\
+z &= 1
+\end{aligned}\right.
+$$
+
+De la tercera ecuación, $z=1$. Sustituyendo en la segunda, $y-1=1$, luego $y=2$. Y en la primera, $3x-2+2=0$, luego $x=0$ [cite:file:245].
+
+::: {.callout-important}
+## Todo el tema empuja hacia aquí
+
+Un sistema escalonado se resuelve sin ningún método especial: solo hay que despejar de abajo arriba.
+
+Por eso el **método de Gauss** de la parte 3 consiste precisamente en convertir un sistema cualquiera en uno escalonado **equivalente**, es decir, con exactamente las mismas soluciones. Si entiendes bien este apartado, la parte 3 ya no tiene misterio.
+:::
+
+### Applet · Sistemas escalonados {.unnumbered}
+
+<div data-applet-sis="escalonado"></div>
+
+## Actividades propuestas
+
+**1.** Escribe una ecuación con tres incógnitas de coeficientes $4$, $-1$ y $1$ y término independiente $-2$. Calcula tres soluciones distintas [cite:file:245].
+
+**2.** Determina si $x=1$, $y=0$, $z=-1$ es solución de este sistema [cite:file:245]:
+
+$$
+\left\{\begin{aligned} x+y+z &= 1 \\ 2x+2y+2z &= 0 \\ x-y+z &= 0 \end{aligned}\right.
+$$
+
+**3.** Clasifica estos sistemas según su número de soluciones [cite:file:245]:
+
+$$
+\text{a) } \left\{\begin{aligned} -2x+y &= 2 \\ 2x-y &= -2 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} -x+2y &= 4 \\ 2x-4y &= 1 \end{aligned}\right.
+$$
+
+**4.** Resuelve gráficamente y clasifica [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} x-y &= -3 \\ x+2y &= 6 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x-y &= -3 \\ 2x-2y &= -6 \end{aligned}\right.
+\qquad
+\text{c) } \left\{\begin{aligned} x-y &= -3 \\ 2x-2y &= 5 \end{aligned}\right.
+$$
+
+**5.** Resuelve este sistema escalonado [cite:file:245]:
+
+$$
+\left\{\begin{aligned} x+y-z &= 1 \\ y - z &= 1 \\ -y + z &= 1 \end{aligned}\right.
+$$
+
+**6.** Un sistema tiene tres ecuaciones y cuatro incógnitas. ¿Puede ser compatible determinado? Razona la respuesta sin hacer ningún cálculo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** La ecuación es $4x - y + z = -2$. Tres soluciones: con $y=z=0$ sale $x=-1/2$; con $x=0$ y $z=0$ sale $y=2$; con $x=0$ e $y=0$ sale $z=-2$. Hay infinitas más.
+
+**2.** No es solución. Cumple la primera ecuación, porque $1+0-1=0 \neq 1$… en realidad **ni la primera cumple**: $1+0+(-1)=0$ y debería dar $1$. Basta que falle una ecuación para que no sea solución del sistema.
+
+Este ejercicio enseña algo importante: una solución del sistema debe verificar **todas** las ecuaciones, no algunas.
+
+**3.** En el apartado a, la segunda ecuación es la primera multiplicada por $-1$: es la misma recta, luego **SCI**, con infinitas soluciones.
+
+En el b, los coeficientes son proporcionales pero los términos independientes no ($-1/2$ frente a $4/1$): rectas paralelas distintas, luego **SI**.
+
+**4.** En a las rectas se cortan en $(0,3)$: SCD. En b son la misma recta: SCI. En c son paralelas: SI.
+
+**5.** Sumando la segunda y la tercera ecuación sale $0=2$, que es imposible: el sistema es **incompatible**. Comprueba con el applet que efectivamente lo detecta.
+
+**6.** No puede serlo. Con cuatro incógnitas y solo tres ecuaciones, el rango es como máximo 3, siempre menor que el número de incógnitas. Si el sistema es compatible, será necesariamente **indeterminado**.
+
+Este razonamiento es la antesala de Rouché-Frobenius, y podrás justificarlo con precisión al terminar la parte 4.
+:::
+
+## Continúa
+
+La parte 2 introduce la herramienta que convierte un sistema en un objeto manejable: su **expresión matricial**, que lo resume todo en $A\cdot X = B$.

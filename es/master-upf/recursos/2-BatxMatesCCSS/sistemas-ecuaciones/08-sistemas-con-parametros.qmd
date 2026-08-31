@@ -1,0 +1,192 @@
+---
+title: "Tema 3.8 Sistemas de ecuaciones con parámetros"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 8 de 9)"
+filename: 08-sistemas-con-parametros
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El ejercicio más frecuente de la prueba de acceso. Se discute el sistema con el teorema de Rouché-Frobenius localizando los valores críticos del parámetro, y después se resuelve con la regla de Cramer en los casos en que es compatible.
+categories: [sistemas de ecuaciones, parámetros, discusión, Rouché-Frobenius, Cramer, valores críticos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El ejercicio estrella
+
+Si tuvieras que apostar por un solo tipo de ejercicio en la prueba de acceso, este sería el elegido. Aparece año tras año, en todas las comunidades, y suele valer una parte importante de la nota.
+
+La buena noticia es que tiene un **procedimiento fijo**. No hay que inventar nada: hay que aplicar bien lo de las partes 4 y 5, en el orden correcto.
+
+## El procedimiento, en cuatro pasos
+
+::: {.callout-important}
+## El orden importa, y mucho
+
+**Paso 1.** Calcular $\operatorname{rg}(A)$ en función del parámetro. Si $A$ es cuadrada, esto se reduce a calcular $|A|$ y resolver $|A| = 0$: sus soluciones son los **valores críticos**.
+
+**Paso 2.** Calcular $\operatorname{rg}(A^{*})$ en cada valor crítico, sustituyendo el número concreto.
+
+**Paso 3.** Aplicar Rouché-Frobenius en cada caso y clasificar.
+
+**Paso 4.** Resolver, con Cramer o con Gauss, en los casos en que el sistema es compatible.
+
+Lo que **no** se puede hacer es empezar escalonando alegremente: en el momento en que divides por una expresión con el parámetro, has excluido un caso sin darte cuenta.
+:::
+
+## Ejemplo desarrollado del libro
+
+Discutamos y resolvamos, según el parámetro $\lambda$ :
+
+$$
+\left\{\begin{aligned} x+y-z &= \lambda \\ x+2y-z &= 3\lambda \\ 2x+\lambda y - z &= 6 \end{aligned}\right.
+$$
+
+**Paso 1.** El determinante de la matriz de coeficientes resulta
+
+$$
+|A| = 2\lambda - \lambda^2 = \lambda(2-\lambda)
+$$
+
+que se anula en $\lambda = 0$ y $\lambda = 2$. Esos son los dos valores críticos, y para cualquier otro valor $\operatorname{rg}(A) = 3$.
+
+**Paso 2 y 3.** Estudiamos cada caso:
+
+- Si $\lambda \neq 0$ y $\lambda \neq 2$: $\operatorname{rg}(A) = \operatorname{rg}(A^{*}) = 3 = n$, luego **compatible determinado**.
+- Si $\lambda = 0$: el rango de $A$ baja a 2, pero el de $A^{*}$ es 3. Como no coinciden, **incompatible**.
+- Si $\lambda = 2$: los dos rangos valen 2, menor que 3 incógnitas, luego **compatible indeterminado**.
+
+**Paso 4.** En el caso general se aplica Cramer y sale la solución en función de $\lambda$. Y en $\lambda = 2$ se elimina una ecuación, se pasa una incógnita al segundo miembro y se resuelve, obteniendo $x = \lambda$, $y = 4$, $z = \lambda + 2$ con $\lambda$ libre [cite:.
+
+::: {.callout-note}
+## Fíjate en la estructura de la respuesta
+
+Tres casos, y cada uno con su clasificación. Esa es la forma que debe tener la respuesta, siempre:
+
+**Si el parámetro es distinto de los valores críticos**, tal cosa. **Si vale el primer valor crítico**, tal otra. **Si vale el segundo**, tal otra.
+
+Y un aviso sobre la redacción: no basta decir «hay dos valores críticos». Hay que decir **qué pasa** en cada uno, porque no tienen por qué comportarse igual, como se ve en el ejemplo: uno da incompatible y el otro indeterminado.
+:::
+
+### Applet · Discusión con parámetro {.unnumbered}
+
+<div data-applet-sis="paramrouche"></div>
+
+## Cuando la matriz no es cuadrada
+
+Si el sistema tiene distinto número de ecuaciones que de incógnitas, no hay determinante que anular. Entonces se trabaja con **menores**, y la estrategia del profesor Gonzalo es la más eficaz:
+
+1. Buscar submatrices **sin el parámetro** cuyo determinante no se anule. Eso garantiza un rango mínimo, sea cual sea el valor del parámetro.
+2. Cuando se agoten, pasar a las submatrices que sí contienen el parámetro. Al anular su determinante aparecen las condiciones críticas.
+
+::: {.callout-tip}
+## Por qué esa estrategia ahorra tanto trabajo
+
+Porque un menor sin parámetro te da información **válida para todos los casos**, y esa información no hay que volver a revisarla en ningún caso particular.
+
+En el ejemplo de Gonzalo, el menor $\begin{vmatrix} 3 & 1 \\ 2 & 1 \end{vmatrix} = 1 \neq 0$ garantiza rango 2 pase lo que pase. Así ya sabes de antemano que el rango nunca baja de 2, y solo hay que averiguar si llega a 3.
+:::
+
+Y hay un caso especialmente instructivo: cuando el parámetro aparece en **todas** las filas y columnas, no es posible elegir una submatriz sin él. La solución es tomar **dos** submatrices distintas y comprobar que no pueden anularse simultáneamente. Si una se anula en $k = 14/5$ y la otra en $k = 30/7$, como $k$ no puede valer las dos cosas a la vez, al menos una de las dos garantiza el rango.
+
+## La redacción de la respuesta
+
+Este es el punto donde se pierden más puntos, no en el cálculo.
+
+::: {.callout-warning}
+## Tres fallos de redacción que cuestan nota
+
+**Dar los valores críticos sin decir qué pasa en ellos.** «Los valores críticos son 0 y 2» no es una discusión: es el primer paso de una discusión.
+
+**Olvidar el caso general.** Después de estudiar los valores críticos hay que decir explícitamente qué ocurre para **todos los demás** valores.
+
+**Resolver solo el caso general.** Si un valor crítico da compatible indeterminado, hay que resolverlo también, con su parámetro. Es la parte que más se olvida y suele ser la que más puntúa.
+:::
+
+### Applet · Tabla de casos {.unnumbered}
+
+<div data-applet-sis="paramtabla"></div>
+
+::: {.callout-tip}
+## Cómo usar bien este applet
+
+Recorre el parámetro y te muestra la forma de la discusión: los tramos donde la clasificación es una y los puntos aislados donde cambia. Eso te permite **ver** la estructura antes de calcular.
+
+Pero va de cuarto en cuarto entre $-6$ y $6$, así que no encontraría un valor crítico como $k = 1/3$ ni $k=\sqrt{2}$. Úsalo para orientarte y para comprobar tu resultado, nunca para sustituir el álgebra.
+:::
+
+## Actividades propuestas
+
+**1.** Discute en función de $m$:
+
+$$
+\text{a) } \left\{\begin{aligned} 2mx-3y &= -3 \\ -6x+my &= m \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x+2y+z &= m+1 \\ x+y-mz &= m \\ 2x+3y+z &= m \end{aligned}\right.
+$$
+
+**2.** Discute y resuelve, según $\lambda$:
+
+$$
+\left\{\begin{aligned} x+y-z &= \lambda \\ x+2y-z &= 3\lambda \\ 2x+\lambda y-z &= 6 \end{aligned}\right.
+$$
+
+**3.** Discute según los valores de $a$:
+
+$$
+\text{a) } \left\{\begin{aligned} x-2y &= 4 \\ 4x-3y &= a \\ 2x+y &= 5 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} -3x+ay &= 1 \\ 2x+y &= 0 \\ ax-2ay &= -1 \end{aligned}\right.
+$$
+
+**4.** Halla para qué valores de $m$ el sistema es **incompatible**:
+
+$$
+\left\{\begin{aligned} mx+y+z &= m \\ x+my+z &= m \\ x+y+z &= 1 \end{aligned}\right.
+$$
+
+**5.** Discute según $k$ este sistema con más ecuaciones que incógnitas:
+
+$$
+\left\{\begin{aligned} kx+ky-z &= 2 \\ 3x-ky &= 0 \\ 5x+ky &= 0 \\ x+2z &= 1 \end{aligned}\right.
+$$
+
+**6.** Averigua si este sistema puede ser compatible indeterminado o incompatible para algún valor de $m$:
+
+$$
+\left\{\begin{aligned} x+3y+2z &= 0 \\ 2x+4y+3z &= 0 \\ x+y+mz &= 0 \end{aligned}\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** En a, el determinante es $2m^2-18$, que se anula en $m=3$ y $m=-3$. Estudia cada uno sustituyendo, porque no se comportan igual: uno da incompatible y el otro indeterminado.
+
+En b, calcula el determinante en función de $m$ y localiza los valores críticos. El applet te ayuda a ver dónde cambia la clasificación.
+
+**2.** Es el ejemplo desarrollado en el texto: compatible determinado si $\lambda \neq 0$ y $\lambda \neq 2$; incompatible si $\lambda = 0$; compatible indeterminado si $\lambda = 2$, con solución $x=\lambda$, $y=4$, $z=\lambda+2$.
+
+**3.** En los dos apartados hay **más ecuaciones que incógnitas**, así que hay que trabajar con menores. Busca primero un menor de orden 2 sin el parámetro: en a lo tienes en las filas primera y tercera.
+
+**4.** Fíjate en la estructura: si $m=1$ las tres ecuaciones son casi iguales. Calcula el determinante, que factoriza de forma cómoda, y estudia los valores que lo anulan. Uno de ellos dará incompatible.
+
+**5.** Es el ejemplo de Gonzalo con cuatro ecuaciones y tres incógnitas. Al tener más ecuaciones que incógnitas, se empieza por la matriz ampliada. El resultado es que el sistema es **siempre incompatible**, para cualquier valor de $k$.
+
+Ese resultado sorprende, y es un buen recordatorio de que la discusión puede terminar sin ningún caso compatible.
+
+**6.** Es un sistema **homogéneo**, así que nunca puede ser incompatible: la parte 7 lo garantiza. La pregunta se reduce a si puede ser indeterminado, y para eso basta anular el determinante.
+
+Este ejercicio es una buena trampa: quien no se dé cuenta de que es homogéneo perderá tiempo estudiando la matriz ampliada, que aquí no aporta nada.
+:::
+
+## Continúa
+
+La parte 9 cierra el tema con lo que da sentido a todo: **resolver problemas reales**, donde lo difícil no es el cálculo sino traducir el enunciado a un sistema.

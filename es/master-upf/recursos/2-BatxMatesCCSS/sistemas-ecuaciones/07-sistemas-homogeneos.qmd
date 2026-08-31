@@ -1,0 +1,195 @@
+---
+title: "Tema 3.7 Sistemas homogéneos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 7 de 9)"
+filename: 07-sistemas-homogeneos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Un sistema es homogéneo cuando todos sus términos independientes son cero. Siempre es compatible, porque la solución trivial lo cumple, y la única pregunta es si esa es la única solución o hay infinitas. Lo decide el rango frente al número de incógnitas.
+categories: [sistemas de ecuaciones, sistemas homogéneos, solución trivial, rango, soluciones infinitas, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un tipo de sistema que nunca falla
+
+Un sistema es **homogéneo** cuando todos los términos independientes son cero [cite:file:245]:
+
+$$
+\left\{\begin{aligned}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= 0 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= 0 \\
+&\;\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= 0
+\end{aligned}\right.
+$$
+
+Y tiene una propiedad que lo hace especial: **siempre** es compatible.
+
+::: {.callout-important}
+## Por qué un homogéneo nunca es incompatible
+
+Dos razones, y las dos son buenas.
+
+**La directa.** Tomando todas las incógnitas iguales a cero, cada ecuación se cumple: $0 = 0$. Esa es la **solución trivial**, y siempre está ahí [cite:file:245].
+
+**La de Rouché-Frobenius.** Las matrices $A$ y $A^{*}$ solo se diferencian en una columna de **ceros**, y una columna de ceros no aporta rango. Por tanto $\operatorname{rg}(A) = \operatorname{rg}(A^{*})$ **siempre**, y el teorema dice que el sistema es compatible [cite:file:245].
+
+La segunda razón es la que conviene saber decir en un examen, porque explica el fenómeno en lugar de solo comprobarlo.
+:::
+
+## La única pregunta que queda
+
+Si un homogéneo siempre es compatible, la clasificación se reduce a dos casos [cite:file:245]:
+
+| Rango frente a incógnitas | Tipo | Soluciones |
+|---|---|---|
+| $\operatorname{rg}(A) = n$ | SCD | **solo** la trivial |
+| $\operatorname{rg}(A) < n$ | SCI | infinitas, además de la trivial |
+
+Y para sistemas cuadrados hay un atajo inmediato: basta mirar si $|A| = 0$. Si el determinante no se anula, el rango es máximo y solo hay la trivial [cite:file:250].
+
+::: {.callout-note}
+## Lo que se pregunta de verdad en un examen
+
+Nadie te va a felicitar por encontrar la solución trivial: está ahí por definición y en general **no tiene interés** [cite:file:250].
+
+Cuando un ejercicio pide resolver un homogéneo, lo que busca es la **familia paramétrica** de soluciones no triviales. Y si el sistema solo tiene la trivial, lo que espera es que lo justifiques con el rango o con el determinante.
+:::
+
+## Ejemplo resuelto del libro
+
+$$
+\left\{\begin{aligned} 2x-3y+z &= 0 \\ -2x-2z &= 0 \\ -3y-z &= 0 \end{aligned}\right.
+$$
+
+**Paso 1.** Se calcula el rango de la matriz de coeficientes. Sale $\operatorname{rg}(A) = 2$ [cite:file:245].
+
+**Paso 2.** Se compara con el número de incógnitas: $2 < 3$, luego el sistema es **compatible indeterminado**.
+
+**Paso 3.** Se prescinde de una ecuación, la que sobra, y se pasa una incógnita al segundo miembro. Con $z = \lambda$ se obtiene:
+
+$$
+x = -\lambda, \qquad y = -\tfrac{\lambda}{3}, \qquad z = \lambda
+$$
+
+que con $\lambda$ recorriendo los reales da todas las soluciones [cite:file:245].
+
+::: {.callout-tip}
+## Comprueba que la trivial está incluida
+
+Sustituye $\lambda = 0$ en la solución anterior: sale $x=y=z=0$, la trivial.
+
+Esa comprobación es un buen control. En un homogéneo, la solución paramétrica **debe** contener la trivial. Si al poner el parámetro a cero no te sale, hay un error de signo en alguna parte.
+:::
+
+### Applet · Sistemas homogéneos {.unnumbered}
+
+<div data-applet-sis="homogeneo"></div>
+
+## La estructura de las soluciones
+
+Los homogéneos tienen una propiedad que **ningún otro sistema** posee, y merece la pena verla.
+
+Si $u$ y $v$ son dos soluciones de un homogéneo, entonces:
+
+- **$u + v$** también es solución.
+- **$k\cdot u$** también es solución, para cualquier número $k$.
+
+::: {.callout-important}
+## Y esto falla en los no homogéneos
+
+Piensa por qué. Si $u$ y $v$ cumplen $Au = 0$ y $Av = 0$, entonces $A(u+v) = Au + Av = 0 + 0 = 0$. Funciona porque los ceros se suman y siguen siendo cero.
+
+Pero si el sistema fuera $Au = B$ con $B \neq 0$, entonces $A(u+v) = B + B = 2B \neq B$: la suma **no** es solución.
+
+Esa diferencia es la que hace que las soluciones de un homogéneo formen una estructura ordenada, generada por unas pocas soluciones básicas, mientras que las de un sistema cualquiera no.
+:::
+
+### Applet · Soluciones de un homogéneo {.unnumbered}
+
+<div data-applet-sis="homobase"></div>
+
+## Homogéneos con parámetro
+
+Es un ejercicio muy frecuente, y tiene una ventaja sobre el caso general: **no hay que comparar dos rangos**, porque siempre coinciden. Basta estudiar el rango de $A$.
+
+### Ejemplo del libro
+
+$$
+\left\{\begin{aligned} ax+y+z &= 0 \\ -y+2az &= 0 \\ -x+ay &= 0 \end{aligned}\right.
+$$
+
+Se calcula el determinante en función de $a$ y se iguala a cero. El valor crítico resulta ser $a=0$ [cite:file:245]:
+
+- Si $a \neq 0$, el determinante no se anula, el rango es 3 e igual al número de incógnitas: **solo la solución trivial**.
+- Si $a = 0$, el rango baja a 2 y hay **infinitas** soluciones, que se expresan con un parámetro [cite:file:245].
+
+::: {.callout-tip}
+## La discusión de un homogéneo es más corta
+
+En un sistema cualquiera hay que estudiar los dos rangos y comparar. En un homogéneo, solo uno.
+
+Y la respuesta tiene siempre la misma forma: «para tal valor del parámetro hay infinitas soluciones; para los demás, solo la trivial». Si tu respuesta dice «incompatible» en algún caso, has cometido un error, porque eso es imposible en un homogéneo.
+:::
+
+## Actividades propuestas
+
+**1.** Resuelve este sistema homogéneo [cite:file:245]:
+
+$$
+\left\{\begin{aligned} 5x-y+2z &= 0 \\ -2x+y-z &= 0 \\ -x-y-z &= 0 \end{aligned}\right.
+$$
+
+**2.** Discute y resuelve estos sistemas homogéneos [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} 3x+2y+z &= 0 \\ 4x+2y+3z &= 0 \\ 2x-y+3z &= 0 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} 2x+3y+z &= 0 \\ -2x+y-3z &= 0 \\ 4x+2y+4z &= 0 \end{aligned}\right.
+$$
+
+**3.** Explica cómo deben ser los coeficientes de un sistema homogéneo para que tenga **solo** la solución trivial [cite:file:245].
+
+**4.** Escribe un sistema homogéneo de cuatro ecuaciones que tenga: a) solución única, b) infinitas soluciones. Resuelve cada uno [cite:file:245].
+
+**5.** Discute y resuelve en función de $m$ [cite:file:245]:
+
+$$
+\left\{\begin{aligned} mx+2z &= 0 \\ my-z &= 0 \\ x-y+z &= 0 \end{aligned}\right.
+$$
+
+**6.** Un sistema homogéneo tiene tres ecuaciones y cuatro incógnitas. ¿Puede tener solo la solución trivial? Razónalo sin calcular nada.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** El rango de la matriz de coeficientes es 3, igual al número de incógnitas, así que la única solución es la **trivial**: $x=y=z=0$ [cite:file:249].
+
+**2.** En a el determinante no se anula, luego solo la trivial. En b hay que comprobarlo: si el determinante es cero, aparecerán infinitas soluciones con un parámetro. El applet te da el rango y la familia completa.
+
+**3.** Que sean **linealmente independientes**, es decir, que el rango de la matriz de coeficientes iguale el número de incógnitas. Para un sistema cuadrado, equivale a que $|A| \neq 0$.
+
+**4.** Para a, basta tomar cuatro ecuaciones cuyo rango sea igual al número de incógnitas, por ejemplo las de la matriz identidad más una repetida. Para b, que el rango sea menor: repite ecuaciones o hazlas proporcionales.
+
+Fíjate en el detalle: con cuatro ecuaciones puedes tener solución única **solo si** hay como máximo cuatro incógnitas y el rango llega al número de incógnitas.
+
+**5.** Se calcula el determinante en función de $m$ y se anula. Para los valores críticos aparecen infinitas soluciones; para el resto, solo la trivial. Usa el applet moviendo el deslizador y después justifica con el determinante.
+
+**6.** **No puede.** Con cuatro incógnitas y solo tres ecuaciones, el rango es como máximo 3, siempre menor que 4. Por tanto el sistema es necesariamente compatible **indeterminado** y tiene infinitas soluciones.
+
+Regla general muy útil: un sistema homogéneo con **más incógnitas que ecuaciones** siempre tiene soluciones no triviales. Y esa observación resuelve muchos apartados de razonar sin escribir una sola cuenta.
+:::
+
+## Continúa
+
+La parte 8 junta todo lo anterior en el ejercicio más frecuente de la prueba de acceso: los **sistemas con parámetros**, discutidos con Rouché-Frobenius y resueltos con Cramer.

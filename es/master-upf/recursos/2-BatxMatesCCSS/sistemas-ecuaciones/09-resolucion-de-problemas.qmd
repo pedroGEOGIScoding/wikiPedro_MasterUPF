@@ -1,0 +1,196 @@
+---
+title: "Tema 3.9 Resolución de problemas con sistemas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 9 de 9)"
+filename: 09-resolucion-de-problemas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Lo difícil de un problema no es resolver el sistema, es plantearlo. Esta parte propone un método de traducción del enunciado, resuelve el problema del consumo de datos del móvil y cierra el tema con un entrenador y una autoevaluación.
+categories: [sistemas de ecuaciones, problemas, planteamiento, modelización, entrenador, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Dónde está la dificultad de verdad
+
+Después de ocho apartados sabes resolver cualquier sistema. Y sin embargo los problemas de enunciado siguen costando, porque la dificultad está en otro sitio.
+
+La clave es saber **leer y traducir** adecuadamente toda la información que da el problema, escribiendo correctamente lo que se está leyendo. Nunca se escribe demasiado y nunca un problema está demasiado explicado a la hora de intentar resolverlo [cite:file:250].
+
+::: {.callout-important}
+## El método, en cuatro pasos
+
+**Paso 1. Define las incógnitas por escrito**, con sus unidades. «$x$ = número de billetes de 50 euros», no simplemente «$x$».
+
+**Paso 2. Trocea el enunciado.** Cada frase con información numérica es una ecuación. Ve una a una y no pases a la siguiente sin haberla escrito.
+
+**Paso 3. Cuenta.** Si tienes tres incógnitas necesitas tres ecuaciones independientes. Si te faltan, vuelve al texto: hay una condición que no has visto.
+
+**Paso 4. Resuelve y comprueba contra el enunciado**, no contra tus propias cuentas. Si sale que hay $-3$ billetes o una persona de $140$ años, el planteamiento está mal.
+:::
+
+## El problema del consumo de datos
+
+Retomemos el problema con el que abrió el tema [cite:file:245].
+
+En 20 días has gastado 1292 MB usando 5 horas YouTube, 20 horas Twitter y 6 horas Instagram. Llamando $Y$, $T$ e $I$ a los MB que consume cada aplicación por hora:
+
+$$
+5Y + 20T + 6I = 1292
+$$
+
+Una ecuación, tres incógnitas: infinitas soluciones. Buscando en un foro especializado se averigua que YouTube consume 18 MB más por hora que Instagram, y que Twitter consume solo el 15 % de lo que consume YouTube [cite:file:245]. Eso completa el sistema:
+
+$$
+\left\{\begin{aligned} 5Y + 20T + 6I &= 1292 \\ Y - I &= 18 \\ T &= 0{,}15\,Y \end{aligned}\right.
+$$
+
+Es compatible determinado, y resolviéndolo por cualquiera de los métodos del tema sale $Y = 100$, $T = 15$ e $I = 82$ [cite:file:245].
+
+::: {.callout-note}
+## La lectura interesante del problema
+
+Con **una** ecuación había infinitas soluciones: tres incógnitas y rango 1, dos grados de libertad. Con **tres** ecuaciones independientes el rango sube a 3 y la solución es única.
+
+Es Rouché-Frobenius aplicado a la factura del móvil. Y explica por qué el enunciado necesitaba ir a buscar dos datos más: no era un capricho, era una necesidad matemática.
+:::
+
+::: {.callout-tip}
+## Una pregunta para pensar
+
+Si tu tarifa te da 2024 MB al mes y sigues este ritmo de consumo, ¿te llegan los datos? [cite:file:245]
+
+Y otra más interesante: ¿podrías haber resuelto el problema con solo dos ecuaciones? ¿Y qué pasaría si añadieras una cuarta? Piénsalo antes de tocar el applet.
+:::
+
+### Applet · El consumo de datos del móvil {.unnumbered}
+
+<div data-applet-sis="datos"></div>
+
+## Tres avisos sobre el planteamiento
+
+::: {.callout-warning}
+## Cuidado con los porcentajes
+
+Si el enunciado dice «el 20 % del total», eso es $0{,}2x$, no $20x$. Y si dice «un 20 % más que», eso es $1{,}2x$.
+
+Los porcentajes son la primera causa de sistemas mal planteados, y el síntoma es siempre el mismo: la solución sale absurdamente grande o pequeña.
+:::
+
+::: {.callout-warning}
+## Cuidado con el tiempo
+
+En los problemas de edades, «hace cuatro años» significa que **todos** tenían cuatro años menos, no solo uno. Y «dentro de quince años», que todos tendrán quince más [cite:file:249].
+
+Conviene hacer una tabla con una columna por momento temporal. Parece lento y evita el error más frecuente del tipo.
+:::
+
+::: {.callout-warning}
+## Cuidado con las respuestas que no pueden ser
+
+Los problemas del mundo real tienen restricciones que el sistema no conoce. El número de billetes debe ser un entero **positivo**; una cantidad de café no puede ser negativa.
+
+Si el sistema te da una solución matemáticamente correcta pero imposible en la práctica, hay un error de planteamiento, o el problema no tiene solución en esas condiciones. Y decirlo es parte de la respuesta.
+:::
+
+## Cinco problemas de las fuentes
+
+### Applet · De enunciado a sistema {.unnumbered}
+
+<div data-applet-sis="problema"></div>
+
+El applet trae cinco enunciados con sus soluciones verificadas: los billetes del cajero, el test de 60 preguntas, la comida para gatos, las edades de la familia y los tres tipos de café [cite:file:249]. Plantéalos **en papel** y usa el applet solo para comprobar si tu sistema es el correcto.
+
+::: {.callout-note}
+## Un problema que enseña algo distinto
+
+El del encargado del almacén merece atención especial. Quiere saber cuánto pesan un frigorífico y una lavadora, y pregunta a tres compañeros, que le dan tres datos [cite:file:245].
+
+Al plantear el sistema resulta **incompatible**: los tres datos se contradicen. Y la pregunta del libro es precisamente «¿qué sucede? Busca una explicación» [cite:file:245].
+
+La respuesta es que alguno de los tres compañeros recuerda mal. Es un problema con truco, y muy honesto: en la vida real los datos a veces no cuadran, y detectarlo es tan valioso como resolver el sistema.
+:::
+
+## Entrenador
+
+Úsalo con método:
+
+1. Resuelve **en papel**, entero.
+2. Anota qué método has usado y por qué ese y no otro.
+3. Escribe la respuesta y comprueba.
+4. Si falla, localiza **dónde** estaba el error antes de pasar al siguiente.
+
+::: {.callout-warning}
+## Por qué el papel primero
+
+Teclear e ir corrigiendo hasta que el applet dé el visto bueno produce la sensación de haber aprendido sin haber aprendido nada. El día del examen no habrá nadie corrigiendo al instante.
+
+Comprometerse con una respuesta antes de verificarla es exactamente la destreza que se evalúa.
+:::
+
+### Applet · Entrenador de sistemas {.unnumbered}
+
+<div data-applet-sis="entrenador"></div>
+
+## Autoevaluación del tema
+
+Antes de dar el tema por cerrado, comprueba que puedes hacer esto sin consultar nada:
+
+- Clasificar un sistema en SCD, SCI o SI comparando dos rangos.
+- Escalonar una matriz ampliada anotando cada transformación con su notación.
+- Explicar por qué un sistema homogéneo nunca es incompatible.
+- Decir cuántos parámetros tiene la solución de un sistema de rango 2 con cuatro incógnitas.
+- Aplicar Cramer y saber cuándo **no** se puede.
+- Discutir un sistema con parámetro, localizando los valores críticos y estudiando cada uno.
+- Resolver un sistema no cuadrado pasando incógnitas al segundo miembro.
+- Plantear un sistema a partir de un enunciado con porcentajes.
+- Reconocer que un sistema de cuatro incógnitas y tres ecuaciones no puede ser compatible determinado.
+
+Si alguna se te resiste, vuelve a la parte correspondiente antes de empezar el tema 4.
+
+## Actividades propuestas
+
+**1.** El cajero automático solo admite billetes de 50, 20 y 10 euros. Los viernes depositan 225 billetes por un importe total de 7000 €. La suma del número de billetes de 50 y de 10 es el doble que el de 20. Halla cuántos hay de cada valor [cite:file:250].
+
+**2.** Un examen consta de 60 preguntas. Cada acierto da 5 puntos, cada fallo quita 2 y cada pregunta sin contestar quita 1. Para aprobar hacen falta 150 puntos, y además el número de fallos más el quíntuple de las no contestadas debe igualar al de aciertos. ¿Cuántas hay de cada tipo? [cite:file:250]
+
+**3.** La suma de las tres cifras de un número es 18. La cifra de las unidades es igual a la suma de las decenas más las centenas. Si se invierte el orden de las cifras el número aumenta en 594 unidades. Halla el número [cite:file:250].
+
+**4.** Calcula las edades de una familia (padre, madre e hija) sabiendo que entre los tres suman 70 años, que hace cuatro años la edad del padre era siete veces la de la hija, y que dentro de quince años la edad de la hija será la cuarta parte de la suma de las edades del padre y de la madre [cite:file:250].
+
+**5.** En una cafetería, los ocupantes de una mesa pagaron 4 € por 2 cafés, 1 tostada y 2 refrescos, y los de otra 9 € por 4 cafés, 3 tostadas y 3 refrescos. ¿Cuánto pagarán los de una tercera mesa que han tomado 2 cafés y 3 tostadas? ¿Se puede saber cuánto vale un café? [cite:file:250]
+
+**6.** Se dispone de tres billeteras A, B y C con billetes de 10, 20 y 50 euros. Si pasamos 5 billetes de B a A, el número de billetes en A iguala la suma de los otros dos; y si pasamos 10 de A a C, el número en C también iguala la suma de los otros dos. Averigua cuántos billetes hay en cada una sabiendo que en total hay 1550 euros [cite:file:250].
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** Con $x$, $y$, $z$ los billetes de 50, 20 y 10: total de billetes, total de euros y la relación del enunciado. Sale **100 billetes de 50, 75 de 20 y 50 de 10** [cite:file:249].
+
+**2.** Con $x$ aciertos, $y$ fallos y $z$ sin contestar: $x+y+z=60$, $5x-2y-z=150$ y $y+5z=x$. Sale **38 aciertos, 18 fallos y 4 sin contestar**, que dan exactamente los puntos pedidos [cite:file:249].
+
+**3.** Llamando $x$, $y$, $z$ a las centenas, decenas y unidades: $x+y+z=18$, $z=x+y$, y la condición de invertir las cifras da $100z+10y+x = 100x+10y+z+594$. El número es **369** [cite:file:249].
+
+**4.** Padre 32, madre 30, hija 8 [cite:file:249]. La clave está en la tabla temporal: hace cuatro años tenían $x-4$, $y-4$ y $z-4$.
+
+**5.** La tercera mesa paga **6 €**. Pero el sistema es compatible **indeterminado**, así que con esos datos **no** se puede saber cuánto vale un café por separado [cite:file:249].
+
+Este es un problema excelente, porque la respuesta a la segunda pregunta es «no se puede», y justificarlo con el rango es exactamente lo que se pide. Un sistema indeterminado no significa que el problema esté mal: significa que los datos no bastan para todo lo que preguntas, aunque sí para algo.
+
+**6.** Hay **25 billetes en A, 15 en B y 20 en C** [cite:file:249]. Cuidado al traducir «pasamos 5 billetes de B a A»: A pasa a tener $x+5$ y B pasa a tener $y-5$.
+:::
+
+## Fin del tema 3
+
+Con esto queda cubierto el tema completo: sistemas lineales, expresión matricial, Gauss, Rouché-Frobenius, Cramer y su generalización, homogéneos, parámetros y problemas, con los ocho objetivos trabajados y sus applets.
+
+El tema 4 aplica los sistemas a la **programación lineal**, donde en lugar de resolver igualdades se trabaja con inecuaciones y se busca optimizar una función en una región factible.

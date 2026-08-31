@@ -1,0 +1,197 @@
+---
+title: "Tema 3.4 Teorema de Rouché-Frobenius"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Sistemas de ecuaciones (Parte 4 de 9)"
+filename: 04-teorema-rouche-frobenius
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El teorema de Rouché-Frobenius clasifica cualquier sistema comparando dos rangos, el de la matriz de coeficientes y el de la ampliada, sin necesidad de resolverlo. Es el criterio que articula todo el tema y la base de la discusión con parámetros.
+categories: [sistemas de ecuaciones, Rouché-Frobenius, rango, matriz ampliada, grados de libertad, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Clasificar sin resolver
+
+Gauss clasifica el sistema, pero al mismo tiempo lo resuelve. A veces solo interesa lo primero: saber **cuántas soluciones hay** sin calcularlas.
+
+Para eso está el teorema de este apartado. Y hay una razón práctica de peso: cuando el sistema depende de un parámetro, resolverlo para cada valor sería interminable, mientras que comparar dos rangos se hace de una vez para todos los casos.
+
+## El enunciado
+
+::: {.callout-important}
+## Teorema de Rouché-Frobenius
+
+La condición **necesaria y suficiente** para que un sistema $AX = B$ tenga solución es que el rango de la matriz de coeficientes $A$ sea el mismo que el rango de la matriz ampliada $A^{*}$ [cite:file:245].
+
+$$
+\text{El sistema es compatible} \iff \operatorname{rg}(A) = \operatorname{rg}(A^{*})
+$$
+:::
+
+Y una vez que sabemos que es compatible, el número de incógnitas decide el resto:
+
+$$
+\operatorname{rg}(A) = \operatorname{rg}(A^{*}) = r \;\begin{cases} r = n & \Rightarrow \text{SCD} \\ r < n & \Rightarrow \text{SCI} \end{cases}
+\qquad
+\operatorname{rg}(A) \neq \operatorname{rg}(A^{*}) \Rightarrow \text{SI}
+$$
+
+## Por qué es verdad
+
+La demostración del libro tiene dos mitades, y merece leerse porque explica **qué significa** el teorema [cite:file:245].
+
+**Si el sistema es compatible, los rangos coinciden.** Si existe una solución $x_1=c_1, \ldots, x_n=c_n$, entonces cada término independiente $b_i$ se puede escribir como $a_{i1}c_1 + \cdots + a_{in}c_n$. Es decir: la última columna de $A^{*}$ es **combinación lineal** de las anteriores. Y una columna que es combinación de otras no aporta rango [cite:file:245].
+
+**Si los rangos coinciden, el sistema es compatible.** Si $\operatorname{rg}(A) = \operatorname{rg}(A^{*})$, la columna de términos independientes es combinación lineal de las columnas de coeficientes, es decir, existen números $c_1, \ldots, c_n$ que la generan. Y esos números son precisamente una solución del sistema [cite:file:245].
+
+::: {.callout-note}
+## La idea en una frase
+
+El teorema dice que un sistema tiene solución **exactamente cuando** la columna de términos independientes no aporta información nueva.
+
+Si la aporta, es porque está pidiendo algo que los coeficientes no pueden dar, y ahí está la contradicción. Por eso el rango sube y el sistema se vuelve incompatible.
+:::
+
+## Solo hay tres casos, y no puede haber más
+
+Como $A^{*}$ tiene **una columna más** que $A$, su rango solo puede ser igual al de $A$ o uno más. Y como el rango de $A$ no puede pasar del número de incógnitas, la clasificación completa es:
+
+| Rangos | Comparación con $n$ | Tipo |
+|---|---|---|
+| $\operatorname{rg}(A) = \operatorname{rg}(A^{*}) = n$ | igual | SCD |
+| $\operatorname{rg}(A) = \operatorname{rg}(A^{*}) < n$ | menor | SCI |
+| $\operatorname{rg}(A) \neq \operatorname{rg}(A^{*})$ | irrelevante | SI |
+
+### Applet · Teorema de Rouché-Frobenius {.unnumbered}
+
+<div data-applet-sis="rouche"></div>
+
+## Los grados de libertad
+
+Cuando el sistema es compatible indeterminado, la solución depende de **parámetros**. Y su número no es arbitrario:
+
+$$
+\text{número de parámetros} = n - r
+$$
+
+Incógnitas menos rango. Con tres incógnitas y rango 2 hay **un** parámetro; con rango 1, hay **dos** [cite:file:250].
+
+::: {.callout-tip}
+## Lo que esto revela sobre las ecuaciones
+
+El rango es el número de ecuaciones que **de verdad aportan información**, no el número de ecuaciones escritas.
+
+Un sistema con cinco ecuaciones y rango 2 tiene solo dos ecuaciones útiles: las otras tres son combinación de ellas. Ese es el sentido profundo del rango, el mismo que vimos en el tema 1 con las filas linealmente independientes.
+:::
+
+::: {.callout-warning}
+## Dos respuestas distintas pueden ser ambas correctas
+
+En un sistema compatible indeterminado se puede **elegir** qué incógnita hace de parámetro. Dos alumnos pueden entregar soluciones con aspecto muy diferente y las dos válidas.
+
+Lo que no cambia nunca es **cuántos** parámetros hacen falta. Si el tuyo tiene un parámetro y el de tu compañero dos, uno de los dos se ha equivocado.
+:::
+
+### Applet · Grados de libertad {.unnumbered}
+
+<div data-applet-sis="rouchegrado"></div>
+
+## Añadir una ecuación
+
+Un tipo de ejercicio muy frecuente: dado un sistema, **añadir una ecuación** para que resulte de un tipo concreto [cite:file:250].
+
+Con el teorema en la mano, la receta es inmediata:
+
+- Para conseguir **SCD**: añade una ecuación cuyos coeficientes **no** sean combinación lineal de los anteriores. Así sube el rango de $A$ hasta igualar $n$.
+- Para conseguir **SCI**: añade una combinación lineal **exacta** de las que ya hay, término independiente incluido. No cambia nada.
+- Para conseguir **SI**: copia los coeficientes de una combinación lineal pero **cambia** el término independiente. Así sube el rango de $A^{*}$ pero no el de $A$.
+
+::: {.callout-note}
+## El tercer caso es el más instructivo
+
+Piénsalo: estás escribiendo una ecuación cuyos coeficientes son perfectamente compatibles con el sistema, y sin embargo lo rompes. Solo cambiando el número de la derecha.
+
+Eso es exactamente lo que dice el teorema: la incompatibilidad vive en la **columna de términos independientes**, no en los coeficientes.
+:::
+
+### Applet · Añadir una ecuación {.unnumbered}
+
+<div data-applet-sis="anadir"></div>
+
+## Una nota histórica
+
+El nombre de **teorema de Rouché-Frobenius** se lo debemos al matemático español Julio Rey Pastor [cite:file:250].
+
+Frobenius, en 1905, discrepó del enunciado tal como lo había formulado Rouché y propuso una demostración alternativa [cite:file:250]. Fuera de España el resultado se conoce con otros nombres, y en algunos países se llama simplemente teorema de Rouché-Capelli.
+
+::: {.callout-tip}
+## Por qué merece la pena saber esto
+
+Porque un teorema con dos apellidos y una discusión detrás deja de ser una fórmula caída del cielo. Alguien lo pensó, alguien lo discutió y alguien decidió cómo llamarlo.
+
+Y su alcance es enorme: hace posible resolver cualquier tipo de sistema de primer grado, sin excepciones, en función de dos rangos [cite:file:250].
+:::
+
+## Actividades propuestas
+
+**1.** Usa el teorema para determinar si estos sistemas son compatibles y resuélvelos por Gauss si lo son [cite:file:245]:
+
+$$
+\text{a) } \left\{\begin{aligned} 2x-3y+z &= -2 \\ -x-y+2z &= 0 \\ x-4y+3z &= -2 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x+3y-2z &= 11 \\ -2x-3y+z &= 0 \\ -x-z &= 7 \end{aligned}\right.
+$$
+
+**2.** Discute mediante Rouché-Frobenius [cite:file:250]:
+
+$$
+\text{a) } \left\{\begin{aligned} x+3y-5z &= -8 \\ 3x+6y-5z &= 0 \\ 4x+9y-10z &= -8 \end{aligned}\right.
+\qquad
+\text{b) } \left\{\begin{aligned} x+2y+z &= 3 \\ x+y-3z &= 3 \\ 2x+3y+z &= 3 \end{aligned}\right.
+$$
+
+**3.** Al sistema $2x+2y-z=1$, $-x-y+z=3$ añádele una ecuación para que resulte [cite:file:245]:
+
+a) compatible determinado, b) compatible indeterminado, c) incompatible.
+
+**4.** En un sistema de tres incógnitas y rango 2, ¿de cuántos parámetros dependen las soluciones? ¿Y si el rango fuera 1? ¿Y en un sistema de $n$ incógnitas y rango $m$? [cite:file:245]
+
+**5.** Un sistema $MX=N$ tiene tres incógnitas y la matriz $M$ tiene cuatro filas $F_1$, $F_2$, $F_3$ y $F_4$. Si se cumple que $\operatorname{rg}(F_1,F_2,F_3) = \operatorname{rg}(F_1,F_2,F_4) = \operatorname{rg}(F_2,F_3,F_4) = 3$, ¿qué fila eliminarías para resolverlo? ¿De qué tipo de sistema se trata? [cite:file:245]
+
+**6.** Razona si es posible que un sistema de dos ecuaciones con dos incógnitas tenga exactamente **dos** soluciones distintas.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** En a, hay que calcular los dos rangos. Compruébalo con el applet, que los muestra y aplica el teorema automáticamente. En b, fíjate en si la tercera ecuación es combinación de las dos primeras.
+
+**2.** El apartado a resulta compatible; el b hay que estudiarlo con cuidado, comparando los dos rangos. Los dos se resuelven con el applet, pero hazlos primero a mano.
+
+**3.** Para a, algo como $z=0$, es decir $0x+0y+z=0$: aporta rango nuevo. Para b, una combinación como $x+y+0z=4$, que sale de sumar las dos ecuaciones adecuadamente ponderadas. Para c, la misma combinación pero cambiando el término independiente.
+
+El applet te dice al instante qué has conseguido con la ecuación que escribas.
+
+**4.** Con tres incógnitas y rango 2, **un** parámetro. Con rango 1, **dos** parámetros. Y en general, $n-m$ parámetros [cite:file:245].
+
+**5.** Como el rango de $M$ es 3 y hay tres incógnitas, cualquiera de las cuatro filas se puede eliminar: sobra una, porque tres ya dan el rango máximo. El sistema, si es compatible, es **compatible determinado**.
+
+La condición del enunciado es la clave: cualquier terna de filas tiene rango 3, así que ninguna es imprescindible.
+
+**6.** No es posible. Si un sistema lineal tiene dos soluciones distintas, tiene **infinitas**: la semisuma de dos soluciones también es solución, y así sucesivamente.
+
+Por eso la clasificación del tema solo tiene tres casos y no cuatro. Un sistema lineal nunca tiene un número finito de soluciones mayor que uno, y eso es una propiedad exclusiva de la linealidad.
+:::
+
+## Continúa
+
+Con la clasificación resuelta, la parte 5 aporta un método de cálculo que da **cada incógnita por separado**, sin necesidad de escalonar: la **regla de Cramer**.
