@@ -1,0 +1,41 @@
+<!-- =====================================================================
+     _scripts.html — TEMA 2 DETERMINANTES · 2.º Batx Mates CCSS
+     Ubicación: 2-BatxMatesCCSS/determinantes/assets/_scripts.html
+     Se inserta en cada parte con:
+         format:
+           html:
+             include-after-body: assets/_scripts.html
+             html-math-method: katex
+
+     ORDEN OBLIGATORIO
+       1) applets.css            hoja común del curso, en ../assets
+       2) det-applets.css        extras propios del tema (clases .mx-*)
+       3) katex.min.css          KaTeX servido en LOCAL, sin CDN
+       4) katex.min.js           motor de fórmulas, en local
+       5) det-applets.js         núcleo + applets de las partes 1 y 2
+       6) det-applets-extra.js   applets de las partes 3, 4, 5 y 6
+
+     NOTA SOBRE LAS RUTAS
+       Las páginas se renderizan en determinantes/, así que ../assets
+       apunta a 2-BatxMatesCCSS/assets y assets/ a determinantes/assets.
+
+     NOTA SOBRE KaTeX
+       NO se usa auto-render. Cada applet marca sus fórmulas con
+       data-tex y el núcleo llama a katex.render sobre esos nodos con
+       throwOnError:false. Así una fórmula mal escrita nunca rompe
+       el resto de la página.
+
+     RECORDATORIO PARA EL DESPLIEGUE
+       Si Quarto no copia esta carpeta al sitio, añade en _website.yml:
+         project:
+           resources:
+             - "master-upf/recursos/2-BatxMatesCCSS/assets/**"
+             - "master-upf/recursos/2-BatxMatesCCSS/determinantes/assets/**"
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/det-applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="assets/det-applets.js"></script>
+<script defer src="assets/det-applets-extra.js"></script>

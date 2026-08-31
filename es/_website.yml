@@ -250,6 +250,14 @@ website:
                 - master-upf/recursos/2-BatxMatesCCSS/matrices/05-matriz-inversa.qmd
                 - master-upf/recursos/2-BatxMatesCCSS/matrices/06-ecuaciones-matriciales.qmd
                 - master-upf/recursos/2-BatxMatesCCSS/matrices/07-aplicaciones-matrices.qmd
+            - section: "Tema 2 Determinantes"
+              contents:
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/01-determinantes.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/02-propiedades-determinantes.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/03-menor-complementario-adjunto.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/04-desarrollo-por-adjuntos.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/05-rango-por-menores.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/06-inversa-con-determinantes.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

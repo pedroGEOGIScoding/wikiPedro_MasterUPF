@@ -1,0 +1,273 @@
+---
+title: "Tema 2.1 Determinantes"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 1 de 6)"
+filename: 01-determinantes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: A cada matriz cuadrada se le asocia un número, su determinante. Aquí se define y se aprende a calcularlo en los órdenes 1, 2 y 3 con la regla de Sarrus, y a resolver ecuaciones en las que la incógnita aparece dentro de un determinante.
+categories: [determinantes, orden 2, orden 3, regla de Sarrus, ecuaciones con determinantes, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De dónde viene este tema
+
+En el tema 1 quedaron dos preguntas sin respuesta completa. ¿Cuándo tiene una matriz inversa? ¿Cómo se calcula el rango sin escalonar a mano? Las dos se contestan con una sola herramienta: el **determinante**.
+
+Y el libro de texto abre la unidad con un problema muy concreto: medir la superficie del patio del instituto, que no tiene forma de polígono regular. La estrategia es la **triangulación**, dividir la figura irregular en triángulos, y el área de cada triángulo se calcula con un determinante [cite:file:223]:
+
+$$
+A_T = \frac{1}{2}\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix}
+$$
+
+Con las coordenadas de los tres vértices sale el área directamente. Sumando las seis piezas del patio, la superficie total resultó de 1800 m² [cite:file:223].
+
+::: {.callout-note}
+## Los ocho objetivos del tema
+
+Calcular un determinante usando sus propiedades, calcularlo formando ceros, calcular el rango a partir de sus menores, calcular la inversa con determinantes, resolver ecuaciones con determinantes, reducir un determinante a otro cuyo valor se conoce, calcular un determinante en función del rango, y estudiar el rango de una matriz cuadrada que depende de un parámetro.
+
+Fíjate en que dos de ellos, el quinto y el sexto, no son cálculos rutinarios sino **estrategias**. Son los que más distinguen a quien ha entendido el tema.
+:::
+
+## Definición
+
+Dada una matriz cuadrada $A$ de orden $n$, su **determinante** $|A|$ es un número que se obtiene sumando todos los productos posibles de $n$ elementos, uno de cada fila y uno de cada columna, la mitad con su signo y la otra mitad con el signo contrario [cite:file:223].
+
+Se escribe $|A|$ o $\det(A)$, y en forma desarrollada se cambian los paréntesis de la matriz por dos barras verticales.
+
+::: {.callout-important}
+## Si la matriz no es cuadrada, no tiene determinante
+
+No es que valga cero: es que **no existe** [cite:file:223]. La definición exige tomar un elemento de cada fila y de cada columna, y eso solo es posible si hay tantas filas como columnas.
+
+Esta comprobación debe ser lo primero que hagas al ver el enunciado. Es gratis y evita perder el ejercicio entero.
+:::
+
+## Órdenes 1 y 2
+
+Para el orden 1 el determinante es el propio número: $|(a_{11})| = a_{11}$.
+
+Para el orden 2:
+
+$$
+|A| = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} = a_{11}a_{22} - a_{12}a_{21}
+$$
+
+Es decir, **producto de la diagonal principal menos producto de la diagonal secundaria**.
+
+### Ejemplo
+
+$$
+\begin{vmatrix} -1 & 4 \\ 5 & -6 \end{vmatrix} = (-1)(-6) - 4\cdot 5 = 6 - 20 = -14
+$$
+
+::: {.callout-warning}
+## Las barras no son valor absoluto
+
+Un determinante puede ser negativo, como acabamos de ver. Las barras verticales aquí significan «determinante de», no «valor absoluto de».
+
+Y con matrices de orden 1 la confusión es especialmente fácil: $|(-5)| = -5$, no $5$.
+:::
+
+## Orden 3 y regla de Sarrus
+
+Para el orden 3 hay seis productos, tres con signo más y tres con signo menos:
+
+$$
+|A| = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}
+$$
+
+Los tres positivos van en el sentido de la diagonal principal, y los tres negativos en el de la secundaria [cite:file:223]. Para recordarlo se usa la **regla de Sarrus**: se repiten debajo las dos primeras filas y se leen las diagonales completas.
+
+### Ejemplo desarrollado
+
+Calculemos el determinante de la matriz del libro:
+
+$$
+\begin{vmatrix} 1 & 2 & 0 \\ -1 & 3 & -3 \\ 4 & 1 & -2 \end{vmatrix}
+$$
+
+Los tres productos positivos:
+
+$$
+1\cdot 3\cdot(-2) + 2\cdot(-3)\cdot 4 + 0\cdot(-1)\cdot 1 = -6 - 24 + 0 = -30
+$$
+
+Los tres negativos:
+
+$$
+0\cdot 3\cdot 4 + 2\cdot(-1)\cdot(-2) + 1\cdot(-3)\cdot 1 = 0 + 4 - 3 = 1
+$$
+
+Y por tanto $|A| = -30 - 1 = -31$.
+
+::: {.callout-tip}
+## Por qué seis y no otro número
+
+Porque $3! = 6$. La definición general dice que hay $n!$ productos, la mitad con cada signo.
+
+Y aquí está la razón de que Sarrus no se pueda extender: para el orden 4 harían falta $4! = 24$ productos, doce positivos y doce negativos. Existe una regla análoga, a veces llamada de Katarrus, pero es inmanejable y **nadie la usa**: lo práctico es el desarrollo por adjuntos de la parte 4.
+:::
+
+### Applet · Determinante de orden 1, 2 y 3 {.unnumbered}
+
+<div data-applet-det="orden23"></div>
+
+### Applet · Regla de Sarrus {.unnumbered}
+
+<div data-applet-det="sarrus"></div>
+
+## Cuándo un determinante vale cero
+
+Antes de terminar un cálculo largo, conviene saber reconocer los casos en que el determinante es cero **sin calcularlo**:
+
+- Hay una fila o columna de ceros.
+- Hay dos filas o columnas iguales.
+- Hay dos filas o columnas proporcionales.
+- Una fila es combinación lineal de las otras.
+
+Las cuatro situaciones se estudian a fondo en la parte 2, pero conviene tenerlas ya en el radar.
+
+::: {.callout-note}
+## Un caso que sorprende
+
+Prueba en el applet de Sarrus la matriz
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{vmatrix}
+$$
+
+Sale **cero**. Y no es casualidad: la tercera fila es el doble de la segunda menos la primera, es decir, $F_3 = 2F_2 - F_1$.
+
+Cuando un determinante te sale cero, párate un momento y busca la relación entre las filas. Casi siempre está ahí, y encontrarla es la mejor forma de comprobar que no te has equivocado.
+:::
+
+## Ecuaciones con determinantes
+
+Este es uno de los ocho objetivos. El procedimiento es siempre el mismo, y no tiene misterio:
+
+1. Desarrollar el determinante con la incógnita dentro.
+2. Agrupar los términos en $x$.
+3. Resolver la ecuación que resulta.
+
+### Ejemplo de orden 2
+
+Resuelve
+
+$$
+\begin{vmatrix} 1+x & 1-x \\ 1-x & 1+x \end{vmatrix} = 12
+$$
+
+Desarrollando:
+
+$$
+(1+x)^2 - (1-x)^2 = (x^2+2x+1) - (x^2-2x+1) = 4x
+$$
+
+Luego $4x = 12$ y por tanto $x = 3$.
+
+### Ejemplo con grado 3
+
+Resuelve
+
+$$
+\begin{vmatrix} x^2 & 1 \\ 2x & x \end{vmatrix} = 0
+$$
+
+Desarrollando queda $x^3 - 2x = 0$, y sacando factor común:
+
+$$
+x(x^2-2) = 0 \;\Longrightarrow\; x = 0, \quad x = \sqrt{2}, \quad x = -\sqrt{2}
+$$
+
+::: {.callout-tip}
+## Saca factor común antes de aplicar fórmulas
+
+En las ecuaciones que salen de determinantes casi siempre falta el término independiente, así que se puede sacar factor común de $x$. Eso te regala la solución $x=0$ y baja el grado de lo que queda.
+
+Lanzarse a la fórmula general sin mirar es un buen modo de complicarse la vida.
+:::
+
+### Applet · Ecuaciones con determinantes {.unnumbered}
+
+<div data-applet-det="ecuacion"></div>
+
+## Actividades propuestas
+
+**1.** Calcula el determinante de estas matrices [cite:file:223]:
+
+$$
+A = \begin{pmatrix} 3 & -2 \\ 7 & 12 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 2 & -2 & 1 \\ -1 & 5 & 0 \\ 2 & 3 & 2 \end{pmatrix}
+$$
+
+**2.** Calcula $m$ para que estos determinantes valgan cero [cite:file:223]:
+
+$$
+\begin{vmatrix} 1 & 2 \\ m & 0 \end{vmatrix}, \qquad
+\begin{vmatrix} 2 & 3 \\ m & 1 \end{vmatrix}, \qquad
+\begin{vmatrix} 1 & m \\ m & 2 \end{vmatrix}
+$$
+
+**3.** Calcula el valor de $k$ que anula el determinante [cite:file:225]:
+
+$$
+\begin{vmatrix} 3 & 4 & 5 \\ 1 & 1 & 1 \\ 1 & 1 & k \end{vmatrix}
+$$
+
+**4.** Calcula el valor de $k$ que anula el determinante [cite:file:225]:
+
+$$
+\begin{vmatrix} 2 & 1 & 1 \\ 0 & k & 6 \\ 3 & k & 12 \end{vmatrix}
+$$
+
+**5.** Resuelve las ecuaciones [cite:file:223]:
+
+$$
+\text{a)} \begin{vmatrix} 1 & 1 & x \\ 1 & x & 1 \\ x & 1 & 1 \end{vmatrix} = 0
+\qquad
+\text{b)} \begin{vmatrix} 3x & -1 \\ 2 & 1 \end{vmatrix} = 0
+$$
+
+**6.** ¿Qué relación deben tener $m$ y $n$ para que este determinante sea nulo? [cite:file:223]
+
+$$
+\begin{vmatrix} m & -1 \\ 3 & n \end{vmatrix}
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $|A| = 3\cdot 12 - (-2)\cdot 7 = 36+14 = 50$.
+
+Para $B$, aplicando Sarrus, los positivos dan $2\cdot 5\cdot 2 + (-2)\cdot 0\cdot 2 + 1\cdot(-1)\cdot 3 = 20+0-3 = 17$ y los negativos $1\cdot 5\cdot 2 + (-2)\cdot(-1)\cdot 2 + 2\cdot 0\cdot 3 = 10+4+0 = 14$. Luego $|B| = 17-14 = 3$.
+
+**2.** El primero vale $0 - 2m = -2m$, que se anula en $m=0$. El segundo vale $2 - 3m$, que se anula en $m = 2/3$. El tercero vale $2 - m^2$, que se anula en $m = \pm\sqrt{2}$.
+
+**3.** Es $k=1$, y se puede razonar **sin calcular nada**: si $k=1$, las filas segunda y tercera serían idénticas, y un determinante con dos filas iguales vale cero [cite:file:225].
+
+Por el camino largo también sale: desarrollando queda $-7k+7=0$, luego $k=1$.
+
+**4.** Desarrollando se llega a $k^2 - 2k - 15 = 0$, cuyas soluciones son $k=5$ y $k=-3$ [cite:file:225].
+
+**5.** En el apartado a, desarrollando se obtiene $-x^3+3x-2=0$, que factoriza como $-(x-1)^2(x+2)$, luego $x=1$ (doble) y $x=-2$. Y hay un atajo: con $x=1$ las tres filas son iguales, así que $x=1$ tenía que ser solución.
+
+En el b, $3x+2=0$ da $x = -2/3$.
+
+**6.** El determinante vale $mn+3$, que se anula cuando $mn = -3$. No es un valor concreto de cada letra, sino una **relación** entre las dos. Preguntas así distinguen a quien entiende lo que está calculando.
+:::
+
+## Continúa
+
+La parte 2 recoge las **diez propiedades** de los determinantes. No son diez reglas para memorizar: son diez atajos, y con ellos se pueden calcular determinantes que por Sarrus serían inabordables.

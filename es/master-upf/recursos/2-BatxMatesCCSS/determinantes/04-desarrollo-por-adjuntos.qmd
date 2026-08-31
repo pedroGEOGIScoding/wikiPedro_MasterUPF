@@ -1,0 +1,234 @@
+---
+title: "Tema 2.4 Desarrollo de un determinante por sus adjuntos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 4 de 6)"
+filename: 04-desarrollo-por-adjuntos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El determinante es la suma de los elementos de una línea multiplicados por sus adjuntos. Combinando este desarrollo con la técnica de formar ceros se calcula un determinante de cualquier orden, incluido el orden 4, donde la regla de Sarrus no sirve.
+categories: [determinantes, desarrollo por adjuntos, formar ceros, orden 4, triangular, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El método universal
+
+Hasta ahora sabemos calcular determinantes de orden 2 y 3 con fórmulas. Para el orden 4 harían falta 24 productos, y para el orden 5, ciento veinte. Necesitamos otra cosa.
+
+Ese otro método es el **desarrollo por adjuntos**, y funciona para cualquier orden. Es, además, el que da nombre a dos de los objetivos del tema: calcular un determinante usando sus propiedades, y calcularlo formando ceros.
+
+## El teorema
+
+El determinante de una matriz cuadrada de orden $n$ es igual a la suma de los productos de los elementos de **una fila o columna cualquiera** por sus adjuntos correspondientes [cite:file:223].
+
+Por filas:
+
+$$
+|A| = a_{i1}A_{i1} + a_{i2}A_{i2} + \cdots + a_{in}A_{in}
+$$
+
+Por columnas:
+
+$$
+|A| = a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj}
+$$
+
+::: {.callout-important}
+## «Una fila o columna cualquiera» es la parte importante
+
+Puedes elegir. Y el resultado es el mismo por las $2n$ líneas posibles.
+
+Eso convierte el teorema en una herramienta estratégica: no es solo una fórmula, es una **decisión** que tomas tú, y la calidad de esa decisión determina si el ejercicio te lleva dos minutos o veinte.
+:::
+
+## Un ejemplo por tres caminos
+
+Calculemos, como en el libro, este determinante de tres formas distintas [cite:file:223]:
+
+$$
+|A| = \begin{vmatrix} 2 & 0 & 4 \\ 1 & -2 & 1 \\ 3 & 1 & 2 \end{vmatrix}
+$$
+
+**Con la definición**, por Sarrus, sale $|A| = 14$.
+
+**Desarrollando por la primera fila:**
+
+$$
+|A| = 2A_{11} + 0\cdot A_{12} + 4A_{13}
+$$
+
+El término del cero desaparece sin calcular nada. Queda:
+
+$$
+|A| = 2\begin{vmatrix} -2 & 1 \\ 1 & 2 \end{vmatrix} + 4\begin{vmatrix} 1 & -2 \\ 3 & 1 \end{vmatrix} = 2(-5) + 4(7) = -10 + 28 = 18
+$$
+
+**Desarrollando por la tercera columna** también se obtiene el mismo valor, con otros menores intermedios.
+
+::: {.callout-tip}
+## La estrategia, en una frase
+
+**Desarrolla siempre por la fila o columna con más ceros.** Cada cero elimina un determinante entero de orden inferior.
+
+En una matriz de orden 4, una línea con tres ceros reduce el problema a **un solo** determinante de orden 3. Sin ceros, serían cuatro.
+:::
+
+### Applet · Desarrollo por adjuntos {.unnumbered}
+
+<div data-applet-det="adjuntos"></div>
+
+## Formar ceros: la técnica que lo cambia todo
+
+¿Y si la matriz no tiene ceros? Se **crean**. Y aquí entra la propiedad 5 de la parte 2: sumar a una fila un múltiplo de otra no altera el determinante.
+
+### El procedimiento del libro, en cuatro pasos
+
+1. **Elegir la línea** en la que sea más sencillo hacer ceros. Conviene que contenga al menos un 1 [cite:file:223].
+2. **Tomar ese 1 como referencia** y hacer ceros en el resto de la línea con transformaciones del tipo $F_i \to F_i + kF_j$.
+3. **Desarrollar** por la línea elegida, que ahora tiene un solo elemento no nulo.
+4. **Repetir** hasta llegar a un determinante sencillo.
+
+### Ejemplo desarrollado
+
+$$
+\begin{vmatrix} 2 & 2 & -3 & -2 \\ 1 & 4 & -1 & 2 \\ 4 & 1 & 0 & 1 \\ 8 & 3 & -2 & -1 \end{vmatrix}
+$$
+
+La cuarta columna contiene un 1 en la tercera fila, así que la elegimos como referencia y hacemos ceros en el resto de esa columna. Después desarrollamos por ella, y el problema de orden 4 se convierte en uno de orden 3 que ya sabemos resolver [cite:file:223].
+
+::: {.callout-warning}
+## El descuido que arruina el cálculo
+
+Si en una transformación multiplicas **la fila que cambia**, estás alterando el determinante y tendrás que compensarlo.
+
+El profesor Gonzalo lo señala con un ejemplo muy claro: hacer $2F_1 - 3F_2$ **no** es una transformación neutra. Equivale a multiplicar primero $F_1$ por 2, lo que multiplica el determinante por 2, y después restar. Al final hay que dividir por 2 para compensar [cite:file:225].
+
+Lo seguro es usar solo transformaciones de la forma $F_i \to F_i - kF_j$, donde la fila que cambia va **sin coeficiente** delante. Así no hay nada que compensar.
+:::
+
+### Applet · Calcular formando ceros {.unnumbered}
+
+<div data-applet-det="ceros"></div>
+
+## El objetivo final: llegar a una triangular
+
+Hay una variante del método que resulta muy cómoda. En vez de hacer ceros en una sola línea, se hacen en **todo el triángulo inferior**, hasta obtener una matriz triangular. Entonces se aplica la propiedad 10 y el determinante es simplemente el producto de la diagonal [cite:file:223].
+
+### Ejemplo del libro
+
+$$
+\begin{vmatrix} 1 & -2 & 3 & -3 \\ 2 & 1 & -3 & 8 \\ -1 & -3 & 4 & 7 \\ -3 & -1 & 25 & 4 \end{vmatrix}
+$$
+
+Con $F_2 \to F_2 - 2F_1$, $F_3 \to F_3 + F_1$ y $F_4 \to F_4 + 3F_1$ se anula la primera columna. Repitiendo el proceso con la segunda y la tercera se llega a una triangular, y el determinante sale como producto de la diagonal principal [cite:file:223].
+
+::: {.callout-tip}
+## Dos consejos que ahorran fracciones
+
+**Coloca un 1 arriba a la izquierda.** Si no lo hay en esa posición pero sí en otra, intercambia filas o columnas, anotando el cambio de signo. Trabajar con un pivote igual a 1 evita todas las fracciones.
+
+**Si no hay ningún 1 en toda la matriz**, puedes dividir una línea entre uno de sus elementos y multiplicar el determinante por ese número para compensar [cite:file:223]. Es legítimo, siempre que anotes el factor.
+:::
+
+### Applet · Determinantes triangulares {.unnumbered}
+
+<div data-applet-det="triangular"></div>
+
+## Orden 4 completo
+
+Aquí es donde se juntan las dos técnicas. El procedimiento eficiente para un orden 4 es:
+
+1. Localizar la línea con más ceros, o crear ceros en la que más convenga.
+2. Desarrollar por esa línea, quedándonos con uno o dos determinantes de orden 3.
+3. Resolver esos por Sarrus.
+
+::: {.callout-note}
+## La regla de Katarrus existe, y no la vas a usar
+
+Igual que Sarrus da los seis productos del orden 3, existe una regla análoga que da los 24 productos del orden 4, con doce positivos y doce negativos [cite:file:225].
+
+Y un detalle curioso: a diferencia de los órdenes 2 y 3, en el orden 4 el producto de la diagonal secundaria lleva signo **positivo** [cite:file:225].
+
+Pero nadie la usa, y con razón: 24 productos de cuatro factores son 96 multiplicaciones. Con adjuntos y ceros, el mismo determinante sale en una docena de operaciones. La menciono para que sepas que existe y para que entiendas por qué el método de los adjuntos no es un capricho.
+:::
+
+### Applet · Determinante de orden 4 {.unnumbered}
+
+<div data-applet-det="orden4"></div>
+
+## Actividades propuestas
+
+**1.** Resuelve este determinante de tres formas: con la definición, desarrollando por una fila y desarrollando por la tercera columna [cite:file:223]:
+
+$$
+\begin{vmatrix} 2 & 0 & 4 \\ 1 & -2 & 1 \\ 3 & 1 & 2 \end{vmatrix}
+$$
+
+**2.** Calcula el determinante desarrollando por la línea que más te interese [cite:file:225]:
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 2 & 4 & 1 \\ 5 & 1 & 0 \end{vmatrix}
+$$
+
+**3.** Calcula este determinante de orden 4 por adjuntos, eligiendo bien la línea [cite:file:225]:
+
+$$
+\begin{vmatrix} 2 & 0 & 5 & 1 \\ 3 & 4 & 2 & 0 \\ 6 & 1 & 3 & 2 \\ 4 & 0 & 2 & 1 \end{vmatrix}
+$$
+
+**4.** Calcula el mismo determinante de la actividad 3, pero ahora **formando ceros** y llegando a una triangular. Comprueba que sale lo mismo [cite:file:225].
+
+**5.** Calcula el determinante de orden superior a 3 [cite:file:223]:
+
+$$
+\begin{vmatrix} 1 & -2 & 3 & -3 \\ 2 & 1 & -3 & 8 \\ -1 & -3 & 4 & 7 \\ -3 & -1 & 25 & 4 \end{vmatrix}
+$$
+
+**6.** Calcula $m$ para que el resultado de este determinante sea $-20$ [cite:file:223]:
+
+$$
+\begin{vmatrix} -1 & -2 & 0 & -1 \\ 1 & 0 & -1 & m \\ -3 & -1 & 1 & 1 \\ 0 & -1 & m & 1 \end{vmatrix}
+$$
+
+**7.** Razona por qué el determinante de una matriz triangular con un cero en la diagonal principal vale siempre cero, y relaciónalo con el rango.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** Por los tres caminos sale el mismo valor. Desarrollando por la primera fila, el cero de la posición $a_{12}$ elimina un menor entero:
+
+$$
+|A| = 2\begin{vmatrix} -2 & 1 \\ 1 & 2 \end{vmatrix} + 4\begin{vmatrix} 1 & -2 \\ 3 & 1 \end{vmatrix} = -10 + 28 = 18
+$$
+
+Desarrollando por la tercera columna se llega al mismo 18 con menores distintos. Comprueba las tres vías en el applet cambiando el selector: es la mejor forma de convencerse de que el teorema no depende de la línea elegida.
+
+**2.** La tercera fila tiene un cero, así que desarrollando por ella solo hay dos menores que calcular. El applet te da el desarrollo completo con los signos ya puestos.
+
+**3.** La segunda columna tiene **dos ceros**, en las filas primera y cuarta. Desarrollando por ella solo hay que calcular dos determinantes de orden 3 en lugar de cuatro. El applet de orden 4 elige automáticamente esa línea y te muestra el ahorro.
+
+**4.** Debe salir exactamente el mismo número que en la actividad 3. Si no coincide, revisa dos cosas: los intercambios de filas, que cambian el signo, y las transformaciones en las que hayas multiplicado la fila que cambia.
+
+**5.** Escalonando por columnas se llega a una triangular cuyo producto de diagonal da el resultado. En el libro este ejercicio se resuelve intercambiando primero las columnas primera y segunda para conseguir un 1 en la esquina, anotando el cambio de signo [cite:file:223].
+
+**6.** Desarrolla el determinante dejando la $m$ como una letra cualquiera, iguala el resultado a $-20$ y resuelve la ecuación en $m$. Es la unión de esta parte con las ecuaciones con determinantes de la parte 1.
+
+**7.** En una triangular el determinante es el producto de la diagonal. Si uno de los factores es cero, todo el producto es cero.
+
+Y la relación con el rango: determinante cero significa que las filas son dependientes, luego el rango es menor que el orden. De hecho, al escalonar una matriz, el número de elementos **no nulos** de la diagonal es exactamente el rango. Es la conexión que se explota en la parte 5.
+:::
+
+## Continúa
+
+En la parte 5 los determinantes se ponen al servicio de otra pregunta: el **cálculo del rango a partir de los menores**, incluido el caso en que la matriz depende de un parámetro.
+
+<div data-applet-det="diagnostico"></div>

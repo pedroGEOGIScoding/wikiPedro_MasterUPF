@@ -1,0 +1,259 @@
+---
+title: "Tema 2.5 Cálculo del rango de una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 5 de 6)"
+filename: 05-rango-por-menores
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El rango de una matriz es el orden del mayor menor no nulo. Este apartado enseña a calcularlo ampliando menores, a relacionarlo con el determinante y a discutirlo cuando la matriz depende de un parámetro, que es el ejercicio más frecuente en las pruebas de acceso.
+categories: [determinantes, rango, menores, discusión con parámetro, dependencia lineal, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un rango, dos métodos
+
+En el tema 1 calculamos rangos escalonando por Gauss. Aquí aprendemos el otro camino, el de los **menores**, y no es una repetición: cada método tiene su terreno.
+
+Gauss es más rápido con números concretos. Los menores son imprescindibles cuando hay un **parámetro**, porque permiten aislar exactamente qué valores hacen que el rango baje.
+
+## Menor de orden k
+
+Se llama **menor de orden $k$** de una matriz $A$ al determinante de orden $k$ formado por los elementos que pertenecen a $k$ filas y $k$ columnas de $A$ [cite:file:223].
+
+Ojo a un detalle: las filas y columnas **no tienen que ser contiguas**. Vale cualquier submatriz que surja de quitar filas y columnas [cite:file:225].
+
+### Ejemplo del libro
+
+En la matriz
+
+$$
+A = \begin{pmatrix} -1 & 0 & 2 \\ 0 & -2 & 3 \end{pmatrix}
+$$
+
+los menores de orden 1 son los seis elementos. Los de orden 2 son tres, uno por cada pareja de columnas [cite:file:223]:
+
+$$
+\begin{vmatrix} -1 & 0 \\ 0 & -2 \end{vmatrix} = 2, \qquad
+\begin{vmatrix} 0 & 2 \\ -2 & 3 \end{vmatrix} = 4, \qquad
+\begin{vmatrix} -1 & 2 \\ 0 & 3 \end{vmatrix} = -3
+$$
+
+Y de orden 3 no hay ninguno, porque solo hay dos filas.
+
+## Definición de rango por menores
+
+El **rango** de una matriz coincide con el orden del **mayor menor distinto de cero** que se puede formar con ella [cite:file:223].
+
+Y esto encaja con la definición del tema 1, la del número de filas linealmente independientes, porque se cumple [cite:file:223]:
+
+- Si $|A| \neq 0$, las filas son linealmente independientes.
+- Si $|A| = 0$, alguna fila depende linealmente de las otras.
+
+::: {.callout-important}
+## El resultado que lo articula todo
+
+Si el determinante de una matriz cuadrada de orden $n$ es distinto de cero, el rango de esa matriz es **exactamente** $n$ [cite:file:225].
+
+Y por tanto, si el determinante es cero, el rango no puede ser $n$: como mucho será $n-1$.
+
+Ese es el mecanismo que permite discutir rangos con parámetros. Se anula el determinante, se resuelve la ecuación, y esos valores son los sospechosos.
+:::
+
+## El procedimiento eficiente
+
+Calcular **todos** los menores es inviable: una matriz $4\times 5$ tiene cuarenta menores de orden 3. El libro propone un método que evita casi todos [cite:file:223]:
+
+1. Si la matriz es nula, el rango es 0. Si no, busca un menor de orden 2 distinto de cero. Si existe, el rango es **al menos** 2.
+2. **Amplía** ese menor añadiendo una fila y una columna de las que no aparecen, una a una. Si alguno de los ampliados es distinto de cero, el rango sube.
+3. Repite el proceso. El rango se detiene cuando **todos** los ampliados de un orden se anulan.
+
+::: {.callout-tip}
+## Elige bien el menor de partida
+
+Conviene que el menor de orden 2 inicial sea **lo más sencillo posible**, porque va a formar parte de todos los determinantes de orden superior que tendrás que calcular después [cite:file:223].
+
+Busca uno con ceros y unos. Un mal punto de partida te condena a arrastrar números feos durante todo el ejercicio.
+:::
+
+### Ejemplo del libro
+
+$$
+A = \begin{pmatrix} -1 & 0 & 0 & 2 & -2 \\ 3 & 1 & -1 & 4 & 0 \\ 2 & 1 & -1 & 6 & -2 \\ 6 & 2 & -2 & 1 & 0 \end{pmatrix}
+$$
+
+Se empieza con el menor formado por las dos primeras filas y las columnas primera y segunda, que vale $-1 \neq 0$, así que el rango es al menos 2. Ampliándolo con la tercera fila y las distintas columnas se encuentra un menor de orden 3 no nulo, luego el rango es al menos 3. Y como todos los menores de orden 4 se anulan, el rango es exactamente **3** [cite:file:223].
+
+### Applet · Rango por menores {.unnumbered}
+
+<div data-applet-det="rangomenores"></div>
+
+## Determinante y rango
+
+Los dos conceptos están unidos por una triple equivalencia que ya conoces del tema 1, y que aquí queda completamente justificada:
+
+$$
+|A| \neq 0 \iff \operatorname{rg}(A) = n \iff A \text{ tiene inversa}
+$$
+
+::: {.callout-note}
+## Un ejercicio que usa la equivalencia al revés
+
+Si $A$ y $B$ son cuadradas y $|AB| = 5$, ¿puedes determinar el rango de $A$? [cite:file:223]
+
+Sí. Como $|A|\cdot|B| = 5 \neq 0$, ninguno de los dos determinantes puede ser cero. Luego ambas matrices tienen rango máximo.
+
+Y si además te dicen que $|2AB| = 20$, puedes deducir el orden: de $2^n\cdot 5 = 20$ sale $2^n = 4$, luego $n = 2$.
+:::
+
+También aparece el objetivo de **calcular un determinante en función del rango**. El libro lo plantea con una familia de matrices $A_n$ y pide encontrar la fórmula general del determinante, para después aplicarla a órdenes altos sin calcular nada [cite:file:223].
+
+### Applet · Determinante y rango {.unnumbered}
+
+<div data-applet-det="detrango"></div>
+
+## Discusión con un parámetro
+
+Este es el ejercicio estrella de las pruebas de acceso, y merece un procedimiento fijo.
+
+### Estrategia, según el profesor Gonzalo
+
+1. Usa la idea clave: si el determinante de una submatriz cuadrada de orden $n$ es distinto de cero, el rango es al menos $n$ [cite:file:225].
+2. Busca submatrices **sin parámetro** que te garanticen un rango mínimo [cite:file:225].
+3. Cuando se agoten, pasa a las que contienen el parámetro. Al igualar su determinante a cero encontrarás las condiciones que hacen bajar el rango [cite:file:225].
+
+::: {.callout-warning}
+## El error que invalida toda la discusión
+
+**Nunca dividas por una expresión con el parámetro sin comprobar antes que no se anula.**
+
+Si al escalonar haces $F_2 \to F_2 - \dfrac{3}{m-2}F_1$, estás suponiendo en silencio que $m \neq 2$. Y ese caso, que has excluido sin darte cuenta, es probablemente uno de los que el ejercicio quería que estudiaras.
+
+El orden seguro es al contrario: primero el determinante, después la ecuación $|A(m)| = 0$, y solo entonces cada caso crítico por separado, sustituyendo el valor concreto.
+:::
+
+### Ejemplo resuelto del libro
+
+Estudia el rango de
+
+$$
+A = \begin{pmatrix} m & 1 & 0 \\ m-1 & m & 1 \\ m & 1 & m-1 \end{pmatrix}
+$$
+
+según los valores de $m$ [cite:file:223].
+
+**Paso 1.** Se calcula el determinante, que resulta $|A| = -m(m-2)$.
+
+**Paso 2.** Se iguala a cero: $-m(m-2) = 0$, luego $m = 0$ y $m = 2$ son los valores críticos.
+
+**Paso 3.** Para cualquier otro valor, $|A| \neq 0$ y por tanto $\operatorname{rg}(A) = 3$.
+
+**Paso 4.** Se estudian los dos valores críticos por separado, sustituyendo. En ambos casos el rango baja a **2** [cite:file:223].
+
+$$
+\operatorname{rg}(A) = \begin{cases} 3 & \text{si } m \neq 0 \text{ y } m \neq 2 \\ 2 & \text{si } m = 0 \text{ o } m = 2 \end{cases}
+$$
+
+### Un caso más difícil: matriz no cuadrada con parámetro
+
+Cuando la matriz no es cuadrada no hay determinante que anular, así que se trabaja por menores. El libro resuelve este [cite:file:223]:
+
+$$
+A = \begin{pmatrix} a & a & a & 1 \\ a & a^2 & 1 & a \\ a & 1 & a^2 & 1 \end{pmatrix}
+$$
+
+Como el parámetro aparece en todos los menores de orden 2, hay que estudiar directamente los de orden 3. Al anularlos se obtienen las condiciones $a=1$, $a=-1$ y $a=0$, y se examina el rango en cada una: para $a=1$ todas las filas son iguales y el rango es 1; para $a=-1$ el rango es 2; y para $a=0$ el rango es 3 [cite:file:223].
+
+### Applet · Rango con parámetro por determinantes {.unnumbered}
+
+<div data-applet-det="rangoparam"></div>
+
+::: {.callout-tip}
+## Cómo usar bien este applet
+
+El deslizador recorre valores de media en media entre $-8$ y $8$, así que **no encontraría** un valor crítico como $m = 1/3$.
+
+Úsalo para *ver* el fenómeno: qué pasa con el determinante y con el rango justo en el punto donde la matriz se vuelve singular. Pero la respuesta del examen se obtiene resolviendo $|A(m)| = 0$ a mano, y después comprobando con el applet que los valores coinciden. Si no coinciden, uno de los dos se ha equivocado, y merece la pena averiguar quién.
+:::
+
+## Actividades propuestas
+
+**1.** Calcula el rango de estas matrices estudiando el valor de sus menores [cite:file:223]:
+
+$$
+A = \begin{pmatrix} -1 & 0 & 3 & 2 \\ 2 & 0 & 6 & -4 \\ -3 & 2 & -2 & 1 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & -1 & 1 \\ 0 & 0 & -2 \\ 2 & 2 & -1 \end{pmatrix}
+$$
+
+**2.** Calcula el rango a partir de sus menores [cite:file:223]:
+
+$$
+\begin{pmatrix} 0 & 1 & -3 & -1 \\ 0 & -4 & -1 & 0 \\ 2 & 2 & 2 & -3 \\ -1 & 6 & -1 & 0 \end{pmatrix}
+$$
+
+**3.** Calcula $m$ para que el rango de esta matriz sea 3 [cite:file:223]:
+
+$$
+\begin{pmatrix} 0 & 2 & -3 \\ -3 & -3 & 2 \\ 0 & -4 & m \end{pmatrix}
+$$
+
+**4.** Calcula el rango de esta matriz según los valores de $k$ [cite:file:225]:
+
+$$
+\begin{pmatrix} 1 & 2 & k \\ 3 & 1 & 0 \\ 2 & 1 & 4 \end{pmatrix}
+$$
+
+**5.** Calcula el rango según los valores de $m$ [cite:file:225]:
+
+$$
+\begin{pmatrix} 0 & 1 & m \\ m & 3 & 0 \\ 1 & 2 & m \end{pmatrix}
+$$
+
+**6.** Estudia el rango según el parámetro $m$ [cite:file:223]:
+
+$$
+A = \begin{pmatrix} m & 1 & 0 \\ m-1 & m & 1 \\ m & 1 & m-1 \end{pmatrix}
+$$
+
+**7.** Demuestra que esta matriz tiene rango 2 para **cualquier** valor del parámetro $a$ [cite:file:223]:
+
+$$
+\begin{pmatrix} 1 & 2 & 3 & 7 \\ a & a & 7 & a \\ 1 & a-1 & 2 & 2a \end{pmatrix}
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** Para $A$: la segunda fila es $-2$ veces la primera en las columnas 1, 3 y 4, pero no en la segunda, así que hay que mirar con cuidado. Buscando menores se llega a $\operatorname{rg}(A) = 2$. Compruébalo con el applet, que muestra el primer menor no nulo de cada orden.
+
+Para $B$: el menor de las dos primeras filas y las columnas primera y tercera vale $-2 \neq 0$, luego el rango es al menos 2. Y el determinante completo vale cero, así que $\operatorname{rg}(B) = 2$.
+
+**2.** El applet encuentra un menor de orden 3 no nulo, y hay que comprobar el de orden 4. Si se anula, el rango es 3.
+
+**3.** Se calcula el determinante en función de $m$, se iguala a cero y se descartan esos valores. Para todos los demás el rango es 3.
+
+**4.** Desarrollando, $|A| = 5k - 20$, que se anula en $k = 4$ [cite:file:225]. Por tanto el rango es 3 si $k \neq 4$, y 2 si $k = 4$, porque siempre existe el menor $\begin{vmatrix} 3 & 1 \\ 2 & 1 \end{vmatrix} = 1 \neq 0$, que garantiza rango 2 sea cual sea $k$.
+
+Fíjate en la elegancia de ese menor: **no contiene el parámetro**, así que el rango 2 está asegurado de entrada. Es exactamente la estrategia del paso 2.
+
+**5.** El determinante da $-m^2 + 3m$, que factoriza como $-m(m-3)$ y se anula en $m=0$ y $m=3$ [cite:file:225]. Para el resto de valores el rango es 3; en esos dos, baja a 2, porque el menor $\begin{vmatrix} 0 & 1 \\ 1 & 2 \end{vmatrix} = -1 \neq 0$ lo garantiza sin depender de $m$.
+
+**6.** $|A| = -m(m-2)$, con valores críticos $m=0$ y $m=2$. El rango es 3 salvo en esos dos valores, donde vale 2 [cite:file:223].
+
+**7.** Hay que encontrar un menor de orden 2 no nulo que no dependa de $a$, lo que garantiza rango mayor o igual que 2, y después comprobar que **todos** los menores de orden 3 se anulan para cualquier $a$, lo que impide llegar a 3.
+
+Es un ejercicio exigente, porque la conclusión no depende del parámetro: hay que demostrar una identidad, no resolver una ecuación.
+:::
+
+## Continúa
+
+La parte 6 cierra el tema con la aplicación más útil de todo lo anterior: el **cálculo de la matriz inversa con determinantes**, el método más rápido de los tres que conoces.
