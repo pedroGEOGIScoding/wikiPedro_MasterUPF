@@ -5,8 +5,8 @@ filename: 05-dispersion-varianza
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Recorrido, rango intercuartílico, varianza, desviación típica e intervalo central para medir cómo se dispersan los datos respecto de la media.
-categories: [estadística, dispersión, varianza, desviación típica, recorrido, RIC, 2 Batx]
+description: Recorrido, rango intercuartílico, varianza, desviación típica, intervalo central y regla empírica para medir cómo se dispersan los datos respecto de la media.
+categories: [estadística, dispersión, varianza, desviación típica, recorrido, RIC, regla empírica, 2 Batx]
 toc: true
 number-sections: true
 format:
@@ -39,20 +39,36 @@ Se elevan las desviaciones al cuadrado para que los valores positivos y negativo
 
 <div data-applet-est1="dispersion"></div>
 
-## Intervalo central y regla empírica
+## Intervalo central
 
-El intervalo \([\bar x-\sigma,\bar x+\sigma]\) recoge los datos cercanos a la media. En una distribución aproximadamente normal, cerca del 68 %, 95 % y 99,7 % cae, respectivamente, a una, dos y tres desviaciones típicas.
-
-::: {.callout-warning}
-## Regla empírica, no ley universal
-
-68–95–99,7 % describe distribuciones aproximadamente acampanadas. No se debe aplicar mecánicamente a datos muy asimétricos o con extremos notorios.
-:::
+El intervalo \([\bar x-\sigma,\bar x+\sigma]\) reúne los datos situados a menos de una desviación típica de la media. No contiene necesariamente un porcentaje fijo: depende de la forma de la distribución.
 
 ### Applet · Intervalo central {.unnumbered}
 
 <div data-applet-est1="intervalo"></div>
 
+## Regla empírica 68–95–99,7
+
+En una distribución aproximadamente normal, cerca del 68 %, 95 % y 99,7 % de los datos cae, respectivamente, a una, dos y tres desviaciones típicas de la media:
+
+\[
+[\bar x-\sigma,\bar x+\sigma],\qquad
+[\bar x-2\sigma,\bar x+2\sigma],\qquad
+[\bar x-3\sigma,\bar x+3\sigma]
+\]
+
+::: {.callout-warning}
+## Regla empírica, no ley universal
+
+No debe aplicarse mecánicamente a datos muy asimétricos, con extremos notorios o con pocas observaciones. El applet compara el porcentaje real de tus datos con las referencias normales para que puedas juzgarlo.
+:::
+
+### Applet · Regla empírica 68–95–99,7 {.unnumbered}
+
+<div data-applet-est1="empirica"></div>
+
 ## Actividad
 
 Compara las notas \(0,1,6,8,10\) y \(4,5,5,5,6\). Tienen media 5: calcula recorrido, varianza y desviación típica y explica cuál es más homogéneo.
+
+Después introduce ambos grupos en el applet de la regla empírica. ¿Tiene sentido esperar los porcentajes 68–95–99,7 en conjuntos de solo cinco datos?

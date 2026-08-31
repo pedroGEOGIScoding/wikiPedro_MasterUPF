@@ -56,3 +56,6 @@ Dos barras de 98 y 100 parecen casi iguales con eje desde cero; con eje desde 97
 ## Actividad
 
 Elige el gráfico adecuado para: número de hermanos, estaturas agrupadas, reparto de presupuesto, notas de dos grupos y cinco números resumen de una distribución.
+
+<div data-applet-est1="diagnostico"></div>
+

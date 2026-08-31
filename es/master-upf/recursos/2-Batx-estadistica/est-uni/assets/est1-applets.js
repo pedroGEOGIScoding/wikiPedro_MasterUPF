@@ -21,5 +21,23 @@ R.laboratorio=n=>base(n,'Laboratorio estadístico 1D','Una tabla y todos los par
 ['agrupador','interpolacion','graficas','boxplot','entrenador'].forEach(key=>R[key]=n=>base(n,key==='graficas'?'Gráficas estadísticas':key==='boxplot'?'Diagrama de caja y bigotes':key==='agrupador'?'Agrupar datos en intervalos':'Práctica estadística','Introduce datos. Este módulo inicial calcula los parámetros; las visualizaciones avanzadas se incorporan en est1-applets-extra.js.',c=>tabla(c)+resumen(c)));
 window.EST1={registry:R,datos,calc,tabla,resumen,tex,log:[]};
 function boot(){document.querySelectorAll('[data-applet-est1]').forEach(n=>{if(n.dataset.mounted)return;n.dataset.mounted=1;let f=R[n.dataset.appletEst1];if(!f){n.innerHTML='<div class="mx-bad ap-err">Clave inexistente: '+E(n.dataset.appletEst1)+'</div>';return}try{f(n)}catch(e){n.innerHTML='<div class="mx-bad ap-err">'+E(e.message)+'</div>';EST1.log.push(e)}})}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(boot,0));else setTimeout(boot,0);
+function startWhenReady(){
+  var attempts=0;
+  (function waitForExtra(){
+    if(window.EST1 && window.EST1.extra===true){
+      boot();
+      return;
+    }
+    if(attempts++>=200){
+      boot();
+      return;
+    }
+    setTimeout(waitForExtra,10);
+  })();
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',startWhenReady);
+}else{
+  startWhenReady();
+}
 })();
