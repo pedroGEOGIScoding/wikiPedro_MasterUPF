@@ -1,0 +1,58 @@
+---
+title: "Tema 1.5 Dispersión, varianza y desviación típica"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 5 de 8)"
+filename: 05-dispersion-varianza
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Recorrido, rango intercuartílico, varianza, desviación típica e intervalo central para medir cómo se dispersan los datos respecto de la media.
+categories: [estadística, dispersión, varianza, desviación típica, recorrido, RIC, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El centro no basta
+
+Dos grupos pueden tener la misma media y una regularidad muy distinta. Las medidas de dispersión indican cuánto se alejan los datos de su centro.
+
+\[
+Re=x_{max}-x_{min},\qquad RIC=Q_3-Q_1
+\]
+
+El recorrido usa solo extremos; el RIC usa el 50 % central y resiste mejor valores atípicos.
+
+## Varianza y desviación típica
+
+\[
+\sigma^2=\frac{\sum f_i(x_i-\bar x)^2}{N}
+\qquad\text{y}\qquad
+\sigma=\sqrt{\sigma^2}
+\]
+
+Se elevan las desviaciones al cuadrado para que los valores positivos y negativos no se cancelen. La desviación típica vuelve a las unidades originales.
+
+### Applet · Laboratorio de dispersión {.unnumbered}
+
+<div data-applet-est1="dispersion"></div>
+
+## Intervalo central y regla empírica
+
+El intervalo \([\bar x-\sigma,\bar x+\sigma]\) recoge los datos cercanos a la media. En una distribución aproximadamente normal, cerca del 68 %, 95 % y 99,7 % cae, respectivamente, a una, dos y tres desviaciones típicas.
+
+::: {.callout-warning}
+## Regla empírica, no ley universal
+
+68–95–99,7 % describe distribuciones aproximadamente acampanadas. No se debe aplicar mecánicamente a datos muy asimétricos o con extremos notorios.
+:::
+
+### Applet · Intervalo central {.unnumbered}
+
+<div data-applet-est1="intervalo"></div>
+
+## Actividad
+
+Compara las notas \(0,1,6,8,10\) y \(4,5,5,5,6\). Tienen media 5: calcula recorrido, varianza y desviación típica y explica cuál es más homogéneo.

@@ -1,0 +1,62 @@
+---
+title: "Tema 1.6 Coeficiente de variación y tipificación"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 6 de 8)"
+filename: 06-coeficiente-variacion-tipificacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Coeficiente de variación, efecto de cambios de escala y origen, puntuación tipificada z y puente hacia la distribución normal.
+categories: [estadística, coeficiente de variación, tipificación, puntuación z, normal, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Comparar dispersión con escalas distintas
+
+\[
+CV=\frac{\sigma}{\bar x}
+\]
+
+El coeficiente de variación no tiene unidades y permite comparar regularidad cuando medias o unidades son distintas. Un CV menor indica mayor homogeneidad.
+
+::: {.callout-warning}
+## No lo uses si la media es cero o muy cercana a cero
+
+Dividir por una media nula no tiene sentido; con una media muy pequeña, el CV puede resultar enorme y poco interpretable.
+:::
+
+## Cambios de origen y escala
+
+Si \(Y=aX+b\), entonces:
+
+\[
+\bar y=a\bar x+b,\qquad \sigma_Y=|a|\sigma_X,\qquad \sigma_Y^2=a^2\sigma_X^2
+\]
+
+Sumar una constante desplaza los datos pero no cambia su dispersión. Multiplicar por una constante cambia media y dispersión en la misma proporción; por eso el CV no cambia si la escala es positiva.
+
+## Tipificación
+
+\[
+z=\frac{x-\bar x}{\sigma}
+\]
+
+La puntuación \(z\) mide cuántas desviaciones típicas separan un valor de la media. Un \(z=2\) está dos desviaciones por encima; \(z=-1{,}5\), una y media por debajo.
+
+### Applet · Tipificador de puntuaciones {.unnumbered}
+
+<div data-applet-est1="tipificacion"></div>
+
+Esta transformación produce media 0 y desviación típica 1, y será la puerta de entrada a la distribución normal.
+
+## Actividades
+
+**1.** Dos equipos tienen \((\bar x,\sigma)=(20,4)\) y \((100,15)\). Calcula sus CV y compara homogeneidad.
+
+**2.** Una nota 82 está en un grupo con media 70 y desviación 6. Calcula \(z\) e interpreta.
+
+**3.** Temperatura en °C: media 20 y desviación 3. Pasa a °F mediante \(F=1{,}8C+32\) y calcula nueva media y desviación.

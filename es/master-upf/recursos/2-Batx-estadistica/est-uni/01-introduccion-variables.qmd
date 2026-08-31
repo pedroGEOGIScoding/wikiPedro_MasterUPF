@@ -5,7 +5,7 @@ filename: 01-introduccion-variables
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: La estadística unidimensional estudia una característica de cada individuo. Esta primera parte fija el vocabulario imprescindible: población, individuo, muestra, carácter, modalidad y tipos de variables estadísticas.
+description: La estadística unidimensional estudia una característica de cada individuo. Esta primera parte fija el vocabulario imprescindible como es población, individuo, muestra, carácter, modalidad y tipos de variables estadísticas.
 categories: [estadística, estadística unidimensional, población, muestra, variables estadísticas, 2 Batx]
 toc: true
 number-sections: true

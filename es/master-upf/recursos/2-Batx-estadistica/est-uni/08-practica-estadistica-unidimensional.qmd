@@ -1,0 +1,68 @@
+---
+title: "Tema 1.8 Práctica de estadística unidimensional"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 8 de 8)"
+filename: 08-practica-estadistica-unidimensional
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Práctica global con tablas, parámetros, gráficos e interpretación crítica de datos estadísticos unidimensionales.
+categories: [estadística, práctica, frecuencias, parámetros, gráficos, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El procedimiento completo
+
+Ante cualquier conjunto de datos, sigue siempre este orden:
+
+1. Identifica población, variable y tipo.
+2. Ordena los datos y construye tabla de frecuencias.
+3. Decide si necesitas agrupar en intervalos.
+4. Calcula centro, posición y dispersión.
+5. Elige un gráfico adecuado.
+6. Interpreta: no repitas números, explica qué dicen.
+
+::: {.callout-important}
+## La interpretación es la última operación
+
+Una media sin unidades ni contexto no es una conclusión. Escribe siempre qué mide, en qué población y qué limitación tiene. Acompaña la media con mediana y dispersión si hay valores extremos.
+:::
+
+### Applet · Laboratorio estadístico 1D {.unnumbered}
+
+<div data-applet-est1="laboratorio"></div>
+
+## Problemas mezclados
+
+**1.** Las urgencias diarias atendidas durante un mes son: 1, 5, 3, 2, 1, 4, 3, 5, 1, 0, 2, 4, 6, 3, 2, 6, 4, 2, 2, 3, 1, 5, 3, 3, 6, 4, 3, 2, 1, 5. Construye tabla, gráfico y parámetros.
+
+**2.** Una zapatería vende 40 pares entre las tallas 37 y 44. Calcula media, mediana, moda, desviación típica, \(Q_1,Q_3,D_3,P_{60},P_{90}\) e intervalo \((\bar x-\sigma,\bar x+\sigma)\).
+
+**3.** Una prueba de 80 preguntas se aplica a 600 personas y sus resultados están agrupados en ocho intervalos de diez. Calcula intervalo modal, mediano, RIC, \(D_8\) y \(P_{73}\).
+
+**4.** Compara dos grupos con la misma media usando desviación típica y CV. Explica cuál es más regular y cuál elegirías si fueras responsable de un equipo deportivo.
+
+### Applet · Entrenador de estadística {.unnumbered}
+
+<div data-applet-est1="entrenador"></div>
+
+## Autoevaluación
+
+Debes poder explicar sin mirar apuntes:
+
+- Por qué una variable puede ser continua o discreta según cómo se registre.
+- Por qué las frecuencias acumuladas no sirven para categorías nominales.
+- Cuándo una media es poco representativa.
+- Cómo localizar un percentil en una tabla agrupada.
+- Por qué la varianza usa cuadrados.
+- Qué significa una puntuación tipificada negativa.
+- Diferencia entre barras e histograma.
+- Cómo un eje truncado puede manipular la percepción.
+
+## Puente al tema 2
+
+Aquí se estudia una característica por individuo. El tema siguiente estudiará dos a la vez, mediante pares \((x_i,y_i)\), tablas dobles y diagramas de dispersión.

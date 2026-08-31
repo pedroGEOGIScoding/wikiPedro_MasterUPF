@@ -1,0 +1,58 @@
+---
+title: "Tema 1.7 Gráficas estadísticas y lectura crítica"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 7 de 8)"
+filename: 07-graficas-estadisticas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Diagramas de barras, sectores, histogramas, polígonos de frecuencia y diagramas de caja; elección correcta del gráfico y detección de representaciones engañosas.
+categories: [estadística, gráficos, histograma, boxplot, barras, sectores, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un gráfico debe aclarar, no decorar
+
+| Gráfico | Cuándo usarlo |
+|---|---|
+| Barras | Cualitativas o discretas |
+| Sectores | Pocas categorías y proporciones de un total |
+| Histograma | Variable continua agrupada; barras pegadas |
+| Polígono | Comparar distribuciones o ver forma |
+| Caja y bigotes | Centro, RIC, asimetría y posibles valores atípicos |
+
+::: {.callout-important}
+## Barras e histograma no son lo mismo
+
+En barras hay separación porque los valores discretos no incluyen intermedios. En histograma las barras se tocan porque la variable es continua. Si las clases tienen amplitudes distintas, la altura debe representar densidad, no frecuencia bruta.
+:::
+
+### Applet · Galería de gráficos {.unnumbered}
+
+<div data-applet-est1="graficas"></div>
+
+## Diagrama de caja
+
+El boxplot resume mínimo, \(Q_1\), mediana, \(Q_3\) y máximo. La caja contiene el 50 % central y su longitud es el RIC.
+
+### Applet · Diagrama de caja y bigotes {.unnumbered}
+
+<div data-applet-est1="boxplot"></div>
+
+## Cómo no dejarse engañar
+
+Desconfía de ejes truncados, escalas irregulares, áreas que exageran cambios y gráficos de sectores con demasiadas categorías. Un gráfico correcto debe indicar variable, unidades, población, fuente y escala.
+
+::: {.callout-warning}
+## Pregunta siempre: ¿qué se ha recortado?
+
+Dos barras de 98 y 100 parecen casi iguales con eje desde cero; con eje desde 97 pueden aparentar una diferencia enorme. Los datos no han cambiado: solo la impresión visual.
+:::
+
+## Actividad
+
+Elige el gráfico adecuado para: número de hermanos, estaturas agrupadas, reparto de presupuesto, notas de dos grupos y cinco números resumen de una distribución.

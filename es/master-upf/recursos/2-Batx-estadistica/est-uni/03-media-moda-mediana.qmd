@@ -1,0 +1,63 @@
+---
+title: "Tema 1.3 Media, moda y mediana"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 3 de 8)"
+filename: 03-media-moda-mediana
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Parámetros de posición central que son media aritmética y ponderada, moda y mediana; cálculo e interpretación crítica.
+categories: [estadística, media, moda, mediana, centralización, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Tres formas de resumir el centro
+
+\[
+\bar x=\frac{\sum x_if_i}{N},\qquad \text{Mo}=\text{valor de mayor frecuencia},\qquad \text{Me}=\text{posición central ordenada}
+\]
+
+La media usa todos los datos; la moda indica el valor más frecuente; la mediana deja la mitad de observaciones a cada lado.
+
+### Applet · Media, moda y mediana {.unnumbered}
+
+<div data-applet-est1="centralizacion"></div>
+
+## Media ponderada
+
+Cuando un valor aparece \(f_i\) veces, no se suma repetidamente: se pondera.
+
+\[
+\bar x=\frac{x_1f_1+x_2f_2+\cdots+x_kf_k}{N}
+\]
+
+En variables continuas agrupadas, \(x_i\) es la marca de clase. Por eso el resultado es aproximado.
+
+## Moda y mediana
+
+- Puede haber una moda, varias o ninguna.
+- Con variable continua se habla de **intervalo modal**.
+- Si \(N\) es impar, la mediana ocupa la posición \((N+1)/2\); si es par, es la media de las dos posiciones centrales.
+- Con datos agrupados se localiza el **intervalo mediano** mediante la frecuencia acumulada.
+
+::: {.callout-warning}
+## La media puede engañar
+
+Los grupos \(0,1,6,8,10\) y \(4,5,5,5,6\) tienen media 5, pero describen realidades completamente distintas: el primero está muy disperso y el segundo concentrado. La media necesita siempre una medida de dispersión al lado.
+:::
+
+### Applet · Efecto de valores atípicos {.unnumbered}
+
+<div data-applet-est1="atipicos"></div>
+
+## Actividades
+
+**1.** Diez parejas tienen 0,0,1,1,1,1,2,2,2,3 hijos. Calcula e interpreta \(\bar x\), Mo y Me.
+
+**2.** Compara los dos grupos anteriores: ¿cuál es más representativo mediante su media? ¿Qué parámetro falta?
+
+**3.** Para los pesos agrupados \([0,10),[10,20),[20,30),[30,40)\) con frecuencias 39,12,41,8, calcula media aproximada, intervalo modal e intervalo mediano.

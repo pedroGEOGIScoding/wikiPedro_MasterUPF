@@ -1,0 +1,62 @@
+---
+title: "Tema 1.4 Cuartiles, deciles y percentiles"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística unidimensional (Parte 4 de 8)"
+filename: 04-cuartiles-deciles-percentiles
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Medidas de posición no central que son cuartiles, deciles y percentiles; cálculo discreto e interpolación lineal en datos agrupados.
+categories: [estadística, cuartiles, deciles, percentiles, interpolación, RIC, 2 Batx]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Posiciones, no promedios
+
+Los cuantiles ordenan la población. \(Q_1\), \(Q_2\) y \(Q_3\) dejan por debajo el 25 %, 50 % y 75 % de los datos. \(Q_2\) es la mediana.
+
+Los deciles \(D_k\) dividen en diez partes; los percentiles \(P_k\), en cien. Se cumple \(Q_1=P_{25}\), \(Q_2=P_{50}\), \(Q_3=P_{75}\), y \(D_k=P_{10k}\).
+
+### Applet · Cuantiles discretos {.unnumbered}
+
+<div data-applet-est1="cuantiles"></div>
+
+## Datos agrupados: interpolación
+
+Cuando el cuantil cae dentro de una clase, se aproxima suponiendo reparto uniforme dentro del intervalo:
+
+\[
+P_k=L_i+\frac{kN/100-F_{i-1}}{f_i}\cdot a_i
+\]
+
+donde \(L_i\) es el límite inferior de la clase, \(F_{i-1}\) la acumulada anterior, \(f_i\) su frecuencia y \(a_i\) la amplitud.
+
+::: {.callout-important}
+## Primero localiza la clase
+
+Busca la primera frecuencia acumulada que alcance la posición pedida. Solo después interpolas. Usar la frecuencia de una clase equivocada da un resultado numéricamente razonable y completamente falso.
+:::
+
+### Applet · Interpolación lineal {.unnumbered}
+
+<div data-applet-est1="interpolacion"></div>
+
+## Rango intercuartílico
+
+\[
+RIC=Q_3-Q_1
+\]
+
+Mide la amplitud del 50 % central y resiste mejor los valores extremos que el recorrido total. Es la medida que organiza el diagrama de caja.
+
+## Actividades
+
+**1.** Con las ventas de tartas 5,5,5,5,6,6,6,6,7,7,7,7,7,7,7,8,8,8,8,8,8,8,9,9,9,9,9,9,10,10, calcula \(Q_1,Q_2,Q_3,D_3,D_9,P_{36}\).
+
+**2.** En una prueba de 80 preguntas con 600 personas, calcula intervalo modal, mediano, \(D_8\) y \(P_{73}\) a partir de las clases y frecuencias dadas en el cuaderno de ejercicios.
+
+**3.** Explica qué significa que una nota sea \(P_{90}\).
