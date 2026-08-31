@@ -283,7 +283,14 @@ website:
           contents:
             - section: "Tema 1 Estadística unidimensional"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/est-uni/
+              - master-upf/recursos/2-Batx-estadistica/est-uni/01-introduccion-variables.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/02-tablas-frecuencias.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/03-media-moda-mediana.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/04-cuartiles-deciles-percentiles.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/05-dispersion-varianza.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/06-coeficiente-variacion-tipificacion.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/07-graficas-estadisticas.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-uni/08-practica-estadistica-unidimensional.qmd
             - section: "Tema 2 Estadística bidimensional"
               contents:
                 - master-upf/recursos/2-Batx-estadistica/est-bi/
