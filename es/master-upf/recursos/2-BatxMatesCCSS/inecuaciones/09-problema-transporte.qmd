@@ -1,0 +1,79 @@
+---
+title: "Tema 4.9 Problema de transporte"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 9 de 9)"
+filename: 09-problema-transporte
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Planificación de transporte con oferta, demanda y coste mínimo. Cierre del tema con estrategia de modelización, applet manipulable y autoevaluación.
+categories: [programación lineal, transporte, logística, oferta, demanda, coste mínimo, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El modelo de transporte
+
+Un problema de transporte minimiza el coste de mover mercancías desde orígenes con oferta hasta destinos con demanda. La dificultad no suele estar en optimizar, sino en elegir variables y expresar correctamente las cantidades restantes.
+
+### Ejemplo del libro
+
+Dos bosques, B1 y B2, producen 26 y 30 toneladas. Tres aserraderos necesitan 20, 22 y 14. Los costes por tonelada son 10, 30 y 10 desde B1, y 20, 10 y 10 desde B2.
+
+Tomando $x$ como toneladas B1→A1 e $y$ como B1→A2, las demás cantidades se deducen por oferta y demanda. El coste reducido es $10x+20y+760$ y las restricciones delimitan una región factible. El mínimo se obtiene con $x=20$, $y=0$: B1 lleva 20 t a A1 y 6 a A3; B2 lleva 22 a A2 y 8 a A3; coste 560 €.
+
+### Applet · Problema de transporte {.unnumbered}
+
+<div data-applet-ine="transporte"></div>
+
+## Protocolo de planteamiento
+
+1. Escribe tabla de oferta, demanda y coste.
+2. Elige solo dos variables independientes.
+3. Expresa todas las demás con balances de filas y columnas.
+4. Exige que toda cantidad transportada sea no negativa.
+5. Suma los costes para formar la función objetivo.
+
+::: {.callout-important}
+## El balance es una ecuación escondida
+
+Cada origen debe enviar exactamente lo que ofrece y cada destino recibir exactamente lo que necesita. Si al reconstruir el plan sobra o falta mercancía, el planteamiento no es válido aunque el gráfico parezca correcto.
+:::
+
+## Autoevaluación del tema
+
+Antes de cerrar programación lineal, comprueba que sabes:
+
+- Invertir el signo al dividir una inecuación por un negativo.
+- Decidir si una frontera es abierta o cerrada.
+- Representar la región factible como intersección.
+- Calcular y comprobar todos los vértices.
+- Distinguir solución única, múltiple, no acotada y no factible.
+- Plantear función objetivo y restricciones desde una tabla.
+- Resolver un problema por vértices y por rectas de nivel.
+- Traducir balances de oferta y demanda en un transporte.
+
+### Applet · Entrenador de programación lineal {.unnumbered}
+
+<div data-applet-ine="entrenador"></div>
+
+## Actividades finales
+
+**1.** Transporta 1600 personas y 96 t de equipaje con aviones A y B. A lleva 200 personas y 6 t, cuesta 4000 €; B lleva 100 y 15, cuesta 1000 €; hay como máximo 11 A y 8 B. Minimiza coste.
+
+**2.** Dos almacenes tienen 10 y 15 t de fruta; tres mercados demandan 8, 8 y 9. Los costes son 10,15,20 y 15,10,10 €/t. Planifica el transporte mínimo.
+
+**3.** Renderiza una página con el diagnóstico temporal:
+
+```html
+<div data-applet-ine="diagnostico"></div>
+```
+
+Debe indicar que núcleo `window.INE` y KaTeX están activos. Bórralo antes de publicar.
+
+## Fin del tema 4
+
+Este tema conecta desigualdades, geometría analítica y toma de decisiones: no busca solo una solución posible, sino la mejor entre todas las posibles. Es la matemática de optimizar recursos limitados.

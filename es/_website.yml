@@ -260,15 +260,26 @@ website:
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/06-inversa-con-determinantes.qmd
             - section: "Tema 3 Sistemas de ecuaciones"
               contents:
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/01-sistemas-ecuaciones-lineales.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/02-expresion-matricial.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/03-metodo-de-gauss.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/04-teorema-rouche-frobenius.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/05-regla-de-cramer.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/06-generalizacion-de-cramer.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/07-sistemas-homogeneos.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/08-sistemas-con-parametros.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/sistemas/09-resolucion-de-problemas.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/01-sistemas-ecuaciones-lineales.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/02-expresion-matricial.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/03-metodo-de-gauss.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/04-teorema-rouche-frobenius.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/05-regla-de-cramer.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/06-generalizacion-de-cramer.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/07-sistemas-homogeneos.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/08-sistemas-con-parametros.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/09-resolucion-de-problemas.qmd
+            - section: "Tema 4 Inecuaciones y programación lineal"
+              contents:
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/01-inecuaciones.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/02-inecuaciones-dos-incognitas.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/03-sistemas-inecuaciones.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/04-programacion-lineal.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/05-metodos-resolucion.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/06-tipos-soluciones.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/07-problema-produccion.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/08-problema-dieta.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/inecuaciones/09-problema-transporte.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
@@ -290,23 +301,14 @@ website:
           href: https://pedrogeogisdev.com/
 
     - id: "website-map"
-      title: "Mapa del sitio"
+      title: "Archivos"
       style: "docked"
       background: light
       collapse-level: 0
       align: center
       contents:
         - master-upf/listing-pages.qmd
-
-    - id: "docs"
-      title: "Documentación"
-      style: "docked"
-      background: light
-      collapse-level: 0
-      align: center
-      contents:
-        - listing-docs.qmd
-        
+     
   page-footer:
     background: primary
     left: © by Pedro 2025 hecho con [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)

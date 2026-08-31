@@ -1,0 +1,48 @@
+---
+title: "Tema 4.8 Problema de la dieta"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 8 de 9)"
+filename: 08-problema-dieta
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Optimización del coste de una dieta que debe alcanzar mínimos de nutrientes usando dos productos disponibles.
+categories: [programación lineal, dieta, nutrientes, coste mínimo, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Alcanzar mínimos al menor coste
+
+En una dieta las restricciones suelen ser «al menos»: hay que aportar mínimos de nutrientes. Por eso la región suele ser no acotada; aun así, puede haber un mínimo de coste perfectamente definido.
+
+### Ejemplo del libro
+
+Se necesitan al menos 30 unidades de pienso A y 20 de B. Un paquete $P_1$ aporta 4 de A y 2 de B y cuesta 2,50 €; $P_2$ aporta 5 de A y 5 de B y cuesta 3,25 €.
+
+$$
+\text{Minimizar }f=2{,}5x+3{,}25y
+\quad\text{sujeta a}\quad
+4x+5y\geq30,\;2x+5y\geq20,\;x,y\geq0
+$$
+
+El mínimo se logra con $x=5$, $y=2$, y cuesta 19 €.
+
+### Applet · Problema de la dieta {.unnumbered}
+
+<div data-applet-ine="dieta"></div>
+
+::: {.callout-warning}
+## Un mínimo real, aunque la región sea infinita
+
+No concluyas que «no hay solución» solo porque la región se prolonga. Si alejarse de los vértices aumenta el coste, el mínimo puede estar en un vértice cercano, como ocurre en el ejemplo.
+:::
+
+## Actividades
+
+**1.** Un deportista necesita 36 g de M, 24 de N y 8 de P. Cápsulas: 6, 2, 18 y 0,03 €; pastillas: 3, 4, 18 y 0,045 €. Minimiza coste.
+
+**2.** Para ganado se requieren 24 unidades de A y 25 de B; C1 aporta 1 y 5 y cuesta 1 €, C2 aporta 4 y 1 y cuesta 3 €. Halla la dieta de coste mínimo.

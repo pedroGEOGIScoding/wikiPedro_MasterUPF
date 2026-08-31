@@ -1,0 +1,67 @@
+---
+title: "Tema 4.2 Inecuaciones lineales con dos incógnitas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 2 de 9)"
+filename: 02-inecuaciones-dos-incognitas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Una inecuación lineal con dos incógnitas determina un semiplano. Se aprende a representar su recta frontera, decidir qué lado cumple la desigualdad y distinguir fronteras abiertas y cerradas.
+categories: [inecuaciones, dos incógnitas, semiplano, recta frontera, pendiente, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un semiplano de soluciones
+
+Una inecuación lineal con dos incógnitas tiene forma $ax+by\;\square\;c$. Su solución son todos los pares $(x,y)$ que la verifican y forman uno de los dos semiplanos separados por la recta frontera $ax+by=c$.
+
+Ejemplo: para $2x+y>3$, dibujamos $2x+y=3$. El punto $(0,0)$ no cumple, pues $0>3$ es falso; por tanto la solución es el semiplano contrario al origen.
+
+::: {.callout-important}
+## Continua o discontinua
+
+Con $<$ o $>$ la frontera **no entra**: recta discontinua y semiplano abierto. Con $\leq$ o $\geq$, sí entra: recta continua y semiplano cerrado.
+:::
+
+### Applet · Semiplano solución {.unnumbered}
+
+<div data-applet-ine="semiplano"></div>
+
+## Dos métodos para decidir el lado
+
+- **Probar un punto**, normalmente $(0,0)$, si no está en la recta.
+- **Analizar signos** tras despejar $y$: si $y\leq mx+n$, se toma debajo; si $y\geq mx+n$, encima.
+
+El primero es más seguro; el segundo, más rápido cuando ya lo dominas.
+
+### Applet · Los dos métodos comparados {.unnumbered}
+
+<div data-applet-ine="metodos"></div>
+
+## Dibujar la recta frontera
+
+Para $y=mx+n$, el punto $(0,n)$ corta al eje $Y$ y $m$ es la pendiente: cuánto sube o baja $y$ cuando $x$ avanza una unidad. Con $m=-4/3$, avanza 3 y baja 4 para conservar coordenadas enteras.
+
+### Applet · Pendiente y recta frontera {.unnumbered}
+
+<div data-applet-ine="recta"></div>
+
+## Actividades
+
+**1.** Representa y di si el recinto es abierto o cerrado:
+
+$$
+x+y\leq4,\qquad2x+3y>-2,\qquad x-3y\geq5,\qquad -x-y<-2
+$$
+
+**2.** Decide si pertenecen al semiplano:
+
+$$
+(1,-2)\text{ para }3x-y\leq2;\quad(-1,3)\text{ para }x+2y\leq3;\quad(0,5)\text{ para }5x-3y>8.
+$$
+
+**3.** Dibuja $4x-3y=20$ mediante tabla de valores y mediante pendiente.

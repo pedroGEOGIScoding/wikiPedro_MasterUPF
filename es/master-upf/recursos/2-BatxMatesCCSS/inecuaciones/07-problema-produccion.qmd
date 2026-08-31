@@ -1,0 +1,50 @@
+---
+title: "Tema 4.7 Problema de producción"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 7 de 9)"
+filename: 07-problema-produccion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Optimización de beneficios de producción bajo restricciones de materiales, tiempo, capacidad o demanda.
+categories: [programación lineal, producción, beneficio, recursos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Producir sin exceder recursos
+
+En producción se quiere normalmente maximizar el beneficio de dos productos sujetos a límites de materia prima, horas, capacidad o demanda.
+
+### Ejemplo: mezclas de café
+
+Una empacadora recibe 700 kg de café C y 800 kg de café K. La mezcla A usa dos partes de C y una de K, y deja 2,2 €/kg; B usa una de C y dos de K, y deja 2,6 €/kg.
+
+Si $x,y$ son los kg de cada mezcla:
+
+$$
+\text{Maximizar }f=2{,}2x+2{,}6y
+\quad\text{sujeta a}\quad
+2x+y\leq2100,\;x+2y\leq2400,\;x,y\geq0
+$$
+
+El óptimo es $x=600$, $y=900$, con beneficio 3660 €.
+
+### Applet · Problema de producción {.unnumbered}
+
+<div data-applet-ine="produccion"></div>
+
+::: {.callout-tip}
+## Haz una tabla antes de escribir
+
+Columnas: producto A, producto B y disponible. Filas: cada recurso. La tabla obliga a poner cada coeficiente en su sitio y evita el error típico de intercambiar los consumos de los dos productos.
+:::
+
+## Actividades
+
+**1.** Cables A y B: A usa 16 kg de plástico y 4 de cobre, B usa 6 y 12; se venden a 150 y 100 €/hm; hay 252 kg de plástico, 168 de cobre y $y\leq2x$. Maximiza ingresos.
+
+**2.** Una fábrica tiene 800 kg de guisantes; latas pequeñas usan 200 g y dan 0,10 €, grandes 500 g y dan 0,30 €, con máximos de 2000 y 1000 latas. Maximiza beneficio.

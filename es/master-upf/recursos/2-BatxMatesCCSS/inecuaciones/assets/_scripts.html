@@ -1,0 +1,48 @@
+<!-- =====================================================================
+     _scripts.html — TEMA 4 INECUACIONES Y PROGRAMACIÓN LINEAL
+     2.º Batx Mates CCSS
+     Ubicación: 2-BatxMatesCCSS/inecuaciones/assets/_scripts.html
+
+     Se inserta en cada parte con:
+         format:
+           html:
+             include-after-body: assets/_scripts.html
+             html-math-method: katex
+
+     ORDEN OBLIGATORIO
+       1) applets.css            hoja común del curso, en ../assets
+       2) ine-applets.css        extras propios del tema (.mx-* y .plot-*)
+       3) katex.min.css          KaTeX servido en LOCAL, sin CDN
+       4) katex.min.js           motor de fórmulas, en local
+       5) ine-applets.js         núcleo + trazador SVG + partes 1, 2 y 3
+       6) ine-applets-extra.js   applets de las partes 4 a 9
+
+     NOVEDAD DE ESTE TEMA
+       El núcleo incluye un TRAZADOR SVG propio, sin librerías externas
+       ni dependencias de red, para dibujar rectas, semiplanos, regiones
+       factibles, vértices y rectas de nivel. El SVG se genera como texto
+       y se inyecta en el applet, así que funciona sin conexión y también
+       con el HTML descargado.
+
+     NOTA SOBRE KaTeX
+       NO se usa auto-render. Cada fórmula va marcada con data-tex y el
+       núcleo llama a katex.render con throwOnError:false.
+
+     RECORDATORIO PARA EL DESPLIEGUE
+       Si Quarto no copia esta carpeta al sitio, añade en _website.yml:
+         project:
+           resources:
+             - "master-upf/recursos/2-BatxMatesCCSS/assets/**"
+             - "master-upf/recursos/2-BatxMatesCCSS/inecuaciones/assets/**"
+
+     COMPROBACIÓN
+       ls -la de esta carpeta debe mostrar CUATRO archivos. El que
+       empieza por guion bajo se pierde con los comodines del shell.
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/ine-applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="assets/ine-applets.js"></script>
+<script defer src="assets/ine-applets-extra.js"></script>

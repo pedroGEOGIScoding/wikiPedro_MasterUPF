@@ -1,0 +1,78 @@
+---
+title: "Tema 4.3 Sistemas de inecuaciones con dos incógnitas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 3 de 9)"
+filename: 03-sistemas-inecuaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Un sistema de inecuaciones exige cumplir todas sus condiciones simultáneamente. Su solución es la región factible, que puede ser acotada, no acotada o vacía, y cuyos vértices se calculan resolviendo sistemas de dos rectas frontera.
+categories: [inecuaciones, sistemas, región factible, vértices, semiplanos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La intersección de todas las condiciones
+
+Un sistema de inecuaciones pide que todas se cumplan a la vez. La solución es la intersección de sus semiplanos, llamada **región factible**.
+
+Puede ser un polígono acotado, una zona que se extiende al infinito o el conjunto vacío si las condiciones se contradicen.
+
+### Applet · Región factible {.unnumbered}
+
+<div data-applet-ine="region"></div>
+
+## Los tres tipos
+
+- **Acotada**: queda encerrada por un polígono convexo.
+- **No acotada**: se prolonga indefinidamente.
+- **Sin solución**: no existe ningún punto común.
+
+::: {.callout-note}
+## Convexa significa «sin huecos»
+
+La región factible es convexa: si eliges dos puntos de ella, todo el segmento que los une sigue dentro. Esta propiedad es la razón matemática de que los óptimos de programación lineal aparezcan en vértices.
+:::
+
+### Applet · Los tres tipos de región {.unnumbered}
+
+<div data-applet-ine="tiposregion"></div>
+
+## Vértices
+
+Los vértices son los puntos de intersección entre los segmentos que limitan la región. Para encontrarlos:
+
+1. Cambia cada inecuación por igualdad.
+2. Resuelve todos los sistemas de dos rectas que puedas formar.
+3. Comprueba cuáles de los cortes cumplen **todas** las restricciones.
+
+::: {.callout-warning}
+## No todo corte es un vértice
+
+Dos rectas pueden cortarse fuera de la región. Un vértice no solo cumple las dos restricciones que lo producen: debe cumplir **todas**.
+:::
+
+### Applet · Determinar los vértices {.unnumbered}
+
+<div data-applet-ine="vertices"></div>
+
+## Actividades
+
+**1.** Representa y clasifica:
+
+$$
+\left\{\begin{aligned}x&\geq0\\y&\geq0\\x+y&\leq10\\x+2y&\leq8\end{aligned}\right.
+$$
+
+**2.** Halla los vértices de:
+
+$$
+\left\{\begin{aligned}2x+y&\leq80\\x+2y&\leq100\\x&\geq0\\y&\geq0\end{aligned}\right.
+$$
+
+**3.** Representa $x+y\leq2$, $x+y\geq8$. ¿Por qué no hay región factible?
+
+<div data-applet-ine="diagnostico"></div>

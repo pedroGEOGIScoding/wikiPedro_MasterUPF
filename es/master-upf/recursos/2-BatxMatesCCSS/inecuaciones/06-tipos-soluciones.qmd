@@ -1,0 +1,51 @@
+---
+title: "Tema 4.6 Tipos de soluciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 6 de 9)"
+filename: 06-tipos-soluciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Solución óptima única, múltiple, región no acotada y región no factible en programación lineal.
+categories: [programación lineal, solución única, solución múltiple, no acotada, no factible, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## No todos los problemas terminan igual
+
+Un programa lineal puede tener una solución óptima única, infinitas soluciones óptimas, no alcanzar óptimo por ser no acotado o no tener región factible.
+
+| Caso | Qué ocurre |
+|---|---|
+| Óptimo único | Una recta de nivel extrema toca un solo vértice |
+| Óptimo múltiple | Es paralela a un lado; todo un segmento es óptimo |
+| Región no acotada | Puede no existir máximo o mínimo |
+| No factible | No hay ningún punto que cumpla las restricciones |
+
+### Applet · Tipos de solución {.unnumbered}
+
+<div data-applet-ine="tipos"></div>
+
+::: {.callout-important}
+## Si dos vértices son óptimos, todo el segmento también
+
+Si la función objetivo toma el mismo valor óptimo en dos vértices, lo toma en todos los puntos del segmento que los une. No hay dos soluciones aisladas: hay infinitas.
+:::
+
+::: {.callout-warning}
+## No acotada no significa automáticamente sin solución
+
+Una región no acotada puede tener mínimo, máximo o ninguno, según la dirección de la función objetivo. Hay que mirar las rectas de nivel; no basta con decir «se va al infinito».
+:::
+
+## Actividades
+
+**1.** Maximiza $x+y$ con $x,y\geq0$, $x+y\leq6$. ¿Por qué hay soluciones múltiples?
+
+**2.** Maximiza $x+y$ con $x,y\geq0$, $x-y\geq0$. ¿Por qué no hay máximo?
+
+**3.** Representa $x+y\leq2$, $x+y\geq8$. Explica por qué el problema no es factible.

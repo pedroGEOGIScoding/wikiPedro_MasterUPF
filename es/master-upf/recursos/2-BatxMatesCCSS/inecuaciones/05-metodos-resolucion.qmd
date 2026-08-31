@@ -1,0 +1,49 @@
+---
+title: "Tema 4.5 Métodos de resolución"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 5 de 9)"
+filename: 05-metodos-resolucion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Métodos algebraico y gráfico para optimizar una función objetivo en una región factible.
+categories: [programación lineal, método algebraico, método gráfico, rectas de nivel, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Dos métodos, una misma respuesta
+
+El método **algebraico** evalúa la función objetivo en todos los vértices. El método **gráfico** desplaza rectas de nivel paralelas hasta alcanzar la última que toca la región factible.
+
+### Método algebraico
+
+1. Representa las restricciones y determina los vértices.
+2. Comprueba que cada candidato cumple todas las restricciones.
+3. Evalúa $f(x,y)$ en cada vértice.
+4. El mayor o menor valor pedido da el óptimo.
+
+### Applet · Resolver un programa lineal {.unnumbered}
+
+<div data-applet-ine="resolver"></div>
+
+### Método gráfico
+
+Las rectas $px+qy=k$ son paralelas. Para maximizar, desplázalas en la dirección en que aumenta $k$; para minimizar, en la contraria. La última recta que toca la región marca el óptimo.
+
+### Applet · Rectas de nivel {.unnumbered}
+
+<div data-applet-ine="nivel"></div>
+
+::: {.callout-tip}
+## La combinación más segura
+
+Dibuja la región para localizar rápidamente los vértices; después evalúa la función en ellos. El gráfico ahorra tiempo y la tabla evita errores de apreciación.
+:::
+
+## Actividad
+
+Con las restricciones $2x+y\leq80$, $x+2y\leq100$, $x,y\geq0$, maximiza $75x+80y$ y minimiza $4x+3y$. Compara ambos métodos.

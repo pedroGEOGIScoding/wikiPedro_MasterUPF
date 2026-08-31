@@ -1,0 +1,118 @@
+---
+title: "Tema 4.1 Inecuaciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 1 de 9)"
+filename: 01-inecuaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Resolución de inecuaciones de primer y segundo grado con una incógnita, mediante despeje, estudio de raíces e intervalos de signo.
+categories: [inecuaciones, primer grado, segundo grado, intervalos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué cambia respecto de una ecuación
+
+Una inecuación es una desigualdad entre dos expresiones algebraicas. Resolverla consiste en encontrar **todos** los valores para los que la desigualdad es cierta. Por eso la solución suele ser un intervalo, no un número.
+
+::: {.callout-important}
+## La regla que no puedes olvidar
+
+Al multiplicar o dividir los dos miembros por un número **negativo**, el signo de desigualdad se invierte.
+
+$$
+-3x\leq 9 \quad\Longrightarrow\quad x\geq -3
+$$
+
+Con las ecuaciones no ocurría. Aquí es el error más frecuente.
+:::
+
+## Primer grado
+
+Se resuelve como una ecuación: agrupa, despeja y recuerda el cambio de sentido si divides por un negativo.
+
+Ejemplo del libro:
+
+$$
+2-x\leq \frac{x+1}{3}
+\Longrightarrow 6-3x\leq x+1
+\Longrightarrow -4x\leq -5
+\Longrightarrow x\geq \frac54
+$$
+
+### Applet · Inecuación de primer grado {.unnumbered}
+
+<div data-applet-ine="ine1g"></div>
+
+## Segundo grado
+
+Para resolver $ax^2+bx+c\;\square\;0$:
+
+1. Llévala a la forma reducida.
+2. Resuelve la ecuación asociada $ax^2+bx+c=0$.
+3. Las raíces dividen la recta en intervalos.
+4. Prueba un punto de cada intervalo.
+5. Incluye las raíces solo si la desigualdad contiene $\leq$ o $\geq$.
+
+Ejemplo del libro:
+
+$$
+x^2-x-2\leq0
+\Longrightarrow (x+1)(x-2)\leq0
+\Longrightarrow x\in[-1,2]
+$$
+
+::: {.callout-tip}
+## Lectura gráfica
+
+Resolver $ax^2+bx+c<0$ es buscar dónde la parábola queda **por debajo** del eje $X$; con $>0$, dónde queda por encima. Las raíces son los puntos donde cambia, o no, el signo.
+:::
+
+### Applet · Inecuación de segundo grado {.unnumbered}
+
+<div data-applet-ine="ine2g"></div>
+
+## Sistemas con una incógnita
+
+En un sistema deben cumplirse todas las inecuaciones a la vez. La solución es la **intersección** de los intervalos.
+
+::: {.callout-note}
+## Estrategia visual
+
+En lugar de pintar las soluciones de todas las inecuaciones, pinta lo que **no** cumple cada una. Lo que quede sin tachar ninguna vez es la intersección.
+:::
+
+### Applet · Sistema con una incógnita {.unnumbered}
+
+<div data-applet-ine="sisune"></div>
+
+## Actividades
+
+**1.** Resuelve:
+
+$$
+\frac{4-2x}{-5}\leq\frac{x-2}{-6},\qquad
+\frac{3(2-x)}{5}-\frac{x-1}{4}\leq\frac{2x-1}{10}
+$$
+
+**2.** Resuelve:
+
+$$
+x^2-3x-4\leq0,\qquad -x^2\leq x,\qquad 2x^2-3x+1>0
+$$
+
+**3.** Resuelve el sistema:
+
+$$
+\left\{\begin{aligned}x^2&\geq25\\x-3&\leq x^2-12\\x^2+3x-4&>0\end{aligned}\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Ideas para comprobar
+
+En el primer grado sustituye un punto del intervalo obtenido en la inecuación original. En segundo grado, prueba un valor dentro y otro fuera de cada intervalo. Si el extremo corresponde a igualdad, entra; si la desigualdad es estricta, no entra.
+:::

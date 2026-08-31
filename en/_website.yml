@@ -197,22 +197,13 @@ website:
           href: https://pedrogeogisdev.com/
 
     - id: "website-map"
-      title: "Site Map"
+      title: "Files"
       style: "docked"
       background: light
       collapse-level: 0
       align: center
       contents:
         - master-upf/listing-pages.qmd
-
-    - id: "docs"
-      title: "Documentation"
-      style: "docked"
-      background: light
-      collapse-level: 0
-      align: center
-      contents:
-        - listing-docs.qmd
 
   page-footer:
     background: primary

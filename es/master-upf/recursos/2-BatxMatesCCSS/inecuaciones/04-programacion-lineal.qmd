@@ -1,0 +1,55 @@
+---
+title: "Tema 4.4 Programación lineal"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Inecuaciones y programación lineal (Parte 4 de 9)"
+filename: 04-programacion-lineal
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Planteamiento de problemas de programación lineal con variables, función objetivo, restricciones, región factible y solución óptima.
+categories: [programación lineal, función objetivo, restricciones, región factible, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Optimizar recursos
+
+La programación lineal optimiza —maximiza o minimiza— una función lineal sometida a restricciones lineales. Nació durante la Segunda Guerra Mundial para gestionar recursos limitados y después pasó a la industria, logística y economía.
+
+Un problema tiene cuatro piezas:
+
+1. Variables: qué representa $x$ y qué representa $y$.
+2. Restricciones: lo que no se puede exceder o lo que hay que garantizar.
+3. Región factible: los puntos que cumplen todas las restricciones.
+4. Función objetivo: $f(x,y)=px+qy$, que se quiere maximizar o minimizar.
+
+### Ejemplo: lámparas
+
+Una lámpara A usa 2 h de montaje y 1 de pintura; B usa 1 y 2. Hay como máximo 80 h de montaje y 100 de pintura. El beneficio es 75 € por A y 80 € por B.
+
+$$
+\text{Maximizar }f(x,y)=75x+80y
+\quad\text{sujeta a}\quad
+2x+y\leq80,\;x+2y\leq100,\;x\geq0,\;y\geq0
+$$
+
+### Applet · Plantear programación lineal {.unnumbered}
+
+<div data-applet-ine="programa"></div>
+
+## Teorema fundamental
+
+Si una región factible acotada tiene una solución óptima única, está en un **vértice**, nunca en el interior. Por eso se calculan vértices y se evalúa la función en ellos.
+
+::: {.callout-important}
+## La función objetivo no crea la región
+
+Las restricciones delimitan lo posible. La función objetivo solo decide qué punto posible conviene elegir. Mezclar ambas es un error de concepto muy común.
+:::
+
+## Actividad
+
+Plantea el problema de los aviones del libro: A cuesta 30 millones y da 4 de beneficio; B cuesta 20 y da 3; hay 1800 millones y no se pueden fabricar más de 80 aviones.
