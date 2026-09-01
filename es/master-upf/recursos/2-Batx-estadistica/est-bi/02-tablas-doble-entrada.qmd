@@ -1,0 +1,153 @@
+---
+title: "Tema 2.2 Tablas de doble entrada"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 2 de 8)"
+filename: 02-tablas-doble-entrada
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Construcción de tablas de doble entrada. Frecuencias absolutas y relativas conjuntas, totales marginales, comprobación de N y lectura pedagógica de la información conjunta.
+categories: [estadística, estadística bidimensional, tabla de doble entrada, frecuencias conjuntas, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Del listado desordenado a la tabla
+
+Cuando trabajamos con **pocos individuos** basta con listar los pares $(x_i, y_i)$. En cuanto la muestra es grande o hay valores repetidos, esa lista se hace ilegible y conviene ordenarla en una **tabla de doble entrada** (también llamada tabla de contingencia o tabla bidimensional de frecuencias).
+
+La idea es sencilla: en el margen izquierdo se colocan los valores distintos de $Y$, en el margen superior los valores distintos de $X$, y en el interior se anota **cuántos individuos** presentan cada combinación.
+
+::: {.callout-important}
+## Regla de oro para leer una tabla de doble entrada
+
+- El **interior** describe la relación conjunta entre $X$ e $Y$.
+- El **margen inferior** describe solo $X$.
+- El **margen derecho** describe solo $Y$.
+- La **esquina inferior derecha** es siempre $N$, el total.
+:::
+
+## Frecuencia absoluta conjunta
+
+Sean $x_1, x_2, \ldots, x_k$ los valores distintos de $X$ y $y_1, y_2, \ldots, y_p$ los valores distintos de $Y$. Se llama **frecuencia absoluta conjunta** de $(x_j, y_i)$ al número de individuos que a la vez presentan $X = x_j$ e $Y = y_i$. Se denota
+
+$$
+n_{ij} = \#\bigl\{k \in \{1,\ldots,N\} : x_k = x_j \text{ y } y_k = y_i\bigr\}.
+$$
+
+Sus propiedades básicas son:
+
+- $n_{ij} \ge 0$ para todo par.
+- $\displaystyle\sum_{i=1}^{p}\sum_{j=1}^{k} n_{ij} = N$.
+
+## Totales marginales
+
+Sumando cada fila o cada columna del interior obtenemos los **totales marginales**:
+
+- Total de la fila $i$ (número de individuos con $Y = y_i$):
+
+$$
+f_{i\bullet} = \sum_{j=1}^{k} n_{ij}.
+$$
+
+- Total de la columna $j$ (número de individuos con $X = x_j$):
+
+$$
+f_{\bullet j} = \sum_{i=1}^{p} n_{ij}.
+$$
+
+Los totales marginales son las **distribuciones marginales** de $Y$ y de $X$ respectivamente. Si sumamos todos los totales de fila (o todos los de columna) obtenemos $N$:
+
+$$
+\sum_{i=1}^{p} f_{i\bullet} = \sum_{j=1}^{k} f_{\bullet j} = N.
+$$
+
+::: {.callout-tip}
+## Comprobación rápida
+
+Cada vez que rellenes o leas una tabla de doble entrada, comprueba que la suma de los totales de fila coincide con la suma de los totales de columna. Ese número tiene que ser $N$. Si no coincide, hay un error de conteo.
+:::
+
+## Frecuencia relativa conjunta
+
+La frecuencia absoluta $n_{ij}$ se convierte en relativa (o proporción) dividiendo por $N$:
+
+$$
+h_{ij} = \dfrac{n_{ij}}{N}.
+$$
+
+Sus propiedades son:
+
+- $0 \le h_{ij} \le 1$.
+- $\displaystyle\sum_{i,j} h_{ij} = 1$.
+
+Multiplicando por $100$ obtenemos porcentajes. Los porcentajes son cómodos para comparar tablas de tamaños muy distintos.
+
+## Ejemplo guiado: horas de estudio y nota
+
+Tomamos $50$ estudiantes que declararon las horas semanales dedicadas al estudio (agrupadas en $2$, $4$ y $6$ horas) y la nota obtenida (en tramos $4$, $6$, $8$ y $10$). La tabla observada es:
+
+| Nota \\ Horas | 2 | 4 | 6 |
+|---|---|---|---|
+| 4 | 6 | 2 | 0 |
+| 6 | 5 | 6 | 3 |
+| 8 | 2 | 7 | 6 |
+| 10 | 1 | 3 | 9 |
+
+Los totales marginales resultan:
+
+- Filas ($Y$): $8, 14, 15, 13$ (con nota $4, 6, 8, 10$ respectivamente).
+- Columnas ($X$): $14, 18, 18$ (con estudio $2, 4, 6$ respectivamente).
+- Total: $N = 50$.
+
+Podemos calcular por ejemplo la frecuencia relativa conjunta de «estudia $6$ horas y saca $10$»:
+
+$$
+h_{4,3} = \dfrac{n_{4,3}}{N} = \dfrac{9}{50} = 0{,}18 = 18\ \%.
+$$
+
+Este número dice que el $18\ \%$ de la muestra estudia mucho **y** saca la nota máxima.
+
+::: {.callout-note}
+## Filas o columnas, ¿cuál va primero?
+
+En este curso convenimos que el primer subíndice de $n_{ij}$ es la **fila** (valor de $Y$) y el segundo la **columna** (valor de $X$). Es un convenio: solo importa mantenerlo.
+:::
+
+### Applet · Tabla de doble entrada {.unnumbered}
+
+::: {#panel-tabla2d .applet-panel data-applet-est2="tabla2d"}
+:::
+
+## Cómo se ve una relación en la tabla
+
+En una **tabla de doble entrada** también se percibe (aunque de manera menos visual que en la nube) si hay relación entre $X$ e $Y$:
+
+- Si los individuos se concentran en la **diagonal principal** (poco estudio y nota baja, mucho estudio y nota alta), hay **relación positiva**.
+- Si se concentran en la **diagonal secundaria**, la relación es **negativa**.
+- Si se reparten proporcionalmente entre todas las casillas, apenas hay dependencia.
+
+## Errores frecuentes al construir la tabla
+
+Al preparar una tabla de doble entrada suelen aparecer estos fallos, que conviene evitar:
+
+- Confundir el papel de $X$ y de $Y$ y colocar los datos al revés. Antes de contar, hay que decidir qué variable va en filas y cuál en columnas.
+- Olvidar los ceros: si una casilla no tiene ningún individuo, hay que escribir $0$; no dejarla en blanco.
+- Sumar mal los totales marginales. Un descuadre entre la suma de filas y de columnas es siempre un error de conteo.
+- No comprobar que $\sum n_{ij} = N$.
+
+## Repaso rápido
+
+- Una tabla de doble entrada organiza los pares $(x_i, y_i)$ por casillas.
+- La **frecuencia absoluta conjunta** $n_{ij}$ cuenta cuántos individuos hay en cada casilla.
+- Los **totales marginales** $f_{i\bullet}$ y $f_{\bullet j}$ son las distribuciones marginales de $Y$ y de $X$.
+- La **frecuencia relativa conjunta** es $h_{ij} = n_{ij}/N$; sus sumas totales valen $1$.
+- Antes de calcular medias o covarianzas, siempre se comprueba que la tabla suma $N$.

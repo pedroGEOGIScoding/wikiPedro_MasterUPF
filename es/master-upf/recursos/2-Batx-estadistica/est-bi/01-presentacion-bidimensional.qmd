@@ -1,0 +1,148 @@
+---
+title: "Tema 2.1 Presentación de la estadística bidimensional"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 1 de 8)"
+filename: 01-presentacion-bidimensional
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Introducción a la estadística bidimensional. Se presenta la idea de estudiar dos características en cada individuo y el itinerario del tema, desde la tabla de doble entrada hasta la regresión, con ejemplos manipulables.
+categories: [estadística, estadística bidimensional, correlación, regresión, dependencia, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La pregunta de todo el tema
+
+Hasta ahora en cada individuo mirábamos **una única característica**: la altura, la nota o el número de hermanos. En la estadística bidimensional cada individuo aporta **dos características a la vez** y la pregunta central cambia:
+
+> ¿Están relacionadas las dos variables? Y si lo están, ¿cómo son de fuertes esa relación y en qué dirección va?
+
+La respuesta se construye en cinco escalones que se repetirán a lo largo del tema:
+
+1. **Tabla**. Ordenar los pares $(x_i, y_i)$ en una tabla de doble entrada.
+2. **Nube**. Dibujar el diagrama de dispersión para ver la forma.
+3. **Covarianza**. Medir con un número el signo y la fuerza bruta de la asociación lineal.
+4. **Correlación**. Escalar la covarianza al intervalo $[-1, 1]$ para poder comparar situaciones distintas.
+5. **Regresión**. Ajustar una recta que permita **predecir** una variable a partir de la otra.
+
+::: {.callout-important}
+## Un cálculo correcto puede dar una conclusión mala
+
+Que dos variables aumenten a la vez no significa que una cause la otra. La estadística bidimensional detecta **asociación**, no causalidad. Encontrar $r$ muy alto es una invitación a investigar, no una demostración.
+
+Ejemplo clásico: el consumo de helados y las insolaciones aumentan simultáneamente en verano. No es que los helados provoquen insolaciones: hay una **tercera variable**, la temperatura, que las mueve a las dos.
+:::
+
+## Del individuo al par ordenado
+
+En estadística unidimensional cada individuo aportaba **un dato**. En bidimensional aporta **dos**:
+
+$$
+\text{individuo } i \longrightarrow (x_i, y_i)
+$$
+
+Por tanto el conjunto de datos es una lista de $N$ pares ordenados,
+
+$$
+(x_1, y_1),\ (x_2, y_2),\ \ldots,\ (x_N, y_N).
+$$
+
+El orden dentro del par importa: cambiar $X$ por $Y$ cambia por completo la interpretación (por ejemplo, no es lo mismo predecir la nota a partir de las horas de estudio que al revés).
+
+::: {.callout-note}
+## Notación que usaremos todo el tema
+
+- $X$ e $Y$: las dos variables observadas.
+- $x_i$: el valor de $X$ en el individuo $i$.
+- $y_i$: el valor de $Y$ en el individuo $i$.
+- $N$: el número total de individuos.
+- $\bar{x}$, $\bar{y}$: sus medias marginales.
+- $\sigma_X$, $\sigma_Y$: sus desviaciones típicas marginales.
+- $\sigma_{XY}$: la covarianza entre $X$ e $Y$.
+- $r$: el coeficiente de correlación de Pearson.
+- $n_{ij}$, $f_{i\bullet}$, $f_{\bullet j}$: frecuencias absolutas conjuntas y marginales.
+:::
+
+## El diagrama de dispersión: dirección, forma e intensidad
+
+Antes de calcular nada conviene **mirar la nube de puntos**. En ella observamos tres cosas:
+
+- **Dirección**. Si al crecer $X$ tiende a crecer $Y$, la relación es **directa** o positiva. Si al crecer $X$ tiende a decrecer $Y$, es **inversa** o negativa.
+- **Forma**. Si la nube se puede aproximar por una recta, hablamos de **relación lineal**. Si dibuja una parábola, una curva o un abanico, la relación existe pero **no es lineal**.
+- **Intensidad**. Cómo de estrecha o ancha es la banda de puntos. Cuanto más estrecha, mayor intensidad.
+
+::: {.callout-warning}
+## $r$ solo mide la parte lineal
+
+Una parábola perfecta puede dar $r \approx 0$ porque $r$ está diseñado para detectar rectas. Por eso el diagrama de dispersión siempre va **antes** que el cálculo.
+:::
+
+### Applet · Estadística bidimensional en un vistazo {.unnumbered}
+
+::: {#panel-presentacion .applet-panel data-applet-est2="presentacion"}
+:::
+
+## Escenarios que aparecerán en el tema
+
+A lo largo del tema volveremos sobre seis situaciones tipo, todas basadas en datos reales o de laboratorio de clase. Verlas aquí resumidas te ayudará a distinguir los casos.
+
+### Correlación positiva fuerte
+
+Horas de estudio frente a nota final del trimestre. Los puntos suben claramente hacia la derecha, la banda es estrecha y $r$ se aproxima a $+1$. Es el modelo típico de dependencia lineal directa.
+
+### Correlación negativa fuerte
+
+Horas de videojuegos frente a nota. Los puntos bajan hacia la derecha. La covarianza y $r$ son negativos, con $r$ cercano a $-1$ si la banda es estrecha.
+
+### Correlación nula
+
+Número de calzado frente a nota. La nube no muestra dirección; $r$ vale prácticamente cero. Las dos variables son **linealmente independientes**.
+
+### Relación no lineal
+
+Dosis de fertilizante frente a cosecha, donde por debajo o por encima de una dosis óptima la cosecha empeora. La nube dibuja una parábola. Hay relación fuerte, pero $r$ puede ser casi $0$: mirar la nube salva.
+
+### Correlación espuria
+
+Consumo de helados frente a insolaciones diarias. $r$ parece muy alto, pero la variable «temperatura» es la responsable. Es el ejemplo canónico para separar **correlación** de **causalidad**.
+
+### Datos que caen exactamente sobre una recta
+
+Si todos los puntos están alineados exactamente sobre $y = mx + n$, obtenemos $r = \pm 1$. Es el caso ideal, casi nunca aparece en observaciones reales.
+
+## Cómo se organiza el tema
+
+En el resto del tema iremos escalonando estas ideas:
+
+- **2.2 Tablas de doble entrada.** Cómo ordenar los pares en una tabla y calcular sus totales marginales.
+- **2.3 Distribuciones marginales y condicionadas · independencia.** Cómo pasar de la tabla conjunta a las descripciones de $X$, de $Y$ y de $Y$ para cada valor concreto de $X$.
+- **2.4 Covarianza.** El primer número que resume signo e intensidad bruta.
+- **2.5 Diagramas de dispersión.** Interpretación visual guiada.
+- **2.6 Correlación lineal.** El coeficiente $r$ y su cuadrado $r^2$.
+- **2.7 Regresión lineal.** Las dos rectas de regresión, su interpretación y las predicciones.
+- **2.8 Práctica.** Ejercicios completos para consolidar el tema.
+
+::: {.callout-tip}
+## Consejo pedagógico
+
+Siempre en este orden: **primero se dibuja, después se calcula, por último se interpreta**. Un $r$ sin nube y sin interpretación es un número vacío.
+:::
+
+## Repaso rápido
+
+Para consolidar antes de pasar a la siguiente sección:
+
+- La estadística bidimensional estudia **dos variables** en cada individuo.
+- La información básica es una lista de pares $(x_i, y_i)$.
+- El primer análisis siempre es visual: el diagrama de dispersión.
+- La correlación mide **asociación lineal**, no causalidad ni relaciones curvas.
+- El objetivo final del tema es **predecir** una variable a partir de la otra mediante una recta de regresión.

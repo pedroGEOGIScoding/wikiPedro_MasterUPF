@@ -1,0 +1,173 @@
+---
+title: "Tema 2.3 Distribuciones marginales, condicionadas e independencia"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 3 de 8)"
+filename: 03-marginales-condicionadas-independencia
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Distribuciones marginales, distribuciones condicionadas y concepto de independencia estadística. Medias marginales, medias condicionadas, frecuencia esperada bajo independencia y comparación observado-esperado.
+categories: [estadística, estadística bidimensional, marginales, condicionadas, independencia, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De la tabla conjunta a las descripciones marginales
+
+Con la tabla de doble entrada montada podemos «mirar por separado» cada variable. Basta con quedarse con los **totales marginales** que aprendimos en la sección anterior.
+
+- La **distribución marginal de $X$** son los pares $(x_j, f_{\bullet j})$ con $j = 1, \ldots, k$.
+- La **distribución marginal de $Y$** son los pares $(y_i, f_{i\bullet})$ con $i = 1, \ldots, p$.
+
+Son distribuciones **unidimensionales**, así que se les aplica todo el arsenal del tema anterior: media, desviación típica, moda, mediana, gráficos de barras, etc.
+
+::: {.callout-note}
+## Doble lectura
+
+- Los **márgenes** describen a $X$ y a $Y$ por separado.
+- El **interior** describe a $X$ e $Y$ **juntas**, y por tanto contiene la información sobre su posible relación.
+:::
+
+## Medias y desviaciones marginales
+
+A partir de los totales marginales, las medias marginales se calculan como en cualquier distribución de frecuencias:
+
+$$
+\bar{x} = \dfrac{\sum_{j=1}^{k} f_{\bullet j}\, x_j}{N}, \qquad
+\bar{y} = \dfrac{\sum_{i=1}^{p} f_{i\bullet}\, y_i}{N}.
+$$
+
+Y las **varianzas marginales**,
+
+$$
+\sigma_X^2 = \dfrac{\sum_{j=1}^{k} f_{\bullet j}\, x_j^2}{N} - \bar{x}^2, \qquad
+\sigma_Y^2 = \dfrac{\sum_{i=1}^{p} f_{i\bullet}\, y_i^2}{N} - \bar{y}^2.
+$$
+
+Sus raíces cuadradas son las **desviaciones típicas marginales** $\sigma_X$ y $\sigma_Y$, que reaparecerán al normalizar la covarianza.
+
+### Applet · Distribuciones marginales {.unnumbered}
+
+::: {#panel-marginales .applet-panel data-applet-est2="marginales"}
+:::
+
+## Distribución de $Y$ condicionada a $X = x_j$
+
+Fijar un valor concreto de $X$, por ejemplo $X = x_j$, equivale a **quedarse solo con esa columna** de la tabla. Los individuos de esa columna forman una submuestra dentro de la cual podemos volver a preguntar cómo se distribuye $Y$. Es la **distribución de $Y$ condicionada a $X = x_j$**.
+
+Las frecuencias relativas condicionadas se calculan dividiendo cada casilla por el total de su columna:
+
+$$
+h_{i \mid j} = \dfrac{n_{ij}}{f_{\bullet j}}, \qquad \sum_{i=1}^{p} h_{i\mid j} = 1.
+$$
+
+Simétricamente, condicionar $Y$ a un valor $y_i$ significa quedarse con esa fila y dividir por su total $f_{i\bullet}$.
+
+La **media condicionada** de $Y$ dado $X = x_j$ es
+
+$$
+\bar{y}\mid_{X = x_j} = \sum_{i=1}^{p} h_{i \mid j}\, y_i = \dfrac{\sum_{i=1}^{p} n_{ij}\, y_i}{f_{\bullet j}}.
+$$
+
+::: {.callout-tip}
+## ¿Para qué sirve una media condicionada?
+
+Compara $\bar{y}\mid_{X=2}$, $\bar{y}\mid_{X=4}$ y $\bar{y}\mid_{X=6}$ en el ejemplo de horas de estudio y nota. Si son claramente crecientes, hay indicios de dependencia positiva: **la media de la nota depende del valor de las horas de estudio**.
+:::
+
+### Applet · Distribuciones condicionadas {.unnumbered}
+
+::: {#panel-condicionadas .applet-panel data-applet-est2="condicionadas"}
+:::
+
+## Independencia estadística
+
+Se dice que $X$ e $Y$ son **estadísticamente independientes** cuando todas las distribuciones condicionadas de $Y$ (una por cada valor de $X$) coinciden con la distribución marginal de $Y$. En otras palabras, saber el valor de $X$ **no aporta información** sobre $Y$.
+
+Traducido a frecuencias absolutas, la independencia equivale a
+
+$$
+n_{ij} = \dfrac{f_{i\bullet}\, f_{\bullet j}}{N} \quad \text{para todo } i, j.
+$$
+
+Es decir, la frecuencia observada en una casilla es exactamente el **producto de sus totales marginales dividido por $N$**. A ese valor se le llama **frecuencia esperada bajo independencia**:
+
+$$
+n_{ij}^{\text{esperada}} = \dfrac{f_{i\bullet}\, f_{\bullet j}}{N}.
+$$
+
+::: {.callout-warning}
+## Cuidado con la palabra «independencia»
+
+La independencia estadística **no** dice que las variables no tengan nada que ver: dice que **los datos observados** son compatibles con la ausencia de relación. Como toda medida empírica, admite grados: dos tablas pueden parecer independientes «casi del todo» sin serlo exactamente.
+:::
+
+## Aprender a leer la tabla comparando observado y esperado
+
+La forma didáctica más clara de detectar dependencia es comparar cada frecuencia observada $n_{ij}$ con su valor esperado bajo independencia. Las casillas donde $n_{ij}$ es claramente mayor que $n_{ij}^{\text{esperada}}$ indican asociación entre esos valores; las casillas donde es claramente menor indican rechazo entre esos valores.
+
+Recordando el ejemplo de horas de estudio y nota:
+
+- La casilla $(X=6, Y=10)$ tiene $9$ individuos.
+- Su valor esperado bajo independencia sería $\dfrac{13 \cdot 18}{50} = 4{,}68$.
+
+$9$ es casi el doble de $4{,}68$: hay más individuos que estudian mucho y sacan un $10$ de los que cabría esperar si las variables fueran independientes. Es un indicio claro de asociación positiva.
+
+### Applet · Independencia estadística (observado vs esperado) {.unnumbered}
+
+::: {#panel-independencia .applet-panel data-applet-est2="independencia"}
+:::
+
+## Ejemplo completo
+
+Retomamos la tabla anterior:
+
+| Nota \\ Horas | 2 | 4 | 6 | Total |
+|---|---|---|---|---|
+| 4 | 6 | 2 | 0 | 8 |
+| 6 | 5 | 6 | 3 | 14 |
+| 8 | 2 | 7 | 6 | 15 |
+| 10 | 1 | 3 | 9 | 13 |
+| Total | 14 | 18 | 18 | 50 |
+
+Las medias marginales:
+
+$$
+\bar{x} = \dfrac{14 \cdot 2 + 18 \cdot 4 + 18 \cdot 6}{50} = \dfrac{208}{50} = 4{,}16,
+$$
+
+$$
+\bar{y} = \dfrac{8 \cdot 4 + 14 \cdot 6 + 15 \cdot 8 + 13 \cdot 10}{50} = \dfrac{366}{50} = 7{,}32.
+$$
+
+Las medias condicionadas de la nota según las horas:
+
+$$
+\bar{y}\mid_{X=2} = \dfrac{6\cdot 4 + 5\cdot 6 + 2\cdot 8 + 1\cdot 10}{14} = \dfrac{80}{14} \approx 5{,}71.
+$$
+
+$$
+\bar{y}\mid_{X=4} = \dfrac{2\cdot 4 + 6\cdot 6 + 7\cdot 8 + 3\cdot 10}{18} = \dfrac{130}{18} \approx 7{,}22.
+$$
+
+$$
+\bar{y}\mid_{X=6} = \dfrac{0\cdot 4 + 3\cdot 6 + 6\cdot 8 + 9\cdot 10}{18} = \dfrac{156}{18} \approx 8{,}67.
+$$
+
+Las tres medias condicionadas son crecientes ($5{,}71 < 7{,}22 < 8{,}67$): **la media de la nota crece con las horas de estudio**. Este es el indicio numérico de dependencia positiva que en las siguientes secciones cuantificaremos con la covarianza y con $r$.
+
+## Repaso rápido
+
+- **Marginales**: descripciones de $X$ y de $Y$ por separado, obtenidas de los totales de columna y fila.
+- **Condicionadas**: descripciones de $Y$ (o de $X$) fijando un valor concreto de la otra variable; se obtienen dividiendo por el total de esa columna o fila.
+- **Media condicionada**: promedio de $Y$ dentro de una columna, informa de si $Y$ depende de $X$.
+- **Independencia**: se da cuando $n_{ij} = \dfrac{f_{i\bullet}\, f_{\bullet j}}{N}$ para todas las casillas.
+- Comparar observado con esperado es la forma clásica de detectar dependencia sin recurrir aún a la correlación.

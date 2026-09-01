@@ -293,7 +293,14 @@ website:
               - master-upf/recursos/2-Batx-estadistica/est-uni/08-practica-estadistica-unidimensional.qmd
             - section: "Tema 2 Estadística bidimensional"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/est-bi/
+              - master-upf/recursos/2-Batx-estadistica/est-bi/01-presentacion-bidimensional.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/02-tablas-doble-entrada.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/03-marginales-condicionadas-independencia.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/04-covarianza.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/05-dispersion.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/06-correlacion.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/07-regresion.qmd
+              - master-upf/recursos/2-Batx-estadistica/est-bi/08-practica-bidimensional.qmd
             - section: "Tema 3 Combinatoria"
               contents:
                 - master-upf/recursos/2-Batx-estadistica/combinatoria/

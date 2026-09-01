@@ -1,0 +1,259 @@
+---
+title: "Tema 2.8 Práctica y consolidación"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 8 de 8)"
+filename: 08-practica-bidimensional
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Colección de problemas resueltos y de ejercicios propuestos para consolidar toda la estadística bidimensional. Entrenador interactivo, laboratorio final e itinerario de repaso.
+categories: [estadística, estadística bidimensional, ejercicios, laboratorio, entrenador, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo trabajar esta sección
+
+Los ejercicios siguen el orden natural del tema. Antes de mirar la solución conviene:
+
+1. Dibujar la nube de puntos y decir a ojo qué esperamos.
+2. Calcular las medias y las varianzas marginales.
+3. Aplicar la fórmula operativa de la covarianza.
+4. Calcular $r$ y $r^2$ y clasificarlos en la escala de intensidad.
+5. Si procede, obtener las rectas de regresión.
+6. Interpretar en el contexto del enunciado.
+
+::: {.callout-tip}
+## Consejo pedagógico
+
+Los mismos datos pueden aparecer varias veces en distintos apartados del ejercicio. Reutiliza los cálculos previos: no vuelvas a calcular medias ni sumas que ya conoces.
+:::
+
+## Laboratorio de exploración
+
+Utiliza el laboratorio para ensayar cálculos, para reproducir los ejemplos de la teoría o para verificar tus propios problemas.
+
+### Applet · Laboratorio bidimensional {.unnumbered}
+
+::: {#panel-laboratorio .applet-panel data-applet-est2="laboratorio"}
+:::
+
+## Entrenador con corrección automática
+
+El entrenador te propone ejercicios completos y comprueba tus respuestas al vuelo. Ideal para el estudio antes de un examen.
+
+### Applet · Entrenador bidimensional {.unnumbered}
+
+::: {#panel-entrenador .applet-panel data-applet-est2="entrenador"}
+:::
+
+## Problema resuelto tipo examen: pintura
+
+En un ensayo industrial se mide la concentración de disolvente $X$ (en g/l) y el tiempo de secado $Y$ (en minutos):
+
+| $x_i$ | $5$ | $10$ | $20$ | $30$ |
+|---|---|---|---|---|
+| $y_i$ | $16$ | $17$ | $18$ | $19$ |
+
+**a)** Calcula las medias marginales, la covarianza, el coeficiente de correlación y las dos rectas de regresión.
+
+**b)** Estima el tiempo de secado para $X = 25$ g/l e indica si es interpolación o extrapolación.
+
+**c)** Estima la concentración necesaria para que el tiempo de secado sea $Y = 17{,}8$ min.
+
+**Solución.**
+
+**a)** Reproducimos los cálculos hechos en el capítulo anterior:
+
+$$
+\bar{x} = 16{,}25,\quad \bar{y} = 17{,}5,\quad \sigma_{XY} = 10{,}625,
+$$
+
+$$
+\sigma_X^2 = 92{,}1875,\quad \sigma_Y^2 = 1{,}25,\quad r \approx 0{,}99.
+$$
+
+Las dos rectas de regresión son
+
+$$
+Y|X:\ \hat{y} = 0{,}12 x + 15{,}55,\qquad X|Y:\ \hat{x} = 8{,}5 y - 132{,}5.
+$$
+
+**b)** Como queremos estimar $Y$, usamos $Y|X$:
+
+$$
+\hat{y}(25) = 0{,}12\cdot 25 + 15{,}55 = 18{,}55\ \text{min}.
+$$
+
+Como $25 \in [5, 30]$, se trata de **interpolación**: el valor estimado es fiable.
+
+**c)** Ahora queremos estimar $X$ conocido $Y$, así que usamos $X|Y$:
+
+$$
+\hat{x}(17{,}8) = 8{,}5\cdot 17{,}8 - 132{,}5 = 18{,}8\ \text{g/l}.
+$$
+
+Como $17{,}8 \in [16, 19]$, también es interpolación.
+
+## Problema resuelto: horas de estudio y nota
+
+Retomamos la tabla de doble entrada del tema:
+
+| Nota \\ Horas | 2 | 4 | 6 |
+|---|---|---|---|
+| 4 | 6 | 2 | 0 |
+| 6 | 5 | 6 | 3 |
+| 8 | 2 | 7 | 6 |
+| 10 | 1 | 3 | 9 |
+
+**a)** Calcula las medias marginales.
+
+**b)** Calcula la covarianza.
+
+**c)** Calcula $r$ y $r^2$ y comenta el resultado.
+
+**d)** Halla la recta $Y|X$ y estima la nota media para $X = 5$ horas de estudio.
+
+**Solución.**
+
+Sumamos los totales marginales:
+
+- Columnas ($X$): $14, 18, 18$.
+- Filas ($Y$): $8, 14, 15, 13$.
+- Total: $N = 50$.
+
+**a)** Medias marginales:
+
+$$
+\bar{x} = \dfrac{14\cdot 2 + 18\cdot 4 + 18\cdot 6}{50} = 4{,}16,\qquad \bar{y} = \dfrac{8\cdot 4 + 14\cdot 6 + 15\cdot 8 + 13\cdot 10}{50} = 7{,}32.
+$$
+
+**b)** Suma de $n_{ij}\, x_j\, y_i$ recorriendo casilla a casilla:
+
+| $Y \backslash X$ | 2 | 4 | 6 |
+|---|---|---|---|
+| 4 | $6\cdot 2\cdot 4 = 48$ | $2\cdot 4\cdot 4 = 32$ | $0$ |
+| 6 | $5\cdot 2\cdot 6 = 60$ | $6\cdot 4\cdot 6 = 144$ | $3\cdot 6\cdot 6 = 108$ |
+| 8 | $2\cdot 2\cdot 8 = 32$ | $7\cdot 4\cdot 8 = 224$ | $6\cdot 6\cdot 8 = 288$ |
+| 10 | $1\cdot 2\cdot 10 = 20$ | $3\cdot 4\cdot 10 = 120$ | $9\cdot 6\cdot 10 = 540$ |
+
+$$
+\sum n_{ij}\, x_j\, y_i = 48 + 32 + 60 + 144 + 108 + 32 + 224 + 288 + 20 + 120 + 540 = 1616.
+$$
+
+$$
+\sigma_{XY} = \dfrac{1616}{50} - 4{,}16\cdot 7{,}32 = 32{,}32 - 30{,}45 \approx 1{,}87.
+$$
+
+**c)** Varianzas marginales (usando la fórmula operativa):
+
+$$
+\sigma_X^2 = \dfrac{14\cdot 4 + 18\cdot 16 + 18\cdot 36}{50} - 4{,}16^2 \approx 20{,}00 - 17{,}31 \approx 2{,}69.
+$$
+
+$$
+\sigma_Y^2 = \dfrac{8\cdot 16 + 14\cdot 36 + 15\cdot 64 + 13\cdot 100}{50} - 7{,}32^2 \approx 57{,}84 - 53{,}58 \approx 4{,}26.
+$$
+
+$$
+\sigma_X \approx 1{,}64,\quad \sigma_Y \approx 2{,}06,\qquad r = \dfrac{1{,}87}{1{,}64\cdot 2{,}06} \approx 0{,}55,\qquad r^2 \approx 0{,}30.
+$$
+
+Correlación **positiva moderada**: hay una relación directa entre horas de estudio y nota, aunque un $30\ \%$ de la variabilidad de la nota se explica linealmente por las horas.
+
+**d)** Recta $Y|X$:
+
+$$
+b_{YX} = \dfrac{1{,}87}{2{,}69} \approx 0{,}70,\qquad a_{YX} = 7{,}32 - 0{,}70\cdot 4{,}16 \approx 4{,}41.
+$$
+
+$$
+\hat{y} = 0{,}70 x + 4{,}41.
+$$
+
+Para $X = 5$:
+
+$$
+\hat{y}(5) = 0{,}70\cdot 5 + 4{,}41 = 7{,}91.
+$$
+
+Como $5$ está dentro del intervalo observado, es una interpolación; se estimaría una nota media próxima a $8$.
+
+## Ejercicios propuestos
+
+**1.** Diez alumnos apuntan horas de sueño ($X$) y minutos de retraso al llegar al instituto ($Y$):
+
+| $x_i$ | $4$ | $5$ | $5$ | $6$ | $6$ | $7$ | $7$ | $8$ | $8$ | $9$ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| $y_i$ | $30$ | $25$ | $20$ | $22$ | $15$ | $18$ | $12$ | $10$ | $8$ | $5$ |
+
+a. Dibuja la nube.
+b. Calcula $\bar{x}, \bar{y}, \sigma_X, \sigma_Y, \sigma_{XY}, r$ y $r^2$.
+c. Comenta el signo y la intensidad de la asociación.
+d. Halla las dos rectas de regresión.
+e. Estima el retraso esperado para $X = 6{,}5$ horas de sueño.
+
+**2.** La tabla siguiente recoge, para $30$ familias, el número de personas ($X$) y el gasto mensual en la compra en euros ($Y$):
+
+| $Y \backslash X$ | 2 | 3 | 4 |
+|---|---|---|---|
+| 200 | 3 | 1 | 0 |
+| 300 | 4 | 3 | 1 |
+| 400 | 2 | 4 | 3 |
+| 500 | 1 | 2 | 6 |
+
+a. Halla los totales marginales.
+b. Calcula las medias marginales, las varianzas marginales y la covarianza.
+c. Obtén $r$ y comenta la relación.
+d. ¿Cuánto se estima que gastará una familia de $5$ personas? ¿Es interpolación o extrapolación?
+
+**3.** En un examen se han estudiado dos rectas de regresión:
+
+$$
+Y|X:\ y = 0{,}75 x + 2,\qquad X|Y:\ x = 0{,}5 y + 3.
+$$
+
+a. Calcula el centro de gravedad $(\bar{x}, \bar{y})$.
+b. Obtén $r^2$ y $r$.
+c. Determina el signo de la asociación.
+d. Comprueba que las dos rectas se cortan efectivamente en $(\bar{x}, \bar{y})$.
+
+**4.** Los tiempos $Y$ (en segundos) que tarda cierta reacción química en completarse a distintas temperaturas $X$ (en grados Celsius) son:
+
+| $x_i$ | $20$ | $30$ | $40$ | $50$ | $60$ |
+|---|---|---|---|---|---|
+| $y_i$ | $80$ | $52$ | $30$ | $20$ | $12$ |
+
+a. Dibuja la nube y comenta la forma.
+b. Ajusta primero una recta y calcula $r^2$.
+c. Considera después si una parábola $y = a + bx + cx^2$ mejora el ajuste. Interpreta.
+
+**5.** Explica con tus palabras por qué los siguientes titulares de prensa no demuestran una relación causa-efecto y qué **tercera variable** podría explicar la correlación observada:
+
+a. «Los países con más televisores por habitante tienen mayor esperanza de vida.»
+b. «Los estudiantes que desayunan sacan mejores notas.»
+c. «Cuantos más helados se venden, más ahogamientos se producen.»
+
+## Autoevaluación final
+
+Sin mirar la teoría, responde a estas preguntas rápidas:
+
+- ¿En qué se diferencian la fórmula conceptual y la fórmula operativa de la covarianza?
+- ¿Puede $r$ valer $-1{,}2$? ¿Y $0$? ¿Qué significa cada caso?
+- ¿Por qué las dos rectas de regresión se cortan en $(\bar{x}, \bar{y})$?
+- ¿Cuál es la diferencia entre interpolar y extrapolar?
+- ¿Qué distingue una correlación **fuerte** de una **causal**?
+
+::: {.callout-note}
+## Última recomendación
+
+Este tema se aprende mucho más con datos concretos que con fórmulas aisladas. Aprovecha los applets para **jugar** con distintos escenarios, cambiar puntos y ver cómo se mueven las rectas y los coeficientes. Ese vaivén entre gráfico y número es la mejor forma de fijar la intuición estadística.
+:::

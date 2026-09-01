@@ -1,0 +1,149 @@
+---
+title: "Tema 2.5 Diagramas de dispersión"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 5 de 8)"
+filename: 05-dispersion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Diagrama de dispersión como herramienta visual central del análisis bidimensional. Cómo dibujarlo, cómo leerlo, qué formas típicas aparecen y por qué siempre hay que mirar la nube antes de calcular r.
+categories: [estadística, estadística bidimensional, diagrama de dispersión, nube de puntos, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué es un diagrama de dispersión
+
+Un **diagrama de dispersión** (o **nube de puntos**) es una representación en el plano cartesiano en la que cada individuo se sitúa según sus dos valores:
+
+- Eje horizontal: la variable $X$.
+- Eje vertical: la variable $Y$.
+- Cada individuo aporta un punto $(x_i, y_i)$.
+
+Es la herramienta visual básica del análisis bidimensional. Antes de calcular ninguna covarianza ni ningún coeficiente de correlación, se dibuja la nube.
+
+::: {.callout-important}
+## Regla no escrita
+
+**Primero se dibuja, después se calcula, por último se interpreta.**
+
+Un número (una covarianza, un $r$) puede ser engañoso si no se ha visto antes la forma de los datos. Un $r \approx 0$ puede corresponder a una parábola perfecta; un $r$ muy alto puede deberse a un único punto atípico. La nube evita ambos errores.
+:::
+
+## Cómo se construye
+
+Para dibujar un diagrama de dispersión a mano o con la calculadora se siguen tres pasos:
+
+1. Determinar los rangos $[\min X, \max X]$ y $[\min Y, \max Y]$ para elegir las escalas de los ejes.
+2. Marcar en el eje horizontal los valores de $X$ y en el vertical los de $Y$.
+3. Situar cada par $(x_i, y_i)$ como un punto.
+
+Cuando dos individuos coinciden exactamente en $(x, y)$, es habitual señalarlo con un punto más grande o con un pequeño número.
+
+## Qué mirar cuando la nube ya está dibujada
+
+Al leer una nube conviene fijarse siempre en las mismas cuatro cosas: **dirección**, **forma**, **intensidad** y **puntos atípicos**.
+
+### Dirección
+
+- Si al aumentar $X$ tiende a aumentar $Y$, la asociación es **directa** o positiva.
+- Si al aumentar $X$ tiende a disminuir $Y$, es **inversa** o negativa.
+- Si no hay tendencia clara, la asociación es prácticamente nula.
+
+### Forma
+
+- Si la nube se puede aproximar por una **recta**, la relación es lineal.
+- Si dibuja una **curva** (parábola, exponencial…), la relación es no lineal.
+- Si tiene forma de **abanico** (más ancha en un extremo), hablamos de heterocedasticidad; la relación es lineal solo aproximadamente.
+
+### Intensidad
+
+- Cuanto **más estrecha** es la banda de puntos alrededor de su tendencia, mayor intensidad.
+- Cuanto **más dispersa**, menor intensidad.
+
+### Puntos atípicos
+
+- Puntos claramente alejados del resto pueden influir mucho en la covarianza, en $r$ y en las rectas de regresión.
+- Antes de calcular es útil marcarlos y decidir si son errores, outliers legítimos o eventos raros.
+
+### Applet · Diagrama de dispersión {.unnumbered}
+
+::: {#panel-dispersion .applet-panel data-applet-est2="dispersion"}
+:::
+
+## Nubes típicas que aparecerán en el tema
+
+En clase repasaremos, con datos reales o de laboratorio, seis nubes distintas. Aprenderlas de memoria ayuda mucho a diagnosticar situaciones nuevas.
+
+### Positiva fuerte
+
+Puntos alineados subiendo hacia la derecha. Banda estrecha. Coeficiente $r$ cercano a $+1$. Ejemplo clásico: horas de estudio y nota.
+
+### Positiva moderada o débil
+
+La tendencia ascendente se ve, pero la banda es ancha. $r$ se mueve entre $+0{,}3$ y $+0{,}7$.
+
+### Negativa fuerte
+
+Puntos alineados bajando hacia la derecha. $r$ cercano a $-1$. Ejemplo: horas de videojuegos y nota, o presión de un neumático y desgaste.
+
+### Nube sin dirección
+
+Los puntos ocupan una zona más o menos circular sin tendencia clara. $r$ próximo a $0$: **independencia lineal**.
+
+### No lineal
+
+Los puntos dibujan una parábola, una U o una S. Hay relación fuerte, pero $r$ puede ser casi $0$. Aquí el diagrama de dispersión salva de errores catastróficos.
+
+### Un punto atípico dominante
+
+Un solo punto muy alejado puede arrastrar $r$ hacia el $+1$ o el $-1$ aunque el resto de la nube no muestre tendencia. Al eliminar ese punto la conclusión puede cambiar radicalmente. Es un motivo más para no confiar solo en el número.
+
+## Un ejemplo visual completo
+
+Volvamos al par de datos del capítulo anterior:
+
+$$
+(1,2), (2,3), (3,5), (4,4), (5,6).
+$$
+
+Su nube:
+
+- Tiene **dirección** ascendente.
+- Tiene **forma** aproximadamente rectilínea.
+- La **intensidad** es alta: los puntos están cerca de una recta imaginaria.
+- No hay puntos atípicos evidentes.
+
+Todo esto encajará más tarde con $\sigma_{XY} = 1{,}8$ y $r = 0{,}9$: son las mismas conclusiones que hemos leído a ojo, pero cuantificadas.
+
+::: {.callout-tip}
+## Consejo pedagógico
+
+Cuando resuelvas un ejercicio, escribe **antes** del cálculo tu diagnóstico visual: «positiva fuerte», «negativa moderada», «nula», «no lineal». Después compara con el $r$ obtenido. Si el número contradice tu diagnóstico, hay algo raro y hay que investigar.
+:::
+
+## Cuando hay muchos datos
+
+Si el número de individuos es muy grande, la nube de puntos puede saturarse. Se emplean entonces variantes útiles:
+
+- **Diagrama de puntos con transparencia**, para ver zonas de concentración.
+- **Nube con muestreo aleatorio**, tomando un subconjunto representativo.
+- **Diagrama de contornos o hexbin**, que agrupa puntos por regiones.
+
+Estas herramientas son propias de cursos posteriores o de software estadístico; en $2^{\circ}$ de Bachillerato basta con nubes bien dibujadas de $10$ a $50$ individuos.
+
+## Repaso rápido
+
+- El diagrama de dispersión sitúa cada individuo como un punto $(x_i, y_i)$.
+- Al leerlo se observan **dirección, forma, intensidad** y **puntos atípicos**.
+- La nube va **siempre antes** que la covarianza y el coeficiente de correlación.
+- Diferentes patrones típicos: positiva fuerte, negativa fuerte, sin dirección, no lineal y con outlier dominante.
+- Cuando $r$ no coincide con lo que la nube «dice», el número engaña, no la vista.

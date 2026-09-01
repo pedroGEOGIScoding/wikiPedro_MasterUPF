@@ -1,0 +1,170 @@
+---
+title: "Tema 2.4 Covarianza"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 4 de 8)"
+filename: 04-covarianza
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Covarianza como medida del signo y la intensidad bruta de la asociación lineal entre dos variables. Fórmula conceptual y fórmula operativa, interpretación gráfica por cuadrantes y cálculo con tabla de doble entrada.
+categories: [estadística, estadística bidimensional, covarianza, cuadrantes, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Idea intuitiva: mirar la nube desde el centro
+
+Fijémonos en la nube de puntos y en su **centro de gravedad** $(\bar{x}, \bar{y})$. Trazamos por él las dos rectas horizontal y vertical: quedan cuatro cuadrantes.
+
+- En los cuadrantes **superior derecho** e **inferior izquierdo**, los puntos tienen $x_i - \bar{x}$ y $y_i - \bar{y}$ **con el mismo signo**, así que el producto $(x_i - \bar{x})(y_i - \bar{y})$ es **positivo**.
+- En los cuadrantes **superior izquierdo** e **inferior derecho**, los signos son contrarios, así que el producto es **negativo**.
+
+La covarianza es la media aritmética de esos productos. Por eso:
+
+- Muchos puntos en la diagonal ascendente ⇒ la suma es positiva ⇒ **covarianza positiva**.
+- Muchos puntos en la diagonal descendente ⇒ la suma es negativa ⇒ **covarianza negativa**.
+- Reparto equilibrado ⇒ la suma se cancela ⇒ **covarianza próxima a cero**.
+
+::: {.callout-important}
+## La covarianza es un promedio de productos
+
+$$
+\sigma_{XY} = \dfrac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y})
+$$
+
+Es un **número con signo**: el signo indica la dirección de la asociación lineal y el valor absoluto indica la fuerza «bruta» (todavía sensible a las unidades de $X$ e $Y$).
+:::
+
+### Applet · Los signos de la covarianza {.unnumbered}
+
+::: {#panel-cuadrantes .applet-panel data-applet-est2="cuadrantes"}
+:::
+
+## Fórmula conceptual y fórmula operativa
+
+Partiendo de la definición como promedio de productos, se puede reescribir de forma más cómoda de calcular:
+
+**Fórmula conceptual**
+
+$$
+\sigma_{XY} = \dfrac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})(y_i - \bar{y}).
+$$
+
+**Fórmula operativa**
+
+$$
+\sigma_{XY} = \dfrac{\sum_{i=1}^{N} x_i y_i}{N} - \bar{x}\,\bar{y}.
+$$
+
+Ambas dan lo mismo. La conceptual es la que hay que **entender**; la operativa es la que suele **usarse** en los cálculos a mano y con calculadora, porque no obliga a rellenar una columna de restas.
+
+::: {.callout-tip}
+## Del promedio de productos al producto de medias
+
+La equivalencia sale de expandir el cuadrado: $(x_i - \bar{x})(y_i - \bar{y}) = x_i y_i - \bar{x}\, y_i - \bar{y}\, x_i + \bar{x}\bar{y}$. Al promediar, los dos términos centrales se cancelan porque $\overline{x_i} = \bar{x}$ y $\overline{y_i} = \bar{y}$.
+:::
+
+## Ejemplo guiado
+
+Consideremos $N = 5$ pares:
+
+$$
+(1, 2),\ (2, 3),\ (3, 5),\ (4, 4),\ (5, 6).
+$$
+
+**Paso 1 · Medias marginales.**
+
+$$
+\bar{x} = \dfrac{1+2+3+4+5}{5} = 3,
+$$
+
+$$
+\bar{y} = \dfrac{2+3+5+4+6}{5} = 4.
+$$
+
+**Paso 2 · Fórmula conceptual.** Rellenamos la tabla de desviaciones:
+
+| $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i-\bar{x})(y_i-\bar{y})$ |
+|---|---|---|---|---|
+| 1 | 2 | $-2$ | $-2$ | $4$ |
+| 2 | 3 | $-1$ | $-1$ | $1$ |
+| 3 | 5 | $0$ | $1$ | $0$ |
+| 4 | 4 | $1$ | $0$ | $0$ |
+| 5 | 6 | $2$ | $2$ | $4$ |
+
+$$
+\sum(x_i - \bar{x})(y_i - \bar{y}) = 9,\qquad \sigma_{XY} = \dfrac{9}{5} = 1{,}8.
+$$
+
+**Paso 3 · Fórmula operativa (comprobación).**
+
+$$
+\sum x_i y_i = 1\cdot2 + 2\cdot3 + 3\cdot5 + 4\cdot4 + 5\cdot6 = 69.
+$$
+
+$$
+\sigma_{XY} = \dfrac{69}{5} - 3\cdot 4 = 13{,}8 - 12 = 1{,}8.
+$$
+
+Coinciden. La covarianza es **positiva**, así que la asociación entre $X$ e $Y$ es directa.
+
+### Applet · Covarianza paso a paso {.unnumbered}
+
+::: {#panel-covarianza .applet-panel data-applet-est2="covarianza"}
+:::
+
+## Covarianza con tabla de doble entrada
+
+Cuando los datos vienen agrupados en una tabla, la fórmula operativa se adapta multiplicando cada producto $x_j y_i$ por su frecuencia $n_{ij}$:
+
+$$
+\sigma_{XY} = \dfrac{\displaystyle\sum_{i=1}^{p}\sum_{j=1}^{k} n_{ij}\, x_j\, y_i}{N} - \bar{x}\,\bar{y}.
+$$
+
+Interpretación pedagógica: primero se calculan las medias marginales con los totales, y después se recorre el interior de la tabla sumando $n_{ij}\, x_j\, y_i$.
+
+### Applet · Covarianza con tabla de doble entrada {.unnumbered}
+
+::: {#panel-covarianzaTabla .applet-panel data-applet-est2="covarianzaTabla"}
+:::
+
+## Propiedades importantes de la covarianza
+
+- **Signo**: el signo de $\sigma_{XY}$ indica la dirección de la asociación lineal.
+- **Escala**: la covarianza depende de las **unidades** de $X$ e $Y$. Multiplicar todos los $y_i$ por $10$ multiplica la covarianza por $10$. Por eso, para comparar situaciones distintas necesitamos normalizar y aparecerá el coeficiente $r$ en el próximo capítulo.
+- **Traslación**: sumar una constante a todos los $x_i$ (o a todos los $y_i$) **no cambia** la covarianza.
+- **Rango**: cumple la desigualdad $|\sigma_{XY}| \le \sigma_X\, \sigma_Y$, que es lo que hace que $r$ quede acotado entre $-1$ y $1$.
+- **Covarianza nula**: si $\sigma_{XY} = 0$, no hay dependencia **lineal**. Pero podría haber una relación no lineal fuerte (como una parábola).
+
+::: {.callout-warning}
+## Covarianza pequeña no significa «variables independientes»
+
+Una covarianza próxima a cero descarta dependencia lineal, no dependencia general. En el escenario «no lineal» del laboratorio, la parábola perfecta $y = 8 - 0{,}3(x-5)^2$ tiene $\sigma_{XY} = 0$ y sin embargo la relación es total.
+:::
+
+## Un chequeo rápido antes de seguir
+
+Cuando calcules una covarianza, hazte estas preguntas:
+
+- ¿Tiene el signo que esperabas al mirar la nube?
+- ¿Coinciden la fórmula conceptual y la operativa?
+- ¿Se ve la magnitud afectada por unidades muy distintas en $X$ y $Y$?
+
+Si las tres respuestas son coherentes, estás listo para el siguiente paso: normalizar y obtener el coeficiente de correlación.
+
+## Repaso rápido
+
+- La covarianza mide el **signo** y la **intensidad bruta** de la relación lineal.
+- Fórmula conceptual: media de $(x_i - \bar{x})(y_i - \bar{y})$.
+- Fórmula operativa: $\dfrac{\sum x_i y_i}{N} - \bar{x}\bar{y}$.
+- Con tabla de doble entrada aparecen las frecuencias $n_{ij}$ multiplicando cada producto.
+- **Signo positivo** ⇒ asociación directa; **signo negativo** ⇒ asociación inversa; **próxima a $0$** ⇒ no hay dependencia lineal.
+- Su valor depende de las unidades: por eso hará falta escalarla para poder comparar.

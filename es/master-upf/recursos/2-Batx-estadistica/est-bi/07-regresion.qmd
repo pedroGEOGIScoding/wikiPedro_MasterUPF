@@ -1,0 +1,300 @@
+---
+title: "Tema 2.7 Regresión lineal"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 7 de 8)"
+filename: 07-regresion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Rectas de regresión Y sobre X y X sobre Y por mínimos cuadrados. Interpretación de pendiente y ordenada, predicciones fiables, interpolación y extrapolación, problema inverso y ajuste cuadrático.
+categories: [estadística, estadística bidimensional, regresión lineal, mínimos cuadrados, predicción, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De describir a predecir
+
+Los apartados anteriores nos han dado herramientas para **describir** la relación entre $X$ e $Y$. El objetivo final del tema es dar un paso más y aprender a **predecir**: dado un nuevo valor de $X$, ¿cuál sería el valor esperado de $Y$? Y al revés.
+
+La respuesta más simple, cuando la nube es aproximadamente rectilínea, es ajustar una **recta de regresión**. Como veremos, hay dos rectas distintas, según qué variable queramos predecir a partir de cuál.
+
+::: {.callout-important}
+## No hay una única recta
+
+Existen **dos rectas de regresión**:
+
+- La de $Y$ sobre $X$ (o $Y|X$), que sirve para predecir $Y$ conocido $X$.
+- La de $X$ sobre $Y$ (o $X|Y$), que sirve para predecir $X$ conocido $Y$.
+
+Coinciden únicamente cuando $r = \pm 1$ (todos los puntos alineados). En general se cortan en $(\bar{x}, \bar{y})$ y forman un pequeño ángulo. Nunca se despeja una para obtener la otra.
+:::
+
+## Recta de regresión de $Y$ sobre $X$
+
+Es la recta que **mejor predice $Y$ a partir de $X$** en el sentido de los **mínimos cuadrados**: entre todas las rectas del plano, es la que hace mínima la suma de los cuadrados de los residuos verticales $e_i = y_i - \hat{y}_i$.
+
+Su ecuación:
+
+$$
+y - \bar{y} = \dfrac{\sigma_{XY}}{\sigma_X^2}\, (x - \bar{x}).
+$$
+
+De aquí se llama **coeficiente de regresión** de $Y$ sobre $X$ al número
+
+$$
+b_{YX} = \dfrac{\sigma_{XY}}{\sigma_X^2}.
+$$
+
+Es la **pendiente** de la recta $Y|X$ y se interpreta como el cambio medio de $Y$ cuando $X$ aumenta en una unidad.
+
+Desarrollando la ecuación punto-pendiente se obtiene la forma explícita
+
+$$
+\hat{y} = a_{YX} + b_{YX}\, x,\qquad a_{YX} = \bar{y} - b_{YX}\, \bar{x}.
+$$
+
+## Recta de regresión de $X$ sobre $Y$
+
+Simétricamente, la recta que mejor predice $X$ a partir de $Y$ minimiza los cuadrados de los residuos **horizontales**:
+
+$$
+x - \bar{x} = \dfrac{\sigma_{XY}}{\sigma_Y^2}\, (y - \bar{y}).
+$$
+
+Con coeficiente de regresión
+
+$$
+b_{XY} = \dfrac{\sigma_{XY}}{\sigma_Y^2},
+$$
+
+y forma explícita
+
+$$
+\hat{x} = a_{XY} + b_{XY}\, y,\qquad a_{XY} = \bar{x} - b_{XY}\, \bar{y}.
+$$
+
+### Applet · Las dos rectas de regresión {.unnumbered}
+
+::: {#panel-rectas .applet-panel data-applet-est2="rectas"}
+:::
+
+## Relación entre las dos rectas y $r$
+
+Los dos coeficientes de regresión están conectados con el de correlación por una identidad muy útil:
+
+$$
+r^2 = b_{YX} \cdot b_{XY}.
+$$
+
+Consecuencias importantes:
+
+- **Los signos** de $b_{YX}$ y $b_{XY}$ coinciden con el signo de $\sigma_{XY}$ y con el de $r$.
+- **Si $r = \pm 1$**, entonces $b_{YX}\, b_{XY} = 1$: las dos rectas son la misma.
+- **Si $r = 0$**, entonces $b_{YX} = b_{XY} = 0$: la recta $Y|X$ es horizontal $y = \bar{y}$ y la recta $X|Y$ es vertical $x = \bar{x}$.
+- El ángulo entre las dos rectas mide la fuerza de la asociación lineal: cuanto más cerca están, más fuerte es la correlación.
+
+## Ejemplo guiado: los cinco puntos de siempre
+
+Retomamos $(1,2), (2,3), (3,5), (4,4), (5,6)$, para los que ya sabíamos:
+
+$$
+\bar{x} = 3,\ \bar{y} = 4,\ \sigma_X^2 = 2,\ \sigma_Y^2 = 2,\ \sigma_{XY} = 1{,}8,\ r = 0{,}9.
+$$
+
+**Recta $Y|X$**
+
+$$
+b_{YX} = \dfrac{1{,}8}{2} = 0{,}9,\qquad a_{YX} = 4 - 0{,}9\cdot 3 = 1{,}3.
+$$
+
+$$
+\hat{y} = 0{,}9 x + 1{,}3.
+$$
+
+**Recta $X|Y$**
+
+$$
+b_{XY} = \dfrac{1{,}8}{2} = 0{,}9,\qquad a_{XY} = 3 - 0{,}9\cdot 4 = -0{,}6.
+$$
+
+$$
+\hat{x} = 0{,}9 y - 0{,}6.
+$$
+
+Se cumple la comprobación $b_{YX}\cdot b_{XY} = 0{,}9\cdot 0{,}9 = 0{,}81 = r^2$.
+
+## Otro ejemplo: pintura y tiempo de secado
+
+Un ensayo industrial da los siguientes pares de concentración de disolvente ($X$, en g/l) y tiempo de secado ($Y$, en minutos):
+
+| $x_i$ | $y_i$ |
+|---|---|
+| $5$ | $16$ |
+| $10$ | $17$ |
+| $20$ | $18$ |
+| $30$ | $19$ |
+
+**Paso 1 · Medias.**
+
+$$
+\bar{x} = \dfrac{5+10+20+30}{4} = 16{,}25,\qquad \bar{y} = \dfrac{16+17+18+19}{4} = 17{,}5.
+$$
+
+**Paso 2 · Sumas auxiliares.**
+
+$$
+\sum x_i^2 = 25 + 100 + 400 + 900 = 1425,\quad \sum y_i^2 = 256 + 289 + 324 + 361 = 1230,\quad \sum x_i y_i = 80 + 170 + 360 + 570 = 1180.
+$$
+
+**Paso 3 · Varianzas y covarianza.**
+
+$$
+\sigma_X^2 = \dfrac{1425}{4} - 16{,}25^2 = 356{,}25 - 264{,}0625 = 92{,}1875,
+$$
+
+$$
+\sigma_Y^2 = \dfrac{1230}{4} - 17{,}5^2 = 307{,}5 - 306{,}25 = 1{,}25,
+$$
+
+$$
+\sigma_{XY} = \dfrac{1180}{4} - 16{,}25\cdot 17{,}5 = 295 - 284{,}375 = 10{,}625.
+$$
+
+**Paso 4 · Coeficientes.**
+
+$$
+b_{YX} = \dfrac{10{,}625}{92{,}1875} \approx 0{,}12,\qquad a_{YX} = 17{,}5 - 0{,}12\cdot 16{,}25 \approx 15{,}55.
+$$
+
+$$
+b_{XY} = \dfrac{10{,}625}{1{,}25} = 8{,}5,\qquad a_{XY} = 16{,}25 - 8{,}5\cdot 17{,}5 = -132{,}5.
+$$
+
+**Paso 5 · Correlación.**
+
+$$
+r = \dfrac{10{,}625}{\sqrt{92{,}1875}\cdot \sqrt{1{,}25}} \approx \dfrac{10{,}625}{10{,}736} \approx 0{,}99.
+$$
+
+Se trata de una correlación **muy fuerte** y positiva. Las rectas son casi coincidentes.
+
+## Residuos: qué se queda fuera de la recta
+
+Para cada punto observado $(x_i, y_i)$, la recta $Y|X$ predice $\hat{y}_i = a_{YX} + b_{YX} x_i$. La diferencia
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+se llama **residuo** de $y_i$. Sus propiedades:
+
+- Su suma es cero: $\sum e_i = 0$.
+- Su varianza es $\sigma_Y^2 (1 - r^2)$: la parte de $Y$ **no explicada** linealmente por $X$.
+- Un residuo grande señala un individuo que se comporta de manera atípica dado su valor de $X$.
+
+Los residuos son la mejor herramienta para **auditar** una recta de regresión: cuando presentan un patrón claro (por ejemplo, todos positivos en el centro y negativos en los extremos), la relación real no es lineal y una parábola será mucho más adecuada.
+
+### Applet · Residuos de la recta Y|X {.unnumbered}
+
+::: {#panel-residuos .applet-panel data-applet-est2="residuos"}
+:::
+
+## Predecir con la recta correcta: interpolación y extrapolación
+
+Con las rectas ya conocidas, predecir es directo: se sustituye el valor conocido en la recta adecuada.
+
+- Para estimar $\hat{y}$ conocido $x$, se usa **Y|X**.
+- Para estimar $\hat{x}$ conocido $y$, se usa **X|Y**.
+
+::: {.callout-warning}
+## Nunca despejar la recta contraria
+
+Si tienes $Y|X: \hat{y} = a + bx$ y quieres predecir $x$ dado $y$, **no** debes despejar $x$ en esa recta. El resultado sería tratar todos los residuos como si fueran verticales, cuando el problema pide residuos horizontales. Usa siempre la recta $X|Y$.
+:::
+
+Además del **cuidado con la recta**, hay que distinguir dos escenarios de predicción:
+
+- **Interpolación**: el nuevo valor está **dentro** del intervalo observado $[\min X, \max X]$. La predicción suele ser fiable si además $|r|$ es alto.
+- **Extrapolación**: el nuevo valor está **fuera** del intervalo observado. Muy delicado: la recta puede no ser válida en esa zona.
+
+### Applet · Estimación: interpolación y extrapolación {.unnumbered}
+
+::: {#panel-estimacion .applet-panel data-applet-est2="estimacion"}
+:::
+
+### Applet · Interpolación vs extrapolación {.unnumbered}
+
+::: {#panel-interpolacion .applet-panel data-applet-est2="interpolacion"}
+:::
+
+## Problema inverso: dadas las rectas, halla el resto
+
+En muchos ejercicios de examen nos dan las dos rectas de regresión y nos piden calcular $\bar{x}$, $\bar{y}$ y $r$. El procedimiento es siempre el mismo:
+
+1. Resolver el sistema formado por las dos rectas: la solución es el punto $(\bar{x}, \bar{y})$.
+2. Identificar $b_{YX}$ como la pendiente de la recta $Y|X$ y $b_{XY}$ como la pendiente de la recta $X|Y$.
+3. Calcular $r^2 = b_{YX}\cdot b_{XY}$ y elegir el signo de $r$ igual al signo común de los coeficientes.
+
+::: {.callout-note}
+## Test de compatibilidad
+
+- Si el producto de pendientes es **negativo**, los datos son incompatibles: los dos coeficientes deben tener el mismo signo.
+- Si es **mayor que $1$**, tampoco son válidos: siempre $|r| \le 1$.
+:::
+
+### Applet · Problema inverso {.unnumbered}
+
+::: {#panel-inverso .applet-panel data-applet-est2="inverso"}
+:::
+
+## Cuando la relación no es lineal: la recta no basta
+
+Si la nube dibuja claramente una **parábola** o cualquier otra curva, la recta de regresión sigue existiendo pero es un pésimo modelo. En ese caso se recurre a la **regresión cuadrática**, buscando la parábola
+
+$$
+\hat{y} = a + b x + c x^2
+$$
+
+que hace mínima la suma de los cuadrados de los residuos verticales. Se obtiene resolviendo el **sistema normal**
+
+$$
+\left\{\begin{array}{l}
+a N + b \sum x_i + c \sum x_i^2 = \sum y_i \\
+a \sum x_i + b \sum x_i^2 + c \sum x_i^3 = \sum x_i y_i \\
+a \sum x_i^2 + b \sum x_i^3 + c \sum x_i^4 = \sum x_i^2 y_i
+\end{array}\right.
+$$
+
+Su presentación en profundidad excede este curso; nos basta con reconocer cuándo la recta no vale y probar con una parábola.
+
+### Applet · Regresión cuadrática {.unnumbered}
+
+::: {#panel-cuadratica .applet-panel data-applet-est2="cuadratica"}
+:::
+
+## Diagnóstico técnico
+
+Antes de terminar el tema comprobamos que todo el motor de applets se ha cargado correctamente.
+
+### Applet · Diagnóstico {.unnumbered}
+
+::: {#panel-diagnostico .applet-panel data-applet-est2="diagnostico"}
+:::
+
+## Repaso rápido
+
+- Existen dos rectas de regresión, $Y|X$ y $X|Y$, obtenidas por mínimos cuadrados.
+- $b_{YX} = \sigma_{XY}/\sigma_X^2$ y $b_{XY} = \sigma_{XY}/\sigma_Y^2$; sus signos coinciden con el de $\sigma_{XY}$.
+- Ambas rectas se cortan en $(\bar{x}, \bar{y})$.
+- Se cumple $r^2 = b_{YX}\cdot b_{XY}$.
+- Para predecir $Y$ usa $Y|X$; para predecir $X$ usa $X|Y$. Nunca despejes una en la otra.
+- **Interpolación** es segura dentro del rango observado; **extrapolación** debe ser interpretada con precaución.
+- Cuando la nube no es lineal, la recta no basta y hay que probar con una parábola.

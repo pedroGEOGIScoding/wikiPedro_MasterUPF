@@ -1,0 +1,160 @@
+---
+title: "Tema 2.6 Correlación lineal"
+subtitle: "Estadística · 2.º de Bachillerato — Estadística bidimensional (Parte 6 de 8)"
+filename: 06-correlacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Coeficiente de correlación de Pearson r. Fórmula, propiedades, interpretación, coeficiente de determinación r cuadrado y errores frecuentes al interpretar la asociación lineal.
+categories: [estadística, estadística bidimensional, correlación, Pearson, coeficiente de determinación, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué necesitamos algo más que la covarianza
+
+La covarianza nos ha dado ya dos cosas útiles: **el signo** de la asociación lineal y **una idea de su magnitud**. Sin embargo tiene un defecto importante: depende de las **unidades** en que midamos $X$ e $Y$.
+
+- Si expresamos $Y$ en horas y luego lo pasamos a minutos, todos los $y_i$ se multiplican por $60$ y la covarianza también se multiplica por $60$. La relación **no ha cambiado**, pero el número sí.
+- Además, dos parejas de variables pueden tener covarianzas de valores muy distintos y sin embargo describir una relación **igual de fuerte**.
+
+Para poder **comparar** situaciones distintas y para poder decir «esta correlación es fuerte» o «esta es débil» de manera absoluta, escalamos la covarianza dividiéndola por el producto de las desviaciones típicas marginales.
+
+## Definición del coeficiente de correlación de Pearson
+
+Se llama **coeficiente de correlación lineal de Pearson** entre $X$ e $Y$ al número
+
+$$
+r = \dfrac{\sigma_{XY}}{\sigma_X\, \sigma_Y}.
+$$
+
+Es, por tanto, la covarianza **estandarizada**. Como $\sigma_X$ y $\sigma_Y$ son siempre positivas, el signo de $r$ coincide con el signo de la covarianza.
+
+::: {.callout-important}
+## Propiedades esenciales de $r$
+
+- Está **acotado**: $-1 \le r \le 1$.
+- **No tiene unidades**: es un número puro.
+- Su **signo** coincide con el de la covarianza.
+- Si multiplicamos $X$ (o $Y$) por una constante positiva, $r$ no cambia. Si la constante es negativa, $r$ cambia de signo.
+- $r = \pm 1$ solo si todos los puntos están **exactamente** sobre una recta.
+:::
+
+### Applet · Coeficiente de correlación de Pearson {.unnumbered}
+
+::: {#panel-correlacion .applet-panel data-applet-est2="correlacion"}
+:::
+
+## Escala pedagógica de intensidad
+
+Interpretar $r$ es un ejercicio de sensibilidad. La siguiente escala orientativa nos servirá durante el curso:
+
+| $|r|$ aproximado | Intensidad |
+|---|---|
+| $0{,}00$–$0{,}20$ | prácticamente inexistente |
+| $0{,}20$–$0{,}45$ | débil |
+| $0{,}45$–$0{,}75$ | moderada |
+| $0{,}75$–$0{,}95$ | fuerte |
+| $0{,}95$–$1{,}00$ | muy fuerte |
+
+::: {.callout-warning}
+## No hay una única escala universal
+
+Estas franjas son orientativas y dependen del contexto. En física una $r = 0{,}9$ puede considerarse mala; en ciencias sociales puede ser excepcionalmente buena. La escala anterior es útil para nuestros ejemplos de clase.
+:::
+
+## Ejemplo guiado
+
+Con los cinco pares del capítulo anterior:
+
+$$
+(1,2), (2,3), (3,5), (4,4), (5,6),
+$$
+
+ya sabíamos que
+
+$$
+\bar{x} = 3, \quad \bar{y} = 4, \quad \sigma_{XY} = 1{,}8.
+$$
+
+Calculamos ahora las desviaciones típicas marginales:
+
+$$
+\sigma_X^2 = \dfrac{1 + 4 + 9 + 16 + 25}{5} - 3^2 = 11 - 9 = 2,\qquad \sigma_X = \sqrt{2} \approx 1{,}414.
+$$
+
+$$
+\sigma_Y^2 = \dfrac{4 + 9 + 25 + 16 + 36}{5} - 4^2 = 18 - 16 = 2,\qquad \sigma_Y = \sqrt{2} \approx 1{,}414.
+$$
+
+Y aplicamos la fórmula:
+
+$$
+r = \dfrac{\sigma_{XY}}{\sigma_X\, \sigma_Y} = \dfrac{1{,}8}{\sqrt{2}\cdot \sqrt{2}} = \dfrac{1{,}8}{2} = 0{,}9.
+$$
+
+Interpretación: correlación **positiva** y **fuerte** entre $X$ e $Y$. Nuestra vista había predicho lo mismo al observar la nube.
+
+## El coeficiente de determinación $r^2$
+
+Elevando $r$ al cuadrado se obtiene el **coeficiente de determinación**:
+
+$$
+r^2 = \dfrac{\sigma_{XY}^2}{\sigma_X^2\, \sigma_Y^2}.
+$$
+
+Este número está entre $0$ y $1$ y se suele expresar en porcentaje. Su interpretación es especialmente clara:
+
+> $r^2$ es la proporción de la varianza de $Y$ que queda explicada linealmente por $X$ (o, por simetría, la proporción de la varianza de $X$ explicada por $Y$).
+
+En el ejemplo anterior:
+
+$$
+r^2 = 0{,}9^2 = 0{,}81 = 81\ \%.
+$$
+
+Es decir, el $81\ \%$ de la variabilidad de $Y$ queda «capturada» por una recta a partir de $X$. Solo un $19\ \%$ se debe a otros factores.
+
+### Applet · Coeficiente de determinación r² {.unnumbered}
+
+::: {#panel-determinacion .applet-panel data-applet-est2="determinacion"}
+:::
+
+## Correlación no es causalidad
+
+Un $r$ próximo a $\pm 1$ solo dice que hay **asociación lineal**. No dice nada sobre por qué. Antes de afirmar que $X$ **causa** $Y$ hay que descartar tres alternativas:
+
+- **Causalidad inversa**: quizá $Y$ es la que causa $X$.
+- **Tercera variable**: quizá una variable $Z$ oculta produce a la vez cambios en $X$ y en $Y$ (es la causa común de las famosas **correlaciones espurias**).
+- **Casualidad**: en muestras pequeñas puede aparecer un $r$ alto por puro azar; en cursos posteriores aprenderéis a controlar esa incertidumbre con tests estadísticos.
+
+::: {.callout-note}
+## La cita didáctica
+
+«La correlación no implica causalidad, pero la causalidad implica correlación». Detectar correlación es solo un **primer indicio** que motiva una investigación posterior sobre las causas.
+:::
+
+## Errores frecuentes al interpretar $r$
+
+- Confundir $r$ con la pendiente de una recta. La pendiente lleva unidades y $r$ no.
+- Extrapolar la interpretación de $r$ **fuera** del rango observado.
+- Concluir independencia total cuando $r = 0$. Solo se descarta dependencia **lineal**.
+- Considerar que $r$ es simétrico en unidades: cuidado con las transformaciones no lineales de $X$ o de $Y$.
+- Anunciar causalidad a partir de un $r$ alto.
+
+## Repaso rápido
+
+- $r = \dfrac{\sigma_{XY}}{\sigma_X \sigma_Y}$ está siempre entre $-1$ y $+1$.
+- Es un **número puro** y **comparable** entre situaciones distintas.
+- Su signo coincide con el de la covarianza; su valor absoluto mide la intensidad de la asociación **lineal**.
+- $r^2$ mide la **proporción** de varianza de una variable explicada linealmente por la otra.
+- $r$ **no** implica causalidad.
