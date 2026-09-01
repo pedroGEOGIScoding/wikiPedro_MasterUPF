@@ -1,0 +1,268 @@
+---
+title: "Tema 3.8 Cuadro resumen y errores frecuentes"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 8 de 9)"
+filename: 08-cuadro-resumen
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El esquema de decisión completo de la combinatoria, la tabla de las seis fórmulas, las relaciones útiles entre ellas, el método paso a paso para enfocar cualquier problema y el catálogo de errores frecuentes con su corrección.
+categories: [combinatoria, resumen, esquema, errores frecuentes, método, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El esquema de decisión
+
+Todo lo aprendido en el tema se condensa en un único árbol de decisión. Recórrelo de arriba abajo con cada problema.
+
+```
+                    ¿Entran TODOS los elementos? (¿m = n?)
+                     /                              \
+                   SÍ                                NO
+                    |                                 |
+        ¿Hay elementos repetidos?          ¿Importa el ORDEN?
+         /                 \                 /              \
+       NO                  SÍ              SÍ                NO
+        |                   |               |                 |
+  Permutaciones      Permutaciones   ¿Se pueden      ¿Se pueden
+   ordinarias        con repetición   repetir?        repetir?
+     P_n = n!         n!/(a!·b!···)    /      \        /      \
+                                     NO      SÍ      NO       SÍ
+                                      |       |       |        |
+                                  V(n,m)   VR(n,m)  C(n,m)  CR(n,m)
+```
+
+Y, en paralelo, no olvides los dos principios que están por encima de todas las fórmulas:
+
+- Etapas sucesivas («y … y … y …») $\longrightarrow$ **multiplicar**.
+- Casos excluyentes («o … o … o …») $\longrightarrow$ **sumar**.
+
+### Applet · Esquema de decisión {.unnumbered}
+
+::: {#panel-esquema .applet-panel data-applet-est3="esquema"}
+:::
+
+## La tabla de las seis fórmulas
+
+| Tipo | ¿Orden? | ¿Repetición? | Fórmula | Condición | Ejemplo |
+|:---|:---:|:---:|:---:|:---:|:---|
+| Variaciones ordinarias | Sí | No | $V_{n,m} = \dfrac{n!}{(n-m)!}$ | $m \leq n$ | Podio: $V_{8,3} = 336$ |
+| Variaciones con repetición | Sí | Sí | $VR_{n,m} = n^m$ | — | Quiniela: $3^{14} = 4\,782\,969$ |
+| Permutaciones ordinarias | Sí | No | $P_n = n!$ | $m = n$ | Banco: $P_5 = 120$ |
+| Permutaciones circulares | Sí | No | $PC_n = (n-1)!$ | $m = n$ | Mesa: $PC_5 = 24$ |
+| Permutaciones con repetición | Sí | Sí | $\dfrac{n!}{a!\,b!\,\ldots}$ | $m = n$ | `CASA`: $12$ |
+| Combinaciones ordinarias | No | No | $C_{n,m} = \dbinom{n}{m}$ | $m \leq n$ | Primitiva: $13\,983\,816$ |
+| Combinaciones con repetición | No | Sí | $CR_{n,m} = \dbinom{n+m-1}{m}$ | — | Heladería: $CR_{7,3} = 84$ |
+
+: Cuadro resumen de la combinatoria {.ap-tbl .ap-cmb}
+
+### Applet · Tabla resumen interactiva {.unnumbered}
+
+::: {#panel-resumenTabla .applet-panel data-applet-est3="resumenTabla"}
+:::
+
+## Relaciones útiles entre fórmulas
+
+Estas igualdades no son fórmulas nuevas que memorizar: son **comprobaciones** que permiten verificar un resultado o reconstruir una fórmula olvidada.
+
+**1. La permutación es una variación total.**
+
+$$
+P_n = V_{n,n} = \frac{n!}{0!} = n!
+$$
+
+**2. La combinación es la variación sin orden.**
+
+$$
+C_{n,m} = \frac{V_{n,m}}{P_m} \qquad \Longleftrightarrow \qquad V_{n,m} = C_{n,m} \cdot P_m
+$$
+
+Esta es la más útil de todas para comprobar: si has calculado $C_{6,4} = 15$ y $V_{6,4} = 360$, verifica que $360 = 15 \cdot 24$. Si no cuadra, algo está mal.
+
+**3. La circular pierde una vuelta.**
+
+$$
+PC_n = \frac{P_n}{n} = (n-1)!
+$$
+
+**4. Simetría de los combinatorios.**
+
+$$
+\binom{n}{m} = \binom{n}{n-m}
+$$
+
+**5. Suma de una fila del triángulo.**
+
+$$
+\sum_{m=0}^{n} \binom{n}{m} = 2^n
+$$
+
+**6. Desigualdad de tamaños.** Para los mismos $n$ y $m$ (con $m \leq n$):
+
+$$
+C_{n,m} \leq V_{n,m} \leq VR_{n,m}
+$$
+
+Si tu resultado «sin orden» es mayor que el «con orden», hay un error seguro.
+
+::: {.callout-tip}
+## Comprobación de sensatez
+
+Antes de dar un resultado por bueno, hazte tres preguntas:
+
+1. ¿Es un **número entero**? Todas estas fórmulas cuentan objetos; nunca puede salir un decimal.
+2. ¿Es **positivo**?
+3. ¿Tiene un **orden de magnitud razonable**? Si te preguntan por comisiones de 3 alumnos entre 12 y te sale más de un millón, revisa.
+:::
+
+## Cómo enfocar un problema paso a paso
+
+::: {.callout-note}
+## El protocolo completo
+
+**Paso 1. Lee y describe qué es «una agrupación».**
+Escribe con tus palabras un ejemplo concreto de resultado válido. Si no eres capaz de escribir uno, todavía no has entendido el problema.
+
+**Paso 2. Identifica el conjunto base y su tamaño $n$.**
+Pregúntate: ¿de dónde saco cada elemento que escribo?
+
+**Paso 3. Identifica el tamaño de la agrupación, $m$.**
+¿Cuántos elementos tiene cada resultado válido?
+
+**Paso 4. Aplica las tres preguntas.**
+¿Entran todos? ¿Importa el orden? ¿Hay repetición?
+
+**Paso 5. Comprueba el orden con el test del intercambio.**
+Coge dos elementos concretos, cámbialos de sitio y decide si el resultado es distinto.
+
+**Paso 6. Mira si hay restricciones que obliguen a trocear.**
+Posiciones fijas, elementos prohibidos, «al menos», «exactamente», cuotas por grupos. Si las hay, descompón en etapas (multiplicar) o en casos (sumar).
+
+**Paso 7. Aplica la fórmula y calcula.**
+
+**Paso 8. Comprueba.**
+Sensatez del número, relaciones entre fórmulas y, si el caso es pequeño, cuenta a mano para verificar.
+:::
+
+### Un problema completo con el protocolo
+
+**Enunciado.** En un grupo de 10 alumnos (6 chicas y 4 chicos) se forma una comisión de 4 personas con al menos 2 chicas. ¿Cuántas comisiones hay?
+
+*Paso 1.* Una agrupación es un grupo de 4 nombres, por ejemplo $\{$Ana, Berta, Carlos, Diana$\}$.
+
+*Pasos 2–3.* $n = 10$ alumnos, $m = 4$ miembros.
+
+*Paso 4.* No entran todos ($4 < 10$); el orden **no** importa (una comisión no tiene cargos); no hay repetición (una persona no puede ocupar dos plazas). Luego son **combinaciones ordinarias**.
+
+*Paso 6.* La restricción «al menos 2 chicas» obliga a trocear en casos excluyentes: exactamente 2, 3 o 4 chicas.
+
+*Paso 7.*
+
+$$
+C_{6,2}C_{4,2} + C_{6,3}C_{4,1} + C_{6,4}C_{4,0} = 15 \cdot 6 + 20 \cdot 4 + 15 \cdot 1 = 90 + 80 + 15 = 185 .
+$$
+
+*Paso 8.* Comprobación por complementario: el total de comisiones es $C_{10,4} = 210$, y las que tienen menos de 2 chicas son las de 0 chicas ($C_{4,4} = 1$) y las de 1 chica ($C_{6,1}C_{4,3} = 6 \cdot 4 = 24$). Entonces $210 - 1 - 24 = 185$. Coincide.
+
+::: {.callout-important}
+## Dos caminos siempre que puedas
+
+Resolver el mismo problema de dos formas (directa y por complementario, o por etapas y por casos) es la mejor garantía de que el resultado es correcto. Cuesta un minuto más y evita el 90 % de los errores de examen.
+:::
+
+## Errores frecuentes y su corrección
+
+### 1. Confundir $n$ y $m$
+
+*Error.* En la quiniela escribir $VR_{14,3} = 14^3$.
+*Corrección.* El conjunto base son los 3 signos y hay 14 casillas: $VR_{3,14} = 3^{14}$.
+*Prevención.* La base de la potencia es siempre «opciones por casilla».
+
+### 2. Usar variaciones cuando el orden no importa
+
+*Error.* Contar comisiones de 3 entre 7 como $V_{7,3} = 210$.
+*Corrección.* $C_{7,3} = 35$.
+*Prevención.* Aplica el test del intercambio antes de elegir fórmula.
+
+### 3. Usar combinaciones cuando el orden sí importa
+
+*Error.* Contar podios de 8 corredores como $C_{8,3} = 56$.
+*Corrección.* $V_{8,3} = 336$.
+*Prevención.* Cargos distintos, puestos numerados o cifras de un número $\Rightarrow$ hay orden.
+
+### 4. Olvidar el $k!$ interior del bloque
+
+*Error.* 6 personas con 2 juntas: escribir solo $5! = 120$.
+*Corrección.* $5! \cdot 2! = 240$.
+*Prevención.* El bloque también se reordena por dentro.
+
+### 5. Usar $n!$ en una mesa redonda
+
+*Error.* 5 personas en mesa redonda: $5! = 120$.
+*Corrección.* $PC_5 = 4! = 24$.
+*Prevención.* Si girar a todos una silla no cambia nada, es circular.
+
+### 6. No dividir por los elementos repetidos
+
+*Error.* Anagramas de `CASA`: $4! = 24$.
+*Corrección.* $\dfrac{4!}{2!} = 12$.
+*Prevención.* Cuenta las letras repetidas **antes** de calcular.
+
+### 7. Sumar cuando hay que multiplicar
+
+*Error.* 3 caminos de A a B y 4 de B a C: $3 + 4 = 7$ trayectos.
+*Corrección.* $3 \cdot 4 = 12$.
+*Prevención.* «Y» multiplica, «o» suma.
+
+### 8. Contar dos veces en casos que se solapan
+
+*Error.* Comisiones «con al menos una chica» calculadas como «elijo una chica ($6$ maneras) y luego 3 personas cualesquiera de las 9 restantes».
+*Corrección.* Ese método cuenta varias veces la misma comisión. Hay que trocear en casos excluyentes o usar el complementario.
+*Prevención.* Si un mismo resultado se puede obtener por dos caminos distintos del recuento, estás contando de más.
+
+### 9. Confundir «al menos uno» con «exactamente uno»
+
+*Error.* Códigos de 4 cifras con exactamente un 7: $10^4 - 9^4 = 3\,439$.
+*Corrección.* Eso es «al menos uno». «Exactamente uno» es $4 \cdot 9^3 = 2\,916$.
+*Prevención.* Subraya la palabra exacta del enunciado.
+
+### 10. Errores de manipulación con factoriales
+
+*Error.* $\dfrac{8!}{4!} = 2!$, o bien $(2+3)! = 2! + 3!$.
+*Corrección.* $\dfrac{8!}{4!} = 8 \cdot 7 \cdot 6 \cdot 5 = 1\,680$; $(2+3)! = 120 \neq 8$.
+*Prevención.* El factorial no se reparte ni se simplifica «por dentro».
+
+### 11. Olvidar restricciones sobre la primera cifra
+
+*Error.* Números de 3 cifras distintas con $\{0,1,2,3,4\}$: $V_{5,3} = 60$.
+*Corrección.* El $0$ no puede ir delante: $4 \cdot 4 \cdot 3 = 48$.
+*Prevención.* Cuando aparezca el $0$ en un problema de números, revisa siempre la primera posición.
+
+### 12. Dar un resultado no entero
+
+*Error.* Cualquier resultado con decimales.
+*Corrección.* Revisar el cálculo: estas fórmulas siempre dan enteros.
+*Prevención.* Es la comprobación más barata que existe.
+
+### Applet · Detector de errores {.unnumbered}
+
+::: {#panel-errores .applet-panel data-applet-est3="errores"}
+:::
+
+## Repaso rápido
+
+- El esquema de decisión se recorre siempre en el mismo orden: ¿todos? $\rightarrow$ ¿orden? $\rightarrow$ ¿repetición?
+- Por encima de las fórmulas están los dos principios: multiplicar (etapas) y sumar (casos excluyentes).
+- $V_{n,m} = C_{n,m} \cdot P_m$ es la mejor comprobación cruzada.
+- $C_{n,m} \leq V_{n,m} \leq VR_{n,m}$ siempre.
+- Los resultados son enteros positivos y de magnitud razonable.
+- Resolver por dos caminos distintos elimina casi todos los errores.

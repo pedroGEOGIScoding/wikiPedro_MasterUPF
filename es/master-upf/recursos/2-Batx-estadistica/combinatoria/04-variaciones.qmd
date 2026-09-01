@@ -1,0 +1,272 @@
+---
+title: "Tema 3.4 Variaciones"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 4 de 9)"
+filename: 04-variaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Variaciones ordinarias y con repetición. Deducción de las fórmulas a partir del principio de multiplicación, ejemplos del podio, cargos de clase, claves, números de dos cifras, quinielas y códigos, con applets manipulables.
+categories: [combinatoria, variaciones, variaciones con repetición, orden, códigos, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La situación
+
+Las **variaciones** aparecen cuando se cumplen estas dos condiciones:
+
+1. Se eligen $m$ elementos de entre $n$ disponibles, con $m$ posiblemente menor que $n$.
+2. **El orden importa**: colocar los mismos elementos de otra manera produce una agrupación distinta.
+
+Dentro de este caso hay dos variantes, según se puedan repetir elementos o no.
+
+## Variaciones ordinarias (sin repetición)
+
+### Deducción de la fórmula
+
+Piensa en el podio de una carrera con $8$ corredores. Hay que asignar tres puestos distintos:
+
+- Para el **oro** hay $8$ candidatos.
+- Una vez asignado el oro, para la **plata** quedan $7$.
+- Asignados oro y plata, para el **bronce** quedan $6$.
+
+Por el principio de multiplicación,
+
+$$
+8 \cdot 7 \cdot 6 = 336 .
+$$
+
+Generalizando: al elegir $m$ elementos en orden y sin repetir, el número de opciones va bajando de uno en uno, empezando en $n$:
+
+$$
+V_{n,m} = n \cdot (n-1) \cdot (n-2) \cdot \ldots \cdot (n-m+1) .
+$$
+
+Observa que hay exactamente **$m$ factores**, y que el último es $n - m + 1$. Es un error muy común escribir $n - m$ como último factor: cuenta los factores en un caso pequeño y lo verás.
+
+::: {.callout-note}
+## Variaciones ordinarias de $n$ elementos tomados de $m$ en $m$
+
+$$
+V_{n,m} = n \cdot (n-1) \cdot \ldots \cdot (n-m+1) = \frac{n!}{(n-m)!}
+$$
+
+con la condición $m \leq n$. Se leen «variaciones de $n$ elementos tomados de $m$ en $m$».
+:::
+
+La forma con factoriales sale de la simplificación que vimos en el apartado anterior:
+
+$$
+\frac{n!}{(n-m)!} = \frac{n(n-1)\ldots(n-m+1) \cdot (n-m)!}{(n-m)!} = n(n-1)\ldots(n-m+1).
+$$
+
+Comprobación con el podio:
+
+$$
+V_{8,3} = \frac{8!}{5!} = \frac{40\,320}{120} = 336 . \checkmark
+$$
+
+::: {.callout-tip}
+## Cuál de las dos formas usar
+
+- Para **calcular a mano**, usa el producto descendente: $V_{8,3} = 8 \cdot 7 \cdot 6$. Es mucho más rápido.
+- Para **demostrar propiedades** o manipular expresiones algebraicas, usa $\dfrac{n!}{(n-m)!}$.
+
+Las dos son la misma fórmula.
+:::
+
+### Ejemplos resueltos
+
+**Cargos de clase.** En un grupo de 22 alumnos hay que elegir delegado, subdelegado y tesorero, cargos que no puede acumular la misma persona. Como los tres cargos son distintos, el orden importa, y como nadie repite cargo, no hay repetición:
+
+$$
+V_{22,3} = 22 \cdot 21 \cdot 20 = 9\,240 .
+$$
+
+**Claves con letras distintas.** ¿Cuántas claves de 3 letras distintas se pueden formar con las letras de la palabra `CALOR`? Hay $n = 5$ letras distintas y $m = 3$ posiciones ordenadas:
+
+$$
+V_{5,3} = 5 \cdot 4 \cdot 3 = 60 .
+$$
+
+**Palabras con las letras de CARLES.** Con las 6 letras distintas de `CARLES`, tomadas de 4 en 4 y sin repetir:
+
+$$
+V_{6,4} = 6 \cdot 5 \cdot 4 \cdot 3 = 360 .
+$$
+
+**Banderas de tres franjas.** Con 7 colores disponibles y sin repetir color en la misma bandera:
+
+$$
+V_{7,3} = 7 \cdot 6 \cdot 5 = 210 .
+$$
+
+**Más ejemplos rápidos.** $V_{9,3} = 9 \cdot 8 \cdot 7 = 504$; $V_{12,4} = 12 \cdot 11 \cdot 10 \cdot 9 = 11\,880$; $V_{20,3} = 20 \cdot 19 \cdot 18 = 6\,840$.
+
+### Applet · Variaciones sin repetición {.unnumbered}
+
+::: {#panel-variaciones .applet-panel data-applet-est3="variaciones"}
+:::
+
+### Applet · El podio {.unnumbered}
+
+::: {#panel-podio .applet-panel data-applet-est3="podio"}
+:::
+
+## Variaciones con repetición
+
+### Deducción de la fórmula
+
+Ahora cada elemento puede reutilizarse. Piensa en los números de dos cifras formados con $\{1,2,3\}$: para la primera cifra hay 3 opciones, y **también** 3 para la segunda, porque el 1 puede volver a salir. En total $3 \cdot 3 = 9$: los números $11, 12, 13, 21, 22, 23, 31, 32, 33$.
+
+Como cada una de las $m$ posiciones admite las mismas $n$ opciones,
+
+$$
+VR_{n,m} = \underbrace{n \cdot n \cdot \ldots \cdot n}_{m \text{ factores}} = n^m .
+$$
+
+::: {.callout-note}
+## Variaciones con repetición de $n$ elementos tomados de $m$ en $m$
+
+$$
+VR_{n,m} = n^m
+$$
+
+Aquí **no** hace falta que $m \leq n$: como los elementos se pueden repetir, $m$ puede ser tan grande como se quiera.
+:::
+
+::: {.callout-important}
+## Dónde va cada número en $n^m$
+
+La confusión entre $n^m$ y $m^n$ es el error número uno de este apartado. La regla es:
+
+$$
+(\text{opciones por casilla})^{(\text{número de casillas})}
+$$
+
+En la quiniela hay $3$ signos posibles en cada una de las $14$ casillas, luego es $3^{14}$ y no $14^3$. La diferencia es enorme: $3^{14} = 4\,782\,969$ frente a $14^3 = 2\,744$.
+:::
+
+### Ejemplos resueltos
+
+**La quiniela.** Un boleto de 14 partidos donde cada uno puede ser 1, X o 2:
+
+$$
+VR_{3,14} = 3^{14} = 4\,782\,969 .
+$$
+
+Casi cinco millones de boletos distintos. Si rellenas uno al azar, la probabilidad de acertar los catorce es aproximadamente $1$ entre $4{,}8$ millones.
+
+**Códigos numéricos.** Códigos PIN de 4 cifras:
+
+$$
+VR_{10,4} = 10^4 = 10\,000 .
+$$
+
+Y ya lo vimos: los que contienen al menos un 7 son $10\,000 - 9^4 = 10\,000 - 6\,561 = 3\,439$.
+
+**Lanzar un dado tres veces.** Cada lanzamiento tiene 6 resultados y hay 3 lanzamientos:
+
+$$
+VR_{6,3} = 6^3 = 216 .
+$$
+
+**Otras quinielas.** Con 12 partidos, $3^{12} = 531\,441$. Con 15 partidos, $3^{15} = 14\,348\,907$.
+
+### Applet · Variaciones con repetición {.unnumbered}
+
+::: {#panel-variacionesRep .applet-panel data-applet-est3="variacionesRep"}
+:::
+
+### Applet · La quiniela {.unnumbered}
+
+::: {#panel-quiniela .applet-panel data-applet-est3="quiniela"}
+:::
+
+## Comparar los dos casos
+
+Para el mismo par $(n, m)$, siempre se cumple
+
+$$
+V_{n,m} \leq VR_{n,m},
+$$
+
+y la desigualdad es estricta salvo cuando $m = 1$. Tiene sentido: permitir repeticiones solo puede añadir agrupaciones, nunca quitarlas.
+
+Con $n = 5$ y $m = 3$:
+
+$$
+V_{5,3} = 60 \quad \text{frente a} \quad VR_{5,3} = 125 .
+$$
+
+Las $125 - 60 = 65$ agrupaciones extra son exactamente aquellas en las que algún elemento se repite.
+
+::: {.callout-tip}
+## Pensamiento crítico: el mundo real casi siempre repite
+
+Cuando diseñas una contraseña, las letras se pueden repetir; cuando eliges personas para cargos distintos, no. Fíjate en que la diferencia no está en las matemáticas sino en **la física del problema**: ¿el elemento vuelve al conjunto después de usarlo, o se gasta? Esa pregunta —«¿se devuelve o no?»— es la traducción más útil de «¿con o sin repetición?».
+:::
+
+### Applet · Comparar V y VR {.unnumbered}
+
+::: {#panel-comparaVR .applet-panel data-applet-est3="comparaVR"}
+:::
+
+## La técnica del complementario en variaciones
+
+Muchos enunciados con variaciones con repetición piden «al menos uno». Ya vimos la idea; aquí la sistematizamos.
+
+**Estructura general.** Si cada una de las $m$ posiciones admite $n$ opciones y queremos que aparezca **al menos una vez** un elemento concreto (o un grupo de $p$ elementos prohibidos en el complementario):
+
+$$
+\#(\text{al menos uno}) = n^m - (n-1)^m .
+$$
+
+**Ejemplos.**
+
+- Códigos de 4 cifras con al menos un 7: $10^4 - 9^4 = 3\,439$.
+- Códigos de 5 cifras con al menos un 0: $10^5 - 9^5 = 100\,000 - 59\,049 = 40\,951$.
+- Lanzar un dado 4 veces y obtener al menos un 6: $6^4 - 5^4 = 1\,296 - 625 = 671$.
+- Quinielas con al menos un empate (X): $3^{14} - 2^{14} = 4\,782\,969 - 16\,384 = 4\,766\,585$.
+
+::: {.callout-warning}
+## «Al menos uno» no es «exactamente uno»
+
+Son cosas distintas. «Al menos un 7» incluye los códigos con dos, tres o cuatro sietes. «Exactamente un 7» los excluye. Si el enunciado dice «exactamente uno», el complementario no sirve directamente: hay que elegir en qué posición va el 7 ($4$ formas) y llenar las otras tres con cifras distintas de 7 ($9^3$), lo que da $4 \cdot 9^3 = 2\,916$.
+:::
+
+### Applet · Al menos uno {.unnumbered}
+
+::: {#panel-complementario .applet-panel data-applet-est3="complementario"}
+:::
+
+## Ejercicios propuestos
+
+**1.** En una liga de 12 equipos, ¿de cuántas maneras pueden quedar los cuatro primeros clasificados?
+
+**2.** ¿Cuántas matrículas de tipo `1234 ABC` existen si se usan 20 letras y las letras pueden repetirse?
+
+**3.** ¿Cuántos números de 3 cifras distintas se pueden formar con las cifras $\{1,2,3,4,5,6\}$? ¿Y cuántos de ellos son pares?
+
+**4.** Se lanza una moneda 8 veces. ¿Cuántas secuencias de caras y cruces son posibles? ¿Cuántas tienen al menos una cara?
+
+**5.** Una contraseña consta de 3 letras (26 posibles, con repetición) seguidas de 2 cifras. ¿Cuántas hay? ¿Y si las letras no se pueden repetir?
+
+**6.** Con las letras de la palabra `NÚMERO` (6 letras distintas), ¿cuántas palabras de 4 letras sin repetir se pueden formar? ¿Cuántas empiezan por vocal?
+
+## Repaso rápido
+
+- Variaciones $\Leftrightarrow$ **el orden importa** y $m$ puede ser menor que $n$.
+- Sin repetición: $V_{n,m} = n(n-1)\ldots(n-m+1) = \dfrac{n!}{(n-m)!}$, con $m$ factores y $m \leq n$.
+- Con repetición: $VR_{n,m} = n^m$, sin restricción sobre $m$.
+- En $n^m$: la base es el número de **opciones por casilla**, el exponente es el número de **casillas**.
+- «Al menos uno» $\longrightarrow$ complementario: $n^m - (n-1)^m$.

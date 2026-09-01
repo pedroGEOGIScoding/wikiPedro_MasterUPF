@@ -1,0 +1,287 @@
+---
+title: "Tema 3.6 Combinaciones"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 6 de 9)"
+filename: 06-combinaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Combinaciones y número combinatorio. Por qué se divide por m!, las letras de MIQUEL, la Lotería Primitiva, la elección de comisiones, el principio de contar de dos maneras y las combinaciones con repetición.
+categories: [combinatoria, combinaciones, número combinatorio, primitiva, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La situación
+
+Las **combinaciones** aparecen cuando se eligen $m$ elementos de entre $n$ y **el orden no importa**. Lo que se construye no es una lista ordenada sino un **subconjunto**.
+
+Ejemplos: una comisión de alumnos, una apuesta de la Primitiva, una mano de cartas, un equipo, un subconjunto cualquiera.
+
+## De las variaciones a las combinaciones
+
+### El razonamiento clave
+
+Supón que queremos formar comisiones de 3 alumnos elegidos entre 7. Si el orden importase, la respuesta sería
+
+$$
+V_{7,3} = 7 \cdot 6 \cdot 5 = 210 .
+$$
+
+Pero la comisión $\{$Ana, Berta, Carlos$\}$ ha sido contada varias veces en esas 210: una por cada orden posible de esos tres nombres, es decir, $P_3 = 3! = 6$ veces.
+
+Como **cada** comisión se ha contado exactamente $3!$ veces, basta dividir:
+
+$$
+C_{7,3} = \frac{V_{7,3}}{P_3} = \frac{210}{6} = 35 .
+$$
+
+::: {.callout-note}
+## Combinaciones de $n$ elementos tomados de $m$ en $m$
+
+$$
+C_{n,m} = \frac{V_{n,m}}{P_m} = \frac{n!}{m! \, (n-m)!} = \binom{n}{m}
+$$
+
+El símbolo $\dbinom{n}{m}$ se llama **número combinatorio** y se lee «$n$ sobre $m$». Requiere $0 \leq m \leq n$.
+:::
+
+::: {.callout-important}
+## La idea que hay que grabar
+
+$$
+\text{combinaciones} = \frac{\text{variaciones}}{\text{permutaciones del grupo elegido}}
+$$
+
+Dividir por $m!$ es exactamente «olvidar el orden». Esta operación —contar de más y después dividir por las repeticiones— es una de las técnicas más potentes de toda la combinatoria, y volverás a verla en las permutaciones con repetición y en muchos problemas mixtos.
+:::
+
+### Applet · Del orden al no orden {.unnumbered}
+
+::: {#panel-ordenNoOrden .applet-panel data-applet-est3="ordenNoOrden"}
+:::
+
+### Applet · Dividir por m factorial {.unnumbered}
+
+::: {#panel-dividirPorM .applet-panel data-applet-est3="dividirPorM"}
+:::
+
+## Cálculo práctico del número combinatorio
+
+Nunca calcules $\dbinom{49}{6}$ hallando $49!$: son 63 cifras. Usa la forma abreviada
+
+$$
+\binom{n}{m} = \frac{n \cdot (n-1) \cdot \ldots \cdot (n-m+1)}{m!},
+$$
+
+con exactamente $m$ factores arriba y $m!$ abajo.
+
+**Ejemplos.**
+
+$$
+\binom{6}{4} = \frac{6 \cdot 5 \cdot 4 \cdot 3}{4!} = \frac{360}{24} = 15,
+\qquad
+\binom{6}{2} = \frac{6 \cdot 5}{2} = 15 .
+$$
+
+$$
+\binom{12}{3} = \frac{12 \cdot 11 \cdot 10}{6} = 220,
+\qquad
+\binom{8}{3} = \frac{8 \cdot 7 \cdot 6}{6} = 56,
+\qquad
+\binom{8}{4} = \frac{8 \cdot 7 \cdot 6 \cdot 5}{24} = 70 .
+$$
+
+$$
+\binom{7}{2} = 21, \qquad \binom{5}{3} = 10, \qquad \binom{5}{4} = 5, \qquad \binom{6}{3} = 20 .
+$$
+
+::: {.callout-tip}
+## Atajo: usa el $m$ más pequeño
+
+Como $\dbinom{n}{m} = \dbinom{n}{n-m}$ (lo veremos en el apartado siguiente), para calcular $\dbinom{20}{18}$ conviene hacer $\dbinom{20}{2} = 190$: dos factores en vez de dieciocho.
+:::
+
+## Ejemplos resueltos
+
+### Letras de MIQUEL
+
+¿Cuántos grupos distintos de 4 letras se pueden formar con las 6 letras de `MIQUEL`, sin que importe el orden y sin repetir?
+
+$$
+C_{6,4} = \binom{6}{4} = 15 .
+$$
+
+Si el orden importase serían $V_{6,4} = 360$, exactamente $15 \cdot 4! = 15 \cdot 24 = 360$. La relación entre ambos números es la mejor comprobación de que la fórmula está bien aplicada.
+
+De forma análoga, con las 5 letras de `DELIT` tomadas de 4 en 4: $C_{5,4} = 5$.
+
+### La Lotería Primitiva
+
+En la Primitiva se eligen 6 números distintos de entre 49, y el orden en que salen no importa:
+
+$$
+C_{49,6} = \binom{49}{6} = \frac{49 \cdot 48 \cdot 47 \cdot 46 \cdot 45 \cdot 44}{6!} = 13\,983\,816 .
+$$
+
+La probabilidad de acertar los seis con un solo boleto es
+
+$$
+P = \frac{1}{13\,983\,816} \approx 0{,}0000000715 \approx 7{,}15 \cdot 10^{-8}.
+$$
+
+::: {.callout-warning}
+## Pensamiento crítico sobre el azar
+
+Casi 14 millones de combinaciones. Para hacerse una idea: si rellenaras un boleto por segundo, sin dormir, tardarías más de **cuatro meses y medio** en escribir todas. Y aun así hay quien dice que «el 1-2-3-4-5-6 no puede salir». Sí puede: tiene exactamente la misma probabilidad que cualquier otra apuesta, porque la fórmula $C_{49,6}$ trata a todas las combinaciones por igual. Lo que sí cambia si juegas esa apuesta es que, en caso de acertar, **compartirías el premio con muchas más personas**, porque es una combinación popular. La matemática es neutral; la psicología de los jugadores no lo es.
+:::
+
+### Comisiones y grupos
+
+**Comisión simple.** De 12 alumnos se eligen 3 para una comisión: $C_{12,3} = 220$.
+
+**Comisión con cuotas.** De 7 chicas y 5 chicos, una comisión de 4 con exactamente 2 de cada sexo:
+
+$$
+C_{7,2} \cdot C_{5,2} = 21 \cdot 10 = 210 .
+$$
+
+Se elige cada subgrupo por separado y se multiplican (principio de multiplicación).
+
+**Comisión con «al menos».** De los mismos 12, una comisión de 4 con **al menos una chica**. Por complementario, el total menos las comisiones de solo chicos:
+
+$$
+C_{12,4} - C_{5,4} = 495 - 5 = 490 .
+$$
+
+### Elegir teléfonos
+
+De 8 modelos de teléfono disponibles hay que llevarse 3 a la tienda. El orden en que se colocan en el escaparate no se considera:
+
+$$
+C_{8,3} = 56 .
+$$
+
+Si además hubiera que colocarlos en tres estantes numerados, sí importaría el orden: $V_{8,3} = 336 = 56 \cdot 3!$.
+
+### Applet · Combinaciones {.unnumbered}
+
+::: {#panel-combinaciones .applet-panel data-applet-est3="combinaciones"}
+:::
+
+### Applet · Lotería Primitiva {.unnumbered}
+
+::: {#panel-primitiva .applet-panel data-applet-est3="primitiva"}
+:::
+
+## Contar de dos maneras
+
+Una de las ideas más elegantes de la combinatoria: si contamos **el mismo conjunto** siguiendo dos razonamientos distintos, los dos resultados deben coincidir. Eso demuestra identidades sin hacer un solo cálculo algebraico.
+
+**Ejemplo 1: los apretones de manos.** En una reunión de $n$ personas todos se dan la mano una vez. ¿Cuántos apretones hay?
+
+- *Primer conteo.* Cada apretón es una pareja no ordenada: $\dbinom{n}{2}$.
+- *Segundo conteo.* Cada persona da $n-1$ apretones, y hay $n$ personas; pero así cada apretón se cuenta dos veces (una por cada participante): $\dfrac{n(n-1)}{2}$.
+
+De ahí sale la identidad $\dbinom{n}{2} = \dfrac{n(n-1)}{2}$, que es justamente la fórmula.
+
+**Ejemplo 2: los subconjuntos.** ¿Cuántos subconjuntos tiene un conjunto de $n$ elementos?
+
+- *Primer conteo.* Para cada elemento decido si entra o no: $2^n$.
+- *Segundo conteo.* Los subconjuntos con $0$ elementos son $\dbinom{n}{0}$, los de $1$ elemento son $\dbinom{n}{1}$, etc. Sumando todos:
+
+$$
+\binom{n}{0} + \binom{n}{1} + \ldots + \binom{n}{n} = 2^n .
+$$
+
+Con $n = 6$: $1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 = 2^6$. Esta identidad reaparecerá en el triángulo de Pascal.
+
+**Ejemplo 3: elegir un comité con presidente.** De $n$ personas se elige un comité de $m$ y dentro de él un presidente.
+
+- *Primer conteo.* Primero el comité, después el presidente: $\dbinom{n}{m} \cdot m$.
+- *Segundo conteo.* Primero el presidente, después el resto del comité entre los que quedan: $n \cdot \dbinom{n-1}{m-1}$.
+
+Por tanto $m \dbinom{n}{m} = n \dbinom{n-1}{m-1}$, una identidad nada evidente que aquí sale sola.
+
+::: {.callout-tip}
+## Por qué esta técnica es tan valiosa
+
+Contar de dos maneras es un argumento **combinatorio**, no algebraico: no manipula fórmulas, razona sobre objetos. En muchos casos es más corto, más convincente y mucho más fácil de recordar que la demostración con factoriales. Si algún día olvidas una fórmula, intenta reconstruirla contando algo concreto de dos formas distintas.
+:::
+
+### Applet · Contar de dos maneras {.unnumbered}
+
+::: {#panel-dosCaminos .applet-panel data-applet-est3="dosCaminos"}
+:::
+
+## Combinaciones con repetición
+
+Es el caso menos frecuente en 2.º de Bachillerato, pero conviene conocerlo. Se eligen $m$ elementos de entre $n$, **sin importar el orden** y **pudiendo repetir**.
+
+Ejemplo típico: en una heladería con 7 sabores se piden 3 bolas, y se pueden repetir sabores. Como no importa en qué orden se ponen en el cucurucho y sí se puede repetir sabor, no vale ni $C_{7,3}$ ni $VR_{7,3}$.
+
+::: {.callout-note}
+## Combinaciones con repetición
+
+$$
+CR_{n,m} = \binom{n + m - 1}{m} = \frac{(n+m-1)!}{m! \, (n-1)!}
+$$
+:::
+
+Con la heladería:
+
+$$
+CR_{7,3} = \binom{9}{3} = \frac{9 \cdot 8 \cdot 7}{6} = 84 .
+$$
+
+**Otro ejemplo.** Repartir 3 caramelos idénticos entre 4 niños:
+
+$$
+CR_{4,3} = \binom{6}{3} = 20 .
+$$
+
+### De dónde sale esa fórmula
+
+La demostración clásica se llama **de las estrellas y las barras**. Representa las $m$ elecciones como estrellas y separa los $n$ tipos con $n-1$ barras. Por ejemplo, con 7 sabores y 3 bolas, «dos de fresa y una de limón» sería:
+
+```
+★★ | ★ | | | | |
+```
+
+Cada selección corresponde a una fila con $m$ estrellas y $n-1$ barras, es decir, $m + n - 1$ símbolos de los que hay que decidir **cuáles $m$ son estrellas**. Y eso es exactamente $\dbinom{n+m-1}{m}$.
+
+### Applet · Combinaciones con repetición {.unnumbered}
+
+::: {#panel-combinacionesRep .applet-panel data-applet-est3="combinacionesRep"}
+:::
+
+## Ejercicios propuestos
+
+**1.** En una clase de 25 alumnos se eligen 4 para un concurso. ¿De cuántas maneras? ¿Y si además hay que asignarles cuatro papeles distintos?
+
+**2.** ¿Cuántas manos de 5 cartas se pueden formar con una baraja española de 40 cartas? ¿Cuántas contienen exactamente 3 oros?
+
+**3.** ¿Cuántas diagonales tiene un polígono de $n$ lados? Ayuda: cuenta todos los segmentos entre vértices y resta los lados.
+
+**4.** Un equipo de baloncesto tiene 12 jugadores. ¿Cuántos quintetos iniciales distintos hay? ¿Y si el pívot debe ser uno de los 2 jugadores altos?
+
+**5.** En una bolsa hay 6 bolas rojas y 4 azules. Se extraen 3 sin reemplazamiento. ¿De cuántas maneras se pueden obtener exactamente 2 rojas?
+
+**6.** ¿De cuántas maneras se pueden repartir 5 pasteles idénticos entre 3 personas?
+
+## Repaso rápido
+
+- Combinaciones $\Leftrightarrow$ **el orden no importa**; se construyen subconjuntos.
+- $C_{n,m} = \dbinom{n}{m} = \dfrac{n!}{m!(n-m)!} = \dfrac{V_{n,m}}{P_m}$.
+- Dividir por $m!$ es «olvidar el orden».
+- Para calcular a mano: $m$ factores descendentes arriba, $m!$ abajo; usa el $m$ más pequeño.
+- **Contar de dos maneras** demuestra identidades sin álgebra.
+- Con repetición y sin orden: $CR_{n,m} = \dbinom{n+m-1}{m}$.

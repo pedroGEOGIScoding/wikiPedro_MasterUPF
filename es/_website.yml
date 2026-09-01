@@ -303,19 +303,27 @@ website:
               - master-upf/recursos/2-Batx-estadistica/est-bi/08-practica-bidimensional.qmd
             - section: "Tema 3 Combinatoria"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/combinatoria/
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/01-introduccion-combinatoria.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/02-factorial.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/03-n-y-m.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/04-variaciones.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/05-permutaciones.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/06-combinaciones.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/07-pascal-newton.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/08-cuadro-resumen.qmd
+              - master-upf/recursos/2-Batx-estadistica/combinatoria/09-practica-combinatoria.qmd
             - section: "Tema 4 Probabilidad"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/probabilidad/
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/
             - section: "Tema 5 Distribuciones binomiales y normales"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/dist-bi-norm/
+              - master-upf/recursos/2-Batx-estadistica/dist-bi-norm/
             - section: "Tema 6 Teoría de muestras"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/muestras/
+              - master-upf/recursos/2-Batx-estadistica/muestras/
             - section: "Tema 7 Intervalos de confianza"
               contents:
-                - master-upf/recursos/2-Batx-estadistica/intervalos/
+              - master-upf/recursos/2-Batx-estadistica/intervalos/
     - id: "about"
       title: "Acerca de mí"
       style: "docked"

@@ -1,0 +1,275 @@
+---
+title: "Tema 3.5 Permutaciones"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 5 de 9)"
+filename: 05-permutaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Permutaciones ordinarias, circulares y con repetición. Personas en un banco, macetas y pelotas, mesas redondas, anagramas de CASA y MATEMÁTICAS, y bloques de elementos que van juntos, con applets manipulables.
+categories: [combinatoria, permutaciones, permutaciones circulares, anagramas, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La situación
+
+Las **permutaciones** son el caso particular de las variaciones en el que **entran todos los elementos**: $m = n$. Se trata, sencillamente, de **ordenar** un conjunto completo.
+
+$$
+P_n = V_{n,n} = \frac{n!}{(n-n)!} = \frac{n!}{0!} = n!
+$$
+
+Aquí se ve por fin la utilidad práctica del convenio $0! = 1$: sin él, esta cadena de igualdades no cerraría.
+
+::: {.callout-note}
+## Permutaciones ordinarias de $n$ elementos
+
+$$
+P_n = n!
+$$
+
+Cuentan de cuántas maneras se pueden **ordenar** $n$ elementos distintos, usándolos todos y sin repetir ninguno.
+:::
+
+## Permutaciones ordinarias
+
+### Ejemplos resueltos
+
+**Personas en un banco.** ¿De cuántas maneras se pueden sentar 5 personas en un banco de 5 plazas?
+
+$$
+P_5 = 5! = 120 .
+$$
+
+Razonamiento directo: 5 candidatos para la primera plaza, 4 para la segunda, 3, 2 y 1. El producto es $5!$.
+
+**Macetas en una repisa.** Con 6 macetas distintas en una repisa de 6 huecos:
+
+$$
+P_6 = 6! = 720 .
+$$
+
+**Pelotas de colores en fila.** Con 3 pelotas de colores distintos: $P_3 = 3! = 6$, y aquí sí se pueden escribir todas: RVA, RAV, VRA, VAR, ARV, AVR.
+
+**Libros en una estantería.** Con 7 libros distintos: $P_7 = 7! = 5\,040$.
+
+### Con condiciones adicionales
+
+Los enunciados de examen añaden casi siempre alguna restricción. La estrategia general es: **fijar primero lo obligado y permutar el resto**.
+
+**Ejemplo A: una persona en un sitio fijo.** 5 personas en un banco, pero Ana debe sentarse en el extremo izquierdo. Su plaza está decidida; quedan 4 personas para 4 plazas:
+
+$$
+1 \cdot P_4 = 4! = 24 .
+$$
+
+**Ejemplo B: alternar.** 3 chicos y 3 chicas en fila, alternando sexos. Hay 2 patrones posibles (empieza chico o empieza chica). Dentro de cada patrón, los chicos se ordenan de $3!$ maneras y las chicas de $3!$:
+
+$$
+2 \cdot 3! \cdot 3! = 2 \cdot 6 \cdot 6 = 72 .
+$$
+
+**Ejemplo C: complementario.** 5 personas en un banco de manera que Ana **no** esté en el extremo izquierdo:
+
+$$
+P_5 - 4! = 120 - 24 = 96 .
+$$
+
+### Applet · Permutaciones {.unnumbered}
+
+::: {#panel-permutaciones .applet-panel data-applet-est3="permutaciones"}
+:::
+
+## Elementos que van juntos: la técnica del bloque
+
+Un tipo de problema muy frecuente: *«¿de cuántas maneras se pueden sentar $n$ personas si dos de ellas quieren estar juntas?»*
+
+La técnica es preciosa por lo simple:
+
+1. **Pega** los elementos que deben ir juntos y trátalos como **un solo bloque**. Si eran $k$ elementos, ahora tienes $n - k + 1$ objetos.
+2. Permuta esos $n - k + 1$ objetos: $(n-k+1)!$ maneras.
+3. **Dentro del bloque**, los $k$ elementos también se pueden reordenar: $k!$ maneras.
+4. Multiplica.
+
+$$
+\#(\text{juntos}) = (n-k+1)! \cdot k!
+$$
+
+**Ejemplo.** 6 personas en fila, y dos amigos concretos quieren estar juntos. El bloque reduce a 5 objetos:
+
+$$
+5! \cdot 2! = 120 \cdot 2 = 240 .
+$$
+
+Y si la pregunta fuese «¿de cuántas maneras pueden colocarse **sin** que esos dos estén juntos?», se usa el complementario:
+
+$$
+6! - 240 = 720 - 240 = 480 .
+$$
+
+::: {.callout-tip}
+## Por qué se multiplica por $k!$
+
+Es el error más habitual: pegar el bloque y olvidarse de que el bloque tiene vida interior. «Ana-Berta» y «Berta-Ana» son colocaciones distintas aunque en ambas estén juntas. Dibuja el caso pequeño con 3 personas y compruébalo: sin el factor $2!$ te salen 2 y en realidad son 4.
+:::
+
+### Applet · Elementos que van juntos {.unnumbered}
+
+::: {#panel-bloques .applet-panel data-applet-est3="bloques"}
+:::
+
+## Permutaciones circulares
+
+Cuando los elementos se colocan **alrededor de una mesa redonda** (o en un collar, o en una ronda), no hay una primera posición: lo único que distingue una disposición de otra es **quién está al lado de quién**.
+
+Si giramos toda la mesa una posición, obtenemos la misma disposición. Como hay $n$ giros posibles que dan la misma configuración, cada disposición circular se ha contado $n$ veces al usar $P_n$. Por tanto:
+
+::: {.callout-note}
+## Permutaciones circulares de $n$ elementos
+
+$$
+PC_n = \frac{P_n}{n} = \frac{n!}{n} = (n-1)!
+$$
+:::
+
+La lectura intuitiva es aún mejor: **fija a una persona** en cualquier silla (esa elección no aporta nada nuevo, solo rompe la simetría) y ordena a las $n-1$ restantes a su alrededor. Salen $(n-1)!$ disposiciones.
+
+**Ejemplos.**
+
+- 5 personas en una mesa redonda: $PC_5 = 4! = 24$.
+- 8 caballeros en la mesa redonda: $PC_8 = 7! = 5\,040$.
+- 6 personas alrededor de una hoguera: $PC_6 = 5! = 120$.
+
+::: {.callout-important}
+## Cuándo es circular de verdad
+
+No basta con que la mesa sea redonda. Si las sillas están **numeradas**, o si hay una posición distinguida (la cabecera, el sitio con vistas), entonces las rotaciones **sí** producen situaciones distintas y hay que usar $P_n = n!$, no $(n-1)!$.
+
+Pregúntate: si todo el mundo se levanta y se corre una silla a la derecha, ¿ha cambiado algo relevante? Si la respuesta es no, es circular.
+:::
+
+### Applet · Permutaciones circulares {.unnumbered}
+
+::: {#panel-circulares .applet-panel data-applet-est3="circulares"}
+:::
+
+## Permutaciones con repetición
+
+Ahora los elementos que ordenamos **no son todos distintos**. El caso paradigmático son los anagramas de una palabra con letras repetidas.
+
+### El razonamiento con CASA
+
+`CASA` tiene 4 letras, pero la `A` aparece dos veces. Si las letras fueran todas distintas habría $4! = 24$ ordenaciones. Sin embargo, al intercambiar entre sí las dos `A` obtenemos la misma palabra. Como las dos `A` se pueden permutar de $2! = 2$ maneras y todas dan la misma palabra, hemos contado cada palabra **dos veces**:
+
+$$
+\frac{4!}{2!} = \frac{24}{2} = 12 .
+$$
+
+Efectivamente hay 12 anagramas de `CASA`: AACS, AASC, ACAS, ACSA, ASAC, ASCA, CAAS, CASA, CSAA, SAAC, SACA, SCAA.
+
+### La fórmula general
+
+::: {.callout-note}
+## Permutaciones con repetición
+
+Si se ordenan $n$ elementos de los cuales hay $a$ iguales de un tipo, $b$ iguales de otro, …, $z$ iguales de otro, con $a + b + \ldots + z = n$, el número de ordenaciones distintas es
+
+$$
+PR_n^{\,a,\,b,\,\ldots,\,z} = \frac{n!}{a! \cdot b! \cdot \ldots \cdot z!}
+$$
+
+También se escribe $P(n; a, b, \ldots, z)$. Los elementos que aparecen una sola vez contribuyen con un $1! = 1$ en el denominador y se pueden omitir.
+:::
+
+### Ejemplos resueltos
+
+**MATEMÁTICAS.** La palabra tiene 11 letras: `M` (2), `A` (3), `T` (2), `E` (1), `I` (1), `C` (1), `S` (1). Por tanto
+
+$$
+PR_{11}^{\,3,2,2,1,1,1,1} = \frac{11!}{3! \cdot 2! \cdot 2!} = \frac{39\,916\,800}{6 \cdot 2 \cdot 2} = \frac{39\,916\,800}{24} = 1\,663\,200 .
+$$
+
+**Bolas de colores.** Con 5 bolas, 3 rojas y 2 azules, indistinguibles dentro de cada color:
+
+$$
+PR_5^{\,3,2} = \frac{5!}{3! \cdot 2!} = \frac{120}{12} = 10 .
+$$
+
+**Banderas de franjas.** Con 11 franjas, 6 rojas y 5 blancas:
+
+$$
+PR_{11}^{\,6,5} = \frac{11!}{6! \cdot 5!} = 462 .
+$$
+
+**Palabra con dos grupos.** Con 7 letras, 4 iguales de un tipo y 3 de otro:
+
+$$
+PR_7^{\,4,3} = \frac{5\,040}{24 \cdot 6} = 35 .
+$$
+
+**La quiniela llena.** ¿Cuántas quinielas de 14 partidos tienen exactamente 9 unos, 3 equis y 2 doses? Es una permutación con repetición de la secuencia de signos:
+
+$$
+PR_{14}^{\,9,3,2} = \frac{14!}{9! \cdot 3! \cdot 2!} = 20\,020 .
+$$
+
+Este ejemplo es especialmente bonito porque muestra que la misma quiniela se puede analizar de dos maneras: **cuántas quinielas hay en total** ($VR_{3,14} = 3^{14}$) y **cuántas tienen una composición dada** ($PR_{14}^{9,3,2}$).
+
+::: {.callout-warning}
+## No confundir con combinaciones
+
+$PR_n^{a,b}$ con solo dos tipos coincide numéricamente con $C_{n,a}$. No es casualidad: elegir en qué $a$ posiciones va el primer tipo es lo mismo que ordenar la secuencia. Lo veremos en el apartado de combinaciones. Pero con **tres o más** tipos ya no hay tal coincidencia directa y hay que usar la fórmula completa.
+:::
+
+### Applet · Permutaciones con repetición {.unnumbered}
+
+::: {#panel-permutacionesRep .applet-panel data-applet-est3="permutacionesRep"}
+:::
+
+### Applet · Anagramas de una palabra {.unnumbered}
+
+::: {#panel-anagramas .applet-panel data-applet-est3="anagramas"}
+:::
+
+## Cuadro comparativo de las permutaciones
+
+| Tipo | Situación | Fórmula | Ejemplo |
+|:---|:---|:---:|:---|
+| Ordinarias | Ordenar $n$ elementos distintos en fila | $P_n = n!$ | 5 personas en un banco: $120$ |
+| Circulares | Ordenar $n$ elementos en círculo | $PC_n = (n-1)!$ | 5 en mesa redonda: $24$ |
+| Con repetición | Ordenar $n$ elementos con grupos iguales | $\dfrac{n!}{a!\,b!\,\ldots}$ | `CASA`: $12$ |
+| Con bloque | $k$ elementos deben ir juntos | $(n-k+1)! \cdot k!$ | 6 personas, 2 juntas: $240$ |
+
+: Los cuatro tipos de permutación {.ap-tbl .ap-cmb}
+
+## Ejercicios propuestos
+
+**1.** ¿De cuántas maneras se pueden colocar 8 libros en una estantería? ¿Y si 3 de ellos, de la misma colección, deben ir seguidos?
+
+**2.** Calcula el número de anagramas de las palabras `OSO`, `PATATA`, `ESTADISTICA` y `COMBINATORIA`.
+
+**3.** 7 amigos se sientan en una mesa redonda. ¿De cuántas maneras? ¿Y si dos de ellos se niegan a sentarse juntos?
+
+**4.** Con 4 bolas rojas, 3 azules y 2 verdes (indistinguibles dentro de cada color) puestas en fila, ¿cuántas secuencias distintas hay?
+
+**5.** ¿Cuántas quinielas de 14 partidos tienen exactamente 10 unos? ¿Y exactamente 10 unos y 4 equis?
+
+**6.** De cuántas maneras se pueden sentar 4 chicos y 4 chicas en fila si: a) no hay restricciones; b) se alternan; c) los chicos van todos juntos.
+
+## Repaso rápido
+
+- Permutación $\Leftrightarrow$ **se ordenan todos** los elementos ($m = n$).
+- $P_n = n!$; el caso $P_n = V_{n,n}$ justifica el convenio $0! = 1$.
+- Circulares: se pierde el punto de partida, $PC_n = (n-1)!$.
+- Con repetición: se divide por el factorial de cada grupo de iguales.
+- Bloque de $k$ juntos: $(n-k+1)! \cdot k!$; no olvides el $k!$ interior.
+- «No juntos» se resuelve casi siempre por complementario.

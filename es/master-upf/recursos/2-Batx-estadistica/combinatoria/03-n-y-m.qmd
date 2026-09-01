@@ -1,0 +1,177 @@
+---
+title: "Tema 3.3 El significado de n y de m"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 3 de 9)"
+filename: 03-n-y-m
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cómo leer un enunciado de combinatoria e identificar el conjunto base (n), el tamaño de la agrupación (m), si importa el orden y si hay repetición. Las tres preguntas y el clasificador de problemas.
+categories: [combinatoria, método, orden, repetición, clasificación, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El paso que decide el problema
+
+Casi todos los errores de combinatoria no se cometen calculando, sino **antes de calcular**. Se eligen mal $n$ y $m$, o se decide mal si importa el orden. Esta sección es, por eso, la más importante del tema, aunque no contenga ninguna fórmula nueva.
+
+## Qué son $n$ y $m$
+
+::: {.callout-note}
+## Los dos números que hay que extraer del enunciado
+
+- $n$ es el número de elementos **disponibles**, el tamaño del conjunto del que se elige.
+- $m$ es el número de elementos **que forman cada agrupación**, el tamaño de lo que se construye.
+
+En muchos libros, $m$ aparece escrito como $k$ o como $r$. El nombre da igual; lo que importa es el papel que juega.
+:::
+
+Una frase que casi siempre funciona:
+
+> «Se toman $m$ elementos **de entre** $n$ disponibles.»
+
+Si consigues escribir el enunciado con esa estructura, ya tienes $n$ y $m$.
+
+### Ejemplos de identificación
+
+| Enunciado | $n$ | $m$ |
+|:---|:---:|:---:|
+| Podio (oro, plata, bronce) en una carrera con 8 corredores | $8$ corredores | $3$ puestos |
+| Códigos PIN de 4 cifras | $10$ cifras | $4$ posiciones |
+| Comisión de 3 alumnos elegidos entre 12 | $12$ alumnos | $3$ miembros |
+| Quiniela de 14 partidos con signos 1, X, 2 | $3$ signos | $14$ partidos |
+| Primitiva: 6 números de entre 49 | $49$ números | $6$ elegidos |
+| Ordenar 5 personas en un banco de 5 plazas | $5$ personas | $5$ plazas |
+
+: Identificación de $n$ y $m$ en enunciados típicos {.ap-tbl .ap-cmb}
+
+::: {.callout-warning}
+## El error más habitual: intercambiar $n$ y $m$
+
+En la quiniela mucha gente escribe $n = 14$ y $m = 3$. Es al revés. El conjunto del que se elige es $\{1, \text{X}, 2\}$, que tiene 3 elementos, y hay que rellenar 14 casillas. Cada casilla es una **etapa** y el conjunto base es el de los signos.
+
+Truco infalible: pregúntate **de dónde saco cada elemento que escribo**. Ese sitio es el conjunto base, y su tamaño es $n$.
+:::
+
+::: {.callout-important}
+## Cuando $m > n$ es posible
+
+Si no hay repetición, forzosamente $m \leq n$: no se pueden elegir 5 alumnos distintos de un grupo de 3. Pero **con repetición** sí puede ocurrir que $m > n$, como en la quiniela ($m = 14 > n = 3$) o en los códigos PIN ($m = 4 > n = 10$ no, pero un código de 20 cifras sí tendría $m = 20 > n = 10$). Que $m$ sea mayor que $n$ es, de hecho, una señal fuerte de que hay repetición.
+:::
+
+### Applet · Identificar n y m {.unnumbered}
+
+::: {#panel-nym .applet-panel data-applet-est3="nym"}
+:::
+
+## Las tres preguntas
+
+Todo problema de combinatoria elemental se resuelve respondiendo a tres preguntas, siempre en este orden.
+
+::: {.callout-note}
+## El protocolo de las tres preguntas
+
+**1. ¿Entran todos los elementos en cada agrupación?**
+Es decir, ¿es $m = n$? Si entran todos, hablaremos de **permutaciones**.
+
+**2. ¿Importa el orden?**
+Si al reordenar los mismos elementos obtengo una agrupación **distinta**, el orden importa y estamos ante **variaciones** o **permutaciones**. Si obtengo la misma, no importa y estamos ante **combinaciones**.
+
+**3. ¿Se pueden repetir los elementos?**
+Si un mismo elemento del conjunto base puede aparecer varias veces en la misma agrupación, la agrupación es **con repetición**.
+:::
+
+Con las respuestas, la fórmula se elige sola:
+
+| ¿Todos? | ¿Orden? | ¿Repetición? | Tipo |
+|:---:|:---:|:---:|:---|
+| No ($m < n$) | Sí | No | Variaciones ordinarias $V_{n,m}$ |
+| No | Sí | Sí | Variaciones con repetición $VR_{n,m}$ |
+| Sí ($m = n$) | Sí | No | Permutaciones $P_n$ |
+| Sí | Sí | Sí | Permutaciones con repetición $PR_n^{a,b,\ldots}$ |
+| No | No | No | Combinaciones $C_{n,m}$ |
+| No | No | Sí | Combinaciones con repetición $CR_{n,m}$ |
+
+: El cuadro de decisión completo {.ap-tbl .ap-cmb}
+
+### Cómo decidir si el orden importa
+
+Esta es la pregunta que más dudas genera. Hay un test infalible:
+
+> **Toma dos elementos concretos, intercámbialos de sitio y pregúntate si el resultado es una situación diferente en el contexto del problema.**
+
+Ejemplos del test:
+
+- **Podio.** «Ana oro, Berta plata» frente a «Berta oro, Ana plata». Son situaciones **distintas**: el orden importa.
+- **Comisión de dos alumnos.** «Ana y Berta» frente a «Berta y Ana». Es la **misma** comisión: el orden no importa.
+- **Número de tres cifras.** $132$ y $312$ son números **distintos**: el orden importa.
+- **Primitiva.** Apostar $\{3, 7, 12, 20, 33, 41\}$ o los mismos números en otro orden es la **misma** apuesta: el orden no importa.
+
+::: {.callout-tip}
+## Palabras clave que suelen delatar cada caso
+
+Estas pistas ayudan, pero **nunca sustituyen al razonamiento**. Úsalas como primera hipótesis y confírmala con el test de intercambiar dos elementos.
+
+- Sugieren **orden**: podio, ranking, clasificación, cargos distintos (presidente, secretario…), número, código, contraseña, matrícula, colocar en fila, primera y segunda extracción.
+- Sugieren **no orden**: comisión, equipo, grupo, subconjunto, elegir, apuesta, mano de cartas, ensalada de frutas, delegación.
+- Sugieren **repetición**: se devuelve, con reemplazamiento, se puede repetir, cifras (salvo aviso), lanzar un dado varias veces, la misma persona puede ocupar varios cargos.
+- Sugieren **sin repetición**: personas distintas, sin reemplazamiento, no se puede repetir, letras distintas, cargos incompatibles.
+:::
+
+### Applet · Las tres preguntas {.unnumbered}
+
+::: {#panel-tresPreguntas .applet-panel data-applet-est3="tresPreguntas"}
+:::
+
+## Casos en los que hay que trocear el problema
+
+No todos los enunciados encajan directamente en una casilla del cuadro. A veces hay que aplicar los principios de multiplicación y adición **combinados con** las fórmulas.
+
+**Ejemplo 1: cargos con restricción.** En un club de 20 socios se eligen presidente, secretario y tesorero, pero el presidente debe ser uno de los 5 fundadores. Aquí se trocea:
+
+$$
+5 \cdot 19 \cdot 18 = 1\,710 .
+$$
+
+Primero se elige presidente entre los 5 fundadores; después, los otros dos cargos entre los 19 socios restantes, en orden.
+
+**Ejemplo 2: comisión con cuotas.** De 7 chicas y 5 chicos se forma una comisión de 4 personas con exactamente 2 de cada. Se elige cada grupo por separado y se multiplica:
+
+$$
+C_{7,2} \cdot C_{5,2} = 21 \cdot 10 = 210 .
+$$
+
+**Ejemplo 3: casos excluyentes.** ¿Cuántos números de tres cifras distintas se pueden formar con $\{0,1,2,3,4\}$? No se puede aplicar $V_{5,3}$ directamente porque el $0$ no puede ir delante. Se trocea por etapas: $4$ opciones para la primera cifra (todas menos el 0), $4$ para la segunda (las restantes, incluido el 0) y $3$ para la tercera:
+
+$$
+4 \cdot 4 \cdot 3 = 48 .
+$$
+
+::: {.callout-important}
+## La combinatoria real casi siempre es mixta
+
+Los problemas de examen rara vez son «aplica $V_{8,3}$ y ya está». Lo habitual es **descomponer** el problema en etapas o en casos, aplicar una fórmula sencilla en cada trozo y después multiplicar o sumar. Si un enunciado no encaja en ninguna casilla, no significa que no sepas la teoría: significa que hay que trocearlo.
+:::
+
+### Applet · Clasificador de problemas {.unnumbered}
+
+::: {#panel-clasificador .applet-panel data-applet-est3="clasificador"}
+:::
+
+## Repaso rápido
+
+- $n$ es el tamaño del **conjunto base**; $m$ es el tamaño de **cada agrupación**.
+- Para encontrar $n$: pregúntate de dónde sale cada elemento que escribes.
+- Las tres preguntas: ¿entran todos? ¿importa el orden? ¿hay repetición?
+- El test del orden: intercambia dos elementos y mira si cambia la situación.
+- Si $m > n$, necesariamente hay repetición.
+- Muchos problemas requieren **trocear** en etapas (multiplicar) o en casos (sumar) antes de aplicar fórmulas.

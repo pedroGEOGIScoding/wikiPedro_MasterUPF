@@ -1,0 +1,488 @@
+/* =====================================================================
+   est3-applets.css · Tema 3 Combinatoria · 2.º Bachillerato
+   Ruta: 2-Batx-estadistica/combinatoria/assets/est3-applets.css
+
+   Complementa ../assets/applets.css (estilos compartidos de la
+   asignatura). Aquí solo van piezas propias de Combinatoria:
+   rejillas de casillas, listas de agrupaciones, triángulo de Pascal,
+   fichas de resultado y tablas del cuadro resumen.
+
+   Las reglas usan al menos tres clases para ganar en especificidad al
+   CSS compartido y fijan siempre el color del texto de forma explícita,
+   para que ninguna celda quede con texto blanco sobre fondo claro.
+   ===================================================================== */
+
+/* --------------------------------------------------------------------
+   1 · Tablas propias del tema
+   -------------------------------------------------------------------- */
+.applet .ap-tbl.ap-cmb {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+  margin: .5rem 0;
+}
+.applet .ap-tbl.ap-cmb th,
+.applet .ap-tbl.ap-cmb td {
+  border: 1px solid #cfd8dc;
+  padding: .38rem .5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.applet .ap-tbl.ap-cmb thead th {
+  background: #334155;
+  color: #fff;
+  font-weight: 700;
+}
+.applet .ap-tbl.ap-cmb tbody th {
+  background: #eef3fa;
+  color: #1a3554;
+  font-weight: 700;
+  text-align: left;
+}
+.applet .ap-tbl.ap-cmb tbody td {
+  background: #fff;
+  color: #263238;
+}
+.applet .ap-tbl.ap-cmb tbody tr.ap-hi td,
+.applet .ap-tbl.ap-cmb tbody tr.ap-hi th {
+  background: #fff7e6;
+  color: #7a4b00;
+}
+.applet .ap-tbl.ap-cmb td.ap-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------
+   2 · Fichas de resultado (el número grande)
+   -------------------------------------------------------------------- */
+.applet .ap-res {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem .9rem;
+  margin: .6rem 0;
+  padding: .6rem .8rem;
+  background: #f2f7fd;
+  border: 1px solid #cfe0f2;
+  border-left: 4px solid #1976d2;
+  border-radius: 6px;
+}
+.applet .ap-res .ap-res-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0d47a1;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  word-break: break-word;
+}
+.applet .ap-res .ap-res-lab {
+  font-size: .86rem;
+  color: #37474f;
+}
+
+/* --------------------------------------------------------------------
+   3 · Chips, insignias y llaves-valor
+   -------------------------------------------------------------------- */
+.applet .ap-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .45rem;
+  margin: .45rem 0 .2rem;
+}
+.applet .ap-chips .ap-chip {
+  border: 1px solid #b8c9dd;
+  background: #fff;
+  color: #1a3554;
+  border-radius: 999px;
+  padding: .24rem .7rem;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.35;
+}
+.applet .ap-chips .ap-chip:hover {
+  background: #eaf2fb;
+  border-color: #7fa8d4;
+}
+
+.applet .ap-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .12rem .6rem;
+  font-size: .8rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  margin: .12rem .18rem .12rem 0;
+}
+.applet .ap-badge.si   { background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; }
+.applet .ap-badge.no   { background: #fdecea; color: #b71c1c; border-color: #f5b7b1; }
+.applet .ap-badge.info { background: #e3f2fd; color: #0d47a1; border-color: #a3c9ee; }
+
+.applet .ap-kvs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .5rem;
+  margin: .4rem 0;
+}
+.applet .ap-kvs .ap-kv {
+  background: #f5f7fa;
+  border: 1px solid #dbe3ea;
+  border-radius: 6px;
+  padding: .22rem .55rem;
+  font-size: .84rem;
+  color: #263238;
+}
+
+/* --------------------------------------------------------------------
+   4 · Rejilla de casillas (principio de multiplicación)
+   -------------------------------------------------------------------- */
+.applet .ap-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  align-items: center;
+  margin: .55rem 0;
+}
+.applet .ap-slots .ap-slot {
+  min-width: 3.1rem;
+  text-align: center;
+  border: 2px solid #1976d2;
+  border-radius: 8px;
+  background: #f2f7fd;
+  color: #0d47a1;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: .4rem .5rem;
+}
+.applet .ap-slots .ap-slot small {
+  display: block;
+  font-size: .68rem;
+  font-weight: 600;
+  color: #546e7a;
+  margin-top: .1rem;
+}
+.applet .ap-slots .ap-mul {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #546e7a;
+}
+
+/* --------------------------------------------------------------------
+   5 · Listas de agrupaciones enumeradas
+   -------------------------------------------------------------------- */
+.applet .ap-tuplas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .28rem .32rem;
+  margin: .5rem 0;
+  max-height: 19rem;
+  overflow: auto;
+  padding: .35rem;
+  background: #fbfcfe;
+  border: 1px solid #e3e9ef;
+  border-radius: 6px;
+}
+.applet .ap-tuplas .ap-tup {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .82rem;
+  background: #fff;
+  border: 1px solid #d7e0e8;
+  border-radius: 5px;
+  padding: .16rem .42rem;
+  color: #1a3554;
+  white-space: nowrap;
+}
+.applet .ap-tuplas .ap-tup.ap-dup {
+  background: #fdecea;
+  border-color: #f0b6ae;
+  color: #8c2018;
+  text-decoration: line-through;
+}
+.applet .ap-tuplas .ap-tup.ap-keep {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #1b5e20;
+  font-weight: 700;
+}
+.applet .ap-tuplas .ap-tup.ap-sel {
+  outline: 2px solid #e07b00;
+  outline-offset: 1px;
+}
+
+/* Clases de equivalencia (por qué se divide entre m!) */
+.applet .ap-clases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0;
+}
+.applet .ap-clases .ap-clase {
+  border: 1px dashed #7fa8d4;
+  border-radius: 8px;
+  padding: .3rem .4rem;
+  background: #f7fafd;
+}
+.applet .ap-clases .ap-clase .ap-clase-cab {
+  font-size: .74rem;
+  font-weight: 700;
+  color: #0d47a1;
+  text-align: center;
+  margin-bottom: .22rem;
+}
+
+/* --------------------------------------------------------------------
+   6 · Triángulo de Pascal
+   -------------------------------------------------------------------- */
+.applet .ap-pascal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .18rem;
+  margin: .6rem 0;
+  overflow-x: auto;
+  padding: .3rem 0;
+}
+.applet .ap-pascal .ap-fila {
+  display: flex;
+  gap: .18rem;
+  align-items: center;
+  justify-content: center;
+}
+.applet .ap-pascal .ap-cel {
+  min-width: 2.6rem;
+  padding: .2rem .3rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+  background: #fff;
+  color: #1a3554;
+  font-size: .82rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+.applet .ap-pascal .ap-cel:hover { background: #eaf2fb; }
+.applet .ap-pascal .ap-cel.ap-sel {
+  background: #0d47a1;
+  color: #fff;
+  border-color: #0d47a1;
+}
+.applet .ap-pascal .ap-cel.ap-padre {
+  background: #fff3e0;
+  color: #7a4b00;
+  border-color: #e0a75e;
+}
+.applet .ap-pascal .ap-cel.ap-espejo {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border-color: #81c784;
+}
+.applet .ap-pascal .ap-fila-lab {
+  font-size: .72rem;
+  color: #78909c;
+  min-width: 3.6rem;
+  text-align: right;
+  padding-right: .3rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+   7 · Cuadrícula de dos paneles y figuras
+   -------------------------------------------------------------------- */
+.applet .ap-grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: .9rem;
+  margin: .6rem 0;
+}
+.applet .ap-grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: .7rem;
+  margin: .6rem 0;
+}
+.applet .ap-card {
+  border: 1px solid #dbe3ea;
+  border-radius: 8px;
+  padding: .55rem .6rem;
+  background: #fff;
+  min-width: 0;
+}
+.applet .ap-card .ap-card-tit {
+  font-size: .84rem;
+  font-weight: 800;
+  color: #0d47a1;
+  margin-bottom: .3rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------
+   8 · Entrenador
+   -------------------------------------------------------------------- */
+.applet .ap-enun {
+  background: #f7fafd;
+  border: 1px solid #dbe6f2;
+  border-left: 4px solid #546e7a;
+  border-radius: 6px;
+  padding: .55rem .7rem;
+  margin: .5rem 0;
+  color: #263238;
+  line-height: 1.5;
+}
+.applet .ap-ok  { color: #1b5e20; font-weight: 700; }
+.applet .ap-ko  { color: #b71c1c; font-weight: 700; }
+
+.applet .ap-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0 .2rem;
+}
+
+/* --------------------------------------------------------------------
+   9 · Armazón del applet (cabecera, instrucciones, controles, salida)
+
+   El motor de Tema 3 construye su interfaz con clases propias «mx-».
+   Todas se estilan aquí para no depender del CSS compartido y para
+   poder dar a las figuras el ancho máximo disponible.
+   -------------------------------------------------------------------- */
+.applet .mx-title {
+  margin: 0 0 .55rem;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #1a3554;
+  line-height: 1.3;
+}
+.applet .mx-instr {
+  margin: 0 0 .8rem;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: #33414f;
+}
+.applet .mx-instr code {
+  background: #eef3fa;
+  color: #1a3554;
+  border-radius: 4px;
+  padding: .05rem .3rem;
+  font-size: .9em;
+}
+
+/* Controles: rejilla fluida, cada campo en su propia celda */
+.applet .mx-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+  align-items: flex-end;
+  margin: 0 0 .7rem;
+}
+.applet .mx-inputs .mx-field {
+  display: flex;
+  flex-direction: column;
+  gap: .22rem;
+  flex: 1 1 13rem;
+  min-width: 9rem;
+  max-width: 100%;
+  font-size: .86rem;
+  font-weight: 600;
+  color: #33414f;
+}
+.applet .mx-inputs .mx-field > span {
+  line-height: 1.25;
+}
+.applet .mx-inputs .mx-field .mx-in {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .34rem .5rem;
+  font: inherit;
+  font-weight: 500;
+  font-size: .94rem;
+  color: #1f2937;
+  background: #fff;
+  border: 1px solid #b6c2cf;
+  border-radius: 7px;
+}
+.applet .mx-inputs .mx-field .mx-in:focus {
+  outline: none;
+  border-color: #1a6fc4;
+  box-shadow: 0 0 0 3px rgba(26, 111, 196, .16);
+}
+.applet .mx-inputs .mx-field input[type="range"].mx-in {
+  padding: 0;
+  border: 0;
+  accent-color: #1a6fc4;
+}
+.applet .mx-inputs .mx-field input[type="checkbox"].mx-in {
+  width: 1.05rem;
+  height: 1.05rem;
+  min-width: 0;
+  align-self: flex-start;
+  accent-color: #1a6fc4;
+}
+.applet .mx-inputs .mx-field .mx-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #1a6fc4;
+}
+
+/* Zona de resultados */
+.applet .mx-out {
+  font-size: .95rem;
+  line-height: 1.6;
+  color: #26313d;
+}
+.applet .mx-out > *:first-child { margin-top: 0; }
+.applet .mx-out > *:last-child  { margin-bottom: 0; }
+
+.applet .mx-info {
+  margin: .55rem 0;
+  line-height: 1.6;
+  color: #26313d;
+}
+.applet .mx-bad {
+  margin: .55rem 0;
+  padding: .5rem .7rem;
+  border-left: 4px solid #c0392b;
+  background: #fdecee;
+  border-radius: 0 7px 7px 0;
+  color: #8d2018;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+   10 · Figuras al ancho máximo
+
+   El CSS compartido limita .ap-fig a 520 px. En Combinatoria los
+   árboles, rejillas y triángulos necesitan todo el ancho disponible.
+   -------------------------------------------------------------------- */
+.applet .ap-fig {
+  max-width: 100%;
+  width: 100%;
+  padding: .35rem .35rem 0;
+  box-sizing: border-box;
+}
+.applet .ap-fig > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.applet .ap-fig .ap-figcap {
+  margin: .3rem 0 .45rem;
+  text-align: center;
+  font-size: .84rem;
+  color: #5b6b7c;
+}
+
+/* --------------------------------------------------------------------
+   11 · Rejilla 2×2 del laboratorio
+   Las cuatro fórmulas del tema se comparan mejor en dos columnas
+   anchas que en tres estrechas con un hueco final.
+   -------------------------------------------------------------------- */
+.applet .ap-lab2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem;
+  margin: .6rem 0;
+}
+@media (max-width: 640px) {
+  .applet .ap-lab2 { grid-template-columns: 1fr; }
+}

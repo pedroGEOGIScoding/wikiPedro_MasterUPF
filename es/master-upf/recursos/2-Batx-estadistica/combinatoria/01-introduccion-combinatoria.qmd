@@ -1,0 +1,247 @@
+---
+title: "Tema 3.1 Introducción a la combinatoria"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 1 de 9)"
+filename: 01-introduccion-combinatoria
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué es la combinatoria y para qué sirve. El diagrama de árbol como primera herramienta de conteo, el principio de multiplicación y el principio de adición, con ejemplos manipulables de menús, códigos y trayectos.
+categories: [combinatoria, conteo, diagrama de árbol, principio de multiplicación, principio de adición, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La pregunta de todo el tema
+
+La combinatoria responde siempre a la misma pregunta, formulada de mil maneras distintas:
+
+> ¿De cuántas formas distintas puede ocurrir algo?
+
+Parece una pregunta menor, pero es la puerta de entrada a la probabilidad. Cuando en el tema siguiente escribamos la regla de Laplace,
+
+$$
+P(A) = \frac{\text{casos favorables}}{\text{casos posibles}},
+$$
+
+resultará que *contar* el numerador y el denominador es la única dificultad real. Si sabes contar, sabes calcular probabilidades. Si no sabes contar, ninguna fórmula de probabilidad te salvará.
+
+::: {.callout-important}
+## Por qué la combinatoria cuesta al principio
+
+La combinatoria no es difícil por los cálculos: casi todo se reduce a productos y factoriales. Es difícil porque hay que **decidir qué se está contando** antes de calcular nada. Dos problemas con los mismos números pueden tener respuestas completamente diferentes según si el orden importa o no, y según si se pueden repetir elementos o no.
+
+Por eso este tema insiste una y otra vez en el mismo ritual: primero se describe con precisión qué es «una forma», y solo después se elige la fórmula.
+:::
+
+## Definición y primeros ejemplos
+
+La **combinatoria** es la parte de las matemáticas que se ocupa de contar de cuántas maneras se pueden agrupar u ordenar los elementos de un conjunto, siguiendo unas reglas dadas.
+
+Cada una de esas maneras se llama **agrupación** (o «caso», o «configuración»). Contar significa decir cuántas agrupaciones distintas existen, sin necesidad de escribirlas todas.
+
+Situaciones típicas que resolveremos a lo largo del tema:
+
+- ¿Cuántos menús diferentes se pueden formar con 2 primeros platos y 3 segundos?
+- ¿De cuántas maneras pueden quedar los tres primeros puestos de una carrera con 8 corredores?
+- ¿Cuántas quinielas distintas de 14 partidos existen?
+- ¿Cuántas apuestas diferentes hay en la Lotería Primitiva?
+- ¿Cuántas palabras distintas, con o sin sentido, se pueden formar con las letras de `CASA`?
+- ¿Cuántos códigos PIN de 4 cifras hay, y cuántos tienen al menos un 7?
+
+Fíjate en que en todas ellas la respuesta es un número, no una lista. La gracia de la combinatoria es precisamente **no tener que escribir la lista**.
+
+::: {.callout-note}
+## Vocabulario que usaremos en todo el tema
+
+- **Conjunto base**: los objetos disponibles para elegir. Su tamaño se llama $n$.
+- **Agrupación**: una de las maneras posibles de elegir u ordenar.
+- **Tamaño de la agrupación**: cuántos elementos tiene cada agrupación. Se llama $m$ (en muchos libros aparece como $k$ o $r$).
+- **Importa el orden**: dos agrupaciones con los mismos elementos colocados de distinta manera se consideran **diferentes**.
+- **Con repetición**: un mismo elemento del conjunto base puede aparecer más de una vez dentro de la agrupación.
+:::
+
+## El diagrama de árbol
+
+El **diagrama de árbol** es la herramienta más elemental y a la vez la más honesta: dibuja todas las posibilidades, una por una. No sirve para contar millones de casos, pero sirve para **entender** por qué las fórmulas funcionan.
+
+Se construye así:
+
+1. Se parte de un punto inicial (la raíz).
+2. Se dibuja una rama por cada opción de la **primera etapa**.
+3. Desde el final de cada rama se dibujan las opciones de la **segunda etapa**.
+4. Se repite hasta agotar las etapas.
+5. Cada **camino completo** de la raíz a una hoja es una agrupación distinta.
+
+### Ejemplo básico: el menú
+
+Un restaurante ofrece 2 primeros platos (sopa o ensalada) y 3 segundos (pollo, pescado o pasta). ¿Cuántos menús distintos hay?
+
+El árbol tiene 2 ramas iniciales, y de cada una salen 3. En total,
+
+$$
+2 \cdot 3 = 6
+$$
+
+hojas, es decir, 6 menús: sopa–pollo, sopa–pescado, sopa–pasta, ensalada–pollo, ensalada–pescado, ensalada–pasta.
+
+::: {.callout-tip}
+## Lo que el árbol enseña de verdad
+
+Observa que **de cada** rama de la primera etapa salen **las mismas 3** opciones. Esa repetición idéntica es la razón profunda por la que se multiplica en vez de sumar. Cuando en el resto del tema apliques una fórmula, imagina siempre el árbol que hay detrás.
+:::
+
+### Applet · Diagrama de árbol {.unnumbered}
+
+::: {#panel-arbol .applet-panel data-applet-est3="arbol"}
+:::
+
+## El principio de multiplicación
+
+Es el principio fundamental del conteo, y prácticamente todo el tema se deduce de él.
+
+::: {.callout-note}
+## Principio de multiplicación (regla del producto)
+
+Si una tarea se realiza en $k$ etapas sucesivas, y
+
+- la primera etapa se puede hacer de $n_1$ formas,
+- la segunda etapa se puede hacer de $n_2$ formas **sea cual sea** el resultado de la primera,
+- …
+- la etapa $k$-ésima se puede hacer de $n_k$ formas,
+
+entonces el número total de resultados posibles es
+
+$$
+n_1 \cdot n_2 \cdot \ldots \cdot n_k .
+$$
+:::
+
+La condición clave está en negrita: el número de opciones de cada etapa **no puede depender** de lo elegido antes. Si depende, hay que trocear el problema en casos.
+
+### Ejemplos resueltos
+
+**Camisetas y pantalones.** Con 5 camisetas y 3 pantalones se pueden formar $5 \cdot 3 = 15$ conjuntos distintos.
+
+**Matrículas antiguas.** Con 4 cifras seguidas de 3 letras tomadas de un alfabeto de 20 letras válidas, hay
+
+$$
+10 \cdot 10 \cdot 10 \cdot 10 \cdot 20 \cdot 20 \cdot 20 = 10^4 \cdot 20^3 = 80\,000\,000
+$$
+
+matrículas posibles.
+
+**Trayectos.** Para ir de A a B hay 3 caminos y de B a C hay 4. Para ir de A a C pasando por B hay $3 \cdot 4 = 12$ trayectos.
+
+::: {.callout-warning}
+## Un error clásico
+
+«Tengo 3 caminos de A a B y 4 de B a C, luego hay 7 trayectos» es falso. Se suma cuando las opciones son **alternativas excluyentes** (o una, o la otra) y se multiplica cuando son **etapas sucesivas** (primero una, después la otra). Ante la duda, pregúntate: ¿tengo que hacer las dos cosas, o solo una de ellas?
+:::
+
+### Applet · Principio de multiplicación {.unnumbered}
+
+::: {#panel-multiplicacion .applet-panel data-applet-est3="multiplicacion"}
+:::
+
+## El principio de adición
+
+::: {.callout-note}
+## Principio de adición (regla de la suma)
+
+Si una tarea se puede realizar mediante $k$ procedimientos **incompatibles entre sí** (no se pueden dar a la vez y no comparten resultados), y el procedimiento $i$ admite $n_i$ resultados, entonces el número total de resultados es
+
+$$
+n_1 + n_2 + \ldots + n_k .
+$$
+:::
+
+La palabra crítica aquí es **incompatibles**: los conjuntos de resultados no deben solaparse. Si se solapan, hay que restar lo contado dos veces, y eso ya es el principio de inclusión-exclusión.
+
+### Ejemplos resueltos
+
+**Transporte.** Para ir de Gavà a Barcelona hay 4 trenes y 3 autobuses. Como el viaje se hace *o* en tren *o* en autobús, hay $4 + 3 = 7$ maneras de ir.
+
+**Código Morse.** ¿Cuántos símbolos distintos se pueden formar con puntos y rayas usando entre 1 y 4 signos? Cada longitud es un caso incompatible con las demás:
+
+$$
+2^1 + 2^2 + 2^3 + 2^4 = 2 + 4 + 8 + 16 = 30 .
+$$
+
+Dentro de cada longitud se multiplica (etapas sucesivas); entre longitudes distintas se suma (casos excluyentes). Este ejemplo combina los dos principios y por eso es tan instructivo.
+
+::: {.callout-tip}
+## Regla mnemotécnica
+
+- «**Y** … y … y …» $\longrightarrow$ se **multiplica**.
+- «**O** … o … o …» $\longrightarrow$ se **suma**.
+
+Traduce el enunciado a esa frase antes de tocar la calculadora.
+:::
+
+### Applet · Multiplicar o sumar {.unnumbered}
+
+::: {#panel-adicion .applet-panel data-applet-est3="adicion"}
+:::
+
+## Un caso completo: contar códigos
+
+Los códigos y contraseñas son el terreno natural del principio de multiplicación, y también el sitio donde aparece la técnica del **complementario**, que usaremos muchas veces.
+
+**Problema.** ¿Cuántos códigos PIN de 4 cifras existen? ¿Cuántos contienen al menos un 7?
+
+*Total.* Cada posición admite 10 cifras y se pueden repetir, luego hay $10^4 = 10\,000$ códigos.
+
+*Al menos un 7.* Contar directamente los que tienen exactamente un 7, exactamente dos, etc., es largo. Es mucho más rápido contar los que **no** tienen ningún 7: cada posición admite 9 cifras, luego hay $9^4 = 6\,561$. Por tanto
+
+$$
+10\,000 - 6\,561 = 3\,439
+$$
+
+códigos contienen al menos un 7.
+
+::: {.callout-important}
+## La técnica del complementario
+
+Cuando en un enunciado aparece «**al menos uno**», casi siempre es más corto contar el total y restarle el caso «**ninguno**»:
+
+$$
+\#(\text{al menos uno}) = \#(\text{total}) - \#(\text{ninguno}).
+$$
+
+Reconocer esta señal ahorra muchísimo trabajo, y volverá a aparecer en el tema de probabilidad con el suceso contrario.
+:::
+
+### Applet · Contador de códigos {.unnumbered}
+
+::: {#panel-codigos .applet-panel data-applet-est3="codigos"}
+:::
+
+## Cómo se organiza el tema
+
+El resto del tema desarrolla, con nombre propio y fórmula, los casos particulares del principio de multiplicación:
+
+- **3.1.2 El factorial.** La operación que aparece en todas las fórmulas.
+- **3.1.3 El significado de $n$ y de $m$.** Cómo leer un enunciado y extraer los dos números clave.
+- **3.2 Variaciones.** El orden importa; con y sin repetición.
+- **3.3 Permutaciones.** Se ordenan todos los elementos; ordinarias, circulares y con repetición.
+- **3.4 Combinaciones.** El orden no importa; el número combinatorio.
+- **3.5 Triángulo de Pascal y binomio de Newton.** Las propiedades de los números combinatorios.
+- **3.6 Cuadro resumen.** El esquema de decisión y los errores frecuentes.
+- **3.7 Práctica.** Ejercicios y laboratorio libre.
+
+## Repaso rápido
+
+- La combinatoria cuenta agrupaciones **sin escribirlas todas**.
+- El diagrama de árbol es la herramienta visual de base: cada camino es una agrupación.
+- **Etapas sucesivas $\rightarrow$ multiplicar.** **Alternativas excluyentes $\rightarrow$ sumar.**
+- El principio de multiplicación exige que el número de opciones de cada etapa no dependa de lo elegido antes.
+- «Al menos uno» sugiere contar por el **complementario**.

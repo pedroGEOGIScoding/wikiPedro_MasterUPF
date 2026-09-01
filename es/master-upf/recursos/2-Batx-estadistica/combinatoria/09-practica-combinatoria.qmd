@@ -1,0 +1,279 @@
+---
+title: "Tema 3.9 Práctica de combinatoria"
+subtitle: "Estadística · 2.º de Bachillerato — Combinatoria (Parte 9 de 9)"
+filename: 09-practica-combinatoria
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Laboratorio libre de combinatoria, entrenador de problemas con corrección automática y diagnóstico del entorno. Batería final de ejercicios resueltos y propuestos, de nivel básico a avanzado, y autoevaluación.
+categories: [combinatoria, práctica, ejercicios, laboratorio, autoevaluación, 2 Batx]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta página
+
+Esta última parte del tema tiene tres funciones:
+
+1. **Experimentar libremente** con todas las fórmulas en un mismo panel, para comparar resultados al instante.
+2. **Entrenar** con problemas de enunciado y corrección automática, tantos como quieras.
+3. **Consolidar** con una batería de ejercicios, unos resueltos paso a paso y otros propuestos.
+
+La recomendación pedagógica es clara: primero juega con el laboratorio hasta que las diferencias entre fórmulas te resulten evidentes, después entrénate con problemas y solo al final haz los ejercicios escritos.
+
+### Applet · Laboratorio de combinatoria {.unnumbered}
+
+::: {#panel-laboratorio .applet-panel data-applet-est3="laboratorio"}
+:::
+
+### Applet · Entrenador de problemas {.unnumbered}
+
+::: {#panel-entrenador .applet-panel data-applet-est3="entrenador"}
+:::
+
+## Ejercicios resueltos paso a paso
+
+### Nivel básico
+
+**1. Menús.** Un restaurante ofrece 4 primeros, 5 segundos y 3 postres. ¿Cuántos menús completos hay?
+
+Tres etapas sucesivas, luego se multiplica:
+
+$$
+4 \cdot 5 \cdot 3 = 60 .
+$$
+
+**2. Cargos.** En una asociación de 15 socios se eligen presidente, vicepresidente y secretario, sin acumular cargos.
+
+Orden (los cargos son distintos), sin repetición, $m = 3 < n = 15$:
+
+$$
+V_{15,3} = 15 \cdot 14 \cdot 13 = 2\,730 .
+$$
+
+**3. Fotografía.** ¿De cuántas maneras se pueden colocar 6 amigos en fila para una foto?
+
+Entran todos, sin repetición:
+
+$$
+P_6 = 6! = 720 .
+$$
+
+**4. Comité.** De 9 personas se eligen 4 para un comité sin cargos.
+
+Sin orden, sin repetición:
+
+$$
+C_{9,4} = \frac{9 \cdot 8 \cdot 7 \cdot 6}{24} = 126 .
+$$
+
+**5. Dados.** Se lanzan 3 dados distinguibles. ¿Cuántos resultados hay?
+
+Cada dado tiene 6 caras y hay 3 lanzamientos, con repetición y con orden:
+
+$$
+VR_{6,3} = 6^3 = 216 .
+$$
+
+### Nivel medio
+
+**6. Números con restricción.** ¿Cuántos números de 4 cifras distintas se pueden formar con $\{1,2,3,4,5,6,7\}$? ¿Cuántos de ellos son impares?
+
+*Total.* $V_{7,4} = 7 \cdot 6 \cdot 5 \cdot 4 = 840$.
+
+*Impares.* La última cifra debe ser $1, 3, 5$ o $7$: 4 opciones. Las tres primeras se eligen entre las 6 restantes en orden: $V_{6,3} = 120$. Total:
+
+$$
+4 \cdot 120 = 480 .
+$$
+
+**7. Anagramas con condición.** ¿Cuántos anagramas de `PATATA` hay? ¿Cuántos empiezan por `P`?
+
+`PATATA` tiene 6 letras: `A` (3), `T` (2), `P` (1).
+
+$$
+PR_6^{\,3,2,1} = \frac{6!}{3! \cdot 2!} = \frac{720}{12} = 60 .
+$$
+
+*Empiezan por P.* Fija la `P` y ordena `ATATA` (5 letras: `A` 3, `T` 2):
+
+$$
+\frac{5!}{3! \cdot 2!} = \frac{120}{12} = 10 .
+$$
+
+**8. Bolas de dos colores.** En una urna hay 7 bolas blancas y 5 negras. Se extraen 4 sin reemplazamiento. ¿De cuántas maneras se obtienen exactamente 3 blancas?
+
+$$
+C_{7,3} \cdot C_{5,1} = 35 \cdot 5 = 175 .
+$$
+
+**9. Mesa redonda con restricción.** 6 personas se sientan en una mesa redonda, pero dos de ellas deben estar juntas.
+
+Se pegan las dos en un bloque: quedan 5 objetos alrededor de la mesa, es decir, $PC_5 = 4! = 24$ disposiciones, y el bloque se reordena por dentro de $2!$ maneras:
+
+$$
+4! \cdot 2! = 24 \cdot 2 = 48 .
+$$
+
+Y las disposiciones en las que **no** están juntas son $PC_6 - 48 = 120 - 48 = 72$.
+
+**10. Diagonales de un polígono.** ¿Cuántas diagonales tiene un decágono?
+
+Todos los segmentos entre vértices son $C_{10,2} = 45$. De ellos, 10 son lados. Por tanto hay
+
+$$
+45 - 10 = 35
+$$
+
+diagonales.
+
+### Nivel avanzado
+
+**11. Caminos en una cuadrícula.** En una cuadrícula de $4 \times 3$ hay que ir de la esquina inferior izquierda a la superior derecha moviéndose solo a la derecha (D) o hacia arriba (A). ¿Cuántos caminos hay?
+
+Cada camino es una secuencia de 4 «D» y 3 «A», en total 7 movimientos. Es una permutación con repetición:
+
+$$
+PR_7^{\,4,3} = \frac{7!}{4! \cdot 3!} = \frac{5\,040}{144} = 35 .
+$$
+
+Equivalentemente, $\dbinom{7}{3} = 35$: basta elegir en qué 3 de los 7 pasos se sube.
+
+**12. Quiniela con composición fija.** ¿Cuántas quinielas de 14 partidos tienen exactamente 9 unos, 3 equis y 2 doses?
+
+$$
+PR_{14}^{\,9,3,2} = \frac{14!}{9! \cdot 3! \cdot 2!} = 20\,020 .
+$$
+
+Sobre un total de $3^{14} = 4\,782\,969$ quinielas, la proporción de las que tienen esa composición es aproximadamente $0{,}42\,\%$.
+
+**13. Al menos y exactamente.** Con códigos de 5 cifras:
+
+- *Total*: $10^5 = 100\,000$.
+- *Sin ningún 3*: $9^5 = 59\,049$.
+- *Al menos un 3*: $100\,000 - 59\,049 = 40\,951$.
+- *Exactamente un 3*: se elige la posición ($5$ maneras) y se llenan las otras cuatro sin treses ($9^4$): $5 \cdot 6\,561 = 32\,805$.
+- *Exactamente dos treses*: $\dbinom{5}{2} \cdot 9^3 = 10 \cdot 729 = 7\,290$.
+
+Comprobación parcial: $32\,805 + 7\,290 = 40\,095 < 40\,951$; la diferencia son los códigos con tres, cuatro o cinco treses.
+
+**14. Reparto de tareas.** Un profesor reparte 3 tareas distintas entre 5 alumnos, pudiendo un alumno recibir más de una.
+
+Cada tarea se asigna independientemente a uno de los 5 alumnos:
+
+$$
+VR_{5,3} = 5^3 = 125 .
+$$
+
+Si las tareas fueran **idénticas** y solo importase cuántas recibe cada alumno, sería $CR_{5,3} = \dbinom{7}{3} = 35$. Compara los dos números y razona por qué son distintos.
+
+**15. Selección con dos condiciones.** De 8 chicos y 6 chicas se forma un equipo de 5 con al menos 2 chicas y al menos 1 chico.
+
+Casos por número de chicas: 2, 3, 4 o 5 chicas (con 5 chicas quedaría 0 chicos, no válido; con 4 chicas hay 1 chico, sí válido).
+
+$$
+C_{6,2}C_{8,3} + C_{6,3}C_{8,2} + C_{6,4}C_{8,1} = 15 \cdot 56 + 20 \cdot 28 + 15 \cdot 8
+$$
+
+$$
+= 840 + 560 + 120 = 1\,520 .
+$$
+
+## Ejercicios propuestos
+
+### Bloque A · Principios y factorial
+
+**A1.** Con 3 camisetas, 4 pantalones y 2 pares de zapatos, ¿cuántos conjuntos distintos se pueden formar?
+
+**A2.** Simplifica sin calculadora: $\dfrac{12!}{10!}$, $\dfrac{(n+3)!}{(n+1)!}$, $\dfrac{n!}{(n-2)!}$.
+
+**A3.** Resuelve la ecuación $\dfrac{n!}{(n-2)!} = 56$.
+
+**A4.** ¿Cuántos símbolos distintos se pueden formar en un alfabeto de puntos y rayas con exactamente 5 signos? ¿Y con 5 signos como máximo?
+
+### Bloque B · Variaciones
+
+**B1.** En un campeonato de 16 equipos, ¿de cuántas maneras pueden quedar los tres primeros puestos?
+
+**B2.** ¿Cuántas señales distintas se pueden hacer con 5 banderas de colores distintos izando 3 de ellas en un mástil (el orden vertical importa)?
+
+**B3.** Un candado de bicicleta tiene 4 ruedas con las cifras del 0 al 9. ¿Cuántas combinaciones hay? ¿Cuántas no tienen ninguna cifra repetida?
+
+**B4.** ¿Cuántas quinielas de 15 partidos existen? ¿Cuántas tienen al menos un 2?
+
+### Bloque C · Permutaciones
+
+**C1.** ¿De cuántas maneras se pueden ordenar las 9 letras de la palabra `TRIANGULO`? ¿Y si las vocales deben ir todas juntas?
+
+**C2.** Calcula el número de anagramas de `ESTADISTICA`.
+
+**C3.** 8 personas se sientan en una mesa redonda. ¿De cuántas maneras? ¿Y si dos personas concretas no pueden sentarse juntas?
+
+**C4.** Con 5 bolas rojas, 4 verdes y 3 azules colocadas en fila, ¿cuántas secuencias visualmente distintas hay?
+
+### Bloque D · Combinaciones
+
+**D1.** ¿Cuántas manos de 5 cartas se pueden formar con una baraja de 40? ¿Cuántas tienen las 5 cartas del mismo palo?
+
+**D2.** En un grupo de 20 alumnos, ¿cuántos grupos de trabajo de 4 personas se pueden formar? ¿Y si dos alumnos concretos deben ir siempre juntos o siempre separados?
+
+**D3.** ¿Cuántas rectas quedan determinadas por 12 puntos del plano si no hay tres alineados? ¿Y cuántos triángulos?
+
+**D4.** Un examen tiene 10 preguntas y hay que responder 7, pero al menos 3 de las 4 primeras. ¿De cuántas maneras se puede elegir?
+
+### Bloque E · Pascal y Newton
+
+**E1.** Desarrolla $(2x - 3)^4$.
+
+**E2.** Halla el término independiente de $\left(x + \dfrac{2}{x}\right)^8$.
+
+**E3.** Demuestra usando la relación de Stifel que $\dbinom{n}{2} + \dbinom{n}{1} = \dbinom{n+1}{2}$.
+
+**E4.** Comprueba que la suma de la fila 7 del triángulo de Pascal vale $128$.
+
+### Bloque F · Problemas mixtos
+
+**F1.** Con las cifras $\{0,1,2,3,4,5\}$: ¿cuántos números de 4 cifras distintas se pueden formar? ¿Cuántos son múltiplos de 5?
+
+**F2.** En una fiesta, cada persona brinda con todas las demás. Si hubo 66 brindis, ¿cuántas personas había?
+
+**F3.** ¿De cuántas maneras se pueden repartir 10 caramelos idénticos entre 4 niños? ¿Y si cada niño debe recibir al menos uno?
+
+**F4.** Se eligen 3 cartas de una baraja de 40. ¿De cuántas maneras se puede obtener al menos un as?
+
+## Autoevaluación final
+
+Responde sin mirar la teoría. Si dudas en alguna, vuelve al apartado correspondiente.
+
+- ¿Cuál es la diferencia esencial entre una variación y una combinación?
+- ¿Por qué se define $0! = 1$? Da dos razones distintas.
+- En $VR_{n,m} = n^m$, ¿qué representa la base y qué el exponente?
+- ¿Por qué las permutaciones circulares son $(n-1)!$ y no $n!$?
+- ¿Por qué al contar anagramas hay que dividir por el factorial de las letras repetidas?
+- ¿Qué relación conecta $V_{n,m}$, $C_{n,m}$ y $P_m$?
+- ¿Cómo se calcula el número de agrupaciones con «al menos un» elemento de cierto tipo?
+- ¿Qué dice la relación de Stifel y cómo se ve en el triángulo de Pascal?
+- ¿Por qué los coeficientes del binomio de Newton son números combinatorios?
+- Da un ejemplo de problema en el que haya que **sumar** casos y otro en el que haya que **multiplicar** etapas.
+
+::: {.callout-note}
+## Última recomendación
+
+La combinatoria no se aprende memorizando seis fórmulas: se aprende **traduciendo enunciados**. Dedica más tiempo a decidir qué tipo de agrupación es cada problema que a calcular. Cuando la clasificación sea automática, el cálculo será trivial.
+
+Y cuando dudes, recurre siempre al mismo recurso: **construye un caso pequeño y cuéntalo a mano**. Si con $n = 3$ y $m = 2$ tu fórmula da el número correcto, casi seguro que es la buena.
+:::
+
+### Applet · Diagnóstico del entorno {.unnumbered}
+
+::: {#panel-diagnostico .applet-panel data-applet-est3="diagnostico"}
+:::
