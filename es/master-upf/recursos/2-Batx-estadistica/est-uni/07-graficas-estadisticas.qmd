@@ -23,7 +23,7 @@ format:
 | Sectores | Pocas categorías y proporciones de un total |
 | Histograma | Variable continua agrupada; barras pegadas |
 | Polígono | Comparar distribuciones o ver forma |
-| Caja y bigotes | Centro, RIC, asimetría y posibles valores atípicos |
+| Caja y bigotes | Centro, $\text{RIC}$, asimetría y posibles valores atípicos |
 
 ::: {.callout-important}
 ## Barras e histograma no son lo mismo
@@ -37,7 +37,7 @@ En barras hay separación porque los valores discretos no incluyen intermedios. 
 
 ## Diagrama de caja
 
-El boxplot resume mínimo, \(Q_1\), mediana, \(Q_3\) y máximo. La caja contiene el 50 % central y su longitud es el RIC.
+El boxplot resume mínimo, $Q_1$, mediana, $Q_3$ y máximo. La caja contiene el 50 % central y su longitud es el $\text{RIC}$.
 
 ### Applet · Diagrama de caja y bigotes {.unnumbered}
 

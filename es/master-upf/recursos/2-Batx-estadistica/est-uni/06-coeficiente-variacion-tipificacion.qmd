@@ -17,35 +17,35 @@ format:
 
 ## Comparar dispersión con escalas distintas
 
-\[
-CV=\frac{\sigma}{\bar x}
-\]
+$$
+\text{CV}=\dfrac{\sigma}{\bar x}
+$$
 
-El coeficiente de variación no tiene unidades y permite comparar regularidad cuando medias o unidades son distintas. Un CV menor indica mayor homogeneidad.
+El coeficiente de variación no tiene unidades y permite comparar regularidad cuando medias o unidades son distintas. Un $\text{CV}$ menor indica mayor homogeneidad.
 
 ::: {.callout-warning}
 ## No lo uses si la media es cero o muy cercana a cero
 
-Dividir por una media nula no tiene sentido; con una media muy pequeña, el CV puede resultar enorme y poco interpretable.
+Dividir por una media nula no tiene sentido; con una media muy pequeña, el $\text{CV}$ puede resultar enorme y poco interpretable.
 :::
 
 ## Cambios de origen y escala
 
-Si \(Y=aX+b\), entonces:
+Si $Y=aX+b$, entonces:
 
-\[
+$$
 \bar y=a\bar x+b,\qquad \sigma_Y=|a|\sigma_X,\qquad \sigma_Y^2=a^2\sigma_X^2
-\]
+$$
 
-Sumar una constante desplaza los datos pero no cambia su dispersión. Multiplicar por una constante cambia media y dispersión en la misma proporción; por eso el CV no cambia si la escala es positiva.
+Sumar una constante desplaza los datos pero no cambia su dispersión. Multiplicar por una constante cambia media y dispersión en la misma proporción; por eso el $\text{CV}$ no cambia si la escala es positiva.
 
 ## Tipificación
 
-\[
-z=\frac{x-\bar x}{\sigma}
-\]
+$$
+z=\dfrac{x-\bar x}{\sigma}
+$$
 
-La puntuación \(z\) mide cuántas desviaciones típicas separan un valor de la media. Un \(z=2\) está dos desviaciones por encima; \(z=-1{,}5\), una y media por debajo.
+La puntuación $z$ mide cuántas desviaciones típicas separan un valor de la media. Un $z=2$ está dos desviaciones por encima; $z=-1{,}5$, una y media por debajo.
 
 ### Applet · Tipificador de puntuaciones {.unnumbered}
 
@@ -55,8 +55,8 @@ Esta transformación produce media 0 y desviación típica 1, y será la puerta 
 
 ## Actividades
 
-**1.** Dos equipos tienen \((\bar x,\sigma)=(20,4)\) y \((100,15)\). Calcula sus CV y compara homogeneidad.
+**1.** Un equipo tiene $\bar x=20$ y $\sigma=4$; otro, $\bar x=100$ y $\sigma=15$. Calcula sus $\text{CV}$ y compara homogeneidad.
 
-**2.** Una nota 82 está en un grupo con media 70 y desviación 6. Calcula \(z\) e interpreta.
+**2.** Una nota 82 está en un grupo con media 70 y desviación 6. Calcula $z$ e interpreta.
 
-**3.** Temperatura en °C: media 20 y desviación 3. Pasa a °F mediante \(F=1{,}8C+32\) y calcula nueva media y desviación.
+**3.** Temperatura en °C: media 20 y desviación 3. Pasa a grados Fahrenheit mediante $F=1{,}8\,C+32$ y calcula nueva media y desviación.

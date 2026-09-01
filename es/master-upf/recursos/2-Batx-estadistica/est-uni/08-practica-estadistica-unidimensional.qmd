@@ -40,11 +40,11 @@ Una media sin unidades ni contexto no es una conclusión. Escribe siempre qué m
 
 **1.** Las urgencias diarias atendidas durante un mes son: 1, 5, 3, 2, 1, 4, 3, 5, 1, 0, 2, 4, 6, 3, 2, 6, 4, 2, 2, 3, 1, 5, 3, 3, 6, 4, 3, 2, 1, 5. Construye tabla, gráfico y parámetros.
 
-**2.** Una zapatería vende 40 pares entre las tallas 37 y 44. Calcula media, mediana, moda, desviación típica, \(Q_1,Q_3,D_3,P_{60},P_{90}\) e intervalo \((\bar x-\sigma,\bar x+\sigma)\).
+**2.** Una zapatería vende 40 pares entre las tallas 37 y 44. Calcula media, mediana, moda, desviación típica, $Q_1$, $Q_3$, $D_3$, $P_{60}$, $P_{90}$ e intervalo $(\bar x-\sigma,\ \bar x+\sigma)$.
 
-**3.** Una prueba de 80 preguntas se aplica a 600 personas y sus resultados están agrupados en ocho intervalos de diez. Calcula intervalo modal, mediano, RIC, \(D_8\) y \(P_{73}\).
+**3.** Una prueba de 80 preguntas se aplica a 600 personas y sus resultados están agrupados en ocho intervalos de diez. Calcula intervalo modal, mediano, $\text{RIC}$, $D_8$ y $P_{73}$.
 
-**4.** Compara dos grupos con la misma media usando desviación típica y CV. Explica cuál es más regular y cuál elegirías si fueras responsable de un equipo deportivo.
+**4.** Compara dos grupos con la misma media usando desviación típica y $\text{CV}$. Explica cuál es más regular y cuál elegirías si fueras responsable de un equipo deportivo.
 
 ### Applet · Entrenador de estadística {.unnumbered}
 
@@ -65,4 +65,4 @@ Debes poder explicar sin mirar apuntes:
 
 ## Puente al tema 2
 
-Aquí se estudia una característica por individuo. El tema siguiente estudiará dos a la vez, mediante pares \((x_i,y_i)\), tablas dobles y diagramas de dispersión.
+Aquí se estudia una característica por individuo. El tema siguiente estudiará dos a la vez, mediante pares $(x_i,y_i)$, tablas dobles y diagramas de dispersión.

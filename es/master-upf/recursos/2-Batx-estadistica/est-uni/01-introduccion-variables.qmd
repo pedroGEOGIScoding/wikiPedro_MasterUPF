@@ -57,9 +57,9 @@ La **inferencia estadística** usa una muestra para extraer conclusiones sobre t
 |---|---|---|
 | Población | Conjunto total sobre el que queremos concluir | Todos los adolescentes catalanes |
 | Individuo | Cada elemento de la población | Una adolescente o un adolescente concreto |
-| Tamaño | Número de individuos de la población, escrito normalmente \(N\) | Número total de adolescentes |
+| Tamaño | Número de individuos de la población, escrito normalmente $N$ | Número total de adolescentes |
 | Muestra | Subconjunto que observamos | Las 1000 personas encuestadas |
-| Tamaño muestral | Número de individuos de la muestra, escrito \(n\) | \(n=1000\) |
+| Tamaño muestral | Número de individuos de la muestra, escrito $n$ | $n=1000$ |
 | Carácter estadístico | Propiedad estudiada en cada individuo | Tiempo diario de uso del móvil |
 
 ::: {.callout-tip}
@@ -123,13 +123,13 @@ Se expresan con números porque se cuentan o se miden.
 
 Una variable es **unidimensional** cuando estudiamos una sola característica de cada individuo. Por ejemplo, el número de goles de un equipo en sus partidos, el peso de una muestra de atunes o las horas de estudio de una clase.
 
-Se representa mediante una letra, habitualmente \(X\), y queda determinada por los datos:
+Se representa mediante una letra, habitualmente $X$, y queda determinada por los datos:
 
-\[
+$$
 X=(x_1,x_2,\ldots,x_n)
-\]
+$$
 
-El siguiente tema añadirá una segunda característica y trabajará con parejas \((x_i,y_i)\). Aquí nos concentramos en entender muy bien una sola.
+El siguiente tema añadirá una segunda característica y trabajará con parejas $(x_i,y_i)$. Aquí nos concentramos en entender muy bien una sola.
 
 ## Actividades
 

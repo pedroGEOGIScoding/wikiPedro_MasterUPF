@@ -19,19 +19,19 @@ format:
 
 Dos grupos pueden tener la misma media y una regularidad muy distinta. Las medidas de dispersión indican cuánto se alejan los datos de su centro.
 
-\[
-Re=x_{max}-x_{min},\qquad RIC=Q_3-Q_1
-\]
+$$
+\text{Re}=x_{\text{máx}}-x_{\text{mín}},\qquad \text{RIC}=Q_3-Q_1
+$$
 
-El recorrido usa solo extremos; el RIC usa el 50 % central y resiste mejor valores atípicos.
+El recorrido usa solo los extremos; el $\text{RIC}$ usa el 50 % central y resiste mejor valores atípicos.
 
 ## Varianza y desviación típica
 
-\[
-\sigma^2=\frac{\sum f_i(x_i-\bar x)^2}{N}
+$$
+\sigma^{2}=\dfrac{\sum f_i\,(x_i-\bar x)^{2}}{N}
 \qquad\text{y}\qquad
-\sigma=\sqrt{\sigma^2}
-\]
+\sigma=\sqrt{\sigma^{2}}
+$$
 
 Se elevan las desviaciones al cuadrado para que los valores positivos y negativos no se cancelen. La desviación típica vuelve a las unidades originales.
 
@@ -41,7 +41,7 @@ Se elevan las desviaciones al cuadrado para que los valores positivos y negativo
 
 ## Intervalo central
 
-El intervalo \([\bar x-\sigma,\bar x+\sigma]\) reúne los datos situados a menos de una desviación típica de la media. No contiene necesariamente un porcentaje fijo: depende de la forma de la distribución.
+El intervalo $[\bar x-\sigma,\bar x+\sigma]$ reúne los datos situados a menos de una desviación típica de la media. No contiene necesariamente un porcentaje fijo: depende de la forma de la distribución.
 
 ### Applet · Intervalo central {.unnumbered}
 
@@ -51,11 +51,11 @@ El intervalo \([\bar x-\sigma,\bar x+\sigma]\) reúne los datos situados a menos
 
 En una distribución aproximadamente normal, cerca del 68 %, 95 % y 99,7 % de los datos cae, respectivamente, a una, dos y tres desviaciones típicas de la media:
 
-\[
+$$
 [\bar x-\sigma,\bar x+\sigma],\qquad
 [\bar x-2\sigma,\bar x+2\sigma],\qquad
 [\bar x-3\sigma,\bar x+3\sigma]
-\]
+$$
 
 ::: {.callout-warning}
 ## Regla empírica, no ley universal
@@ -69,6 +69,6 @@ No debe aplicarse mecánicamente a datos muy asimétricos, con extremos notorios
 
 ## Actividad
 
-Compara las notas \(0,1,6,8,10\) y \(4,5,5,5,6\). Tienen media 5: calcula recorrido, varianza y desviación típica y explica cuál es más homogéneo.
+Compara las notas $0;\,1;\,6;\,8;\,10$ y $4;\,5;\,5;\,5;\,6$. Ambos grupos tienen $\bar x=5$: calcula recorrido, varianza y desviación típica y explica cuál es más homogéneo.
 
 Después introduce ambos grupos en el applet de la regla empírica. ¿Tiene sentido esperar los porcentajes 68–95–99,7 en conjuntos de solo cinco datos?

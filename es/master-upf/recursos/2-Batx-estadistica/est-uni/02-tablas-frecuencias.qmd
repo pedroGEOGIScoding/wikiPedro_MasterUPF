@@ -19,13 +19,16 @@ format:
 
 Una tabla de frecuencias convierte datos desordenados en información. Si la tabla está mal, estarán mal después la media, los percentiles, la varianza y los gráficos.
 
-Para cada valor \(x_i\):
+Para cada valor $x_i$:
 
-\[
-f_i=\text{frecuencia absoluta},\qquad h_i=\frac{f_i}{N},\qquad F_i=\sum_{j\leq i}f_j,\qquad H_i=\frac{F_i}{N}
-\]
+$$
+f_i=\text{frecuencia absoluta},\qquad
+ h_i=\dfrac{f_i}{N},\qquad
+ F_i=\sum_{j\le i}f_j,\qquad
+ H_i=\dfrac{F_i}{N}
+$$
 
-Siempre se comprueba que \(\sum f_i=N\) y \(\sum h_i=1\).
+Siempre se comprueba que $\sum f_i=N$ y $\sum h_i=1$.
 
 ::: {.callout-important}
 ## Acumular exige orden
@@ -39,24 +42,24 @@ Las frecuencias acumuladas solo tienen sentido si los valores se pueden ordenar:
 
 ## Datos discretos
 
-En número de hermanos, goles o coches por familia se escribe una fila por cada valor. Por ejemplo, con los datos de 25 familias sobre número de coches, la tabla responde inmediatamente cuántas tienen como máximo dos coches: se lee \(F_i\), no hace falta volver a contar los datos.
+En número de hermanos, goles o coches por familia se escribe una fila por cada valor. Por ejemplo, con los datos de 25 familias sobre número de coches, la tabla responde inmediatamente cuántas tienen como máximo dos coches: se lee $F_i$, no hace falta volver a contar los datos.
 
 ## Datos continuos e intervalos
 
-Peso, altura o tiempo pueden tomar infinitos valores; se agrupan en **clases**, normalmente \([a,b)\). El extremo izquierdo entra y el derecho no, salvo en la última clase si se desea cerrar el recorrido.
+Peso, altura o tiempo pueden tomar infinitos valores; se agrupan en **clases**, normalmente $[a,\,b)$. El extremo izquierdo entra y el derecho no, salvo en la última clase si se desea cerrar el recorrido.
 
 La **marca de clase** es el punto medio:
 
-\[
-x_i=\frac{L_i+U_i}{2}
-\]
+$$
+x_i=\dfrac{L_i+U_i}{2}
+$$
 
 Se usa como valor representativo para calcular aproximadamente la media y otros parámetros.
 
 ::: {.callout-warning}
 ## Agrupar pierde detalle
 
-Una tabla agrupada resume y por eso pierde información. Sus parámetros son aproximaciones: todas las alturas de \([160,170)\) se sustituyen por 165. Agrupa cuando hay muchos valores o cuando la variable es continua; no por costumbre.
+Una tabla agrupada resume y por eso pierde información. Sus parámetros son aproximaciones: todas las alturas de $[160,\,170)$ se sustituyen por 165. Agrupa cuando hay muchos valores o cuando la variable es continua; no por costumbre.
 :::
 
 ### Applet · Agrupar datos en intervalos {.unnumbered}
@@ -65,8 +68,8 @@ Una tabla agrupada resume y por eso pierde información. Sus parámetros son apr
 
 ## Actividades
 
-**1.** Construye la tabla del número de visitas al cine de 24 alumnos: 2, 0, 3, 4, 0, 1, 2, 3, 0, 2, 4, 0, 5, 1, 0, 3, 2, 1, 0, 0, 2, 0, 1, 2.
+**1.** Construye la tabla del número de visitas al cine de 24 alumnos: 2, 0, 3, 4, 0, 1, 2, 3, 0, 2, 4, 0, 5, 1, 0, 3, 2, 1, 0, 0, 2, 0, 1 y 2.
 
-**2.** Una muestra de asistentes al teatro se agrupa en \([20,30)\), \([30,40)\), \([40,50)\), \([50,60)\), con frecuencias 19, 36, 41 y 29. Calcula las frecuencias relativas y acumuladas. ¿Qué porcentaje tiene menos de 40 años?
+**2.** Una muestra de asistentes al teatro se agrupa en $[20,\,30)$, $[30,\,40)$, $[40,\,50)$ y $[50,\,60)$, con frecuencias 19, 36, 41 y 29. Calcula las frecuencias relativas y acumuladas. ¿Qué porcentaje tiene menos de 40 años?
 
 **3.** Explica por qué una tabla de 60 alturas distintas puede resumirse mejor con intervalos que con 60 filas.
