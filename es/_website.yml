@@ -9,7 +9,7 @@ website:
   repo-link-rel: "noopener"
   repo-branch: master
   # repo-actions: [source, issue]
-  reader-mode: false
+  reader-mode: true
   # announcement: 
   #  icon: info-circle
   #  dismissable: true
