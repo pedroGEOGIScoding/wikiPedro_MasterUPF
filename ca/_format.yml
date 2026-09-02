@@ -159,3 +159,55 @@ format:
       gutter-width: 2.5em
     # page-layout: full
     cap-location: bottom
+    include-after-body:
+      - text: |
+          <style>
+            /* Sidebar & margin toggle */
+            body.hide-sidebars #quarto-sidebar,
+            body.hide-sidebars #quarto-margin-sidebar {
+              display: none !important;
+            }
+            body.hide-sidebars .page-columns .content {
+              grid-column: page-start / page-end !important;
+            }
+            body.hide-sidebars .page-columns .page-navigation {
+              grid-column: page-start / page-end !important;
+            }
+            #sidebar-toggle-btn {
+              cursor: pointer;
+              user-select: none;
+            }
+          </style>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              var tools = document.querySelector('.quarto-navbar-tools');
+              if (!tools) return;
+
+              var btn = document.createElement('a');
+              btn.id = 'sidebar-toggle-btn';
+              btn.className = 'quarto-navigation-tool px-1';
+              btn.title = 'Amagar/Mostrar barra lateral i marges';
+              btn.setAttribute('role', 'button');
+              btn.setAttribute('href', '');
+              btn.innerHTML = '<i class="bi bi-layout-sidebar"></i>';
+
+              btn.onclick = function (e) {
+                e.preventDefault();
+                document.body.classList.toggle('hide-sidebars');
+                var hidden = document.body.classList.contains('hide-sidebars');
+                btn.innerHTML = hidden
+                  ? '<i class="bi bi-layout-sidebar-reverse"></i>'
+                  : '<i class="bi bi-layout-sidebar"></i>';
+                try {
+                  localStorage.setItem('hide-sidebars', hidden ? '1' : '');
+                } catch (err) {}
+              };
+
+              tools.appendChild(btn);
+
+              if (localStorage.getItem('hide-sidebars')) {
+                document.body.classList.add('hide-sidebars');
+                btn.innerHTML = '<i class="bi bi-layout-sidebar-reverse"></i>';
+              }
+            });
+          </script>
