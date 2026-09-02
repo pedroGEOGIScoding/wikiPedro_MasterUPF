@@ -1,0 +1,619 @@
+---
+title: "Tema 4.8 Independencia de sucesos y la asimetría del condicionamiento"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 08-2-independencia
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sucesos dependientes e independientes, las tres caracterizaciones equivalentes de la independencia, la diferencia definitiva entre independiente e incompatible, la asimetría entre P(A dado B) y P(B dado A), la falacia del fiscal, actividades resueltas y el puente al teorema de la probabilidad total.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Ya tienes la definición de probabilidad condicionada y la regla del producto. Con esas dos herramientas puedes responder a la pregunta que da sentido a todo el apartado: **¿saber que ha ocurrido $A$ cambia mis expectativas sobre $B$, o no las cambia en absoluto?**
+
+Si las cambia, los sucesos están **relacionados**; si no las cambia, son **independientes**. Y aquí es donde el tema se vuelve delicado, porque la palabra «independiente» arrastra en el lenguaje común un significado que no coincide con el matemático, y porque casi todo el mundo (incluidos jurados, periodistas y a veces médicos) confunde $P(A\mid B)$ con $P(B\mid A)$.
+
+Este archivo tiene, por tanto, dos objetivos: dar un criterio operativo para decidir si dos sucesos son independientes, y **desactivar dos errores de razonamiento** que van mucho más allá de un examen de Bachillerato.
+
+## Sucesos dependientes e independientes
+
+::: {.callout-note}
+## Definición: sucesos dependientes
+
+Dos sucesos $A$ y $B$ son **dependientes** cuando el hecho de que ocurra uno **influye** en que ocurra el otro. Se cumple entonces la regla del producto en su forma general:
+
+$$
+P(A\cap B) = P(A)\cdot P(B\mid A) = P(B)\cdot P(A\mid B)
+$$
+:::
+
+::: {.callout-note}
+## Definición: sucesos independientes
+
+Dos sucesos $A$ y $B$ son **independientes** cuando el hecho de que ocurra uno **no influye** en que ocurra el otro. Se cumple entonces $P(B\mid A) = P(B)$ y, por tanto, la regla del producto se simplifica:
+
+$$
+P(A\cap B) = P(A)\cdot P(B)
+$$
+:::
+
+Observa de dónde sale la simplificación, porque no es un axioma nuevo: si $P(B\mid A) = P(B)$, sustituyendo en $P(A\cap B) = P(A)\cdot P(B\mid A)$ se obtiene directamente $P(A\cap B) = P(A)\cdot P(B)$. No hay ninguna fórmula nueva que memorizar: hay **una sola** regla del producto, y la independencia es el caso en que el factor condicionado se deja de condicionar.
+
+### Las tres caracterizaciones equivalentes
+
+Hay tres formas de comprobar si dos sucesos son independientes, y las tres son equivalentes: **basta comprobar una de ellas**.
+
+$$
+P(B\mid A) = P(B)
+\quad\Longleftrightarrow\quad
+P(A\mid B) = P(A)
+\quad\Longleftrightarrow\quad
+P(A\cap B) = P(A)\cdot P(B)
+$$
+
+::: {.callout-tip}
+## Cuál de las tres conviene usar
+
+En la práctica, **la tercera** es la más cómoda por dos razones: es **simétrica** (no tienes que decidir qué condiciona a qué) y **no exige dividir** (así que no hay que preocuparse de si algún denominador se anula). Reserva las dos primeras para cuando el enunciado ya te dé una condicionada hecha.
+:::
+
+::: {.callout-important}
+## Criterio operativo
+
+**Multiplica las probabilidades por separado y compara con la de la intersección.** Si coinciden, independientes; si no coinciden, dependientes. Nada más. Y ten muy claro que la independencia **no se decide por intuición ni por el significado de las palabras**: se decide comparando dos números.
+:::
+
+Una consecuencia bonita y nada evidente, que demostrarás como actividad al final del archivo: la independencia **se hereda al pasar al contrario**. Si $A$ y $B$ son independientes, también lo son $A$ y $\overline{B}$, y $\overline{A}$ y $B$, y $\overline{A}$ y $\overline{B}$. Tiene todo el sentido: si saber que ocurre $B$ no informa sobre $A$, saber que **no** ocurre tampoco debería informar.
+
+### Applet · Dependientes o independientes {.unnumbered}
+
+Introduce $P(A)$, $P(B)$ y $P(A\cap B)$ y comprueba las tres caracterizaciones a la vez. Fíjate en que las tres dan siempre el mismo veredicto: no puede pasar que una diga «independientes» y otra «dependientes».
+
+::: {#panel-independencia .applet-panel data-applet-est4="independencia"}
+:::
+
+### Extracción con reemplazamiento
+
+**Enunciado.** Si se extraen, **con reemplazamiento**, dos cartas de una baraja española de 40 cartas, calcula la probabilidad de que las dos sean figuras. Hay 12 figuras en la baraja.
+
+**Paso 1. Decido si hay independencia.** Se trata de sucesos independientes **porque al ser una extracción con reemplazamiento se devuelve la primera carta a la baraja**: en la segunda extracción la baraja está exactamente igual que al principio, con 40 cartas y 12 figuras.
+
+**Paso 2. Probabilidades de cada etapa.** Con $A$ = «figura en la primera extracción» y $B$ = «figura en la segunda»:
+
+$$
+P(A) = \frac{12}{40} = 0{,}3, \qquad P(B) = \frac{12}{40} = 0{,}3
+$$
+
+**Paso 3. Aplico la versión simplificada de la regla del producto.**
+
+$$
+P(A\cap B) = P(A)\cdot P(B) = 0{,}3\cdot 0{,}3 = 0{,}09
+$$
+
+**Paso 4. El análogo con copas.** Hay 10 copas en la baraja:
+
+$$
+P(\text{dos copas}) = \frac{10}{40}\cdot\frac{10}{40} = 0{,}25\cdot 0{,}25 = 0{,}0625
+$$
+
+**Comentario final.** Compara este resultado con lo que ocurriría **sin** reemplazamiento: en ese caso, si la primera carta fue figura, quedan 39 cartas y solo 11 figuras, y
+
+$$
+P(A\cap B) = \frac{12}{40}\cdot\frac{11}{39} = \frac{132}{1560} \approx 0{,}0846
+$$
+
+Dos palabras del enunciado («con» o «sin») cambian la relación entre los sucesos y, con ella, el resultado. Y observa que sin devolución la probabilidad es **menor**: la primera carta «gasta» una de las favorables.
+
+::: {.callout-caution}
+## El dato que hay que buscar en todo enunciado de extracciones
+
+Antes de escribir una sola fracción, localiza en el texto la palabra que decide todo: «con devolución», «se devuelve», «se reintroduce», «simultáneamente», «sucesivamente sin devolver», «se deja fuera». Si el enunciado no lo dice explícitamente y las bolas se extraen «a la vez» o «de golpe», la convención es tratarlo **sin devolución**, porque una misma bola no puede salir dos veces.
+:::
+
+### Comprobar independencia en una tabla
+
+Retomemos la tabla del hospital que construiste en el archivo anterior: 200 nacimientos, 105 niños de los cuales 21 con ojos azules, y 38 niñas con ojos azules.
+
+| | Niños | Niñas | Total |
+|---|---|---|---|
+| **Ojos azules** | 21 | 38 | 59 |
+| **Otro color** | 84 | 57 | 141 |
+| **Total** | 105 | 95 | 200 |
+
+: Tabla de contingencia de los 200 nacimientos
+
+**Pregunta.** ¿Son independientes «ser niño» y «tener ojos azules»?
+
+**Paso 1. Calculo las dos probabilidades marginales.** Denominador: el gran total.
+
+$$
+P(\text{niño}) = \frac{105}{200} = 0{,}525, \qquad P(\text{azules}) = \frac{59}{200} = 0{,}295
+$$
+
+**Paso 2. Multiplico.**
+
+$$
+P(\text{niño})\cdot P(\text{azules}) = 0{,}525\cdot 0{,}295 \approx 0{,}155
+$$
+
+**Paso 3. Calculo la probabilidad de la intersección.** Es la celda del cruce, dividida por el gran total:
+
+$$
+P(\text{niño}\cap\text{azules}) = \frac{21}{200} = 0{,}105
+$$
+
+**Paso 4. Comparo.** Como $0{,}105 \neq 0{,}155$, los sucesos son **dependientes**.
+
+**Paso 5. Lo confirmo por la otra vía**, la de las condicionadas:
+
+$$
+P(\text{azules}\mid\text{niño}) = \frac{21}{105} = 0{,}20
+\qquad\text{frente a}\qquad
+P(\text{azules}\mid\text{niña}) = \frac{38}{95} = 0{,}40
+$$
+
+El sexo del recién nacido **sí informa** sobre el color de sus ojos en esta muestra: entre las niñas la proporción de ojos azules es el doble.
+
+**Comentario final.** Fíjate en la tercera comparación posible, la que muchas veces resulta más elocuente en clase: $P(\text{azules}) = 0{,}295$, mientras que $P(\text{azules}\mid\text{niño}) = 0{,}20$. La información ha **movido** la probabilidad, y eso es exactamente lo que significa dependencia. Si los sucesos fueran independientes, las tres cifras ($0{,}295$, $0{,}20$ y $0{,}40$) serían iguales.
+
+::: {.callout-note}
+## Cómo sería una tabla de sucesos independientes
+
+En una tabla de contingencia, la independencia significa que **todas las filas tienen la misma composición porcentual** (y también todas las columnas). Por ejemplo, con 200 nacimientos, 105 niños y 59 de ojos azules, la tabla independiente tendría en la celda del cruce $200\cdot 0{,}525\cdot 0{,}295 \approx 31$ en lugar de 21. Esa comparación entre lo observado y lo que habría bajo independencia es, dicho de paso, la idea central del contraste $\chi^2$ que se estudia en cursos posteriores.
+:::
+
+### Applet · Comprobar independencia en una tabla {.unnumbered}
+
+Modifica los recuentos de una tabla de doble entrada y observa el veredicto. Busca a mano una tabla que salga independiente: comprobarás que no es tan fácil, porque la independencia exacta es un caso muy particular.
+
+::: {#panel-test-independencia .applet-panel data-applet-est4="testIndependencia"}
+:::
+
+### Resumen: la dependencia es el reemplazamiento
+
+Casi todos los enunciados de Bachillerato caen en una de estas cuatro situaciones. Vale la pena aprenderse la tabla, porque permite decidir en cinco segundos qué fórmula usar.
+
+| Situación | Relación | Fórmula que se aplica |
+|---|---|---|
+| Extracción **con** devolución | Independientes | $P(A\cap B) = P(A)\cdot P(B)$ |
+| Extracción **sin** devolución | Dependientes | $P(A\cap B) = P(A)\cdot P(B\mid A)$ |
+| Lanzamientos sucesivos de dado o moneda | Independientes | El objeto no tiene memoria |
+| Dos características de un mismo individuo | Hay que comprobarlo | Comparar $P(A\cap B)$ con $P(A)\cdot P(B)$ |
+
+: Cómo identificar sucesos dependientes e independientes
+
+::: {.callout-important}
+## La fila más importante es la cuarta
+
+Las tres primeras filas se resuelven leyendo el enunciado. La cuarta **no**: cuando los dos sucesos son dos características de la misma persona (ser chica y usar tableta, ser niño y tener ojos azules, ir a trabajar y ser hombre), **no hay ninguna razón a priori** para que sean independientes ni para que sean dependientes. Hay que hacer la comprobación numérica. Quien contesta «son independientes porque son cosas distintas» está adivinando, no razonando.
+:::
+
+Y una advertencia sobre las monedas y los dados, que enlaza con la falacia del jugador que ya viste al principio del tema: la independencia de los lanzamientos sucesivos no es un dato del enunciado, es una **propiedad física** del objeto. Una moneda no lleva contabilidad de lo que ha salido antes. En cambio, una urna sin devolución **sí** «recuerda» lo que se ha sacado, porque le faltan bolas. Toda la diferencia entre las dos situaciones está en si el experimento conserva memoria o no.
+
+### La confusión que hay que erradicar: independiente ≠ incompatible
+
+Este es el punto en el que más alumnos pierden puntos en las pruebas, y ya lo hemos anunciado varias veces a lo largo del tema. Con la fórmula delante se puede zanjar definitivamente.
+
+$$
+\textbf{Independientes:}\quad P(A\cap B) = P(A)\cdot P(B)
+$$
+
+$$
+\textbf{Incompatibles:}\quad A\cap B = \varnothing \implies P(A\cap B) = 0
+$$
+
+Son dos condiciones **distintas**: una habla de un producto, la otra de un conjunto vacío. Y ahora, el argumento decisivo. Supongamos que $A$ y $B$ son incompatibles con $P(A)>0$ y $P(B)>0$. Entonces:
+
+$$
+P(B\mid A) = \frac{P(A\cap B)}{P(A)} = \frac{0}{P(A)} = 0 \neq P(B)
+$$
+
+Es decir: **si sé que ha ocurrido $A$, sé con total certeza que $B$ no ha ocurrido**. Eso es la máxima dependencia imaginable, justo lo contrario de la independencia.
+
+::: {.callout-warning}
+## Frase para la pizarra
+
+**Dos sucesos incompatibles (con probabilidad no nula) son siempre dependientes.** «Incompatible» significa *no pueden ocurrir juntos*; «independiente» significa *no se informan mutuamente*. No solo no son sinónimos: son **casi antónimos**.
+:::
+
+**Ejercicio de diagnóstico rápido.** Al lanzar un dado, ¿son independientes $A = \{1,3,5\}$ (salir impar) y $B = \{2,4,6\}$ (salir par)?
+
+$$
+P(A)\cdot P(B) = 0{,}5\cdot 0{,}5 = 0{,}25
+\qquad\text{pero}\qquad
+P(A\cap B) = 0
+$$
+
+**No son independientes**, aunque muchos alumnos dirán que sí «porque son cosas distintas». Piénsalo con palabras: si te digo que ha salido impar, ¿sigues igual de inseguro sobre si ha salido par? Evidentemente no: lo sabes con certeza absoluta. Eso es dependencia total.
+
+Conviene también deshacer la confusión en el otro sentido, con dos casos que aclaran las cuatro combinaciones posibles:
+
+| Situación | ¿Incompatibles? | ¿Independientes? |
+|---|---|---|
+| Salir par y salir impar con un dado | Sí | No (dependencia total) |
+| Cara en la moneda y 5 en el dado | No | Sí |
+| Ojos azules y ser niño (tabla del hospital) | No | No |
+| Suceso imposible y cualquier otro | Sí | Sí (caso degenerado) |
+
+: Las cuatro combinaciones de incompatibilidad e independencia
+
+::: {.callout-tip}
+## Cómo no volver a equivocarse
+
+Asocia cada palabra a su dibujo. **Incompatibles**: dos círculos de Venn **separados**, sin zona común. **Independientes**: dos círculos que **sí** se cortan, y además la zona común tiene exactamente el tamaño que le toca por proporción. La incompatibilidad es una propiedad de los **conjuntos**; la independencia es una propiedad de las **probabilidades**. Se ven en dibujos distintos porque hablan de cosas distintas.
+:::
+
+### Applet · Independiente no es incompatible {.unnumbered}
+
+Mueve el solapamiento de dos sucesos y observa las dos etiquetas al mismo tiempo. Comprueba que el único punto en el que se puede ser incompatible e independiente a la vez es el caso degenerado en que uno de los dos sucesos tiene probabilidad nula.
+
+::: {#panel-incompatible-vs-independiente .applet-panel data-applet-est4="incompatibleVsIndependiente"}
+:::
+
+## Pensamiento crítico: la asimetría del condicionamiento
+
+Esta sección prepara directamente el teorema de Bayes y es, desde el punto de vista de la formación intelectual, la más valiosa de todo el tema. No añade fórmulas nuevas: enseña a **no** dejarse engañar por las que ya tienes.
+
+### No es lo mismo $P(A\mid B)$ y $P(B\mid A)$
+
+Volvamos una vez más a la tabla del hospital:
+
+$$
+P(\text{niña}\mid\text{azules}) = \frac{38}{59} \approx 0{,}644
+$$
+
+$$
+P(\text{azules}\mid\text{niña}) = \frac{38}{95} = 0{,}40
+$$
+
+**Mismo numerador, distinto denominador, resultados muy diferentes.** Invertir el condicionamiento no es una operación inocente: no es como cambiar el orden de una suma.
+
+Un ejemplo caricaturesco para que no se te olvide nunca. Piensa en los sucesos «ser jugador profesional de baloncesto» y «tener más de dos metros de altura»:
+
+$$
+P(\text{tener dos metros}\mid\text{ser profesional}) \approx 1
+$$
+
+$$
+P(\text{ser profesional}\mid\text{tener dos metros}) \ll 1
+$$
+
+Casi todos los jugadores profesionales de élite son altísimos; casi ninguna persona altísima es jugador profesional. Las dos frases suenan parecidas y describen situaciones **completamente distintas**. La razón es puramente aritmética: el numerador (las personas que cumplen las dos cosas) es el mismo, pero los denominadores son de tamaños abismalmente distintos.
+
+::: {.callout-important}
+## De dónde viene la asimetría
+
+De la regla del producto leída en las dos direcciones:
+
+$$
+P(A\mid B) = P(B\mid A)\cdot\frac{P(A)}{P(B)}
+$$
+
+Las dos condicionadas se diferencian por el factor $P(A)/P(B)$. Solo coinciden cuando $P(A) = P(B)$. Y esta expresión, que has obtenido sin ningún esfuerzo, **es el teorema de Bayes**. Lo estudiarás con nombre propio al final del tema, pero ya lo tienes escrito delante.
+:::
+
+### Applet · La asimetría del condicionamiento {.unnumbered}
+
+Fija $P(B\mid A)$ y mueve las probabilidades de partida. Verás que $P(A\mid B)$ puede ser mucho mayor o mucho menor, y que el responsable es siempre el cociente $P(A)/P(B)$.
+
+::: {#panel-asimetria .applet-panel data-applet-est4="asimetria"}
+:::
+
+### La falacia del fiscal
+
+Este error de inversión tiene consecuencias graves en el mundo real. En un juicio, la fiscalía puede afirmar, con total corrección técnica:
+
+> «La probabilidad de que las pruebas coincidan siendo el acusado inocente es de 1 entre un millón.»
+
+Y el jurado entiende:
+
+> «La probabilidad de que el acusado sea inocente dadas las pruebas es de 1 entre un millón.»
+
+Son cantidades **completamente distintas**:
+
+$$
+P(\text{pruebas}\mid\text{inocente}) \neq P(\text{inocente}\mid\text{pruebas})
+$$
+
+La primera dice cómo de raras son las pruebas si la persona es inocente. La segunda dice cómo de probable es la inocencia una vez vistas las pruebas. Y para pasar de una a otra hace falta un dato que la frase del fiscal **no menciona en ningún momento**: la probabilidad previa de inocencia, es decir, cuánta gente podría haber cometido el delito antes de mirar las pruebas.
+
+::: {.callout-warning}
+## Por qué el dato que falta lo cambia todo
+
+Imagina que la coincidencia es de 1 entre un millón y que el sospechoso se ha buscado en una base de datos de 30 millones de personas. Entonces cabe esperar unas 30 coincidencias por puro azar entre personas inocentes. La prueba «1 entre un millón» sigue siendo cierta, pero la probabilidad de que **este** acusado sea culpable, sin más indicios, está lejísimos de ser abrumadora. La cifra impresionante y la conclusión son dos cosas distintas.
+:::
+
+Plantea esto en clase y **deja la pregunta abierta**: es el mejor gancho posible para los dos últimos apartados del tema. Estas son tres preguntas para el debate, sin respuesta cerrada:
+
+1. Si un dato es correcto y la conclusión es falsa, ¿de quién es el error: de quien habla o de quien escucha? ¿Cambia tu respuesta si quien habla sabe cómo se va a interpretar su frase?
+2. ¿Se te ocurren titulares de prensa con esta misma estructura? Piensa en frases del tipo «el 90 % de los detenidos por este delito cumplían tal característica» y pregúntate qué se está condicionando a qué.
+3. ¿Qué dato mínimo pedirías tú, como miembro del jurado, antes de aceptar la conclusión del fiscal?
+
+::: {.callout-tip}
+## La pista para las tres preguntas
+
+En las tres, el ejercicio consiste en **escribir las dos condicionadas con símbolos** antes de opinar. En cuanto lo hagas, verás que la frase de partida y la conclusión tienen la barra en sitios distintos. Y el dato que falta siempre es el mismo: la probabilidad **previa** del suceso que se quiere concluir.
+:::
+
+### Applet · La falacia del fiscal {.unnumbered}
+
+Ajusta la tasa de coincidencia de la prueba y el tamaño de la población de posibles sospechosos, y observa cómo cambia la probabilidad de culpabilidad. El mismo «1 entre un millón» puede ser demoledor o casi irrelevante según el segundo dato.
+
+::: {#panel-fiscal .applet-panel data-applet-est4="fiscal"}
+:::
+
+### Otras dos preguntas para debatir
+
+**Primera pregunta. La familia con dos hijos.** Si sé que en una familia con dos hijos **al menos uno es niña**, ¿cuál es la probabilidad de que los dos lo sean?
+
+Antes de leer la solución, responde de cabeza. Casi todo el mundo dice $\tfrac{1}{2}$.
+
+Espacio muestral, con $N$ = niño y $\tilde{N}$ = niña, por orden de nacimiento:
+
+$$
+E = \{ NN,\ N\tilde{N},\ \tilde{N}N,\ \tilde{N}\tilde{N} \}
+$$
+
+y los cuatro casos son equiprobables. Condicionar a «al menos una niña» **reduce el universo** a tres casos:
+
+$$
+E' = \{ N\tilde{N},\ \tilde{N}N,\ \tilde{N}\tilde{N} \}
+$$
+
+De esos tres, solo uno cumple «las dos son niñas», luego
+
+$$
+P(\text{dos niñas}\mid\text{al menos una niña}) = \frac{1}{3}
+$$
+
+y **no** $\tfrac{1}{2}$.
+
+::: {.callout-caution}
+## Por qué falla la intuición aquí
+
+Porque la intuición condiciona a «una hija concreta es niña» (por ejemplo, la mayor), y entonces sí sale $\tfrac{1}{2}$: el universo quedaría $\{\tilde{N}N,\ \tilde{N}\tilde{N}\}$. Pero el enunciado no señala a ninguna hija en particular: dice «al menos una». Son dos condicionamientos distintos y dan respuestas distintas. Discútelo en clase: el debate suele ser más útil que la fórmula.
+:::
+
+**Segunda pregunta. La falacia del jugador.** Han salido cinco caras seguidas. ¿Es más probable que ahora salga cruz?
+
+No: los lanzamientos son **independientes** y la moneda no tiene memoria.
+
+$$
+P(\text{cruz}\mid\text{cinco caras previas}) = P(\text{cruz}) = 0{,}5
+$$
+
+Contrasta esta situación con la extracción **sin** devolución, donde el pasado **sí** informa: si de una urna con 5 rojas y 5 azules has sacado ya cinco rojas, la siguiente será azul con probabilidad 1. La diferencia entre ambas situaciones es exactamente la diferencia entre independencia y dependencia, y es la razón por la que este apartado importa.
+
+::: {.callout-note}
+## Una precisión honesta
+
+Todo lo anterior supone que la moneda es equilibrada. Si no lo supieras de antemano, cinco caras seguidas serían una **pequeña evidencia** de que la moneda está trucada hacia cara, y entonces convendría apostar por cara, no por cruz. Es justo lo contrario de lo que dice la falacia. Y esa forma de razonar (usar los datos observados para revisar lo que creías sobre la moneda) es de nuevo Bayes asomando la cabeza.
+:::
+
+### Errores frecuentes
+
+| Error | Corrección |
+|---|---|
+| Escribir $P(A\mid B)$ cuando se quiere decir $P(B\mid A)$ | Preguntarse siempre: ¿cuál es el dato que ya sé? Ese va detrás de la barra |
+| Usar $P(A\cap B) = P(A)\cdot P(B)$ sin comprobar la independencia | Solo vale si son independientes; si no, usar $P(A)\cdot P(B\mid A)$ |
+| Dividir por el total general al condicionar | El denominador es el total de la fila o columna elegida |
+| Decir «incompatibles, luego independientes» | Son conceptos opuestos: incompatibles con probabilidad no nula son siempre dependientes |
+| Olvidar que sin devolución cambian los denominadores | En la segunda extracción hay un elemento menos |
+| Obtener una condicionada mayor que 1 y no revisar | Se ha invertido la fracción: el numerador nunca supera al denominador |
+| Concluir independencia «porque son cosas distintas» | La independencia se comprueba con números, no con el significado de las palabras |
+
+: Resumen de errores frecuentes de la probabilidad condicionada
+
+## Actividades propuestas con solución
+
+Intenta cada actividad antes de desplegar la solución. En las que llevan tabla, **constrúyela tú primero**: la mitad del ejercicio consiste en eso.
+
+**1.** En un autobús viajan 32 personas: 18 van a trabajar y, de estas, 10 son hombres. De las que no van a trabajar, 5 son mujeres. Si se elige una persona al azar y es hombre, calcula la probabilidad de que vaya a trabajar.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Completo la tabla por diferencias: $18-10=8$ mujeres que van a trabajar; $32-18=14$ personas que no van a trabajar; $14-5=9$ hombres que no van a trabajar; $10+9=19$ hombres; $8+5=13$ mujeres.
+
+| | Hombres | Mujeres | Total |
+|---|---|---|---|
+| **Va a trabajar** | 10 | 8 | 18 |
+| **No va a trabajar** | 9 | 5 | 14 |
+| **Total** | 19 | 13 | 32 |
+
+: Tabla de contingencia del autobús
+
+«Es hombre» es el dato que ya tengo, así que mi mundo es la columna «Hombres», con total 19:
+
+$$
+P(\text{trabaja}\mid\text{hombre}) = \frac{10}{19} \approx 0{,}526
+$$
+
+Compara con $P(\text{trabaja}) = \tfrac{18}{32} = 0{,}5625$: saber que es hombre baja ligeramente la probabilidad, luego los sucesos son dependientes en esta muestra.
+:::
+
+**2.** Encuestadas 30 personas sobre dónde pasan las vacaciones: 17 prefieren la playa, 8 la montaña y 5 reparten las vacaciones entre ambos lugares. Elegida una al azar, calcula la probabilidad de que pase las vacaciones en la playa: a) sabiendo que también va a la montaña; b) sabiendo que no las reparte con la montaña.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+a) Condiciono a «montaña», que son 8 personas; de ellas, 5 van también a la playa:
+
+$$
+P = \frac{5}{8} = 0{,}625
+$$
+
+b) Los que no van a la montaña son $30-8=22$, y de ellos van a la playa $17-5=12$:
+
+$$
+P = \frac{12}{22} \approx 0{,}545
+$$
+
+Observa que el apartado b) exige darse cuenta de que los 17 de la playa **incluyen** a los 5 que reparten; si no lo ves, la resta $17-5$ no aparece.
+:::
+
+**3.** Se elige al azar una bola pintada y numerada de una caja cuya composición es la siguiente:
+
+| | Rojo | Azul | Blanco | Total |
+|---|---|---|---|---|
+| **Numerada con 1** | 3 | 4 | 1 | 8 |
+| **Numerada con 2** | 3 | 2 | 3 | 8 |
+| **Total** | 6 | 6 | 4 | 16 |
+
+: Composición de la caja de bolas
+
+Calcula $P(1\mid\text{rojo})$, $P(2\mid\text{azul})$ y $P(2\mid\text{blanco})$. Comprueba además si «ser roja» y «estar numerada con 1» son independientes.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Cada condicionada usa el total de su columna:
+
+$$
+P(1\mid\text{rojo}) = \frac{3}{6} = 0{,}5, \qquad
+P(2\mid\text{azul}) = \frac{2}{6} \approx 0{,}333, \qquad
+P(2\mid\text{blanco}) = \frac{3}{4} = 0{,}75
+$$
+
+Independencia de «rojo» y «numerada con 1»:
+
+$$
+P(\text{rojo})\cdot P(1) = \frac{6}{16}\cdot\frac{8}{16} = 0{,}1875
+\qquad\text{frente a}\qquad
+P(\text{rojo}\cap 1) = \frac{3}{16} = 0{,}1875
+$$
+
+Coinciden, luego **sí son independientes**. Compruébalo también con la otra vía: $P(1\mid\text{rojo}) = 0{,}5$ y $P(1) = \tfrac{8}{16} = 0{,}5$. Saber que la bola es roja no informa nada sobre su número. Fíjate en que con «azul» o con «blanco» no ocurriría lo mismo: la independencia es una propiedad de **cada pareja** de sucesos, no de la tabla entera.
+:::
+
+**4.** En una urna hay 2 bolas blancas y 2 azules. Si la primera bola extraída no se devuelve, halla la probabilidad de obtener una bola azul y después una blanca.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Sin devolución, así que regla del producto en su forma general. Con $A$ = «azul en la primera» y $B$ = «blanca en la segunda»:
+
+$$
+P(A) = \frac{2}{4}, \qquad P(B\mid A) = \frac{2}{3}
+$$
+
+porque tras sacar una azul quedan 3 bolas, de las cuales 2 son blancas.
+
+$$
+P(A\cap B) = \frac{2}{4}\cdot\frac{2}{3} = \frac{4}{12} = \frac{1}{3} \approx 0{,}333
+$$
+:::
+
+**5.** Se extraen dos bolas de una urna con 5 rojas, 2 azules y 3 blancas. Halla la probabilidad de que la segunda sea roja si la primera lo es y no se ha devuelto. ¿Y si se devuelve?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Sin devolución quedan 9 bolas y 4 rojas:
+
+$$
+P(R_2\mid R_1) = \frac{4}{9} \approx 0{,}444
+$$
+
+Con devolución la urna vuelve a tener 10 bolas y 5 rojas, y las extracciones son independientes:
+
+$$
+P(R_2\mid R_1) = P(R_2) = \frac{5}{10} = 0{,}5
+$$
+
+La segunda igualdad **es** la definición de independencia: la condición no ha cambiado nada.
+:::
+
+**6.** En un grupo de 15 hombres y 18 mujeres, 6 hombres y 4 mujeres hablan dos idiomas extranjeros. Elegida una persona al azar, calcula la probabilidad de que sea mujer y no hable dos idiomas extranjeros.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Hay $15+18=33$ personas. De las 18 mujeres, 4 hablan dos idiomas, así que $18-4=14$ no los hablan. Con $A$ = «ser mujer» y $\overline{B}$ = «no hablar dos idiomas»:
+
+$$
+P(A\cap\overline{B}) = \frac{18}{33}\cdot\frac{14}{18} = \frac{14}{33} \approx 0{,}424
+$$
+
+De nuevo el 18 se cancela y queda el recuento directo: 14 de 33.
+:::
+
+**7.** Demuestra que si $A$ y $B$ son independientes, también lo son $A$ y $\overline{B}$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Descompongo $A$ en la parte que está en $B$ y la que no:
+
+$$
+P(A\cap\overline{B}) = P(A) - P(A\cap B)
+$$
+
+Uso la hipótesis de independencia, $P(A\cap B) = P(A)\cdot P(B)$, y saco factor común:
+
+$$
+P(A\cap\overline{B}) = P(A) - P(A)\cdot P(B) = P(A)\bigl(1 - P(B)\bigr) = P(A)\cdot P(\overline{B})
+$$
+
+que es exactamente la condición de independencia de $A$ y $\overline{B}$. La independencia se «hereda» al pasar al contrario, un resultado nada evidente y muy útil: repitiendo el argumento se obtiene también la independencia de $\overline{A}$ con $B$ y de $\overline{A}$ con $\overline{B}$.
+:::
+
+**8.** Sabiendo que $P(A) = 0{,}5$, $P(B) = 0{,}4$ y $P(A\cup B) = 0{,}7$, determina si $A$ y $B$ son independientes.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+El enunciado no da la intersección, pero la regla de la suma sí:
+
+$$
+P(A\cap B) = P(A) + P(B) - P(A\cup B) = 0{,}5 + 0{,}4 - 0{,}7 = 0{,}2
+$$
+
+Y por otro lado
+
+$$
+P(A)\cdot P(B) = 0{,}5\cdot 0{,}4 = 0{,}20
+$$
+
+Coinciden: **son independientes**. Este ejercicio es el modelo de una pregunta clásica de examen: te dan tres probabilidades, la intersección se obtiene con la regla de la suma y después se aplica el criterio del producto. Ten cuidado, porque cambiando un solo decimal el resultado se invierte: con $P(A\cup B) = 0{,}72$ saldría $P(A\cap B) = 0{,}18 \neq 0{,}20$ y serían dependientes.
+:::
+
+## Repaso rápido
+
+- **Independientes**: $P(B\mid A) = P(B)$, o equivalentemente $P(A\mid B) = P(A)$, o equivalentemente $P(A\cap B) = P(A)\cdot P(B)$. Basta comprobar una de las tres; la tercera es la más cómoda.
+- **Dependientes**: la información mueve la probabilidad, y hay que usar la regla del producto completa, $P(A\cap B) = P(A)\cdot P(B\mid A)$.
+- Con devolución, independientes; sin devolución, dependientes. Los lanzamientos de dados y monedas son independientes porque el objeto **no tiene memoria**.
+- Cuando los dos sucesos son dos características de un mismo individuo, la independencia **hay que comprobarla numéricamente**.
+- **Incompatible no es independiente**: dos sucesos incompatibles con probabilidad no nula son siempre dependientes, porque saber que ocurre uno garantiza que el otro no ocurre.
+- La independencia se hereda al pasar al contrario.
+- $P(A\mid B)$ y $P(B\mid A)$ comparten numerador y se diferencian en el factor $P(A)/P(B)$. Confundirlas es la **falacia del fiscal**, y para invertir un condicionamiento hace falta conocer la probabilidad previa.
+- Ante cualquier enunciado: escribe los sucesos con letras, localiza qué va detrás de la barra y decide si hay o no independencia **antes** de multiplicar.
+
+## Puente al teorema de la probabilidad total
+
+Ya disponemos de la herramienta que faltaba. Con la probabilidad condicionada y la regla del producto podemos recorrer un árbol ponderado de arriba abajo con total rigor:
+
+$$
+P(A\cap B) = P(A)\cdot P(B\mid A)
+$$
+
+Pero fíjate en lo que **aún no sabemos hacer** de forma sistemática. En el ejemplo de las dos urnas elegidas con una moneda sumábamos los caminos favorables «a ojo»: eran dos y se veían de un vistazo. Cuando las causas posibles sean cinco fábricas, tres máquinas o cuatro urnas, necesitaremos una fórmula que organice esa suma. Esa fórmula es el **teorema de la probabilidad total**:
+
+$$
+P(B) = \sum_{i=1}^{n} P(A_i)\cdot P(B\mid A_i)
+$$
+
+y no es otra cosa que «bajar por todas las ramas del árbol y sumar». De hecho ya la has usado dos veces en este tema sin llamarla por su nombre: en la clase de 22 estudiantes, cuando comprobaste que $P(B)$ era la media ponderada de $P(B\mid A)$ y $P(B\mid\overline{A})$; y en las dos urnas, cuando sumaste los dos caminos que llevaban a bola blanca.
+
+Después, en el apartado del **teorema de Bayes**, invertiremos el sentido de la flecha. Y ahí responderemos por fin a la pregunta que hemos dejado abierta en la falacia del fiscal: **conocido el efecto, ¿cuál era la causa más probable?**

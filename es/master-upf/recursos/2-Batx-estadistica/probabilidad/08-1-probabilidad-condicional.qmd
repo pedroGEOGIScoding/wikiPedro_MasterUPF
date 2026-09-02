@@ -1,0 +1,577 @@
+---
+title: "Tema 4.8 Probabilidad condicional: la fórmula, las tablas y la regla del producto"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 08-1-probabilidad-condicional
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué significa condicionar un suceso a otro, la versión de Laplace y la fórmula general de la probabilidad condicionada, el método de las tablas de contingencia y la regla del producto que por fin justifica los árboles ponderados, con ejemplos resueltos paso a paso y applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Hasta ahora todas tus probabilidades se calculaban «desde cero», sin más información que la que daba el enunciado: una urna con tantas bolas, un dado de seis caras, una baraja de cuarenta cartas. Pero en la vida real casi nunca se parte de cero.
+
+- El médico no calcula la probabilidad de que tengas una enfermedad: la calcula **sabiendo que tu análisis ha dado positivo**.
+- La aseguradora no cobra lo mismo a todos los conductores: ajusta el precio **sabiendo tu edad y tu historial**.
+- El meteorólogo no dice «llueve el 15 % de los días del año»: dice qué probabilidad de lluvia hay **sabiendo** la presión, la humedad y la temperatura de hoy.
+
+En los tres casos ocurre lo mismo: **aparece información nueva y las probabilidades cambian**. Formalizar ese cambio es el objeto de este apartado, y es, sin exageración, el concepto más rentable de todo el tema: de él saldrán la regla del producto, la independencia, el teorema de la probabilidad total y el teorema de Bayes.
+
+::: {.callout-important}
+## Por qué este apartado es el eje del tema
+
+Todo lo que has hecho hasta ahora (Laplace, propiedades, regla de la suma) se refería a **un** experimento visto de golpe. La probabilidad condicionada te permite razonar **por etapas**: primero sé una cosa, después actualizo. Los cuatro apartados que quedan del tema son consecuencias de esta única idea.
+:::
+
+## Definición y notación
+
+La probabilidad de un suceso $B$ **cuando se sabe que ha tenido lugar** otro suceso $A$ se llama **probabilidad condicionada**. Se escribe $P(B\mid A)$ y se lee «probabilidad de $B$ condicionada a $A$», o «probabilidad de $B$ dado $A$».
+
+::: {.callout-note}
+## Definición: probabilidad condicionada (versión de Laplace)
+
+Cuando se calculan probabilidades condicionadas mediante la regla de Laplace hay que tener en cuenta que el **nuevo espacio muestral** $E'$ coincide con el suceso $A$. De ahí sale directamente:
+
+$$
+P(B\mid A) = \frac{n(A\cap B)}{n(A)} = \frac{\operatorname{card}(A\cap B)}{\operatorname{card}(A)}
+$$
+
+Es decir: **casos favorables a $B$ dentro de $A$**, divididos por **los casos de $A$**.
+:::
+
+Lee otra vez la fórmula y fíjate en lo que ha desaparecido: el cardinal de $E$. Todo lo que queda fuera de $A$ **deja de existir**. Esa es la imagen mental que tienes que instalar de una vez:
+
+::: {.callout-tip}
+## La frase para la pizarra
+
+**Condicionar no es multiplicar ni dividir por un número mágico: es cambiar de universo.** El suceso al que condicionas se convierte en tu nuevo espacio muestral, y dentro de él vuelves a contar como siempre.
+:::
+
+Conviene ordenar la notación desde el principio, porque el 90 % de los errores de este apartado son errores de lectura, no de cálculo:
+
+| Escritura | Se lee | Lo que **ya sabes** | Lo que **preguntas** |
+|---|---|---|---|
+| $P(B)$ | probabilidad de $B$ | nada | si ocurre $B$ |
+| $P(B\mid A)$ | probabilidad de $B$ dado $A$ | que ha ocurrido $A$ | si ocurre $B$ |
+| $P(A\mid B)$ | probabilidad de $A$ dado $B$ | que ha ocurrido $B$ | si ocurre $A$ |
+| $P(A\cap B)$ | probabilidad de $A$ y $B$ | nada | si ocurren **los dos** |
+
+: Cómo se lee cada una de las cuatro expresiones
+
+::: {.callout-warning}
+## Regla de oro de la notación
+
+**Detrás de la barra va el dato que ya tienes.** Antes de escribir nada, pregúntate: «¿qué me dice el enunciado que ya ha pasado?». Eso va a la derecha del $\mid$. Si te acostumbras a hacerlo, no volverás a confundir $P(A\mid B)$ con $P(B\mid A)$, y ya verás en el archivo siguiente que esa confusión es capaz de condenar a un inocente.
+:::
+
+Un detalle de vocabulario: la notación con barra vertical, $P(B\mid A)$, es la que usaremos siempre aquí, pero en muchos libros encontrarás la barra inclinada, $P(B/A)$. Significan exactamente lo mismo. La barra vertical se prefiere porque la inclinada se confunde visualmente con una división, y condicionar **no** es dividir el suceso.
+
+### Applet · Qué significa condicionar {.unnumbered}
+
+Elige un espacio muestral, marca el suceso al que condicionas y observa cómo el universo se encoge: las casillas de fuera se apagan y el denominador cambia.
+
+::: {#panel-condicional .applet-panel data-applet-est4="condicional"}
+:::
+
+## La fórmula general
+
+La versión de Laplace de la probabilidad condicionada solo vale cuando todos los sucesos elementales son equiprobables, porque cuenta casos. Vamos a liberarla de esa condición con un truco puramente algebraico: dividir numerador y denominador entre el cardinal de $E$.
+
+$$
+P(B\mid A) = \frac{\operatorname{card}(A\cap B)}{\operatorname{card}(A)}
+= \frac{\operatorname{card}(A\cap B)/\operatorname{card}(E)}{\operatorname{card}(A)/\operatorname{card}(E)}
+$$
+
+Pero cada uno de esos dos cocientes es, por Laplace, una probabilidad. Y así obtenemos la fórmula válida **siempre**, haya o no equiprobabilidad:
+
+::: {.callout-note}
+## Definición general de probabilidad condicionada
+
+$$
+P(B\mid A) = \frac{P(A\cap B)}{P(A)} \qquad \text{con } P(A) > 0
+$$
+
+y, simétricamente,
+
+$$
+P(A\mid B) = \frac{P(A\cap B)}{P(B)} \qquad \text{con } P(B) > 0
+$$
+:::
+
+Fíjate en lo que acabamos de ganar. La primera versión necesitaba poder contar casos igualmente probables; esta segunda solo necesita **probabilidades**, vengan de donde vengan: de Laplace, de una frecuencia relativa observada o de un dato que da el enunciado.
+
+::: {.callout-caution}
+## Observación importante sobre el denominador
+
+Condicionar a un suceso de probabilidad cero **no tiene sentido**, igual que no tiene sentido preguntar «sabiendo que ha ocurrido algo imposible». Por eso la definición exige $P(A)>0$. No es un tecnicismo para adornar: si en un ejercicio te sale un denominador nulo, es que has planteado mal el condicionamiento.
+:::
+
+Antes de los ejemplos, tres propiedades que se deducen de la definición y que conviene tener localizadas, porque dicen algo muy tranquilizador: **una vez fijado el condicionante, la probabilidad condicionada se comporta como una probabilidad normal**.
+
+$$
+P(\varnothing \mid A) = 0, \qquad P(E \mid A) = 1, \qquad P(A\mid A) = 1
+$$
+
+$$
+P(\overline{B}\mid A) = 1 - P(B\mid A)
+$$
+
+$$
+P(B_1 \cup B_2 \mid A) = P(B_1\mid A) + P(B_2 \mid A) - P(B_1\cap B_2\mid A)
+$$
+
+::: {.callout-tip}
+## Lo que dicen esas tres propiedades
+
+Que dentro del nuevo universo $A$ **todo funciona igual**: hay un suceso seguro (que ahora es $A$ mismo), un suceso imposible, un contrario que resta de 1 y una regla de la suma idéntica a la que ya conoces. Condicionar no rompe las reglas del juego: solo cambia el tablero. Esto también significa que la estrategia del «al menos» sigue siendo válida: $P(\text{al menos uno}\mid A) = 1 - P(\text{ninguno}\mid A)$.
+:::
+
+### La clase de 22 estudiantes
+
+**Enunciado.** En una clase de 22 estudiantes, 7 son aficionados al baloncesto, 12 al fútbol y 6 a ambos deportes. Si se elige un estudiante al azar, calcula la probabilidad de que:
+
+a) sea aficionado al fútbol, sabiendo que también lo es al baloncesto;
+b) sea aficionado al fútbol, sabiendo que **no** lo es al baloncesto.
+
+::: {.callout-warning}
+## La ambigüedad que bloquea a media clase
+
+La convención matemática es que **los 7 aficionados al baloncesto incluyen a los 6 que lo son a ambos deportes**. Muchos alumnos, en cambio, leen «7 solo de baloncesto». Si lo interpretan así, suman $7+12+6=25>22$ y se bloquean sin entender por qué. Cuando un enunciado dice «7 son aficionados al baloncesto», está describiendo el suceso completo $A$, no la parte exclusiva $A - B$. La tabla de contingencia disuelve la ambigüedad en diez segundos.
+:::
+
+**Paso 1. Defino los sucesos con letras.**
+
+$$
+A = \text{«ser aficionado al baloncesto»}, \qquad \overline{A} = \text{«no ser aficionado al baloncesto»}
+$$
+
+$$
+B = \text{«ser aficionado al fútbol»}
+$$
+
+**Paso 2. Compruebo que el experimento es regular.** Todos los estudiantes tienen la misma probabilidad de ser elegidos, así que puedo usar Laplace y contar personas.
+
+**Paso 3. Paso previo obligatorio: la tabla de contingencia.** Antes de calcular nada, ordeno los 22 estudiantes.
+
+| | Fútbol sí | Fútbol no | Total |
+|---|---|---|---|
+| **Baloncesto sí ($A$)** | 6 | 1 | 7 |
+| **Baloncesto no ($\overline{A}$)** | 6 | 9 | 15 |
+| **Total** | 12 | 10 | 22 |
+
+: Tabla de contingencia de la clase de 22 estudiantes
+
+Las celdas que no daba el enunciado se obtienen **por diferencias**, y en este orden: $7-6=1$, $12-6=6$, $22-7=15$, $15-6=9$. Con la tabla delante, el enunciado deja de ser ambiguo y los dos apartados se leen directamente.
+
+**Paso 4. Apartado a).** Condicionar a $A$ significa **mirar solo la primera fila**, cuyo total es 7:
+
+$$
+P(B\mid A) = \frac{\operatorname{card}(A\cap B)}{\operatorname{card}(A)} = \frac{6}{7} \approx 0{,}857
+$$
+
+**Paso 5. Apartado b).** Condicionar a $\overline{A}$ significa **mirar solo la segunda fila**, cuyo total es 15:
+
+$$
+P(B\mid \overline{A}) = \frac{\operatorname{card}(\overline{A}\cap B)}{\operatorname{card}(\overline{A})} = \frac{6}{15} = \frac{2}{5} = 0{,}4
+$$
+
+**Paso 6. Comparación de los tres valores.** Aquí está lo interesante del ejercicio:
+
+$$
+P(B) = \frac{12}{22} \approx 0{,}545
+$$
+
+$$
+P(B\mid A) = \frac{6}{7} \approx 0{,}857 \quad \text{(sube)}
+$$
+
+$$
+P(B\mid \overline{A}) = \frac{6}{15} = 0{,}400 \quad \text{(baja)}
+$$
+
+Saber que a alguien le gusta el baloncesto **aumenta** la probabilidad de que le guste el fútbol; saber que no le gusta **la reduce**. Como la información modifica el resultado, los sucesos son **dependientes**.
+
+**Paso 7. Comprobación formal de la dependencia.**
+
+$$
+P(A)\cdot P(B) = \frac{7}{22}\cdot\frac{12}{22} \approx 0{,}174
+\qquad \text{frente a} \qquad
+P(A\cap B) = \frac{6}{22} \approx 0{,}273
+$$
+
+No coinciden, luego los sucesos son dependientes. Esta comprobación es el criterio que sistematizaremos en el archivo siguiente.
+
+**Comentario final.** Observa la estructura del resultado: $P(B\mid A)$ y $P(B\mid \overline{A})$ quedan **una a cada lado** de $P(B)$, y $P(B)$ es exactamente la media ponderada de las dos, con pesos $\tfrac{7}{22}$ y $\tfrac{15}{22}$:
+
+$$
+\frac{7}{22}\cdot\frac{6}{7} + \frac{15}{22}\cdot\frac{6}{15} = \frac{6}{22} + \frac{6}{22} = \frac{12}{22} = P(B) \ \checkmark
+$$
+
+Eso no es casualidad ni es un truco: es el **teorema de la probabilidad total**, que verás formalizado en el apartado siguiente del tema. Ya lo estás usando.
+
+### Applet · La clase de 22 estudiantes {.unnumbered}
+
+Cambia los tres datos del enunciado (aficionados a cada deporte y a ambos) y observa dos cosas: cuándo la tabla se vuelve imposible porque una celda saldría negativa, y cómo $P(B\mid A)$ y $P(B\mid\overline{A})$ se sitúan siempre a los dos lados de $P(B)$.
+
+::: {#panel-clase22 .applet-panel data-applet-est4="clase22"}
+:::
+
+### Con probabilidades en lugar de recuentos
+
+**Enunciado.** En un estudio sobre enfermedades cardíacas se ha establecido que la probabilidad de padecer hipertensión arterial es $0{,}2$ y la de padecer ambas dolencias es $0{,}05$. Elegida una persona al azar, ¿cuál es la probabilidad de que padezca alguna enfermedad cardíaca sabiendo que tiene problemas de hipertensión?
+
+**Paso 1. Sucesos.**
+
+$$
+A = \text{«padecer hipertensión»}, \qquad B = \text{«padecer enfermedad cardíaca»}
+$$
+
+**Paso 2. Traduzco los datos.** «La probabilidad de padecer hipertensión» es $P(A)$; «la de padecer ambas dolencias» es la de la **intersección**:
+
+$$
+P(A) = 0{,}2, \qquad P(A\cap B) = 0{,}05
+$$
+
+**Paso 3. Identifico qué me piden.** «Que padezca enfermedad cardíaca **sabiendo que** tiene hipertensión»: lo que ya sé va detrás de la barra, así que me piden $P(B\mid A)$.
+
+**Paso 4. Aplico la fórmula general.**
+
+$$
+P(B\mid A) = \frac{P(A\cap B)}{P(A)} = \frac{0{,}05}{0{,}2} = 0{,}25 = 25\ \%
+$$
+
+**Comentario final.** Fíjate en que aquí **no había nada que contar**: no sabemos cuántas personas participaron en el estudio, ni cuántas eran hipertensas. Solo teníamos dos probabilidades, y la fórmula general ha funcionado igual. Ese es precisamente el motivo de haber pasado de la versión de Laplace a la versión general. Un control mental rápido para no equivocarse de fórmula: el resultado, $0{,}25$, debe ser **mayor o igual** que $P(A\cap B) = 0{,}05$, porque al condicionar hemos reducido el universo y la misma cantidad se reparte entre menos casos. Si al dividir te sale un número **menor** que la intersección, has puesto la fracción del revés.
+
+::: {.callout-caution}
+## Trampa numérica clásica
+
+Una probabilidad condicionada **nunca** puede ser mayor que 1. Si te sale $1{,}4$, no has descubierto nada nuevo: has dividido por el número equivocado, casi seguro porque has puesto en el denominador la probabilidad de la intersección en lugar de la del condicionante. Recuerda que siempre $A\cap B \subseteq A$, y por tanto $P(A\cap B)\le P(A)$: el numerador de una condicionada nunca supera a su denominador.
+:::
+
+### Applet · La fórmula general con probabilidades {.unnumbered}
+
+Introduce $P(A)$, $P(B)$ y $P(A\cap B)$ (acepta decimales con coma, fracciones y porcentajes) y el applet calcula las dos condicionadas, avisando si los datos son incompatibles entre sí.
+
+::: {#panel-cond-prob .applet-panel data-applet-est4="condProb"}
+:::
+
+## Tablas de contingencia
+
+Existe un método muy eficaz para calcular probabilidades condicionadas y probabilidades de sucesos compuestos: organizar los datos en una tabla de doble entrada llamada **tabla de contingencia**. No es una técnica menor ni un dibujo auxiliar; en los problemas de dos características es, con diferencia, el camino más rápido y el que menos errores produce.
+
+::: {.callout-note}
+## El procedimiento, en cinco pasos
+
+1. **Organizar** los datos en una tabla de doble entrada con las dos variables (una en filas, otra en columnas).
+2. **Completar** las celdas que falten, de modo que las sumas de filas y columnas den los totales correspondientes.
+3. **Comprobar** que el experimento es regular, para poder usar Laplace.
+4. **Definir** los sucesos con letras.
+5. **Extraer** de la tabla los datos necesarios.
+:::
+
+Y aquí está el truco que convierte la tabla en una máquina de condicionar:
+
+::: {.callout-tip}
+## Condicionar es elegir una fila o una columna
+
+**Condicionar es elegir una fila o una columna y usar su total como nuevo denominador.** Si condicionas a «niño», tu mundo es la columna «Niños» y el denominador es su total. Si condicionas a «ojos azules», tu mundo es la fila «Ojos azules» y el denominador es el total de esa fila. El gran total de la tabla solo se usa para las probabilidades **no** condicionadas.
+:::
+
+Merece la pena dejar por escrito la correspondencia completa entre lo que pide el enunciado y lo que hay que mirar en la tabla, porque es literalmente todo lo que necesitas:
+
+| Lo que pide el enunciado | Numerador | Denominador |
+|---|---|---|
+| $P(A)$ | total de la fila o columna de $A$ | gran total |
+| $P(A\cap B)$ | celda del cruce de $A$ y $B$ | gran total |
+| $P(B\mid A)$ | celda del cruce de $A$ y $B$ | total de $A$ |
+| $P(A\mid B)$ | celda del cruce de $A$ y $B$ | total de $B$ |
+
+: Qué mirar en la tabla según lo que se pregunte
+
+Observa la fila tercera y la cuarta: **el numerador es el mismo**. Las dos condicionadas comparten la casilla del cruce y se diferencian solo en el total por el que dividen. De ahí saldrá, en el archivo siguiente, todo el asunto de la asimetría del condicionamiento.
+
+### Applet · Laboratorio de tablas de contingencia {.unnumbered}
+
+Cambia los cuatro recuentos y observa cómo se mueven $P(A\mid B)$ y $P(B\mid A)$: casi nunca coinciden, y solo lo hacen cuando los dos totales marginales son iguales.
+
+::: {#panel-contingencia-lab .applet-panel data-applet-est4="contingenciaLab"}
+:::
+
+### Nacimientos en un hospital
+
+**Enunciado.** En un hospital ha habido 200 nacimientos. 105 son niños y, de estos, 21 tienen los ojos azules. Además, 38 de las niñas nacidas tienen los ojos azules. Elabora la tabla de contingencia y calcula algunas probabilidades.
+
+**Paso 1. Identifico las dos variables:** el sexo (niño / niña) y el color de ojos (azules / otro color). Pongo una en columnas y otra en filas.
+
+**Paso 2. Coloco los datos que da el enunciado:** el gran total (200), el total de niños (105), la celda niños con ojos azules (21) y la celda niñas con ojos azules (38).
+
+**Paso 3. Completo por diferencias.** Este es el paso que hay que hacer con orden, escribiendo la resta al lado de cada número:
+
+- $105 - 21 = 84$ niños de otro color de ojos.
+- $200 - 105 = 95$ niñas en total.
+- $95 - 38 = 57$ niñas de otro color de ojos.
+- $21 + 38 = 59$ recién nacidos con ojos azules.
+- $200 - 59 = 141$ recién nacidos de otro color de ojos.
+
+| | Niños | Niñas | Total |
+|---|---|---|---|
+| **Ojos azules** | 21 | 38 | 59 |
+| **Otro color** | 84 | 57 | 141 |
+| **Total** | 105 | 95 | 200 |
+
+: Tabla de contingencia de los 200 nacimientos
+
+**Paso 4. Control de la tabla.** Las dos filas suman $59+141=200$ y las dos columnas suman $105+95=200$. Cuadra, así que puedo seguir.
+
+**Paso 5. Probabilidad simple** (denominador: el gran total):
+
+$$
+P(\text{no azules}) = \frac{141}{200} = 0{,}705
+$$
+
+**Paso 6. Probabilidades condicionadas.** Aquí está la potencia del método: basta con mirar la fila o la columna correcta.
+
+$$
+P(\text{azules}\mid \text{niño}) = \frac{21}{105} = 0{,}20
+$$
+
+$$
+P(\text{azules}\mid \text{niña}) = \frac{38}{95} = 0{,}40
+$$
+
+$$
+P(\text{niña}\mid \text{azules}) = \frac{38}{59} \approx 0{,}644
+$$
+
+**Comentario final.** Compara las dos últimas expresiones con muchísima atención, porque volverán varias veces en el resto del tema. **Tienen el mismo numerador, 38**, y sin embargo valen $0{,}40$ y $0{,}644$. Lo único que ha cambiado es el total por el que dividimos: 95 niñas frente a 59 recién nacidos de ojos azules. Invertir el condicionamiento **no** es una operación inocente.
+
+::: {.callout-important}
+## Un dato honesto sobre este ejemplo
+
+Estos 200 nacimientos son **una muestra concreta de un hospital concreto**, no una ley de la naturaleza. Que aquí el 40 % de las niñas tenga ojos azules frente al 20 % de los niños es una característica de estos datos. La probabilidad que calculamos es la de «elegir al azar una de estas 200 fichas», no la de un recién nacido cualquiera del mundo. Distinguir entre la población de la que hablas y la muestra que tienes delante es un hábito de pensamiento crítico que va mucho más allá de esta asignatura.
+:::
+
+### Applet · Nacimientos en un hospital {.unnumbered}
+
+Modifica los cuatro datos del enunciado y comprueba cómo se rellena la tabla por diferencias. Si alguna celda saldría negativa, el applet te avisa: el enunciado sería imposible.
+
+::: {#panel-hospital .applet-panel data-applet-est4="hospital"}
+:::
+
+### Uso de tecnologías
+
+**Enunciado.** Se ha preguntado a 43 chicos y 57 chicas sobre el uso de nuevas tecnologías. De los encuestados, 30 chicos y 45 chicas usan habitualmente ordenador, y el resto usan tabletas. Calcula la probabilidad de que, elegido un joven al azar:
+
+a) use habitualmente tableta;
+b) sea chica, sabiendo que usa tableta;
+c) use ordenador, sabiendo que es chico.
+
+**Paso 1. Sucesos.** Llamo $D$ al suceso «usar habitualmente tableta». Los otros los nombraré con palabras para que se lea mejor.
+
+**Paso 2. Tabla.** El gran total es $43+57=100$ jóvenes. Las celdas de tableta salen por diferencia: $57-45=12$ chicas y $43-30=13$ chicos.
+
+| | Chicas | Chicos | Total |
+|---|---|---|---|
+| **Ordenador** | 45 | 30 | 75 |
+| **Tableta** | 12 | 13 | 25 |
+| **Total** | 57 | 43 | 100 |
+
+: Tabla de contingencia del uso de tecnologías
+
+**Paso 3. Apartado a).** Probabilidad simple, denominador el gran total:
+
+$$
+P(D) = \frac{25}{100} = 0{,}25
+$$
+
+**Paso 4. Apartado b).** «Sabiendo que usa tableta»: mi mundo es la **fila** «Tableta», con total 25.
+
+$$
+P(\text{chica}\mid D) = \frac{12}{25} = 0{,}48
+$$
+
+**Paso 5. Apartado c).** «Sabiendo que es chico»: mi mundo es la **columna** «Chicos», con total 43.
+
+$$
+P(\text{ordenador}\mid \text{chico}) = \frac{30}{43} \approx 0{,}698
+$$
+
+**Comentario final.** Tres preguntas, tres denominadores distintos: 100, 25 y 43. Si en las tres hubieras dividido por 100 (el error más frecuente del apartado), habrías obtenido $0{,}25$, $0{,}12$ y $0{,}30$, que **no responden a nada de lo que se preguntaba**. Antes de escribir la fracción, dilo en voz alta: «mi mundo es…». Y observa también que el apartado b) compara mal si no tienes cuidado: hay más chicas que chicos en la encuesta, así que el $0{,}48$ no significa que las chicas usen menos tableta. De hecho, $P(D\mid\text{chica}) = \tfrac{12}{57}\approx 0{,}211$ frente a $P(D\mid\text{chico}) = \tfrac{13}{43}\approx 0{,}302$: en proporción, los chicos usan más tableta. Otra vez la asimetría.
+
+### Applet · Uso de tecnologías {.unnumbered}
+
+Introduce el número de chicos y chicas y cuántos usan ordenador en cada grupo. El applet construye la tabla, calcula las seis condicionadas posibles y te deja compararlas por filas y por columnas.
+
+::: {#panel-tecnologias .applet-panel data-applet-est4="tecnologias"}
+:::
+
+## La regla del producto: por fin justificamos los árboles
+
+Cuando estudiaste los árboles ponderados aceptaste una regla sin demostración: «a lo largo de un camino se multiplica». Ya podemos justificarla. Basta con **despejar** $P(A\cap B)$ de la definición de probabilidad condicionada.
+
+Partimos de
+
+$$
+P(B\mid A) = \frac{P(A\cap B)}{P(A)}
+$$
+
+y multiplicamos los dos miembros por $P(A)$:
+
+::: {.callout-note}
+## Regla del producto (o de la probabilidad compuesta)
+
+$$
+P(A\cap B) = P(A)\cdot P(B\mid A) = P(B)\cdot P(A\mid B)
+$$
+:::
+
+Y esta expresión es **literalmente la Regla 1 del árbol ponderado**. Cuando multiplicabas $\tfrac{2}{4}\cdot\tfrac{1}{3}$ en una urna sin devolución, estabas aplicando $P(A)\cdot P(B\mid A)$ sin saberlo: el $\tfrac{1}{3}$ era una probabilidad condicionada.
+
+::: {.callout-tip}
+## Lo que acabas de ganar
+
+El árbol ponderado ha dejado de ser una receta y se ha convertido en un **teorema dibujado**. Cada rama de la primera etapa es una probabilidad simple; cada rama posterior es una probabilidad **condicionada** a todo lo que ha ocurrido antes en ese camino; y cada hoja es la probabilidad de una intersección. Ahora sabes exactamente qué estás escribiendo en cada sitio.
+:::
+
+Observa además que la regla del producto se puede leer en **dos direcciones**, y que las dos dan el mismo número:
+
+$$
+P(A)\cdot P(B\mid A) = P(A\cap B) = P(B)\cdot P(A\mid B)
+$$
+
+Esa doble lectura es la que permitirá, al final del tema, «darle la vuelta» a un árbol: es el germen del teorema de Bayes.
+
+### Generalización a tres sucesos
+
+Para tres sucesos la generalización es la que conviene demostrar en clase, porque la demostración es de una línea y usa solo lo que ya tenemos:
+
+$$
+P(A\cap B\cap C) = P(A)\cdot P(B\mid A)\cdot P(C\mid A\cap B)
+$$
+
+**Demostración.** Aplicamos la regla del producto al par formado por el suceso $A\cap B$ y el suceso $C$:
+
+$$
+P\bigl((A\cap B)\cap C\bigr) = P(A\cap B)\cdot P(C\mid A\cap B)
+$$
+
+y sustituimos $P(A\cap B) = P(A)\cdot P(B\mid A)$:
+
+$$
+P(A\cap B\cap C) = P(A)\cdot P(B\mid A)\cdot P(C\mid A\cap B) \qquad \blacksquare
+$$
+
+El patrón se prolonga cuantas etapas quieras: cada factor nuevo está condicionado a **todo lo anterior**.
+
+$$
+P(A_1\cap A_2\cap\cdots\cap A_n) = P(A_1)\cdot P(A_2\mid A_1)\cdot P(A_3\mid A_1\cap A_2)\cdots P(A_n\mid A_1\cap\cdots\cap A_{n-1})
+$$
+
+::: {.callout-caution}
+## Qué NO dice la regla del producto
+
+**No** dice que $P(A\cap B) = P(A)\cdot P(B)$. Esa igualdad, sin la barra, solo es cierta en un caso particular (sucesos independientes) que estudiaremos en el archivo siguiente. Escribirla sin comprobarlo es el error más caro del tema: aparece en casi todos los exámenes corregidos y convierte un problema bien planteado en un resultado sin sentido.
+:::
+
+### Applet · La regla del producto {.unnumbered}
+
+Introduce $P(A)$ y $P(B\mid A)$ y comprueba que el producto coincide con la probabilidad de la intersección; después invierte el orden y comprueba que $P(B)\cdot P(A\mid B)$ da lo mismo.
+
+::: {#panel-regla-producto .applet-panel data-applet-est4="reglaProducto"}
+:::
+
+### Biblioteca
+
+**Enunciado.** En una biblioteca hay 14 mujeres y 10 hombres. De estas personas, 8 mujeres y 5 hombres están leyendo. Elegida una persona al azar, calcula la probabilidad de que sea mujer y esté leyendo.
+
+**Paso 1. Detecto la estructura.** «Sea mujer **y** esté leyendo» es una **intersección**: me piden $P(A\cap B)$. Toca la regla del producto.
+
+**Paso 2. Sucesos y datos.** Hay $14+10=24$ personas en total.
+
+$$
+A = \text{«ser mujer»} \implies P(A) = \frac{14}{24} \approx 0{,}583
+$$
+
+$$
+B\mid A = \text{«leer, sabiendo que es mujer»} \implies P(B\mid A) = \frac{8}{14} \approx 0{,}571
+$$
+
+Fíjate en el denominador del segundo dato: **14, no 24**. Al condicionar a «ser mujer», mi mundo son las 14 mujeres.
+
+**Paso 3. Aplico la regla del producto.**
+
+$$
+P(A\cap B) = P(A)\cdot P(B\mid A) = \frac{14}{24}\cdot\frac{8}{14} = \frac{8}{24} = \frac{1}{3} \approx 0{,}333
+$$
+
+**Comentario final.** Fíjate en cómo el 14 se cancela: el resultado es simplemente «8 de 24», que es lo que habríamos dicho **contando directamente** las 8 mujeres que leen entre las 24 personas. La regla del producto y el recuento directo son la misma cosa vista desde dos ángulos. La cancelación no es una coincidencia de este ejercicio: es la propia definición de condicionada leída al revés.
+
+::: {.callout-note}
+## Entonces, ¿para qué sirve la regla del producto?
+
+Si el recuento directo da lo mismo, ¿por qué complicarse? Porque el recuento directo **solo funciona cuando tienes la tabla completa delante**. En cuanto los datos vienen dados como porcentajes («el 60 % son mujeres y de ellas el 57 % lee»), no hay nada que contar y la regla del producto es el único camino. Y en los problemas de varias etapas (dos extracciones, tres factorías) tampoco existe una tabla que rellenar.
+:::
+
+### Cafetería
+
+**Enunciado.** En una cafetería hay 12 hombres y 10 mujeres. De estas personas, 7 hombres y 4 mujeres están tomando café. Elegida una persona al azar, calcula la probabilidad de que sea mujer y esté tomando café.
+
+**Paso 1. Total de personas:** $12+10=22$.
+
+**Paso 2. Sucesos y datos.** Con $A$ = «ser mujer» y $B$ = «tomar café»:
+
+$$
+P(A) = \frac{10}{22} \approx 0{,}455, \qquad P(B\mid A) = \frac{4}{10} = 0{,}4
+$$
+
+**Paso 3. Regla del producto.**
+
+$$
+P(A\cap B) = \frac{10}{22}\cdot\frac{4}{10} = \frac{4}{22} = \frac{2}{11} \approx 0{,}182
+$$
+
+**Paso 4. Control por recuento directo.** Hay 4 mujeres tomando café de 22 personas: $\tfrac{4}{22}$ $\checkmark$.
+
+**Comentario final.** Vale la pena aprovechar este ejemplo para practicar la lectura de la tabla completa, que aquí sería:
+
+| | Hombres | Mujeres | Total |
+|---|---|---|---|
+| **Toma café** | 7 | 4 | 11 |
+| **No toma café** | 5 | 6 | 11 |
+| **Total** | 12 | 10 | 22 |
+
+: Tabla de contingencia de la cafetería
+
+Con ella a la vista puedes responder a preguntas que el enunciado no hacía. Por ejemplo, «sabiendo que alguien está tomando café, ¿cuál es la probabilidad de que sea mujer?» es $P(A\mid B) = \tfrac{4}{11}\approx 0{,}364$, mientras que $P(B\mid A) = 0{,}4$. Otra vez dos números distintos con el mismo numerador. Y observa un detalle curioso de esta tabla: la mitad exacta de los presentes toma café, $P(B)=\tfrac{11}{22}=0{,}5$, mientras que entre las mujeres solo lo hace el 40 %. Tomar café y ser mujer **no** son sucesos independientes en esta cafetería.
+
+### Applet · Biblioteca y cafetería {.unnumbered}
+
+Cambia la composición del local y quién está haciendo la actividad. El applet muestra a la vez la regla del producto, el recuento directo y la tabla de contingencia, para que veas que los tres caminos llevan al mismo número.
+
+::: {#panel-biblioteca .applet-panel data-applet-est4="biblioteca"}
+:::
+
+## Repaso rápido
+
+- **Condicionar es cambiar de universo**: el suceso condicionante $A$ pasa a ser el nuevo espacio muestral $E'$, y todo lo que queda fuera deja de contar.
+- Versión de Laplace: $P(B\mid A) = \dfrac{\operatorname{card}(A\cap B)}{\operatorname{card}(A)}$, válida solo con equiprobabilidad.
+- Versión general, válida siempre: $P(B\mid A) = \dfrac{P(A\cap B)}{P(A)}$ con $P(A)>0$. Condicionar a un suceso imposible no tiene sentido.
+- **Detrás de la barra va el dato que ya sabes.** Es la regla que evita casi todos los errores del apartado.
+- Fijado el condicionante, la probabilidad condicionada cumple las mismas propiedades que una probabilidad normal: contrario, regla de la suma, suceso seguro y suceso imposible.
+- **Tabla de contingencia**: organiza, completa por diferencias, comprueba los totales, define los sucesos y extrae. Condicionar es elegir una fila o una columna y usar **su** total como denominador.
+- Las dos condicionadas $P(A\mid B)$ y $P(B\mid A)$ comparten numerador (la celda del cruce) y se diferencian en el denominador. Por eso casi nunca valen lo mismo.
+- **Regla del producto**: $P(A\cap B) = P(A)\cdot P(B\mid A) = P(B)\cdot P(A\mid B)$. Es la Regla 1 del árbol ponderado, ya demostrada, y se extiende a tantas etapas como quieras condicionando a todo lo anterior.
+- Cuidado: $P(A\cap B) = P(A)\cdot P(B)$ **no** es la regla del producto, sino un caso particular que hay que justificar.
+
+En el archivo siguiente estudiaremos justamente ese caso particular (la independencia), zanjaremos de una vez la confusión entre «independiente» e «incompatible» y veremos hasta dónde puede llegar el error de invertir un condicionamiento.

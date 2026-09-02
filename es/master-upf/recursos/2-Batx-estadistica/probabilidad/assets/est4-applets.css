@@ -285,6 +285,72 @@
 }
 .applet .ap-tbl-wrap { overflow-x: auto; margin: .55rem 0; }
 
+/* Tabla de contingencia de la parte 2 (helper EST4.contingencia) --- */
+.applet .ap-tblwrap { overflow-x: auto; margin: .55rem 0; }
+.applet .ap-tblcap {
+  margin: .55rem 0 .2rem;
+  font-size: .92rem;
+  font-weight: 700;
+  color: #1a3554;
+  text-align: center;
+}
+.applet .ap-tbl.ap-cont {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  margin: 0;
+}
+.applet .ap-tbl.ap-cont th,
+.applet .ap-tbl.ap-cont td {
+  border: 1px solid #cfd8dc;
+  padding: .5rem .6rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.applet .ap-tbl.ap-cont thead th {
+  background: #334155;
+  color: #fff;
+  font-weight: 700;
+}
+.applet .ap-tbl.ap-cont thead th.ap-corner {
+  background: #1f2c3d;
+  text-align: left;
+}
+.applet .ap-tbl.ap-cont tbody th {
+  background: #eef3fa;
+  color: #1a3554;
+  font-weight: 700;
+  text-align: left;
+}
+.applet .ap-tbl.ap-cont tbody td { background: #fff; color: #263238; }
+.applet .ap-tbl.ap-cont td.ap-tot,
+.applet .ap-tbl.ap-cont th.ap-tot {
+  background: #eceff1;
+  color: #1a3554;
+  font-weight: 700;
+}
+.applet .ap-tbl.ap-cont tbody tr.ap-totrow td,
+.applet .ap-tbl.ap-cont tbody tr.ap-totrow th {
+  background: #eceff1;
+  color: #1a3554;
+  font-weight: 700;
+}
+.applet .ap-tbl.ap-cont td.ap-gran {
+  background: #dde3e7;
+  color: #102a43;
+}
+.applet .ap-tbl.ap-cont tbody td.ap-hl {
+  background: #ffe082;
+  color: #6b4200;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 2px #f9a825;
+}
+.applet .ap-tbl.ap-cont tbody td.ap-hlb {
+  background: #e3f2fd;
+  color: #0d47a1;
+  font-weight: 700;
+}
+
 /* --------------------------------------------------------------------
    5 · Fichas de elementos (sucesos elementales, tuplas, resultados)
    -------------------------------------------------------------------- */

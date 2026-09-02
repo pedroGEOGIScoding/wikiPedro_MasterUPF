@@ -1,0 +1,397 @@
+---
+title: "Tema 4.6 La regla de Laplace"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 06-1-regla-de-laplace
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sucesos equiprobables y experimentos regulares, la definición clásica de probabilidad y su procedimiento en tres pasos, con la urna de tres colores, la baraja española de 40 cartas, la quiniela, la Lotería Primitiva y un caso en dos etapas, todo con applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Hasta este momento ya sabes bastantes cosas: qué es un experimento aleatorio, cómo determinar su espacio muestral $E$, qué es un suceso, cómo combinar sucesos con $\cup$, $\cap$ y $-$, y cómo descomponer un experimento en etapas y representarlo con un árbol.
+
+Y, sin embargo, hay una trampa escondida en todo lo anterior. Hemos usado repetidamente expresiones como «la probabilidad de sacar blanca es $2/4$» **sin haber definido nunca qué es la probabilidad**. Lo hemos hecho apoyándonos en tu intuición, que en los casos sencillos funciona muy bien. Ahora toca cerrar ese hueco.
+
+En este apartado definimos la probabilidad con la definición que el marqués de Laplace formalizó a finales del siglo XVIII y que seguimos usando hoy: una definición tan intuitiva que probablemente ya la estabas aplicando sin saberlo, pero que esconde **una condición que casi todo el mundo olvida comprobar**.
+
+::: {.callout-important}
+## Lee esto antes de seguir
+
+La regla de Laplace es la fórmula más fácil del tema y la que más errores produce. No porque la fórmula sea difícil, sino porque tiene una **condición de uso** y esa condición no aparece en la fórmula. Todo este apartado y el siguiente giran alrededor de esa condición. Si te quedas solo con «favorables partido por posibles», te habrás quedado con la mitad menos importante.
+:::
+
+## Sucesos equiprobables y experimentos regulares
+
+Antes de la fórmula, el vocabulario. Son dos palabras y hay que distinguirlas con precisión, porque una se aplica a **sucesos** y la otra a **experimentos**.
+
+::: {.callout-note}
+## Definición: equiprobable y regular
+
+Dos o más sucesos son **equiprobables** cuando todos tienen la misma probabilidad de ocurrir.
+
+Un experimento aleatorio es **regular** cuando **todos sus sucesos elementales** son equiprobables.
+:::
+
+Fíjate en la asimetría de las dos definiciones. «Equiprobables» puede decirse de cualquier colección de sucesos: «sacar par» y «sacar impar» son equiprobables en un dado normal. «Regular» es una propiedad del experimento entero y exige que la equiprobabilidad se dé **en el nivel más fino posible**, el de los sucesos elementales.
+
+### Ejemplos de experimentos regulares {.unnumbered}
+
+- **Lanzar un dado no trucado**: las seis caras son simétricas.
+- **Lanzar una moneda equilibrada**: las dos caras son simétricas.
+- **Extraer una bola de una urna sin mirar**: todas las bolas tienen la misma posibilidad de ser cogidas.
+- **Elegir un alumno al azar de la clase**: todos tienen la misma probabilidad de ser elegidos.
+
+### Ejemplos de experimentos no regulares {.unnumbered}
+
+- **Lanzar un dado cargado.**
+- **Lanzar una chincheta** y ver si cae con la punta hacia arriba: no hay ninguna simetría que garantice equiprobabilidad.
+- **Preguntar a alguien si le gusta el fútbol**: las respuestas «sí» y «no» no tienen por qué repartirse al 50 %.
+
+::: {.callout-tip}
+## La palabra clave es simetría física
+
+Un dado es regular porque sus seis caras son geométricamente indistinguibles salvo por la marca. Una chincheta no lo es porque su forma privilegia una posición de caída.
+
+La equiprobabilidad **no es una opinión ni una comodidad de cálculo**: es una consecuencia de una simetría que puedes señalar con el dedo. Cuando no puedas señalarla, no la supongas.
+:::
+
+Presta atención a un caso que parece contradictorio y no lo es. Si eliges al azar un alumno de una clase con 18 chicas y 12 chicos, el experimento **es regular**: los 30 alumnos son equiprobables, porque el sorteo no distingue. Pero los sucesos «chica» y «chico» **no** son equiprobables entre sí, porque uno reúne 18 casos y el otro 12. Regular se refiere a los elementales; los sucesos compuestos tienen el tamaño que tengan.
+
+::: {.callout-warning}
+## El error que hay que evitar toda la vida
+
+«El experimento es regular» y «los dos sucesos que me interesan son equiprobables» son afirmaciones **distintas**. La primera es la que autoriza a usar Laplace. La segunda es una casualidad que a veces se da y a veces no.
+:::
+
+### Applet · Detector de equiprobabilidad {.unnumbered}
+
+Antes de calcular una sola probabilidad, entrena el paso 0: decidir si el experimento tiene una simetría física que justifique la equiprobabilidad. Prueba los escenarios y fíjate en cuáles son regulares aunque los sucesos que interesan no sean equiprobables.
+
+::: {#panel-equiprobable .applet-panel data-applet-est4="equiprobable"}
+:::
+
+## La regla de Laplace
+
+::: {.callout-note}
+## Definición: regla de Laplace
+
+En un experimento aleatorio **regular**, la probabilidad de un suceso $A$ se calcula como el cociente entre el número de casos favorables a $A$ y el número de casos posibles:
+
+$$
+P(A) = \frac{n(A)}{n(E)} = \frac{\operatorname{card}(A)}{\operatorname{card}(E)}
+$$
+
+donde:
+
+- $n(A) = \operatorname{card}(A)$ es el número de **casos favorables**, es decir, el número de sucesos elementales que contiene el suceso $A$;
+- $n(E) = \operatorname{card}(E)$ es el número de **casos posibles**, es decir, el número total de sucesos elementales del espacio muestral.
+:::
+
+En su formulación verbal clásica, la que probablemente ya conocías:
+
+$$
+P(A) = \frac{\#\text{casos favorables a } A}{\#\text{casos posibles}}
+$$
+
+### El procedimiento en tres pasos {.unnumbered}
+
+Este es el guion que debes seguir siempre, **sin saltarte el primero**:
+
+1. **Paso 1. Comprobar que el experimento es regular.** Si no lo es, la regla de Laplace no se puede aplicar y hay que buscar otra vía.
+2. **Paso 2. Contar.** Determinar el número de casos posibles $\operatorname{card}(E)$ y el de casos favorables $\operatorname{card}(A)$, usando si es necesario los métodos de recuento del espacio muestral: árbol, tabla de doble entrada o combinatoria.
+3. **Paso 3. Aplicar la fórmula** y, si procede, expresar el resultado como fracción, decimal y porcentaje.
+
+::: {.callout-important}
+## La imagen mental correcta
+
+La probabilidad mide **qué fracción del espacio muestral ocupa el suceso**. Imagina $E$ como una tarta partida en $n$ porciones iguales; $P(A)$ es la parte de tarta que cubre $A$.
+
+Si los sucesos elementales no tienen todos el mismo «tamaño», la fracción deja de tener sentido: estarías sumando porciones grandes y pequeñas como si midieran lo mismo. Por eso el Paso 1 **no es un formalismo**, es la condición que hace que la cuenta signifique algo.
+:::
+
+Una observación de método que te ahorrará disgustos: el paso 2 es un problema de **recuento**, no de probabilidad. Todo lo que aprendiste en combinatoria y en la construcción del espacio muestral se usa aquí, y el paso 3 es una división. Es decir, calcular probabilidades con Laplace es, en el 90 % del trabajo, contar bien.
+
+### Applet · La regla de Laplace paso a paso {.unnumbered}
+
+Introduce el espacio muestral y el suceso, y el applet reproduce los tres pasos: comprobación, recuento y cociente en fracción, decimal y porcentaje. Escribe los conjuntos entre llaves y separados por comas, por ejemplo `{1, 2, 3, 4, 5, 6}` para $E$ y `{2, 4, 6}` para $A$.
+
+::: {#panel-laplace .applet-panel data-applet-est4="laplace"}
+:::
+
+### Urna de tres colores
+
+**Enunciado.** Una urna contiene 3 bolas rojas, 5 azules y 1 verde. Si se extrae una bola al azar, ¿cuál es la probabilidad de que sea roja?
+
+**Paso 1.** Todas las bolas tienen la misma probabilidad de ser extraídas, porque se extrae sin mirar y las bolas solo se distinguen por el color, no por el tacto ni por el tamaño: el experimento **es regular**.
+
+**Paso 2.** Contamos:
+
+$$
+\operatorname{card}(E) = 3 + 5 + 1 = 9, \qquad \operatorname{card}(A) = 3
+$$
+
+**Paso 3.** Aplicamos la fórmula:
+
+$$
+P(A) = \frac{3}{9} = \frac{1}{3} \approx 0{,}333 = 33{,}3\ \%
+$$
+
+**Comentario final.** Observa dos detalles. El primero: $\operatorname{card}(E)$ es el **número de bolas**, no el número de colores. Si alguien contesta $1/3$ pensando «hay tres colores, así que un tercio para cada uno», acierta por casualidad en este caso y falla estrepitosamente en el siguiente. El segundo: la fracción se simplifica, y conviene dejarla simplificada además de dar el decimal.
+
+### Urna de otra composición
+
+**Enunciado.** Una urna contiene 5 bolas azules, 2 rojas y 3 verdes. Calcula la probabilidad de extraer una verde.
+
+$$
+\operatorname{card}(E) = 5 + 2 + 3 = 10, \qquad \operatorname{card}(A) = 3
+$$
+
+$$
+P(A) = \frac{3}{10} = 0{,}3 = 30\ \%
+$$
+
+**Comentario final.** Aquí se ve por qué el «un tercio por color» del comentario anterior era una trampa: también hay tres colores y la probabilidad del verde **no** es $1/3$, sino $3/10$. Lo que importa es cuántos sucesos elementales (bolas) reúne el suceso, no cuántas etiquetas distintas existen.
+
+### Applet · Urna de tres colores {.unnumbered}
+
+Cambia el número de bolas de cada color y comprueba cómo se mueven las tres probabilidades. Introduce los recuentos como números enteros, por ejemplo `3`, `5` y `1` para la primera urna del ejemplo. Fíjate en que las tres probabilidades siempre suman 1.
+
+::: {#panel-urna-tres-colores .applet-panel data-applet-est4="urnaTresColores"}
+:::
+
+### Baraja española de 40 cartas
+
+**Enunciado.** Se extrae una carta al azar de una baraja española de 40 cartas. Calcula la probabilidad de que sea: una espada, una figura, un as, una figura de bastos, el as de oros o el as de copas, y el rey de espadas.
+
+**Paso 1.** La baraja se ha barajado y se extrae sin ver: las 40 cartas son equiprobables. Experimento regular, $\operatorname{card}(E) = 40$.
+
+**Pasos 2 y 3.** Cada suceso solo exige contar cuántas cartas lo cumplen:
+
+| Suceso | Casos favorables | Probabilidad |
+|---|---|---|
+| Una espada | 10 | $\dfrac{10}{40} = \dfrac{1}{4} = 0{,}25$ |
+| Una figura | 12 | $\dfrac{12}{40} = \dfrac{3}{10} = 0{,}30$ |
+| Un as | 4 | $\dfrac{4}{40} = \dfrac{1}{10} = 0{,}10$ |
+| Una figura de bastos | 3 | $\dfrac{3}{40} = 0{,}075$ |
+| El as de oros o el as de copas | 2 | $\dfrac{2}{40} = \dfrac{1}{20} = 0{,}05$ |
+| El rey de espadas | 1 | $\dfrac{1}{40} = 0{,}025$ |
+
+: Probabilidades de la baraja española de 40 cartas
+
+::: {.callout-tip}
+## Concretar cuesta
+
+Observa la progresión de la tabla: a medida que el suceso es más específico, el numerador baja y la probabilidad se hunde. De $0{,}25$ a $0{,}025$ hay un factor 10 y, sin embargo, los dos sucesos se describen con frases igual de cortas.
+
+Ese es el sentido intuitivo de **«concretar cuesta»**: cada condición que añades al enunciado recorta el conjunto de casos favorables, y por tanto la probabilidad. Es la misma idea que reencontrarás en la probabilidad condicionada, cuando el espacio muestral se encoja al recibir información.
+:::
+
+**Comentario final.** Repasa de dónde salen los recuentos, porque son los mismos de todo el tema: 4 palos $\times$ 10 cartas $= 40$; figuras, sota, caballo y rey de cada palo, $3 \cdot 4 = 12$; figuras de bastos, solo las tres de ese palo. Si dudas de un recuento, escribe el conjunto: es más lento, pero nunca falla.
+
+### Applet · Baraja española de 40 cartas {.unnumbered}
+
+Elige el suceso con los selectores (palo, valor, tipo de carta) y el applet te da los casos favorables, la fracción simplificada, el decimal y el porcentaje. Prueba a combinar condiciones y compara con los seis casos de la tabla anterior.
+
+::: {#panel-baraja-laplace .applet-panel data-applet-est4="barajaLaplace"}
+:::
+
+### Una ambigüedad del lenguaje que conviene explotar
+
+**Enunciado.** Calcula la probabilidad de que al lanzar un dado se obtenga un número entre 2 y 5.
+
+Aquí hay una trampa, pero es **del idioma, no de las matemáticas**. ¿«Entre 2 y 5» incluye el 2 y el 5?
+
+**Lectura inclusiva.** $A = \{2, 3, 4, 5\}$, luego
+
+$$
+P(A) = \frac{4}{6} = \frac{2}{3} \approx 0{,}667
+$$
+
+**Lectura exclusiva.** $A = \{3, 4\}$, luego
+
+$$
+P(A) = \frac{2}{6} = \frac{1}{3} \approx 0{,}333
+$$
+
+Las dos cuentas son impecables y los resultados difieren en un factor 2. No hay ningún error de cálculo: hay un enunciado mal redactado.
+
+::: {.callout-important}
+## La lección de método, que vale más que el resultado
+
+La convención habitual en matemáticas es la **inclusiva**, así que si te encuentras esto en un examen escribe $2/3$ y añade una línea diciendo qué interpretación has tomado.
+
+Pero lo importante es el hábito: **antes de calcular, escribe el suceso como conjunto**. Si el conjunto es ambiguo, el enunciado está mal redactado y hay que decirlo. Escribir $A = \{2,3,4,5\}$ obliga a decidir; escribir «entre 2 y 5» permite no decidir, y no decidir es el origen del error.
+:::
+
+Practica esta traducción con expresiones parecidas, todas sobre el dado:
+
+| Expresión del enunciado | Conjunto | Probabilidad |
+|---|---|---|
+| «Mayor que 4» | $\{5, 6\}$ | $\dfrac{2}{6} = \dfrac{1}{3}$ |
+| «Al menos 4» | $\{4, 5, 6\}$ | $\dfrac{3}{6} = \dfrac{1}{2}$ |
+| «Como mucho 2» | $\{1, 2\}$ | $\dfrac{2}{6} = \dfrac{1}{3}$ |
+| «No menor que 3» | $\{3, 4, 5, 6\}$ | $\dfrac{4}{6} = \dfrac{2}{3}$ |
+
+: Expresiones frecuentes y su traducción a conjunto
+
+Fíjate en que «mayor que 4» y «al menos 4» **no** son lo mismo, ni «como mucho 2» y «menor que 2». En cada caso, el que decide es el conjunto escrito, no la sensación al leer la frase.
+
+### Applet · La ambigüedad del enunciado {.unnumbered}
+
+Escribe una expresión del lenguaje natural, elige la interpretación inclusiva o exclusiva y compara las dos probabilidades resultantes. Verás que muchas frases cotidianas admiten dos conjuntos distintos, y por tanto dos respuestas distintas.
+
+::: {#panel-ambiguedad .applet-panel data-applet-est4="ambiguedad"}
+:::
+
+## Laplace combinada con combinatoria
+
+Cuando $\operatorname{card}(E)$ es enorme, la regla de Laplace **sigue valiendo palabra por palabra**. Lo único que cambia es que los casos se cuentan con combinatoria en lugar de listarlos.
+
+Esta es la razón de ser del apartado de combinatoria del curso. No era un tema aparte: era la herramienta del paso 2.
+
+::: {.callout-tip}
+## Cómo elegir la fórmula de recuento
+
+Para contar $\operatorname{card}(E)$, hazte las tres preguntas de siempre:
+
+1. ¿Influye el **orden**?
+2. ¿Se pueden **repetir** los elementos?
+3. ¿Se usan **todos** los elementos o solo algunos?
+
+Con esas tres respuestas eliges entre permutaciones, variaciones, variaciones con repetición, combinaciones y combinaciones con repetición. La probabilidad no añade ninguna dificultad nueva: solo divide.
+:::
+
+### Los 14 de la quiniela
+
+**Enunciado.** Halla la probabilidad de acertar los 14 resultados de la quiniela rellenándola al azar, lanzando un dado de seis caras con dos caras marcadas con `1`, dos con `X` y dos con `2`.
+
+**Paso 1.** Como el dado tiene **dos caras por símbolo**, los tres símbolos son equiprobables y el experimento es regular. Si el dado tuviera 3 caras con `1`, 2 con `X` y 1 con `2`, no lo sería, y este cálculo quedaría invalidado. Vuelve a esta frase cuando llegues al apartado siguiente: ahí está justamente ese dado asimétrico.
+
+**Paso 2.** Hay que rellenar 14 casillas con 3 símbolos. Influye el orden (la casilla 1 y la casilla 7 no son intercambiables) y los símbolos se repiten, así que son **variaciones con repetición**:
+
+$$
+\operatorname{card}(E) = VR_{3,14} = 3^{14} = 4\,782\,969, \qquad \operatorname{card}(A) = 1
+$$
+
+Hay un único boleto correcto: el que coincide con los 14 resultados reales.
+
+**Paso 3.**
+
+$$
+P(A) = \frac{1}{3^{14}} = \frac{1}{4\,782\,969} \approx 0{,}00000021
+$$
+
+**Comentario final.** Casi 5 millones de boletos posibles. Y esto **suponiendo que los tres resultados de un partido sean equiprobables**, que es falso: en el fútbol real gana más veces el local. La quiniela es un ejemplo perfecto de modelo idealizado que sirve para hacer la cuenta, pero cuya hipótesis conviene enunciar en voz alta.
+
+### Applet · Los 14 de la quiniela {.unnumbered}
+
+Cambia el número de partidos y el número de símbolos y observa cómo crece $\operatorname{card}(E)$. Introduce enteros, por ejemplo `14` partidos y `3` símbolos. Prueba también con 15 partidos para ver el efecto de añadir una sola casilla.
+
+::: {#panel-quiniela .applet-panel data-applet-est4="quiniela"}
+:::
+
+### Lotería Primitiva
+
+**Enunciado.** Halla la probabilidad de acertar los 6 números de la Lotería Primitiva.
+
+**Paso 1.** Se extraen 6 bolas de una urna con 49, todas con la misma probabilidad de salir: experimento regular.
+
+**Paso 2.** No influye el orden (el boleto acierta igual salgan los números en el orden que salgan) ni hay repetición (una bola extraída no vuelve al bombo), luego son **combinaciones**:
+
+$$
+\operatorname{card}(E) = C_{49,6} = \binom{49}{6} = 13\,983\,816, \qquad \operatorname{card}(A) = 1
+$$
+
+**Paso 3.**
+
+$$
+P(A) = \frac{1}{13\,983\,816} \approx 0{,}0000000715
+$$
+
+::: {.callout-note}
+## Dar escala a un número diminuto
+
+Un número como $0{,}0000000715$ no dice nada a la intuición. Traducirlo sí:
+
+- Equivale a acertar **una vez cada 14 millones de apuestas**.
+- Si jugaras **una apuesta semanal**, tardarías de media unos **269 000 años** en acertar.
+- Compáralo con la probabilidad de que te caiga un rayo a lo largo de la vida, que en muchos países se estima en torno a **1 entre 15 000**.
+
+Es decir: es del orden de mil veces más probable que te alcance un rayo que acertar la Primitiva con una apuesta. Poner en contexto una probabilidad pequeña es parte del resultado, no un adorno.
+:::
+
+**Comentario final.** Compara las dos cuentas anteriores. La quiniela usa $VR_{3,14}$ porque el orden importa y hay repetición; la Primitiva usa $C_{49,6}$ porque el orden no importa y no hay repetición. Los dos enunciados suenan igual («acertar todo»), y la fórmula es distinta. La pregunta que decide es siempre la misma: ¿qué distingue un resultado de otro?
+
+### Applet · Lotería Primitiva {.unnumbered}
+
+Cambia el tamaño del bombo y la cantidad de números que se extraen, e introduce cuántos aciertas para ver la probabilidad de cada categoría de premio. Introduce enteros, por ejemplo `49` bolas y `6` extraídas.
+
+::: {#panel-primitiva .applet-panel data-applet-est4="primitiva"}
+:::
+
+### Un caso con dos etapas
+
+**Enunciado.** De una urna con ocho bolas numeradas del 1 al 8 se extraen consecutivamente dos y se anota el número de dos cifras que se forma con sus dígitos. Calcula la probabilidad de que sea múltiplo de 5.
+
+**Paso 1.** Todas las bolas son equiprobables en cada extracción; el experimento compuesto es regular sobre las **parejas ordenadas** de bolas distintas.
+
+**Paso 2, casos posibles.** Extracción sin devolución en la que **importa el orden**, porque la bola 3 seguida de la 7 da el número 37 y al revés da el 73:
+
+$$
+\operatorname{card}(E) = V_{8,2} = 8 \cdot 7 = 56
+$$
+
+**Paso 2, casos favorables.** Un número es múltiplo de 5 si acaba en 0 o en 5. El 0 no está disponible, así que la **segunda** bola debe ser el 5; la primera puede ser cualquiera de las 7 restantes:
+
+$$
+\operatorname{card}(A) = 7
+$$
+
+**Paso 3.**
+
+$$
+P(A) = \frac{7}{56} = \frac{1}{8} = 0{,}125
+$$
+
+**Comentario final.** Este ejemplo es un buen resumen del apartado, porque en él se juntan tres cosas: una condición de divisibilidad que hay que traducir a una condición sobre las cifras, un recuento con orden y sin repetición, y una simplificación limpia. Y observa el papel del 0: **no está en la urna**, y esa ausencia elimina la mitad de los casos favorables que uno esperaría de memoria.
+
+::: {.callout-warning}
+## Un error frecuente en este ejercicio
+
+Muchas respuestas dan $\operatorname{card}(A) = 8$ porque cuentan «cualquiera de las ocho bolas en primer lugar». Pero la bola 5 ya está usada como segunda cifra y no puede ser también la primera: no hay devolución. Los favorables son 7, no 8. Cuando el recuento sea delicado, escribe unos cuantos casos a mano: $15, 25, 35, 45, 65, 75, 85$. Son siete.
+:::
+
+### Applet · Laplace en dos etapas {.unnumbered}
+
+Elige el tamaño de la urna, si hay devolución o no y la condición sobre el número formado, y el applet lista los casos favorables uno a uno junto al recuento total. Comprueba con `8` bolas, sin devolución y la condición «múltiplo de 5» que salen exactamente los siete casos del ejemplo.
+
+::: {#panel-dos-etapas .applet-panel data-applet-est4="dosEtapas"}
+:::
+
+## Repaso rápido {.unnumbered}
+
+- Dos sucesos son **equiprobables** si tienen la misma probabilidad; un experimento es **regular** si **todos sus sucesos elementales** son equiprobables. No es lo mismo.
+- La equiprobabilidad se justifica por **simetría física** (dado, moneda, urna, sorteo), no por comodidad ni por ignorancia.
+- **Regla de Laplace**, válida solo en experimentos regulares:
+  $$
+  P(A) = \frac{\operatorname{card}(A)}{\operatorname{card}(E)} = \frac{\#\text{favorables}}{\#\text{posibles}}
+  $$
+- Procedimiento en tres pasos: **comprobar la regularidad**, **contar** favorables y posibles, **dividir** y expresar en fracción, decimal y porcentaje.
+- La imagen mental: la probabilidad es la **fracción del espacio muestral** que ocupa el suceso. Solo tiene sentido si todas las porciones miden lo mismo.
+- Cuando $\operatorname{card}(E)$ es enorme, se cuenta con **combinatoria**: $VR_{3,14} = 3^{14}$ en la quiniela, $C_{49,6}$ en la Primitiva, $V_{8,2}$ en la urna de dos extracciones.
+- Antes de calcular, **escribe el suceso como conjunto**. Si el conjunto es ambiguo («entre 2 y 5»), el enunciado lo es.
+- Un experimento puede ser regular y, a la vez, tener sucesos de interés que no sean equiprobables: elegir un alumno de una clase con 18 chicas y 12 chicos.
+
+En el apartado siguiente vamos a lo importante de verdad: **cuándo esta fórmula no se puede usar**, qué se hace entonces y por qué la definición clásica, siendo tan útil, tiene un agujero lógico que los matemáticos tardaron un siglo en cerrar.

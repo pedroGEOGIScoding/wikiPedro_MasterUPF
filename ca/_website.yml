@@ -175,6 +175,14 @@ website:
         - master-upf/recursos/timelapse-videos.qmd
         - master-upf/recursos/timelapse-cdse.qmd
         - master-upf/recursos/solar_system_visor.qmd
+    - id: "website-map"
+      title: "Arxius"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - master-upf/listing-pages.qmd
     - id: "about"
       title: "Sobre mí"
       style: "docked"
@@ -194,16 +202,6 @@ website:
         - master-upf/about/about-this-images-credit.qmd
         - text: "El meu racó de programador"
           href: https://pedrogeogisdev.com/
-
-    - id: "website-map"
-      title: "Arxius"
-      style: "docked"
-      background: light
-      collapse-level: 0
-      align: center
-      contents:
-        - master-upf/listing-pages.qmd
-
   page-footer:
     background: primary
     left: © by Pedro 2025 fet amb [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)

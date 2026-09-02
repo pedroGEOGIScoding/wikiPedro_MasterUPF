@@ -1,0 +1,382 @@
+---
+title: "Tema 4.7 Propiedades básicas de la probabilidad"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 07-1-propiedades-basicas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cómo se obtienen las propiedades de la probabilidad dividiendo las del recuento, el rango entre 0 y 1 en sus tres escalas, el suceso seguro y el imposible, la suma de los sucesos elementales como control de errores y la propiedad del suceso contrario con la estrategia del «al menos», con applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+En los apartados anteriores has visto cómo contar los elementos de un suceso y has definido la probabilidad como un cociente entre esos recuentos. La consecuencia es inmediata y merece un recuadro propio:
+
+::: {.callout-important}
+## La idea que ahorra memorizar un tema entero
+
+**Todas las propiedades de la probabilidad se obtienen dividiendo por $\operatorname{card}(E)$ las propiedades del recuento que ya conoces.**
+
+No hay que aprender un bloque nuevo de fórmulas. Hay que **reconocer las de siempre en otra escala**.
+:::
+
+Veámoslo con la propiedad más importante de todas. Teníamos, del apartado de operaciones con sucesos, la fórmula de recuento de la unión:
+
+$$
+\operatorname{card}(A \cup B) = \operatorname{card}(A) + \operatorname{card}(B) - \operatorname{card}(A \cap B)
+$$
+
+Dividimos los dos miembros entre $\operatorname{card}(E)$, que es un número fijo y positivo:
+
+$$
+\frac{\operatorname{card}(A \cup B)}{\operatorname{card}(E)} = \frac{\operatorname{card}(A)}{\operatorname{card}(E)} + \frac{\operatorname{card}(B)}{\operatorname{card}(E)} - \frac{\operatorname{card}(A \cap B)}{\operatorname{card}(E)}
+$$
+
+y, por la regla de Laplace, cada uno de esos cocientes **es** una probabilidad. Es decir, esto es exactamente
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+
+Acabamos de demostrar la propiedad más importante del apartado en tres líneas y sin ninguna idea nueva. La estudiaremos con detalle en el documento siguiente; aquí empezamos por las propiedades elementales, que fijan el marco de todo lo demás.
+
+::: {.callout-note}
+## Un matiz honesto sobre las demostraciones de este apartado
+
+Todas las justificaciones que verás aquí usan la regla de Laplace, así que estrictamente valen para experimentos regulares. Pero el resultado final es **mucho más general**: las propiedades siguen siendo verdaderas en el dado cargado del apartado anterior, donde Laplace no se puede aplicar.
+
+La razón es que, en la construcción moderna de la teoría, algunas de estas propiedades **se toman como axiomas** y el resto se deducen. Laplace es aquí un andamio didáctico: te permite ver por qué las fórmulas son razonables. Que sean verdaderas en general es un resultado más profundo, y lo comprobarás en la práctica cada vez que resuelvas un ejercicio con un dado trucado.
+:::
+
+## Propiedades básicas
+
+Las tres primeras propiedades son tan elementales que casi parecen obvias. No las desprecies: son las que permiten detectar que un resultado está mal antes de revisar el razonamiento entero.
+
+### El rango de la probabilidad
+
+::: {.callout-note}
+## Propiedad: rango
+
+La probabilidad de cualquier suceso es siempre mayor o igual que 0 y menor o igual que 1:
+
+$$
+0 \leq P(A) \leq 1
+$$
+:::
+
+**Justificación con Laplace.** Como $A \subseteq E$, se cumple
+
+$$
+0 \leq \operatorname{card}(A) \leq \operatorname{card}(E)
+$$
+
+y dividiendo los tres miembros entre $\operatorname{card}(E) > 0$ se obtiene el resultado directamente. El extremo inferior corresponde al suceso vacío y el superior a $A = E$.
+
+Conviene que manejes con soltura las **tres escalas** en que se expresa una probabilidad, porque los enunciados cambian de una a otra sin avisar:
+
+| Fracción | Decimal | Porcentaje | Significado |
+|---|---|---|---|
+| $0$ | $0$ | $0$ | Imposible |
+| $1/4$ | $0{,}25$ | $25$ | Poco probable |
+| $1/2$ | $0{,}5$ | $50$ | Tan probable como no |
+| $3/4$ | $0{,}75$ | $75$ | Bastante probable |
+| $1$ | $1$ | $100$ | Seguro |
+
+: Rangos de probabilidad y su lectura
+
+::: {.callout-tip}
+## Consecuencia práctica inmediata
+
+Si en un problema obtienes $P = 1{,}4$ o $P = -0{,}2$, **no hace falta revisar el razonamiento entero**: el error está garantizado. Y además suele ser uno de estos dos:
+
+- un **recuento mal hecho** (has contado más favorables que posibles);
+- una **suma indebida de sucesos compatibles** (has aplicado $P(A) + P(B)$ sin restar la intersección).
+
+Acostúmbrate a mirar el resultado antes de entregarlo. Es el control de calidad más rápido que existe.
+:::
+
+Un detalle de vocabulario que conviene fijar: la probabilidad **no tiene unidades**. Es un cociente entre dos recuentos, así que las unidades se cancelan. Por eso puede expresarse indistintamente como fracción, decimal o porcentaje: son tres formas de escribir el mismo número puro.
+
+### Ejemplo resuelto: detectar el error solo por el rango {.unnumbered}
+
+**Enunciado.** Un alumno resuelve así un ejercicio: «En una baraja de 40 cartas, $A$ = sacar figura y $B$ = sacar copas. La probabilidad de sacar figura o copas es $P(A) + P(B) = 0{,}30 + 0{,}25 = 0{,}55$». ¿Es correcto?
+
+**Paso 1.** El rango no delata nada: $0{,}55$ está entre 0 y 1. Así que el control rápido no basta aquí, y hay que mirar la estructura.
+
+**Paso 2.** Los sucesos $A$ y $B$ **son compatibles**: existen figuras de copas. Sumar sin restar cuenta esas tres cartas dos veces.
+
+**Paso 3.** El valor correcto es
+
+$$
+P(A \cup B) = 0{,}30 + 0{,}25 - \frac{3}{40} = 0{,}30 + 0{,}25 - 0{,}075 = 0{,}475
+$$
+
+**Comentario final.** Dos lecciones. La primera: el control del rango detecta muchos errores, pero **no todos**; un error puede producir un número perfectamente presentable. La segunda: si en el mismo problema le hubieran preguntado por «figura o de oros o de copas o de espadas», la suma ingenua daría $0{,}30 + 0{,}25 \cdot 3 = 1{,}05 > 1$, y ahí el rango sí habría cantado el error.
+
+### Applet · El rango de la probabilidad {.unnumbered}
+
+Introduce una probabilidad en cualquiera de las tres escalas (por ejemplo `0,25`, `1/4` o `25%`) y el applet la traduce a las otras dos, la sitúa en la recta $[0,1]$ y rechaza con un mensaje explicativo los valores imposibles como `1,4` o `-0,2`.
+
+::: {#panel-rango .applet-panel data-applet-est4="rango"}
+:::
+
+### Suceso seguro y suceso imposible
+
+::: {.callout-note}
+## Propiedad: suceso seguro e imposible
+
+$$
+P(E) = 1, \qquad P(\varnothing) = 0
+$$
+:::
+
+**Justificación.** Con Laplace es inmediato:
+
+$$
+P(E) = \frac{\operatorname{card}(E)}{\operatorname{card}(E)} = 1, \qquad P(\varnothing) = \frac{0}{\operatorname{card}(E)} = 0
+$$
+
+Estas dos igualdades son los extremos del rango, y tienen una lectura verbal que conviene decir en voz alta: el suceso seguro es el que ocurre **siempre**, porque contiene todos los resultados posibles; el imposible es el que no ocurre **nunca**, porque no contiene ninguno.
+
+::: {.callout-warning}
+## Una advertencia que ampliaremos más adelante
+
+Las implicaciones «$A = E \Rightarrow P(A) = 1$» y «$A = \varnothing \Rightarrow P(A) = 0$» son verdaderas siempre. Las recíprocas, en cambio, **no lo son en general**: puede haber sucesos no vacíos con probabilidad 0.
+
+En los espacios muestrales **finitos** de este curso, si todos los sucesos elementales tienen probabilidad positiva, entonces $P(A) = 0$ sí obliga a que $A = \varnothing$. Pero en cuanto aparezcan variables continuas la cosa cambia. Volveremos sobre esto en el documento siguiente.
+:::
+
+### La suma de los sucesos elementales
+
+::: {.callout-note}
+## Propiedad: la suma de los elementales vale 1
+
+Si $E = \{e_1, e_2, \dots, e_n\}$, entonces
+
+$$
+\sum_{i=1}^{n} P(e_i) = P(e_1) + P(e_2) + \cdots + P(e_n) = 1
+$$
+:::
+
+Esta es la propiedad que ya usábamos como **control de errores en los árboles ponderados**, cuando comprobábamos que las probabilidades de todas las ramas finales sumaban 1. Ahora ya sabes de dónde sale: los sucesos elementales son incompatibles dos a dos y su unión es $E$, cuya probabilidad vale 1.
+
+En un experimento **regular** con $n$ sucesos elementales, además:
+
+$$
+P(e_i) = \frac{1}{n} \quad \text{para todo } i
+$$
+
+Pero fíjate bien en el orden lógico: la primera igualdad vale **siempre**; la segunda solo en experimentos regulares. Es el mismo reparto de papeles del apartado anterior.
+
+::: {.callout-tip}
+## Cómo se usa esta propiedad para resolver problemas
+
+Se usa **en las dos direcciones**:
+
+1. **Como comprobación.** Calculas todas las probabilidades elementales, las sumas y verificas que da 1. Si no da 1, hay un error y sabes que está en el reparto.
+2. **Como ecuación.** Si conoces todas las probabilidades menos una, la que falta se **despeja**. Es lo que hacías con el dado trucado en el que $P(6) = 0{,}25$ y las cinco caras restantes se reparten $0{,}75$.
+
+La segunda dirección es la que más ejercicios resuelve, y casi nadie la ve la primera vez.
+:::
+
+### Ejemplo resuelto: despejar una probabilidad desconocida {.unnumbered}
+
+**Enunciado.** Una urna contiene bolas de tres colores. Se sabe que $P(\text{roja}) = 0{,}45$ y $P(\text{azul}) = 0{,}30$. ¿Cuánto vale $P(\text{verde})$?
+
+**Paso 1.** Los tres colores son los sucesos elementales del experimento «extraer una bola y anotar el color» y son incompatibles entre sí: una bola no puede ser roja y azul.
+
+**Paso 2.** Por la propiedad de la suma de los elementales,
+
+$$
+P(\text{roja}) + P(\text{azul}) + P(\text{verde}) = 1
+$$
+
+**Paso 3.** Despejamos:
+
+$$
+P(\text{verde}) = 1 - 0{,}45 - 0{,}30 = 0{,}25
+$$
+
+**Comentario final.** Observa que **no hemos necesitado saber cuántas bolas hay**. La propiedad de la suma actúa como una ecuación con una incógnita, y eso la hace utilísima cuando el enunciado da porcentajes en lugar de recuentos. Este es el patrón de casi todos los problemas de dados trucados y de encuestas.
+
+### Ejemplo resuelto: un reparto proporcional {.unnumbered}
+
+**Enunciado.** Un dado está trucado de forma que la probabilidad de cada cara es proporcional a su valor. Halla la probabilidad de cada cara.
+
+**Paso 1.** «Proporcional al valor» significa que existe una constante $k$ tal que $P(i) = k \cdot i$ para $i = 1, \dots, 6$.
+
+**Paso 2.** Aplicamos la propiedad de la suma de los elementales:
+
+$$
+k \cdot 1 + k \cdot 2 + k \cdot 3 + k \cdot 4 + k \cdot 5 + k \cdot 6 = 1
+$$
+
+$$
+k \, (1+2+3+4+5+6) = 21k = 1 \Rightarrow k = \frac{1}{21}
+$$
+
+**Paso 3.** Por tanto
+
+$$
+P(1) = \frac{1}{21}, \quad P(2) = \frac{2}{21}, \quad P(3) = \frac{3}{21}, \quad P(4) = \frac{4}{21}, \quad P(5) = \frac{5}{21}, \quad P(6) = \frac{6}{21}
+$$
+
+**Comentario final.** Ahí está el famoso 21 del dado cargado: no era un número arbitrario, era la constante de normalización que fuerza que el total valga 1. Y el método (poner una constante, sumar, despejar) sirve para cualquier enunciado del tipo «proporcional a…».
+
+### Applet · La suma de los sucesos elementales {.unnumbered}
+
+Reparte probabilidades entre los sucesos elementales y el applet te avisa en rojo si la suma no vale 1, indicando cuánto falta o cuánto sobra. Escribe los valores separados por comas, por ejemplo `0,45; 0,30` y deja una casilla en blanco para que la despeje.
+
+::: {#panel-suma-elementales .applet-panel data-applet-est4="sumaElementales"}
+:::
+
+## La propiedad del suceso contrario
+
+::: {.callout-note}
+## Propiedad: suceso contrario
+
+Esta es, en la práctica, la propiedad **más rentable de todo el tema**. La probabilidad de cualquier suceso es igual a 1 menos la probabilidad de su contrario:
+
+$$
+P(\overline{A}) = 1 - P(A) \iff P(A) = 1 - P(\overline{A})
+$$
+:::
+
+**Justificación.** Sabemos, del álgebra de sucesos, que
+
+$$
+A \cup \overline{A} = E \qquad \text{y} \qquad A \cap \overline{A} = \varnothing
+$$
+
+Como $A$ y $\overline{A}$ son **incompatibles** y su unión es el total, sus probabilidades se suman y el resultado es la del suceso seguro:
+
+$$
+P(A) + P(\overline{A}) = P(E) = 1
+$$
+
+de donde se despeja la fórmula. Fíjate en que la demostración usa las dos propiedades anteriores y ninguna idea nueva.
+
+::: {.callout-tip}
+## Por qué es tan rentable
+
+Porque convierte un problema difícil en otro fácil **sin cambiar el resultado**. Muchas veces el suceso que te piden reúne un montón de casos y su contrario reúne uno solo. En esos casos, calcular el contrario es literalmente diez veces menos trabajo.
+
+La pregunta que hay que hacerse siempre es: **¿es más fácil contar lo que me piden o contar lo que no me piden?**
+:::
+
+### La estrategia del «al menos»
+
+Cuando un problema pregunta por «al menos una vez», casi siempre conviene calcular 1 menos la probabilidad del contrario. La razón es una traducción del castellano que hay que tener automatizada:
+
+| Enunciado | Contrario |
+|---|---|
+| «Al menos uno» | «Ninguno» |
+| «Al menos dos» | «Ninguno o exactamente uno» |
+| «Alguno» | «Ninguno» |
+| «Como mucho uno» | «Dos o más» |
+| «Todos» | «Al menos uno no» |
+
+: El contrario de las expresiones más frecuentes
+
+La primera fila es la que aparece en el 90 % de los ejercicios, y es la que ahorra más trabajo: el contrario de «al menos uno» es un **único** caso, «ninguno».
+
+### Ejemplo resuelto: al menos un seis en tres tiradas {.unnumbered}
+
+**Enunciado.** Se lanza un dado tres veces. ¿Cuál es la probabilidad de obtener al menos un seis?
+
+**Vía directa (larga).** Habría que sumar los casos de exactamente un seis, exactamente dos seises y exactamente tres seises. Son tres cuentas, cada una con su recuento de posiciones, y hay que tener cuidado de no solapar casos.
+
+**Vía del contrario (inmediata).** El contrario de «al menos un seis» es «ningún seis», es decir, que en las tres tiradas salga algo distinto de 6. En cada tirada hay 5 resultados favorables de 6:
+
+$$
+\overline{A} = \text{«ningún seis»} \Rightarrow P(\overline{A}) = \left( \frac{5}{6} \right)^{3} = \frac{125}{216}
+$$
+
+Y por la propiedad del contrario:
+
+$$
+P(A) = 1 - \frac{125}{216} = \frac{91}{216} \approx 0{,}421
+$$
+
+**Comentario final.** Compara el esfuerzo: una potencia y una resta frente a tres recuentos combinatorios. Y comprueba la coherencia del resultado con el rango: $0{,}421$ está entre 0 y 1, y además es algo menor que $1/2$, lo cual es razonable, porque en tres tiradas el seis no es ni mucho menos esperable.
+
+También puedes verificarlo con Laplace sobre el espacio fino: hay $6^3 = 216$ ternas equiprobables, y las que no contienen ningún seis son $5^3 = 125$. Luego los favorables son $216 - 125 = 91$. Mismo resultado, y ahora ves de dónde sale cada número.
+
+### Ejemplo resuelto: al menos una cara en cinco lanzamientos {.unnumbered}
+
+**Enunciado.** Se lanza una moneda 5 veces. Calcula la probabilidad de obtener al menos una cara.
+
+**Paso 1.** Contrario: «ninguna cara», es decir, cinco cruces seguidas. Es un único resultado del espacio muestral fino.
+
+**Paso 2.**
+
+$$
+P(\overline{A}) = \left( \frac{1}{2} \right)^{5} = \frac{1}{32}
+$$
+
+**Paso 3.**
+
+$$
+P(A) = 1 - \frac{1}{32} = \frac{31}{32} \approx 0{,}969
+$$
+
+**Comentario final.** Sin la propiedad del contrario habría que sumar **cinco** casos (exactamente una cara, exactamente dos, …, exactamente cinco). Con ella, una sola potencia. Y el resultado tiene una lectura clara: en cinco lanzamientos es rarísimo no ver ninguna cara, apenas una vez de cada 32 intentos.
+
+### Ejemplo resuelto: cuando el contrario no ahorra nada {.unnumbered}
+
+**Enunciado.** Se lanza un dado. Calcula la probabilidad de obtener un número par.
+
+**Vía directa.** $A = \{2, 4, 6\}$, luego $P(A) = 3/6 = 1/2$.
+
+**Vía del contrario.** $\overline{A} = \{1, 3, 5\}$, luego $P(\overline{A}) = 3/6 = 1/2$ y $P(A) = 1 - 1/2 = 1/2$.
+
+**Comentario final.** Aquí las dos vías cuestan exactamente lo mismo, porque el suceso y su contrario tienen el mismo tamaño. La estrategia del contrario **no es una regla obligatoria, es una herramienta de ahorro**: úsala cuando el contrario sea claramente más sencillo, y en particular siempre que veas las palabras «al menos».
+
+::: {.callout-important}
+## Regla de aula
+
+En cuanto veas las palabras **«al menos»** en un enunciado, escribe en el margen
+
+$$
+1 - P(\overline{A})
+$$
+
+**antes de hacer nada más**. Después ya decidirás cuál es el contrario exacto. Este reflejo evita el error más caro del tema, que es lanzarse a sumar casos y perderse por el camino.
+:::
+
+::: {.callout-warning}
+## Los dos errores típicos con el contrario
+
+1. **Negar mal la desigualdad.** El contrario de «al menos 2» no es «al menos 1», ni «como mucho 2»: es «menos de 2», o sea «0 o 1». Escribe el conjunto y comprueba que $A \cup \overline{A} = E$ y $A \cap \overline{A} = \varnothing$.
+2. **Olvidar el 1.** Un clásico: calcular correctamente $P(\overline{A}) = 125/216$ y dar eso como respuesta. El contrario es el camino, no el destino.
+:::
+
+### Applet · La estrategia del «al menos» {.unnumbered}
+
+Elige el experimento, el número de repeticiones y el suceso de interés, y el applet resuelve el problema por las dos vías, la directa y la del contrario, para que compares el número de cuentas que exige cada una. Introduce el número de repeticiones como entero, por ejemplo `3` para el ejemplo del dado.
+
+::: {#panel-al-menos .applet-panel data-applet-est4="alMenos"}
+:::
+
+## Repaso rápido {.unnumbered}
+
+- Todas las propiedades de la probabilidad salen de **dividir entre $\operatorname{card}(E)$** las propiedades del recuento que ya conocías. No hay fórmulas nuevas que memorizar.
+- **Rango**: $0 \leq P(A) \leq 1$. Si te sale $1{,}4$ o $-0{,}2$, el error está garantizado y suele ser un recuento mal hecho o una suma de sucesos compatibles.
+- Sabe pasar de fracción a decimal y a porcentaje sin pensarlo: $1/4 = 0{,}25 = 25\ \%$.
+- **Suceso seguro e imposible**: $P(E) = 1$ y $P(\varnothing) = 0$.
+- **Suma de los elementales**: $P(e_1) + \cdots + P(e_n) = 1$ siempre; y $P(e_i) = 1/n$ solo si el experimento es regular. Se usa como comprobación **y** como ecuación para despejar la probabilidad que falta.
+- **Suceso contrario**: $P(\overline{A}) = 1 - P(A)$. Se demuestra a partir de $A \cup \overline{A} = E$ y $A \cap \overline{A} = \varnothing$.
+- **Estrategia del «al menos»**: el contrario de «al menos uno» es «ninguno», un único caso. Ejemplos guardados: tres dados, $1 - (5/6)^3 = 91/216$; cinco monedas, $1 - (1/2)^5 = 31/32$.
+- Pregunta que hay que hacerse siempre: **¿es más fácil contar lo que me piden o lo que no me piden?**
+
+En el documento siguiente llega la propiedad estrella del apartado, la **regla de la suma**, con las cuatro regiones del diagrama de Venn, la tabla $2 \times 2$ que funciona como un sudoku de probabilidades y la técnica de trabajar hacia atrás para despejar la intersección a partir de la unión.

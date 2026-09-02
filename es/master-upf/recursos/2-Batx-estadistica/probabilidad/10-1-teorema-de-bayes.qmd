@@ -1,0 +1,446 @@
+---
+title: "Tema 4.10 Teorema de Bayes"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 10-1-teorema-de-bayes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Probabilidades a priori y a posteriori, enunciado y demostración del teorema de Bayes, su lectura como fracción de caminos del árbol, tres ejemplos resueltos con la tabla de cuatro columnas (las tres factorías al revés, las dos urnas y la prueba médica con el efecto de la prevalencia) y el método de resolución en cinco pasos.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+El teorema de la probabilidad total recorre el árbol de arriba abajo: conocidas las causas, calcula la probabilidad del efecto. Pero las preguntas que de verdad importan casi siempre van en sentido contrario:
+
+- El control de calidad encuentra una pieza defectuosa y pregunta **de qué factoría procede**.
+- El paciente recibe un positivo y pregunta **si está realmente enfermo**.
+- El jurado ve una prueba y pregunta **si el acusado es culpable**.
+
+En los tres casos conocemos el **efecto** y queremos remontarnos hasta la **causa**. Esa inversión es el teorema de Bayes, publicado póstumamente en el siglo XVIII y considerado hoy una de las herramientas más potentes de toda la estadística: está detrás del filtro de spam de tu correo, de los sistemas de diagnóstico médico asistido y de buena parte de la inteligencia artificial moderna.
+
+::: {.callout-note}
+## Las dos direcciones del árbol
+
+$$
+\text{Probabilidad total:} \quad \text{Causa} \longrightarrow \text{Efecto}
+$$
+
+$$
+\text{Bayes:} \quad \text{Efecto} \longrightarrow \text{Causa}
+$$
+
+Son el mismo árbol recorrido en sentidos opuestos. Por eso no puedes aprender Bayes sin dominar antes la probabilidad total: el segundo se construye literalmente sobre el primero.
+:::
+
+## Probabilidades a priori y a posteriori
+
+Antes del teorema conviene fijar dos conceptos que ya han aparecido de forma implícita en todo el tema, y que ahora reciben su nombre técnico.
+
+::: {.callout-important}
+## Definiciones
+
+- **Probabilidad a priori**: la que conocemos **antes** de realizar el experimento u observar el dato. En el ejemplo de las factorías, $P(F_2) = 0{,}25$.
+- **Probabilidad a posteriori**: la que calculamos **después** de observar un resultado. En ese mismo ejemplo, $P(F_2 \mid \text{defectuosa})$.
+:::
+
+El teorema de Bayes calcula probabilidades después de realizar el experimento, es decir, se ocupa del estudio de la **probabilidad a posteriori**. Y esta es la idea de fondo, que va mucho más allá de las matemáticas de examen:
+
+::: {.callout-note}
+## Bayes es la matemática de aprender de la experiencia
+
+Partes de una creencia inicial, observas un dato y **actualizas** la creencia. Ni más ni menos que lo que hace un médico cuando recibe el resultado de una analítica, un detective cuando encuentra una huella o un científico cuando obtiene un resultado experimental.
+
+Lo notable es que ese proceso, que parece cualitativo y hasta subjetivo, tiene una fórmula exacta: dime tu creencia inicial y la fiabilidad de tu dato, y te digo con precisión cuál debe ser tu creencia final. Ni un poco más, ni un poco menos.
+:::
+
+Hay un tercer nombre técnico que te conviene conocer porque ordena la resolución de los problemas:
+
+- La **verosimilitud** es $P(B \mid A_i)$: la probabilidad del dato observado **suponiendo** cada causa. Es lo que da el enunciado.
+
+Con estos tres nombres, la estructura de todo problema de Bayes es siempre la misma: tienes las **a priori** y las **verosimilitudes**, y te piden una **a posteriori**.
+
+::: {.callout-caution}
+## El vocabulario también es un control de errores
+
+Fíjate en que a priori y a posteriori se refieren **al mismo suceso** $A_j$: la causa. Lo único que cambia es si has visto ya el dato o no. Si tu «a posteriori» es la probabilidad de otro suceso distinto, has planteado mal el problema.
+
+Y ojo con la trampa de lenguaje: «a posteriori» no significa «después en el tiempo». La causa ocurre antes que el efecto (la pieza se fabrica antes de estar defectuosa); lo que va después es **tu observación**. Bayes no invierte el tiempo, invierte el flujo de información.
+:::
+
+## Enunciado y demostración
+
+::: {.callout-important}
+## Teorema de Bayes
+
+Sea $A_1, A_2, \dots, A_n$ un sistema completo de sucesos con $P(A_i) > 0$, y sea $B$ un suceso con $P(B) > 0$. Sabiendo que se ha producido $B$, se cumple:
+
+$$
+P(A_j \mid B) = \frac{P(A_j) \cdot P(B \mid A_j)}{\displaystyle\sum_{i=1}^{n} P(A_i) \cdot P(B \mid A_i)}
+$$
+:::
+
+### Demostración en dos líneas {.unnumbered}
+
+**Paso 1.** Por la definición de probabilidad condicionada y la regla del producto del apartado 4.8:
+
+$$
+P(A_j \mid B) = \frac{P(A_j \cap B)}{P(B)} = \frac{P(A_j) \cdot P(B \mid A_j)}{P(B)}
+$$
+
+**Paso 2.** Sustituyendo el denominador por el teorema de la probabilidad total del apartado 4.9:
+
+$$
+P(B) = \sum_{i=1}^{n} P(A_i) \cdot P(B \mid A_i)
+$$
+
+se obtiene la fórmula del enunciado. $\blacksquare$
+
+Dos líneas. Literalmente. Toda la fama de Bayes descansa sobre una definición y un teorema que ya conocías.
+
+### Lectura estructural: es Laplace sobre los caminos {.unnumbered}
+
+Esta es la lectura que hay que subrayar y memorizar, porque convierte una fórmula con sumatorio en algo que se ve de un vistazo en el árbol:
+
+- El **numerador** es **un solo camino** del árbol: el que pasa por $A_j$ y llega a $B$.
+- El **denominador** es la **suma de todos los caminos** que llegan a $B$.
+
+Es decir, Bayes calcula **qué fracción del total de casos favorables aporta cada causa**. No hay ninguna idea nueva: es la regla de Laplace aplicada al conjunto de los caminos que terminan en $B$, con la diferencia de que los caminos no son equiprobables y por eso hay que pesarlos con su probabilidad en lugar de contarlos.
+
+$$
+P(A_j \mid B) = \frac{\text{camino que pasa por } A_j \text{ y llega a } B}{\text{todos los caminos que llegan a } B}
+$$
+
+::: {.callout-tip}
+## Propiedad de control: las a posteriori suman 1
+
+$$
+\sum_{j=1}^{n} P(A_j \mid B) = 1
+$$
+
+Es obvio con la lectura anterior: si sumas todos los numeradores obtienes exactamente el denominador. Aprovéchalo siempre. Cuando un problema te pide una sola a posteriori, calcula también las demás: si no suman 1, hay un error en algún producto y lo detectas sin revisar nada más.
+
+Formalmente, esta propiedad dice que $\{A_1, \dots, A_n\}$ sigue siendo un sistema completo **dentro** del nuevo espacio condicionado por $B$. Condicionar no rompe la partición: solo cambia los pesos.
+:::
+
+::: {.callout-warning}
+## Lo que Bayes no dice
+
+$P(A_j \mid B)$ **no** mide si $A_j$ ha causado $B$ en sentido físico. Mide cuánta de la probabilidad de $B$ pasa por $A_j$. Una causa puede tener una a posteriori altísima simplemente por ser muy frecuente, aunque sea la más inofensiva de todas. Lo verás en el ejemplo de las factorías y, sobre todo, en la prueba médica.
+:::
+
+### Applet · Teorema de Bayes paso a paso {.unnumbered}
+
+Introduce las probabilidades a priori separadas por comas, por ejemplo `0,60; 0,25; 0,15`, y las verosimilitudes, por ejemplo `0,01; 0,04; 0,02`. El applet construye la tabla de cuatro columnas, marca el camino del numerador y comprueba que las a posteriori suman 1.
+
+::: {#panel-bayes .applet-panel data-applet-est4="bayes"}
+:::
+
+Fíjate en la barra de cada causa: su longitud es la aportación $P(A_i)P(B \mid A_i)$ y su etiqueta es la probabilidad a posteriori. Bayes es, visualmente, «¿qué trozo de la barra total es el mío?».
+
+## Ejemplos resueltos
+
+Los tres ejemplos que siguen son los mismos del apartado 4.9, ahora recorridos al revés. Que sean los mismos es intencionado: te permite comparar directamente las columnas de a priori y de a posteriori y ver cómo la información reordena las creencias.
+
+### Las tres factorías, ahora al revés
+
+Retomamos el ejemplo de las tres factorías. Una empresa elabora sus productos en tres factorías, con la producción y los defectos siguientes:
+
+| Concepto | Factoría 1 | Factoría 2 | Factoría 3 |
+|---|---|---|---|
+| Producción | 60 % | 25 % | 15 % |
+| Defectuosas | 1 % | 4 % | 2 % |
+
+Si se observa que una pieza es defectuosa, ¿cuál es la probabilidad de que proceda de la factoría 2?
+
+Sucesos: $F_i =$ pieza fabricada en la factoría $i$; $D =$ pieza defectuosa. Los $F_i$ forman un sistema completo, porque toda pieza se fabrica en una y solo una factoría, y $0{,}60 + 0{,}25 + 0{,}15 = 1$ $\checkmark$.
+
+**Paso 1: calcular los tres caminos.** Esto ya lo hicimos en el apartado 4.9, y es exactamente el mismo cálculo:
+
+$$
+P(F_1)P(D \mid F_1) = 0{,}60 \cdot 0{,}01 = 0{,}006
+$$
+
+$$
+P(F_2)P(D \mid F_2) = 0{,}25 \cdot 0{,}04 = 0{,}010
+$$
+
+$$
+P(F_3)P(D \mid F_3) = 0{,}15 \cdot 0{,}02 = 0{,}003
+$$
+
+**Paso 2: el denominador es su suma**, es decir, la probabilidad total:
+
+$$
+P(D) = 0{,}006 + 0{,}010 + 0{,}003 = 0{,}019
+$$
+
+**Paso 3: aplicar Bayes.**
+
+$$
+P(F_2 \mid D) = \frac{0{,}25 \cdot 0{,}04}{0{,}019} = \frac{0{,}010}{0{,}019} = 0{,}5263
+$$
+
+La probabilidad de que la pieza defectuosa proceda de la factoría 2 es del $52{,}63\ \%$.
+
+**Paso 4: la tabla completa**, que es lo que de verdad hay que aprender a construir:
+
+| Factoría | A priori | Verosimilitud | Producto | A posteriori |
+|---|---|---|---|---|
+| Factoría 1 | 0,60 | 0,01 | 0,006 | 0,006 / 0,019 = 0,3158 |
+| Factoría 2 | 0,25 | 0,04 | 0,010 | 0,010 / 0,019 = 0,5263 |
+| Factoría 3 | 0,15 | 0,02 | 0,003 | 0,003 / 0,019 = 0,1579 |
+| Total | 1,00 | — | 0,019 | 1,0000 |
+
+La segunda columna es $P(F_i)$; la tercera, $P(D \mid F_i)$; la última, $P(F_i \mid D)$.
+
+**Comentario final.** El análisis crítico está en comparar la **primera** y la **última** columna:
+
+- Antes de saber nada, la factoría 2 era la menos probable de las dos grandes ($25\ \%$).
+- Sabiendo que la pieza es defectuosa, pasa a ser **la más probable** ($52{,}63\ \%$).
+- La factoría 1, que era la favorita con diferencia ($60\ \%$), cae al $31{,}58\ \%$.
+- La factoría 3 apenas se mueve: del $15\ \%$ al $15{,}79\ \%$, porque su tasa de defectos ($2\ \%$) está muy cerca de la media global ($1{,}9\ \%$).
+
+La información ha reordenado por completo nuestras creencias: eso es exactamente lo que hace Bayes. Y observa la regla general que se esconde en la última viñeta: **una causa sube si su verosimilitud está por encima de la media ponderada y baja si está por debajo**. Compara cada tasa con el $1{,}9\ \%$ global y sabrás el sentido del movimiento antes de dividir nada.
+
+::: {.callout-tip}
+## El mismo problema con 10 000 piezas
+
+$$
+\text{Factoría 1: } 6\,000 \text{ piezas} \Rightarrow 60 \text{ defectuosas}
+$$
+
+$$
+\text{Factoría 2: } 2\,500 \text{ piezas} \Rightarrow 100 \text{ defectuosas}
+$$
+
+$$
+\text{Factoría 3: } 1\,500 \text{ piezas} \Rightarrow 30 \text{ defectuosas}
+$$
+
+Total de defectuosas: $60 + 100 + 30 = 190$. Y ahora la pregunta es de recuento puro: de esas $190$, ¿cuántas son de la factoría 2? Cien.
+
+$$
+P(F_2 \mid D) = \frac{100}{190} = 0{,}5263 \ \checkmark
+$$
+
+Sin fórmulas y sin comas decimales. Cuando un problema de Bayes se resista, tradúcelo a «de cada 10 000…».
+:::
+
+### Las dos urnas
+
+Se dispone de dos urnas: $U_1$ contiene 2 bolas blancas y 12 negras, y $U_2$ contiene 3 blancas y 10 negras. Se elige una urna al azar y se extrae una bola. Si la bola extraída resulta ser negra, halla la probabilidad de que proceda de la primera urna y la de que proceda de la segunda.
+
+**Paso 1: datos.**
+
+$$
+P(U_1) = P(U_2) = 0{,}5, \qquad P(N \mid U_1) = \frac{12}{14}, \qquad P(N \mid U_2) = \frac{10}{13}
+$$
+
+**Paso 2: caminos.**
+
+$$
+0{,}5 \cdot \frac{12}{14} = \frac{6}{14} = \frac{3}{7} \approx 0{,}4286, \qquad 0{,}5 \cdot \frac{10}{13} = \frac{5}{13} \approx 0{,}3846
+$$
+
+**Paso 3: denominador**, que es la probabilidad total ya calculada en 4.9:
+
+$$
+P(N) = \frac{3}{7} + \frac{5}{13} = \frac{74}{91} \approx 0{,}4286 + 0{,}3846 = 0{,}8132
+$$
+
+**Paso 4: resultados.**
+
+$$
+P(U_1 \mid N) = \frac{0{,}4286}{0{,}8132} \approx 0{,}527, \qquad P(U_2 \mid N) = \frac{0{,}3846}{0{,}8132} \approx 0{,}473
+$$
+
+En fracciones exactas, para quien quiera el valor sin redondeos:
+
+$$
+P(U_1 \mid N) = \frac{3/7}{74/91} = \frac{3 \cdot 13}{74} = \frac{39}{74}, \qquad P(U_2 \mid N) = \frac{35}{74}
+$$
+
+**Paso 5: comprobación.** $0{,}527 + 0{,}473 = 1$ $\checkmark$, o bien $\tfrac{39}{74} + \tfrac{35}{74} = \tfrac{74}{74} = 1$ $\checkmark$.
+
+**Comentario final.** Es ligeramente más probable que venga de la primera urna, porque allí la proporción de negras es mayor: $\tfrac{12}{14} \approx 0{,}857$ frente a $\tfrac{10}{13} \approx 0{,}769$. Fíjate en la lógica: las dos urnas partían empatadas al $50\ \%$, y la única cosa que rompe el empate es la **verosimilitud**. Cuando las a priori son iguales, Bayes se reduce a comparar verosimilitudes; cuando son distintas, hay que pelear los dos factores.
+
+::: {.callout-note}
+## Y si la bola hubiera salido blanca
+
+Merece la pena hacer el cálculo simétrico, porque el resultado gira:
+
+$$
+0{,}5\cdot\frac{2}{14} = \frac{1}{14} \approx 0{,}0714, \qquad 0{,}5\cdot\frac{3}{13} = \frac{3}{26} \approx 0{,}1154
+$$
+
+$$
+P(\text{blanca}) = \frac{17}{91} \approx 0{,}1868
+$$
+
+$$
+P(U_1 \mid \text{blanca}) \approx \frac{0{,}0714}{0{,}1868} \approx 0{,}382, \qquad P(U_2 \mid \text{blanca}) \approx 0{,}618
+$$
+
+Con bola negra la urna favorita es $U_1$; con bola blanca es $U_2$. La misma pregunta, dos datos distintos, dos respuestas opuestas. Eso es exactamente lo que significa que la evidencia informe.
+:::
+
+### Applet · Las tres factorías, ahora al revés {.unnumbered}
+
+Cambia producciones y tasas de defectos y observa las dos columnas extremas de la tabla: qué causa sube, qué causa baja y por qué.
+
+::: {#panel-bayes-factorias .applet-panel data-applet-est4="bayesFactorias"}
+:::
+
+Busca un juego de datos en el que la factoría **más grande** sea también la más probable a posteriori, y otro en el que sea la **menos** probable. La frontera está en si su tasa de defectos queda por encima o por debajo de la media global.
+
+### La prueba médica: la respuesta que sorprende
+
+Retomamos el ejemplo de la enfermedad que afecta al $1\ \%$ de la población. La prueba detecta la enfermedad en el $99\ \%$ de los enfermos y da positivo en el $5\ \%$ de las personas sanas. Si a una persona la prueba le da positivo, ¿cuál es la probabilidad de que esté realmente enferma?
+
+Antes de calcular, **apunta tu estimación** a mano alzada. Guárdala y compárala con el resultado.
+
+**Paso 1: la tabla.**
+
+| Grupo | A priori | Verosimilitud del positivo | Producto |
+|---|---|---|---|
+| Enfermos | 0,01 | 0,99 | 0,0099 |
+| Sanos | 0,99 | 0,05 | 0,0495 |
+| Total | 1,00 | — | 0,0594 |
+
+**Paso 2: aplicar Bayes.**
+
+$$
+P(\text{enfermo} \mid \text{positivo}) = \frac{0{,}0099}{0{,}0594} = \frac{1}{6} \approx 0{,}1667
+$$
+
+Solo el $16{,}7\ \%$. Dicho de otro modo: **más de 5 de cada 6 positivos son falsas alarmas**, a pesar de que la prueba acierta el $99\ \%$ de las veces en los enfermos.
+
+**Paso 3: comprobación.** $P(\text{sano} \mid \text{positivo}) = \tfrac{0{,}0495}{0{,}0594} = \tfrac{5}{6} \approx 0{,}8333$, y $\tfrac16 + \tfrac56 = 1$ $\checkmark$.
+
+**¿Por qué?** Porque el $5\ \%$ de falsos positivos se aplica a un grupo **enorme** (el $99\ \%$ de la población), mientras que el $99\ \%$ de aciertos se aplica a un grupo **diminuto** (el $1\ \%$). El grupo grande, aun equivocándose poco, genera muchos más positivos en términos absolutos.
+
+::: {.callout-important}
+## En números absolutos, sobre 10 000 personas
+
+- $100$ están enfermas; de ellas, $99$ dan positivo (y $1$ da negativo: un falso negativo).
+- $9\,900$ están sanas; de ellas, $495$ dan positivo (falsos positivos) y $9\,405$ dan negativo.
+- Positivos totales: $99 + 495 = 594$. De ellos, enfermos: $99$.
+
+$$
+P(\text{enfermo} \mid \text{positivo}) = \frac{99}{594} = \frac{1}{6} \approx 0{,}1667 \ \checkmark
+$$
+
+Esta representación con **frecuencias naturales** en lugar de porcentajes es didácticamente mucho más eficaz: los $495$ falsos positivos frente a los $99$ verdaderos se ven de golpe, sin necesidad de creerse ninguna fórmula.
+:::
+
+**El papel de la prevalencia.** Mantengamos exactamente la misma prueba y cambiemos solo la proporción de enfermos en la población:
+
+| Prevalencia | Probabilidad de positivo | Enfermo dado positivo |
+|---|---|---|
+| 0,1 % | 0,0509 | 1,9 % |
+| 1 % | 0,0594 | 16,7 % |
+| 10 % | 0,1440 | 68,8 % |
+| 50 % | 0,5200 | 95,2 % |
+
+Comprueba tú una de las filas para convencerte. Con prevalencia $0{,}10$:
+
+$$
+P(Pos) = 0{,}10\cdot0{,}99 + 0{,}90\cdot0{,}05 = 0{,}099 + 0{,}045 = 0{,}144
+$$
+
+$$
+P(\text{enfermo} \mid \text{positivo}) = \frac{0{,}099}{0{,}144} = 0{,}6875 \approx 68{,}8\ \%
+$$
+
+::: {.callout-important}
+## Conclusión sanitaria de primer orden
+
+La **misma** prueba es casi inútil como cribado poblacional y muy fiable aplicada a un grupo de riesgo. Su calidad técnica no ha cambiado ni un decimal entre la primera fila y la última: lo único que cambia es **a quién se la haces**.
+
+Por eso las pruebas médicas se administran a poblaciones seleccionadas (por edad, por síntomas, por antecedentes) y no indiscriminadamente, y por eso un positivo en un cribado masivo se confirma siempre con una segunda prueba. La segunda prueba ya no se aplica al $1\ \%$ de prevalencia, sino a un grupo con prevalencia del $16{,}7\ \%$: la a posteriori de la primera prueba se convierte en la a priori de la segunda.
+:::
+
+**Comentario final.** Compara ahora tu estimación inicial con el $16{,}7\ \%$. Si dijiste «un $95\ \%$» o «un $99\ \%$», estás en la respuesta mayoritaria, y esa reacción no es tontería: es un sesgo cognitivo bien documentado con nombre propio, el olvido de la tasa base, del que hablaremos en el archivo siguiente.
+
+### Applet · La prueba médica {.unnumbered}
+
+Mueve los tres parámetros (prevalencia, sensibilidad y tasa de falsos positivos) y observa cómo se mueve la probabilidad de estar enfermo dado un positivo.
+
+::: {#panel-test-medico .applet-panel data-applet-est4="testMedico"}
+:::
+
+Dos experimentos que conviene hacer con el applet:
+
+1. Deja la prevalencia en $0{,}01$ y sube la sensibilidad del $99\ \%$ al $100\ \%$. Verás que la respuesta apenas se mueve.
+2. Deja la sensibilidad en $99\ \%$ y baja la tasa de falsos positivos del $5\ \%$ al $1\ \%$. La respuesta se dispara.
+
+Con eso ya puedes contestar solo a la pregunta «¿qué habría que mejorar de esta prueba?».
+
+## Método de resolución en cinco pasos
+
+| Paso | Acción |
+|---|---|
+| 1 | Identificar el efecto $B$: el dato que ya conoces, lo que va detrás de la barra |
+| 2 | Identificar la partición de causas $A_1, \dots, A_n$ y comprobar que $\sum P(A_i) = 1$ |
+| 3 | Construir la tabla: a priori, verosimilitud, producto |
+| 4 | Sumar la columna de productos: ese es $P(B)$, el denominador |
+| 5 | Dividir el producto de la causa pedida entre el total |
+
+**Comprobación final:** las probabilidades a posteriori de todas las causas deben sumar 1.
+
+::: {.callout-tip}
+## Truco para no invertir la barra
+
+Subraya en el enunciado la palabra «sabiendo que», «si se observa que», «si resulta que» o «dado que». Lo que va **justo después** es el suceso $B$ que condiciona, y lo que se pregunta es la causa.
+
+- «**Si** la pieza **es defectuosa**, ¿de qué factoría procede?» $\Rightarrow$ $B = D$, se pide $P(F_j \mid D)$.
+- «¿Qué probabilidad hay de que una pieza sea defectuosa?» $\Rightarrow$ no hay condición: es probabilidad total, $P(D)$.
+
+Y un aviso de examen: las dos preguntas aparecen casi siempre en el mismo problema, como apartados a) y b). El apartado a) suele ser la probabilidad total y el b), Bayes. Si has hecho bien el a), el denominador del b) ya está calculado y no hay que repetir nada.
+:::
+
+::: {.callout-caution}
+## Los cuatro errores que más caros salen
+
+1. **Sumar mal la columna de productos.** Es el denominador de todas las respuestas: un error aquí contamina el problema entero. Comprueba que la suma esté entre la menor y la mayor de las verosimilitudes.
+2. **Poner en el numerador la a priori sola** ($0{,}25$) en lugar del producto ($0{,}010$). El numerador es un camino completo, no media rama.
+3. **Confundir verosimilitud con a posteriori.** $P(D \mid F_2) = 0{,}04$ y $P(F_2 \mid D) = 0{,}5263$ son números completamente distintos del mismo problema.
+4. **Dar la respuesta sin interpretarla.** Un $0{,}5263$ sin la frase «es más probable que la pieza defectuosa venga de la factoría 2 que de las otras dos juntas» está a medio terminar.
+:::
+
+::: {.callout-note}
+## Cuándo la partición tiene solo dos causas
+
+Con $\{A, \overline{A}\}$, que es el caso más frecuente, la fórmula se escribe cómodamente así:
+
+$$
+P(A \mid B) = \frac{P(A)P(B \mid A)}{P(A)P(B \mid A) + P(\overline{A})P(B \mid \overline{A})}
+$$
+
+Memoriza esta versión y la general la reconstruyes añadiendo sumandos. Toda la prueba médica, la falacia del fiscal y el filtro de spam se resuelven con estas dos líneas.
+:::
+
+## Repaso rápido
+
+- **A priori** es lo que sabías antes del dato; **a posteriori**, lo que sabes después; **verosimilitud**, la probabilidad del dato bajo cada causa.
+- **Teorema de Bayes**: la a posteriori de una causa es su camino dividido entre la suma de todos los caminos que llegan al efecto.
+- Se demuestra en dos líneas: definición de condicionada más probabilidad total en el denominador.
+- El denominador de Bayes **es** el teorema de la probabilidad total. Si ya lo has calculado, no lo repitas.
+- La tabla de cuatro columnas (a priori, verosimilitud, producto, a posteriori) resuelve cualquier problema del apartado.
+- Control obligatorio: las a posteriori suman 1.
+- Una causa **sube** de a priori a a posteriori si su verosimilitud supera la media ponderada, y baja en caso contrario.
+- En la prueba médica, un positivo con prevalencia del $1\ \%$ solo significa un $16{,}7\ \%$ de probabilidad de estar enfermo: los falsos positivos del grupo mayoritario aplastan a los verdaderos.
+- La calidad de una prueba diagnóstica no basta: importa **a quién** se le aplica.
+- Cuando un problema se resista, traduce a «de cada 10 000…».
+
+En el archivo siguiente cerramos el círculo con el concurso de las tres puertas, la falacia del fiscal, el olvido de la tasa base y el mapa completo del tema.

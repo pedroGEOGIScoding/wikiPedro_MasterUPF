@@ -321,6 +321,15 @@ website:
               - master-upf/recursos/2-Batx-estadistica/probabilidad/04-2-propiedades-de-morgan.qmd
               - master-upf/recursos/2-Batx-estadistica/probabilidad/05-1-experimentos-compuestos.qmd
               - master-upf/recursos/2-Batx-estadistica/probabilidad/05-2-arboles-no-uniformes.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/06-1-regla-de-laplace.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/06-2-limites-de-laplace.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/07-1-propiedades-basicas.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/07-2-regla-de-la-suma.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/08-1-probabilidad-condicional.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/08-2-independencia.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/09-probabilidad-total.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/10-1-teorema-de-bayes.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/10-2-bayes-monty-hall-y-cierre.qmd
             - section: "Tema 5 Distribuciones binomiales y normales"
               contents:
               - master-upf/recursos/2-Batx-estadistica/dist-bi-norm/
@@ -330,6 +339,14 @@ website:
             - section: "Tema 7 Intervalos de confianza"
               contents:
               - master-upf/recursos/2-Batx-estadistica/intervalos/
+    - id: "website-map"
+      title: "Archivos"
+      style: "docked"
+      background: light
+      collapse-level: 0
+      align: center
+      contents:
+        - master-upf/listing-pages.qmd
     - id: "about"
       title: "Acerca de mí"
       style: "docked"
@@ -348,17 +365,7 @@ website:
         - master-upf/about/about-this-site.qmd
         - master-upf/about/about-this-images-credit.qmd
         - text: "Mi rincón de programador"
-          href: https://pedrogeogisdev.com/
-
-    - id: "website-map"
-      title: "Archivos"
-      style: "docked"
-      background: light
-      collapse-level: 0
-      align: center
-      contents:
-        - master-upf/listing-pages.qmd
-     
+          href: https://pedrogeogisdev.com/  
   page-footer:
     background: primary
     left: © by Pedro 2025 hecho con [![](https://quarto.org/quarto.png){width=65px}](https://quarto.org/)

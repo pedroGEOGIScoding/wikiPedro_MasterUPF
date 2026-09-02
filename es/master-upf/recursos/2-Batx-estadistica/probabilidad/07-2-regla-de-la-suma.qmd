@@ -1,0 +1,589 @@
+---
+title: "Tema 4.7 La regla de la suma"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 07-2-regla-de-la-suma
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La regla de la suma con sucesos incompatibles y en el caso general, las cuatro regiones del diagrama de Venn y la tabla 2x2 de verificación, monotonía, diferencia y De Morgan en versión probabilística, cuatro ejemplos resueltos completos, pensamiento crítico y actividades con solución.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Ya tienes el rango, el suceso seguro, el imposible, la suma de los elementales y el contrario. Con eso puedes controlar errores y resolver los problemas de una sola condición. Pero los enunciados reales casi nunca tienen una sola condición: tienen dos, y preguntan por «o», por «y», por «ni uno ni otro».
+
+Este documento está dedicado a la herramienta que resuelve toda esa familia de problemas: la **regla de la suma**. Es una única fórmula, y de ella se deducen todas las demás.
+
+::: {.callout-important}
+## Qué vas a aprender aquí
+
+Una fórmula, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$, y por qué se resta; un dibujo, las **cuatro regiones** del diagrama de Venn, que convierte cualquier enunciado de dos condiciones en un sudoku de sumas; una técnica, **trabajar hacia atrás**, para despejar lo que no te dan; y un hábito, **cerrar siempre con la tabla de verificación**, que detecta el 90 % de los errores aritméticos.
+:::
+
+## La regla de la suma
+
+### Sucesos incompatibles
+
+::: {.callout-note}
+## Propiedad: unión de sucesos incompatibles
+
+Cuando dos sucesos son **incompatibles**, la probabilidad de su unión es la suma de sus probabilidades:
+
+$$
+A \cap B = \varnothing \Rightarrow P(A \cup B) = P(A) + P(B)
+$$
+
+Y en general, para $n$ sucesos incompatibles **dos a dos**:
+
+$$
+P(A_1 \cup A_2 \cup \cdots \cup A_n) = P(A_1) + P(A_2) + \cdots + P(A_n)
+$$
+:::
+
+**Justificación.** Si los sucesos no tienen elementos comunes, al contar los de la unión no se repite ninguno, luego $\operatorname{card}(A \cup B) = \operatorname{card}(A) + \operatorname{card}(B)$; dividiendo entre $\operatorname{card}(E)$ sale la fórmula.
+
+::: {.callout-tip}
+## Esto ya lo usabas en los árboles
+
+Esta propiedad es exactamente la **Regla 2 de los árboles ponderados**: entre caminos distintos **se suma**, porque los caminos de un árbol son siempre incompatibles.
+
+Piénsalo: un recorrido concreto del árbol excluye a todos los demás; si has ido por la rama de arriba no has ido por la de abajo. Por eso podías sumar los caminos favorables sin restar nada. La regla no era un truco del dibujo, era esta propiedad.
+:::
+
+Fíjate en la expresión **«dos a dos»** de la versión general. No basta con que la intersección de los tres sea vacía: hace falta que **cada pareja** sea incompatible. Es una precisión que se olvida y que produce errores cuando hay más de dos sucesos.
+
+### Ejemplo resuelto: sumar sucesos incompatibles {.unnumbered}
+
+**Enunciado.** Se extrae una carta de una baraja española de 40. Calcula la probabilidad de que sea un as o un rey.
+
+**Paso 1.** $A$ = «sacar as», $B$ = «sacar rey». Una carta **no puede ser as y rey a la vez**, luego $A \cap B = \varnothing$: son incompatibles.
+
+**Paso 2.** Al ser incompatibles, la regla se simplifica: $P(A \cup B) = \dfrac{4}{40} + \dfrac{4}{40} = \dfrac{8}{40} = \dfrac{1}{5} = 0{,}2$.
+
+**Comentario final.** Compara con el ejemplo de «figura o copas», donde había que restar 3 cartas. La diferencia entre los dos problemas no está en la fórmula, está en **si existen o no casos que cumplan las dos condiciones**. Esa es la pregunta que debes hacerte antes de escribir nada.
+
+### Applet · Regla de la suma con sucesos incompatibles {.unnumbered}
+
+Introduce dos sucesos sin elementos comunes y comprueba que la probabilidad de la unión es la suma exacta de las dos. Escribe los conjuntos entre llaves y separados por comas, por ejemplo `{1, 3}` y `{4, 6}`. Si introduces sucesos con algún elemento común, el applet te avisa de que la fórmula simplificada no vale.
+
+::: {#panel-suma-incompatibles .applet-panel data-applet-est4="sumaIncompatibles"}
+:::
+
+### El caso general
+
+::: {.callout-note}
+## Propiedad: regla de la suma
+
+Para dos sucesos **cualesquiera**, la probabilidad de su unión es la suma de sus probabilidades menos la de su intersección:
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+$$
+:::
+
+**Por qué se resta.** Al sumar $P(A) + P(B)$, la zona común se ha contado **dos veces**: una al medir $A$ y otra al medir $B$. Restar $P(A \cap B)$ la deja contada una sola vez, que es lo correcto. Es el mismo argumento del recuento de la unión, trasladado a probabilidades.
+
+**Comprobación de coherencia.** Si $A$ y $B$ son incompatibles, $A \cap B = \varnothing$ y $P(A \cap B) = 0$, con lo que la fórmula general se reduce a la del caso incompatible.
+
+::: {.callout-important}
+## Solo hay una fórmula
+
+La regla de la suma es **una sola**, y la de los incompatibles es un **caso particular** de ella. Si te acostumbras a escribir siempre la general, el caso incompatible se resuelve solo, porque el término que se resta vale 0.
+
+Consejo práctico: escribe siempre los tres términos. Es más difícil equivocarse por escribir un $-0$ que por olvidar un $-P(A \cap B)$ que hacía falta.
+:::
+
+::: {.callout-warning}
+## El error número uno de todo el tema
+
+Aplicar $P(A \cup B) = P(A) + P(B)$ **sin comprobar** que los sucesos son incompatibles.
+
+Cómo se detecta: el resultado suele salir mayor que 1, o mayor que alguna cota evidente del problema. Cómo se evita: antes de sumar, pregúntate en voz alta «¿puede haber algún caso que cumpla las dos condiciones?». Si la respuesta es sí, hay que restar.
+:::
+
+### Applet · Regla de la suma en el caso general {.unnumbered}
+
+Mueve $P(A)$, $P(B)$ y $P(A \cap B)$ y observa cómo cambia $P(A \cup B)$ en el diagrama de Venn. Introduce las probabilidades como decimales, fracciones o porcentajes, por ejemplo `0,7`, `0,4` y `0,28`. Prueba a poner una intersección mayor que $P(A)$: el applet te explicará por qué ese dato es imposible.
+
+::: {#panel-suma-general .applet-panel data-applet-est4="sumaGeneral"}
+:::
+
+### Las cuatro regiones del diagrama de Venn
+
+Toda pareja de sucesos parte el espacio muestral en **cuatro trozos disjuntos**, cuyas probabilidades suman 1:
+
+$$
+P(A \cap B) + P(A \cap \overline{B}) + P(\overline{A} \cap B) + P(\overline{A} \cap \overline{B}) = 1
+$$
+
+Léelas una por una, porque cada una corresponde a una frase del castellano:
+
+- $P(A \cap B)$: **«los dos»**.
+- $P(A \cap \overline{B})$: **«$A$ pero no $B$»**, es decir, solo $A$.
+- $P(\overline{A} \cap B)$: **«$B$ pero no $A$»**, es decir, solo $B$.
+- $P(\overline{A} \cap \overline{B})$: **«ni uno ni otro»**.
+
+No hay ninguna quinta posibilidad: cualquier resultado del experimento cae en una y solo una de esas cuatro casillas.
+
+::: {.callout-tip}
+## La tabla 2×2 se completa como un sudoku
+
+Esta descomposición es muy útil para resolver problemas, porque permite montar una tabla $2 \times 2$ de probabilidades y rellenarla por sumas y restas:
+
+|  | $B$ | $\overline{B}$ | Total |
+|---|---|---|---|
+| $A$ | $P(A \cap B)$ | $P(A \cap \overline{B})$ | $P(A)$ |
+| $\overline{A}$ | $P(\overline{A} \cap B)$ | $P(\overline{A} \cap \overline{B})$ | $P(\overline{A})$ |
+| Total | $P(B)$ | $P(\overline{B})$ | $1$ |
+
+: La tabla de las cuatro regiones del diagrama de Venn
+
+**Cada fila suma su total, cada columna suma el suyo y los totales suman 1.** Con solo tres datos independientes puedes rellenar las nueve casillas. Es, literalmente, un sudoku de sumas.
+:::
+
+Y aquí llega el consejo más rentable de todo el apartado: **monta la tabla incluso cuando no te la pidan**. Es el método más rápido para contestar cualquier pregunta sobre dos sucesos, porque una vez rellenada todas las respuestas están dentro, y además funciona como verificación automática.
+
+### Applet · Las cuatro regiones del diagrama de Venn {.unnumbered}
+
+Introduce tres datos cualesquiera y el applet completa la tabla $2 \times 2$, pinta cada región en el diagrama de Venn y comprueba que los cuatro trozos suman 1. Puedes escribir los datos como decimales, fracciones o porcentajes, por ejemplo `0,7`, `0,4` y `0,28`.
+
+::: {#panel-cuatro-regiones .applet-panel data-applet-est4="cuatroRegiones"}
+:::
+
+### Consecuencias útiles
+
+De las propiedades anteriores se deducen otras que conviene tener a mano. Ninguna es nueva: todas salen de la regla de la suma y de la propiedad del contrario.
+
+**Monotonía.** Si un suceso está contenido en otro, su probabilidad es menor o igual:
+
+$$
+A \subset B \Rightarrow P(A) \leq P(B)
+$$
+
+*Lectura intuitiva*: si siempre que ocurre $A$ también ocurre $B$, entonces $B$ es «más fácil». Por ejemplo, «sacar el rey de copas» está contenido en «sacar figura», y $1/40 \leq 12/40$.
+
+**Probabilidad de la diferencia.**
+
+$$
+P(A - B) = P(A \cap \overline{B}) = P(A) - P(A \cap B)
+$$
+
+*Justificación*: $A$ se parte en dos trozos disjuntos, $A \cap B$ y $A \cap \overline{B}$, luego
+
+$$
+P(A) = P(A \cap B) + P(A \cap \overline{B})
+$$
+
+y basta despejar. Esta descomposición es la misma que usabas con cardinales, y es la semilla del teorema de la probabilidad total.
+
+**Leyes de De Morgan en versión probabilística.** Combinando las leyes de De Morgan del álgebra de sucesos con $P(\overline{A}) = 1 - P(A)$ se obtienen las dos fórmulas que más ejercicios de acceso a la universidad resuelven:
+
+$$
+P(\overline{A} \cup \overline{B}) = P(\overline{A \cap B}) = 1 - P(A \cap B)
+$$
+
+$$
+P(\overline{A} \cap \overline{B}) = P(\overline{A \cup B}) = 1 - P(A \cup B)
+$$
+
+::: {.callout-important}
+## Aprende a leerlas en castellano, no de memoria
+
+- $\overline{A} \cap \overline{B}$ es **«ni uno ni otro»**, y es el contrario de «al menos uno», que es $A \cup B$. De ahí $1 - P(A \cup B)$.
+- $\overline{A} \cup \overline{B}$ es **«no los dos a la vez»**, y es el contrario de «los dos», que es $A \cap B$. De ahí $1 - P(A \cap B)$.
+
+Si las lees así no necesitas recordar qué símbolo se convierte en cuál: la frase te lo dice. Y si dudas, mira la tabla $2 \times 2$: «ni uno ni otro» es una sola casilla, y «no los dos a la vez» son las otras tres.
+:::
+
+### Resumen de herramientas
+
+| Situación | Fórmula |
+|---|---|
+| Rango | $0 \leq P(A) \leq 1$ |
+| Seguro e imposible | $P(E) = 1$, $P(\varnothing) = 0$ |
+| Contrario | $P(\overline{A}) = 1 - P(A)$ |
+| Unión (incompatibles) | $P(A \cup B) = P(A) + P(B)$ |
+| Unión (general) | $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ |
+| Diferencia | $P(A \cap \overline{B}) = P(A) - P(A \cap B)$ |
+| «Ni uno ni otro» | $P(\overline{A} \cap \overline{B}) = 1 - P(A \cup B)$ |
+| «No los dos a la vez» | $P(\overline{A} \cup \overline{B}) = 1 - P(A \cap B)$ |
+| Inclusión | $A \subset B \Rightarrow P(A) \leq P(B)$ |
+
+: Tabla resumen de sucesos y fórmulas
+
+Nueve filas, y en realidad **dos ideas**: el contrario y la regla de la suma. Todo lo demás son combinaciones de esas dos.
+
+### Applet · Consecuencias útiles de la regla de la suma {.unnumbered}
+
+Elige la fórmula que quieres aplicar, introduce los datos disponibles y el applet la resuelve mostrando la deducción a partir de la regla de la suma y del contrario. Prueba los escenarios con los datos de los ejemplos que vienen a continuación.
+
+::: {#panel-consecuencias .applet-panel data-applet-est4="consecuencias"}
+:::
+
+### Ejemplo: el problema tipo
+
+**Enunciado.** La probabilidad de que una persona sea morena es $0{,}7$; la de que tenga los ojos claros es $0{,}4$; y la de que sea morena y tenga los ojos claros es $0{,}28$. Calcula la probabilidad de que, elegida una persona al azar:
+
+a) no sea morena;
+b) sea morena o tenga los ojos claros;
+c) no sea morena o no tenga los ojos claros.
+
+**Paso 0. Nombrar los sucesos.** Este paso no es opcional:
+
+$$
+A = \text{«ser morena»}, \qquad B = \text{«tener ojos claros»}
+$$
+
+$$
+P(A) = 0{,}7, \qquad P(B) = 0{,}4, \qquad P(A \cap B) = 0{,}28
+$$
+
+**a)** «No ser morena» es $\overline{A}$, luego $P(\overline{A}) = 1 - 0{,}7 = 0{,}3$.
+
+**b)** «Ser morena o tener ojos claros» es $A \cup B$, luego $P(A \cup B) = 0{,}7 + 0{,}4 - 0{,}28 = 0{,}82$.
+
+**c)** «No ser morena o no tener ojos claros» es $\overline{A} \cup \overline{B}$, y por De Morgan, $P(\overline{A} \cup \overline{B}) = P(\overline{A \cap B}) = 1 - 0{,}28 = 0{,}72$.
+
+**Tabla 2×2 completa**, que deberías construir siempre para verificar:
+
+|  | $B$ | $\overline{B}$ | Total |
+|---|---|---|---|
+| $A$ | $0{,}28$ | $0{,}42$ | $0{,}70$ |
+| $\overline{A}$ | $0{,}12$ | $0{,}18$ | $0{,}30$ |
+| Total | $0{,}40$ | $0{,}60$ | $1{,}00$ |
+
+: Tabla de verificación del problema tipo
+
+Repasa cómo se ha rellenado: $0{,}42 = 0{,}70 - 0{,}28$ por filas, $0{,}12 = 0{,}40 - 0{,}28$ por columnas, y $0{,}18$ se obtiene de cualquiera de las dos maneras, lo que ya es una comprobación. Y observa que $P(A \cup B) = 0{,}82$ también se lee en la tabla como $1 - 0{,}18$, la casilla de «ni uno ni otro».
+
+::: {.callout-note}
+## Detalle que merece un comentario
+
+Observa que $0{,}7 \cdot 0{,}4 = 0{,}28$, exactamente el valor de $P(A \cap B)$.
+
+Eso significa que en esta población el color del pelo y el de los ojos son **independientes**: saber que alguien es moreno no cambia lo que esperamos sobre sus ojos. No es una casualidad del enunciado, es una propiedad de esos datos, y es la puerta de entrada al apartado siguiente.
+:::
+
+### El mismo tipo pero con dependencia
+
+**Enunciado.** La probabilidad de que una persona lleve gafas es $0{,}6$; la de que tenga los ojos claros es $0{,}6$; y la de que lleve gafas y tenga los ojos claros es $0{,}52$. Calcula $P(\overline{A})$, $P(A \cup B)$ y $P(\overline{A} \cup \overline{B})$.
+
+Con $A$ = «llevar gafas» y $B$ = «tener ojos claros», las tres cuentas son idénticas a las del ejemplo anterior:
+
+$$
+P(\overline{A}) = 1 - 0{,}6 = 0{,}4, \qquad P(A \cup B) = 0{,}6 + 0{,}6 - 0{,}52 = 0{,}68, \qquad P(\overline{A} \cup \overline{B}) = 1 - 0{,}52 = 0{,}48
+$$
+
+**Pero aquí hay algo distinto.** El producto de las probabilidades es $0{,}6 \cdot 0{,}6 = 0{,}36 \neq 0{,}52$, luego los sucesos **no son independientes**. Recuerda el criterio:
+
+$$
+P(A \cap B) = P(A) \cdot P(B) \iff A \text{ y } B \text{ independientes}
+$$
+
+Como $0{,}6 \cdot 0{,}6 = 0{,}36 \neq 0{,}52$, la igualdad no se cumple y los sucesos son **dependientes**.
+
+#### Qué significa en términos reales {.unnumbered}
+
+La forma más didáctica de explicarlo no es con el producto, sino con la **probabilidad condicionada**, que es donde se ve el significado real:
+
+$$
+P(B \mid A) = \frac{P(A \cap B)}{P(A)} = \frac{0{,}52}{0{,}6} = 0{,}8\overline{6} \approx 0{,}867
+$$
+
+- Sin ninguna información, $B$ tiene probabilidad $0{,}6$.
+- Sabiendo que ha ocurrido $A$, la probabilidad de $B$ **sube** a $0{,}867$.
+- Saber que $A$ ocurrió **cambia** lo que esperamos de $B$: eso es exactamente la definición de dependencia.
+
+El contraste con el complementario lo hace aún más visual:
+
+$$
+P(B \mid \overline{A}) = \frac{P(B) - P(A \cap B)}{P(\overline{A})} = \frac{0{,}6 - 0{,}52}{0{,}4} = 0{,}2
+$$
+
+Es decir, si $A$ no ocurre, $B$ pasa de $0{,}6$ a un $0{,}2$. La información sobre $A$ es **enormemente informativa** sobre $B$.
+
+#### Comparación con el caso independiente {.unnumbered}
+
+| Situación | $P(A \cap B)$ | $P(B \mid A)$ | Lectura |
+|---|---|---|---|
+| Independencia teórica | $0{,}36$ | $0{,}60$ | Saber $A$ no aporta nada sobre $B$ |
+| Los datos del enunciado | $0{,}52$ | $0{,}867$ | Saber $A$ casi garantiza $B$ |
+
+: Comparación entre sucesos dependientes e independientes
+
+Como $0{,}52 > 0{,}36$, la asociación es **positiva**: los dos sucesos «van juntos» más de lo que el azar puro justificaría. Si el valor hubiera sido menor que $0{,}36$ (por ejemplo $0{,}25$), la dependencia sería **negativa**: un suceso frenaría al otro.
+
+#### Las tres formas equivalentes de comprobarlo {.unnumbered}
+
+Da igual cuál uses, porque son la misma condición escrita de tres maneras:
+
+1. $P(A \cap B) = P(A) \cdot P(B)$: la más rápida para calcular.
+2. $P(B \mid A) = P(B)$: la más intuitiva conceptualmente.
+3. $P(A \mid B) = P(A)$: simétrica de la anterior; la independencia nunca es «de uno hacia otro», siempre es **mutua**.
+
+::: {.callout-tip}
+## Un detalle que suele sorprender
+
+Comprobar la primera **basta**: no hace falta verificar las tres. Y si falla una, fallan las tres. Son equivalentes en el sentido fuerte de la palabra.
+:::
+
+**Comentario final.** Compara los dos ejemplos anteriores. Los enunciados son casi idénticos, las tres preguntas son las mismas y las fórmulas también. Lo único que cambia es un número, $0{,}28$ frente a $0{,}52$, y ese número decide si los dos rasgos tienen algo que ver entre sí. La regla de la suma no distingue los dos casos: le da igual. La probabilidad condicionada sí, y por eso hace falta el apartado siguiente.
+
+### Trabajar hacia atrás
+
+Hasta ahora te daban $P(A)$, $P(B)$ y $P(A \cap B)$, y calculabas la unión. Los problemas interesantes van al revés: te dan la unión y te piden la intersección.
+
+**Enunciado.** A una competición de natación han acudido un 65 % de menores de 30 años, un 53 % de chicas, y un 88 % son chicos o menores de 30 años. Calcula la probabilidad de ser chica y menor de 30 años, y la de ser chico.
+
+**Paso 0. Nombrar los sucesos.** Aquí es donde se gana o se pierde el problema:
+
+$$
+A = \text{«menor de 30»}, \qquad B = \text{«ser chica»}, \qquad \overline{B} = \text{«ser chico»}
+$$
+
+$$
+P(A) = 0{,}65, \qquad P(B) = 0{,}53, \qquad P(\overline{B} \cup A) = 0{,}88
+$$
+
+Observa que el tercer dato **mezcla** un suceso con el contrario del otro. Eso es lo que hace el problema distinto, y por eso conviene escribirlo con símbolos antes de tocar la calculadora.
+
+**Paso 1. Ser chico.** $P(\overline{B}) = 1 - 0{,}53 = 0{,}47$.
+
+**Paso 2. Chico y menor de 30**, despejando de la regla de la suma aplicada a $\overline{B}$ y $A$:
+
+$$
+0{,}88 = 0{,}47 + 0{,}65 - P(\overline{B} \cap A) \Rightarrow P(\overline{B} \cap A) = 1{,}12 - 0{,}88 = 0{,}24
+$$
+
+**Paso 3. Chica y menor de 30**, usando que los menores de 30 se reparten entre chicos y chicas:
+
+$$
+P(B \cap A) = P(A) - P(\overline{B} \cap A) = 0{,}65 - 0{,}24 = 0{,}41
+$$
+
+Es decir, el **41 %**.
+
+**Comprobación con la tabla:**
+
+|  | $A$ (menor de 30) | $\overline{A}$ | Total |
+|---|---|---|---|
+| $B$ (chica) | $0{,}41$ | $0{,}12$ | $0{,}53$ |
+| $\overline{B}$ (chico) | $0{,}24$ | $0{,}23$ | $0{,}47$ |
+| Total | $0{,}65$ | $0{,}35$ | $1{,}00$ |
+
+: Tabla de verificación de errores
+
+Todas las filas y todas las columnas cuadran.
+
+::: {.callout-important}
+## Cierra siempre con la verificación
+
+Acostúmbrate a terminar cualquier problema de dos sucesos rellenando la tabla completa. **Detecta el 90 % de los errores aritméticos**, y lo hace en menos de un minuto: si una fila no suma su total, el error está en esa fila.
+
+Y tiene una segunda ventaja: si el examen pregunta después por otra cosa («¿y la probabilidad de ser chica mayor de 30?»), la respuesta ya está en la tabla, $0{,}12$, sin ninguna cuenta nueva.
+:::
+
+### Applet · Trabajar hacia atrás {.unnumbered}
+
+Introduce los datos que te dé el enunciado, incluidas uniones o intersecciones de contrarios, y el applet despeja lo que falta indicando qué fórmula usa en cada paso. Escribe los datos como decimales, fracciones o porcentajes, por ejemplo `65%`, `53%` y `88%` para el problema de la competición.
+
+::: {#panel-hacia-atras .applet-panel data-applet-est4="haciaAtras"}
+:::
+
+### Con fracciones
+
+**Enunciado.** De los sucesos $A$ y $B$ se sabe que
+
+$$
+P(A) = 0{,}4, \qquad P(B) = 0{,}5, \qquad P(A \cap B) = 0{,}2
+$$
+
+Calcula $P(A \cup B)$, $P(\overline{A} \cup \overline{B})$ y $P(\overline{A} \cap \overline{B})$.
+
+**Resolución.**
+
+$$
+P(A \cup B) = 0{,}4 + 0{,}5 - 0{,}2 = 0{,}7, \qquad P(\overline{A} \cup \overline{B}) = 1 - 0{,}2 = 0{,}8, \qquad P(\overline{A} \cap \overline{B}) = 1 - 0{,}7 = 0{,}3
+$$
+
+**Comentario final.** Tres preguntas y tres fórmulas distintas, todas de la tabla resumen. Un aviso útil: aquí $0{,}4 \cdot 0{,}5 = 0{,}2 = P(A \cap B)$, así que estos dos sucesos **sí** son independientes. Cuando resuelvas un problema de este tipo, hacer esa multiplicación de comprobación te cuesta cinco segundos y te da información gratis.
+
+## Pensamiento crítico
+
+Las cuatro preguntas siguientes no tienen una respuesta de una línea. Piénsalas antes de leer el razonamiento.
+
+**1. ¿Probabilidad 0 significa imposible?**
+
+En espacios muestrales **finitos**, sí: si $P(A) = 0$ y todos los sucesos elementales tienen probabilidad positiva, entonces $A = \varnothing$. Pero la implicación general solo va en un sentido:
+
+$$
+A = \varnothing \Rightarrow P(A) = 0, \qquad \text{pero} \qquad P(A) = 0 \nRightarrow A = \varnothing
+$$
+
+Recupera aquí el ejemplo que dejamos pendiente: la probabilidad de que una persona mida **exactamente** $1{,}750000\ldots$ m es cero, y sin embargo alguien tiene esa altura. Lo verás con detalle en la distribución normal. Lo mismo vale para $P(A) = 1$, que no obliga a que $A = E$.
+
+**2. ¿Por qué la probabilidad no puede pasar de 1?**
+
+Porque $A \subseteq E$ y la probabilidad mide una **proporción**. Un trozo no puede ser mayor que el todo.
+
+Pregunta de rebote: ¿tiene sentido decir «hay un 150 % de probabilidades de que gane mi equipo»? Es una hipérbole del lenguaje coloquial, matemáticamente absurda. Detectar estos abusos en titulares de prensa es un excelente ejercicio de alfabetización estadística, y aparecen más de lo que parece: porcentajes que suman 130 %, «el doble de probable que seguro», riesgos que «se multiplican por cinco» sin decir desde qué valor de partida.
+
+**3. Si $A$ y $B$ son incompatibles, ¿qué relación deben cumplir $P(A)$ y $P(B)$ para que $P(A \cup B) = 3P(A)$?**
+
+Al ser incompatibles, $P(A) + P(B) = 3P(A)$, luego $P(B) = 2P(A)$. El segundo suceso debe ser exactamente **el doble de probable** que el primero. Fíjate en que la condición no fija los valores, solo su razón: sirven $0{,}1$ y $0{,}2$, o $0{,}3$ y $0{,}6$, pero no $0{,}4$ y $0{,}8$, porque entonces la unión valdría $1{,}2$.
+
+**4. Un aviso que nunca sobra: incompatible no es lo mismo que independiente.**
+
+Aquí adquiere por fin forma numérica:
+
+$$
+\text{Incompatibles}: \ P(A \cap B) = 0, \qquad \text{Independientes}: \ P(A \cap B) = P(A) \cdot P(B)
+$$
+
+Si $A$ y $B$ son incompatibles y **ambos tienen probabilidad positiva**, entonces $P(A \cap B) = 0 \neq P(A) P(B)$, de modo que son necesariamente **dependientes**.
+
+Y la lectura intuitiva es contundente: si dos sucesos son incompatibles, saber que ha ocurrido uno te informa muchísimo del otro, porque te dice que **no** ha ocurrido. Eso es lo contrario de la independencia. Son conceptos casi opuestos, no sinónimos.
+
+## Actividades propuestas con solución
+
+**1.** De los sucesos $A$ y $B$ se sabe que $P(A) = 0{,}4$, $P(B) = 0{,}3$ y $P(A \cap B) = 0{,}1$. Calcula $P(A \cup B)$, $P(\overline{A} \cup \overline{B})$ y $P(\overline{A} \cap B)$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+P(A \cup B) = 0{,}4 + 0{,}3 - 0{,}1 = 0{,}6, \qquad P(\overline{A} \cup \overline{B}) = 1 - 0{,}1 = 0{,}9, \qquad P(\overline{A} \cap B) = 0{,}3 - 0{,}1 = 0{,}2
+$$
+
+La tercera es la fórmula de la diferencia: «$B$ pero no $A$» es $B$ menos la parte de $B$ que comparte con $A$.
+:::
+
+**2.** Si $P(A) = \dfrac{1}{2}$, $P(B) = \dfrac{1}{3}$ y $P(A \cup B) = \dfrac{2}{3}$, halla $P(A \cap B)$ y $P(\overline{A} \cap \overline{B})$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Despejando de la regla de la suma:
+
+$$
+P(A \cap B) = \frac{1}{2} + \frac{1}{3} - \frac{2}{3} = \frac{1}{6}, \qquad P(\overline{A} \cap \overline{B}) = 1 - P(A \cup B) = 1 - \frac{2}{3} = \frac{1}{3}
+$$
+
+Nota de método: con fracciones, busca primero el denominador común (aquí 6) y opera después. $\frac{3}{6} + \frac{2}{6} - \frac{4}{6} = \frac{1}{6}$.
+:::
+
+**3.** ¿Qué deben cumplir $A$ y $B$ para que $P(A \cup B) = P(A)$ y $P(A \cap B) = P(B)$ simultáneamente?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Ambas condiciones equivalen a $B \subset A$.
+
+Si $B$ está contenido en $A$, unirlos no añade nada (la unión es $A$) e intersecarlos deja $B$ (todo $B$ está dentro de $A$). Compruébalo también con la regla de la suma: sustituyendo $P(A \cap B) = P(B)$ en la fórmula general sale $P(A \cup B) = P(A) + P(B) - P(B) = P(A)$, así que las dos condiciones son en realidad la misma.
+:::
+
+**4.** En un grupo, el 60 % practica deporte, el 45 % toca un instrumento y el 25 % hace ambas cosas. Elegido un alumno al azar, calcula la probabilidad de que: a) haga al menos una de las dos actividades; b) no haga ninguna; c) haga deporte pero no toque instrumento.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Con $A$ = «practica deporte» y $B$ = «toca un instrumento»:
+
+a) «Al menos una» es la unión: $P(A \cup B) = 0{,}60 + 0{,}45 - 0{,}25 = 0{,}80$.
+
+b) «Ninguna» es el contrario de la unión: $P(\overline{A} \cap \overline{B}) = 1 - 0{,}80 = 0{,}20$.
+
+c) «Deporte pero no instrumento» es la diferencia: $P(A \cap \overline{B}) = 0{,}60 - 0{,}25 = 0{,}35$.
+
+**Tabla de verificación:** las cuatro regiones son $0{,}25$, $0{,}35$, $0{,}20$ y $0{,}20$, y
+
+$$
+0{,}25 + 0{,}35 + 0{,}20 + 0{,}20 = 1 \ \checkmark
+$$
+
+Comprueba también la independencia: $0{,}60 \cdot 0{,}45 = 0{,}27 \neq 0{,}25$, luego en este grupo deporte y música están ligeramente asociados de forma negativa.
+:::
+
+**5.** Se lanza una moneda 5 veces. Calcula la probabilidad de obtener al menos una cara.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Contrario: «ninguna cara», es decir, cinco cruces.
+
+$$
+P(\overline{A}) = \left( \frac{1}{2} \right)^{5} = \frac{1}{32} \Rightarrow P(A) = 1 - \frac{1}{32} = \frac{31}{32} \approx 0{,}969
+$$
+
+Sin la propiedad del contrario habría que sumar cinco casos.
+:::
+
+**6.** Demuestra que $P(A \cap \overline{B}) + P(\overline{A} \cap B) = P(A \cup B) - P(A \cap B)$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+El miembro izquierdo es la probabilidad de la **diferencia simétrica**, es decir, la de «exactamente uno de los dos».
+
+Descomponemos $A \cup B$ en sus tres trozos disjuntos:
+
+$$
+P(A \cup B) = P(A \cap \overline{B}) + P(\overline{A} \cap B) + P(A \cap B)
+$$
+
+y despejando los dos primeros términos se obtiene la igualdad pedida.
+
+Interpretación: «al menos uno» menos «los dos» es «exactamente uno». La demostración es una lectura del diagrama de Venn, no un cálculo.
+:::
+
+**7.** Un dado está trucado de modo que $P(\text{par}) = 0{,}6$ y, dentro de los pares, las tres caras son equiprobables; lo mismo ocurre con los impares. Calcula $P(\{2, 3\})$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Los pares reparten $0{,}6$ entre tres caras y los impares reparten $0{,}4$ entre otras tres:
+
+$$
+P(2) = \frac{0{,}6}{3} = 0{,}2, \qquad P(3) = \frac{0{,}4}{3} \approx 0{,}133
+$$
+
+Como los sucesos elementales son incompatibles, se suman: $P(\{2, 3\}) = 0{,}2 + 0{,}133 = 0{,}333$.
+
+Nótese que las propiedades **siguen valiendo aunque Laplace no se pueda aplicar**: esa es su verdadera potencia. Aquí no hay equiprobabilidad global y, sin embargo, la regla de la suma para incompatibles funciona igual.
+:::
+
+## Puente al apartado de probabilidad condicionada
+
+Con Laplace sabemos calcular probabilidades y con estas propiedades sabemos combinarlas. Pero todo lo que hemos hecho comparte una limitación de fondo: **hemos tratado los sucesos como si la información no fluyera entre ellos**.
+
+En cuanto alguien nos dice «sabiendo que la carta extraída es una figura…», el espacio muestral **se encoge** y todas las probabilidades cambian. Ya no hay 40 cartas posibles, hay 12.
+
+En el apartado siguiente, «Probabilidad condicionada. Sucesos dependientes e independientes», introduciremos la definición y, con ella, la **regla del producto** que ya usábamos intuitivamente en los árboles:
+
+$$
+P(B \mid A) = \frac{P(A \cap B)}{P(A)}, \qquad P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)
+$$
+
+Recuperaremos entonces las tablas $2 \times 2$ de este apartado convertidas en **tablas de contingencia**, y podremos por fin distinguir con rigor lo que llevamos cuatro apartados anunciando: la diferencia entre sucesos **incompatibles** y sucesos **independientes**.
+
+## Repaso rápido {.unnumbered}
+
+- **Incompatibles**: $A \cap B = \varnothing \Rightarrow P(A \cup B) = P(A) + P(B)$. Es la Regla 2 de los árboles: entre caminos distintos se suma.
+- **Caso general**: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Se resta porque la zona común se ha contado dos veces. Hay **una sola** fórmula; la de incompatibles es el caso $P(A \cap B) = 0$.
+- **Cuatro regiones**: $P(A \cap B) + P(A \cap \overline{B}) + P(\overline{A} \cap B) + P(\overline{A} \cap \overline{B}) = 1$, y de ahí la tabla $2 \times 2$ que se completa como un sudoku con tres datos.
+- **Monotonía**: $A \subset B \Rightarrow P(A) \leq P(B)$. **Diferencia**: $P(A \cap \overline{B}) = P(A) - P(A \cap B)$.
+- **De Morgan en probabilidad**: «ni uno ni otro» es $1 - P(A \cup B)$; «no los dos a la vez» es $1 - P(A \cap B)$.
+- **Trabajar hacia atrás**: si te dan la unión, despeja la intersección. Y **cierra siempre con la tabla de verificación**.
+- **Independencia**: $P(A \cap B) = P(A) \cdot P(B)$. Comprobarlo cuesta una multiplicación y da información gratis.
+- **Incompatible no es independiente**: dos sucesos incompatibles de probabilidad positiva son necesariamente dependientes.
+- $P(A) = 0$ **no** implica $A = \varnothing$ en general, y $P > 1$ o $P < 0$ es siempre un error de cálculo.

@@ -19,8 +19,12 @@
      .venn(spec)          diagrama de Venn de 2 o 3 sucesos, por regiones
      .arbol(raiz, opts)   árbol ponderado con productos por rama
      .regiones(expr, n)   traduce una expresión de sucesos a regiones
+     .contingencia(spec)  tabla de doble entrada con marginales
+     .barrasBayes(spec)   aportación de cada causa y probabilidad a posteriori
+     .barras(spec)        barras horizontales de frecuencias o probabilidades
+     .pictograma(spec)    cuadrícula de casillas: la tasa base a la vista
      .log                 pila de errores por applet
-     .extraA .extraB      true cuando cada módulo ha registrado sus applets
+     .extraA … .extraD    true cuando cada módulo ha registrado sus applets
 
    Todo el cálculo de probabilidades se hace con fracciones exactas de
    enteros (numerador y denominador), no con coma flotante: así 1/3 sale
@@ -558,14 +562,30 @@
       body += circle(g[k].x, g[k].y, g[k].r, 'none', c, 3);
     });
 
-    /* rótulos de los sucesos, fuera de las circunferencias */
+    /* Rótulos de los sucesos, fuera de las circunferencias.
+       Un nombre que empieza por «~» se dibuja con barra encima
+       (el suceso contrario), y si es largo se reduce el tamaño y se
+       recoloca para que no se salga del marco ni pise los círculos. */
+    function rotulo(x, y, nombre, color, size) {
+      var s = String(nombre === undefined || nombre === null ? '' : nombre);
+      if (!s) return '';
+      var barra = s.charAt(0) === '~';
+      if (barra) s = s.slice(1);
+      var sz = size, maxw = 190;
+      if (anchoTxt(s, sz) > maxw) sz = Math.max(17, Math.floor(maxw / (s.length * 0.58)));
+      var mitad = anchoTxt(s, sz) / 2;
+      var xx = Math.min(Math.max(x, 26 + mitad), W - 26 - mitad);
+      var o = txt(xx, y, esc(s), { size: sz, weight: 700, fill: color });
+      if (barra) o += line(xx - mitad, y - sz * 0.96, xx + mitad, y - sz * 0.96, color, Math.max(2, sz * 0.09));
+      return o;
+    }
     if (n === 2) {
-      body += txt(g.A.x - g.A.r + 26, g.A.y - g.A.r + 40, nom[0], { size: 30, weight: 700, fill: COL.azulOsc });
-      body += txt(g.B.x + g.B.r - 26, g.B.y - g.B.r + 40, nom[1], { size: 30, weight: 700, fill: COL.rojo });
+      body += rotulo(g.A.x - g.A.r + 26, g.A.y - g.A.r + 40, nom[0], COL.azulOsc, 30);
+      body += rotulo(g.B.x + g.B.r - 26, g.B.y - g.B.r + 40, nom[1], COL.rojo, 30);
     } else {
-      body += txt(g.A.x - g.A.r + 26, g.A.y - g.A.r + 40, nom[0], { size: 28, weight: 700, fill: COL.azulOsc });
-      body += txt(g.B.x + g.B.r - 26, g.B.y - g.B.r + 40, nom[1], { size: 28, weight: 700, fill: COL.rojo });
-      body += txt(g.C.x, g.C.y + g.C.r - 14, nom[2], { size: 28, weight: 700, fill: COL.verde });
+      body += rotulo(g.A.x - g.A.r + 26, g.A.y - g.A.r + 40, nom[0], COL.azulOsc, 28);
+      body += rotulo(g.B.x + g.B.r - 26, g.B.y - g.B.r + 40, nom[1], COL.rojo, 28);
+      body += rotulo(g.C.x, g.C.y + g.C.r - 14, nom[2], COL.verde, 28);
     }
     body += txt(34, 44, 'E', { size: 26, weight: 700, fill: COL.gris, anchor: 'start' });
 
@@ -630,28 +650,61 @@
     function cc(x) { var y = Math.round(x * k); return (y < 16 ? '0' : '') + y.toString(16); }
     return '#' + cc(r) + cc(g) + cc(b);
   }
-  /* radio del nodo ajustado a la longitud de su rótulo */
-  function radioNodo(nodo, esHoja) {
-    var lab = nodo.lab === undefined ? '' : String(nodo.lab);
-    var base = esHoja ? 15 : 16;
-    var necesario = Math.ceil(lab.length * 5.2) + 9;
-    return Math.max(base, necesario);
+  /* Anchura aproximada de un rótulo en píxeles. La fuente del SVG es
+     bold sans-serif: 0,58 · tamaño por carácter es una cota fiable. */
+  function anchoTxt(s, size) {
+    return String(s === undefined || s === null ? '' : s).length * size * 0.58;
+  }
+
+  /* Media anchura y media altura de la caja de un nodo. Los nodos son
+     píldoras (rectángulos de esquinas redondas) en vez de círculos: así
+     un rótulo largo ensancha la caja pero no la hace crecer a lo alto,
+     que es lo que antes se salía del lienzo y se solapaba. */
+  function cajaNodo(nodo, esHoja) {
+    var lab = nodo.lab === undefined || nodo.lab === null ? '' : String(nodo.lab);
+    if (!lab) return { hw: esHoja ? 15 : 17, hh: esHoja ? 15 : 17 };
+    return { hw: Math.max(esHoja ? 19 : 21, anchoTxt(lab, 18) / 2 + 13), hh: esHoja ? 22 : 24 };
   }
 
   function arbol(raiz, opts) {
     opts = opts || {};
     var nh = hojas(raiz), prof = profundidad(raiz);
-    var pasoX = opts.pasoX || 250;
-    var pasoY = opts.pasoY || 62;
-    var W = 130 + prof * pasoX + (opts.margenDer === undefined ? 230 : opts.margenDer);
-    var H = Math.max(210, nh * pasoY + 70);
+    var pasoY = Math.max(opts.pasoY || 62, 62);
     var body = '';
     var y = 0;
 
+    /* 1) medir: caja de cada nodo, caja mayor por nivel y anchura que
+          necesitan los rótulos de las hojas a su derecha. */
+    var anchoNivel = [], altoNivel = [], anchoHojas = 0;
+    function mide(nodo, nivel) {
+      var esHoja = !nodo.hijos || !nodo.hijos.length;
+      var c = cajaNodo(nodo, esHoja);
+      nodo._hw = c.hw; nodo._hh = c.hh;
+      if (!(anchoNivel[nivel] >= c.hw)) anchoNivel[nivel] = c.hw;
+      if (!(altoNivel[nivel] >= c.hh)) altoNivel[nivel] = c.hh;
+      if (esHoja) {
+        var etq = nodo.camino !== undefined ? nodo.camino : '';
+        var s = nodo.hojaTxt !== undefined ? nodo.hojaTxt : '';
+        var a = Math.max(anchoTxt(etq, 17), anchoTxt(s, 17), anchoTxt('00/00', 17));
+        if (a > anchoHojas) anchoHojas = a;
+      }
+      (nodo.hijos || []).forEach(function (h) { mide(h, nivel + 1); });
+    }
+    mide(raiz, 0);
+
+    /* 2) posición horizontal de cada nivel: la caja mayor del nivel
+          anterior, un hueco para la etiqueta de la rama y la caja de
+          este nivel. Así nunca se pisan aunque los rótulos sean largos. */
+    var hueco = opts.pasoX ? Math.max(110, opts.pasoX - 140) : 130;
+    var xs = [24 + (anchoNivel[0] || 17)];
+    for (var k = 1; k <= prof; k++) {
+      xs[k] = xs[k - 1] + (anchoNivel[k - 1] || 17) + hueco + (anchoNivel[k] || 17);
+    }
+
     function coloca(nodo, nivel, prod) {
+      nodo._x = xs[nivel];
       if (!nodo.hijos || !nodo.hijos.length) {
         var yy = 45 + (y + 0.5) * pasoY; y++;
-        nodo._x = 90 + nivel * pasoX;
         nodo._y = yy;
         nodo._prod = prod;
         return yy;
@@ -659,46 +712,59 @@
       var ys = nodo.hijos.map(function (h) {
         return coloca(h, nivel + 1, h.p ? fProd(prod, h.p) : prod);
       });
-      nodo._x = 90 + nivel * pasoX;
       nodo._y = (Math.min.apply(null, ys) + Math.max.apply(null, ys)) / 2;
       nodo._prod = prod;
       return nodo._y;
     }
     coloca(raiz, 0, frac(1, 1));
 
+    /* 3) lienzo: lo que de verdad ocupa el dibujo, más el margen del
+          rótulo de comprobación de la esquina. */
+    var margenDer = opts.margenDer === undefined ? anchoHojas + 26 : opts.margenDer;
+    var W = xs[prof] + (anchoNivel[prof] || 17) + margenDer;
+    var conSuma = opts.comprueba !== false;
+    if (conSuma) W = Math.max(W, 460);
+    var H = Math.max(200, 45 + nh * pasoY + (conSuma ? 48 : 24));
+
     var suma = frac(0, 1);
     function pinta(nodo) {
       (nodo.hijos || []).forEach(function (h) {
         var col = h.color || COL.azul;
-        body += line(nodo._x + radioNodo(nodo, false), nodo._y,
-                     h._x - radioNodo(h, !h.hijos || !h.hijos.length), h._y, col, 2.4);
+        body += line(nodo._x + nodo._hw, nodo._y, h._x - h._hw, h._y, col, 2.4);
         /* etiqueta de la probabilidad de la rama, sobre el segmento */
-        var mx = (nodo._x + h._x) / 2, my = (nodo._y + h._y) / 2;
+        var mx = (nodo._x + nodo._hw + h._x - h._hw) / 2, my = (nodo._y + h._y) / 2;
         var dy = h._y > nodo._y ? 20 : -12;
         if (h.p) {
-          body += rect(mx - 40, my + dy - 19, 80, 26, '#ffffff', '#e0e6ea', { r: 6, sw: 1 });
-          body += txt(mx, my + dy, esc(h.pTxt || fracTxt(h.p)), { size: 18, weight: 700, fill: oscureceSiClaro(col) });
+          var et = String(h.pTxt || fracTxt(h.p));
+          var aw = Math.max(80, anchoTxt(et, 18) + 22);
+          body += rect(mx - aw / 2, my + dy - 19, aw, 26, '#ffffff', '#e0e6ea', { r: 6, sw: 1 });
+          body += txt(mx, my + dy, esc(et), { size: 18, weight: 700, fill: oscureceSiClaro(col) });
         }
         pinta(h);
       });
-      /* nodo */
+      /* nodo: píldora ajustada al rótulo */
       var esHoja = !nodo.hijos || !nodo.hijos.length;
-      var r = radioNodo(nodo, esHoja);
-      body += circle(nodo._x, nodo._y, r, esHoja ? '#fff' : COL.azulClaro, COL.azulOsc, 2.4);
-      if (nodo.lab !== undefined) {
+      body += rect(nodo._x - nodo._hw, nodo._y - nodo._hh, 2 * nodo._hw, 2 * nodo._hh,
+                   esHoja ? '#ffffff' : COL.azulClaro, COL.azulOsc, { r: nodo._hh, sw: 2.4 });
+      if (nodo.lab !== undefined && nodo.lab !== null && String(nodo.lab) !== '') {
         body += txt(nodo._x, nodo._y + 7, esc(nodo.lab), { size: 18, weight: 700, fill: COL.azulOsc });
       }
       if (esHoja) {
-        var etq = nodo.camino || nodo.lab || '';
+        /* El rótulo ya va dentro de la píldora: a la derecha solo se
+           escribe el camino, si el applet lo pide, y el valor de la hoja. */
+        var etq = nodo.camino !== undefined ? nodo.camino : '';
         var s = (nodo.hojaTxt !== undefined ? nodo.hojaTxt : fracTxt(nodo._prod));
-        body += txt(nodo._x + r + 15, nodo._y - 4, esc(String(etq)), { size: 17, weight: 700, anchor: 'start', fill: COL.texto });
-        body += txt(nodo._x + r + 15, nodo._y + 20, esc(s), { size: 17, weight: 600, anchor: 'start', fill: COL.verde });
+        var xr = nodo._x + nodo._hw + 15;
+        if (String(etq) !== '')
+          body += txt(xr, nodo._y - 4, esc(String(etq)), { size: 17, weight: 700, anchor: 'start', fill: COL.texto });
+        if (String(s) !== '')
+          body += txt(xr, nodo._y + (String(etq) !== '' ? 20 : 6), esc(s), { size: 17, weight: 600, anchor: 'start', fill: COL.verde });
         suma = fSuma(suma, nodo._prod);
       }
     }
     pinta(raiz);
 
-    if (opts.comprueba !== false) {
+    if (conSuma) {
       var ok = fIgual(suma, frac(1, 1));
       body += txt(W - 20, H - 18,
         'Suma de todas las ramas: ' + esc(fracTxt(suma)) + (ok ? '  \u2713' : '  \u2717'),
@@ -900,6 +966,228 @@
   }
 
   /* ------------------------------------------------------------------
+     9 bis · piezas de la parte 2 (4.6 a 4.10)
+     ------------------------------------------------------------------ */
+
+  /* --- tabla de contingencia con marginales -------------------------
+     spec = {
+       cols:  ['Ojos claros', 'Ojos oscuros'],
+       filas: [ {lab:'Chicas', celdas:[8, 4]}, {lab:'Chicos', celdas:[3, 7]} ],
+       capC:  'Color de ojos',        rótulo de la cabecera de columnas
+       capF:  'Sexo',                 rótulo de la esquina
+       totales: true,                 fila y columna de totales
+       tex: false,                    si true, cada celda va en KaTeX
+       resalta: [{f:0,c:1}] | {fila:0} | {col:1} | [{fila:0},{col:1}],
+       cap: 'pie de la tabla'
+     }
+     Las celdas pueden ser números o cadenas ya formateadas.
+     ------------------------------------------------------------------ */
+  function contingencia(spec) {
+    spec = spec || {};
+    var cols = spec.cols || [], filas = spec.filas || [];
+    var conTot = spec.totales !== false;
+    var marca = spec.resalta === undefined ? [] :
+                (spec.resalta instanceof Array ? spec.resalta : [spec.resalta]);
+
+    function celdaMarcada(i, j) {
+      for (var k = 0; k < marca.length; k++) {
+        var m = marca[k];
+        if (m.f === i && m.c === j) return 'ap-hl';
+        if (m.fila === i && m.c === undefined && m.f === undefined) return 'ap-hlb';
+        if (m.col === j && m.c === undefined && m.f === undefined) return 'ap-hlb';
+      }
+      return '';
+    }
+    /* Una celda puede ser: un número, una fracción {n,d}, una cadena de
+       texto, o HTML ya construido (por ejemplo con K() o <b>). Si trae
+       marcas HTML se inserta tal cual; si no, se escapa o se pasa por
+       KaTeX según spec.tex. Así nunca se envuelve dos veces. */
+    function pinta(v) {
+      if (v === undefined || v === null) return '';
+      if (typeof v === 'object' && v.n !== undefined && v.d !== undefined) return K(fracTex(v));
+      var s = String(v);
+      if (s.indexOf('<') >= 0) return s;
+      if (!spec.tex) return texifica(esc(s));
+      /* Con tex:true la cadena puede ser TeX suelto ('\\overline{B}') o
+         texto normal ('Total'). Solo se pasa por KaTeX si trae marcas
+         de TeX; el texto normal se escapa para que no salga en cursiva
+         ni pierda los espacios. */
+      return (/[\\^_{}]/.test(s) || /^[A-Za-z][0-9']?$/.test(s)) ? K(s) : texifica(esc(s));
+    }
+    function suma(vals) {
+      var s = 0, hay = true;
+      vals.forEach(function (v) {
+        var x = (typeof v === 'object' && v !== null && v.n !== undefined) ? null : Number(v);
+        if (x === null || !Number.isFinite(x)) hay = false; else s += x;
+      });
+      return hay ? s : '';
+    }
+
+    var h = '<div class="ap-tblwrap"><table class="ap-tbl ap-cont"><thead><tr>' +
+      '<th class="ap-corner">' + texifica(esc(spec.capF || '')) + '</th>';
+    cols.forEach(function (c) { h += '<th>' + pinta(c) + '</th>'; });
+    if (conTot) h += '<th class="ap-tot">Total</th>';
+    h += '</tr></thead><tbody>';
+
+    var totCol = [], i, j;
+    for (j = 0; j < cols.length; j++) totCol.push([]);
+    filas.forEach(function (f, ii) {
+      h += '<tr><th>' + pinta(f.lab) + '</th>';
+      for (j = 0; j < cols.length; j++) {
+        var cl = celdaMarcada(ii, j);
+        h += '<td' + (cl ? ' class="' + cl + '"' : '') + '>' + pinta(f.celdas[j]) + '</td>';
+        totCol[j].push(f.celdas[j]);
+      }
+      if (conTot) h += '<td class="ap-tot">' + pinta(f.total !== undefined ? f.total : suma(f.celdas)) + '</td>';
+      h += '</tr>';
+    });
+    if (conTot) {
+      h += '<tr class="ap-totrow"><th class="ap-tot">Total</th>';
+      var granTotal = 0, hayGran = true;
+      for (j = 0; j < cols.length; j++) {
+        var s = suma(totCol[j]);
+        h += '<td class="ap-tot">' + pinta(s) + '</td>';
+        if (s === '') hayGran = false; else granTotal += s;
+      }
+      h += '<td class="ap-tot ap-gran">' + pinta(spec.gran !== undefined ? spec.gran : (hayGran ? granTotal : '')) + '</td></tr>';
+    }
+    h += '</tbody></table></div>';
+    if (spec.capC) h = '<p class="ap-tblcap">' + (spec.capC.indexOf('<') >= 0 ? spec.capC : texifica(esc(spec.capC))) + '</p>' + h;
+    if (spec.cap) h += '<p class="ap-figcap">' + spec.cap + '</p>';
+    return h;
+  }
+
+  /* --- barras de aportación de cada causa (lectura de Bayes) ---------
+     spec = { causas:[{lab, prior:{n,d}, cond:{n,d}, color}], efecto:'D', cap }
+     Cada barra mide prior*cond; su etiqueta es la probabilidad a
+     posteriori, es decir, la parte del total que le corresponde.
+     ------------------------------------------------------------------ */
+  function barrasBayes(spec) {
+    spec = spec || {};
+    var cs = spec.causas || [], efecto = spec.efecto || 'B';
+    var apo = cs.map(function (c) { return fProd(c.prior, c.cond); });
+    var total = apo.reduce(function (a, p) { return fSuma(a, p); }, frac(0, 1));
+    var filaH = 92, H = 90 + cs.length * filaH + 66;
+    var ancho = 560, x0 = 230;
+    cs.forEach(function (c) { x0 = Math.max(x0, anchoTxt(c.lab, 21) + 30); });
+    /* el lienzo se ensancha hasta que quepa la etiqueta más larga: así
+       ningún texto queda cortado por el borde del SVG */
+    var largo = 0;
+    cs.forEach(function (c, i) {
+      var post = fIgual(total, frac(0, 1)) ? frac(0, 1) : fDiv(apo[i], total);
+      largo = Math.max(largo,
+        fracTxt(apo[i]).length * 11,
+        ('a posteriori ' + fracTxt(post) + ' = ' + pct(fVal(post), 1)).length * 9);
+    });
+    var W = Math.max(1000, x0 + ancho + 24 + largo + 16);
+    var body = txt(x0 - 12, 44, 'Aportación de cada causa a ' + esc(efecto),
+      { size: 20, weight: 700, anchor: 'start', fill: COL.texto });
+    var paleta = [COL.azul, COL.naranja, COL.morado, COL.teal, COL.verde, COL.rojo];
+    var maxV = 0;
+    apo.forEach(function (p) { maxV = Math.max(maxV, fVal(p)); });
+    if (maxV <= 0) maxV = 1;
+
+    cs.forEach(function (c, i) {
+      var y = 76 + i * filaH;
+      var v = fVal(apo[i]);
+      var w = Math.max(4, ancho * v / maxV);
+      var col = c.color || paleta[i % paleta.length];
+      body += txt(x0 - 18, y + 34, esc(c.lab), { size: 21, weight: 700, anchor: 'end', fill: COL.texto });
+      body += rect(x0, y, w, 50, col, 'none', { r: 6, op: 0.9 });
+      body += rect(x0, y, ancho, 50, 'none', COL.guia, { r: 6, sw: 1 });
+      body += txt(x0 + w + 14, y + 22, fracTxt(apo[i]),
+        { size: 19, weight: 700, anchor: 'start', fill: col });
+      var post = fIgual(total, frac(0, 1)) ? frac(0, 1) : fDiv(apo[i], total);
+      body += txt(x0 + w + 14, y + 44, 'a posteriori ' + fracTxt(post) + ' = ' + pct(fVal(post), 1),
+        { size: 17, weight: 600, anchor: 'start', fill: COL.gris });
+    });
+    var yF = 76 + cs.length * filaH + 18;
+    body += line(x0, yF - 8, x0 + ancho, yF - 8, COL.guia, 1.4);
+    body += txt(x0 - 18, yF + 22, 'P(' + esc(efecto) + ')',
+      { size: 21, weight: 700, anchor: 'end', fill: COL.verde });
+    body += txt(x0, yF + 22, fracTxt(total) + '  =  ' + nc(fVal(total), 4) + '  =  ' + pct(fVal(total), 2),
+      { size: 20, weight: 700, anchor: 'start', fill: COL.verde });
+    return svgWrap(body, W, H, 'Aportación de cada causa', spec.cap);
+  }
+
+  /* --- barras horizontales genéricas --------------------------------
+     spec = { items:[{lab, valor, color, nota}], max, unidad, cap, label }
+     ------------------------------------------------------------------ */
+  function barras(spec) {
+    spec = spec || {};
+    var it = spec.items || [];
+    var filaH = 74, H = 46 + it.length * filaH + 26;
+    var ancho = 600, x0 = 210;
+    /* margen izquierdo a medida del rótulo más largo: con etiquetas de
+       más de ~15 caracteres se salían por la izquierda del lienzo */
+    it.forEach(function (o) { x0 = Math.max(x0, anchoTxt(o.lab, 21) + 30); });
+    /* lienzo ancho a medida de la etiqueta más larga, para que las notas
+       de la derecha no se corten */
+    var largo = 0;
+    it.forEach(function (o) {
+      var etq = (o.txt !== undefined) ? String(o.txt) : (nc(Number(o.valor) || 0, 4) + (spec.unidad ? ' ' + spec.unidad : ''));
+      largo = Math.max(largo, etq.length * 12, (o.nota ? String(o.nota).length * 9 : 0));
+    });
+    var W = Math.max(1000, x0 + ancho + 24 + largo + 16);
+    var maxV = spec.max;
+    if (maxV === undefined) {
+      maxV = 0;
+      it.forEach(function (o) { maxV = Math.max(maxV, Number(o.valor) || 0); });
+    }
+    if (!(maxV > 0)) maxV = 1;
+    var paleta = [COL.azul, COL.naranja, COL.morado, COL.teal, COL.verde, COL.rojo];
+    var body = '';
+    it.forEach(function (o, i) {
+      var y = 30 + i * filaH;
+      var v = Number(o.valor) || 0;
+      var w = Math.max(3, ancho * v / maxV);
+      var col = o.color || paleta[i % paleta.length];
+      body += txt(x0 - 18, y + 32, esc(o.lab), { size: 21, weight: 700, anchor: 'end', fill: COL.texto });
+      body += rect(x0, y, ancho, 46, '#f4f7f9', COL.guia, { r: 6, sw: 1 });
+      body += rect(x0, y, w, 46, col, 'none', { r: 6, op: 0.92 });
+      var etq = (o.txt !== undefined) ? o.txt : nc(v, 4) + (spec.unidad ? ' ' + spec.unidad : '');
+      body += txt(x0 + ancho + 16, y + 24, esc(etq),
+        { size: 20, weight: 700, anchor: 'start', fill: col });
+      if (o.nota) {
+        body += txt(x0 + ancho + 16, y + 44, esc(o.nota),
+          { size: 16, weight: 600, anchor: 'start', fill: COL.gris });
+      }
+    });
+    return svgWrap(body, W, H, spec.label || 'Diagrama de barras', spec.cap);
+  }
+
+  /* --- pictograma de 100 (o n) casillas: la tasa base a la vista ----
+     spec = { grupos:[{lab, n, color}], cols, cap, label }
+     ------------------------------------------------------------------ */
+  function pictograma(spec) {
+    spec = spec || {};
+    var g = spec.grupos || [];
+    var totalN = g.reduce(function (a, o) { return a + (Number(o.n) || 0); }, 0);
+    var cols = spec.cols || 20;
+    var filas = Math.max(1, Math.ceil(totalN / cols));
+    var lado = 34, hueco = 6;
+    var W = 40 + cols * (lado + hueco), H = 34 + filas * (lado + hueco) + 26;
+    var paleta = [COL.rojo, COL.azulClaro, COL.naranja, COL.teal, COL.morado];
+    var body = '', k = 0;
+    g.forEach(function (o, gi) {
+      var col = o.color || paleta[gi % paleta.length];
+      var n = Number(o.n) || 0;
+      for (var i = 0; i < n; i++, k++) {
+        var f = Math.floor(k / cols), c = k % cols;
+        body += rect(20 + c * (lado + hueco), 22 + f * (lado + hueco), lado, lado,
+          col, '#ffffff', { r: 5, sw: 1.4 });
+      }
+    });
+    var leyendas = g.map(function (o, gi) {
+      return [o.color || paleta[gi % paleta.length],
+        esc(o.lab) + ': ' + nc(Number(o.n) || 0, 0) +
+        (totalN ? ' de ' + nc(totalN, 0) : '')];
+    });
+    return svgWrap(body, W, H, spec.label || 'Pictograma de frecuencias', spec.cap) +
+      leyenda(leyendas);
+  }
+
+  /* ------------------------------------------------------------------
      10 · registrador provisional
      Si un módulo -a o -b no llega a cargarse, en lugar de un applet
      fantasma aparece un aviso claro con la causa.
@@ -917,15 +1205,29 @@
     'tablaMaestra',
     'arbolPonderado', 'reglasArbol', 'dosUrnas',
     'reemplazamiento', 'barajaFiguras', 'arbolNoUniforme',
-    'fermatRoberval', 'entrenador'
+    'fermatRoberval', 'entrenador',
+    /* módulo C · apartados 4.6 y 4.7 */
+    'equiprobable', 'laplace', 'urnaTresColores', 'barajaLaplace', 'ambiguedad',
+    'quiniela', 'primitiva', 'dosEtapas', 'dadoCargado', 'quinielaAsimetrica',
+    'frecuentista', 'razonInsuficiente',
+    'rango', 'sumaElementales', 'alMenos', 'sumaIncompatibles', 'sumaGeneral',
+    'cuatroRegiones', 'haciaAtras', 'consecuencias',
+    /* módulo D · apartados 4.8, 4.9 y 4.10 */
+    'condicional', 'clase22', 'condProb', 'contingenciaLab', 'hospital',
+    'tecnologias', 'reglaProducto', 'biblioteca', 'independencia',
+    'testIndependencia', 'incompatibleVsIndependiente', 'asimetria',
+    'fiscal', 'sistemaCompleto', 'total', 'tresFactorias', 'urnasMoneda',
+    'cincoPasos', 'bayes', 'bayesFactorias', 'testMedico', 'tasaBase',
+    'montyHall', 'actualizaCreencias', 'mapaTema'
   ];
   PENDIENTES.forEach(function (k) {
     R[k] = function (n) {
       n.classList.add('applet');
       n.innerHTML =
         '<h4 class="mx-title">Applet · ' + esc(k) + '</h4>' +
-        '<div class="mx-bad ap-err">Este applet requiere <code>est4-applets-a.js</code> o ' +
-        '<code>est4-applets-b.js</code>. Comprueba que ambos se cargan después de ' +
+        '<div class="mx-bad ap-err">Este applet vive en uno de los módulos ' +
+        '<code>est4-applets-a.js</code>, <code>-b.js</code>, <code>-c.js</code> o ' +
+        '<code>-d.js</code>. Comprueba que los cuatro se cargan después de ' +
         '<code>est4-applets.js</code> en <code>assets/_scripts.html</code>.</div>';
     };
   });
@@ -941,6 +1243,8 @@
       ['Núcleo est4-applets.js', true],
       ['Módulo est4-applets-a.js', window.EST4 && window.EST4.extraA === true],
       ['Módulo est4-applets-b.js', window.EST4 && window.EST4.extraB === true],
+      ['Módulo est4-applets-c.js', window.EST4 && window.EST4.extraC === true],
+      ['Módulo est4-applets-d.js', window.EST4 && window.EST4.extraD === true],
       ['Fracciones exactas (1/3 + 1/6 = 1/2)',
         (function () { var s = fSuma(frac(1, 3), frac(1, 6)); return s.n === 1 && s.d === 2; })()],
       ['Álgebra de sucesos (De Morgan)',
@@ -988,6 +1292,8 @@
     /* gráficos */
     COL: COL, svgWrap: svgWrap, txt: txt, line: line, rect: rect,
     circle: circle, path: path, leyenda: leyenda, venn: venn, arbol: arbol,
+    barras: barras, barrasBayes: barrasBayes, pictograma: pictograma,
+    contingencia: contingencia,
     /* interfaz */
     shell: shell, resultado: resultado, tarjeta: tarjeta, nota: nota,
     aviso: aviso, bien: bien, mal: mal, insignia: insignia, kvs: kvs,
@@ -1016,7 +1322,8 @@
     var attempts = 0;
     (function espera() {
       var S = window.EST4;
-      if (S && S.extraA === true && S.extraB === true) { boot(); return; }
+      if (S && S.extraA === true && S.extraB === true &&
+          S.extraC === true && S.extraD === true) { boot(); return; }
       if (attempts++ >= 200) { boot(); return; }   /* ~2 s de margen */
       setTimeout(espera, 10);
     })();

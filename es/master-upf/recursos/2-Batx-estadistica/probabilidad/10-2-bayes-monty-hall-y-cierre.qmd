@@ -1,0 +1,536 @@
+---
+title: "Tema 4.10 Bayes contra la intuición y cierre del tema"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 10-2-bayes-monty-hall-y-cierre
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El concurso de las tres puertas resuelto con Bayes, la falacia del fiscal cuantificada, el olvido de la tasa base, la versión de Bayes como actualización de creencias en forma de ventaja, un bloque de actividades resueltas y el cierre del tema con el mapa conceptual completo y la tabla de fórmulas de referencia rápida.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Ya tienes la fórmula de Bayes y sabes construir su tabla de cuatro columnas. Lo que queda es lo más interesante del tema: comprobar que esa fórmula gana todas las discusiones contra la intuición, incluso cuando la intuición grita muy fuerte.
+
+Los tres casos de este archivo (el concurso de las tres puertas, la falacia del fiscal y el olvido de la tasa base) tienen algo en común: casi todo el mundo se equivoca la primera vez, y el error no se corrige razonando más deprisa, sino escribiendo la tabla.
+
+## Cerramos el círculo: el concurso de las tres puertas
+
+Al principio del tema planteamos el reto: concursas en un programa, hay premio detrás de una de tres puertas, eliges la número 1, el presentador abre la número 3 y está vacía, y te ofrece cambiar a la número 2. ¿Cambias?
+
+Ahora tenemos las herramientas para responderlo con rigor.
+
+::: {.callout-warning}
+## Las reglas exactas del concurso (sin ellas no hay problema)
+
+Antes de calcular hay que fijar el comportamiento del presentador, porque la respuesta depende de él:
+
+1. El premio está colocado al azar, con probabilidad $\tfrac13$ detrás de cada puerta.
+2. El presentador **sabe** dónde está el premio.
+3. El presentador **nunca** abre la puerta que tú has elegido.
+4. El presentador **nunca** abre la puerta del premio.
+5. Si tiene dos puertas posibles para abrir, elige entre ellas al azar, al $50\ \%$.
+
+Si cambias cualquiera de estas reglas, cambia el resultado. Es la misma lección de la paradoja de Fermat y Roberval del apartado 4.5: **define el experimento antes de contar**.
+:::
+
+**Paso 1: sucesos.** $C_i =$ el premio está detrás de la puerta $i$, con $P(C_i) = \tfrac13$ a priori. Sea $B = $ «el presentador abre la puerta 3».
+
+**Paso 2: verosimilitudes.** Aquí está toda la sutileza, y conviene razonarla despacio, puerta por puerta:
+
+$$
+P(B \mid C_1) = \frac{1}{2} \quad \text{(premio en la 1: puede abrir la 2 o la 3, y elige al azar)}
+$$
+
+$$
+P(B \mid C_2) = 1 \quad \text{(premio en la 2: está obligado a abrir la 3)}
+$$
+
+$$
+P(B \mid C_3) = 0 \quad \text{(nunca abre la puerta del premio)}
+$$
+
+**Paso 3: probabilidad total.**
+
+$$
+P(B) = \frac{1}{3}\cdot\frac{1}{2} + \frac{1}{3}\cdot 1 + \frac{1}{3}\cdot 0 = \frac{1}{6} + \frac{1}{3} = \frac{1}{2}
+$$
+
+**Paso 4: Bayes.**
+
+$$
+P(C_1 \mid B) = \frac{\frac{1}{3}\cdot\frac{1}{2}}{\frac{1}{2}} = \frac{1/6}{1/2} = \frac{1}{3}, \qquad P(C_2 \mid B) = \frac{\frac{1}{3}\cdot 1}{\frac{1}{2}} = \frac{1/3}{1/2} = \frac{2}{3}
+$$
+
+Y, evidentemente, $P(C_3 \mid B) = 0$: acabas de ver que esa puerta está vacía.
+
+**Paso 5: comprobación y decisión.** $\tfrac13 + \tfrac23 + 0 = 1$ $\checkmark$.
+
+::: {.callout-important}
+## Conviene cambiar de puerta
+
+Quedándote ganas con probabilidad $\tfrac13$; cambiando, con $\tfrac23$. **Cambiar duplica tus posibilidades.**
+:::
+
+**La explicación intuitiva** que suele desbloquear a quien no lo acepta: tu puerta inicial tenía $\tfrac13$ y esa probabilidad **no cambia**, porque el presentador no te ha dado ninguna información sobre ella (abriera lo que abriera, iba a abrir una puerta vacía distinta de la tuya). Los $\tfrac23$ restantes estaban repartidos entre las puertas 2 y 3; al descartar la 3, **todos se concentran en la 2**.
+
+Dicho en el lenguaje de la tabla: la puerta 2 tenía la misma a priori que la tuya, pero una verosimilitud **doble** ($1$ frente a $\tfrac12$), porque el presentador estaba obligado a abrir la 3 y no tenía elección. Esa obligación es la información que te ha dado sin querer.
+
+::: {.callout-tip}
+## La versión de las cien puertas
+
+Si el argumento sigue sin convencerte, agranda el problema. Hay $100$ puertas, eliges la número 1 (probabilidad $\tfrac{1}{100}$) y el presentador, que sabe dónde está el premio, abre $98$ puertas vacías y deja solo la tuya y la número 57.
+
+¿De verdad crees que tu elección a ciegas entre cien puertas tiene la misma probabilidad que la única superviviente de una criba dirigida? Tu puerta sigue valiendo $\tfrac{1}{100}$; la otra vale $\tfrac{99}{100}$.
+
+Agrandar el problema es una técnica general de pensamiento crítico: si un razonamiento es correcto, debe seguir siendo correcto al llevar los datos al extremo.
+:::
+
+::: {.callout-caution}
+## Y si el presentador no supiera dónde está el premio
+
+Supongamos que abre una puerta al azar entre las dos que no has elegido, y resulta que está vacía por suerte. Entonces $P(B \mid C_2) = \tfrac12$ igual que $P(B \mid C_1)$, y
+
+$$
+P(B) = \frac13\cdot\frac12 + \frac13\cdot\frac12 + \frac13\cdot\frac12 = \frac12,
+$$
+
+pero ahora los tres caminos incluyen el caso en que abre la puerta del premio. Condicionando a que la puerta abierta esté vacía, las dos puertas restantes quedan **empatadas** a $\tfrac12$ y da igual cambiar.
+
+Compara las dos versiones: los datos observados son idénticos (has visto una puerta vacía), y sin embargo la respuesta cambia. Lo que informa no es solo **lo que ves**, sino **el mecanismo que lo ha producido**. Esta es probablemente la idea más profunda de todo el tema.
+:::
+
+### Applet · El concurso de las tres puertas {.unnumbered}
+
+Simula miles de partidas con las dos estrategias (quedarse y cambiar) y compara las frecuencias relativas con los valores teóricos $\tfrac13$ y $\tfrac23$.
+
+::: {#panel-monty-hall .applet-panel data-applet-est4="montyHall"}
+:::
+
+Fíjate en algo que cierra el tema por completo: aquí conviven las **dos** definiciones de probabilidad que has estudiado. La frecuencial (simular y contar, apartado 4.1) y la calculada con Bayes (apartado 4.10) dan el mismo número. La ley de los grandes números y el teorema de Bayes son dos caminos hacia la misma verdad.
+
+## Pensamiento crítico: Bayes contra la intuición
+
+Los dos apartados que siguen no son curiosidades: son la razón por la que este tema forma parte de la educación de cualquier ciudadano. Un error de Bayes cometido en un juzgado o en un hospital tiene consecuencias reales.
+
+### La falacia del fiscal resuelta
+
+En el apartado 4.8 dejamos abierta esta cuestión al estudiar la asimetría del condicionamiento. Ahora podemos **cuantificarla**.
+
+Supongamos que una prueba de ADN coincide con el acusado, y que la probabilidad de una coincidencia en una persona inocente es de 1 entre un millón. La fiscalía concluye: «la probabilidad de que sea inocente es de 1 entre un millón».
+
+::: {.callout-warning}
+## Dónde está el salto ilegítimo
+
+El dato que se tiene es
+
+$$
+P(\text{coincidencia} \mid \text{inocente}) = 10^{-6}
+$$
+
+y lo que la fiscalía afirma es
+
+$$
+P(\text{inocente} \mid \text{coincidencia}) = 10^{-6}
+$$
+
+Son dos números distintos: se ha invertido la barra sin permiso. Es exactamente el error que en el apartado 4.8 llamamos **falacia del fiscal**, y Bayes nos dice cuánto se aleja de la realidad.
+:::
+
+Pongamos que la búsqueda se hizo sobre una base de datos de un millón de personas, de las cuales solo una es culpable:
+
+| Grupo | A priori | Verosimilitud de la coincidencia | Producto |
+|---|---|---|---|
+| Culpable | $10^{-6}$ | 1 | $1 \cdot 10^{-6}$ |
+| Inocente | $\approx 1$ | $10^{-6}$ | $\approx 1 \cdot 10^{-6}$ |
+| Total | 1 | — | $\approx 2 \cdot 10^{-6}$ |
+
+$$
+P(\text{culpable} \mid \text{coincidencia}) \approx \frac{10^{-6}}{2 \cdot 10^{-6}} = 0{,}5
+$$
+
+**No un $99{,}9999\ \%$, sino un $50\ \%$.** Es decir, con esa única prueba la balanza está exactamente en el medio: es tan probable que el señalado sea el culpable como que sea uno de los inocentes que ha coincidido por azar.
+
+La razón es la misma que en la prueba médica: hay **tantos** inocentes que, aun con una tasa de error minúscula, generan tantas coincidencias falsas como verdaderas hay. En números redondos: un millón de inocentes por una tasa de $10^{-6}$ da aproximadamente **una** coincidencia falsa esperada, justo la misma que la única verdadera.
+
+::: {.callout-important}
+## Por qué esto importa fuera del aula
+
+Este error ha provocado condenas injustas reales en varios países, y es el argumento más contundente que se puede dar sobre por qué la estadística importa. Un tribunal que confunde $P(\text{prueba} \mid \text{inocente})$ con $P(\text{inocente} \mid \text{prueba})$ no comete un error técnico menor: se equivoca en un factor de cientos de miles.
+
+Observa además de dónde sale el $50\ \%$: de la **a priori**, es decir, de que la búsqueda se hiciera a ciegas sobre un millón de personas. Si el acusado hubiera sido identificado antes por otras pruebas independientes (estaba en el lugar, tenía móvil, hay testigos), su a priori ya no sería $10^{-6}$ sino mucho mayor, y la coincidencia de ADN sí resultaría demoledora. El mismo dato de laboratorio vale mucho o poco según lo que ya se sepa del caso.
+:::
+
+Preguntas para el debate, sin cerrarlo:
+
+1. Si la base de datos tuviera cien mil personas en lugar de un millón, ¿subiría o bajaría la probabilidad de culpabilidad? Calcúlalo.
+2. ¿Cambia algo si además hay un testigo que sitúa al acusado en el lugar? ¿Cómo se incorpora ese dato a la tabla?
+3. ¿Es lo mismo «no hay pruebas suficientes» que «es inocente»? Traduce las dos frases a probabilidades.
+4. ¿Debería un jurado recibir formación estadística? ¿O deberían los peritos estar obligados a presentar el número correcto?
+
+::: {.callout-tip collapse="true"}
+## Pistas razonadas
+
+**1.** Con cien mil personas, la a priori del culpable pasa a ser $10^{-5}$ y los inocentes son $\approx 10^5$. Productos: $1\cdot10^{-5}$ y $10^5 \cdot 10^{-6} \cdot 10^{-5}$… conviene hacerlo con recuentos: se espera $0{,}1$ coincidencias falsas frente a $1$ verdadera, luego
+
+$$
+P(\text{culpable} \mid \text{coincidencia}) \approx \frac{1}{1{,}1} \approx 0{,}91 .
+$$
+
+Cuanto menor es la base de datos, más informativa es la coincidencia. Buscar en bases enormes debilita cada hallazgo.
+
+**2.** El testigo multiplica la a priori antes de aplicar la prueba de ADN, y por eso los dos indicios juntos valen mucho más que la suma de sus partes. La técnica está en 4.10.6.2.1: las ventajas se multiplican.
+
+**3.** No es lo mismo. «No hay pruebas suficientes» dice que la a posteriori no llega al umbral exigido; «es inocente» afirmaría que la a posteriori de culpabilidad es casi nula. La presunción de inocencia es, en lenguaje bayesiano, una regla sobre **el umbral de decisión**, no sobre la probabilidad.
+
+**4.** Aquí no hay respuesta matemática. Argumenta tú, pero con números encima de la mesa.
+:::
+
+### El olvido de la tasa base
+
+El error psicológico que subyace a todo lo anterior tiene nombre: **desprecio de la probabilidad a priori** o, más gráficamente, **olvido de la tasa base**.
+
+Nuestra intuición se fija en lo llamativo (¡la prueba acierta el $99\ \%$!) e ignora lo aburrido (solo el $1\ \%$ está enfermo). Bayes obliga a mirar las dos cosas **a la vez**, y de ahí viene su incomodidad: no permite quedarse con el dato impresionante y olvidar el contexto.
+
+::: {.callout-note}
+## La prueba de diagnóstico que puedes hacerte a ti mismo
+
+Vuelve al ejemplo de la prueba médica del apartado 4.10.3.3 y recuerda tu estimación inicial. La respuesta mayoritaria es «un $99\ \%$» o «un $95\ \%$». El valor correcto es el $16{,}7\ \%$.
+
+Esa distancia entre lo que crees y lo que es no se corrige con más intuición, sino con la tabla. Y el impacto de la sorpresa es precisamente lo que hace que ya no se te olvide.
+:::
+
+El mecanismo del error es siempre el mismo, y se puede enunciar en una frase: **cuando un grupo es mucho más numeroso que el otro, sus errores pequeños superan en número a los aciertos del grupo raro**. Aparece en muchos más sitios de los que parece:
+
+- **Alarmas y controles.** Un detector con un $1\ \%$ de falsas alarmas colocado donde el suceso peligroso es rarísimo produce casi solo falsas alarmas. Y el personal aprende a ignorarlo, lo que anula el detector.
+- **Antidopaje y controles antifraude.** La misma estructura: un positivo aislado en una población limpia es poco concluyente, y por eso se exige contraanálisis.
+- **Perfiles de sospechosos.** Un rasgo presente en el $80\ \%$ de los culpables y en el $5\ \%$ de la población general señala, en términos absolutos, a muchísimos más inocentes que culpables.
+- **Titulares de prensa.** «La mayoría de los accidentados llevaba el cinturón puesto» no dice nada malo del cinturón: dice que casi todo el mundo lo lleva. La tasa base explica el titular.
+
+::: {.callout-caution}
+## Cómo protegerte del error en tres preguntas
+
+Cada vez que te presenten un dato impresionante sobre un test, un perfil o un indicio, pregunta:
+
+1. ¿Cuál es la **tasa base**? ¿Qué proporción de la población tiene realmente la característica?
+2. ¿Cuál es la tasa de **falsos positivos** aplicada al grupo mayoritario?
+3. ¿Cuántos casos absolutos salen de cada grupo si imagino **10 000** individuos?
+
+Con la tercera pregunta ya casi nunca hace falta la fórmula.
+:::
+
+### Applet · El olvido de la tasa base {.unnumbered}
+
+El applet dibuja la población entera en casillas y colorea verdaderos positivos y falsos positivos. Mueve la prevalencia y observa cómo un grupo se come al otro.
+
+::: {#panel-tasa-base .applet-panel data-applet-est4="tasaBase"}
+:::
+
+Busca la prevalencia a la que los positivos verdaderos igualan a los falsos, es decir, la que hace que la respuesta sea justo el $50\ \%$. Con esta prueba está en torno al $4{,}8\ \%$, y comprobarlo te enseña más que resolver diez ejercicios rutinarios.
+
+#### Ampliación: Bayes como actualización de creencias
+
+Existe una forma alternativa de escribir el teorema, especialmente cómoda cuando solo hay **dos** causas, que hace transparente lo que ocurre. Se obtiene dividiendo la fórmula de Bayes de una causa entre la de la otra: los denominadores, que son iguales, se cancelan.
+
+$$
+\frac{P(A_1 \mid B)}{P(A_2 \mid B)} = \frac{P(A_1)}{P(A_2)} \cdot \frac{P(B \mid A_1)}{P(B \mid A_2)}
+$$
+
+En palabras:
+
+$$
+\text{ventaja final} = \text{ventaja inicial} \times \text{factor de evidencia}
+$$
+
+La **ventaja** (o razón de probabilidades) es «cuántas veces más probable es una causa que la otra». El **factor de evidencia** mide cuántas veces más fácilmente produce el dato la primera causa que la segunda.
+
+En la prueba médica:
+
+$$
+\frac{P(\text{enfermo} \mid +)}{P(\text{sano} \mid +)} = \frac{0{,}01}{0{,}99} \cdot \frac{0{,}99}{0{,}05} = \frac{1}{99} \cdot 19{,}8 = 0{,}2
+$$
+
+Es decir, **1 enfermo por cada 5 sanos** entre los positivos, que es el $\tfrac16$ que ya conocíamos:
+
+$$
+\text{ventaja } 1\!:\!5 \ \Longrightarrow \ P = \frac{1}{1+5} = \frac{1}{6} \approx 0{,}1667 \ \checkmark
+$$
+
+::: {.callout-important}
+## Lo que esta versión hace transparente
+
+La evidencia multiplica la creencia previa por $19{,}8$: es una prueba **muy** informativa, casi veinte veces más favorable a la hipótesis de enfermedad que a la de salud. Pero como se partía de una ventaja de $1$ contra $99$, ni multiplicar por $19{,}8$ basta para superar el $50\ \%$.
+
+$$
+\frac{1}{99} \xrightarrow{\ \times 19{,}8\ } \frac{1}{5}
+$$
+
+Aquí se ve el conflicto entero en dos números: la evidencia empuja fuerte, la tasa base tira más fuerte todavía.
+:::
+
+::: {.callout-tip}
+## Dos consecuencias muy útiles
+
+**1. Las evidencias independientes se multiplican.** Si haces una segunda prueba independiente igual de fiable, la ventaja se multiplica otra vez por $19{,}8$:
+
+$$
+\frac{1}{99} \cdot 19{,}8 \cdot 19{,}8 = 3{,}96 \ \Longrightarrow \ P = \frac{3{,}96}{1 + 3{,}96} \approx 0{,}80
+$$
+
+Dos positivos consecutivos llevan del $16{,}7\ \%$ al $80\ \%$. Por eso en medicina se confirma siempre.
+
+**2. Un factor de evidencia igual a 1 no informa.** Si el dato es igual de probable bajo las dos hipótesis, la ventaja no se mueve y tu creencia debe quedarse exactamente donde estaba. Este es el criterio matemático de lo que significa «un dato irrelevante», y explica por qué la puerta abierta del concurso no informa sobre tu puerta inicial pero sí sobre la otra.
+:::
+
+### Applet · Bayes como actualización de creencias {.unnumbered}
+
+Introduce la ventaja inicial y el factor de evidencia y aplica evidencias sucesivas, una a una, observando cómo se desplaza la creencia.
+
+::: {#panel-actualiza-creencias .applet-panel data-applet-est4="actualizaCreencias"}
+:::
+
+Comprueba las dos propiedades importantes: una evidencia contraria (factor menor que 1) desplaza la creencia en sentido inverso, y ninguna cantidad finita de evidencias consigue llegar exactamente a $0$ o a $1$. Bayes nunca alcanza la certeza absoluta, solo se acerca; y quien parte de una creencia de $0$ jamás la actualizará, porque $0 \times$ cualquier cosa sigue siendo $0$. Eso también es una lección sobre el dogmatismo.
+
+## Actividades propuestas con solución
+
+Intenta cada actividad antes de abrir la solución. Construye siempre la tabla de cuatro columnas y comprueba que las a posteriori suman 1.
+
+**1.** Con los datos del ejercicio de las tres máquinas (producción $35\ \%$, $40\ \%$, $25\ \%$; defectuosos $3\ \%$, $2\ \%$, $4\ \%$), si el tornillo es defectuoso, ¿cuál es la probabilidad de que sea de la máquina 1?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Productos: $0{,}0105$; $0{,}0080$; $0{,}0100$. Total: $0{,}0285$.
+
+$$
+P(M_1 \mid D) = \frac{0{,}0105}{0{,}0285} \approx 0{,}368
+$$
+
+Y las otras: $P(M_2 \mid D) \approx 0{,}281$ y $P(M_3 \mid D) \approx 0{,}351$. Suman 1 $\checkmark$.
+
+Lectura crítica: la máquina 1 es la más probable a posteriori sin ser ni la que más produce ni la peor. Es el equilibrio entre las dos cosas lo que la coloca arriba.
+:::
+
+**2.** En una población, el $30\ \%$ son fumadores. Padecen cierta afección el $25\ \%$ de los fumadores y el $7\ \%$ de los no fumadores. Si una persona padece la afección, ¿cuál es la probabilidad de que sea fumadora?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Productos: $0{,}30\cdot0{,}25 = 0{,}075$ y $0{,}70\cdot0{,}07 = 0{,}049$. Total: $0{,}124$.
+
+$$
+P(\text{fumador} \mid \text{afección}) = \frac{0{,}075}{0{,}124} \approx 0{,}605
+$$
+
+El $60{,}5\ \%$, frente al $30\ \%$ a priori: la afección duplica la sospecha de tabaquismo.
+
+Y observa lo que **no** dice el resultado: no dice que el tabaco cause la afección al $60{,}5\ \%$ de los fumadores (eso es el $25\ \%$, la verosimilitud). Dice que, entre los afectados, seis de cada diez fuman.
+:::
+
+**3.** Tres proveedores suministran el $50\ \%$, $30\ \%$ y $20\ \%$ de los componentes, con tasas de fallo del $2\ \%$, $3\ \%$ y $5\ \%$. Un componente falla. ¿Qué proveedor es el más probable?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Productos: $0{,}010$; $0{,}009$; $0{,}010$. Total: $0{,}029$. A posteriori: $0{,}345$; $0{,}310$; $0{,}345$.
+
+**Empatan** el proveedor $A$ (el más grande) y el $C$ (el peor). Un magnífico ejemplo de que volumen y calidad se compensan: $A$ falla poco pero suministra mucho, $C$ falla mucho pero suministra poco, y el producto de los dos factores coincide.
+
+Pregunta para pensar: ¿qué haría bajar más los fallos totales, reducir la tasa de $C$ del $5\ \%$ al $3\ \%$ o quitarle a $A$ la mitad de su cuota?
+:::
+
+**4.** Una urna tiene 3 bolas blancas y 1 negra; otra tiene 1 blanca y 3 negras. Se elige una urna al azar y se extrae una bola blanca. ¿De qué urna procede con más probabilidad?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Productos: $0{,}5 \cdot 0{,}75 = 0{,}375$ y $0{,}5 \cdot 0{,}25 = 0{,}125$. Total: $0{,}5$.
+
+$$
+P(U_1 \mid \text{blanca}) = \frac{0{,}375}{0{,}5} = 0{,}75, \qquad P(U_2 \mid \text{blanca}) = \frac{0{,}125}{0{,}5} = 0{,}25
+$$
+
+Es tres veces más probable que venga de la primera urna. En forma de ventaja: la ventaja inicial era $1\!:\!1$ y el factor de evidencia es $\tfrac{0{,}75}{0{,}25} = 3$, luego la ventaja final es $3\!:\!1$ $\checkmark$. Con a priori iguales, la ventaja final **es** el factor de evidencia.
+:::
+
+**5.** Un correo electrónico contiene la palabra «gratis». Se sabe que el $40\ \%$ de los correos son spam, que el $60\ \%$ del spam contiene esa palabra y que solo el $3\ \%$ de los correos legítimos la contiene. ¿Cuál es la probabilidad de que sea spam?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Productos: $0{,}40 \cdot 0{,}60 = 0{,}24$ y $0{,}60 \cdot 0{,}03 = 0{,}018$. Total: $0{,}258$.
+
+$$
+P(\text{spam} \mid \text{«gratis»}) = \frac{0{,}24}{0{,}258} \approx 0{,}930
+$$
+
+El $93\ \%$. Este es el algoritmo que usa realmente tu gestor de correo, y se llama **clasificador bayesiano ingenuo**: para cada palabra sospechosa calcula un factor de evidencia y los multiplica todos, exactamente como en el apartado de ampliación.
+
+Aquí el factor de evidencia de «gratis» es $\tfrac{0{,}60}{0{,}03} = 20$, y la ventaja inicial era $\tfrac{0{,}40}{0{,}60} = \tfrac23$. Ventaja final: $\tfrac23 \cdot 20 = 13{,}\overline{3}$, es decir, $P = \tfrac{13{,}33}{14{,}33} \approx 0{,}930$ $\checkmark$. Se llama «ingenuo» porque supone que las palabras aparecen de forma independiente, lo que no es cierto, pero funciona sorprendentemente bien.
+:::
+
+**6.** (Para pensar.) En el ejemplo de la prueba médica, ¿qué habría que mejorar para que un positivo fuera más fiable: la sensibilidad ($99\ \%$) o la tasa de falsos positivos ($5\ \%$)?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+La **tasa de falsos positivos**, con diferencia.
+
+Subiendo la sensibilidad al $100\ \%$:
+
+$$
+P(\text{enfermo} \mid +) = \frac{0{,}01 \cdot 1}{0{,}01\cdot 1 + 0{,}99\cdot0{,}05} = \frac{0{,}010}{0{,}0595} \approx 0{,}168
+$$
+
+Se pasa del $16{,}7\ \%$ al $16{,}8\ \%$: nada.
+
+Bajando los falsos positivos al $1\ \%$:
+
+$$
+P(\text{enfermo} \mid +) = \frac{0{,}0099}{0{,}0099 + 0{,}99\cdot0{,}01} = \frac{0{,}0099}{0{,}0198} = 0{,}5
+$$
+
+Se pasa al $50\ \%$: un salto enorme.
+
+**El cuello de botella está siempre en el grupo mayoritario.** Mejorar el trato al grupo raro apenas mueve el resultado, porque su contribución absoluta es pequeña por definición. Es la misma idea que en ingeniería se llama optimizar el eslabón que limita.
+:::
+
+## Cierre del tema: el mapa completo del tema de Probabilidad
+
+Con Bayes se cierra el recorrido. Merece la pena reconstruir el camino entero, porque **la coherencia del tema es su mejor argumento**: no has aprendido diez recetas independientes, has construido una sola cadena en la que cada eslabón sostiene al siguiente.
+
+### El mapa conceptual en texto {.unnumbered}
+
+Lee este mapa de arriba abajo y comprueba que puedes justificar cada flecha:
+
+```
+                    EXPERIMENTO ALEATORIO  (4.1)
+                             |
+                             v
+              ESPACIO MUESTRAL E: ¿qué puede pasar?  (4.2)
+                             |
+                             v
+                 SUCESOS: subconjuntos de E  (4.3)
+                             |
+             +---------------+----------------+
+             |                                |
+             v                                v
+   OPERACIONES  (4.4)                EXPERIMENTOS COMPUESTOS  (4.5)
+   union, interseccion,               arboles ponderados,
+   contrario, De Morgan               con y sin devolucion
+             |                                |
+             +---------------+----------------+
+                             |
+                             v
+              ¿QUE NUMERO LE PONGO?  (4.6 y 4.1.1)
+              Laplace si hay simetria
+              frecuencia relativa si no la hay
+                             |
+                             v
+              PROPIEDADES DE LA PROBABILIDAD  (4.7)
+              rango, contrario, regla de la suma
+                             |
+                             v
+              PROBABILIDAD CONDICIONADA  (4.8)
+              reduce el espacio muestral,
+              regla del producto, independencia
+                             |
+             +---------------+----------------+
+             |                                |
+             v                                v
+   PROBABILIDAD TOTAL  (4.9)          TEOREMA DE BAYES  (4.10)
+   causas ---> efecto                 efecto ---> causa
+   media ponderada                    fraccion de caminos
+             |                                |
+             +---------------+----------------+
+                             |
+                             v
+              DECISIONES CON INFORMACION INCOMPLETA
+              medicina, justicia, control de calidad,
+              filtros de spam, concursos de television
+```
+
+Las dos ramas finales no son dos temas: son **el mismo árbol leído en las dos direcciones**, y el denominador de la de la derecha es literalmente la fórmula de la izquierda.
+
+### Qué aporta cada apartado {.unnumbered}
+
+| Apartado | Aportación | Pregunta que responde |
+|---|---|---|
+| 4.1 | Experimento aleatorio y frecuencia relativa | ¿Qué es el azar y cómo se mide? |
+| 4.2 | Espacio muestral | ¿Qué puede pasar? |
+| 4.3 | Sucesos y tipos | ¿Cómo agrupo los resultados? |
+| 4.4 | Operaciones con sucesos | ¿Cómo combino «y», «o», «no»? |
+| 4.5 | Experimentos compuestos | ¿Y si hay varias etapas? |
+| 4.6 | Regla de Laplace | ¿Cómo pongo un número? |
+| 4.7 | Propiedades | ¿Qué reglas cumplen esos números? |
+| 4.8 | Probabilidad condicionada | ¿Cómo cambia todo al recibir información? |
+| 4.9 | Probabilidad total | Conocidas las causas, ¿qué probabilidad tiene el efecto? |
+| 4.10 | Teorema de Bayes | Conocido el efecto, ¿cuál era la causa? |
+
+### Tabla de referencia rápida de fórmulas {.unnumbered}
+
+Las cuatro primeras hay que saberlas **de memoria**; las tres últimas se deducen de ellas más el diagrama de árbol.
+
+| Idea | Fórmula | Cuándo se usa |
+|---|---|---|
+| Regla de Laplace | $P(A) = \dfrac{n(A)}{n(E)}$ | Sucesos elementales equiprobables |
+| Suceso contrario | $P(\overline{A}) = 1 - P(A)$ | Problemas de «al menos» |
+| Regla de la suma | $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ | «$A$ o $B$», compatibles o no |
+| Regla del producto | $P(A \cap B) = P(A) \cdot P(B \mid A)$ | «$A$ y $B$», un camino del árbol |
+| Condicionada | $P(B \mid A) = \dfrac{P(A \cap B)}{P(A)}$ | Cuando llega información nueva |
+| Independencia | $P(A \cap B) = P(A) \cdot P(B)$ | Comprobar si un dato informa |
+| Probabilidad total | $P(B) = \sum_i P(A_i) \cdot P(B \mid A_i)$ | Efecto con varias causas excluyentes |
+| Teorema de Bayes | $P(A_j \mid B) = \dfrac{P(A_j)P(B \mid A_j)}{\sum_i P(A_i)P(B \mid A_i)}$ | Remontarse del efecto a la causa |
+
+También conviene tener a mano las dos leyes de De Morgan del apartado 4.4, que sirven para reescribir un suceso incómodo en uno cómodo:
+
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B}, \qquad \overline{A \cap B} = \overline{A} \cup \overline{B}
+$$
+
+::: {.callout-important}
+## Las cuatro fórmulas que lo generan todo
+
+$$
+P(A) = \frac{n(A)}{n(E)}, \qquad P(\overline{A}) = 1 - P(A)
+$$
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B), \qquad P(A \cap B) = P(A) \cdot P(B \mid A)
+$$
+
+Todo lo demás, probabilidad total y Bayes incluidos, se deduce de estas cuatro más el diagrama de árbol. Si en un examen te quedas en blanco, escribe estas cuatro en el margen y reconstruye lo que necesites.
+:::
+
+### Applet · Mapa completo del tema {.unnumbered}
+
+Recorre el mapa por apartados, repasa la fórmula clave de cada uno y resuelve un problema de repaso mixto en el que tú tienes que decidir **qué herramienta toca**.
+
+::: {#panel-mapa-tema .applet-panel data-applet-est4="mapaTema"}
+:::
+
+Ese último paso es el más importante y el que no se practica nunca: en los ejercicios de clase el apartado te dice qué fórmula usar, y en un examen o en la vida real, no.
+
+## Repaso rápido
+
+- En el concurso de las tres puertas conviene **cambiar**: $\tfrac13$ si te quedas, $\tfrac23$ si cambias. La clave está en las verosimilitudes, no en las a priori.
+- La respuesta depende de las reglas del presentador: si abriera al azar y sin saber dónde está el premio, daría igual cambiar. Lo que informa es el **mecanismo**, no solo el dato.
+- **Falacia del fiscal**: confundir $P(\text{prueba} \mid \text{inocente})$ con $P(\text{inocente} \mid \text{prueba})$. En el caso del ADN, la diferencia va de $10^{-6}$ a $0{,}5$.
+- **Olvido de la tasa base**: fijarse en la fiabilidad del test e ignorar la rareza de la enfermedad. Se cura traduciendo a «de cada 10 000…».
+- Bayes en forma de ventaja: ventaja final igual a ventaja inicial por factor de evidencia. Las evidencias independientes **multiplican** sus factores.
+- Un factor de evidencia igual a 1 significa que el dato no informa; una creencia inicial de 0 no se puede actualizar nunca.
+- En una prueba diagnóstica, el cuello de botella suele ser la tasa de **falsos positivos** del grupo mayoritario, no la sensibilidad.
+- Todo el tema es una cadena: espacio muestral, sucesos, operaciones, árboles, Laplace y frecuencia, propiedades, condicionada, probabilidad total y Bayes.
+- Cuatro fórmulas de memoria (Laplace, contrario, suma y producto) generan todas las demás.
+
+Y una última idea con la que cerrar el tema: la probabilidad no sirve para adivinar el futuro, sino para **tomar decisiones razonables cuando la información es incompleta**. Eso es exactamente lo que hace un médico ante un positivo, un jurado ante una prueba, una fábrica ante un lote y tú mismo cada vez que decides si te fías de un dato.

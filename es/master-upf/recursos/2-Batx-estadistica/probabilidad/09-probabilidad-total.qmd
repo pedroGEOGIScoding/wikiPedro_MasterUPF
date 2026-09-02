@@ -1,0 +1,611 @@
+---
+title: "Tema 4.9 Teorema de la probabilidad total"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 09-probabilidad-total
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sistema completo de sucesos, enunciado y demostración del teorema de la probabilidad total, su lectura como árbol escrito en una línea, cuatro ejemplos resueltos paso a paso (tres factorías, dos urnas y una moneda, urnas de distinto tamaño y test médico), método de resolución en cinco pasos, la interpretación del teorema como media ponderada y el puente hacia el teorema de Bayes.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+En el apartado 4.5 calculaste la probabilidad de sacar bola blanca cuando una moneda decidía de qué urna extraer, y lo hiciste sumando «a ojo» los dos caminos favorables del árbol. Funcionó porque solo había dos urnas y el dibujo cabía en un cuaderno.
+
+Pero imagina ahora una empresa que fabrica piezas en tres factorías distintas, cada una con su porcentaje de producción y su porcentaje de defectos. O un hospital con cinco grupos de pacientes. O una urna elegida entre diez. Sumar «a ojo» deja de ser una estrategia: hay que organizar la suma de forma sistemática para no olvidar ningún camino y para no contar dos veces el mismo.
+
+Esa organización es el **teorema de la probabilidad total**, y responde siempre a la misma pregunta:
+
+::: {.callout-note}
+## La pregunta del apartado
+
+¿Cuál es la probabilidad de que ocurra un suceso $B$ que puede llegar por **varias vías distintas y excluyentes**?
+:::
+
+Fíjate en las dos palabras clave del enunciado: **distintas** (las vías no se solapan) y **excluyentes** (llega por una y solo una). Todo el apartado consiste en formalizar esas dos palabras y en extraer sus consecuencias.
+
+## Sistema completo de sucesos
+
+Antes del teorema necesitamos definir con precisión qué significa «varias vías distintas y excluyentes». Ese es el papel del concepto de sistema completo.
+
+::: {.callout-important}
+## Definición
+
+Una serie de sucesos $A_1, A_2, \dots, A_n$ forma un **sistema completo de sucesos** (o una **partición del espacio muestral**) si cumple las dos condiciones siguientes:
+
+1. Son **incompatibles dos a dos**: $A_i \cap A_j = \varnothing$ siempre que $i \neq j$.
+2. Su **unión es el espacio muestral**: $A_1 \cup A_2 \cup \dots \cup A_n = E$.
+:::
+
+En lenguaje llano: los sucesos $A_i$ **cubren todas las posibilidades sin solaparse**. Cada resultado del experimento cae en uno y solo uno de ellos. Si dibujas el espacio muestral como un rectángulo, la partición lo trocea igual que un puzle: sin huecos y sin piezas superpuestas.
+
+Y aquí está la idea que hace útil el concepto: cuando la partición trocea $E$, también trocea **cualquier suceso** $B$ que dibujes dentro. Cada trozo de $B$ pertenece a un solo $A_i$, así que el suceso $B$ queda repartido entre las piezas del puzle sin perder ni repetir nada.
+
+### La consecuencia inmediata: los pesos suman uno {.unnumbered}
+
+Como los $A_i$ son incompatibles dos a dos y su unión es todo $E$, sus probabilidades se suman sin restar nada y el resultado tiene que ser $P(E) = 1$:
+
+$$
+\sum_{i=1}^{n} P(A_i) = P(A_1) + P(A_2) + \dots + P(A_n) = 1
+$$
+
+::: {.callout-warning}
+## Tu primer control de errores
+
+Esta igualdad es el control de errores más barato de todo el apartado. Si los porcentajes de partida **no suman 100 %**, entonces o el enunciado está mal copiado, o lo has entendido mal, o falta una causa. Compruébalo **antes** de escribir la fórmula del teorema, no después.
+:::
+
+### El sistema completo más sencillo de todos {.unnumbered}
+
+Para encontrar sucesos incompatibles cuya unión sea el total no hace falta buscar mucho: basta tomar **un suceso y su contrario**.
+
+$$
+A \cup \overline{A} = E, \qquad A \cap \overline{A} = \varnothing
+$$
+
+Esta partición de dos elementos es la que aparece en la mayoría de los problemas de examen: fumador o no fumador, enfermo o sano, pieza de la máquina antigua o de la nueva, alumno de ciencias o de letras. Conviene que la reconozcas al instante, porque en cuanto la identificas ya tienes $P(\overline{A}) = 1 - P(A)$ y medio problema resuelto.
+
+::: {.callout-caution}
+## Tres particiones falsas que hay que saber descartar
+
+- $\{$«saca bola blanca», «saca bola de $U_1$»$\}$: **no** es partición, porque los dos sucesos pueden ocurrir a la vez.
+- $\{$«el alumno estudia inglés», «el alumno estudia francés»$\}$: **no** es partición, porque hay alumnos que estudian los dos y alumnos que no estudian ninguno de los dos. Falla la incompatibilidad y falla el recubrimiento.
+- $\{$«la pieza viene de la factoría 1», «la pieza viene de la factoría 2»$\}$ cuando hay **tres** factorías: los sucesos son incompatibles, pero su unión no es $E$. Falta una pieza del puzle y las probabilidades no sumarán 1.
+:::
+
+### Applet · Sistema completo de sucesos {.unnumbered}
+
+Introduce varias listas de sucesos y comprueba si forman partición: el applet te dice cuál de las dos condiciones falla y te muestra la suma de las probabilidades.
+
+::: {#panel-sistema-completo .applet-panel data-applet-est4="sistemaCompleto"}
+:::
+
+Trabaja sobre todo los casos en los que la suma da $0{,}98$ o $1{,}03$: son los errores típicos de transcripción de un enunciado, y quien detecta esa suma se ahorra el problema entero.
+
+## Enunciado y demostración
+
+::: {.callout-important}
+## Teorema de la probabilidad total
+
+Si $A_1, A_2, \dots, A_n$ forman un sistema completo de sucesos con $P(A_i) > 0$, entonces la probabilidad de cualquier suceso $B$ se puede calcular como
+
+$$
+P(B) = \sum_{i=1}^{n} P(A_i) \cdot P(B \mid A_i)
+$$
+:::
+
+Desarrollada para $n$ causas, sin el símbolo de sumatorio:
+
+$$
+P(B) = P(A_1)P(B \mid A_1) + P(A_2)P(B \mid A_2) + \dots + P(A_n)P(B \mid A_n)
+$$
+
+Lee la fórmula despacio y verás que cada sumando tiene la misma forma: **peso de la causa** multiplicado por **probabilidad del efecto dentro de esa causa**. Ni un solo sumando se sale del patrón.
+
+### Demostración en tres líneas
+
+**Paso 1.** Como los $A_i$ cubren todo $E$, el suceso $B$ se descompone así:
+
+$$
+B = (B \cap A_1) \cup (B \cap A_2) \cup \dots \cup (B \cap A_n)
+$$
+
+**Paso 2.** Esos trozos son incompatibles dos a dos (porque los $A_i$ lo son), de modo que sus probabilidades se suman sin restar nada:
+
+$$
+P(B) = P(B \cap A_1) + P(B \cap A_2) + \dots + P(B \cap A_n)
+$$
+
+**Paso 3.** Aplicando la regla del producto a cada sumando, $P(B \cap A_i) = P(A_i) \cdot P(B \mid A_i)$, se obtiene la fórmula del enunciado. $\blacksquare$
+
+::: {.callout-note}
+## Este teorema no contiene ninguna idea nueva
+
+Y eso es una buena noticia, no una decepción. Es la **suma de sucesos incompatibles** (apartado 4.7) más la **regla del producto** (apartado 4.8), aplicadas a la vez. Todo lo que has construido en el tema converge aquí:
+
+- del apartado 4.3 viene la idea de trocear un suceso en partes;
+- del 4.4, las operaciones $\cap$ y $\cup$;
+- del 4.7, que las partes incompatibles se suman;
+- del 4.8, que un camino de dos etapas se multiplica.
+
+Si alguna vez olvidas la fórmula en un examen, puedes **reconstruirla** con estas tres líneas. Merece la pena que las hagas una vez a mano sin mirar.
+:::
+
+::: {.callout-warning}
+## Dónde se usa cada hipótesis
+
+En el paso 1 se usa que la unión de los $A_i$ es $E$; si faltara una causa, la descomposición de $B$ perdería un trozo y el resultado saldría **demasiado pequeño**. En el paso 2 se usa que son incompatibles; si dos causas se solaparan, habría un trozo contado **dos veces** y el resultado saldría demasiado grande. La condición $P(A_i) > 0$ solo sirve para que $P(B \mid A_i)$ tenga sentido: no se puede condicionar por un suceso imposible.
+:::
+
+### Applet · Teorema de la probabilidad total {.unnumbered}
+
+Escribe los pesos de las causas separados por comas, por ejemplo `0,60; 0,25; 0,15`, y las condicionadas correspondientes, por ejemplo `0,01; 0,04; 0,02`. El applet comprueba primero que los pesos suman 1 y después desarrolla la suma sumando por sumando.
+
+::: {#panel-total .applet-panel data-applet-est4="total"}
+:::
+
+## El teorema es un árbol escrito en una línea
+
+Esta es la traducción visual del teorema, y es la que de verdad hay que interiorizar. Si te quedas solo con la fórmula, la olvidarás; si te quedas con el árbol, la fórmula la reconstruyes sola.
+
+- **Primer nivel del árbol**: la partición $A_1, A_2, \dots, A_n$. Sus probabilidades suman 1.
+- **Segundo nivel**: las probabilidades condicionadas $P(B \mid A_i)$. En cada nodo, las dos ramas ($B$ y $\overline{B}$) suman 1.
+- **Cálculo**: multiplicar a lo largo de cada camino y sumar los caminos que acaban en $B$.
+
+Exactamente las tres reglas del árbol ponderado que ya conocías, ahora con nombre y apellidos. El sumatorio $\sum_i P(A_i)P(B \mid A_i)$ es la escritura comprimida de «recorre las ramas favorables, multiplica dentro de cada una y suma entre ellas».
+
+::: {.callout-tip}
+## Cuándo conviene el árbol y cuándo la fórmula
+
+Con dos o tres causas, dibuja el árbol: se ve todo y te protege de olvidar un camino. Con cinco o diez causas, el dibujo no cabe y la fórmula (o, mejor, una tabla de cuatro columnas como la que verás en 4.10) es imprescindible. El árbol es la comprensión; la fórmula es la herramienta de trabajo.
+:::
+
+### Las tres factorías
+
+Una empresa elabora sus piezas en tres factorías. El porcentaje de producción y el de piezas defectuosas de cada factoría se recogen en la tabla:
+
+| Concepto | Factoría 1 | Factoría 2 | Factoría 3 |
+|---|---|---|---|
+| Producción | 60 % | 25 % | 15 % |
+| Defectuosas | 1 % | 4 % | 2 % |
+
+Se elige una pieza al azar de toda la producción. ¿Cuál es la probabilidad de que sea defectuosa?
+
+**Paso 1: definir los sucesos.**
+
+$$
+F_i = \text{pieza fabricada en la factoría } i; \qquad D = \text{pieza defectuosa}
+$$
+
+**Paso 2: comprobar que es un sistema completo.** Una pieza se fabrica en una sola factoría, luego $F_i \cap F_j = \varnothing$; y toda pieza se fabrica en alguna de las tres, luego $F_1 \cup F_2 \cup F_3 = E$. Además:
+
+$$
+0{,}60 + 0{,}25 + 0{,}15 = 1 \ \checkmark
+$$
+
+**Paso 3: identificar los datos.** Los porcentajes de producción son los **pesos** y los de defectos son las **condicionadas**:
+
+$$
+P(F_1) = 0{,}60, \qquad P(F_2) = 0{,}25, \qquad P(F_3) = 0{,}15
+$$
+
+$$
+P(D \mid F_1) = 0{,}01, \qquad P(D \mid F_2) = 0{,}04, \qquad P(D \mid F_3) = 0{,}02
+$$
+
+**Paso 4: aplicar el teorema.**
+
+$$
+P(D) = P(F_1)P(D \mid F_1) + P(F_2)P(D \mid F_2) + P(F_3)P(D \mid F_3)
+$$
+
+$$
+P(D) = 0{,}60 \cdot 0{,}01 + 0{,}25 \cdot 0{,}04 + 0{,}15 \cdot 0{,}02
+$$
+
+$$
+P(D) = 0{,}006 + 0{,}010 + 0{,}003 = 0{,}019
+$$
+
+La probabilidad de elegir una pieza defectuosa es del $1{,}9\ \%$.
+
+**Paso 5: verificar.** El resultado $1{,}9$ está entre el mínimo ($1$) y el máximo ($4$) de las tasas de defectos. Debe ser así **siempre**, y en el apartado de pensamiento crítico verás por qué.
+
+**Comentario final.** Observa un detalle que casi nadie mira la primera vez: la factoría con **más defectos por pieza** es la 2, pero la que aporta más defectuosas al total es también la 2 ($0{,}010$ de $0{,}019$) por muy poco sobre la 1 ($0{,}006$), y eso a pesar de que la 1 fabrica más del doble de piezas. Volumen y calidad compiten en cada sumando, y quien gana depende de los números concretos.
+
+### Applet · Las tres factorías {.unnumbered}
+
+Modifica los porcentajes de producción y de defectos y observa cómo se reparte la contribución de cada factoría al total.
+
+::: {#panel-tres-factorias .applet-panel data-applet-est4="tresFactorias"}
+:::
+
+Prueba este experimento: mantén las tasas de defectos y cambia la producción a $90\ \%$, $5\ \%$ y $5\ \%$. Verás que el mayor aportador de piezas defectuosas pasa a ser la factoría de **mejor** calidad, simplemente porque fabrica casi todo.
+
+### Las dos urnas y la moneda
+
+Se dispone de dos urnas. La urna verde contiene 3 bolas blancas y 2 negras; la urna roja contiene 4 blancas y 1 negra. Se lanza una moneda: si sale cara se extrae una bola de la urna verde, y si sale cruz, de la urna roja. ¿Cuál es la probabilidad de que la bola sea blanca?
+
+**Paso 1.** Sucesos: $V =$ extraer de la urna verde, $R =$ extraer de la urna roja, $B =$ bola blanca.
+
+**Paso 2.** $V$ y $R$ forman un sistema completo: $V \cap R = \varnothing$ y $V \cup R = E$, con
+
+$$
+P(V) = P(R) = 0{,}5 \ \Rightarrow \ 0{,}5 + 0{,}5 = 1 \ \checkmark
+$$
+
+**Paso 3.** Las condicionadas se leen directamente en la composición de cada urna:
+
+$$
+P(B \mid V) = \frac{3}{5} = 0{,}6, \qquad P(B \mid R) = \frac{4}{5} = 0{,}8
+$$
+
+**Paso 4.** Aplicamos el teorema:
+
+$$
+P(B) = P(V)P(B \mid V) + P(R)P(B \mid R) = 0{,}5 \cdot \frac{3}{5} + 0{,}5 \cdot \frac{4}{5} = 0{,}30 + 0{,}40 = 0{,}70
+$$
+
+**Paso 5.** Verificación doble. Por un lado, $0{,}6 \le 0{,}7 \le 0{,}8$ $\checkmark$. Por otro, la probabilidad de negra tiene que completar la unidad:
+
+$$
+P(N) = 0{,}5 \cdot \frac{2}{5} + 0{,}5 \cdot \frac{1}{5} = 0{,}20 + 0{,}10 = 0{,}30, \qquad 0{,}70 + 0{,}30 = 1 \ \checkmark
+$$
+
+**Comentario final.** Es el mismo cálculo que hiciste con el árbol en el apartado 4.5. Lo único que ha cambiado es que ahora **tiene nombre y demostración**. Aquí las dos urnas tienen el mismo número de bolas, y por eso funcionaría también el atajo de juntarlas todas: $7$ blancas de $10$ bolas dan $0{,}7$. En el ejemplo siguiente ese atajo revienta.
+
+### Dos urnas de distinto tamaño
+
+Se dispone de dos urnas: $U_1$ contiene 2 bolas blancas y 12 negras, y $U_2$ contiene 3 blancas y 10 negras. Se elige una urna al azar y se extrae una bola. Halla la probabilidad de que sea negra y la de que sea blanca.
+
+**Paso 1.** Datos. Ahora $U_1$ tiene $14$ bolas y $U_2$ tiene $13$:
+
+$$
+P(U_1) = P(U_2) = 0{,}5, \qquad P(N \mid U_1) = \frac{12}{14}, \qquad P(N \mid U_2) = \frac{10}{13}
+$$
+
+**Paso 2.** Probabilidad total de bola negra:
+
+$$
+P(N) = 0{,}5 \cdot \frac{12}{14} + 0{,}5 \cdot \frac{10}{13} = \frac{6}{14} + \frac{5}{13} = \frac{3}{7} + \frac{5}{13} = \frac{39 + 35}{91} = \frac{74}{91}
+$$
+
+$$
+P(N) \approx 0{,}4286 + 0{,}3846 = 0{,}8132
+$$
+
+**Paso 3.** Por el contrario:
+
+$$
+P(\text{blanca}) = 1 - 0{,}8132 = 0{,}1868
+$$
+
+**Paso 4.** Comprobación por la vía directa, que es el control que nunca debes saltarte:
+
+$$
+P(\text{blanca}) = 0{,}5 \cdot \frac{2}{14} + 0{,}5 \cdot \frac{3}{13} = \frac{1}{14} + \frac{3}{26} = \frac{13 + 21}{182} = \frac{34}{182} = \frac{17}{91} \approx 0{,}1868 \ \checkmark
+$$
+
+::: {.callout-caution}
+## El error clásico de este ejemplo
+
+Aquí **no** se puede sumar todo y decir «hay 5 blancas entre 27 bolas», es decir, $\frac{5}{27} \approx 0{,}185$.
+
+Aunque el número se parezca al correcto ($0{,}1868$), el razonamiento es **falso**. Las urnas tienen distinto tamaño pero la **misma** probabilidad de ser elegidas, así que las bolas de $U_2$ están sobrerrepresentadas: cada bola de $U_2$ tiene probabilidad $\tfrac{1}{2}\cdot\tfrac{1}{13} = \tfrac{1}{26}$ de salir, mientras que cada bola de $U_1$ solo tiene $\tfrac{1}{2}\cdot\tfrac{1}{14} = \tfrac{1}{28}$. No son 27 bolas equiprobables, y por tanto Laplace no se aplica al montón conjunto.
+:::
+
+**Comentario final.** Que los dos valores queden tan cerca es una casualidad de estos datos: $14$ y $13$ son tamaños parecidos. Cambia $U_2$ por una urna con 3 blancas y 1 negra y verás que el atajo se desploma: el teorema daría $0{,}5\cdot\tfrac{2}{14} + 0{,}5\cdot\tfrac{3}{4} \approx 0{,}446$, mientras que el recuento conjunto daría $\tfrac{5}{18} \approx 0{,}278$. Un error del orden del $60\ \%$.
+
+### Applet · Dos urnas y una moneda {.unnumbered}
+
+Cambia la composición de las dos urnas y compara el valor correcto que da el teorema con el que daría el recuento conjunto de todas las bolas.
+
+::: {#panel-urnas-moneda .applet-panel data-applet-est4="urnasMoneda"}
+:::
+
+Busca una configuración en la que los dos valores coincidan exactamente y otra en la que difieran más de $0{,}2$. Después intenta enunciar tú la condición: los dos coinciden solo cuando las urnas tienen el mismo número de bolas.
+
+### Test médico: el que prepara Bayes
+
+Una enfermedad afecta al $1\ \%$ de la población. Existe una prueba que detecta la enfermedad en el $99\ \%$ de los enfermos, pero que también da positivo en el $5\ \%$ de las personas sanas. Se elige una persona al azar y se le hace la prueba. ¿Cuál es la probabilidad de que dé positivo?
+
+**Paso 1.** Sucesos:
+
+$$
+Enf = \text{estar enfermo}, \qquad San = \text{estar sano}, \qquad Pos = \text{el test da positivo}
+$$
+
+**Paso 2.** La partición es $\{Enf, San\}$, la más sencilla de todas (un suceso y su contrario), con
+
+$$
+P(Enf) = 0{,}01, \qquad P(San) = 0{,}99, \qquad 0{,}01 + 0{,}99 = 1 \ \checkmark
+$$
+
+**Paso 3.** Condicionadas. La primera es la **sensibilidad** de la prueba; la segunda, su **tasa de falsos positivos**:
+
+$$
+P(Pos \mid Enf) = 0{,}99, \qquad P(Pos \mid San) = 0{,}05
+$$
+
+**Paso 4.** Aplicamos el teorema:
+
+$$
+P(Pos) = P(Enf)P(Pos \mid Enf) + P(San)P(Pos \mid San)
+$$
+
+$$
+P(Pos) = 0{,}01 \cdot 0{,}99 + 0{,}99 \cdot 0{,}05 = 0{,}0099 + 0{,}0495 = 0{,}0594
+$$
+
+**Paso 5.** Verificación: $0{,}05 \le 0{,}0594 \le 0{,}99$ $\checkmark$, y el valor está pegadísimo al extremo inferior porque el peso del grupo «sanos» es enorme.
+
+Casi el $6\ \%$ de la población daría positivo, pero solo el $1\ \%$ está enferma. Ya solo con esto sabes que **la mayoría de los positivos no son enfermos**, aunque todavía no hayamos calculado cuántos.
+
+::: {.callout-important}
+## La pregunta que aún no podemos responder
+
+Si a ti te ha dado positivo, ¿cuál es la probabilidad de que estés realmente enfermo?
+
+Observa dónde está el dato revelador: de esos $0{,}0594$, solo $0{,}0099$ corresponde a enfermos reales. Es decir, la parte «buena» del total es aproximadamente una sexta parte. Deja la pregunta abierta: se responde con el teorema de Bayes, en el apartado 4.10.
+:::
+
+::: {.callout-tip}
+## El mismo cálculo con frecuencias naturales
+
+Traducir a personas concretas hace transparente el resultado. Sobre $10\ 000$ personas:
+
+- Enfermas: $100$. De ellas dan positivo $99$.
+- Sanas: $9\ 900$. De ellas dan positivo $495$.
+- Total de positivos: $99 + 495 = 594$, es decir, $\frac{594}{10\ 000} = 0{,}0594$ $\checkmark$.
+
+Cuando un problema de probabilidad total o de Bayes se te resista, tradúcelo a «de cada $10\ 000$ personas…». Es el mismo cálculo con números enteros y sin comas decimales.
+:::
+
+## Método de resolución en cinco pasos
+
+| Paso | Acción | Control |
+|---|---|---|
+| 1 | Identificar el suceso $B$ por el que pregunta el enunciado | Suele ser el «efecto» |
+| 2 | Identificar la partición $A_1, \dots, A_n$ | Son las «causas» o el primer nivel del árbol |
+| 3 | Comprobar que $\sum P(A_i) = 1$ | Si no suman 1, hay un error |
+| 4 | Escribir las condicionadas $P(B \mid A_i)$ | Ojo: no son $P(A_i \mid B)$ |
+| 5 | Multiplicar y sumar | El resultado debe estar entre el menor y el mayor de los $P(B \mid A_i)$ |
+
+::: {.callout-tip}
+## Cómo distinguir la partición del suceso $B$ cuando el enunciado es confuso
+
+- La **partición** responde a la pregunta «¿de dónde viene?»: qué factoría, qué urna, qué máquina, qué proveedor, qué grupo de población.
+- El **suceso $B$** responde a «¿qué le pasa?»: es defectuosa, es blanca, da positivo, aprueba, falla.
+
+Si dudas, fíjate en los porcentajes del enunciado. Los que **suman 100 %** entre sí son la partición. Los que **no suman nada en particular** son las condicionadas: en el ejemplo de las factorías, $1 + 4 + 2 = 7$, y ese $7$ no significa absolutamente nada.
+:::
+
+::: {.callout-caution}
+## El error más frecuente del apartado: invertir la barra
+
+Los datos del enunciado son casi siempre del tipo «el $4\ \%$ de las piezas de la factoría 2 son defectuosas», es decir, $P(D \mid F_2) = 0{,}04$. No es lo mismo que «el $4\ \%$ de las piezas defectuosas son de la factoría 2», que sería $P(F_2 \mid D) = 0{,}04$.
+
+Regla práctica: en la expresión $P(B \mid A)$, el suceso $A$ es el **colectivo dentro del cual estás mirando**. «De los enfermos, el 99 % da positivo» describe el colectivo de los enfermos, luego es $P(Pos \mid Enf)$. Marca en el enunciado la palabra «de» y verás la barra.
+:::
+
+### Applet · Método de resolución en cinco pasos {.unnumbered}
+
+El applet te propone un enunciado y te obliga a recorrer los cinco pasos en orden: primero señalas el efecto, luego la partición, luego compruebas la suma, luego colocas las condicionadas y solo entonces te deja calcular.
+
+::: {#panel-cinco-pasos .applet-panel data-applet-est4="cincoPasos"}
+:::
+
+Úsalo hasta que el paso 3 (comprobar que los pesos suman 1) te salga de forma automática, sin pensarlo.
+
+## Pensamiento crítico: el teorema es una media ponderada
+
+Esta interpretación es la más útil de todas, y la que más errores te va a evitar. Como $\sum_i P(A_i) = 1$, la expresión
+
+$$
+P(B) = \sum_{i=1}^{n} P(A_i) \cdot P(B \mid A_i)
+$$
+
+es exactamente una **media aritmética ponderada** de las probabilidades condicionadas $P(B \mid A_i)$, donde los pesos son las probabilidades $P(A_i)$. Es la misma estructura que la media ponderada de las notas de un curso: nota final igual a suma de (peso del examen por nota del examen), con los pesos sumando 1.
+
+Tres consecuencias que conviene extraer con detalle.
+
+**1. El resultado siempre queda entre el mínimo y el máximo.**
+
+$$
+\min_i P(B \mid A_i) \ \le \ P(B) \ \le \ \max_i P(B \mid A_i)
+$$
+
+En el ejemplo de las factorías, $0{,}01 \le 0{,}019 \le 0{,}04$ $\checkmark$. Si obtienes $P(D) = 0{,}07$, sabes al instante que te has equivocado **sin revisar ni un solo cálculo**. Es el control de calidad más rentable del tema: cuesta cinco segundos y detecta la mayoría de los errores de bulto.
+
+**2. Pesan más las causas más frecuentes.** La factoría 2 es la más chapucera ($4\ \%$ de defectos), pero como solo produce el $25\ \%$, aporta $0{,}010$ al total, poco más que la factoría 1, que con un $1\ \%$ de defectos aporta $0{,}006$ por fabricar el $60\ \%$ de las piezas. Una causa mediocre y muy frecuente puede aportar más problemas que una causa desastrosa y rara.
+
+**3. La intuición falla cuando los pesos son muy desiguales.** Es lo que ocurre en la prueba médica: la tasa de falsos positivos parece pequeña ($5\ \%$), pero se aplica al $99\ \%$ de la población, mientras que la altísima sensibilidad ($99\ \%$) se aplica solo al $1\ \%$. Resultado: la mayoría de los positivos son falsos. Y observa que la media ponderada, $0{,}0594$, está muchísimo más cerca del $0{,}05$ que del $0{,}99$, precisamente porque el peso de los sanos aplasta el del grupo enfermo.
+
+::: {.callout-note}
+## Un caso límite que aclara la fórmula
+
+¿Qué pasa si todas las condicionadas son iguales, $P(B \mid A_i) = p$ para todo $i$? Entonces
+
+$$
+P(B) = \sum_i P(A_i)\cdot p = p \sum_i P(A_i) = p \cdot 1 = p
+$$
+
+Es decir, si el efecto es igual de probable en todas las causas, la partición **no aporta información** y el reparto es irrelevante. Traducido: si las tres factorías tuvieran el mismo $2\ \%$ de defectos, cerrar una o ampliar otra no cambiaría nada la calidad global. Este caso es la definición de que $B$ sea **independiente** de la partición.
+:::
+
+### Una pregunta más para debatir
+
+Si en el ejemplo de las factorías se cerrara la factoría 2 y su producción se repartiera a partes iguales entre las otras dos, ¿bajaría la tasa de defectos?
+
+Piénsalo antes de mirar: la factoría que se cierra es la peor de las tres, así que parece que sí. Pero ¿cuánto? ¿Bajaría hasta el $1\ \%$, que es la mejor tasa disponible?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Los nuevos pesos son $P(F_1) = 0{,}60 + 0{,}125 = 0{,}725$ y $P(F_3) = 0{,}15 + 0{,}125 = 0{,}275$, que suman 1 $\checkmark$. Las tasas de defectos no cambian, porque cerrar una factoría no mejora las máquinas de las otras:
+
+$$
+P(D) = 0{,}725 \cdot 0{,}01 + 0{,}275 \cdot 0{,}02 = 0{,}00725 + 0{,}0055 = 0{,}01275
+$$
+
+Bajaría del $1{,}9\ \%$ al $1{,}275\ \%$: una mejora considerable, pero **no** hasta el $1\ \%$, porque la factoría 3 sigue duplicando la tasa de la 1 y ahora carga con más producción. El nuevo valor está, como siempre, entre $0{,}01$ y $0{,}02$ $\checkmark$.
+
+Un ejercicio excelente para ver que el teorema no solo describe: permite **simular decisiones** antes de tomarlas. Preguntas encadenadas para seguir el debate: ¿qué sería más eficaz, cerrar la factoría 2 o conseguir que baje su tasa del $4\ \%$ al $2\ \%$? ¿Y si repartir la producción de la 2 obligara a forzar las máquinas y subiera las otras dos tasas medio punto?
+:::
+
+## Actividades propuestas con solución
+
+Intenta cada actividad antes de abrir la solución. Empieza siempre comprobando que los pesos suman 1 y termina siempre comprobando que el resultado queda entre el menor y el mayor de los $P(B \mid A_i)$.
+
+**1.** La tabla muestra el porcentaje de producción y de tornillos defectuosos que fabrican tres máquinas. Halla la probabilidad de que un tornillo elegido al azar sea defectuoso.
+
+| Concepto | Máquina 1 | Máquina 2 | Máquina 3 |
+|---|---|---|---|
+| Producción | 35 % | 40 % | 25 % |
+| Defectuosos | 3 % | 2 % | 4 % |
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Primero el control: $0{,}35 + 0{,}40 + 0{,}25 = 1$ $\checkmark$.
+
+$$
+P(D) = 0{,}35 \cdot 0{,}03 + 0{,}40 \cdot 0{,}02 + 0{,}25 \cdot 0{,}04 = 0{,}0105 + 0{,}0080 + 0{,}0100 = 0{,}0285
+$$
+
+Es decir, el $2{,}85\ \%$, valor comprendido entre el $2\ \%$ y el $4\ \%$ $\checkmark$. Guarda estos tres productos: los vas a reutilizar en las actividades del apartado 4.10.
+:::
+
+**2.** En un instituto, el $45\ \%$ de los alumnos son de ciencias y el resto son de letras. Aprueban matemáticas el $80\ \%$ de los de ciencias y el $60\ \%$ de los de letras. Elegido un alumno al azar, ¿cuál es la probabilidad de que apruebe matemáticas?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+La partición es $\{C, L\}$ con $P(C) = 0{,}45$ y $P(L) = 1 - 0{,}45 = 0{,}55$:
+
+$$
+P(Ap) = 0{,}45 \cdot 0{,}80 + 0{,}55 \cdot 0{,}60 = 0{,}36 + 0{,}33 = 0{,}69
+$$
+
+Es decir, el $69\ \%$, entre el $60\ \%$ y el $80\ \%$ $\checkmark$, y más cerca del $60\ \%$ porque el grupo de letras es mayor. Observa el detalle del enunciado: «el resto» te obliga a calcular $0{,}55$; ese es el paso que más se olvida.
+:::
+
+**3.** Una urna contiene 4 bolas rojas y 6 azules. Se extrae una bola, no se devuelve, y se extrae una segunda. ¿Cuál es la probabilidad de que la segunda sea roja?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+La partición no es «de qué urna», sino **el color de la primera bola**: $\{R_1, A_1\}$.
+
+$$
+P(R_2) = \frac{4}{10}\cdot\frac{3}{9} + \frac{6}{10}\cdot\frac{4}{9} = \frac{12}{90} + \frac{24}{90} = \frac{36}{90} = 0{,}4
+$$
+
+Resultado notable: coincide con $P(R_1) = \tfrac{4}{10} = 0{,}4$. No es casualidad. Sin información sobre la primera extracción, la segunda bola tiene exactamente las mismas probabilidades que la primera; es la propiedad de **intercambiabilidad**, y explica por qué en un sorteo da igual el orden en que te toque elegir.
+
+Este ejemplo enseña además que la partición no tiene que ser un «lugar de procedencia»: puede ser el resultado de una etapa anterior del propio experimento.
+:::
+
+**4.** Tres proveedores suministran componentes a una fábrica: $A$ el $50\ \%$, $B$ el $30\ \%$ y $C$ el $20\ \%$. La proporción de componentes que fallan es del $2\ \%$, $3\ \%$ y $5\ \%$ respectivamente. ¿Qué porcentaje del total falla?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+P(F) = 0{,}50 \cdot 0{,}02 + 0{,}30 \cdot 0{,}03 + 0{,}20 \cdot 0{,}05 = 0{,}010 + 0{,}009 + 0{,}010 = 0{,}029
+$$
+
+El $2{,}9\ \%$, entre el $2\ \%$ y el $5\ \%$ $\checkmark$. Fíjate en algo llamativo: el proveedor $A$ (el más grande y el mejor) y el proveedor $C$ (el más pequeño y el peor) aportan **exactamente lo mismo**, $0{,}010$ cada uno. Volumen y calidad se compensan al milímetro con estos datos.
+:::
+
+**5.** En una población, el $30\ \%$ son fumadores. La probabilidad de padecer cierta afección respiratoria es del $25\ \%$ entre los fumadores y del $7\ \%$ entre los no fumadores. Calcula la probabilidad de que una persona elegida al azar padezca la afección.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+P = 0{,}30 \cdot 0{,}25 + 0{,}70 \cdot 0{,}07 = 0{,}075 + 0{,}049 = 0{,}124
+$$
+
+El $12{,}4\ \%$, entre el $7\ \%$ y el $25\ \%$ $\checkmark$. Y una lectura interesante: los fumadores son solo el $30\ \%$ de la población, pero aportan $0{,}075$ de los $0{,}124$ casos, o sea el $60{,}5\ \%$ de los afectados. Ese porcentaje es justamente la respuesta que dará Bayes en el apartado siguiente.
+:::
+
+**6.** Se lanza un dado. Si sale 1 o 2, se extrae una bola de una urna con 3 blancas y 2 negras; en caso contrario, de una urna con 1 blanca y 4 negras. Halla la probabilidad de obtener bola blanca.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Los pesos vienen del dado, y conviene agrupar caras:
+
+$$
+P(U_1) = \frac{2}{6} = \frac{1}{3}, \qquad P(U_2) = \frac{4}{6} = \frac{2}{3}, \qquad \frac{1}{3} + \frac{2}{3} = 1 \ \checkmark
+$$
+
+$$
+P(B) = \frac{1}{3}\cdot\frac{3}{5} + \frac{2}{3}\cdot\frac{1}{5} = \frac{3}{15} + \frac{2}{15} = \frac{5}{15} = \frac{1}{3} \approx 0{,}333
+$$
+
+Entre $\tfrac{1}{5} = 0{,}2$ y $\tfrac{3}{5} = 0{,}6$ $\checkmark$. Agrupar las seis caras del dado en dos ramas es perfectamente legítimo: lo único que necesita el teorema es que las causas sean incompatibles y cubran todo $E$, no que sean sucesos elementales.
+:::
+
+**7.** (Para pensar.) En el ejemplo de las factorías, ¿cuál de las tres aporta más piezas defectuosas al total? ¿Y cuál tiene peor calidad?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Aporta más la **factoría 2** ($0{,}010$ de los $0{,}019$, es decir el $53\ \%$ de todas las defectuosas), y además es también la de **peor calidad** ($4\ \%$). Aquí las dos preguntas tienen la misma respuesta, pero eso es una coincidencia de estos datos.
+
+Cambia la producción a $90\ \%$, $5\ \%$, $5\ \%$ manteniendo las tasas de defectos:
+
+$$
+P(D) = 0{,}90\cdot0{,}01 + 0{,}05\cdot0{,}04 + 0{,}05\cdot0{,}02 = 0{,}009 + 0{,}002 + 0{,}001 = 0{,}012
+$$
+
+Ahora el mayor aportador es la factoría 1 ($0{,}009$ de $0{,}012$, el $75\ \%$), que es precisamente **la de mejor calidad**. La responsabilidad sobre un problema no coincide necesariamente con la tasa de fallo, y esa distinción es justo la que resolverá Bayes: «¿cuánta culpa tiene cada causa de lo que ha pasado?» es una pregunta distinta de «¿qué causa es más chapucera?».
+:::
+
+## Puente al teorema de Bayes
+
+El teorema de la probabilidad total recorre el árbol **de arriba abajo**: conocidas las causas, calcula la probabilidad del efecto.
+
+$$
+\text{Causas} \longrightarrow \text{Efecto}: \qquad P(B) = \sum_{i=1}^{n} P(A_i)P(B \mid A_i)
+$$
+
+Pero en la práctica casi siempre nos interesa la dirección contraria. El control de calidad no pregunta «¿qué probabilidad hay de que salga una pieza defectuosa?», sino: **he encontrado una pieza defectuosa, ¿de qué factoría es más probable que venga?** El médico no pregunta por la probabilidad de un positivo, sino por la de estar enfermo dado un positivo. El jurado no pregunta por la probabilidad de encontrar una prueba, sino por la de que el acusado sea culpable dada la prueba.
+
+En el apartado 4.10, el teorema de Bayes **invierte la flecha**:
+
+$$
+\text{Efecto} \longrightarrow \text{Causas}: \qquad P(A_j \mid B) = \frac{P(A_j) \cdot P(B \mid A_j)}{\displaystyle\sum_{i=1}^{n} P(A_i) \cdot P(B \mid A_i)}
+$$
+
+::: {.callout-important}
+## Mira el denominador
+
+Es **exactamente** el teorema de la probabilidad total que acabas de aprender. Por eso este apartado era imprescindible: sin él, Bayes no se puede ni escribir.
+
+Y mira el numerador: es **uno solo** de los sumandos del denominador. Bayes es, en el fondo, la regla de Laplace aplicada al conjunto de los caminos que terminan en $B$: «de todo lo que llega a $B$, qué fracción pasa por $A_j$». Bayes calcula probabilidades **después** de realizar el experimento; se ocupa del estudio de la llamada **probabilidad a posteriori**.
+:::
+
+## Repaso rápido
+
+- Un **sistema completo de sucesos** es una partición de $E$: sucesos incompatibles dos a dos cuya unión es todo el espacio muestral. Sus probabilidades suman 1, y esa suma es tu primer control de errores.
+- La partición más frecuente en los exámenes es $\{A, \overline{A}\}$.
+- **Teorema de la probabilidad total**: $P(B) = \sum_i P(A_i)P(B \mid A_i)$. Se demuestra en tres líneas: trocear $B$, sumar trozos incompatibles y aplicar la regla del producto.
+- Es un **árbol escrito en una línea**: primer nivel la partición, segundo nivel las condicionadas, multiplicar por caminos y sumar los favorables.
+- Método en cinco pasos: efecto, partición, comprobar que los pesos suman 1, condicionadas en el sentido correcto, multiplicar y sumar.
+- No inviertas la barra: los datos del enunciado son $P(B \mid A_i)$, nunca $P(A_i \mid B)$.
+- El teorema es una **media ponderada** de las condicionadas, así que el resultado queda siempre entre la menor y la mayor de ellas.
+- Con urnas de distinto tamaño elegidas con la misma probabilidad, **no** se pueden juntar todas las bolas: cada bola de la urna pequeña pesa más.
+- El denominador de Bayes es este teorema. Ya tienes montada la mitad del apartado siguiente.

@@ -1,0 +1,455 @@
+---
+title: "Tema 4.6 Los límites de la regla de Laplace"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 2"
+filename: 06-2-limites-de-laplace
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cuándo la regla de Laplace no se puede aplicar, el dado cargado y el dado de quinielas asimétrico, la maniobra de rescate del espacio muestral fino, las probabilidades a posteriori y la ley de los grandes números, el principio de razón insuficiente y la crítica de fondo a la definición clásica, con actividades resueltas.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Ya sabes aplicar la regla de Laplace. Este documento es la otra mitad, y es la mitad que distingue a quien entiende la probabilidad de quien solo sabe dividir dos números.
+
+La pregunta que organiza todo lo que viene es sencilla de formular y difícil de responder con honestidad: **¿qué hago cuando el experimento no es regular?** Y una pregunta más incómoda todavía: **¿cómo sé que un experimento es regular?**
+
+::: {.callout-important}
+## Aviso sobre la importancia de este apartado
+
+Esta parte es, con diferencia, la más importante del tema 4.6. Todo lo anterior se resume en una fórmula de una línea; lo que viene ahora es lo que evita aplicarla mal, y aplicarla mal es el error más frecuente en los ejercicios de probabilidad de todo el Bachillerato.
+:::
+
+## Cuando no se puede aplicar la regla de Laplace
+
+La regla de Laplace es un **atajo**, no una definición universal. Funciona porque, si todos los sucesos elementales pesan lo mismo, sumar probabilidades es lo mismo que contar casos. En cuanto los pesos dejan de ser iguales, contar casos deja de medir probabilidad.
+
+Y aquí viene la idea que hay que interiorizar: **la probabilidad sigue existiendo cuando no hay equiprobabilidad**. Lo que desaparece es el atajo.
+
+### El dado cargado
+
+**Enunciado.** Sea un dado trucado en el que la probabilidad de cada cara es proporcional a su valor:
+
+$$
+p(1) = \frac{1}{21}, \quad p(2) = \frac{2}{21}, \quad p(3) = \frac{3}{21}, \quad p(4) = \frac{4}{21}, \quad p(5) = \frac{5}{21}, \quad p(6) = \frac{6}{21}
+$$
+
+**Comprobación de que la asignación es válida.** Una asignación de probabilidades a los sucesos elementales solo es admisible si todas son no negativas y suman 1:
+
+$$
+\frac{1 + 2 + 3 + 4 + 5 + 6}{21} = \frac{21}{21} = 1 \ \checkmark
+$$
+
+De ahí sale el 21 del denominador: no es un número mágico, es la suma $1+2+3+4+5+6$, elegida precisamente para que el total cierre en 1.
+
+**El espacio muestral no ha cambiado.** Sigue siendo
+
+$$
+E = \{1, 2, 3, 4, 5, 6\}
+$$
+
+exactamente el mismo que en un dado normal. Y, sin embargo, la regla de Laplace daría resultados **falsos**. Comparemos el suceso «salir par»:
+
+$$
+\text{Laplace (dado normal)}: \quad P(\text{par}) = \frac{3}{6} = 0{,}5
+$$
+
+$$
+\text{Dado cargado}: \quad P(\text{par}) = p(2) + p(4) + p(6) = \frac{2 + 4 + 6}{21} = \frac{12}{21} = \frac{4}{7} \approx 0{,}571
+$$
+
+**Comentario final.** La diferencia entre $0{,}5$ y $0{,}571$ no parece grande, pero fíjate en lo que significa: **el mismo espacio muestral admite dos asignaciones de probabilidad distintas**, y nada en el conjunto $E$ permite distinguirlas. La información sobre los pesos viene de fuera del conjunto, de la física del dado.
+
+::: {.callout-important}
+## Idea clave del apartado
+
+La probabilidad sigue existiendo aunque no haya equiprobabilidad; lo que desaparece es el **atajo** de contar casos.
+
+Sobre un mismo espacio muestral se pueden definir **infinitas** asignaciones de probabilidad distintas. El espacio muestral dice qué puede pasar; la asignación de probabilidades dice con qué frecuencia. Son dos cosas independientes.
+:::
+
+Repara en que, sin Laplace, el cálculo de $P(\text{par})$ ha seguido siendo posible. ¿Por qué? Porque hemos usado otra propiedad, la de que la probabilidad de una unión de sucesos incompatibles es la suma de sus probabilidades. Esa propiedad **no necesita equiprobabilidad**, y es la protagonista del apartado 4.7. Guarda esta observación: las propiedades de la probabilidad son más generales que la regla que las inspiró.
+
+### Applet · El dado cargado {.unnumbered}
+
+Introduce los seis pesos que quieras (el applet los normaliza para que sumen 1) y compara la probabilidad real de cada suceso con lo que daría Laplace. Escribe los pesos separados por comas, por ejemplo `1, 2, 3, 4, 5, 6` para el dado proporcional al valor.
+
+::: {#panel-dado-cargado .applet-panel data-applet-est4="dadoCargado"}
+:::
+
+### El dado de quinielas asimétrico
+
+**Enunciado.** Un dado de quinielas tiene 3 caras marcadas con `1`, 2 caras con `X` y 1 cara con `2`. ¿Cuál es su espacio muestral y cuáles son las probabilidades de cada resultado?
+
+**El espacio muestral.** Es
+
+$$
+E = \{1,\ X,\ 2\}
+$$
+
+y **no** $\{1, 1, 1, X, X, 2\}$, porque en el espacio muestral cada resultado se escribe **una sola vez**. Un conjunto no tiene elementos repetidos: eso ya lo sabías del apartado de sucesos.
+
+**Las probabilidades.** Pero entonces:
+
+$$
+P(1) = \frac{3}{6} = \frac{1}{2}, \qquad P(X) = \frac{2}{6} = \frac{1}{3}, \qquad P(2) = \frac{1}{6}
+$$
+
+Tres sucesos elementales y tres probabilidades **distintas**. Aplicar Laplace sobre $E$ y decir $1/3$ para cada uno sería un error grave: daría $P(1) = 1/3$ cuando en realidad vale $1/2$.
+
+::: {.callout-warning}
+## Pregunta para clase: ¿entonces Laplace es inútil aquí?
+
+No. Se aplica sobre las **6 caras físicas**, que sí son equiprobables por simetría del cubo, y después se **agrupan** las caras que llevan el mismo símbolo.
+
+Es decir, no hemos abandonado Laplace: hemos cambiado de espacio muestral. Hemos trabajado en el espacio fino de las caras, $\{c_1, c_2, c_3, c_4, c_5, c_6\}$, donde la equiprobabilidad está justificada, y luego hemos sumado.
+:::
+
+::: {.callout-important}
+## La maniobra de rescate universal
+
+Cuando los resultados que te interesan no son equiprobables, **busca un espacio muestral más fino en el que sí lo sean y agrupa después**.
+
+Esta única frase resuelve una cantidad enorme de problemas y explica de golpe varios errores clásicos:
+
+- El **error de D'Alembert** con dos monedas: en $\{2\text{ caras},\ 1\text{ cara},\ 0\text{ caras}\}$ no hay equiprobabilidad; en $\{CC, CX, XC, XX\}$ sí.
+- La **suma de dos dados**: en $\{2, 3, \dots, 12\}$ no hay equiprobabilidad; en las 36 parejas ordenadas sí.
+- El **dado de quinielas**: en $\{1, X, 2\}$ no hay equiprobabilidad; en las 6 caras sí.
+
+Son tres disfraces del mismo problema y una sola solución.
+:::
+
+**Comentario final.** Ten cuidado con una consecuencia sutil. La maniobra de rescate funciona **cuando existe** un espacio fino con simetría reconocible. En el dado cargado del apartado anterior no existe: no hay ninguna manera de partir la cara 6 en seis trocitos equiprobables que se pueda justificar físicamente. Ahí hay que renunciar a Laplace de verdad.
+
+### Applet · El dado de quinielas asimétrico {.unnumbered}
+
+Reparte las 6 caras entre los símbolos `1`, `X` y `2` e introduce cuántas caras lleva cada uno, por ejemplo `3`, `2` y `1`. El applet muestra en paralelo lo que daría Laplace sobre los tres símbolos y el valor correcto obtenido sobre las caras. Prueba la configuración simétrica `2`, `2`, `2` para ver cuándo coinciden.
+
+::: {#panel-quiniela-asimetrica .applet-panel data-applet-est4="quinielaAsimetrica"}
+:::
+
+## Cuando no hay simetría y hay que experimentar
+
+**Situación.** En un saco hay mezclados granos de cebada y de trigo. ¿Cómo calcularías la probabilidad de que un grano cogido al azar sea de cebada?
+
+Piénsalo un momento antes de seguir. No hay ninguna simetría que nos diga la proporción: no sabemos cuántos granos hay de cada clase, ni podemos deducirlo de la forma del saco. **Laplace es inaplicable.**
+
+La única vía es **repetir el experimento muchas veces** y usar la frecuencia relativa, que por la ley de los grandes números tiende a la probabilidad:
+
+$$
+P(A) = \lim_{N \to \infty} \frac{n_A}{N}
+$$
+
+donde $n_A$ es el número de veces que ha ocurrido $A$ y $N$ el número de repeticiones.
+
+::: {.callout-note}
+## Definición: probabilidad a priori y a posteriori
+
+A las probabilidades obtenidas por **experimentación** se las llama probabilidades **a posteriori**.
+
+A las que se calculan **sin experimentar**, mediante fórmulas y razonamientos, se las llama probabilidades **a priori**.
+:::
+
+| Criterio | A priori | A posteriori |
+|---|---|---|
+| ¿Hay que experimentar? | No | Sí, muchas veces |
+| Cómo se obtiene | Laplace, combinatoria, árbol | Frecuencia relativa |
+| Precisión | Valor exacto | Aproximado, con error de truncamiento |
+| Cuándo se usa | Hay simetría reconocible | No hay simetría, o el experimento es destructivo |
+
+: Probabilidades a priori frente a probabilidades a posteriori
+
+::: {.callout-tip}
+## No son rivales, son complementarias
+
+La relación entre ambas es la **ley de los grandes números**: las probabilidades a posteriori **tienden** a las a priori cuando el número de experimentos crece. Por eso son compatibles y no rivales.
+
+Dicho de otro modo: cuando puedes calcular a priori, la experimentación te sirve de comprobación; cuando no puedes, la experimentación es tu única fuente. Y en los dos casos apuntan al mismo número.
+:::
+
+Fíjate en la última fila de la tabla: «o el experimento es destructivo». Es un caso que se pasa por alto y aparece en la industria constantemente. Para saber la probabilidad de que un fusible aguante una sobrecarga hay que quemar fusibles; para saber la probabilidad de que un airbag se dispare bien hay que estrellar coches. No hay simetría que ayude y cada medición cuesta dinero. Ahí la estadística no es un lujo teórico: es la única herramienta disponible.
+
+::: {.callout-warning}
+## Cuidado con el error de truncamiento
+
+Una probabilidad a posteriori es siempre **aproximada**. Si lanzas una moneda equilibrada 10 veces y salen 7 caras, la frecuencia relativa es $0{,}7$ y la probabilidad real es $0{,}5$. No hay contradicción: 10 tiradas son pocas.
+
+La ley de los grandes números garantiza la convergencia, pero **no dice a qué velocidad**. Como norma práctica de aula: con centenares de repeticiones se estabiliza la primera cifra decimal; con millares, la segunda.
+:::
+
+### Applet · Sin simetría: hay que experimentar {.unnumbered}
+
+Fija una proporción oculta de granos de cebada, simula extracciones y observa cómo la frecuencia relativa se acerca a la proporción real a medida que aumenta el número de repeticiones. Introduce el número de extracciones como entero, por ejemplo `1000`, y una semilla para poder repetir el mismo experimento en clase.
+
+::: {#panel-frecuentista .applet-panel data-applet-est4="frecuentista"}
+:::
+
+## Historia y pensamiento crítico: los límites de la definición clásica
+
+Llegados aquí podrías pensar que ya está todo resuelto: si hay simetría uso Laplace, y si no la hay experimento. Pero queda pendiente la pregunta más difícil, la que dio trabajo a los matemáticos durante más de un siglo: **¿cómo se decide que hay simetría?**
+
+### El principio de razón insuficiente y su fracaso
+
+Antes de Laplace, Jacob Bernoulli propuso el **principio de razón insuficiente**:
+
+> «Si ignoramos completamente los diferentes modos en que puede ocurrir un suceso, y no tenemos por tanto ninguna base razonable de preferencia, es tan probable que ese suceso ocurra de una manera como de otra.»
+
+Suena razonable. Suena, de hecho, a sentido común: si no tengo motivo para preferir un resultado, los reparto por igual. Pero **conduce al absurdo**. Aplicándolo sin cautela:
+
+- «No sé si Marte está habitado, así que $P(\text{habitado}) = 1/2$.»
+- «Si lo está, no sé si lo está solo por mujeres, así que $P = 1/2$.»
+- «Ni solo por hombres: $P = 1/2$.»
+- «Ni solo por niños: $P = 1/2$.»
+
+Pero entonces, sumando las tres últimas afirmaciones, que se refieren a situaciones incompatibles entre sí:
+
+$$
+\frac{1}{2} + \frac{1}{2} + \frac{1}{2} \neq \frac{1}{2}
+$$
+
+lo cual es manifiestamente absurdo: hemos obtenido que la probabilidad de «estar habitado solo por mujeres, solo por hombres o solo por niños» vale $3/2$, mayor que 1, y además debería ser menor o igual que la de «estar habitado», que era $1/2$.
+
+::: {.callout-important}
+## Por qué se descartó el principio
+
+El principio fue descartado, entre otros motivos, porque **se basaba en la ignorancia**: parecía deducirse que el cálculo de probabilidades sería más eficaz cuanto más equilibradamente ignorante fuera quien lo usara.
+
+Y hay algo más grave: el resultado **depende de cómo trocees las posibilidades**. Si divides «Marte» en dos casos, sale $1/2$; si lo divides en cuatro, sale $1/4$. La misma ignorancia produce números distintos según cómo se redacte la lista, y un número que depende de la redacción no mide nada del mundo.
+:::
+
+::: {.callout-tip}
+## Lo que sí conserva: un criterio negativo
+
+Al principio de razón insuficiente le queda, sin embargo, un valor como **criterio negativo**:
+
+> No puede afirmarse que dos sucesos sean igualmente probables si existe algún motivo para preferir uno al otro.
+
+Es decir: sirve para **rechazar** equiprobabilidades, no para establecerlas. **La ignorancia no genera equiprobabilidad.**
+:::
+
+Este criterio negativo es, en la práctica, muy útil. Cuando alguien te diga «hay un 50 % de posibilidades de que llueva mañana porque o llueve o no llueve», ya tienes la réplica exacta: existen motivos para preferir una de las dos opciones (la estación, la presión, el histórico del lugar), luego la equiprobabilidad no está justificada.
+
+### La crítica de fondo
+
+La definición clásica, aun siendo intuitivamente lógica y aceptable, **no resulta del todo satisfactoria**, y la razón es muy elegante: **no proporciona ningún criterio para decidir cuándo los casos posibles pueden considerarse simétricos o igualmente posibles.**
+
+Dicho de otro modo:
+
+::: {.callout-note}
+## El agujero de la definición clásica
+
+La regla de Laplace nos dice **qué hacer una vez sabemos** que hay equiprobabilidad, pero no nos dice **cómo saberlo**.
+
+Hay incluso un problema de circularidad: si defines la probabilidad a partir de casos «igualmente probables», estás usando la noción de probabilidad dentro de su propia definición.
+:::
+
+**Pregunta final para los más inquietos: si la definición de Laplace tiene este agujero, ¿por qué la seguimos usando?**
+
+Porque en los experimentos con **simetría física reconocible** (dados, monedas, urnas, sorteos, muestreos aleatorios) funciona perfectamente y da el **valor exacto sin necesidad de experimentar**. Y cuando la simetría falla, tenemos las frecuencias relativas y, más adelante en el curso, los modelos binomial y normal.
+
+::: {.callout-tip}
+## Cómo se cerró el agujero (para saber más)
+
+En el siglo XX la salida fue dejar de definir la probabilidad y empezar a **axiomatizarla**: se declara que una probabilidad es cualquier asignación que cumpla tres reglas ($P(A) \geq 0$, $P(E) = 1$ y aditividad en sucesos incompatibles) y se estudian las consecuencias. Laplace y las frecuencias relativas pasan a ser dos **maneras de construir** asignaciones que cumplen los axiomas, no dos definiciones rivales de qué es la probabilidad.
+
+Ese es exactamente el punto de vista del apartado 4.7: verás que las propiedades que vamos a demostrar no necesitan equiprobabilidad para nada.
+:::
+
+### Applet · El principio de razón insuficiente {.unnumbered}
+
+Trocea una misma situación de varias maneras distintas y observa cómo el principio de razón insuficiente asigna probabilidades incompatibles entre sí. Elige el número de casos en que divides la situación, por ejemplo `2` y luego `4`, y compara los resultados.
+
+::: {#panel-razon-insuficiente .applet-panel data-applet-est4="razonInsuficiente"}
+:::
+
+## Actividades propuestas con solución
+
+Intenta cada actividad antes de abrir la solución. Las tres últimas son las importantes.
+
+**1.** Se lanza un dado. Calcula la probabilidad de obtener: a) número primo; b) múltiplo de 3; c) un número que no sea el 4.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Experimento regular, $\operatorname{card}(E) = 6$.
+
+a) Los primos de $E$ son $\{2, 3, 5\}$, luego
+
+$$
+P = \frac{3}{6} = 0{,}5
+$$
+
+Recuerda que el 1 **no** es primo, y que el 2 sí lo es aunque sea par.
+
+b) Los múltiplos de 3 son $\{3, 6\}$, luego
+
+$$
+P = \frac{2}{6} = \frac{1}{3}
+$$
+
+c) «No ser el 4» es $\{1, 2, 3, 5, 6\}$, luego
+
+$$
+P = \frac{5}{6} \approx 0{,}833
+$$
+
+También se puede hacer por el contrario: $1 - 1/6 = 5/6$. Es la propiedad que se formaliza en el apartado siguiente.
+:::
+
+**2.** En una urna hay 3 bolas blancas numeradas del 1 al 3 y 2 negras con los números 4 y 5. Se extrae una bola. Calcula la probabilidad de que sea blanca y la de que su número sea par.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Escribimos primero el espacio muestral con la información completa de cada bola:
+
+$$
+E = \{B_1,\ B_2,\ B_3,\ N_4,\ N_5\}, \qquad \operatorname{card}(E) = 5
+$$
+
+**Blanca:** $\{B_1, B_2, B_3\}$, luego
+
+$$
+P = \frac{3}{5} = 0{,}6
+$$
+
+**Número par:** $\{B_2, N_4\}$, luego
+
+$$
+P = \frac{2}{5} = 0{,}4
+$$
+
+**Blanca y par:** $\{B_2\}$, luego
+
+$$
+P = \frac{1}{5} = 0{,}2
+$$
+
+Fíjate en la utilidad de haber etiquetado cada bola con **las dos** características (color y número): así los tres sucesos se leen directamente del conjunto sin volver al enunciado.
+:::
+
+**3.** Se extrae una carta de la baraja española de 40 cartas. Calcula la probabilidad de que sea una figura o de copas.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Usando el recuento de la baraja: hay 12 figuras y 10 copas, y 3 cartas son a la vez figura y de copas (sota, caballo y rey de copas). Por la fórmula de recuento de la unión:
+
+$$
+\operatorname{card}(A \cup B) = 12 + 10 - 3 = 19
+$$
+
+Luego
+
+$$
+P = \frac{19}{40} = 0{,}475
+$$
+
+Si hubieras sumado $12 + 10 = 22$ habrías contado tres cartas dos veces y el resultado, $22/40$, sería falso. Esta resta es la semilla de la regla de la suma del apartado 4.7.
+:::
+
+**4.** ¿Cuál es la probabilidad de acertar **exactamente los 13 primeros** resultados de una quiniela de 14 y fallar el último, rellenándola al azar con un dado equiprobable de tres símbolos?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Casos posibles, como en el ejemplo de la quiniela:
+
+$$
+\operatorname{card}(E) = 3^{14} = 4\,782\,969
+$$
+
+Casos favorables: los 13 primeros resultados están fijados (solo hay una manera de acertarlos) y el último debe ser **erróneo**, lo que admite 2 símbolos de los 3. Luego
+
+$$
+\operatorname{card}(A) = 1 \cdot 2 = 2
+$$
+
+$$
+P = \frac{2}{4\,782\,969} \approx 0{,}00000042
+$$
+
+Es decir, **el doble** que acertar los 14. Resulta chocante, pero es correcto: hay dos boletos que cumplen la condición y solo uno que acierta los 14.
+:::
+
+**5.** Un dado está trucado de forma que $P(6) = 0{,}25$ y las otras cinco caras son equiprobables entre sí. Calcula $P(\text{par})$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Las cinco caras restantes reparten $1 - 0{,}25 = 0{,}75$ a partes iguales, luego cada una vale
+
+$$
+\frac{0{,}75}{5} = 0{,}15
+$$
+
+Como los sucesos elementales son incompatibles, se suman:
+
+$$
+P(\text{par}) = P(2) + P(4) + P(6) = 0{,}15 + 0{,}15 + 0{,}25 = 0{,}55
+$$
+
+Nótese que **Laplace daría $0{,}5$ y estaría mal**. Y observa el método: se ha usado que las probabilidades de los elementales suman 1 para deducir el valor de las caras desconocidas. Ese es el procedimiento estándar con dados trucados.
+:::
+
+**6.** Se lanzan dos dados y se suman sus caras. ¿Es $P(\text{suma} = 7) = P(\text{suma} = 2)$?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+**No.** El espacio muestral fino tiene $6^2 = 36$ resultados equiprobables, las parejas ordenadas.
+
+Suma 7: $\{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)\}$, luego
+
+$$
+P = \frac{6}{36} = \frac{1}{6}
+$$
+
+Suma 2: solo $(1,1)$, luego
+
+$$
+P = \frac{1}{36}
+$$
+
+El espacio $\{2, 3, \dots, 12\}$ **no es equiprobable**: es el mismo error de D'Alembert con otro disfraz, y explica por qué en el parchís el 7 es la suma más frecuente. Aquí has aplicado la maniobra de rescate: trabajar en el espacio fino de las 36 parejas y agrupar después.
+:::
+
+**7.** En una clase de 30 alumnos, 18 son chicas. Se elige un delegado al azar. ¿Es un experimento regular? Calcula la probabilidad de que sea chico.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+**Sí es regular** respecto a los alumnos: todos tienen la misma probabilidad de ser elegidos, porque el sorteo no mira el sexo. Lo que **no** ocurre es que los sucesos «chica» y «chico» sean equiprobables.
+
+$$
+P(\text{chico}) = \frac{30 - 18}{30} = \frac{12}{30} = 0{,}4
+$$
+
+Esta distinción entre «el experimento es regular» y «los sucesos que me interesan son equiprobables» es exactamente lo que hay que dominar. La regularidad autoriza a usar Laplace; el tamaño de los sucesos se cuenta después.
+:::
+
+## Repaso rápido {.unnumbered}
+
+- La probabilidad **existe** sin equiprobabilidad; lo que desaparece es el atajo de contar casos.
+- Sobre un mismo espacio muestral caben **infinitas** asignaciones de probabilidad: $E = \{1,\dots,6\}$ vale para el dado normal y para el cargado.
+- Una asignación es válida si todas las probabilidades son no negativas y **suman 1**. Ese control resuelve casi todos los ejercicios de dados trucados.
+- **Maniobra de rescate universal**: si los resultados que te interesan no son equiprobables, busca un espacio muestral más fino donde sí lo sean y **agrupa después**. Dado de quinielas, dos monedas, suma de dos dados.
+- Cuando no hay simetría (granos en un saco, chinchetas, ensayos destructivos) hay que **experimentar**: la frecuencia relativa tiende a la probabilidad,
+  $$
+  P(A) = \lim_{N \to \infty} \frac{n_A}{N}
+  $$
+- **A priori** (exacta, sin experimentar) y **a posteriori** (aproximada, experimentando) no son rivales: la ley de los grandes números las conecta.
+- El **principio de razón insuficiente** falla porque depende de cómo trocees los casos; solo conserva valor como criterio negativo: **la ignorancia no genera equiprobabilidad**.
+- La **crítica de fondo** a Laplace: dice qué hacer cuando hay equiprobabilidad, pero no cómo saber que la hay. Se sigue usando porque en los experimentos con simetría física reconocible da el valor exacto y gratis.
+
+En el apartado siguiente cambiamos de estrategia. En lugar de calcular probabilidades una a una, vamos a estudiar las **propiedades** que las relacionan: el rango, el suceso contrario y la regla de la suma. Y comprobarás algo importante: esas propiedades **no necesitan equiprobabilidad**, así que siguen funcionando incluso en los dados trucados de este apartado.

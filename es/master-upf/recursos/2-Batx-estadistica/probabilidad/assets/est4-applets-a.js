@@ -1311,7 +1311,7 @@
         ];
 
         var fig = venn({ n: 2, pinta: ['a'], color: COL.azulClaro,
-          A: A, B: Ac, E: E, nombres: ['A', 'A con barra'],
+          A: A, B: Ac, E: E, nombres: ['A', '~A'],
           cap: 'El rectángulo es siempre E. El suceso A y su contrario cubren todo E y no se solapan.',
           label: 'Diagrama de Venn de A y su contrario' });
 
