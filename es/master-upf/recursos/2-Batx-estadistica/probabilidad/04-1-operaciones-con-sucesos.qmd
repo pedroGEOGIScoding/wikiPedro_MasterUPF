@@ -1,0 +1,462 @@
+---
+title: "Tema 4.4 Operaciones con sucesos"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 04-1-operaciones-con-sucesos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Unión, intersección, suceso contrario, diferencia y diferencia simétrica. La pareja de conectores lógicos, el «o» inclusivo frente al «o» exclusivo y muchos ejemplos resueltos con el dado, la baraja y la urna, con applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+En el apartado anterior aprendiste que un suceso es un subconjunto del espacio muestral $E$. El siguiente paso es decisivo: **combinar sucesos para construir otros nuevos**. La razón es puramente práctica. Los enunciados casi nunca preguntan por un suceso simple; preguntan por frases como estas:
+
+- «que sea rubia **o** tenga los ojos claros»
+- «que sea chico **y** use ordenador»
+- «que **no** sea defectuosa»
+- «que apruebe matemáticas, **pero no** física»
+
+Cada una de esas conjunciones del castellano tiene una traducción exacta al lenguaje de conjuntos. Aprender esa traducción es, literalmente, aprender a leer un problema de probabilidad.
+
+| Castellano | Operación | Notación |
+|---|---|---|
+| «Que ocurra $A$ o $B$» | Unión | $A \cup B$ |
+| «Que ocurran $A$ y $B$» | Intersección | $A \cap B$ |
+| «Que no ocurra $A$» | Contrario | $\overline{A}$ |
+| «Que ocurra $A$ pero no $B$» | Diferencia | $A - B$ |
+
+: Del lenguaje natural al lenguaje de conjuntos
+
+::: {.callout-important}
+## Estas cuatro filas son el apartado entero
+
+Todo lo que viene después son propiedades y consecuencias de esas cuatro operaciones. Si dominas la tabla, dominas el apartado; si no la dominas, ninguna fórmula de probabilidad te va a servir, porque no sabrás qué te están preguntando.
+:::
+
+## Unión de sucesos
+
+::: {.callout-note}
+## Definición: unión
+
+La **unión** de dos sucesos $A$ y $B$ del espacio muestral es otro suceso formado por los elementos que pertenecen a $A$ **o** pertenecen a $B$. Se denota $A \cup B$:
+
+$$
+A \cup B = \{\, x \in E : x \in A \ \lor\ x \in B \,\}
+$$
+
+La unión se verifica siempre que ocurra uno u otro suceso, **o ambos**.
+:::
+
+Esa línea se lee en voz alta así: «la unión de $A$ y $B$ es el conjunto de los elementos $x$ de $E$ tales que $x$ pertenece a $A$ o $x$ pertenece a $B$».
+
+### Ejemplo resuelto: uniones sobre el dado {.unnumbered}
+
+Se tira un dado, luego $E = \{1,2,3,4,5,6\}$. Expresa como unión los sucesos siguientes.
+
+**a)** $A =$ «salir número par o mayor que 3».
+
+Paso 1. Traduzco cada trozo por separado: «par» $= \{2,4,6\}$ y «mayor que 3» $= \{4,5,6\}$.
+
+Paso 2. La «o» me pide la unión:
+
+$$
+A = \{2,4,6\} \cup \{4,5,6\} = \{2,4,5,6\}
+$$
+
+**b)** $B =$ «salir múltiplo de 2 o divisor de 4».
+
+Paso 1. «Múltiplo de 2» $= \{2,4,6\}$; «divisor de 4» $= \{1,2,4\}$ (los divisores de 4 que están en $E$).
+
+Paso 2.
+
+$$
+B = \{2,4,6\} \cup \{1,2,4\} = \{1,2,4,6\}
+$$
+
+**Comentario final.** Fíjate en un detalle en el que hay que insistir: en la unión **los elementos repetidos se escriben una sola vez**. El $4$ aparece en los dos conjuntos del apartado a) y, sin embargo, figura una única vez en el resultado. Esta observación, que parece trivial, es el origen de la fórmula de recuento y, más adelante, del $-P(A\cap B)$ de la regla de la suma.
+
+### Ejemplo resuelto: la fórmula de recuento {.unnumbered}
+
+En el apartado a) anterior, $|A_{\text{par}}| = 3$ y $|A_{>3}| = 3$, pero $|A| = 4$, no $6$. ¿Por qué?
+
+Porque los elementos comunes se han contado dos veces al sumar. La corrección es exactamente el tamaño de la zona común:
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B| = 3 + 3 - 2 = 4 \ \checkmark
+$$
+
+(los comunes son $\{4,6\}$, dos elementos).
+
+**Comentario final.** Guarda esta fórmula: es la misma estructura que la regla de la suma de probabilidades, $P(A\cup B) = P(A) + P(B) - P(A \cap B)$, que verás en el apartado siguiente. La resta no es un capricho: evita contar dos veces la zona compartida.
+
+### Applet · Unión de sucesos {.unnumbered}
+
+::: {#panel-union .applet-panel data-applet-est4="union"}
+:::
+
+Cambia $A$ y $B$ y observa dos cosas: qué región se pinta en el diagrama de Venn y cómo el cardinal de la unión nunca es la simple suma de cardinales cuando hay elementos comunes.
+
+### La pareja $\lor$ / $\land$ de la definición
+
+En la definición aparece un símbolo nuevo:
+
+$$
+A \cup B = \{\, x \in E : x \in A \ \lor\ x \in B \,\}
+$$
+
+Hay dos conectores lógicos que van siempre juntos y que se confunden si no se presentan a la vez, porque uno define la unión y el otro la intersección.
+
+| Símbolo | Nombre | Se lee | Operación de conjuntos | Definición donde aparece |
+|---|---|---|---|---|
+| $\lor$ | Disyunción | «o» | Unión, $A \cup B$ | $x \in A \lor x \in B$ |
+| $\land$ | Conjunción | «y» | Intersección, $A \cap B$ | $x \in A \land x \in B$ |
+
+: La pareja $\lor$ / $\land$
+
+::: {.callout-tip}
+## Truco mnemotécnico que funciona
+
+$\land$ tiene la forma de la **A** de «**A**mbos» y de la $\cap$ de intersección; $\lor$ es su reflejo y se corresponde con la $\cup$ de unión. La forma del símbolo lógico imita la forma del símbolo de conjuntos correspondiente. No hay que memorizar nada: hay que mirar el dibujo del símbolo.
+:::
+
+::: {.callout-warning}
+## Punto crítico: la «o» matemática es inclusiva
+
+Este es el matiz que más malentendidos genera. En matemáticas, $\lor$ es **siempre inclusivo** salvo aviso explícito: la proposición $p \lor q$ es verdadera cuando se cumple $p$, cuando se cumple $q$ y también **cuando se cumplen las dos**.
+
+- «Que estudie inglés o francés» **incluye** a quienes estudian los dos idiomas.
+- El «o café o té» del castellano coloquial (uno u otro, pero no ambos) es el **«o» exclusivo**, que en conjuntos es la diferencia simétrica $A \bigtriangleup B = (A \cup B) - (A \cap B)$.
+- Por eso, en la unión, los elementos repetidos se escriben una sola vez, y de ahí nace el $-|A\cap B|$ de la fórmula de recuento.
+:::
+
+La tabla de verdad hace visible por qué la unión «se queda con todo»:
+
+| $p$ | $q$ | $p \lor q$ | $p \land q$ |
+|---|---|---|---|
+| V | V | V | V |
+| V | F | V | F |
+| F | V | V | F |
+| F | F | F | F |
+
+: Tabla de verdad de $\lor$ y de $\land$
+
+La única fila donde $p \lor q$ es falsa es aquella en la que fallan las dos condiciones. Traducido a conjuntos: los únicos elementos que quedan fuera de $A \cup B$ son los que no están ni en $A$ ni en $B$, es decir,
+
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B},
+$$
+
+que es la primera ley de De Morgan. Sale directamente de leer esa última fila de la tabla.
+
+### Ejemplo resuelto: los idiomas de la clase {.unnumbered}
+
+En una clase, $A =$ «estudia inglés» y $B =$ «estudia francés». Hay 30 alumnos: 22 estudian inglés, 12 estudian francés y 6 estudian los dos. ¿Cuántos estudian al menos un idioma? ¿Y cuántos estudian solo uno?
+
+Paso 1. «Al menos un idioma» es la unión, con la «o» inclusiva:
+
+$$
+|A \cup B| = 22 + 12 - 6 = 28
+$$
+
+Paso 2. «Solo uno» es el «o» exclusivo, así que hay que quitar dos veces la zona común: una porque no cuenta en «solo inglés» y otra porque no cuenta en «solo francés»:
+
+$$
+|A \bigtriangleup B| = 28 - 6 = 22
+$$
+
+**Comentario final.** Dos preguntas parecidas, dos respuestas distintas ($28$ y $22$) y una única diferencia: si la «o» es inclusiva o exclusiva. Los $30 - 28 = 2$ alumnos restantes no estudian ninguno de los dos idiomas, es decir, están en $\overline{A} \cap \overline{B}$.
+
+### Applet · El «o» inclusivo y el «o» exclusivo {.unnumbered}
+
+::: {#panel-o-exclusivo .applet-panel data-applet-est4="oExclusivo"}
+:::
+
+Activa y desactiva las dos condiciones y comprueba en la tabla de verdad qué filas cambian de valor al pasar del «o» inclusivo al «o» exclusivo.
+
+## Intersección de sucesos
+
+::: {.callout-note}
+## Definición: intersección
+
+La **intersección** de dos sucesos $A$ y $B$ es otro suceso formado por los elementos que pertenecen al mismo tiempo a $A$ **y** a $B$. Se denota $A \cap B$ y **puede ser vacía**:
+
+$$
+A \cap B = \{\, x \in E : x \in A \ \land\ x \in B \,\}
+$$
+
+La intersección se verifica solo si ocurren ambos sucesos simultáneamente.
+:::
+
+### Ejemplo resuelto: intersecciones sobre el dado {.unnumbered}
+
+Se tira un dado.
+
+**a)** $C =$ «salir número par y mayor que 3»:
+
+$$
+C = \{2,4,6\} \cap \{4,5,6\} = \{4,6\}
+$$
+
+**b)** $D =$ «obtener múltiplo de 2 y divisor de 4»:
+
+$$
+D = \{2,4,6\} \cap \{1,2,4\} = \{2,4\}
+$$
+
+**Comentario final.** Compara con el ejemplo de la unión: los conjuntos de partida son idénticos, solo ha cambiado la conjunción del enunciado, y el resultado ha pasado de cuatro elementos a dos. La palabra «y» siempre reduce; la palabra «o» siempre amplía.
+
+### Ejemplo resuelto: figuras y copas en la baraja española {.unnumbered}
+
+Al extraer una carta de una baraja española de 40 cartas se consideran $A =$ «sacar una figura» y $B =$ «sacar copas». Halla $A \cap B$ y $A \cup B$, y da sus cardinales.
+
+Paso 1. Contamos las figuras. Sota, caballo y rey de cada uno de los cuatro palos:
+
+$$
+|A| = 3 \cdot 4 = 12
+$$
+
+Paso 2. Contamos las copas: hay una carta de copas por cada número, luego $|B| = 10$.
+
+Paso 3. La intersección son las cartas que son figura **y** de copas:
+
+$$
+A \cap B = \{\text{sota de copas},\ \text{caballo de copas},\ \text{rey de copas}\} \Rightarrow |A \cap B| = 3
+$$
+
+Paso 4. La unión, con la fórmula de recuento:
+
+$$
+|A \cup B| = 12 + 10 - 3 = 19
+$$
+
+**Comentario final.** Verbalmente: $A \cap B$ es «sacar una figura de copas» y $A \cup B$ es «sacar una figura o una copa», y son $19$ cartas de las $40$. Si hubieras sumado $12 + 10 = 22$ habrías contado tres cartas dos veces.
+
+### Ejemplo resuelto: intersección vacía {.unnumbered}
+
+En el mismo dado, sean $P = \{1,3,5\}$ («impar») y $Q = \{2,4,6\}$ («par»). Entonces
+
+$$
+P \cap Q = \varnothing .
+$$
+
+**Comentario final.** Cuando $A \cap B = \varnothing$ decimos que los sucesos son **incompatibles** o **disjuntos**: no pueden ocurrir a la vez. Ojo, incompatible no significa pequeño: aquí los dos sucesos tienen tres elementos cada uno, la mitad del espacio muestral.
+
+### Applet · Intersección de sucesos {.unnumbered}
+
+::: {#panel-interseccion .applet-panel data-applet-est4="interseccion"}
+:::
+
+Prueba a introducir dos sucesos sin elementos comunes y observa que el applet marca la intersección como $\varnothing$ y avisa de que son incompatibles.
+
+## Suceso contrario y diferencia de sucesos
+
+### El contrario como operación
+
+Ya definiste el suceso contrario en el apartado anterior, pero ahora lo usamos como **operación unaria**:
+
+$$
+\overline{A} = E - A, \qquad \overline{\overline{A}} = A
+$$
+
+Una operación unaria actúa sobre un **único** objeto; aquí el objeto es un suceso $A$. El contrario o complementario, escrito $\overline{A}$, reúne todos los resultados del espacio muestral que **no** pertenecen a $A$.
+
+Si al lanzar un dado $A = \{2,4,6\}$ es «obtener un número par», entonces $\overline{A} = \{1,3,5\}$ es «obtener un número impar». A diferencia de la unión o la intersección, que necesitan dos sucesos, el contrario solo necesita $A$.
+
+### Ejemplo resuelto: contrarios que hay que decir en voz alta {.unnumbered}
+
+Escribe el contrario de cada suceso, en conjunto y en palabras. Se lanza un dado.
+
+| Suceso | Conjunto | Contrario | En palabras |
+|---|---|---|---|
+| «sale un 6» | $\{6\}$ | $\{1,2,3,4,5\}$ | «no sale un 6» |
+| «sale mayor que 4» | $\{5,6\}$ | $\{1,2,3,4\}$ | «sale menor o igual que 4» |
+| «sale múltiplo de 3» | $\{3,6\}$ | $\{1,2,4,5\}$ | «no sale múltiplo de 3» |
+| «sale algo» | $E$ | $\varnothing$ | «no sale nada» (imposible) |
+
+**Comentario final.** El error clásico está en la segunda fila: el contrario de «mayor que 4» **no** es «menor que 4», sino «menor o igual que 4». Al negar una desigualdad estricta aparece el igual. Comprueba siempre que $A \cup \overline{A} = E$ y que $A \cap \overline{A} = \varnothing$: si falla alguna de las dos, el contrario está mal escrito.
+
+### Applet · Suceso contrario {.unnumbered}
+
+::: {#panel-contrario .applet-panel data-applet-est4="contrario"}
+:::
+
+Escribe un suceso y comprueba con el applet las dos igualdades de control, $A \cup \overline{A} = E$ y $A \cap \overline{A} = \varnothing$, además del contrario del contrario.
+
+### Diferencia de sucesos
+
+::: {.callout-note}
+## Definición: diferencia
+
+La **diferencia** «$A$ menos $B$» de dos sucesos es otro suceso formado por los elementos de $A$ que **no** están en $B$. Se denota $A - B$ o $A \setminus B$:
+
+$$
+A - B = \{\, x \in E : x \in A \ \land\ x \notin B \,\}
+$$
+:::
+
+Y aquí llega la identidad más útil del apartado, la que convierte una operación nueva en dos que ya conoces:
+
+$$
+A - B = A \cap \overline{B}
+$$
+
+::: {.callout-important}
+## Trabaja siempre con $A \cap \overline{B}$
+
+En la práctica escribiremos siempre $A \cap \overline{B}$ en lugar de $A - B$, porque así todo queda reducido a uniones, intersecciones y contrarios, que son las tres operaciones cuyas probabilidades sabremos calcular. La resta de conjuntos no tiene fórmula propia de probabilidad; la intersección con el contrario, sí.
+:::
+
+Para calcular $A - B$ se escriben todos los elementos de $A$ y de estos se quitan todos los que además están en $B$.
+
+### Ejemplo resuelto: batería de diferencias {.unnumbered}
+
+Se lanza un dado y se consideran
+
+$$
+A = \{2,4,5,6\}, \quad B = \{1,3,4\}, \quad C = \{2,4\}, \quad D = \{1,5,6\}.
+$$
+
+Calculamos una por una:
+
+$$
+A - B = \{2,5,6\}, \qquad B - A = \{1,3\}
+$$
+
+$$
+A - C = \{5,6\}, \qquad C - A = \varnothing, \qquad B - D = \{3,4\}
+$$
+
+Comprobamos la primera con la identidad: $\overline{B} = \{2,5,6\}$, luego $A \cap \overline{B} = \{2,4,5,6\} \cap \{2,5,6\} = \{2,5,6\}$ $\checkmark$.
+
+**Comentario final.** Aquí se observan dos cosas muy instructivas:
+
+1. $A - B \neq B - A$: la diferencia **no es conmutativa**, a diferencia de la unión y la intersección.
+2. $C - A = \varnothing$ porque $C \subset A$. En general,
+
+$$
+C \subset A \iff C - A = \varnothing .
+$$
+
+### Ejemplo resuelto: «aprueba matemáticas pero no física» {.unnumbered}
+
+En un grupo de 40 alumnos, 28 aprueban matemáticas, 22 aprueban física y 17 aprueban las dos. ¿Cuántos aprueban matemáticas pero no física? ¿Y cuántos no aprueban ninguna?
+
+Paso 1. Nombro los sucesos: $M =$ «aprueba matemáticas», $F =$ «aprueba física». Datos: $|M| = 28$, $|F| = 22$, $|M \cap F| = 17$.
+
+Paso 2. «Matemáticas pero no física» es $M - F = M \cap \overline{F}$. Los que aprueban matemáticas se reparten en dos grupos disjuntos: los que también aprueban física y los que no. Por tanto
+
+$$
+|M \cap \overline{F}| = |M| - |M \cap F| = 28 - 17 = 11 .
+$$
+
+Paso 3. «Ninguna de las dos» es $\overline{M} \cap \overline{F} = \overline{M \cup F}$ (De Morgan, que formalizaremos en el apartado siguiente):
+
+$$
+|M \cup F| = 28 + 22 - 17 = 33 \Rightarrow |\overline{M \cup F}| = 40 - 33 = 7 .
+$$
+
+**Comentario final.** Fíjate en la regla general que acabas de usar en el paso 2 y que conviene guardar:
+
+$$
+|A| = |A \cap B| + |A \cap \overline{B}| .
+$$
+
+Todo suceso se parte en dos trozos según ocurra o no otro suceso. Esta descomposición es la semilla del teorema de la probabilidad total.
+
+### Applet · Diferencia de sucesos {.unnumbered}
+
+::: {#panel-diferencia .applet-panel data-applet-est4="diferencia"}
+:::
+
+Introduce dos sucesos y compara en pantalla $A - B$ con $B - A$: la asimetría de la diferencia se ve mucho mejor en el diagrama que en la lista de elementos.
+
+### Diferencia simétrica: el «o» exclusivo
+
+Cuando en castellano decimos «o café o té» solemos querer decir uno u otro, **pero no ambos**. Ese es el «o» exclusivo, y en teoría de conjuntos se llama **diferencia simétrica**:
+
+$$
+A \bigtriangleup B = (A - B) \cup (B - A) = (A \cup B) - (A \cap B)
+$$
+
+En términos de las operaciones básicas:
+
+$$
+A \bigtriangleup B = (A \cap \overline{B}) \cup (\overline{A} \cap B)
+$$
+
+::: {.callout-warning}
+## Advertencia lingüística importante
+
+En matemáticas, salvo que el enunciado diga explícitamente lo contrario, la «o» es **siempre inclusiva**: $A \cup B$ incluye el caso en que ocurren los dos. Si un problema dice «que estudie inglés o francés», la respuesta incluye a quienes estudian ambos idiomas. Solo cuando el enunciado insiste («exactamente uno», «uno solo», «uno u otro pero no los dos») hay que usar $A \bigtriangleup B$.
+:::
+
+### Ejemplo resuelto: diferencia simétrica sobre el dado {.unnumbered}
+
+Con $A = \{2,4,6\}$ («par») y $B = \{4,5,6\}$ («mayor que 3»), calcula $A \bigtriangleup B$ de las dos formas.
+
+Forma 1, por diferencias:
+
+$$
+A - B = \{2\}, \quad B - A = \{5\} \Rightarrow A \bigtriangleup B = \{2\} \cup \{5\} = \{2,5\}
+$$
+
+Forma 2, quitando la zona común a la unión:
+
+$$
+A \cup B = \{2,4,5,6\}, \quad A \cap B = \{4,6\} \Rightarrow A \bigtriangleup B = \{2,4,5,6\} - \{4,6\} = \{2,5\} \ \checkmark
+$$
+
+**Comentario final.** El resultado se lee «sale par o mayor que 3, pero no las dos cosas a la vez»: el $2$ es par y no mayor que 3; el $5$ es mayor que 3 y no par. El $4$ y el $6$ cumplen las dos condiciones, así que quedan fuera.
+
+### Ejemplo resuelto: exactamente un acierto {.unnumbered}
+
+Dos amigos hacen cada uno una apuesta independiente. Sea $A =$ «acierta el primero» y $B =$ «acierta el segundo». Escribe con operaciones de sucesos:
+
+**a)** «Aciertan los dos»: $A \cap B$.
+
+**b)** «Acierta al menos uno»: $A \cup B$.
+
+**c)** «No acierta ninguno»: $\overline{A} \cap \overline{B} = \overline{A \cup B}$.
+
+**d)** «Acierta exactamente uno»: $(A \cap \overline{B}) \cup (\overline{A} \cap B) = A \bigtriangleup B$.
+
+**e)** «Como mucho acierta uno»: $\overline{A \cap B}$.
+
+**Comentario final.** Los cinco sucesos son distintos y los cinco aparecen en los exámenes. Observa que d) y e) no son lo mismo: «exactamente uno» excluye el caso de cero aciertos, y «como mucho uno» lo incluye. La relación es $\overline{A \cap B} = (A \bigtriangleup B) \cup (\overline{A} \cap \overline{B})$.
+
+### Applet · Diferencia simétrica {.unnumbered}
+
+::: {#panel-simetrica .applet-panel data-applet-est4="simetrica"}
+:::
+
+Compara en el applet las regiones de $A \cup B$ y de $A \bigtriangleup B$: la única diferencia es la lente central, y esa lente es la que distingue el «o» inclusivo del exclusivo.
+
+### Applet · Laboratorio de expresiones de sucesos {.unnumbered}
+
+::: {#panel-venn-lab .applet-panel data-applet-est4="vennLab"}
+:::
+
+Este es el applet que más te va a servir. Escribe cualquier expresión, como `A n (B u C)` o `(A u B) - (A n B)`, y comprueba si tu región coincide con la que habías imaginado antes de pulsar. Úsalo también para verificar los ejercicios que hagas a mano.
+
+## Repaso rápido
+
+- $A \cup B$ es «$A$ o $B$» con la «o» **inclusiva**: los repetidos se escriben una sola vez, y de ahí sale $|A \cup B| = |A| + |B| - |A \cap B|$.
+- $A \cap B$ es «$A$ y $B$»; puede ser vacía, y entonces los sucesos son **incompatibles**.
+- Los conectores lógicos van en pareja: $\lor$ (forma de $\cup$) para la unión, $\land$ (forma de $\cap$, la **A** de «Ambos») para la intersección.
+- $\overline{A} = E - A$ es una operación **unaria**, y $\overline{\overline{A}} = A$. Control obligatorio: $A \cup \overline{A} = E$ y $A \cap \overline{A} = \varnothing$.
+- $A - B = A \cap \overline{B}$. **No es conmutativa**, y $C \subset A \iff C - A = \varnothing$.
+- $A \bigtriangleup B = (A \cup B) - (A \cap B)$ es el «o» **exclusivo**: «exactamente uno de los dos».
+- Descomposición que se usa constantemente: $|A| = |A \cap B| + |A \cap \overline{B}|$.
+
+En el apartado siguiente veremos las **propiedades** de estas operaciones, con las dos leyes de De Morgan como estrella, y la tabla maestra que traduce cualquier enunciado a una expresión de sucesos.

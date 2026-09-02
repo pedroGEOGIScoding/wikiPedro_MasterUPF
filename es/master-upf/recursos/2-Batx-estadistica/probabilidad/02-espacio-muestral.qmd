@@ -1,0 +1,552 @@
+---
+title: "Tema 4.2 Espacio muestral"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 02-espacio-muestral
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición y notación del espacio muestral, tipos de espacio muestral, sucesos seguro e imposible, las tres herramientas para construir E (diagrama de árbol, tabla de doble entrada y combinatoria), el error de D'Alembert, tres monedas, extracciones con y sin devolución y ejercicios propuestos con solución, con applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Espacio muestral
+
+Ya sabes distinguir un experimento aleatorio de uno determinista. El siguiente paso es escribir con precisión **qué puede pasar**. Ese conjunto tiene nombre propio y es el objeto más importante de todo el tema.
+
+::: {.callout-important}
+## Espacio muestral
+
+El **espacio muestral** de un experimento aleatorio está formado por **todos los resultados posibles** que se pueden producir al realizarlo. Se denota con $E$ (en textos universitarios verás también $\Omega$).
+
+Cada uno de los resultados simples de $E$ es un **suceso elemental**.
+:::
+
+Notación que conviene fijar desde el principio, porque la usaremos durante todo el tema:
+
+$$
+E = \{e_1, e_2, \ldots, e_n\}, \qquad |E| = \operatorname{card}(E) = n .
+$$
+
+La barra vertical o la palabra «cardinal» significan lo mismo: **cuántos elementos tiene** el conjunto.
+
+**Ejemplos básicos.**
+
+- Lanzar un dado: $E = \{1, 2, 3, 4, 5, 6\}$, con $|E| = 6$.
+- Lanzar una moneda: $E = \{C, X\}$, con $|E| = 2$.
+- Extraer una bola de una urna con 4 rojas, 1 negra y 2 amarillas, anotando **solo el color**: $E = \{R, N, A\}$, con $|E| = 3$.
+
+Este último caso merece una pausa larga. En la urna hay **7 bolas**, pero el espacio muestral solo tiene **3 sucesos elementales**. ¿Por qué? Porque hemos decidido anotar únicamente el color. Si hubiéramos numerado las bolas del 1 al 7 y anotado el número, el espacio muestral tendría 7 elementos y sería un experimento distinto **con el mismo material**.
+
+::: {.callout-important}
+## La conclusión más rentable de todo el apartado
+
+El espacio muestral **no lo determina el material del experimento, sino la pregunta que hacemos**.
+
+La misma urna, la misma baraja o el mismo dado producen espacios muestrales diferentes según qué decidas observar. Por eso, antes de escribir $E$, la primera pregunta no es «¿qué hay?», sino «**¿qué anoto?**».
+:::
+
+Conviene además fijar desde hoy una imagen mental que ahorra muchísimos errores más adelante:
+
+- El espacio muestral $E$ se dibuja como un **rectángulo**.
+- Un suceso se dibuja como una **región interior** de ese rectángulo.
+
+Esa representación se llama **diagrama de Venn** y será nuestra herramienta gráfica principal cuando operemos con sucesos. Interiorizar ahora que «$E$ = rectángulo» y «suceso = región dentro del rectángulo» te evitará confundir elementos con conjuntos.
+
+::: {.callout-note}
+## Cómo se escribe un conjunto correctamente
+
+Tres convenios que se dan por sabidos en los exámenes:
+
+1. Los elementos van entre **llaves** y separados por comas: $E = \{1, 2, 3\}$.
+2. El **orden no importa**: $\{1, 2\}$ y $\{2, 1\}$ son el mismo conjunto.
+3. Los elementos **no se repiten**: aunque un dado tuviera tres caras marcadas con el $1$, se escribe $\{1, X, 2\}$ y no $\{1, 1, 1, X, X, 2\}$.
+
+El tercer convenio provoca sorpresas, y volveremos a él en los ejercicios: un resultado se escribe **una sola vez**, aunque se repita en el material.
+:::
+
+### Applet · Constructor de espacios muestrales {.unnumbered}
+
+Elige el experimento (moneda, dado, baraja, urna) y cambia **qué se observa**. Observa cómo el mismo material produce espacios muestrales de tamaños muy distintos según la pregunta que formules: es la mejor comprobación posible de la conclusión anterior.
+
+::: {#panel-espacio-muestral .applet-panel data-applet-est4="espacioMuestral"}
+:::
+
+### Tipos de espacio muestral
+
+No todos los espacios muestrales son igual de manejables. Conviene saber en qué terreno juegas.
+
+| Tipo | Descripción | Ejemplo | Cardinal |
+|:---|:---|:---|:---|
+| Finito | Número limitado de resultados | Lanzar un dado | $6$ |
+| Infinito numerable | Se pueden listar, pero no acaban | Lanzar una moneda hasta la primera cara: $E = \{C, XC, XXC, \ldots\}$ | $\infty$ (contable) |
+| Infinito continuo | Los resultados forman un intervalo | Tiempo de espera del autobús: $E = [0, 15]$ minutos | $\infty$ (no contable) |
+
+: Tipos de espacio muestral {#tbl-tipos-e}
+
+En este curso trabajarás **casi siempre con espacios finitos**, que son los que permiten contar casos. Los otros dos aparecen puntualmente:
+
+- El **infinito numerable** es fácil de describir con puntos suspensivos, y su lógica es la misma que la del caso finito.
+- El **infinito continuo** reaparecerá en la **distribución normal**, donde ocurre algo aparentemente absurdo: la probabilidad de un valor concreto es $0$ y solo tienen sentido los intervalos.
+
+::: {.callout-tip}
+## Un anticipo que conviene guardar
+
+Si el espacio muestral es continuo, preguntar «¿qué probabilidad hay de que el autobús tarde exactamente $7{,}000\ldots$ minutos?» no tiene respuesta útil: es $0$. La pregunta buena es «¿qué probabilidad hay de que tarde entre 5 y 10 minutos?». Cuando llegues a la normal, recuerda que la culpa no la tiene la fórmula: la tiene el tipo de espacio muestral.
+:::
+
+### Sucesos seguro e imposible (anticipo)
+
+Hay dos sucesos que están presentes en **todos** los experimentos, sin excepción:
+
+$$
+\text{Suceso seguro: } E \quad (\text{siempre ocurre}), \qquad \text{Suceso imposible: } \varnothing \quad (\text{nunca ocurre}) .
+$$
+
+Al lanzar un dado:
+
+- «Obtener un número menor que 7» es el **suceso seguro**: coincide con $E$ entero.
+- «Obtener un 9» es el **suceso imposible**: ningún resultado de $E$ lo cumple, así que el conjunto está vacío.
+
+::: {.callout-warning}
+## $\varnothing$ no es $\{0\}$ ni $\{\varnothing\}$
+
+El conjunto vacío **no tiene ningún elemento**: $|\varnothing| = 0$. No es «el conjunto que contiene el cero», que tendría un elemento. Escribir $\{0\}$ cuando quieres decir $\varnothing$ es un error que cambia por completo el resultado de un recuento.
+
+Tampoco se escribe $\{\varnothing\}$: eso sería un conjunto con un elemento dentro.
+:::
+
+Los desarrollaremos con calma en el apartado siguiente, junto con los demás tipos de sucesos. Aquí solo los presentamos porque aparecerán ya en los ejemplos de este apartado.
+
+### Cómo construir el espacio muestral: tres herramientas
+
+Determinar $E$ correctamente es, en la práctica, **la mitad del trabajo**. Un espacio muestral mal construido arruina cualquier cálculo posterior, por muy bien que apliques después las fórmulas: estarás resolviendo con precisión un problema que no es el tuyo.
+
+Disponemos de tres métodos de recuento, y elegir el adecuado depende del experimento:
+
+1. **Diagrama de árbol**: cuando el experimento se realiza en **etapas**.
+2. **Tabla de doble entrada**: cuando hay **exactamente dos** etapas.
+3. **Combinatoria**: cuando $|E|$ es tan grande que no se puede dibujar y solo necesitamos **contar**.
+
+#### El diagrama de árbol
+
+El **diagrama de árbol** es un método gráfico de recuento que consiste en marcar, como si fueran ramas de un árbol, los posibles resultados del experimento. **El espacio muestral se obtiene en las ramas finales.**
+
+**Ejemplo resuelto.** Se elige al azar una camiseta (roja o azul) y un pantalón (vaquero, de lino o chándal). ¿Cuáles son los conjuntos posibles?
+
+*Paso 1.* Se fija la primera elección: camiseta roja ($R$) o azul ($A$). Salen dos ramas del tronco.
+
+*Paso 2.* De cada una de esas dos ramas salen tres ramas, una por pantalón: vaquero ($V$), lino ($L$), chándal ($C$).
+
+*Paso 3.* Se leen las ramas finales de arriba abajo:
+
+$$
+E = \{RV,\, RL,\, RC,\, AV,\, AL,\, AC\}, \qquad |E| = 2 \cdot 3 = 6 .
+$$
+
+**Otro ejemplo, con el menú de un restaurante.** Primer plato (pasta $P$ o legumbres $L$) y segundo (pescado $P$, carne $C$ o huevos $H$):
+
+$$
+E = \{PP,\, PC,\, PH,\, LP,\, LC,\, LH\}, \qquad |E| = 2 \cdot 3 = 6 .
+$$
+
+El patrón que emerge es el mismo. Para un experimento en dos etapas con $n_1$ y $n_2$ resultados,
+
+$$
+|E| = n_1 \cdot n_2 ,
+$$
+
+y, en general, para $k$ etapas obtenemos la **regla del producto**:
+
+$$
+|E| = n_1 \cdot n_2 \cdot \ldots \cdot n_k = \prod_{i=1}^{k} n_i .
+$$
+
+::: {.callout-note}
+## Por qué se multiplica y no se suma
+
+Es la duda más repetida. Se multiplica porque **cada** opción de la primera etapa se combina con **todas** las de la segunda: por cada camiseta hay tres pantalones completos, luego hay $3 + 3 = 2 \cdot 3$ conjuntos.
+
+Regla de decisión rápida:
+
+- «Primero esto **y** después aquello» (etapas sucesivas) $\longrightarrow$ **multiplicar**.
+- «O esto **o** aquello» (casos alternativos y excluyentes) $\longrightarrow$ **sumar**.
+:::
+
+::: {.callout-tip}
+## Cuándo merece la pena dibujar el árbol
+
+Dibuja el árbol cuando $|E|$ sea pequeño —digamos hasta 20 o 30 ramas— y **necesites la lista**, no solo el número. Si solo necesitas el cardinal, la regla del producto te lo da en un renglón. Y si el árbol te sale con cientos de ramas, has elegido la herramienta equivocada: pásate a la combinatoria.
+:::
+
+### Applet · Árbol para construir el espacio muestral {.unnumbered}
+
+Añade o quita etapas y cambia el número de opciones de cada una. Observa que el espacio muestral son **siempre las ramas finales**, nunca los nodos intermedios, y comprueba que el número de hojas coincide con el producto de las opciones de cada etapa.
+
+::: {#panel-arbol-muestral .applet-panel data-applet-est4="arbolMuestral"}
+:::
+
+#### La tabla de doble entrada
+
+Cuando el experimento tiene **exactamente dos etapas**, una tabla es más compacta que un árbol y mucho más fácil de leer.
+
+**Ejemplo resuelto.** Se lanza una moneda y un dado y se anotan los resultados. Describe el espacio muestral $E$.
+
+*Paso 1. Espacios muestrales simples.*
+
+$$
+\text{Para la moneda: } E_1 = \{C, X\} , \qquad \text{para el dado: } E_2 = \{1, 2, 3, 4, 5, 6\} .
+$$
+
+*Paso 2. Tabla con los sucesos elementales de cada experimento en los márgenes.*
+
+|   | 1 | 2 | 3 | 4 | 5 | 6 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **C** | C1 | C2 | C3 | C4 | C5 | C6 |
+| **X** | X1 | X2 | X3 | X4 | X5 | X6 |
+
+: Tabla de doble entrada para el lanzamiento de una moneda y un dado {#tbl-doble-entrada}
+
+*Paso 3.* El conjunto de las **casillas interiores** de la tabla es el espacio muestral:
+
+$$
+E = \{C1, C2, C3, C4, C5, C6, X1, X2, X3, X4, X5, X6\}, \qquad |E| = 2 \cdot 6 = 12 .
+$$
+
+Formalmente, lo que hemos construido es el **producto cartesiano**
+
+$$
+E = E_1 \times E_2 .
+$$
+
+::: {.callout-note}
+## Dónde volverás a ver esta tabla
+
+Esta misma estructura reaparecerá dos veces:
+
+- En **experimentos compuestos**, como forma de escribir $E$ cuando hay dos etapas.
+- En **probabilidad condicionada**, con el nombre de **tablas de contingencia**, ya con frecuencias dentro de las casillas en lugar de rótulos.
+
+Si te acostumbras ahora a leer márgenes e interior por separado, esas tablas no te sorprenderán.
+:::
+
+### Applet · Tabla de doble entrada {.unnumbered}
+
+Cambia los dos experimentos simples y observa cómo se rellena el interior de la tabla. Fíjate en que el cardinal es siempre el producto del número de filas por el de columnas, y en que las casillas interiores son **pares ordenados**: C1 y 1C describirían el mismo resultado solo si acordamos un orden de lectura.
+
+::: {#panel-tabla-doble .applet-panel data-applet-est4="tablaDoble"}
+:::
+
+#### Combinatoria: cuando $E$ no se puede dibujar
+
+A veces $|E|$ tiene millones de elementos y solo necesitamos **contarlo**, no listarlo. Aquí es donde el tema anterior se convierte en herramienta. Recordatorio de fórmulas:
+
+- Variaciones con repetición: $VR_{n,m} = n^m$.
+- Variaciones sin repetición: $V_{n,m} = \dfrac{n!}{(n-m)!}$.
+- Permutaciones: $P_n = V_{n,n} = n!$.
+- Combinaciones: $C_{n,m} = \dbinom{n}{m} = \dfrac{n!}{m!\,(n-m)!}$.
+
+Todas ellas con el convenio $0! = 1$.
+
+::: {.callout-important}
+## Criterio de decisión en dos preguntas
+
+Ante cualquier recuento, hazte **siempre** estas dos preguntas, y en este orden:
+
+1. **¿Influye el orden?** Si cambiar el orden da una agrupación distinta, son variaciones o permutaciones. Si no, son combinaciones.
+2. **¿Se pueden repetir los elementos?** Si el elemento «vuelve al conjunto» después de usarlo, hay repetición; si «se gasta», no.
+
+Con esas dos respuestas la fórmula está decidida. El error habitual no es equivocarse en el cálculo, sino contestar mal a la primera pregunta.
+:::
+
+**Ejemplo resuelto: la quiniela.** Una quiniela consta de 14 casillas y cada una se rellena con uno de los símbolos $1$, $X$, $2$. ¿Cuántas quinielas distintas existen?
+
+Influye el orden (la casilla 1 no es la 7) y los símbolos se repiten, luego son variaciones con repetición:
+
+$$
+|E| = VR_{3,14} = 3^{14} = 4\,782\,969 .
+$$
+
+**Ejemplo resuelto: la lotería primitiva.** Se extraen 6 bolas de una urna con 49. ¿Cuántos resultados posibles hay?
+
+No influye el orden (el boleto no distingue en qué orden salieron) ni se repiten elementos, luego son combinaciones:
+
+$$
+|E| = C_{49,6} = \binom{49}{6} = \frac{49!}{6! \cdot 43!} = 13\,983\,816 .
+$$
+
+::: {.callout-caution}
+## Un dato para dar escala
+
+$13\,983\,816$ segundos son unos **162 días**. Si rellenaras una combinación por segundo, sin dormir ni parar, tardarías **más de cinco meses** en agotar el espacio muestral.
+
+Esta es la manera más honesta de explicar por qué «me tocará cuando toque» es una mala estrategia financiera: el tamaño de $E$ no es una opinión, es un número que se puede calcular.
+:::
+
+### Applet · Contar el espacio muestral con combinatoria {.unnumbered}
+
+Introduce los datos del experimento y observa cómo cambia $|E|$ al activar o desactivar el orden y la repetición. Compara los cuatro casos con los **mismos** $n$ y $m$: la diferencia entre ellos es enorme y conviene verla con números concretos.
+
+::: {#panel-cuenta-muestral .applet-panel data-applet-est4="cuentaMuestral"}
+:::
+
+### Ejemplos de espacios muestrales
+
+#### El error de D'Alembert
+
+**Enunciado.** Lanzamos dos monedas y anotamos las caras obtenidas. Un alumno escribe
+
+$$
+E_{\text{mal}} = \{0 \text{ caras},\; 1 \text{ cara},\; 2 \text{ caras}\}
+$$
+
+y concluye que $P(1 \text{ cara}) = 1/3$. ¿Dónde está el error?
+
+**Resolución.** El error es clásico: lo cometió un matemático francés muy notable en el siglo XVIII, y sigue apareciendo en todos los cursos. Construyamos el árbol de las dos etapas:
+
+$$
+E = \{CC,\, CX,\, XC,\, XX\}, \qquad |E| = 2^2 = 4 .
+$$
+
+Ahora observa: el suceso «1 cara» corresponde a **dos** ramas, $CX$ y $XC$, porque puede salir cara en la primera moneda o en la segunda. Por tanto
+
+$$
+P(1 \text{ cara}) = \frac{2}{4} = \frac{1}{2} \neq \frac{1}{3} .
+$$
+
+**Comentario final.** Es importante entender qué está mal y qué no. El espacio muestral $\{0, 1, 2\}$ **no es incorrecto como descripción** del experimento: sus tres elementos son resultados posibles y son los únicos posibles. El problema es que **sus elementos no son equiprobables**: el $1$ pesa el doble que el $0$ y el $2$.
+
+::: {.callout-important}
+## La regla que hay que grabar
+
+La regla de Laplace —casos favorables entre casos posibles— **solo se puede aplicar cuando todos los sucesos elementales tienen la misma probabilidad**.
+
+Por eso, cuando el experimento se realiza en etapas, el espacio muestral fiable es **siempre el de las ramas finales del árbol**: esas sí son equiprobables si cada etapa lo es.
+:::
+
+::: {.callout-tip}
+## Cómo detectar el error de D'Alembert en tu propio examen
+
+Sospecha siempre que hayas construido $E$ **agrupando** o **contando** resultados en lugar de listarlos («número de caras», «suma de los dados», «cuántos defectuosos»). Un espacio muestral formado por recuentos casi nunca es equiprobable.
+
+Prueba con la suma de dos dados: $E = \{2, 3, \ldots, 12\}$ tiene 11 elementos, y si aplicaras Laplace saldría $P(7) = 1/11$. La respuesta correcta es $6/36 = 1/6$, casi el doble.
+:::
+
+### Applet · El error de D'Alembert {.unnumbered}
+
+Compara los dos espacios muestrales del mismo experimento y observa el reparto real de las ramas. Fíjate en cuántas ramas del árbol caen en cada elemento del espacio agrupado: ahí está, visible, todo el error.
+
+::: {#panel-dalembert .applet-panel data-applet-est4="dalembert"}
+:::
+
+#### Tres monedas
+
+**Enunciado.** Se lanzan tres monedas y se anota el número de caras y de cruces. Escribe el espacio muestral.
+
+**Resolución.** Si describimos el experimento por recuentos, obtenemos
+
+$$
+E = \{3\text{ caras},\; 2\text{ caras y }1\text{ cruz},\; 1\text{ cara y }2\text{ cruces},\; 3\text{ cruces}\} ,
+$$
+
+una descripción válida con **4 elementos**. Pero, por lo que acabamos de aprender, ese espacio no es equiprobable. El espacio muestral equiprobable tiene $2^3 = 8$ elementos:
+
+$$
+E' = \{CCC,\, CCX,\, CXC,\, XCC,\, CXX,\, XCX,\, XXC,\, XXX\} .
+$$
+
+Contemos cuántas ramas caen en cada recuento:
+
+| Número de caras | Resultados de $E'$ | Ramas |
+|:---|:---|:---:|
+| 3 caras | $CCC$ | 1 |
+| 2 caras | $CCX,\, CXC,\, XCC$ | 3 |
+| 1 cara | $CXX,\, XCX,\, XXC$ | 3 |
+| 0 caras | $XXX$ | 1 |
+
+: Reparto de las 8 ramas del lanzamiento de tres monedas {#tbl-tres-monedas}
+
+Las 8 ramas se reparten como $1, 3, 3, 1$, y se comprueba que
+
+$$
+1 + 3 + 3 + 1 = 8 = 2^3 .
+$$
+
+**Comentario final.** Acabas de descubrir, sin saberlo, los **números combinatorios**:
+
+$$
+\binom{3}{0} = 1, \quad \binom{3}{1} = 3, \quad \binom{3}{2} = 3, \quad \binom{3}{3} = 1 .
+$$
+
+Los números de caras no son equiprobables, pero sus pesos no son arbitrarios: son la cuarta fila del triángulo de Pascal. Estás a un paso de la **distribución binomial**, donde esos pesos se convertirán en la fórmula central del tema.
+
+### Applet · Tres monedas {.unnumbered}
+
+Explora el espacio muestral completo y los sucesos que se pueden definir sobre él. Observa el histograma de recuentos: la forma $1, 3, 3, 1$ es simétrica y no plana, y esa falta de planitud es exactamente lo que invalida aplicar Laplace sobre el número de caras.
+
+::: {#panel-tres-monedas .applet-panel data-applet-est4="tresMonedas"}
+:::
+
+#### Con o sin devolución
+
+**Enunciado.** En una urna hay 3 bolas: blanca ($B$), negra ($N$) y roja ($R$). Extraemos dos bolas y anotamos el orden. Escribe el espacio muestral en los dos casos posibles.
+
+**Resolución. Caso con reemplazamiento** (devolvemos la primera bola antes de sacar la segunda). Hay orden y hay repetición:
+
+$$
+|E| = VR_{3,2} = 3^2 = 9, \qquad E = \{BB,\, BN,\, BR,\, NB,\, NN,\, NR,\, RB,\, RN,\, RR\} .
+$$
+
+**Caso sin reemplazamiento.** Hay orden y no hay repetición:
+
+$$
+|E| = V_{3,2} = \frac{3!}{(3-2)!} = 6, \qquad E = \{BN,\, BR,\, NB,\, NR,\, RB,\, RN\} .
+$$
+
+**Comentario final.** El enunciado cambia **dos palabras** y el espacio muestral pierde tres elementos: desaparecen exactamente $BB$, $NN$ y $RR$, los resultados con bola repetida.
+
+::: {.callout-warning}
+## La información que más se pasa por alto
+
+«Con devolución / sin devolución» es el dato que más veces se olvida al leer un enunciado, y el que más cambia el resultado. A veces no aparece con esas palabras: «se extraen dos bolas **a la vez**» significa sin devolución, y «se extrae una bola, **se anota y se devuelve**» significa con devolución.
+
+Y este detalle no es solo de recuento: es exactamente lo que distinguirá **sucesos independientes** de **sucesos dependientes** cuando lleguemos a la probabilidad condicionada. Si devuelves la bola, la segunda extracción no sabe nada de la primera; si no la devuelves, sí.
+:::
+
+### Applet · Con y sin devolución {.unnumbered}
+
+Cambia el interruptor de devolución y observa qué elementos aparecen y desaparecen del espacio muestral. Fíjate en que los que desaparecen son siempre los de elementos repetidos, y en cómo se separan los dos cardinales al aumentar el número de extracciones.
+
+::: {#panel-devolucion .applet-panel data-applet-est4="devolucion"}
+:::
+
+#### Ejercicios propuestos con solución
+
+Intenta cada apartado **antes** de desplegar la solución. Escribir el conjunto completo a mano, aunque sea largo, es la mejor inversión de tiempo de este apartado.
+
+**1.** Una urna contiene 3 bolas blancas numeradas del 1 al 3 y 2 bolas negras con los números 4 y 5. Se extrae una bola y se observan color y número. Calcula $E$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+E = \{B1,\, B2,\, B3,\, N4,\, N5\}, \qquad |E| = 5 .
+$$
+
+Observa que aquí no hay producto cartesiano: los números 1, 2, 3 solo van con $B$, y el 4 y el 5 solo con $N$. No todas las combinaciones de color y número existen en la urna.
+:::
+
+**2.** Un código consta de una letra vocal y un número del 1 al 3. ¿Cuántos códigos distintos hay? Escríbelos.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Dos etapas independientes, con 5 vocales y 3 números:
+
+$$
+|E| = 5 \cdot 3 = 15 ,
+$$
+
+$$
+E = \{A1, A2, A3,\, E1, E2, E3,\, I1, I2, I3,\, O1, O2, O3,\, U1, U2, U3\} .
+$$
+:::
+
+**3.** Para salir a correr se elige al azar entre zapatillas naranjas o azules y calcetines de rayas, blancos o negros. Describe $E$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Con $N$ = naranjas, $A$ = azules, $R$ = rayas, $B$ = blancos y $N'$ = negros:
+
+$$
+|E| = 2 \cdot 3 = 6, \qquad E = \{NR,\, NB,\, NN',\, AR,\, AB,\, AN'\} .
+$$
+
+Fíjate en el detalle de notación: hemos tenido que distinguir $N$ (naranjas) de $N'$ (negros). Elegir símbolos que no choquen es parte del trabajo.
+:::
+
+**4.** Se lanza un dado y se extrae una bola de una bolsa que contiene bolas rojas y negras. Halla $E$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+E = \{1R, 2R, 3R, 4R, 5R, 6R,\, 1N, 2N, 3N, 4N, 5N, 6N\}, \qquad |E| = 2 \cdot 6 = 12 .
+$$
+
+Observa que el número de bolas de cada color **no afecta al espacio muestral**: solo hay dos colores posibles. Sí afectará a las probabilidades, pero eso es otra cosa.
+:::
+
+**5.** ¿Cuántos números de cinco cifras se pueden escribir con los dígitos del 1 al 9 sin repetir ninguna cifra?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Influye el orden y no hay repetición:
+
+$$
+V_{9,5} = \frac{9!}{4!} = 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 = 15\,120 .
+$$
+:::
+
+**6.** ¿Cuántos helados de tres sabores distintos se pueden servir en una heladería que tiene 12 sabores?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+No influye el orden (un helado de fresa, nata y chocolate es el mismo en cualquier orden) y no hay repetición:
+
+$$
+C_{12,3} = \binom{12}{3} = \frac{12 \cdot 11 \cdot 10}{6} = 220 .
+$$
+:::
+
+**7.** Halla el número total de **sucesos** (no de sucesos elementales) del experimento «lanzar un dado».
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Un suceso es cualquier **subconjunto** de $E$, así que hay que contar todos los subconjuntos de un conjunto de 6 elementos:
+
+$$
+\sum_{k=0}^{6} \binom{6}{k} = 1 + 6 + 15 + 20 + 15 + 6 + 1 = 2^6 = 64 .
+$$
+
+En general, si $|E| = n$, entonces $|\mathcal{P}(E)| = 2^{|E|} = 2^n$. Este resultado es el corazón del apartado siguiente, así que no lo pierdas de vista.
+:::
+
+### Cierre y puente al siguiente apartado
+
+Hasta aquí hemos establecido **tres pilares** sobre los que se apoya el resto del tema:
+
+- Un experimento es **aleatorio** cuando conocemos los resultados posibles, pero no cuál ocurrirá.
+- El **espacio muestral** $E$ es el conjunto de todos esos resultados, y depende de **la pregunta que formulamos**, no solo del material del experimento.
+- Para construirlo disponemos de **árbol**, **tabla de doble entrada** y **combinatoria**, y el criterio de fiabilidad es que sus elementos sean **equiprobables**.
+
+Lo que todavía no hemos hecho es lo más interesante. En la práctica casi nunca preguntamos por un resultado aislado: preguntamos por «que salga par», «que salga al menos una cara», «que la pieza sea defectuosa». Todas esas preguntas **agrupan varios resultados**, y esas agrupaciones tienen nombre: se llaman **sucesos**.
+
+En el apartado siguiente definiremos qué es un suceso con precisión, veremos que hay exactamente cinco tipos fundamentales, aprenderemos a relacionarlos y contaremos cuántos sucesos distintos genera un espacio muestral de $n$ elementos. La respuesta —$2^n$— ya la has calculado en el ejercicio 7 sin saber que estabas resolviendo el problema central del próximo apartado.
+
+## Repaso rápido {.unnumbered}
+
+- $E$ es el conjunto de **todos los resultados posibles**; cada resultado simple es un **suceso elemental**. Notación: $E = \{e_1, \ldots, e_n\}$, $|E| = n$.
+- El espacio muestral depende de **qué decides observar**, no del material del experimento.
+- Tipos: **finito**, **infinito numerable** e **infinito continuo**. En este curso, casi siempre finito.
+- Siempre existen el **suceso seguro** $E$ y el **suceso imposible** $\varnothing$.
+- Tres herramientas: **árbol** (etapas, da la lista), **tabla de doble entrada** (dos etapas, $E = E_1 \times E_2$) y **combinatoria** (solo el cardinal).
+- Regla del producto: $|E| = n_1 \cdot n_2 \cdot \ldots \cdot n_k$.
+- Criterio combinatorio: primero **¿importa el orden?**, después **¿hay repetición?**.
+- Error de D'Alembert: un espacio muestral por **recuentos** no suele ser equiprobable. Fíate de las **ramas finales del árbol**.
+- «Con o sin devolución» cambia el espacio muestral y anticipa la diferencia entre sucesos independientes y dependientes.
+- Si $|E| = n$, el número total de sucesos es $2^n$.

@@ -1,0 +1,592 @@
+---
+title: "Tema 4.3 Sucesos aleatorios. Tipos"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 03-sucesos-aleatorios
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de suceso como subconjunto del espacio muestral, los cinco tipos fundamentales, diagramas de Venn, relaciones de compatibilidad, complementariedad e inclusión, el espacio de sucesos y la fórmula 2 elevado a n, la trampa del suceso elemental, la tabla de traducción del lenguaje natural al de conjuntos, pensamiento crítico y actividades con solución.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Sucesos aleatorios. Tipos
+
+En el apartado anterior aprendimos a construir el espacio muestral $E$, el conjunto de todos los resultados posibles. Pero en la práctica **casi nunca preguntamos por un resultado aislado**. Preguntamos por cosas como:
+
+- «que salga par»,
+- «que salga al menos una cara»,
+- «que la pieza sea defectuosa»,
+- «que la carta sea una figura».
+
+Todas esas preguntas tienen algo en común: **agrupan varios resultados**. Ponerle nombre y estructura matemática a esas agrupaciones es el contenido de este apartado.
+
+::: {.callout-important}
+## Suceso
+
+Dado el espacio muestral $E$ de un experimento aleatorio, se llama **suceso** a cualquier **subconjunto** de $E$, es decir, a cada uno de los posibles resultados o **agrupaciones de resultados** del experimento. En notación de conjuntos:
+
+$$
+A \subseteq E .
+$$
+
+Se dice que el suceso $A$ **se verifica** (o ha ocurrido) cuando el resultado $x$ obtenido al realizar el experimento cumple que «$x$ pertenece a $A$»:
+
+$$
+x \in A .
+$$
+:::
+
+Y esta es la idea central del apartado, así que conviene decirla de la forma más corta posible:
+
+::: {.callout-warning}
+## Un resultado es un elemento de $E$; un suceso es un subconjunto de $E$
+
+Confundir $3$ con $\{3\}$ parece una pedantería de notación, pero es **exactamente la raíz** de la mayoría de los errores del tema.
+
+- $3 \in E$: el $3$ es un **resultado**, un elemento del espacio muestral.
+- $\{3\} \subseteq E$: «salir un tres» es un **suceso**, un subconjunto de un solo elemento.
+
+Los símbolos correctos son $\in$ para elementos y $\subseteq$ (o $\subset$) para conjuntos. Escribir $3 \subseteq E$ o $\{3\} \in E$ es incorrecto, y en cuanto empecemos a unir e intersecar sucesos esa confusión hará que las operaciones dejen de tener sentido.
+:::
+
+### Los cinco tipos fundamentales
+
+Sea $E$ el espacio muestral de un experimento aleatorio. Se definen los siguientes subconjuntos de $E$:
+
+| Tipo de suceso | Definición | Notación | Ejemplo (lanzar un dado) |
+|:---|:---|:---|:---|
+| Elemental | Formado por un solo elemento de $E$ | $\{x\} \subseteq E$ | $\{4\}$ = «salir un 4» |
+| Compuesto | Formado por dos o más sucesos elementales | $A \subseteq E$, $\operatorname{card}(A) \geq 2$ | $\{2, 4, 6\}$ = «salir par» |
+| Seguro | Ocurre siempre; coincide con $E$ | $E$ | $\{1,2,3,4,5,6\}$ = «salir menor que 7» |
+| Imposible | No ocurre nunca; es el conjunto vacío | $\varnothing$ | $\varnothing$ = «salir un 9» |
+| Contrario o complementario | Todos los elementos de $E$ que no están en $A$ | $\overline{A} = E - A$ | Si $A = \{1, 5\}$, $\overline{A} = \{2,3,4,6\}$ |
+
+: Los cinco tipos fundamentales de suceso {#tbl-tipos-suceso}
+
+Fórmulas asociadas al suceso contrario, las cuatro imprescindibles:
+
+$$
+\overline{A} = E - A , \qquad \overline{\overline{A}} = A , \qquad A \cup \overline{A} = E , \qquad A \cap \overline{A} = \varnothing .
+$$
+
+Las dos últimas se leen en palabras así: **un suceso y su contrario cubren todo el espacio muestral y no se solapan en nada**. Esa pareja de propiedades es la que hará funcionar el teorema de la probabilidad total más adelante en el tema, así que no las trates como adorno.
+
+::: {.callout-note}
+## Cuatro notaciones para lo mismo
+
+El suceso contrario aparece en la bibliografía de cuatro formas distintas, y conviene que reconozcas todas:
+
+$$
+\overline{A} = A^{c} = A' = E - A .
+$$
+
+También el espacio muestral se denota $E$ en los libros de bachillerato y $\Omega$ en textos universitarios. Aquí usaremos $\overline{A}$ y $E$ por coherencia con el resto del curso, pero si en un examen o en un libro ves $A^c$ o $\Omega$, ya sabes que es lo mismo.
+:::
+
+::: {.callout-tip}
+## Cómo clasificar en tres segundos
+
+El tipo de un suceso depende **solo de cuántos elementos tiene** su conjunto:
+
+- $0$ elementos $\longrightarrow$ imposible.
+- $1$ elemento $\longrightarrow$ elemental.
+- $2$ o más $\longrightarrow$ compuesto.
+- Todos los de $E$ $\longrightarrow$ seguro (y también compuesto, si $|E| \geq 2$).
+
+Por tanto: **traduce primero la frase a un conjunto, cuenta después**. Nunca clasifiques leyendo el enunciado.
+:::
+
+### Applet · Tipos de suceso {.unnumbered}
+
+Escribe sucesos sobre un espacio muestral y observa cómo se clasifican automáticamente. Fíjate en los casos en los que un mismo suceso recibe **dos etiquetas a la vez** (compuesto y seguro, por ejemplo): eso no es un fallo del applet, es que las dos clasificaciones responden a criterios distintos.
+
+::: {#panel-tipos-suceso .applet-panel data-applet-est4="tiposSuceso"}
+:::
+
+### Diagramas de Venn de los tipos
+
+El rectángulo representa **siempre** $E$. Estas cuatro imágenes son las que deben quedarte grabadas, porque a partir del apartado siguiente todas las operaciones con sucesos se razonarán sobre ellas:
+
+1. **Un suceso y su contrario.** El círculo $A$ y todo lo que queda fuera de él dentro del rectángulo. Entre los dos llenan el rectángulo y no se pisan.
+2. **Sucesos incompatibles (disjuntos).** Dos círculos separados, sin ningún punto en común.
+3. **Sucesos compatibles.** Dos círculos que se solapan: la zona común es la intersección.
+4. **Inclusión de sucesos.** Un círculo pequeño dentro de otro más grande.
+
+::: {.callout-note}
+## Cómo leer un diagrama de Venn sin equivocarse
+
+- El **rectángulo** es $E$: todo lo que puede pasar. Nada existe fuera del rectángulo.
+- Cada **región** es un suceso, y los **puntos** dentro de las regiones son los resultados.
+- «Fuera de $A$» siempre significa «dentro del rectángulo pero fuera del círculo», nunca «fuera del dibujo».
+
+Cuando dudes de una expresión con sucesos, dibuja el diagrama y **pinta**. Es más rápido y más fiable que intentar recordar una fórmula.
+:::
+
+### Applet · Diagramas de Venn de los tipos {.unnumbered}
+
+Cambia el tipo de relación entre los sucesos y observa cómo se mueven los círculos. Presta atención al paso de compatibles a incompatibles: lo único que cambia es si la región de solape contiene algún resultado o está vacía.
+
+::: {#panel-venn-tipos .applet-panel data-applet-est4="vennTipos"}
+:::
+
+### Relaciones entre sucesos
+
+Ya sabemos clasificar un suceso aislado. Ahora hay que clasificar **parejas** de sucesos, y hay tres relaciones que aparecen constantemente en los enunciados.
+
+#### Sucesos incompatibles y compatibles
+
+Si la intersección de dos sucesos es el suceso imposible, es decir, $A \cap B = \varnothing$, se dice que son **incompatibles** (o **disjuntos**). En caso contrario se dice que son **compatibles**:
+
+$$
+A \cap B = \varnothing \;\Longrightarrow\; A, B \text{ incompatibles} .
+$$
+
+Dos hechos que hay que fijar:
+
+- Los sucesos incompatibles **no pueden ocurrir simultáneamente** en una misma realización del experimento.
+- Los **sucesos elementales son siempre incompatibles entre sí**, porque un experimento produce un único resultado. Si sale un $4$, no ha salido un $5$.
+
+#### Sucesos complementarios
+
+Dos sucesos $A$ y $B$ son **complementarios** si, siendo disjuntos, su unión es el total:
+
+$$
+A \cap B = \varnothing \;\wedge\; A \cup B = E ,
+$$
+
+de donde se deduce inmediatamente
+
+$$
+B = E - A = \overline{A} .
+$$
+
+::: {.callout-warning}
+## Incompatible y complementario no son lo mismo
+
+Al lanzar un dado, $A = \{1, 3\}$ y $B = \{2\}$ son **incompatibles**, porque $A \cap B = \varnothing$, pero **no** son complementarios, porque
+
+$$
+A \cup B = \{1, 2, 3\} \neq E .
+$$
+
+Complementario es un caso particular, **más fuerte**, de incompatible: exige además que entre los dos cubran todo $E$. Todos los complementarios son incompatibles, pero no al revés.
+:::
+
+#### Inclusión de sucesos
+
+Un suceso $A$ está **contenido** o **incluido** en otro $B$, lo que se escribe $A \subset B$, si todos los elementos de $A$ están en $B$:
+
+$$
+A \subset B \iff A \cap B = A .
+$$
+
+**Ejemplo resuelto (con dado).** Sea $E = \{1,2,3,4,5,6\}$.
+
+- Si $A = \{3, 6\}$ y $B = \{1, 3, 4, 6\}$, entonces $A \subset B$, porque todos los elementos de $A$ ($3$ y $6$) están en $B$.
+- Si $A = \{3, 5, 6\}$ y $B = \{1, 3, 4, 6\}$, entonces $A \not\subset B$, porque el $5$ está en $A$ pero no en $B$. Basta **un solo** elemento fuera para romper la inclusión.
+
+La lectura probabilística de la inclusión es muy intuitiva: si siempre que ocurre $A$ ocurre también $B$, entonces $B$ es «más fácil» que $A$:
+
+$$
+A \subset B \;\Longrightarrow\; P(A) \leq P(B) .
+$$
+
+::: {.callout-tip}
+## Un control de errores gratis
+
+La implicación anterior sirve como **detector de disparates**. Si en un problema obtienes $P(\text{sacar figura}) = 0{,}2$ y $P(\text{sacar caballo}) = 0{,}3$, algo está mal sin necesidad de revisar los cálculos: todo caballo es figura, luego «caballo» $\subset$ «figura» y su probabilidad no puede ser mayor.
+
+Acostúmbrate a hacer esta comprobación al final de cada ejercicio: cuesta cinco segundos y salva exámenes.
+:::
+
+### Applet · Relaciones entre sucesos {.unnumbered}
+
+Introduce dos sucesos y observa el veredicto sobre las tres relaciones a la vez. Comprueba con ejemplos propios la afirmación anterior: busca parejas incompatibles que **no** sean complementarias, y comprueba que no puedes encontrar complementarias que no sean incompatibles.
+
+::: {#panel-relaciones .applet-panel data-applet-est4="relaciones"}
+:::
+
+### El espacio de sucesos: ¿cuántos hay?
+
+::: {.callout-important}
+## Espacio de sucesos
+
+Dado un espacio muestral $E$, el conjunto de **todos los sucesos posibles** se denota $\mathcal{P}(E)$ y se llama **espacio de sucesos** (o **conjunto de las partes** de $E$). Si $E$ tiene $n$ elementos, se verifica
+
+$$
+|\mathcal{P}(E)| = 2^{n} .
+$$
+:::
+
+¿Por qué $2^n$? El razonamiento es elegante y merece entenderlo, no memorizarlo. Para construir un subconjunto recorremos los $n$ elementos de $E$ y tomamos, por cada uno, una **decisión binaria**: «lo meto» o «no lo meto». Son $n$ decisiones independientes con $2$ opciones cada una, así que por la regla del producto salen
+
+$$
+\underbrace{2 \cdot 2 \cdot \ldots \cdot 2}_{n \text{ factores}} = 2^{n}
+$$
+
+subconjuntos. Y no olvides que entre ellos están **siempre** $\varnothing$ (no meto nada) y el propio $E$ (lo meto todo).
+
+#### Ejemplo resuelto: lanzamiento de una moneda
+
+$E = \{C, X\}$, con $n = 2$:
+
+$$
+|\mathcal{P}(E)| = 2^{2} = 4 , \qquad \mathcal{P}(E) = \bigl\{\; \varnothing,\; \{C\},\; \{X\},\; \{C, X\} \;\bigr\} .
+$$
+
+Identifiquemos uno por uno, que es el ejercicio verdaderamente útil:
+
+- $\varnothing$ es el suceso **imposible**.
+- $\{C\}$ y $\{X\}$ son los dos sucesos **elementales**.
+- $\{C, X\}$ es a la vez **compuesto** (tiene dos elementos) y el suceso **seguro** (coincide con $E$).
+
+#### Ejemplo resuelto: lanzamiento de un dado
+
+Con $n = 6$:
+
+$$
+|\mathcal{P}(E)| = 2^{6} = 64 .
+$$
+
+Y la comprobación por combinatoria, contando los subconjuntos según su tamaño:
+
+$$
+\sum_{k=0}^{6} \binom{6}{k} = 1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 .
+$$
+
+Es decir: $1$ subconjunto vacío, $6$ elementales, $15$ de dos elementos, $20$ de tres, $15$ de cuatro, $6$ de cinco y $1$ de seis. En general,
+
+$$
+\sum_{k=0}^{n} \binom{n}{k} = 2^{n} ,
+$$
+
+que es justamente la suma de una fila del triángulo de Pascal.
+
+::: {.callout-note}
+## Sesenta y cuatro preguntas sobre un dado
+
+Suele sorprender bastante: **seis** resultados posibles generan **sesenta y cuatro** preguntas distintas que se pueden formular sobre el experimento. Y el crecimiento es explosivo: con $n = 10$ hay $1\,024$ sucesos, y con $n = 20$ ya más de un millón.
+
+Esto explica por qué necesitamos un **álgebra** de sucesos (el apartado siguiente) y no una lista: enumerar todos los sucesos es imposible en cuanto el experimento se complica un poco.
+:::
+
+#### Ejemplo resuelto: la última cifra de la lotería
+
+Consideramos un sorteo de lotería y nos fijamos **solo en la última cifra** del número premiado:
+
+$$
+E = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}, \qquad n = 10, \qquad |\mathcal{P}(E)| = 2^{10} = 1\,024 .
+$$
+
+Definimos tres sucesos sobre este espacio:
+
+$$
+A = \{0, 1, 2, 3\} \ (\text{ser menor que } 4), \quad B = \{0, 2, 4, 6, 8\} \ (\text{ser par}), \quad C = \{6, 7, 8, 9\} \ (\text{ser mayor que } 5) .
+$$
+
+Y clasificamos sus relaciones:
+
+- $A$ y $C$ son **incompatibles**: $A \cap C = \varnothing$, no comparten ninguna cifra.
+- $A$ y $B$ son **compatibles**: comparten el $0$ y el $2$.
+- $\overline{B} = \{1, 3, 5, 7, 9\}$, que es el suceso «ser impar», **complementario** de $B$.
+
+**Comentario final.** Observa el método: primero se escribe cada suceso **como conjunto**, después se calculan intersecciones y solo al final se pone la etiqueta. Nunca al revés.
+
+### Applet · Espacio de sucesos y $2^n$ {.unnumbered}
+
+Elige el tamaño de $E$ y observa la lista completa de subconjuntos y su recuento por tamaños. Fíjate en dos cosas: la simetría de los recuentos ($1, 6, 15, 20, 15, 6, 1$) y la velocidad a la que $2^n$ se vuelve inmanejable.
+
+::: {#panel-partes-e .applet-panel data-applet-est4="partesE"}
+:::
+
+### La trampa del suceso elemental
+
+Este apartado es el que separa la memorización de la comprensión, así que hazlo con lápiz antes de leer la tabla. Considera el lanzamiento de un dado,
+
+$$
+E = \{1, 2, 3, 4, 5, 6\} ,
+$$
+
+y decide si estos sucesos son elementales o compuestos:
+
+| Suceso | Conjunto | Tipo |
+|:---|:---|:---|
+| «Salir un 2» | $\{2\}$ | Elemental |
+| **«Salir múltiplo de 5»** | $\{5\}$ | **Elemental** |
+| «Salir número primo» | $\{2, 3, 5\}$ | Compuesto |
+| «Salir impar» | $\{1, 3, 5\}$ | Compuesto |
+| «Salir par e impar» | $\varnothing$ | Imposible |
+| «Que no salga un 7» | $\{1,2,3,4,5,6\}$ | Seguro |
+| **«Salir número de una cifra»** | $\{1,2,3,4,5,6\}$ | **Seguro** |
+
+: La trampa del suceso elemental {#tbl-trampa}
+
+Las dos filas en negrita son las que generan debate.
+
+- **«Salir múltiplo de 5»** suena a compuesto porque el enunciado es una frase elaborada, pero en este espacio muestral solo hay **un** múltiplo de 5, así que el conjunto tiene un único elemento: **es elemental**. Si el dado tuviera 20 caras, la misma frase daría $\{5, 10, 15, 20\}$ y sería compuesto.
+- **«Salir número de una cifra»** es el suceso **seguro disfrazado**: todos los resultados del dado tienen una cifra.
+
+::: {.callout-important}
+## Conclusión
+
+El tipo de un suceso **no depende de cómo esté redactado**, sino de **cuántos elementos de $E$ contiene**. Traduce siempre la frase a un conjunto antes de clasificar.
+
+Y una segunda advertencia, de nivel más fino: cualquier suceso compuesto se puede expresar como **unión de sus sucesos elementales**. Por ejemplo,
+
+$$
+\{1, 3, 5\} = \{1\} \cup \{3\} \cup \{5\} .
+$$
+
+Esta descomposición es la que permitirá **sumar probabilidades de sucesos elementales** para obtener la de un suceso compuesto, que es la técnica más usada de todo el tema.
+:::
+
+### Applet · La trampa del suceso elemental {.unnumbered}
+
+Introduce enunciados en lenguaje natural y compara el conjunto que generan con la etiqueta que tú habrías puesto por intuición. Observa especialmente qué ocurre cuando **cambias el espacio muestral** dejando la frase igual: la misma frase puede pasar de elemental a compuesta.
+
+::: {#panel-trampa-elemental .applet-panel data-applet-est4="trampaElemental"}
+:::
+
+### Del lenguaje natural al lenguaje de conjuntos
+
+Los problemas de examen están redactados en lenguaje corriente, pero se resuelven en **teoría de conjuntos**. Esta tabla de traducción es probablemente la herramienta más rentable de todo el tema.
+
+Trabajamos con el experimento «lanzar tres monedas»:
+
+$$
+E = \{CCC,\, CCX,\, CXC,\, XCC,\, CXX,\, XCX,\, XXC,\, XXX\}, \qquad |E| = 2^3 = 8 .
+$$
+
+| Enunciado en castellano | Suceso como conjunto | N.º de elementos |
+|:---|:---|:---:|
+| «Salen exactamente 3 caras» | $\{CCC\}$ | 1 |
+| «Sale al menos una cara» | $E - \{XXX\}$ | 7 |
+| «No sale ninguna cara» | $\{XXX\}$ | 1 |
+| «Salen como máximo 2 caras» | $E - \{CCC\}$ | 7 |
+| «Salen exactamente 2 caras» | $\{CCX,\, CXC,\, XCC\}$ | 3 |
+| «Salen más de 3 caras» | $\varnothing$ | 0 |
+| «Salen menos de 4 caras» | $E$ | 8 |
+
+: Del lenguaje natural al lenguaje de conjuntos {#tbl-traduccion}
+
+::: {.callout-important}
+## Regla de oro: «al menos» y «como máximo» piden el contrario
+
+Las expresiones **«al menos»** y **«como máximo»** son, casi siempre, una invitación a trabajar con el **suceso contrario**, porque el contrario tiene muchos menos casos que contar.
+
+Fíjate en la segunda fila: contar directamente los $7$ resultados con al menos una cara es tedioso y propenso a error; identificar el **único** resultado sin ninguna cara es inmediato. Y con cuatro monedas la diferencia es de $15$ casos frente a $1$.
+
+Esto se convertirá en la fórmula
+
+$$
+P(A) = 1 - P(\overline{A}) ,
+$$
+
+que probablemente sea la fórmula que más ejercicios de las pruebas de acceso resuelve por sí sola.
+:::
+
+::: {.callout-tip}
+## Diccionario de traducción
+
+| Frase | Conjunto |
+|:---|:---|
+| «$A$ y $B$» | $A \cap B$ |
+| «$A$ o $B$» (o al menos uno) | $A \cup B$ |
+| «no $A$» | $\overline{A}$ |
+| «al menos uno de los dos» | $A \cup B$ |
+| «ninguno de los dos» | $\overline{A} \cap \overline{B}$ |
+| «$A$ pero no $B$» | $A \cap \overline{B}$ |
+| «exactamente uno de los dos» | $(A \cap \overline{B}) \cup (\overline{A} \cap B)$ |
+
+Estas equivalencias son el contenido del apartado siguiente. Si las vas usando ya, llegarás con medio tema hecho.
+:::
+
+### Applet · Traductor de enunciados {.unnumbered}
+
+Escribe la frase en castellano y observa el conjunto y el cardinal que le corresponden. Comprueba con el applet la regla de oro: compara el número de casos que hay que contar con el enunciado directo y con el contrario.
+
+::: {#panel-traductor .applet-panel data-applet-est4="traductor"}
+:::
+
+### Pensamiento crítico: cuatro preguntas incómodas
+
+Estas preguntas no tienen respuesta memorizable; sirven para discutir en clase y para detectar si de verdad has entendido el apartado.
+
+**1. ¿Es lo mismo «suceso imposible» que «suceso de probabilidad cero»?**
+
+En espacios muestrales **finitos**, sí. Pero piensa en la distribución normal: la probabilidad de que una persona mida **exactamente** $1{,}750000\ldots$ m es $0$ y, sin embargo, el suceso no es imposible, porque alguien tiene esa altura. Es decir,
+
+$$
+A = \varnothing \;\Longrightarrow\; P(A) = 0 ,
+$$
+
+pero la implicación recíproca **no es cierta en general**. La flecha va en un solo sentido, y esa asimetría es una de las razones por las que la probabilidad necesitó una fundamentación mucho más sofisticada que la intuitiva.
+
+**2. ¿Puede un suceso ser a la vez compuesto y seguro?**
+
+Sí. En el lanzamiento de un dado, $\{1,2,3,4,5,6\}$ tiene $6$ elementos (compuesto) y ocurre siempre (seguro). Las categorías «elemental/compuesto» y «seguro/imposible» clasifican según **criterios distintos**: la primera cuenta elementos, la segunda describe cuándo ocurre. Pedir que sean incompatibles es como pedir que nadie sea a la vez alto y zurdo.
+
+**3. ¿Incompatible significa independiente?**
+
+No, y este es **el error más caro del tema**. Son conceptos de naturaleza completamente distinta: incompatible es una propiedad **de conjuntos** (no se solapan), independiente será una propiedad **de probabilidades**. De hecho, más adelante veremos que son casi opuestos:
+
+$$
+A \cap B = \varnothing \;\Longrightarrow\; P(A \cap B) = 0 ,
+$$
+
+$$
+A, B \text{ independientes} \;\Longrightarrow\; P(A \cap B) = P(A) \cdot P(B) .
+$$
+
+Piénsalo despacio: si $A$ y $B$ son incompatibles y ocurre $A$, entonces sabes **con certeza** que $B$ no ha ocurrido. Eso es la **máxima dependencia posible**, no independencia. Saber que ha ocurrido $A$ te ha dado información total sobre $B$.
+
+**4. ¿Cuántos sucesos hay si el espacio muestral es infinito?**
+
+Aquí la fórmula $2^n$ deja de tener sentido inmediato. Responder a esta pregunta obligó a los matemáticos del siglo XX a construir toda una teoría, la de los **conjuntos medibles**, porque resulta que en un espacio infinito no se puede asignar probabilidad a *todos* los subconjuntos sin caer en contradicciones. Queda fuera del bachillerato, pero conviene saber que la frontera existe y que está muy cerca de lo que estamos haciendo.
+
+### Actividades propuestas con solución
+
+Haz cada actividad **con lápiz y papel** antes de desplegar la solución.
+
+**1.** Se lanza un dado. Dados los sucesos
+
+$$
+A = \{1, 2, 3\}, \quad B = \{1, 3, 5\}, \quad C = \{2, 4, 6\}, \quad D = \{1, 3\} ,
+$$
+
+clasifica cada suceso y determina qué parejas son incompatibles y qué inclusiones se cumplen.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+**Clasificación.** Los cuatro son **compuestos**: todos tienen dos o más elementos.
+
+**Incompatibilidad.** $B$ y $C$ son incompatibles, porque $B \cap C = \varnothing$. De hecho son **complementarios**, ya que además $B \cup C = E$; es decir, $C = \overline{B}$ («par» es el contrario de «impar»).
+
+$A$ y $C$ son **compatibles**, porque comparten el $2$: $A \cap C = \{2\}$.
+
+**Inclusiones.** Se cumple $D \subset A$ (el $1$ y el $3$ están en $A$) y también $D \subset B$. En consecuencia, $P(D) \leq P(A)$ y $P(D) \leq P(B)$.
+:::
+
+**2.** En una frutería hay naranjas, manzanas, plátanos y ciruelas. Se elige una pieza al azar y se anota qué fruta es. Escribe $E$, un suceso seguro, uno imposible y dos compuestos. ¿Cuántos sucesos hay en total?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+E = \{N, M, P, C\} .
+$$
+
+- **Seguro:** «salir naranja, manzana, plátano o ciruela» $= E$.
+- **Imposible:** «salir una sandía» $= \varnothing$.
+- **Compuestos:** $\{N, M\}$ y $\{P, C\}$, por ejemplo.
+
+Total de sucesos: $|\mathcal{P}(E)| = 2^{4} = 16$.
+:::
+
+**3.** Se extrae una carta de la baraja española de 40 cartas. Razona si estos sucesos son compatibles o incompatibles:
+
+$$
+A = \text{«sacar un as»}, \quad B = \text{«sacar bastos»}, \quad C = \text{«sacar un caballo»}, \quad D = \text{«sacar una figura»} .
+$$
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+- $A$ y $B$ son **compatibles**: existe el as de bastos, luego $A \cap B \neq \varnothing$.
+- $A$ y $C$ son **incompatibles**: ninguna carta es a la vez as y caballo.
+- $A$ y $D$ son **incompatibles**, si consideramos que las figuras son solo sota, caballo y rey.
+- $C$ y $D$ son **compatibles**, y más aún: $C \subset D$, porque **todo caballo es figura**. Por tanto $P(C) \leq P(D)$.
+
+Fíjate en que aquí no hemos escrito los conjuntos elemento a elemento: con 40 cartas basta razonar sobre si existe o no una carta común.
+:::
+
+**4.** Halla el número total de sucesos del experimento consistente en elegir una bola de una bolsa con cinco bolas de colores distintos y anotar el color.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$n = |E| = 5$, luego
+
+$$
+|\mathcal{P}(E)| = 2^{5} = 32 .
+$$
+:::
+
+**5.** Se lanza un dado de quinielas: un hexaedro con 3 caras marcadas con $1$, 2 caras con $X$ y 1 cara con $2$. Escribe su espacio muestral y di cuántos sucesos tiene.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+E = \{1, X, 2\} , \quad \text{y no } \{1, 1, 1, X, X, 2\} .
+$$
+
+Un resultado se escribe **una sola vez**, aunque se repita en el material. Por tanto $n = 3$ y hay $2^{3} = 8$ sucesos.
+
+**Advertencia importante:** aquí los sucesos elementales **no son equiprobables**, lo que impide aplicar directamente la regla de Laplace. El $1$ es tres veces más probable que el $2$. El espacio muestral es correcto; lo que no se puede es contar casos favorables sobre casos posibles.
+:::
+
+**6.** Un suceso $A$ verifica $\overline{A} = A$. ¿Es posible? Razona la respuesta.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+No, salvo en el caso degenerado $E = \varnothing$.
+
+Razonamiento: si existiera algún $x \in A$, entonces por definición $x \notin \overline{A}$, lo que contradice la igualdad $\overline{A} = A$. Y si $A = \varnothing$, entonces $\overline{A} = E$, que solo coincide con $A$ si $E = \varnothing$.
+
+Formalmente sería necesario que $A \cap \overline{A} = A \neq \varnothing$, pero sabemos que $A \cap \overline{A} = \varnothing$ siempre. Imposible.
+
+Este tipo de ejercicio, que no pide calcular sino razonar sobre las propiedades, aparece con frecuencia en las pruebas de acceso y se resuelve **siempre** volviendo a las cuatro fórmulas del suceso contrario.
+:::
+
+### Puente al apartado siguiente
+
+Ya sabemos qué es un suceso, cuántos tipos hay, cómo se relacionan por inclusión y compatibilidad, y cuántos sucesos genera un espacio muestral de $n$ elementos. Lo que aún **no** sabemos es **combinarlos**.
+
+En el apartado siguiente, «Operaciones con sucesos», formalizaremos la unión $A \cup B$, la intersección $A \cap B$ y la diferencia
+
+$$
+A - B = A \cap \overline{B} ,
+$$
+
+y demostraremos las **leyes de De Morgan**:
+
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B} , \qquad \overline{A \cap B} = \overline{A} \cup \overline{B} .
+$$
+
+Junto con la fórmula de recuento que ya podemos anticipar:
+
+$$
+|A \cup B| = |A| + |B| - |A \cap B| ,
+$$
+
+donde el término que se resta corrige el hecho de haber contado dos veces los elementos comunes.
+
+Y fíjate en un detalle que da la medida del salto: el **suceso contrario**, que aquí hemos presentado como un simple «tipo de suceso», va a convertirse en la **herramienta operativa más rentable** de todo el tema.
+
+## Repaso rápido {.unnumbered}
+
+- Un **suceso** es cualquier subconjunto de $E$: $A \subseteq E$. Ocurre cuando el resultado obtenido cumple $x \in A$.
+- $3$ es un **resultado** ($\in$); $\{3\}$ es un **suceso** ($\subseteq$). No los confundas.
+- Cinco tipos: **elemental** ($1$ elemento), **compuesto** ($\geq 2$), **seguro** ($E$), **imposible** ($\varnothing$) y **contrario** ($\overline{A} = E - A$).
+- Fórmulas del contrario: $\overline{\overline{A}} = A$, $A \cup \overline{A} = E$, $A \cap \overline{A} = \varnothing$. Notaciones: $\overline{A} = A^c = A' = E - A$.
+- **Incompatibles**: $A \cap B = \varnothing$. **Complementarios**: además $A \cup B = E$. Complementario es más fuerte que incompatible.
+- **Inclusión**: $A \subset B \iff A \cap B = A$, y entonces $P(A) \leq P(B)$.
+- **Espacio de sucesos**: $|\mathcal{P}(E)| = 2^{n}$, porque cada elemento se mete o no se mete. También $\sum_{k=0}^{n} \binom{n}{k} = 2^n$.
+- El tipo de un suceso depende de **cuántos elementos tiene**, no de cómo esté redactado. Traduce primero, clasifica después.
+- «Al menos» y «como máximo» $\longrightarrow$ trabaja con el **contrario**: $P(A) = 1 - P(\overline{A})$.
+- **Incompatible no es independiente**: son ideas de naturaleza distinta y, de hecho, casi opuestas.

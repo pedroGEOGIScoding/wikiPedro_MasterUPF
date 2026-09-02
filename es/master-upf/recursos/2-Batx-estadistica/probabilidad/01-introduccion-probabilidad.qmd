@@ -1,0 +1,282 @@
+---
+title: "Tema 4.1 Introducción a la probabilidad"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 01-introduccion-probabilidad
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Por qué necesitamos la probabilidad, experimentos deterministas y aleatorios, frecuencia relativa y ley de los grandes números, definición frecuentista de probabilidad, ejemplo resuelto de clasificación de experimentos y zona de discusión sobre la naturaleza del azar, con applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Introducción: ¿por qué necesitamos la probabilidad?
+
+Hasta ahora, en matemáticas has trabajado casi siempre con **certezas**. Si resuelves
+
+$$
+2x + 4 = 10 ,
+$$
+
+la solución es $x = 3$ y no hay discusión posible: no existe una segunda respuesta, ni una respuesta «probable», ni un margen de error. Toda tu experiencia matemática anterior está construida sobre ese suelo firme.
+
+Sin embargo, la mayor parte de las decisiones importantes de la vida real se toman **sin certeza**:
+
+- Un médico valora si una prueba positiva significa realmente que hay enfermedad.
+- Una aseguradora fija el precio de una póliza sin saber quién tendrá un accidente.
+- Un meteorólogo anuncia «70 % de probabilidad de lluvia» y aun así puede no llover.
+- Un concursante de televisión decide si cambia de puerta cuando el presentador le abre una puerta vacía.
+
+En ninguno de esos casos existe una fórmula que devuelva un sí o un no. Y aun así hay que decidir, y hay decisiones mejores y peores. Aquí es donde entran las matemáticas del azar.
+
+::: {.callout-important}
+## Qué es exactamente la probabilidad
+
+La **probabilidad** es la rama de las matemáticas que pone **números al azar**: convierte la incertidumbre en una magnitud **medible**, **comparable** y **operable**.
+
+Las tres palabras importan:
+
+- **Medible**: a un suceso incierto le asignamos un número entre $0$ y $1$.
+- **Comparable**: si $P(A) = 0{,}7$ y $P(B) = 0{,}2$, podemos afirmar con rigor que $A$ es más probable que $B$.
+- **Operable**: con esos números se puede calcular, sumar, multiplicar y deducir consecuencias nuevas.
+:::
+
+Este tema es el punto de partida de un bloque largo que llega hasta la inferencia estadística del tercer trimestre. Todo lo que construyas aquí —espacio muestral, sucesos, operaciones— es el andamio sobre el que después se apoyan la probabilidad condicionada, el teorema de Bayes, la distribución binomial y la normal. Merece la pena hacerlo despacio.
+
+::: {.callout-note}
+## Un poco de historia, porque explica el enfoque
+
+El cálculo de probabilidades no nació en la universidad, sino en la **mesa de juego**. Los juegos de azar tienen miles de años, pero su fundamentación matemática es reciente: hubo intentos serios en el siglo XVI y fue en el siglo XVII, a partir de la correspondencia entre dos matemáticos franceses sobre una apuesta de dados aparentemente contradictoria, cuando se establecieron los primeros fundamentos formales.
+
+Esto explica por qué el tema está lleno de dados, monedas, urnas y barajas: no es infantilismo, es que son los **modelos más limpios** que existen. Un dado es un laboratorio de azar portátil, barato y perfectamente descrito.
+:::
+
+Antes de poder medir el azar hay que decidir **cuándo estamos ante azar de verdad**. Y esa distinción es el primer contenido serio del tema.
+
+::: {.callout-note}
+## Experimento aleatorio y experimento determinista
+
+Un **experimento aleatorio** es aquel del que **no se puede predecir el resultado** antes de realizarlo: depende del azar.
+
+Un **experimento determinista** es aquel cuyo resultado **se conoce antes de realizarlo**, porque en las mismas condiciones se obtiene siempre lo mismo.
+:::
+
+La definición anterior es la que aparece en los libros, pero es demasiado breve para trabajar con ella. Para que un experimento sea aleatorio **en sentido matemático** debe cumplir tres condiciones:
+
+1. Es **repetible** en condiciones esencialmente idénticas.
+2. Se conoce **de antemano** el conjunto de todos los resultados posibles.
+3. **No se puede predecir** cuál de esos resultados va a ocurrir en una realización concreta.
+
+::: {.callout-warning}
+## El matiz que casi todo el mundo pasa por alto
+
+Fíjate bien en la segunda condición. El azar matemático **no es «no saber nada»**: es **saberlo todo menos el resultado concreto**.
+
+Cuando lanzas un dado sabes muchísimo: sabes que saldrá uno de los seis números, sabes que no saldrá un $7$, sabes que no saldrá una letra. Lo único que ignoras es **cuál** de los seis. Si no supieras ni siquiera qué resultados son posibles, no tendrías un experimento aleatorio: tendrías simplemente ignorancia, y sobre la ignorancia pura no se puede calcular.
+:::
+
+### Applet · Determinista o aleatorio {.unnumbered}
+
+Manipula las condiciones del experimento y observa cuáles de las tres condiciones se cumplen en cada caso. Fíjate en particular en los ejemplos que fallan **solo** la segunda condición: son los que suelen clasificarse mal.
+
+::: {#panel-determinista-azar .applet-panel data-applet-est4="deterministaAzar"}
+:::
+
+### Definición de probabilidad
+
+La conexión entre «azar» y «número» nace de un hecho **experimental** sorprendente, no de una definición inventada por conveniencia: si repetimos muchísimas veces un experimento, las **frecuencias relativas se estabilizan**.
+
+Recuerda la frecuencia relativa del tema de estadística descriptiva. La frecuencia relativa de un suceso $A$ es
+
+$$
+f_r(A) = \frac{n_A}{N} ,
+$$
+
+donde $n_A$ es el número de veces que ocurre el suceso $A$ y $N$ el número total de repeticiones del experimento.
+
+Un control de calidad de una fábrica ilustra muy bien la estabilización. Se examinan piezas y se cuenta cuántas son defectuosas:
+
+| Piezas examinadas $N$ | 10 | 100 | 1 000 | 10 000 |
+|---|---|---|---|---|
+| Piezas defectuosas $n_A$ | 1 | 12 | 116 | 1 104 |
+| Frecuencia relativa $f_r$ | 0,1 | 0,12 | 0,116 | 0,1104 |
+
+: Estabilización de las frecuencias relativas en un control de calidad {#tbl-estabilizacion}
+
+Lee la tercera fila de izquierda a derecha: $0{,}1$, luego $0{,}12$, luego $0{,}116$, luego $0{,}1104$. Las frecuencias relativas **oscilan al principio** y después se **aproximan a un valor fijo**, alrededor de $0{,}11$. Con $N = 10$ el resultado es prácticamente anecdótico; con $N = 10\,000$ empieza a ser una medida seria.
+
+Ese valor límite es lo que llamamos **probabilidad**:
+
+$$
+P(A) = \lim_{N \to \infty} \frac{n_A}{N} .
+$$
+
+::: {.callout-important}
+## Ley de los grandes números
+
+La estabilización de las frecuencias relativas cuando $N$ crece se conoce como **ley de los grandes números**. Es un resultado profundo y también la razón por la que un casino, **aunque pierda con un cliente concreto**, gana con seguridad a lo largo de un año: con millones de jugadas, la frecuencia relativa de sus ganancias se pega al valor teórico y el azar deja de tener sitio para actuar.
+
+Cuidado con la lectura al revés: la ley de los grandes números **no dice nada** sobre la próxima jugada. Solo habla del comportamiento a largo plazo.
+:::
+
+Esta definición se llama **frecuentista** porque define la probabilidad a partir de frecuencias observadas. Tiene una virtud enorme —es empírica, se puede comprobar— y un inconveniente práctico: exige repetir el experimento infinitas veces, lo que nunca podrás hacer. Por eso en el próximo apartado del tema aparecerá la **regla de Laplace**, que permite calcular la probabilidad **a priori**, sin realizar ni un solo lanzamiento, siempre que los resultados posibles sean equiprobables.
+
+::: {.callout-note}
+## Consecuencias inmediatas de la definición
+
+Como $0 \leq n_A \leq N$, al dividir entre $N$ se obtiene directamente:
+
+$$
+0 \leq f_r(A) \leq 1 \quad \Longrightarrow \quad 0 \leq P(A) \leq 1 .
+$$
+
+Además:
+
+- Si $A$ ocurre **siempre**, entonces $n_A = N$ y $P(A) = 1$.
+- Si $A$ **nunca** ocurre, entonces $n_A = 0$ y $P(A) = 0$.
+
+Una probabilidad no puede ser negativa ni mayor que $1$. Si en un ejercicio te sale $P(A) = 1{,}3$ o $P(A) = -0{,}2$, hay un error de cálculo garantizado: no hace falta ni revisar el enunciado para saberlo.
+:::
+
+::: {.callout-tip}
+## Tres lenguajes para el mismo número
+
+La misma probabilidad se escribe de tres maneras y conviene que las traduzcas sin pensar:
+
+$$
+\frac{1}{4} \;=\; 0{,}25 \;=\; 25\ \% .
+$$
+
+En el texto de un problema aparecerá el porcentaje; en tus cálculos usarás la fracción, porque es exacta y no arrastra errores de redondeo; el decimal sirve para comparar de un vistazo. Trabaja **con fracciones** hasta el final y convierte a decimal o porcentaje solo en la respuesta.
+:::
+
+### Applet · Frecuencia relativa y ley de los grandes números {.unnumbered}
+
+Simula muchas repeticiones del experimento y observa cómo la frecuencia relativa **baila mucho al principio** y se va aplastando contra la línea teórica. Fíjate en dos cosas: la diferencia entre $N = 20$ y $N = 2\,000$, y el hecho de que la curva no se acerque «en línea recta», sino con oscilaciones cada vez más pequeñas.
+
+::: {#panel-frecuencias .applet-panel data-applet-est4="frecuencias"}
+:::
+
+### Ejemplo resuelto 1: clasificar experimentos
+
+**Enunciado.** Decide si los siguientes experimentos son aleatorios o deterministas y justifica la respuesta.
+
+1. Determinar el punto de ebullición del agua.
+2. Medir la temperatura de fusión del hielo.
+3. Lanzar un dado y anotar el resultado.
+4. Lanzar una moneda y anotar el resultado.
+
+**Resolución paso a paso.**
+
+**1. Punto de ebullición del agua.** En las mismas condiciones físicas, el resultado será siempre el mismo: $100\ ^{\circ}\mathrm{C}$ a presión normal. Se cumple la condición 1 (es repetible) y se cumple la 2 (sabemos el resultado posible), pero **falla la 3**: sí podemos predecir el resultado. **No es aleatorio: es determinista.**
+
+**2. Temperatura de fusión del hielo.** Siempre $0\ ^{\circ}\mathrm{C}$ en las mismas condiciones. Mismo razonamiento. **Determinista.**
+
+**3. Lanzar un dado.** Es repetible; conocemos de antemano los resultados posibles, $1, 2, 3, 4, 5, 6$; y no podemos predecir cuál saldrá en la tirada siguiente. Se cumplen las tres condiciones. **Es aleatorio.**
+
+**4. Lanzar una moneda.** Los resultados posibles son cara y cruz, el lanzamiento es repetible y el resultado es imprevisible. **Es aleatorio.**
+
+**Comentario final.** Observa la estructura del razonamiento: en los cuatro casos las condiciones 1 y 2 se cumplen, y lo único que decide es la condición 3. En la práctica, para clasificar un experimento basta con preguntarte: *si repito esto exactamente igual, ¿me saldrá siempre lo mismo?* Si la respuesta es sí, es determinista.
+
+::: {.callout-caution}
+## «No lo sé» no es lo mismo que «es aleatorio»
+
+Un error frecuentísimo: clasificar como aleatorio todo lo que no sabemos calcular. Si te preguntan por el resto de dividir $2^{100}$ entre $7$, tú probablemente no sepas la respuesta de memoria, pero el resultado **está determinado**: es un cálculo, no un sorteo. Repetir la división mil veces daría mil veces lo mismo.
+
+Regla práctica: la aleatoriedad es una propiedad **del experimento**, no de tu conocimiento sobre él.
+:::
+
+### Applet · Clasificador de experimentos {.unnumbered}
+
+Escribe tú mismo experimentos —los de clase, los de tu vida diaria, los que se te ocurran— y comprueba la clasificación condición por condición. Observa qué ocurre con casos frontera como «adivinar la nota de mi próximo examen» o «medir mi altura con una cinta métrica».
+
+::: {#panel-clasificador .applet-panel data-applet-est4="clasificador"}
+:::
+
+#### Zona de discusión: ¿el azar existe o es ignorancia?
+
+Un dado obedece las leyes de la mecánica clásica. Si conociéramos con precisión infinita su posición inicial, su velocidad, su rotación, el rozamiento con la mesa y la elasticidad del choque, ¿podríamos predecir la cara que va a salir? **En teoría, sí.**
+
+Entonces, ¿el dado es realmente aleatorio o simplemente somos incapaces de medir?
+
+Esta es una excelente pregunta de debate y no tiene una respuesta cerrada. La postura operativa de la estadística es **pragmática**: tratamos un fenómeno como aleatorio cuando la información necesaria para predecirlo es **inaccesible en la práctica**. Es lo que se llama **azar epistémico**, azar que proviene de los límites de nuestro conocimiento.
+
+::: {.callout-note}
+## Dos clases de azar
+
+- **Azar epistémico**: el sistema está determinado, pero la información necesaria es inalcanzable. El dado, la moneda, la ruleta, el tiempo atmosférico.
+- **Azar ontológico**: el azar sería una propiedad irreducible de la realidad, no un defecto de nuestra medida. En física cuántica el azar parece ser de este segundo tipo.
+
+Para este curso trabajaremos siempre con azar epistémico, que es más que suficiente: el modelo funciona igual de bien en ambos casos, y esa es precisamente su fuerza.
+:::
+
+**Ejercicio de pensamiento crítico: clasifica y justifica.**
+
+| Experimento | ¿Aleatorio? | Motivo |
+|---|---|---|
+| Soltar una piedra y ver si cae | No | La gravedad determina el resultado |
+| Sacar una bola de una urna sin mirar | Sí | El resultado depende de la extracción concreta |
+| Calcular el resto de $2^{100}$ al dividir entre $7$ | No | Es un cálculo, aunque aún no lo sepas |
+| Preguntar la altura a una persona elegida al azar de la clase | Sí | El resultado depende de a quién se elija |
+| Predecir si mañana lloverá | Sí (en la práctica) | El sistema es caótico y no medible por completo |
+
+: Clasificación crítica de experimentos {#tbl-critica}
+
+La cuarta fila es la más potente de la tabla, y merece que te detengas en ella. La altura de cada compañero de clase es un **dato fijo**: no cambia porque la midas, no es aleatoria en absoluto. Lo que es aleatorio es el **mecanismo de selección**, es decir, a quién eliges. El azar no está en la magnitud, está en el procedimiento.
+
+::: {.callout-important}
+## Esta idea reaparecerá en el tercer trimestre
+
+La distinción «el dato es fijo, el mecanismo de selección es aleatorio» es exactamente la semilla del **muestreo**. Cuando estudiemos teoría de muestras, la población será fija y conocida en principio, y toda la aleatoriedad vendrá de cómo elegimos la muestra. Si esa idea ya te resulta natural, ese tema te costará la mitad.
+:::
+
+**Cuatro preguntas para el debate, sin respuesta cerrada.**
+
+1. Si un ordenador genera «números aleatorios» con una fórmula determinista, ¿son realmente aleatorios? *Pista: se llaman pseudoaleatorios, y son perfectamente predecibles si conoces la semilla. Y sin embargo sirven para simular casinos enteros. ¿Por qué basta con eso?*
+2. Un meteorólogo dice «70 % de probabilidad de lluvia» y no llueve. ¿Se ha equivocado? *Pista: piensa en cómo comprobarías la afirmación. ¿Con un día basta? ¿Cuántos días harían falta?*
+3. ¿Tiene sentido hablar de la probabilidad de un suceso que ocurre **una sola vez**, como «que este equipo gane la liga este año»? *Pista: la definición frecuentista exige repetir; aquí no se puede. Existe otra interpretación, la subjetiva, que sí lo admite.*
+4. Si lanzas una moneda equilibrada y salen cinco caras seguidas, ¿es más probable que la sexta sea cruz? *Pista: la moneda no tiene memoria, no lleva la cuenta. Pruébalo en el applet siguiente antes de responder.*
+
+### Applet · La falacia del jugador {.unnumbered}
+
+Lanza la moneda o gira la ruleta muchas veces y observa las rachas. Comprueba dos hechos que parecen contradictorios y no lo son: aparecen rachas largas con total normalidad, y **la probabilidad del siguiente resultado no cambia nunca** por lo que haya salido antes. Observa también cómo la frecuencia relativa global se acerca a la mitad sin que ningún resultado tenga que «compensar» nada.
+
+::: {#panel-falacia .applet-panel data-applet-est4="falacia"}
+:::
+
+::: {.callout-caution}
+## La falacia del jugador, con nombre y apellidos
+
+La creencia de que «después de muchas caras toca cruz» se llama **falacia del jugador**. Es un error, y bastante caro: los lanzamientos son independientes, así que
+
+$$
+P(\text{cruz en la tirada } 6) = \frac{1}{2}
+$$
+
+pase lo que haya pasado en las cinco anteriores. La moneda no sabe qué ha salido antes.
+
+Lo que sí es cierto es que **una racha larga es poco probable de antemano**: $P(\text{5 caras seguidas}) = (1/2)^5 = 1/32$. Pero una vez que la racha ya ha ocurrido, es información del pasado y no altera el futuro. Distinguir «poco probable a priori» de «influye en lo siguiente» es una de las habilidades más valiosas de todo el tema.
+:::
+
+## Repaso rápido {.unnumbered}
+
+- La probabilidad convierte la incertidumbre en un número **medible, comparable y operable**.
+- Un experimento es **aleatorio** si es repetible, conocemos de antemano todos los resultados posibles y no podemos predecir cuál ocurrirá. Si falla la tercera condición, es **determinista**.
+- El azar matemático no es ignorancia total: es **saberlo todo menos el resultado concreto**.
+- La frecuencia relativa es $f_r(A) = \dfrac{n_A}{N}$ y **se estabiliza** al crecer $N$ (ley de los grandes números).
+- Definición frecuentista: $P(A) = \displaystyle\lim_{N \to \infty} \frac{n_A}{N}$, con $0 \leq P(A) \leq 1$.
+- Clasificar un experimento no depende de lo que tú sepas calcular, sino de si el resultado está determinado.
+- La moneda **no tiene memoria**: creer lo contrario es la falacia del jugador.
+- En muchos fenómenos lo fijo es el dato y lo aleatorio es el **mecanismo de selección**. Recuérdalo cuando llegue el muestreo.
+
+En el apartado siguiente daremos el primer paso técnico: aprender a escribir con precisión **el conjunto de todos los resultados posibles** de un experimento aleatorio, el espacio muestral. Verás que construirlo bien es, literalmente, la mitad del trabajo de cualquier problema de probabilidad.

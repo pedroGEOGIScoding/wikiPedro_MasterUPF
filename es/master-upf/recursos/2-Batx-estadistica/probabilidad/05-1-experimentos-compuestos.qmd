@@ -1,0 +1,380 @@
+---
+title: "Tema 4.5 Experimentos compuestos y árbol ponderado"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 05-1-experimentos-compuestos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Experimentos de varias etapas, producto cartesiano del espacio muestral, las tres reglas del árbol ponderado y el reemplazamiento como dependencia entre etapas, con ejemplos resueltos de urnas, monedas y baraja y applets manipulables.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Hasta ahora has trabajado con experimentos de una sola acción: lanzar un dado, extraer una bola, elegir una carta. Pero la mayoría de las situaciones interesantes **encadenan varias acciones**.
+
+::: {.callout-note}
+## Definición: experimento compuesto
+
+Un **experimento compuesto** es aquel formado por dos o más experimentos aleatorios simples, llamados **etapas** o **pruebas**, realizados de forma sucesiva o simultánea.
+:::
+
+Ejemplos típicos:
+
+- Lanzar una moneda y un dado, y anotar los dos resultados.
+- Extraer dos cartas de una baraja, una tras otra.
+- Elegir primer plato, segundo plato y postre de un menú.
+- Sacar tres bolas de una urna.
+
+El experimento simple correspondiente («lanzar una moneda») se llama entonces **prueba** o **etapa** del experimento compuesto.
+
+Si las etapas tienen espacios muestrales $E_1, E_2, \ldots, E_k$, el espacio muestral del experimento compuesto es el **producto cartesiano**:
+
+$$
+E = E_1 \times E_2 \times \cdots \times E_k = \{\, (x_1, x_2, \ldots, x_k) : x_i \in E_i \,\}
+$$
+
+::: {.callout-important}
+## La novedad conceptual del apartado
+
+Cada suceso elemental es ahora una **$k$-tupla ordenada**, no un número ni una letra sueltos. En el apartado 4.2 un resultado era «un 4»; aquí un resultado es «(cara, 4)». Si te olvidas del orden dentro de la tupla, contarás mal: $(\text{cara}, 4)$ y $(4, \text{cara})$ describen la misma cosa solo si acuerdas de antemano qué etapa va primero.
+:::
+
+El cardinal se obtiene con la regla del producto:
+
+$$
+|E| = |E_1| \cdot |E_2| \cdots |E_k| = \prod_{i=1}^{k} |E_i|
+$$
+
+y si las $k$ etapas son idénticas con $n$ resultados cada una,
+
+$$
+|E| = n^k .
+$$
+
+Como recordatorio del apartado del espacio muestral, estas son las tres herramientas para determinar y contar $E$:
+
+| Herramienta | Cuándo usarla en experimentos compuestos |
+|---|---|
+| Tabla de doble entrada | Exactamente 2 etapas y pocos resultados |
+| Diagrama de árbol | 2 o más etapas; imprescindible si las etapas se influyen |
+| Combinatoria ($VR_{n,m}$, $V_{n,m}$, $C_{n,m}$) | A veces $|E|$ tiene millones de elementos y solo necesitamos contarlo, no listarlo |
+
+: Herramientas para determinar y contar $E$
+
+## El árbol ponderado: la herramienta central
+
+Un diagrama de árbol «seco» solo dice **qué** puede pasar. Un **árbol ponderado** añade una probabilidad a cada rama y dice además **con qué frecuencia** pasa. Es, con diferencia, el instrumento más rentable de todo el tema: con él resolverás problemas que no admiten ni tabla ni fórmula combinatoria.
+
+### Las tres reglas del árbol
+
+::: {.callout-note}
+## Regla 1: a lo largo de un camino se multiplica
+
+$$
+P(A \cap B) = P(A) \cdot P(B \mid A)
+$$
+
+donde $P(B \mid A)$ es la probabilidad de la segunda etapa **una vez conocido** el resultado de la primera; por ahora, léela simplemente como «la probabilidad que escribimos en la rama de la segunda etapa». Para $k$ etapas:
+
+$$
+P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \cdot P(A_2 \mid A_1) \cdots P(A_k \mid A_1 \cap \cdots \cap A_{k-1})
+$$
+:::
+
+::: {.callout-note}
+## Regla 2: entre caminos distintos se suma
+
+Dos caminos completos del árbol son **siempre incompatibles** (no pueden ocurrir a la vez), así que sus probabilidades se suman sin restar nada:
+
+$$
+P(S) = \sum_{\text{caminos favorables a } S} P(\text{camino})
+$$
+:::
+
+::: {.callout-note}
+## Regla 3: cada nodo suma 1
+
+Las probabilidades de las ramas que salen de un mismo punto suman siempre la unidad:
+
+$$
+\sum_{\text{ramas de un nodo}} P(\text{rama}) = 1
+$$
+:::
+
+::: {.callout-tip}
+## Para qué sirve de verdad la Regla 3
+
+Esta tercera regla **no sirve para calcular**: sirve para **detectar errores en tres segundos**. Antes de multiplicar nada, recorre los nodos y comprueba que cada abanico de ramas suma 1. Y al terminar, comprueba que la suma de todos los caminos completos también vale 1. Si no cuadra, no sigas: hay un error de planteamiento, no de aritmética.
+:::
+
+#### Ejemplo resuelto: urna sin devolución
+
+Una urna contiene 2 bolas blancas y 2 azules. Se extraen dos bolas **sin devolución** y se anota el color.
+
+Paso 1. Primera etapa. Hay 4 bolas, 2 de cada color:
+
+$$
+P(B_1) = \frac{2}{4} = \frac{1}{2}, \qquad P(A_1) = \frac{2}{4} = \frac{1}{2}
+$$
+
+Paso 2. Segunda etapa. Ahora quedan 3 bolas y su composición **depende de lo que haya salido antes**:
+
+- Si la primera fue blanca, quedan 1 blanca y 2 azules: $P(B_2 \mid B_1) = \tfrac{1}{3}$, $P(A_2 \mid B_1) = \tfrac{2}{3}$.
+- Si la primera fue azul, quedan 2 blancas y 1 azul: $P(B_2 \mid A_1) = \tfrac{2}{3}$, $P(A_2 \mid A_1) = \tfrac{1}{3}$.
+
+Paso 3. Multiplico a lo largo de cada camino (Regla 1):
+
+$$
+P(BB) = \frac{2}{4}\cdot\frac{1}{3} = \frac{2}{12}, \qquad P(BA) = \frac{2}{4}\cdot\frac{2}{3} = \frac{4}{12}
+$$
+
+$$
+P(AB) = \frac{2}{4}\cdot\frac{2}{3} = \frac{4}{12}, \qquad P(AA) = \frac{2}{4}\cdot\frac{1}{3} = \frac{2}{12}
+$$
+
+Paso 4. Comprobaciones. Regla 3 en el nodo inicial: $\tfrac{2}{4} + \tfrac{2}{4} = 1$; en el nodo tras sacar blanca: $\tfrac{1}{3} + \tfrac{2}{3} = 1$. Correcto. Y la comprobación global (Regla 2):
+
+$$
+\frac{2}{12} + \frac{4}{12} + \frac{4}{12} + \frac{2}{12} = \frac{12}{12} = 1 \ \checkmark
+$$
+
+Paso 5. Ahora puedo responder cualquier pregunta sobre este experimento:
+
+$$
+P(\text{azul y después blanca}) = \frac{2}{4}\cdot\frac{2}{3} = \frac{1}{3}
+$$
+
+$$
+P(\text{una de cada color}) = P(BA) + P(AB) = \frac{4}{12} + \frac{4}{12} = \frac{2}{3}
+$$
+
+$$
+P(\text{del mismo color}) = P(BB) + P(AA) = \frac{2}{12} + \frac{2}{12} = \frac{1}{3}
+$$
+
+::: {.callout-important}
+## Observación de máxima importancia
+
+Los cuatro sucesos elementales de este árbol **no son equiprobables** ($\tfrac{2}{12}$ frente a $\tfrac{4}{12}$) y, sin embargo, el árbol ha calculado correctamente. Esa es la gran ventaja del método: **el árbol ponderado funciona incluso cuando la regla de Laplace no se puede aplicar directamente** al experimento global. La razón la verás al final del apartado: la aplicamos rama a rama, allí donde sí se cumple.
+:::
+
+### Applet · Las tres reglas del árbol {.unnumbered}
+
+::: {#panel-reglas-arbol .applet-panel data-applet-est4="reglasArbol"}
+:::
+
+Modifica las probabilidades de las ramas y observa qué avisa el applet cuando un nodo deja de sumar 1: es exactamente el control que debes hacer tú a mano antes de calcular.
+
+#### Ejemplo resuelto: dos urnas elegidas con una moneda
+
+Se dispone de dos urnas. La urna verde contiene 3 bolas blancas y 2 negras. La urna roja contiene 4 bolas blancas y 1 negra. Se lanza una moneda equilibrada: si sale cara se extrae una bola de la urna verde y si sale cruz se extrae de la urna roja. ¿Cuál es la probabilidad de que la bola extraída sea blanca?
+
+Paso 1. Defino los sucesos **antes de dibujar nada**:
+
+$$
+V = \text{«extraer de la urna verde»}, \qquad R = \text{«extraer de la urna roja»}
+$$
+
+$$
+B = \text{«obtener bola blanca»}, \qquad N = \text{«obtener bola negra»}
+$$
+
+Paso 2. Primera etapa, la moneda equilibrada: $P(V) = P(R) = 0{,}5$.
+
+Paso 3. Segunda etapa, según la urna:
+
+$$
+P(B \mid V) = \frac{3}{5}, \quad P(N \mid V) = \frac{2}{5}, \qquad P(B \mid R) = \frac{4}{5}, \quad P(N \mid R) = \frac{1}{5}
+$$
+
+Paso 4. Los caminos favorables a «bola blanca» son dos, e incompatibles entre sí, así que aplico la Regla 2:
+
+$$
+P(B) = P(V) \cdot P(B \mid V) + P(R) \cdot P(B \mid R)
+$$
+
+$$
+P(B) = 0{,}5 \cdot \frac{3}{5} + 0{,}5 \cdot \frac{4}{5} = 0{,}30 + 0{,}40 = 0{,}70
+$$
+
+La probabilidad de sacar bola blanca es del **70 %**.
+
+Paso 5. Comprobación global con los cuatro caminos:
+
+$$
+0{,}30 + 0{,}20 + 0{,}40 + 0{,}10 = 1 \ \checkmark
+$$
+
+**Comentario final.** Fíjate en que la respuesta, $0{,}70$, está entre $\tfrac{3}{5} = 0{,}6$ y $\tfrac{4}{5} = 0{,}8$: es la **media ponderada** de las dos proporciones, con pesos $0{,}5$ y $0{,}5$. Esta estructura de «primero elijo de dónde, luego extraigo» es exactamente la del teorema de la probabilidad total que estudiarás más adelante. Aquí ya lo estás usando, solo que dibujado.
+
+### Applet · Dos urnas elegidas con una moneda {.unnumbered}
+
+::: {#panel-dos-urnas .applet-panel data-applet-est4="dosUrnas"}
+:::
+
+Cambia la composición de las urnas y también el sesgo de la moneda. Comprueba que $P(B)$ siempre queda **entre** las dos proporciones de blancas: nunca puede salirse de ese intervalo.
+
+#### Ejemplo resuelto: moneda y dado a la vez
+
+Se lanza una moneda y un dado y se anotan los dos resultados. Calcula $|E|$ y la probabilidad de obtener «cara y un número mayor que 4».
+
+Paso 1. Producto cartesiano: $E = \{C, X\} \times \{1,2,3,4,5,6\}$, luego
+
+$$
+|E| = 2 \cdot 6 = 12 .
+$$
+
+Paso 2. Las dos etapas son **independientes**: el dado no sabe qué ha salido en la moneda. Así, la rama de la segunda etapa vale $\tfrac{1}{6}$ salga lo que salga en la primera, y
+
+$$
+P(\text{cara y mayor que 4}) = P(C) \cdot P(>4) = \frac{1}{2} \cdot \frac{2}{6} = \frac{1}{6} .
+$$
+
+Paso 3. Control por recuento directo: los casos favorables son $(C,5)$ y $(C,6)$, dos de doce, es decir $\tfrac{2}{12} = \tfrac{1}{6}$ $\checkmark$.
+
+**Comentario final.** Cuando las etapas son independientes, la Regla 1 se simplifica a $P(A\cap B) = P(A)\cdot P(B)$, sin condicionar. Y aquí los doce sucesos elementales **sí** son equiprobables, con probabilidad $\tfrac{1}{12}$ cada uno, así que el recuento del paso 3 es legítimo. Compara con el ejemplo de la urna sin devolución, donde no lo era.
+
+### Applet · Árbol ponderado {.unnumbered}
+
+::: {#panel-arbol-ponderado .applet-panel data-applet-est4="arbolPonderado"}
+:::
+
+Construye tu propio árbol de dos o tres etapas y lee al pie la comprobación de que todos los caminos suman 1. Antes de pulsar, intenta anticipar qué camino será el más probable.
+
+## El reemplazamiento como dependencia entre etapas
+
+Ya viste en el apartado del espacio muestral que extraer con o sin devolución cambia el recuento. Ahora viene lo que de verdad importa: **cambia la relación entre las etapas**.
+
+- **Con devolución**: la composición no cambia, y las probabilidades de la segunda etapa son idénticas a las de la primera. Las etapas son **independientes**.
+- **Sin devolución**: la composición cambia, y cambia de forma distinta según lo que haya salido antes. Las etapas son **dependientes**.
+
+::: {.callout-tip}
+## La pregunta que hay que hacerse siempre
+
+«¿El elemento vuelve al conjunto después de usarlo, o se gasta?» Si vuelve, las ramas de la segunda etapa son todas iguales. Si se gasta, cada nodo de la segunda etapa lleva números distintos. Esa es toda la diferencia, y explica por qué el árbol es imprescindible en el segundo caso.
+:::
+
+### El mismo experimento, las dos versiones
+
+Retomamos la urna de 2 blancas y 2 azules y comparamos las dos versiones camino a camino.
+
+| Camino | Sin devolución | Con devolución |
+|---|---|---|
+| $BB$ | $\dfrac{2}{4}\cdot\dfrac{1}{3} = \dfrac{1}{6} \approx 0{,}167$ | $\dfrac{2}{4}\cdot\dfrac{2}{4} = \dfrac{1}{4} = 0{,}25$ |
+| $BA$ | $\dfrac{2}{4}\cdot\dfrac{2}{3} = \dfrac{1}{3} \approx 0{,}333$ | $\dfrac{2}{4}\cdot\dfrac{2}{4} = \dfrac{1}{4} = 0{,}25$ |
+| $AB$ | $\dfrac{2}{4}\cdot\dfrac{2}{3} = \dfrac{1}{3} \approx 0{,}333$ | $\dfrac{2}{4}\cdot\dfrac{2}{4} = \dfrac{1}{4} = 0{,}25$ |
+| $AA$ | $\dfrac{2}{4}\cdot\dfrac{1}{3} = \dfrac{1}{6} \approx 0{,}167$ | $\dfrac{2}{4}\cdot\dfrac{2}{4} = \dfrac{1}{4} = 0{,}25$ |
+
+: El reemplazamiento como dependencia entre etapas
+
+Con devolución los cuatro caminos son **equiprobables**; sin devolución, no. Y fíjate en la consecuencia práctica:
+
+- Sin devolución es **más probable** sacar dos colores distintos ($\tfrac{2}{3}$) que dos iguales ($\tfrac{1}{3}$).
+- Con devolución ambas cosas son igual de probables ($\tfrac{1}{2}$ y $\tfrac{1}{2}$).
+
+El enunciado cambia dos palabras y la respuesta se duplica.
+
+### Applet · Con y sin reemplazamiento {.unnumbered}
+
+::: {#panel-reemplazamiento .applet-panel data-applet-est4="reemplazamiento"}
+:::
+
+Activa y desactiva el reemplazamiento sobre la misma urna y observa cuáles son las ramas que cambian: solo las de la segunda etapa, y solo porque cambia el denominador.
+
+#### Ejemplo resuelto: dos figuras de la baraja
+
+Se extraen dos cartas de una baraja española de 40 cartas. Calcula la probabilidad de que ambas sean figuras (hay 12 figuras).
+
+**a) Con reemplazamiento** (etapas independientes). La baraja vuelve a tener 40 cartas y 12 figuras en la segunda extracción:
+
+$$
+P = \frac{12}{40}\cdot\frac{12}{40} = 0{,}3 \cdot 0{,}3 = 0{,}09
+$$
+
+**b) Sin reemplazamiento** (etapas dependientes). Si la primera fue figura, quedan 39 cartas y solo 11 figuras:
+
+$$
+P = \frac{12}{40}\cdot\frac{11}{39} = \frac{132}{1560} \approx 0{,}0846
+$$
+
+**Comentario final.** La diferencia ($9\ \%$ frente a $8{,}46\ \%$) parece pequeña, pero es **sistemática**: sin devolución, sacar dos elementos del mismo tipo siempre es menos probable, porque el primero «gasta» uno de los favorables. Y al contrario, sacar dos elementos de tipos distintos siempre es más probable sin devolución, como acabas de ver en la tabla de la urna.
+
+### Applet · Dos figuras de la baraja {.unnumbered}
+
+::: {#panel-baraja-figuras .applet-panel data-applet-est4="barajaFiguras"}
+:::
+
+Cambia el número de cartas favorables y comprueba cuándo la diferencia entre las dos versiones se hace despreciable. La pista está en el ejemplo siguiente.
+
+#### Ejemplo resuelto: un caso límite para pensar
+
+Se extraen dos bolas de una urna con 5 rojas, 2 azules y 3 blancas. ¿Cuál es la probabilidad de que la segunda sea roja sabiendo que la primera lo fue?
+
+Sin devolución quedan 9 bolas y 4 rojas; con devolución sigue habiendo 10 bolas y 5 rojas:
+
+$$
+\text{Sin devolución: } \frac{4}{9} \approx 0{,}444 \qquad\qquad \text{Con devolución: } \frac{5}{10} = 0{,}5
+$$
+
+**Pregunta de rebote.** Si la urna tuviera 5000 rojas y 5000 azules en vez de 5 y 5, ¿cuánto se diferenciarían ambos valores?
+
+$$
+\frac{4999}{9999} \approx 0{,}49995 \quad \text{frente a} \quad 0{,}5
+$$
+
+Prácticamente nada.
+
+::: {.callout-important}
+## Conclusión que se usa en toda la estadística
+
+Cuando la población es **muy grande respecto a la muestra**, extraer sin devolución se parece tanto a extraer con devolución que podemos tratar las etapas **como independientes**. Es la razón por la que las encuestas, que obviamente no preguntan dos veces a la misma persona, se analizan con modelos de extracción con reemplazamiento.
+:::
+
+**Comentario final.** El criterio práctico habitual es que la muestra no pase de aproximadamente el 5 % de la población. Con 10 bolas y 2 extracciones estamos en el 20 %: la diferencia se nota. Con 10 000 bolas y 2 extracciones estamos en el $0{,}02\ \%$: la diferencia es invisible.
+
+#### Ejemplo resuelto: tres extracciones sin devolución
+
+Una urna tiene 4 bolas rojas y 3 verdes. Se extraen tres bolas sin devolución. ¿Cuál es la probabilidad de que las tres sean rojas? ¿Y la de que ninguna sea roja?
+
+Paso 1. Tres etapas, aplico la Regla 1 encadenando:
+
+$$
+P(RRR) = \frac{4}{7}\cdot\frac{3}{6}\cdot\frac{2}{5} = \frac{24}{210} = \frac{4}{35} \approx 0{,}114
+$$
+
+Paso 2. «Ninguna roja» significa las tres verdes, y solo hay 3 verdes:
+
+$$
+P(VVV) = \frac{3}{7}\cdot\frac{2}{6}\cdot\frac{1}{5} = \frac{6}{210} = \frac{1}{35} \approx 0{,}029
+$$
+
+Paso 3. Control con combinatoria, que debe coincidir:
+
+$$
+P(RRR) = \frac{C_{4,3}}{C_{7,3}} = \frac{4}{35} \ \checkmark
+$$
+
+**Comentario final.** Observa que los denominadores bajan $7, 6, 5$ y los numeradores bajan según el color que se va gastando. Y observa el control del paso 3: cuando **no** importa el orden y todas las bolas son igual de probables, el cociente de combinaciones da lo mismo que el árbol. El árbol, en cambio, sigue funcionando cuando el orden importa o cuando las etapas cambian de naturaleza.
+
+## Repaso rápido
+
+- Un **experimento compuesto** tiene dos o más etapas; sus sucesos elementales son **tuplas ordenadas** y $|E| = |E_1|\cdot|E_2|\cdots|E_k|$, o $n^k$ si las etapas son idénticas.
+- **Regla 1**: por un camino se **multiplica**, $P(A\cap B) = P(A)\cdot P(B\mid A)$.
+- **Regla 2**: entre caminos se **suma**, porque los caminos completos son incompatibles.
+- **Regla 3**: cada nodo suma $1$. No sirve para calcular, sirve para **cazar errores** en tres segundos.
+- **Con devolución**: etapas **independientes**, las ramas de la segunda etapa no cambian, y entonces $P(A\cap B) = P(A)\cdot P(B)$.
+- **Sin devolución**: etapas **dependientes**, cada nodo lleva sus propios números; salir dos veces lo mismo es menos probable.
+- Si la población es enorme respecto a la muestra, las dos versiones son prácticamente iguales.
+- El árbol ponderado funciona **aunque los sucesos elementales del experimento global no sean equiprobables**.
+
+En el apartado siguiente veremos qué ocurre cuando las etapas dejan de tener la misma forma y el producto cartesiano deja de valer, y discutiremos un caso histórico célebre sobre el peligro de contar casos sin comprobar que son equiprobables.

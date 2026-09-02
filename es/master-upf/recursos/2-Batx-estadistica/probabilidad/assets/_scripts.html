@@ -1,0 +1,34 @@
+<!-- =====================================================================
+     _scripts.html — TEMA 4 PROBABILIDAD (parte 1) · 2.º Batx
+     Ubicación: 2-Batx-estadistica/probabilidad/assets/_scripts.html
+
+     Se inserta en cada .qmd del tema:
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           html-math-method: katex
+
+     ORDEN DE CARGA OBLIGATORIO
+       1) ../assets/applets.css          estilos compartidos de la asignatura
+       2) assets/est4-applets.css        estilos propios de Probabilidad
+       3) ../assets/katex/katex.min.css  KaTeX local, sin CDN
+       4) ../assets/katex/katex.min.js   motor local de fórmulas
+       5) assets/est4-applets.js         núcleo window.EST4
+       6) assets/est4-applets-a.js       applets de 4.1, 4.2 y 4.3
+       7) assets/est4-applets-b.js       applets de 4.4 y 4.5
+
+     RUTAS
+       Los .qmd se renderizan dentro de probabilidad/. Por eso ../assets/
+       apunta a 2-Batx-estadistica/assets/, donde ya están applets.css y
+       katex/. Los módulos propios viven en probabilidad/assets/.
+
+     KaTeX se usa manualmente sobre nodos data-tex, con throwOnError:false.
+     No se emplea OJS, auto-render, CDN ni librerías de terceros.
+     ===================================================================== -->
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/est4-applets.css">
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="assets/est4-applets.js"></script>
+<script defer src="assets/est4-applets-a.js"></script>
+<script defer src="assets/est4-applets-b.js"></script>

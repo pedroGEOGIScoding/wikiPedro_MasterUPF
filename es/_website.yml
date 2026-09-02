@@ -314,7 +314,13 @@ website:
               - master-upf/recursos/2-Batx-estadistica/combinatoria/09-practica-combinatoria.qmd
             - section: "Tema 4 Probabilidad"
               contents:
-              - master-upf/recursos/2-Batx-estadistica/probabilidad/
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/01-introduccion-probabilidad.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/02-espacio-muestral.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/03-sucesos-aleatorios.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/04-1-operaciones-con-sucesos.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/04-2-propiedades-de-morgan.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/05-1-experimentos-compuestos.qmd
+              - master-upf/recursos/2-Batx-estadistica/probabilidad/05-2-arboles-no-uniformes.qmd
             - section: "Tema 5 Distribuciones binomiales y normales"
               contents:
               - master-upf/recursos/2-Batx-estadistica/dist-bi-norm/

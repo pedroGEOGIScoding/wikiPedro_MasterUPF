@@ -1,0 +1,571 @@
+---
+title: "Tema 4.4 Propiedades y leyes de De Morgan"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 04-2-propiedades-de-morgan
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Álgebra de sucesos, propiedades de la unión, la intersección y el complementario, las dos leyes de De Morgan con ejemplos resueltos del dado y de la lotería, tabla maestra de traducción de enunciados y zona de pensamiento crítico.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+Ya sabes operar con sucesos. Ahora toca saber **simplificar**: reconocer cuándo dos expresiones que parecen distintas describen el mismo suceso. Esto no es álgebra decorativa. En un problema de probabilidad, saber que «no ocurre ninguno de los dos» es lo mismo que «el contrario de la unión» convierte un cálculo imposible en uno de una línea.
+
+## Propiedades de las operaciones
+
+Los sucesos de un experimento aleatorio, con la unión, la intersección y el complementario, forman lo que en matemáticas superiores se llama un **álgebra de Boole**. Estas son las reglas del juego para simplificar expresiones.
+
+**Conmutativa**
+
+$$
+A \cap B = B \cap A, \qquad A \cup B = B \cup A
+$$
+
+**Asociativa**
+
+$$
+A \cap (B \cap C) = (A \cap B) \cap C, \qquad A \cup (B \cup C) = (A \cup B) \cup C
+$$
+
+**Distributiva**
+
+$$
+A \cap (B \cup C) = (A \cap B) \cup (A \cap C)
+$$
+
+$$
+A \cup (B \cap C) = (A \cup B) \cap (A \cup C)
+$$
+
+**Elemento neutro**
+
+$$
+A \cap E = A, \qquad A \cup \varnothing = A
+$$
+
+**Elemento complementario**
+
+$$
+A \cap \overline{A} = \varnothing, \qquad A \cup \overline{A} = E
+$$
+
+**Idempotente**
+
+$$
+A \cap A = A \cup A = A
+$$
+
+**Simplificativa**
+
+$$
+A \cap (A \cup B) = A, \qquad A \cup (A \cap B) = A
+$$
+
+**Contrario del contrario**
+
+$$
+\overline{\overline{A}} = A
+$$
+
+::: {.callout-note}
+## La distributiva doble es lo que sorprende
+
+En los números, la multiplicación se distribuye sobre la suma, pero la suma no se distribuye sobre la multiplicación: $2 + (3 \cdot 4) \neq (2+3)\cdot(2+4)$. En sucesos, en cambio, **las dos distributivas son válidas**. La unión se distribuye sobre la intersección y la intersección sobre la unión. Es una simetría que los números no tienen y conviene no arrastrar intuiciones aritméticas aquí.
+:::
+
+::: {.callout-tip}
+## La idempotente y la simplificativa, en una frase
+
+- Idempotente: repetir un suceso no añade información. «Sale par o sale par» es «sale par».
+- Simplificativa: si $A$ ya está dentro de $A \cup B$, intersecarlos deja $A$. Es el mismo razonamiento de siempre: $A \subset A\cup B$ y $A \cap B \subset A$.
+:::
+
+### Ejemplo resuelto: comprobar la distributiva con el dado {.unnumbered}
+
+Sean $A = \{1,2,3\}$, $B = \{1,3,5\}$ y $C = \{2,4,6\}$ en $E = \{1,2,3,4,5,6\}$. Comprueba que $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+
+Primer miembro:
+
+$$
+B \cup C = \{1,2,3,4,5,6\} = E \Rightarrow A \cap E = \{1,2,3\}
+$$
+
+Segundo miembro:
+
+$$
+A \cap B = \{1,3\}, \quad A \cap C = \{2\} \Rightarrow \{1,3\} \cup \{2\} = \{1,2,3\} \ \checkmark
+$$
+
+**Comentario final.** Las dos vías dan $A$, como tenía que ser: al ser $B \cup C = E$, el primer miembro es $A \cap E = A$ por el elemento neutro. Cuando puedas, busca atajos como este antes de calcular todo.
+
+### Ejemplo resuelto: una simplificación algebraica {.unnumbered}
+
+Demuestra que $A \cup (\overline{A} \cap B) = A \cup B$.
+
+Paso 1. Aplico la distributiva de la unión sobre la intersección:
+
+$$
+A \cup (\overline{A} \cap B) = (A \cup \overline{A}) \cap (A \cup B)
+$$
+
+Paso 2. Uso el elemento complementario, $A \cup \overline{A} = E$:
+
+$$
+= E \cap (A \cup B)
+$$
+
+Paso 3. Uso el elemento neutro de la intersección:
+
+$$
+= A \cup B
+$$
+
+**Comentario final.** Léelo en palabras para que no se te olvide: «$A$, o bien $B$ sin $A$» es exactamente «$A$ o $B$». La expresión $A \cup (\overline{A}\cap B)$ es la forma de escribir la unión como suma de **dos trozos disjuntos**, y por eso se usa tanto en probabilidad: al ser incompatibles, sus probabilidades se suman sin restar nada.
+
+### Applet · Comprobador de propiedades {.unnumbered}
+
+::: {#panel-propiedades .applet-panel data-applet-est4="propiedades"}
+:::
+
+Elige una propiedad, introduce tus propios sucesos y comprueba si los dos miembros coinciden. Intenta también forzar un contraejemplo de la conmutativa de la diferencia: verás que aparece casi siempre.
+
+### Las leyes de De Morgan
+
+De todas las propiedades anteriores hay **tres de aprendizaje obligatorio**: la del contrario del contrario y estas dos, conocidas como leyes de De Morgan:
+
+$$
+\overline{A \cup B} = \overline{A} \cap \overline{B}
+$$
+
+$$
+\overline{A \cap B} = \overline{A} \cup \overline{B}
+$$
+
+En palabras: **el contrario de la unión es la intersección de los contrarios**, y **el contrario de la intersección es la unión de los contrarios**.
+
+::: {.callout-important}
+## Cómo hacerlas intuitivas (y no olvidarlas nunca)
+
+Sea $A =$ «llevar gafas» y $B =$ «tener los ojos claros».
+
+- $\overline{A \cup B}$ significa «no es cierto que lleve gafas o tenga ojos claros». Si eso es verdad, la persona **ni** lleva gafas **ni** tiene ojos claros: no lleva gafas **y** no tiene ojos claros. Es decir, $\overline{A} \cap \overline{B}$.
+- $\overline{A \cap B}$ significa «no es cierto que lleve gafas y tenga ojos claros». Basta con que le falle **una** de las dos condiciones, no necesariamente las dos. Es decir, $\overline{A} \cup \overline{B}$.
+
+La regla mecánica («se cambia $\cup$ por $\cap$ y se pone raya a cada uno») se olvida en un mes; el razonamiento del «ni... ni...» no se olvida.
+:::
+
+### Ejemplo resuelto: verificación numérica de De Morgan {.unnumbered}
+
+En una urna hay 8 bolas numeradas del 1 al 8. Se extrae una bola al azar y se consideran $A =$ «salir número mayor que 3» y $B =$ «salir número par». Comprueba las tres propiedades obligatorias.
+
+Datos de partida:
+
+$$
+A = \{4,5,6,7,8\} \Rightarrow \overline{A} = \{1,2,3\}
+$$
+
+$$
+B = \{2,4,6,8\} \Rightarrow \overline{B} = \{1,3,5,7\}
+$$
+
+$$
+A \cup B = \{2,4,5,6,7,8\}, \qquad A \cap B = \{4,6,8\}
+$$
+
+**a)** Primera ley de De Morgan:
+
+$$
+\overline{A \cup B} = \{1,3\}; \qquad \overline{A} \cap \overline{B} = \{1,2,3\} \cap \{1,3,5,7\} = \{1,3\} \ \checkmark
+$$
+
+**b)** Segunda ley de De Morgan:
+
+$$
+\overline{A \cap B} = \{1,2,3,5,7\}; \qquad \overline{A} \cup \overline{B} = \{1,2,3\} \cup \{1,3,5,7\} = \{1,2,3,5,7\} \ \checkmark
+$$
+
+**c)** Contrario del contrario:
+
+$$
+\overline{\overline{A}} = \overline{\{1,2,3\}} = \{4,5,6,7,8\} = A \ \checkmark
+$$
+
+**Comentario final.** Fíjate en el tamaño de los dos resultados: el contrario de la unión tiene solo 2 elementos y el contrario de la intersección tiene 5. Es coherente con la intuición: es difícil que **no ocurra ninguno** de los dos sucesos y es fácil que **no ocurran los dos a la vez**.
+
+### Applet · Leyes de De Morgan paso a paso {.unnumbered}
+
+::: {#panel-morgan .applet-panel data-applet-est4="morgan"}
+:::
+
+Introduce $A$, $B$ y el espacio muestral, y sigue la verificación región a región. Observa que el applet pinta primero el contrario de la unión y después la intersección de los contrarios: son la misma zona exterior del diagrama.
+
+#### Ejemplo resuelto: batería completa sobre el dado
+
+Lanzamos un dado, $E = \{1,2,3,4,5,6\}$, y consideramos
+
+$$
+A = \{1,2,3\}, \quad B = \{1,3,5\}, \quad C = \{2,4,6\}, \quad D = \{1,3\}.
+$$
+
+Calculamos todas las operaciones. Intersecciones:
+
+$$
+A \cap B = \{1,3\}; \qquad A \cap C = \{2\}; \qquad B \cap C = \varnothing
+$$
+
+Uniones:
+
+$$
+A \cup B = \{1,2,3,5\}; \qquad A \cup C = \{1,2,3,4,6\}; \qquad B \cup C = \{1,2,3,4,5,6\} = E
+$$
+
+Contrarios:
+
+$$
+\overline{A} = \{4,5,6\}; \qquad \overline{B} = \{2,4,6\}; \qquad \overline{C} = \{1,3,5\}
+$$
+
+Diferencias:
+
+$$
+A - B = \{2\}; \qquad B - C = \{1,3,5\} = B; \qquad D - B = \varnothing
+$$
+
+**Comentario final: tres lecturas que conviene decir en voz alta.**
+
+1. $B \cap C = \varnothing$: son **incompatibles**, y además $B \cup C = E$, luego son **complementarios**, es decir, $\overline{B} = C$. Comprueba en la lista de contrarios que efectivamente $\overline{B} = \{2,4,6\} = C$.
+2. $B - C = B$: restar un conjunto disjunto no quita nada. En general, $B \cap C = \varnothing \Rightarrow B - C = B$.
+3. $D - B = \varnothing$ porque $D \subset B$.
+
+Y de propina, una comprobación de De Morgan con estos datos: $\overline{A \cap B} = \overline{\{1,3\}} = \{2,4,5,6\}$, mientras que $\overline{A} \cup \overline{B} = \{4,5,6\} \cup \{2,4,6\} = \{2,4,5,6\}$ $\checkmark$.
+
+### Applet · Batería sobre el dado {.unnumbered}
+
+::: {#panel-morgan-dado .applet-panel data-applet-est4="morganDado"}
+:::
+
+El applet reproduce esta batería y te deja cambiar los cuatro sucesos. Fíjate especialmente en qué parejas resultan incompatibles y en cuáles son además complementarias: son dos cosas distintas.
+
+#### Ejemplo resuelto: la última cifra de la lotería
+
+En un sorteo de lotería nos fijamos solo en la última cifra premiada, así que
+
+$$
+E = \{0,1,2,3,4,5,6,7,8,9\}
+$$
+
+y consideramos
+
+$$
+A = \{0,1,2,3\}, \qquad B = \{0,2,4,6,8\}, \qquad C = \{6,7,8,9\}.
+$$
+
+Paso 1. Uniones e intersecciones básicas:
+
+$$
+A \cup B = \{0,1,2,3,4,6,8\}; \qquad A \cap B = \{0,2\}
+$$
+
+$$
+A \cap C = \varnothing \ \text{(incompatibles)}; \qquad B \cap C = \{6,8\}
+$$
+
+Paso 2. Expresiones con paréntesis, respetando el orden de operaciones:
+
+$$
+(A \cup B) \cap C = \{0,1,2,3,4,6,8\} \cap \{6,7,8,9\} = \{6,8\}
+$$
+
+$$
+(A \cap B) \cup C = \{0,2\} \cup \{6,7,8,9\} = \{0,2,6,7,8,9\}
+$$
+
+Paso 3. Verificación de De Morgan sobre un espacio de 10 elementos:
+
+$$
+\overline{A \cup B} = \{5,7,9\}
+$$
+
+$$
+\overline{A} = \{4,5,6,7,8,9\}, \quad \overline{B} = \{1,3,5,7,9\} \Rightarrow \overline{A} \cap \overline{B} = \{5,7,9\} \ \checkmark
+$$
+
+**Comentario final.** Los tres elementos que quedan, $5$, $7$ y $9$, son las cifras que no están ni en $A$ ni en $B$: impares y mayores que 3. Es la lectura del «ni... ni...» en acción. Observa además que los paréntesis del paso 2 cambian por completo el resultado: $(A\cup B)\cap C$ tiene 2 elementos y $(A \cap B) \cup C$ tiene 6. En sucesos, como en aritmética, el paréntesis manda.
+
+### Applet · La última cifra de la lotería {.unnumbered}
+
+::: {#panel-morgan-loteria .applet-panel data-applet-est4="morganLoteria"}
+:::
+
+Cambia los tres sucesos y comprueba si sigues encontrando parejas incompatibles. Intenta también construir un caso en el que $(A\cup B)\cap C = (A\cap B)\cup C$ y explica por qué ocurre.
+
+#### Actividades propuestas con solución
+
+**1.** En la extracción de una bola de una bolsa con 10 bolas numeradas del 1 al 10 se consideran $A =$ «número par» y $B =$ «múltiplo de 3». Calcula $A \cup B$, $A \cap B$, $\overline{A \cup B}$ y $\overline{A} \cap B$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$A = \{2,4,6,8,10\}$ y $B = \{3,6,9\}$.
+
+$$
+A \cup B = \{2,3,4,6,8,9,10\}; \qquad A \cap B = \{6\}
+$$
+
+$$
+\overline{A \cup B} = \{1,5,7\}
+$$
+
+$$
+\overline{A} \cap B = \{1,3,5,7,9\} \cap \{3,6,9\} = \{3,9\}
+$$
+
+El último resultado se lee «múltiplo de 3 impar». Y comprueba De Morgan: $\overline{A} \cap \overline{B} = \{1,3,5,7,9\} \cap \{1,2,4,5,7,8,10\} = \{1,5,7\} = \overline{A\cup B}$ $\checkmark$.
+:::
+
+**2.** De postre se puede elegir manzana roja o verde, ciruela roja, pera verde o amarilla, o plátano. Sean $A =$ «elegir fruta roja», $B =$ «elegir manzana» y $C =$ «elegir plátano o pera». Halla $A \cap B$ y comprueba que $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Con las iniciales, $E = \{MR, MV, CR, PV, PA, PL\}$ (manzana roja, manzana verde, ciruela roja, pera verde, pera amarilla, plátano). Entonces
+
+$$
+A = \{MR, CR\}, \qquad B = \{MR, MV\}, \qquad C = \{PL, PV, PA\}.
+$$
+
+$$
+A \cap B = \{MR\}; \qquad A \cup B = \{MR, MV, CR\}; \qquad \overline{A \cup B} = \{PV, PA, PL\} = C
+$$
+
+Por otro lado, $\overline{A} = \{MV, PV, PA, PL\}$ y $\overline{B} = \{CR, PV, PA, PL\}$, luego
+
+$$
+\overline{A} \cap \overline{B} = \{PV, PA, PL\} \ \checkmark
+$$
+
+Detalle bonito: el contrario de «roja o manzana» resulta ser exactamente $C$, «plátano o pera». Tiene sentido: lo que no es rojo ni es manzana es precisamente el resto del menú.
+:::
+
+**3.** Se gira una ruleta dividida en 12 sectores numerados del 1 al 12. Expresa como unión o intersección: $A =$ «múltiplo de 3 o de 7»; $B =$ «múltiplo de 2 y de 3»; $C =$ «divisor de 6 y de 8».
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+A = \{3,6,9,12\} \cup \{7\} = \{3,6,7,9,12\}
+$$
+
+$$
+B = \{2,4,6,8,10,12\} \cap \{3,6,9,12\} = \{6,12\}
+$$
+
+$$
+C = \{1,2,3,6\} \cap \{1,2,4,8\} = \{1,2\}
+$$
+
+Observa que $B$ son los múltiplos de 6 y $C$ son los divisores comunes de 6 y 8, es decir, los divisores de su máximo común divisor, que es 2.
+:::
+
+**4.** Demuestra que $A \cup (\overline{A} \cap B) = A \cup B$ usando solo las propiedades.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Por la distributiva,
+
+$$
+A \cup (\overline{A} \cap B) = (A \cup \overline{A}) \cap (A \cup B) = E \cap (A \cup B) = A \cup B,
+$$
+
+donde en el último paso se ha usado el elemento neutro de la intersección.
+:::
+
+**5.** En una competición de natación, el 65 % son menores de 30 años, el 53 % son chicas y el 88 % son chicos o menores de 30 años. Calcula el porcentaje de chicas menores de 30 años.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Sean $A =$ «ser menor de 30» y $B =$ «ser chica», con
+
+$$
+|A| = 0{,}65, \qquad |B| = 0{,}53, \qquad |\overline{B} \cup A| = 0{,}88 .
+$$
+
+Por De Morgan, $\overline{\overline{B} \cup A} = B \cap \overline{A}$, luego las chicas de 30 o más son
+
+$$
+1 - 0{,}88 = 0{,}12 .
+$$
+
+Y como toda chica es o menor de 30 o no lo es, $|B| = |B \cap A| + |B \cap \overline{A}|$, así que
+
+$$
+|B \cap A| = 0{,}53 - 0{,}12 = 0{,}41 .
+$$
+
+Es decir, el **41 %**. El paso clave es reconocer que el dato raro, «chicos o menores de 30», es el contrario de «chicas de 30 o más».
+:::
+
+**6.** Escribe con operaciones de sucesos, siendo $A$, $B$ y $C$ tres sucesos cualesquiera: a) «ocurre exactamente uno de los tres»; b) «no ocurre ninguno»; c) «ocurren al menos dos».
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+**a)** Hay que exigir uno y negar los otros dos, y sumar las tres posibilidades:
+
+$$
+(A \cap \overline{B} \cap \overline{C}) \cup (\overline{A} \cap B \cap \overline{C}) \cup (\overline{A} \cap \overline{B} \cap C)
+$$
+
+**b)** Por De Morgan generalizado:
+
+$$
+\overline{A} \cap \overline{B} \cap \overline{C} = \overline{A \cup B \cup C}
+$$
+
+**c)** «Al menos dos» son las tres parejas, sin exigir nada del tercero:
+
+$$
+(A \cap B) \cup (A \cap C) \cup (B \cap C)
+$$
+
+Los tres solapamientos ya incluyen el caso de que ocurran los tres, así que no hay que añadirlo aparte.
+:::
+
+## Tabla maestra de traducción
+
+Esta tabla es el resumen operativo del apartado. Cópiala a mano en la primera página de tus apuntes del tema y consúltala cada vez que empieces un problema.
+
+| Enunciado | Suceso | Truco |
+|---|---|---|
+| «Ocurre $A$ o $B$» («o» inclusiva) | $A \cup B$ | Incluye el caso de que ocurran ambos |
+| «Ocurren $A$ y $B$» | $A \cap B$ | Zona común |
+| «No ocurre $A$» | $\overline{A}$ | Usar $1 - P(A)$ |
+| «Ocurre $A$ pero no $B$» | $A \cap \overline{B}$ | Nunca dejarlo como $A - B$ |
+| «No ocurre ninguno de los dos» | $\overline{A} \cap \overline{B} = \overline{A \cup B}$ | De Morgan |
+| «No ocurren los dos a la vez» | $\overline{A} \cup \overline{B} = \overline{A \cap B}$ | De Morgan |
+| «Ocurre al menos uno» | $A \cup B$ | Contrario de «ninguno» |
+| «Ocurre exactamente uno» | $(A \cap \overline{B}) \cup (\overline{A} \cap B)$ | Diferencia simétrica |
+
+: Resumen operativo de traducción de enunciados
+
+::: {.callout-caution}
+## La trampa que más cae en el examen
+
+Las dos filas de De Morgan son las que más se confunden. Diagnóstico rapidísimo: **¿cuál es el contrario de «los dos aprueban»?**
+
+La respuesta incorrecta habitual es «los dos suspenden». La correcta es «**al menos uno suspende**», porque
+
+$$
+\overline{A \cap B} = \overline{A} \cup \overline{B} .
+$$
+
+«Los dos suspenden» es $\overline{A} \cap \overline{B}$, que es el contrario de «al menos uno aprueba». Si te equivocas aquí, te equivocarás en todos los problemas de «al menos».
+:::
+
+### Ejemplo resuelto: pasar la tabla maestra por un enunciado real {.unnumbered}
+
+Una empresa fabrica lámparas. Sea $A =$ «la lámpara tiene un defecto de pintura» y $B =$ «la lámpara tiene un defecto eléctrico». Traduce y simplifica:
+
+**a)** «La lámpara sale a la venta», es decir, no tiene ningún defecto:
+
+$$
+\overline{A} \cap \overline{B} = \overline{A \cup B}
+$$
+
+**b)** «La lámpara se puede reparar en el taller», es decir, no acumula los dos defectos:
+
+$$
+\overline{A \cap B} = \overline{A} \cup \overline{B}
+$$
+
+**c)** «La lámpara solo tiene el defecto de pintura»:
+
+$$
+A \cap \overline{B}
+$$
+
+**d)** «La lámpara tiene un único defecto»:
+
+$$
+(A \cap \overline{B}) \cup (\overline{A} \cap B)
+$$
+
+**Comentario final.** Observa cómo los apartados a) y b) se parecen en el enunciado y son sucesos muy distintos en tamaño: b) contiene a a) y muchísimo más. En probabilidad esto se traducirá en $P(\overline{A\cup B}) \le P(\overline{A \cap B})$, siempre.
+
+### Applet · Tabla maestra de traducción {.unnumbered}
+
+::: {#panel-tabla-maestra .applet-panel data-applet-est4="tablaMaestra"}
+:::
+
+El applet te da un enunciado en castellano y tienes que elegir la expresión de sucesos correcta, o al contrario. Trabájalo hasta encadenar diez aciertos seguidos en las dos filas de De Morgan.
+
+## Pensamiento crítico
+
+Cuatro preguntas para discutir en clase. Piensa tu respuesta antes de abrir la pista.
+
+**1. ¿Por qué $A - B$ no es conmutativa y $A \cup B$ sí?**
+
+::: {.callout-tip collapse="true"}
+## Pista razonada
+
+Porque la unión y la intersección son **simétricas en su definición**: «$x$ está en uno u otro» no distingue papeles. La diferencia, en cambio, establece un papel asimétrico: uno aporta los elementos y el otro los quita.
+
+Pregunta de rebote: ¿qué relación debe cumplirse para que $A - B = B - A$? Solo si $A = B$, y en ese caso ambas son $\varnothing$.
+:::
+
+**2. ¿Cómo deben ser $A$ y $B$ para que $\overline{A \cap B} = \overline{A} \cap \overline{B}$?**
+
+::: {.callout-tip collapse="true"}
+## Pista razonada
+
+Por De Morgan sabemos que el primer miembro es $\overline{A} \cup \overline{B}$. Así que la pregunta equivale a exigir
+
+$$
+\overline{A} \cup \overline{B} = \overline{A} \cap \overline{B},
+$$
+
+lo cual solo ocurre si $\overline{A} = \overline{B}$, es decir, si $A = B$. Moraleja: la igualdad que muchos escriben por descuido solo es cierta en un caso degenerado.
+:::
+
+**3. ¿Qué relación deben cumplir $A$ y $B$ para que $P(A \cup B) = P(A)$ y $P(A \cap B) = P(B)$?**
+
+::: {.callout-tip collapse="true"}
+## Pista razonada
+
+Ambas condiciones dicen lo mismo: que $B \subset A$. Si $B$ está dentro de $A$, unirlos no añade nada e intersecarlos deja exactamente $B$. Dibújalo: el diagrama de Venn con un círculo dentro del otro resuelve la pregunta de un golpe de vista.
+:::
+
+**4. ¿Se puede tener $A \cap B = \varnothing$ siendo $A$ y $B$ no vacíos y muy grandes?**
+
+::: {.callout-tip collapse="true"}
+## Pista razonada
+
+Sí, y es lo normal. En el dado, $\{1,3,5\}$ y $\{2,4,6\}$ son grandes, no vacíos y disjuntos: entre los dos agotan todo el espacio muestral. Que dos sucesos sean **incompatibles** no dice nada sobre su tamaño ni sobre su probabilidad; dice solo que no comparten resultados.
+
+Rebote: ¿puede haber tres sucesos no vacíos, incompatibles dos a dos, en el dado? Sí: $\{1,2\}$, $\{3,4\}$ y $\{5,6\}$. ¿Y cuatro? También, pero alguno tendrá que ser elemental.
+:::
+
+## Repaso rápido
+
+- La unión, la intersección y el complementario cumplen conmutativa, asociativa, **las dos distributivas**, neutro, complementario, idempotente y simplificativa.
+- Tres propiedades son de memorización obligatoria: $\overline{\overline{A}} = A$ y las dos leyes de De Morgan.
+- $\overline{A \cup B} = \overline{A} \cap \overline{B}$ es el «**ni... ni...**»: no ocurre ninguno.
+- $\overline{A \cap B} = \overline{A} \cup \overline{B}$ es el «**no los dos a la vez**»: al menos uno falla.
+- El contrario de «los dos aprueban» es «al menos uno suspende», nunca «los dos suspenden».
+- $A - B$ se escribe siempre como $A \cap \overline{B}$, porque solo sabemos calcular probabilidades de uniones, intersecciones y contrarios.
+- La tabla maestra traduce ocho enunciados típicos; cópiala y úsala antes de calcular nada.
+
+En el apartado siguiente cambiamos de escena: pasamos de un solo experimento a **experimentos compuestos** por varias etapas, y aparece la herramienta más rentable de todo el tema, el árbol ponderado.

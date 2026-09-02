@@ -1,0 +1,545 @@
+---
+title: "Tema 4.5 Árboles no uniformes y práctica"
+subtitle: "Estadística · 2.º de Bachillerato — Probabilidad parte 1"
+filename: 05-2-arboles-no-uniformes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Experimentos en los que el producto cartesiano falla, la paradoja histórica de Fermat y Roberval sobre la equiprobabilidad, un bloque amplio de actividades resueltas con árboles ponderados y el puente hacia la definición de probabilidad de Laplace.
+categories: [probabilidad, 2 Batx, estadística]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+En el apartado anterior todos los árboles tenían la misma forma en todas sus ramas: la segunda etapa era siempre «extraer una bola» o siempre «lanzar el dado». Ahora vamos a romper esa comodidad, porque los enunciados reales la rompen con frecuencia.
+
+## Árboles no uniformes: cuando el producto cartesiano falla
+
+Todo lo anterior supone que la segunda etapa tiene siempre el **mismo número de resultados posibles**, y de hecho de la **misma naturaleza**. Pero eso no siempre ocurre.
+
+::: {.callout-warning}
+## Cuándo deja de valer $|E| = n_1 \cdot n_2$
+
+Si la segunda etapa **depende de qué haya salido en la primera no solo en sus probabilidades, sino en su propia lista de resultados**, entonces no existe un producto cartesiano único y la fórmula $|E| = n_1 \cdot n_2$ deja de ser válida. El cardinal hay que obtenerlo **sumando por bloques**.
+:::
+
+### Ejemplo resuelto: dado, moneda o urna {.unnumbered}
+
+Se lanza un dado. Si sale par, se lanza una moneda; si sale impar, se extrae una bola de una urna con 3 bolas numeradas. Describe $E$ y calcula la probabilidad de obtener cara.
+
+Paso 1. Reconozco la estructura. La primera etapa tiene 6 resultados, pero la segunda **cambia de naturaleza**: unas veces es $\{C, X\}$ y otras es $\{1, 2, 3\}$. No hay producto cartesiano único.
+
+Paso 2. Describo $E$ por bloques:
+
+$$
+E = \{2C, 2X, 4C, 4X, 6C, 6X\} \cup \{1{\cdot}1, 1{\cdot}2, 1{\cdot}3, 3{\cdot}1, 3{\cdot}2, 3{\cdot}3, 5{\cdot}1, 5{\cdot}2, 5{\cdot}3\}
+$$
+
+Paso 3. El cardinal se obtiene sumando bloques, no multiplicando:
+
+$$
+|E| = 3 \cdot 2 + 3 \cdot 3 = 6 + 9 = 15
+$$
+
+Paso 4. La probabilidad de cara. Solo aportan los tres caminos que pasan por «par», y cada uno vale $\tfrac{1}{6}\cdot\tfrac{1}{2}$:
+
+$$
+P(\text{cara}) = \frac{3}{6}\cdot\frac{1}{2} = \frac{1}{4}
+$$
+
+Paso 5. Comprobación global. La rama «par» aporta 6 caminos de probabilidad
+
+$$
+\frac{1}{6}\cdot\frac{1}{2} = \frac{1}{12},
+$$
+
+es decir, $\tfrac{6}{12} = \tfrac{1}{2}$. La rama «impar» aporta 9 caminos de probabilidad
+
+$$
+\frac{1}{6}\cdot\frac{1}{3} = \frac{1}{18},
+$$
+
+es decir, $\tfrac{9}{18} = \tfrac{1}{2}$. Total: $1$ $\checkmark$.
+
+**Comentario final.** Los 15 sucesos elementales **no** son equiprobables: seis valen $\tfrac{1}{12}$ y nueve valen $\tfrac{1}{18}$. Si alguien contara «casos favorables partido por casos posibles» diría que $P(\text{cara}) = \tfrac{3}{15} = 0{,}2$, y estaría **mal**: la respuesta es $0{,}25$. Este es el error más grave que se puede cometer en todo el tema.
+
+::: {.callout-important}
+## En cuanto las ramas dejan de ser uniformes, el árbol es obligatorio
+
+La tabla de doble entrada y la combinatoria directa se vuelven **inútiles**, y el árbol pasa de ser cómodo a ser imprescindible. Este es exactamente el tipo de estructura sobre la que se montan los teoremas de la **probabilidad total** y de **Bayes**, que estudiarás en el tema siguiente.
+:::
+
+### Ejemplo resuelto: moneda que se relanza {.unnumbered}
+
+Se lanza una moneda. Si sale cara, se lanza un dado; si sale cruz, se lanza la moneda otra vez. Describe $E$, calcula $|E|$ y comprueba que las probabilidades suman 1.
+
+Paso 1. Espacio muestral por bloques:
+
+$$
+E = \{C1, C2, C3, C4, C5, C6, XC, XX\} \Rightarrow |E| = 6 + 2 = 8
+$$
+
+Paso 2. Probabilidades de cada bloque. Seis caminos de
+
+$$
+\frac{1}{2}\cdot\frac{1}{6} = \frac{1}{12}
+$$
+
+y dos caminos de
+
+$$
+\frac{1}{2}\cdot\frac{1}{2} = \frac{1}{4} .
+$$
+
+Paso 3. Suma:
+
+$$
+\frac{6}{12} + \frac{2}{4} = \frac{1}{2} + \frac{1}{2} = 1 \ \checkmark
+$$
+
+**Comentario final.** Árbol no uniforme y sucesos elementales no equiprobables: $XC$ es tres veces más probable que $C3$, aunque los dos sean «un resultado» del experimento. Pregunta para pensar: ¿cuál es el resultado más probable de este experimento? Es $XC$ o $XX$, empatados a $\tfrac14$, y no ninguno de los que llevan dado.
+
+### Ejemplo resuelto: el examen con segunda oportunidad {.unnumbered}
+
+Un alumno aprueba el examen de junio con probabilidad $0{,}6$. Si lo aprueba, ya no hace nada más. Si lo suspende, va a la recuperación, que aprueba con probabilidad $0{,}5$. ¿Cuál es la probabilidad de que acabe aprobando la asignatura?
+
+Paso 1. La estructura es no uniforme: la rama «aprueba en junio» **no tiene segunda etapa**, mientras que la rama «suspende» sí.
+
+Paso 2. Caminos favorables a «aprueba la asignatura»:
+
+- Aprueba en junio: $0{,}6$.
+- Suspende en junio y aprueba la recuperación: $0{,}4 \cdot 0{,}5 = 0{,}2$.
+
+Paso 3. Sumo los caminos (Regla 2), que son incompatibles:
+
+$$
+P(\text{aprueba}) = 0{,}6 + 0{,}2 = 0{,}8
+$$
+
+Paso 4. Comprobación: el único camino restante es «suspende las dos», con $0{,}4 \cdot 0{,}5 = 0{,}2$, y $0{,}8 + 0{,}2 = 1$ $\checkmark$.
+
+**Comentario final.** Aquí hay un camino de **longitud 1** y dos caminos de **longitud 2**. El árbol no tiene por qué ser simétrico ni tener todas las hojas a la misma profundidad; lo único que tiene que cumplir es que cada nodo sume 1 y que las hojas sumen 1 en total.
+
+### Applet · Cuando el producto cartesiano falla {.unnumbered}
+
+::: {#panel-arbol-no-uniforme .applet-panel data-applet-est4="arbolNoUniforme"}
+:::
+
+Compara en el applet el cardinal obtenido por bloques con el que daría la fórmula del producto, y mira la lista de probabilidades de los sucesos elementales: verás que hay dos valores distintos, y por eso Laplace no se puede aplicar al conjunto.
+
+## Pensamiento crítico: la paradoja de Fermat y Roberval
+
+Este episodio histórico es el mejor material de discusión del tema. Léelo, decide tu respuesta y solo después abre la solución.
+
+**El problema.** Dos jugadores, $A$ y $B$, juegan a cara o cruz con una moneda equilibrada. El juego consiste en lanzar dos veces. $A$ gana si en alguna tirada sale cara; $B$ gana si tras las dos tiradas no ha salido ninguna cara. ¿Cuál es la probabilidad de que gane $A$?
+
+**Solución de Fermat.** Representando cara por $1$ y cruz por $0$:
+
+$$
+E_F = \{11, 10, 01, 00\}; \qquad |E_F| = 2^2 = 4
+$$
+
+$A$ gana en los tres primeros casos, y los cuatro casos son simétricos, luego
+
+$$
+P(A) = \frac{3}{4}; \qquad P(B) = \frac{1}{4} .
+$$
+
+**Objeción de Roberval.** «En los casos $10$ y $11$ no hacía falta lanzar la segunda moneda: $A$ ya había ganado». Sus casos posibles son entonces
+
+$$
+E_R = \{1, 01, 00\}; \qquad |E_R| = 3
+$$
+
+y concluye
+
+$$
+P(A) = \frac{2}{3}; \qquad P(B) = \frac{1}{3},
+$$
+
+distinto del resultado de Fermat. ¿Quién tiene razón?
+
+::: {.callout-tip collapse="true"}
+## Resolución en dos niveles
+
+**Nivel 1. Hay que definir el experimento.** Si el juego consiste en lanzar dos veces **pase lo que pase**, el experimento es el de Fermat. Si el juego **se detiene** en cuanto $A$ gana, los lanzamientos ya no son plenamente independientes: la realización del segundo depende del resultado del primero, y la descripción de Roberval es la correcta como **lista de resultados**.
+
+**Nivel 2. Aun así, Roberval calcula mal.** Su espacio muestral describe bien su juego, pero sus tres resultados **no son equiprobables**. Dibuja el árbol ponderado y se ve al instante:
+
+$$
+P(1) = 0{,}5, \qquad P(01) = 0{,}25, \qquad P(00) = 0{,}25
+$$
+
+$$
+P(A) = 0{,}5 + 0{,}25 = 0{,}75 = \frac{3}{4}
+$$
+
+La respuesta correcta es $\tfrac{3}{4}$ **en las dos versiones del juego**. El $\tfrac{2}{3}$ sale de contar casos como si fueran equiprobables cuando no lo son.
+:::
+
+::: {.callout-important}
+## Moraleja doble
+
+1. **Define el experimento sin ambigüedad.** Antes de contar, decide exactamente qué se hace y cuándo se para.
+2. **No podes ramas del árbol**, aunque el juego ya esté decidido: al podarlas destruyes la equiprobabilidad. Una hoja que corresponde a un camino corto «pesa» más que una hoja de un camino largo.
+
+Esto enlaza directamente con el error de D'Alembert del apartado 4.2 y con el dado de quinielas de espacio muestral $E = \{1, X, 2\}$, cuyos tres resultados tampoco son equiprobables aunque sean tres.
+:::
+
+Cuatro preguntas para el debate:
+
+1. Si en lugar de dos lanzamientos el juego fuera de tres, ¿cuál sería $P(A)$? Piensa por el complementario.
+2. ¿Cambia la respuesta si la moneda está trucada con $P(\text{cara}) = 0{,}3$? Calcúlalo por el complementario y compara.
+3. ¿Se te ocurre un juego real en el que la gente confunda «número de resultados posibles» con «probabilidades iguales»?
+4. ¿Por qué el complementario es aquí tan cómodo? Porque «ninguna cara» es un único camino, mientras que «alguna cara» son varios.
+
+::: {.callout-tip collapse="true"}
+## Respuestas razonadas a las cuatro
+
+**1.** «Ninguna cara en tres tiradas» es $0{,}5^3 = 0{,}125$, luego $P(A) = 1 - 0{,}125 = 0{,}875$.
+
+**2.** «Ninguna cara en dos tiradas» pasa a valer $0{,}7^2 = 0{,}49$, luego $P(A) = 0{,}51$. La estructura del árbol es la misma; solo cambian los pesos.
+
+**3.** El caso más común es la quiniela: mucha gente asume que $1$, $X$ y $2$ son igual de probables porque son tres símbolos. También las loterías con «números bonitos», o creer que en dos hijos «uno de cada» es tan probable como «los dos niños» (no lo es: $\tfrac12$ frente a $\tfrac14$).
+
+**4.** Porque «al menos uno» siempre tiene un contrario de un solo camino: «ninguno». Es la técnica que usarás en casi todos los problemas de «al menos».
+:::
+
+### Applet · La paradoja de Fermat y Roberval {.unnumbered}
+
+::: {#panel-fermat-roberval .applet-panel data-applet-est4="fermatRoberval"}
+:::
+
+Alterna entre el árbol completo y el árbol podado y observa que la hoja podada conserva su peso $0{,}5$: la poda cambia el dibujo, pero no puede cambiar la probabilidad.
+
+## Actividades propuestas con solución
+
+Intenta cada actividad antes de abrir la solución. Dibuja siempre el árbol, aunque el enunciado no lo pida, y comprueba la Regla 3 antes de calcular.
+
+**1.** Se extraen dos bolas de una urna con 3 rojas y 5 negras, **sin devolución**. Construye el árbol ponderado, comprueba que suma 1 y calcula la probabilidad de que sean de distinto color.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Primera etapa: $P(R) = \tfrac{3}{8}$, $P(N) = \tfrac{5}{8}$. Segunda etapa, sobre 7 bolas:
+
+$$
+P(RN) = \frac{3}{8}\cdot\frac{5}{7} = \frac{15}{56}, \qquad P(NR) = \frac{5}{8}\cdot\frac{3}{7} = \frac{15}{56}
+$$
+
+$$
+P(RR) = \frac{3}{8}\cdot\frac{2}{7} = \frac{6}{56}, \qquad P(NN) = \frac{5}{8}\cdot\frac{4}{7} = \frac{20}{56}
+$$
+
+Suma: $\dfrac{15+15+6+20}{56} = \dfrac{56}{56} = 1$ $\checkmark$.
+
+Distinto color:
+
+$$
+\frac{15}{56} + \frac{15}{56} = \frac{30}{56} = \frac{15}{28} \approx 0{,}536 .
+$$
+:::
+
+**2.** Repite la actividad anterior **con devolución** y compara los resultados.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Ahora las dos etapas son idénticas, con denominador 8:
+
+$$
+P(RR) = \frac{9}{64}, \qquad P(RN) = P(NR) = \frac{15}{64}, \qquad P(NN) = \frac{25}{64}
+$$
+
+Suma: $\tfrac{9+15+15+25}{64} = 1$ $\checkmark$. Distinto color:
+
+$$
+\frac{30}{64} = 0{,}469 .
+$$
+
+Menor que antes ($0{,}536$): **sin devolución es más fácil obtener colores distintos**, porque la primera extracción «gasta» una bola del color que ha salido y deja el otro color relativamente más abundante.
+:::
+
+**3.** De una baraja española de 40 cartas se extraen dos cartas. Calcula la probabilidad de que la primera sea un as y la segunda sea de oros si: **a)** se extraen las dos sin reemplazamiento; **b)** se reemplaza la primera antes de extraer la segunda.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+**b)** Es el caso fácil, por independencia. Hay 4 ases y 10 oros:
+
+$$
+P = \frac{4}{40}\cdot\frac{10}{40} = 0{,}1 \cdot 0{,}25 = 0{,}025
+$$
+
+**a)** Hay que separar en dos caminos, porque el as puede ser o no de oros:
+
+$$
+P = \underbrace{\frac{1}{40}\cdot\frac{9}{39}}_{\text{el as era de oros}} + \underbrace{\frac{3}{40}\cdot\frac{10}{39}}_{\text{el as no era de oros}} = \frac{9 + 30}{1560} = \frac{39}{1560} = 0{,}025
+$$
+
+Curiosamente **coinciden**. La explicación completa está justo debajo de esta actividad.
+:::
+
+### Por qué coinciden los dos resultados de la actividad 3 {.unnumbered}
+
+Merece la pena detenerse aquí, porque el resultado sorprende y la explicación es preciosa.
+
+**La explicación intuitiva: todo está en el promedio.** Al quitar un as, la probabilidad de que la segunda sea de oros no es $\tfrac{10}{39}$ siempre: es $\tfrac{9}{39}$ una cuarta parte de las veces (cuando el as era de oros) y $\tfrac{10}{39}$ las tres cuartas partes restantes. Y ese promedio ponderado vale exactamente lo mismo que la proporción original:
+
+$$
+\frac{1}{4}\cdot\frac{9}{39} + \frac{3}{4}\cdot\frac{10}{39} = \frac{9+30}{156} = \frac{39}{156} = \frac{1}{4}
+$$
+
+Es decir, **saber que la primera carta fue un as no aporta ninguna información sobre el palo de la segunda**. La pérdida de un oros ocurre con probabilidad $\tfrac14$, que es precisamente la proporción de oros en la baraja, así que el efecto se cancela.
+
+**La explicación aritmética elegante.** Fíjate en los números sin simplificar:
+
+$$
+\frac{39}{1560}, \qquad \text{con } 1560 = 40 \cdot 39 .
+$$
+
+El $39$ del numerador cancela el $39$ del denominador:
+
+$$
+\frac{39}{40 \cdot 39} = \frac{1}{40} = 0{,}025,
+$$
+
+que es exactamente lo mismo que
+
+$$
+\frac{4 \cdot 10}{40^2} = \frac{40}{1600} = \frac{1}{40} .
+$$
+
+El numerador sin reemplazamiento es $1\cdot 9 + 3 \cdot 10 = 39 = 4\cdot 10 - 1$, es decir, el numerador con reemplazamiento **menos uno**, y el denominador es el de reemplazamiento reducido en el mismo factor proporcional. Los dos se encogen a la vez.
+
+**La condición general.** Sean $A$ y $B$ dos propiedades de una carta en una baraja de $n$ cartas. Extraemos dos sin reemplazamiento y queremos que la primera cumpla $A$ y la segunda cumpla $B$. Separando según si la primera carta cumplía también $B$:
+
+$$
+P_{\text{sin}} = \frac{|A \cap B|\cdot(|B|-1) + (|A| - |A\cap B|)\cdot|B|}{n(n-1)} = \frac{|A|\cdot|B| - |A \cap B|}{n(n-1)}
+$$
+
+Mientras que con reemplazamiento:
+
+$$
+P_{\text{con}} = \frac{|A|\cdot|B|}{n^2}
+$$
+
+Igualando ambas expresiones y simplificando se llega a la condición exacta:
+
+$$
+P_{\text{sin}} = P_{\text{con}} \iff n\cdot|A\cap B| = |A|\cdot|B| \iff \frac{|A\cap B|}{n} = \frac{|A|}{n}\cdot\frac{|B|}{n}
+$$
+
+Y esa última igualdad es, literalmente, la definición de que $A$ y $B$ sean **independientes** en una sola extracción.
+
+::: {.callout-note}
+## Conclusión
+
+Los dos resultados coinciden **si y solo si** las dos propiedades son independientes dentro de una única carta. En nuestro caso, «ser as» y «ser de oros» lo son, porque la baraja es una cuadrícula perfecta de 4 palos por 10 números:
+
+$$
+\frac{1}{40} = \frac{4}{40}\cdot\frac{10}{40} \ \checkmark
+$$
+
+Si la baraja tuviera, por ejemplo, dos ases de oros, la coincidencia se rompería.
+:::
+
+**4.** Se dispone de dos urnas: $U_1$ con 2 blancas y 12 negras, y $U_2$ con 3 blancas y 10 negras. Se elige una urna al azar y se extrae una bola. Dibuja el árbol y calcula la probabilidad de que sea negra.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Primera etapa: $P(U_1) = P(U_2) = \tfrac12$. Segunda etapa: $U_1$ tiene 14 bolas y $U_2$ tiene 13.
+
+$$
+P(N) = \frac{1}{2}\cdot\frac{12}{14} + \frac{1}{2}\cdot\frac{10}{13} = \frac{6}{14} + \frac{5}{13} = \frac{39 + 35}{91} = \frac{74}{91} \approx 0{,}813
+$$
+
+Control: $P(B) = \tfrac12\cdot\tfrac{2}{14} + \tfrac12\cdot\tfrac{3}{13} = \tfrac{1}{14} + \tfrac{3}{26} = \tfrac{17}{91}$, y $\tfrac{74}{91} + \tfrac{17}{91} = 1$ $\checkmark$.
+
+Cuidado con la tentación de sumar todas las bolas de las dos urnas: eso daría $\tfrac{22}{27} \approx 0{,}815$, un valor parecido pero **incorrecto**, porque las urnas no tienen el mismo número de bolas y la moneda las elige con el mismo peso.
+:::
+
+**5.** Un cajón tiene 4 calcetines negros y 6 azules. Sacas dos a oscuras. ¿Cuál es la probabilidad de formar una pareja del mismo color?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Sin devolución, evidentemente:
+
+$$
+P = \frac{4}{10}\cdot\frac{3}{9} + \frac{6}{10}\cdot\frac{5}{9} = \frac{12 + 30}{90} = \frac{42}{90} \approx 0{,}467
+$$
+
+**Menos de la mitad de las veces.** Es un resultado que sorprende y que invita a discutir: ¿cuántos calcetines habría que sacar para **garantizar** una pareja? Tres, porque con solo dos colores el tercer calcetín repite alguno por fuerza. Y observa la diferencia entre «garantizar» (certeza, no hay azar) y «probabilidad», que es de lo que va este tema.
+:::
+
+**6.** Se lanza una moneda. Si sale cara, se lanza un dado; si sale cruz, se lanza la moneda otra vez. Describe $E$, calcula $|E|$ y comprueba que las probabilidades suman 1.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+E = \{C1, C2, C3, C4, C5, C6, XC, XX\}, \qquad |E| = 6 + 2 = 8
+$$
+
+Seis caminos de $\tfrac12\cdot\tfrac16 = \tfrac{1}{12}$ y dos caminos de $\tfrac12\cdot\tfrac12 = \tfrac14$:
+
+$$
+\frac{6}{12} + \frac{2}{4} = 1 \ \checkmark
+$$
+
+Árbol no uniforme y sucesos elementales **no** equiprobables.
+:::
+
+**7.** En una fábrica, la máquina $M_1$ produce el 60 % de las piezas y la $M_2$ el 40 %. El 3 % de las piezas de $M_1$ son defectuosas y el 5 % de las de $M_2$ también. Se elige una pieza al azar. ¿Cuál es la probabilidad de que sea defectuosa?
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+$$
+P(D) = 0{,}6 \cdot 0{,}03 + 0{,}4 \cdot 0{,}05 = 0{,}018 + 0{,}020 = 0{,}038
+$$
+
+Es decir, el $3{,}8\ \%$. Comprobación: $P(\overline{D}) = 0{,}6\cdot0{,}97 + 0{,}4\cdot0{,}95 = 0{,}582 + 0{,}380 = 0{,}962$, y $0{,}038 + 0{,}962 = 1$ $\checkmark$.
+
+Y observa que $0{,}038$ está entre $0{,}03$ y $0{,}05$, más cerca de $0{,}03$ porque $M_1$ pesa más. Ese control mental te salvará de errores de bulto.
+:::
+
+**8.** Se lanzan tres monedas. Calcula la probabilidad de obtener al menos una cara y la de obtener exactamente dos caras.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Aquí los $2^3 = 8$ caminos **sí** son equiprobables, con probabilidad $\tfrac18$ cada uno.
+
+«Al menos una cara», por el complementario:
+
+$$
+P = 1 - P(XXX) = 1 - \frac{1}{8} = \frac{7}{8} = 0{,}875
+$$
+
+«Exactamente dos caras»: los caminos $CCX$, $CXC$ y $XCC$, luego
+
+$$
+P = \frac{3}{8} = 0{,}375 .
+$$
+
+No confundas «exactamente dos» con «al menos dos», que además incluiría $CCC$ y valdría $\tfrac48 = \tfrac12$.
+:::
+
+**9.** Una urna tiene 5 bolas blancas y 3 rojas. Se extraen dos sin devolución. Calcula la probabilidad de que la segunda sea blanca.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Hay que sumar los dos caminos que acaban en blanca:
+
+$$
+P(B_2) = \frac{5}{8}\cdot\frac{4}{7} + \frac{3}{8}\cdot\frac{5}{7} = \frac{20 + 15}{56} = \frac{35}{56} = \frac{5}{8}
+$$
+
+Sorpresa: sale $\tfrac58$, **exactamente la misma probabilidad que en la primera extracción**. No es casualidad. Si no sabes nada del resultado de la primera bola, la segunda tiene la misma probabilidad que la primera; por simetría, cualquier posición de la extracción es equivalente. Esa es la razón por la que en un sorteo da igual el orden en que te toque elegir.
+:::
+
+**10.** Se lanza un dado. Si sale 1 o 2, se extrae una bola de una urna con 3 blancas y 1 negra; en cualquier otro caso, se extrae de una urna con 1 blanca y 4 negras. Calcula $P(\text{blanca})$.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Primera etapa: $P(\{1,2\}) = \tfrac26 = \tfrac13$ y $P(\{3,4,5,6\}) = \tfrac46 = \tfrac23$.
+
+$$
+P(\text{blanca}) = \frac{1}{3}\cdot\frac{3}{4} + \frac{2}{3}\cdot\frac{1}{5} = \frac{1}{4} + \frac{2}{15} = \frac{15 + 8}{60} = \frac{23}{60} \approx 0{,}383
+$$
+
+Control: $P(\text{negra}) = \tfrac13\cdot\tfrac14 + \tfrac23\cdot\tfrac45 = \tfrac{1}{12} + \tfrac{8}{15} = \tfrac{5 + 32}{60} = \tfrac{37}{60}$, y $\tfrac{23}{60} + \tfrac{37}{60} = 1$ $\checkmark$.
+
+Fíjate en que las seis caras del dado se han agrupado en dos ramas: agrupar ramas equivalentes es legítimo y simplifica muchísimo el dibujo.
+:::
+
+**11.** Un tirador acierta el blanco con probabilidad $0{,}7$. Dispara tres veces de forma independiente. Calcula la probabilidad de que acierte al menos una vez y la de que acierte exactamente una vez.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Al menos uno, por el complementario:
+
+$$
+P = 1 - 0{,}3^3 = 1 - 0{,}027 = 0{,}973
+$$
+
+Exactamente uno: hay tres caminos, según en qué tiro acierta, y cada uno vale $0{,}7\cdot0{,}3\cdot0{,}3$:
+
+$$
+P = 3 \cdot 0{,}7 \cdot 0{,}09 = 0{,}189
+$$
+
+Observa que el árbol tiene $2^3 = 8$ hojas, pero **no** son equiprobables: van desde $0{,}7^3 = 0{,}343$ hasta $0{,}3^3 = 0{,}027$. Aquí contar hojas sería un desastre.
+:::
+
+**12.** Se extraen dos cartas de una baraja de 40 sin devolución. Calcula la probabilidad de que al menos una sea de oros.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+Por el complementario, «ninguna de oros» significa las dos de los otros tres palos (30 cartas):
+
+$$
+P(\text{ninguna oros}) = \frac{30}{40}\cdot\frac{29}{39} = \frac{870}{1560} \approx 0{,}5577
+$$
+
+$$
+P(\text{al menos una oros}) = 1 - 0{,}5577 = 0{,}4423
+$$
+
+Si lo hubieras hecho por caminos favorables tendrías que sumar tres caminos ($OO$, $O\overline{O}$, $\overline{O}O$); el complementario es un único camino. Regla práctica: **en cuanto veas «al menos», piensa en el contrario**.
+:::
+
+### Applet · Entrenador de árboles y sucesos {.unnumbered}
+
+::: {#panel-entrenador .applet-panel data-applet-est4="entrenador"}
+:::
+
+El entrenador te propone enunciados nuevos, te pide las probabilidades de las ramas y corrige tus respuestas al vuelo. Trabájalo hasta que la comprobación de la Regla 3 te salga de forma automática, sin pensar.
+
+## Puente hacia la probabilidad de Laplace
+
+Ya has visto cómo descomponer un experimento en etapas, representarlo con un árbol ponderado y calcular la probabilidad de cualquier suceso **multiplicando** a lo largo de los caminos y **sumando** entre ellos. También sabes distinguir etapas independientes de dependientes según haya o no reemplazamiento.
+
+Hay, sin embargo, una pieza que hemos usado **sin justificar**: de dónde salen los números que escribimos en las ramas. Cuando decimos que la probabilidad de sacar blanca es $\tfrac{2}{4}$, estamos aplicando implícitamente una regla que aún no hemos enunciado.
+
+En el apartado siguiente, «Definición de probabilidad de Laplace», la formalizamos por fin:
+
+$$
+P(A) = \frac{\text{n.º de casos favorables a } A}{\text{n.º de casos posibles}}
+$$
+
+con la condición de que **los sucesos elementales sean equiprobables**.
+
+::: {.callout-important}
+## La idea que cierra el apartado
+
+Entenderás entonces por qué el árbol ponderado sigue funcionando incluso cuando esa condición **falla** en el experimento global: porque la regla de Laplace se aplica **rama a rama**, allí donde sí se cumple, y el árbol se encarga de combinar los resultados con la multiplicación y la suma. Esa es la razón profunda de que el árbol sea la herramienta más potente del tema.
+:::
+
+## Repaso rápido
+
+- Si la segunda etapa **cambia de naturaleza** según lo ocurrido en la primera, no hay producto cartesiano y $|E|$ se obtiene **sumando por bloques**.
+- En un árbol no uniforme los sucesos elementales **no son equiprobables**: contar casos favorables partido por casos posibles da resultados falsos.
+- El árbol puede tener hojas a distinta profundidad; lo único obligatorio es que cada nodo sume 1 y que todas las hojas sumen 1.
+- La paradoja de Fermat y Roberval enseña dos cosas: **define el experimento** y **no podes ramas**, porque la poda destruye la equiprobabilidad.
+- «Al menos uno» se calcula casi siempre por el **complementario**.
+- Sin devolución, dos elementos iguales son menos probables y dos distintos más probables que con devolución; las dos versiones coinciden solo cuando las propiedades implicadas son independientes.
+- Un control mental que nunca falla: una media ponderada de proporciones tiene que quedar **entre** la mayor y la menor de ellas.
+
+Con esto termina la parte 1 del tema. El siguiente apartado formaliza la regla de Laplace y a partir de ahí construiremos la axiomática de la probabilidad.
