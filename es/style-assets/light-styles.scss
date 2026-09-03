@@ -173,6 +173,11 @@ $breadcrumb-divider: quote("/");
     }
 }
 
+// navbar dropdown menus
+.navbar .dropdown-menu .dropdown-item {
+  font-size: 0.85rem;
+}
+
 // Responsive navbar: shrink links and their inline icons (Font Awesome + flags)
 // when the horizontal bar (>= xxl / 1400px) gets cramped. Below 1400px the
 // navbar collapses to the hamburger menu (collapse-below: xxl).
