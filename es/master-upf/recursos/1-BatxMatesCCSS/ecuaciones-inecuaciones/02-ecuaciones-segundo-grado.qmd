@@ -1,0 +1,360 @@
+---
+title: "Tema 3.2 Ecuaciones de segundo grado"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 02-ecuaciones-segundo-grado
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Forma general de la ecuación de segundo grado, ecuaciones incompletas y sus métodos rápidos, deducción completa de la fórmula general completando cuadrados, el discriminante y los tres casos, interpretación gráfica con la parábola, vértice y eje de simetría, relaciones de Cardano-Vieta entre coeficientes y raíces, reconstrucción de la ecuación a partir de sus soluciones, factorización y problemas resueltos, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, segundo grado, parábola, discriminante]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La forma general
+
+En cuanto una situación involucra un producto de dos cantidades que dependen de lo mismo —el área de un terreno cuyos lados están relacionados, el ingreso de una empresa cuando el precio afecta a la demanda, la altura de un proyectil— aparece la incógnita elevada al cuadrado y las técnicas del apartado anterior dejan de servir.
+
+::: {.callout-note}
+## Definición de ecuación de segundo grado
+
+Una ecuación de **segundo grado** (o **cuadrática**) con una incógnita es toda ecuación que puede escribirse en la forma general
+$$
+ax^2 + bx + c = 0, \qquad \text{con } a, b, c \in \mathbb{R} \text{ y } a \neq 0.
+$$
+
+- $a$ es el **coeficiente principal** o coeficiente cuadrático.
+- $b$ es el **coeficiente lineal**.
+- $c$ es el **término independiente**.
+
+La ecuación es **completa** si $b \neq 0$ y $c \neq 0$, e **incompleta** si falta alguno de esos dos términos.
+:::
+
+La condición $a \neq 0$ es lo que distingue este tipo de ecuación del anterior: si $a$ fuera cero, la ecuación sería de primer grado y todo lo que sigue no tendría sentido, empezando por la fórmula general, cuyo denominador es $2a$.
+
+Antes de identificar los coeficientes hay que llevar la ecuación a la forma general. Por ejemplo, $3x(x-1) = 2x + 4$ no está en forma general; desarrollando y agrupando,
+$$
+3x^2 - 3x = 2x + 4 \iff 3x^2 - 5x - 4 = 0,
+$$
+y ahora sí: $a = 3$, $b = -5$, $c = -4$. Los coeficientes se leen **con su signo**.
+
+## Ecuaciones incompletas: los métodos rápidos
+
+Cuando falta $b$ o falta $c$, la fórmula general funciona, pero es un rodeo innecesario: hay caminos mucho más cortos.
+
+### Falta el término independiente: $ax^2 + bx = 0$
+
+Se saca factor común $x$ y se usa que un producto es cero solo si lo es alguno de sus factores:
+$$
+ax^2 + bx = 0 \iff x(ax + b) = 0 \iff x = 0 \ \text{ o } \ ax + b = 0 \iff x = 0 \ \text{ o } \ x = -\dfrac{b}{a}.
+$$
+
+::: {.callout-warning}
+## Nunca dividas entre la incógnita
+
+En $3x^2 - 12x = 0$ es tentador dividir los dos miembros entre $x$ y quedarse con $3x - 12 = 0$, o sea $x = 4$. Pero al dividir entre $x$ estás dividiendo entre algo que podría ser cero, lo cual está prohibido: acabas de perder la solución $x = 0$. La factorización es el único camino seguro. Una ecuación incompleta de este tipo **siempre** tiene a $x = 0$ entre sus soluciones, porque el término independiente vale cero.
+:::
+
+**Ejemplo 1.** $3x^2 - 12x = 0 \iff 3x(x-4) = 0 \iff x = 0$ o $x = 4$. Luego $S = \{0, 4\}$.
+
+### Falta el término lineal: $ax^2 + c = 0$
+
+Se despeja $x^2$ directamente:
+$$
+ax^2 + c = 0 \iff x^2 = -\dfrac{c}{a} \iff x = \pm\sqrt{-\dfrac{c}{a}},
+$$
+y solo hay soluciones reales cuando $-c/a \geq 0$, es decir, cuando $a$ y $c$ tienen signos contrarios (o $c = 0$).
+
+**Ejemplo 2.** $2x^2 - 50 = 0 \iff x^2 = 25 \iff x = \pm 5$, luego $S = \{-5, 5\}$.
+
+**Ejemplo 3.** $x^2 + 9 = 0 \iff x^2 = -9$. Ningún número real elevado al cuadrado da un resultado negativo, así que $S = \varnothing$.
+
+::: {.callout-warning}
+## El doble signo no es opcional
+
+Al despejar de $x^2 = 25$ hay que escribir $x = \pm 5$. Quedarse solo con $x = 5$ pierde la mitad de las soluciones. El símbolo $\sqrt{\ }$ designa por definición la raíz **positiva**; el $\pm$ lo pones tú al resolver la ecuación.
+:::
+
+### Faltan los dos: $ax^2 = 0$
+
+Queda $x^2 = 0$, cuya única solución es $x = 0$, que se considera una **solución doble**.
+
+### Applet · Ecuaciones incompletas {.unnumbered}
+
+::: {#panel-incompletas .applet-panel data-applet-eq="incompletas"}
+:::
+
+## Deducción de la fórmula general
+
+La fórmula que vas a usar el resto del curso no cae del cielo: se obtiene con un procedimiento llamado **completar cuadrados**, que consiste en fabricar artificialmente el desarrollo de un binomio al cuadrado para poder despejar con una raíz.
+
+::: {.callout-note}
+## Teorema (fórmula general de la ecuación de segundo grado)
+
+Las soluciones reales de $ax^2 + bx + c = 0$, con $a \neq 0$, son
+$$
+x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a},
+$$
+siempre que la cantidad subradical $b^2 - 4ac$ sea mayor o igual que cero.
+:::
+
+**Demostración.** Partimos de la ecuación en forma general y, como $a \neq 0$, podemos dividir entre $a$ los dos miembros:
+$$
+ax^2 + bx + c = 0 \iff x^2 + \dfrac{b}{a}x + \dfrac{c}{a} = 0 \iff x^2 + \dfrac{b}{a}x = -\dfrac{c}{a}.
+$$
+
+Ahora buscamos convertir el primer miembro en un cuadrado perfecto. Recordando que
+$$
+\left(x + k\right)^2 = x^2 + 2kx + k^2,
+$$
+para que $2k = \dfrac{b}{a}$ debe ser $k = \dfrac{b}{2a}$. Sumamos $k^2 = \dfrac{b^2}{4a^2}$ a los dos miembros, cosa lícita por la regla de la suma:
+$$
+x^2 + \dfrac{b}{a}x + \dfrac{b^2}{4a^2} = -\dfrac{c}{a} + \dfrac{b^2}{4a^2}.
+$$
+
+El primer miembro ya es el cuadrado de un binomio, y el segundo se reduce a común denominador $4a^2$:
+$$
+\left(x + \dfrac{b}{2a}\right)^2 = \dfrac{b^2 - 4ac}{4a^2}.
+$$
+
+Tomando raíz cuadrada en ambos miembros —y aquí aparece el doble signo— con $2a > 0$ o $2a<0$ pero cuyo cuadrado es $4a^2$:
+$$
+x + \dfrac{b}{2a} = \pm\,\dfrac{\sqrt{b^2 - 4ac}}{2a}.
+$$
+
+Por último, se despeja $x$ restando $\dfrac{b}{2a}$ y se suman las dos fracciones, que ya tienen el mismo denominador:
+$$
+x = -\dfrac{b}{2a} \pm \dfrac{\sqrt{b^2-4ac}}{2a} = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}. \qquad \blacksquare
+$$
+
+::: {.callout-tip}
+## Completar cuadrados no es solo un truco para demostrar
+
+El mismo procedimiento sirve para escribir cualquier trinomio de segundo grado en la forma $a(x-p)^2 + q$, que es la **forma canónica**. En ella se leen de un vistazo el vértice de la parábola, $(p, q)$, y su eje de simetría, $x = p$. Volverás a encontrarte esta técnica al estudiar funciones cuadráticas y, más adelante, en la integración de funciones racionales.
+:::
+
+### Applet · Completar cuadrados {.unnumbered}
+
+::: {#panel-completarCuadrado .applet-panel data-applet-eq="completarCuadrado"}
+:::
+
+## El discriminante y los tres casos
+
+En la fórmula general, todo depende del signo de lo que hay dentro de la raíz.
+
+::: {.callout-note}
+## Definición y discusión
+
+Se llama **discriminante** de la ecuación $ax^2 + bx + c = 0$ al número
+$$
+\Delta = b^2 - 4ac.
+$$
+
+- Si $\Delta > 0$: la ecuación tiene **dos soluciones reales distintas**,
+  $x_1 = \dfrac{-b+\sqrt{\Delta}}{2a}$ y $x_2 = \dfrac{-b-\sqrt{\Delta}}{2a}$.
+- Si $\Delta = 0$: la ecuación tiene **una solución real doble**, $x = -\dfrac{b}{2a}$.
+- Si $\Delta < 0$: la ecuación **no tiene soluciones reales**, $S = \varnothing$.
+:::
+
+El nombre lo dice todo: el discriminante *discrimina*, permite decidir cuántas soluciones hay sin necesidad de calcularlas. En muchos problemas eso es lo único que se pregunta.
+
+**Ejemplo 4.** $x^2 - 5x + 6 = 0$. Aquí $\Delta = 25 - 24 = 1 > 0$, luego hay dos soluciones:
+$$
+x = \dfrac{5 \pm 1}{2} \Longrightarrow x_1 = 3, \quad x_2 = 2.
+$$
+
+**Ejemplo 5.** $x^2 - 4x + 4 = 0$. Ahora $\Delta = 16 - 16 = 0$, luego hay una solución doble $x = \dfrac{4}{2} = 2$. Coherente con que $x^2-4x+4 = (x-2)^2$.
+
+**Ejemplo 6.** $x^2 + x + 1 = 0$. Aquí $\Delta = 1 - 4 = -3 < 0$: no hay soluciones reales.
+
+**Ejemplo 7 (raíces irracionales).** $x^2 - 2x - 1 = 0$ tiene $\Delta = 4 + 4 = 8$, y
+$$
+x = \dfrac{2 \pm \sqrt{8}}{2} = \dfrac{2 \pm 2\sqrt{2}}{2} = 1 \pm \sqrt{2}.
+$$
+Conviene simplificar el radical antes de dividir; las soluciones son $1+\sqrt2 \approx 2{,}414$ y $1-\sqrt2 \approx -0{,}414$.
+
+**Ejemplo 8 (con coeficientes decimales).** $0{,}5x^2 - x - 1{,}5 = 0$. Multiplicando todo por $2$ se obtiene la ecuación equivalente $x^2 - 2x - 3 = 0$, con $\Delta = 4 + 12 = 16$ y soluciones $x = \dfrac{2\pm4}{2}$, es decir $3$ y $-1$. Quitar decimales y denominadores antes de aplicar la fórmula ahorra muchísimos errores.
+
+::: {.callout-warning}
+## Errores de signo en el discriminante
+
+Si $b$ o $c$ son negativos, sustituye siempre entre paréntesis. En $2x^2 - 7x - 4 = 0$ es $\Delta = (-7)^2 - 4\cdot2\cdot(-4) = 49 + 32 = 81$, y no $49 - 32$. Y recuerda que $-b$ con $b = -7$ vale $+7$.
+:::
+
+### Applet · Discriminante y número de soluciones {.unnumbered}
+
+::: {#panel-discriminante .applet-panel data-applet-eq="discriminante"}
+:::
+
+## Interpretación gráfica: la parábola
+
+Toda la discusión anterior se ve de un solo golpe si se dibuja la función asociada.
+
+::: {.callout-note}
+## Raíces y cortes con el eje OX
+
+Resolver $ax^2 + bx + c = 0$ equivale a buscar los puntos donde la parábola $y = ax^2+bx+c$ corta al eje de abscisas, porque los puntos del eje OX son exactamente los que tienen $y = 0$.
+
+- $\Delta > 0$: la parábola corta al eje OX en **dos** puntos.
+- $\Delta = 0$: la parábola es **tangente** al eje OX: lo toca en un único punto, que es su vértice.
+- $\Delta < 0$: la parábola **no corta** al eje OX; queda entera por encima (si $a>0$) o por debajo (si $a<0$).
+:::
+
+::: {.callout-note}
+## Elementos de la parábola $y = ax^2 + bx + c$
+
+- **Abre hacia arriba** si $a > 0$ (el vértice es un mínimo) y **hacia abajo** si $a < 0$ (el vértice es un máximo). Cuanto mayor es $|a|$, más estrecha es.
+- **Vértice**: $V\left(-\dfrac{b}{2a},\; c - \dfrac{b^2}{4a}\right)$. Su abscisa se obtiene también como el punto medio de las dos raíces.
+- **Eje de simetría**: la recta vertical $x = -\dfrac{b}{2a}$.
+- **Corte con el eje OY**: el punto $(0, c)$, porque $y(0) = c$.
+:::
+
+La abscisa del vértice sale directamente de la fórmula general: las dos raíces son $\dfrac{-b}{2a}$ más y menos la misma cantidad, así que están colocadas simétricamente respecto de $x = -\dfrac{b}{2a}$. Esa propiedad tiene una consecuencia práctica muy útil: **si conoces una raíz y el vértice, la otra raíz sale sin resolver nada**, por simetría.
+
+**Ejemplo 9.** Para $y = x^2 - 2x - 3$: como $a = 1 > 0$, abre hacia arriba; el vértice está en $x_V = \dfrac{2}{2} = 1$, con $y_V = 1 - 2 - 3 = -4$, o sea $V(1,-4)$; el eje de simetría es $x = 1$; corta al eje OY en $(0,-3)$; y como $\Delta = 4+12 = 16 > 0$, corta al eje OX en $x = 3$ y $x = -1$, que son simétricos respecto de $x=1$.
+
+### Applet · Los coeficientes a, b y c en la parábola {.unnumbered}
+
+::: {#panel-parabolaABC .applet-panel data-applet-eq="parabolaABC"}
+:::
+
+## Relaciones de Cardano-Vieta
+
+Los coeficientes de una ecuación y sus soluciones están ligados por dos igualdades sencillas y sorprendentemente potentes.
+
+::: {.callout-note}
+## Suma y producto de las raíces
+
+Si $x_1$ y $x_2$ son las soluciones de $ax^2+bx+c=0$ (con $\Delta \geq 0$), entonces
+$$
+S = x_1 + x_2 = -\dfrac{b}{a}, \qquad P = x_1 \cdot x_2 = \dfrac{c}{a}.
+$$
+:::
+
+**Demostración.** Sumando las dos expresiones de la fórmula general, las raíces se cancelan:
+$$
+x_1 + x_2 = \dfrac{-b+\sqrt{\Delta}}{2a} + \dfrac{-b-\sqrt{\Delta}}{2a} = \dfrac{-2b}{2a} = -\dfrac{b}{a}.
+$$
+Multiplicándolas, aparece una suma por diferencia:
+$$
+x_1 \cdot x_2 = \dfrac{(-b)^2 - \left(\sqrt{\Delta}\right)^2}{4a^2} = \dfrac{b^2 - (b^2-4ac)}{4a^2} = \dfrac{4ac}{4a^2} = \dfrac{c}{a}. \qquad \blacksquare
+$$
+
+::: {.callout-note}
+## Reconstrucción de la ecuación a partir de sus raíces
+
+Si se conocen la suma $S$ y el producto $P$ de dos números, la ecuación mónica que los tiene por soluciones es
+$$
+x^2 - Sx + P = 0,
+$$
+y cualquier otra ecuación con esas mismas soluciones se obtiene multiplicándola por un número $a \neq 0$.
+:::
+
+**Ejemplo 10.** Escribe una ecuación de segundo grado cuyas soluciones sean $5$ y $-2$.
+
+$S = 5 + (-2) = 3$ y $P = 5\cdot(-2) = -10$, luego la ecuación es $x^2 - 3x - 10 = 0$. Si se quiere con coeficiente principal $2$, basta multiplicar: $2x^2 - 6x - 20 = 0$.
+
+**Ejemplo 11 (uso como control).** Has resuelto $2x^2 - 7x + 3 = 0$ y obtienes $x_1 = 3$ y $x_2 = \frac12$. Comprobación instantánea: $S = 3 + \frac12 = \frac72 = -\frac{b}{a} = \frac{7}{2}$ ✓ y $P = 3 \cdot \frac12 = \frac32 = \frac{c}{a} = \frac32$ ✓.
+
+**Ejemplo 12 (sin resolver).** Sabiendo que una de las soluciones de $x^2 - 9x + 20 = 0$ es $4$, halla la otra. Como $P = 20$, la otra vale $20/4 = 5$; y en efecto $4 + 5 = 9 = S$.
+
+::: {.callout-tip}
+## Dos nombres para las mismas fórmulas
+
+Estas relaciones aparecen en la obra del francés François Viète a finales del siglo XVI y se generalizan a ecuaciones de cualquier grado en los trabajos del italiano Gerolamo Cardano, cuyo tratado de 1545 recogió además los métodos de resolución de la cúbica y la cuártica. Por eso se conocen indistintamente como fórmulas de Vieta o de Cardano-Vieta. Viète fue también quien popularizó el uso de letras para designar tanto las incógnitas como los datos conocidos, el paso que convirtió el álgebra retórica de los siglos anteriores en el álgebra simbólica que manejas hoy.
+:::
+
+### Applet · Suma y producto de las raíces {.unnumbered}
+
+::: {#panel-vieta .applet-panel data-applet-eq="vieta"}
+:::
+
+## Factorización de un trinomio de segundo grado
+
+Conocer las raíces equivale a conocer la factorización, y eso será decisivo al simplificar fracciones algebraicas y al resolver inecuaciones.
+
+::: {.callout-note}
+## Descomposición factorial
+
+Si $x_1$ y $x_2$ son las soluciones de $ax^2+bx+c = 0$, entonces
+$$
+ax^2 + bx + c = a\,(x - x_1)(x - x_2).
+$$
+Si la solución es doble, $ax^2+bx+c = a\,(x-x_1)^2$. Y si $\Delta < 0$ el trinomio **no se puede descomponer** en factores de primer grado con coeficientes reales: se dice que es irreducible.
+:::
+
+**Ejemplo 13.** $2x^2 - 10x + 12 = 0$ tiene soluciones $2$ y $3$, luego
+$$
+2x^2 - 10x + 12 = 2(x-2)(x-3).
+$$
+No olvides el factor $a = 2$ delante: sin él la igualdad sería falsa, como se ve dando a $x$ cualquier valor.
+
+**Ejemplo 14.** $x^2 - 6x + 9 = (x-3)^2$, porque la raíz $3$ es doble.
+
+**Ejemplo 15.** $x^2 + x + 1$ tiene $\Delta = -3 < 0$: es irreducible sobre los reales y no admite descomposición.
+
+## Problemas con ecuaciones de segundo grado
+
+El guion es el mismo del apartado anterior, con un paso más al final: como suele haber dos soluciones matemáticas, hay que **decidir cuáles son válidas en el contexto**.
+
+**Ejemplo 16 (geometría).** Un rectángulo tiene $3$ cm más de base que de altura y su área es de $54$ cm². Halla sus dimensiones.
+
+Sea $x$ la altura en cm; la base es $x+3$ y el área,
+$$
+x(x+3) = 54 \iff x^2 + 3x - 54 = 0.
+$$
+Con $\Delta = 9 + 216 = 225$ y $\sqrt{225} = 15$, sale $x = \dfrac{-3\pm15}{2}$, es decir $x_1 = 6$ y $x_2 = -9$. La segunda se descarta: una longitud no puede ser negativa. La altura mide $6$ cm y la base $9$ cm, y en efecto $6 \cdot 9 = 54$.
+
+**Ejemplo 17 (números).** Halla dos números naturales consecutivos cuyo producto sea $182$.
+
+Con $x$ y $x+1$: $x^2 + x - 182 = 0$, $\Delta = 1 + 728 = 729$, $\sqrt{729} = 27$, luego $x = \dfrac{-1\pm27}{2}$: $x_1 = 13$ y $x_2 = -14$. Como se piden naturales, los números son $13$ y $14$.
+
+**Ejemplo 18 (economía).** Una empresa vende $q$ unidades y su beneficio en euros es $B(q) = -q^2 + 120q - 3\,200$. ¿Para qué producciones el beneficio es nulo? ¿Y cuál es el beneficio máximo?
+
+Beneficio nulo: $-q^2+120q-3200 = 0 \iff q^2 - 120q + 3200 = 0$, con $\Delta = 14\,400 - 12\,800 = 1\,600$ y $\sqrt{1600} = 40$; así $q = \dfrac{120\pm40}{2}$, o sea $q_1 = 40$ y $q_2 = 80$. Entre esas dos producciones el beneficio es positivo. Como $a = -1 < 0$, la parábola abre hacia abajo y el máximo está en el vértice, $q_V = \dfrac{40+80}{2} = 60$, con $B(60) = -3\,600 + 7\,200 - 3\,200 = 400$ €.
+
+**Ejemplo 19 (física aplicada).** Se lanza un objeto hacia arriba y su altura en metros a los $t$ segundos es $h(t) = 20t - 5t^2$. ¿Cuándo está a $15$ m de altura?
+
+$20t - 5t^2 = 15 \iff 5t^2 - 20t + 15 = 0 \iff t^2 - 4t + 3 = 0$, cuyas soluciones son $t = 1$ y $t = 3$. **Las dos son válidas**: el objeto pasa por los $15$ m al subir (a $1$ s) y al bajar (a $3$ s). Este ejemplo muestra que descartar por sistema la segunda solución es un error tan grave como aceptar una longitud negativa.
+
+::: {.callout-warning}
+## Descartar soluciones requiere un motivo del enunciado
+
+Una solución solo se rechaza si contradice el contexto: longitudes o precios negativos, número de objetos fraccionario, edades imposibles. Nunca se descarta «porque son dos y solo quiero una». Y siempre hay que decir explícitamente por qué se descarta.
+:::
+
+## Practica con los entrenadores
+
+Cuando las soluciones salen irracionales conviene dejarlas en forma exacta y simplificada, no en decimales redondeados. Repasa la simplificación de radicales, la extracción de factores y la racionalización con el [Entrenador de radicales](../../entrenador_radicales.html).
+
+## Errores frecuentes
+
+- **Aplicar la fórmula sin ordenar la ecuación.** Los coeficientes solo se leen cuando todo está igualado a cero y ordenado por grados.
+- **Perder la solución $x=0$** al dividir entre $x$ en una ecuación incompleta $ax^2+bx=0$.
+- **Olvidar el doble signo** al despejar de $x^2 = k$.
+- **Equivocar el signo de $-4ac$** cuando $a$ o $c$ son negativos.
+- **Dividir solo un sumando entre $2a$.** En $\dfrac{-b\pm\sqrt{\Delta}}{2a}$ el denominador afecta a toda la expresión de arriba; no se puede simplificar $\dfrac{2\pm2\sqrt2}{2}$ tachando solo uno de los doses.
+- **Decir que $\Delta<0$ significa que la solución es cero.** Significa que no hay ninguna solución real.
+- **Olvidar el factor $a$ en la factorización** $a(x-x_1)(x-x_2)$.
+- **Confundir la ecuación con la función.** $ax^2+bx+c=0$ es una ecuación con dos soluciones a lo sumo; $y = ax^2+bx+c$ es una función definida para todo $x$. Las soluciones de la primera son los cortes de la gráfica de la segunda con el eje OX.
+
+## Qué debes saber hacer
+
+1. Reconocer una ecuación de segundo grado, llevarla a la forma general e identificar $a$, $b$ y $c$ con su signo.
+2. Resolver las tres clases de ecuaciones incompletas por el método rápido, sin perder soluciones.
+3. Reproducir la deducción de la fórmula general completando cuadrados.
+4. Calcular el discriminante, decidir cuántas soluciones hay y justificar la respuesta.
+5. Aplicar la fórmula general con soltura, dejando las soluciones irracionales simplificadas.
+6. Relacionar $\Delta$, el signo de $a$, el vértice y el eje de simetría con la forma y la posición de la parábola.
+7. Usar las relaciones de Cardano-Vieta para comprobar soluciones, hallar una raíz conocida la otra y construir una ecuación a partir de sus soluciones.
+8. Factorizar un trinomio de segundo grado o justificar que es irreducible.
+9. Plantear, resolver e interpretar problemas cuadráticos, decidiendo con criterio qué soluciones son válidas.

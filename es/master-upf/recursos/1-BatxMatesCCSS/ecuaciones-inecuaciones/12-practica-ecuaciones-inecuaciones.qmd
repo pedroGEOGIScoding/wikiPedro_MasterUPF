@@ -1,0 +1,752 @@
+---
+title: "Tema 3.12 Práctica y autoevaluación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 12-practica-ecuaciones-inecuaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cierre del tema con un mapa de decisión para identificar cada tipo de ecuación o inecuación, una batería de ejercicios resueltos y propuestos ordenados por tipo y por nivel, problemas contextualizados de economía, demografía y estadística, el catálogo completo de errores frecuentes y applets de práctica autogenerada con corrección.
+categories: [ecuaciones, inecuaciones, 1 Batx, matemáticas CCSS, práctica, autoevaluación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Este apartado cierra el tema. No introduce teoría nueva: reúne todo lo anterior, lo organiza para que puedas decidir con rapidez qué técnica aplica en cada caso y te da ejercicios suficientes para llegar al examen con el método automatizado.
+
+Los ejercicios están agrupados por tipo y, dentro de cada grupo, ordenados por nivel: **básico** (aplicación directa de la técnica), **medio** (dos o tres pasos combinados) y **avanzado** (hay que decidir la estrategia, discutir casos o interpretar el resultado). Cada uno lleva su solución razonada dentro de un desplegable.
+
+::: {.callout-tip}
+## Plan de trabajo recomendado
+
+1. Lee el **mapa de decisión** y quédate con la pregunta que abre cada rama. Es lo único que hay que memorizar de verdad.
+2. Haz los **básicos** de un tirón, sin mirar soluciones. Si fallas más de dos de un bloque, vuelve al apartado correspondiente antes de seguir.
+3. Alterna **medios** y **avanzados** del mismo bloque para no perder el hilo de la técnica.
+4. Termina con los problemas contextualizados, que son los que más se parecen a la selectividad.
+5. Usa el **entrenador aleatorio** del final para repetir el tipo que se te resista, y la **autoevaluación** para detectar lagunas conceptuales.
+6. Repasa la lista de errores frecuentes el día antes del examen: casi todos los puntos perdidos están ahí.
+:::
+
+## Mapa de decisión: ¿qué tengo delante y qué hago?
+
+Antes de calcular nada, clasifica. La mayoría de los fallos en un examen no son de cálculo: son de haber aplicado la técnica de otro tipo de ecuación.
+
+::: {.callout-note}
+## Primera pregunta: ¿es una igualdad o una desigualdad?
+
+- **Igualdad** ($=$): es una **ecuación**. La respuesta es un número o una lista de números.
+- **Desigualdad** ($<$, $>$, $\leq$, $\geq$): es una **inecuación**. La respuesta es un **conjunto**, escrito como intervalo o unión de intervalos, y se dibuja en la recta real.
+:::
+
+::: {.callout-note}
+## Si es una ecuación: ¿dónde está la incógnita?
+
+| Dónde está la incógnita | Tipo | Qué hacer | Comprobación obligatoria |
+|---|---|---|---|
+| Solo multiplicada, grado 1 | Primer grado | Despejar | no |
+| Elevada al cuadrado | Segundo grado | Discriminante y fórmula | no |
+| Con exponentes $4$ y $2$ | Bicuadrada | Cambio $t=x^2$, filtrar $t<0$ | no |
+| Grado $\geq 3$ | Polinómica | Factorizar: Ruffini, raíces racionales | no |
+| En un denominador | Racional | Denominador común, excluir polos | sí, descartar polos |
+| Dentro de una raíz | Radical | Aislar la raíz y elevar al cuadrado | sí, siempre |
+| En el exponente | Exponencial | Igualar bases o tomar logaritmos | conviene |
+| Dentro de un logaritmo | Logarítmica | Propiedades y definición | sí, argumentos positivos |
+| Dentro de un seno, coseno o tangente | Trigonométrica | Reducir a elemental | filtrar $|t|\leq1$ |
+:::
+
+::: {.callout-note}
+## Si es una inecuación: ¿de qué grado y con qué estructura?
+
+| Estructura | Qué hacer | Forma de la solución |
+|---|---|---|
+| $ax+b$ comparado con $0$ | Despejar, girando el sentido si $a<0$ | una semirrecta |
+| $ax^2+bx+c$ comparado con $0$ | Signo de la parábola o tabla de signos | intervalo, unión, $\mathbb{R}$ o $\varnothing$ |
+| Producto o polinomio de grado alto | Factorizar y tabla de signos con multiplicidades | unión de intervalos |
+| Fracción con la incógnita en el denominador | Una sola fracción comparada con $0$; polos excluidos | unión de intervalos abiertos en los polos |
+| Valor absoluto $|A| < k$ | Doble desigualdad $-k<A<k$ | un intervalo |
+| Valor absoluto $|A| > k$ | Dos casos con «o» | unión de dos semirrectas |
+| Varias condiciones a la vez | Resolver cada una e **intersecar** | intervalo o $\varnothing$ |
+:::
+
+::: {.callout-important}
+## Las tres preguntas de control
+
+Antes de dar por terminado cualquier ejercicio del tema:
+
+1. **¿He perdido soluciones?** ¿He dividido por algo que puede ser cero? ¿He olvidado una familia trigonométrica o la rama negativa de una raíz cuadrada?
+2. **¿He ganado soluciones falsas?** ¿He elevado al cuadrado? ¿He usado propiedades de logaritmos que exigen argumento positivo? Si es así, hay que comprobar en la ecuación **original**.
+3. **¿La respuesta tiene el formato correcto?** Número o lista si es ecuación; conjunto con extremos bien decididos si es inecuación; familias con $k$ si es trigonométrica y no se restringe el giro.
+:::
+
+## Bloque 1 · Ecuaciones polinómicas y bicuadradas
+
+**1 (básico).** Resuelve $3(x-2) - 2(x+1) = 4x - 10$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se quitan paréntesis y se agrupa:
+$$
+3x - 6 - 2x - 2 = 4x - 10 \;\Longrightarrow\; x - 8 = 4x - 10 \;\Longrightarrow\; -3x = -2 \;\Longrightarrow\; x = \dfrac{2}{3}
+$$
+Al restar $2(x+1)$ hay que cambiar los **dos** signos: $-2x-2$, no $-2x+2$.
+:::
+
+**2 (básico).** Resuelve $x^2 - 7x + 12 = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\Delta = 49 - 48 = 1 > 0$, luego hay dos soluciones:
+$$
+x = \dfrac{7 \pm 1}{2} \;\Longrightarrow\; x_1 = 3, \quad x_2 = 4
+$$
+Comprobación rápida con las relaciones de Cardano-Vieta: la suma de las raíces debe ser $7$ y el producto $12$. $3+4=7$ y $3\cdot4=12$.
+:::
+
+**3 (básico).** Resuelve $2x^2 - 8 = 0$ y $3x^2 - 5x = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Son incompletas y no hace falta la fórmula.
+
+$2x^2 = 8 \Rightarrow x^2 = 4 \Rightarrow x = \pm 2$. **Las dos** soluciones, no solo la positiva.
+
+$x(3x-5) = 0 \Rightarrow x = 0$ o $x = \dfrac{5}{3}$. Aquí el error clásico es dividir por $x$ y perder la solución $x=0$.
+:::
+
+**4 (medio).** Resuelve $x^4 - 13x^2 + 36 = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $t = x^2$ queda $t^2 - 13t + 36 = 0$, de donde $t = 4$ y $t = 9$. Los dos son positivos, así que los dos sirven:
+$$
+x^2 = 4 \Rightarrow x = \pm 2, \qquad x^2 = 9 \Rightarrow x = \pm 3
+$$
+Cuatro soluciones: $-3$, $-2$, $2$, $3$. Una bicuadrada con dos valores positivos de $t$ tiene siempre cuatro soluciones.
+:::
+
+**5 (medio).** Resuelve $x^4 + 3x^2 - 4 = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $t = x^2$: $t^2 + 3t - 4 = 0$, con soluciones $t = 1$ y $t = -4$.
+
+El valor $t = -4$ **se descarta**: $x^2 = -4$ no tiene solución real, porque un cuadrado nunca es negativo. Solo queda $x^2 = 1$, es decir, $x = \pm 1$.
+
+Dos soluciones, no cuatro. El filtro es la parte del ejercicio que se evalúa.
+:::
+
+**6 (medio).** Resuelve $x^3 - 4x^2 + x + 6 = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los divisores del término independiente son $\pm1, \pm2, \pm3, \pm6$. Probando, $x=-1$ anula el polinomio. Aplicando Ruffini se obtiene
+$$
+x^3-4x^2+x+6 = (x+1)(x^2-5x+6) = (x+1)(x-2)(x-3)
+$$
+Soluciones: $x = -1$, $x = 2$, $x = 3$.
+:::
+
+**7 (avanzado).** Halla $m$ para que la ecuación $x^2 - 6x + m = 0$ tenga una solución doble, y calcúlala.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Solución doble equivale a $\Delta = 0$:
+$$
+36 - 4m = 0 \;\Longrightarrow\; m = 9
+$$
+La ecuación es entonces $x^2-6x+9 = (x-3)^2 = 0$, con la solución doble $x = 3$.
+
+Si $m < 9$ hay dos soluciones distintas; si $m > 9$, ninguna real.
+:::
+
+**8 (avanzado).** Resuelve $x^4 - 5x^2 + 4 = 0$ y explica qué relación tienen sus soluciones con la gráfica de $y = x^4-5x^2+4$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $t=x^2$: $t^2-5t+4=0$, con $t=1$ y $t=4$; de ahí $x = \pm1$ y $x = \pm2$.
+
+Las cuatro soluciones son los cuatro puntos de corte de la curva con el eje horizontal. Como la ecuación solo tiene potencias pares, la gráfica es simétrica respecto del eje vertical, y por eso las soluciones aparecen por parejas opuestas.
+:::
+
+## Bloque 2 · Ecuaciones racionales y con radicales
+
+**9 (básico).** Resuelve $\dfrac{x}{x-1} = 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Condición previa: $x \neq 1$. Multiplicando por $x-1$ (que aquí sí se puede, porque es una **ecuación**, no una inecuación):
+$$
+x = 2(x-1) \;\Longrightarrow\; x = 2x-2 \;\Longrightarrow\; x = 2
+$$
+$x=2$ no anula el denominador, así que es válida.
+:::
+
+**10 (medio).** Resuelve $\dfrac{1}{x} + \dfrac{1}{x-2} = \dfrac{3}{4}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Condiciones: $x \neq 0$ y $x \neq 2$. Denominador común $4x(x-2)$:
+$$
+4(x-2) + 4x = 3x(x-2) \;\Longrightarrow\; 8x - 8 = 3x^2 - 6x \;\Longrightarrow\; 3x^2 - 14x + 8 = 0
+$$
+$\Delta = 196 - 96 = 100$, luego $x = \dfrac{14\pm10}{6}$, es decir, $x = 4$ y $x = \dfrac{2}{3}$. Ninguna está excluida: las dos son válidas.
+:::
+
+**11 (medio).** Resuelve $\dfrac{x^2-4}{x-2} = 5$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Condición: $x \neq 2$. Simplificando, $\dfrac{(x-2)(x+2)}{x-2} = x+2$ para $x \neq 2$, luego $x + 2 = 5$ y $x = 3$, que es válida.
+
+Cuidado: simplificar es correcto **siempre que se anote la condición**. Si el resultado hubiera sido $x=2$, habría que descartarlo.
+:::
+
+**12 (medio).** Resuelve $\sqrt{x+7} = x + 1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Elevando al cuadrado: $x + 7 = x^2 + 2x + 1$, es decir, $x^2 + x - 6 = 0$, con soluciones $x = 2$ y $x = -3$.
+
+**Comprobación obligatoria** en la ecuación original:
+
+- $x=2$: $\sqrt{9} = 3$ y $2+1 = 3$. Válida.
+- $x=-3$: $\sqrt{4} = 2$ pero $-3+1 = -2$. No válida, porque una raíz cuadrada nunca da un resultado negativo.
+
+Solución única: $x = 2$.
+:::
+
+**13 (avanzado).** Resuelve $\sqrt{2x+3} - \sqrt{x-2} = 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se aísla una raíz y se eleva al cuadrado:
+$$
+\sqrt{2x+3} = 2 + \sqrt{x-2}
+\;\Longrightarrow\;
+2x+3 = 4 + 4\sqrt{x-2} + x - 2
+$$
+$$
+x + 1 = 4\sqrt{x-2}
+\;\Longrightarrow\;
+x^2 + 2x + 1 = 16x - 32
+\;\Longrightarrow\;
+x^2 - 14x + 33 = 0
+$$
+De aquí $x = 3$ y $x = 11$. Comprobando: para $x=3$, $\sqrt{9}-\sqrt{1} = 3-1 = 2$, válida; para $x=11$, $\sqrt{25}-\sqrt{9} = 5-3 = 2$, también válida.
+
+Las dos sirven. Que haya que comprobar no significa que siempre sobre alguna.
+:::
+
+## Bloque 3 · Ecuaciones exponenciales y logarítmicas
+
+**14 (básico).** Resuelve $2^{x} = 32$ y $3^{x-1} = 81$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$32 = 2^5$, luego $x = 5$.
+
+$81 = 3^4$, luego $x - 1 = 4$ y $x = 5$. La técnica es igualar las bases y, entonces, igualar los exponentes.
+:::
+
+**15 (medio).** Resuelve $4^x - 5\cdot 2^x + 4 = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como $4^x = (2^2)^x = (2^x)^2$, el cambio $t = 2^x$ da $t^2 - 5t + 4 = 0$, con $t = 1$ y $t = 4$.
+
+Los dos son positivos, así que los dos sirven: $2^x = 1 \Rightarrow x = 0$ y $2^x = 4 \Rightarrow x = 2$.
+
+Si algún valor de $t$ hubiera salido negativo o nulo, habría que descartarlo: una exponencial de base positiva **nunca** es cero ni negativa.
+:::
+
+**16 (medio).** Resuelve $\log(x) + \log(x-3) = 1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Condiciones de existencia: $x > 0$ y $x - 3 > 0$, o sea $x > 3$.
+
+Aplicando la propiedad del producto: $\log\big(x(x-3)\big) = 1 = \log 10$, luego
+$$
+x^2 - 3x = 10 \;\Longrightarrow\; x^2 - 3x - 10 = 0 \;\Longrightarrow\; x = 5 \ \text{o}\ x = -2
+$$
+$x=-2$ no cumple $x>3$: se descarta. Solución única: $x = 5$.
+:::
+
+**17 (avanzado).** Resuelve $5^{x} = 2$ dando el resultado con logaritmos y su valor aproximado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+No hay forma de igualar bases, así que se toman logaritmos en los dos miembros:
+$$
+x\log 5 = \log 2 \;\Longrightarrow\; x = \dfrac{\log 2}{\log 5} \approx 0{,}4307
+$$
+Que la solución no sea «bonita» es lo normal: los exponentes de los modelos reales casi nunca son enteros.
+:::
+
+## Bloque 4 · Ecuaciones trigonométricas
+
+**18 (básico).** Resuelve $\operatorname{sen} x = \dfrac{\sqrt{2}}{2}$ dando todas las soluciones y las del primer giro.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El ángulo del primer cuadrante es $\dfrac{\pi}{4}$; el otro con el mismo seno es $\pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4}$.
+
+Todas las soluciones:
+$$
+x = \dfrac{\pi}{4} + 2k\pi \qquad\text{o}\qquad x = \dfrac{3\pi}{4} + 2k\pi, \qquad k \in \mathbb{Z}
+$$
+En el primer giro: $\dfrac{\pi}{4}$ ($45^{\circ}$) y $\dfrac{3\pi}{4}$ ($135^{\circ}$).
+:::
+
+**19 (básico).** ¿Tiene solución $\cos x = -\dfrac{7}{5}$? Razónalo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+No. El coseno de un ángulo es la abscisa de un punto de la circunferencia de radio $1$, así que siempre cumple $-1 \leq \cos x \leq 1$. Como $\left|-\dfrac{7}{5}\right| = 1{,}4 > 1$, no hay ningún ángulo posible: la solución es $\varnothing$.
+:::
+
+**20 (medio).** Resuelve $\operatorname{tg} x = -\sqrt{3}$ y da las soluciones de $[0,2\pi)$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como $\operatorname{tg}\dfrac{\pi}{3} = \sqrt{3}$, el ángulo con tangente $-\sqrt{3}$ del intervalo principal es $-\dfrac{\pi}{3}$. La familia, con periodo $\pi$, es
+$$
+x = -\dfrac{\pi}{3} + k\pi, \qquad k \in \mathbb{Z}
+$$
+En el primer giro: $x = \dfrac{2\pi}{3}$ ($120^{\circ}$) y $x = \dfrac{5\pi}{3}$ ($300^{\circ}$). Son dos, aunque la familia sea una sola: en una vuelta caben dos periodos de la tangente.
+:::
+
+**21 (medio).** Resuelve $2\operatorname{sen}^2 x - \operatorname{sen} x - 1 = 0$ en $[0,2\pi)$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $t = \operatorname{sen} x$: $2t^2 - t - 1 = 0$, con $\Delta = 1+8 = 9$ y soluciones $t = 1$ y $t = -\dfrac{1}{2}$. Los dos cumplen $|t|\leq1$.
+
+- $\operatorname{sen} x = 1 \Rightarrow x = \dfrac{\pi}{2}$.
+- $\operatorname{sen} x = -\dfrac{1}{2} \Rightarrow x = \dfrac{7\pi}{6}$ y $x = \dfrac{11\pi}{6}$.
+
+Tres soluciones en el primer giro.
+:::
+
+**22 (avanzado).** Resuelve $\operatorname{sen}(2x) = \operatorname{sen} x$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se unifica el ángulo con la fórmula del ángulo doble y se **factoriza**, sin dividir:
+$$
+2\operatorname{sen} x\cos x - \operatorname{sen} x = 0 \;\Longrightarrow\; \operatorname{sen} x\,(2\cos x - 1) = 0
+$$
+- $\operatorname{sen} x = 0 \Rightarrow x = k\pi$.
+- $\cos x = \dfrac{1}{2} \Rightarrow x = \pm\dfrac{\pi}{3} + 2k\pi$.
+
+Si se hubiera dividido entre $\operatorname{sen} x$ se habrían perdido las infinitas soluciones de la primera rama.
+:::
+
+**23 (avanzado).** Resuelve $\cos(2x) + 3\operatorname{sen} x = 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como el otro término lleva $\operatorname{sen} x$, se usa la versión $\cos(2x) = 1 - 2\operatorname{sen}^2 x$:
+$$
+1 - 2\operatorname{sen}^2 x + 3\operatorname{sen} x = 2 \;\Longrightarrow\; 2\operatorname{sen}^2 x - 3\operatorname{sen} x + 1 = 0
+$$
+Con $t=\operatorname{sen} x$: $t = 1$ y $t = \dfrac{1}{2}$.
+
+- $\operatorname{sen} x = 1 \Rightarrow x = \dfrac{\pi}{2} + 2k\pi$.
+- $\operatorname{sen} x = \dfrac{1}{2} \Rightarrow x = \dfrac{\pi}{6}+2k\pi$ o $x = \dfrac{5\pi}{6}+2k\pi$.
+
+Elegir la versión adecuada del ángulo doble es lo que evita quedarse con una ecuación mezclada.
+:::
+
+## Bloque 5 · Inecuaciones de primer grado y sistemas
+
+**24 (básico).** Resuelve $5 - 2x \geq 11$ y representa la solución.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+-2x \geq 6 \;\Longrightarrow\; x \leq -3
+$$
+Al dividir entre $-2$ el sentido gira. Solución: $(-\infty,-3]$, con el extremo incluido y punto relleno en el dibujo.
+
+Comprobación: $x=-3$ da $5+6 = 11 \geq 11$, cierto; $x=0$ da $5 \geq 11$, falso.
+:::
+
+**25 (básico).** Escribe como intervalo y dibuja: $-2 \leq x < 5$; $x > 4$; $x \leq 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$[-2, 5)$, con punto relleno en $-2$ y hueco en $5$.
+
+$(4, +\infty)$, con punto hueco en $4$. Nunca $[4,+\infty]$: el infinito no se incluye.
+
+$(-\infty, 0]$, con punto relleno en $0$.
+:::
+
+**26 (medio).** Resuelve $\dfrac{2x-1}{3} - \dfrac{x+2}{2} \leq 1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Multiplicando por $6$ (positivo, no gira nada):
+$$
+2(2x-1) - 3(x+2) \leq 6 \;\Longrightarrow\; 4x - 2 - 3x - 6 \leq 6 \;\Longrightarrow\; x \leq 14
+$$
+Solución: $(-\infty, 14]$. El paréntesis del segundo numerador es imprescindible: $-3(x+2) = -3x-6$.
+:::
+
+**27 (medio).** Resuelve el sistema $\left\{\begin{array}{l} 4x-1 > 7 \\ 9 - x \geq 3\end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primera: $4x > 8 \Rightarrow x > 2$, es decir, $(2,+\infty)$.
+
+Segunda: $-x \geq -6 \Rightarrow x \leq 6$, es decir, $(-\infty,6]$.
+
+La solución del sistema es la **intersección**: $(2, 6]$. El $2$ no entra (desigualdad estricta) y el $6$ sí.
+:::
+
+**28 (avanzado).** Resuelve $-1 < \dfrac{3-2x}{4} \leq 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se multiplica todo por $4$:
+$$
+-4 < 3-2x \leq 8 \;\Longrightarrow\; -7 < -2x \leq 5
+$$
+Se divide entre $-2$, girando **los dos** sentidos:
+$$
+\dfrac{7}{2} > x \geq -\dfrac{5}{2}
+$$
+Reordenando de menor a mayor: $-\dfrac{5}{2} \leq x < \dfrac{7}{2}$, es decir, el intervalo $\left[-\dfrac{5}{2}, \dfrac{7}{2}\right)$.
+:::
+
+**29 (avanzado).** Discute según el valor de $m$ la solución de $mx > 6$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+- Si $m > 0$: se divide sin girar y sale $x > \dfrac{6}{m}$, o sea $\left(\dfrac{6}{m}, +\infty\right)$.
+- Si $m < 0$: se divide girando y sale $x < \dfrac{6}{m}$, o sea $\left(-\infty, \dfrac{6}{m}\right)$.
+- Si $m = 0$: queda $0 > 6$, que es falso. Solución: $\varnothing$.
+
+Este ejercicio resume el tema: el signo del coeficiente decide el sentido, y el caso degenerado hay que tratarlo aparte.
+:::
+
+## Bloque 6 · Inecuaciones de segundo grado, racionales y con valor absoluto
+
+**30 (básico).** Resuelve $x^2 - x - 6 < 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Raíces de $x^2-x-6=0$: $x=-2$ y $x=3$. Como $a = 1 > 0$, la parábola abre hacia arriba y es **negativa entre las raíces**.
+
+Solución: $(-2, 3)$, con extremos abiertos porque la desigualdad es estricta.
+:::
+
+**31 (básico).** Resuelve $x^2 + 2x + 5 > 0$ y $x^2 + 2x + 5 < 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\Delta = 4 - 20 = -16 < 0$ y $a=1>0$: la parábola no corta al eje y está entera por encima.
+
+Por tanto $x^2+2x+5 > 0$ se cumple **siempre**: solución $\mathbb{R}$. Y $x^2+2x+5<0$ no se cumple nunca: solución $\varnothing$.
+:::
+
+**32 (medio).** Resuelve $-x^2 + 4x - 3 \geq 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se multiplica por $-1$ girando el sentido: $x^2 - 4x + 3 \leq 0$. Raíces $1$ y $3$; parábola hacia arriba, negativa entre ellas.
+
+Solución: $[1, 3]$, con extremos incluidos porque la desigualdad admite la igualdad y allí el polinomio vale $0$.
+:::
+
+**33 (medio).** Resuelve $(x+1)(x-2)^2(x-5) > 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Raíces: $-1$ (simple), $2$ (doble) y $5$ (simple). En la raíz doble el signo **no cambia**.
+
+| Tramo | $(-\infty,-1)$ | $(-1,2)$ | $(2,5)$ | $(5,+\infty)$ |
+|---|---|---|---|---|
+| Signo | $+$ | $-$ | $-$ | $+$ |
+
+Solución: $(-\infty,-1)\cup(5,+\infty)$. El punto $2$ no entra, porque allí el producto vale $0$ y la desigualdad es estricta.
+:::
+
+**34 (medio).** Resuelve $\dfrac{x-4}{x+1} \leq 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Cero del numerador: $x=4$. Polo: $x=-1$.
+
+| Tramo | $(-\infty,-1)$ | $(-1,4)$ | $(4,+\infty)$ |
+|---|---|---|---|
+| Cociente | $+$ | $-$ | $+$ |
+
+Se pide $\leq 0$: vale el tramo central. El $4$ entra porque anula el numerador; el $-1$ **no** entra nunca.
+
+Solución: $(-1, 4]$.
+:::
+
+**35 (avanzado).** Resuelve $\dfrac{x+3}{x-1} \geq 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Nada de multiplicar en cruz. Se pasa todo al primer miembro:
+$$
+\dfrac{x+3}{x-1} - 2 \geq 0
+\;\Longrightarrow\;
+\dfrac{x+3-2(x-1)}{x-1} \geq 0
+\;\Longrightarrow\;
+\dfrac{5-x}{x-1} \geq 0
+$$
+Cero del numerador: $x=5$. Polo: $x=1$. El cociente es positivo en $(1,5)$.
+
+Solución: $(1, 5]$. El $5$ entra, el $1$ no.
+
+Multiplicando en cruz se habría obtenido $x+3 \geq 2x-2$, es decir, $x \leq 5$, que incluye valores como $x=0$ donde la desigualdad original es falsa: $\dfrac{3}{-1} = -3$, que no es $\geq 2$.
+:::
+
+**36 (avanzado).** Resuelve $|3x-6| < 9$ y $|3x-6| \geq 9$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primera: $-9 < 3x-6 < 9 \Rightarrow -3 < 3x < 15 \Rightarrow -1 < x < 5$. Solución: $(-1,5)$.
+
+Segunda: $3x-6 \leq -9$ o $3x-6 \geq 9$, es decir, $x \leq -1$ o $x \geq 5$. Solución: $(-\infty,-1]\cup[5,+\infty)$.
+
+Las dos respuestas son complementarias, como debe ser: cubren toda la recta sin solaparse.
+:::
+
+**37 (avanzado).** Resuelve $|x-2| \leq 0$ y $|x-2| > -1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Un valor absoluto nunca es negativo, así que $|x-2| \leq 0$ solo se cumple cuando vale exactamente $0$: la solución es el conjunto de un solo punto $\{2\}$.
+
+Y $|x-2| > -1$ se cumple siempre, porque cualquier valor absoluto es mayor o igual que $0 > -1$: la solución es $\mathbb{R}$.
+
+Estos casos degenerados se responden razonando, no calculando.
+:::
+
+## Bloque 7 · Problemas contextualizados de Ciencias Sociales
+
+**38 (medio · economía).** Una empresa vende camisetas a $15$ euros. Sus costes son $2\,400$ euros fijos al mes más $7$ euros por camiseta. Halla el punto muerto y el número de camisetas necesario para que el beneficio supere los $1\,200$ euros.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El beneficio es $B(x) = 15x - (2400 + 7x) = 8x - 2400$.
+
+Punto muerto: $B(x) = 0 \Rightarrow x = 300$ camisetas.
+
+Beneficio superior a $1\,200$: $8x - 2400 > 1200 \Rightarrow 8x > 3600 \Rightarrow x > 450$. Hacen falta al menos $451$ camisetas, porque el número debe ser entero.
+
+Obsérvese que el punto muerto sale de una **ecuación** y el objetivo, de una **inecuación**: la misma situación produce los dos tipos de problema.
+:::
+
+**39 (avanzado · economía).** El beneficio, en miles de euros, de una empresa que produce $x$ cientos de unidades es $B(x) = -2x^2 + 24x - 54$. Halla la producción de beneficio nulo y el intervalo de producciones con beneficio.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Beneficio nulo: $-2x^2+24x-54 = 0 \Rightarrow x^2-12x+27 = 0 \Rightarrow x = 3$ y $x = 9$.
+
+Beneficio positivo: $-2x^2+24x-54 > 0 \Rightarrow x^2-12x+27 < 0$, que se cumple entre las raíces: $(3, 9)$.
+
+Es decir, entre $300$ y $900$ unidades. Fuera de ese intervalo la empresa pierde: por debajo no cubre los costes fijos y por encima los costes crecen más deprisa que los ingresos.
+:::
+
+**40 (medio · demografía).** La población de una comarca, en miles de habitantes, se modeliza por $P(t) = 40\cdot 1{,}02^{\,t}$, con $t$ en años desde 2020. ¿En qué año superará los $50$ mil habitantes, según el modelo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+40\cdot 1{,}02^{\,t} > 50 \;\Longrightarrow\; 1{,}02^{\,t} > 1{,}25 \;\Longrightarrow\; t\log 1{,}02 > \log 1{,}25
+$$
+$$
+t > \dfrac{\log 1{,}25}{\log 1{,}02} \approx 11{,}27
+$$
+Como $\log 1{,}02 > 0$, el sentido no gira. A partir de $t = 12$, es decir, en 2032.
+
+Conviene añadir la advertencia habitual: el modelo supone un crecimiento constante del $2\,\%$ anual, algo que ninguna población mantiene indefinidamente.
+:::
+
+**41 (medio · estadística).** En una encuesta a $1\,000$ personas, la proporción estimada de apoyo a una medida es del $47\,\%$ con un margen de error de $3$ puntos. Escribe la condición con valor absoluto y el intervalo resultante. ¿Se puede afirmar que la medida tiene mayoría?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La condición es $|p - 47| \leq 3$, que equivale a $44 \leq p \leq 50$, es decir, el intervalo $[44, 50]$ en puntos porcentuales.
+
+**No** se puede afirmar que haya mayoría: el intervalo no supera el $50\,\%$ en ningún punto salvo el extremo, y el valor $50$ es precisamente el límite. Titulares del tipo «la medida roza la mayoría» son compatibles con los datos, pero «la mayoría apoya la medida» no lo es.
+:::
+
+**42 (avanzado · tarifas).** Una gestoría cobra $60$ euros fijos más $12$ euros por trámite. Otra cobra $20$ euros por trámite sin cuota fija. ¿Para qué número de trámites conviene cada una? ¿Existe un número de trámites en que cuesten lo mismo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Cuestan lo mismo cuando $60 + 12x = 20x$, es decir, $60 = 8x$ y $x = 7{,}5$. Como el número de trámites es entero, **no hay** ningún caso de empate real.
+
+La primera es más barata cuando $60+12x < 20x \Rightarrow x > 7{,}5$, es decir, a partir de $8$ trámites. Con $7$ trámites o menos conviene la segunda.
+
+La ecuación da la frontera; la inecuación da la decisión; el contexto (números enteros) redondea la respuesta.
+:::
+
+**43 (avanzado · coste medio).** El coste medio por unidad de una fábrica es $C(x) = \dfrac{600 + 8x}{x}$ euros, con $x>0$. ¿A partir de cuántas unidades el coste medio baja de $14$ euros? ¿Puede llegar a bajar de $8$ euros?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\dfrac{600+8x}{x} < 14 \;\Longrightarrow\; \dfrac{600+8x-14x}{x} < 0 \;\Longrightarrow\; \dfrac{600-6x}{x} < 0
+$$
+Cero del numerador: $x = 100$; polo: $x=0$. Con $x>0$, el cociente es negativo cuando $x > 100$. Hacen falta más de $100$ unidades.
+
+Para bajar de $8$: $\dfrac{600+8x}{x} < 8 \Rightarrow \dfrac{600}{x} < 0$, imposible con $x>0$. El coste medio se acerca a $8$ euros pero **nunca** baja de ahí: $8$ es el coste variable unitario, y el coste fijo siempre añade algo.
+:::
+
+## Entrenadores autogenerados
+
+Los dos applets siguientes generan ejercicios nuevos cada vez y corrigen tu respuesta. Úsalos después de haber hecho a mano los ejercicios de los bloques anteriores: sirven para automatizar, no para aprender por primera vez.
+
+### Applet · Entrenador de ecuaciones e inecuaciones {.unnumbered}
+
+Elige el tipo y el nivel, pulsa «Nuevo ejercicio» y escribe tu respuesta: el applet la corrige al instante, lleva la cuenta de aciertos y, si lo pides, muestra la resolución paso a paso con su comprobación o su tabla de signos.
+
+::: {#panel-generaEjercicio .applet-panel data-applet-eq="generaEjercicio"}
+:::
+
+Recuerda el formato de las respuestas: los números se separan por espacios ($-2\ \ 3$); los conjuntos se escriben como intervalos, `(2,+inf)`, `[-1,3)`, `(-inf,0)u(4,+inf)`, o como desigualdades, `x>2`; si no hay solución, `vacio`. En las trigonométricas se piden los ángulos del primer giro en grados.
+
+### Applet · Autoevaluación del tema {.unnumbered}
+
+Diez preguntas conceptuales sobre todo el bloque. No hay que calcular casi nada: hay que decidir qué tipo de objeto es la respuesta, cuántas soluciones cabe esperar y qué extremos entran. Son exactamente las decisiones que se evalúan en un examen.
+
+::: {#panel-autoevaluacion .applet-panel data-applet-eq="autoevaluacion"}
+:::
+
+### Applet · Diagnóstico de la página {.unnumbered}
+
+Si algún applet no responde o las fórmulas se ven como texto plano, este panel comprueba que la biblioteca de fórmulas y todos los módulos del tema se han cargado correctamente.
+
+::: {#panel-diagnostico .applet-panel data-applet-eq="diagnostico"}
+:::
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para reforzar destrezas concretas que se dan por sabidas en este tema, tienes los entrenadores del curso: [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html) para representar conjuntos e intervalos, el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) para las tablas de signos, el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html) para las ecuaciones racionales, el [Entrenador de Radicales](../../entrenador_radicales.html) para las ecuaciones con raíces, el [Entrenador de Logaritmos Neperianos](../../entrenador_logaritmos_neperianos.html) para las logarítmicas y la [Calculadora de Notación Científica](../../calculadora_notacion_cientifica.html) para los modelos con crecimiento exponencial.
+:::
+
+## Errores frecuentes de todo el tema
+
+**Al resolver ecuaciones**
+
+1. Dividir los dos miembros por una expresión con la incógnita. Se pierden soluciones: hay que factorizar y usar que un producto es nulo si lo es alguno de sus factores.
+2. En una ecuación incompleta $ax^2+bx=0$, simplificar la $x$ y perder la solución $x=0$.
+3. De $x^2 = 4$ deducir solo $x = 2$, olvidando $x = -2$.
+4. En una bicuadrada, aceptar valores negativos de $t = x^2$, o dar solo dos soluciones cuando hay cuatro.
+5. No comprobar en la ecuación original después de elevar al cuadrado. Las soluciones extrañas aparecen precisamente ahí.
+6. En una ecuación racional, no anotar las condiciones de existencia y dar como válida una solución que anula un denominador.
+7. En una logarítmica, olvidar que los argumentos deben ser positivos y quedarse con una solución imposible.
+8. Escribir $\log(a+b) = \log a + \log b$, que es falso. La propiedad es $\log(ab) = \log a + \log b$.
+9. Igualar exponentes sin haber igualado antes las bases.
+
+**Al resolver ecuaciones trigonométricas**
+
+10. Dar solo las soluciones del primer giro cuando se piden todas, o al revés.
+11. Usar $+2k\pi$ en la tangente, cuyo periodo es $\pi$.
+12. Olvidar la segunda familia del seno o del coseno.
+13. Aceptar $\operatorname{sen} x = 2$ o $\cos x = -3$ después de un cambio de variable.
+14. Confundir $\operatorname{sen}^2 x$ con $\operatorname{sen}(x^2)$, o escribir $\operatorname{sen}(2x) = 2\operatorname{sen} x$.
+15. Mezclar grados y radianes en la misma respuesta.
+
+**Al resolver inecuaciones**
+
+16. No girar el sentido al multiplicar o dividir por un número negativo.
+17. Multiplicar por una expresión con la incógnita sin conocer su signo, o multiplicar en cruz en una inecuación racional.
+18. Dar la respuesta como un número en lugar de como un conjunto.
+19. Equivocar los extremos: corchete con desigualdad estricta, o paréntesis con desigualdad no estricta.
+20. Escribir un corchete junto a $+\infty$ o $-\infty$.
+21. Interpretar un caso degenerado como un error, en vez de responder $\mathbb{R}$ o $\varnothing$.
+22. De $x^2 > 9$ deducir $x > 3$, olvidando la semirrecta negativa.
+23. En $\Delta < 0$ con $a>0$, dar $\varnothing$ para $>0$ y $\mathbb{R}$ para $<0$, exactamente al revés de lo que toca.
+24. Olvidar el punto aislado cuando $\Delta = 0$ y la desigualdad es $\leq$.
+25. Hacer cambiar el signo en una raíz de multiplicidad par.
+26. Incluir un polo en la solución de una inecuación racional porque la desigualdad lleva $\leq$ o $\geq$.
+27. En un sistema, unir en lugar de intersecar.
+28. Traducir $|A| > k$ como una doble desigualdad en vez de como una unión de dos casos.
+29. Repartir el valor absoluto sobre una suma: $|x+3| \neq |x| + 3$.
+
+**Al interpretar problemas**
+
+30. No definir la incógnita ni sus unidades antes de plantear.
+31. Olvidar que el contexto exige valores positivos o enteros y dar un conjunto sin sentido.
+32. Redondear en la dirección equivocada: si hay que superar un umbral, se redondea hacia arriba.
+33. Confundir la pregunta que pide una ecuación (punto de equilibrio) con la que pide una inecuación (zona de beneficio).
+34. Extrapolar un modelo fuera del intervalo de datos y presentar la predicción como un hecho.
+
+## Qué debes saber hacer
+
+- Clasificar cualquier ecuación o inecuación del tema con una sola mirada al lugar que ocupa la incógnita, y decidir la técnica en consecuencia.
+- Resolver ecuaciones de primer y segundo grado, bicuadradas y polinómicas de grado superior por factorización.
+- Resolver ecuaciones racionales y con radicales, comprobando siempre la validez de las soluciones obtenidas.
+- Resolver ecuaciones exponenciales y logarítmicas, igualando bases, usando el cambio de variable o tomando logaritmos, y verificando las condiciones de existencia.
+- Resolver ecuaciones trigonométricas elementales y las reducibles a elementales, distinguiendo las familias completas de las soluciones del primer giro.
+- Resolver inecuaciones de primer grado, sistemas de inecuaciones y dobles desigualdades, y expresar la solución como intervalo y en la recta real.
+- Resolver inecuaciones de segundo grado, factorizadas, racionales y con valor absoluto mediante el estudio del signo.
+- Reconocer y resolver correctamente todos los casos degenerados: $\mathbb{R}$, $\varnothing$, un punto aislado, la recta sin un punto.
+- Detectar, sin ayuda, si un paso del desarrollo ha podido perder o añadir soluciones, y actuar en consecuencia.
+- Traducir enunciados de economía, demografía y estadística a ecuaciones o inecuaciones, resolverlos e interpretar el resultado en el contexto, con sus unidades y su dominio con sentido.
+- Comunicar la respuesta con el formato correcto: número, lista, familia con parámetro entero o conjunto con extremos bien decididos.
+- Revisar un ejercicio propio localizando el error en la lista de errores frecuentes, que es el hábito que más nota recupera.

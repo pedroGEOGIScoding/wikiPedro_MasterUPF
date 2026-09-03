@@ -1,0 +1,389 @@
+---
+title: "Tema 3.4 Ecuaciones racionales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 04-ecuaciones-racionales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Ecuaciones con la incógnita en el denominador, dominio de validez y valores que anulan los denominadores, resolución por el mínimo común múltiplo y por productos cruzados, comprobación obligatoria y descarte de soluciones extrañas, y problemas de trabajos conjuntos, velocidades y mezclas, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, ecuaciones racionales, fracciones algebraicas, dominio, soluciones extrañas]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuando la incógnita baja al denominador
+
+Hasta ahora, todas las ecuaciones que has resuelto tenían la incógnita en sitios cómodos: multiplicada por un número, elevada a una potencia, sumada a otra cosa. Al despejar, la única precaución era no equivocarse con los signos. En este apartado la incógnita cambia de sitio y aparece **debajo de una raya de fracción**, y con ese cambio de posición aparece un problema nuevo que no existía antes: hay valores de $x$ para los que la ecuación **ni siquiera se puede escribir**.
+
+Compara estas dos expresiones:
+
+$$
+3x - 12 = 0, \qquad \dfrac{6}{x} + \dfrac{x+1}{x-2} = 6 .
+$$
+
+La primera tiene sentido para cualquier número real que sustituyas. La segunda, no: si pones $x = 0$, el primer sumando es $6/0$, que no es ningún número; si pones $x = 2$, el segundo sumando es $3/0$, que tampoco lo es. Antes de resolver nada hay que responder a una pregunta previa: **¿para qué valores de $x$ tiene sentido esta igualdad?**
+
+::: {.callout-note}
+## Definición de ecuación racional
+
+Una **ecuación racional** (o **fraccionaria**) es una ecuación en la que la incógnita aparece en el denominador de al menos una fracción. Dicho con más precisión, es una ecuación de la forma
+$$
+\dfrac{P_1(x)}{Q_1(x)} + \dfrac{P_2(x)}{Q_2(x)} + \cdots = \dfrac{R_1(x)}{S_1(x)} + \cdots
+$$
+donde $P_i$, $Q_i$, $R_i$, $S_i$ son polinomios y **al menos uno de los denominadores no es constante**.
+:::
+
+Que un denominador sea constante no cambia nada: $\dfrac{x}{2} + \dfrac{x}{3} = 5$ es una ecuación de primer grado disfrazada, y la resuelves multiplicando por $6$ sin ninguna precaución. El asunto se vuelve delicado exactamente cuando la $x$ está abajo.
+
+## El dominio de validez: lo primero de todo
+
+::: {.callout-important}
+## Dominio de una ecuación racional
+
+El **dominio de validez** de una ecuación racional es el conjunto de números reales para los que **todos** los denominadores que aparecen son distintos de cero:
+$$
+D = \{\, x \in \mathbb{R} \;:\; Q_1(x) \neq 0,\; Q_2(x) \neq 0,\; \ldots \,\}.
+$$
+Los valores que anulan algún denominador se llaman **valores prohibidos** o **valores excluidos**. Una solución de la ecuación **debe pertenecer a $D$**: si no pertenece, no es solución, por muy bien que hayas hecho las cuentas.
+:::
+
+Calcular el dominio es siempre el mismo trabajo mecánico: igualas cada denominador a cero, resuelves esas ecuaciones auxiliares y **excluyes** las raíces que encuentres.
+
+**Ejemplo 1.** Halla el dominio de $\dfrac{6}{x} + \dfrac{x+1}{x-2} = 6$.
+
+Los denominadores son $x$ y $x-2$. Al igualarlos a cero:
+$$
+x = 0, \qquad x - 2 = 0 \;\Longrightarrow\; x = 2 .
+$$
+Por tanto $D = \mathbb{R} - \{0,\, 2\}$. Si al final del proceso apareciera $x = 2$ como candidato, habría que tacharlo sin discusión.
+
+**Ejemplo 2.** Halla el dominio de $\dfrac{x^2}{x-3} = \dfrac{9}{x-3}$.
+
+Aquí el único denominador es $x-3$, que se anula en $x=3$, así que $D = \mathbb{R} - \{3\}$. Guárdate este ejemplo: dentro de un momento verás que produce exactamente el candidato prohibido.
+
+**Ejemplo 3.** Halla el dominio de $\dfrac{5}{x^2-4} - \dfrac{1}{x+2} = \dfrac{3}{x-2}$.
+
+El denominador $x^2 - 4$ se factoriza como $(x-2)(x+2)$, así que se anula en $x = 2$ y en $x = -2$; los otros dos denominadores se anulan en los mismos puntos. El dominio es $D = \mathbb{R} - \{-2,\, 2\}$.
+
+::: {.callout-tip}
+## Factoriza los denominadores antes de mirar nada más
+
+Factorizar los denominadores no es un lujo: te da a la vez el dominio y el mínimo común múltiplo, que es lo que necesitarás en el paso siguiente. En el ejemplo 3, escribir $x^2-4=(x-2)(x+2)$ resuelve las dos cosas de un golpe.
+:::
+
+## Por qué aparecen soluciones que no valen
+
+Al resolver una ecuación racional lo primero que se hace es **quitar denominadores**, es decir, multiplicar los dos miembros por una expresión que contiene la incógnita. Y ahí está el peligro.
+
+::: {.callout-warning}
+## Multiplicar por una expresión con incógnita no es una transformación equivalente
+
+Multiplicar los dos miembros de una ecuación por un **número distinto de cero** produce una ecuación equivalente: eso lo sabes desde primer grado. Pero multiplicar por una **expresión con la incógnita**, como $x-3$, solo es legítimo mientras esa expresión no valga cero. Para el valor que la anula, estás multiplicando por cero los dos miembros, y multiplicar por cero convierte cualquier igualdad falsa en la igualdad verdadera $0 = 0$.
+
+Resultado: la ecuación nueva puede tener soluciones que la vieja no tenía. Se llaman **soluciones extrañas**, **falsas** o **espurias**.
+:::
+
+**Ejemplo 4 (el ejemplo canónico).** Resuelve $\dfrac{x^2}{x-3} = \dfrac{9}{x-3}$.
+
+El dominio es $D = \mathbb{R} - \{3\}$. Multiplicando los dos miembros por $x-3$:
+$$
+x^2 = 9 \;\Longrightarrow\; x = 3 \quad \text{o} \quad x = -3 .
+$$
+Ahora comprueba: $x = -3$ pertenece al dominio y, sustituyendo, $\dfrac{9}{-6} = \dfrac{9}{-6}$, cierto. En cambio $x = 3$ **no pertenece al dominio**: al sustituir aparecería $\dfrac{9}{0} = \dfrac{9}{0}$, que no es una igualdad verdadera ni falsa, sino una expresión sin sentido. La solución es únicamente
+$$
+x = -3, \qquad S = \{-3\}.
+$$
+
+Fíjate en lo que ha pasado: el valor $x=3$ no ha aparecido por un error de cálculo. Ha aparecido porque el paso «multiplico por $x-3$» **es exactamente el paso que introduce esa raíz falsa**. Por eso la comprobación no es una manía del profesor: es parte del método.
+
+### Applet · Dominio y soluciones extrañas {.unnumbered}
+
+Escribe los cuatro polinomios de una ecuación del tipo $\dfrac{N_1}{D_1} = \dfrac{N_2}{D_2}$ y observa el proceso completo: dominio, productos cruzados, ecuación polinómica resultante y comprobación candidato a candidato. Las soluciones que caen fuera del dominio se marcan en rojo.
+
+::: {#panel-racionalLab .applet-panel data-applet-eq="racionalLab"}
+:::
+
+Empieza por el escenario $\dfrac{x^2}{x-3} = \dfrac{9}{x-3}$ y mira la columna que da el valor de cada denominador en cada candidato: $x=3$ hace que el denominador valga $0$, y ese cero es la firma de la solución extraña. Después prueba escenarios en los que **ninguna** solución se descarta y compara: el método es el mismo, lo que cambia es el veredicto.
+
+## Método 1: productos cruzados
+
+Cuando la ecuación tiene **una sola fracción en cada miembro**, el camino más corto es el producto cruzado.
+
+::: {.callout-note}
+## Regla de los productos cruzados
+
+Si $D_1(x) \neq 0$ y $D_2(x) \neq 0$, entonces
+$$
+\dfrac{N_1(x)}{D_1(x)} = \dfrac{N_2(x)}{D_2(x)} \iff N_1(x)\cdot D_2(x) = N_2(x)\cdot D_1(x).
+$$
+La doble implicación **solo es válida dentro del dominio**. Fuera de él, la igualdad de la derecha puede cumplirse sin que la de la izquierda tenga siquiera sentido.
+:::
+
+El procedimiento completo, en cinco pasos:
+
+1. **Factoriza los denominadores** y escribe el dominio $D$.
+2. Si hay varias fracciones sumadas en un miembro, redúcelas antes a una sola.
+3. Aplica el producto cruzado y **desarrolla**.
+4. Resuelve la ecuación polinómica que resulta.
+5. **Comprueba** cada candidato: los que estén fuera de $D$ se descartan; conviene además sustituir en la ecuación original.
+
+**Ejemplo 5.** Resuelve $\dfrac{x+3}{x-1} = \dfrac{x+5}{x+2}$.
+
+Dominio: $D = \mathbb{R} - \{1,\, -2\}$. Producto cruzado:
+$$
+(x+3)(x+2) = (x+5)(x-1).
+$$
+Desarrollando los dos miembros:
+$$
+x^2 + 5x + 6 = x^2 + 4x - 5 .
+$$
+Los términos de segundo grado se cancelan —cosa muy frecuente en este tipo de ecuaciones— y queda una ecuación de primer grado:
+$$
+5x + 6 = 4x - 5 \;\Longrightarrow\; x = -11 .
+$$
+Como $-11 \in D$, la solución es válida. Comprobación: $\dfrac{-8}{-12} = \dfrac{2}{3}$ y $\dfrac{-6}{-9} = \dfrac{2}{3}$. Correcto.
+
+**Ejemplo 6.** Resuelve $\dfrac{3}{x-2} = \dfrac{x}{x-2} - 1$.
+
+Dominio: $D = \mathbb{R} - \{2\}$. Aquí el segundo miembro no es una única fracción; hay que reducirlo primero:
+$$
+\dfrac{x}{x-2} - 1 = \dfrac{x - (x-2)}{x-2} = \dfrac{2}{x-2}.
+$$
+La ecuación queda $\dfrac{3}{x-2} = \dfrac{2}{x-2}$, y el producto cruzado da $3(x-2) = 2(x-2)$, es decir, $3x - 6 = 2x - 4$, de donde $x = 2$. Pero $x = 2 \notin D$: **no hay solución**, $S = \varnothing$. Con dos fracciones de igual denominador y numeradores constantes distintos, el resultado era previsible: $3$ nunca va a ser igual a $2$.
+
+::: {.callout-caution}
+## El producto cruzado no es «pasar multiplicando lo que quieras»
+
+El producto cruzado exige **una sola fracción en cada miembro**. Escribir
+$$
+\dfrac{1}{x} + \dfrac{1}{x+1} = \dfrac{1}{2} \;\rightsquigarrow\; 2 + 2 = x(x+1)
+$$
+es un error grave: al primer sumando le has aplicado un cruce y al segundo, otro distinto. Cuando hay sumas, o reduces a una sola fracción o usas el método del mínimo común múltiplo.
+:::
+
+## Método 2: multiplicar por el mínimo común múltiplo
+
+Cuando hay varias fracciones repartidas por los dos miembros, lo eficiente es multiplicar toda la ecuación por el **m.c.m. de los denominadores**. Es el mismo procedimiento que usas con las ecuaciones de primer grado con denominadores numéricos, solo que ahora los denominadores son polinomios.
+
+::: {.callout-note}
+## Mínimo común múltiplo de polinomios
+
+Para calcular el m.c.m. de varios polinomios:
+
+1. Se **factoriza** cada uno por completo.
+2. Se toman **todos** los factores irreducibles que aparecen, cada uno **elevado al mayor exponente** con el que figure.
+3. Se multiplican.
+
+Es literalmente la misma regla que con los números enteros, cambiando «números primos» por «factores irreducibles».
+:::
+
+**Ejemplo 7.** Calcula el m.c.m. de $x^2 - 4$, $x + 2$ y $x - 2$.
+
+Factorizando, $x^2 - 4 = (x-2)(x+2)$; los otros dos ya son irreducibles. El m.c.m. es $(x-2)(x+2) = x^2-4$: el mayor de ellos ya contenía a los otros dos.
+
+**Ejemplo 8.** Resuelve $\dfrac{6}{x} + \dfrac{x+1}{x-2} = 6$.
+
+**Paso 1. Dominio.** Los denominadores son $x$ y $x-2$, así que $D = \mathbb{R} - \{0,\,2\}$.
+
+**Paso 2. Mínimo común múltiplo.** Los dos denominadores son irreducibles y distintos, luego $\text{m.c.m.} = x(x-2)$.
+
+**Paso 3. Multiplico toda la ecuación por el m.c.m.** Cada fracción se multiplica por $x(x-2)$ y se simplifica con su propio denominador:
+$$
+\dfrac{6}{x}\cdot x(x-2) + \dfrac{x+1}{x-2}\cdot x(x-2) = 6\cdot x(x-2),
+$$
+$$
+6(x-2) + x(x+1) = 6x(x-2).
+$$
+
+**Paso 4. Desarrollo y ordeno.**
+$$
+6x - 12 + x^2 + x = 6x^2 - 12x
+$$
+$$
+x^2 + 7x - 12 = 6x^2 - 12x \;\Longrightarrow\; 0 = 5x^2 - 19x + 12 .
+$$
+
+**Paso 5. Resuelvo la cuadrática.**
+$$
+x = \dfrac{19 \pm \sqrt{361 - 240}}{10} = \dfrac{19 \pm \sqrt{121}}{10} = \dfrac{19 \pm 11}{10},
+$$
+de donde $x_1 = 3$ y $x_2 = \dfrac{8}{10} = \dfrac{4}{5}$.
+
+**Paso 6. Compruebo.** Los dos candidatos pertenecen a $D$ (ninguno es $0$ ni $2$), así que ambos son válidos:
+$$
+S = \left\{\, \dfrac{4}{5},\; 3 \,\right\}.
+$$
+Comprobación con $x=3$: $\dfrac{6}{3} + \dfrac{4}{1} = 2 + 4 = 6$. Correcto.
+
+### Applet · Resolución por el mínimo común múltiplo {.unnumbered}
+
+Introduce los numeradores y denominadores de una ecuación del tipo $\dfrac{n_1}{d_1} + \dfrac{n_2}{d_2} = \dfrac{n_3}{d_3}$. El applet factoriza, calcula el m.c.m., muestra por qué se multiplica cada fracción, desarrolla la polinómica resultante y comprueba los candidatos uno por uno.
+
+::: {#panel-racionalMcm .applet-panel data-applet-eq="racionalMcm"}
+:::
+
+Reproduce el ejemplo 8 y sigue los multiplicadores: la primera fracción se multiplica por $x-2$, la segunda por $x$, y el miembro derecho por el m.c.m. entero. Ese detalle —que cada fracción se multiplica por un factor **distinto**— es donde se concentran casi todos los errores de cálculo.
+
+::: {.callout-tip}
+## Los dos métodos son el mismo método
+
+El producto cruzado no es más que el caso particular del m.c.m. cuando hay dos fracciones y sus denominadores no comparten factores. Si te acostumbras a factorizar y a multiplicar por el m.c.m., no necesitas recordar ninguna otra regla.
+:::
+
+## La comprobación, paso irrenunciable
+
+::: {.callout-important}
+## Protocolo de cierre de toda ecuación racional
+
+Después de resolver la ecuación polinómica, con **cada** candidato $c$:
+
+1. ¿Es $c \in D$? Si anula algún denominador, se **descarta** sin más trámite.
+2. Si está en el dominio, sustituye en la ecuación **original** y comprueba que los dos miembros dan el mismo número.
+3. Escribe el conjunto solución $S$ con las que hayan sobrevivido. Si no sobrevive ninguna, $S = \varnothing$, y eso es una respuesta perfectamente correcta.
+:::
+
+Hay una asimetría que conviene entender bien: quitar denominadores puede **añadir** soluciones, pero nunca las **quita**. Toda solución auténtica de la racional lo es también de la polinómica que obtienes. Por eso el proceso es fiable: basta con filtrar al final, no hay riesgo de haber perdido nada por el camino.
+
+**Ejemplo 9.** Resuelve $\dfrac{1}{x-1} + \dfrac{1}{x+1} = \dfrac{2}{x^2-1}$.
+
+Dominio: como $x^2-1 = (x-1)(x+1)$, resulta $D = \mathbb{R} - \{1,\,-1\}$. El m.c.m. es $(x-1)(x+1)$, y al multiplicar:
+$$
+(x+1) + (x-1) = 2 \;\Longrightarrow\; 2x = 2 \;\Longrightarrow\; x = 1 .
+$$
+Único candidato: $x=1$. Pero $1 \notin D$. Por tanto $S = \varnothing$: la ecuación **no tiene solución**, aunque el cálculo haya sido impecable.
+
+**Ejemplo 10.** Resuelve $\dfrac{x}{x-1} - \dfrac{2}{x} = \dfrac{1}{x(x-1)}$.
+
+Dominio: $D = \mathbb{R} - \{0,\,1\}$. El m.c.m. es $x(x-1)$:
+$$
+x\cdot x - 2(x-1) = 1 \;\Longrightarrow\; x^2 - 2x + 2 = 1 \;\Longrightarrow\; x^2 - 2x + 1 = 0 .
+$$
+Esto es $(x-1)^2 = 0$, con raíz doble $x = 1$. Y $1 \notin D$. De nuevo $S = \varnothing$. Los ejemplos 9 y 10 no son rarezas de laboratorio: cuando el segundo miembro está construido a partir de los denominadores del primero, es habitual que el único candidato sea justamente un valor prohibido.
+
+## Problemas que llevan a ecuaciones racionales
+
+Las ecuaciones racionales no se inventaron para fastidiar: aparecen de forma natural siempre que una magnitud se define como un **cociente** —velocidad, rendimiento, concentración, precio unitario— y la incógnita está en el denominador de ese cociente.
+
+### Trabajos conjuntos
+
+::: {.callout-note}
+## La idea clave: trabajar con ritmos, no con tiempos
+
+Si alguien tarda $t$ horas en terminar una tarea completa, en una hora hace $\dfrac{1}{t}$ de la tarea. Ese número, $\dfrac{1}{t}$, es su **ritmo de trabajo**. Los tiempos **no** se suman, pero los ritmos **sí**:
+$$
+\dfrac{1}{t_1} + \dfrac{1}{t_2} = \dfrac{1}{t_{\text{conjunto}}}.
+$$
+:::
+
+**Ejemplo 11.** Un grifo llena un depósito en $6$ horas y otro lo llena en $4$ horas. ¿Cuánto tardarán abiertos los dos a la vez?
+
+En una hora, el primero llena $\dfrac{1}{6}$ del depósito y el segundo, $\dfrac{1}{4}$. Si $t$ es el tiempo conjunto:
+$$
+\dfrac{1}{6} + \dfrac{1}{4} = \dfrac{1}{t}.
+$$
+El m.c.m. de $6$, $4$ y $t$ es $12t$; multiplicando por él: $2t + 3t = 12$, es decir, $5t = 12$ y $t = \dfrac{12}{5} = 2{,}4$ horas, o sea, $2$ horas y $24$ minutos. Tiene sentido: el conjunto tarda menos que el más rápido de los dos.
+
+**Ejemplo 12.** Dos operarios juntos hacen un trabajo en $4$ horas. El segundo, solo, tardaría $6$ horas más que el primero. ¿Cuánto tarda cada uno?
+
+Sea $x$ el tiempo del primero; el del segundo es $x+6$. El dominio del problema exige $x > 0$ (y automáticamente $x \neq 0$, $x \neq -6$):
+$$
+\dfrac{1}{x} + \dfrac{1}{x+6} = \dfrac{1}{4}.
+$$
+Multiplico por el m.c.m. $4x(x+6)$:
+$$
+4(x+6) + 4x = x(x+6) \;\Longrightarrow\; 8x + 24 = x^2 + 6x \;\Longrightarrow\; x^2 - 2x - 24 = 0 .
+$$
+Sus raíces son $x = 6$ y $x = -4$. La segunda pertenece al dominio matemático de la ecuación, pero **no al del problema**: un tiempo no puede ser negativo. Solución: el primero tarda $6$ horas y el segundo, $12$.
+
+::: {.callout-warning}
+## Dos filtros distintos, no uno
+
+En los problemas hay que superar **dos** filtros: el dominio de la ecuación (valores que anulan denominadores) y el contexto del enunciado (longitudes, tiempos y precios positivos, número de personas entero…). Una solución puede ser perfectamente legítima como número y absurda como respuesta.
+:::
+
+### Velocidades y tiempos
+
+**Ejemplo 13.** Un ciclista recorre $60$ km. Si hubiese ido $5$ km/h más rápido, habría tardado una hora menos. ¿A qué velocidad fue?
+
+Con $v$ la velocidad en km/h, el tiempo es $\dfrac{60}{v}$ y el tiempo hipotético, $\dfrac{60}{v+5}$. El enunciado dice:
+$$
+\dfrac{60}{v} - \dfrac{60}{v+5} = 1, \qquad D = \mathbb{R} - \{0,\,-5\}.
+$$
+Multiplico por $v(v+5)$:
+$$
+60(v+5) - 60v = v(v+5) \;\Longrightarrow\; 300 = v^2 + 5v \;\Longrightarrow\; v^2 + 5v - 300 = 0 .
+$$
+$$
+v = \dfrac{-5 \pm \sqrt{25 + 1200}}{2} = \dfrac{-5 \pm 35}{2} \;\Longrightarrow\; v = 15 \ \text{o} \ v = -20 .
+$$
+La velocidad negativa se descarta por el contexto: $v = 15$ km/h. Verifica: $60/15 = 4$ horas y $60/20 = 3$ horas, una hora menos. Correcto.
+
+### Mezclas y concentraciones
+
+**Ejemplo 14.** Una disolución de $200$ g contiene un $15\,\%$ de sal. ¿Cuántos gramos de sal hay que añadir para que la concentración pase al $30\,\%$?
+
+Hay $0{,}15\cdot 200 = 30$ g de sal. Si añado $x$ gramos de sal, la masa total pasa a ser $200 + x$ y la de sal, $30 + x$:
+$$
+\dfrac{30 + x}{200 + x} = 0{,}30, \qquad D = \mathbb{R} - \{-200\}.
+$$
+Producto cruzado: $30 + x = 0{,}3(200 + x) = 60 + 0{,}3x$, luego $0{,}7x = 30$ y $x = \dfrac{300}{7} \approx 42{,}86$ g.
+
+::: {.callout-tip}
+## La concentración es un cociente: por eso sale una racional
+
+En los problemas de mezclas la incógnita suele aparecer **a la vez** en el numerador y en el denominador, porque añadir sal cambia la cantidad de sal y también la masa total. Ese doble papel es justo lo que impide resolverlo con una regla de tres.
+:::
+
+## Casos particulares que conviene reconocer
+
+- **Ecuación imposible dentro del dominio.** Todos los candidatos son valores prohibidos: $S = \varnothing$ (ejemplos 6, 9 y 10).
+- **Identidad restringida.** Al quitar denominadores queda $0=0$, de modo que **todos** los valores del dominio son solución. Ocurre, por ejemplo, en $\dfrac{x^2-1}{x-1} = x+1$, cuya solución es $S = \mathbb{R} - \{1\}$: no es toda la recta, porque $x=1$ sigue estando prohibido.
+- **Grado que baja de golpe.** Cuando los términos de mayor grado se cancelan al desarrollar (ejemplo 5), una ecuación de aspecto cuadrático se convierte en una de primer grado. No es un error: es lo que hay.
+- **Raíz doble prohibida.** La polinómica tiene una raíz doble que resulta ser un valor excluido (ejemplo 10).
+
+## Practica con los entrenadores
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar la simplificación, la suma y el producto de fracciones algebraicas —el trabajo previo imprescindible de este apartado—, con corrección automática y pistas graduadas, usa el [Entrenador de fracciones algebraicas](../../entrenador_fracciones_algebraicas.html).
+
+Para el paso de factorizar los denominadores y calcular su mínimo común múltiplo, apóyate en el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html), que descompone polinomios y calcula m.c.d. y m.c.m. paso a paso.
+:::
+
+## Errores frecuentes
+
+1. **Resolver sin calcular antes el dominio.** Es el error madre: sin dominio no hay forma de saber qué candidatos hay que descartar, y la comprobación se convierte en adivinanza.
+2. **No comprobar las soluciones.** Quitar denominadores puede crear soluciones extrañas; darlas por buenas sin verificar es dar por válido algo que la ecuación original no admite.
+3. **Aplicar el producto cruzado con sumas de por medio.** $\dfrac{1}{x} + \dfrac{1}{x+1} = \dfrac{1}{2}$ no se cruza directamente: primero se reduce a una sola fracción o se multiplica por el m.c.m.
+4. **Multiplicar solo algunos términos por el m.c.m.** Hay que multiplicar **todos** los sumandos de los **dos** miembros, incluidos los que no son fracciones. Olvidar el $6$ del ejemplo 8 estropea el resultado por completo.
+5. **Simplificar mal al multiplicar.** Cada fracción se multiplica por un factor distinto (el m.c.m. dividido entre su propio denominador). Aplicar el mismo factor a todas es incorrecto.
+6. **«Tachar» sumandos en lugar de factores.** En $\dfrac{x+3}{x}$ no se puede tachar la $x$: solo se simplifican **factores** comunes a todo el numerador y todo el denominador, nunca sumandos.
+7. **Cancelar un factor con incógnita sin condiciones.** Pasar de $3(x-2)=2(x-2)$ a $3=2$ dividiendo por $x-2$ es legítimo solo si $x \neq 2$; y precisamente $x=2$ era el candidato en juego.
+8. **Olvidar el dominio del contexto.** Tiempos, velocidades, masas y longitudes negativas se descartan aunque la ecuación las admita.
+9. **Confundir «no tiene solución» con «me he equivocado».** $S = \varnothing$ es una respuesta correcta y frecuente en este tipo de ecuaciones.
+10. **Perder soluciones al reducir.** Al escribir $\dfrac{x^2-1}{x-1} = x+1$ se está simplificando una expresión que no está definida en $x=1$; la simplificación es válida, pero la restricción del dominio se mantiene.
+
+## Qué debes saber hacer
+
+- Sé reconocer una ecuación racional y distinguirla de una ecuación con denominadores numéricos.
+- Sé calcular el dominio de validez factorizando los denominadores e igualándolos a cero.
+- Sé explicar por qué multiplicar por una expresión con incógnita no es una transformación equivalente y cómo eso genera soluciones extrañas.
+- Sé resolver una ecuación racional de dos fracciones por productos cruzados, justificando la condición que lo permite.
+- Sé calcular el mínimo común múltiplo de varios denominadores polinómicos y resolver la ecuación multiplicando por él.
+- Sé determinar el factor por el que hay que multiplicar cada fracción y aplicarlo sin olvidar los términos sin denominador.
+- Sé comprobar cada candidato, descartar los que caen fuera del dominio y escribir correctamente el conjunto solución, incluido el caso $S = \varnothing$.
+- Sé reconocer los casos particulares: ecuación sin solución, identidad restringida al dominio y raíz doble prohibida.
+- Sé plantear y resolver problemas de trabajos conjuntos usando ritmos en lugar de tiempos.
+- Sé plantear y resolver problemas de velocidades y tiempos en los que la incógnita aparece en el denominador.
+- Sé plantear y resolver problemas de mezclas y concentraciones en los que la incógnita aparece en numerador y denominador a la vez.
+- Sé filtrar las soluciones también por el contexto del enunciado, descartando las que no tienen sentido físico o económico.

@@ -1,0 +1,406 @@
+---
+title: "Tema 3.9 Ecuaciones trigonométricas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 09-ecuaciones-trigonometricas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Circunferencia goniométrica, razones de los ángulos notables, grados y radianes, ecuaciones elementales sen x = k, cos x = k y tg x = k con todas sus familias de soluciones, casos sin solución, ecuaciones reducibles con identidades y ecuaciones que llevan a una cuadrática en una razón, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, trigonometría, circunferencia goniométrica, radianes]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué cambia cuando la incógnita está dentro de un seno
+
+Hasta ahora la incógnita aparecía multiplicada, elevada a una potencia, bajo una raíz o en un exponente. En una **ecuación trigonométrica** la incógnita está dentro de una razón trigonométrica:
+
+$$
+\operatorname{sen} x = \dfrac{1}{2}, \qquad 2\cos^2 x - \cos x - 1 = 0, \qquad \operatorname{tg}(2x) = \sqrt{3}
+$$
+
+La diferencia esencial con todo lo anterior es esta: **una ecuación trigonométrica que tiene una solución tiene infinitas**. La razón es que el seno, el coseno y la tangente son funciones *periódicas*: al dar una vuelta completa a la circunferencia se vuelve al mismo punto y, por tanto, a las mismas razones. Si $x_0$ es solución de $\operatorname{sen} x = k$, también lo son $x_0 + 2\pi$, $x_0 + 4\pi$, $x_0 - 2\pi$ y, en general, $x_0 + 2k\pi$ para cualquier número entero $k$.
+
+Esto obliga a distinguir dos respuestas distintas a la misma pregunta, y confundirlas es el error más repetido del tema:
+
+- **La familia de soluciones**: todas, escritas con el parámetro entero $k$. Es la respuesta completa.
+- **Las soluciones del primer giro**: solo las que caen en el intervalo $[0, 2\pi)$, es decir, entre $0^{\circ}$ y $360^{\circ}$. Es una respuesta parcial, que solo vale si el enunciado la pide expresamente.
+
+::: {.callout-important}
+## Lee siempre qué se pide
+
+«Resuelve $\operatorname{sen} x = \dfrac{1}{2}$» y «resuelve $\operatorname{sen} x = \dfrac{1}{2}$ en $[0,2\pi)$» son dos ejercicios distintos. El primero tiene infinitas soluciones y la respuesta debe llevar $+2k\pi$; el segundo tiene exactamente dos. Si das dos soluciones cuando se piden todas, la respuesta está incompleta; si das las familias cuando se pide el primer giro, la respuesta no está contestando a la pregunta.
+:::
+
+## Repaso: la circunferencia goniométrica
+
+Toda la trigonometría que necesitas para resolver ecuaciones cabe en un dibujo: la **circunferencia goniométrica**, la circunferencia de radio $1$ centrada en el origen.
+
+::: {.callout-note}
+## Definición de las razones en la circunferencia goniométrica
+
+Sea $P$ el punto de la circunferencia de radio $1$ que se alcanza girando un ángulo $\alpha$ desde el semieje positivo de abscisas, en sentido contrario a las agujas del reloj. Entonces
+
+$$
+\cos \alpha = \text{abscisa de } P, \qquad \operatorname{sen} \alpha = \text{ordenada de } P, \qquad \operatorname{tg} \alpha = \dfrac{\operatorname{sen}\alpha}{\cos\alpha}
+$$
+
+La tangente se lee también como la ordenada del punto de corte de la recta que pasa por el origen y $P$ con la recta vertical $x = 1$.
+:::
+
+De esta definición salen, sin memorizar nada más, las tres propiedades que gobiernan las ecuaciones elementales:
+
+1. **El seno y el coseno están acotados.** Son coordenadas de un punto de una circunferencia de radio $1$, así que
+   $$
+   -1 \leq \operatorname{sen} \alpha \leq 1, \qquad -1 \leq \cos \alpha \leq 1
+   $$
+   Por eso $\operatorname{sen} x = 3$ no tiene solución: ningún punto de la circunferencia tiene ordenada $3$.
+
+2. **La tangente no está acotada.** Puede valer cualquier número real, y no existe cuando $\cos \alpha = 0$, es decir, en $\alpha = \dfrac{\pi}{2} + k\pi$.
+
+3. **La identidad fundamental.** Como $P$ está en la circunferencia de radio $1$, sus coordenadas cumplen el teorema de Pitágoras:
+   $$
+   \operatorname{sen}^2 \alpha + \cos^2 \alpha = 1
+   $$
+
+::: {.callout-tip}
+## El cuadrado se escribe delante
+
+$\operatorname{sen}^2 x$ significa $(\operatorname{sen} x)^2$, no $\operatorname{sen}(x^2)$. Es una abreviatura cómoda pero peligrosa: dentro del paréntesis va el ángulo, el exponente afecta al resultado de la razón.
+:::
+
+### Applet · Circunferencia goniométrica y razones del ángulo {.unnumbered}
+
+Mueve el ángulo y observa a la vez el punto de la circunferencia, sus proyecciones sobre los ejes, el valor exacto de las razones cuando el ángulo es notable y la lectura de la tangente sobre la recta vertical.
+
+::: {#panel-circunGonio .applet-panel data-applet-eq="circunGonio"}
+:::
+
+Fíjate en dos cosas mientras juegas con el applet: el coseno es la coordenada **horizontal** y el seno la **vertical** —muchos errores vienen de intercambiarlas—, y al pasar de $0^{\circ}$ a $360^{\circ}$ cada valor del seno distinto de $1$ y $-1$ se alcanza exactamente en **dos** ángulos.
+
+## Grados y radianes
+
+Un ángulo se puede medir en grados sexagesimales (la circunferencia completa son $360^{\circ}$) o en **radianes** (la circunferencia completa son $2\pi$ radianes). Un radián es el ángulo cuyo arco mide lo mismo que el radio.
+
+La conversión es una proporción directa:
+
+$$
+\dfrac{\text{grados}}{180} = \dfrac{\text{radianes}}{\pi}
+\qquad\Longrightarrow\qquad
+\text{rad} = \text{grados}\cdot\dfrac{\pi}{180}, \qquad
+\text{grados} = \text{rad}\cdot\dfrac{180}{\pi}
+$$
+
+| Grados | $0^{\circ}$ | $30^{\circ}$ | $45^{\circ}$ | $60^{\circ}$ | $90^{\circ}$ | $180^{\circ}$ | $270^{\circ}$ | $360^{\circ}$ |
+|---|---|---|---|---|---|---|---|---|
+| Radianes | $0$ | $\dfrac{\pi}{6}$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{3}$ | $\dfrac{\pi}{2}$ | $\pi$ | $\dfrac{3\pi}{2}$ | $2\pi$ |
+
+: Equivalencia entre grados y radianes {.striped}
+
+En las ecuaciones trigonométricas se trabaja habitualmente en radianes, porque las familias de soluciones se escriben con $\pi$. Si el enunciado da los datos en grados, la respuesta se puede dar en grados usando $+k\cdot 360^{\circ}$ en lugar de $+2k\pi$; lo que no se puede es mezclar las dos unidades en la misma expresión.
+
+## Razones de los ángulos notables
+
+Estas son las razones que conviene tener disponibles sin calculadora, porque son las que aparecen en casi todos los ejercicios:
+
+| $\alpha$ | $0$ | $\dfrac{\pi}{6}$ | $\dfrac{\pi}{4}$ | $\dfrac{\pi}{3}$ | $\dfrac{\pi}{2}$ |
+|---|---|---|---|---|---|
+| $\operatorname{sen}\alpha$ | $0$ | $\dfrac{1}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{\sqrt{3}}{2}$ | $1$ |
+| $\cos\alpha$ | $1$ | $\dfrac{\sqrt{3}}{2}$ | $\dfrac{\sqrt{2}}{2}$ | $\dfrac{1}{2}$ | $0$ |
+| $\operatorname{tg}\alpha$ | $0$ | $\dfrac{\sqrt{3}}{3}$ | $1$ | $\sqrt{3}$ | no existe |
+
+: Razones trigonométricas de los ángulos notables del primer cuadrante {.striped}
+
+Para los demás cuadrantes no hace falta memorizar nada nuevo: basta el **ángulo de referencia** (el ángulo agudo que forma el radio con el eje horizontal) y el signo que corresponde al cuadrante.
+
+::: {.callout-note}
+## Signos por cuadrantes
+
+| Cuadrante | Ángulos | $\operatorname{sen}$ | $\cos$ | $\operatorname{tg}$ |
+|---|---|---|---|---|
+| I | $0^{\circ}$–$90^{\circ}$ | $+$ | $+$ | $+$ |
+| II | $90^{\circ}$–$180^{\circ}$ | $+$ | $-$ | $-$ |
+| III | $180^{\circ}$–$270^{\circ}$ | $-$ | $-$ | $+$ |
+| IV | $270^{\circ}$–$360^{\circ}$ | $-$ | $+$ | $-$ |
+
+El seno tiene el signo de la ordenada y el coseno el de la abscisa; la tangente, el del cociente.
+:::
+
+Por ejemplo, $\operatorname{sen} 150^{\circ} = \operatorname{sen} 30^{\circ} = \dfrac{1}{2}$, porque $150^{\circ}$ está en el segundo cuadrante (seno positivo) y su ángulo de referencia es $180^{\circ} - 150^{\circ} = 30^{\circ}$. En cambio $\cos 150^{\circ} = -\cos 30^{\circ} = -\dfrac{\sqrt{3}}{2}$.
+
+## Ecuaciones elementales
+
+Llamamos **ecuación elemental** a las tres de este tipo, donde $k$ es un número:
+
+$$
+\operatorname{sen} x = k, \qquad \cos x = k, \qquad \operatorname{tg} x = k
+$$
+
+Resolver cualquier ecuación trigonométrica consiste, al final, en reducirla a una o varias ecuaciones elementales. Por eso conviene dominar estas tres a fondo.
+
+### El seno: $\operatorname{sen} x = k$
+
+Geométricamente se buscan los puntos de la circunferencia cuya **ordenada** vale $k$. Si $|k| \leq 1$, la recta horizontal de altura $k$ corta a la circunferencia en dos puntos (uno solo si $k = 1$ o $k = -1$), simétricos respecto del eje vertical.
+
+Si $\alpha$ es el ángulo del primer o del cuarto cuadrante con $\operatorname{sen}\alpha = k$, las dos familias son
+
+$$
+x = \alpha + 2k\pi \qquad \text{y} \qquad x = \pi - \alpha + 2k\pi, \qquad k \in \mathbb{Z}
+$$
+
+**Ejemplo resuelto.** Resuelve $\operatorname{sen} x = \dfrac{1}{2}$.
+
+El ángulo del primer cuadrante con seno $\dfrac{1}{2}$ es $\alpha = \dfrac{\pi}{6}$ ($30^{\circ}$). El otro punto con la misma ordenada está en el segundo cuadrante: $\pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$ ($150^{\circ}$). Las soluciones son
+
+$$
+x = \dfrac{\pi}{6} + 2k\pi \qquad \text{o} \qquad x = \dfrac{5\pi}{6} + 2k\pi, \qquad k \in \mathbb{Z}
+$$
+
+En el primer giro: $x = \dfrac{\pi}{6}$ y $x = \dfrac{5\pi}{6}$, es decir, $30^{\circ}$ y $150^{\circ}$.
+
+### El coseno: $\cos x = k$
+
+Ahora se buscan los puntos con **abscisa** $k$. La recta vertical corta a la circunferencia en dos puntos simétricos respecto del eje horizontal, así que las soluciones son opuestas:
+
+$$
+x = \alpha + 2k\pi \qquad \text{y} \qquad x = -\alpha + 2k\pi = 2\pi - \alpha + 2k\pi
+$$
+
+**Ejemplo resuelto.** Resuelve $\cos x = -\dfrac{\sqrt{2}}{2}$.
+
+El ángulo de referencia cumple $\cos\alpha = \dfrac{\sqrt{2}}{2}$, luego $\alpha = \dfrac{\pi}{4}$. Como el coseno es negativo, los ángulos están en los cuadrantes II y III:
+
+$$
+x = \pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4} \qquad \text{y} \qquad x = \pi + \dfrac{\pi}{4} = \dfrac{5\pi}{4}
+$$
+
+La respuesta completa es $x = \dfrac{3\pi}{4} + 2k\pi$ o $x = \dfrac{5\pi}{4} + 2k\pi$, con $k \in \mathbb{Z}$.
+
+### La tangente: $\operatorname{tg} x = k$
+
+La tangente tiene periodo $\pi$, no $2\pi$: los ángulos $\alpha$ y $\alpha + \pi$ están en puntos diametralmente opuestos y tienen las dos coordenadas cambiadas de signo, así que su cociente no cambia. Por eso hay **una sola familia**:
+
+$$
+x = \alpha + k\pi, \qquad k \in \mathbb{Z}
+$$
+
+y además la ecuación $\operatorname{tg} x = k$ **siempre tiene solución**, sea cual sea $k$, porque la tangente recorre todos los números reales.
+
+**Ejemplo resuelto.** Resuelve $\operatorname{tg} x = \sqrt{3}$. Como $\operatorname{tg}\dfrac{\pi}{3} = \sqrt{3}$, la solución es $x = \dfrac{\pi}{3} + k\pi$. En el primer giro hay dos: $\dfrac{\pi}{3}$ ($60^{\circ}$) y $\dfrac{4\pi}{3}$ ($240^{\circ}$).
+
+::: {.callout-warning}
+## El periodo de la tangente es $\pi$
+
+Escribir $x = \dfrac{\pi}{3} + 2k\pi$ como respuesta de $\operatorname{tg} x = \sqrt{3}$ deja fuera la mitad de las soluciones. La tangente repite valores cada media vuelta, no cada vuelta.
+:::
+
+### Cuándo no hay solución
+
+Si $|k| > 1$, las ecuaciones $\operatorname{sen} x = k$ y $\cos x = k$ **no tienen ninguna solución**. No es que sean difíciles: es que la recta horizontal (o vertical) de altura $k$ no llega a cortar a la circunferencia de radio $1$. La respuesta correcta es «no tiene solución», y conviene justificarla con el acotamiento, no con la calculadora.
+
+La ecuación $\operatorname{tg} x = k$, en cambio, nunca es imposible.
+
+### Applet · Ecuaciones elementales: sen x = k, cos x = k, tg x = k {.unnumbered}
+
+Elige la razón y el valor de $k$ —admite fracciones y raíces como `1/2`, `sqrt3/2` o `raiz(3)`— y compara la familia completa, las soluciones del primer giro, la lectura en la circunferencia y la lectura como corte de una recta horizontal con la gráfica de la función.
+
+::: {#panel-trigElemental .applet-panel data-applet-eq="trigElemental"}
+:::
+
+Prueba en el applet los casos $k = 1$, $k = -1$ y $k = 0$: son los únicos en los que el seno o el coseno dan **una sola** familia, porque la recta es tangente a la circunferencia o pasa por su centro. Prueba después $k = 2$ y observa el mensaje de imposibilidad.
+
+## Ecuaciones que se reducen a una elemental
+
+La mayoría de los ejercicios no vienen en forma elemental. La estrategia general es siempre la misma:
+
+::: {.callout-note}
+## Estrategia general
+
+1. **Deja una sola razón trigonométrica.** Usa identidades para escribirlo todo en función de $\operatorname{sen} x$, o todo en función de $\cos x$.
+2. **Deja un solo ángulo.** Si aparecen $2x$ o $x/2$ junto con $x$, usa las fórmulas del ángulo doble o mitad para igualar los ángulos.
+3. **Resuelve la ecuación algebraica** que queda, tratando la razón como si fuera una incógnita $t$.
+4. **Deshaz el cambio**: cada valor de $t$ da una ecuación elemental.
+5. **Filtra y comprueba**: descarta los valores con $|t| > 1$ para el seno y el coseno, y comprueba las soluciones si has elevado al cuadrado.
+:::
+
+Las identidades que se usan en este curso son pocas:
+
+$$
+\operatorname{sen}^2 x + \cos^2 x = 1
+$$
+
+$$
+\operatorname{sen}(2x) = 2\operatorname{sen} x \cos x, \qquad
+\cos(2x) = \cos^2 x - \operatorname{sen}^2 x = 1 - 2\operatorname{sen}^2 x = 2\cos^2 x - 1
+$$
+
+$$
+\operatorname{tg} x = \dfrac{\operatorname{sen} x}{\cos x}
+$$
+
+**Ejemplo resuelto.** Resuelve $\operatorname{sen}(2x) = \operatorname{sen} x$.
+
+Hay dos ángulos distintos, $2x$ y $x$. Se aplica el ángulo doble:
+
+$$
+2\operatorname{sen} x \cos x = \operatorname{sen} x
+\;\Longrightarrow\;
+2\operatorname{sen} x \cos x - \operatorname{sen} x = 0
+\;\Longrightarrow\;
+\operatorname{sen} x\,(2\cos x - 1) = 0
+$$
+
+Un producto es cero cuando lo es alguno de sus factores, así que la ecuación se parte en dos elementales:
+
+$$
+\operatorname{sen} x = 0 \;\Longrightarrow\; x = k\pi
+\qquad\text{o}\qquad
+\cos x = \dfrac{1}{2} \;\Longrightarrow\; x = \pm\dfrac{\pi}{3} + 2k\pi
+$$
+
+::: {.callout-important}
+## Nunca dividas los dos miembros por una razón trigonométrica
+
+En el ejemplo anterior es tentador dividir entre $\operatorname{sen} x$ y quedarse con $2\cos x = 1$. Al hacerlo se pierden todas las soluciones con $\operatorname{sen} x = 0$, que son infinitas. Dividir por una expresión que puede valer cero está prohibido: hay que **factorizar** y aplicar que un producto es nulo si lo es alguno de sus factores.
+:::
+
+**Ejemplo resuelto.** Resuelve $\cos(2x) + \cos x = 0$ eligiendo la versión adecuada del ángulo doble.
+
+Como el otro término lleva $\cos x$, interesa la versión $\cos(2x) = 2\cos^2 x - 1$:
+
+$$
+2\cos^2 x - 1 + \cos x = 0
+$$
+
+Con el cambio $t = \cos x$ queda $2t^2 + t - 1 = 0$, cuyas soluciones son $t = \dfrac{1}{2}$ y $t = -1$. Al deshacer el cambio:
+
+$$
+\cos x = \dfrac{1}{2} \;\Longrightarrow\; x = \pm\dfrac{\pi}{3} + 2k\pi,
+\qquad
+\cos x = -1 \;\Longrightarrow\; x = \pi + 2k\pi
+$$
+
+### Applet · Reducir con identidades: sen² + cos² = 1 y el ángulo doble {.unnumbered}
+
+Elige una de las plantillas —identidad fundamental, ángulo doble o factorización— y sigue el desarrollo completo: qué identidad conviene, por qué esa versión y no otra, en qué ecuaciones elementales se parte y cuáles son las soluciones.
+
+::: {#panel-trigIdentidad .applet-panel data-applet-eq="trigIdentidad"}
+:::
+
+## Ecuaciones que llevan a una cuadrática
+
+Cuando en la ecuación aparece una sola razón, elevada al cuadrado y sin elevar, el cambio de variable la convierte en una ecuación de segundo grado corriente:
+
+$$
+a\operatorname{sen}^2 x + b\operatorname{sen} x + c = 0
+\quad\xrightarrow{\;t=\operatorname{sen} x\;}\quad
+at^2 + bt + c = 0
+$$
+
+**Ejemplo resuelto.** Resuelve $2\cos^2 x - \cos x - 1 = 0$ y da las soluciones del primer giro.
+
+Con $t = \cos x$: $2t^2 - t - 1 = 0$, discriminante $\Delta = 1 + 8 = 9$, soluciones $t = 1$ y $t = -\dfrac{1}{2}$.
+
+- $\cos x = 1 \;\Longrightarrow\; x = 0 + 2k\pi$. En el primer giro: $x = 0$.
+- $\cos x = -\dfrac{1}{2} \;\Longrightarrow\; x = \dfrac{2\pi}{3} + 2k\pi$ o $x = \dfrac{4\pi}{3} + 2k\pi$. En el primer giro: $\dfrac{2\pi}{3}$ y $\dfrac{4\pi}{3}$.
+
+En $[0,2\pi)$ hay tres soluciones: $0$, $\dfrac{2\pi}{3}$ y $\dfrac{4\pi}{3}$.
+
+**Ejemplo resuelto con filtro.** Resuelve $2\operatorname{sen}^2 x - 3\operatorname{sen} x + 1 = 0$… y compáralo con $\operatorname{sen}^2 x - 3\operatorname{sen} x + 2 = 0$.
+
+En el primero, $2t^2 - 3t + 1 = 0$ da $t = 1$ y $t = \dfrac{1}{2}$: los dos valores son admisibles y producen tres soluciones en el primer giro.
+
+En el segundo, $t^2 - 3t + 2 = 0$ da $t = 1$ y $t = 2$. El valor $t = 2$ **hay que descartarlo**: ningún ángulo tiene seno $2$. Solo queda $\operatorname{sen} x = 1$, es decir, $x = \dfrac{\pi}{2} + 2k\pi$.
+
+::: {.callout-caution}
+## El filtro no es opcional
+
+Resolver la cuadrática es la parte fácil. La parte que decide la nota es acordarse de comprobar, para cada solución $t$, si cumple $|t| \leq 1$ cuando la razón es un seno o un coseno. Si no lo cumple, ese valor no genera ninguna solución: se descarta y se dice por qué.
+:::
+
+Si la ecuación mezcla $\operatorname{sen}^2 x$ con $\cos x$, primero se unifica con la identidad fundamental. Por ejemplo, en $\operatorname{sen}^2 x + \cos x = 1$ se sustituye $\operatorname{sen}^2 x = 1 - \cos^2 x$:
+
+$$
+1 - \cos^2 x + \cos x = 1 \;\Longrightarrow\; \cos x - \cos^2 x = 0 \;\Longrightarrow\; \cos x\,(1 - \cos x) = 0
+$$
+
+de donde $\cos x = 0$ (es decir, $x = \dfrac{\pi}{2} + k\pi$) o $\cos x = 1$ (es decir, $x = 2k\pi$).
+
+### Applet · Ecuación trigonométrica reducible a una cuadrática {.unnumbered}
+
+Escribe los coeficientes $a$, $b$ y $c$, elige la razón y observa el cambio de variable, el discriminante, el filtro de los valores imposibles y las familias de soluciones que sobreviven.
+
+::: {#panel-trigCuadratica .applet-panel data-applet-eq="trigCuadratica"}
+:::
+
+## Interpretación gráfica y periodicidad
+
+Cada ecuación elemental se puede leer como el corte de dos gráficas: la de la función trigonométrica y la recta horizontal $y = k$. Esta lectura explica todo lo anterior de un vistazo:
+
+- La curva del seno y la del coseno oscilan entre $-1$ y $1$ y se repiten cada $2\pi$: por eso hay infinitos cortes, agrupados en dos familias separadas por $2\pi$.
+- Si la recta está por encima de $1$ o por debajo de $-1$, no hay cortes: no hay solución.
+- La curva de la tangente sube de $-\infty$ a $+\infty$ en cada tramo de longitud $\pi$: por eso corta a cualquier recta horizontal exactamente una vez por tramo, y de ahí la familia única con $+k\pi$.
+
+En Ciencias Sociales estas funciones aparecen al modelizar fenómenos **estacionales**: ventas que suben en Navidad y bajan en verano, consumo eléctrico a lo largo del día, temporadas turísticas. Un modelo del tipo $V(t) = 1000 + 200\operatorname{sen}\left(\dfrac{\pi t}{6}\right)$ describe unas ventas mensuales con un ciclo anual, y preguntar «¿en qué meses las ventas valen $1100$?» es exactamente resolver una ecuación trigonométrica. La periodicidad, que en clase parece una molestia, es justo lo que hace útil el modelo: predice que el patrón se repetirá.
+
+## Curiosidades y pensamiento crítico
+
+- La palabra **seno** procede de una cadena de traducciones con un error por medio. El término sánscrito *jya-ardha* («media cuerda») pasó al árabe como *yaib*, que además significa «pliegue» o «bahía»; al traducirlo al latín en el siglo XII se eligió *sinus*, que es lo que significa «seno» en castellano. El nombre no describe la idea: la describe «media cuerda».
+- **Hiparco de Nicea**, en el siglo II a. C., construyó la primera tabla de cuerdas conocida, el antepasado directo de las tablas de senos. Su motivación era astronómica: predecir posiciones de astros.
+- El radián no es una unidad arbitraria: es la única medida angular con la que la derivada del seno vuelve a ser el coseno sin factores de conversión. Esa es la razón por la que el cálculo se hace siempre en radianes.
+- Las funciones trigonométricas son la base del **análisis de Fourier**, con el que se descompone cualquier señal periódica en suma de senos y cosenos. De ahí salen la compresión de audio y de imagen, y también la descomposición de una serie económica en tendencia y componente estacional.
+- Una advertencia estadística: ajustar una componente periódica a una serie corta de datos es fácil y engañoso. Si solo tienes dos años de ventas, casi cualquier onda «encaja». La estacionalidad hay que justificarla con un mecanismo (el calendario, el clima, el curso escolar), no solo con el ajuste.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para repasar la relación entre la circunferencia, el teorema de Pitágoras y la lectura de puntos sobre la recta real, usa el entrenador [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html). Para las cuadráticas que aparecen tras el cambio de variable, el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) te ayuda a factorizar sin fallos.
+:::
+
+## Practica con los entrenadores
+
+1. Sitúa en la circunferencia goniométrica los ángulos $\dfrac{2\pi}{3}$, $\dfrac{5\pi}{4}$ y $\dfrac{11\pi}{6}$, y da sus tres razones exactas.
+2. Resuelve, dando la familia completa y las soluciones del primer giro: $\operatorname{sen} x = -\dfrac{\sqrt{2}}{2}$, $\cos x = 0$, $\operatorname{tg} x = -1$.
+3. Explica sin calculadora por qué $\cos x = \dfrac{5}{4}$ no tiene solución.
+4. Resuelve $2\operatorname{sen}^2 x + \operatorname{sen} x - 1 = 0$ en $[0, 2\pi)$.
+5. Resuelve $\cos(2x) = \operatorname{sen} x$ pasando todo a senos con $\cos(2x) = 1 - 2\operatorname{sen}^2 x$.
+6. Resuelve $\operatorname{sen}(2x) = \cos x$ factorizando, sin dividir por $\cos x$.
+7. Comprueba con el applet de ecuaciones elementales cuántas soluciones tiene $\operatorname{tg} x = 5$ en el primer giro, y explica por qué son dos y no cuatro.
+
+## Errores frecuentes
+
+1. Dar solo las soluciones del primer giro cuando el enunciado pide todas. Falta el $+2k\pi$ o el $+k\pi$.
+2. Dar las familias con $k$ cuando el enunciado restringe a $[0,2\pi)$ y no concretar los valores.
+3. Usar $+2k\pi$ en la tangente. Su periodo es $\pi$, así que la familia correcta lleva $+k\pi$.
+4. Olvidar la segunda familia del seno o del coseno: quedarse con $x = \dfrac{\pi}{6}$ en $\operatorname{sen} x = \dfrac{1}{2}$ y no ver $\dfrac{5\pi}{6}$.
+5. Dividir los dos miembros por $\operatorname{sen} x$ o $\cos x$ para simplificar. Se pierden soluciones: hay que factorizar.
+6. Aceptar valores con $|t| > 1$ tras el cambio de variable. $\operatorname{sen} x = 2$ o $\cos x = -3$ no dan ninguna solución.
+7. Confundir $\operatorname{sen}^2 x$ con $\operatorname{sen}(x^2)$, o escribir $\operatorname{sen} 2x = 2\operatorname{sen} x$, que es falso.
+8. Mezclar grados y radianes en la misma respuesta, del tipo $x = 30^{\circ} + 2k\pi$.
+9. Aplicar la versión del ángulo doble que no toca y quedarse con una ecuación con dos razones distintas.
+10. Intercambiar seno y coseno en la circunferencia: el coseno es la abscisa (horizontal) y el seno la ordenada (vertical).
+11. Perder el signo al pasar de un cuadrante a otro: $\cos 150^{\circ}$ es negativo, aunque su ángulo de referencia sea $30^{\circ}$.
+12. Usar la calculadora en modo grados creyendo que está en radianes. El arco seno de $0{,}5$ es $30$ o $0{,}5236$ según el modo, y solo uno de los dos es lo que necesitas.
+
+## Qué debes saber hacer
+
+- Situar un ángulo en la circunferencia goniométrica y leer en ella el seno, el coseno y la tangente, con su signo.
+- Convertir ángulos de grados a radianes y al revés, y reconocer los ángulos notables en las dos unidades.
+- Dar de memoria las razones de $0$, $\dfrac{\pi}{6}$, $\dfrac{\pi}{4}$, $\dfrac{\pi}{3}$ y $\dfrac{\pi}{2}$, y deducir las de los demás cuadrantes con el ángulo de referencia y el signo.
+- Resolver las ecuaciones elementales $\operatorname{sen} x = k$, $\cos x = k$ y $\operatorname{tg} x = k$ dando **todas** las soluciones en forma de familias.
+- Escribir las soluciones del primer giro a partir de las familias, y distinguir con claridad las dos respuestas.
+- Justificar, con el acotamiento del seno y del coseno, por qué una ecuación no tiene solución cuando $|k| > 1$.
+- Reducir a una ecuación elemental usando $\operatorname{sen}^2 x + \cos^2 x = 1$ y las fórmulas del ángulo doble, eligiendo la versión que unifica la razón.
+- Factorizar en lugar de dividir cuando aparece un factor común que puede anularse.
+- Resolver ecuaciones que llevan a una cuadrática en $\operatorname{sen} x$ o $\cos x$ mediante cambio de variable, filtrando los valores imposibles.
+- Interpretar gráficamente una ecuación trigonométrica como corte de una curva periódica con una recta horizontal.
+- Explicar por qué una ecuación trigonométrica con solución tiene infinitas, y qué papel juega el parámetro entero $k$.

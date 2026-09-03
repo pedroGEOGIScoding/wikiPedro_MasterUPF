@@ -1,1170 +1,2009 @@
 /* =====================================================================
-   eq-applets.js — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
-   VERSION 3 — DEFINITIVA. Notacion en LaTeX compuesta por KaTeX.
+   eq-applets.js · Tema 3 Ecuaciones e inecuaciones
+   1.º de Bachillerato · Matemáticas Aplicadas a las Ciencias Sociales
+   Ruta: 1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/eq-applets.js
 
-   POR QUE KATEX
-   MathJax esta pensado para procesar la pagina una vez y exige llamar
-   a typeset cada vez que se inyecta contenido nuevo. Estos applets
-   reescriben su salida en cada pulsacion de tecla, asi que ese modelo
-   es fragil. KaTeX compone de forma sincrona y sin reflujo, de modo que
-   basta llamar a renderMathInElement despues de escribir el HTML.
-   Resultado: un unico lenguaje, LaTeX, tanto en la prosa de los .qmd
-   como en la salida de los applets.
+   NÚCLEO del tema. Misma arquitectura que el motor de Números reales
+   (re-applets.js) y que el de Estadística de 2.º: un núcleo con las
+   utilidades comunes y tres módulos que registran los applets.
 
-   DEPENDENCIAS (las carga assets/_scripts.html, en este orden)
-     1) katex.min.css
-     2) katex.min.js
-     3) contrib/auto-render.min.js   -> define window.renderMathInElement
-     4) ../polinomios/assets/poly-applets.js  -> define window.POLY
-     5) este archivo                 -> define window.EQAPP
+   API pública: window.EQ
+     .registry             mapa clave -> función montadora
+     .shell(...)           armazón estándar de applet (título, ayuda,
+                           controles, escenarios y salida reactiva)
+     .tex .K .KD .texifica       KaTeX local sobre nodos data-tex
+     .esc .fmt .nc .etq .kf .mil .milTex .sig   formato de números
+     .entero .real .fraccionTxt  validación de entradas numéricas
+     .Frac                 fracciones exactas con BigInt
+     .mcd .mcm .factoriza .factorizaTex .divisores
 
-   MOTOR ALGEBRAICO
-   Se reutiliza window.POLY del tema de polinomios: parse, sub, mul,
-   add, divmod, eval, factorize, factorTex, gcd, lcm, R. Los polinomios
-   son arrays de racionales exactos en orden ascendente (indice = grado).
-   Si window.POLY no estuviese, hay un parser de respaldo.
+     ÁLGEBRA DE POLINOMIOS (coeficientes Frac, índice = grado)
+     .parsePol(txt)        lee 3x^2-5x+2, 2x(x-1)^2, x³, -x/2+3 …
+     .pDe .pMono .pRecorta .pCopia .pEsCero .pGrado .pLider .pIndep
+     .pSuma .pResta .pOpuesto .pEscala .pMult .pPot .pIgual
+     .pDiv(A,B)            cociente, resto y TODOS los pasos
+     .pEval(p,x)           valor numérico exacto por Horner, con acumulados
+     .pEvalNum .pDeriva .pTex .pTexPar .pEntero
+     .ruffini(p,r)         filas de la regla de Ruffini
+     .candidatosRaiz .raicesRacionales
+     .factorizaPol .factorizaTexPol .factorRehacer .factoresLista
+     .mcdPol .mcmPol
+     .Frax .fraxSimplifica .fraxSuma .fraxMult .fraxDiv
+     .notable(tipo,A,B)    identidades notables desarrolladas
 
-   INSERCION EN EL .qmd
-     <div data-applet-eq="clave"></div>
+     SALIDA
+     .expr .terminosHTML .ruffiniHTML .divisionLargaHTML
+     .svgWrap .txt .line .rect .circle .path .poly .leyenda .COL
+     .rectaReal .ejes       figuras SVG reutilizables
+     .resultado .badge .kvs .tabla .paso
+     .log                   pila de errores por applet
+     .extraA .extraB .extraC   true cuando cada módulo se ha cargado
 
-   CLAVES
-     cuadratica · sumaproducto · bicuadrada · productonulo · racional
-     irracional · exponencial · logaritmica · inecuacion1 · inecuacion2
-     intervalos · diagnostico
+   Toda la aritmética usa fracciones con BigInt: los coeficientes que
+   aparecen al dividir, al aplicar Ruffini o al sumar fracciones
+   algebraicas son exactos, sin errores de coma flotante.
+
+   Sin OJS, sin CDN, sin auto-render, sin dependencias externas.
    ===================================================================== */
-
 (function () {
   'use strict';
 
-  var EQ = {};
-  var P = (typeof window !== 'undefined' && window.POLY) ? window.POLY : null;
+  var R = {};
+  /* ==================================================================
+     0 · texto y KaTeX
+     ================================================================== */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function K(t) { return '<span data-tex="' + esc(t) + '"></span>'; }
+  function KD(t) { return '<span data-tex="' + esc(t) + '" data-display="1"></span>'; }
 
-  /* =================================================================
-     0. COMPOSICION CON KATEX
-     ================================================================= */
+  function tex(root) {
+    if (!window.katex || !root) return;
+    root.querySelectorAll('[data-tex]').forEach(function (e) {
+      if (e.dataset.done) return;
+      try {
+        katex.render(e.dataset.tex, e, {
+          throwOnError: false,
+          displayMode: e.hasAttribute('data-display')
+        });
+        e.dataset.done = 1;
+      } catch (x) { e.textContent = e.dataset.tex; }
+    });
+  }
 
-  var KATEX_OPTS = {
-    /* El orden importa: los delimitadores largos van primero. */
-    delimiters: [
-      { left: '$$', right: '$$', display: true },
-      { left: '$', right: '$', display: false }
-    ],
-    throwOnError: false,
-    errorColor: '#e63946',
-    ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option']
-  };
+  /* Convierte $...$ y $$...$$ de un texto plano en nodos data-tex.
+     Hay que aplicarlo a TODO lo que se inserte con innerHTML. */
+  function texifica(s) {
+    if (typeof s !== 'string') return s;
+    s = s.replace(/\$\$([\s\S]+?)\$\$/g, function (_, t) {
+      return '<span data-tex="' + esc(t.trim()) + '" data-display="1"></span>';
+    });
+    s = s.replace(/\$([^\$\n]+?)\$/g, function (_, t) {
+      return '<span data-tex="' + esc(t.trim()) + '"></span>';
+    });
+    return s;
+  }
 
-  function kt(node) {
-    if (window.renderMathInElement) {
-      try { window.renderMathInElement(node, KATEX_OPTS); } catch (e) { /* silencioso */ }
+  /* ==================================================================
+     1 · formato de números (convención española: coma decimal)
+     ================================================================== */
+  var FINO = '\u202F';                 /* espacio fino sin salto de línea */
+
+  function fmt(x, d) {
+    d = d === undefined ? 4 : d;
+    if (!Number.isFinite(x)) return '—';
+    var y = Number(x.toFixed(d));
+    var s = String(Object.is(y, -0) ? 0 : y);
+    if (s.indexOf('e') >= 0) return x.toExponential(Math.min(d, 12));
+    return s;
+  }
+  function nc(x, d) { return fmt(x, d).replace('.', ','); }          /* texto  */
+  /* Rótulos de figuras: signo menos tipográfico (U+2212) en vez del guion. */
+  function etq(x, d) { return nc(x, d).replace('-', '−'); }
+  function kf(x, d) { return fmt(x, d).replace('.', '{,}'); }        /* KaTeX  */
+
+  function grupos(s, sep) {
+    var neg = s.charAt(0) === '-';
+    if (neg) s = s.slice(1);
+    var e = s.split('.'), ent = e[0], dec = e[1];
+    var out = '', c = 0;
+    for (var i = ent.length - 1; i >= 0; i--) {
+      out = ent.charAt(i) + out;
+      if (++c % 3 === 0 && i > 0) out = sep + out;
     }
+    return (neg ? '-' : '') + out + (dec ? ',' + dec : '');
+  }
+  function mil(x) { return grupos(String(x), FINO); }
+  function milTex(x) {
+    var s = String(x), p = s.split('.');
+    var ent = grupos(p[0], '\\,');
+    return ent + (p[1] ? '{,}' + p[1] : '');
+  }
+  /* Ajusta a entero los resultados que solo se desvían por el redondeo
+     de la coma flotante: log(1000) en base 10 debe salir 3, no 2,999… */
+  function casi(x, tol) {
+    var r = Math.round(x);
+    return Math.abs(x - r) < (tol || 1e-10) ? r : x;
   }
 
-  /* Envoltorios de LaTeX. */
-  function T(tex) { return '$' + tex + '$'; }
-  function TD(tex) { return '$$' + tex + '$$'; }
-
-  /* =================================================================
-     1. PRESENTACION
-     ================================================================= */
-
-  function head(title, bullets) {
-    var li = bullets.map(function (b) { return '<li>' + b + '</li>'; }).join('');
-    return '<div class="ap-head"><h4 class="ap-title">' + title + '</h4>' +
-           '<ul class="ap-help">' + li + '</ul></div>';
+  /* Notación con n cifras significativas, en texto español */
+  function sig(x, n) {
+    if (!Number.isFinite(x) || x === 0) return nc(x, 0);
+    return String(Number(x.toPrecision(n))).replace('.', ',');
   }
 
-  function errBox(msg) { return '<div class="ap-err">Aviso: ' + msg + '</div>'; }
-  function step(html) { return '<div class="ap-step">' + html + '</div>'; }
-  function warnStep(html) { return '<div class="ap-step ap-warn">' + html + '</div>'; }
-  function key(t) { return '<span class="ap-key">' + t + '</span>'; }
-  function ok(t) { return '<span class="ap-ok">' + t + '</span>'; }
-  function bad(t) { return '<span class="ap-bad">' + t + '</span>'; }
-  function note(t) { return '<span class="ap-note">' + t + '</span>'; }
-  function chip(t, isBad) {
-    return '<span class="ap-chip' + (isBad ? ' ap-chip-bad' : '') + '">' + t + '</span>';
-  }
-
-  /* =================================================================
-     2. NUMEROS Y POLINOMIOS EN LATEX
-     ================================================================= */
-
-  function nz(x) { return Math.abs(x) < 1e-11 ? 0 : x; }
-
-  /* Numero decimal, con coma decimal a la espanola. */
-  function nt(x) {
-    if (!isFinite(x)) return '\\text{no definido}';
-    var y = nz(x), r = Math.round(y * 1e6) / 1e6;
-    return Number.isInteger(r) ? String(r) : String(r).replace('.', '{,}');
-  }
-
-  /* Numero exacto: fraccion cuando el denominador es pequeno. */
-  function qt(x) {
-    var y = nz(x);
-    if (Number.isInteger(y)) return String(y);
-    for (var d = 2; d <= 24; d++) {
-      var p = y * d;
-      if (Math.abs(p - Math.round(p)) < 1e-9) {
-        p = Math.round(p);
-        return (p < 0 ? '-' : '') + '\\dfrac{' + Math.abs(p) + '}{' + d + '}';
-      }
-    }
-    return nt(y);
-  }
-
-  /* Entre parentesis si es negativo, para leer bien los productos. */
-  function par(x) { return x < 0 ? '\\left(' + nt(x) + '\\right)' : nt(x); }
-
-  function snap(x) {
-    for (var d = 1; d <= 24; d++) {
-      var p = x * d;
-      if (Math.abs(p - Math.round(p)) < 1e-8) return Math.round(p) / d;
-    }
+  /* ==================================================================
+     2 · validación de entradas
+     ================================================================== */
+  function entero(v, min, max, nombre) {
+    var s = String(v).trim().replace(',', '.');
+    var x = Number(s);
+    if (s === '' || !Number.isFinite(x) || !Number.isInteger(x))
+      throw Error((nombre || 'El valor') + ' debe ser un número entero. Ejemplo: 12');
+    if (min !== undefined && x < min) throw Error((nombre || 'El valor') + ' debe ser al menos ' + min + '.');
+    if (max !== undefined && x > max) throw Error((nombre || 'El valor') + ' no puede pasar de ' + max + ' en este applet.');
     return x;
   }
-
-  function denomOf(x, max) {
-    max = max || 64;
-    for (var d = 1; d <= max; d++) {
-      if (Math.abs(x * d - Math.round(x * d)) < 1e-9) return d;
-    }
-    return 1;
+  function real(v, min, max, nombre) {
+    var s = String(v).trim().replace(/\s/g, '').replace(',', '.');
+    var x = Number(s);
+    if (s === '' || !Number.isFinite(x))
+      throw Error((nombre || 'El valor') + ' debe ser un número. Escribe la parte decimal con coma o con punto: 3,75 o 3.75');
+    if (min !== undefined && x < min) throw Error((nombre || 'El valor') + ' debe ser mayor o igual que ' + String(min).replace('.', ',') + '.');
+    if (max !== undefined && x > max) throw Error((nombre || 'El valor') + ' debe ser menor o igual que ' + String(max).replace('.', ',') + '.');
+    return x;
   }
-
-  /* Polinomio a LaTeX: 2x^{2}-5x-3 */
-  function pt(a) {
-    var p = ptrim(a), out = '', any = false;
-    for (var k = p.length - 1; k >= 0; k--) {
-      var c = nz(p[k]);
-      if (c === 0 && p.length > 1) continue;
-      var sg = c < 0 ? '-' : (any ? '+' : '');
-      var abs = Math.abs(c);
-      var body = (abs === 1 && k > 0) ? '' : qt(abs);
-      var vv = k === 0 ? '' : (k === 1 ? 'x' : 'x^{' + k + '}');
-      out += sg + body + vv;
-      any = true;
-    }
-    return any ? out : '0';
+  /* "7/12", "-3/4", "5"  ->  Frac */
+  function fraccionTxt(v, nombre) {
+    var s = String(v).trim().replace(/\s/g, '');
+    if (!/^[+-]?\d+(\/\d+)?$/.test(s))
+      throw Error((nombre || 'La fracción') + ' se escribe con la barra inclinada, numerador y denominador enteros. Ejemplos: 7/12, -3/4, 5');
+    var p = s.split('/');
+    var b = p.length > 1 ? Number(p[1]) : 1;
+    if (b === 0) throw Error('El denominador no puede ser 0: la división entre cero no está definida.');
+    return new Frac(Number(p[0]), b);
   }
-
-  /* =================================================================
-     3. ADAPTADOR AL MOTOR window.POLY
-     ================================================================= */
-
-  function ratToNum(c) {
-    if (c === null || c === undefined) return NaN;
-    if (typeof c === 'number') return c;
-    if (typeof c === 'object') {
-      if (typeof c.n === 'number' && typeof c.d === 'number') return c.n / c.d;
-      if (typeof c.num === 'number' && typeof c.den === 'number') return c.num / c.den;
-      if (typeof c.p === 'number' && typeof c.q === 'number') return c.p / c.q;
-      if (typeof c.valueOf === 'function') {
-        var v = Number(c.valueOf());
-        if (!isNaN(v)) return v;
-      }
-    }
-    var w = Number(c);
-    return isNaN(w) ? NaN : w;
-  }
-
-  function usable(arr) {
-    return Array.isArray(arr) && arr.length > 0 &&
-      arr.every(function (v) { return typeof v === 'number' && isFinite(v); });
-  }
-
-  function miniParse(src) {
-    var s = String(src).replace(/\s+/g, '').replace(/,/g, '.');
-    if (!s) throw new Error('la expresi\u00f3n est\u00e1 vac\u00eda.');
-    var i = 0;
-
-    function expr() {
-      var v = term();
-      while (s[i] === '+' || s[i] === '-') {
-        var op = s[i++], t = term();
-        v = (op === '+') ? padd(v, t) : psub(v, t);
-      }
-      return v;
-    }
-    function term() {
-      var v = factor();
-      for (;;) {
-        if (s[i] === '*') { i++; v = pmul(v, factor()); }
-        else if (s[i] === '/') {
-          i++;
-          var d = factor();
-          if (d.length !== 1) throw new Error('solo se puede dividir entre n\u00fameros.');
-          if (Math.abs(d[0]) < 1e-12) throw new Error('no se puede dividir entre cero.');
-          v = pscal(v, 1 / d[0]);
-        }
-        else if (i < s.length && /[0-9x(]/.test(s[i])) { v = pmul(v, factor()); }
-        else break;
-      }
-      return v;
-    }
-    function factor() {
-      var v = base();
-      if (s[i] === '^') {
-        i++;
-        if (s[i] === '-') throw new Error('un exponente negativo no da un polinomio.');
-        var e = '';
-        while (i < s.length && /[0-9]/.test(s[i])) e += s[i++];
-        if (!e) throw new Error('falta el exponente despu\u00e9s de ^.');
-        v = ppow(v, parseInt(e, 10));
-      }
-      return v;
-    }
-    function base() {
-      if (s[i] === '-') { i++; return pscal(base(), -1); }
-      if (s[i] === '+') { i++; return base(); }
-      if (s[i] === '(') {
-        i++;
-        var v = expr();
-        if (s[i] !== ')') throw new Error('falta cerrar un par\u00e9ntesis.');
-        i++;
-        return v;
-      }
-      if (s[i] === 'x' || s[i] === 'X') { i++; return [0, 1]; }
-      var num = '';
-      while (i < s.length && /[0-9.]/.test(s[i])) num += s[i++];
-      if (!num) throw new Error('no entiendo el car\u00e1cter \u00ab' + (s[i] || 'final') + '\u00bb.');
-      return [parseFloat(num)];
-    }
-
-    var out = expr();
-    if (i < s.length) {
-      throw new Error('no entiendo el car\u00e1cter \u00ab' + s[i] + '\u00bb en la posici\u00f3n ' + (i + 1) + '.');
-    }
-    return ptrim(out);
-  }
-
-  function coeffs(src) {
-    if (P && typeof P.parse === 'function') {
-      try {
-        var raw = P.parse(src);
-        if (Array.isArray(raw)) {
-          var out = raw.map(ratToNum);
-          if (usable(out)) return ptrim(out);
-        }
-      } catch (e) {
-        throw new Error(e && e.message ? e.message : 'no he entendido la expresi\u00f3n.');
-      }
-    }
-    return miniParse(src);
-  }
-
-  /* =================================================================
-     4. ARITMETICA NUMERICA
-     ================================================================= */
-
-  function ptrim(a) {
-    var r = a.slice();
-    while (r.length > 1 && Math.abs(r[r.length - 1]) < 1e-12) r.pop();
-    return r;
-  }
-  function padd(a, b) {
-    var m = Math.max(a.length, b.length), r = [];
-    for (var i = 0; i < m; i++) r[i] = (a[i] || 0) + (b[i] || 0);
-    return ptrim(r);
-  }
-  function psub(a, b) {
-    var m = Math.max(a.length, b.length), r = [];
-    for (var i = 0; i < m; i++) r[i] = (a[i] || 0) - (b[i] || 0);
-    return ptrim(r);
-  }
-  function pmul(a, b) {
-    var r = new Array(a.length + b.length - 1).fill(0);
-    for (var i = 0; i < a.length; i++)
-      for (var j = 0; j < b.length; j++) r[i + j] += a[i] * b[j];
-    return ptrim(r);
-  }
-  function ppow(a, k) { var r = [1]; for (var i = 0; i < k; i++) r = pmul(r, a); return r; }
-  function pscal(a, k) { return ptrim(a.map(function (c) { return c * k; })); }
-  function pev(a, x) { var s = 0; for (var i = a.length - 1; i >= 0; i--) s = s * x + a[i]; return s; }
-  function pdeg(a) { return ptrim(a).length - 1; }
-
-  function deflate(p, r) {
-    var m = p.length - 1, qq = new Array(m).fill(0), carry = p[m];
-    for (var k = m - 1; k >= 0; k--) { qq[k] = carry; carry = p[k] + carry * r; }
-    return { q: ptrim(qq), rest: carry };
-  }
-
-  function quad(a, b, c) {
-    if (Math.abs(a) < 1e-12) {
-      if (Math.abs(b) < 1e-12) return { kind: Math.abs(c) < 1e-12 ? 'all' : 'none', D: null, roots: [] };
-      return { kind: 'linear', D: null, roots: [-c / b] };
-    }
-    var D = b * b - 4 * a * c;
-    if (D < -1e-10) return { kind: 'complex', D: D, roots: [] };
-    if (Math.abs(D) <= 1e-10) return { kind: 'double', D: 0, roots: [-b / (2 * a)] };
-    var s = Math.sqrt(D), r1 = (-b - s) / (2 * a), r2 = (-b + s) / (2 * a);
-    return { kind: 'two', D: D, roots: [Math.min(r1, r2), Math.max(r1, r2)] };
-  }
-
-  function bisect(p, a, b) {
-    for (var k = 0; k < 80; k++) {
-      var m = (a + b) / 2;
-      if (pev(p, a) * pev(p, m) <= 0) b = m; else a = m;
-    }
-    return (a + b) / 2;
-  }
-  function scanRoot(p) {
-    var prev = pev(p, -60);
-    for (var x = -59.99; x <= 60; x += 0.01) {
-      var cur = pev(p, x);
-      if (prev * cur < 0) return bisect(p, x - 0.01, x);
-      prev = cur;
-    }
-    return null;
-  }
-  function allScan(p) {
-    var out = [], prev = pev(p, -60);
-    for (var x = -59.99; x <= 60; x += 0.01) {
-      var cur = pev(p, x);
-      if (prev * cur < 0) out.push(bisect(p, x - 0.01, x));
-      prev = cur;
-    }
+  function listaReales(txt, nombre, max) {
+    var s = String(txt || '').trim();
+    if (!s) throw Error('Escribe los números separados por espacios, comas o punto y coma. Ejemplo: 2 3,5 -1/2 pi');
+    var L = s.split(/[\s;]+|,(?=\s|-?\d*\/)/).filter(Boolean);
+    var out = L.map(function (t) { return valorSimbolico(t); });
+    if (max && out.length > max) throw Error('Máximo ' + max + ' números para que la figura se lea bien.');
     return out;
   }
 
-  function realRoots(pIn) {
-    var p = ptrim(pIn.slice());
-    if (p.length === 1) return { roots: [], all: Math.abs(p[0]) < 1e-12 };
-    var roots = [];
-    while (p.length > 1 && Math.abs(p[0]) < 1e-12) { p = p.slice(1); roots.push(0); }
+  /* Acepta números, fracciones y unas cuantas constantes y raíces:
+     3   -2,5   7/4   pi   e   phi   sqrt2   raiz(3)   -sqrt(5)/2      */
+  function valorSimbolico(t) {
+    var s = String(t).trim().toLowerCase().replace(/\s/g, '');
+    var neg = 1;
+    if (s.charAt(0) === '-') { neg = -1; s = s.slice(1); }
+    else if (s.charAt(0) === '+') { s = s.slice(1); }
 
-    function candidate() {
-      for (var d = 1; d <= 12; d++) {
-        for (var k = 1; k <= 60; k++) {
-          if (Math.abs(pev(p, k / d)) < 1e-9) return k / d;
-          if (Math.abs(pev(p, -k / d)) < 1e-9) return -k / d;
-        }
-      }
-      return null;
+    /* fracción puramente numérica: 7/4 */
+    var mf = s.match(/^(\d+(?:[.,]\d+)?)\/(\d+)$/);
+    if (mf) {
+      var nn = Number(mf[1].replace(',', '.')), dd = Number(mf[2]);
+      if (dd === 0) throw Error('El denominador no puede ser 0.');
+      return { v: neg * nn / dd, tex: (neg < 0 ? '-' : '') + '\\dfrac{' + mf[1].replace(',', '{,}') + '}{' + mf[2] + '}', txt: String(t).trim() };
     }
 
-    var guard = 0;
-    while (p.length - 1 > 2 && guard++ < 12) {
-      var r = candidate();
-      if (r === null) { r = scanRoot(p); if (r === null) break; }
-      roots.push(snap(r));
-      p = deflate(p, r).q;
+    var div = 1, m = s.match(/^(.*)\/(\d+)$/);
+    if (m) { s = m[1]; div = Number(m[2]); }
+
+    var v = null, tx = null;
+    if (s === 'pi' || s === 'π') { v = Math.PI; tx = '\\pi'; }
+    else if (s === 'e') { v = Math.E; tx = 'e'; }
+    else if (s === 'phi' || s === 'aureo' || s === 'φ') { v = (1 + Math.sqrt(5)) / 2; tx = '\\varphi'; }
+    else if ((m = s.match(/^(?:sqrt|raiz|raíz|r)\(?(\d+(?:[.,]\d+)?)\)?$/))) {
+      var a = Number(m[1].replace(',', '.'));
+      v = Math.sqrt(a); tx = '\\sqrt{' + m[1].replace(',', '{,}') + '}';
+    } else {
+      var x = Number(s.replace(',', '.'));
+      if (!Number.isFinite(x)) throw Error('No entiendo «' + t + '». Admito enteros, decimales (3,5), fracciones (7/4), pi, e, phi y raíces como sqrt2 o raiz(3).');
+      v = x; tx = String(m ? s : s).replace(',', '{,}');
     }
+    if (div !== 1) { v = v / div; tx = '\\dfrac{' + tx + '}{' + div + '}'; }
+    if (neg < 0) { v = -v; tx = '-' + tx; }
+    return { v: v, tex: tx, txt: String(t).trim() };
+  }
 
-    var d2 = p.length - 1;
-    if (d2 === 1) roots.push(snap(-p[0] / p[1]));
-    else if (d2 === 2) quad(p[2], p[1], p[0]).roots.forEach(function (v) { roots.push(snap(v)); });
-    else if (d2 > 2) allScan(p).forEach(function (v) { roots.push(snap(v)); });
+  /* ==================================================================
+     3 · aritmética exacta: fracciones con BigInt
+     ================================================================== */
+  function babs(b) { return b < 0n ? -b : b; }
+  function bmcd(a, b) {
+    a = babs(a); b = babs(b);
+    while (b) { var t = a % b; a = b; b = t; }
+    return a;
+  }
+  function mcd() {
+    var L = Array.prototype.slice.call(arguments).map(function (x) { return BigInt(x); });
+    return Number(L.reduce(function (a, b) { return bmcd(a, b); }, 0n));
+  }
+  function mcm() {
+    var L = Array.prototype.slice.call(arguments).map(function (x) { return BigInt(x); });
+    return Number(L.reduce(function (a, b) {
+      if (a === 0n || b === 0n) return 0n;
+      return babs(a * b) / bmcd(a, b);
+    }, 1n));
+  }
 
-    var uniq = [];
-    roots.map(nz).sort(function (a, b) { return a - b; }).forEach(function (v) {
-      if (!uniq.length || Math.abs(uniq[uniq.length - 1] - v) > 1e-7) uniq.push(v);
+  function Frac(n, d) {
+    if (d === undefined) d = 1;
+    n = BigInt(n); d = BigInt(d);
+    if (d === 0n) throw Error('El denominador no puede ser 0.');
+    if (d < 0n) { n = -n; d = -d; }
+    var g = bmcd(n, d) || 1n;
+    this.n = n / g;
+    this.d = d / g;
+  }
+  Frac.prototype.val = function () { return Number(this.n) / Number(this.d); };
+  Frac.prototype.esEntero = function () { return this.d === 1n; };
+  Frac.prototype.txt = function () { return this.d === 1n ? String(this.n) : this.n + '/' + this.d; };
+  Frac.prototype.tex = function (inline) {
+    if (this.d === 1n) return String(this.n);
+    var s = this.n < 0n ? '-' : '';
+    var f = (inline ? '\\frac' : '\\dfrac') + '{' + babs(this.n) + '}{' + this.d + '}';
+    return s + f;
+  };
+  Frac.prototype.mas = function (o) { return new Frac(this.n * o.d + o.n * this.d, this.d * o.d); };
+  Frac.prototype.menos = function (o) { return new Frac(this.n * o.d - o.n * this.d, this.d * o.d); };
+  Frac.prototype.por = function (o) { return new Frac(this.n * o.n, this.d * o.d); };
+  Frac.prototype.entre = function (o) {
+    if (o.n === 0n) throw Error('No se puede dividir entre 0.');
+    return new Frac(this.n * o.d, this.d * o.n);
+  };
+  Frac.prototype.opuesto = function () { return new Frac(-this.n, this.d); };
+  Frac.prototype.cmp = function (o) {
+    var a = this.n * o.d, b = o.n * this.d;
+    return a < b ? -1 : (a > b ? 1 : 0);
+  };
+
+  function factoriza(n) {
+    n = Math.abs(Math.trunc(n));
+    var f = [], p = 2;
+    if (n < 2) return f;
+    while (p * p <= n) {
+      var e = 0;
+      while (n % p === 0) { n /= p; e++; }
+      if (e) f.push([p, e]);
+      p += (p === 2 ? 1 : 2);
+    }
+    if (n > 1) f.push([n, 1]);
+    return f;
+  }
+  function factorizaTex(n) {
+    var f = factoriza(n);
+    if (!f.length) return String(n);
+    return f.map(function (p) { return p[1] === 1 ? String(p[0]) : p[0] + '^{' + p[1] + '}'; }).join(' \\cdot ');
+  }
+  function esCuadradoPerfecto(n) {
+    if (n < 0) return false;
+    var r = Math.round(Math.sqrt(n));
+    return r * r === n;
+  }
+
+
+  /* ==================================================================
+     9 · figuras SVG
+     ================================================================== */
+  var COL = {
+    azul: '#1976d2', azulOsc: '#0d47a1', rojo: '#c62828', verde: '#2e7d32',
+    naranja: '#e07b00', morado: '#6a3d9a', teal: '#00695c', rosa: '#ad1457',
+    eje: '#455a64', guia: '#cfd8dc', texto: '#263238', gris: '#78909c',
+    suave: '#f2f7fd'
+  };
+
+  function svgWrap(body, W, H, label, cap) {
+    return '<div class="ap-fig"><svg role="img" aria-label="' + esc(label) +
+      '" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
+      '<title>' + esc(label) + '</title>' + body + '</svg>' +
+      (cap ? '<p class="ap-figcap">' + cap + '</p>' : '') + '</div>';
+  }
+  function txt(x, y, s, o) {
+    o = o || {};
+    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.anchor || 'middle') +
+      '" font-size="' + (o.size || 18) + '" font-weight="' + (o.weight || 'normal') +
+      '" fill="' + (o.fill || COL.texto) + '"' +
+      (o.family ? ' font-family="' + o.family + '"' : '') +
+      (o.style ? ' font-style="' + o.style + '"' : '') + '>' + s + '</text>';
+  }
+  function line(x1, y1, x2, y2, col, w, dash) {
+    return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+      '" stroke="' + (col || COL.eje) + '" stroke-width="' + (w || 1.6) +
+      (dash ? '" stroke-dasharray="' + dash : '') + '" stroke-linecap="round"/>';
+  }
+  function rect(x, y, w, h, fill, stroke, o) {
+    o = o || {};
+    return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+      '" rx="' + (o.r === undefined ? 6 : o.r) + '" fill="' + (fill || 'none') +
+      '" stroke="' + (stroke || 'none') + '" stroke-width="' + (o.sw || 1.6) +
+      (o.op !== undefined ? '" opacity="' + o.op : '') + '"/>';
+  }
+  function circle(cx, cy, r, fill, stroke, sw) {
+    return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (fill || COL.azul) +
+      '" stroke="' + (stroke || '#fff') + '" stroke-width="' + (sw === undefined ? 2 : sw) + '"/>';
+  }
+  function path(d, col, w, fill, dash) {
+    return '<path d="' + d + '" fill="' + (fill || 'none') + '" stroke="' + (col || COL.eje) +
+      '" stroke-width="' + (w || 2) + (dash ? '" stroke-dasharray="' + dash : '') +
+      '" stroke-linejoin="round" stroke-linecap="round"/>';
+  }
+  function poly(pts, fill, stroke, w) {
+    return '<polygon points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') +
+      '" fill="' + (fill || 'none') + '" stroke="' + (stroke || 'none') + '" stroke-width="' + (w || 1.6) + '"/>';
+  }
+  function leyenda(items) {
+    var h = '<ul class="ap-legend">';
+    items.forEach(function (it) {
+      h += '<li><span class="ap-sw" style="background:' + it[0] + '"></span>' + it[1] + '</li>';
     });
-    return { roots: uniq, all: false };
+    return h + '</ul>';
   }
 
-  /* =================================================================
-     5. DESIGUALDADES
-     ================================================================= */
+  /* ------------------------------------------------------------------
+     Recta real reutilizable.
+     opts = { min, max, W, H, y, paso, etiquetas, puntos:[{x,tex,col,arriba}],
+              tramos:[{a,b,col,abierto:[bool,bool],alto}], titulo }
+     Devuelve el HTML completo de la figura.
+     ------------------------------------------------------------------ */
+  function rectaReal(opts) {
+    var min = opts.min, max = opts.max;
+    var W = opts.W || 1000, H = opts.H || (opts.alto || 220);
+    var mx = opts.mx === undefined ? 70 : opts.mx;
+    var yy = opts.y || Math.round(H * 0.62);
+    if (max <= min) throw Error('El extremo derecho de la recta debe ser mayor que el izquierdo.');
+    function X(v) { return mx + (v - min) / (max - min) * (W - 2 * mx); }
+    var b = '';
 
-  var OPS = ['<', '<=', '>', '>='];
-  var FLIP = { '<': '>', '<=': '>=', '>': '<', '>=': '<=' };
-
-  function opT(op) { return op === '<' ? '<' : op === '<=' ? '\\leq' : op === '>' ? '>' : '\\geq'; }
-  function opUni(op) { return op === '<' ? '<' : op === '<=' ? '\u2264' : op === '>' ? '>' : '\u2265'; }
-  function opHolds(v, op) {
-    return op === '<' ? v < 0 : op === '<=' ? v <= 0 : op === '>' ? v > 0 : v >= 0;
-  }
-  function opClosed(op) { return op === '<=' || op === '>='; }
-
-  function splitIneq(src) {
-    var s = String(src).replace(/\s+/g, '').replace(/\u2264/g, '<=').replace(/\u2265/g, '>=');
-    var found = null, at = -1;
-    ['<=', '>=', '<', '>'].forEach(function (o) {
-      if (found) return;
-      var k = s.indexOf(o);
-      if (k > 0) { found = o; at = k; }
+    /* tramos (intervalos) por debajo o sobre el eje */
+    (opts.tramos || []).forEach(function (t) {
+      var x1 = X(Math.max(t.a, min)), x2 = X(Math.min(t.b, max));
+      var alto = t.alto === undefined ? 16 : t.alto;
+      b += rect(Math.min(x1, x2), yy - alto / 2, Math.abs(x2 - x1), alto, t.col || 'rgba(25,118,210,.22)', t.borde || 'none', { r: alto / 2 });
     });
-    if (!found) {
-      throw new Error('falta el signo de desigualdad. Usa <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> o <code>&gt;=</code>.');
-    }
-    var L = s.slice(0, at), R = s.slice(at + found.length);
-    if (!R) throw new Error('falta el segundo miembro de la desigualdad.');
-    return { op: found, poly: psub(coeffs(L), coeffs(R)) };
-  }
 
-  function splitEq(src) {
-    var parts = String(src).split('=');
-    if (parts.length !== 2) throw new Error('escribe una sola igualdad, con un \u00fanico signo <code>=</code>.');
-    return psub(coeffs(parts[0]), coeffs(parts[1]));
-  }
+    /* eje con flechas */
+    b += line(mx - 40, yy, W - mx + 40, yy, COL.eje, 2.6);
+    b += poly([[W - mx + 40, yy], [W - mx + 24, yy - 8], [W - mx + 24, yy + 8]], COL.eje, COL.eje);
+    b += poly([[mx - 40, yy], [mx - 24, yy - 8], [mx - 24, yy + 8]], COL.eje, COL.eje);
 
-  function ivT(l, r, lc, rc) {
-    var L = (l === -Infinity) ? '-\\infty' : qt(l);
-    var R = (r === Infinity) ? '+\\infty' : qt(r);
-    return (lc ? '\\left[' : '\\left(') + L + ',\\ ' + R + (rc ? '\\right]' : '\\right)');
-  }
-
-  function solveIneq(p, op) {
-    var rs = realRoots(p).roots;
-    if (!rs.length) {
-      return { tex: opHolds(pev(p, 0), op) ? '\\mathbb{R}' : '\\varnothing', roots: [], pieces: [] };
-    }
-    var cuts = [-Infinity].concat(rs, [Infinity]), pieces = [], k;
-    for (k = 0; k < cuts.length - 1; k++) {
-      var a = cuts[k], b = cuts[k + 1];
-      var m = (a === -Infinity) ? b - 1 : (b === Infinity) ? a + 1 : (a + b) / 2;
-      var v = pev(p, m);
-      pieces.push({ a: a, b: b, probe: m, val: v, okk: opHolds(v, op) });
-    }
-    var closed = opClosed(op), parts = [];
-    k = 0;
-    while (k < pieces.length) {
-      if (!pieces[k].okk) { k++; continue; }
-      var start = pieces[k].a, j = k;
-      while (j + 1 < pieces.length && pieces[j + 1].okk && closed) j++;
-      var end = pieces[j].b;
-      parts.push(ivT(start, end, closed && start !== -Infinity, closed && end !== Infinity));
-      k = j + 1;
-    }
-    if (!parts.length && closed) {
-      var pts = rs.filter(function (r) { return Math.abs(pev(p, r)) < 1e-9; });
-      if (pts.length) {
-        return { tex: '\\left\\{' + pts.map(qt).join(',\\ ') + '\\right\\}', roots: rs, pieces: pieces };
+    /* marcas */
+    var paso = opts.paso || (max - min) / 10;
+    var ini = Math.ceil(min / paso) * paso;
+    for (var v = ini; v <= max + 1e-9; v += paso) {
+      var x = X(v);
+      var mayor = Math.abs(v / paso - Math.round(v / paso)) < 1e-9;
+      b += line(x, yy - (mayor ? 9 : 5), x, yy + (mayor ? 9 : 5), COL.gris, 1.6);
+      if (opts.etiquetas !== false) {
+        var et = Math.abs(v) < 1e-9 ? '0' : etq(v, opts.dec === undefined ? 2 : opts.dec);
+        b += txt(x, yy + 32, et, { size: opts.sizeEt || 17, fill: COL.gris });
       }
     }
-    return {
-      tex: parts.length ? parts.join(' \\cup ') : '\\varnothing',
-      roots: rs, pieces: pieces
-    };
+
+    /* puntos destacados */
+    (opts.puntos || []).forEach(function (p) {
+      var x = X(p.x);
+      var arriba = p.arriba !== false;
+      var col = p.col || COL.rojo;
+      b += line(x, yy - (arriba ? 46 : -46), x, yy, col, 1.6, '5 4');
+      if (p.hueco) b += circle(x, yy, 8, '#fff', col, 3);
+      else b += circle(x, yy, 8, col, '#fff', 2.4);
+      if (p.tex) {
+        b += '<foreignObject x="' + (x - 90) + '" y="' + (arriba ? yy - 84 : yy + 44) + '" width="180" height="40">' +
+          '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:19px;color:' + col + '">' +
+          '<span data-tex="' + esc(p.tex) + '"></span></div></foreignObject>';
+      }
+    });
+    if (opts.titulo) b = txt(W / 2, 30, esc(opts.titulo), { size: 20, weight: '700', fill: COL.azulOsc }) + b;
+    return svgWrap(b, W, H, opts.label || 'Recta real', opts.cap);
   }
 
-  /* =================================================================
-     6. FIGURAS SVG
-     ================================================================= */
+  /* ------------------------------------------------------------------
+     Ejes cartesianos con una o varias curvas.
+     opts = { xmin,xmax,ymin,ymax, W,H, curvas:[{f,col,dash,label}],
+              puntos:[{x,y,col,tex}], rectas:[{y}|{x}], cap }
+     ------------------------------------------------------------------ */
+  function ejes(opts) {
+    var W = opts.W || 940, H = opts.H || 560, m = opts.m || 58;
+    var xmin = opts.xmin, xmax = opts.xmax, ymin = opts.ymin, ymax = opts.ymax;
+    function X(v) { return m + (v - xmin) / (xmax - xmin) * (W - 2 * m); }
+    function Y(v) { return H - m - (v - ymin) / (ymax - ymin) * (H - 2 * m); }
+    var b = rect(m, m, W - 2 * m, H - 2 * m, '#fff', '#e3e9ef', { r: 4 });
 
-  function svgCurve(p, roots, xmin, xmax) {
-    var W = 500, H = 280, pad = 26, i, x, ys = [];
-    for (i = 0; i <= 200; i++) {
-      var v = pev(p, xmin + (xmax - xmin) * i / 200);
-      if (isFinite(v)) ys.push(Math.abs(v));
+    var px = opts.paso || Math.max(1, Math.round((xmax - xmin) / 10));
+    var py = opts.pasoY || Math.max(1, Math.round((ymax - ymin) / 8));
+    for (var v = Math.ceil(xmin / px) * px; v <= xmax; v += px) {
+      b += line(X(v), m, X(v), H - m, COL.guia, 1);
+      b += txt(X(v), H - m + 26, etq(v, 0), { size: 16, fill: COL.gris });
     }
-    var ymax = Math.max(2, Math.min(60, Math.max.apply(null, ys))), ymin = -ymax;
-    function sx(t) { return pad + (t - xmin) / (xmax - xmin) * (W - 2 * pad); }
-    function sy(t) { return H - pad - (t - ymin) / (ymax - ymin) * (H - 2 * pad); }
-
-    var d = '', pen = false;
-    for (i = 0; i <= 400; i++) {
-      x = xmin + (xmax - xmin) * i / 400;
-      var y = pev(p, x);
-      if (!isFinite(y) || y > ymax * 1.35 || y < ymin * 1.35) { pen = false; continue; }
-      d += (pen ? 'L' : 'M') + sx(x).toFixed(1) + ',' + sy(y).toFixed(1) + ' ';
-      pen = true;
+    for (var w = Math.ceil(ymin / py) * py; w <= ymax; w += py) {
+      b += line(m, Y(w), W - m, Y(w), COL.guia, 1);
+      b += txt(m - 12, Y(w) + 6, etq(w, 0), { size: 16, fill: COL.gris, anchor: 'end' });
     }
-    var dots = roots.map(function (r) {
-      if (r < xmin || r > xmax) return '';
-      return '<circle cx="' + sx(r).toFixed(1) + '" cy="' + sy(0).toFixed(1) + '" r="5" fill="#e63946"/>';
-    }).join('');
+    if (ymin <= 0 && ymax >= 0) b += line(m, Y(0), W - m, Y(0), COL.eje, 2.2);
+    if (xmin <= 0 && xmax >= 0) b += line(X(0), m, X(0), H - m, COL.eje, 2.2);
 
-    return '<svg class="ap-fig" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="gr\u00e1fica de la funci\u00f3n">' +
-      '<line x1="' + pad + '" y1="' + sy(0).toFixed(1) + '" x2="' + (W - pad) + '" y2="' + sy(0).toFixed(1) + '" stroke="#94a3b8"/>' +
-      '<line x1="' + sx(0).toFixed(1) + '" y1="' + pad + '" x2="' + sx(0).toFixed(1) + '" y2="' + (H - pad) + '" stroke="#94a3b8"/>' +
-      '<path d="' + d + '" fill="none" stroke="#2a76dd" stroke-width="2.6"/>' + dots + '</svg>';
+    (opts.curvas || []).forEach(function (c) {
+      var d = '', dentro = false;
+      for (var i = 0; i <= 600; i++) {
+        var x = xmin + (xmax - xmin) * i / 600, y;
+        try { y = c.f(x); } catch (e) { y = NaN; }
+        if (!Number.isFinite(y) || y < ymin - (ymax - ymin) || y > ymax + (ymax - ymin)) { dentro = false; continue; }
+        d += (dentro ? ' L ' : ' M ') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1);
+        dentro = true;
+      }
+      b += path(d, c.col || COL.azul, c.w || 3, 'none', c.dash);
+      if (c.label) b += '<foreignObject x="' + (c.lx || W - 250) + '" y="' + (c.ly || 70) + '" width="200" height="40">' +
+        '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:19px;color:' + (c.col || COL.azul) + '">' +
+        '<span data-tex="' + esc(c.label) + '"></span></div></foreignObject>';
+    });
+    (opts.puntos || []).forEach(function (p) {
+      b += circle(X(p.x), Y(p.y), 7, p.col || COL.rojo, '#fff', 2);
+      if (p.tex) b += '<foreignObject x="' + (X(p.x) - 80) + '" y="' + (Y(p.y) - 52) + '" width="160" height="40">' +
+        '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:18px;color:' + (p.col || COL.rojo) + '">' +
+        '<span data-tex="' + esc(p.tex) + '"></span></div></foreignObject>';
+    });
+    return svgWrap(b, W, H, opts.label || 'Gráfica', opts.cap);
   }
 
-  function svgLine(pieces, roots, closed) {
-    var W = 500, H = 92, pad = 30, y = 52, lo = -10, hi = 10;
-    if (roots.length) {
-      lo = Math.min(-2, Math.min.apply(null, roots) - 3);
-      hi = Math.max(2, Math.max.apply(null, roots) + 3);
-    }
-    function sx(v) { return pad + (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * (W - 2 * pad); }
-    var bars = pieces.filter(function (s) { return s.okk; }).map(function (s) {
-      var a = (s.a === -Infinity) ? lo : s.a, b = (s.b === Infinity) ? hi : s.b;
-      return '<line x1="' + sx(a).toFixed(1) + '" y1="' + y + '" x2="' + sx(b).toFixed(1) +
-             '" y2="' + y + '" stroke="#2a76dd" stroke-width="9" opacity="0.85"/>';
-    }).join('');
-    var dots = roots.map(function (r) {
-      return '<circle cx="' + sx(r).toFixed(1) + '" cy="' + y + '" r="6.5" fill="' +
-        (closed ? '#2a76dd' : '#ffffff') + '" stroke="#1d4ed8" stroke-width="2.5"/>' +
-        '<text x="' + sx(r).toFixed(1) + '" y="' + (y + 26) + '" font-size="13" text-anchor="middle" fill="#334155">' +
-        String(Math.round(r * 1000) / 1000).replace('.', ',') + '</text>';
-    }).join('');
-    return '<svg class="ap-fig" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="recta real con el conjunto soluci\u00f3n">' +
-      '<line x1="' + pad + '" y1="' + y + '" x2="' + (W - pad) + '" y2="' + y + '" stroke="#94a3b8" stroke-width="2"/>' +
-      '<polygon points="' + (W - pad) + ',' + y + ' ' + (W - pad - 10) + ',' + (y - 5) + ' ' + (W - pad - 10) + ',' + (y + 5) + '" fill="#94a3b8"/>' +
-      bars + dots + '</svg>';
+  /* ==================================================================
+     10 · piezas de salida
+     ================================================================== */
+  function resultado(valor, etiqueta) {
+    return '<div class="ap-res"><span class="ap-res-num">' + valor + '</span>' +
+      '<span class="ap-res-lab">' + etiqueta + '</span></div>';
+  }
+  function badge(t, clase) { return '<span class="ap-badge ' + (clase || 'info') + '">' + t + '</span>'; }
+  function kvs(items) {
+    return '<div class="ap-kvs">' + items.map(function (i) {
+      return '<span class="ap-kv">' + i + '</span>';
+    }).join('') + '</div>';
+  }
+  /* tabla(cab, filas, opts) · filas: array de arrays; primera celda th */
+  function tabla(cab, filas, opts) {
+    opts = opts || {};
+    var h = '<table class="ap-tbl ap-eq"><thead><tr>';
+    cab.forEach(function (c) { h += '<th>' + c + '</th>'; });
+    h += '</tr></thead><tbody>';
+    filas.forEach(function (f) {
+      var cl = f.clase ? ' class="' + f.clase + '"' : '';
+      var cel = f.celdas || f;
+      h += '<tr' + cl + '>';
+      cel.forEach(function (c, i) {
+        h += (i === 0 && opts.thPrimera !== false ? '<th>' + c + '</th>' : '<td>' + c + '</td>');
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table>';
+  }
+  function paso(n, txtHtml, clase) {
+    return '<div class="ap-paso ' + (clase || '') + '"><span class="ap-paso-n">' + n + '</span>' +
+      '<div class="ap-paso-c">' + txtHtml + '</div></div>';
   }
 
-  /* =================================================================
-     7. INTERFAZ
-     ================================================================= */
+  /* ==================================================================
+     11 · armazón estándar de applet
+     ================================================================== */
+  function shell(node, title, instr, fields, compute) {
+    node.classList.add('applet');
+    node.innerHTML =
+      '<h4 class="mx-title">Applet · ' + esc(title) + '</h4>' +
+      '<div class="mx-instr">' + texifica(instr) + '</div>' +
+      '<div class="mx-inputs"></div>' +
+      '<div class="ap-chips"></div>' +
+      '<div class="mx-out ap-out"></div>';
+    tex(node);
+    var inp = node.querySelector('.mx-inputs');
+    var chips = node.querySelector('.ap-chips');
+    var out = node.querySelector('.mx-out');
+    var ctl = {}, api = {};
 
-  function rowText(role, label, value) {
-    return '<div class="ap-row"><label class="ap-lab">' + label + '</label>' +
-      '<input class="ap-in" type="text" data-role="' + role + '" value="' + value + '"></div>';
-  }
-  function mini(role, label, value, stp) {
-    return '<label class="ap-lab">' + label + '</label>' +
-      '<input class="ap-in ap-mini" type="number" data-role="' + role + '" value="' + value +
-      '" step="' + (stp || 1) + '">';
-  }
-  function selOp(role, value) {
-    var o = OPS.map(function (op) {
-      return '<option value="' + op + '"' + (op === value ? ' selected' : '') + '>' + opUni(op) + '</option>';
-    }).join('');
-    return '<label class="ap-lab">Signo</label><select class="ap-sel" data-role="' + role + '">' + o + '</select>';
-  }
-  function get(root, role) { return root.querySelector('[data-role="' + role + '"]'); }
-  function val(root, role) { return get(root, role).value; }
-  function nv(root, role) { return parseFloat(get(root, role).value); }
-
-  function live(root, out, fn) {
-    function run() {
-      try { out.innerHTML = fn(); }
-      catch (e) { out.innerHTML = errBox(e && e.message ? e.message : String(e)); }
-      kt(out);
-    }
-    Array.prototype.forEach.call(root.querySelectorAll('input,select'), function (el) {
+    (fields || []).forEach(function (f) {
+      if (f.type === 'presets') {
+        f.list.forEach(function (p) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'ap-chip';
+          b.textContent = p.label;
+          if (p.title) b.title = p.title;
+          b.addEventListener('click', function () {
+            if (p.apply) p.apply(ctl);
+            run();
+          });
+          chips.appendChild(b);
+        });
+        return;
+      }
+      if (f.type === 'button') {
+        var bb = document.createElement('button');
+        bb.type = 'button';
+        bb.className = 'ap-chip ap-chip-act';
+        bb.textContent = f.label;
+        bb.addEventListener('click', function () {
+          if (f.click) f.click(ctl, api);
+          run();
+        });
+        chips.appendChild(bb);
+        ctl[f.id] = bb;
+        return;
+      }
+      var lab = document.createElement('label');
+      lab.className = 'mx-field';
+      var cap = document.createElement('span');
+      cap.textContent = f.label;
+      lab.appendChild(cap);
+      var el;
+      if (f.type === 'range') {
+        el = document.createElement('input');
+        el.type = 'range';
+        el.min = f.min; el.max = f.max; el.step = f.step || 1; el.value = f.value;
+        el.className = 'mx-in';
+        var live = document.createElement('span');
+        live.className = 'mx-mono';
+        live.textContent = String(el.value).replace('.', ',');
+        el._sincroniza = function () { live.textContent = String(el.value).replace('.', ','); };
+        el.addEventListener('input', el._sincroniza);
+        lab.appendChild(el); lab.appendChild(live);
+      } else if (f.type === 'number') {
+        el = document.createElement('input');
+        el.type = 'number';
+        if (f.min !== undefined) el.min = f.min;
+        if (f.max !== undefined) el.max = f.max;
+        el.step = f.step || 1; el.value = f.value;
+        el.className = 'mx-in';
+        lab.appendChild(el);
+      } else if (f.type === 'check') {
+        el = document.createElement('input');
+        el.type = 'checkbox'; el.checked = !!f.value;
+        el.className = 'mx-in';
+        lab.appendChild(el);
+      } else if (f.type === 'select') {
+        el = document.createElement('select');
+        el.className = 'mx-in';
+        (f.options || []).forEach(function (o) {
+          var op = document.createElement('option');
+          op.value = o.value !== undefined ? o.value : o;
+          op.textContent = o.label !== undefined ? o.label : o;
+          el.appendChild(op);
+        });
+        if (f.value !== undefined) el.value = f.value;
+        lab.appendChild(el);
+      } else if (f.type === 'text') {
+        el = document.createElement('input');
+        el.type = 'text'; el.value = f.value || '';
+        if (f.place) el.placeholder = f.place;
+        el.className = 'mx-in';
+        el.spellcheck = false;
+        lab.appendChild(el);
+      } else {
+        el = document.createElement('textarea');
+        el.rows = f.rows || 2; el.value = f.value || ''; el.spellcheck = false;
+        if (f.place) el.placeholder = f.place;
+        el.className = 'mx-in';
+        lab.appendChild(el);
+      }
+      if (f.ancho) lab.style.flex = '1 1 ' + f.ancho;
+      ctl[f.id] = el;
+      inp.appendChild(lab);
       el.addEventListener('input', run);
       el.addEventListener('change', run);
     });
-    run();
-  }
 
-  function shell(root, title, bullets, controls) {
-    root.classList.add('applet');
-    root.innerHTML = head(title, bullets) + controls + '<div class="ap-out" data-role="out"></div>';
-    kt(root);
-    return get(root, 'out');
-  }
-
-  /* =================================================================
-     8. APPLETS
-     ================================================================= */
-
-  /* ---------- Applet · Ecuacion de segundo grado ---------- */
-  EQ.cuadratica = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaci\u00f3n de segundo grado', [
-      'Escribe la ecuaci\u00f3n completa, con el signo <code>=</code>. El applet la reduce a la forma $ax^{2}+bx+c=0$ antes de resolverla.',
-      'Ejemplos: <code>2x^2-5x-3=0</code>, <code>x^2=4</code>, <code>(x-1)(x+3)=5</code>, <code>3x^2+2x=x^2-4x-3</code>.',
-      'Cuidado con la sintaxis: <code>1/2x^2</code> se lee como $1$ dividido entre $2x^{2}$. Escribe <code>(1/2)x^2</code>.',
-      'Busca los tres casos del discriminante: dos ra\u00edces, una ra\u00edz doble y ninguna ra\u00edz real.'
-    ], rowText('eq', 'Ecuaci\u00f3n', '2x^2-5x-3=0'));
-
-    live(root, out, function () {
-      var p = splitEq(val(root, 'eq'));
-      if (pdeg(p) > 2) throw new Error('esa ecuaci\u00f3n es de grado ' + pdeg(p) + '. Usa el applet de producto nulo.');
-      var a = p[2] || 0, b = p[1] || 0, c = p[0] || 0, r = quad(a, b, c);
-      var h = step('Forma reducida: ' + T(pt(p) + '=0'));
-
-      if (r.kind === 'all') return h + step(ok('Se reduce a $0=0$: cualquier n\u00famero real es soluci\u00f3n.'));
-      if (r.kind === 'none') return h + step(bad('Se reduce a una contradicci\u00f3n: no hay soluci\u00f3n.'));
-      if (r.kind === 'linear') {
-        return h + step('No es de segundo grado: el coeficiente de ' + T('x^{2}') + ' es cero.') +
-          step(key('Soluci\u00f3n \u00fanica: ') + T('x=' + qt(r.roots[0])));
-      }
-
-      h += step(T('\\Delta=b^{2}-4ac=' + par(b) + '^{2}-4\\cdot' + par(a) + '\\cdot' + par(c) + '=' + nt(r.D)));
-
-      if (r.kind === 'complex') {
-        h += step(bad('$\\Delta<0$') + ': no hay ra\u00edces reales. La par\u00e1bola no corta el eje horizontal.');
-      } else if (r.kind === 'double') {
-        h += step(T('\\Delta=0') + ': ra\u00edz doble ' + T('x=-\\dfrac{b}{2a}=' + qt(r.roots[0])) +
-          '. La par\u00e1bola es tangente al eje.');
-      } else {
-        h += step(T('x=\\dfrac{-b\\pm\\sqrt{\\Delta}}{2a}=\\dfrac{' + nt(-b) + '\\pm\\sqrt{' + nt(r.D) + '}}{' + nt(2 * a) + '}') +
-          ' da ' + chip(T(qt(r.roots[0]))) + chip(T(qt(r.roots[1]))));
-        h += step('Factorizada: ' + T(qt(a) + '\\left(x-' + par(r.roots[0]) + '\\right)\\left(x-' + par(r.roots[1]) + '\\right)=0'));
-        h += step('Comprobaci\u00f3n con las relaciones de las ra\u00edces: suma ' +
-          T(nt(r.roots[0] + r.roots[1]) + '=-\\dfrac{b}{a}') + ' y producto ' +
-          T(nt(r.roots[0] * r.roots[1]) + '=\\dfrac{c}{a}') + '.');
-      }
-      h += step('V\u00e9rtice en ' + T('x=-\\dfrac{b}{2a}=' + qt(-b / (2 * a))) + ', y con ' + T('a=' + nt(a)) +
-        ' la par\u00e1bola abre hacia ' + (a > 0 ? 'arriba' : 'abajo') + '.');
-      h += svgCurve(p, r.roots, -10, 10);
-      return h;
-    });
-  };
-
-  /* ---------- Applet · Suma y producto de raices ---------- */
-  EQ.sumaproducto = function (root) {
-    var out = shell(root, 'Applet \u00b7 Suma y producto de ra\u00edces', [
-      'Mueve los coeficientes y comprueba $x_{1}+x_{2}=-\\dfrac{b}{a}$ y $x_{1}x_{2}=\\dfrac{c}{a}$ sin resolver la ecuaci\u00f3n.',
-      'Al rev\u00e9s tambi\u00e9n funciona: si la suma es $A$ y el producto es $B$, la ecuaci\u00f3n es $x^{2}-Ax+B=0$.',
-      'Ejemplos: $a=1$, $b=-5$, $c=6$ con suma $5$ y producto $6$; tambi\u00e9n $a=2$, $b=-5$, $c=-3$; y $a=1$, $b=0$, $c=-9$.'
-    ], '<div class="ap-row">' + mini('a', 'a', 1) + mini('b', 'b', -5) + mini('c', 'c', 6) + '</div>');
-
-    live(root, out, function () {
-      var a = nv(root, 'a'), b = nv(root, 'b'), c = nv(root, 'c');
-      if (!isFinite(a) || Math.abs(a) < 1e-12) throw new Error('el coeficiente $a$ no puede ser cero en una ecuaci\u00f3n de segundo grado.');
-      var r = quad(a, b, c);
-      var h = step('Ecuaci\u00f3n: ' + T(pt([c, b, a]) + '=0'));
-      h += step('Sin resolver: suma ' + T('-\\dfrac{b}{a}=' + qt(-b / a)) +
-        ' y producto ' + T('\\dfrac{c}{a}=' + qt(c / a)));
-      if (r.roots.length) {
-        var s = r.roots.length === 2 ? r.roots[0] + r.roots[1] : 2 * r.roots[0];
-        var pr = r.roots.length === 2 ? r.roots[0] * r.roots[1] : r.roots[0] * r.roots[0];
-        h += step('Resolviendo: ' + r.roots.map(function (v) { return chip(T(qt(v))); }).join('') +
-          ' con suma ' + T(nt(s)) + ' y producto ' + T(nt(pr)) + ' ' + ok('(coincide)'));
-      } else {
-        h += step(T('\\Delta=' + nt(r.D) + '<0') +
-          ': las ra\u00edces no son reales y, sin embargo, la suma y el producto siguen valiendo lo calculado. Es una idea potente.');
-      }
-      h += step('Reconstrucci\u00f3n m\u00f3nica: ' + T('x^{2}-\\left(' + nt(-b / a) + '\\right)x+\\left(' + nt(c / a) + '\\right)=0'));
-      return h;
-    });
-  };
-
-  /* ---------- Applet · Ecuacion bicuadrada ---------- */
-  EQ.bicuadrada = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaci\u00f3n bicuadrada', [
-      'Trabajamos con $ax^{4}+bx^{2}+c=0$. El applet hace el cambio $t=x^{2}$, resuelve en $t$ y deshace el cambio.',
-      'La clave est\u00e1 en el \u00faltimo paso: solo los valores $t\\geq 0$ devuelven ra\u00edces reales, porque $x=\\pm\\sqrt{t}$.',
-      'Ejemplos: $a=1$, $b=-5$, $c=4$ da cuatro soluciones; $a=1$, $b=5$, $c=4$ no da ninguna; $a=1$, $b=-4$, $c=0$ da tres.'
-    ], '<div class="ap-row">' + mini('a', 'a', 1) + mini('b', 'b', -5) + mini('c', 'c', 4) + '</div>');
-
-    live(root, out, function () {
-      var a = nv(root, 'a'), b = nv(root, 'b'), c = nv(root, 'c');
-      if (!isFinite(a) || Math.abs(a) < 1e-12) throw new Error('si $a=0$ la ecuaci\u00f3n no es bicuadrada.');
-      var r = quad(a, b, c);
-      var h = step('Ecuaci\u00f3n: ' + T(pt([c, 0, b, 0, a]) + '=0'));
-      h += step('Cambio ' + T('t=x^{2}') + ': ' + T(pt([c, b, a]) + '=0') + ' en la variable ' + T('t'));
-      h += step(T('\\Delta=' + nt(r.D)) + '. Valores de ' + T('t') + ': ' +
-        (r.roots.length ? r.roots.map(function (t) { return chip(T(nt(t)), t < 0); }).join('') : bad('ninguno real')));
-      var xs = [];
-      r.roots.forEach(function (t) {
-        if (t > 1e-10) {
-          xs.push(-Math.sqrt(t), Math.sqrt(t));
-          h += step(T('t=' + nt(t) + '>0') + ' ' + T('\\Rightarrow') + ' ' +
-            T('x=\\pm\\sqrt{' + nt(t) + '}=\\pm' + nt(Math.sqrt(t))));
-        } else if (Math.abs(t) <= 1e-10) {
-          xs.push(0);
-          h += step(T('t=0') + ' ' + T('\\Rightarrow') + ' ' + T('x=0') + ' (soluci\u00f3n doble)');
-        } else {
-          h += step(bad(T('t=' + nt(t) + '<0')) + ': descartado, ning\u00fan cuadrado real es negativo.');
-        }
+    function values() {
+      var v = {};
+      Object.keys(ctl).forEach(function (k) {
+        var e = ctl[k];
+        if (!e || e.tagName === 'BUTTON') return;
+        v[k] = e.type === 'checkbox' ? e.checked : e.value;
       });
-      xs = xs.map(snap).sort(function (u, v) { return u - v; });
-      h += step(key('Soluciones: ') +
-        (xs.length ? xs.map(function (v) { return chip(T(qt(v))); }).join('') : chip(T('\\varnothing'), true)));
-      h += svgCurve([c, 0, b, 0, a], xs, -5, 5);
-      return h;
-    });
-  };
-
-  /* ---------- factorizacion exacta con POLY.factorize ---------- */
-
-  function facMonicT(r, mult) {
-    var body;
-    if (Math.abs(r) < 1e-12) body = 'x';
-    else body = '\\left(x' + (r > 0 ? '-' : '+') + qt(Math.abs(r)) + '\\right)';
-    return mult > 1 ? body + '^{' + mult + '}' : body;
-  }
-
-  function facIntegerT(r, mult) {
-    if (Math.abs(r) < 1e-12) return mult > 1 ? 'x^{' + mult + '}' : 'x';
-    var d = denomOf(r);
-    if (d === 1) return facMonicT(r, mult);
-    var p = Math.round(r * d);
-    var body = '\\left(' + d + 'x' + (p > 0 ? '-' : '+') + Math.abs(p) + '\\right)';
-    return mult > 1 ? body + '^{' + mult + '}' : body;
-  }
-
-  function factorViews(f) {
-    var kNum = ratToNum(f.k);
-    if (!isFinite(kNum)) kNum = 1;
-    var mon = '', ent = '', divisor = 1, lin = [], quads = [];
-
-    if (f.xmult > 0) {
-      var xs = f.xmult > 1 ? 'x^{' + f.xmult + '}' : 'x';
-      mon += xs; ent += xs;
+      return v;
     }
-    (f.linear || []).forEach(function (L) {
-      var r = ratToNum(L.root), m = L.mult || 1;
-      lin.push({ r: r, m: m });
-      mon += facMonicT(r, m);
-      ent += facIntegerT(r, m);
-      var d = denomOf(r);
-      if (d > 1) divisor *= Math.pow(d, m);
-    });
-    (f.quads || []).forEach(function (Q) {
-      var num = (Q.poly || []).map(ratToNum);
-      var txt = '\\left(' + pt(num) + '\\right)';
-      quads.push({ num: num, disc: ratToNum(Q.disc), roots: Q.roots || [] });
-      mon += txt; ent += txt;
-    });
+    function run() {
+      /* Los escenarios asignan .value directamente y eso no dispara 'input':
+         hay que refrescar a mano el rótulo en vivo de los deslizadores. */
+      Object.keys(ctl).forEach(function (k) {
+        if (ctl[k] && typeof ctl[k]._sincroniza === 'function') ctl[k]._sincroniza();
+      });
+      try {
+        var html = compute(values(), ctl, out, api);
+        if (html !== undefined && html !== null) {
+          out.innerHTML = texifica(html);
+          tex(out);
+        }
+      } catch (e) {
+        out.innerHTML = '<div class="mx-bad ap-err">' + esc(e.message) + '</div>';
+        tex(out);
+        (window.EQ && window.EQ.log ? window.EQ.log : []).push({ applet: title, error: e.message });
+      }
+    }
+    api.run = run;
+    api.ctl = ctl;
+    api.out = out;
+    api.node = node;
+    run();
+    return api;
+  }
 
-    var kEnt = kNum / divisor;
+  /* ==================================================================
+     4 · álgebra de polinomios: representación y operaciones exactas
+
+     Un polinomio es un array de Frac: el índice es el grado.
+        [Frac(2), Frac(0), Frac(3)]   ->   3x^2 + 2
+     El array siempre va «recortado»: el último coeficiente no es 0,
+     salvo en el polinomio nulo, que es [Frac(0)].
+     Toda la aritmética pasa por Frac (BigInt), así que 1/3, 7/12 o los
+     coeficientes que salen al dividir son exactos.
+     ================================================================== */
+  var CERO = function () { return [new Frac(0)]; };
+  var UNO = function () { return [new Frac(1)]; };
+
+  function pRecorta(p) {
+    var q = p.slice();
+    while (q.length > 1 && q[q.length - 1].n === 0n) q.pop();
+    return q;
+  }
+  function pEsCero(p) { p = pRecorta(p); return p.length === 1 && p[0].n === 0n; }
+  function pGrado(p) { p = pRecorta(p); return pEsCero(p) ? -Infinity : p.length - 1; }
+  function pGradoTxt(p) { return pEsCero(p) ? 'sin grado (polinomio nulo)' : String(pGrado(p)); }
+  function pLider(p) { p = pRecorta(p); return p[p.length - 1]; }
+  function pIndep(p) { return p[0]; }
+  function pCopia(p) { return p.map(function (c) { return new Frac(c.n, c.d); }); }
+
+  function pDe(lista) {                       /* de números o fracciones */
+    return pRecorta(lista.map(function (c) {
+      return (c instanceof Frac) ? c : new Frac(c);
+    }));
+  }
+  function pMono(coef, grado) {               /* coef · x^grado */
+    var a = [];
+    for (var i = 0; i < grado; i++) a.push(new Frac(0));
+    a.push(coef instanceof Frac ? coef : new Frac(coef));
+    return pRecorta(a);
+  }
+
+  function pSuma(a, b) {
+    var n = Math.max(a.length, b.length), r = [];
+    for (var i = 0; i < n; i++) {
+      var x = a[i] || new Frac(0), y = b[i] || new Frac(0);
+      r.push(x.mas(y));
+    }
+    return pRecorta(r);
+  }
+  function pResta(a, b) { return pSuma(a, pOpuesto(b)); }
+  function pOpuesto(a) { return a.map(function (c) { return c.opuesto(); }); }
+  function pEscala(a, k) {
+    k = (k instanceof Frac) ? k : new Frac(k);
+    return pRecorta(a.map(function (c) { return c.por(k); }));
+  }
+  function pMult(a, b) {
+    if (pEsCero(a) || pEsCero(b)) return CERO();
+    var r = [];
+    for (var i = 0; i < a.length + b.length - 1; i++) r.push(new Frac(0));
+    for (var i2 = 0; i2 < a.length; i2++) {
+      for (var j = 0; j < b.length; j++) {
+        r[i2 + j] = r[i2 + j].mas(a[i2].por(b[j]));
+      }
+    }
+    return pRecorta(r);
+  }
+  function pPot(a, n) {
+    var r = UNO();
+    for (var i = 0; i < n; i++) r = pMult(r, a);
+    return r;
+  }
+  function pIgual(a, b) { return pEsCero(pResta(a, b)); }
+
+  /* División entera con resto, guardando cada paso para el applet.
+     Devuelve { q, r, pasos:[{mono, monoTex, producto, resto}] }        */
+  function pDiv(A, B) {
+    if (pEsCero(B)) throw Error('No se puede dividir entre el polinomio nulo.');
+    var q = CERO(), r = pRecorta(pCopia(A)), pasos = [];
+    var gB = pGrado(B), lB = pLider(B), guarda = 0;
+    while (!pEsCero(r) && pGrado(r) >= gB) {
+      if (++guarda > 60) throw Error('La división es demasiado larga para este applet.');
+      var g = pGrado(r) - gB;
+      var c = pLider(r).entre(lB);
+      var m = pMono(c, g);
+      var prod = pMult(m, B);
+      var nuevo = pResta(r, prod);
+      pasos.push({
+        mono: m, monoTex: pTex(m), coef: c, grado: g,
+        productoTex: pTex(prod), restoTex: pTex(nuevo),
+        producto: prod, resto: nuevo, dividendoTex: pTex(r)
+      });
+      q = pSuma(q, m);
+      r = nuevo;
+    }
+    return { q: q, r: r, pasos: pasos };
+  }
+
+  /* Valor numérico por Horner, con la lista de acumulados. */
+  function pEval(p, x) {
+    x = (x instanceof Frac) ? x : new Frac(x);
+    var acum = new Frac(0), lista = [];
+    for (var i = p.length - 1; i >= 0; i--) {
+      acum = acum.por(x).mas(p[i]);
+      lista.push(new Frac(acum.n, acum.d));
+    }
+    return { valor: acum, pasos: lista };
+  }
+  function pEvalNum(p, x) {                    /* evaluación en coma flotante */
+    var y = 0;
+    for (var i = p.length - 1; i >= 0; i--) y = y * x + p[i].val();
+    return y;
+  }
+  function pDeriva(p) {
+    if (pGrado(p) <= 0) return CERO();
+    var r = [];
+    for (var i = 1; i < p.length; i++) r.push(p[i].por(new Frac(i)));
+    return pRecorta(r);
+  }
+
+  /* ---------- escritura en LaTeX ---------- */
+  function coefTex(c, primero, grado) {
+    var neg = c.n < 0n;
+    var abs = new Frac(neg ? -c.n : c.n, c.d);
+    var signo = primero ? (neg ? '-' : '') : (neg ? ' - ' : ' + ');
+    var cuerpo;
+    if (grado > 0 && abs.n === 1n && abs.d === 1n) cuerpo = '';
+    else cuerpo = abs.tex(true);
+    return signo + cuerpo;
+  }
+  function pTex(p, v) {
+    v = v || 'x';
+    p = pRecorta(p);
+    if (pEsCero(p)) return '0';
+    var s = '', primero = true;
+    for (var i = p.length - 1; i >= 0; i--) {
+      var c = p[i];
+      if (c.n === 0n) continue;
+      s += coefTex(c, primero, i);
+      if (i === 1) s += v;
+      else if (i > 1) s += v + '^{' + i + '}';
+      primero = false;
+    }
+    return s;
+  }
+  function pTexPar(p, v) {                     /* entre paréntesis si hace falta */
+    var t = pTex(p, v);
+    return (pGrado(p) <= 0 && p[0].d === 1n && p[0].n >= 0n) ? t : '\\left(' + t + '\\right)';
+  }
+
+  /* ---------- lectura de una expresión escrita por el alumno ----------
+     Admite:  3x^2-5x+2 · x³ (con superíndices) · 2x(x-1)^2 · -x/2+3
+              7 · (x+1)(x-1) · 3/4x^2 · espacios libres · coma decimal
+     Solo se admite dividir entre un número (no entre otro polinomio).   */
+  function normalizaEntrada(s, v) {
+    v = v || 'x';
+    var t = String(s || '').trim().toLowerCase();
+    t = t.replace(/\s+/g, '');
+    t = t.replace(/[·×*]/g, '*');
+    t = t.replace(/[−–—]/g, '-');
+    t = t.replace(/[\[{]/g, '(').replace(/[\]}]/g, ')');
+    t = t.replace(/⁰/g, '^0').replace(/¹/g, '^1').replace(/²/g, '^2').replace(/³/g, '^3')
+      .replace(/⁴/g, '^4').replace(/⁵/g, '^5').replace(/⁶/g, '^6').replace(/⁷/g, '^7')
+      .replace(/⁸/g, '^8').replace(/⁹/g, '^9');
+    t = t.replace(/(\d),(\d)/g, '$1.$2');
+    return t;
+  }
+
+  function parsePol(str, v, nombre) {
+    v = (v || 'x').toLowerCase();
+    var s = normalizaEntrada(str, v);
+    var etiqueta = nombre || 'el polinomio';
+    if (s === '') throw Error('Escribe ' + etiqueta + '. Ejemplo: 3x^2-5x+2');
+    var permitido = new RegExp('^[0-9' + v + '\\+\\-\\*\\^\\(\\)\\./]*$');
+    if (!permitido.test(s)) {
+      var malo = s.split('').filter(function (c) { return !permitido.test(c); })[0];
+      throw Error('No entiendo el símbolo «' + malo + '». Usa solo números, la letra ' + v +
+        ', los signos + - * ^ ( ) y la barra / para dividir entre un número. Ejemplo: 2x^3-x/2+5');
+    }
+    var i = 0;
+    function fin() { return i >= s.length; }
+    function ver() { return s.charAt(i); }
+    function come(c) { if (ver() === c) { i++; return true; } return false; }
+
+    function numero() {
+      var j = i;
+      while (!fin() && /[0-9.]/.test(ver())) i++;
+      var txt = s.slice(j, i);
+      if (!/^\d+(\.\d+)?$/.test(txt)) throw Error('Número mal escrito cerca de «' + txt + '». Ejemplos válidos: 3, 2.5, 7/2');
+      if (txt.indexOf('.') >= 0) {                    /* decimal exacto -> fracción */
+        var pd = txt.split('.');
+        var den = Math.pow(10, pd[1].length);
+        return new Frac(Number(pd[0]) * den + Number(pd[1]), den);
+      }
+      return new Frac(Number(txt));
+    }
+    function entPos() {
+      var j = i;
+      while (!fin() && /[0-9]/.test(ver())) i++;
+      var t = s.slice(j, i);
+      if (!/^\d+$/.test(t)) throw Error('Después de ^ tiene que ir un exponente natural. Ejemplo: x^3');
+      var n = Number(t);
+      if (n > 12) throw Error('En este applet los exponentes llegan hasta 12.');
+      return n;
+    }
+
+    function expresion() {
+      var signo = 1;
+      if (come('+')) signo = 1; else if (come('-')) signo = -1;
+      var acc = pEscala(termino(), new Frac(signo));
+      while (!fin() && (ver() === '+' || ver() === '-')) {
+        var neg = come('-'); if (!neg) come('+');
+        var t = termino();
+        acc = neg ? pResta(acc, t) : pSuma(acc, t);
+      }
+      return acc;
+    }
+    function termino() {
+      var acc = factor();
+      for (;;) {
+        if (come('*')) { acc = pMult(acc, factor()); continue; }
+        if (come('/')) {
+          var d = factor();
+          if (pGrado(d) > 0) throw Error('En esta casilla solo se puede dividir entre un número. Para una fracción algebraica usa las dos casillas, numerador y denominador.');
+          if (pEsCero(d)) throw Error('No se puede dividir entre 0.');
+          acc = pEscala(acc, new Frac(d[0].d, d[0].n));
+          continue;
+        }
+        if (!fin() && (/[0-9(]/.test(ver()) || ver() === v)) { acc = pMult(acc, factor()); continue; }
+        break;
+      }
+      return acc;
+    }
+    function factor() {
+      var b = base();
+      if (come('^')) {
+        var e = entPos();
+        b = pPot(b, e);
+      }
+      return b;
+    }
+    function base() {
+      if (come('(')) {
+        var e = expresion();
+        if (!come(')')) throw Error('Falta cerrar un paréntesis. Revisa la expresión.');
+        return e;
+      }
+      if (ver() === v) { i++; return pMono(new Frac(1), 1); }
+      if (/[0-9.]/.test(ver())) return [numero()];
+      if (ver() === '-') { i++; return pEscala(base(), new Frac(-1)); }
+      throw Error('No entiendo la expresión a partir de «' + s.slice(i) + '». Ejemplo correcto: 2x^3-5x+1');
+    }
+
+    var res = expresion();
+    if (!fin()) throw Error('Sobra algo al final: «' + s.slice(i) + '». Ejemplo correcto: 2x^3-5x+1');
+    if (pGrado(res) > 12) throw Error('En este applet el grado máximo es 12.');
+    return pRecorta(res);
+  }
+
+  /* ==================================================================
+     5 · Ruffini, teorema del resto y raíces
+     ================================================================== */
+  function ruffini(p, r) {
+    p = pRecorta(p);
+    r = (r instanceof Frac) ? r : new Frac(r);
+    var arriba = [], baja = [], sube = [];
+    for (var i = p.length - 1; i >= 0; i--) arriba.push(p[i]);
+    var acc = arriba[0];
+    baja.push(acc); sube.push(null);
+    for (var j = 1; j < arriba.length; j++) {
+      var s = acc.por(r);
+      sube.push(s);
+      acc = arriba[j].mas(s);
+      baja.push(acc);
+    }
+    /* baja[] va de mayor a menor grado; el último valor es el resto y los
+       anteriores son los coeficientes del cociente, que hay que invertir. */
     return {
-      monic: (Math.abs(kNum - 1) < 1e-12 ? '' : qt(kNum)) + (mon || '1'),
-      integer: (Math.abs(kEnt - 1) < 1e-12 ? '' : qt(kEnt)) + (ent || '1'),
-      linear: lin, quads: quads, k: kNum, kInt: kEnt, divisor: divisor,
-      leftover: f.leftover && f.leftover.map ? f.leftover.map(ratToNum) : null
+      arriba: arriba, sube: sube, baja: baja,
+      cociente: pRecorta(baja.slice(0, baja.length - 1).reverse()),
+      resto: baja[baja.length - 1], r: r
     };
   }
 
-  /* ---------- Applet · Producto nulo y factorizacion ---------- */
-  EQ.productonulo = function (root) {
-    var out = shell(root, 'Applet \u00b7 Producto nulo y factorizaci\u00f3n', [
-      'Escribe una ecuaci\u00f3n polin\u00f3mica de cualquier grado. El applet la lleva a la forma $P(x)=0$, la factoriza con aritm\u00e9tica exacta y va igualando cada factor a cero.',
-      'Ejemplos: <code>2x^3-3x^2-11x+6=0</code>, <code>2x^4+4x^3-18x^2-36x=0</code>, <code>x^3-3x^2+2x=0</code>, <code>x^4-2x^3-13x^2+38x-24=0</code>, <code>-x(x-1)(x^2-2)=0</code>.',
-      'Compara las dos escrituras. En <code>2x^3-3x^2-11x+6=0</code> una ra\u00edz es $\\tfrac{1}{2}$: la primera usa el factor $\\left(x-\\tfrac{1}{2}\\right)$ y la segunda $\\left(2x-1\\right)$. Multiplica y comprueba que dan el mismo polinomio.',
-      'Comprueba el l\u00edmite del producto nulo con <code>(x-2)(x+1)=6</code>: igualar cada factor a $6$ no sirve, hay que desarrollar primero.',
-      'Un factor cuadr\u00e1tico con discriminante negativo no aporta ninguna soluci\u00f3n real, aunque siga formando parte de la factorizaci\u00f3n.'
-    ], rowText('eq', 'Ecuaci\u00f3n', '2x^3-3x^2-11x+6=0'));
+  /* Divisores enteros de un entero (positivos y negativos) */
+  function divisores(n) {
+    n = Math.abs(Math.trunc(n));
+    var d = [];
+    if (n === 0) return [1];
+    for (var i = 1; i * i <= n; i++) {
+      if (n % i === 0) { d.push(i); if (i !== n / i) d.push(n / i); }
+    }
+    d.sort(function (a, b) { return a - b; });
+    return d;
+  }
 
-    live(root, out, function () {
-      var src = val(root, 'eq');
-      var parts = String(src).split('=');
-      if (parts.length !== 2) throw new Error('escribe una sola igualdad, con un \u00fanico signo <code>=</code>.');
+  /* Multiplica por el mcm de los denominadores: P = (1/k)·Pent, Pent entero */
+  function pEntero(p) {
+    var den = 1;
+    p.forEach(function (c) { den = mcm(den, Number(c.d)); });
+    var ent = p.map(function (c) { return new Frac(c.n * BigInt(den) / c.d, 1); });
+    var g = 0;
+    ent.forEach(function (c) { g = mcd(g, Number(c.n)); });
+    if (!g) g = 1;
+    return { p: pRecorta(ent), factor: new Frac(den, 1), contenido: g };
+  }
 
-      var exact = null;
-      if (P && P.parse && P.sub && P.factorize) {
-        try { exact = P.factorize(P.sub(P.parse(parts[0]), P.parse(parts[1]))); }
-        catch (e) { exact = null; }
-      }
-
-      var pnum = psub(coeffs(parts[0]), coeffs(parts[1]));
-      var d = pdeg(pnum);
-      var h = step('Forma ' + T('P(x)=0') + ': ' + T(pt(pnum) + '=0') + ' (grado ' + d + ')');
-
-      if (d < 1) {
-        return h + step(Math.abs(pnum[0]) < 1e-12
-          ? ok('Identidad: todo n\u00famero real es soluci\u00f3n.')
-          : bad('Contradicci\u00f3n: no hay soluci\u00f3n.'));
-      }
-
-      if (!exact || exact.zero) {
-        var rs0 = realRoots(pnum).roots;
-        h += warnStep('Factorizaci\u00f3n aproximada: el motor exacto no est\u00e1 disponible en esta p\u00e1gina.');
-        h += step(key('Ra\u00edces reales: ') +
-          (rs0.length ? rs0.map(function (v) { return chip(T(nt(v))); }).join('') : chip('ninguna', true)));
-        h += svgCurve(pnum, rs0, -8, 8);
-        return h;
-      }
-
-      var V = factorViews(exact);
-      h += step(key('Factores m\u00f3nicos: ') + T(pt(pnum) + '=' + V.monic));
-      if (V.divisor !== 1) {
-        h += step(key('Coeficientes enteros: ') + T(pt(pnum) + '=' + V.integer));
-        h += step('Las dos escrituras son equivalentes. Al convertir cada ' +
-          T('\\left(x-\\tfrac{p}{d}\\right)') + ' en ' + T('\\left(dx-p\\right)') +
-          ' el producto se multiplica por ' + T(String(V.divisor)) + ', y por eso el coeficiente de delante pasa de ' +
-          T(qt(V.k)) + ' a ' + T(qt(V.kInt)) + '.');
-      }
-
-      h += step('Igualamos cada factor a cero, uno a uno:');
-      var sols = [];
-
-      if (exact.xmult > 0) {
-        sols.push(0);
-        h += step(T((exact.xmult > 1 ? 'x^{' + exact.xmult + '}' : 'x') + '=0') + ' ' + T('\\Rightarrow') + ' ' +
-          T('x=0') + (exact.xmult > 1 ? ' (multiplicidad ' + exact.xmult + ')' : ''));
-      }
-      V.linear.forEach(function (L) {
-        sols.push(L.r);
-        h += step(T(facMonicT(L.r, L.m) + '=0') + ' ' + T('\\Rightarrow') + ' ' + T('x=' + qt(L.r)) +
-          (L.m > 1 ? ' (multiplicidad ' + L.m + ')' : ''));
-      });
-      V.quads.forEach(function (Q) {
-        if (Q.disc < 0) {
-          h += step(T('\\left(' + pt(Q.num) + '\\right)=0') + ': ' + T('\\Delta=' + nt(Q.disc) + '<0') +
-            ' ' + T('\\Rightarrow') + ' ' + bad('no aporta soluciones reales'));
-        } else {
-          var qr = quad(Q.num[2] || 0, Q.num[1] || 0, Q.num[0] || 0);
-          qr.roots.forEach(function (v) { sols.push(snap(v)); });
-          h += step(T('\\left(' + pt(Q.num) + '\\right)=0') + ': ' + T('\\Delta=' + nt(Q.disc)) +
-            ' ' + T('\\Rightarrow') + ' ' + qr.roots.map(function (v) { return chip(T(nt(v))); }).join('') +
-            ' ' + note('(pueden ser irracionales y se dan aproximadas)'));
-        }
-      });
-      if (V.leftover && V.leftover.length > 1) {
-        h += warnStep('Queda un factor que el motor no ha descompuesto: ' + T(pt(V.leftover)) +
-          '. Sus soluciones, si las tiene, se buscan aparte.');
-      }
-
-      var uniq = [];
-      sols.map(nz).sort(function (a, b) { return a - b; }).forEach(function (v) {
-        if (!uniq.length || Math.abs(uniq[uniq.length - 1] - v) > 1e-7) uniq.push(v);
-      });
-
-      h += step(key('Conjunto soluci\u00f3n: ') +
-        (uniq.length ? uniq.map(function (v) { return chip(T(qt(v))); }).join('') : chip(T('\\varnothing'), true)));
-      if (uniq.length) {
-        h += step('Control num\u00e9rico: ' + T('P\\left(' + nt(uniq[0]) + '\\right)=' + nt(pev(pnum, uniq[0]))) +
-          '. Debe salir cero, o un valor min\u00fasculo por el redondeo.');
-      }
-      h += step('El teorema fundamental del \u00e1lgebra garantiza ' + d +
-        ' ra\u00edces contando multiplicidades y las complejas. Aqu\u00ed hay ' + uniq.length +
-        ' real' + (uniq.length === 1 ? '' : 'es') + ' distinta' + (uniq.length === 1 ? '' : 's') + '.');
-      h += svgCurve(pnum, uniq, -8, 8);
-      return h;
-    });
-  };
-
-  /* ---------- Applet · Ecuaciones racionales ---------- */
-  EQ.racional = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaciones racionales', [
-      'Estudiamos $\\dfrac{A}{x-p}+\\dfrac{B}{x-q}=C$. Lo primero no es operar: es anotar los valores prohibidos $x\\neq p$ y $x\\neq q$.',
-      'Ejemplos: $A=2$, $p=1$, $B=1$, $q=-1$, $C=1$; tambi\u00e9n $p=q=2$ para ver qu\u00e9 ocurre entonces.',
-      'Ajusta los valores hasta que una soluci\u00f3n caiga en un valor prohibido: aparecer\u00e1 en rojo y habr\u00e1 que rechazarla.',
-      'Con $C=0$ la ecuaci\u00f3n baja de grado: observa c\u00f3mo cambia el n\u00famero de candidatos.'
-    ], '<div class="ap-row">' + mini('A', 'A', 2) + mini('p', 'p', 1) + mini('B', 'B', 1) +
-       mini('q', 'q', -1) + mini('C', 'C', 1) + '</div>');
-
-    live(root, out, function () {
-      var A = nv(root, 'A'), p = nv(root, 'p'), B = nv(root, 'B'), q2 = nv(root, 'q'), C = nv(root, 'C');
-      var poly = psub(padd(pmul([A], [-q2, 1]), pmul([B], [-p, 1])), pmul([C], pmul([-p, 1], [-q2, 1])));
-      var h = step(T('\\dfrac{' + nt(A) + '}{x-' + par(p) + '}+\\dfrac{' + nt(B) + '}{x-' + par(q2) + '}=' + nt(C)));
-      h += step(key('Dominio: ') + T('x\\neq ' + nt(p)) +
-        (Math.abs(p - q2) > 1e-12 ? ' y ' + T('x\\neq ' + nt(q2)) : ' ' + note('(aqu\u00ed $p=q$, un solo valor prohibido)')));
-      h += step('Multiplicamos por ' + T('(x-p)(x-q)') + ': ' + T(pt(poly) + '=0'));
-      var rs = realRoots(poly).roots, badR = [], goodR = [];
-      rs.forEach(function (r) {
-        if (Math.abs(r - p) < 1e-8 || Math.abs(r - q2) < 1e-8) badR.push(r); else goodR.push(r);
-      });
-      h += step('Candidatos: ' + (rs.length ? rs.map(function (v) {
-        return chip(T(nt(v)), badR.indexOf(v) >= 0);
-      }).join('') : chip('ninguno', true)));
-      if (badR.length) {
-        h += step(bad('Rechazados') + ' por anular un denominador: ' +
-          badR.map(function (v) { return T(nt(v)); }).join(', ') +
-          '. Aparecieron al multiplicar, no eran soluciones.');
-      }
-      h += step(key('Soluciones v\u00e1lidas: ') +
-        (goodR.length ? goodR.map(function (v) { return chip(T(nt(v))); }).join('') : chip(T('\\varnothing'), true)));
-      return h;
-    });
-  };
-
-  /* ---------- Applet · Ecuaciones irracionales ---------- */
-  EQ.irracional = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaciones irracionales', [
-      'Estudiamos $\\sqrt{ax+b}=cx+d$. Al elevar al cuadrado pueden aparecer soluciones extra\u00f1as: el applet separa candidatos de soluciones.',
-      'Ejemplos: $a=-1$, $b=2$, $c=1$, $d=0$ para $\\sqrt{2-x}=x$; tambi\u00e9n $a=1$, $b=6$, $c=1$, $d=0$; y $a=3$, $b=19$, $c=1$, $d=3$.',
-      'Dos condiciones antes de aceptar un candidato: el radicando $ax+b\\geq 0$ y el miembro derecho $cx+d\\geq 0$.',
-      'Busca un caso con dos candidatos y una sola soluci\u00f3n v\u00e1lida: es el error cl\u00e1sico del tema.'
-    ], '<div class="ap-row">' + mini('a', 'a', -1) + mini('b', 'b', 2) + mini('c', 'c', 1) + mini('d', 'd', 0) + '</div>');
-
-    live(root, out, function () {
-      var a = nv(root, 'a'), b = nv(root, 'b'), c = nv(root, 'c'), d = nv(root, 'd');
-      var poly = psub(pmul([d, c], [d, c]), [b, a]);
-      var h = step(T('\\sqrt{' + pt([b, a]) + '}=' + pt([d, c])));
-      h += step('Condiciones previas: ' + T(pt([b, a]) + '\\geq 0') + ' y ' + T(pt([d, c]) + '\\geq 0'));
-      h += step('Elevando al cuadrado: ' + T(pt(poly) + '=0'));
-      var rs = realRoots(poly).roots, good = [], badc = [];
-      rs.forEach(function (x) {
-        var rad = a * x + b, rhs = c * x + d;
-        var fine = rad >= -1e-9 && rhs >= -1e-9 && Math.abs(Math.sqrt(Math.max(0, rad)) - rhs) < 1e-6;
-        (fine ? good : badc).push({ x: x, rad: rad, rhs: rhs, fine: fine });
-      });
-      h += step('Candidatos y comprobaci\u00f3n en la ecuaci\u00f3n original:');
-      if (!rs.length) h += step('No hay candidatos reales.');
-      good.concat(badc).forEach(function (o) {
-        h += step(T('x=' + nt(o.x)) + ': radicando ' + T(nt(o.rad)) + ', miembro derecho ' + T(nt(o.rhs)) +
-          ' ' + T('\\Rightarrow') + ' ' + (o.fine ? ok('v\u00e1lida') : bad('soluci\u00f3n extra\u00f1a')));
-      });
-      h += step(key('Soluciones: ') +
-        (good.length ? good.map(function (o) { return chip(T(qt(o.x))); }).join('') : chip(T('\\varnothing'), true)));
-      return h;
-    });
-  };
-
-  /* ---------- Applet · Ecuaciones exponenciales ---------- */
-  EQ.exponencial = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaciones exponenciales', [
-      'Dos modos. Directo: $a^{mx+n}=k$. Cambio de variable: $A\\,a^{2x}+B\\,a^{x}+C=0$ con $t=a^{x}>0$.',
-      'Ejemplos directos: $a=2$, $m=1$, $n=1$, $k=8$; tambi\u00e9n $a=4$, $m=1$, $n=1$, $k=1024$; y $a=0{,}5$, $m=1$, $n=0$, $k=8$.',
-      'Ejemplos con cambio: $a=2$, $A=1$, $B=-5$, $C=4$ da $x=0$ y $x=2$; tambi\u00e9n $a=3$, $A=1$, $B=-10$, $C=9$.',
-      'Pon $k$ negativo o cero y lee el aviso: una potencia de base positiva nunca vale cero ni un n\u00famero negativo.'
-    ],
-      '<div class="ap-row"><label class="ap-lab">Modo</label>' +
-      '<select class="ap-sel" data-role="modo"><option value="dir">Directo</option>' +
-      '<option value="cv">Cambio de variable</option></select>' + mini('a', 'base a', 2, 0.1) + '</div>' +
-      '<div class="ap-row">' + mini('m', 'm', 1) + mini('n', 'n', 1) + mini('k', 'k', 8) + '</div>' +
-      '<div class="ap-row">' + mini('A', 'A', 1) + mini('B', 'B', -5) + mini('C', 'C', 4) + '</div>');
-
-    live(root, out, function () {
-      var modo = val(root, 'modo'), a = nv(root, 'a');
-      if (!(a > 0) || Math.abs(a - 1) < 1e-9) throw new Error('la base debe cumplir $a>0$ y $a\\neq 1$.');
-      var h = '';
-      if (modo === 'dir') {
-        var m = nv(root, 'm'), nn = nv(root, 'n'), k = nv(root, 'k');
-        h += step(T(nt(a) + '^{' + pt([nn, m]) + '}=' + nt(k)));
-        if (!(k > 0)) {
-          return h + step(bad('No hay soluci\u00f3n real: ') + T('a^{u}>0') +
-            ' siempre, luego nunca puede valer ' + T(nt(k)) + '.');
-        }
-        if (Math.abs(m) < 1e-12) {
-          return h + step(Math.abs(Math.pow(a, nn) - k) < 1e-9
-            ? ok('Identidad: ') + 'la inc\u00f3gnita ha desaparecido y la igualdad es cierta.'
-            : bad('Contradicci\u00f3n: ') + 'no hay soluci\u00f3n.');
-        }
-        var u = Math.log(k) / Math.log(a), x = (u - nn) / m;
-        h += step('Tomamos logaritmos en base ' + T('a') + ': ' +
-          T(pt([nn, m]) + '=\\log_{' + nt(a) + '}' + nt(k) + '=' + nt(u)));
-        h += step(key('Soluci\u00f3n: ') + T('x=' + qt(snap(x))));
-        h += step('Comprobaci\u00f3n: ' + T(nt(a) + '^{' + nt(m * x + nn) + '}=' + nt(Math.pow(a, m * x + nn))));
-      } else {
-        var A = nv(root, 'A'), B = nv(root, 'B'), C = nv(root, 'C');
-        h += step(T(nt(A) + '\\cdot ' + nt(a) + '^{2x}' + (B >= 0 ? '+' : '') + nt(B) + '\\cdot ' +
-          nt(a) + '^{x}' + (C >= 0 ? '+' : '') + nt(C) + '=0'));
-        h += step('Cambio ' + T('t=' + nt(a) + '^{x}') + ', con la condici\u00f3n esencial ' + T('t>0') +
-          ': ' + T(pt([C, B, A]) + '=0'));
-        var r = quad(A, B, C);
-        h += step('Valores de ' + T('t') + ': ' + (r.roots.length
-          ? r.roots.map(function (t) { return chip(T(nt(t)), t <= 0); }).join('') : chip('ninguno real', true)));
-        var xs = [];
-        r.roots.forEach(function (t) {
-          if (t > 1e-12) {
-            var x2 = Math.log(t) / Math.log(a);
-            xs.push(snap(x2));
-            h += step(T(nt(a) + '^{x}=' + nt(t)) + ' ' + T('\\Rightarrow') + ' ' +
-              T('x=\\log_{' + nt(a) + '}' + nt(t) + '=' + nt(snap(x2))));
-          } else {
-            h += step(bad(T('t=' + nt(t) + '\\leq 0')) + ': descartado, una exponencial nunca es negativa ni nula.');
-          }
+  /* Candidatos a raíz racional: ±divisor(a0)/divisor(an) */
+  function candidatosRaiz(p) {
+    var E = pEntero(p).p;
+    if (pEsCero(E)) return [];
+    var k = 0;
+    while (k < E.length && E[k].n === 0n) k++;         /* x^k factor común */
+    var a0 = Number(E[k].n), an = Number(pLider(E).n);
+    var D0 = divisores(a0), Dn = divisores(an);
+    var vistos = {}, out = [];
+    if (k > 0) { vistos['0/1'] = 1; out.push(new Frac(0)); }
+    D0.forEach(function (a) {
+      Dn.forEach(function (b) {
+        [1, -1].forEach(function (s) {
+          var f = new Frac(s * a, b);
+          var key = f.txt();
+          if (!vistos[key]) { vistos[key] = 1; out.push(f); }
         });
-        h += step(key('Soluciones: ') +
-          (xs.length ? xs.map(function (v) { return chip(T(qt(v))); }).join('') : chip(T('\\varnothing'), true)));
-      }
-      return h;
+      });
     });
-  };
+    out.sort(function (a, b) { return a.val() - b.val(); });
+    return out;
+  }
 
-  /* ---------- Applet · Ecuaciones logaritmicas ---------- */
-  EQ.logaritmica = function (root) {
-    var out = shell(root, 'Applet \u00b7 Ecuaciones logar\u00edtmicas', [
-      'Dos modos. Definici\u00f3n: $\\log_{a}(px+q)=r$. Igualdad: $\\log_{a}(px+q)=\\log_{a}(sx+t)$.',
-      'Ejemplos: $a=2$, $p=1$, $q=-1$, $r=3$ para $\\log_{2}(x-1)=3$; tambi\u00e9n $a=10$, $p=100$, $q=-100$ frente a $s=1$, $t=98$.',
-      'El dominio no es un tr\u00e1mite final: el argumento debe ser estrictamente positivo, y esa condici\u00f3n forma parte de la ecuaci\u00f3n.',
-      'Fuerza un caso sin soluci\u00f3n haciendo que el valor obtenido deje el argumento negativo.'
-    ],
-      '<div class="ap-row"><label class="ap-lab">Modo</label>' +
-      '<select class="ap-sel" data-role="modo"><option value="def">Definici\u00f3n</option>' +
-      '<option value="ig">Igualdad de logaritmos</option></select>' + mini('a', 'base a', 2, 0.1) + '</div>' +
-      '<div class="ap-row">' + mini('p', 'p', 1) + mini('q', 'q', -1) + mini('r', 'r', 3) + '</div>' +
-      '<div class="ap-row">' + mini('s', 's', 1) + mini('t', 't', 98) + '</div>');
+  function raicesRacionales(p) {
+    var res = [], q = pRecorta(pCopia(p));
+    var cand = candidatosRaiz(p);
+    cand.forEach(function (c) {
+      var m = 0;
+      for (;;) {
+        var rf = ruffini(q, c);
+        if (rf.resto.n !== 0n) break;
+        q = rf.cociente;
+        m++;
+        if (pGrado(q) <= 0) break;
+      }
+      if (m) res.push({ raiz: c, mult: m });
+    });
+    return { raices: res, resto: q };
+  }
 
-    live(root, out, function () {
-      var modo = val(root, 'modo'), a = nv(root, 'a');
-      if (!(a > 0) || Math.abs(a - 1) < 1e-9) throw new Error('la base debe cumplir $a>0$ y $a\\neq 1$.');
-      var p = nv(root, 'p'), q2 = nv(root, 'q'), h = '';
-      var L = '\\log_{' + nt(a) + '}';
+  /* ==================================================================
+     6 · factorización completa sobre los racionales
+     Devuelve { k, lineales:[{raiz,mult}], cuads:[{poly,mult}], xk, tex }
+     ================================================================== */
+  function factorizaPol(P) {
+    P = pRecorta(P);
+    if (pEsCero(P)) return { nulo: true, lineales: [], cuads: [], k: new Frac(0), tex: '0' };
+    if (pGrado(P) === 0) return { lineales: [], cuads: [], k: P[0], tex: P[0].tex(true), constante: true };
 
-      if (modo === 'def') {
-        var r = nv(root, 'r');
-        h += step(T(L + '\\left(' + pt([q2, p]) + '\\right)=' + nt(r)));
-        h += step('Condici\u00f3n de dominio: ' + T(pt([q2, p]) + '>0'));
-        var target = Math.pow(a, r);
-        h += step('Forma exponencial: ' + T(pt([q2, p]) + '=' + nt(a) + '^{' + nt(r) + '}=' + nt(target)));
-        if (Math.abs(p) < 1e-12) {
-          return h + step(Math.abs(q2 - target) < 1e-9
-            ? ok('Identidad') + ': la inc\u00f3gnita ha desaparecido y la igualdad es cierta.'
-            : bad('Contradicci\u00f3n') + ': no hay soluci\u00f3n.');
+    var k = new Frac(1), q = pCopia(P);
+
+    /* 1 · sacar denominadores y contenido: P = k · Q, con Q entero primitivo */
+    var e = pEntero(q);
+    k = new Frac(e.contenido, 1).entre(e.factor);
+    q = pEscala(e.p, new Frac(1, e.contenido));
+    if (pLider(q).n < 0n) { q = pOpuesto(q); k = k.opuesto(); }
+
+    /* 2 · factor x^m */
+    var m = 0;
+    while (q.length > 1 && q[0].n === 0n) { q = q.slice(1); m++; }
+
+    /* 3 · raíces racionales por Ruffini repetido */
+    var lin = [];
+    var seguir = true;
+    while (seguir && pGrado(q) > 0) {
+      seguir = false;
+      var cand = candidatosRaiz(q);
+      for (var i = 0; i < cand.length; i++) {
+        var rf = ruffini(q, cand[i]);
+        if (rf.resto.n === 0n) {
+          var yaEsta = null;
+          lin.forEach(function (L) { if (L.raiz.cmp(cand[i]) === 0) yaEsta = L; });
+          if (yaEsta) yaEsta.mult++;
+          else lin.push({ raiz: cand[i], mult: 1 });
+          q = rf.cociente;
+          seguir = true;
+          break;
         }
-        var x = (target - q2) / p, arg = p * x + q2;
-        h += step('Candidato: ' + T('x=' + qt(snap(x))) + ', con argumento ' + T(nt(arg)));
-        h += step(arg > 1e-12
-          ? key('Soluci\u00f3n: ') + T('x=' + qt(snap(x))) + ' ' + ok('(argumento positivo)')
-          : bad('Rechazado') + ': el argumento no es positivo, luego el logaritmo no existe. Soluci\u00f3n ' + T('\\varnothing') + '.');
-      } else {
-        var s = nv(root, 's'), t = nv(root, 't');
-        h += step(T(L + '\\left(' + pt([q2, p]) + '\\right)=' + L + '\\left(' + pt([t, s]) + '\\right)'));
-        h += step('Dominio: ' + T(pt([q2, p]) + '>0') + ' y ' + T(pt([t, s]) + '>0'));
-        h += step('La funci\u00f3n logar\u00edtmica es inyectiva, luego igualamos argumentos: ' +
-          T(pt([q2, p]) + '=' + pt([t, s])));
-        var lin = psub([q2, p], [t, s]);
-        if (pdeg(lin) < 1) {
-          return h + step(Math.abs(lin[0]) < 1e-12
-            ? ok('Los argumentos coinciden') + ': cualquier $x$ del dominio es soluci\u00f3n.'
-            : bad('Contradicci\u00f3n') + ': no hay soluci\u00f3n.');
+      }
+    }
+
+    /* 4 · lo que queda: grado 2 irreducible, o grado >= 3 sin raíces racionales */
+    var cuads = [];
+    if (pGrado(q) >= 2) {
+      var l = pLider(q);
+      if (!(l.n === 1n && l.d === 1n)) { k = k.por(l); q = pEscala(q, new Frac(l.d, l.n)); }
+      cuads.push({ poly: q, mult: 1 });
+      q = UNO();
+    } else if (pGrado(q) === 0) {
+      k = k.por(q[0]);
+    }
+
+    lin.sort(function (a, b) { return a.raiz.val() - b.raiz.val(); });
+    return { k: k, xk: m, lineales: lin, cuads: cuads };
+  }
+
+  function factorLinTex(raiz, v) {
+    v = v || 'x';
+    if (raiz.n === 0n) return v;
+    if (raiz.d === 1n) {
+      return raiz.n > 0n ? '(' + v + ' - ' + raiz.n + ')' : '(' + v + ' + ' + (-raiz.n) + ')';
+    }
+    var s = raiz.n > 0n ? '-' : '+';
+    var abs = raiz.n < 0n ? -raiz.n : raiz.n;
+    return '\\left(' + v + ' ' + s + ' \\frac{' + abs + '}{' + raiz.d + '}\\right)';
+  }
+  function potTex(base, m) { return m === 1 ? base : base + '^{' + m + '}'; }
+
+  function factorizaTexPol(F, v, modo) {
+    v = v || 'x';
+    if (F.nulo) return '0';
+    if (F.constante) return F.k.tex(true);
+    var partes = [];
+    var k = F.k;
+    if (modo === 'entera') {
+      /* factores enteros: (qx - p) en vez de q(x - p/q) */
+      var kk = k;
+      if (F.xk) partes.push(potTex(v, F.xk));
+      F.lineales.forEach(function (L) {
+        if (L.raiz.d === 1n) {
+          partes.push(potTex(factorLinTex(L.raiz, v), L.mult));
+        } else {
+          var num = L.raiz.n, den = L.raiz.d;
+          var t = '(' + den + v + (num > 0n ? ' - ' + num : ' + ' + (-num)) + ')';
+          partes.push(potTex(t, L.mult));
+          kk = kk.entre(new Frac(den, 1));
         }
-        var x2 = snap(-lin[0] / lin[1]), a1 = p * x2 + q2, a2 = s * x2 + t;
-        h += step('Candidato ' + T('x=' + qt(x2)) + ': argumentos ' + T(nt(a1)) + ' y ' + T(nt(a2)));
-        h += step(a1 > 1e-12 && a2 > 1e-12
-          ? key('Soluci\u00f3n: ') + T('x=' + qt(x2))
-          : bad('Rechazado') + ': alg\u00fan argumento no es positivo. Soluci\u00f3n ' + T('\\varnothing') + '.');
+      });
+      F.cuads.forEach(function (C) { partes.push(potTex('(' + pTex(C.poly, v) + ')', C.mult)); });
+      var pre = (kk.n === 1n && kk.d === 1n) ? '' : (kk.n === -1n && kk.d === 1n ? '-' : kk.tex(true) + '\\,');
+      return pre + (partes.join('') || '1');
+    }
+    if (F.xk) partes.push(potTex(v, F.xk));
+    F.lineales.forEach(function (L) { partes.push(potTex(factorLinTex(L.raiz, v), L.mult)); });
+    F.cuads.forEach(function (C) { partes.push(potTex('(' + pTex(C.poly, v) + ')', C.mult)); });
+    var pref = (k.n === 1n && k.d === 1n) ? '' : (k.n === -1n && k.d === 1n ? '-' : k.tex(true) + '\\,');
+    return pref + (partes.join('') || '1');
+  }
+
+  /* Reconstruye el producto para comprobar la identidad */
+  function factorRehacer(F) {
+    if (F.nulo) return CERO();
+    var p = [F.k];
+    for (var i = 0; i < (F.xk || 0); i++) p = pMult(p, pMono(new Frac(1), 1));
+    F.lineales.forEach(function (L) {
+      p = pMult(p, pPot(pDe([L.raiz.opuesto(), new Frac(1)]), L.mult));
+    });
+    F.cuads.forEach(function (C) { p = pMult(p, pPot(C.poly, C.mult)); });
+    return p;
+  }
+
+  /* Lista plana de factores irreducibles con su multiplicidad, para el
+     mcd y el mcm de polinomios y para simplificar fracciones. */
+  function factoresLista(P) {
+    var F = factorizaPol(P), L = [];
+    if (F.xk) L.push({ clave: 'x', poly: pMono(new Frac(1), 1), mult: F.xk });
+    F.lineales.forEach(function (l) {
+      L.push({ clave: 'L' + l.raiz.txt(), poly: pDe([l.raiz.opuesto(), new Frac(1)]), mult: l.mult });
+    });
+    F.cuads.forEach(function (c) {
+      L.push({ clave: 'Q' + pTex(c.poly), poly: c.poly, mult: c.mult });
+    });
+    return { k: F.k, factores: L };
+  }
+
+  function mcdPol(A, B) {
+    var a = factoresLista(A), b = factoresLista(B), out = UNO();
+    a.factores.forEach(function (fa) {
+      b.factores.forEach(function (fb) {
+        if (fa.clave === fb.clave) out = pMult(out, pPot(fa.poly, Math.min(fa.mult, fb.mult)));
+      });
+    });
+    return out;
+  }
+  function mcmPol(A, B) {
+    var a = factoresLista(A), b = factoresLista(B), out = UNO(), usados = {};
+    a.factores.forEach(function (fa) {
+      var m = fa.mult;
+      b.factores.forEach(function (fb) { if (fb.clave === fa.clave) m = Math.max(m, fb.mult); });
+      usados[fa.clave] = 1;
+      out = pMult(out, pPot(fa.poly, m));
+    });
+    b.factores.forEach(function (fb) {
+      if (!usados[fb.clave]) out = pMult(out, pPot(fb.poly, fb.mult));
+    });
+    return out;
+  }
+
+  /* ==================================================================
+     7 · fracciones algebraicas
+     ================================================================== */
+  function Frax(num, den) {
+    if (pEsCero(den)) throw Error('El denominador de una fracción algebraica no puede ser el polinomio nulo.');
+    this.n = pRecorta(num);
+    this.d = pRecorta(den);
+  }
+  Frax.prototype.tex = function (v) {
+    return '\\dfrac{' + pTex(this.n, v) + '}{' + pTex(this.d, v) + '}';
+  };
+  Frax.prototype.esPolinomio = function () { return pGrado(this.d) === 0; };
+
+  /* Simplifica dividiendo entre el mcd y arrastrando la constante. */
+  function fraxSimplifica(F) {
+    if (pEsCero(F.n)) return { frax: new Frax(CERO(), UNO()), comun: UNO(), restricciones: raicesDe(F.d) };
+    var g = mcdPol(F.n, F.d);
+    var n2 = pDiv(F.n, g).q, d2 = pDiv(F.d, g).q;
+    /* dejar el denominador con coeficiente principal positivo y sin fracciones */
+    var l = pLider(d2);
+    if (l.n < 0n) { n2 = pOpuesto(n2); d2 = pOpuesto(d2); }
+    var den = 1;
+    n2.concat(d2).forEach(function (c) { den = mcm(den, Number(c.d)); });
+    if (den !== 1) { n2 = pEscala(n2, new Frac(den)); d2 = pEscala(d2, new Frac(den)); }
+    return {
+      frax: new Frax(n2, d2), comun: g,
+      restricciones: raicesDe(F.d),
+      simplificable: pGrado(g) > 0
+    };
+  }
+  function raicesDe(P) {
+    var R2 = raicesRacionales(P);
+    return R2.raices.map(function (r) { return r.raiz; });
+  }
+
+  function fraxSuma(A, B, signo) {
+    signo = signo === undefined ? 1 : signo;
+    var comun = mcmPol(A.d, B.d);
+    var fa = pDiv(comun, A.d).q, fb = pDiv(comun, B.d).q;
+    var na = pMult(A.n, fa), nb = pMult(B.n, fb);
+    var num = signo > 0 ? pSuma(na, nb) : pResta(na, nb);
+    return { bruto: new Frax(num, comun), comun: comun, fa: fa, fb: fb, na: na, nb: nb };
+  }
+  function fraxMult(A, B) { return new Frax(pMult(A.n, B.n), pMult(A.d, B.d)); }
+  function fraxDiv(A, B) {
+    if (pEsCero(B.n)) throw Error('No se puede dividir entre una fracción con numerador nulo.');
+    return new Frax(pMult(A.n, B.d), pMult(A.d, B.n));
+  }
+
+  /* ==================================================================
+     8 · identidades notables y piezas de salida propias del tema
+     ================================================================== */
+  function notable(tipo, A, B) {
+    /* A y B son polinomios (normalmente monomios) */
+    var izq, der, nombre;
+    if (tipo === 'suma2') {
+      nombre = 'Cuadrado de una suma';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)^{2}';
+      der = pMult(pSuma(A, B), pSuma(A, B));
+    } else if (tipo === 'resta2') {
+      nombre = 'Cuadrado de una diferencia';
+      izq = '\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)^{2}';
+      der = pMult(pResta(A, B), pResta(A, B));
+    } else if (tipo === 'sumapordif') {
+      nombre = 'Suma por diferencia';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)';
+      der = pMult(pSuma(A, B), pResta(A, B));
+    } else if (tipo === 'suma3') {
+      nombre = 'Cubo de una suma';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)^{3}';
+      der = pPot(pSuma(A, B), 3);
+    } else {
+      nombre = 'Cubo de una diferencia';
+      izq = '\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)^{3}';
+      der = pPot(pResta(A, B), 3);
+    }
+    return { nombre: nombre, izq: izq, der: der, derTex: pTex(der) };
+  }
+
+  /* Caja grande con una expresión algebraica */
+  function expr(label, tex, display) {
+    return '<div class="eq-expr">' +
+      (label ? '<span class="eq-expr-lab">' + esc(label) + '</span>' : '') +
+      (display === false ? K(tex) : KD(tex)) + '</div>';
+  }
+
+  /* Fichas de los términos de un polinomio */
+  function terminosHTML(p, v) {
+    v = v || 'x';
+    p = pRecorta(p);
+    var h = '<div class="pol-terms">';
+    var hay = false;
+    for (var i = p.length - 1; i >= 0; i--) {
+      if (p[i].n === 0n) continue;
+      hay = true;
+      var cl = 'pol-term' + (i === pGrado(p) ? ' pol-term-hi' : '') + (i === 0 ? ' pol-term-ind' : '');
+      var t = (i === 0) ? p[i].tex(true) :
+        (p[i].n === 1n && p[i].d === 1n ? '' : (p[i].n === -1n && p[i].d === 1n ? '-' : p[i].tex(true))) +
+        v + (i > 1 ? '^{' + i + '}' : '');
+      h += '<span class="' + cl + '"><span class="pol-term-x">' + K(t) + '</span>' +
+        '<span class="pol-term-g">' + (i === 0 ? 'independiente' : 'grado ' + i) + '</span></span>';
+    }
+    if (!hay) h += '<span class="pol-term"><span class="pol-term-x">' + K('0') + '</span>' +
+      '<span class="pol-term-g">nulo</span></span>';
+    return h + '</div>';
+  }
+
+  /* Tabla de Ruffini dibujada */
+  function ruffiniHTML(p, r, opts) {
+    opts = opts || {};
+    var R2 = ruffini(p, r);
+    var n = R2.arriba.length;
+    var h = '<table class="pol-ruf"><tbody>';
+    h += '<tr class="pol-ruf-r1"><td></td>';
+    R2.arriba.forEach(function (c) { h += '<td>' + K(c.tex(true)) + '</td>'; });
+    h += '</tr>';
+    h += '<tr class="pol-ruf-r2"><td class="pol-ruf-div">' + K(R2.r.tex(true)) + '</td><td></td>';
+    for (var i = 1; i < n; i++) h += '<td>' + K(R2.sube[i].tex(true)) + '</td>';
+    h += '</tr>';
+    h += '<tr class="pol-ruf-r3"><td class="pol-ruf-div"></td>';
+    R2.baja.forEach(function (c, i) {
+      var ultimo = i === n - 1;
+      h += '<td class="' + (ultimo ? (c.n === 0n ? 'pol-ruf-rest pol-ruf-rest0' : 'pol-ruf-rest') : '') + '">' +
+        K(c.tex(true)) + '</td>';
+    });
+    h += '</tr></tbody></table>';
+    var cap = opts.cap === undefined
+      ? 'Fila 1: coeficientes ordenados de mayor a menor grado, con los ceros de los términos que faltan. Fila 2: cada valor se multiplica por ' +
+        K(R2.r.tex(true)) + '. Fila 3: suma de las dos anteriores. La última casilla es el resto.'
+      : opts.cap;
+    return h + (cap ? '<p class="pol-ruf-cap">' + cap + '</p>' : '');
+  }
+
+  /* División larga en formato monoespaciado clásico */
+  function divisionLargaHTML(A, B, v) {
+    v = v || 'x';
+    function pl(p) {                                  /* texto plano de un polinomio */
+      p = pRecorta(p);
+      if (pEsCero(p)) return '0';
+      var s = '', primero = true;
+      for (var i = p.length - 1; i >= 0; i--) {
+        var c = p[i];
+        if (c.n === 0n) continue;
+        var neg = c.n < 0n;
+        var abs = new Frac(neg ? -c.n : c.n, c.d);
+        s += primero ? (neg ? '-' : '') : (neg ? ' - ' : ' + ');
+        if (!(i > 0 && abs.n === 1n && abs.d === 1n)) s += abs.txt();
+        if (i === 1) s += v; else if (i > 1) s += v + '^' + i;
+        primero = false;
       }
-      return h;
+      return s;
+    }
+    var D = pDiv(A, B);
+    var lineas = [];
+    var cab = pl(A);
+    var anchoIzq = Math.max(cab.length, 20) + 2;
+    lineas.push(pad(cab, anchoIzq) + '| ' + pl(B));
+    lineas.push(pad('', anchoIzq) + '| ' + pl(D.q));
+    lineas.push(rep('-', anchoIzq) + '+' + rep('-', Math.max(pl(B).length, pl(D.q).length) + 2));
+    D.pasos.forEach(function (s) {
+      lineas.push(pad('-(' + pl(s.producto) + ')', anchoIzq));
+      lineas.push(pad(pl(s.resto), anchoIzq));
+    });
+    return '<div class="pol-mono">' + esc(lineas.join('\n')) + '</div>';
+  }
+  function pad(s, n) { while (s.length < n) s += ' '; return s; }
+  function rep(c, n) { var s = ''; for (var i = 0; i < n; i++) s += c; return s; }
+
+  /* ==================================================================
+     E1 · radicales exactos:  √n = fuera·√dentro
+     ================================================================== */
+  function simplRaiz(n) {                      /* n entero >= 0 */
+    n = Number(n);
+    if (n < 0) return null;
+    if (n === 0) return { fuera: 0, dentro: 1 };
+    var fuera = 1, dentro = n, p = 2;
+    while (p * p <= dentro) {
+      while (dentro % (p * p) === 0) { dentro /= p * p; fuera *= p; }
+      p++;
+    }
+    return { fuera: fuera, dentro: dentro };
+  }
+  function raizTex(n) {
+    var s = simplRaiz(n);
+    if (!s) return '\\sqrt{' + n + '}';
+    if (s.dentro === 1) return String(s.fuera);
+    return (s.fuera === 1 ? '' : s.fuera) + '\\sqrt{' + s.dentro + '}';
+  }
+
+  /* Número de la forma  (p ± q√r)/s  con enteros, ya reducido.
+     Sirve para escribir las raíces irracionales de una cuadrática de
+     forma exacta, sin decimales. */
+  function Irr(p, q, r, s) {
+    this.p = p; this.q = q; this.r = r; this.s = s;   /* (p + q√r)/s */
+    var sr = simplRaiz(r);
+    if (sr && sr.dentro === 1) { this.p = p + q * sr.fuera; this.q = 0; this.r = 1; }
+    else if (sr) { this.q = q * sr.fuera; this.r = sr.dentro; }
+    if (this.s < 0) { this.p = -this.p; this.q = -this.q; this.s = -this.s; }
+    var g = Math.abs(mcdN(mcdN(this.p, this.q), this.s)) || 1;
+    this.p /= g; this.q /= g; this.s /= g;
+  }
+  function mcdN(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a; }
+  Irr.prototype.val = function () { return (this.p + this.q * Math.sqrt(this.r)) / this.s; };
+  Irr.prototype.esRacional = function () { return this.q === 0 || this.r === 1; };
+  Irr.prototype.frac = function () { return new Frac(BigInt(this.p), BigInt(this.s)); };
+  Irr.prototype.tex = function () {
+    if (this.esRacional()) return this.frac().tex(true);
+    var num = (this.p === 0 ? '' : this.p) +
+      (this.q < 0 ? (this.p === 0 ? '-' : ' - ') : (this.p === 0 ? '' : ' + ')) +
+      (Math.abs(this.q) === 1 ? '' : Math.abs(this.q)) + '\\sqrt{' + this.r + '}';
+    return this.s === 1 ? num : '\\dfrac{' + num + '}{' + this.s + '}';
+  };
+  Irr.prototype.txt = function () { return this.esRacional() ? this.frac().txt() : nc(this.val(), 4); };
+  Irr.prototype.aprox = function (d) { return kf(this.val(), d == null ? 3 : d); };
+
+  /* ==================================================================
+     E2 · conjuntos de números reales como unión de intervalos
+     Un trozo es {a, b, ai, bi}: extremos (±Infinity permitido) y si
+     cada uno está incluido. Un punto aislado es un trozo degenerado.
+     ================================================================== */
+  function Conj(trozos) { this.t = (trozos || []).slice(); this.normaliza(); }
+  Conj.vacio = function () { return new Conj([]); };
+  Conj.todo = function () { return new Conj([{ a: -Infinity, b: Infinity, ai: false, bi: false }]); };
+  Conj.punto = function (x) { return new Conj([{ a: x, b: x, ai: true, bi: true }]); };
+  Conj.puntos = function (xs) { return new Conj(xs.map(function (x) { return { a: x, b: x, ai: true, bi: true }; })); };
+  Conj.intervalo = function (a, b, ai, bi) { return new Conj([{ a: a, b: b, ai: !!ai, bi: !!bi }]); };
+  Conj.prototype.normaliza = function () {
+    var t = this.t.filter(function (i) { return i.a < i.b || (i.a === i.b && i.ai && i.bi); });
+    t.sort(function (u, v) { return u.a - v.a || (v.ai ? 1 : 0) - (u.ai ? 1 : 0); });
+    var out = [];
+    t.forEach(function (i) {
+      var L = out[out.length - 1];
+      if (L && (i.a < L.b || (i.a === L.b && (i.ai || L.bi)))) {
+        if (i.b > L.b) { L.b = i.b; L.bi = i.bi; }
+        else if (i.b === L.b) { L.bi = L.bi || i.bi; }
+      } else out.push({ a: i.a, b: i.b, ai: i.ai, bi: i.bi });
+    });
+    this.t = out;
+  };
+  Conj.prototype.esVacio = function () { return this.t.length === 0; };
+  Conj.prototype.esTodo = function () { return this.t.length === 1 && this.t[0].a === -Infinity && this.t[0].b === Infinity; };
+  Conj.prototype.contiene = function (x) {
+    return this.t.some(function (i) {
+      return (x > i.a || (x === i.a && i.ai)) && (x < i.b || (x === i.b && i.bi));
     });
   };
-
-  /* ---------- Applet · Inecuacion de primer grado ---------- */
-  EQ.inecuacion1 = function (root) {
-    var out = shell(root, 'Applet \u00b7 Inecuaci\u00f3n de primer grado', [
-      'Escribe la inecuaci\u00f3n completa con <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> o <code>&gt;=</code>.',
-      'Ejemplos: <code>-3x&lt;=9</code>, <code>5-3(2x-1)&gt;-4x-8</code>, <code>4x-1-3(x-1)&gt;=3(2x+4)</code>, <code>(1/2)x-4&gt;=3x+1</code>.',
-      'Fija la atenci\u00f3n en el aviso naranja: aparece justo cuando dividimos por un n\u00famero negativo y la desigualdad cambia de sentido.',
-      'El extremo se dibuja relleno con $\\leq$ y $\\geq$, y hueco con $<$ y $>$.'
-    ], rowText('ine', 'Inecuaci\u00f3n', '-3x<=9'));
-
-    live(root, out, function () {
-      var o = splitIneq(val(root, 'ine')), p = o.poly, op = o.op;
-      if (pdeg(p) > 1) throw new Error('esa inecuaci\u00f3n es de grado ' + pdeg(p) + '. Usa el applet de inecuaci\u00f3n cuadr\u00e1tica.');
-      var a = p[1] || 0, b = p[0] || 0;
-      var h = step('Forma reducida: ' + T(pt(p) + opT(op) + '0'));
-      if (Math.abs(a) < 1e-12) {
-        return h + step(opHolds(b, op)
-          ? ok('Se cumple siempre: ') + 'soluci\u00f3n ' + T('\\mathbb{R}') + '.'
-          : bad('Nunca se cumple: ') + 'soluci\u00f3n ' + T('\\varnothing') + '.');
-      }
-      var fin = a < 0 ? FLIP[op] : op, x0 = snap(-b / a);
-      h += step('Despejamos: ' + T(qt(a) + 'x' + opT(op) + qt(-b)));
-      if (a < 0) {
-        h += warnStep(key('Atenci\u00f3n: ') + 'dividimos entre ' + T(nt(a)) +
-          ', que es negativo, as\u00ed que la desigualdad <b>cambia de sentido</b>.');
-      }
-      h += step(key('Soluci\u00f3n: ') + T('x' + opT(fin) + qt(x0)));
-      var lower = (fin === '>' || fin === '>=');
-      var pieces = [{ a: -Infinity, b: x0, okk: !lower }, { a: x0, b: Infinity, okk: lower }];
-      h += step('En intervalos: ' + T(lower
-        ? ivT(x0, Infinity, opClosed(fin), false)
-        : ivT(-Infinity, x0, false, opClosed(fin))));
-      h += svgLine(pieces, [x0], opClosed(fin));
-      return h;
+  Conj.prototype.union = function (o) { return new Conj(this.t.concat(o.t)); };
+  Conj.prototype.comp = function () {                 /* complementario en R */
+    var out = [], cur = -Infinity, curIn = false;
+    this.t.forEach(function (i) {
+      out.push({ a: cur, b: i.a, ai: curIn, bi: !i.ai });
+      cur = i.b; curIn = !i.bi;
     });
+    out.push({ a: cur, b: Infinity, ai: curIn, bi: false });
+    return new Conj(out.filter(function (i) { return i.a < i.b || (i.a === i.b && i.ai && i.bi); }));
+  };
+  Conj.prototype.inter = function (o) { return this.comp().union(o.comp()).comp(); };
+  Conj.prototype.quita = function (xs) {             /* quita puntos sueltos */
+    var C = this;
+    (Array.isArray(xs) ? xs : [xs]).forEach(function (x) { C = C.inter(Conj.punto(x).comp()); });
+    return C;
+  };
+  function numTex(x) {
+    if (x === Infinity) return '+\\infty';
+    if (x === -Infinity) return '-\\infty';
+    if (x instanceof Frac) return x.tex(true);
+    if (x instanceof Irr) return x.tex();
+    return kf(x, 4);
+  }
+  Conj.prototype.tex = function (etqs) {
+    if (this.esVacio()) return '\\varnothing';
+    if (this.esTodo()) return '\\mathbb{R}';
+    var E = etqs || {};
+    function nom(x) { return E[x] != null ? E[x] : numTex(x); }
+    return this.t.map(function (i) {
+      if (i.a === i.b) return '\\{' + nom(i.a) + '\\}';
+      return '\\left' + (i.ai ? '[' : '(') + nom(i.a) + ',\\; ' + nom(i.b) + '\\right' + (i.bi ? ']' : ')');
+    }).join(' \\cup ');
+  };
+  Conj.prototype.desig = function (v) {              /* con desigualdades */
+    v = v || 'x';
+    if (this.esVacio()) return '\\text{sin solución}';
+    if (this.esTodo()) return v + ' \\in \\mathbb{R}';
+    return this.t.map(function (i) {
+      if (i.a === i.b) return v + ' = ' + numTex(i.a);
+      if (i.a === -Infinity) return v + (i.bi ? ' \\leq ' : ' < ') + numTex(i.b);
+      if (i.b === Infinity) return v + (i.ai ? ' \\geq ' : ' > ') + numTex(i.a);
+      return numTex(i.a) + (i.ai ? ' \\leq ' : ' < ') + v + (i.bi ? ' \\leq ' : ' < ') + numTex(i.b);
+    }).join(' \\quad\\text{o}\\quad ');
   };
 
-  /* ---------- Applet · Inecuacion cuadratica ---------- */
-  EQ.inecuacion2 = function (root) {
-    var out = shell(root, 'Applet \u00b7 Inecuaci\u00f3n cuadr\u00e1tica', [
-      'Escribe la inecuaci\u00f3n completa. El applet la reduce, resuelve la ecuaci\u00f3n asociada, construye la tabla de signos y pinta el conjunto soluci\u00f3n.',
-      'Ejemplos: <code>2x^2-7x+40&gt;=x^2+5x+5</code>, <code>x^2-3x+2&lt;=0</code>, <code>-x^2+x+2&gt;0</code>, <code>x^2+2x+3&lt;0</code>, <code>4x^2-4x+1&lt;0</code>.',
-      'Tambi\u00e9n acepta grados superiores factorizados: prueba <code>x(x+5)(x+3)(x-2)(x-6)&gt;=0</code>.',
-      'Interpreta el resultado gr\u00e1ficamente: $P(x)>0$ pregunta d\u00f3nde la curva queda por encima del eje horizontal.'
-    ], rowText('ine', 'Inecuaci\u00f3n', '2x^2-7x+40>=x^2+5x+5'));
+  /* Recta real con el conjunto sombreado, a tamaño grande. */
+  function rectaConj(C, opts) {
+    opts = opts || {};
+    var marcas = (opts.marcas || []).map(Number).filter(function (v) { return isFinite(v); });
+    C.t.forEach(function (i) { [i.a, i.b].forEach(function (v) { if (isFinite(v)) marcas.push(v); }); });
+    var vals = marcas.length ? marcas : [0];
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    if (max - min < 1) { var c = (min + max) / 2; min = c - 2; max = c + 2; }
+    var pad = (max - min) * 0.35 + 0.5;
+    min = Math.floor(min - pad); max = Math.ceil(max + pad);
+    var W = opts.W || 1000, H = opts.H || 210, mx = 62, yy = Math.round(H * 0.56);
+    function X(v) { return mx + (v - min) / (max - min) * (W - 2 * mx); }
+    var b = '';
+    /* zona sombreada */
+    C.t.forEach(function (i) {
+      var x1 = X(Math.max(i.a, min - 1)), x2 = X(Math.min(i.b, max + 1));
+      if (i.a === i.b) return;
+      b += rect(x1, yy - 15, Math.max(x2 - x1, 1), 30, 'rgba(37,99,235,.20)', 'none');
+      b += line(x1, yy, x2, yy, COL.azul, 8);
+    });
+    /* eje */
+    b += line(mx - 26, yy, W - mx + 26, yy, '#334155', 2.6);
+    b += path('M ' + (W - mx + 26) + ' ' + yy + ' l -13 -7 l 0 14 z', '#334155', 1, '#334155');
+    b += path('M ' + (mx - 26) + ' ' + yy + ' l 13 -7 l 0 14 z', '#334155', 1, '#334155');
+    /* enteros */
+    var pasoE = Math.max(1, Math.round((max - min) / 12));
+    for (var k = Math.ceil(min); k <= max; k += pasoE) {
+      b += line(X(k), yy - 8, X(k), yy + 8, '#94a3b8', 1.6);
+      b += txt(X(k), yy + 34, etq(k), { s: 19, a: 'middle', c: '#475569' });
+    }
+    /* extremos */
+    C.t.forEach(function (i) {
+      [[i.a, i.ai], [i.b, i.bi]].forEach(function (par) {
+        var v = par[0];
+        if (!isFinite(v)) return;
+        b += par[1] ? circle(X(v), yy, 11, COL.azul, '#fff', 3)
+          : circle(X(v), yy, 11, '#fff', COL.azul, 3.4);
+        b += '<foreignObject x="' + (X(v) - 80) + '" y="' + (yy - 66) + '" width="160" height="42">' +
+          '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:21px;color:#1d4ed8">' +
+          '<span data-tex="' + esc(numTex(v)) + '"></span></div></foreignObject>';
+      });
+    });
+    if (C.esVacio()) b += txt(W / 2, yy - 42, 'El conjunto solución está vacío', { s: 22, a: 'middle', c: COL.rojo, w: 700 });
+    return svgWrap(b, W, H, opts.label || 'Conjunto solución sobre la recta real', opts.cap);
+  }
 
-    live(root, out, function () {
-      var o = splitIneq(val(root, 'ine')), p = o.poly, op = o.op;
-      var h = step('Forma reducida: ' + T(pt(p) + opT(op) + '0') + ' (grado ' + pdeg(p) + ')');
-      if (pdeg(p) === 2) {
-        var D = (p[1] || 0) * (p[1] || 0) - 4 * p[2] * (p[0] || 0);
-        h += step('Ecuaci\u00f3n asociada: ' + T(pt(p) + '=0') + ', con ' + T('\\Delta=' + nt(D)));
-      }
-      var sol = solveIneq(p, op);
-      if (sol.roots.length) {
-        h += step('Ra\u00edces que separan la recta real: ' +
-          sol.roots.map(function (v) { return chip(T(qt(v))); }).join(''));
-        var rows = sol.pieces.map(function (s) {
-          return '<tr class="' + (s.okk ? 'ap-sel-row' : '') + '"><td>' + T(ivT(s.a, s.b, false, false)) +
-            '</td><td>' + T(nt(s.probe)) + '</td><td>' + T(nt(s.val)) + '</td><td>' +
-            (s.val > 0 ? '+' : s.val < 0 ? '\u2212' : '0') + '</td><td>' +
-            (s.okk ? ok('s\u00ed') : 'no') + '</td></tr>';
-        }).join('');
-        h += '<table class="ap-tbl"><tr><th>Intervalo</th><th>Punto de prueba</th>' +
-          '<th>Valor</th><th>Signo</th><th>\u00bfCumple?</th></tr>' + rows + '</table>';
+  /* ==================================================================
+     E3 · ecuaciones de primer grado
+     ================================================================== */
+  function solLineal(a, b) {                  /* a·x + b = 0, a y b Frac */
+    if (a.n === 0n) {
+      return b.n === 0n
+        ? { tipo: 'identidad', conj: Conj.todo(), tex: 'x \\in \\mathbb{R}' }
+        : { tipo: 'incompatible', conj: Conj.vacio(), tex: '\\varnothing' };
+    }
+    var x = b.opuesto().entre(a);
+    return { tipo: 'unica', x: x, conj: Conj.punto(x.val()), tex: 'x = ' + x.tex(true) };
+  }
+
+  /* Resuelve  izq = der  cuando ambos miembros son polinomios,
+     devolviendo los pasos didácticos habituales. */
+  function resuelveLinealPaso(izqTxt, derTxt) {
+    var A = parsePol(izqTxt), B = parsePol(derTxt);
+    var D = pResta(A, B);
+    var pasos = [];
+    pasos.push({ t: 'Paso todo al primer miembro', tex: pTex(D) + ' = 0' });
+    var den = 1n;
+    D.forEach(function (c) { den = den * c.d / bmcd(den, c.d); });
+    if (den !== 1n) {
+      D = D.map(function (c) { return c.por(new Frac(den)); });
+      pasos.push({ t: 'Multiplico por el m.c.m. de los denominadores, ' + den, tex: pTex(D) + ' = 0' });
+    }
+    var g = pGrado(D);
+    if (g === 1) {
+      var a = D[1], b = D[0];
+      pasos.push({ t: 'Agrupo la incógnita y los números', tex: a.tex(true) + 'x = ' + b.opuesto().tex(true) });
+      var S = solLineal(a, b);
+      pasos.push({ t: 'Despejo', tex: S.tex });
+      return { grado: 1, pasos: pasos, sol: S, poli: D };
+    }
+    return { grado: g, pasos: pasos, poli: D };
+  }
+
+  /* ==================================================================
+     E4 · ecuaciones de segundo grado
+     ================================================================== */
+  function solCuadratica(a, b, c) {           /* Frac */
+    /* paso a coeficientes enteros para trabajar con el discriminante */
+    var den = 1n;
+    [a, b, c].forEach(function (f) { den = den * f.d / bmcd(den, f.d); });
+    var A = Number(a.por(new Frac(den)).n), B = Number(b.por(new Frac(den)).n), C = Number(c.por(new Frac(den)).n);
+    var g = mcdN(mcdN(A, B), C) || 1;
+    if (A < 0) g = -g;
+    A /= g; B /= g; C /= g;
+    var disc = B * B - 4 * A * C;
+    var R = { a: A, b: B, c: C, disc: disc, enteriza: den !== 1n || g !== 1, simplificada: [A, B, C] };
+    if (A === 0) {
+      var L = solLineal(new Frac(BigInt(B)), new Frac(BigInt(C)));
+      R.tipo = 'lineal'; R.sol = L; R.conj = L.conj; R.raices = L.x ? [new Irr(Number(L.x.n), 0, 1, Number(L.x.d))] : [];
+      return R;
+    }
+    R.completa = (B !== 0 && C !== 0);
+    R.incompletaTipo = B === 0 && C === 0 ? 'doble-cero' : (C === 0 ? 'sin-c' : (B === 0 ? 'sin-b' : null));
+    if (disc > 0) {
+      R.tipo = 'dos';
+      R.raices = [new Irr(-B, 1, disc, 2 * A), new Irr(-B, -1, disc, 2 * A)];
+      R.raices.sort(function (u, v) { return u.val() - v.val(); });
+      R.conj = Conj.puntos(R.raices.map(function (r) { return r.val(); }));
+    } else if (disc === 0) {
+      R.tipo = 'doble';
+      R.raices = [new Irr(-B, 0, 1, 2 * A)];
+      R.conj = Conj.puntos([R.raices[0].val()]);
+    } else {
+      R.tipo = 'ninguna'; R.raices = []; R.conj = Conj.vacio();
+    }
+    R.exacta = disc >= 0 && (simplRaiz(disc) || {}).dentro === 1;
+    R.suma = new Frac(BigInt(-B), BigInt(A));
+    R.producto = new Frac(BigInt(C), BigInt(A));
+    R.vertice = { x: -B / (2 * A), y: (4 * A * C - B * B) / (4 * A) };
+    return R;
+  }
+  function cuadTex(a, b, c, v) {
+    v = v || 'x';
+    return pTex(pDe([c, b, a]).map(function (f) { return f; })).replace(/x/g, v) + ' = 0';
+  }
+  function raicesTex(R) {
+    if (R.tipo === 'ninguna') return '\\varnothing';
+    return R.raices.map(function (r, i) { return v0(R, i) + ' = ' + r.tex(); }).join(', \\quad ');
+  }
+  function v0(R, i) { return R.tipo === 'doble' ? 'x_1 = x_2' : 'x_' + (i + 1); }
+
+  /* ==================================================================
+     E5 · bicuadradas y bipotenciales  a·x^(2n) + b·x^n + c = 0
+     ================================================================== */
+  function solBipotencial(a, b, c, n) {
+    n = n || 2;
+    var T = solCuadratica(a, b, c);
+    var salida = { cuad: T, n: n, ramas: [], conj: Conj.vacio() };
+    T.raices.forEach(function (t) {
+      var tv = t.val();
+      var rama = { t: t, valores: [] };
+      if (n % 2 === 0) {
+        if (tv > 0) {
+          var raiz = Math.sqrt(tv);
+          rama.valores = [-raiz, raiz];
+          rama.motivo = 'dos soluciones';
+          if (t.esRacional() && t.frac().esCuadrado && t.frac().esCuadrado()) rama.exacta = true;
+        } else if (tv === 0) { rama.valores = [0]; rama.motivo = 'una solución'; }
+        else { rama.valores = []; rama.motivo = 'ninguna: un valor par de una potencia par no puede ser negativo'; }
       } else {
-        h += step('La ecuaci\u00f3n asociada no tiene ra\u00edces reales: hay un \u00fanico intervalo, toda la recta real, y el signo es constante.');
+        rama.valores = [Math.cbrt(tv)];
+        rama.motivo = 'una solución';
       }
-      h += step(key('Conjunto soluci\u00f3n: ') + T(sol.tex));
-      if (sol.roots.length) {
-        h += step(opClosed(op)
-          ? 'La desigualdad admite la igualdad, luego las ra\u00edces <b>s\u00ed</b> pertenecen a la soluci\u00f3n.'
-          : 'La desigualdad es estricta, luego las ra\u00edces <b>no</b> pertenecen a la soluci\u00f3n.');
-      }
-      h += svgLine(sol.pieces, sol.roots, opClosed(op));
-      h += svgCurve(p, sol.roots, -12, 12);
-      return h;
+      salida.ramas.push(rama);
+      salida.conj = salida.conj.union(Conj.puntos(rama.valores));
     });
-  };
+    return salida;
+  }
 
-  /* ---------- Applet · Recta real e intervalos ---------- */
-  EQ.intervalos = function (root) {
-    var out = shell(root, 'Applet \u00b7 Recta real e intervalos', [
-      'Traduce entre las tres escrituras de un conjunto: desigualdad, intervalo y dibujo en la recta real.',
-      'Elige los extremos y si cada uno es abierto o cerrado. Prueba $-2$ cerrado y $3$ abierto: obtienes $\\left[-2,3\\right)$.',
-      'Pon el extremo izquierdo mayor que el derecho y lee el aviso: el conjunto queda vac\u00edo.',
-      'Marca los dos extremos como infinitos para representar $\\mathbb{R}$.'
-    ],
-      '<div class="ap-row">' + mini('l', 'extremo izq.', -2) +
-      '<label class="ap-lab">Tipo</label><select class="ap-sel" data-role="lc">' +
-      '<option value="1">cerrado</option><option value="0">abierto</option>' +
-      '<option value="i">menos infinito</option></select></div>' +
-      '<div class="ap-row">' + mini('r', 'extremo der.', 3) +
-      '<label class="ap-lab">Tipo</label><select class="ap-sel" data-role="rc">' +
-      '<option value="0">abierto</option><option value="1">cerrado</option>' +
-      '<option value="i">m\u00e1s infinito</option></select></div>');
-
-    live(root, out, function () {
-      var lcv = val(root, 'lc'), rcv = val(root, 'rc');
-      var l = lcv === 'i' ? -Infinity : nv(root, 'l');
-      var r = rcv === 'i' ? Infinity : nv(root, 'r');
-      var lc = lcv === '1', rc = rcv === '1';
-      if (l !== -Infinity && r !== Infinity && l > r) {
-        throw new Error('el extremo izquierdo es mayor que el derecho: el conjunto ser\u00eda vac\u00edo.');
-      }
-      var h = step(key('Intervalo: ') + T(ivT(l, r, lc, rc)));
-      var des;
-      if (l === -Infinity && r === Infinity) des = 'x\\in\\mathbb{R}';
-      else if (l === -Infinity) des = 'x' + (rc ? '\\leq' : '<') + qt(r);
-      else if (r === Infinity) des = 'x' + (lc ? '\\geq' : '>') + qt(l);
-      else des = qt(l) + (lc ? '\\leq' : '<') + 'x' + (rc ? '\\leq' : '<') + qt(r);
-      h += step(key('Desigualdad: ') + T(des));
-      h += step('Extremo izquierdo ' + (l === -Infinity ? 'infinito' : (lc ? 'incluido' : 'excluido')) +
-        ', extremo derecho ' + (r === Infinity ? 'infinito' : (rc ? 'incluido' : 'excluido')) + '.');
-      var marks = [];
-      if (l !== -Infinity) marks.push(l);
-      if (r !== Infinity) marks.push(r);
-      h += svgLine([{ a: l, b: r, okk: true }], marks, lc && rc);
-      return h;
+  /* ==================================================================
+     E6 · ecuaciones polinómicas por factorización
+     ================================================================== */
+  function solPolinomica(p) {
+    p = pRecorta(p);
+    var F = factorizaPol(p);
+    var raices = [], vistos = {};
+    if (F.xk) { vistos['0'] = 1; raices.push({ raiz: new Frac(0n), mult: F.xk, tipo: 'racional', deFactorX: true }); }
+    F.lineales.forEach(function (L) {
+      var v = L.raiz.val(), k = L.raiz.txt();
+      if (!vistos[k]) { vistos[k] = 1; raices.push({ raiz: L.raiz, mult: L.mult, tipo: 'racional' }); }
     });
-  };
-
-  /* ---------- Applet · Diagnostico del motor ---------- */
-  EQ.diagnostico = function (root) {
-    var out = shell(root, 'Applet \u00b7 Diagn\u00f3stico del motor', [
-      'Applet de servicio, no de aula: comprueba que <code>window.POLY</code> y KaTeX se han cargado.',
-      'La notaci\u00f3n se escribe en LaTeX y la compone KaTeX de forma s\u00edncrona, as\u00ed que debe verse siempre.'
-    ], rowText('eq', 'Prueba', '2x^2-5x-3'));
-
-    live(root, out, function () {
-      var h = step('window.POLY: ' + (P ? ok('detectado') : bad('no encontrado') + ' (parser de respaldo)'));
-      h += step('KaTeX: ' + (window.katex ? ok('cargado') : bad('no cargado')) +
-        ' \u00b7 autorenderizado: ' + (window.renderMathInElement ? ok('disponible') : bad('no disponible')));
-      if (P) h += step('Miembros de POLY: ' + Object.keys(P).sort().join(', '));
-      var c = coeffs(val(root, 'eq'));
-      h += step('Coeficientes ascendentes: [' + c.map(nt).join(', ') + ']');
-      h += step('Reconstrucci\u00f3n: ' + T(pt(c)));
-      h += step('Valor en ' + T('x=2') + ': ' + T(nt(pev(c, 2))));
-      h += step('Prueba de notaci\u00f3n: ' + T('x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}') + ', ' +
-        T('\\left(-\\infty,5\\right]\\cup\\left[7,+\\infty\\right)') + ', ' +
-        T('\\log_{2}\\left(x-1\\right)=3') + ', ' + T('\\tfrac{1}{2}\\leq x<\\sqrt{3}'));
-      h += step(TD('P(x)=2\\left(x-3\\right)\\left(x+2\\right)\\left(x-\\tfrac{1}{2}\\right)'));
-      return h;
+    var extra = [];
+    var irreducibles = [];
+    (F.cuads || []).forEach(function (q) {
+      if (pGrado(q.poly) !== 2) { irreducibles.push(q); return; }
+      var Q = solCuadratica(q.poly[2], q.poly[1], q.poly[0]);
+      extra.push({ p: q.poly, mult: q.mult, cuad: Q });
+      Q.raices.forEach(function (r) { raices.push({ irr: r, mult: q.mult, tipo: 'irracional' }); });
     });
+    raices.sort(function (u, v) { return (u.raiz ? u.raiz.val() : u.irr.val()) - (v.raiz ? v.raiz.val() : v.irr.val()); });
+    return {
+      factor: F, raices: raices, cuadraticos: extra, irreducibles: irreducibles,
+      conj: Conj.puntos(raices.map(function (r) { return r.raiz ? r.raiz.val() : r.irr.val(); })),
+      grado: pGrado(p)
+    };
+  }
+
+  /* ==================================================================
+     E7 · ecuaciones racionales  N(x)/D(x) = M(x)/E(x)
+     ================================================================== */
+  function solRacional(n1, d1, n2, d2) {
+    /* cruzo en multiplicación: n1·d2 − n2·d1 = 0, con D≠0 */
+    var izq = pMult(n1, d2), der = pMult(n2, d1);
+    var P = pResta(izq, der);
+    var prohibidos = [];
+    [d1, d2].forEach(function (d) {
+      if (pGrado(d) <= 0) return;
+      raicesDe(d).forEach(function (r) {
+        if (!prohibidos.some(function (q) { return q.cmp(r) === 0; })) prohibidos.push(r);
+      });
+    });
+    var S = solPolinomica(P);
+    var validas = [], descartadas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      var anula = prohibidos.some(function (q) { return Math.abs(q.val() - v) < 1e-12; });
+      (anula ? descartadas : validas).push(r);
+    });
+    return {
+      cruzada: P, prohibidos: prohibidos, todas: S.raices,
+      validas: validas, descartadas: descartadas,
+      conj: Conj.puntos(validas.map(function (r) { return r.raiz ? r.raiz.val() : r.irr.val(); })),
+      dominio: Conj.todo().quita(prohibidos.map(function (q) { return q.val(); }))
+    };
+  }
+
+  /* ==================================================================
+     E8 · ecuaciones radicales   √(A(x)) = B(x)   ó   √A ± √C = B
+     ================================================================== */
+  function solRadical(A, B) {                 /* √(A) = B, A y B polinomios */
+    var P = pResta(pPot(B, 2), A);            /* B² − A = 0 */
+    var S = solPolinomica(P);
+    var validas = [], falsas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      var a = pEvalNum(A, v), b = pEvalNum(B, v);
+      var ok = a >= -1e-9 && b >= -1e-9 && Math.abs(Math.sqrt(Math.max(a, 0)) - b) < 1e-7;
+      (ok ? validas : falsas).push({ r: r, v: v, radicando: a, miembro: b, ok: ok });
+    });
+    return {
+      elevada: P, todas: S.raices, comprob: validas.concat(falsas),
+      validas: validas, falsas: falsas,
+      conj: Conj.puntos(validas.map(function (c) { return c.v; })),
+      dominioTex: pTex(A) + ' \\geq 0'
+    };
+  }
+
+  /* ==================================================================
+     E9 · exponenciales y logarítmicas
+     ================================================================== */
+  function esPotencia(n, b) {                 /* n = b^k con k entero ? */
+    if (n <= 0 || b <= 1) return null;
+    var k = Math.round(Math.log(n) / Math.log(b));
+    for (var j = Math.max(0, k - 2); j <= k + 2; j++) if (Math.abs(Math.pow(b, j) - n) < 1e-9) return j;
+    return null;
+  }
+  function solExponencial(base, expIzq, valor) {
+    /* base^(expIzq(x)) = valor  ->  expIzq(x) = log_base(valor) */
+    var k = esPotencia(valor, base);
+    var res = { base: base, valor: valor, exacto: k != null, k: k };
+    var objetivo = k != null ? new Frac(BigInt(k)) : null;
+    if (k != null) {
+      var D = pResta(expIzq, pDe([objetivo]));
+      res.igualdad = pTex(expIzq) + ' = ' + k;
+      var S = pGrado(D) === 1 ? { tipo: 'lineal', s: solLineal(D[1], D[0]) } : { tipo: 'poli', s: solPolinomica(D) };
+      res.reducida = D; res.sol = S;
+      res.conj = S.tipo === 'lineal' ? S.s.conj : S.s.conj;
+    } else {
+      res.logTex = '\\log_{' + base + '} ' + valor + ' = \\dfrac{\\ln ' + valor + '}{\\ln ' + base + '} \\approx ' +
+        kf(Math.log(valor) / Math.log(base), 4);
+      res.conj = Conj.vacio();
+    }
+    return res;
+  }
+  function solLogaritmica(base, arg, valor) {
+    /* log_base(arg(x)) = valor  ->  arg(x) = base^valor, con arg > 0 */
+    var objetivo = Math.pow(base, valor);
+    var D = pResta(arg, pDe([new Frac(BigInt(Math.round(objetivo)))]));
+    var S = solPolinomica(D);
+    var validas = [], descartadas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      (pEvalNum(arg, v) > 1e-9 ? validas : descartadas).push({ r: r, v: v, arg: pEvalNum(arg, v) });
+    });
+    return {
+      base: base, valor: valor, objetivo: objetivo, reducida: D,
+      validas: validas, descartadas: descartadas,
+      conj: Conj.puntos(validas.map(function (c) { return c.v; })),
+      condicionTex: pTex(arg) + ' > 0'
+    };
+  }
+
+  /* ==================================================================
+     E10 · ecuaciones trigonométricas elementales
+     ================================================================== */
+  var TRIG_NOT = {
+    sen: { tex: '\\operatorname{sen}', f: Math.sin, per: 2 },
+    cos: { tex: '\\cos', f: Math.cos, per: 2 },
+    tg: { tex: '\\operatorname{tg}', f: Math.tan, per: 1 }
   };
-
-  /* =================================================================
-     9. ARRANQUE
-     ================================================================= */
-
-  function boot() {
-    var nodes = document.querySelectorAll('[data-applet-eq]');
-    Array.prototype.forEach.call(nodes, function (node) {
-      var k = node.getAttribute('data-applet-eq');
-      if (typeof EQ[k] === 'function') {
-        try { EQ[k](node); }
-        catch (e) {
-          node.classList.add('applet');
-          node.innerHTML = errBox('el applet \u00ab' + k + '\u00bb no ha podido iniciarse: ' +
-            (e && e.message ? e.message : e));
+  /* ángulos notables: valor -> {tex, rad} */
+  var NOTABLES = [
+    { v: 0, tex: '0', rad: 0 },
+    { v: 1 / 6, tex: '\\dfrac{\\pi}{6}', rad: Math.PI / 6 },
+    { v: 1 / 4, tex: '\\dfrac{\\pi}{4}', rad: Math.PI / 4 },
+    { v: 1 / 3, tex: '\\dfrac{\\pi}{3}', rad: Math.PI / 3 },
+    { v: 1 / 2, tex: '\\dfrac{\\pi}{2}', rad: Math.PI / 2 },
+    { v: 2 / 3, tex: '\\dfrac{2\\pi}{3}', rad: 2 * Math.PI / 3 },
+    { v: 3 / 4, tex: '\\dfrac{3\\pi}{4}', rad: 3 * Math.PI / 4 },
+    { v: 5 / 6, tex: '\\dfrac{5\\pi}{6}', rad: 5 * Math.PI / 6 },
+    { v: 1, tex: '\\pi', rad: Math.PI },
+    { v: 7 / 6, tex: '\\dfrac{7\\pi}{6}', rad: 7 * Math.PI / 6 },
+    { v: 5 / 4, tex: '\\dfrac{5\\pi}{4}', rad: 5 * Math.PI / 4 },
+    { v: 4 / 3, tex: '\\dfrac{4\\pi}{3}', rad: 4 * Math.PI / 3 },
+    { v: 3 / 2, tex: '\\dfrac{3\\pi}{2}', rad: 3 * Math.PI / 2 },
+    { v: 5 / 3, tex: '\\dfrac{5\\pi}{3}', rad: 5 * Math.PI / 3 },
+    { v: 7 / 4, tex: '\\dfrac{7\\pi}{4}', rad: 7 * Math.PI / 4 },
+    { v: 11 / 6, tex: '\\dfrac{11\\pi}{6}', rad: 11 * Math.PI / 6 }
+  ];
+  function anguloTex(rad) {
+    var r = ((rad % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    for (var i = 0; i < NOTABLES.length; i++) if (Math.abs(NOTABLES[i].rad - r) < 1e-9) return NOTABLES[i].tex;
+    return kf(r * 180 / Math.PI, 2) + '^{\\circ}';
+  }
+  function gradTex(rad) {
+    var g = ((rad * 180 / Math.PI) % 360 + 360) % 360;
+    return (Math.abs(g - Math.round(g)) < 1e-7 ? String(Math.round(g)) : kf(g, 2)) + '^{\\circ}';
+  }
+  function solTrig(fn, k) {                   /* fn ∈ {sen,cos,tg}, valor k */
+    var T = TRIG_NOT[fn];
+    var R = { fn: fn, tex: T.tex, k: k, base: [], familia: [], enRango: [] };
+    if (fn === 'tg') {
+      var a = Math.atan(k);
+      R.base = [a];
+      R.familia = [{ tex: anguloTex(a) + ' + k\\pi', ang: a, per: Math.PI }];
+    } else if (Math.abs(k) > 1) {
+      R.imposible = true;
+      return R;
+    } else if (fn === 'sen') {
+      var s = Math.asin(k);
+      R.base = [s, Math.PI - s];
+      R.familia = [
+        { tex: anguloTex(s) + ' + 2k\\pi', ang: s, per: 2 * Math.PI },
+        { tex: anguloTex(Math.PI - s) + ' + 2k\\pi', ang: Math.PI - s, per: 2 * Math.PI }
+      ];
+    } else {
+      var c = Math.acos(k);
+      R.base = [c, 2 * Math.PI - c];
+      R.familia = [
+        { tex: anguloTex(c) + ' + 2k\\pi', ang: c, per: 2 * Math.PI },
+        { tex: anguloTex(2 * Math.PI - c) + ' + 2k\\pi', ang: 2 * Math.PI - c, per: 2 * Math.PI }
+      ];
+    }
+    /* soluciones dentro de [0, 2π) */
+    var vistas = {};
+    R.familia.forEach(function (f) {
+      for (var j = -2; j <= 3; j++) {
+        var x = f.ang + j * f.per;
+        if (x >= -1e-9 && x < 2 * Math.PI - 1e-9) {
+          var key = x.toFixed(9);
+          if (!vistas[key]) { vistas[key] = 1; R.enRango.push(x); }
         }
-      } else {
-        node.classList.add('applet');
-        node.innerHTML = errBox('no existe ning\u00fan applet con la clave \u00ab' + k + '\u00bb.');
+      }
+    });
+    R.enRango.sort(function (u, v) { return u - v; });
+    return R;
+  }
+
+  /* ==================================================================
+     E11 · inecuaciones: tabla de signos y conjunto solución
+     ================================================================== */
+  var RELS = {
+    '>': { tex: '>', ok: function (s) { return s > 0; }, cerrada: false },
+    '<': { tex: '<', ok: function (s) { return s < 0; }, cerrada: false },
+    '>=': { tex: '\\geq', ok: function (s) { return s > 0; }, cerrada: true },
+    '<=': { tex: '\\leq', ok: function (s) { return s < 0; }, cerrada: true }
+  };
+  function inecLineal(a, b, rel) {            /* a·x + b  rel  0 */
+    var Rl = RELS[rel];
+    if (a.n === 0n) {
+      var s = b.val();
+      var vale = Rl.ok(s) || (Rl.cerrada && Math.abs(s) < 1e-12);
+      return { grado: 0, giro: false, conj: vale ? Conj.todo() : Conj.vacio(), rel: rel, trivial: true };
+    }
+    var x = b.opuesto().entre(a);
+    var negativo = a.val() < 0;
+    var relFinal = negativo ? { '>': '<', '<': '>', '>=': '<=', '<=': '>=' }[rel] : rel;
+    var xv = x.val();
+    var mayor = relFinal === '>' || relFinal === '>=';
+    var cerr = RELS[relFinal].cerrada;
+    var conj = mayor ? Conj.intervalo(xv, Infinity, cerr, false) : Conj.intervalo(-Infinity, xv, false, cerr);
+    return { grado: 1, x: x, giro: negativo, rel: rel, relFinal: relFinal, conj: conj, frontera: xv };
+  }
+  /* signo de un polinomio factorizado en cada trozo determinado por sus raíces */
+  function tablaSignos(p, rel, opts) {
+    opts = opts || {};
+    var Rl = RELS[rel];
+    p = pRecorta(p);
+    var ceros = [];
+    raicesDe(p).forEach(function (r) { ceros.push({ v: r.val(), tex: r.tex(true), tipo: 'cero' }); });
+    var g = pGrado(p);
+    if (g === 2) {                              /* añade raíces irracionales */
+      var Q = solCuadratica(p[2], p[1], p[0]);
+      if (Q.tipo !== 'ninguna' && !ceros.length) {
+        Q.raices.forEach(function (r) { ceros.push({ v: r.val(), tex: r.tex(), tipo: 'cero' }); });
+      }
+    }
+    (opts.polos || []).forEach(function (q) { ceros.push({ v: q.v, tex: q.tex, tipo: 'polo' }); });
+    ceros = ceros.filter(function (c, i, A) {
+      return A.findIndex(function (d) { return Math.abs(d.v - c.v) < 1e-12; }) === i;
+    }).sort(function (u, v) { return u.v - v.v; });
+    var f = opts.f || function (x) { return pEvalNum(p, x); };
+    var trozos = [], conj = Conj.vacio();
+    for (var i = 0; i <= ceros.length; i++) {
+      var a = i === 0 ? -Infinity : ceros[i - 1].v;
+      var b = i === ceros.length ? Infinity : ceros[i].v;
+      var m = !isFinite(a) && !isFinite(b) ? 0 : (!isFinite(a) ? b - 1 : (!isFinite(b) ? a + 1 : (a + b) / 2));
+      var s = f(m);
+      var pos = s > 0;
+      trozos.push({ a: a, b: b, muestra: m, valor: s, signo: pos ? '+' : '−', cumple: Rl.ok(s) });
+      if (Rl.ok(s)) conj = conj.union(Conj.intervalo(a, b, false, false));
+    }
+    if (Rl.cerrada) {
+      ceros.forEach(function (c) { if (c.tipo === 'cero') conj = conj.union(Conj.punto(c.v)); });
+    }
+    conj = conj.quita(ceros.filter(function (c) { return c.tipo === 'polo'; }).map(function (c) { return c.v; }));
+    return { ceros: ceros, trozos: trozos, conj: conj, rel: rel, grado: g };
+  }
+  function inecRacional(n, d, rel) {
+    var polos = raicesDe(d).map(function (r) { return { v: r.val(), tex: r.tex(true) }; });
+    return tablaSignos(n, rel, {
+      polos: polos,
+      f: function (x) { var dv = pEvalNum(d, x); return dv === 0 ? NaN : pEvalNum(n, x) / dv; }
+    });
+  }
+  /* HTML de la tabla de signos, grande y legible */
+  function tablaSignosHTML(T, etiqueta) {
+    var cab = ['Intervalo'], fila1 = [], fila2 = [];
+    T.trozos.forEach(function (t) {
+      cab.push(K(intervTex(t)));
+      fila1.push('<span class="eq-sg ' + (t.signo === '+' ? 'eq-sg-p' : 'eq-sg-n') + '">' + t.signo + '</span>');
+      fila2.push(t.cumple ? badge('sí', 'si') : badge('no', 'no'));
+    });
+    var h = '<table class="ap-tbl ap-eq eq-signos"><thead><tr>';
+    cab.forEach(function (c, i) { h += (i ? '<th>' : '<th class="eq-th-lab">') + c + '</th>'; });
+    h += '</tr></thead><tbody><tr><th>Signo de ' + K(etiqueta || 'f(x)') + '</th>';
+    fila1.forEach(function (c) { h += '<td>' + c + '</td>'; });
+    h += '</tr><tr><th>¿Cumple ' + K(RELS[T.rel].tex + ' 0') + '?</th>';
+    fila2.forEach(function (c) { h += '<td>' + c + '</td>'; });
+    return h + '</tr></tbody></table>';
+  }
+  function intervTex(t) {
+    var a = t.a === -Infinity ? '-\\infty' : numTex(t.a);
+    var b = t.b === Infinity ? '+\\infty' : numTex(t.b);
+    return '\\left(' + a + ',\\, ' + b + '\\right)';
+  }
+
+  /* ==================================================================
+     E12 · comprobación de una solución, para el hábito de verificar
+     ================================================================== */
+  function comprueba(izq, der, x) {
+    var a = pEvalNum(izq, x), b = pEvalNum(der, x);
+    return { izq: a, der: b, ok: Math.abs(a - b) < 1e-9, dif: a - b };
+  }
+
+  /* ==================================================================
+     E13 · applet de diagnóstico (siempre en el núcleo)
+     ================================================================== */
+  R.diagnostico = function (node) {
+    node.classList.add('applet');
+    function ok(f) { try { return !!f(); } catch (e) { return false; } }
+    var filas = [
+      ['KaTeX local', !!window.katex],
+      ['Núcleo eq-applets.js', true],
+      ['Módulo eq-applets-a.js (ecuaciones polinómicas)', window.EQ && window.EQ.extraA === true],
+      ['Módulo eq-applets-b.js (racionales, radicales, exponenciales)', window.EQ && window.EQ.extraB === true],
+      ['Módulo eq-applets-c.js (trigonométricas e inecuaciones)', window.EQ && window.EQ.extraC === true],
+      ['Lectura de expresiones', ok(function () { return pTex(parsePol('2x(x-1)^2')) === '2x^{3} - 4x^{2} + 2x'; })],
+      ['Ecuación de primer grado', ok(function () {
+        var S = solLineal(new Frac(3n), new Frac(-12n));
+        return S.tipo === 'unica' && S.x.val() === 4;
+      })],
+      ['Fórmula de segundo grado', ok(function () {
+        var Q = solCuadratica(new Frac(1n), new Frac(-5n), new Frac(6n));
+        return Q.disc === 1 && Q.raices.length === 2 && Q.raices[0].val() === 2 && Q.raices[1].val() === 3;
+      })],
+      ['Raíces irracionales exactas', ok(function () {
+        var Q = solCuadratica(new Frac(1n), new Frac(-2n), new Frac(-1n));
+        return Q.raices[1].tex() === '1 + \\sqrt{2}';
+      })],
+      ['Cambio de variable (bicuadradas)', ok(function () {
+        var B = solBipotencial(new Frac(1n), new Frac(-5n), new Frac(4n), 2);
+        return B.conj.t.length === 4;
+      })],
+      ['Soluciones falsas en radicales', ok(function () {
+        var S = solRadical(parsePol('x+7'), parsePol('x+1'));
+        return S.validas.length === 1 && S.falsas.length === 1;
+      })],
+      ['Restricciones en ecuaciones racionales', ok(function () {
+        var S = solRacional(parsePol('1'), parsePol('x-2'), parsePol('1'), parsePol('x^2-4'));
+        return S.prohibidos.length === 2;
+      })],
+      ['Tabla de signos e intervalos', ok(function () {
+        var T = tablaSignos(parsePol('x^2-x-6'), '>');
+        return T.conj.t.length === 2 && T.conj.tex().indexOf('\\cup') > 0;
+      })],
+      ['Ecuaciones trigonométricas', ok(function () {
+        var S = solTrig('sen', 0.5);
+        return S.enRango.length === 2 && S.familia[0].tex.indexOf('\\pi}{6}') > 0;
+      })]
+    ];
+    var h = '<h4 class="mx-title">Applet · Diagnóstico técnico</h4>' +
+      '<div class="mx-instr">Comprueba que el tema ha cargado bien. Si alguna fila sale en rojo, revisa el orden de carga en <code>assets/_scripts.html</code>.</div>' +
+      '<table class="ap-tbl ap-eq"><thead><tr><th>Comprobación</th><th>Estado</th></tr></thead><tbody>';
+    filas.forEach(function (f) {
+      h += '<tr><th>' + f[0] + '</th><td>' + badge(f[1] ? 'correcto' : 'falla', f[1] ? 'si' : 'no') + '</td></tr>';
+    });
+    h += '</tbody></table>';
+    var errs = window.EQ && window.EQ.log.length
+      ? '<p class="ap-warn">Se han registrado ' + window.EQ.log.length + ' avisos: ' +
+        esc(window.EQ.log.map(function (e) { return e.applet + ' — ' + e.error; }).join(' · ')) + '</p>'
+      : '<p class="ap-note">Ningún applet ha registrado errores en esta página.</p>';
+    node.innerHTML = h + errs;
+    tex(node);
+  };
+
+  /* ==================================================================
+     E14 · API pública, arranque y espera de módulos
+     ================================================================== */
+  window.EQ = {
+    registry: R,
+    /* texto y fórmulas */
+    tex: tex, K: K, KD: KD, texifica: texifica, esc: esc,
+    /* formato */
+    fmt: fmt, nc: nc, etq: etq, kf: kf, mil: mil, milTex: milTex, sig: sig, casi: casi,
+    /* entradas */
+    entero: entero, real: real, fraccionTxt: fraccionTxt, listaReales: listaReales,
+    valorSimbolico: valorSimbolico,
+    /* aritmética exacta */
+    Frac: Frac, mcd: mcd, mcm: mcm, factoriza: factoriza, factorizaTex: factorizaTex,
+    esCuadradoPerfecto: esCuadradoPerfecto, divisores: divisores,
+    /* polinomios (heredado del motor de Polinomios) */
+    parsePol: parsePol, normalizaEntrada: normalizaEntrada,
+    pDe: pDe, pMono: pMono, pRecorta: pRecorta, pCopia: pCopia, pEsCero: pEsCero,
+    pGrado: pGrado, pGradoTxt: pGradoTxt, pLider: pLider, pIndep: pIndep,
+    pSuma: pSuma, pResta: pResta, pOpuesto: pOpuesto, pEscala: pEscala,
+    pMult: pMult, pPot: pPot, pIgual: pIgual, pDiv: pDiv,
+    pEval: pEval, pEvalNum: pEvalNum, pDeriva: pDeriva,
+    pTex: pTex, pTexPar: pTexPar, pEntero: pEntero, CERO: CERO, UNO: UNO,
+    ruffini: ruffini, candidatosRaiz: candidatosRaiz, raicesRacionales: raicesRacionales,
+    factorizaPol: factorizaPol, factorizaTexPol: factorizaTexPol,
+    factorRehacer: factorRehacer, factoresLista: factoresLista,
+    factorLinTex: factorLinTex, potTex: potTex, mcdPol: mcdPol, mcmPol: mcmPol,
+    Frax: Frax, fraxSimplifica: fraxSimplifica, fraxSuma: fraxSuma,
+    fraxMult: fraxMult, fraxDiv: fraxDiv, raicesDe: raicesDe, notable: notable,
+
+    /* --- capa propia del tema: ecuaciones e inecuaciones --- */
+    simplRaiz: simplRaiz, raizTex: raizTex, Irr: Irr, numTex: numTex,
+    Conj: Conj, rectaConj: rectaConj,
+    solLineal: solLineal, resuelveLinealPaso: resuelveLinealPaso,
+    solCuadratica: solCuadratica, cuadTex: cuadTex, raicesTex: raicesTex,
+    solBipotencial: solBipotencial, solPolinomica: solPolinomica,
+    solRacional: solRacional, solRadical: solRadical,
+    esPotencia: esPotencia, solExponencial: solExponencial, solLogaritmica: solLogaritmica,
+    solTrig: solTrig, anguloTex: anguloTex, gradTex: gradTex, NOTABLES: NOTABLES, TRIG: TRIG_NOT,
+    RELS: RELS, inecLineal: inecLineal, tablaSignos: tablaSignos, inecRacional: inecRacional,
+    tablaSignosHTML: tablaSignosHTML, intervTex: intervTex, comprueba: comprueba,
+
+    /* figuras y salida */
+    svgWrap: svgWrap, txt: txt, line: line, rect: rect, circle: circle,
+    path: path, poly: poly, leyenda: leyenda, COL: COL,
+    rectaReal: rectaReal, ejes: ejes,
+    expr: expr, terminosHTML: terminosHTML, ruffiniHTML: ruffiniHTML,
+    divisionLargaHTML: divisionLargaHTML,
+    resultado: resultado, badge: badge, kvs: kvs, tabla: tabla, paso: paso,
+    shell: shell, log: [],
+    monta: monta
+  };
+
+  /* Monta todos los paneles data-applet-eq presentes en la página.
+     Se llama al cargar y también cada vez que un módulo termina de
+     registrarse, de modo que el orden de los <script> no importe. */
+  function monta() {
+    var nodos = document.querySelectorAll('[data-applet-eq]');
+    Array.prototype.forEach.call(nodos, function (nd) {
+      var clave = nd.getAttribute('data-applet-eq');
+      /* El diagnóstico informa de qué módulos han cargado, así que no
+         puede dibujarse hasta que la página esté completa: los <script>
+         defer de los módulos se ejecutan después de DOMContentLoaded. */
+      if (clave === 'diagnostico' && document.readyState !== 'complete') return;
+      if (nd.getAttribute('data-montado') === '1') return;
+      var f = R[clave];
+      if (!f) return;                      /* quizá su módulo aún no ha cargado */
+      nd.setAttribute('data-montado', '1');
+      try {
+        f(nd);
+      } catch (e) {
+        window.EQ.log.push({ applet: clave, error: String(e && e.message || e) });
+        nd.innerHTML = '<p class="ap-warn">Este applet no ha podido montarse (' +
+          esc(String(e && e.message || e)) + ').</p>';
       }
     });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    setTimeout(boot, 0);
-  }
-
-  window.EQAPP = {
-    coeffs: coeffs, tex: pt, roots: realRoots, quad: quad, ineq: solveIneq,
-    eval: pev, katex: kt, applets: EQ, engine: P
-  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monta);
+  else monta();
+  window.addEventListener('load', monta);
 })();

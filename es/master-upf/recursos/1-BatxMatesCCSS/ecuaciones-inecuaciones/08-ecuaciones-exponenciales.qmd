@@ -1,0 +1,372 @@
+---
+title: "Tema 3.8 Ecuaciones exponenciales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 08-ecuaciones-exponenciales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Ecuaciones con la incógnita en el exponente, igualdad de potencias de la misma base, reducción a base común, cambio de variable que conduce a una ecuación cuadrática, uso de logaritmos cuando no hay potencia exacta y aplicaciones al interés compuesto, al crecimiento de poblaciones y a la desintegración radiactiva con semivida, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, ecuaciones exponenciales, potencias, cambio de variable, interés compuesto, semivida]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La incógnita sube al exponente
+
+Compara estas dos ecuaciones:
+$$
+x^3 = 8, \qquad 3^{x} = 81 .
+$$
+Se parecen mucho y son radicalmente distintas. En la primera, la incógnita es la **base** y el exponente es un dato: para despejarla se usa la operación inversa de elevar al cubo, la raíz cúbica. En la segunda, la incógnita es el **exponente**, y la operación inversa de «elevar $3$ a algo» no es ninguna raíz: es el **logaritmo en base 3**.
+
+::: {.callout-note}
+## Definición de ecuación exponencial
+
+Una **ecuación exponencial** es una ecuación en la que la incógnita aparece en **el exponente** de alguna potencia. Por ejemplo:
+$$
+3^{1-x^2} = \dfrac{1}{27}, \qquad 2^{x+3}+4^{x+1} = 320, \qquad 5^{x} = 12 .
+$$
+:::
+
+A diferencia de las racionales, las radicales y las logarítmicas, aquí **no hay problema de dominio**: la expresión $a^{x}$ con $a>0$ está definida para cualquier número real. Eso simplifica mucho las cosas. A cambio, aparece otra restricción que no conviene perder de vista.
+
+::: {.callout-important}
+## Una potencia de base positiva es siempre positiva
+
+Para $a>0$ se cumple $a^{x} > 0$ **para todo** $x \in \mathbb{R}$. Nunca vale cero ni un número negativo. En consecuencia:
+$$
+a^{x} = 0 \quad \text{y} \quad a^{x} = -5 \quad \text{no tienen solución} .
+$$
+Esta observación, que parece una obviedad, será decisiva cuando hagas un cambio de variable.
+:::
+
+## Repaso rápido: las propiedades de las potencias
+
+Todo el apartado se apoya en cinco igualdades que ya conoces. Conviene tenerlas frescas.
+
+::: {.callout-note}
+## Propiedades de las potencias
+
+Para $a>0$, $b>0$ y $m,n \in \mathbb{R}$:
+$$
+a^{m}\cdot a^{n} = a^{m+n}, \qquad \dfrac{a^{m}}{a^{n}} = a^{m-n}, \qquad (a^{m})^{n} = a^{m\,n},
+$$
+$$
+(a\cdot b)^{n} = a^{n}b^{n}, \qquad a^{-n} = \dfrac{1}{a^{n}}, \qquad a^{0} = 1, \qquad a^{m/n} = \sqrt[n]{a^{m}} .
+$$
+:::
+
+**Ejemplo 1.** Escribe $\dfrac{1}{27}$, $\sqrt{8}$ y $0{,}25$ como potencias de una base sencilla.
+$$
+\dfrac{1}{27} = \dfrac{1}{3^3} = 3^{-3}, \qquad \sqrt{8} = \sqrt{2^3} = 2^{3/2}, \qquad 0{,}25 = \dfrac{1}{4} = 2^{-2}.
+$$
+Esta habilidad —reconocer un número como potencia de otro— es la mitad del trabajo en la mayoría de estas ecuaciones.
+
+## Método 1: igualdad de potencias de la misma base
+
+::: {.callout-important}
+## Inyectividad de la función exponencial
+
+Si $a>0$ y $a\neq 1$:
+$$
+a^{\,A(x)} = a^{\,B(x)} \iff A(x) = B(x).
+$$
+La función exponencial es estrictamente monótona —creciente si $a>1$, decreciente si $0<a<1$—, así que nunca toma dos veces el mismo valor: a exponentes distintos, resultados distintos.
+:::
+
+La estrategia es siempre la misma: **escribir los dos miembros como potencias de la misma base** e igualar los exponentes.
+
+**Ejemplo 2.** Resuelve $3^{x} = 81$.
+
+Como $81 = 3^4$, la ecuación es $3^{x} = 3^{4}$, luego $x = 4$.
+
+**Ejemplo 3.** Resuelve $3^{1-x^2} = \dfrac{1}{27}$.
+
+Escribo el segundo miembro como potencia de $3$: $\dfrac{1}{27} = 3^{-3}$. Igualando exponentes:
+$$
+1 - x^2 = -3 \;\Longrightarrow\; x^2 = 4 \;\Longrightarrow\; x = 2 \ \text{o} \ x = -2 .
+$$
+$$
+S = \{-2,\, 2\}.
+$$
+Comprobación con $x=2$: el exponente vale $1-4=-3$, y $3^{-3} = \dfrac{1}{27}$. Correcto.
+
+**Ejemplo 4.** Resuelve $2^{x-1} = 8^{x+2}$.
+
+Reduzco a base $2$, porque $8 = 2^3$:
+$$
+2^{x-1} = (2^3)^{x+2} = 2^{3x+6} \;\Longrightarrow\; x - 1 = 3x + 6 \;\Longrightarrow\; -7 = 2x \;\Longrightarrow\; x = -\dfrac{7}{2}.
+$$
+
+**Ejemplo 5.** Resuelve $\left(\dfrac{1}{5}\right)^{2x} = 125$.
+
+Como $\dfrac{1}{5} = 5^{-1}$ y $125 = 5^3$:
+$$
+5^{-2x} = 5^{3} \;\Longrightarrow\; -2x = 3 \;\Longrightarrow\; x = -\dfrac{3}{2}.
+$$
+
+**Ejemplo 6.** Resuelve $4^{x}\cdot 8^{x-1} = 16$.
+
+Todo a base $2$: $(2^2)^x \cdot (2^3)^{x-1} = 2^4$, es decir, $2^{2x}\cdot 2^{3x-3} = 2^{4}$. Aplicando la propiedad del producto:
+$$
+2^{5x-3} = 2^{4} \;\Longrightarrow\; 5x - 3 = 4 \;\Longrightarrow\; x = \dfrac{7}{5}.
+$$
+
+::: {.callout-caution}
+## Igualar exponentes exige que las bases coincidan
+
+De $2^{x} = 3^{x}$ **no** se deduce $x=x$ ni cualquier otra cosa alegre: hay que razonar aparte. Dividiendo, $\left(\dfrac{2}{3}\right)^{x} = 1$, y como la única potencia que vale $1$ con base distinta de $1$ es la de exponente $0$, la solución es $x=0$. Igualar exponentes sin igualar bases antes es un error de método, no de cuentas.
+:::
+
+## Método 2: logaritmos, cuando no hay potencia exacta
+
+En cuanto los números dejan de ser «bonitos», reducir a base común es imposible y hay que usar la única herramienta que baja un exponente: el logaritmo.
+
+::: {.callout-note}
+## Tomar logaritmos en los dos miembros
+
+Si los dos miembros son positivos, se les puede aplicar el logaritmo sin alterar la igualdad; después, la propiedad de la potencia hace bajar el exponente:
+$$
+a^{\,A(x)} = N \;\Longrightarrow\; \log a^{\,A(x)} = \log N \;\Longrightarrow\; A(x)\cdot \log a = \log N \;\Longrightarrow\; A(x) = \dfrac{\log N}{\log a}.
+$$
+Da igual la base que uses: con `log` o con `ln` el resultado es el mismo, porque aparece como cociente.
+:::
+
+**Ejemplo 7.** Resuelve $5^{x} = 12$.
+$$
+x = \log_5 12 = \dfrac{\log 12}{\log 5} \approx \dfrac{1{,}07918}{0{,}69897} \approx 1{,}544 .
+$$
+Comprobación de orden de magnitud: $5^1 = 5$ y $5^2 = 25$; el $12$ está entre medias y más cerca de $5$, así que un exponente algo por encima de $1{,}5$ es razonable.
+
+**Ejemplo 8.** Resuelve $3^{2x-1} = 20$.
+
+Tomando logaritmos decimales:
+$$
+(2x-1)\log 3 = \log 20 \;\Longrightarrow\; 2x - 1 = \dfrac{\log 20}{\log 3} \approx \dfrac{1{,}30103}{0{,}47712} \approx 2{,}7268,
+$$
+$$
+2x \approx 3{,}7268 \;\Longrightarrow\; x \approx 1{,}863 .
+$$
+
+**Ejemplo 9.** Resuelve $e^{3x} = 7$.
+
+Con base $e$ lo natural es el logaritmo neperiano: $3x = \ln 7 \approx 1{,}9459$, luego $x \approx 0{,}6486$.
+
+::: {.callout-warning}
+## Aísla la potencia antes de tomar logaritmos
+
+En $2^{x} + 5 = 13$ **no** se pueden tomar logaritmos de entrada, porque $\log(2^x + 5)$ no se descompone: el logaritmo no reparte sobre sumas. Primero se aísla la potencia, $2^{x} = 8$, y entonces se resuelve —aquí ni siquiera hace falta logaritmo: $x=3$.
+:::
+
+### Applet · Vía exacta y vía logarítmica {.unnumbered}
+
+Introduce la base, el exponente —que puede ser un polinomio en $x$— y el valor del segundo miembro. El applet intenta primero la vía exacta, comprobando si el valor es una potencia entera de la base; si no lo es, resuelve con logaritmos y muestra el resultado aproximado.
+
+::: {#panel-expoResolutor .applet-panel data-applet-eq="expoResolutor"}
+:::
+
+Prueba dos escenarios casi idénticos, uno con segundo miembro $81$ y otro con $80$: el primero se resuelve exactamente y el segundo obliga a pasar por logaritmos. Esa frontera entre lo exacto y lo aproximado es lo único que distingue los dos métodos.
+
+## Método 3: cambio de variable
+
+Muchas ecuaciones exponenciales tienen la incógnita en varios exponentes relacionados entre sí. La clave es reconocer que **todas las potencias son potencias de una misma**.
+
+::: {.callout-important}
+## El cambio $t = a^{x}$
+
+Recuerda que
+$$
+a^{2x} = (a^{x})^{2}, \qquad a^{x+k} = a^{k}\cdot a^{x}, \qquad a^{-x} = \dfrac{1}{a^{x}} .
+$$
+Llamando $t = a^{x}$, esas expresiones se convierten en $t^2$, $a^k t$ y $\dfrac{1}{t}$, y la ecuación se transforma en una ecuación polinómica en $t$.
+
+**Condición imprescindible**: como $a^{x}>0$ siempre, solo valen las soluciones con $t>0$. Los valores $t \leq 0$ se descartan **sin excepción**, porque no proceden de ningún $x$ real.
+:::
+
+**Ejemplo 10.** Resuelve $4^{x} - 5\cdot 2^{x} + 4 = 0$.
+
+Como $4^{x} = (2^2)^x = (2^x)^2$, el cambio $t = 2^{x}$ da:
+$$
+t^2 - 5t + 4 = 0 \;\Longrightarrow\; t = 1 \ \text{o} \ t = 4 .
+$$
+Los dos son positivos, así que los dos sirven. Deshaciendo el cambio:
+$$
+2^{x} = 1 \Rightarrow x = 0; \qquad 2^{x} = 4 \Rightarrow x = 2 . \qquad S = \{0,\,2\}.
+$$
+
+**Ejemplo 11.** Resuelve $3^{2x} - 4\cdot 3^{x} + 3 = 0$.
+
+Con $t = 3^{x}$: $t^2 - 4t + 3 = 0$, con soluciones $t=1$ y $t=3$. Deshaciendo: $3^{x}=1$ da $x=0$; $3^{x}=3$ da $x=1$. $S = \{0,\,1\}$.
+
+**Ejemplo 12 (con una solución descartada).** Resuelve $2^{2x} + 3\cdot 2^{x} - 4 = 0$.
+
+Con $t = 2^{x}$: $t^2 + 3t - 4 = 0$, cuyas raíces son $t=1$ y $t=-4$. La raíz $t=-4$ **se descarta**: ninguna potencia de base $2$ vale $-4$. Queda $2^{x} = 1$, es decir, $x=0$. $S=\{0\}$.
+
+**Ejemplo 13 (el caso del enunciado disfrazado).** Resuelve $2^{x+3} + 4^{x+1} = 320$.
+
+Primero desarrollo cada potencia para que aparezca $2^{x}$:
+$$
+2^{x+3} = 2^{3}\cdot 2^{x} = 8\cdot 2^{x}, \qquad 4^{x+1} = 4\cdot 4^{x} = 4\cdot (2^{x})^{2} .
+$$
+Con $t = 2^{x}$ la ecuación queda:
+$$
+8t + 4t^{2} = 320 \;\Longrightarrow\; 4t^2 + 8t - 320 = 0 \;\Longrightarrow\; t^2 + 2t - 80 = 0 .
+$$
+$$
+t = \dfrac{-2 \pm \sqrt{4+320}}{2} = \dfrac{-2\pm 18}{2} \;\Longrightarrow\; t = 8 \ \text{o} \ t = -10 .
+$$
+Descarto $t=-10$ por negativo. De $2^{x} = 8 = 2^3$ sale $x = 3$. Comprobación: $2^{6} + 4^{4} = 64 + 256 = 320$. Correcto.
+$$
+S = \{3\}.
+$$
+
+**Ejemplo 14 (con potencias inversas).** Resuelve $2^{x} + 2^{1-x} = 3$.
+
+Como $2^{1-x} = \dfrac{2}{2^{x}}$, el cambio $t=2^{x}$ da $t + \dfrac{2}{t} = 3$. Multiplicando por $t$ (que es positivo, así que no se pierde ni se añade nada):
+$$
+t^2 - 3t + 2 = 0 \;\Longrightarrow\; t = 1 \ \text{o} \ t = 2 ,
+$$
+y deshaciendo, $x=0$ y $x=1$. $S = \{0,\,1\}$.
+
+### Applet · Cambio de variable $t = a^{x}$ {.unnumbered}
+
+Fija los coeficientes de $p\cdot a^{2x} + q\cdot a^{x} + r = 0$ y observa la transformación completa: planteamiento del cambio, ecuación cuadrática en $t$, resolución, descarte de los valores no positivos y vuelta a la variable original.
+
+::: {#panel-expoCambioVar .applet-panel data-applet-eq="expoCambioVar"}
+:::
+
+Busca un escenario en el que las dos raíces en $t$ sean positivas y otro en el que una sea negativa: verás que la cuadrática siempre tiene dos raíces, pero la ecuación exponencial puede acabar teniendo dos soluciones, una o ninguna. La condición $t>0$ es la que decide.
+
+## Aplicaciones: por qué esto se estudia
+
+Las funciones exponenciales describen todo proceso en el que la variación es **proporcional a la cantidad presente**. Eso ocurre con el dinero que genera intereses, con las poblaciones que se reproducen y con los materiales radiactivos que se desintegran. En todos esos casos, preguntar «¿cuándo se alcanzará tal cantidad?» es plantear una ecuación exponencial.
+
+### Interés compuesto
+
+::: {.callout-note}
+## Fórmula del interés compuesto
+
+Un capital $C_0$ colocado a un rédito anual $i$ (en tanto por uno) durante $t$ años se convierte en
+$$
+C = C_0\,(1+i)^{t}.
+$$
+Si los intereses se liquidan $k$ veces al año, la fórmula pasa a ser $C = C_0\left(1+\dfrac{i}{k}\right)^{k t}$.
+:::
+
+**Ejemplo 15.** ¿Cuántos años tardará un capital en duplicarse al $3\,\%$ anual?
+
+Duplicarse significa $C = 2C_0$, así que:
+$$
+2C_0 = C_0(1{,}03)^{t} \;\Longrightarrow\; (1{,}03)^{t} = 2 \;\Longrightarrow\; t = \dfrac{\log 2}{\log 1{,}03} \approx \dfrac{0{,}30103}{0{,}012837} \approx 23{,}45 \ \text{años}.
+$$
+Fíjate en un detalle notable: el capital inicial **se simplifica**. El tiempo de duplicación no depende de cuánto dinero pongas, solo del rédito.
+
+### Crecimiento de poblaciones
+
+::: {.callout-note}
+## Modelo de crecimiento continuo
+
+$$
+P(t) = P_0\,e^{k t},
+$$
+donde $P_0$ es la población inicial y $k$ la tasa instantánea de crecimiento. Si $k>0$ la población crece; si $k<0$, decrece.
+:::
+
+**Ejemplo 16.** Una población de $2\,500$ individuos crece con $k = 0{,}04$. ¿Cuándo llegará a $10\,000$?
+$$
+10000 = 2500\,e^{0{,}04t} \;\Longrightarrow\; e^{0{,}04t} = 4 \;\Longrightarrow\; 0{,}04t = \ln 4 \approx 1{,}3863,
+$$
+$$
+t \approx 34{,}66 \ \text{años}.
+$$
+
+### Desintegración radiactiva y semivida
+
+::: {.callout-important}
+## Semivida o periodo de semidesintegración
+
+La **semivida** $T$ de una sustancia radiactiva es el tiempo que tarda una muestra en reducirse a la **mitad**. La cantidad restante en el instante $t$ es
+$$
+N(t) = N_0\left(\dfrac{1}{2}\right)^{t/T}.
+$$
+La semivida es una constante física de cada isótopo y no depende de la cantidad inicial: eso es lo que permite usarla como reloj.
+:::
+
+**Ejemplo 17.** El carbono 14 tiene una semivida de $5\,730$ años. Una muestra conserva el $31\,\%$ de su carbono 14 original. ¿Qué antigüedad tiene?
+$$
+0{,}31\,N_0 = N_0\left(\dfrac{1}{2}\right)^{t/5730} \;\Longrightarrow\; \left(\dfrac{1}{2}\right)^{t/5730} = 0{,}31 .
+$$
+Tomando logaritmos:
+$$
+\dfrac{t}{5730}\cdot \log 0{,}5 = \log 0{,}31 \;\Longrightarrow\; \dfrac{t}{5730} = \dfrac{\log 0{,}31}{\log 0{,}5} \approx \dfrac{-0{,}50864}{-0{,}30103} \approx 1{,}6897,
+$$
+$$
+t \approx 9\,682 \ \text{años}.
+$$
+El resultado es coherente: como queda menos de la mitad pero más de la cuarta parte, la antigüedad debe estar entre una y dos semividas, es decir, entre $5\,730$ y $11\,460$ años.
+
+**Ejemplo 18.** ¿Cuánto tarda una muestra en reducirse al $25\,\%$? Sin calculadora: el $25\,\%$ es la mitad de la mitad, luego han pasado exactamente **dos semividas**, $t = 2T$.
+
+### Applet · Interés compuesto, población y desintegración {.unnumbered}
+
+Elige el modelo, introduce los datos y el applet plantea la ecuación exponencial correspondiente, aísla la potencia, despeja el tiempo con logaritmos, comprueba el resultado sustituyendo y dibuja la gráfica del modelo con la solución marcada.
+
+::: {#panel-expoModelos .applet-panel data-applet-eq="expoModelos"}
+:::
+
+Prueba el escenario en el que la cantidad final es **menor** que la inicial en el modelo de interés compuesto: el tiempo sale negativo. No es un error de la máquina, es la respuesta correcta a una pregunta mal planteada, y saber interpretarla forma parte del trabajo.
+
+::: {.callout-tip}
+## Un criterio rápido de sensatez
+
+Antes de dar por bueno un resultado, compáralo con lo que sabes: un capital al $3\,\%$ no se duplica en tres años, ni una muestra con el $31\,\%$ del carbono original tiene doscientos años. Estimar el orden de magnitud antes de calcular detecta el $90\,\%$ de los errores de tecleo.
+:::
+
+## Practica con los entrenadores
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar el manejo de logaritmos decimales y neperianos, imprescindible en cuanto la potencia deja de ser exacta, usa el [Entrenador de logaritmos y neperianos](../../entrenador_logaritmos_neperianos.html).
+
+Y para trabajar con los órdenes de magnitud que aparecen en los problemas de desintegración y de crecimiento de poblaciones —años, gramos, número de individuos—, tienes la [Calculadora de notación científica](../../calculadora_notacion_cientifica.html).
+:::
+
+## Errores frecuentes
+
+1. **Confundir $x^{3}=8$ con $3^{x}=8$.** En la primera la incógnita es la base y se despeja con una raíz; en la segunda es el exponente y hace falta un logaritmo.
+2. **Igualar exponentes sin igualar antes las bases.** De $2^{x}=3^{x}$ no se deduce nada directamente: hay que dividir y razonar.
+3. **Tomar logaritmos sin aislar la potencia.** $\log(2^{x}+5)$ no se descompone; el logaritmo no reparte sobre sumas.
+4. **Escribir $\log(a^{x}) = (\log a)^{x}$.** Lo correcto es $\log(a^x) = x\log a$: el exponente **baja multiplicando**.
+5. **Aceptar valores negativos o nulos de $t$ tras el cambio de variable.** Ninguna potencia de base positiva vale $-4$ ni $0$; esas raíces se descartan siempre.
+6. **Olvidar desarrollar $a^{x+k}$ como $a^{k}\cdot a^{x}$.** Sin ese paso el cambio de variable no se puede aplicar en ecuaciones como $2^{x+3}+4^{x+1}=320$.
+7. **No reconocer que $4^{x} = (2^{x})^{2}$.** Es la observación que convierte la ecuación en una cuadrática; sin ella el ejercicio parece imposible.
+8. **Confundir la semivida con la vida total.** Tras una semivida no desaparece la sustancia: queda la mitad. Tras dos, la cuarta parte, y nunca llega a cero.
+9. **Usar la tasa en porcentaje sin dividir entre 100.** Un $3\,\%$ es $i=0{,}03$; escribir $(1+3)^t$ multiplica el capital por cuatro cada año.
+10. **Dar por buenas soluciones sin comprobar el orden de magnitud.** Comprobar mentalmente que el resultado es razonable detecta casi todos los errores de calculadora.
+
+## Qué debes saber hacer
+
+- Sé distinguir una ecuación exponencial de una potencial y elegir la herramienta adecuada en cada caso.
+- Sé justificar que $a^{x}>0$ para todo $x$ y usar ese hecho para descartar soluciones imposibles.
+- Sé aplicar con soltura las propiedades de las potencias, incluidos los exponentes negativos y fraccionarios.
+- Sé escribir un número como potencia de una base dada para reducir los dos miembros a base común.
+- Sé resolver ecuaciones del tipo $a^{A(x)}=a^{B(x)}$ igualando exponentes y justificar por qué es lícito.
+- Sé aislar la potencia y tomar logaritmos cuando el segundo miembro no es una potencia exacta de la base.
+- Sé calcular el exponente con la fórmula del cambio de base usando la calculadora.
+- Sé reconocer cuándo procede el cambio de variable $t=a^{x}$ y transformar la ecuación en una polinómica en $t$.
+- Sé desarrollar $a^{x+k}$, $a^{2x}$ y $a^{-x}$ en función de $a^{x}$ antes de aplicar el cambio.
+- Sé descartar las soluciones con $t \leq 0$ y explicar por qué no proceden de ningún valor real de $x$.
+- Sé plantear y resolver problemas de interés compuesto, incluida la cuestión del tiempo de duplicación.
+- Sé plantear y resolver problemas de crecimiento continuo de poblaciones con el modelo $P_0e^{kt}$.
+- Sé usar el modelo de semivida para datar una muestra o calcular la cantidad restante, y estimar el resultado contando semividas.
+- Sé valorar si el resultado obtenido tiene un orden de magnitud razonable en el contexto del problema.

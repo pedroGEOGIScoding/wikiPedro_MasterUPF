@@ -1,0 +1,739 @@
+/* =====================================================================
+   eq-applets.css · Tema 3 Ecuaciones e inecuaciones · 1.º Bachillerato Mates CCSS
+   Ruta: 1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/eq-applets.css
+
+   Complementa ../assets/applets.css (hoja común de la asignatura).
+   Aquí solo van las piezas propias de este tema y el armazón «mx-» que
+   construye el motor eq-applets.js, con el mismo lenguaje visual que
+   los temas de Estadística de 2.º.
+
+   Las reglas usan al menos dos clases para ganar en especificidad a la
+   hoja compartida y fijan siempre el color del texto de forma explícita,
+   para que ninguna celda quede con texto claro sobre fondo claro.
+   ===================================================================== */
+
+/* --------------------------------------------------------------------
+   1 · Armazón del applet: título, instrucciones, controles y salida
+   -------------------------------------------------------------------- */
+.applet .mx-title {
+  margin: 0 0 .55rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #1a3554;
+  line-height: 1.3;
+}
+.applet .mx-instr {
+  margin: 0 0 .8rem;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: #33414f;
+}
+.applet .mx-instr code,
+.applet .mx-out code {
+  background: #eef3fa;
+  color: #1a3554;
+  border: 1px solid #d7e2f4;
+  border-radius: 4px;
+  padding: .05rem .32rem;
+  font-size: .9em;
+}
+.applet .mx-instr b { color: #12385f; }
+
+.applet .mx-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .9rem;
+  align-items: flex-end;
+  margin: 0 0 .7rem;
+}
+.applet .mx-inputs .mx-field {
+  display: flex;
+  flex-direction: column;
+  gap: .22rem;
+  flex: 1 1 13rem;
+  min-width: 9rem;
+  max-width: 100%;
+  font-size: .86rem;
+  font-weight: 600;
+  color: #33414f;
+}
+.applet .mx-inputs .mx-field > span { line-height: 1.25; }
+.applet .mx-inputs .mx-field .mx-in {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .36rem .5rem;
+  font: inherit;
+  font-weight: 500;
+  font-size: .96rem;
+  color: #1f2937;
+  background: #fff;
+  border: 1px solid #b6c2cf;
+  border-radius: 7px;
+}
+.applet .mx-inputs .mx-field textarea.mx-in,
+.applet .mx-inputs .mx-field input[type="text"].mx-in {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .94rem;
+}
+.applet .mx-inputs .mx-field .mx-in:focus {
+  outline: none;
+  border-color: #1a6fc4;
+  box-shadow: 0 0 0 3px rgba(26, 111, 196, .16);
+}
+.applet .mx-inputs .mx-field input[type="range"].mx-in {
+  padding: 0;
+  border: 0;
+  accent-color: #1a6fc4;
+}
+.applet .mx-inputs .mx-field input[type="checkbox"].mx-in {
+  width: 1.1rem;
+  height: 1.1rem;
+  min-width: 0;
+  align-self: flex-start;
+  accent-color: #1a6fc4;
+}
+.applet .mx-inputs .mx-field .mx-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88rem;
+  font-weight: 700;
+  color: #1a6fc4;
+}
+
+.applet .mx-out {
+  font-size: .96rem;
+  line-height: 1.62;
+  color: #26313d;
+}
+.applet .mx-out > *:first-child { margin-top: 0; }
+.applet .mx-out > *:last-child { margin-bottom: 0; }
+
+.applet .mx-info {
+  margin: .55rem 0;
+  line-height: 1.62;
+  color: #26313d;
+}
+.applet .mx-bad {
+  margin: .55rem 0;
+  padding: .5rem .7rem;
+  border-left: 4px solid #c0392b;
+  background: #fdecee;
+  border-radius: 0 7px 7px 0;
+  color: #8d2018;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+   2 · Chips de escenario y de acción
+   -------------------------------------------------------------------- */
+.applet .ap-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .45rem;
+  margin: .45rem 0 .2rem;
+}
+.applet .ap-chips .ap-chip {
+  border: 1px solid #b8c9dd;
+  background: #fff;
+  color: #1a3554;
+  border-radius: 999px;
+  padding: .26rem .75rem;
+  font-size: .83rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.35;
+}
+.applet .ap-chips .ap-chip:hover {
+  background: #eaf2fb;
+  border-color: #7fa8d4;
+}
+.applet .ap-chips .ap-chip-act {
+  background: #1a6fc4;
+  border-color: #1a6fc4;
+  color: #fff;
+}
+.applet .ap-chips .ap-chip-act:hover { background: #12558f; color: #fff; }
+
+/* --------------------------------------------------------------------
+   3 · Insignias, llaves-valor y ficha de resultado
+   -------------------------------------------------------------------- */
+.applet .ap-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .13rem .62rem;
+  font-size: .8rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  margin: .12rem .18rem .12rem 0;
+}
+.applet .ap-badge.si   { background: #e8f5e9; color: #1b5e20; border-color: #a5d6a7; }
+.applet .ap-badge.no   { background: #fdecea; color: #b71c1c; border-color: #f5b7b1; }
+.applet .ap-badge.info { background: #e3f2fd; color: #0d47a1; border-color: #a3c9ee; }
+.applet .ap-badge.avi  { background: #fff8e1; color: #7a4b00; border-color: #e8c37a; }
+
+.applet .ap-kvs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .5rem;
+  margin: .45rem 0;
+}
+.applet .ap-kvs .ap-kv {
+  background: #f5f7fa;
+  border: 1px solid #dbe3ea;
+  border-radius: 6px;
+  padding: .24rem .6rem;
+  font-size: .85rem;
+  color: #263238;
+}
+
+.applet .ap-res {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem .9rem;
+  margin: .6rem 0;
+  padding: .62rem .85rem;
+  background: #f2f7fd;
+  border: 1px solid #cfe0f2;
+  border-left: 4px solid #1976d2;
+  border-radius: 6px;
+}
+.applet .ap-res .ap-res-num {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0d47a1;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+  word-break: break-word;
+}
+.applet .ap-res .ap-res-num .katex { font-size: 1.15em; }
+.applet .ap-res .ap-res-lab {
+  font-size: .87rem;
+  color: #37474f;
+}
+
+/* --------------------------------------------------------------------
+   4 · Tablas propias del tema
+   -------------------------------------------------------------------- */
+.applet .ap-tbl.ap-eq {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+  margin: .55rem 0;
+}
+.applet .ap-tbl.ap-eq th,
+.applet .ap-tbl.ap-eq td {
+  border: 1px solid #cfd8dc;
+  padding: .4rem .55rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.applet .ap-tbl.ap-eq thead th {
+  background: #334155;
+  color: #fff;
+  font-weight: 700;
+}
+.applet .ap-tbl.ap-eq tbody th {
+  background: #eef3fa;
+  color: #1a3554;
+  font-weight: 700;
+  text-align: left;
+}
+.applet .ap-tbl.ap-eq tbody td {
+  background: #fff;
+  color: #263238;
+}
+.applet .ap-tbl.ap-eq tbody tr.ap-hi td,
+.applet .ap-tbl.ap-eq tbody tr.ap-hi th {
+  background: #fff7e6;
+  color: #7a4b00;
+}
+.applet .ap-tbl.ap-eq tbody tr.ap-ok-row td,
+.applet .ap-tbl.ap-eq tbody tr.ap-ok-row th {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+.applet .ap-tbl.ap-eq td.ap-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------
+   5 · Pasos numerados (división larga, racionalización, ecuaciones)
+   -------------------------------------------------------------------- */
+.applet .ap-paso {
+  display: flex;
+  gap: .55rem;
+  align-items: flex-start;
+  margin: .4rem 0;
+  padding: .45rem .6rem;
+  background: #fbfcfe;
+  border: 1px solid #e3e9ef;
+  border-left: 3px solid #90a4ae;
+  border-radius: 0 7px 7px 0;
+  color: #26313d;
+  line-height: 1.55;
+}
+.applet .ap-paso.ap-paso-clave {
+  background: #f2f7fd;
+  border-left-color: #1976d2;
+}
+.applet .ap-paso.ap-paso-avi {
+  background: #fff8e1;
+  border-left-color: #e07b00;
+  color: #6b4300;
+}
+.applet .ap-paso .ap-paso-n {
+  flex: 0 0 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: #1a6fc4;
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.applet .ap-paso .ap-paso-c { min-width: 0; flex: 1 1 auto; }
+
+/* --------------------------------------------------------------------
+   6 · Cuadrículas y fichas
+   -------------------------------------------------------------------- */
+.applet .ap-grid2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: .9rem;
+  margin: .6rem 0;
+}
+.applet .ap-grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: .7rem;
+  margin: .6rem 0;
+}
+.applet .ap-card {
+  border: 1px solid #dbe3ea;
+  border-radius: 8px;
+  padding: .58rem .62rem;
+  background: #fff;
+  min-width: 0;
+  color: #26313d;
+}
+.applet .ap-card .ap-card-tit {
+  font-size: .85rem;
+  font-weight: 800;
+  color: #0d47a1;
+  margin-bottom: .3rem;
+  text-align: center;
+}
+.applet .ap-card.ap-card-ok { border-color: #a5d6a7; background: #f4fbf5; }
+.applet .ap-card.ap-card-ko { border-color: #f0b6ae; background: #fef7f6; }
+
+/* --------------------------------------------------------------------
+   7 · Cajas de enunciado y etiquetas en línea
+   -------------------------------------------------------------------- */
+.applet .ap-enun {
+  background: #f7fafd;
+  border: 1px solid #dbe6f2;
+  border-left: 4px solid #546e7a;
+  border-radius: 6px;
+  padding: .58rem .72rem;
+  margin: .5rem 0;
+  color: #263238;
+  line-height: 1.55;
+}
+.applet .ap-ok { color: #1b5e20; font-weight: 700; }
+.applet .ap-ko { color: #b71c1c; font-weight: 700; }
+.applet .ap-key { color: #0d47a1; font-weight: 700; }
+
+.applet .ap-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0 .2rem;
+}
+
+/* --------------------------------------------------------------------
+   8 · Cadenas de cifras (decimales, periodos, cifras significativas)
+   -------------------------------------------------------------------- */
+.applet .ap-cifras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .18rem;
+  align-items: center;
+  margin: .5rem 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.applet .ap-cifras .ap-cif {
+  min-width: 1.5rem;
+  text-align: center;
+  padding: .24rem .3rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+  background: #fff;
+  color: #1a3554;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.applet .ap-cifras .ap-cif.ap-cif-per {
+  background: #e3f2fd;
+  border-color: #90caf9;
+  color: #0d47a1;
+}
+.applet .ap-cifras .ap-cif.ap-cif-ante {
+  background: #fff8e1;
+  border-color: #e8c37a;
+  color: #7a4b00;
+}
+.applet .ap-cifras .ap-cif.ap-cif-sig {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #1b5e20;
+}
+.applet .ap-cifras .ap-cif.ap-cif-mudo {
+  background: #f5f7fa;
+  border-color: #dbe3ea;
+  color: #90a4ae;
+}
+.applet .ap-cifras .ap-cif-sep {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #546e7a;
+  padding: 0 .1rem;
+}
+
+/* Fichas de números clasificados en conjuntos */
+.applet .ap-conj {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem .35rem;
+  margin: .5rem 0;
+}
+.applet .ap-conj .ap-num-chip {
+  border: 1px solid #d7e0e8;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a3554;
+  padding: .22rem .55rem;
+  font-size: .9rem;
+  font-weight: 600;
+}
+.applet .ap-conj .ap-num-chip.n-N { border-color: #90caf9; background: #e7f2fd; color: #0d47a1; }
+.applet .ap-conj .ap-num-chip.n-Z { border-color: #a5d6a7; background: #edf8ee; color: #1b5e20; }
+.applet .ap-conj .ap-num-chip.n-Q { border-color: #e8c37a; background: #fff8e6; color: #7a4b00; }
+.applet .ap-conj .ap-num-chip.n-I { border-color: #ce93d8; background: #f8effa; color: #5b2c6f; }
+
+/* --------------------------------------------------------------------
+   9 · Figuras al ancho máximo
+   La hoja compartida limita .ap-fig a 520 px. Aquí las rectas reales,
+   los intervalos y las gráficas necesitan todo el ancho disponible, y
+   los textos del SVG se dibujan grandes para que se lean proyectados.
+   -------------------------------------------------------------------- */
+.applet .ap-fig {
+  max-width: 100%;
+  width: 100%;
+  margin: .6rem 0 .3rem;
+  padding: .35rem .35rem 0;
+  box-sizing: border-box;
+}
+.applet .ap-fig > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid #d9e0e4;
+  border-radius: 6px;
+}
+.applet .ap-fig .ap-figcap {
+  margin: .32rem 0 .45rem;
+  text-align: center;
+  font-size: .85rem;
+  color: #5b6b7c;
+  line-height: 1.45;
+}
+.applet .ap-legend {
+  list-style: none;
+  padding: 0;
+  margin: .4rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1rem;
+}
+.applet .ap-legend li {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .85rem;
+  color: #37474f;
+}
+.applet .ap-sw {
+  width: .9rem;
+  height: .9rem;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------
+   10 · Ajustes de KaTeX dentro de los applets
+   -------------------------------------------------------------------- */
+.applet .katex { font-size: 1.08em; }
+.applet .katex-display { margin: .5rem 0; }
+.applet .ap-tbl .katex { font-size: 1em; }
+.applet .katex-error { color: #c0392b !important; }
+
+/* --------------------------------------------------------------------
+   11 · Responsivo e impresión
+   -------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .applet .mx-inputs .mx-field { flex: 1 1 100%; }
+  .applet .ap-res .ap-res-num { font-size: 1.3rem; }
+  .applet .ap-tbl.ap-eq { font-size: .82rem; }
+  .applet .ap-tbl.ap-eq th,
+  .applet .ap-tbl.ap-eq td { padding-inline: .32rem; }
+}
+@media print {
+  .applet .mx-inputs,
+  .applet .ap-chips { display: none; }
+  .applet .ap-fig > svg { border-color: #ccc; }
+}
+
+/* --------------------------------------------------------------------
+   9 · Piezas propias de Polinomios
+   -------------------------------------------------------------------- */
+
+/* 9.1 · Caja de resultado algebraico grande (polinomio, fracción, factores) */
+.applet .eq-expr {
+  margin: .55rem 0;
+  padding: .7rem .85rem;
+  background: #f5f9ff;
+  border: 1px solid #d3e1f5;
+  border-left: 5px solid #1a6fc4;
+  border-radius: 9px;
+  color: #12385f;
+  overflow-x: auto;
+}
+.applet .eq-expr .katex { font-size: 1.28em; }
+.applet .eq-expr-sm .katex { font-size: 1.06em; }
+.applet .eq-expr-xs .katex { font-size: .92em; }
+.applet .eq-expr .katex-display { margin: .2rem 0; }
+.applet .eq-expr-lab {
+  display: block;
+  margin: 0 0 .25rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #4a5b6d;
+}
+
+/* 9.2 · Caja de la regla de Ruffini y de la división larga: monoespaciada */
+.applet .pol-mono {
+  margin: .55rem 0;
+  padding: .75rem .9rem;
+  background: #fbfcfe;
+  border: 1px solid #d3ddea;
+  border-radius: 9px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: #1f2937;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* 9.3 · Tabla de Ruffini dibujada con celdas */
+.applet .pol-ruf {
+  border-collapse: collapse;
+  margin: .5rem 0 .3rem;
+  font-size: 1.05rem;
+}
+.applet .pol-ruf td {
+  padding: .34rem .75rem;
+  text-align: center;
+  color: #1f2937;
+  border: 0;
+  min-width: 3.1rem;
+}
+.applet .pol-ruf td.pol-ruf-div {
+  font-weight: 700;
+  color: #0d5c3a;
+  border-right: 3px solid #1f2937;
+  padding-right: .9rem;
+}
+.applet .pol-ruf tr.pol-ruf-r2 td { color: #12385f; }
+.applet .pol-ruf tr.pol-ruf-r3 td {
+  font-weight: 700;
+  border-top: 3px solid #1f2937;
+  color: #12385f;
+}
+.applet .pol-ruf td.pol-ruf-rest {
+  background: #fdf1d8;
+  border-radius: 0 8px 8px 0;
+  font-weight: 700;
+  color: #8a5300;
+}
+.applet .pol-ruf td.pol-ruf-rest0 {
+  background: #dff3e6;
+  color: #0d5c3a;
+}
+.applet .pol-ruf-cap {
+  font-size: .84rem;
+  color: #4a5b6d;
+  margin: .1rem 0 .5rem;
+}
+
+/* 9.4 · Fichas de términos de un polinomio */
+.applet .pol-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0;
+}
+.applet .pol-term {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  padding: .4rem .7rem;
+  background: #fff;
+  border: 1px solid #cdd8e6;
+  border-radius: 9px;
+  min-width: 5.2rem;
+}
+.applet .pol-term .pol-term-x { font-size: 1.15rem; color: #12385f; }
+.applet .pol-term .pol-term-g {
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #6b7a8c;
+}
+.applet .pol-term.pol-term-hi {
+  border-color: #1a6fc4;
+  background: #eef5ff;
+  box-shadow: 0 0 0 2px rgba(26, 111, 196, .16);
+}
+.applet .pol-term.pol-term-ind {
+  border-color: #b98a20;
+  background: #fdf6e6;
+}
+
+/* --------------------------------------------------------------------
+   9 · Piezas propias del tema de ecuaciones e inecuaciones
+   -------------------------------------------------------------------- */
+
+/* Tabla de signos: columnas anchas, símbolos grandes y legibles. */
+.applet .ap-tbl.eq-signos { table-layout: auto; }
+.applet .ap-tbl.eq-signos th.eq-th-lab { min-width: 11rem; text-align: left; }
+.applet .ap-tbl.eq-signos thead th { font-size: 1.02rem; padding: .55rem .5rem; }
+.applet .ap-tbl.eq-signos tbody th {
+  text-align: left;
+  font-weight: 600;
+  color: #1a3554;
+  background: #f2f6fc;
+  white-space: nowrap;
+}
+.applet .ap-tbl.eq-signos td { text-align: center; vertical-align: middle; }
+.applet .eq-sg {
+  display: inline-block;
+  min-width: 2.1rem;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.1;
+  border-radius: 6px;
+  padding: .05rem .3rem;
+}
+.applet .eq-sg.eq-sg-p { color: #15803d; background: #dcfce7; }
+.applet .eq-sg.eq-sg-n { color: #b91c1c; background: #fee2e2; }
+
+/* Ficha de una ecuación resuelta paso a paso. */
+.applet .eq-cadena {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  margin: .7rem 0;
+}
+.applet .eq-cadena .eq-fila {
+  display: grid;
+  grid-template-columns: minmax(9rem, 15rem) 1fr;
+  gap: .7rem;
+  align-items: center;
+  padding: .5rem .6rem;
+  border-left: 4px solid #93c5fd;
+  background: #f7faff;
+  border-radius: 0 7px 7px 0;
+}
+.applet .eq-cadena .eq-fila .eq-rot {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1.35;
+}
+.applet .eq-cadena .eq-fila .eq-mat {
+  font-size: 1.22rem;
+  color: #12385f;
+  overflow-x: auto;
+}
+.applet .eq-cadena .eq-fila.eq-clave { border-left-color: #f59e0b; background: #fffaf0; }
+.applet .eq-cadena .eq-fila.eq-mal { border-left-color: #dc2626; background: #fef2f2; }
+.applet .eq-cadena .eq-fila.eq-bien { border-left-color: #16a34a; background: #f0fdf4; }
+
+/* Discriminante: tres estados con color propio. */
+.applet .eq-disc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: .6rem 0;
+}
+.applet .eq-disc .eq-disc-caja {
+  flex: 1 1 12rem;
+  border: 2px solid #dbe6f6;
+  border-radius: 9px;
+  padding: .6rem .7rem;
+  background: #fbfdff;
+  color: #33414f;
+  font-size: .95rem;
+  line-height: 1.45;
+}
+.applet .eq-disc .eq-disc-caja.eq-on {
+  border-color: #2563eb;
+  background: #eef4ff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+}
+.applet .eq-disc .eq-disc-caja b { display: block; color: #12385f; margin-bottom: .2rem; font-size: 1.02rem; }
+
+/* Círculo trigonométrico y familias de soluciones. */
+.applet .eq-fam {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: .55rem 0;
+}
+.applet .eq-fam .eq-fam-item {
+  border: 2px solid #c7d7f0;
+  border-radius: 999px;
+  padding: .3rem .85rem;
+  background: #fff;
+  color: #12385f;
+  font-size: 1.12rem;
+}
+
+/* Comprobación de soluciones: dos columnas grandes. */
+.applet .eq-check {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: .5rem;
+  margin: .6rem 0;
+}
+.applet .eq-check .eq-check-caja {
+  border-radius: 9px;
+  padding: .55rem .7rem;
+  border: 2px solid #dbe6f6;
+  background: #fbfdff;
+  font-size: 1.02rem;
+  color: #33414f;
+}
+.applet .eq-check .eq-check-caja.eq-ok { border-color: #16a34a; background: #f0fdf4; }
+.applet .eq-check .eq-check-caja.eq-ko { border-color: #dc2626; background: #fef2f2; }

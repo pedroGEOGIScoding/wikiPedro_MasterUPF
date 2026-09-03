@@ -208,10 +208,18 @@ website:
               - master-upf/recursos/1-BatxMatesCCSS/polinomios/08-practica-polinomios.qmd
             - section: "Tema 3 Ecuaciones e Inecuaciones"
               contents:
-              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-cuadraticas-bicuadradas.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/02-factorizacion-racionales-irracionales.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/03-exponenciales-logaritmicas.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/04-inecuaciones.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-ecuaciones-primer-grado.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/02-ecuaciones-segundo-grado.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/03-bicuadradas-cambio-variable.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/04-ecuaciones-racionales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/05-ecuaciones-radicales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/06-factorizacion-ecuaciones.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/07-ecuaciones-logaritmicas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/08-ecuaciones-exponenciales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/09-ecuaciones-trigonometricas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/10-inecuaciones-primer-grado.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/11-inecuaciones-segundo-grado.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/12-practica-ecuaciones-inecuaciones.qmd
             - section: "Tema 4 Sistemas de Ecuaciones e Inecuaciones"
               contents:
               - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-lineales.qmd

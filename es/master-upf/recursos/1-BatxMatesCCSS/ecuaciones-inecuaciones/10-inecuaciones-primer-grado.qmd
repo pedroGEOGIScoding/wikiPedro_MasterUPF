@@ -1,0 +1,418 @@
+---
+title: "Tema 3.10 Inecuaciones de primer grado"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 10-inecuaciones-primer-grado
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Desigualdades y sus propiedades con la justificación del giro del sentido, inecuaciones de primer grado, conjunto solución, intervalos y semirrectas, representación en la recta real, interpretación gráfica con la recta y = ax + b, casos degenerados, denominadores, dobles desigualdades, sistemas de inecuaciones con una incógnita y problemas contextualizados.
+categories: [inecuaciones, 1 Batx, matemáticas CCSS, desigualdades, intervalos, recta real]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De la igualdad a la desigualdad
+
+Una ecuación pregunta *cuándo dos cantidades son iguales*. Una **inecuación** pregunta algo más frecuente en la vida real: *cuándo una cantidad es mayor (o menor) que otra*. El presupuesto no se agota exactamente, se supera o no se supera; el beneficio no vale exactamente cero, es positivo o negativo; una tarifa no empata con otra, sale más barata o más cara.
+
+El cambio de pregunta cambia el tipo de respuesta. Una ecuación de primer grado tiene, casi siempre, **una** solución. Una inecuación de primer grado tiene, casi siempre, **infinitas**: todo un tramo de la recta real. Por eso la respuesta de una inecuación no es un número, sino un **conjunto**, y hay que saber escribirlo con precisión.
+
+::: {.callout-note}
+## Definición de inecuación
+
+Una **inecuación** es una desigualdad entre dos expresiones algebraicas en la que aparece al menos una incógnita. Los cuatro signos posibles son
+$$
+<, \qquad >, \qquad \leq, \qquad \geq
+$$
+Una inecuación es de **primer grado** con una incógnita cuando, después de operar y pasar todo a un miembro, adopta la forma $ax + b < 0$ (o con cualquiera de los otros tres signos), con $a$ y $b$ números reales.
+
+**Resolver** una inecuación es hallar su **conjunto solución**: el conjunto de todos los números que, al sustituirlos por la incógnita, hacen cierta la desigualdad.
+:::
+
+Las inecuaciones $\leq$ y $\geq$ se leen «menor o igual» y «mayor o igual»: son ciertas también cuando hay igualdad. Se llaman **no estrictas** o **cerradas**, y esa diferencia se traduce en si un extremo entra o no en el conjunto solución. No es un detalle de forma: en un problema significa si el presupuesto de $500$ euros se puede gastar entero o no.
+
+## Propiedades de las desigualdades
+
+Resolver una inecuación consiste en transformarla en otra **equivalente** —con el mismo conjunto solución— hasta dejar la incógnita despejada. Las transformaciones permitidas son estas.
+
+::: {.callout-note}
+## Propiedades de las desigualdades
+
+Sean $a$, $b$ y $c$ números reales.
+
+1. **Suma y resta.** Si $a < b$, entonces $a + c < b + c$ para cualquier $c$. Sumar o restar lo mismo en los dos miembros no cambia el sentido.
+2. **Producto y cociente por un número positivo.** Si $a < b$ y $c > 0$, entonces $a\,c < b\,c$ y $\dfrac{a}{c} < \dfrac{b}{c}$. El sentido se conserva.
+3. **Producto y cociente por un número negativo.** Si $a < b$ y $c < 0$, entonces $a\,c > b\,c$ y $\dfrac{a}{c} > \dfrac{b}{c}$. **El sentido gira.**
+4. **Transitiva.** Si $a < b$ y $b < c$, entonces $a < c$.
+5. **Suma de desigualdades del mismo sentido.** Si $a < b$ y $c < d$, entonces $a + c < b + d$.
+:::
+
+La tercera propiedad es la que provoca más errores de todo el bloque, así que conviene entender **por qué** ocurre, y no aprenderla como una regla arbitraria.
+
+::: {.callout-important}
+## Por qué gira el sentido al multiplicar por un negativo
+
+Partimos de $a < b$, que significa exactamente que $b - a > 0$.
+
+Si multiplicamos por $c < 0$, el producto $c\,(b-a)$ es el producto de un número negativo por uno positivo, luego es negativo:
+$$
+c\,(b-a) < 0 \;\Longrightarrow\; cb - ca < 0 \;\Longrightarrow\; cb < ca \;\Longrightarrow\; ca > cb
+$$
+Es decir, de $a < b$ se pasa a $ca > cb$: el sentido se ha invertido.
+
+Geométricamente: multiplicar por $-1$ es reflejar la recta real respecto del origen. El $3$ está a la derecha del $2$, pero $-3$ está a la **izquierda** de $-2$. Al reflejar, el orden se da la vuelta.
+:::
+
+Compruébalo con números concretos antes de fiarte de la regla: $2 < 5$, pero $-2 > -5$. Y $2 < 5$, pero $-4 > -10$.
+
+::: {.callout-caution}
+## Una propiedad que **no** existe
+
+No se puede multiplicar ni dividir los dos miembros por una **expresión con la incógnita** sin saber su signo. En $\dfrac{1}{x} > 2$ no se puede multiplicar por $x$: si $x$ es positivo el sentido se conserva y si es negativo gira, y no sabemos cuál es el caso. Lo mismo pasa con «multiplicar en cruz», que verás prohibido de nuevo en las inecuaciones racionales.
+:::
+
+### Applet · Laboratorio de propiedades de las desigualdades {.unnumbered}
+
+Fija dos números, aplica una transformación (sumar, multiplicar, dividir, cambiar de signo, invertir, elevar al cuadrado) y observa en la recta real si el orden se mantiene o se invierte, con el enunciado de la propiedad que lo explica.
+
+::: {#panel-desigLab .applet-panel data-applet-eq="desigLab"}
+:::
+
+Presta atención a dos transformaciones que **no** son propiedades generales: invertir ($a < b$ no implica $\dfrac{1}{a} < \dfrac{1}{b}$) y elevar al cuadrado ($-5 < 2$ pero $25 > 4$). Solo funcionan con hipótesis añadidas sobre los signos.
+
+## Intervalos, semirrectas y la recta real
+
+El conjunto solución de una inecuación de primer grado es casi siempre una **semirrecta**, y el de un sistema, un **intervalo**. Conviene fijar la notación.
+
+::: {.callout-note}
+## Notación de intervalos y semirrectas
+
+Sean $a < b$ números reales.
+
+| Conjunto | Notación | Desigualdad | Extremos |
+|---|---|---|---|
+| Intervalo abierto | $(a,b)$ | $a < x < b$ | no incluidos |
+| Intervalo cerrado | $[a,b]$ | $a \leq x \leq b$ | incluidos |
+| Semiabierto | $[a,b)$ | $a \leq x < b$ | solo $a$ |
+| Semiabierto | $(a,b]$ | $a < x \leq b$ | solo $b$ |
+| Semirrecta | $(a,+\infty)$ | $x > a$ | no incluido |
+| Semirrecta | $[a,+\infty)$ | $x \geq a$ | incluido |
+| Semirrecta | $(-\infty,b)$ | $x < b$ | no incluido |
+| Semirrecta | $(-\infty,b]$ | $x \leq b$ | incluido |
+
+Los símbolos $+\infty$ y $-\infty$ **nunca** llevan corchete: no son números, no pueden pertenecer a un conjunto.
+:::
+
+En la **recta real** el convenio de dibujo es igual de estricto: punto **relleno** si el extremo pertenece al conjunto ($\leq$, $\geq$), punto **hueco** si no pertenece ($<$, $>$). El tramo se marca con un trazo grueso.
+
+Escribir la solución de las tres formas —desigualdad, intervalo y dibujo— no es repetir: cada una se lee mejor en un contexto distinto. La desigualdad es la que se usa al operar, el intervalo es la que se usa al combinar conjuntos y el dibujo es la que evita errores de signo.
+
+## Resolución sistemática
+
+El procedimiento es el mismo que en una ecuación de primer grado, con una vigilancia añadida.
+
+::: {.callout-note}
+## Pasos para resolver una inecuación de primer grado
+
+1. Quita paréntesis y denominadores (multiplicando por el m.c.m., que es **positivo**: el sentido no cambia).
+2. Pasa todos los términos con incógnita a un miembro y los números al otro.
+3. Reduce hasta dejar un solo término con incógnita a un lado y un número al otro: $a'x > b'$, o con el signo que te haya quedado.
+4. Divide entre $a'$. **Si $a'$ es negativo, gira el sentido de la desigualdad.**
+5. Escribe la solución como desigualdad, como intervalo y en la recta real.
+6. Comprueba con un número del conjunto y otro de fuera.
+:::
+
+**Ejemplo resuelto.** Resuelve $3x - 5 < x + 7$.
+
+$$
+3x - 5 < x + 7 \;\Longrightarrow\; 3x - x < 7 + 5 \;\Longrightarrow\; 2x < 12 \;\Longrightarrow\; x < 6
+$$
+
+Como se ha dividido entre $2 > 0$, el sentido se conserva. Solución: $x < 6$, es decir, $(-\infty, 6)$.
+
+Comprobación: $x = 0$ da $-5 < 7$, cierto; $x = 10$ da $25 < 17$, falso. El conjunto está bien orientado.
+
+**Ejemplo resuelto con giro.** Resuelve $4 - 3x \geq 13$.
+
+$$
+4 - 3x \geq 13 \;\Longrightarrow\; -3x \geq 9 \;\Longrightarrow\; x \leq -3
+$$
+
+Al dividir entre $-3$ el signo $\geq$ se convierte en $\leq$. Solución: $(-\infty, -3]$, con el extremo incluido porque la desigualdad no es estricta.
+
+Comprobación: $x = -3$ da $4 + 9 = 13 \geq 13$, cierto (por eso el corchete); $x = 0$ da $4 \geq 13$, falso.
+
+::: {.callout-tip}
+## Truco para evitar el giro
+
+Si te da miedo el cambio de sentido, coloca la incógnita en el miembro donde su coeficiente quede **positivo**. En $4 - 3x \geq 13$ puedes pasar $-3x$ al segundo miembro y $13$ al primero: $4 - 13 \geq 3x$, o sea $-9 \geq 3x$, y de ahí $-3 \geq x$, que es lo mismo que $x \leq -3$. Nunca hay que girar nada, pero hay que leer con cuidado la desigualdad final: $-3 \geq x$ se lee «$x$ es menor o igual que $-3$», no al revés.
+:::
+
+### Applet · Inecuación de primer grado paso a paso {.unnumbered}
+
+Escribe la inecuación completa y sigue la cadena de transformaciones, con el aviso explícito cuando hay que girar el sentido, la solución como intervalo y su dibujo en la recta real.
+
+::: {#panel-inecPrimerGrado .applet-panel data-applet-eq="inecPrimerGrado"}
+:::
+
+## Interpretación gráfica
+
+Toda inecuación de primer grado se puede leer con una recta. Si pasas todo a un miembro obtienes $ax + b > 0$ (o con $<$, $\leq$ o $\geq$, según el caso); llama $y = ax + b$ a la recta correspondiente. Entonces:
+
+- $ax + b > 0$ pregunta **dónde la recta está por encima del eje horizontal**.
+- $ax + b < 0$ pregunta dónde está por debajo.
+- La frontera entre las dos zonas es el punto de corte con el eje, $x = -\dfrac{b}{a}$, que es justo la solución de la ecuación asociada.
+
+De aquí sale una regla visual muy útil: si la recta es **creciente** ($a > 0$), es positiva a la derecha del corte; si es **decreciente** ($a < 0$), es positiva a la izquierda. Esa es la misma información que el giro del sentido, vista de otra manera.
+
+::: {.callout-tip}
+## Resolver la ecuación es el primer paso de la inecuación
+
+La solución de $ax+b=0$ nunca sobra: es la frontera. Una vez la tienes, solo queda decidir de qué lado queda el conjunto solución, y para eso basta probar un número cualquiera.
+:::
+
+## Inecuaciones con denominadores
+
+Cuando aparecen fracciones **numéricas** (denominadores sin incógnita), se eliminan multiplicando los dos miembros por el m.c.m. de los denominadores. Como el m.c.m. es positivo, el sentido no cambia.
+
+**Ejemplo resuelto.** Resuelve $\dfrac{x-1}{2} - \dfrac{2x+3}{5} \leq 1$.
+
+El m.c.m. de $2$ y $5$ es $10$:
+
+$$
+10\cdot\dfrac{x-1}{2} - 10\cdot\dfrac{2x+3}{5} \leq 10 \;\Longrightarrow\; 5(x-1) - 2(2x+3) \leq 10
+$$
+
+$$
+5x - 5 - 4x - 6 \leq 10 \;\Longrightarrow\; x - 11 \leq 10 \;\Longrightarrow\; x \leq 21
+$$
+
+Solución: $(-\infty, 21]$.
+
+::: {.callout-warning}
+## El paréntesis del numerador es obligatorio
+
+Al multiplicar por el m.c.m., el numerador entero se multiplica: $10 \cdot \dfrac{2x+3}{5} = 2(2x+3) = 4x+6$, y al restarlo se cambian **los dos** signos. Escribir $-4x+6$ es el error más común de este tipo de ejercicios.
+:::
+
+Si el denominador **lleva la incógnita**, la inecuación ya no es de primer grado: es racional, y se resuelve con la tabla de signos del apartado siguiente. No se puede multiplicar por el denominador.
+
+## Casos degenerados
+
+Al reducir puede desaparecer la incógnita. Entonces la desigualdad que queda es una afirmación numérica: o es cierta siempre, o es falsa siempre.
+
+**Ejemplo resuelto.** Resuelve $2(x+3) < 2x + 10$.
+
+$$
+2x + 6 < 2x + 10 \;\Longrightarrow\; 6 < 10
+$$
+
+La incógnita desaparece y queda una desigualdad **cierta**. Por tanto, *cualquier* número real la cumple: la solución es $\mathbb{R} = (-\infty, +\infty)$.
+
+**Ejemplo resuelto.** Resuelve $3(x - 2) \geq 3x + 1$.
+
+$$
+3x - 6 \geq 3x + 1 \;\Longrightarrow\; -6 \geq 1
+$$
+
+Queda una desigualdad **falsa**. No hay ningún número que la cumpla: la solución es el conjunto vacío, $\varnothing$.
+
+::: {.callout-important}
+## «Se me ha ido la $x$» no es un error
+
+Cuando la incógnita desaparece, el ejercicio no está mal hecho: está terminado. Solo hay que mirar si lo que queda es verdadero (solución $\mathbb{R}$) o falso (solución $\varnothing$). Escribir «$x = 0$» o dejarlo en blanco sí es un error.
+:::
+
+## Dobles desigualdades
+
+Una expresión como $-3 < 2x + 1 \leq 7$ es una **doble desigualdad**: expresa dos condiciones a la vez, $-3 < 2x+1$ **y** $2x+1 \leq 7$. Se puede resolver de dos maneras.
+
+**En cadena** (más rápida), operando en los tres miembros a la vez:
+
+$$
+-3 < 2x + 1 \leq 7
+\;\Longrightarrow\;
+-4 < 2x \leq 6
+\;\Longrightarrow\;
+-2 < x \leq 3
+$$
+
+La solución es el intervalo $(-2, 3]$.
+
+**Por separado**, resolviendo las dos inecuaciones e intersecando: $x > -2$ y $x \leq 3$, cuya intersección es $(-2,3]$. Las dos vías dan lo mismo; la cadena es más ágil, pero exige aplicar cada paso a los **tres** miembros.
+
+::: {.callout-caution}
+## Al dividir por un negativo en cadena, giran los dos signos
+
+En $-1 \leq -2x < 6$, al dividir todo entre $-2$ se invierte el sentido de las dos desigualdades **y** se intercambian los papeles de los extremos:
+$$
+-1 \leq -2x < 6 \;\Longrightarrow\; \dfrac{1}{2} \geq x > -3 \;\Longrightarrow\; -3 < x \leq \dfrac{1}{2}
+$$
+Conviene reescribir siempre la respuesta final de menor a mayor, para leerla como intervalo sin equivocarse.
+:::
+
+### Applet · Dobles desigualdades encadenadas {.unnumbered}
+
+Escribe los tres miembros y observa la resolución en cadena, la resolución por separado con la intersección de los dos conjuntos y el resultado dibujado sobre una recta común.
+
+::: {#panel-dobleDesigualdad .applet-panel data-applet-eq="dobleDesigualdad"}
+:::
+
+## Sistemas de inecuaciones con una incógnita
+
+Un **sistema de inecuaciones** con una incógnita es un conjunto de inecuaciones que deben cumplirse **a la vez**. Su solución es, por tanto, la **intersección** de los conjuntos solución de cada una.
+
+::: {.callout-note}
+## Método
+
+1. Resuelve cada inecuación por separado y escribe su conjunto solución.
+2. Dibújalos todos sobre una **misma recta real**, uno debajo del otro.
+3. La solución del sistema es la zona donde coinciden todos los trazos.
+4. Escríbela como intervalo, cuidando los extremos: un extremo entra solo si entra en **todas** las condiciones.
+:::
+
+**Ejemplo resuelto.** Resuelve el sistema
+$$
+\left\{
+\begin{array}{l}
+2x - 1 \geq 3\\
+5 - x > 1
+\end{array}
+\right.
+$$
+
+Primera: $2x \geq 4 \Rightarrow x \geq 2$, es decir, $[2, +\infty)$.
+
+Segunda: $-x > -4 \Rightarrow x < 4$, es decir, $(-\infty, 4)$. Aquí se ha girado el sentido al dividir entre $-1$.
+
+Intersección: $[2, 4)$. El $2$ entra porque la primera condición es $\geq$ y el $2$ cumple la segunda; el $4$ no entra porque la segunda es estricta.
+
+**Ejemplo resuelto sin solución.** El sistema $x > 5$ y $x < 2$ tiene como solución $\varnothing$: los dos trazos no se solapan en ningún punto. No es un fallo de cálculo, es la respuesta.
+
+::: {.callout-tip}
+## «Y» es intersección, «o» es unión
+
+Un sistema exige que se cumplan todas las condiciones: es una **y**, y se traduce en intersección. Cuando el enunciado dice «se cumple una **u** otra», el conjunto es la **unión**. La palabra del enunciado decide la operación entre conjuntos.
+:::
+
+### Applet · Sistema de inecuaciones con una incógnita {.unnumbered}
+
+Escribe dos o tres inecuaciones, una por línea, y observa la resolución de cada una, los conjuntos dibujados sobre la misma escala y la intersección resultante con sus extremos correctamente abiertos o cerrados.
+
+::: {#panel-sistemaInec .applet-panel data-applet-eq="sistemaInec"}
+:::
+
+## Problemas contextualizados
+
+En Ciencias Sociales las inecuaciones aparecen siempre que hay un umbral: un presupuesto, un punto muerto, un mínimo exigido, un límite legal.
+
+**Problema 1 · Comparar dos tarifas.** Una compañía cobra $12$ euros fijos más $0{,}05$ euros por minuto. Otra no cobra cuota fija pero cobra $0{,}09$ euros por minuto. ¿A partir de cuántos minutos sale mejor la primera?
+
+Sea $x$ el número de minutos. La condición «la primera es más barata» es
+$$
+12 + 0{,}05x < 0{,}09x
+\;\Longrightarrow\;
+12 < 0{,}04x
+\;\Longrightarrow\;
+x > 300
+$$
+
+A partir de $301$ minutos (el consumo es un número entero de minutos) conviene la primera tarifa. En $300$ minutos exactos cuestan lo mismo: $27$ euros las dos.
+
+**Problema 2 · Umbral de rentabilidad.** Una empresa vende un producto a $18$ euros la unidad. Sus costes son $4\,500$ euros fijos más $9$ euros por unidad producida. ¿Cuántas unidades hay que vender para tener beneficio?
+
+El beneficio es $B(x) = 18x - (4500 + 9x) = 9x - 4500$. Se exige $B(x) > 0$:
+$$
+9x - 4500 > 0 \;\Longrightarrow\; x > 500
+$$
+
+Hacen falta más de $500$ unidades. Con exactamente $500$ el beneficio es nulo: ese es el **punto muerto** o umbral de rentabilidad.
+
+**Problema 3 · Media de notas.** Un alumno tiene $6$ y $7{,}5$ en dos exámenes que pesan igual que el tercero. ¿Qué nota necesita en el tercero para que la media sea al menos $7$?
+
+$$
+\dfrac{6 + 7{,}5 + x}{3} \geq 7
+\;\Longrightarrow\;
+13{,}5 + x \geq 21
+\;\Longrightarrow\;
+x \geq 7{,}5
+$$
+
+Necesita al menos un $7{,}5$. Y como las notas están acotadas por $10$, el conjunto con sentido en el contexto es $[7{,}5\,;\,10]$.
+
+**Problema 4 · Con doble condición.** Una ONG quiere que el gasto en administración esté entre el $8\,\%$ y el $12\,\%$ de un presupuesto de $x$ euros, y ese gasto es de $3\,000$ euros fijos. ¿Entre qué valores debe estar el presupuesto?
+
+$$
+0{,}08x \leq 3000 \leq 0{,}12x
+$$
+
+De $0{,}08x \leq 3000$ sale $x \leq 37\,500$; de $3000 \leq 0{,}12x$ sale $x \geq 25\,000$. El presupuesto debe estar en $[25\,000\,;\,37\,500]$ euros.
+
+::: {.callout-warning}
+## El contexto recorta el conjunto solución
+
+Matemáticamente $x > 500$ incluye $x = 500{,}3$, pero no se pueden vender $500{,}3$ unidades. Y un número de minutos, de personas o de productos no puede ser negativo. Después de resolver hay que **intersecar con el dominio con sentido** del problema y redondear en la dirección correcta: si se pide superar un umbral, se redondea hacia arriba.
+:::
+
+## Curiosidades y pensamiento crítico
+
+- Los símbolos $<$ y $>$ los introdujo **Thomas Harriot** en una obra publicada en 1631, después de su muerte. Los símbolos $\leq$ y $\geq$ tardaron casi dos siglos más en imponerse, de la mano de **Pierre Bouguer**.
+- La **programación lineal**, que resuelve problemas de optimización con recursos limitados, no es más que un sistema de inecuaciones con varias incógnitas. Nació durante la Segunda Guerra Mundial para planificar logística, y hoy decide rutas de reparto, mezclas de piensos y carteras de inversión.
+- Casi todos los indicadores sociales se comunican como desigualdades: el umbral de pobreza (renta menor que el $60\,\%$ de la mediana), la tasa de sobrepeso, los límites de emisiones. Cambiar el umbral cambia la estadística sin que haya cambiado la realidad: conviene preguntar siempre de dónde sale el número que separa las dos zonas.
+- Un $\leq$ y un $<$ pueden valer millones de euros en un contrato o en una norma fiscal. En los tramos del IRPF, si un tramo llega «hasta $20\,000$ euros inclusive» o «hasta menos de $20\,000$» cambia quién paga qué. La distinción entre estricta y no estricta no es un capricho escolar.
+- Que un conjunto solución sea $\mathbb{R}$ suele indicar que la condición impuesta no restringe nada, y que sea $\varnothing$, que las condiciones se contradicen. En un modelo económico las dos respuestas son informativas: la primera dice que la restricción sobra, la segunda que el plan es imposible tal como está planteado.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar la representación de conjuntos sobre la recta real, la comparación de números y el manejo de intervalos, usa el entrenador [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html). Para las operaciones con fracciones que aparecen al quitar denominadores, tienes el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html).
+:::
+
+## Practica con los entrenadores
+
+1. Resuelve y representa en la recta real: $5x - 2 \leq 3x + 8$; $7 - 2x > 1$; $\dfrac{x}{3} - 1 < \dfrac{x-2}{4}$.
+2. Escribe como intervalo y dibuja: $x \geq -1$; $-4 < x \leq 0$; $x < 3$ o $x \geq 6$.
+3. Resuelve $-5 \leq 3 - 2x < 7$ de las dos maneras, en cadena y por separado, y comprueba que coinciden.
+4. Resuelve el sistema formado por $3x + 1 > 4$ y $2x - 5 \leq 1$, y da la solución como intervalo.
+5. Inventa una inecuación de primer grado cuya solución sea $\mathbb{R}$ y otra cuya solución sea $\varnothing$.
+6. Una tarifa de móvil cuesta $8$ euros más $0{,}03$ euros por mensaje; otra, $0{,}05$ euros por mensaje sin cuota. ¿Desde cuántos mensajes conviene la primera?
+7. Con el applet de propiedades, comprueba qué ocurre al elevar al cuadrado $-5 < 2$ y explica por qué elevar al cuadrado no es una transformación válida en general.
+
+## Errores frecuentes
+
+1. No girar el sentido al multiplicar o dividir por un número negativo. De $-2x > 6$ sale $x < -3$, no $x > -3$.
+2. Girar el sentido al multiplicar por un número positivo, «por si acaso».
+3. Girar el sentido al sumar o restar. Sumar nunca cambia el sentido, sea el número positivo o negativo.
+4. Confundir el extremo abierto con el cerrado: dar $[3,+\infty)$ cuando la desigualdad es estricta.
+5. Escribir un corchete junto al infinito, como $[2, +\infty]$. El infinito nunca se incluye.
+6. Dar la solución como un número, «$x = 6$», en lugar de como conjunto.
+7. Multiplicar los dos miembros por una expresión con la incógnita sin conocer su signo.
+8. Al quitar denominadores, olvidar el paréntesis del numerador y cambiar solo el primer signo.
+9. Interpretar el resultado de un caso degenerado como un error y no dar la respuesta ($\mathbb{R}$ o $\varnothing$).
+10. En una doble desigualdad, operar solo en dos de los tres miembros.
+11. En un sistema, unir los conjuntos en lugar de intersecarlos.
+12. Escribir un intervalo con los extremos al revés, como $(5, 2)$.
+13. En un problema, olvidar que el contexto exige valores positivos o enteros, y dar como solución un conjunto sin sentido.
+
+## Qué debes saber hacer
+
+- Distinguir una ecuación de una inecuación y saber que la respuesta de la segunda es un conjunto.
+- Enunciar las propiedades de las desigualdades y **justificar** por qué el sentido gira al multiplicar por un número negativo.
+- Reconocer las transformaciones que no son válidas: invertir, elevar al cuadrado, multiplicar por una expresión de signo desconocido.
+- Escribir un conjunto de números de las tres formas equivalentes: desigualdad, intervalo y dibujo en la recta real, con los extremos correctos.
+- Resolver con orden una inecuación de primer grado con paréntesis y denominadores numéricos.
+- Comprobar una solución sustituyendo un valor de dentro y otro de fuera del conjunto.
+- Interpretar la inecuación gráficamente con la recta $y = ax + b$ y localizar la frontera en el punto de corte con el eje.
+- Reconocer y resolver los casos degenerados en los que la incógnita desaparece, dando $\mathbb{R}$ o $\varnothing$ según corresponda.
+- Resolver dobles desigualdades en cadena, con especial cuidado al dividir por números negativos.
+- Resolver sistemas de inecuaciones con una incógnita como intersección de conjuntos, apoyándote en la recta real.
+- Traducir a inecuaciones enunciados sobre tarifas, umbrales de rentabilidad, medias y porcentajes, y ajustar el resultado al dominio con sentido del problema.

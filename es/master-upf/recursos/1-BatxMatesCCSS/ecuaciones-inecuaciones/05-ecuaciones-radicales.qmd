@@ -1,0 +1,320 @@
+---
+title: "Tema 3.5 Ecuaciones radicales (irracionales)"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 05-ecuaciones-radicales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Ecuaciones con la incógnita bajo el signo radical, por qué elevar al cuadrado no es una transformación equivalente, condición de existencia del radicando y del signo del otro miembro, procedimiento de aislar y elevar, soluciones falsas, ecuaciones con dos radicales y radicales de índice superior, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, ecuaciones radicales, ecuaciones irracionales, soluciones falsas, radicales]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuando la incógnita se esconde bajo una raíz
+
+En el apartado anterior viste que meter la incógnita en un denominador obliga a controlar el dominio y a comprobar las soluciones. Al meterla **dentro de una raíz** ocurre algo parecido, pero por un motivo distinto y más sutil: no solo hay valores para los que la ecuación no tiene sentido, sino que el propio método de resolución **fabrica soluciones falsas de manera sistemática**.
+
+::: {.callout-note}
+## Definición de ecuación radical
+
+Una **ecuación radical** o **irracional** es una ecuación en la que la incógnita aparece **bajo el signo de un radical**. Ejemplos:
+$$
+\sqrt{x+7} = x+1, \qquad \sqrt{2x-3}+\sqrt{x+7} = 4, \qquad \sqrt[3]{x^2-1} = 2 .
+$$
+No es radical, en cambio, $x\sqrt{5} = 3$: ahí la raíz es solo un coeficiente numérico y la ecuación es de primer grado.
+:::
+
+La razón de fondo es que la función raíz cuadrada tiene dos peculiaridades que ninguna operación anterior tenía:
+
+- **No está definida para números negativos** (dentro de los reales).
+- **Nunca devuelve un valor negativo**: por convenio, $\sqrt{9} = 3$, no $-3$.
+
+Las dos peculiaridades se traducen en dos condiciones que hay que vigilar, y olvidar cualquiera de ellas conduce a respuestas incorrectas.
+
+## Las dos condiciones de existencia
+
+::: {.callout-important}
+## Condiciones para que $\sqrt{A(x)} = B(x)$ tenga sentido
+
+Para que una solución $x$ sea admisible hacen falta **dos** cosas:
+
+1. **Condición del radicando**: $A(x) \geq 0$. Si el radicando es negativo, la raíz cuadrada no existe en $\mathbb{R}$.
+2. **Condición del signo**: $B(x) \geq 0$. Como el miembro izquierdo es una raíz cuadrada, y estas nunca son negativas, el miembro derecho tampoco puede serlo.
+
+La segunda condición es la que más se olvida, y es exactamente la que separa las soluciones verdaderas de las falsas.
+:::
+
+**Ejemplo 1.** La ecuación $\sqrt{x-1} = -2$ **no tiene solución**, y se ve sin hacer ni una cuenta: el miembro izquierdo es una raíz cuadrada, luego vale $0$ o un número positivo, y jamás puede valer $-2$. Si a pesar de todo elevas al cuadrado, obtienes $x-1 = 4$, es decir, $x = 5$; al comprobar, $\sqrt{4} = 2 \neq -2$. La supuesta solución era falsa desde el principio.
+
+**Ejemplo 2.** ¿Para qué valores tiene sentido $\sqrt{2x-3}$? Hace falta $2x - 3 \geq 0$, es decir, $x \geq \dfrac{3}{2}$. Cualquier candidato menor que $1{,}5$ queda excluido de entrada.
+
+::: {.callout-tip}
+## El truco de mirar antes de calcular
+
+Antes de elevar nada, dedica diez segundos a preguntarte: ¿puede el segundo miembro ser negativo para algunos valores de $x$? ¿Hay valores que dejen el radicando negativo? Muchas veces esa mirada previa te ahorra media página de cuentas, o te avisa de que la ecuación no tiene solución.
+:::
+
+## Por qué elevar al cuadrado no es una transformación equivalente
+
+Aquí está el corazón del apartado. Recuerda qué significa que dos ecuaciones sean **equivalentes**: que tienen exactamente el mismo conjunto solución. Sumar lo mismo a los dos miembros o multiplicar por un número no nulo conservan la equivalencia. Elevar al cuadrado, **no**.
+
+::: {.callout-warning}
+## El cuadrado borra la información del signo
+
+La implicación
+$$
+a = b \;\Longrightarrow\; a^2 = b^2
+$$
+es siempre cierta. Pero la recíproca **es falsa**: de $a^2 = b^2$ solo se deduce $a = b$ **o** $a = -b$. El cuadrado de $3$ y el de $-3$ coinciden; al elevar, la información sobre el signo se pierde y ya no se puede recuperar.
+
+Traducido a nuestra ecuación: al pasar de $\sqrt{A} = B$ a $A = B^2$, la ecuación nueva recoge a la vez los casos $\sqrt{A} = B$ y $\sqrt{A} = -B$. Sus soluciones son las de la original **más**, posiblemente, las de la otra.
+:::
+
+Esto explica de dónde salen las soluciones falsas: no aparecen por un error de cálculo, aparecen porque el paso «elevo al cuadrado» **amplía** el conjunto solución.
+
+**Ejemplo 3.** Resuelve $\sqrt{x+7} = x+1$.
+
+Elevando al cuadrado: $x + 7 = (x+1)^2 = x^2 + 2x + 1$, de donde $x^2 + x - 6 = 0$ y las raíces son $x = 2$ y $x = -3$.
+
+Comprobación en la ecuación **original**:
+
+- $x = 2$: $\sqrt{9} = 3$ y $2+1 = 3$. Verdadera.
+- $x = -3$: $\sqrt{4} = 2$ pero $-3+1 = -2$. Falsa. Lo que $x=-3$ cumple es $\sqrt{x+7} = -(x+1)$, la **otra** ecuación que el cuadrado había mezclado con la nuestra.
+
+Solución: $S = \{2\}$.
+
+::: {.callout-tip}
+## Otra forma de verlo: la condición del signo lo anticipaba
+
+En el ejemplo 3, la condición $B(x)\geq 0$ dice $x + 1 \geq 0$, es decir, $x \geq -1$. El candidato $x=-3$ incumple esa condición y podría haberse descartado sin sustituir. Las dos vías —comprobar o exigir las condiciones— llevan al mismo sitio; comprobar es más seguro, exigir es más rápido.
+:::
+
+### Applet · Por qué elevar al cuadrado crea soluciones falsas {.unnumbered}
+
+Escribe el radicando $A(x)$ y el otro miembro $B(x)$ y compara las dos gráficas: en la primera, la curva de $\sqrt{A(x)}$ frente a la de $B(x)$; en la segunda, $A(x)$ frente a $B(x)^2$. La segunda gráfica tiene **más cortes** que la primera, y esos cortes de más son, exactamente, las soluciones falsas.
+
+::: {#panel-elevarCuadrado .applet-panel data-applet-eq="elevarCuadrado"}
+:::
+
+Prueba el escenario $\sqrt{x+7}=x+1$ y localiza en la segunda gráfica el punto rojo situado en $x=-3$: existe como corte de las parábolas, pero en la primera gráfica no hay corte allí, porque la curva azul está por encima de la verde. Prueba también $\sqrt{x-1}=-2$: la primera gráfica no tiene ningún corte, y aun así la segunda sí.
+
+## El procedimiento completo
+
+::: {.callout-note}
+## Método de resolución de una ecuación radical
+
+1. **Aísla el radical**: deja la raíz sola en un miembro y todo lo demás en el otro.
+2. **Eleva los dos miembros** a la potencia del índice (al cuadrado si es raíz cuadrada).
+3. **Resuelve** la ecuación polinómica que resulta.
+4. **Comprueba todas** las soluciones en la ecuación **original** y descarta las falsas.
+5. Escribe el conjunto solución.
+
+Si queda algún radical después del paso 2, se repite el ciclo aislar–elevar.
+:::
+
+El paso 1 es el que más se descuida, y es el que decide la dificultad del resto.
+
+::: {.callout-caution}
+## Elevar al cuadrado sin aislar es multiplicarse el trabajo
+
+$(\sqrt{A} + c)^2$ **no** vale $A + c^2$: vale $A + 2c\sqrt{A} + c^2$, y el radical sigue ahí, ahora acompañado de un factor. Si no aíslas primero, el paso «elevar» no elimina la raíz, solo la disfraza.
+:::
+
+**Ejemplo 4.** Resuelve $\sqrt{x+5} - x + 1 = 0$.
+
+**Paso 1. Aíslo el radical.** $\sqrt{x+5} = x - 1$.
+
+**Paso 2. Condiciones.** El radicando exige $x \geq -5$; el signo del otro miembro exige $x \geq 1$. Ya sé que cualquier solución cumplirá $x \geq 1$.
+
+**Paso 3. Elevo.** $x + 5 = (x-1)^2 = x^2 - 2x + 1$, luego $x^2 - 3x - 4 = 0$.
+
+**Paso 4. Resuelvo.** $x = \dfrac{3 \pm \sqrt{9+16}}{2} = \dfrac{3\pm 5}{2}$, es decir, $x = 4$ y $x = -1$.
+
+**Paso 5. Compruebo.** Con $x=4$: $\sqrt{9} = 3$ y $4-1 = 3$. Verdadera. Con $x=-1$: $\sqrt{4} = 2$ pero $-1-1 = -2$. Falsa (además incumplía $x\geq 1$).
+
+$$
+S = \{4\}.
+$$
+
+**Ejemplo 5.** Resuelve $\sqrt{x^2-x+1} + x = 3x + 1$.
+
+**Paso 1. Aíslo.** $\sqrt{x^2-x+1} = 2x+1$.
+
+**Paso 2. Condición del signo.** $2x+1 \geq 0 \iff x \geq -\dfrac{1}{2}$.
+
+**Paso 3. Elevo.** $x^2 - x + 1 = 4x^2 + 4x + 1$, de donde $0 = 3x^2 + 5x$, o sea, $x(3x+5) = 0$.
+
+**Paso 4. Raíces.** $x = 0$ y $x = -\dfrac{5}{3}$.
+
+**Paso 5. Compruebo.** Con $x=0$: $\sqrt{1} = 1$ y $2\cdot 0 + 1 = 1$. Verdadera. Con $x = -\dfrac{5}{3}$: el radicando vale $\dfrac{25}{9}+\dfrac{5}{3}+1 = \dfrac{49}{9}$, cuya raíz es $\dfrac{7}{3}$; pero el otro miembro vale $2\left(-\dfrac{5}{3}\right)+1 = -\dfrac{7}{3}$. Falsa: coinciden en valor absoluto pero no en signo, la huella típica de una solución espuria.
+
+$$
+S = \{0\}.
+$$
+
+Observa el detalle: el radicando de $-\dfrac{5}{3}$ **sí** era positivo. No falló la primera condición, falló la segunda. Es el motivo por el que no basta con mirar el radicando.
+
+### Applet · Resolutor con tabla de comprobación {.unnumbered}
+
+Introduce $A(x)$ y $B(x)$ de la ecuación $\sqrt{A(x)} = B(x)$ y el applet muestra el dominio, la elevación al cuadrado, la ecuación polinómica resultante y una tabla en la que cada candidato se somete a las dos condiciones: valor del radicando y signo del otro miembro.
+
+::: {#panel-radicalCheck .applet-panel data-applet-eq="radicalCheck"}
+:::
+
+Fíjate en los escenarios en los que **las dos** raíces sobreviven y en los que **ninguna** lo hace: la ecuación radical puede tener dos soluciones, una, o ninguna, y el número de raíces de la ecuación elevada no te dice cuál de los tres casos es.
+
+## Ecuaciones con dos radicales
+
+Cuando aparecen dos raíces, no hay ningún truco que las elimine de una vez: hay que elevar **dos veces**, con un paso de aislamiento entre medias.
+
+::: {.callout-note}
+## Estrategia con dos radicales
+
+Para $\sqrt{A} + \sqrt{C} = k$:
+
+1. Aísla **uno** de los radicales: $\sqrt{A} = k - \sqrt{C}$.
+2. Eleva al cuadrado: $A = k^2 - 2k\sqrt{C} + C$. Queda **un** radical.
+3. Aísla ese radical y vuelve a elevar.
+4. Resuelve, y comprueba en la ecuación original —ahora la comprobación es aún más necesaria, porque has elevado dos veces.
+
+Colocar los dos radicales en miembros distintos antes de empezar suele simplificar mucho las cuentas.
+:::
+
+**Ejemplo 6.** Resuelve $\sqrt{2x-3} + \sqrt{x+7} = 4$.
+
+**Condiciones de existencia.** $2x-3\geq 0$ da $x\geq \dfrac{3}{2}$; $x+7\geq 0$ da $x \geq -7$. Juntas: $x \geq \dfrac{3}{2}$.
+
+**Primera elevación.** Aislando: $\sqrt{2x-3} = 4 - \sqrt{x+7}$. Elevando:
+$$
+2x - 3 = 16 - 8\sqrt{x+7} + (x+7) = x + 23 - 8\sqrt{x+7}.
+$$
+
+**Aíslo el radical restante.**
+$$
+8\sqrt{x+7} = x + 23 - 2x + 3 = -x + 26 \;\Longrightarrow\; 8\sqrt{x+7} = 26 - x .
+$$
+
+**Segunda elevación.**
+$$
+64(x+7) = (26-x)^2 \;\Longrightarrow\; 64x + 448 = 676 - 52x + x^2,
+$$
+$$
+x^2 - 116x + 228 = 0 .
+$$
+
+**Resuelvo.**
+$$
+x = \dfrac{116 \pm \sqrt{13456 - 912}}{2} = \dfrac{116 \pm \sqrt{12544}}{2} = \dfrac{116 \pm 112}{2},
+$$
+de donde $x = 114$ y $x = 2$.
+
+**Compruebo en la original.**
+
+- $x = 2$: $\sqrt{1} + \sqrt{9} = 1 + 3 = 4$. Verdadera.
+- $x = 114$: $\sqrt{225} + \sqrt{121} = 15 + 11 = 26 \neq 4$. Falsa.
+
+$$
+S = \{2\}.
+$$
+
+Ese $26$ no es casual: es exactamente el valor del segundo miembro tras la segunda elevación. El candidato $114$ resuelve $\sqrt{2x-3}+\sqrt{x+7} = 26$, no la nuestra.
+
+### Applet · Ecuación con dos radicales {.unnumbered}
+
+Elige los coeficientes de $\sqrt{ax+b} + \sqrt{cx+d} = k$ y sigue las dos elevaciones. El applet marca en qué momento aparece el término con producto de radicales, cómo se vuelve a aislar y qué candidatos sobreviven a la comprobación final.
+
+::: {#panel-radicalDoble .applet-panel data-applet-eq="radicalDoble"}
+:::
+
+Prueba los casos degenerados: con $k$ negativo no hay solución posible (una suma de raíces no puede ser negativa) y con $k=0$ solo puede haber solución si **las dos** raíces son cero a la vez. Reconocer esos casos de un vistazo es tan valioso como saber hacer las cuentas.
+
+## Radicales de índice superior
+
+Con índices distintos de $2$ el método es el mismo, pero las condiciones cambian, y conviene distinguir con cuidado entre índice par e impar.
+
+::: {.callout-important}
+## Índice par frente a índice impar
+
+- **Índice par** ($\sqrt{\ }$, $\sqrt[4]{\ }$, $\sqrt[6]{\ }$…): el radicando debe ser $\geq 0$ y el resultado es siempre $\geq 0$. Rigen las dos condiciones de siempre y hay riesgo de soluciones falsas.
+- **Índice impar** ($\sqrt[3]{\ }$, $\sqrt[5]{\ }$…): está definido para **cualquier** número real y conserva el signo, pues $\sqrt[3]{-8} = -2$. Elevar al cubo **sí** es una transformación equivalente: no aparecen soluciones falsas por ese paso.
+:::
+
+**Ejemplo 7.** Resuelve $\sqrt[3]{x^2 - 1} = 2$.
+
+Elevando al cubo: $x^2 - 1 = 8$, luego $x^2 = 9$ y $x = \pm 3$. Al ser el índice impar, no hay condición de radicando ni de signo, y las dos soluciones son válidas: comprobando, $\sqrt[3]{8} = 2$ en ambos casos.
+$$
+S = \{-3,\, 3\}.
+$$
+
+**Ejemplo 8.** Resuelve $\sqrt[4]{x+5} = -1$.
+
+Sin cuentas: una raíz de índice par nunca es negativa, luego $S = \varnothing$. Si elevaras a la cuarta obtendrías $x + 5 = 1$, es decir, $x = -4$, un candidato que al comprobar da $\sqrt[4]{1} = 1 \neq -1$.
+
+**Ejemplo 9.** Resuelve $\sqrt[3]{x+1} = x + 1$.
+
+Llamando $t = x+1$ y elevando al cubo: $t = t^3$, es decir, $t(t^2-1)=0$, con soluciones $t = 0$, $t = 1$ y $t = -1$. Deshaciendo, $x = -1$, $x = 0$ y $x = -2$. Las tres son válidas —de nuevo, índice impar—, y las tres se comprueban directamente.
+$$
+S = \{-2,\,-1,\,0\}.
+$$
+
+## Un resumen que conviene tener claro
+
+| Situación | ¿Qué hay que exigir? | ¿Puede haber soluciones falsas? |
+|---|---|---|
+| $\sqrt{A} = B$ | $A \geq 0$ y $B \geq 0$ | Sí, siempre que se eleva |
+| $\sqrt{A} = \sqrt{C}$ | $A \geq 0$ (basta, pues $A = C$) | Sí, si el paso pierde restricciones |
+| $\sqrt{A} + \sqrt{C} = k$ | $A\geq 0$, $C \geq 0$, $k \geq 0$ | Sí, y con más motivo: dos elevaciones |
+| $\sqrt[3]{A} = B$ | nada | No: elevar al cubo es equivalente |
+| $\sqrt[4]{A} = B$ | $A \geq 0$ y $B \geq 0$ | Sí |
+
+::: {.callout-tip}
+## Una regla de oro para no equivocarse nunca
+
+Comprueba **siempre** en la ecuación original, aunque creas que has vigilado todas las condiciones. La comprobación cuesta un minuto y es la única verificación que no depende de que hayas razonado bien las restricciones.
+:::
+
+## Practica con los entrenadores
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para dominar el cálculo con radicales que estas ecuaciones exigen —simplificar, extraer factores, racionalizar denominadores y operar con índices distintos—, con corrección automática, pistas graduadas y modo examen, usa el [Entrenador de radicales](../../entrenador_radicales.html).
+:::
+
+## Errores frecuentes
+
+1. **Elevar al cuadrado sin aislar el radical.** $(\sqrt{A}+c)^2 = A + 2c\sqrt{A} + c^2$: la raíz no desaparece, y encima el problema se complica.
+2. **Creer que $(a+b)^2 = a^2 + b^2$.** Falta el doble producto. Es el error que arruina casi todas las ecuaciones con dos radicales.
+3. **No comprobar las soluciones.** Elevar al cuadrado amplía el conjunto solución; sin comprobación no hay forma de saber cuáles valen.
+4. **Vigilar solo el radicando y olvidar el signo del otro miembro.** En el ejemplo 5 el radicando era positivo y la solución era falsa igualmente.
+5. **Dar por buena una ecuación como $\sqrt{x-1} = -2$.** Una raíz de índice par nunca es negativa: la respuesta es $S=\varnothing$ sin necesidad de calcular.
+6. **Aplicar a los índices impares las restricciones de los pares.** $\sqrt[3]{-8} = -2$ existe perfectamente; exigir ahí radicando positivo hace perder soluciones válidas.
+7. **Escribir $\sqrt{a^2} = a$.** Lo correcto es $\sqrt{a^2} = |a|$. Esa igualdad mal recordada es, en el fondo, la misma que genera las soluciones falsas.
+8. **Confundir $\sqrt{A+C}$ con $\sqrt{A}+\sqrt{C}$.** La raíz no se reparte sobre una suma; comprobarlo con $\sqrt{9+16}=5$ frente a $3+4=7$ cura el error para siempre.
+9. **Parar tras la primera elevación cuando quedan dos radicales.** Hay que aislar de nuevo y volver a elevar; parar antes deja la ecuación sin resolver.
+10. **Descartar candidatos «por si acaso».** Descartar sin comprobar es tan malo como aceptar sin comprobar: se pierden soluciones auténticas.
+
+## Qué debes saber hacer
+
+- Sé reconocer una ecuación radical y distinguirla de una ecuación en la que la raíz es solo un coeficiente numérico.
+- Sé escribir las condiciones de existencia: radicando no negativo y, en las de índice par, segundo miembro no negativo.
+- Sé explicar por qué elevar al cuadrado no conserva la equivalencia, apoyándome en que $a^2=b^2$ solo implica $a=\pm b$.
+- Sé aislar el radical antes de elevar y justificar por qué ese orden es imprescindible.
+- Sé resolver una ecuación del tipo $\sqrt{A(x)}=B(x)$ completa, con comprobación y descarte razonado de las soluciones falsas.
+- Sé resolver ecuaciones con dos radicales aplicando dos elevaciones sucesivas con un aislamiento intermedio.
+- Sé desarrollar correctamente $(k-\sqrt{C})^2$ sin olvidar el doble producto.
+- Sé anticipar los casos sin solución: raíz igual a un número negativo, radicando siempre negativo o suma de raíces igual a un valor negativo.
+- Sé tratar radicales de índice superior distinguiendo el comportamiento de los índices pares y de los impares.
+- Sé justificar por qué elevar al cubo sí es una transformación equivalente y no produce soluciones falsas.
+- Sé usar un cambio de variable cuando la ecuación lo permite, como en $\sqrt[3]{x+1}=x+1$.
+- Sé escribir el conjunto solución final, incluido el caso $S=\varnothing$, y explicar por qué cada candidato descartado no valía.

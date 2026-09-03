@@ -1,0 +1,393 @@
+---
+title: "Tema 3.6 Ecuaciones polinómicas y factorización"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 06-factorizacion-ecuaciones
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Principio del producto nulo, factor común e identidades notables, teorema del resto y teorema del factor, regla de Ruffini y búsqueda de raíces racionales entre los divisores del término independiente, multiplicidad de una raíz, factores cuadráticos irreducibles y estrategia general para resolver ecuaciones polinómicas de grado alto, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, factorización, Ruffini, teorema del resto, raíces racionales, producto nulo]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Del grado 2 al grado n
+
+Para las ecuaciones de primer y segundo grado dispones de fórmulas cerradas: despejas, o aplicas la fórmula del discriminante, y terminas. En cuanto el grado sube a $3$, $4$ o más, ese camino se corta. Existe una fórmula para el grado $3$ y otra para el $4$, pero son monstruosas y no se usan; y a partir del grado $5$ **no existe** ninguna fórmula general con radicales, cosa que no es una laguna del conocimiento sino un teorema demostrado.
+
+Entonces, ¿cómo se resuelve $x^4 - 5x^2 + 4 = 0$ o $2x^3 - 3x^2 - 3x + 2 = 0$? Con una idea completamente distinta: **no se despeja la incógnita, se descompone el polinomio en factores** y se aprovecha una propiedad elemental de los números.
+
+::: {.callout-note}
+## Definición de ecuación polinómica
+
+Una **ecuación polinómica** de grado $n$ es una ecuación que se puede escribir en la forma
+$$
+a_n x^n + a_{n-1}x^{n-1} + \cdots + a_1 x + a_0 = 0, \qquad a_n \neq 0 .
+$$
+Sus soluciones se llaman **raíces** del polinomio $P(x) = a_n x^n + \cdots + a_0$.
+:::
+
+Lo primero, siempre: **pasar todo a un miembro** dejando $0$ en el otro. Sin esa forma, nada de lo que viene funciona.
+
+## El principio del producto nulo
+
+::: {.callout-important}
+## Principio del producto nulo
+
+Un producto de números reales es cero **si y solo si** alguno de los factores es cero:
+$$
+A \cdot B = 0 \iff A = 0 \ \text{ o } \ B = 0 .
+$$
+En consecuencia, si consigues escribir
+$$
+P(x) = a_n (x - r_1)(x - r_2)\cdots(x - r_k)\cdot Q(x) = 0,
+$$
+las soluciones son $r_1, r_2, \ldots, r_k$ junto con las raíces de $Q(x)$.
+:::
+
+Esta propiedad es el motor de todo el apartado, y merece la pena entender por qué es tan especial: **no funciona con ningún otro número**. Que un producto valga $12$ no dice nada sobre los factores; que valga $0$ lo dice todo. Los números reales no tienen «divisores de cero», y esa es precisamente la propiedad que convierte la factorización en un método de resolución.
+
+**Ejemplo 1.** Resuelve $(x-3)(2x+5)(x^2+1) = 0$.
+
+Cada factor por separado:
+$$
+x - 3 = 0 \Rightarrow x = 3; \qquad 2x+5 = 0 \Rightarrow x = -\dfrac{5}{2}; \qquad x^2 + 1 = 0 \Rightarrow \text{sin solución real}.
+$$
+$$
+S = \left\{-\dfrac{5}{2},\; 3\right\}.
+$$
+
+::: {.callout-caution}
+## El producto nulo exige un producto y exige el cero
+
+De $(x-3)(x+1) = 5$ **no** se deduce $x-3=5$ o $x+1=5$. El razonamiento solo vale con el $0$ al otro lado. Para resolver esa ecuación hay que desarrollar, pasar el $5$ y factorizar de nuevo.
+:::
+
+### Applet · Principio del producto nulo, factor a factor {.unnumbered}
+
+Escribe un polinomio, mira su factorización y abre los factores uno a uno con el deslizador: el applet resuelve cada factor por separado y va acumulando las soluciones. Los factores cuadráticos sin raíces reales se marcan aparte.
+
+::: {#panel-productoNulo .applet-panel data-applet-eq="productoNulo"}
+:::
+
+Prueba con polinomios que tengan un factor irreducible: comprobarás que ese factor no aporta ninguna solución real, pero sigue formando parte de la factorización. Factorizar y resolver no son lo mismo.
+
+## Primeras herramientas: factor común e identidades notables
+
+Antes de sacar la artillería pesada conviene mirar si el polinomio se deja factorizar «a ojo».
+
+### Sacar factor común
+
+::: {.callout-note}
+## Factor común
+
+Si todos los términos comparten un factor, se extrae:
+$$
+a\,b + a\,c = a\,(b+c).
+$$
+El factor común puede ser un número, una potencia de la incógnita o un paréntesis entero.
+:::
+
+**Ejemplo 2.** Resuelve $x^3 - 4x = 0$.
+$$
+x(x^2 - 4) = 0 \;\Longrightarrow\; x\,(x-2)(x+2) = 0 \;\Longrightarrow\; S = \{-2,\,0,\,2\}.
+$$
+
+::: {.callout-warning}
+## Nunca dividas los dos miembros por una expresión con incógnita
+
+De $x^3 = 4x$ es tentador dividir entre $x$ y escribir $x^2 = 4$. Al hacerlo pierdes la solución $x = 0$, porque estás dividiendo por cero justo en el caso que te interesa. Lo correcto es pasar todo a un miembro y **factorizar**: la solución perdida reaparece como el factor $x$.
+:::
+
+**Ejemplo 3.** Resuelve $x^2(x-1) - 3(x-1) = 0$. El paréntesis $(x-1)$ es factor común:
+$$
+(x-1)(x^2-3) = 0 \;\Longrightarrow\; x = 1, \quad x = \pm\sqrt{3}. \qquad S = \{1,\, \sqrt{3},\, -\sqrt{3}\}.
+$$
+
+### Identidades notables
+
+::: {.callout-note}
+## Las tres identidades que hay que reconocer al vuelo
+
+$$
+a^2 + 2ab + b^2 = (a+b)^2, \qquad a^2 - 2ab + b^2 = (a-b)^2, \qquad a^2 - b^2 = (a+b)(a-b).
+$$
+La tercera, la **diferencia de cuadrados**, es la más rentable de todas: convierte un binomio en un producto sin ninguna cuenta.
+:::
+
+**Ejemplo 4.** Resuelve $x^4 - 16 = 0$. Es diferencia de cuadrados dos veces seguidas:
+$$
+x^4 - 16 = (x^2-4)(x^2+4) = (x-2)(x+2)(x^2+4).
+$$
+El factor $x^2+4$ no tiene raíces reales, así que $S = \{-2,\,2\}$.
+
+Conviene añadir dos identidades más, útiles con los cubos:
+$$
+a^3 - b^3 = (a-b)(a^2+ab+b^2), \qquad a^3 + b^3 = (a+b)(a^2-ab+b^2).
+$$
+
+**Ejemplo 5.** Resuelve $x^3 - 8 = 0$. Como $8 = 2^3$:
+$$
+(x-2)(x^2+2x+4) = 0 .
+$$
+El trinomio tiene discriminante $4 - 16 = -12 < 0$, luego $S = \{2\}$. La ecuación de grado $3$ tiene una única raíz real, aunque el grado sugiriera tres.
+
+## Teorema del resto y teorema del factor
+
+Cuando ni el factor común ni las identidades sirven, hace falta un método sistemático. Todo se apoya en dos resultados hermanos.
+
+::: {.callout-note}
+## Teorema del resto
+
+El resto de dividir el polinomio $P(x)$ entre $(x - a)$ es exactamente $P(a)$:
+$$
+P(x) = (x-a)\,C(x) + r \quad \text{con} \quad r = P(a).
+$$
+:::
+
+La demostración es de una línea: como el divisor tiene grado $1$, el resto es una constante $r$; sustituyendo $x = a$ en la identidad de la división, el término $(a-a)C(a)$ se anula y queda $P(a) = r$.
+
+::: {.callout-important}
+## Teorema del factor
+
+$$
+(x-a) \ \text{es factor de} \ P(x) \iff P(a) = 0 \iff a \ \text{es raíz de} \ P .
+$$
+:::
+
+Este es el puente entre las dos mitades del problema. **Buscar raíces** y **buscar factores** son la misma tarea: cada raíz que encuentres te regala un factor, y cada factor que extraigas baja el grado en una unidad.
+
+**Ejemplo 6.** ¿Es $x-2$ factor de $P(x) = x^3 - 3x^2 + 4$? Calculo $P(2) = 8 - 12 + 4 = 0$. Sí lo es.
+
+**Ejemplo 7.** Halla $k$ para que $x+1$ sea factor de $P(x)=x^3 + kx^2 - 5x + 2$. El teorema del factor exige $P(-1) = 0$:
+$$
+-1 + k + 5 + 2 = 0 \;\Longrightarrow\; k = -6 .
+$$
+
+## La regla de Ruffini
+
+Comprobar si $P(a)=0$ y, en caso afirmativo, dividir entre $(x-a)$ son dos operaciones que la **regla de Ruffini** realiza a la vez y con muy pocas cuentas.
+
+::: {.callout-note}
+## Cómo se aplica la regla de Ruffini
+
+Para dividir $P(x)$ entre $(x-a)$:
+
+1. Escribe los **coeficientes ordenados** de mayor a menor grado, **poniendo ceros** en los grados que falten.
+2. Coloca $a$ a la izquierda.
+3. Baja el primer coeficiente tal cual.
+4. Multiplícalo por $a$, súmalo al coeficiente siguiente y repite hasta el final.
+5. Los números obtenidos, salvo el último, son los coeficientes del **cociente** (de grado una unidad menor). El último es el **resto**, que por el teorema del resto vale $P(a)$.
+:::
+
+::: {.callout-caution}
+## Los ceros de los grados que faltan
+
+En $x^4 - 1$ los coeficientes son $1,\ 0,\ 0,\ 0,\ -1$, no $1,\ -1$. Olvidar un cero desplaza toda la cadena de sumas y produce un resultado sin ningún sentido. Es, con diferencia, el error más común en Ruffini.
+:::
+
+**Ejemplo 8.** Divide $P(x) = 2x^3 - 3x^2 - 3x + 2$ entre $x - 2$.
+
+Coeficientes: $2,\ -3,\ -3,\ 2$ y $a = 2$. Bajo el $2$; $2\cdot 2 = 4$, y $-3 + 4 = 1$; $1\cdot 2 = 2$, y $-3+2 = -1$; $-1\cdot 2 = -2$, y $2 + (-2) = 0$. El resto es $0$, luego $x=2$ es raíz, y el cociente es $2x^2 + x - 1$. Por tanto
+$$
+2x^3 - 3x^2 - 3x + 2 = (x-2)(2x^2+x-1).
+$$
+
+### Applet · Ruffini paso a paso y teorema del resto {.unnumbered}
+
+Introduce el polinomio y el valor $a$, y sigue la construcción de la tabla de Ruffini fila a fila. El applet indica si el resto es cero —y por tanto si $a$ es raíz—, escribe el cociente y comprueba el teorema del resto calculando $P(a)$ por sustitución directa.
+
+::: {#panel-ruffiniLab .applet-panel data-applet-eq="ruffiniLab"}
+:::
+
+Prueba primero con un valor que **no** sea raíz y comprueba que el resto coincide exactamente con $P(a)$: eso es el teorema del resto en acción. Después usa una raíz y observa cómo baja el grado del cociente.
+
+## ¿Por dónde empezar a probar? Las raíces racionales
+
+Ruffini sirve para comprobar un candidato, pero ¿de dónde salen los candidatos? No hace falta probar al azar: hay un teorema que reduce la búsqueda a una lista finita y normalmente corta.
+
+::: {.callout-important}
+## Teorema de las raíces racionales
+
+Sea $P(x)=a_nx^n + \cdots + a_1x + a_0$ con **coeficientes enteros**. Si la fracción irreducible $\dfrac{p}{q}$ es raíz de $P$, entonces:
+
+- $p$ es divisor del **término independiente** $a_0$,
+- $q$ es divisor del **coeficiente principal** $a_n$.
+
+En particular, si el polinomio es **mónico** ($a_n = 1$), todas sus raíces racionales son **enteras y divisoras de $a_0$**.
+:::
+
+**Ejemplo 9.** Candidatos de $P(x) = x^3 - 6x^2 + 11x - 6$. Es mónico, así que basta con los divisores de $6$: $\pm 1, \pm 2, \pm 3, \pm 6$. Probando: $P(1) = 1-6+11-6 = 0$. Ya tenemos una raíz, y con Ruffini el cociente es $x^2-5x+6$, cuyas raíces son $2$ y $3$. La factorización es $(x-1)(x-2)(x-3)$ y $S = \{1,2,3\}$.
+
+**Ejemplo 10.** Candidatos de $P(x) = 2x^3 - 3x^2 - 3x + 2$. Divisores de $2$ (término independiente): $\pm1, \pm2$. Divisores de $2$ (coeficiente principal): $\pm1,\pm2$. La lista de candidatos $p/q$ es $\pm1$, $\pm2$, $\pm\dfrac{1}{2}$. Del ejemplo 8 sabemos que $x=2$ es raíz; el cociente $2x^2+x-1$ se factoriza como $(2x-1)(x+1)$, con raíces $\dfrac{1}{2}$ y $-1$, ambas en la lista. Así:
+$$
+2x^3-3x^2-3x+2 = 2(x-2)\left(x-\dfrac{1}{2}\right)(x+1), \qquad S = \left\{-1,\, \dfrac{1}{2},\, 2\right\}.
+$$
+
+::: {.callout-tip}
+## Empieza siempre por los candidatos pequeños
+
+Prueba en este orden: $1$, $-1$, $2$, $-2$… Los libros de texto y los exámenes usan raíces enteras pequeñas en la inmensa mayoría de los casos, y $P(1)$ se calcula mentalmente: es la **suma de todos los coeficientes**. Si esa suma da cero, $x=1$ es raíz y te has ahorrado toda la tabla.
+:::
+
+::: {.callout-warning}
+## El teorema no garantiza que haya raíces racionales
+
+$x^2 - 2$ tiene raíces $\pm\sqrt{2}$, que no son racionales; $x^2+1$ no tiene ninguna raíz real. Si agotas la lista de candidatos sin éxito, no es que te hayas equivocado: es que ese polinomio no tiene raíces racionales, y hay que buscar otro camino.
+:::
+
+### Applet · Buscador de raíces racionales por divisores {.unnumbered}
+
+El applet toma tu polinomio, extrae el término independiente y el coeficiente principal, lista todos los divisores, construye la tabla completa de candidatos $p/q$ y evalúa $P$ en cada uno para señalar cuáles son raíces de verdad.
+
+::: {#panel-raicesCandidatas .applet-panel data-applet-eq="raicesCandidatas"}
+:::
+
+Compara un polinomio mónico con otro cuyo coeficiente principal sea $6$: verás cómo la lista de candidatos se dispara al aparecer los denominadores. Ese crecimiento explica por qué conviene sacar factor común numérico siempre que se pueda.
+
+## Multiplicidad de una raíz
+
+::: {.callout-note}
+## Definición de multiplicidad
+
+Una raíz $a$ de $P(x)$ tiene **multiplicidad $m$** si $(x-a)^m$ divide a $P(x)$ pero $(x-a)^{m+1}$ no. Si $m=1$ la raíz es **simple**; si $m=2$, **doble**; si $m=3$, **triple**.
+
+En la práctica: al aplicar Ruffini con el valor $a$, si el resto vuelve a salir $0$ al repetir con el **mismo** $a$, la raíz es múltiple. Hay que insistir hasta que el resto deje de anularse.
+:::
+
+**Ejemplo 11.** Factoriza $P(x) = x^4 - 2x^3 + 2x - 1$.
+
+Como la suma de coeficientes es $1-2+0+2-1 = 0$, $x=1$ es raíz. Ruffini con $1$ da el cociente $x^3 - x^2 - x + 1$. La suma de sus coeficientes vuelve a ser $0$, así que $x=1$ es raíz otra vez; Ruffini de nuevo da $x^2 - 1$… y $x=1$ vuelve a ser raíz. Tras el tercer paso queda $x+1$. Por tanto:
+$$
+P(x) = (x-1)^3 (x+1), \qquad S = \{1,\,-1\},
+$$
+con $x=1$ de multiplicidad $3$ y $x=-1$ simple. Fíjate en la distinción: el conjunto solución tiene **dos** elementos, aunque el polinomio sea de grado $4$ y tenga «cuatro raíces contando multiplicidades».
+
+::: {.callout-important}
+## Contar raíces con multiplicidad
+
+Un polinomio de grado $n$ tiene **a lo sumo $n$ raíces reales**, y exactamente $n$ si se cuentan con su multiplicidad y se admiten las complejas (teorema fundamental del álgebra). Geométricamente, una raíz de multiplicidad par hace que la gráfica **toque** el eje horizontal sin cruzarlo; una de multiplicidad impar lo **atraviesa**.
+:::
+
+## Factores cuadráticos irreducibles
+
+No todo polinomio se descompone en factores de primer grado con coeficientes reales.
+
+::: {.callout-note}
+## Polinomio irreducible en $\mathbb{R}[x]$
+
+Un polinomio de segundo grado $ax^2+bx+c$ es **irreducible sobre $\mathbb{R}$** cuando su discriminante $\Delta = b^2-4ac$ es negativo: no tiene raíces reales y no se puede escribir como producto de dos factores de primer grado con coeficientes reales.
+
+Se demuestra que **todo** polinomio con coeficientes reales se descompone en producto de factores de grado $1$ y de factores de grado $2$ irreducibles. No hacen falta piezas de grado mayor.
+:::
+
+**Ejemplo 12.** Factoriza y resuelve $x^4 + x^3 - x - 1 = 0$.
+
+La suma de coeficientes es $0$, luego $x=1$ es raíz. Ruffini da el cociente $x^3+2x^2+2x+1$. Ahora $x=-1$ es raíz de este ($-1+2-2+1=0$), y Ruffini da $x^2+x+1$, cuyo discriminante es $1-4 = -3 < 0$: irreducible. Resultado:
+$$
+x^4+x^3-x-1 = (x-1)(x+1)(x^2+x+1), \qquad S = \{-1,\, 1\}.
+$$
+
+## Estrategia general para una ecuación polinómica
+
+::: {.callout-important}
+## El guion completo
+
+1. **Iguala a cero** y ordena el polinomio de mayor a menor grado.
+2. **Saca factor común**, incluido el numérico y las potencias de $x$. Si sale $x^k$, ya tienes la raíz $x=0$ con multiplicidad $k$.
+3. **Busca identidades notables**: diferencia de cuadrados, cuadrados perfectos, suma o diferencia de cubos.
+4. Si el grado es $2$, aplica la fórmula. Si es $4$ y solo hay exponentes pares, usa el cambio $t=x^2$ (bicuadrada).
+5. Si sigue habiendo grado alto, lista los **candidatos racionales** con el teorema de los divisores y aplica **Ruffini** hasta bajar a grado $2$.
+6. **Insiste con la misma raíz** para detectar multiplicidades.
+7. Resuelve el factor de grado $2$ final y **descarta** los factores irreducibles.
+8. **Escribe la factorización completa** y el conjunto solución $S$, indicando las multiplicidades.
+:::
+
+**Ejemplo 13 (completo).** Resuelve $2x^5 - 2x^4 - 16x^3 + 16x^2 + 32x - 32 = 0$.
+
+**Factor común numérico.** Todos los coeficientes son pares: $2(x^5 - x^4 - 8x^3 + 8x^2 + 16x - 16) = 0$. El $2$ no aporta soluciones, así que trabajo con el paréntesis.
+
+**Candidatos.** Es mónico y el término independiente es $-16$: candidatos $\pm1,\pm2,\pm4,\pm8,\pm16$.
+
+**Ruffini con $x=1$.** La suma de coeficientes es $1-1-8+8+16-16=0$: es raíz. Cociente: $x^4 - 8x^2 + 16$.
+
+**Reconozco una identidad.** $x^4-8x^2+16 = (x^2-4)^2 = \big((x-2)(x+2)\big)^2 = (x-2)^2(x+2)^2$.
+
+**Factorización completa.**
+$$
+2(x-1)(x-2)^2(x+2)^2 = 0 .
+$$
+
+**Soluciones.** $S = \{-2,\,1,\,2\}$, con $x=1$ simple y $x=\pm 2$ dobles. Grado $5$, tres soluciones distintas, cinco contando multiplicidades: $1+2+2 = 5$. Todo cuadra.
+
+### Applet · Factorización completa y conjunto solución {.unnumbered}
+
+Escribe un polinomio de cualquier grado y el applet lo descompone paso a paso: factor común, raíces racionales por Ruffini, multiplicidades, factores cuadráticos irreducibles y verificación de que el producto reconstruye el polinomio de partida. Al final muestra el conjunto solución.
+
+::: {#panel-factorizaTotal .applet-panel data-applet-eq="factorizaTotal"}
+:::
+
+Presta atención al paso de verificación: multiplicar de nuevo los factores y comprobar que sale el polinomio original es la única forma segura de saber que no has perdido nada por el camino. Acostúmbrate a hacerlo también a mano.
+
+## Un poco de historia: por qué no hay fórmula para el grado 5
+
+La búsqueda de fórmulas para resolver ecuaciones ocupó a los matemáticos durante milenios y produjo uno de los episodios más novelescos de la historia de la ciencia.
+
+- La fórmula del **grado 2** era conocida, en formas geométricas o verbales, por babilonios, griegos e indios; su versión algebraica moderna procede del álgebra árabe medieval.
+- El **grado 3** se resistió hasta la Italia del siglo XVI. **Scipione del Ferro** halló un método para un caso particular y lo mantuvo en secreto; **Niccolò Fontana, apodado Tartaglia**, lo redescubrió por su cuenta. **Gerolamo Cardano** consiguió que Tartaglia se lo comunicara bajo juramento de no publicarlo y, al descubrir después el trabajo previo de del Ferro, se consideró liberado del juramento y lo publicó en su *Ars Magna* (1545). La disputa entre ambos fue larga y agria; la fórmula todavía se conoce como **fórmula de Cardano**.
+- El **grado 4** lo resolvió **Ludovico Ferrari**, discípulo de Cardano, reduciéndolo a una cúbica auxiliar. También apareció en el *Ars Magna*.
+- Y ahí se detuvo todo durante casi tres siglos. Nadie encontraba la fórmula del **grado 5**. En 1824 el noruego **Niels Henrik Abel** demostró que la búsqueda era imposible: no existe ninguna fórmula general con radicales para el grado 5 ni superiores. Poco después, el francés **Évariste Galois** explicó *por qué*, creando en el proceso la teoría de grupos y una de las ramas más fértiles del álgebra moderna.
+
+::: {.callout-tip}
+## Qué te dice esto sobre el método que estás aprendiendo
+
+Que la factorización no es un truco de segunda categoría a falta de fórmula: para el grado 5 en adelante **es lo único que hay**, junto con los métodos numéricos aproximados. Los ejercicios se eligen con raíces racionales precisamente para que Ruffini funcione; en un problema real, lo habitual es tener que recurrir al ordenador.
+:::
+
+Merece la pena añadir que Abel murió a los 26 años y Galois a los 20, en un duelo. Sus trabajos, ignorados en vida, son hoy la base del álgebra que se estudia en cualquier universidad.
+
+## Practica con los entrenadores
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar la descomposición de polinomios, la regla de Ruffini, el cálculo del máximo común divisor y del mínimo común múltiplo de polinomios, con corrección automática, pistas graduadas, resolución paso a paso y repaso de fallos, usa el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html).
+:::
+
+## Errores frecuentes
+
+1. **Aplicar el producto nulo sin tener un cero.** De $(x-1)(x+2)=4$ no se sigue nada sobre los factores: primero hay que desarrollar, igualar a cero y volver a factorizar.
+2. **Dividir los dos miembros por $x$.** En $x^3 = 4x$ eso hace perder la solución $x=0$. Hay que factorizar, no dividir.
+3. **Olvidar los coeficientes cero en Ruffini.** En $x^4-1$ los coeficientes son $1,0,0,0,-1$; saltarse los ceros invalida toda la tabla.
+4. **Probar candidatos fuera de la lista.** Los candidatos racionales son cocientes de un divisor del término independiente entre un divisor del coeficiente principal; probar $x=5$ en un polinomio con término independiente $6$ es perder el tiempo.
+5. **Detenerse en la primera raíz.** Hay que seguir hasta llegar a grado $2$, y repetir con la misma raíz por si es múltiple.
+6. **Confundir «raíz» con «factor».** La raíz es $a$; el factor es $(x-a)$. Escribir el factor como $(x+a)$ cuando la raíz es positiva es un cambio de signo que estropea la factorización.
+7. **Dar como solución las raíces de un factor irreducible.** Si el discriminante es negativo, ese factor no aporta ninguna solución real, por más que forme parte de la descomposición.
+8. **Contar mal las soluciones.** Un polinomio de grado $4$ puede tener menos de cuatro soluciones distintas: las multiplicidades y los factores irreducibles reducen la cuenta.
+9. **Olvidar el factor común numérico al escribir la factorización.** $2x^2-8$ es $2(x-2)(x+2)$, no $(x-2)(x+2)$; la ecuación tiene las mismas soluciones, pero la factorización es incorrecta.
+10. **No verificar la factorización.** Multiplicar los factores y comprobar que se recupera el polinomio original detecta casi cualquier error de Ruffini en unos segundos.
+
+## Qué debes saber hacer
+
+- Sé enunciar el principio del producto nulo y explicar por qué solo funciona con el cero.
+- Sé pasar todos los términos a un miembro y ordenar el polinomio antes de empezar a factorizar.
+- Sé sacar factor común, incluidos el factor numérico y las potencias de la incógnita, e identificar la raíz $x=0$ y su multiplicidad.
+- Sé reconocer y aplicar las identidades notables, en especial la diferencia de cuadrados y la suma y diferencia de cubos.
+- Sé enunciar y usar el teorema del resto para calcular restos sin hacer la división.
+- Sé enunciar el teorema del factor y explicar por qué buscar raíces y buscar factores son la misma tarea.
+- Sé aplicar la regla de Ruffini con soltura, incluyendo los ceros de los grados que faltan.
+- Sé listar los candidatos a raíz racional a partir de los divisores del término independiente y del coeficiente principal.
+- Sé detectar la multiplicidad de una raíz repitiendo Ruffini con el mismo valor.
+- Sé identificar un factor cuadrático irreducible por su discriminante y excluirlo del conjunto solución.
+- Sé aplicar la estrategia general completa a una ecuación polinómica de grado alto y escribir su factorización y su conjunto solución.
+- Sé verificar una factorización multiplicando de nuevo los factores.
+- Sé explicar, en términos generales, por qué existen fórmulas hasta el grado 4 y no las hay a partir del grado 5, citando a Cardano, Tartaglia, Ferrari, Abel y Galois.

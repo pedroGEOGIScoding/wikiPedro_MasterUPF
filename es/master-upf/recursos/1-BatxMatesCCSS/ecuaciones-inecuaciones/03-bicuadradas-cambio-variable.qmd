@@ -1,0 +1,299 @@
+---
+title: "Tema 3.3 Ecuaciones bicuadradas y cambio de variable"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 03-bicuadradas-cambio-variable
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La técnica del cambio de variable como idea general, ecuaciones bicuadradas ax⁴+bx²+c=0 con el análisis del número de raíces reales según el signo de las soluciones auxiliares, ecuaciones bipotenciales ax^2n+bx^n+c=0 con la distinción entre exponentes pares e impares, y otros cambios de variable útiles con radicales, exponenciales y expresiones polinómicas repetidas, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, bicuadradas, cambio de variable]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La idea del cambio de variable
+
+Sabes resolver ecuaciones de primer y de segundo grado. A partir del tercer grado no existe un método elemental universal, así que la estrategia matemática habitual es otra: **reducir el problema nuevo a uno ya resuelto**. El cambio de variable es la herramienta que hace justo eso.
+
+Observa esta ecuación de cuarto grado:
+$$
+x^4 - 13x^2 + 36 = 0.
+$$
+No es de segundo grado, pero *se le parece muchísimo*: solo aparecen $x^4$ y $x^2$, y $x^4 = (x^2)^2$. Si a la expresión $x^2$ le pones un nombre nuevo, digamos $t$, la ecuación se convierte en
+$$
+t^2 - 13t + 36 = 0,
+$$
+que sí sabes resolver. El precio a pagar es que al final habrá que **deshacer el cambio**, y ese paso es el que concentra toda la dificultad y todos los errores.
+
+::: {.callout-note}
+## El método del cambio de variable
+
+1. **Identificar** una expresión que se repita en la ecuación, de modo que la ecuación quede escrita en función solo de ella y de su cuadrado.
+2. **Sustituir** esa expresión por una variable auxiliar $t$, obteniendo una ecuación de segundo grado en $t$.
+3. **Resolver** la ecuación auxiliar.
+4. **Deshacer el cambio** para cada valor de $t$ obtenido, resolviendo la ecuación $t = \text{expresión}$.
+5. **Descartar** los valores de $t$ que no sean admisibles y **comprobar** las soluciones en la ecuación original.
+:::
+
+::: {.callout-tip}
+## Dos variables distintas, dos conjuntos de soluciones distintos
+
+Los valores de $t$ **no son** soluciones de la ecuación original: son un resultado intermedio. Terminar el ejercicio escribiendo «$t = 4$ y $t = 9$» es dejar el problema a medias. La respuesta debe darse siempre en términos de $x$, y su número puede ser mayor o menor que el de valores de $t$.
+:::
+
+## Ecuaciones bicuadradas
+
+::: {.callout-note}
+## Definición
+
+Una ecuación **bicuadrada** es una ecuación de cuarto grado de la forma
+$$
+ax^4 + bx^2 + c = 0, \qquad a \neq 0,
+$$
+en la que solo aparecen potencias **pares** de la incógnita.
+
+Con el cambio $x^2 = t$ (y por tanto $x^4 = t^2$) se transforma en la ecuación de segundo grado
+$$
+at^2 + bt + c = 0.
+$$
+:::
+
+Una vez resuelta la auxiliar, deshacer el cambio significa resolver $x^2 = t$ para cada valor obtenido, y ahí es donde el signo de $t$ lo decide todo.
+
+::: {.callout-note}
+## Cuántas soluciones aporta cada valor de $t$
+
+- Si $t > 0$: la ecuación $x^2 = t$ aporta **dos** soluciones, $x = \pm\sqrt{t}$.
+- Si $t = 0$: aporta **una** sola solución, $x = 0$.
+- Si $t < 0$: **no aporta ninguna** solución real, porque ningún cuadrado real es negativo.
+
+En consecuencia, una ecuación bicuadrada puede tener $0$, $1$, $2$, $3$ o $4$ soluciones reales, y nunca más de cuatro.
+:::
+
+**Ejemplo 1 (cuatro soluciones).** Resuelve $x^4 - 13x^2 + 36 = 0$.
+
+Con $x^2 = t$: $t^2 - 13t + 36 = 0$, cuyo discriminante es $\Delta = 169 - 144 = 25$, así que
+$$
+t = \dfrac{13\pm5}{2} \Longrightarrow t_1 = 9, \quad t_2 = 4.
+$$
+Deshacemos el cambio: de $x^2 = 9$ salen $x = \pm3$, y de $x^2 = 4$ salen $x = \pm2$. Por tanto
+$$
+S = \{-3, -2, 2, 3\}.
+$$
+Comprobación con $x=2$: $16 - 13\cdot4 + 36 = 16 - 52 + 36 = 0$ ✓.
+
+**Ejemplo 2 (solo dos soluciones).** Resuelve $x^4 - 5x^2 - 36 = 0$.
+
+La auxiliar $t^2 - 5t - 36 = 0$ tiene $\Delta = 25 + 144 = 169$ y raíces $t = \dfrac{5\pm13}{2}$, o sea $t_1 = 9$ y $t_2 = -4$. La primera da $x = \pm3$; la segunda, $x^2 = -4$, se **descarta** por no tener solución real. Así $S = \{-3, 3\}$.
+
+**Ejemplo 3 (ninguna solución).** Resuelve $x^4 + 5x^2 + 4 = 0$.
+
+La auxiliar $t^2+5t+4=0$ tiene raíces $t = -1$ y $t = -4$, ambas negativas. Ninguna es admisible, luego $S = \varnothing$. Se podía haber previsto: con $x$ real, $x^4$, $5x^2$ y $4$ son todos mayores o iguales que cero, y el $4$ es estrictamente positivo, de modo que la suma nunca puede anularse.
+
+**Ejemplo 4 (una raíz doble en $t$).** Resuelve $x^4 - 8x^2 + 16 = 0$.
+
+Aquí $\Delta = 64 - 64 = 0$ y hay una sola raíz doble $t = 4$, de la que salen $x = \pm2$. Luego $S = \{-2, 2\}$: dos soluciones, cada una de ellas doble. Coherente con que $x^4-8x^2+16 = (x^2-4)^2 = (x-2)^2(x+2)^2$.
+
+**Ejemplo 5 (con $t=0$: tres soluciones).** Resuelve $x^4 - 4x^2 = 0$.
+
+La auxiliar es $t^2 - 4t = 0$, incompleta: $t(t-4) = 0$, luego $t = 0$ o $t = 4$. El valor $t=0$ aporta la única solución $x = 0$ y el valor $t=4$ aporta $x = \pm2$. Total, $S = \{-2, 0, 2\}$: tres soluciones. También se podía resolver directamente factorizando, $x^2(x^2-4) = 0$.
+
+**Ejemplo 6 (con coeficiente principal distinto de 1).** Resuelve $4x^4 - 17x^2 + 4 = 0$.
+
+Auxiliar: $4t^2-17t+4 = 0$, con $\Delta = 289 - 64 = 225$ y $t = \dfrac{17\pm15}{8}$, es decir $t_1 = 4$ y $t_2 = \dfrac14$. De ahí $x = \pm2$ y $x = \pm\dfrac12$, luego $S = \left\{-2, -\tfrac12, \tfrac12, 2\right\}$.
+
+**Ejemplo 7 (soluciones irracionales).** Resuelve $x^4 - 3x^2 + 1 = 0$.
+
+Auxiliar: $t^2-3t+1=0$, con $\Delta = 5$ y $t = \dfrac{3\pm\sqrt5}{2}$. Las dos raíces son positivas (aproximadamente $2{,}618$ y $0{,}382$), así que hay cuatro soluciones reales:
+$$
+x = \pm\sqrt{\dfrac{3+\sqrt5}{2}}, \qquad x = \pm\sqrt{\dfrac{3-\sqrt5}{2}}.
+$$
+En un caso así se dejan en forma exacta; el valor decimal se da solo si el enunciado lo pide.
+
+::: {.callout-tip}
+## Por qué las soluciones van siempre por parejas
+
+En una bicuadrada solo hay potencias pares de $x$, y las potencias pares no distinguen el signo: $(-x)^4 = x^4$ y $(-x)^2 = x^2$. Por eso si $r$ es solución, $-r$ también lo es, y la gráfica de $y = ax^4+bx^2+c$ es simétrica respecto del eje OY. La única solución que puede aparecer «sola», sin pareja, es $x = 0$, porque es su propio opuesto. De ahí que el número impar de soluciones —tres— solo pueda darse cuando $c = 0$.
+:::
+
+::: {.callout-warning}
+## Los dos errores clásicos de las bicuadradas
+
+**Primero:** quedarse en $t$. Si respondes $t_1 = 9$, $t_2 = 4$ has resuelto la ecuación auxiliar, no la propuesta.
+
+**Segundo:** olvidar el doble signo al deshacer el cambio, y dar $x = 3$ y $x = 2$ en lugar de $x = \pm3$ y $x = \pm2$. Se pierde la mitad de las soluciones.
+:::
+
+### Applet · Bicuadradas paso a paso {.unnumbered}
+
+::: {#panel-bicuadrada .applet-panel data-applet-eq="bicuadrada"}
+:::
+
+## Ecuaciones bipotenciales
+
+La bicuadrada no tiene nada de especial: es el caso $n = 2$ de una familia mucho más amplia.
+
+::: {.callout-note}
+## Definición
+
+Una ecuación **bipotencial** es una ecuación de la forma
+$$
+a\,x^{2n} + b\,x^{n} + c = 0, \qquad a \neq 0,\ n \in \mathbb{N},
+$$
+en la que los dos exponentes que aparecen son $2n$ y $n$, es decir, uno el doble del otro.
+
+Como $x^{2n} = \left(x^{n}\right)^2$, el cambio $x^n = t$ la transforma en $at^2 + bt + c = 0$.
+:::
+
+Al deshacer el cambio hay que resolver $x^n = t$, y aquí la paridad de $n$ cambia radicalmente el recuento.
+
+::: {.callout-note}
+## Cuántas soluciones aporta cada valor de $t$, según $n$
+
+**Si $n$ es par**, la potencia $x^n$ nunca es negativa:
+
+- $t > 0$ aporta dos soluciones, $x = \pm\sqrt[n]{t}$;
+- $t = 0$ aporta una, $x = 0$;
+- $t < 0$ no aporta ninguna.
+
+**Si $n$ es impar**, la potencia $x^n$ recorre todos los números reales y conserva el signo:
+
+- **cualquier** valor de $t$, positivo, nulo o negativo, aporta exactamente una solución, $x = \sqrt[n]{t}$.
+:::
+
+**Ejemplo 8 (grado seis, $n=3$).** Resuelve $x^6 + 19x^3 - 216 = 0$.
+
+Con $x^3 = t$ queda $t^2 + 19t - 216 = 0$, cuyo discriminante es $\Delta = 361 + 864 = 1\,225$ y $\sqrt{1225} = 35$, luego
+$$
+t = \dfrac{-19\pm35}{2} \Longrightarrow t_1 = 8, \quad t_2 = -27.
+$$
+Como $n = 3$ es impar, **los dos** valores son aprovechables: de $x^3 = 8$ sale $x = 2$, y de $x^3 = -27$ sale $x = -3$. Por tanto $S = \{-3, 2\}$. Fíjate en que una ecuación de sexto grado ha resultado tener solo dos soluciones reales, y que no son simétricas.
+
+**Ejemplo 9 (grado seis con dos raíces positivas).** Resuelve $x^6 - 9x^3 + 8 = 0$.
+
+Auxiliar: $t^2-9t+8=0$, con raíces $t_1 = 8$ y $t_2 = 1$. De ahí $x = \sqrt[3]{8} = 2$ y $x = \sqrt[3]{1} = 1$, luego $S = \{1, 2\}$.
+
+**Ejemplo 10 (grado ocho, $n=4$).** Resuelve $x^8 - 17x^4 + 16 = 0$.
+
+Auxiliar: $t^2 - 17t + 16 = 0$, con raíces $t_1 = 16$ y $t_2 = 1$. Como $n=4$ es par y ambas son positivas, cada una aporta dos soluciones: $x = \pm\sqrt[4]{16} = \pm2$ y $x = \pm\sqrt[4]{1} = \pm1$. Así $S = \{-2,-1,1,2\}$.
+
+**Ejemplo 11 (grado diez, $n=5$).** Resuelve $x^{10} - 33x^5 + 32 = 0$.
+
+Auxiliar: $t^2-33t+32=0$, con raíces $t_1 = 32$ y $t_2 = 1$. Como $n = 5$ es impar, cada valor da una sola solución: $x = \sqrt[5]{32} = 2$ y $x = \sqrt[5]{1} = 1$. Luego $S = \{1, 2\}$.
+
+::: {.callout-warning}
+## No confundas «grado alto» con «muchas soluciones»
+
+Una ecuación bipotencial de grado $2n$ tiene como mucho cuatro soluciones reales si $n$ es par, y como mucho dos si $n$ es impar, por muy alto que sea el grado. La cota general —una ecuación polinómica de grado $m$ tiene a lo sumo $m$ raíces— es solo un techo, no una promesa.
+:::
+
+### Applet · Ecuaciones bipotenciales {.unnumbered}
+
+::: {#panel-bipotencial .applet-panel data-applet-eq="bipotencial"}
+:::
+
+## Otros cambios de variable
+
+La estructura $a\,[\ \cdot\ ]^2 + b\,[\ \cdot\ ] + c = 0$ aparece con expresiones de todo tipo dentro de los corchetes, no solo con potencias de $x$.
+
+### Cuando se repite una expresión polinómica
+
+Si en la ecuación se repite un polinomio $g(x)$, se toma $t = g(x)$; después, cada valor de $t$ obliga a resolver la ecuación $g(x) = t$, que suele ser de segundo grado y puede aportar dos soluciones, una o ninguna.
+
+**Ejemplo 12.** Resuelve $\left(x^2 - 3x\right)^2 - 2\left(x^2-3x\right) - 8 = 0$.
+
+Con $t = x^2-3x$ queda $t^2 - 2t - 8 = 0$, con raíces $t_1 = 4$ y $t_2 = -2$. Deshacemos:
+
+- $x^2 - 3x = 4 \iff x^2-3x-4 = 0$, con $\Delta = 9+16 = 25$ y soluciones $x = 4$ y $x = -1$.
+- $x^2 - 3x = -2 \iff x^2-3x+2 = 0$, con $\Delta = 9-8 = 1$ y soluciones $x = 2$ y $x = 1$.
+
+Por tanto $S = \{-1, 1, 2, 4\}$. La ecuación original es de cuarto grado y tiene, en efecto, cuatro soluciones. Desarrollarla habría dado $x^4 - 6x^3 + 7x^2 + 6x - 8 = 0$, mucho más incómoda de resolver.
+
+**Ejemplo 13 (con un valor de $t$ inservible).** Resuelve $\left(x^2 + x\right)^2 - 8\left(x^2+x\right) + 12 = 0$.
+
+Con $t = x^2+x$: $t^2-8t+12=0$, de raíces $t_1 = 6$ y $t_2 = 2$.
+
+- $x^2+x = 6 \iff x^2+x-6=0$, con soluciones $x = 2$ y $x = -3$.
+- $x^2+x = 2 \iff x^2+x-2=0$, con soluciones $x = 1$ y $x = -2$.
+
+Aquí $S = \{-3,-2,1,2\}$. Si en algún caso el discriminante saliera negativo, ese valor de $t$ simplemente no aportaría soluciones.
+
+### Cuando aparece una raíz cuadrada
+
+En una ecuación del tipo $a\,x + b\sqrt{x} + c = 0$ conviene observar que $x = \left(\sqrt{x}\right)^2$: el cambio adecuado es $t = \sqrt{x}$.
+
+::: {.callout-warning}
+## La condición $t \geq 0$ es obligatoria
+
+Como $\sqrt{x}$ designa la raíz positiva, cualquier valor **negativo** de $t$ debe descartarse aunque sea solución legítima de la ecuación auxiliar. Además, al deshacer el cambio con $x = t^2$ conviene comprobar el resultado en la ecuación original, porque elevar al cuadrado puede introducir soluciones falsas.
+:::
+
+**Ejemplo 14.** Resuelve $x - 5\sqrt{x} + 6 = 0$.
+
+Con $t = \sqrt{x}$, $t \geq 0$: $t^2 - 5t + 6 = 0$, de raíces $t_1 = 3$ y $t_2 = 2$, ambas admisibles. Deshaciendo, $x = 3^2 = 9$ y $x = 2^2 = 4$. Comprobación: $9 - 5\cdot3 + 6 = 0$ ✓ y $4 - 5\cdot2 + 6 = 0$ ✓. Luego $S = \{4, 9\}$.
+
+**Ejemplo 15 (con descarte).** Resuelve $x - \sqrt{x} - 6 = 0$.
+
+Auxiliar: $t^2 - t - 6 = 0$, de raíces $t_1 = 3$ y $t_2 = -2$. La segunda se descarta porque una raíz cuadrada no puede valer $-2$. Solo queda $x = 9$, y en efecto $9 - 3 - 6 = 0$ ✓. Si no se hubiera descartado, se habría dado por buena la falsa solución $x = 4$, que sustituida da $4 - 2 - 6 = -4 \neq 0$.
+
+### Cuando aparece una exponencial
+
+En ecuaciones del tipo $a\,k^{2x} + b\,k^{x} + c = 0$ se aprovecha que $k^{2x} = \left(k^{x}\right)^2$ y se toma $t = k^x$.
+
+::: {.callout-warning}
+## La condición $t > 0$ es obligatoria
+
+Una potencia de base positiva es **siempre estrictamente positiva**: no existe ningún $x$ real con $2^x = -3$ ni con $2^x = 0$. Todo valor de $t$ menor o igual que cero se descarta sin más.
+:::
+
+**Ejemplo 16.** Resuelve $2^{2x} - 5\cdot2^x + 4 = 0$.
+
+Con $t = 2^x$: $t^2-5t+4=0$, de raíces $t_1 = 4$ y $t_2 = 1$, ambas positivas. Deshaciendo, $2^x = 4$ da $x = 2$, y $2^x = 1$ da $x = 0$. Luego $S = \{0, 2\}$.
+
+**Ejemplo 17 (con descarte).** Resuelve $2^{2x} + 2^x - 6 = 0$.
+
+Auxiliar: $t^2+t-6=0$, de raíces $t_1 = 2$ y $t_2 = -3$. La negativa se descarta; de $2^x = 2$ sale $x = 1$. Así $S = \{1\}$.
+
+::: {.callout-tip}
+## El cambio de variable, más allá de este tema
+
+Esta misma idea reaparecerá una y otra vez: en las ecuaciones logarítmicas (tomando $t = \log x$), en las trigonométricas (con $t = \operatorname{sen} x$ o $t = \cos x$, donde la condición de admisibilidad es $-1 \leq t \leq 1$), en las inecuaciones y, más adelante, en el cálculo de integrales por sustitución. Lo que aprendes aquí no es un procedimiento aislado, sino una forma de pensar: **cuando un problema se parece a otro que ya sabes resolver, cámbiale el nombre a la parte que estorba**.
+:::
+
+### Applet · Otros cambios de variable {.unnumbered}
+
+::: {#panel-cambioAuxiliar .applet-panel data-applet-eq="cambioAuxiliar"}
+:::
+
+## Practica con los entrenadores
+
+Al deshacer los cambios aparecen constantemente raíces cuadradas y raíces $n$-ésimas que hay que simplificar y comparar. Repásalas con el [Entrenador de radicales](../../entrenador_radicales.html).
+
+## Errores frecuentes
+
+- **Dar los valores de $t$ como respuesta final.** Son un paso intermedio; la solución se expresa en $x$.
+- **Olvidar el $\pm$** al deshacer $x^2 = t$ o $x^n = t$ con $n$ par.
+- **Aceptar valores negativos de $t$** en una bicuadrada, o en un cambio $t=\sqrt{x}$ o $t = k^x$. Cada tipo de cambio arrastra su propia condición de admisibilidad, y hay que enunciarla al hacer el cambio, no al final.
+- **Aplicar el cambio a una ecuación que no tiene la forma adecuada.** En $x^4 + 2x^3 - x^2 + 5 = 0$ hay un $x^3$: no es bicuadrada y el cambio $x^2=t$ no la simplifica.
+- **Confundir el número de soluciones en $t$ con el número de soluciones en $x$.** Dos valores de $t$ pueden dar cuatro, tres, dos, una o ninguna solución en $x$.
+- **Descartar en $t$ lo que había que descartar en $x$, o al revés.** El descarte por signo se hace sobre $t$; el descarte por contexto del problema, sobre $x$.
+- **No comprobar cuando el cambio implica elevar al cuadrado.** Es la única forma de detectar soluciones falsas.
+
+## Qué debes saber hacer
+
+1. Reconocer cuándo una ecuación admite un cambio de variable, identificando la expresión que se repite.
+2. Resolver ecuaciones bicuadradas completas e incompletas, deshaciendo el cambio con el doble signo.
+3. Determinar razonadamente cuántas soluciones reales tiene una bicuadrada según el signo de las raíces auxiliares, y explicar por qué nunca pueden ser más de cuatro.
+4. Resolver ecuaciones bipotenciales $ax^{2n}+bx^n+c=0$ distinguiendo con claridad los casos $n$ par y $n$ impar.
+5. Aplicar cambios de variable con expresiones polinómicas repetidas, con radicales y con exponenciales.
+6. Enunciar y aplicar la condición de admisibilidad propia de cada cambio ($t \geq 0$, $t>0$) y justificar los descartes.
+7. Comprobar las soluciones obtenidas en la ecuación original y escribir correctamente el conjunto solución.

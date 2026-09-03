@@ -1,0 +1,330 @@
+---
+title: "Tema 3.7 Ecuaciones logarítmicas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 07-ecuaciones-logaritmicas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Repaso de la definición de logaritmo y de sus propiedades, dominio y condición de argumento positivo, técnicas de resolución por definición, por igualdad de argumentos y por reducción a un solo logaritmo, comprobación obligatoria y descarte de soluciones, cambio de base y logaritmos decimales y neperianos, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, logaritmos, ecuaciones logarítmicas, cambio de base, neperianos]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La incógnita dentro de un logaritmo
+
+Ya has visto tres formas de complicar una ecuación: meter la incógnita en un denominador, meterla bajo una raíz y subir el grado del polinomio. Queda una más: meterla dentro de un **logaritmo**. Y con ella reaparece, por tercera vez, el mismo patrón de trabajo: hay un **dominio** que respetar y una **comprobación** que no se puede saltar.
+
+::: {.callout-note}
+## Definición de ecuación logarítmica
+
+Una **ecuación logarítmica** es una ecuación en la que la incógnita aparece **en el argumento de al menos un logaritmo**. Por ejemplo:
+$$
+\log(x-3) = 2, \qquad \log_2(x^2-3x) = 2, \qquad \log x + \log(x-3) = 1 .
+$$
+No es logarítmica $x\log 5 = 2$, donde $\log 5$ es solo un número que multiplica a la incógnita.
+:::
+
+## Repaso: qué es exactamente un logaritmo
+
+::: {.callout-important}
+## Definición de logaritmo
+
+Sean $a > 0$ con $a \neq 1$ y $N > 0$. El **logaritmo en base $a$ de $N$** es el exponente al que hay que elevar $a$ para obtener $N$:
+$$
+\log_a N = c \iff a^{c} = N .
+$$
+Es decir, el logaritmo **es un exponente**. Todo lo que sabes sobre potencias se traduce, palabra por palabra, en propiedades de los logaritmos.
+:::
+
+Las restricciones no son caprichosas:
+
+- **$a > 0$ y $a \neq 1$**: si la base fuera $1$, entonces $1^c = 1$ para todo $c$ y no habría un exponente único; si fuera negativa, las potencias saltarían de signo y no habría continuidad.
+- **$N > 0$**: como $a^c$ es siempre positivo, ningún exponente puede producir un resultado negativo o nulo. Por eso **no existe** el logaritmo de un número negativo ni el de cero.
+
+**Ejemplo 1.** $\log_2 8 = 3$, porque $2^3 = 8$. $\log_3 \dfrac{1}{9} = -2$, porque $3^{-2} = \dfrac{1}{9}$. $\log_5 1 = 0$, porque $5^0 = 1$. $\log_a a = 1$ para cualquier base válida.
+
+::: {.callout-note}
+## Dos bases con nombre propio
+
+- **Logaritmo decimal**: base $10$. Se escribe $\log N$ sin indicar la base. Es el de las escalas de magnitud —pH, decibelios, escala Richter— porque cada unidad significa multiplicar por diez.
+- **Logaritmo neperiano** o **natural**: base $e \approx 2{,}718281828$. Se escribe $\ln N$. Es el que aparece en todos los procesos de crecimiento y decrecimiento continuos.
+
+En las calculadoras solo hay esas dos teclas. Para cualquier otra base se usa el cambio de base, que verás más abajo.
+:::
+
+## Las propiedades, y por qué son las de las potencias
+
+::: {.callout-important}
+## Propiedades de los logaritmos
+
+Para $a>0$, $a\neq1$, $M>0$, $N>0$ y $p \in \mathbb{R}$:
+
+1. **Del producto**: $\log_a(M\cdot N) = \log_a M + \log_a N$.
+2. **Del cociente**: $\log_a \dfrac{M}{N} = \log_a M - \log_a N$.
+3. **De la potencia**: $\log_a (M^p) = p \cdot \log_a M$.
+4. **De la raíz**: $\log_a \sqrt[n]{M} = \dfrac{1}{n}\log_a M$, que es el caso $p = \dfrac{1}{n}$ de la anterior.
+5. **Casos inmediatos**: $\log_a 1 = 0$, $\log_a a = 1$, $\log_a a^{p} = p$ y $a^{\log_a N} = N$.
+:::
+
+La demostración de la primera propiedad ilustra de dónde vienen todas: si $\log_a M = u$ y $\log_a N = v$, entonces $M = a^u$ y $N = a^v$, luego $M\cdot N = a^{u}\cdot a^{v} = a^{u+v}$, y por definición $\log_a(MN) = u+v$. Multiplicar números se ha convertido en sumar exponentes. Ese fue exactamente el motivo por el que se inventaron los logaritmos en el siglo XVII: convertir productos en sumas para simplificar los cálculos astronómicos.
+
+::: {.callout-caution}
+## Las tres igualdades falsas más repetidas
+
+$$
+\log_a(M+N) \neq \log_a M + \log_a N, \qquad
+\dfrac{\log_a M}{\log_a N} \neq \log_a \dfrac{M}{N}, \qquad
+(\log_a M)^p \neq p\log_a M .
+$$
+El logaritmo transforma **productos** en sumas, no sumas en sumas. Compruébalo con números: $\log(10+10) = \log 20 \approx 1{,}3$, mientras que $\log 10 + \log 10 = 2$.
+:::
+
+**Ejemplo 2.** Desarrolla $\log \dfrac{x^3\sqrt{y}}{z^2}$.
+$$
+\log \dfrac{x^3\sqrt{y}}{z^2} = \log x^3 + \log\sqrt{y} - \log z^2 = 3\log x + \dfrac{1}{2}\log y - 2\log z .
+$$
+
+**Ejemplo 3.** Reduce a un solo logaritmo $2\log x - \dfrac{1}{2}\log y + \log 3$.
+$$
+2\log x - \dfrac{1}{2}\log y + \log 3 = \log x^2 - \log\sqrt{y} + \log 3 = \log \dfrac{3x^2}{\sqrt{y}} .
+$$
+
+Estas dos operaciones —desarrollar y reducir— son, en los dos sentidos, la maquinaria de todo el apartado.
+
+## Cambio de base
+
+::: {.callout-note}
+## Fórmula del cambio de base
+
+Para bases válidas $a$ y $b$ y cualquier $N>0$:
+$$
+\log_a N = \dfrac{\log_b N}{\log_b a}.
+$$
+En la práctica se usa con base $10$ o con base $e$:
+$$
+\log_a N = \dfrac{\log N}{\log a} = \dfrac{\ln N}{\ln a}.
+$$
+:::
+
+La justificación es directa: si $c = \log_a N$, entonces $a^c = N$; tomando logaritmos en base $b$ en ambos miembros, $c\log_b a = \log_b N$, y despejando $c$ sale la fórmula.
+
+**Ejemplo 4.** Calcula $\log_7 300$ con la calculadora.
+$$
+\log_7 300 = \dfrac{\log 300}{\log 7} \approx \dfrac{2{,}4771}{0{,}8451} \approx 2{,}931 .
+$$
+Comprobación aproximada: $7^3 = 343$, algo mayor que $300$, así que el resultado debe estar un poco por debajo de $3$. Encaja.
+
+### Applet · Verificador de las propiedades del logaritmo {.unnumbered}
+
+Fija la base y los valores de $x$, $y$ y $p$, y compara numéricamente los dos miembros de cada propiedad. El applet muestra también los intentos incorrectos —el del logaritmo de una suma, por ejemplo— para que veas con números por qué fallan, y aplica el cambio de base a la base decimal y a la neperiana.
+
+::: {#panel-logPropiedades .applet-panel data-applet-eq="logPropiedades"}
+:::
+
+Prueba a poner $x=y$ y observa cómo la propiedad del producto se convierte en la de la potencia con $p=2$. Después mira la fila de la «propiedad falsa» de la suma: la diferencia entre los dos miembros no es un pequeño error de redondeo, es un abismo.
+
+## El dominio: los argumentos han de ser positivos
+
+::: {.callout-important}
+## Condición de existencia
+
+En una ecuación logarítmica, **todos los argumentos de todos los logaritmos deben ser estrictamente positivos**. El dominio de validez es la intersección de todas esas condiciones:
+$$
+D = \{\, x \in \mathbb{R} \;:\; \text{argumento}_1(x) > 0,\ \text{argumento}_2(x) > 0,\ \ldots \,\}.
+$$
+Cualquier candidato que deje algún argumento negativo o nulo se **descarta**, aunque satisfaga la ecuación transformada.
+:::
+
+**Ejemplo 5.** Dominio de $\log x + \log(x-3) = 1$. Hace falta $x>0$ y $x-3>0$, es decir, $x>3$. Así, $D = (3, +\infty)$. Cualquier candidato menor o igual que $3$ está condenado de antemano.
+
+::: {.callout-warning}
+## Reducir logaritmos puede ampliar el dominio
+
+Al escribir $\log x + \log(x-3) = \log\big(x(x-3)\big)$ estás cambiando el dominio sin darte cuenta: el primer miembro exige $x>3$, pero el producto $x(x-3)$ es positivo también cuando $x<0$. Esa ampliación es la que produce soluciones falsas, exactamente igual que al elevar al cuadrado en las ecuaciones radicales. Por eso el dominio hay que calcularlo **sobre la ecuación original**, antes de tocar nada.
+:::
+
+## Técnica 1: aplicar la definición
+
+Cuando la ecuación queda en la forma $\log_a A(x) = c$ con $c$ un número, basta con volver a la definición.
+
+::: {.callout-note}
+## De logaritmo a potencia
+
+$$
+\log_a A(x) = c \iff A(x) = a^{c} \quad \text{(con } A(x) > 0\text{)} .
+$$
+:::
+
+**Ejemplo 6.** Resuelve $\log(x-3) = 2$.
+
+Dominio: $x>3$. Por definición, y con base $10$ implícita:
+$$
+x - 3 = 10^2 = 100 \;\Longrightarrow\; x = 103 .
+$$
+Como $103 > 3$, es válida. $S = \{103\}$.
+
+**Ejemplo 7.** Resuelve $\log_2(x^2-3x) = 2$.
+
+Dominio: $x^2-3x>0$, es decir, $x(x-3)>0$, que se cumple para $x<0$ o $x>3$; así $D = (-\infty,0)\cup(3,+\infty)$. Aplicando la definición:
+$$
+x^2 - 3x = 2^2 = 4 \;\Longrightarrow\; x^2-3x-4=0 \;\Longrightarrow\; x = 4 \ \text{o} \ x = -1 .
+$$
+Los dos candidatos pertenecen al dominio: $4>3$ y $-1<0$. Comprobación: para $x=4$, el argumento es $16-12=4$ y $\log_2 4 = 2$; para $x=-1$, el argumento es $1+3=4$ y $\log_2 4 = 2$. **Las dos son válidas**:
+$$
+S = \{-1,\, 4\}.
+$$
+
+::: {.callout-tip}
+## Un candidato negativo no se descarta por ser negativo
+
+El ejemplo 7 desmonta el error más extendido del apartado: lo que tiene que ser positivo es el **argumento**, no la incógnita. Aquí $x=-1$ da un argumento igual a $4$, perfectamente legítimo. Descartar automáticamente los valores negativos hace perder soluciones auténticas.
+:::
+
+## Técnica 2: igualar argumentos
+
+::: {.callout-note}
+## Inyectividad del logaritmo
+
+Si los dos miembros son logaritmos **de la misma base**:
+$$
+\log_a A(x) = \log_a B(x) \iff A(x) = B(x), \quad \text{siempre que } A(x)>0 \ \text{y}\ B(x)>0 .
+$$
+La razón es que la función logaritmo es estrictamente monótona: nunca toma dos veces el mismo valor.
+:::
+
+**Ejemplo 8.** Resuelve $\log(2x+1) = \log(x+5)$.
+
+Dominio: $2x+1>0$ y $x+5>0$, luego $x > -\dfrac{1}{2}$. Igualando argumentos: $2x+1 = x+5$, de donde $x=4$, que está en el dominio. $S = \{4\}$.
+
+**Ejemplo 9.** Resuelve $\log(x^2-1) = \log(3x-3)$.
+
+Dominio: $x^2-1>0$ da $x<-1$ o $x>1$; $3x-3>0$ da $x>1$. Intersección: $D = (1,+\infty)$. Igualando:
+$$
+x^2-1 = 3x-3 \;\Longrightarrow\; x^2-3x+2=0 \;\Longrightarrow\; x=1 \ \text{o} \ x=2 .
+$$
+El candidato $x=1$ **no** está en el dominio (anula los dos argumentos), así que se descarta. $S=\{2\}$.
+
+## Técnica 3: reducir a un solo logaritmo
+
+Es la técnica principal, y consiste en usar las propiedades hasta dejar la ecuación en una de las dos formas anteriores.
+
+::: {.callout-important}
+## Procedimiento general
+
+1. **Calcula el dominio** sobre la ecuación original.
+2. **Agrupa** todos los logaritmos en un miembro y los números en el otro.
+3. Usa las propiedades para reducir cada miembro a **un solo logaritmo** de la misma base. Recuerda que un número $c$ se puede escribir como $\log_a a^{c}$.
+4. Aplica la definición o iguala argumentos.
+5. Resuelve la ecuación algebraica resultante.
+6. **Comprueba** todos los candidatos en la ecuación original y descarta los que caigan fuera del dominio.
+:::
+
+**Ejemplo 10.** Resuelve $\log x + \log(x-3) = 1$.
+
+**Dominio.** $x>0$ y $x-3>0$, luego $D = (3,+\infty)$.
+
+**Reduzco.** Por la propiedad del producto, y escribiendo $1 = \log 10$:
+$$
+\log\big(x(x-3)\big) = \log 10 .
+$$
+
+**Igualo argumentos.**
+$$
+x^2 - 3x = 10 \;\Longrightarrow\; x^2-3x-10 = 0 \;\Longrightarrow\; x = 5 \ \text{o} \ x = -2 .
+$$
+
+**Compruebo.** $x=5$ está en $D$: $\log 5 + \log 2 = \log 10 = 1$. Válida. $x=-2$ **no** está en $D$: daría $\log(-2)$, que no existe.
+$$
+S = \{5\}.
+$$
+
+Y fíjate en el contraste con el ejemplo 7: allí el candidato negativo era válido y aquí no. La diferencia no está en el signo del candidato, sino en si el argumento resulta positivo. Por eso la comprobación tiene que hacerse **siempre**.
+
+**Ejemplo 11.** Resuelve $\log(x+6) - \log(x-2) = \log 5$.
+
+Dominio: $x>-6$ y $x>2$, luego $D = (2,+\infty)$. Reduciendo el primer miembro con la propiedad del cociente:
+$$
+\log\dfrac{x+6}{x-2} = \log 5 \;\Longrightarrow\; \dfrac{x+6}{x-2} = 5 .
+$$
+Producto cruzado: $x+6 = 5x-10$, de donde $4x=16$ y $x=4 \in D$. Comprobación: $\log 10 - \log 2 = \log 5$. Correcto. $S=\{4\}$.
+
+**Ejemplo 12.** Resuelve $2\log x = \log(3x-2)$.
+
+Dominio: $x>0$ y $3x-2>0$, luego $x>\dfrac{2}{3}$. Con la propiedad de la potencia:
+$$
+\log x^2 = \log(3x-2) \;\Longrightarrow\; x^2 = 3x-2 \;\Longrightarrow\; x^2-3x+2=0,
+$$
+con raíces $x=1$ y $x=2$. Las dos son mayores que $\dfrac{2}{3}$, así que $S=\{1,\,2\}$.
+
+**Ejemplo 13 (con logaritmo al cuadrado).** Resuelve $(\log x)^2 - 3\log x + 2 = 0$.
+
+Aquí lo que hay elevado al cuadrado es el logaritmo, no el argumento. Con el cambio $t = \log x$:
+$$
+t^2 - 3t + 2 = 0 \;\Longrightarrow\; t = 1 \ \text{o} \ t = 2 .
+$$
+Deshaciendo el cambio: $\log x = 1$ da $x=10$, y $\log x = 2$ da $x=100$. Ambos positivos. $S = \{10,\,100\}$.
+
+::: {.callout-caution}
+## $(\log x)^2$ y $\log(x^2)$ no son lo mismo
+
+$\log(x^2) = 2\log x$, pero $(\log x)^2$ es el cuadrado del número que sale del logaritmo, y no se simplifica de ninguna manera. Confundirlos convierte el ejemplo 13 en una ecuación distinta.
+:::
+
+### Applet · Ecuación logarítmica con dominio y descartes {.unnumbered}
+
+Elige el tipo de ecuación —por definición, $\log_b A(x) = c$, o por igualdad de argumentos, $\log_b A(x) = \log_b B(x)$—, escribe los datos y sigue todo el proceso: condición de existencia, transformación, ecuación algebraica, candidatos y veredicto de cada uno con el valor del argumento a la vista.
+
+::: {#panel-logResolutor .applet-panel data-applet-eq="logResolutor"}
+:::
+
+Compara los escenarios $\log_2(x^2-3x)=2$ y $\log x + \log(x-3)=1$: en el primero el candidato negativo sobrevive y en el segundo no. La columna del argumento explica en cada caso el motivo, sin que haya que fiarse de ninguna regla memorizada.
+
+## Un apunte histórico
+
+Los logaritmos no nacieron para resolver ecuaciones, sino para **ahorrar cuentas**. **John Napier** publicó sus tablas en 1614 con el objetivo de convertir las multiplicaciones y divisiones enormes de la astronomía en sumas y restas; el número $e$ y el adjetivo «neperiano» proceden de su nombre latinizado. **Henry Briggs** propuso poco después pasar a la base $10$, mucho más cómoda para el sistema decimal, y calculó las tablas que se usaron durante tres siglos y medio. La regla de cálculo, herramienta de ingenieros hasta los años setenta del siglo XX, es la materialización física de la propiedad $\log(MN) = \log M + \log N$: sumar longitudes sobre una escala logarítmica equivale a multiplicar números.
+
+## Practica con los entrenadores
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar el cálculo con logaritmos decimales y neperianos, las propiedades, el cambio de base y la resolución de ecuaciones logarítmicas con corrección automática y pistas graduadas, usa el [Entrenador de logaritmos y neperianos](../../entrenador_logaritmos_neperianos.html).
+:::
+
+## Errores frecuentes
+
+1. **Escribir $\log(M+N) = \log M + \log N$.** El logaritmo convierte productos en sumas, no sumas en sumas. Es el error más frecuente y el más caro.
+2. **Confundir $\dfrac{\log M}{\log N}$ con $\log\dfrac{M}{N}$.** El cociente de logaritmos aparece en el **cambio de base**; el logaritmo del cociente es una **resta**.
+3. **No calcular el dominio antes de reducir.** Al agrupar logaritmos el dominio se amplía; si no lo has fijado antes, ya no podrás recuperarlo.
+4. **Descartar los candidatos negativos automáticamente.** Lo que debe ser positivo es el argumento, no la incógnita: en $\log_2(x^2-3x)=2$, el valor $x=-1$ es solución legítima.
+5. **Aceptar candidatos sin comprobar.** El paso de reducir a un solo logaritmo introduce soluciones extrañas con la misma facilidad con la que elevar al cuadrado las introduce en las radicales.
+6. **Mezclar bases distintas.** Igualar argumentos exige que las dos bases coincidan; si no, hay que aplicar antes el cambio de base.
+7. **Olvidar que un número se puede escribir como logaritmo.** Para reducir $\log x = 1$ conviene ver el $1$ como $\log 10$; sin ese paso la igualdad de argumentos no se puede aplicar.
+8. **Confundir $(\log x)^2$ con $\log(x^2)$.** Solo el segundo se simplifica a $2\log x$.
+9. **Creer que existe $\log 0$.** No existe: ningún exponente hace que una potencia de base positiva valga cero. Cuando el argumento tiende a cero, el logaritmo se va a $-\infty$.
+10. **Usar la tecla equivocada de la calculadora.** `log` es base $10$ y `ln` es base $e$; para cualquier otra base hay que aplicar la fórmula del cambio de base.
+
+## Qué debes saber hacer
+
+- Sé enunciar la definición de logaritmo y pasar de la forma logarítmica a la exponencial y al revés.
+- Sé justificar por qué la base debe ser positiva y distinta de $1$ y por qué el argumento debe ser positivo.
+- Sé aplicar las propiedades del producto, del cociente, de la potencia y de la raíz en los dos sentidos: desarrollando y reduciendo.
+- Sé reconocer y rechazar las igualdades falsas más habituales, comprobándolas con valores numéricos.
+- Sé usar la fórmula del cambio de base para calcular logaritmos de cualquier base con la calculadora.
+- Sé distinguir el logaritmo decimal del neperiano y saber cuándo se usa cada uno.
+- Sé calcular el dominio de una ecuación logarítmica imponiendo que todos los argumentos sean positivos.
+- Sé resolver ecuaciones del tipo $\log_a A(x) = c$ aplicando la definición.
+- Sé resolver ecuaciones del tipo $\log_a A(x) = \log_a B(x)$ igualando argumentos y justificando por qué es lícito.
+- Sé reducir una ecuación con varios logaritmos a uno solo, escribiendo los números como logaritmos cuando conviene.
+- Sé resolver ecuaciones con el logaritmo elevado al cuadrado mediante un cambio de variable.
+- Sé comprobar todos los candidatos en la ecuación original y justificar el descarte de cada solución no válida por el valor de su argumento.

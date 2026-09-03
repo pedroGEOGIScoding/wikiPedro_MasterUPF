@@ -1,0 +1,425 @@
+---
+title: "Tema 3.1 Ecuaciones de primer grado"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 01-ecuaciones-primer-grado
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Igualdad, incógnita y solución, grado de una ecuación, ecuaciones equivalentes y reglas de la suma y del producto, resolución sistemática con denominadores y paréntesis, casos especiales de identidad e incompatibilidad, comprobación de la solución, ecuaciones literales y despeje de fórmulas, y problemas contextualizados con la traducción del enunciado al lenguaje algebraico, con applets manipulables.
+categories: [ecuaciones, 1 Batx, matemáticas CCSS, primer grado, álgebra]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Igualdades, identidades y ecuaciones
+
+En matemáticas se escriben igualdades constantemente, pero no todas dicen lo mismo. Compara estas tres:
+
+$$
+7 + 5 = 12, \qquad (x+1)^2 = x^2 + 2x + 1, \qquad 3x - 5 = 7.
+$$
+
+La primera es una **igualdad numérica**: no hay letras, es verdadera y punto. La segunda contiene una letra, pero es cierta *sea cual sea* el valor que le des a $x$: si pruebas con $x = 0$, con $x = 4$ o con $x = -1{,}5$ los dos miembros coinciden siempre. Una igualdad así se llama **identidad**. La tercera es distinta: con $x = 1$ el primer miembro vale $-2$ y el segundo $7$, así que es falsa; con $x = 4$ vale $7$ en ambos lados y es verdadera. Una igualdad que solo es cierta para algunos valores de la letra es una **ecuación**.
+
+::: {.callout-note}
+## Definición de ecuación
+
+Una **ecuación** es una igualdad entre dos expresiones algebraicas que solo se verifica para determinados valores de las letras que intervienen.
+
+- Las expresiones que hay a cada lado del signo igual son los **miembros**: primer miembro (izquierda) y segundo miembro (derecha).
+- Cada sumando de un miembro es un **término**.
+- Las letras cuyo valor se desconoce y hay que averiguar son las **incógnitas**; se suelen llamar $x$, $y$, $z$.
+- Una **solución** de la ecuación es un valor de la incógnita que, sustituido en ella, convierte la igualdad en una igualdad numérica verdadera.
+- **Resolver** una ecuación es encontrar todas sus soluciones, o demostrar que no tiene ninguna.
+:::
+
+El conjunto de todas las soluciones se llama **conjunto solución** y se denota con la letra $S$. En $3x-5=7$ ese conjunto es $S = \{4\}$: hay una solución y solo una.
+
+::: {.callout-tip}
+## Ecuación e identidad: dos usos distintos del mismo símbolo
+
+El signo $=$ hace dos trabajos diferentes. En una identidad afirma que dos expresiones son la misma cosa escrita de dos maneras, y sirve para *transformar*: por eso $(a+b)^2 = a^2+2ab+b^2$ es una herramienta de cálculo. En una ecuación el signo $=$ plantea una *pregunta*: ¿para qué valores de la incógnita se cumple esto? Confundir los dos papeles es el origen de muchos errores; cuando desarrollas una expresión no estás resolviendo nada, solo reescribiendo.
+:::
+
+### Grado de una ecuación
+
+Antes de resolver conviene saber a qué tipo de ecuación te enfrentas, porque cada tipo tiene su método.
+
+::: {.callout-note}
+## Grado de una ecuación
+
+Se llama **grado** de una ecuación polinómica al mayor exponente con el que aparece la incógnita una vez que la ecuación se ha simplificado y se han agrupado todos los términos en un solo miembro.
+:::
+
+Así, $5x + 2 = 3x - 8$ es de primer grado, $x^2 - 5x + 6 = 0$ es de segundo grado y $x^4 - 13x^2 + 36 = 0$ es de cuarto grado. Ojo con simplificar antes de decidir: la ecuación
+$$
+x^2 + 3x - 1 = x^2 - 4
+$$
+*parece* de segundo grado, pero al pasar todo al primer miembro los términos $x^2$ se cancelan y queda $3x + 3 = 0$, que es de primer grado.
+
+::: {.callout-note}
+## Definición de ecuación de primer grado (o lineal)
+
+Una ecuación de **primer grado** con una incógnita es toda ecuación que, después de operar y simplificar, se puede escribir en la forma
+$$
+ax + b = 0, \qquad \text{con } a \neq 0.
+$$
+Su única solución es $x = -\dfrac{b}{a}$.
+:::
+
+La condición $a \neq 0$ es la que garantiza que la ecuación sea realmente de primer grado, y también la que garantiza que la solución exista y sea única. Más adelante verás qué ocurre cuando $a$ se anula.
+
+## Ecuaciones equivalentes y reglas de transformación
+
+Nadie resuelve $\dfrac{2x-1}{3} + \dfrac{x}{2} = 4 - x$ de un vistazo. La estrategia es sustituirla por otra ecuación más sencilla que tenga exactamente las mismas soluciones, y repetir hasta llegar a algo tan simple como $x = 3$.
+
+::: {.callout-note}
+## Ecuaciones equivalentes
+
+Dos ecuaciones son **equivalentes** cuando tienen el mismo conjunto solución, aunque su aspecto sea distinto.
+
+Resolver una ecuación consiste en construir una cadena de ecuaciones equivalentes
+$$
+E_1 \Longleftrightarrow E_2 \Longleftrightarrow \cdots \Longleftrightarrow x = s
+$$
+en la que la última tenga la solución a la vista.
+:::
+
+Por ejemplo, $3x - 5 = 7$, $3x = 12$ y $x = 4$ son tres ecuaciones equivalentes: las tres tienen $S = \{4\}$. Para pasar de una a otra se usan dos reglas, y solo dos.
+
+::: {.callout-note}
+## Reglas de transformación de ecuaciones
+
+**Regla de la suma.** Si a los dos miembros de una ecuación se les suma (o se les resta) un mismo número o una misma expresión algebraica, se obtiene una ecuación equivalente:
+$$
+A(x) = B(x) \iff A(x) + C(x) = B(x) + C(x).
+$$
+
+**Regla del producto.** Si los dos miembros de una ecuación se multiplican (o se dividen) por un mismo número **distinto de cero**, se obtiene una ecuación equivalente:
+$$
+A(x) = B(x) \iff k \cdot A(x) = k \cdot B(x), \qquad k \neq 0.
+$$
+:::
+
+La condición $k \neq 0$ no es un detalle burocrático. Multiplicar por cero convierte cualquier ecuación en $0 = 0$, que es cierta siempre: se habrían inventado infinitas soluciones y perdido toda la información. Compruébalo tú en el applet.
+
+::: {.callout-tip}
+## De dónde salen la «transposición de términos» y el «pasar multiplicando»
+
+Las reglas que aprendiste en cursos anteriores son consecuencias de estas dos:
+
+- «Un término que está sumando pasa al otro miembro restando» no es más que aplicar la regla de la suma restando ese término a ambos lados.
+- «Un número que está multiplicando pasa dividiendo» es aplicar la regla del producto dividiendo ambos lados por ese número, algo lícito solo si el número no es cero.
+
+Entender el porqué evita el error clásico de «pasar dividiendo» un factor que podría valer cero.
+:::
+
+### Applet · Cadena de transformaciones equivalentes {.unnumbered}
+
+::: {#panel-equivalentes .applet-panel data-applet-eq="equivalentes"}
+:::
+
+## Resolución sistemática de una ecuación de primer grado
+
+Con las dos reglas anteriores basta para resolver cualquier ecuación lineal siguiendo siempre el mismo guion.
+
+::: {.callout-note}
+## Procedimiento general
+
+1. **Quitar denominadores.** Se calcula el mínimo común múltiplo de todos los denominadores y se multiplican por él los dos miembros completos.
+2. **Quitar paréntesis.** Se aplica la propiedad distributiva, con mucho cuidado con los signos delante de un paréntesis.
+3. **Transponer términos.** Se llevan al primer miembro todos los términos con incógnita y al segundo todos los términos independientes.
+4. **Reducir términos semejantes.** Queda una ecuación de la forma $ax = b$.
+5. **Despejar la incógnita.** Se dividen ambos miembros entre $a$, con $a \neq 0$.
+6. **Comprobar.** Se sustituye el valor obtenido en la ecuación *original*.
+:::
+
+**Ejemplo 1.** Resuelve $5x - 3 = 2x + 9$.
+
+$$
+5x - 3 = 2x + 9 \iff 5x - 2x = 9 + 3 \iff 3x = 12 \iff x = 4.
+$$
+
+Comprobación: $5\cdot 4 - 3 = 17$ y $2 \cdot 4 + 9 = 17$. Coinciden, así que $S = \{4\}$.
+
+**Ejemplo 2 (con paréntesis).** Resuelve $3(x-2) - 2(4-x) = 5(x+1) - 9$.
+
+$$
+3x - 6 - 8 + 2x = 5x + 5 - 9 \iff 5x - 14 = 5x - 4.
+$$
+
+Al transponer, los términos en $x$ desaparecen: $5x - 5x = -4 + 14$, es decir $0 = 10$. Esto es falso siempre, así que la ecuación **no tiene solución**. Volveremos sobre este caso.
+
+**Ejemplo 3 (con denominadores).** Resuelve
+$$
+\dfrac{x-1}{2} + \dfrac{2x+3}{5} = \dfrac{x}{10} + 2.
+$$
+
+El mínimo común múltiplo de $2$, $5$ y $10$ es $10$. Multiplicando los dos miembros por $10$:
+$$
+5(x-1) + 2(2x+3) = x + 20 \iff 5x - 5 + 4x + 6 = x + 20 \iff 9x + 1 = x + 20.
+$$
+De aquí $8x = 19$ y por tanto $x = \dfrac{19}{8} = 2{,}375$.
+
+::: {.callout-warning}
+## El error más caro con los denominadores
+
+Al multiplicar por el mínimo común múltiplo hay que multiplicar **todos** los términos de los **dos** miembros, incluidos los que no tienen denominador. En el ejemplo anterior, olvidar que el $2$ del segundo miembro se convierte en $20$ arruina el resultado. Y cuando el numerador es una suma, al multiplicar aparece un paréntesis obligatorio: $10 \cdot \dfrac{x-1}{2} = 5(x-1)$, nunca $5x - 1$.
+:::
+
+**Ejemplo 4 (denominadores y signo delante de la fracción).** Resuelve
+$$
+x - \dfrac{2x - 1}{3} = \dfrac{x + 4}{6}.
+$$
+
+Multiplicamos por $6$:
+$$
+6x - 2(2x-1) = x + 4 \iff 6x - 4x + 2 = x + 4 \iff 2x + 2 = x + 4 \iff x = 2.
+$$
+Fíjate en el paso $-2(2x-1) = -4x + 2$: el signo menos afecta a los dos términos del paréntesis.
+
+### Applet · Resolución paso a paso {.unnumbered}
+
+::: {#panel-resolverLineal .applet-panel data-applet-eq="resolverLineal"}
+:::
+
+## Los tres casos posibles: única solución, identidad e incompatibilidad
+
+Toda ecuación de primer grado acaba reduciéndose a la forma $ax = b$. Lo que ocurra a partir de ahí depende de si $a$ es cero o no.
+
+::: {.callout-note}
+## Discusión de la ecuación $ax = b$
+
+- Si $a \neq 0$: la ecuación tiene **una única solución**, $x = \dfrac{b}{a}$. Se dice que es **compatible determinada**.
+- Si $a = 0$ y $b = 0$: queda $0 = 0$, que es cierto para cualquier valor de $x$. La ecuación es una **identidad** y su conjunto solución es $S = \mathbb{R}$. Se dice que es **compatible indeterminada**.
+- Si $a = 0$ y $b \neq 0$: queda $0 = b$ con $b \neq 0$, que es falso siempre. La ecuación **no tiene solución**, $S = \varnothing$, y se dice que es **incompatible**.
+:::
+
+**Ejemplo 5 (identidad).** $2(x+3) = 2x + 6$ se convierte en $2x + 6 = 2x + 6$, es decir $0 = 0$. Cualquier número es solución: $S = \mathbb{R}$.
+
+**Ejemplo 6 (incompatible).** $4x + 1 = 4x - 7$ se convierte en $0 = -8$. No hay ningún número que la cumpla: $S = \varnothing$.
+
+::: {.callout-tip}
+## Cómo interpretar geométricamente los tres casos
+
+Resolver $ax + b = cx + d$ equivale a buscar el punto de corte de las rectas $y = ax+b$ e $y = cx+d$. Si las pendientes son distintas, las rectas se cortan en un punto y hay una solución única. Si las pendientes coinciden pero las ordenadas en el origen no, las rectas son paralelas y no se cortan: ecuación incompatible. Y si las dos rectas son la misma, se cortan en infinitos puntos: identidad. Los tres casos algebraicos son los tres casos geométricos de dos rectas en el plano.
+:::
+
+### Applet · Los tres casos de una ecuación lineal {.unnumbered}
+
+::: {#panel-clasificaLineal .applet-panel data-applet-eq="clasificaLineal"}
+:::
+
+## La comprobación de la solución
+
+Comprobar no es un adorno para quedar bien: es la única forma de saber que el resultado es correcto sin depender de la fe en los propios cálculos.
+
+::: {.callout-note}
+## Cómo se comprueba
+
+Para verificar que $x = s$ es solución de $A(x) = B(x)$ se sustituye $s$ en **cada miembro por separado** y se comprueba que los dos números obtenidos coinciden. No se debe sustituir en una versión ya manipulada de la ecuación, porque un error cometido en el camino se arrastraría y la comprobación saldría bien siendo el resultado falso.
+:::
+
+**Ejemplo 7.** ¿Es $x = 3$ solución de $\dfrac{x+5}{2} = 7 - x$?
+
+Primer miembro: $\dfrac{3+5}{2} = 4$. Segundo miembro: $7 - 3 = 4$. Coinciden, luego sí lo es.
+
+**Ejemplo 8.** ¿Es $x = -2$ solución de $3x + 1 = x - 5$?
+
+Primer miembro: $3(-2)+1 = -5$. Segundo miembro: $-2-5 = -7$. No coinciden, luego no lo es. Fíjate en que la diferencia entre ambos, $2$, mide «cuánto falla» ese candidato.
+
+### Applet · Comprobación de candidatos {.unnumbered}
+
+::: {#panel-compruebaSol .applet-panel data-applet-eq="compruebaSol"}
+:::
+
+## Ecuaciones literales y despeje de fórmulas
+
+Hasta ahora todas las letras que no eran la incógnita eran números concretos. En muchas situaciones ocurre justo lo contrario: la ecuación está llena de letras y hay que decidir cuál de ellas hace de incógnita.
+
+::: {.callout-note}
+## Ecuación literal
+
+Una **ecuación literal** es aquella en la que, además de la incógnita, aparecen otras letras llamadas **parámetros**, que representan cantidades conocidas aunque no se les dé un valor numérico.
+
+**Despejar** una variable de una fórmula es transformar la fórmula en una ecuación equivalente en la que esa variable aparezca sola en un miembro. Se usan exactamente las mismas dos reglas de siempre, con una precaución añadida: solo se puede dividir entre una expresión si se sabe que no vale cero.
+:::
+
+**Ejemplo 9.** Despeja $h$ en el área de un rectángulo $A = b \cdot h$.
+
+Dividimos los dos miembros entre $b$, que en un rectángulo real es positivo:
+$$
+A = b\,h \iff \dfrac{A}{b} = h \iff h = \dfrac{A}{b}.
+$$
+
+**Ejemplo 10.** Despeja $h$ en el perímetro de un rectángulo $P = 2(b + h)$.
+
+$$
+P = 2(b+h) \iff \dfrac{P}{2} = b + h \iff h = \dfrac{P}{2} - b = \dfrac{P - 2b}{2}.
+$$
+
+**Ejemplo 11.** Despeja $C$ en la conversión de grados Fahrenheit $F = \dfrac{9}{5}C + 32$.
+
+$$
+F - 32 = \dfrac{9}{5}C \iff C = \dfrac{5(F-32)}{9}.
+$$
+
+**Ejemplo 12.** Despeja $B$ en el área de un trapecio $A = \dfrac{(B+b)\,h}{2}$.
+
+$$
+2A = (B+b)h \iff \dfrac{2A}{h} = B + b \iff B = \dfrac{2A}{h} - b = \dfrac{2A - bh}{h}.
+$$
+
+**Ejemplo 13 (una ecuación literal completa).** Resuelve en $x$ la ecuación $a x + b = c x + d$, con $a \neq c$.
+
+$$
+ax - cx = d - b \iff (a-c)x = d-b \iff x = \dfrac{d-b}{a-c}.
+$$
+El paso final exige $a \neq c$; si $a = c$ la ecuación es una identidad (cuando $b = d$) o incompatible (cuando $b \neq d$). Discutir estos casos según los valores de los parámetros es exactamente la misma discusión de la sección anterior.
+
+::: {.callout-warning}
+## No se despeja lo que está dentro de una suma
+
+Un error frecuentísimo es «cancelar» un término que forma parte de una suma. En $\dfrac{a + b}{a}$ no se puede tachar la $a$ para dejar $b$, porque la $a$ del numerador está sumando, no multiplicando. Solo se simplifican **factores**, nunca sumandos.
+:::
+
+### Applet · Despeje de fórmulas {.unnumbered}
+
+::: {#panel-despejaFormula .applet-panel data-applet-eq="despejaFormula"}
+:::
+
+## Problemas: del enunciado al lenguaje algebraico
+
+La parte difícil de un problema casi nunca es resolver la ecuación, sino **escribirla**. El paso decisivo es traducir el enunciado a símbolos, y esa traducción es una habilidad que se entrena.
+
+::: {.callout-note}
+## Guion para resolver un problema con ecuaciones
+
+1. **Leer y entender.** ¿Qué datos hay? ¿Qué pregunta exactamente el problema?
+2. **Elegir la incógnita.** Se llama $x$ a *una* de las cantidades desconocidas, normalmente la que hace más sencillo expresar las demás. Hay que escribir con palabras qué representa $x$ y en qué unidades.
+3. **Expresar las demás cantidades en función de $x$.** Conviene hacerlo en una tabla.
+4. **Plantear la ecuación**, escribiendo algebraicamente la condición que relaciona todas las cantidades.
+5. **Resolverla.**
+6. **Comprobar e interpretar.** ¿La solución tiene sentido en el contexto? Una edad no puede ser negativa, ni el número de personas puede ser fraccionario.
+7. **Responder con una frase completa**, no con un número suelto.
+:::
+
+Esta es la tabla de traducción que conviene tener automatizada:
+
+| Lenguaje ordinario | Lenguaje algebraico |
+|---|---|
+| Un número cualquiera | $x$ |
+| El siguiente de un número | $x + 1$ |
+| El doble, el triple de un número | $2x$, $3x$ |
+| La mitad, la tercera parte de un número | $\dfrac{x}{2}$, $\dfrac{x}{3}$ |
+| Un número aumentado en 7 unidades | $x + 7$ |
+| La diferencia entre un número y 5 | $x - 5$ |
+| El $20\,\%$ de una cantidad | $0{,}20x$ |
+| Aumentar una cantidad un $20\,\%$ | $1{,}20x$ |
+| Rebajar una cantidad un $20\,\%$ | $0{,}80x$ |
+| Dos números consecutivos | $x$ y $x+1$ |
+| Dos números pares consecutivos | $2x$ y $2x + 2$ |
+| Espacio recorrido a velocidad $v$ durante $t$ | $v\,t$ |
+
+**Ejemplo 14 (números consecutivos).** La suma de tres números naturales consecutivos es $102$. ¿Cuáles son?
+
+Llamamos $x$ al menor. Los tres números son $x$, $x+1$ y $x+2$, y la condición es
+$$
+x + (x+1) + (x+2) = 102 \iff 3x + 3 = 102 \iff 3x = 99 \iff x = 33.
+$$
+Los números son $33$, $34$ y $35$. Comprobación: $33+34+35 = 102$.
+
+**Ejemplo 15 (edades).** Un padre tiene $40$ años y su hijo $10$. ¿Dentro de cuántos años la edad del padre será el doble que la del hijo?
+
+Llamamos $x$ al número de años que han de pasar. Dentro de $x$ años el padre tendrá $40 + x$ y el hijo $10 + x$. La condición pedida es
+$$
+40 + x = 2(10 + x) \iff 40 + x = 20 + 2x \iff 20 = x.
+$$
+Dentro de $20$ años: el padre tendrá $60$ y el hijo $30$, y en efecto $60 = 2 \cdot 30$.
+
+**Ejemplo 16 (porcentajes).** Un abrigo se vende a $91$ € después de aplicarle un descuento del $30\,\%$. ¿Cuál era su precio original?
+
+Si $x$ es el precio antes del descuento, pagar con un $30\,\%$ de rebaja significa pagar el $70\,\%$:
+$$
+0{,}70\,x = 91 \iff x = \dfrac{91}{0{,}70} = 130.
+$$
+El precio original era $130$ €. Comprobación: el $30\,\%$ de $130$ es $39$, y $130 - 39 = 91$.
+
+::: {.callout-warning}
+## El descuento no se deshace sumando el mismo porcentaje
+
+Un error muy extendido es calcular el precio original sumando un $30\,\%$ a los $91$ €, lo que daría $118{,}30$ €. No funciona porque los porcentajes se aplican sobre bases distintas: la rebaja se calculó sobre $130$, no sobre $91$. Plantear la ecuación evita esta trampa automáticamente.
+:::
+
+**Ejemplo 17 (móviles que se encuentran).** Dos ciudades distan $360$ km. De una sale un coche a $80$ km/h y, a la misma hora, de la otra sale otro a $100$ km/h en sentido contrario. ¿Cuánto tardan en encontrarse?
+
+Llamamos $t$ al tiempo en horas hasta el encuentro. El primero recorre $80t$ y el segundo $100t$; entre los dos cubren toda la distancia:
+$$
+80t + 100t = 360 \iff 180t = 360 \iff t = 2.
+$$
+Se encuentran a las $2$ horas, a $160$ km de la primera ciudad y a $200$ km de la segunda.
+
+**Ejemplo 18 (mezclas).** Se quieren mezclar café de $12$ €/kg con café de $18$ €/kg para obtener $30$ kg de mezcla a $14$ €/kg. ¿Cuántos kilos hay que poner de cada clase?
+
+Si $x$ son los kilos del café barato, los del caro son $30 - x$. El coste total debe coincidir:
+$$
+12x + 18(30 - x) = 14 \cdot 30 \iff 12x + 540 - 18x = 420 \iff -6x = -120 \iff x = 20.
+$$
+Hacen falta $20$ kg del café de $12$ € y $10$ kg del de $18$ €.
+
+**Ejemplo 19 (reparto).** Se reparten $1\,200$ € entre tres personas de modo que la segunda reciba el doble que la primera y la tercera $100$ € más que la segunda. ¿Cuánto recibe cada una?
+
+Si $x$ es lo que recibe la primera, la segunda recibe $2x$ y la tercera $2x + 100$:
+$$
+x + 2x + 2x + 100 = 1200 \iff 5x = 1100 \iff x = 220.
+$$
+Reciben $220$ €, $440$ € y $540$ €, que suman $1\,200$ €.
+
+::: {.callout-tip}
+## Una curiosidad histórica
+
+El planteamiento sistemático de ecuaciones tiene más de mil años. En el siglo IX, en la Casa de la Sabiduría de Bagdad, se escribió un tratado sobre el «cálculo por restauración y comparación»: *al-ŷabr* era la operación de restaurar, es decir, pasar al otro miembro los términos negativos para que todos quedaran positivos, y *al-muqābala* la de comparar y reducir términos semejantes. De la primera palabra procede nuestro término **álgebra**. Lo llamativo es que aquellos tratados no usaban símbolos: todo se describía con palabras y con construcciones geométricas. La notación con letras que hoy te parece obvia tardó siete siglos más en consolidarse.
+:::
+
+### Applet · Del enunciado a la ecuación {.unnumbered}
+
+::: {#panel-problemaLineal .applet-panel data-applet-eq="problemaLineal"}
+:::
+
+## Practica con los entrenadores
+
+Los applets de esta página te enseñan el procedimiento; los entrenadores te dan cantidad de ejercicios para automatizarlo.
+
+- [Entrenador de fracciones algebraicas](../../entrenador_fracciones_algebraicas.html): repasa la suma y la simplificación de fracciones, que es justo lo que necesitas para no equivocarte al eliminar denominadores con el m.c.m.
+- [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html): practica la representación de números en la recta, donde vas a situar las soluciones que obtengas.
+- [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html): calcula mínimos comunes múltiplos a toda velocidad antes de atacar una ecuación con denominadores.
+
+## Errores frecuentes
+
+- **Multiplicar por el m.c.m. solo algunos términos.** Si multiplicas por $6$, deben quedar multiplicados los seis términos de la ecuación, también los enteros.
+- **Olvidar el paréntesis al quitar denominadores.** $6 \cdot \dfrac{x-1}{2}$ es $3(x-1) = 3x-3$, no $3x - 1$.
+- **Equivocar el signo al distribuir.** $-(2x - 5) = -2x + 5$; el menos afecta a todo el paréntesis.
+- **Dividir entre una expresión que puede ser nula.** En $ax = b$ no se puede escribir $x = b/a$ sin haber comprobado antes que $a \neq 0$: ahí se esconden justamente los casos de identidad e incompatibilidad.
+- **Confundir «no tiene solución» con «la solución es cero».** $S = \varnothing$ y $S = \{0\}$ son cosas radicalmente distintas: en el segundo caso sí hay solución, y vale cero.
+- **Comprobar en la ecuación ya manipulada.** La comprobación debe hacerse en la ecuación original; si no, un error de transformación pasa desapercibido.
+- **Dar como respuesta un número sin interpretarlo.** En un problema hay que volver al enunciado: si $x$ era «el precio antes del descuento», la respuesta es un precio en euros, y hay que decirlo.
+- **Descuidar el sentido de la solución.** Un resultado negativo o fraccionario puede ser perfectamente válido en unos contextos e imposible en otros (número de personas, de autobuses, de días).
+
+## Qué debes saber hacer
+
+1. Distinguir una identidad de una ecuación y reconocer miembros, términos, incógnita y grado.
+2. Comprobar si un valor dado es o no solución de una ecuación, sustituyendo en cada miembro por separado.
+3. Enunciar y aplicar las reglas de la suma y del producto, sabiendo por qué el factor debe ser distinto de cero.
+4. Resolver con orden cualquier ecuación de primer grado, incluidas las que tienen denominadores y paréntesis anidados.
+5. Reconocer y describir los casos de identidad ($0 = 0$) y de incompatibilidad ($0 = k$), y saber interpretarlos con dos rectas.
+6. Despejar cualquier variable de una fórmula usual y resolver ecuaciones literales discutiendo los parámetros.
+7. Traducir un enunciado al lenguaje algebraico eligiendo bien la incógnita, plantear la ecuación, resolverla y responder interpretando el resultado en el contexto.

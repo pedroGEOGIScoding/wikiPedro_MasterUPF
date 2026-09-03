@@ -1,0 +1,409 @@
+---
+title: "Tema 3.11 Inecuaciones de segundo grado"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Ecuaciones e inecuaciones"
+filename: 11-inecuaciones-segundo-grado
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Signo de la parábola según el discriminante y el signo del coeficiente principal con los seis casos, método de la tabla de signos, relación entre raíces e intervalos, inecuaciones factorizadas y de grado superior, inecuaciones racionales con valores excluidos e inecuaciones con valor absoluto, con applets manipulables.
+categories: [inecuaciones, 1 Batx, matemáticas CCSS, parábola, tabla de signos, valor absoluto]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Una inecuación que no se despeja
+
+Una inecuación de segundo grado es una desigualdad que, tras pasar todo a un miembro, tiene la forma
+
+$$
+ax^2 + bx + c < 0, \qquad ax^2 + bx + c > 0, \qquad ax^2 + bx + c \leq 0, \qquad ax^2 + bx + c \geq 0 \qquad (a \neq 0)
+$$
+
+La primera diferencia con las de primer grado es que **no se puede despejar la incógnita**. En $x^2 - 5x + 6 > 0$ no hay ninguna manera de dejar la $x$ sola: el cuadrado lo impide. Y hay una trampa peor, que conviene desactivar cuanto antes.
+
+::: {.callout-important}
+## De $x^2 > 9$ no se sigue $x > 3$
+
+Es cierto que $x = 4$ cumple $x^2 > 9$. Pero $x = -5$ también: $(-5)^2 = 25 > 9$. La solución de $x^2 > 9$ no es $x > 3$, sino $x < -3$ **o** $x > 3$, es decir, $(-\infty,-3)\cup(3,+\infty)$.
+
+La raíz cuadrada no conserva las desigualdades cuando hay negativos por medio. Nunca «se quita el cuadrado»: se estudia el **signo**.
+:::
+
+La segunda diferencia es más profunda: mientras que la solución de una inecuación de primer grado es siempre una semirrecta, la de una de segundo grado puede ser un intervalo acotado, una unión de dos semirrectas, toda la recta, la recta sin un punto, un solo punto o el conjunto vacío. Seis formas distintas, y la estrategia correcta consiste en saber decidir cuál toca.
+
+## La idea clave: estudiar el signo
+
+Resolver $ax^2+bx+c > 0$ es preguntar **para qué valores de $x$ la parábola $y = ax^2+bx+c$ queda por encima del eje horizontal**. Y una parábola solo puede cambiar de signo al cruzar el eje, es decir, en sus raíces.
+
+::: {.callout-note}
+## Principio del cambio de signo
+
+Un polinomio solo puede cambiar de signo al pasar por una de sus raíces. Entre dos raíces consecutivas —y en las semirrectas exteriores— el signo es **constante**.
+
+Por tanto, basta con hallar las raíces, partir la recta real en tramos y averiguar el signo en cada tramo probando **un solo número** de su interior.
+:::
+
+Esto convierte un problema con infinitas comprobaciones en un problema con dos o tres. Todo el método de la tabla de signos se apoya en este principio.
+
+## Los seis casos según el discriminante y el signo de $a$
+
+Sea $\Delta = b^2 - 4ac$ el discriminante. La combinación de su signo con el de $a$ produce exactamente seis situaciones.
+
+::: {.callout-note}
+## Los seis casos del signo de la parábola
+
+**Con $a > 0$ (parábola hacia arriba):**
+
+1. $\Delta > 0$: hay dos raíces $x_1 < x_2$. La parábola es **negativa entre las raíces** y positiva fuera.
+   - $ax^2+bx+c > 0 \Rightarrow (-\infty,x_1)\cup(x_2,+\infty)$
+   - $ax^2+bx+c < 0 \Rightarrow (x_1,x_2)$
+2. $\Delta = 0$: hay una raíz doble $x_1$. La parábola toca el eje y no lo cruza: es **positiva en todas partes salvo en $x_1$**, donde vale $0$.
+   - $> 0 \Rightarrow \mathbb{R} - \{x_1\}$; $\geq 0 \Rightarrow \mathbb{R}$; $< 0 \Rightarrow \varnothing$; $\leq 0 \Rightarrow \{x_1\}$
+3. $\Delta < 0$: no hay raíces. La parábola está **entera por encima del eje**.
+   - $> 0$ y $\geq 0 \Rightarrow \mathbb{R}$; $< 0$ y $\leq 0 \Rightarrow \varnothing$
+
+**Con $a < 0$ (parábola hacia abajo):** todo se invierte.
+
+4. $\Delta > 0$: **positiva entre las raíces**, negativa fuera.
+5. $\Delta = 0$: negativa en todas partes salvo en la raíz doble.
+6. $\Delta < 0$: entera por debajo del eje.
+:::
+
+No hay que memorizar la tabla: hay que **dibujar la parábola**. Con el signo de $a$ sabes si abre hacia arriba o hacia abajo; con el discriminante sabes si corta al eje en dos puntos, en uno o en ninguno. Un esquema a mano alzada, con el eje y la curva, responde a la pregunta sin ninguna regla adicional.
+
+::: {.callout-tip}
+## Truco: pon siempre $a > 0$
+
+Si el coeficiente de $x^2$ es negativo, multiplica los dos miembros por $-1$ **girando el sentido** de la desigualdad. Así reduces seis casos a tres y siempre trabajas con parábolas hacia arriba. Por ejemplo, $-x^2+4x-3 \geq 0$ equivale a $x^2-4x+3 \leq 0$, cuya solución es $[1,3]$.
+:::
+
+### Applet · El signo de la parábola: los seis casos {.unnumbered}
+
+Mueve los coeficientes $a$, $b$ y $c$, elige la relación y observa a la vez el discriminante, el caso en el que estás, la gráfica de la parábola con la zona solución sombreada y el conjunto solución escrito como intervalo.
+
+::: {#panel-signoParabola .applet-panel data-applet-eq="signoParabola"}
+:::
+
+Detente en los casos degenerados: fija $\Delta < 0$ y comprueba que la respuesta solo puede ser $\mathbb{R}$ o $\varnothing$; fija $\Delta = 0$ y comprueba cómo el paso de $>$ a $\geq$ añade un único punto a la solución.
+
+## El método de la tabla de signos
+
+La tabla de signos es el procedimiento sistemático que sirve para las de segundo grado y también para las de grado superior y las racionales. Merece la pena hacerlo siempre igual.
+
+::: {.callout-note}
+## Método de la tabla de signos
+
+1. **Pasa todo a un miembro**, dejando $0$ en el otro. Nunca se resuelve una inecuación con términos a los dos lados.
+2. **Halla las raíces** del polinomio (o los ceros del numerador y los polos del denominador, si es racional).
+3. **Ordena** esos valores de menor a mayor y parte la recta real en tramos.
+4. **Determina el signo en cada tramo** sustituyendo un número cualquiera de su interior.
+5. **Selecciona los tramos** cuyo signo cumple la desigualdad.
+6. **Decide los extremos**: entran si la desigualdad es $\leq$ o $\geq$ **y** el valor no anula un denominador.
+7. Escribe la solución como unión de intervalos y dibújala en la recta real.
+:::
+
+**Ejemplo resuelto.** Resuelve $x^2 - 5x + 6 > 0$.
+
+Las raíces de $x^2-5x+6=0$ son $x=2$ y $x=3$. Los tramos son $(-\infty,2)$, $(2,3)$ y $(3,+\infty)$.
+
+| Tramo | $(-\infty,2)$ | $(2,3)$ | $(3,+\infty)$ |
+|---|---|---|---|
+| Número de prueba | $0$ | $2{,}5$ | $4$ |
+| Valor del polinomio | $6$ | $-0{,}25$ | $2$ |
+| Signo | $+$ | $-$ | $+$ |
+
+: Tabla de signos de $x^2-5x+6$ {.striped}
+
+Se pide signo positivo, así que la solución es $(-\infty,2)\cup(3,+\infty)$. Los extremos no entran porque la desigualdad es estricta.
+
+Si la inecuación fuera $x^2-5x+6 \leq 0$, la respuesta sería el intervalo cerrado $[2,3]$: el tramo negativo más los dos extremos, que anulan el polinomio y por tanto cumplen la igualdad.
+
+**Ejemplo resuelto con $\Delta = 0$.** Resuelve $x^2 - 6x + 9 > 0$.
+
+Como $x^2-6x+9=(x-3)^2$, la única raíz es $x=3$, doble. Un cuadrado nunca es negativo, y solo vale $0$ en $x=3$. Por tanto la solución es $\mathbb{R} - \{3\}$, que se escribe $(-\infty,3)\cup(3,+\infty)$.
+
+Con $\geq$ la solución sería $\mathbb{R}$; con $<$, el conjunto vacío; con $\leq$, el conjunto $\{3\}$ formado por un único punto.
+
+**Ejemplo resuelto con $\Delta < 0$.** Resuelve $x^2 + x + 3 < 0$.
+
+$\Delta = 1 - 12 = -11 < 0$ y $a = 1 > 0$: la parábola no corta al eje y está entera por encima. No hay ningún valor con el polinomio negativo: la solución es $\varnothing$.
+
+::: {.callout-warning}
+## No hace falta calcular raíces que no existen
+
+Si el discriminante es negativo, la fórmula no da nada y la tabla de signos tendría un solo tramo. Basta con probar **un** número, por ejemplo $x=0$, para conocer el signo en toda la recta. Escribir «no tiene solución» o «$\mathbb{R}$» es la respuesta completa.
+:::
+
+## Raíces, factorización e intervalos
+
+Cuando el polinomio está factorizado, la tabla de signos se puede rellenar sin sustituir, multiplicando los signos de cada factor.
+
+$$
+x^2 - 5x + 6 = (x-2)(x-3)
+$$
+
+| Tramo | $(-\infty,2)$ | $(2,3)$ | $(3,+\infty)$ |
+|---|---|---|---|
+| $x-2$ | $-$ | $+$ | $+$ |
+| $x-3$ | $-$ | $-$ | $+$ |
+| Producto | $+$ | $-$ | $+$ |
+
+: Signo de un producto a partir del signo de sus factores {.striped}
+
+Esta lectura se extiende a cualquier grado. Para $(x+1)(x-2)^2(x-4) \leq 0$ hay tres raíces, $-1$, $2$ y $4$, pero la de $x=2$ tiene **multiplicidad par**.
+
+::: {.callout-note}
+## Multiplicidad y cambio de signo
+
+- Si una raíz tiene **multiplicidad impar**, el polinomio **cambia** de signo al pasar por ella.
+- Si tiene **multiplicidad par**, el polinomio **no cambia** de signo: solo toca el eje y vuelve.
+
+Por eso $(x-2)^2$ nunca es negativo y $(x-2)^3$ sí cambia de signo en $2$.
+:::
+
+En el ejemplo, el producto es positivo en $(-\infty,-1)$, negativo en $(-1,2)$, negativo también en $(2,4)$ —porque el factor doble no cambia el signo— y positivo en $(4,+\infty)$. Como se pide $\leq 0$, la solución es $[-1,4]$, que incluye el punto $2$ porque allí el polinomio vale exactamente $0$.
+
+### Applet · Tabla de signos e inecuaciones de grado superior {.unnumbered}
+
+Escribe un polinomio de cualquier grado, elige la relación y observa su factorización, las raíces con su multiplicidad, la tabla de signos completa con los números de prueba y el conjunto solución.
+
+::: {#panel-tablaSignosPol .applet-panel data-applet-eq="tablaSignosPol"}
+:::
+
+## Inecuaciones racionales
+
+Una **inecuación racional** compara un cociente de polinomios con un número. Aquí aparece una dificultad nueva: hay valores donde la expresión **no existe**.
+
+::: {.callout-important}
+## Por qué no se puede multiplicar en cruz
+
+En $\dfrac{x-1}{x+2} > 0$ es tentador multiplicar los dos miembros por $x+2$ y quedarse con $x-1>0$. Está prohibido, y por la misma razón que ya conoces: multiplicar por un número negativo gira el sentido, y el signo de $x+2$ **depende del valor de $x$**. Como no sabemos si es positivo o negativo, el paso no está justificado y produce respuestas falsas.
+
+Lo correcto es dejar la fracción comparada con **cero** y estudiar el signo del cociente.
+:::
+
+::: {.callout-note}
+## Método para inecuaciones racionales
+
+1. Pasa todo al primer miembro y reduce a **una sola fracción** con denominador común.
+2. Halla los **ceros del numerador** y los **polos del denominador** (los valores que lo anulan).
+3. Ordena todos esos valores y construye la tabla de signos del cociente: el signo de una fracción es el producto de los signos de numerador y denominador.
+4. Selecciona los tramos que cumplen la desigualdad.
+5. Los ceros del numerador entran si la desigualdad es $\leq$ o $\geq$. **Los polos nunca entran**, aunque la desigualdad no sea estricta: allí la expresión no existe.
+:::
+
+**Ejemplo resuelto.** Resuelve $\dfrac{x-1}{x+2} \geq 0$.
+
+Cero del numerador: $x=1$. Polo: $x=-2$. Tramos: $(-\infty,-2)$, $(-2,1)$, $(1,+\infty)$.
+
+| Tramo | $(-\infty,-2)$ | $(-2,1)$ | $(1,+\infty)$ |
+|---|---|---|---|
+| $x-1$ | $-$ | $-$ | $+$ |
+| $x+2$ | $-$ | $+$ | $+$ |
+| Cociente | $+$ | $-$ | $+$ |
+
+: Signo de un cociente {.striped}
+
+Se pide $\geq 0$, luego valen los tramos positivos. El $1$ entra (anula el numerador y la fracción vale $0$); el $-2$ **no** entra. Solución: $(-\infty,-2)\cup[1,+\infty)$.
+
+**Ejemplo resuelto con comparación distinta de cero.** Resuelve $\dfrac{1}{x-3} < 2$.
+
+Nunca se multiplica por $x-3$. Se pasa todo al primer miembro y se reduce:
+
+$$
+\dfrac{1}{x-3} - 2 < 0
+\;\Longrightarrow\;
+\dfrac{1 - 2(x-3)}{x-3} < 0
+\;\Longrightarrow\;
+\dfrac{7 - 2x}{x-3} < 0
+$$
+
+Cero del numerador: $x = \dfrac{7}{2} = 3{,}5$. Polo: $x = 3$. Probando en cada tramo, el cociente es negativo en $(-\infty,3)$ y en $(3{,}5\,;+\infty)$. Solución: $(-\infty,3)\cup\left(\dfrac{7}{2},+\infty\right)$.
+
+Obsérvese lo que habría pasado multiplicando en cruz: $1 < 2(x-3)$ da $x > 3{,}5$, y se pierde toda la semirrecta $(-\infty,3)$, que sí es solución. El atajo no es solo incorrecto: da menos de la mitad de la respuesta.
+
+### Applet · Inecuaciones racionales y valores excluidos {.unnumbered}
+
+Escribe numerador, denominador y el número con el que se compara. El applet reduce a una sola fracción, marca los polos como excluidos, construye la tabla de signos y contrasta el resultado con números de prueba.
+
+::: {#panel-inecRacionalPolos .applet-panel data-applet-eq="inecRacionalPolos"}
+:::
+
+## Inecuaciones con valor absoluto
+
+El valor absoluto $|A|$ mide la **distancia** de $A$ al cero. Esa lectura resuelve directamente las dos formas básicas.
+
+::: {.callout-note}
+## Las dos traducciones
+
+Sea $k > 0$.
+
+- $|A| < k$ significa «la distancia de $A$ al cero es menor que $k$», es decir,
+  $$
+  -k < A < k
+  $$
+  una **doble desigualdad** que se resuelve como una sola condición. La solución es un intervalo.
+
+- $|A| > k$ significa «la distancia es mayor que $k$», es decir,
+  $$
+  A < -k \quad\text{o}\quad A > k
+  $$
+  dos casos separados por «o». La solución es una **unión** de dos semirrectas.
+
+Con $\leq$ y $\geq$ vale lo mismo, incluyendo los extremos.
+:::
+
+**Ejemplo resuelto.** Resuelve $|2x-1| < 3$.
+
+$$
+-3 < 2x-1 < 3
+\;\Longrightarrow\;
+-2 < 2x < 4
+\;\Longrightarrow\;
+-1 < x < 2
+$$
+
+Solución: $(-1,2)$.
+
+**Ejemplo resuelto.** Resuelve $|2x-1| \geq 3$.
+
+$$
+2x-1 \leq -3 \quad\text{o}\quad 2x-1 \geq 3
+\;\Longrightarrow\;
+x \leq -1 \quad\text{o}\quad x \geq 2
+$$
+
+Solución: $(-\infty,-1]\cup[2,+\infty)$. Es exactamente el complementario del caso anterior, como cabía esperar.
+
+**Casos degenerados.** Si el segundo miembro es negativo o cero, la respuesta se lee sin cálculo:
+
+- $|A| < -2$: imposible, porque un valor absoluto nunca es negativo. Solución $\varnothing$.
+- $|A| > -2$: siempre cierto. Solución $\mathbb{R}$.
+- $|A| \leq 0$: solo se cumple donde $A = 0$. Solución: un único punto.
+- $|A| > 0$: se cumple en todas partes salvo donde $A=0$. Solución: $\mathbb{R}$ menos ese punto.
+
+::: {.callout-caution}
+## No repartas el valor absoluto por la suma
+
+$|x+3|$ **no** es $|x| + 3$ ni $|x| + |3|$. El valor absoluto no se distribuye sobre la suma: solo respeta el producto y el cociente. Para $x = -5$, $|x+3| = 2$ pero $|x|+3 = 8$.
+:::
+
+### Applet · Inecuaciones con valor absoluto {.unnumbered}
+
+Escribe la expresión de dentro y el número de comparación —incluidos negativos y cero para ver los casos degenerados— y observa la traducción a doble desigualdad o a unión de casos, el conjunto solución y la lectura gráfica con la uve de $|ax+b|$.
+
+::: {#panel-inecAbsoluto .applet-panel data-applet-eq="inecAbsoluto"}
+:::
+
+## Problemas contextualizados
+
+**Problema 1 · Zona de beneficios.** El beneficio mensual, en miles de euros, de una empresa que produce $x$ cientos de unidades se modeliza con $B(x) = -x^2 + 10x - 16$. ¿Para qué producciones hay beneficio?
+
+Se exige $B(x) > 0$, es decir, $-x^2+10x-16 > 0$. Multiplicando por $-1$ y girando el sentido: $x^2-10x+16 < 0$. Las raíces son $2$ y $8$, y la parábola (hacia arriba) es negativa entre ellas. Solución: $2 < x < 8$, es decir, entre $200$ y $800$ unidades. Fuera de ese intervalo la empresa pierde dinero, tanto por producir poco (no cubre costes fijos) como por producir demasiado (los costes crecen más deprisa que los ingresos).
+
+**Problema 2 · Rentabilidad por unidad.** El coste medio por unidad es $C(x) = \dfrac{200 + 5x}{x}$ euros, con $x > 0$ unidades. ¿Cuándo el coste medio baja de $9$ euros?
+
+$$
+\dfrac{200+5x}{x} < 9
+\;\Longrightarrow\;
+\dfrac{200+5x-9x}{x} < 0
+\;\Longrightarrow\;
+\dfrac{200-4x}{x} < 0
+$$
+
+Cero del numerador: $x = 50$. Polo: $x = 0$. El cociente es negativo en $(-\infty,0)$ y en $(50,+\infty)$. Como el contexto exige $x>0$, la respuesta es $x > 50$: hay que producir más de $50$ unidades. Es el efecto de repartir el coste fijo entre más unidades.
+
+**Problema 3 · Tolerancia de fabricación.** Una máquina envasa botes cuyo contenido nominal es de $500$ mililitros, con una tolerancia de $8$ mililitros. Expresa la condición de aceptación y el intervalo de contenidos válidos.
+
+$$
+|x - 500| \leq 8
+\;\Longrightarrow\;
+-8 \leq x - 500 \leq 8
+\;\Longrightarrow\;
+492 \leq x \leq 508
+$$
+
+El intervalo de aceptación es $[492, 508]$ mililitros. Esta es la forma habitual de escribir un **margen de error** en control de calidad y también en estadística, donde un intervalo de confianza tiene exactamente esta estructura de centro y radio.
+
+**Problema 4 · Umbral demográfico.** La población de un municipio, en miles de habitantes y con $t$ en años desde 2020, se ajusta por $P(t) = 0{,}5t^2 - 4t + 20$. ¿En qué años la población está por debajo de $14$ mil habitantes?
+
+$$
+0{,}5t^2-4t+20 < 14
+\;\Longrightarrow\;
+0{,}5t^2-4t+6 < 0
+\;\Longrightarrow\;
+t^2-8t+12 < 0
+$$
+
+Raíces $2$ y $6$, parábola hacia arriba: la solución es $(2,6)$. Entre 2022 y 2026 la población estuvo por debajo de $14$ mil habitantes. Fuera de ese intervalo, el modelo dice que la supera.
+
+::: {.callout-warning}
+## Interpreta antes de dar por buena la respuesta
+
+En estos problemas la variable suele tener un dominio con sentido: $x>0$ unidades, $t\geq0$ años, contenidos positivos. Después de resolver la inecuación hay que **intersecar** el conjunto obtenido con ese dominio. Y conviene desconfiar de las extrapolaciones: un modelo cuadrático de población ajustado con pocos datos crece sin límite, algo que ningún municipio hace.
+:::
+
+## Curiosidades y pensamiento crítico
+
+- El método de la tabla de signos es un caso particular de una idea muy general en matemáticas: una función continua solo puede cambiar de signo pasando por cero. Ese enunciado, formalizado, es el **teorema de Bolzano**, y es la base de los métodos numéricos que aproximan raíces por bisección.
+- **René Descartes** publicó en 1637 una regla que acota el número de raíces positivas de un polinomio contando los cambios de signo de sus coeficientes. Se sigue llamando *regla de los signos de Descartes* y sigue siendo útil para saber cuántos tramos esperar antes de calcular nada.
+- Las inecuaciones cuadráticas aparecen en finanzas cada vez que hay un coste con dos efectos opuestos: producir poco no amortiza los costes fijos, producir mucho dispara los variables. La zona de beneficio suele ser un intervalo acotado, no una semirrecta.
+- Los **intervalos de confianza** de la estadística son inecuaciones con valor absoluto disfrazadas: decir que una estimación tiene un margen de error de $\pm 3$ puntos es decir que $|p - \hat p| \leq 3$. Cuando en un titular se afirma que un partido «sube» porque pasa de $22$ a $23$ puntos con un margen de $3$, la afirmación no se sostiene: los dos valores caben en el mismo intervalo.
+- Multiplicar en cruz es el atajo prohibido más popular del tema, y no es casualidad: en las **ecuaciones** sí está permitido. Muchos errores del bloque de inecuaciones consisten en aplicar reglas correctas de las igualdades a un contexto donde el signo importa.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para factorizar con soltura los polinomios de las tablas de signos, usa el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html). Para representar los conjuntos solución y comparar extremos sobre la recta, tienes [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html).
+:::
+
+## Practica con los entrenadores
+
+1. Resuelve, indicando el caso al que pertenece cada una: $x^2-x-6 \leq 0$; $x^2+4 > 0$; $-x^2+2x-1 \geq 0$; $2x^2-8 < 0$.
+2. Resuelve $x^2 \geq 16$ y explica por qué la respuesta no es $x \geq 4$.
+3. Construye la tabla de signos de $(x+2)(x-1)^2(x-3)$ y resuelve la inecuación $\leq 0$.
+4. Resuelve $\dfrac{x+1}{x-2} \leq 1$ sin multiplicar en cruz, y compara con el resultado erróneo que da el atajo.
+5. Resuelve $\dfrac{x^2-9}{x} > 0$ y dibuja la solución en la recta real.
+6. Resuelve $|3-2x| \leq 5$ y $|x+4| > 1$.
+7. Escribe con valor absoluto la condición «$x$ dista de $7$ menos de $0{,}5$» y da el intervalo correspondiente.
+8. Con el applet de la parábola, encuentra unos coeficientes para los que la solución de $ax^2+bx+c \geq 0$ sea exactamente un punto, y explica qué tiene de especial ese caso.
+
+## Errores frecuentes
+
+1. «Quitar el cuadrado» y pasar de $x^2>9$ a $x>3$, perdiendo la semirrecta negativa.
+2. Resolver la inecuación sin pasar todo a un miembro, comparando trozos con números distintos de cero.
+3. Olvidar girar el sentido al multiplicar la inecuación por $-1$ para hacer positivo el coeficiente principal.
+4. Dar como solución la unión cuando toca la intersección: en $\Delta>0$ y $a>0$, el signo negativo se da **entre** las raíces, no fuera.
+5. Confundir el caso $\Delta<0$: con $a>0$ el polinomio es siempre positivo, así que $<0$ da $\varnothing$ y $>0$ da $\mathbb{R}$; muchos escriben lo contrario.
+6. En el caso $\Delta=0$, olvidar el punto aislado: la solución de $(x-3)^2 \leq 0$ es $\{3\}$, no $\varnothing$.
+7. Ignorar la multiplicidad par de una raíz y hacer cambiar el signo donde no cambia.
+8. Multiplicar en cruz en una inecuación racional.
+9. Incluir un polo en la solución porque la desigualdad lleva $\leq$. Los polos se excluyen siempre.
+10. Reducir mal a una sola fracción al comparar con un número distinto de cero, olvidando el paréntesis del numerador.
+11. Escribir $|x+3| = |x| + 3$ o repartir el valor absoluto por una suma.
+12. En $|A| > k$ con $k>0$, escribir la doble desigualdad $-k > A > k$, que no tiene sentido: ese caso es una unión, no un intervalo.
+13. No comprobar la respuesta con un número de prueba de cada tramo, que es la forma más rápida de detectar un signo cambiado.
+
+## Qué debes saber hacer
+
+- Reconocer una inecuación de segundo grado y explicar por qué no se puede despejar la incógnita.
+- Justificar el principio del cambio de signo y usarlo para partir la recta real en tramos.
+- Determinar el signo de una parábola a partir del signo de $a$ y del discriminante, y reproducir los seis casos con un esquema gráfico.
+- Resolver una inecuación cuadrática mediante la tabla de signos, con números de prueba y decisión razonada de los extremos.
+- Escribir el conjunto solución como unión de intervalos y representarlo en la recta real.
+- Relacionar las raíces de la ecuación asociada con las fronteras de los intervalos solución.
+- Resolver inecuaciones factorizadas y de grado superior, teniendo en cuenta la multiplicidad de cada raíz.
+- Resolver inecuaciones racionales reduciendo a una sola fracción comparada con cero, y explicar por qué no se puede multiplicar en cruz.
+- Excluir siempre los polos del conjunto solución, con independencia del signo de la desigualdad.
+- Traducir una inecuación con valor absoluto a una doble desigualdad o a una unión de dos casos, según el sentido.
+- Resolver los casos degenerados con valor absoluto sin hacer cálculos, razonando sobre la no negatividad.
+- Plantear y resolver problemas de zonas de beneficio, coste medio, tolerancias y umbrales, ajustando la respuesta al dominio con sentido.

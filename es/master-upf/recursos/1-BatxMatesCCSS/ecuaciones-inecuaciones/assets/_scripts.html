@@ -1,56 +1,67 @@
 <!-- =====================================================================
-     _scripts.html — ECUACIONES E INECUACIONES · 1r Batx Mates CCSS
+     _scripts.html — TEMA 3 ECUACIONES E INECUACIONES
+     1.º Bachillerato · Matemáticas Aplicadas a las CCSS
+     Ubicación: 1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/_scripts.html
 
-     Se inyecta al final de <body> en las paginas del tema, mediante
-     format: html: include-after-body en cada .qmd.
+     Se inyecta al final de <body> en cada .qmd del tema:
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           html-math-method: katex
 
-     ORDEN OBLIGATORIO
-       1) applets.css                 estilos comunes (.applet, .ap-*)
-       2) katex.min.css               tipografia matematica
-       3) katex.min.js                motor de composicion, sincrono
-       4) auto-render.min.js          define window.renderMathInElement
-       5) poly-applets.js             motor algebraico -> window.POLY
-       6) eq-applets.js               applets del tema -> window.EQAPP
+     ORDEN DE CARGA OBLIGATORIO
+       1) ../assets/applets.css     estilos compartidos de la asignatura
+       2) assets/eq-applets.css     estilos propios de Ecuaciones
+       3) ../assets/katex/katex.min.css   KaTeX local, sin CDN
+       4) ../assets/katex/katex.min.js    motor local de fórmulas
+       5) assets/eq-applets.js      núcleo window.EQ
+       6) assets/eq-applets-a.js    primer grado, segundo grado, bicuadradas
+       7) assets/eq-applets-b.js    racionales, radicales, factorización,
+                                    logarítmicas y exponenciales
+       8) assets/eq-applets-c.js    trigonométricas e inecuaciones
 
-     POR QUE KATEX
-     Los applets reescriben su salida en cada pulsacion de tecla. KaTeX
-     compone de forma sincrona, de modo que basta llamar a
-     renderMathInElement despues de escribir el HTML. Con MathJax habria
-     que orquestar llamadas asincronas en cada actualizacion.
+     RUTAS
+       Los .qmd se renderizan dentro de ecuaciones-inecuaciones/. Por eso
+       ../assets/ apunta a 1-BatxMatesCCSS/assets/, donde ya están
+       applets.css y katex/. Los módulos propios viven en assets/.
 
-     poly-applets.js se carga desde la carpeta del tema de polinomios
-     para no duplicar el motor. Si mueves esa carpeta, corrige la ruta.
+     El núcleo es autónomo: incorpora su propio motor algebraico exacto
+     (fracciones con BigInt, polinomios, Ruffini, factorización) y no
+     depende de la carpeta de otros temas.
 
-     Los applets de polinomios usan  data-applet="clave".
-     Los de este tema usan           data-applet-eq="clave".
+     KaTeX se aplica a mano sobre los nodos data-tex que genera el motor,
+     con throwOnError:false. No se usa OJS, auto-render, CDN ni librerías
+     de terceros: todo funciona también sin conexión.
+
+     INSERCIÓN DE APPLETS EN LOS .qmd
+       ::: {#panel-clave .applet-panel data-applet-eq="clave"}
+       :::
+
+     RECORDATORIO PARA es/_quarto.yml
+       resources:
+         - master-upf/recursos/1-BatxMatesCCSS/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
      ===================================================================== -->
 
 <link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/eq-applets.css">
 
-<!-- KaTeX servido localmente: sin dependencia de red externa. -->
+<!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
 <link rel="stylesheet" href="../assets/katex/katex.min.css">
 <script defer src="../assets/katex/katex.min.js"></script>
-<script defer src="../assets/katex/contrib/auto-render.min.js"></script>
 
-
-<!-- Motor algebraico exacto reutilizado del tema de polinomios. -->
-<script defer src="../polinomios/assets/poly-applets.js"></script>
-
-<!-- Applets de ecuaciones e inecuaciones. -->
+<!-- Núcleo y módulos, en este orden. -->
 <script defer src="assets/eq-applets.js"></script>
+<script defer src="assets/eq-applets-a.js"></script>
+<script defer src="assets/eq-applets-b.js"></script>
+<script defer src="assets/eq-applets-c.js"></script>
 
 <script>
-  /* Avisos en consola para la fase de preparacion de la clase.
-     No afectan al alumnado: los applets degradan con elegancia. */
   window.addEventListener('load', function () {
-    if (!window.katex) {
-      console.warn('[ecuaciones] KaTeX no se ha cargado: la notacion de los applets se vera como texto LaTeX.');
-    }
-    if (!window.renderMathInElement) {
-      console.warn('[ecuaciones] auto-render de KaTeX no disponible: revisa la ruta de contrib/auto-render.min.js.');
-    }
-    if (!window.POLY) {
-      console.warn('[ecuaciones] window.POLY no disponible: eq-applets.js usa su parser de respaldo.');
-    }
+    if (!window.katex) console.warn('[ecuaciones] KaTeX no cargado: revisa ../assets/katex/.');
+    if (!window.EQ) { console.warn('[ecuaciones] eq-applets.js no se ha cargado.'); return; }
+    if (window.EQ.extraA !== true) console.warn('[ecuaciones] falta eq-applets-a.js');
+    if (window.EQ.extraB !== true) console.warn('[ecuaciones] falta eq-applets-b.js');
+    if (window.EQ.extraC !== true) console.warn('[ecuaciones] falta eq-applets-c.js');
   });
 </script>
