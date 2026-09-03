@@ -1,0 +1,331 @@
+---
+title: "Tema 2.3 División de polinomios"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 03-division-polinomios
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Algoritmo de la división de polinomios, condición de grado del resto, identidad D = d·c + r, existencia y unicidad del cociente y el resto, división exacta y divisibilidad, coeficientes fraccionarios, división entre un monomio y comprobación de resultados, con applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, división, divisibilidad, algoritmo]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La analogía con la división entera
+
+Antes de dividir polinomios conviene recordar con precisión qué se hace al dividir números enteros, porque el procedimiento es literalmente el mismo con otro alfabeto.
+
+Al dividir $673$ entre $12$ obtienes cociente $56$ y resto $1$, y escribes
+$$
+673 = 12 \cdot 56 + 1 .
+$$
+
+Dos condiciones caracterizan ese resultado:
+
+1. Se cumple la **identidad** $D = d\cdot c + r$, donde $D$ es el dividendo, $d$ el divisor, $c$ el cociente y $r$ el resto.
+2. El resto es **menor** que el divisor: $0 \leq r < d$.
+
+La segunda condición no es un adorno. Sin ella, la identidad se puede cumplir de infinitas formas: también es cierto que $672 = 12\cdot 48 + 96$, y sin embargo $48$ no es el cociente de dividir $672$ entre $12$, porque $96$ es mayor que $12$ y aún «cabe» más veces el divisor. Es la condición sobre el resto la que hace que el cociente y el resto sean **únicos**.
+
+En los polinomios ocurre exactamente lo mismo, con una única traducción: donde en $\mathbb{Z}$ se compara el **tamaño** de los números, en $\mathbb{R}[x]$ se compara el **grado** de los polinomios.
+
+## El teorema de la división
+
+::: {.callout-note}
+## Teorema de la división euclídea de polinomios
+
+Dados dos polinomios $D(x)$ y $d(x)$ con $d(x)$ no nulo, existen **dos únicos** polinomios $c(x)$ y $r(x)$ tales que
+$$
+D(x) = d(x)\cdot c(x) + r(x),
+$$
+donde $r(x)$ es el polinomio nulo o bien $\text{grado}\bigl(r\bigr) < \text{grado}\bigl(d\bigr)$.
+
+Se llaman **cociente** y **resto** de la división de $D$ entre $d$.
+:::
+
+La **existencia** queda garantizada por el propio algoritmo que verás a continuación: es un procedimiento que siempre termina, porque en cada paso el grado del dividendo parcial disminuye al menos en una unidad, y una sucesión decreciente de números naturales no puede prolongarse indefinidamente.
+
+::: {.callout-important}
+## Demostración de la unicidad
+
+Supón que hubiera dos parejas válidas:
+$$
+D = d\cdot c_1 + r_1 = d\cdot c_2 + r_2 .
+$$
+Restando, $d\cdot\bigl(c_1 - c_2\bigr) = r_2 - r_1$.
+
+Si $c_1 \neq c_2$, el miembro izquierdo tiene grado $\text{grado}(d) + \text{grado}\bigl(c_1 - c_2\bigr) \geq \text{grado}(d)$. Pero el miembro derecho es una resta de dos polinomios de grado menor que $\text{grado}(d)$, así que su grado también es menor que $\text{grado}(d)$. Contradicción.
+
+Por tanto $c_1 = c_2$, y sustituyendo, $r_1 = r_2$. $\blacksquare$
+:::
+
+De la identidad se deduce además una relación de grados muy útil como control rápido: cuando la división se puede realizar,
+$$
+\text{grado}(c) = \text{grado}(D) - \text{grado}(d).
+$$
+
+## El algoritmo de la división
+
+El procedimiento se dispone en la caja de siempre y repite tres pasos.
+
+::: {.callout-note}
+## Pasos del algoritmo
+
+1. **Divide** el término de mayor grado del dividendo (o del dividendo parcial) entre el término de mayor grado del divisor. El monomio obtenido es el siguiente término del cociente.
+2. **Multiplica** ese monomio por **todo** el divisor y **resta** el resultado del dividendo parcial.
+3. **Repite** con el nuevo dividendo parcial mientras su grado sea mayor o igual que el del divisor. Cuando sea menor, ese polinomio es el resto.
+:::
+
+Antes de empezar, ordena los dos polinomios de mayor a menor grado y deja huecos en los grados que falten: es la manera de no descolocar las columnas.
+
+**Ejemplo 1.** Divide $D(x) = x^3 + 4x^2 - 2x + 1$ entre $d(x) = x + 5$.
+
+- $x^3 : x = x^2$. Se multiplica: $x^2(x+5) = x^3 + 5x^2$, y se resta: queda $-x^2 - 2x + 1$.
+- $-x^2 : x = -x$. Se multiplica: $-x(x+5) = -x^2 - 5x$, y se resta: queda $3x + 1$.
+- $3x : x = 3$. Se multiplica: $3(x+5) = 3x + 15$, y se resta: queda $-14$.
+
+El grado de $-14$ es $0$, menor que el grado $1$ del divisor: se acabó.
+$$
+c(x) = x^2 - x + 3, \qquad r(x) = -14 .
+$$
+
+Comprobación con la identidad:
+$$
+(x+5)\bigl(x^2 - x + 3\bigr) + (-14) = x^3 + 4x^2 - 2x + 15 - 14 = x^3 + 4x^2 - 2x + 1 .\ \checkmark
+$$
+
+**Ejemplo 2.** Divide $6x^4 + 11x^3 - 9x^2 - 25x + 10$ entre $2x^2 + x - 3$.
+
+Siguiendo los mismos pasos se obtiene
+$$
+c(x) = 3x^2 + 4x - 2, \qquad r(x) = -11x + 4 .
+$$
+
+Observa que el resto tiene grado $1$, menor que el grado $2$ del divisor: es lo máximo que se puede exigir. Y el grado del cociente es $4 - 2 = 2$, como anunciaba la relación de grados.
+
+::: {.callout-warning}
+## Los dos fallos que arruinan una división larga
+
+1. **No dejar hueco** para los grados que faltan. Al dividir $x^4 - 1$ hay que trabajar con $x^4 + 0x^3 + 0x^2 + 0x - 1$; si no, las columnas se desplazan y todo sale mal.
+2. **No cambiar los signos al restar.** En cada etapa se resta el producto completo, así que todos sus términos cambian de signo. Muchos escriben directamente el producto con los signos cambiados y luego suman, precisamente para no olvidarlo.
+:::
+
+### Applet · División larga paso a paso {.unnumbered}
+
+Introduce el dividendo y el divisor y sigue la división en la caja habitual, con la explicación de qué ocurre en cada etapa.
+
+::: {#panel-divisionLargaPaso .applet-panel data-applet-pol="divisionLargaPaso"}
+:::
+
+Comprueba en cada etapa que el grado del dividendo parcial ha bajado, y que el proceso se detiene exactamente cuando ese grado es menor que el del divisor. Fíjate también en el recuento de etapas: coincide con el grado del cociente más uno.
+
+## División exacta y divisibilidad
+
+::: {.callout-note}
+## División exacta
+
+La división de $D(x)$ entre $d(x)$ es **exacta** cuando el resto es el polinomio nulo. En ese caso
+$$
+D(x) = d(x)\cdot c(x),
+$$
+y se dice que $d(x)$ es un **divisor** de $D(x)$, que $D(x)$ es **múltiplo** de $d(x)$, o que $d(x)$ **divide** a $D(x)$.
+:::
+
+Esta es la puerta de entrada a la factorización: factorizar un polinomio es escribirlo como producto de polinomios de menor grado, es decir, encontrar sus divisores.
+
+**Ejemplo 3.** $x^2 - 9 = (x+3)(x-3)$, luego $x + 3$ divide a $x^2 - 9$ y el cociente es $x - 3$. La división es exacta.
+
+::: {.callout-important}
+## No todo polinomio se puede descomponer
+
+El polinomio $x^2 + 1$ no es divisible por ningún polinomio real de grado $1$.
+
+**Demostración.** Si lo fuera, existiría una descomposición $x^2 + 1 = (ax + b)(cx + e)$ con $a \neq 0$ y $c \neq 0$. Entonces $x = -\dfrac{b}{a}$ anularía el segundo miembro y, por tanto, también el primero. Pero $x^2 + 1 \geq 1 > 0$ para todo número real $x$, así que ningún real lo anula. Contradicción. $\blacksquare$
+
+Los polinomios que no se pueden descomponer en factores de menor grado se llaman **irreducibles**, y hacen en $\mathbb{R}[x]$ el mismo papel que los números primos en $\mathbb{Z}$: son las piezas básicas de toda factorización.
+:::
+
+::: {.callout-caution}
+## Cuándo tiene sentido dividir
+
+El divisor no puede ser el polinomio nulo, igual que no se divide entre $0$. Y para que la división produzca un cociente no nulo hace falta que $\text{grado}(D) \geq \text{grado}(d)$. En caso contrario el algoritmo no puede ni arrancar, porque no hay nada que dividir entre el término principal del divisor.
+:::
+
+## Qué ocurre si el divisor tiene mayor grado
+
+Cuando $\text{grado}(d) > \text{grado}(D)$ el algoritmo se detiene antes de empezar, y el teorema sigue cumpliéndose de la forma más sencilla posible:
+$$
+c(x) = 0, \qquad r(x) = D(x),
+$$
+porque $D(x) = d(x)\cdot 0 + D(x)$ y el grado de $D$ ya es menor que el de $d$.
+
+Es exactamente lo que ocurre al dividir $3$ entre $7$ en los enteros: cociente $0$ y resto $3$.
+
+**Ejemplo 4.** Al dividir $x + 2$ entre $x^3 - 1$, el cociente es $0$ y el resto es $x + 2$.
+
+::: {.callout-tip}
+## Razonar por reducción al absurdo
+
+Podrías preguntarte si en algún caso el cociente podría tener grado positivo aun siendo el divisor de mayor grado que el dividendo. No: si $c \neq 0$, el producto $d\cdot c$ tendría grado $\text{grado}(d) + \text{grado}(c) > \text{grado}(D)$, y al sumarle un resto de grado aún menor que $\text{grado}(d)$ no habría forma de que el término principal se cancelara. El grado del segundo miembro sería mayor que el del primero, lo que es imposible.
+:::
+
+## División entre un monomio
+
+Cuando el divisor es un solo monomio, el algoritmo se simplifica muchísimo: basta dividir cada término del dividendo entre él.
+
+$$
+\dfrac{a x^{n}}{b x^{m}} = \dfrac{a}{b}\, x^{\,n-m} \qquad (n \geq m).
+$$
+
+Los términos cuyo grado sea menor que el del monomio no se pueden dividir dentro de $\mathbb{R}[x]$ y forman el resto.
+
+**Ejemplo 5.** Divide $8x^4 - 2x^3 - 2x^2 - x + 4$ entre $4x$.
+
+$$
+\dfrac{8x^4}{4x} = 2x^3, \quad
+\dfrac{-2x^3}{4x} = -\dfrac{1}{2}x^2, \quad
+\dfrac{-2x^2}{4x} = -\dfrac{1}{2}x, \quad
+\dfrac{-x}{4x} = -\dfrac{1}{4} .
+$$
+
+El término independiente $4$ tiene grado $0$, menor que el grado $1$ del divisor: se queda como resto.
+$$
+c(x) = 2x^3 - \dfrac{1}{2}x^2 - \dfrac{1}{2}x - \dfrac{1}{4}, \qquad r(x) = 4 .
+$$
+
+Identidad: $4x\left(2x^3 - \dfrac{1}{2}x^2 - \dfrac{1}{2}x - \dfrac{1}{4}\right) + 4 = 8x^4 - 2x^3 - 2x^2 - x + 4$. $\checkmark$
+
+::: {.callout-warning}
+## Dividir entre un monomio no es «tachar»
+
+$\dfrac{6x^2 + 3x}{3x}$ vale $2x + 1$, no $2x$. Cada término del numerador debe dividirse, incluido el último. Y, al contrario, $\dfrac{6x^2 + 3}{3x + 1}$ no se puede simplificar término a término: eso solo funciona cuando el **divisor** es un único monomio, porque la propiedad distributiva actúa sobre el dividendo, no sobre el divisor.
+:::
+
+### Applet · Dividir entre un monomio, término a término {.unnumbered}
+
+Introduce el dividendo y el monomio divisor mediante su coeficiente y su grado, y observa qué términos pasan al cociente y cuáles se quedan en el resto.
+
+::: {#panel-divisionMonomio .applet-panel data-applet-pol="divisionMonomio"}
+:::
+
+Busca un divisor de grado $0$ (una constante) y comprueba que entonces el resto es siempre nulo: dividir entre un número nunca deja resto en $\mathbb{R}[x]$. Aumenta después el grado del monomio y observa cómo crece el resto.
+
+## Coeficientes fraccionarios
+
+Nada obliga a que los coeficientes sean enteros. Aunque el dividendo y el divisor lo sean, el cociente puede tener fracciones, porque en el primer paso del algoritmo se divide un coeficiente entre otro.
+
+**Ejemplo 6.** Divide $x^6 + 3x^4 + 3x - 8$ entre $2x^4 + 1$.
+
+- $x^6 : 2x^4 = \dfrac{1}{2}x^2$. Se multiplica: $\dfrac{1}{2}x^2\bigl(2x^4+1\bigr) = x^6 + \dfrac{1}{2}x^2$, y se resta: queda $3x^4 - \dfrac{1}{2}x^2 + 3x - 8$.
+- $3x^4 : 2x^4 = \dfrac{3}{2}$. Se multiplica: $\dfrac{3}{2}\bigl(2x^4+1\bigr) = 3x^4 + \dfrac{3}{2}$, y se resta: queda $-\dfrac{1}{2}x^2 + 3x - \dfrac{19}{2}$.
+
+El grado del resto es $2$, menor que el grado $4$ del divisor. Por tanto
+$$
+c(x) = \dfrac{1}{2}x^2 + \dfrac{3}{2}, \qquad r(x) = -\dfrac{1}{2}x^2 + 3x - \dfrac{19}{2} .
+$$
+
+::: {.callout-tip}
+## Trabaja con fracciones, no con decimales
+
+Escribir $0{,}5$ en lugar de $\dfrac{1}{2}$ funciona en este caso, pero en cuanto aparece un $\dfrac{1}{3}$ los decimales dejan de ser exactos y arrastras un error de redondeo hasta el final. Con fracciones el resultado es exacto siempre, y la comprobación de la identidad sale limpia.
+:::
+
+## La comprobación
+
+Toda división debe comprobarse. No es un trámite: es el control de calidad que detecta cualquier error de signo o de columna.
+
+::: {.callout-note}
+## Doble comprobación
+
+1. **Identidad**: multiplica $d(x)\cdot c(x)$, súmale $r(x)$ y comprueba que obtienes exactamente $D(x)$.
+2. **Grado**: comprueba que $r(x)$ es nulo o que su grado es menor que el de $d(x)$.
+
+Las dos condiciones son necesarias. Si falla la primera, hay un error de cálculo; si falla la segunda, la división está incompleta y aún se puede seguir dividiendo.
+:::
+
+Hay además un atajo de verificación rápida: como la identidad es una igualdad de polinomios, se cumple para **todo** valor de $x$. Basta elegir un número cómodo y comprobar los valores numéricos.
+
+**Ejemplo 7.** En la división del ejemplo 2, con $x = 2$:
+$$
+D(2) = 108, \qquad d(2) = 7, \qquad c(2) = 18, \qquad r(2) = -18,
+$$
+y en efecto $7\cdot 18 + (-18) = 126 - 18 = 108$. $\checkmark$
+
+::: {.callout-caution}
+## Una comprobación numérica no es una demostración
+
+Que la igualdad se cumpla en $x = 2$ no garantiza que la división sea correcta: dos polinomios distintos pueden coincidir en un punto. Es un filtro rápido y muy eficaz para **detectar** errores, pero para **confirmar** el resultado hay que hacer el producto completo. Evita además el valor $x = 1$: al sumar todos los coeficientes, dos errores de signo compensados pasan desapercibidos.
+:::
+
+### Applet · Comprobador de la identidad de la división {.unnumbered}
+
+Escribe el dividendo, el divisor y tu propuesta de cociente y resto, y comprueba a la vez las dos condiciones del teorema.
+
+::: {#panel-pruebaDivision .applet-panel data-applet-pol="pruebaDivision"}
+:::
+
+Introduce a propósito un cociente correcto con un resto de grado demasiado alto y observa qué condición falla. Es el mismo caso que $672 = 12\cdot 48 + 96$: la identidad se cumple, pero el resultado no es la división.
+
+## Aplicaciones
+
+- **Factorizar.** Si conoces un divisor de un polinomio, dividir entre él te da el otro factor y reduce el grado del problema. Encadenando divisiones se llega a la descomposición completa.
+- **Simplificar fracciones algebraicas.** Una fracción $\dfrac{P(x)}{Q(x)}$ solo se simplifica cancelando **factores** comunes, y para encontrarlos hay que dividir. Es la base del máximo común divisor de polinomios.
+- **Separar la parte entera.** De la identidad $D = d\cdot c + r$ se obtiene, dividiendo todo entre $d$,
+$$
+\dfrac{D(x)}{d(x)} = c(x) + \dfrac{r(x)}{d(x)} .
+$$
+Esto expresa una fracción algebraica impropia como un polinomio más una fracción propia, igual que $\dfrac{673}{12} = 56 + \dfrac{1}{12}$. Es imprescindible al estudiar asíntotas de funciones racionales y al integrar.
+- **Resolver ecuaciones.** Bajar el grado de una ecuación polinómica dividiendo entre un factor conocido es la técnica estándar cuando el grado supera el $2$.
+- **Interpretar modelos.** Si un coste total $C(x)$ es un polinomio y $x$ el número de unidades, el cociente $\dfrac{C(x)}{x}$ es el coste medio por unidad, y su parte entera indica el comportamiento a largo plazo.
+
+## Curiosidades y pensamiento crítico
+
+- El algoritmo de la división es la base del **algoritmo de Euclides**, que calcula el máximo común divisor encadenando divisiones y quedándose con los restos. Descrito hacia el año 300 a. C. para números enteros, funciona sin cambios para polinomios, y sigue siendo uno de los procedimientos más usados en informática.
+- Cuando el divisor es de la forma $x - a$ existe un atajo, la **regla de Ruffini**, descubierta por el matemático italiano Paolo Ruffini a comienzos del siglo XIX. No es un método distinto: es la misma división larga escrita solo con los coeficientes.
+- Ruffini intentó demostrar que las ecuaciones de grado cinco no se pueden resolver con radicales. Su prueba tenía lagunas; la completó **Abel** en 1824, y **Galois** explicó poco después la razón profunda del fenómeno. Que existan objetos matemáticos sin fórmula resolutiva no es un fracaso: es un resultado.
+- Una calculadora que divide polinomios trabaja siempre con coeficientes racionales exactos, no con decimales, precisamente para evitar que los redondeos hagan aparecer restos que deberían ser nulos. Si en un cálculo obtienes un resto minúsculo pero no cero, sospecha de la aritmética antes que del teorema.
+- La condición «grado del resto menor que grado del divisor» es lo que convierte a $\mathbb{R}[x]$ en un dominio euclídeo, la propiedad abstracta que garantiza que existe factorización única. Es la misma propiedad que hace que todo entero se descomponga en primos de una única manera.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) y el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html).
+:::
+
+## Errores frecuentes
+
+1. No ordenar el dividendo o el divisor antes de empezar, o no dejar hueco para los grados que faltan.
+2. Al restar el producto de cada etapa, cambiar el signo solo del primer término en lugar de todos.
+3. Multiplicar el monomio del cociente únicamente por el primer término del divisor, en vez de por el divisor completo.
+4. Detener la división antes de tiempo, dejando un resto con grado mayor o igual que el del divisor.
+5. Seguir dividiendo cuando el resto ya tiene grado menor que el divisor, e inventar términos con exponentes negativos.
+6. Confundir el cociente con el resto al escribir el resultado final, o dar solo uno de los dos.
+7. Creer que el resto siempre es un número. Solo lo es cuando el divisor tiene grado $1$; con un divisor de grado $3$, el resto puede tener grado $2$.
+8. Decir que el resto tiene grado $0$ cuando es el polinomio nulo. El polinomio nulo no tiene grado.
+9. Rechazar un cociente con coeficientes fraccionarios. Es perfectamente correcto: $\mathbb{R}[x]$ admite cualquier coeficiente real.
+10. Al dividir entre un monomio, olvidar dividir el último término del dividendo, o «tachar» términos en el divisor cuando este tiene más de un término.
+11. Dar por buena una división solo porque la comprobación numérica funciona en un punto, especialmente si ese punto es $x = 1$.
+
+## Qué debes saber hacer
+
+- Explicar la analogía entre la división entera de números y la de polinomios, y qué papel juega la condición sobre el resto.
+- Enunciar el teorema de la división de polinomios con precisión, incluyendo el caso de resto nulo.
+- Justificar la unicidad del cociente y del resto mediante un razonamiento con grados.
+- Aplicar el algoritmo de la división de forma ordenada, dejando huecos para los grados que faltan.
+- Determinar de antemano el grado del cociente y el grado máximo del resto a partir de los grados del dividendo y del divisor.
+- Reconocer cuándo una división es exacta y expresar la divisibilidad en los distintos lenguajes equivalentes: divisor, múltiplo, factor.
+- Justificar por qué $x^2 + 1$ no es divisible por ningún polinomio real de grado $1$.
+- Resolver el caso en que el divisor tiene mayor grado que el dividendo, y explicar por qué el cociente es nulo.
+- Dividir un polinomio entre un monomio término a término, identificando correctamente el resto.
+- Manejar divisiones con coeficientes fraccionarios sin recurrir a decimales aproximados.
+- Comprobar cualquier división verificando la identidad $D = d\cdot c + r$ y la condición de grado del resto.
+- Usar la división para separar la parte entera de una fracción algebraica y explicar para qué sirve.

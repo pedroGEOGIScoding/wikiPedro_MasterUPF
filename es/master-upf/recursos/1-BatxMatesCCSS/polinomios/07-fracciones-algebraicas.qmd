@@ -1,0 +1,406 @@
+---
+title: "Tema 2.7 Fracciones algebraicas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 07-fracciones-algebraicas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición y analogía con las fracciones numéricas, valores que anulan el denominador y restricciones del dominio, fracciones equivalentes, simplificación por factorización y el error de tachar sumandos, suma y resta con el m.c.m., producto, división e inversa, fracciones de dos pisos, descomposición en fracciones simples y ecuaciones racionales, con applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, fracciones algebraicas, dominio, ecuaciones racionales]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De las fracciones de números a las fracciones de polinomios
+
+Los polinomios se pueden sumar, restar y multiplicar sin salir del conjunto de los polinomios, pero al dividir aparece un problema conocido: $x^2-1$ dividido entre $x+2$ no es un polinomio. Ocurre lo mismo que con los enteros, donde $3:4$ obliga a inventar la fracción $\dfrac{3}{4}$.
+
+::: {.callout-note}
+## Fracción algebraica
+
+Una **fracción algebraica** es el cociente indicado de dos polinomios,
+
+$$
+\dfrac{P(x)}{Q(x)}, \qquad \text{con } Q(x) \text{ no nulo.}
+$$
+
+$P(x)$ es el numerador y $Q(x)$ el denominador.
+:::
+
+La analogía con las fracciones numéricas es total, y conviene aprovecharla porque todas las reglas se trasladan tal cual:
+
+| Fracciones numéricas | Fracciones algebraicas |
+|---|---|
+| $\dfrac{6}{9} = \dfrac{2}{3}$ dividiendo entre $3$ | $\dfrac{x^2-1}{x^2+2x+1} = \dfrac{x-1}{x+1}$ dividiendo entre $x+1$ |
+| Denominador $0$ prohibido | Se prohíben los valores que anulan $Q(x)$ |
+| Se suman con el m.c.m. de los denominadores | Se suman con el m.c.m. de los polinomios del denominador |
+| Se multiplica en línea, se divide por la inversa | Igual |
+
+También hay una diferencia importante: una fracción numérica es un número; una fracción algebraica es una **expresión** que produce un número distinto para cada valor de $x$ (y ninguno para los valores prohibidos). Por eso hablaremos de dominio.
+
+::: {.callout-tip}
+## Todo polinomio es una fracción algebraica
+
+Igual que $5 = \dfrac{5}{1}$, cualquier polinomio se puede ver como fracción algebraica de denominador 1. Y la división entera de polinomios, $P = Q\cdot C + R$, permite escribir
+
+$$
+\dfrac{P(x)}{Q(x)} = C(x) + \dfrac{R(x)}{Q(x)},
+$$
+
+que es el equivalente de pasar de $\dfrac{7}{3}$ a $2+\dfrac{1}{3}$. Esta forma es muy útil para estudiar funciones y sus asíntotas.
+:::
+
+## Los valores que anulan el denominador
+
+Es el detalle que separa una respuesta correcta de una respuesta casi correcta.
+
+::: {.callout-important}
+## Restricciones del dominio
+
+Una fracción algebraica no está definida en los valores de $x$ que anulan el denominador. Esos valores son, exactamente, las **raíces del denominador**, y hay que buscarlas **en el denominador original**, antes de simplificar.
+:::
+
+Para hallarlas se factoriza el denominador y se iguala cada factor a cero:
+
+$$
+\dfrac{x+1}{x^2-4} = \dfrac{x+1}{(x-2)(x+2)} \;\Rightarrow\; x \neq 2, \quad x \neq -2.
+$$
+
+El dominio de la expresión es entonces $\mathbb{R}\setminus\{-2,2\}$.
+
+::: {.callout-warning}
+## Simplificar no devuelve los valores perdidos
+
+$$
+\dfrac{x^2-9}{x-3} = \dfrac{(x-3)(x+3)}{x-3} = x+3 \qquad \text{pero solo si } x \neq 3.
+$$
+
+La expresión de la izquierda no existe en $x=3$; la de la derecha vale $6$. Son iguales en todos los puntos **menos** en uno, y por eso la restricción $x\neq 3$ se arrastra hasta el final. Al dibujar la función se vería un agujero en el punto $(3,6)$.
+:::
+
+## Fracciones equivalentes
+
+::: {.callout-note}
+## Equivalencia
+
+Dos fracciones algebraicas son **equivalentes** cuando
+
+$$
+\dfrac{P}{Q} = \dfrac{R}{S} \iff P \cdot S = R \cdot Q .
+$$
+:::
+
+Es el criterio de los **productos cruzados**, idéntico al numérico. Y de él salen las dos operaciones básicas:
+
+- **Amplificar**: multiplicar numerador y denominador por un mismo polinomio no nulo. Es lo que se hace al buscar denominador común.
+- **Simplificar**: dividir numerador y denominador entre un factor común. Es lo que se hace al reducir.
+
+$$
+\dfrac{x-1}{x+2} = \dfrac{(x-1)(x+3)}{(x+2)(x+3)} \quad (x\neq -3)
+$$
+
+Comprueba con productos cruzados: $(x-1)(x+2)(x+3) = (x-1)(x+3)(x+2)$. Cierto.
+
+::: {.callout-tip}
+## Cambiar el signo de dos de los tres sitios no cambia la fracción
+
+$$
+\dfrac{-(x-1)}{x+2} = \dfrac{x-1}{-(x+2)} = -\dfrac{x-1}{x+2}
+$$
+
+Es un recurso muy práctico cuando aparecen $x-3$ y $3-x$ en la misma expresión: como $3-x = -(x-3)$, se puede unificar el denominador sacando un signo menos.
+:::
+
+## Simplificar: solo se cancelan factores
+
+La receta es corta: **factorizar arriba, factorizar abajo, cancelar los factores comunes**. Sin factorizar no hay nada que cancelar.
+
+$$
+\dfrac{x^3-5x^2+7x-3}{x^3-2x^2-5x+6}
+= \dfrac{(x-1)^2(x-3)}{(x-1)(x-3)(x+2)}
+= \dfrac{x-1}{x+2}
+$$
+
+con las restricciones $x\neq 1$, $x\neq 3$, $x\neq -2$, leídas del denominador **de partida**.
+
+::: {.callout-note}
+## Fracción irreducible
+
+Una fracción algebraica es **irreducible** cuando el m.c.d. de su numerador y su denominador es una constante, es decir, cuando ya no comparten ningún factor de grado $\geq 1$.
+:::
+
+### Applet · Simplificar fracciones algebraicas {.unnumbered}
+
+::: {#panel-simplificaFrax .applet-panel data-applet-pol="simplificaFrax"}
+:::
+
+Empieza por el primer preajuste, $\dfrac{x^3-5x^2+7x-3}{x^3-2x^2-5x+6}$, y fíjate en dos cosas: los factores que desaparecen y la lista de valores excluidos, que sigue teniendo tres elementos aunque en la fracción final solo se vea uno. Prueba después con $\dfrac{x+2}{x^2+3}$: el applet responde que ya es irreducible.
+
+### El error de tachar sumandos
+
+Este es, con diferencia, el error más repetido del tema.
+
+::: {.callout-warning}
+## Lo que nunca se puede hacer
+
+$$
+\dfrac{x^2+3}{x+3} \neq \dfrac{x^2}{x}, \qquad
+\dfrac{2x+6}{x+6} \neq \dfrac{2x}{x} = 2, \qquad
+\dfrac{x+5}{5} \neq x
+$$
+
+Cancelar exige que lo cancelado sea **un factor de todo el numerador y de todo el denominador**. En $x^2+3$ el número 3 es un **sumando**, no un factor: no divide a la expresión completa.
+:::
+
+La forma más convincente de verlo es sustituir. En $\dfrac{2x+6}{x+6}$ con $x=1$ sale $\dfrac{8}{7} \approx 1{,}14$, no 2. Un solo contraejemplo numérico basta para tumbar una igualdad falsa: eso es un argumento matemático completo.
+
+### Applet · Tachar mal frente a simplificar bien {.unnumbered}
+
+::: {#panel-tacharMal .applet-panel data-applet-pol="tacharMal"}
+:::
+
+El applet hace el tachado incorrecto, la simplificación correcta y evalúa las tres expresiones en el valor que elijas. Cuando los números no coinciden, la igualdad es falsa; cuando coinciden en el preajuste $\dfrac{x^2-1}{x-1}$ es porque ahí sí había un factor común de verdad. Usa este applet cada vez que dudes de una cancelación.
+
+## Suma y resta con denominador común
+
+::: {.callout-note}
+## Procedimiento
+
+1. Factoriza todos los denominadores.
+2. Calcula su **m.c.m.**: todos los factores, comunes y no comunes, al mayor exponente.
+3. Amplifica cada fracción multiplicando numerador y denominador por lo que le falte.
+4. Suma o resta los **numeradores**, dejando el denominador común intacto.
+5. Simplifica el resultado y escribe las restricciones.
+:::
+
+Un ejemplo con el m.c.m. escondido en la factorización:
+
+$$
+\dfrac{x+3}{x^2-1} + \dfrac{2x-5}{x+1}
+= \dfrac{x+3}{(x-1)(x+1)} + \dfrac{2x-5}{x+1}
+$$
+
+El m.c.m. de $(x-1)(x+1)$ y $(x+1)$ es $(x-1)(x+1) = x^2-1$: la primera fracción ya lo tiene, la segunda hay que amplificarla por $x-1$.
+
+$$
+= \dfrac{x+3}{x^2-1} + \dfrac{(2x-5)(x-1)}{x^2-1}
+= \dfrac{x+3+2x^2-7x+5}{x^2-1}
+= \dfrac{2x^2-6x+8}{x^2-1}
+$$
+
+El numerador admite factor común 2, y $x^2-3x+4$ tiene $\Delta = 9-16 <0$, así que es irreducible y no hay nada más que cancelar:
+
+$$
+= \dfrac{2\left(x^2-3x+4\right)}{(x-1)(x+1)}, \qquad x \neq 1,\; x\neq -1 .
+$$
+
+::: {.callout-warning}
+## El paréntesis de la resta
+
+Al restar, el numerador de la segunda fracción entra **entero** entre paréntesis:
+
+$$
+\dfrac{A}{D} - \dfrac{B+C}{D} = \dfrac{A-(B+C)}{D} = \dfrac{A-B-C}{D}.
+$$
+
+Olvidar ese paréntesis y escribir $A-B+C$ es el error de signo más habitual del apartado.
+:::
+
+Otro ejemplo, ahora con un denominador que es un cuadrado:
+
+$$
+\dfrac{1}{x^2-1} + \dfrac{1}{x^2+2x+1}
+= \dfrac{1}{(x-1)(x+1)} + \dfrac{1}{(x+1)^2}
+$$
+
+El m.c.m. es $(x-1)(x+1)^2$: se toma el factor $(x+1)$ al **mayor** exponente, que es 2.
+
+$$
+= \dfrac{(x+1) + (x-1)}{(x-1)(x+1)^2} = \dfrac{2x}{(x-1)(x+1)^2}, \qquad x\neq 1,\; x\neq -1 .
+$$
+
+### Applet · Sumar y restar fracciones algebraicas {.unnumbered}
+
+::: {#panel-sumaFrax .applet-panel data-applet-pol="sumaFrax"}
+:::
+
+El applet muestra el m.c.m., cómo queda cada fracción amplificada, la suma de numeradores y la simplificación final. Compara el preajuste $\dfrac{1}{x-1}+\dfrac{1}{x+1}$, donde los denominadores no comparten nada, con $\dfrac{3x-2}{x^2+x}+\dfrac{4}{x^2+x-2}$, donde el m.c.m. tiene tres factores distintos: verás que multiplicar los denominadores sin más funciona, pero obliga a simplificar mucho después.
+
+## Producto, división e inversa
+
+Estas dos operaciones son más cómodas que la suma, porque no hace falta denominador común.
+
+::: {.callout-note}
+## Producto y división
+
+$$
+\dfrac{A}{B} \cdot \dfrac{C}{D} = \dfrac{A\,C}{B\,D}, \qquad
+\dfrac{A}{B} : \dfrac{C}{D} = \dfrac{A}{B} \cdot \dfrac{D}{C} = \dfrac{A\,D}{B\,C}.
+$$
+
+La **inversa** de $\dfrac{A}{B}$ (con $A$ no nulo) es $\dfrac{B}{A}$, y su producto es 1.
+:::
+
+El consejo práctico es no multiplicar a lo bruto: **factoriza primero y cancela antes de desarrollar**.
+
+$$
+\dfrac{x^2-1}{x^2+x} \cdot \dfrac{x+1}{x-1}
+= \dfrac{(x-1)(x+1)}{x(x+1)} \cdot \dfrac{x+1}{x-1}
+= \dfrac{x+1}{x}
+$$
+
+con $x\neq 0$, $x\neq -1$, $x\neq 1$. Si hubieras multiplicado los cuatro polinomios habrías tenido que factorizar un grado 3 arriba y otro abajo para llegar al mismo sitio.
+
+::: {.callout-important}
+## Al dividir aparecen restricciones nuevas
+
+En $\dfrac{A}{B} : \dfrac{C}{D}$ hay que exigir $B\neq 0$, $D \neq 0$ **y además** $C\neq 0$, porque $C$ pasa a ser denominador. Es la razón de que las divisiones de fracciones algebraicas tengan siempre más valores excluidos de los que parece.
+:::
+
+### Applet · Producto, división e inversa de fracciones algebraicas {.unnumbered}
+
+::: {#panel-multiDivFrax .applet-panel data-applet-pol="multiDivFrax"}
+:::
+
+Cambia la operación entre $\cdot$ y $:$ con los mismos datos y observa cómo se modifican tanto el resultado como la lista de restricciones. El preajuste $\dfrac{1}{x+1} : \dfrac{1}{x-1}$ es el más limpio para entender la inversa.
+
+## Fracciones de dos pisos
+
+Una **fracción compleja** es una fracción cuyo numerador o denominador contiene a su vez fracciones. Hay dos formas de resolverla y las dos son correctas:
+
+1. **Piso a piso**: se reduce el numerador a una sola fracción, se reduce el denominador a una sola fracción y se divide la primera entre la segunda.
+2. **Multiplicando arriba y abajo por el m.c.m.** de todos los denominadores pequeños, para hacerlos desaparecer de golpe.
+
+$$
+\dfrac{\;1+\dfrac{1}{x}\;}{\;1-\dfrac{1}{x}\;}
+= \dfrac{\;\dfrac{x+1}{x}\;}{\;\dfrac{x-1}{x}\;}
+= \dfrac{x+1}{x}\cdot\dfrac{x}{x-1}
+= \dfrac{x+1}{x-1}, \qquad x\neq 0,\; x\neq 1 .
+$$
+
+Con el segundo método se multiplica todo por $x$ y se llega en un solo paso a $\dfrac{x+1}{x-1}$. Ojo con la restricción $x\neq 0$: desaparece de la vista, pero sigue vigente porque en la expresión original había $\dfrac{1}{x}$.
+
+::: {.callout-warning}
+## La raya principal manda
+
+En $\dfrac{\;\frac{1}{x}\;}{\;\frac{1}{y}\;}$ la raya larga es la división principal. Escribir estas expresiones en una sola línea sin paréntesis es una fuente segura de errores: $1/x/1/y$ no significa nada claro. Usa siempre paréntesis: $(1/x):(1/y)$.
+:::
+
+### Applet · Fracciones de dos pisos {.unnumbered}
+
+::: {#panel-fraxCompleja .applet-panel data-applet-pol="fraxCompleja"}
+:::
+
+El applet resuelve por el método piso a piso: primero suma arriba, después multiplica por la inversa de abajo. Prueba el preajuste $\left(\dfrac{1}{x}+\dfrac{1}{x+1}\right):\dfrac{1}{x^2+x}$, que se simplifica hasta un polinomio: es un buen recordatorio de que el resultado de operar fracciones algebraicas puede no ser una fracción.
+
+## Un avance: descomposición en fracciones simples
+
+Hasta ahora hemos ido de varias fracciones a una sola. El camino inverso también es útil (y en 2.º de bachillerato será imprescindible para integrar).
+
+Si el denominador se factoriza en factores de grado 1 distintos, se puede escribir
+
+$$
+\dfrac{5x+1}{(x-1)(x+2)} = \dfrac{A}{x-1} + \dfrac{B}{x+2}.
+$$
+
+Se quita el denominador común: $5x+1 = A(x+2) + B(x-1)$. Ahora se eligen valores cómodos de $x$:
+
+- con $x=1$: $6 = 3A \Rightarrow A = 2$;
+- con $x=-2$: $-9 = -3B \Rightarrow B = 3$.
+
+$$
+\dfrac{5x+1}{(x-1)(x+2)} = \dfrac{2}{x-1} + \dfrac{3}{x+2}
+$$
+
+Y se comprueba sumando de nuevo: $\dfrac{2(x+2)+3(x-1)}{(x-1)(x+2)} = \dfrac{5x+1}{(x-1)(x+2)}$. Correcto.
+
+::: {.callout-caution}
+## Pensamiento crítico: ¿por qué basta con dar valores?
+
+Porque la igualdad $5x+1 = A(x+2)+B(x-1)$ debe cumplirse para **todos** los valores de $x$; en particular, para los que anulan un paréntesis. Elegir $x=1$ y $x=-2$ no es un truco, es aprovechar la definición de identidad polinómica. La alternativa —igualar coeficientes grado a grado y resolver el sistema— lleva al mismo resultado con más cuentas.
+:::
+
+## Dos aplicaciones que verás enseguida
+
+### Dominio de funciones racionales
+
+Una función definida por una fracción algebraica existe en todos los reales **menos** en las raíces del denominador. Localizarlas es, otra vez, factorizar:
+
+$$
+f(x) = \dfrac{x^2+1}{x^3-x} = \dfrac{x^2+1}{x(x-1)(x+1)}
+\;\Rightarrow\;
+\operatorname{Dom} f = \mathbb{R}\setminus\{-1,0,1\}.
+$$
+
+En esos tres puntos la gráfica tendrá asíntotas verticales o agujeros, según si el factor se cancela o no con el numerador.
+
+### Ecuaciones racionales
+
+Una ecuación con la incógnita en algún denominador se resuelve así: se hallan las restricciones, se multiplica todo por el m.c.m. de los denominadores, se resuelve la ecuación polinómica que queda y **se descartan** las soluciones que estaban prohibidas.
+
+$$
+\dfrac{3}{x-1} = \dfrac{2}{x+1}
+\;\Rightarrow\;
+3(x+1) = 2(x-1)
+\;\Rightarrow\;
+3x+3 = 2x-2
+\;\Rightarrow\;
+x = -5 .
+$$
+
+Como $-5$ no es ni 1 ni $-1$, la solución es válida.
+
+::: {.callout-important}
+## Soluciones falsas: el caso que hay que conocer
+
+$$
+\dfrac{x}{x-3} = \dfrac{3}{x-3} + 2
+$$
+
+Restricción: $x\neq 3$. Multiplicando por $x-3$: $x = 3 + 2(x-3)$, es decir $x = 2x-3$, luego $x=3$. Pero $x=3$ está prohibido, así que **la ecuación no tiene solución**. Si no compruebas las restricciones, entregas una solución que no existe.
+:::
+
+::: {.callout-tip}
+## Practica con el entrenador
+
+Automatiza estas operaciones con el
+[Entrenador de fracciones algebraicas](../../entrenador_fracciones_algebraicas.html):
+simplificaciones, sumas con m.c.m., productos y divisiones con corrección inmediata. Si necesitas repasar la factorización previa, vuelve al
+[Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html).
+:::
+
+## Errores frecuentes
+
+1. **Tachar sumandos.** $\dfrac{x^2+3}{x+3}$ no se simplifica. Solo se cancelan factores del numerador y del denominador completos.
+2. **Buscar las restricciones en la fracción ya simplificada.** Las raíces del denominador se leen en el denominador **original**: en $\dfrac{x^2-9}{x-3}$ hay que excluir $x=3$ aunque el resultado sea $x+3$.
+3. **Olvidar el paréntesis al restar numeradores.** $\dfrac{A}{D}-\dfrac{B+C}{D} = \dfrac{A-B-C}{D}$, no $\dfrac{A-B+C}{D}$.
+4. **Sumar numeradores y denominadores por separado.** $\dfrac{1}{x}+\dfrac{1}{x+1}$ no es $\dfrac{2}{2x+1}$; hay que pasar por el m.c.m.
+5. **Multiplicar los denominadores en vez de calcular el m.c.m.** No es un error de resultado, pero infla las cuentas y obliga a simplificar mucho al final.
+6. **Tomar el m.c.m. con los exponentes menores.** En el m.c.m. cada factor va al **mayor** exponente; los menores son cosa del m.c.d.
+7. **Invertir la fracción equivocada al dividir.** Se invierte siempre la **segunda**.
+8. **No excluir el numerador del divisor.** En $\dfrac{A}{B}:\dfrac{C}{D}$ también hace falta $C \neq 0$.
+9. **Perder de vista las restricciones intermedias en las fracciones de dos pisos.** Los denominadores pequeños que desaparecen al multiplicar por el m.c.m. siguen imponiendo condiciones.
+10. **Aceptar cualquier solución de una ecuación racional.** Hay que comprobarla contra la lista de valores prohibidos: las soluciones falsas existen.
+11. **Simplificar coeficientes numéricos mal.** En $\dfrac{2x+4}{2}$ se puede dividir todo entre 2, porque 2 es factor de **todo** el numerador: $\dfrac{2(x+2)}{2}=x+2$. En $\dfrac{2x+3}{2}$, no.
+
+## Qué debes saber hacer
+
+- Definir fracción algebraica y explicar la analogía con las fracciones numéricas, incluida la escritura $\dfrac{P}{Q} = C + \dfrac{R}{Q}$.
+- Hallar los valores que anulan el denominador y escribir el dominio de una fracción algebraica factorizando.
+- Decidir si dos fracciones algebraicas son equivalentes usando productos cruzados, y amplificar o simplificar a voluntad.
+- Simplificar una fracción algebraica factorizando numerador y denominador, indicando siempre las restricciones del enunciado original.
+- Justificar con un contraejemplo numérico por qué no se pueden tachar sumandos.
+- Sumar y restar fracciones algebraicas calculando el m.c.m. de los denominadores y cuidando los paréntesis de la resta.
+- Multiplicar y dividir fracciones algebraicas cancelando antes de desarrollar, y escribir la inversa de una fracción.
+- Resolver fracciones de dos pisos por los dos métodos y mantener las restricciones que desaparecen a la vista.
+- Descomponer una fracción sencilla en suma de fracciones simples con denominadores de grado 1 y comprobar el resultado.
+- Calcular el dominio de una función racional y resolver ecuaciones racionales descartando las soluciones prohibidas.

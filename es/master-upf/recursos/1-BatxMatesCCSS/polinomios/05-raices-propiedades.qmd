@@ -1,0 +1,399 @@
+---
+title: "Tema 2.5 Raíces de un polinomio. Propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 05-raices-propiedades
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de raíz de un polinomio, equivalencia entre raíz, factor y corte con el eje X, número máximo de raíces, teorema fundamental del álgebra, criterio de la raíz racional con justificación, multiplicidad y su efecto en la gráfica, relaciones de Cardano-Viète y reconstrucción de un polinomio a partir de sus raíces, con applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, raíces, factorización, multiplicidad]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué es una raíz
+
+::: {.callout-note}
+## Definición de raíz o cero de un polinomio
+
+Un número $\alpha$ es **raíz** (o **cero**) del polinomio $P(x)$ cuando su valor numérico en ese punto es cero:
+
+$$
+\alpha \text{ es raíz de } P(x) \iff P(\alpha) = 0 .
+$$
+:::
+
+Comprobar si un número es raíz es, por tanto, un simple cálculo de valor numérico. Para $P(x) = x^3 - x^2 - 8x + 12$:
+
+$$
+P(2) = 8 - 4 - 16 + 12 = 0, \qquad P(1) = 1 - 1 - 8 + 12 = 4 \neq 0 .
+$$
+
+Así que $2$ es raíz de $P(x)$ y $1$ no lo es. Naturalmente, si el polinomio es de grado alto conviene usar la tabla de Ruffini: su última casilla es precisamente $P(\alpha)$.
+
+::: {.callout-important}
+## Tres formas de decir lo mismo
+
+Para un polinomio $P(x)$ y un número $\alpha$, estas tres afirmaciones son equivalentes:
+
+$$
+P(\alpha) = 0
+\quad\Longleftrightarrow\quad
+(x-\alpha) \text{ es factor de } P(x)
+\quad\Longleftrightarrow\quad
+\text{la gráfica de } y = P(x) \text{ corta o toca el eje X en } x=\alpha .
+$$
+
+La primera equivalencia es el teorema del factor. La segunda es la definición misma de corte con el eje X: los puntos del eje X son los que tienen $y=0$, y $y = P(\alpha)$.
+:::
+
+Esta triple lectura es la idea central del apartado: **buscar raíces, factorizar y dibujar cortes con el eje X son tres versiones del mismo problema**. Según lo que te convenga, saltas de una a otra.
+
+**Ejemplo 1.** El polinomio $P(x) = x^3 - x^2 - 8x + 12$ se anula en $x=2$ y en $x=-3$. Aplicando Ruffini dos veces se obtiene
+
+$$
+P(x) = (x-2)^2 (x+3),
+$$
+
+y su gráfica toca el eje X en $x=2$ y lo atraviesa en $x=-3$. Más adelante verás por qué esa diferencia de comportamiento no es casual.
+
+## Cuántas raíces puede tener un polinomio
+
+::: {.callout-note}
+## Número máximo de raíces
+
+Un polinomio de grado $n$ (no nulo) tiene **como máximo $n$ raíces reales distintas**.
+:::
+
+**Demostración.** Supón que $\alpha_1, \alpha_2, \ldots, \alpha_k$ son raíces distintas de $P(x)$. Por el teorema del factor, $x-\alpha_1$ divide a $P(x)$, así que $P(x) = (x-\alpha_1)C_1(x)$. Sustituyendo $x=\alpha_2$:
+
+$$
+0 = P(\alpha_2) = (\alpha_2 - \alpha_1)\, C_1(\alpha_2),
+$$
+
+y como $\alpha_2 \neq \alpha_1$ el primer factor no es cero, luego $C_1(\alpha_2)=0$ y por tanto $x-\alpha_2$ divide a $C_1(x)$. Repitiendo el argumento con todas las raíces se llega a
+
+$$
+P(x) = (x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_k)\, C_k(x).
+$$
+
+El grado del miembro de la derecha es al menos $k$, porque el grado de un producto es la suma de los grados. Como el grado de $P(x)$ es $n$, se concluye que $k \le n$. $\blacksquare$
+
+::: {.callout-caution}
+## Pensamiento crítico: «como máximo» no es «exactamente»
+
+El teorema pone un techo, no un suelo. Un polinomio de grado 4 puede tener 4 raíces reales ($x^4-5x^2+4$), 2 ($x^4-1$), 1 o ninguna ($x^4+1$). Lo que **no** puede tener es 5. Y hay una excepción curiosa: el polinomio nulo, $P(x)=0$, se anula en todos los números, y por eso se le deja sin grado.
+:::
+
+::: {.callout-note}
+## Teorema fundamental del álgebra (versión divulgativa)
+
+Si se admiten los **números complejos**, todo polinomio de grado $n \ge 1$ tiene exactamente $n$ raíces, contando cada una tantas veces como indique su multiplicidad. En consecuencia, todo polinomio se descompone en $n$ factores de grado 1 con coeficientes complejos.
+:::
+
+Este resultado, demostrado por **Gauss** a finales del siglo XVIII, explica por qué en el conjunto de los números reales las cuentas «no cuadran»: $x^2+4$ no tiene ninguna raíz real, pero sí dos raíces complejas, $2i$ y $-2i$. En este curso trabajamos con raíces reales, así que la frase que utilizarás es la del techo: **a lo sumo tantas raíces como el grado**.
+
+## El criterio de la raíz racional
+
+Buscar raíces probando números al azar sería desesperante: hay infinitos. Afortunadamente, cuando los coeficientes son enteros, la lista de candidatos racionales es **finita** y muy corta.
+
+::: {.callout-note}
+## Criterio de la raíz racional
+
+Sea $P(x) = a_n x^n + \cdots + a_1 x + a_0$ un polinomio con **coeficientes enteros** y $a_0 \neq 0$. Si la fracción irreducible $\dfrac{p}{q}$ es raíz de $P(x)$, entonces
+
+$$
+p \text{ divide a } a_0 \qquad\text{y}\qquad q \text{ divide a } a_n .
+$$
+
+En particular:
+
+- Las raíces **enteras** de $P(x)$ son divisores del término independiente $a_0$.
+- Si el coeficiente principal es $a_n = \pm 1$, todas las raíces racionales son forzosamente **enteras**.
+:::
+
+**Demostración.** Si $\dfrac{p}{q}$ (irreducible) es raíz, entonces
+
+$$
+a_n \dfrac{p^n}{q^n} + a_{n-1}\dfrac{p^{n-1}}{q^{n-1}} + \cdots + a_1 \dfrac{p}{q} + a_0 = 0 .
+$$
+
+Multiplicando todo por $q^n$ se obtiene una igualdad entre números enteros:
+
+$$
+a_n p^n + a_{n-1}p^{n-1}q + \cdots + a_1 p\, q^{n-1} + a_0 q^n = 0 .
+$$
+
+Ahora se lee dos veces esa igualdad:
+
+- Despejando el último término, $a_0 q^n = -p\left(a_n p^{n-1} + \cdots + a_1 q^{n-1}\right)$. El miembro derecho es múltiplo de $p$, así que $p$ divide a $a_0 q^n$; y como $p$ y $q$ no tienen factores comunes, $p$ divide a $a_0$.
+- Despejando el primero, $a_n p^n = -q\left(a_{n-1}p^{n-1} + \cdots + a_0 q^{n-1}\right)$, que es múltiplo de $q$; con el mismo argumento, $q$ divide a $a_n$. $\blacksquare$
+
+**Ejemplo 2.** Halla las raíces racionales de $P(x) = x^3 - 7x + 6$.
+
+Aquí $a_n = 1$ y $a_0 = 6$: los candidatos son los divisores de 6 con los dos signos, $\pm1, \pm2, \pm3, \pm6$. Probando: $P(1)=0$, $P(2)=0$, $P(-3)=0$. Ya son tres, y el grado es 3, así que no hay más:
+
+$$
+x^3 - 7x + 6 = (x-1)(x-2)(x+3).
+$$
+
+**Ejemplo 3.** Halla las raíces racionales de $P(x) = 2x^3 - 3x^2 - 11x + 6$.
+
+Ahora $a_n = 2$ y $a_0 = 6$, así que $p \in \{1,2,3,6\}$ y $q \in \{1,2\}$. Los candidatos son
+
+$$
+\pm 1,\; \pm 2,\; \pm 3,\; \pm 6,\; \pm\dfrac{1}{2},\; \pm\dfrac{3}{2} .
+$$
+
+Probando se encuentran $x=-2$, $x=\dfrac{1}{2}$ y $x=3$, y con ellas
+
+$$
+2x^3 - 3x^2 - 11x + 6 = 2(x+2)\left(x-\dfrac{1}{2}\right)(x-3) = (x+2)(2x-1)(x-3).
+$$
+
+Fíjate en la última escritura: cuando la raíz es $\dfrac{p}{q}$, el factor entero correspondiente es $qx - p$.
+
+**Ejemplo 4.** El polinomio $P(x) = 7x^3 - 23x^2 + 2x + 6$ tiene candidatos $\pm1, \pm2, \pm3, \pm6, \pm\frac{1}{7}, \pm\frac{2}{7}, \pm\frac{3}{7}, \pm\frac{6}{7}$, y **ninguno** lo anula: no tiene raíces racionales. Sí tiene raíces reales (su gráfica corta el eje X), pero son irracionales y con las herramientas del curso solo se pueden aproximar.
+
+::: {.callout-warning}
+## El criterio exige coeficientes enteros
+
+Si el polinomio tiene coeficientes fraccionarios, el criterio no se aplica tal cual: hay que sacar primero factor común el denominador. Por ejemplo, en $\dfrac{1}{2}x^2 - \dfrac{5}{2}x + 3 = \dfrac{1}{2}\left(x^2-5x+6\right)$ se buscan las raíces del paréntesis, que son $2$ y $3$.
+:::
+
+### Applet · Raíces enteras y divisores del término independiente {.unnumbered}
+
+Este applet construye la lista de candidatos enteros a partir de los divisores del término independiente y evalúa el polinomio en cada uno de ellos.
+
+::: {#panel-raicesEnteras .applet-panel data-applet-pol="raicesEnteras"}
+:::
+
+Observa el caso en que el término independiente vale 0: entonces $x=0$ ya es raíz, se saca factor común $x$ y los candidatos salen del siguiente coeficiente no nulo. ¿Por qué era necesario ese arreglo? Porque todos los números dividen a 0 y la lista de candidatos dejaría de ser finita.
+
+### Applet · Candidatos p/q y coeficiente principal {.unnumbered}
+
+Aquí se genera la lista completa de candidatos racionales, cruzando los divisores del término independiente con los del coeficiente principal.
+
+::: {#panel-raizRacionalPQ .applet-panel data-applet-pol="raizRacionalPQ"}
+:::
+
+Compara un polinomio con $a_n=1$ y otro con $a_n=6$: en el primero solo hay candidatos enteros; en el segundo la lista se multiplica. Prueba también $x^3-2$: no tiene ninguna raíz racional, y sin embargo $\sqrt[3]{2}$ es una raíz real perfectamente legítima.
+
+## Multiplicidad de una raíz
+
+::: {.callout-note}
+## Definición de multiplicidad
+
+La raíz $\alpha$ de $P(x)$ tiene **multiplicidad $m$** cuando $(x-\alpha)^m$ divide a $P(x)$ pero $(x-\alpha)^{m+1}$ ya no. Es decir,
+
+$$
+P(x) = (x-\alpha)^m\, Q(x) \qquad \text{con } Q(\alpha) \neq 0 .
+$$
+
+Si $m=1$ se dice que la raíz es **simple**; si $m=2$, **doble**; si $m=3$, **triple**.
+:::
+
+En la práctica, la multiplicidad es el número de veces que Ruffini «funciona» seguidas con la misma raíz. En el Ejemplo 1, $P(x) = (x-2)^2(x+3)$: la raíz $2$ es doble y la raíz $-3$ es simple.
+
+::: {.callout-important}
+## El efecto de la multiplicidad en la gráfica
+
+- Si la multiplicidad es **impar**, la gráfica **atraviesa** el eje X en esa raíz: el polinomio cambia de signo.
+- Si la multiplicidad es **par**, la gráfica **rebota**: toca el eje y vuelve al mismo lado, sin cambiar de signo.
+:::
+
+**Justificación.** Cerca de la raíz se escribe $P(x) = (x-\alpha)^m Q(x)$ con $Q(\alpha)\neq 0$. Si $x$ está suficientemente cerca de $\alpha$, el factor $Q(x)$ mantiene el signo de $Q(\alpha)$, así que el signo de $P(x)$ lo decide $(x-\alpha)^m$. Y una potencia $(x-\alpha)^m$ cambia de signo al pasar por $\alpha$ solo si $m$ es impar; si $m$ es par es siempre positiva (o nula en el punto), así que el signo de $P$ no cambia. $\blacksquare$
+
+**Ejemplo 5.** Compara las tres gráficas de $y=x$, $y=x^2$ y $y=x^3$ en el origen: la primera cruza, la segunda rebota, la tercera vuelve a cruzar pero «achatada». Las tres tienen la misma única raíz, $x=0$, con multiplicidades 1, 2 y 3.
+
+**Ejemplo 6.** El polinomio $P(x) = x^2(x-2)^2$ es de grado 4 y tiene solo dos raíces distintas, $0$ y $2$, ambas dobles. Como $2+2=4$, no hay ninguna otra raíz; y como las dos multiplicidades son pares, $P(x) \ge 0$ para todo $x$: la gráfica nunca baja del eje X.
+
+### Applet · Multiplicidad y forma de la gráfica {.unnumbered}
+
+El applet factoriza el polinomio, indica la multiplicidad de cada raíz y dibuja la curva con las raíces marcadas, distinguiendo los cortes de los rebotes.
+
+::: {#panel-multiplicidadGrafica .applet-panel data-applet-pol="multiplicidadGrafica"}
+:::
+
+Prueba a comparar $(x-1)^2(x+2)$ con $(x-1)^3(x+2)$: el punto $x=1$ pasa de rebote a corte solo por cambiar la paridad del exponente. Y observa cuándo la suma de las multiplicidades coincide con el grado: es la señal de que el polinomio se descompone por completo en factores de grado 1.
+
+## Raíces enteras, racionales, irracionales y ninguna
+
+Conviene tener claro el mapa de posibilidades, porque las técnicas del curso solo alcanzan a una parte de él.
+
+| Tipo de raíz | Ejemplo | Cómo se encuentra |
+|---|---|---|
+| Entera | $x^2-5x+6$ tiene $2$ y $3$ | Divisores del término independiente |
+| Racional no entera | $2x-1$ tiene $\dfrac{1}{2}$ | Candidatos $\dfrac{p}{q}$ |
+| Irracional | $x^2-2$ tiene $\pm\sqrt{2}$ | Fórmula de la ecuación de segundo grado |
+| Ninguna real | $x^2+4$, $x^4+1$ | Se comprueba que el discriminante es negativo |
+
+**Ejemplo 7.** Descompón $P(x) = x^4-2x^3-x^2+4x-2$ tanto como puedas dentro de los números reales.
+
+Con Ruffini se obtiene $P(x) = (x-1)^2\left(x^2-2\right)$. El factor $x^2-2$ no tiene raíces racionales, pero sí reales: resolviendo $x^2-2=0$ salen $\pm\sqrt{2}$, así que en los reales la descomposición completa es
+
+$$
+P(x) = (x-1)^2\left(x-\sqrt{2}\right)\left(x+\sqrt{2}\right).
+$$
+
+**Ejemplo 8.** En cambio, $Q(x) = (x-1)^2\left(x^2+1\right)$ ya no se puede descomponer más con coeficientes reales: $x^2+1$ no se anula nunca, porque $x^2 \ge 0$ implica $x^2+1 \ge 1$.
+
+::: {.callout-warning}
+## Que Ruffini se detenga no significa que no haya raíces
+
+Ruffini con candidatos racionales solo detecta raíces racionales. Cuando el proceso se para, hay que mirar el factor que queda: si es de grado 2, se resuelve con la fórmula habitual y pueden aparecer raíces irracionales o ninguna real.
+:::
+
+::: {.callout-tip}
+## Un factor de grado 2 sin raíces reales es irreducible
+
+Un polinomio de segundo grado con discriminante $b^2-4ac<0$ no se puede factorizar en los reales. Por tanto, en la factorización real de cualquier polinomio pueden aparecer dos tipos de piezas: factores de grado 1 y factores de grado 2 irreducibles.
+:::
+
+## Relaciones de Cardano-Viète
+
+Los coeficientes de un polinomio guardan información sobre sus raíces incluso antes de calcularlas.
+
+::: {.callout-note}
+## Suma y producto de las raíces
+
+Si $P(x) = a_n x^n + a_{n-1}x^{n-1} + \cdots + a_0$ tiene las raíces $x_1, x_2, \ldots, x_n$ (contadas con su multiplicidad y admitiendo las complejas), entonces
+
+$$
+x_1 + x_2 + \cdots + x_n = -\dfrac{a_{n-1}}{a_n},
+\qquad
+x_1 \cdot x_2 \cdots x_n = (-1)^n \dfrac{a_0}{a_n}.
+$$
+:::
+
+**Justificación.** Por el teorema fundamental del álgebra se puede escribir
+
+$$
+P(x) = a_n (x-x_1)(x-x_2)\cdots(x-x_n).
+$$
+
+Al desarrollar el producto, el coeficiente de $x^{n-1}$ resulta ser $-a_n\left(x_1+\cdots+x_n\right)$, porque cada término de grado $n-1$ se obtiene tomando $x$ de todos los paréntesis menos uno. Igualando con $a_{n-1}$ se obtiene la primera fórmula. Para la segunda basta hacer $x=0$: por un lado $P(0)=a_0$, y por el otro $a_n(-x_1)(-x_2)\cdots(-x_n) = a_n(-1)^n x_1\cdots x_n$. $\blacksquare$
+
+**Ejemplo 9.** En $x^2-5x+6$: la suma de las raíces es $-\dfrac{-5}{1}=5$ y el producto es $(-1)^2\dfrac{6}{1}=6$. Buscando dos números que sumen 5 y multipliquen 6 se llega en un segundo a $2$ y $3$, sin usar la fórmula general.
+
+**Ejemplo 10.** En $2x^3-3x^2-11x+6$, cuyas raíces son $-2$, $\dfrac{1}{2}$ y $3$:
+
+$$
+-2 + \dfrac{1}{2} + 3 = \dfrac{3}{2} = -\dfrac{-3}{2}, \qquad
+(-2)\cdot\dfrac{1}{2}\cdot 3 = -3 = (-1)^3\dfrac{6}{2}.
+$$
+
+Las dos relaciones se cumplen, lo que confirma que las raíces encontradas son correctas y que no falta ninguna.
+
+::: {.callout-tip}
+## Úsalas como control de errores
+
+Si has factorizado un polinomio y la suma o el producto de tus raíces no coincide con lo que anuncian los coeficientes, hay un error seguro: o una raíz mal calculada, o una que se te ha escapado, o una multiplicidad mal contada.
+:::
+
+### Applet · Cardano-Viète numérico {.unnumbered}
+
+El applet calcula la suma y el producto de las raíces de dos maneras —a partir de las raíces y a partir de los coeficientes— y las compara.
+
+::: {#panel-vieteNumerico .applet-panel data-applet-pol="vieteNumerico"}
+:::
+
+Prueba con $x^2+x+1$, que no tiene raíces reales: las relaciones siguen valiendo, porque se aplican también a las dos raíces complejas conjugadas de ese factor. Es una buena pista de que el teorema fundamental del álgebra no es un adorno teórico.
+
+## Reconstruir un polinomio a partir de sus raíces
+
+El proceso también funciona al revés. Si conoces las raíces y sus multiplicidades, puedes escribir el polinomio.
+
+::: {.callout-note}
+## Polinomio con raíces dadas
+
+El polinomio de grado mínimo con raíces $\alpha_1, \ldots, \alpha_k$ y multiplicidades $m_1, \ldots, m_k$ es
+
+$$
+P(x) = k_0 \left(x-\alpha_1\right)^{m_1} \cdots \left(x-\alpha_k\right)^{m_k},
+$$
+
+donde $k_0 \neq 0$ es cualquier constante. Su grado es $m_1 + \cdots + m_k$.
+:::
+
+La constante $k_0$ no se puede determinar solo con las raíces: hay infinitos polinomios con los mismos ceros y todos son múltiplos unos de otros. Para fijarla hace falta un dato más, por ejemplo el valor del polinomio en un punto que no sea raíz.
+
+**Ejemplo 11.** Escribe un polinomio de grado 3 con raíz doble en $x=1$ y raíz simple en $x=-2$.
+
+$$
+P(x) = (x-1)^2(x+2) = x^3 - 3x + 2 .
+$$
+
+Si además se exige $P(0)=4$, como el valor obtenido es $P(0)=2$, hay que multiplicar por 2: $P(x)=2\left(x^3-3x+2\right)$.
+
+**Ejemplo 12.** Escribe un polinomio con **coeficientes enteros** cuyas raíces sean $\dfrac{1}{2}$ (doble) y $-3$.
+
+Tomando $k_0 = 4$ se limpian los denominadores:
+
+$$
+P(x) = 4\left(x-\dfrac{1}{2}\right)^2 (x+3) = (2x-1)^2(x+3) = 4x^3 + 8x^2 - 11x + 3 .
+$$
+
+Comprueba de paso el criterio de la raíz racional: aquí $a_n=4$ y $a_0=3$, y en efecto $\dfrac{1}{2}$ cumple que $1$ divide a $3$ y $2$ divide a $4$.
+
+### Applet · Constructor de polinomios a partir de raíces {.unnumbered}
+
+Escribe las raíces que quieras, con repeticiones para las multiplicidades, elige la constante y el applet devuelve la forma factorizada, la desarrollada y la gráfica.
+
+::: {#panel-constructorRaices .applet-panel data-applet-pol="constructorRaices"}
+:::
+
+Cambia solo la constante $k_0$ y observa que la curva se estira o se refleja, pero los puntos de corte con el eje X no se mueven. Repite una raíz tres veces y mira qué le pasa a la gráfica en ese punto.
+
+## Nota histórica: la fórmula que no existe
+
+Para las ecuaciones de segundo grado hay fórmula desde la antigüedad; los métodos de **al-Juarismi** en el siglo IX ya la contienen en lenguaje geométrico. En la Italia del Renacimiento se dio el salto siguiente: **Tartaglia** encontró un procedimiento para las cúbicas y **Cardano** lo publicó en 1545 junto con la solución de las de cuarto grado. La notación con letras que hoy usamos, y las relaciones entre coeficientes y raíces de este apartado, se deben en buena medida a **Viète**, a finales del siglo XVI.
+
+Con dos casos resueltos, la comunidad matemática esperaba que el quinto grado cayera pronto. No cayó. **Ruffini** publicó un intento de demostración de que no era posible, y en 1824 **Abel**, muerto con solo 26 años, demostró definitivamente que **no existe ninguna fórmula general con radicales que resuelva la ecuación de quinto grado**. Poco después **Galois**, también fallecido muy joven, explicó *por qué*: asoció a cada ecuación un grupo de simetrías de sus raíces, y demostró que la solubilidad por radicales depende de la estructura de ese grupo. De ahí nació la teoría de grupos, hoy imprescindible en criptografía y en física.
+
+::: {.callout-caution}
+## Pensamiento crítico: no existe fórmula, pero sí soluciones
+
+El resultado de Abel no dice que las ecuaciones de grado 5 no tengan soluciones: el teorema fundamental del álgebra garantiza que las tienen. Dice que no se pueden escribir con una fórmula cerrada hecha de sumas, productos y radicales. En la práctica se calculan por métodos aproximados, y eso basta para cualquier aplicación real. Es un buen ejemplo de que en matemáticas «imposible» significa siempre «imposible con estas herramientas», y conviene leer el enunciado completo antes de sacar conclusiones.
+:::
+
+::: {.callout-tip}
+## Practica con los entrenadores
+
+- [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html): busca raíces, factoriza y comprueba al momento.
+- [Entrenador de radicales](../../entrenador_radicales.html): útil cuando aparecen raíces irracionales del tipo $\pm\sqrt{2}$.
+:::
+
+## Errores frecuentes
+
+1. **Confundir raíz con factor.** Si la raíz es $\alpha$, el factor es $x-\alpha$: para la raíz $-3$ el factor es $x+3$, no $x-3$.
+2. **Olvidar los candidatos negativos.** Los divisores del término independiente hay que probarlos con los dos signos.
+3. **Buscar solo candidatos enteros cuando el coeficiente principal no es $\pm1$.** En $2x^3-3x^2-11x+6$ se te escaparía la raíz $\dfrac{1}{2}$.
+4. **Aplicar el criterio de la raíz racional a polinomios con coeficientes fraccionarios.** Primero hay que sacar factor común el denominador.
+5. **Contar mal las multiplicidades.** En $(x-1)^2(x+2)$ hay dos raíces distintas pero tres raíces contadas con multiplicidad, tantas como el grado.
+6. **Creer que toda raíz es racional.** $x^2-2$ tiene dos raíces reales y ninguna es una fracción.
+7. **Decir que un polinomio sin raíces racionales no tiene raíces.** Puede tenerlas irracionales, y en los complejos siempre las tiene.
+8. **Equivocar el signo del producto de las raíces.** El factor $(-1)^n$ depende del grado: para grado impar el producto es $-\dfrac{a_0}{a_n}$.
+9. **Pensar que las raíces determinan un único polinomio.** Determinan una familia: cualquier múltiplo por una constante no nula tiene exactamente las mismas raíces.
+
+## Qué debes saber hacer
+
+- Comprobar si un número es raíz de un polinomio, por sustitución directa o con la última casilla de Ruffini.
+- Pasar con soltura entre las tres lecturas de una raíz: valor que anula, factor de grado 1 y corte con el eje X.
+- Justificar por qué un polinomio de grado $n$ no puede tener más de $n$ raíces reales distintas.
+- Enunciar el teorema fundamental del álgebra en su versión divulgativa y explicar por qué hay polinomios sin raíces reales.
+- Escribir la lista completa de candidatos a raíz racional de un polinomio con coeficientes enteros y justificar el criterio.
+- Encontrar todas las raíces racionales de un polinomio y escribir su factorización, incluido el caso de factores del tipo $qx-p$.
+- Determinar la multiplicidad de una raíz y predecir si la gráfica corta o rebota en ese punto.
+- Distinguir raíces enteras, racionales, irracionales y la ausencia de raíces reales, y saber qué herramienta usar en cada caso.
+- Usar las relaciones de Cardano-Viète para comprobar una factorización y para hallar raíces sencillas de memoria.
+- Construir un polinomio con raíces y multiplicidades dadas, ajustando la constante para cumplir una condición adicional o para obtener coeficientes enteros.

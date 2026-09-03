@@ -1,0 +1,427 @@
+---
+title: "Tema 2.2 Suma, resta y multiplicación de polinomios"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 02-suma-resta-producto
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Suma y resta término a término, opuesto y propiedades de la suma, producto de monomios y de polinomios, grado de la suma y del producto, factor común, identidades notables, triángulo de Tartaglia y binomio de Newton, con demostración geométrica y applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, identidades notables, binomio de Newton, factor común]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Sumar y restar polinomios
+
+Sumar polinomios es agrupar términos semejantes: los monomios del mismo grado se suman entre sí y los demás se copian tal cual.
+
+::: {.callout-note}
+## Definición de suma
+
+Si
+$$
+P(x) = a_n x^n + \cdots + a_1 x + a_0, \qquad Q(x) = b_m x^m + \cdots + b_1 x + b_0,
+$$
+su suma es el polinomio cuyo coeficiente de grado $k$ es $a_k + b_k$:
+$$
+(P + Q)(x) = \sum_k (a_k + b_k)\, x^k .
+$$
+Los coeficientes que no existen se toman como $0$.
+:::
+
+En la práctica, lo más seguro es escribir los dos polinomios **ordenados y uno debajo del otro, alineados por grados**, dejando hueco donde falte un término, y sumar columna a columna. Es exactamente la misma disposición con la que sumas números por columnas, y por la misma razón: cada columna es una «unidad» distinta.
+
+**Ejemplo 1.** Suma $P(x) = 2x^4 - 3x^3 + 2x^2 + 4x - 1$ y $Q(x) = x^3 - 5x^2 + 7$.
+
+$$
+\begin{array}{rrrrrr}
+ 2x^4 & -\,3x^3 & +\,2x^2 & +\,4x & -\,1 \\
+      & +\,x^3  & -\,5x^2 &       & +\,7 \\
+\hline
+ 2x^4 & -\,2x^3 & -\,3x^2 & +\,4x & +\,6
+\end{array}
+$$
+
+Es decir, $(P+Q)(x) = 2x^4 - 2x^3 - 3x^2 + 4x + 6$.
+
+::: {.callout-note}
+## Polinomio opuesto y resta
+
+El **opuesto** de $P(x)$ es el polinomio $-P(x)$ que se obtiene cambiando de signo **todos** sus coeficientes. La resta se define entonces como
+$$
+P(x) - Q(x) = P(x) + \bigl(-Q(x)\bigr).
+$$
+:::
+
+**Ejemplo 2.** Con los polinomios anteriores,
+$$
+P(x) - Q(x) = 2x^4 - 3x^3 + 2x^2 + 4x - 1 - x^3 + 5x^2 - 7 = 2x^4 - 4x^3 + 7x^2 + 4x - 8 .
+$$
+
+::: {.callout-warning}
+## El error más caro del tema
+
+Al restar hay que cambiar el signo de **todos** los términos del sustraendo, no solo del primero. Escribir
+$$
+(3x^2 + 2x - 5) - (x^2 - 4x + 1) = 3x^2 + 2x - 5 - x^2 - 4x + 1
+$$
+es falso: lo correcto es $\;3x^2 + 2x - 5 - x^2 + 4x - 1 = 2x^2 + 6x - 6$. Si el paréntesis te despista, escribe primero el opuesto en una línea aparte.
+:::
+
+### Propiedades de la suma
+
+Para cualesquiera $P, Q, R \in \mathbb{R}[x]$ se cumple:
+
+1. **Interna**: $P + Q$ es también un polinomio.
+2. **Asociativa**: $(P + Q) + R = P + (Q + R)$.
+3. **Conmutativa**: $P + Q = Q + P$.
+4. **Elemento neutro**: existe el polinomio nulo $0(x)$ con $P + 0 = P$.
+5. **Elemento opuesto**: para cada $P$ existe $-P$ con $P + (-P) = 0(x)$.
+
+Todas se demuestran igual: como la suma se hace coeficiente a coeficiente, cada propiedad se hereda de la propiedad correspondiente en $\mathbb{R}$. Por ejemplo, la conmutativa se cumple porque $a_k + b_k = b_k + a_k$ para cada $k$.
+
+::: {.callout-note}
+## Estructura de grupo conmutativo
+
+Las cinco propiedades anteriores significan que $\bigl(\mathbb{R}[x], +\bigr)$ es un **grupo conmutativo** (o abeliano), igual que $(\mathbb{Z}, +)$. Reconocer estructuras repetidas en objetos distintos —números, polinomios, vectores, matrices— es una de las ideas más rentables de las matemáticas: lo que demuestras una vez para el grupo vale para todos ellos.
+:::
+
+### Grado de la suma
+
+::: {.callout-important}
+## El grado de una suma puede bajar
+
+Si $P$ y $Q$ no son nulos y su suma tampoco lo es,
+$$
+\text{grado}(P + Q) \leq \max\bigl(\text{grado}(P),\ \text{grado}(Q)\bigr).
+$$
+Nunca sube, pero puede bajar si los términos principales se cancelan.
+:::
+
+**Ejemplo 3.** $P(x) = 3x^3 + 4x^2 - 1$ y $Q(x) = -3x^3 + 5x - 3$ tienen ambos grado $3$, pero
+$$
+P(x) + Q(x) = 4x^2 + 5x - 4
+$$
+tiene grado $2$. Los términos $3x^3$ y $-3x^3$ se han anulado. En el caso extremo $P + (-P) = 0(x)$, que ni siquiera tiene grado.
+
+### Applet · Suma y resta con los términos alineados {.unnumbered}
+
+Escribe dos polinomios y observa cómo se colocan alineados por grados y cómo se opera columna a columna.
+
+::: {#panel-sumaRestaPol .applet-panel data-applet-pol="sumaRestaPol"}
+:::
+
+Prueba un par de polinomios del mismo grado cuyos coeficientes principales sean opuestos y comprueba que el grado del resultado baja. Después haz la resta de un polinomio consigo mismo y observa qué queda.
+
+## Multiplicar polinomios
+
+### Producto de monomios
+
+La regla es directa y sale de las propiedades de las potencias:
+
+$$
+\bigl(a x^{n}\bigr)\cdot\bigl(b x^{m}\bigr) = (a\cdot b)\, x^{\,n+m} .
+$$
+
+Los coeficientes se multiplican; los exponentes se **suman**.
+
+::: {.callout-caution}
+## Sumar exponentes, no multiplicarlos
+
+$3x^2 \cdot 5x^4 = 15x^6$, no $15x^8$. Los exponentes se multiplican cuando elevas una potencia a otra: $\bigl(x^2\bigr)^4 = x^8$. Son dos situaciones distintas.
+:::
+
+### Producto de polinomios
+
+::: {.callout-note}
+## Definición de producto
+
+El producto $P(x)\cdot Q(x)$ se obtiene aplicando la **propiedad distributiva**: se multiplica cada término de $P$ por cada término de $Q$ y se suman todos los resultados, agrupando después los semejantes.
+
+El coeficiente de grado $k$ del producto es
+$$
+c_k = \sum_{i+j=k} a_i \cdot b_j .
+$$
+:::
+
+Si $P$ tiene $N$ términos y $Q$ tiene $M$, se generan $N \cdot M$ productos parciales antes de agrupar. Ordenarlos en una tabla de doble entrada evita olvidos.
+
+**Ejemplo 4.** Multiplica $(x + 3)(x^2 - 2x + 4)$.
+
+|  | $x^2$ | $-2x$ | $+4$ |
+|---|---|---|---|
+| $x$ | $x^3$ | $-2x^2$ | $4x$ |
+| $+3$ | $3x^2$ | $-6x$ | $12$ |
+
+Sumando y agrupando: $x^3 + (-2 + 3)x^2 + (4 - 6)x + 12 = x^3 + x^2 - 2x + 12$.
+
+**Ejemplo 5.** Multiplica $\bigl(3x^4 - 2x^2 + x - 1\bigr)\bigl(-2x^5 - 3x^3 + 2\bigr)$. Salen $4 \cdot 3 = 12$ productos parciales y, tras agrupar,
+$$
+-6x^9 - 5x^7 - 2x^6 + 8x^5 + 3x^4 + 3x^3 - 4x^2 + 2x - 2 .
+$$
+
+### Grado del producto
+
+::: {.callout-note}
+## Teorema del grado del producto
+
+Si $P$ y $Q$ no son nulos, entonces
+$$
+\text{grado}(P \cdot Q) = \text{grado}(P) + \text{grado}(Q).
+$$
+:::
+
+**Justificación.** El término de mayor grado del producto solo puede salir de multiplicar los términos principales entre sí: $a_n x^n \cdot b_m x^m = a_n b_m\, x^{n+m}$. Como $a_n \neq 0$ y $b_m \neq 0$ y en $\mathbb{R}$ el producto de dos números no nulos no es nulo, el coeficiente $a_n b_m$ tampoco lo es, y ningún otro producto parcial alcanza el grado $n+m$. $\blacksquare$
+
+::: {.callout-important}
+## Aquí el grado nunca baja
+
+En la suma el grado podía descender por cancelación; en el producto es imposible. La razón profunda es que $\mathbb{R}$ no tiene «divisores de cero». De ahí se sigue algo que usarás constantemente: **si un producto de polinomios es el polinomio nulo, alguno de los factores es nulo**.
+:::
+
+### Propiedades del producto
+
+1. **Interna**: $P\cdot Q$ es un polinomio.
+2. **Asociativa**: $(P\cdot Q)\cdot R = P\cdot (Q\cdot R)$.
+3. **Conmutativa**: $P\cdot Q = Q\cdot P$.
+4. **Elemento neutro**: el polinomio constante $1$ cumple $P \cdot 1 = P$.
+5. **Distributiva respecto de la suma**: $P\cdot (Q + R) = P\cdot Q + P\cdot R$.
+
+Falta una propiedad que sí tienen los números racionales: el **elemento inverso**. Salvo las constantes no nulas, ningún polinomio tiene inverso dentro de $\mathbb{R}[x]$, porque el grado del producto es la suma de grados y $\text{grado}(P) + \text{grado}(Q) = 0$ obliga a que ambos sean de grado $0$. Por eso $\mathbb{R}[x]$ no es un cuerpo y hay que ampliarlo con las fracciones algebraicas.
+
+### Sacar factor común
+
+Leer la distributiva de derecha a izquierda es **sacar factor común**, la primera técnica de factorización:
+$$
+a\cdot b + a\cdot c = a\cdot (b + c).
+$$
+
+**Ejemplo 6.** $6x^4 - 9x^3 + 3x^2 = 3x^2\bigl(2x^2 - 3x + 1\bigr)$. Se extrae el máximo común divisor de los coeficientes ($3$) y la menor potencia de $x$ presente ($x^2$).
+
+::: {.callout-caution}
+## No pierdas el uno
+
+Al sacar factor común en $5x^3 + 5x$ queda $5x\bigl(x^2 + 1\bigr)$, no $5x\bigl(x^2\bigr)$. Cuando extraes exactamente un término, en su lugar queda un $1$, no un hueco. Compruébalo siempre volviendo a multiplicar.
+:::
+
+### Applet · Multiplicar con la tabla de productos cruzados {.unnumbered}
+
+Introduce dos factores y observa la tabla completa de productos parciales antes y después de agrupar los términos semejantes.
+
+::: {#panel-productoCruzado .applet-panel data-applet-pol="productoCruzado"}
+:::
+
+Cuenta las casillas de la tabla y compáralas con el número de términos de cada factor. Comprueba además que el grado del resultado coincide siempre con la suma de los grados, sin excepción.
+
+## Identidades notables
+
+Ciertos productos aparecen tantas veces que conviene reconocerlos de memoria. No son reglas nuevas: son casos particulares de la distributiva, y siempre puedes recuperarlos multiplicando.
+
+::: {.callout-note}
+## Identidades notables básicas
+
+$$
+\begin{aligned}
+(a + b)^2 &= a^2 + 2ab + b^2 \\
+(a - b)^2 &= a^2 - 2ab + b^2 \\
+(a + b)(a - b) &= a^2 - b^2 \\
+(x + a)(x + b) &= x^2 + (a + b)\,x + a\cdot b
+\end{aligned}
+$$
+:::
+
+::: {.callout-note}
+## Identidades notables de tercer grado y otras
+
+$$
+\begin{aligned}
+(a + b)^3 &= a^3 + 3a^2 b + 3ab^2 + b^3 \\
+(a - b)^3 &= a^3 - 3a^2 b + 3ab^2 - b^3 \\
+(a + b + c)^2 &= a^2 + b^2 + c^2 + 2ab + 2ac + 2bc \\
+a^3 - b^3 &= (a - b)\bigl(a^2 + ab + b^2\bigr) \\
+a^3 + b^3 &= (a + b)\bigl(a^2 - ab + b^2\bigr) \\
+a^4 - b^4 &= \bigl(a^2 + b^2\bigr)(a + b)(a - b)
+\end{aligned}
+$$
+:::
+
+**Ejemplo 7.** $(3x + 5)^2 = (3x)^2 + 2\cdot(3x)\cdot 5 + 5^2 = 9x^2 + 30x + 25$.
+
+**Ejemplo 8.** $\bigl(2x^3 - 4\bigr)\bigl(2x^3 + 4\bigr) = \bigl(2x^3\bigr)^2 - 4^2 = 4x^6 - 16$.
+
+**Ejemplo 9.** $\bigl(2x^4 - 1\bigr)^3$. Con $a = 2x^4$ y $b = 1$:
+$$
+\bigl(2x^4\bigr)^3 - 3\bigl(2x^4\bigr)^2 + 3\bigl(2x^4\bigr) - 1 = 8x^{12} - 12x^{8} + 6x^{4} - 1 .
+$$
+
+::: {.callout-warning}
+## El cuadrado de una suma no es la suma de los cuadrados
+
+$(a + b)^2 \neq a^2 + b^2$. Falta el doble producto $2ab$. Compruébalo con números: $(3 + 4)^2 = 49$, mientras que $3^2 + 4^2 = 25$. El mismo aviso vale para $\sqrt{a+b} \neq \sqrt{a} + \sqrt{b}$ y para $(a+b)^3$.
+:::
+
+::: {.callout-tip}
+## Las identidades se leen en los dos sentidos
+
+De izquierda a derecha sirven para **desarrollar**; de derecha a izquierda, para **factorizar**. Reconocer que $9x^2 - 30x + 25$ es $(3x - 5)^2$ ahorra un montón de trabajo en el apartado de factorización y en la simplificación de fracciones algebraicas.
+:::
+
+### Applet · Identidades notables con comprobación numérica {.unnumbered}
+
+Elige la identidad, escribe las piezas $A$ y $B$ y observa de dónde sale cada término del desarrollo. El applet comprueba además la igualdad sustituyendo un valor concreto.
+
+::: {#panel-notablesPol .applet-panel data-applet-pol="notablesPol"}
+:::
+
+Prueba con $A = 3x$ y $B = 2$ y localiza el doble producto. Después repite con la resta y comprueba que solo cambia el signo del término central, mientras que en el cubo se alternan los signos.
+
+## Demostración geométrica del cuadrado de una suma
+
+Las identidades notables se pueden demostrar algebraicamente, pero también **ver**.
+
+Considera un cuadrado de lado $a + b$. Su área es $(a+b)^2$. Si lo cortas con una línea horizontal y otra vertical situadas a distancia $a$ de los lados correspondientes, queda dividido en cuatro piezas:
+
+- un cuadrado de lado $a$, de área $a^2$;
+- un cuadrado de lado $b$, de área $b^2$;
+- dos rectángulos de lados $a$ y $b$, cada uno de área $ab$.
+
+Como el área total es la suma de las áreas de las piezas,
+$$
+(a + b)^2 = a^2 + ab + ab + b^2 = a^2 + 2ab + b^2 .
+$$
+
+Ahí se ve por qué el término central es **el doble** del producto: hay dos rectángulos, no uno.
+
+Para la diferencia el argumento es análogo. Partiendo de un cuadrado de lado $a$ se recortan dos bandas de anchura $b$; al hacerlo, el cuadrado pequeño de lado $b$ de la esquina se ha quitado dos veces, y hay que devolverlo:
+$$
+(a - b)^2 = a^2 - 2ab + b^2 .
+$$
+
+::: {.callout-tip}
+## Por qué merece la pena la versión geométrica
+
+Los matemáticos griegos hacían así toda su álgebra: sin símbolos, con áreas. Una demostración visual no sustituye a la algebraica —solo cubre el caso $a, b > 0$—, pero explica el *porqué* mucho mejor que una cadena de manipulaciones. Cuando olvides una identidad, vuelve al dibujo.
+:::
+
+### Applet · Demostración geométrica del cuadrado de una suma {.unnumbered}
+
+Elige las dos longitudes y observa cómo se descompone el cuadrado grande en sus cuatro piezas.
+
+::: {#panel-cuadradoGeom .applet-panel data-applet-pol="cuadradoGeom"}
+:::
+
+Haz $a = b$ y comprueba que las cuatro piezas son iguales, así que $(a+a)^2 = 4a^2$, coherente con $(2a)^2$. Activa después la versión de la diferencia y localiza el trozo que se resta dos veces.
+
+## Potencias de un polinomio y binomio de Newton
+
+Elevar un polinomio a una potencia natural es multiplicarlo por sí mismo:
+$$
+P(x)^n = \underbrace{P(x)\cdot P(x)\cdots P(x)}_{n \text{ factores}} , \qquad P(x)^0 = 1 .
+$$
+
+Del teorema del grado del producto se deduce inmediatamente que $\text{grado}\bigl(P^n\bigr) = n\cdot\text{grado}(P)$.
+
+Para el caso de un binomio existe un atajo. Si escribes las sucesivas potencias de $(a+b)$ y te fijas solo en los coeficientes, aparece un patrón:
+
+$$
+\begin{array}{c}
+1 \\
+1 \quad 1 \\
+1 \quad 2 \quad 1 \\
+1 \quad 3 \quad 3 \quad 1 \\
+1 \quad 4 \quad 6 \quad 4 \quad 1 \\
+1 \quad 5 \quad 10 \quad 10 \quad 5 \quad 1
+\end{array}
+$$
+
+Es el **triángulo de Tartaglia** (también llamado de Pascal). Se construye poniendo unos en los extremos y sumando los dos números que quedan justo encima de cada hueco.
+
+::: {.callout-note}
+## Binomio de Newton
+
+Para todo natural $n$,
+$$
+(a + b)^n = \sum_{m=0}^{n} \binom{n}{m}\, a^{\,n-m}\, b^{\,m},
+\qquad \binom{n}{m} = \dfrac{n!}{m!\,(n-m)!} .
+$$
+Los números combinatorios $\binom{n}{m}$ son exactamente los de la fila $n$ del triángulo. Para $(a - b)^n$ basta alternar los signos: $+, -, +, -, \ldots$
+:::
+
+Observa la mecánica del desarrollo: hay $n+1$ términos, el exponente de $a$ baja de $n$ a $0$ mientras el de $b$ sube de $0$ a $n$, y en cada término los dos exponentes suman siempre $n$.
+
+**Ejemplo 10.** $(x + 2)^4$. La fila $4$ es $1,\ 4,\ 6,\ 4,\ 1$:
+$$
+x^4 + 4x^3\cdot 2 + 6x^2\cdot 2^2 + 4x\cdot 2^3 + 2^4 = x^4 + 8x^3 + 24x^2 + 32x + 16 .
+$$
+
+**Ejemplo 11.** $(x - 1)^5$. La fila $5$ es $1,\ 5,\ 10,\ 10,\ 5,\ 1$ y los signos alternan:
+$$
+x^5 - 5x^4 + 10x^3 - 10x^2 + 5x - 1 .
+$$
+
+::: {.callout-caution}
+## Las piezas incluyen el coeficiente
+
+En $(2x + 1)^3$ la pieza $A$ es $2x$ **entera**, no solo la $x$. El primer término es $(2x)^3 = 8x^3$, y el segundo $3\cdot(2x)^2\cdot 1 = 12x^2$. Olvidar elevar el coeficiente es el fallo más habitual al usar el triángulo.
+:::
+
+### Applet · Triángulo de Tartaglia y binomio de Newton {.unnumbered}
+
+Elige el exponente y las piezas del binomio, y comprueba cómo la fila correspondiente del triángulo genera los coeficientes del desarrollo.
+
+::: {#panel-trianguloPascal .applet-panel data-applet-pol="trianguloPascal"}
+:::
+
+Suma los números de una fila cualquiera: siempre obtienes una potencia de $2$. La razón es que sustituir $a = b = 1$ en el binomio de Newton da $2^n$ como suma de todos los coeficientes.
+
+## Curiosidades y pensamiento crítico
+
+- **Tartaglia** (1499-1557), cuyo apodo significa «tartamudo» por una herida de guerra infantil, descubrió un método para resolver ecuaciones de tercer grado y lo mantuvo en secreto: en aquella época los matemáticos se disputaban puestos mediante desafíos públicos y una técnica exclusiva era un activo profesional. **Cardano** consiguió que se lo confiara bajo juramento y lo publicó en 1545 en su *Ars Magna*, desatando una enemistad célebre.
+- El triángulo se conocía en China y en el mundo islámico siglos antes de Pascal y de Tartaglia. Los nombres de los resultados matemáticos indican con frecuencia quién los difundió, no quién los descubrió.
+- Las diagonales del triángulo esconden sorpresas: la tercera contiene los números triangulares $1, 3, 6, 10, \ldots$ y la suma de ciertas diagonales oblicuas produce la sucesión de Fibonacci.
+- La identidad $a^2 - b^2 = (a+b)(a-b)$ permite hacer cálculo mental: $37 \cdot 43 = (40-3)(40+3) = 1600 - 9 = 1591$. Los métodos de factorización de enteros grandes que sostienen la criptografía moderna parten de esta misma idea.
+- Cuidado con generalizar patrones: la suma de los coeficientes de una fila del triángulo es $2^n$, pero muchas regularidades que se «ven» en unos pocos casos fallan más adelante. En matemáticas, ver un patrón es el principio del trabajo, no el final: hace falta demostrarlo.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) y el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html).
+:::
+
+## Errores frecuentes
+
+1. Sumar términos no semejantes: $3x^2 + 5x$ no es $8x^3$ ni $8x^2$. Solo se agrupan los del mismo grado.
+2. Al restar, cambiar el signo únicamente del primer término del sustraendo en lugar de todos.
+3. Multiplicar los exponentes al multiplicar monomios: $x^3 \cdot x^4 = x^7$, no $x^{12}$.
+4. Creer que $(a + b)^2 = a^2 + b^2$, olvidando el doble producto.
+5. Aplicar mal la identidad de la diferencia: $(a-b)^2$ termina en $+b^2$, porque el cuadrado de un número negativo es positivo.
+6. Confundir $a^2 - b^2$ con $(a - b)^2$. La primera se factoriza como $(a+b)(a-b)$; la segunda es un producto notable distinto.
+7. Al sacar factor común, dejar un hueco donde debería quedar un $1$: $5x^3 + 5x = 5x\bigl(x^2 + 1\bigr)$.
+8. Perder productos parciales al multiplicar polinomios largos. Si $P$ tiene $N$ términos y $Q$ tiene $M$, deben salir $N \cdot M$ antes de agrupar.
+9. Sumar los grados en la suma o compararlos en el producto. En la suma el grado es como mucho el mayor; en el producto es exactamente la suma.
+10. En el binomio de Newton, elevar solo la letra y olvidar el coeficiente: en $(2x+1)^3$ el primer término es $8x^3$.
+11. Escribir mal la fila del triángulo por empezar a contar en $1$ en lugar de en $0$. La fila $n$ tiene $n+1$ números.
+
+## Qué debes saber hacer
+
+- Sumar y restar polinomios agrupando términos semejantes, colocándolos alineados por grados cuando convenga.
+- Escribir el opuesto de un polinomio y usarlo para transformar una resta en una suma.
+- Enunciar las propiedades de la suma y explicar por qué $\bigl(\mathbb{R}[x], +\bigr)$ es un grupo conmutativo.
+- Justificar por qué el grado de una suma puede bajar pero nunca subir, con un ejemplo propio.
+- Multiplicar monomios aplicando correctamente las propiedades de las potencias.
+- Multiplicar polinomios de forma ordenada, con tabla de productos cruzados o en columnas, sin perder términos.
+- Demostrar que el grado del producto es la suma de los grados y deducir que un producto de polinomios no nulos nunca es nulo.
+- Sacar factor común identificando el máximo común divisor de los coeficientes y la menor potencia de la indeterminada.
+- Reconocer y aplicar las identidades notables en ambos sentidos: para desarrollar y para factorizar.
+- Explicar la demostración geométrica de $(a+b)^2$ y de $(a-b)^2$ con un dibujo.
+- Construir el triángulo de Tartaglia y usar el binomio de Newton para desarrollar potencias de un binomio, incluyendo casos con coeficientes y con signos alternados.
+- Calcular el grado de una potencia de un polinomio sin necesidad de desarrollarla.

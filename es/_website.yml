@@ -30,8 +30,8 @@ website:
     background: primary
     style: "docked"
     collapse: true
-    collapse-level: 1
     collapse-below: xl
+    toggle-position: "left"
     pinned: true
     title: "Pedro Martinez Duran"
     right:
@@ -198,10 +198,14 @@ website:
               - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/10-practica-numeros-reales.qmd
             - section: "Tema 2 Polinomios"
               contents:  
-              - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-raices-polinomio.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-factorizacion.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-fracciones-algebraicas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-terminos-grado-valor.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/02-suma-resta-producto.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/03-division-polinomios.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/04-ruffini-teorema-resto.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/05-raices-propiedades.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/06-factorizacion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/07-fracciones-algebraicas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/polinomios/08-practica-polinomios.qmd
             - section: "Tema 3 Ecuaciones e Inecuaciones"
               contents:
               - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/01-cuadraticas-bicuadradas.qmd

@@ -1,0 +1,397 @@
+---
+title: "Tema 2.1 Polinomios. Términos, grado y valor numérico"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 01-polinomios-terminos-grado-valor
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: De la expresión algebraica al polinomio, coeficientes, grado, polinomio ordenado, completo y mónico, igualdad de polinomios, valor numérico y algoritmo de Horner, el conjunto R[x] y modelos polinómicos de coste, área e ingresos, con applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, monomios, grado, valor numérico]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De la expresión algebraica al polinomio
+
+Cuando en una situación aparece una cantidad que no conoces —o que puede tomar muchos valores— la representas con una letra y sigues calculando con ella como si fuera un número. Eso es hacer **álgebra**: una expresión algebraica combina números y letras mediante operaciones.
+
+No todas las expresiones algebraicas son igual de manejables:
+
+$$
+3x^2 - 5x + 2, \qquad \dfrac{x+1}{x-3}, \qquad \sqrt{x} + 1, \qquad 2^x, \qquad \dfrac{5}{x^2}
+$$
+
+Solo la primera es un polinomio. Las otras cuatro tienen la indeterminada en un sitio prohibido: en un denominador, dentro de una raíz o en el exponente. La restricción no es un capricho: al limitarse a sumas de potencias de exponente natural se obtiene una familia de expresiones con la que se puede sumar, restar y multiplicar sin salirse nunca de ella, y eso las convierte en la herramienta de cálculo más cómoda del álgebra.
+
+::: {.callout-note}
+## Definición de monomio
+
+Un **monomio** en la indeterminada $x$ es una expresión de la forma
+$$
+a \cdot x^{n},
+$$
+donde $a \in \mathbb{R}$ es el **coeficiente** y $n$ es un número natural (incluido el $0$) llamado **grado** del monomio. La parte $x^n$ es la **parte literal**.
+
+Dos monomios son **semejantes** cuando tienen la misma parte literal, es decir, el mismo grado.
+:::
+
+Así, $-7x^3$ es un monomio de grado $3$ y coeficiente $-7$; el número $5$ es un monomio de grado $0$, porque $5 = 5x^0$. En cambio $3x^{-2}$ y $4x^{1/2}$ no son monomios: sus exponentes no son naturales.
+
+::: {.callout-note}
+## Definición de polinomio
+
+Un **polinomio** en la indeterminada $x$ es una suma finita de monomios no semejantes:
+$$
+P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1 x + a_0,
+$$
+con $a_0, a_1, \ldots, a_n \in \mathbb{R}$.
+
+- Los números $a_k$ son los **coeficientes**; $a_k$ acompaña a $x^k$.
+- $a_0$ es el **término independiente**.
+- Si $a_n \neq 0$, el número $n$ es el **grado** del polinomio, se escribe $\text{grado}(P) = n$, y $a_n$ es el **coeficiente principal** o coeficiente líder.
+:::
+
+La condición $a_n \neq 0$ es esencial: el grado lo marca el término de mayor exponente **que realmente aparece**. Escribir $0x^7 + 3x^2 - 1$ no produce un polinomio de grado 7, sino el mismo polinomio de grado 2 de siempre.
+
+Según el número de términos, los polinomios reciben nombres tradicionales: **monomio** (uno), **binomio** (dos), **trinomio** (tres) y **cuatrinomio** (cuatro). A partir de ahí se dice simplemente «polinomio de cinco términos».
+
+**Ejemplo 1.** En $P(x) = 4x^6 - 2x^4 - 3x^2 - 2x + 1$ el grado es $6$, el coeficiente principal es $4$ y el término independiente es $1$. Los coeficientes de $x^5$ y de $x^3$ valen $0$: no están escritos, pero existen.
+
+::: {.callout-tip}
+## El coeficiente que no ves también cuenta
+
+Un coeficiente ausente no es «nada»: es un cero. Esta idea, que ahora parece trivial, será decisiva en la división y en la regla de Ruffini, donde olvidar un cero desplaza todos los cálculos y destroza el resultado.
+:::
+
+## Ordenar, reducir y completar
+
+Un mismo polinomio se puede escribir de muchas formas. Para compararlos y operar con ellos conviene fijar una escritura estándar.
+
+::: {.callout-note}
+## Polinomio ordenado, reducido y completo
+
+- Está **reducido** cuando no quedan monomios semejantes sin agrupar.
+- Está **ordenado** cuando sus términos aparecen de mayor a menor grado (orden decreciente; también se usa el creciente).
+- Es **completo** cuando aparecen todos los grados desde el $n$ hasta el $0$; si falta alguno, es **incompleto**.
+- Es **mónico** cuando su coeficiente principal vale $1$.
+:::
+
+**Ejemplo 2.** Ordena y reduce $Q(x) = 7x^3 - 2x^4 + 4x^5 + 4x^2 - 6x^3$.
+
+Primero se agrupan los semejantes: $7x^3 - 6x^3 = x^3$. Después se ordena de mayor a menor grado:
+$$
+Q(x) = 4x^5 - 2x^4 + x^3 + 4x^2 .
+$$
+Es un polinomio de grado $5$, coeficiente principal $4$, incompleto (falta el grado $1$) y con término independiente $0$.
+
+**Ejemplo 3.** El polinomio $R(x) = 1 - 7x^3 + 4x + 8x^4 + 6x^5$ ordenado se escribe
+$$
+R(x) = 6x^5 + 8x^4 - 7x^3 + 4x + 1,
+$$
+de grado $5$ e incompleto, porque falta el término de grado $2$. Si se quiere completar, se escribe ese hueco explícitamente:
+$$
+R(x) = 6x^5 + 8x^4 - 7x^3 + 0x^2 + 4x + 1 .
+$$
+
+Un caso con nombre propio es el **binomio de primer grado** $ax - b$ con $a \neq 0$. Igualarlo a cero da la ecuación $ax - b = 0$, cuya solución es $x = \dfrac{b}{a}$; y la expresión $y = ax - b$ es la ecuación de una recta. Casi todo lo que estudiarás en este tema son generalizaciones de este caso elemental.
+
+### Applet · Anatomía de un polinomio {.unnumbered}
+
+Escribe cualquier expresión y observa cómo se ordena, cómo se reducen los términos semejantes y qué papel juega cada pieza. Fíjate especialmente en qué ocurre cuando dos términos del mismo grado se cancelan.
+
+::: {#panel-anatomiaPol .applet-panel data-applet-pol="anatomiaPol"}
+:::
+
+Prueba con $7x^3 - 6x^3 + 2$ y comprueba que el grado del resultado no es $3$, sino $1$… o el que salga. La escritura inicial puede engañar: el grado solo se lee **después** de reducir.
+
+## Polinomios en varias indeterminadas
+
+Nada obliga a usar una sola letra. Un monomio en varias indeterminadas es un producto de un número por potencias de exponente natural de esas letras, y su grado es la **suma** de todos los exponentes.
+
+**Ejemplo 4.**
+
+- $5y^4 - 6x^2 + 11x$ tiene grado $4$ (por el término $5y^4$); se dice que es de grado $4$ en $y$ y de grado $2$ en $x$.
+- $3x^2y^3 - 2 + 5y^2$ tiene grado $5$, porque en $3x^2y^3$ los exponentes suman $2 + 3 = 5$.
+- $8x + 9y - 3z$ tiene grado $1$ en cada una de sus tres indeterminadas.
+
+::: {.callout-caution}
+## Cuidado con el grado en varias letras
+
+El grado de un monomio con varias letras **no** es el mayor exponente, sino la suma de todos. El monomio $3x^2y^3$ es de grado $5$, no de grado $3$.
+:::
+
+En el resto del tema trabajarás casi siempre con una sola indeterminada: es el caso que permite dividir, factorizar y buscar raíces con métodos sistemáticos.
+
+## Igualdad de polinomios
+
+::: {.callout-note}
+## Criterio de igualdad
+
+Dos polinomios $P(x)$ y $Q(x)$ son **iguales** si, una vez ordenados y reducidos, tienen el mismo grado y **todos sus coeficientes del mismo grado coinciden**:
+$$
+P(x) = Q(x) \iff a_k = b_k \quad \text{para todo } k .
+$$
+:::
+
+Este criterio, tan sencillo de enunciar, es una herramienta de cálculo muy potente: convierte una igualdad de expresiones en un **sistema de ecuaciones** con los coeficientes.
+
+**Ejemplo 5.** Halla $a$ y $b$ para que $(x + a)(x + 3) = x^2 + 7x + b$.
+
+Desarrollando el primer miembro: $x^2 + (a + 3)x + 3a$. Igualando coeficiente a coeficiente:
+$$
+\begin{cases} a + 3 = 7 \\ 3a = b \end{cases}
+\;\Longrightarrow\;
+a = 4, \quad b = 12 .
+$$
+
+::: {.callout-important}
+## Igualdad de polinomios no es lo mismo que igualdad de valores en un punto
+
+Que $P(2) = Q(2)$ no significa que $P$ y $Q$ sean iguales: $x^2$ y $2x$ coinciden en $x = 2$ y son polinomios distintos. La igualdad de polinomios exige que **todos** los coeficientes coincidan, lo que equivale a que los valores coincidan para **todos** los números reales.
+:::
+
+### Applet · Igualdad de polinomios {.unnumbered}
+
+Introduce dos expresiones —pueden llevar paréntesis y productos— y compara sus coeficientes uno a uno.
+
+::: {#panel-igualdadPol .applet-panel data-applet-pol="igualdadPol"}
+:::
+
+Compara $x^2 - 1$ con $(x-1)(x+1)$: son escrituras distintas del mismo polinomio. Ahora compara $x^2$ con $2x$ y localiza en qué grados fallan los coeficientes, aunque en $x = 2$ ambos valgan $4$.
+
+## El polinomio nulo y los polinomios constantes
+
+Dos casos límite merecen atención propia.
+
+- Un **polinomio constante** es de la forma $P(x) = c$ con $c \neq 0$. Su grado es $0$. Los polinomios de grado $0$ junto con el polinomio nulo son exactamente los números reales.
+- El **polinomio nulo** es $0(x) = 0$: todos sus coeficientes son cero. No tiene grado (algunos textos le asignan el convenio $-\infty$, útil para que las fórmulas de grado sigan funcionando).
+
+::: {.callout-warning}
+## El polinomio nulo no tiene grado $0$
+
+$P(x) = 5$ tiene grado $0$; $P(x) = 0$ no tiene grado. La diferencia importa: en la división de polinomios el resto puede ser el polinomio nulo, y decir «grado $0$» en ese caso llevaría a conclusiones falsas.
+:::
+
+## El conjunto $\mathbb{R}[x]$
+
+Se llama $\mathbb{R}[x]$ al conjunto de **todos** los polinomios con coeficientes reales en la indeterminada $x$, y $\mathbb{R}_n[x]$ al de los polinomios de grado menor o igual que $n$.
+
+$$
+\mathbb{R}_0[x] \subset \mathbb{R}_1[x] \subset \mathbb{R}_2[x] \subset \cdots \subset \mathbb{R}[x]
+$$
+
+¿Por qué se dice que $\mathbb{R}[x]$ «se parece a los números enteros»? Porque comparte con $\mathbb{Z}$ exactamente la misma estructura de operaciones:
+
+| Propiedad | En $\mathbb{Z}$ | En $\mathbb{R}[x]$ |
+|---|---|---|
+| Suma y producto internos | sí | sí |
+| Elemento neutro de la suma | $0$ | $0(x)$ |
+| Opuesto | $-a$ | $-P(x)$ |
+| Elemento neutro del producto | $1$ | $1$ |
+| Inverso multiplicativo | no (salvo $\pm 1$) | no (salvo constantes) |
+| División con resto | sí | sí |
+| Descomposición en «primos» | factorización | factorización |
+
+La coincidencia no es casual y se aprovechará a lo largo del tema: la división entera con su resto, la divisibilidad, el máximo común divisor y la descomposición en factores irreducibles se trasladan casi palabra por palabra de $\mathbb{Z}$ a $\mathbb{R}[x]$.
+
+::: {.callout-important}
+## Dividir un polinomio entre otro no suele dar un polinomio
+
+$\dfrac{x^2 - 1}{x + 1} = x - 1$ sí es un polinomio, pero $\dfrac{1}{x}$ no lo es. Igual que $\mathbb{Z}$ se amplía a $\mathbb{Q}$ para poder dividir siempre, $\mathbb{R}[x]$ se amplía al conjunto de las **fracciones algebraicas**, cocientes de dos polinomios con denominador no nulo. Ese será el destino final del tema.
+:::
+
+## Valor numérico
+
+::: {.callout-note}
+## Definición de valor numérico
+
+El **valor numérico** de $P(x)$ en $x = a$, escrito $P(a)$, es el número real que se obtiene al sustituir la indeterminada por $a$ y efectuar todas las operaciones.
+:::
+
+Dicho de otro modo, un polinomio define una **función polinómica** $P: \mathbb{R} \to \mathbb{R}$. Cada valor de $x$ produce una altura $P(x)$ en la gráfica.
+
+**Ejemplo 6.** Calcula el valor numérico de $P(x) = 3x^4 - \dfrac{1}{5}x^2 - 2$ en $x = 5$.
+$$
+P(5) = 3 \cdot 5^4 - \dfrac{1}{5}\cdot 5^2 - 2 = 3 \cdot 625 - \dfrac{25}{5} - 2 = 1875 - 5 - 2 = 1868 .
+$$
+
+**Ejemplo 7.** Calcula $Q(y) = 4y^3 - 3y + 7$ en $y = -1$.
+$$
+Q(-1) = 4 \cdot (-1)^3 - 3 \cdot (-1) + 7 = -4 + 3 + 7 = 6 .
+$$
+
+::: {.callout-caution}
+## El error clásico con los negativos
+
+$-3^2$ y $(-3)^2$ no son lo mismo: el primero vale $-9$ y el segundo $9$. Al sustituir un valor negativo escribe **siempre** el paréntesis: en $x^2 - 5x$ con $x = -3$ queda $(-3)^2 - 5\cdot(-3) = 9 + 15 = 24$.
+:::
+
+Dos valores numéricos aparecen tan a menudo que conviene tenerlos memorizados:
+
+- $P(0) = a_0$, el término independiente.
+- $P(1) = a_n + a_{n-1} + \cdots + a_0$, la suma de todos los coeficientes.
+
+## El algoritmo de Horner
+
+Sustituir directamente obliga a calcular muchas potencias. Hay un camino más económico basado en una reescritura del polinomio.
+
+::: {.callout-note}
+## Factorización anidada
+
+Todo polinomio admite la escritura
+$$
+P(x) = \Bigl( \cdots \bigl( (a_n x + a_{n-1})\, x + a_{n-2} \bigr) x + \cdots \Bigr) x + a_0 .
+$$
+Basta sacar factor común $x$ repetidamente empezando por los términos de mayor grado.
+:::
+
+Para $P(x) = 3x^4 - x^2 + 2x - 7$, con coeficientes $3,\, 0,\, -1,\, 2,\, -7$:
+$$
+P(x) = \bigl(((3x + 0)x - 1)x + 2\bigr)x - 7 .
+$$
+
+Evaluar esta expresión de dentro hacia fuera consiste en repetir siempre lo mismo: **multiplica por $a$ y suma el siguiente coeficiente**. Ese procedimiento es el **algoritmo de Horner**.
+
+::: {.callout-note}
+## Algoritmo de Horner
+
+Para calcular $P(a)$ con coeficientes ordenados de mayor a menor grado (incluyendo los ceros):
+
+1. Empieza con $b_n = a_n$.
+2. Repite $b_{k-1} = b_k \cdot a + a_{k-1}$ hasta agotar los coeficientes.
+3. El último valor obtenido es $P(a)$.
+:::
+
+**Ejemplo 8.** Calcula $P(2)$ para $P(x) = 3x^4 - x^2 + 2x - 7$ por Horner.
+
+Coeficientes: $3,\ 0,\ -1,\ 2,\ -7$.
+
+$$
+\begin{aligned}
+b_4 &= 3, \\
+b_3 &= 3\cdot 2 + 0 = 6, \\
+b_2 &= 6\cdot 2 - 1 = 11, \\
+b_1 &= 11\cdot 2 + 2 = 24, \\
+b_0 &= 24\cdot 2 - 7 = 41 .
+\end{aligned}
+$$
+
+Luego $P(2) = 41$. Comprobación directa: $3\cdot 16 - 4 + 4 - 7 = 48 - 7 = 41$.
+
+::: {.callout-tip}
+## Por qué Horner es más eficiente
+
+Sustituir directamente en un polinomio de grado $n$ requiere del orden de $\dfrac{n(n+1)}{2}$ multiplicaciones si se calculan las potencias una a una, o $2n$ si se reutilizan. Horner necesita exactamente $n$ multiplicaciones y $n$ sumas, y es el método que emplean las calculadoras y los ordenadores. Además arrastra menos error de redondeo, porque encadena operaciones pequeñas en lugar de manejar potencias enormes.
+:::
+
+::: {.callout-important}
+## Horner y Ruffini son el mismo cálculo
+
+Los números $b_n, b_{n-1}, \ldots, b_1$ que aparecen por el camino no son basura: son exactamente los coeficientes del cociente de dividir $P(x)$ entre $x - a$, y $b_0 = P(a)$ es el resto. Es la **regla de Ruffini**, que verás más adelante. Un mismo cálculo responde a dos preguntas distintas.
+:::
+
+### Applet · Valor numérico: sustitución directa y Horner {.unnumbered}
+
+Compara los dos caminos sobre el mismo polinomio y el mismo valor: la sustitución término a término y el encadenado de Horner.
+
+::: {#panel-valorHorner .applet-panel data-applet-pol="valorHorner"}
+:::
+
+Fíjate en el recuento de operaciones que muestra el applet: cuanto mayor es el grado, mayor es la ventaja de Horner. Comprueba también que el último número del encadenado coincide siempre con el valor numérico.
+
+### Applet · El valor numérico en la gráfica {.unnumbered}
+
+El valor numérico tiene una lectura visual inmediata: es la altura de la curva $y = P(x)$ sobre el punto $x = a$.
+
+::: {#panel-graficaValor .applet-panel data-applet-pol="graficaValor"}
+:::
+
+Mueve el deslizador y busca los valores de $a$ donde el punto marcado cae exactamente sobre el eje horizontal. Esos números, con $P(a) = 0$, son las **raíces** del polinomio y protagonizan el apartado siguiente del tema.
+
+## Polinomios que modelan situaciones
+
+Los polinomios se usan para describir situaciones reales en las que una cantidad depende de otra de forma suave y previsible.
+
+**Ejemplo 9 (coste).** Un taller tiene un coste fijo mensual de $1200$ euros y un coste variable de $18$ euros por unidad, con un ahorro por volumen de $0{,}05$ euros por unidad al cuadrado. El coste total de fabricar $x$ unidades es
+$$
+C(x) = -0{,}05x^2 + 18x + 1200 .
+$$
+Para $x = 0$ se obtiene $C(0) = 1200$: el término independiente es el coste fijo, el que se paga aunque no se produzca nada. Ese es el significado económico del valor numérico en cero.
+
+**Ejemplo 10 (ingresos y beneficio).** Si cada unidad se vende a $40$ euros, el ingreso es $I(x) = 40x$ y el beneficio
+$$
+B(x) = I(x) - C(x) = 0{,}05x^2 + 22x - 1200 .
+$$
+Con $x = 5$ el beneficio es negativo: se vende demasiado poco para cubrir el coste fijo. Con $x = 60$ ya es positivo. El valor de $x$ en el que $B(x) = 0$ es el **umbral de rentabilidad**, y calcularlo es resolver una ecuación polinómica.
+
+**Ejemplo 11 (geometría).** A una cartulina cuadrada de lado $20$ cm se le recortan cuadrados de lado $x$ en las esquinas y se levantan los bordes para formar una caja. Su volumen es
+$$
+V(x) = x\,(20 - 2x)^2 = 4x^3 - 80x^2 + 400x ,
+$$
+un polinomio de grado $3$ con sentido solo para $0 < x < 10$.
+
+::: {.callout-warning}
+## El modelo tiene un dominio con sentido
+
+Matemáticamente $V(-3)$ se puede calcular, pero un lado negativo no significa nada. Antes de dar por bueno un valor numérico, pregúntate si el número que has sustituido tiene sentido en la situación descrita. Los modelos polinómicos suelen ser válidos solo en un intervalo.
+:::
+
+### Applet · Polinomios que modelan situaciones {.unnumbered}
+
+Elige un modelo, fija el valor de la variable y observa cómo el applet desarrolla el polinomio, calcula su valor numérico y lo interpreta.
+
+::: {#panel-modeloPol .applet-panel data-applet-pol="modeloPol"}
+:::
+
+Compara el valor del modelo de beneficio en $x = 5$ y en $x = 20$: el signo cambia. Localizar dónde ocurre ese cambio es una de las razones por las que interesa saber resolver ecuaciones polinómicas.
+
+## Curiosidades y pensamiento crítico
+
+- La palabra **álgebra** procede del título del tratado *Hisab al-yabr wa-l-muqabala*, escrito hacia el año 820 en la Casa de la Sabiduría de Bagdad. *Al-Jabr* significa «recomponer» o «restaurar», y describe la operación de pasar un término al otro lado de una igualdad.
+- De la latinización del nombre de su autor, **al-Juarismi**, procede la palabra **algoritmo**. Que hoy llames «algoritmo de Horner» a un procedimiento de cálculo es un eco directo de aquel libro.
+- Durante siglos la incógnita no se llamó $x$. En la Italia del Renacimiento se la llamaba *cosa*, y a los algebristas, *cosistas*. La notación moderna con letras finales del alfabeto para las incógnitas se debe a **Descartes**, y el uso sistemático de letras para los coeficientes, a **Viète**.
+- Un polinomio de grado $n$ queda completamente determinado por $n+1$ valores numéricos suyos. Por eso dos puntos determinan una recta y tres puntos, una parábola. Esta idea es la base de la interpolación con la que se reconstruyen datos que faltan en una serie estadística.
+- Que un modelo polinómico ajuste muy bien unos datos no garantiza que prediga bien el futuro. Con grado suficiente se puede pasar por **todos** los puntos observados y aun así fallar estrepitosamente fuera del intervalo de datos. Un ajuste perfecto es motivo de sospecha, no de confianza.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) y el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html).
+:::
+
+## Errores frecuentes
+
+1. Considerar polinomio a una expresión con la indeterminada en el denominador, dentro de una raíz o en el exponente. $\dfrac{3}{x} + 2$, $\sqrt{x}$ y $2^x$ no son polinomios.
+2. Leer el grado antes de reducir. En $7x^3 - 7x^3 + 5x$ el grado es $1$, no $3$.
+3. Confundir el grado con el número de términos: $x^{10} + 1$ tiene dos términos y grado $10$.
+4. Decir que el polinomio nulo tiene grado $0$. No tiene grado; el que vale $0$ es el grado de las constantes no nulas.
+5. Olvidar los coeficientes cero de los términos que faltan al escribir la lista de coeficientes. En $x^3 - 1$ la lista es $1,\ 0,\ 0,\ -1$.
+6. En varias indeterminadas, tomar como grado el mayor exponente en lugar de la suma: $3x^2y^3$ tiene grado $5$.
+7. Sustituir un valor negativo sin paréntesis: en $x^2$ con $x = -4$ hay que escribir $(-4)^2 = 16$, no $-4^2 = -16$.
+8. Creer que dos polinomios que coinciden en un punto son iguales. La igualdad exige que coincidan **todos** los coeficientes.
+9. En Horner, empezar sumando en lugar de arrastrar el coeficiente principal, o cambiar el orden de los coeficientes. Deben ir de mayor a menor grado y sin huecos.
+10. Dar por válido un valor numérico que no tiene sentido en el contexto del modelo, como un número negativo de unidades producidas.
+
+## Qué debes saber hacer
+
+- Distinguir una expresión algebraica cualquiera de un polinomio, y justificar por qué una expresión dada no lo es.
+- Identificar en un polinomio los coeficientes, el término independiente, el coeficiente principal y el grado.
+- Ordenar y reducir un polinomio, y decidir si es completo, incompleto o mónico.
+- Escribir la lista de coeficientes de un polinomio incompleto sin olvidar los ceros.
+- Calcular el grado de un monomio y de un polinomio en varias indeterminadas.
+- Decidir si dos polinomios son iguales comparando coeficientes, y usar ese criterio para hallar parámetros desconocidos.
+- Distinguir el polinomio nulo de los polinomios constantes y explicar por qué el primero no tiene grado.
+- Explicar en qué sentido $\mathbb{R}[x]$ se comporta como $\mathbb{Z}$ y por qué es necesario ampliarlo a las fracciones algebraicas.
+- Calcular valores numéricos por sustitución directa, con especial cuidado en los valores negativos y fraccionarios.
+- Aplicar el algoritmo de Horner, justificar por qué funciona a partir de la factorización anidada y explicar su ventaja en número de operaciones.
+- Interpretar el valor numérico como la altura de la gráfica y reconocer las raíces como los puntos donde esa altura es cero.
+- Construir e interpretar modelos polinómicos sencillos de coste, ingreso, beneficio, área y volumen, discutiendo el intervalo de valores con sentido.

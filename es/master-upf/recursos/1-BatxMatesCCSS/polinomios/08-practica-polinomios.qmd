@@ -1,0 +1,770 @@
+---
+title: "Tema 2.8 Práctica: polinomios y fracciones algebraicas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 08-practica-polinomios
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Hoja de práctica del tema con 40 ejercicios resueltos por apartado y por nivel (operaciones, división y Ruffini, factorización, m.c.d. y m.c.m., fracciones algebraicas, ecuaciones y dominios), problemas contextualizados de coste, ingresos, volumen y áreas, autoevaluación tipo test y entrenadores aleatorios con corrección inmediata.
+categories: [polinomios, 1 Batx, matemáticas CCSS, ejercicios resueltos, autoevaluación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Los 40 ejercicios están agrupados por apartado del tema y, dentro de cada grupo, ordenados por nivel: **básico** (aplicación directa de la definición o de la receta), **medio** (dos o tres técnicas combinadas) y **avanzado** (hay que decidir la estrategia o razonar sobre el resultado).
+
+Cada ejercicio lleva su solución razonada dentro de un desplegable. Intenta el ejercicio completo en papel antes de abrirlo: leer una solución es fácil, reproducirla no.
+
+::: {.callout-tip}
+## Plan de trabajo recomendado
+
+1. Haz todos los **básicos** de un tirón. Si fallas más de dos, vuelve al apartado correspondiente.
+2. Alterna **medios** y **avanzados** del mismo bloque, para no perder el hilo de la técnica.
+3. Termina con los problemas contextualizados y la autoevaluación tipo test.
+4. Usa los entrenadores aleatorios del final para repetir el tipo de ejercicio que se te resista.
+:::
+
+## Operaciones con polinomios
+
+**1 (básico).** Dados $P(x)=x^3-x^2+4x-5$ y $Q(x)=2x^2-3x+1$, calcula $P(x)+Q(x)$ y $P(x)-Q(x)$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se suman o restan los coeficientes del mismo grado:
+
+$$
+P+Q = x^3 + (-1+2)x^2 + (4-3)x + (-5+1) = x^3+x^2+x-4
+$$
+
+$$
+P-Q = x^3 + (-1-2)x^2 + (4+3)x + (-5-1) = x^3-3x^2+7x-6
+$$
+
+En la resta hay que cambiar **todos** los signos de $Q$, no solo el primero.
+:::
+
+**2 (básico).** Desarrolla usando identidades notables: $(2x-3)^2$, $(x+2)^3$ y $(3x-1)(3x+1)$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+(2x-3)^2 = (2x)^2 - 2\cdot 2x \cdot 3 + 3^2 = 4x^2-12x+9
+$$
+
+$$
+(x+2)^3 = x^3 + 3x^2\cdot 2 + 3x\cdot 4 + 8 = x^3+6x^2+12x+8
+$$
+
+$$
+(3x-1)(3x+1) = (3x)^2-1^2 = 9x^2-1
+$$
+:::
+
+**3 (avanzado).** Halla $a$ y $b$ para que $x^3+ax^2+bx+6$ tenga a $x=1$ y a $x=-2$ como raíces.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se impone que el valor numérico sea cero en los dos puntos:
+
+$$
+P(1)=1+a+b+6=0 \Rightarrow a+b=-7
+$$
+
+$$
+P(-2)=-8+4a-2b+6=0 \Rightarrow 4a-2b=2 \Rightarrow 2a-b=1
+$$
+
+Sumando las dos ecuaciones: $3a=-6 \Rightarrow a=-2$, y entonces $b=-5$. El polinomio es $x^3-2x^2-5x+6$, que factoriza como $(x-1)(x+2)(x-3)$: la tercera raíz es $x=3$.
+:::
+
+## División de polinomios, Ruffini y teorema del resto
+
+**4 (básico).** Divide $2x^3-x^2+4$ entre $x+2$ con la regla de Ruffini y escribe la identidad de la división.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Coeficientes $2,\,-1,\,0,\,4$ y casilla $a=-2$:
+
+$$
+\begin{array}{c|rrrr}
+ & 2 & -1 & 0 & 4\\
+-2 & & -4 & 10 & -20\\
+\hline
+ & 2 & -5 & 10 & -16
+\end{array}
+$$
+
+Cociente $C(x)=2x^2-5x+10$ y resto $R=-16$. Identidad:
+
+$$
+2x^3-x^2+4 = (x+2)\left(2x^2-5x+10\right)-16 .
+$$
+:::
+
+**5 (básico).** Divide $x^4-3x^2+2x-5$ entre $x^2-x+1$ con el algoritmo largo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Cociente $x^2+x-3$ y resto $-2x-2$. Comprobación:
+
+$$
+\left(x^2-x+1\right)\left(x^2+x-3\right) = x^4-3x^2+4x-3,
+$$
+
+y sumando el resto $-2x-2$ queda $x^4-3x^2+2x-5$. Correcto. Aquí Ruffini no sirve: el divisor tiene grado 2.
+:::
+
+**6 (medio).** Sin dividir, calcula el resto de dividir $P(x)=x^5-3x^3+2x-1$ entre $x+1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por el teorema del resto, $R=P(-1)$:
+
+$$
+P(-1)=-1+3-2-1=-1 .
+$$
+
+El resto es $-1$. Como no es cero, $x+1$ **no** es factor de $P(x)$.
+:::
+
+**7 (medio).** Determina $k$ para que $x^3+kx-6$ sea divisible entre $x-2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Divisible entre $x-2$ significa resto cero, es decir $P(2)=0$:
+
+$$
+8+2k-6=0 \Rightarrow 2k=-2 \Rightarrow k=-1 .
+$$
+
+Con $k=-1$: $x^3-x-6 = (x-2)\left(x^2+2x+3\right)$, y el segundo factor tiene $\Delta = 4-12<0$, luego es irreducible.
+:::
+
+**8 (avanzado).** Divide $6x^3-x^2-5x+2$ entre $2x-1$ usando Ruffini y corrige el resultado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se divide entre $x-\dfrac{1}{2}$ con Ruffini:
+
+$$
+\begin{array}{c|rrrr}
+ & 6 & -1 & -5 & 2\\
+\frac{1}{2} & & 3 & 1 & -2\\
+\hline
+ & 6 & 2 & -4 & 0
+\end{array}
+$$
+
+El resto es 0, así que $x-\dfrac{1}{2}$ es factor y también lo es $2x-1$. El cociente obtenido, $6x^2+2x-4$, corresponde a la división entre $x-\dfrac{1}{2}$; para la división entre $2x-1$ hay que dividirlo entre 2:
+
+$$
+6x^3-x^2-5x+2 = (2x-1)\left(3x^2+x-2\right) = (2x-1)(3x-2)(x+1).
+$$
+:::
+
+## Raíces y factorización
+
+**9 (básico).** Saca factor común: $6x^3-9x^2+3x$ y $-15x^6-6x^4+9x^2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+6x^3-9x^2+3x = 3x\left(2x^2-3x+1\right) = 3x(2x-1)(x-1)
+$$
+
+$$
+-15x^6-6x^4+9x^2 = -3x^2\left(5x^4+2x^2-3\right)
+$$
+
+En el segundo se ha sacado el signo menos para dejar positivo el coeficiente principal; también es correcto escribir $3x^2\left(-5x^4-2x^2+3\right)$.
+:::
+
+**10 (básico).** Factoriza con identidades notables: $x^2-10x+25$, $4x^2-9$ y $x^4-16$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^2-10x+25=(x-5)^2, \qquad 4x^2-9=(2x-3)(2x+3)
+$$
+
+$$
+x^4-16 = \left(x^2-4\right)\left(x^2+4\right) = (x-2)(x+2)\left(x^2+4\right)
+$$
+
+El factor $x^2+4$ es irreducible: la **suma** de cuadrados no se descompone.
+:::
+
+**11 (básico).** Factoriza el trinomio $3x^2-10x+8$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x=\dfrac{10\pm\sqrt{100-96}}{6}=\dfrac{10\pm 2}{6} \Rightarrow x_1=2,\; x_2=\dfrac{4}{3}
+$$
+
+$$
+3x^2-10x+8 = 3(x-2)\left(x-\dfrac{4}{3}\right) = (x-2)(3x-4)
+$$
+
+El 3 se ha repartido en el segundo paréntesis; olvidarlo es el error clásico.
+:::
+
+**12 (medio).** Factoriza $x^3-7x-6$ y escribe sus raíces.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Candidatos (divisores de 6): $\pm1,\pm2,\pm3,\pm6$. Como $P(-1)=-1+7-6=0$, dividimos entre $x+1$ y queda $x^2-x-6=(x-3)(x+2)$:
+
+$$
+x^3-7x-6=(x+1)(x-3)(x+2)
+$$
+
+Raíces: $-1$, $3$ y $-2$, todas simples.
+:::
+
+**13 (medio).** Factoriza $x^4-13x^2+36$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Es bicuadrado. Con $t=x^2$: $t^2-13t+36=(t-4)(t-9)$. Deshaciendo el cambio:
+
+$$
+x^4-13x^2+36=\left(x^2-4\right)\left(x^2-9\right)=(x-2)(x+2)(x-3)(x+3)
+$$
+
+Cuatro raíces simples: $\pm2$ y $\pm3$.
+:::
+
+**14 (medio).** Factoriza por agrupación $x^3+2x^2-x-2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^3+2x^2-x-2 = x^2(x+2)-(x+2)=(x+2)\left(x^2-1\right)=(x+2)(x-1)(x+1)
+$$
+
+La señal de que la agrupación funciona es que el paréntesis $(x+2)$ salga idéntico en los dos grupos.
+:::
+
+**15 (medio).** Factoriza $2x^3+x^2-8x-4$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por agrupación: $x^2(2x+1)-4(2x+1)=(2x+1)\left(x^2-4\right)$, luego
+
+$$
+2x^3+x^2-8x-4=(2x+1)(x-2)(x+2).
+$$
+
+Con Ruffini se llega a lo mismo probando $x=2$, pero la agrupación ahorra la tabla. Raíces: $-\dfrac{1}{2}$, $2$ y $-2$.
+:::
+
+**16 (avanzado).** Factoriza $x^4-x^3-3x^2+5x-2$ e indica la multiplicidad de cada raíz.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$P(1)=1-1-3+5-2=0$. Ruffini con $1$: $1,\,0,\,-3,\,2$. Otra vez con $1$: $1,\,1,\,-2$. Y otra vez con $1$: $1,\,2$. Es decir,
+
+$$
+x^4-x^3-3x^2+5x-2 = (x-1)^3(x+2).
+$$
+
+$x=1$ es raíz **triple** y $x=-2$ es **simple**. Las multiplicidades suman $3+1=4$, el grado del polinomio.
+:::
+
+**17 (avanzado).** Factoriza $6x^3-5x^2-2x+1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Criterio de la raíz racional: $p$ divide a 1 y $q$ divide a 6, así que los candidatos son $\pm1,\pm\dfrac{1}{2},\pm\dfrac{1}{3},\pm\dfrac{1}{6}$. Como $P(1)=6-5-2+1=0$, dividimos entre $x-1$ y queda $6x^2+x-1$, cuyas raíces son $-\dfrac{1}{2}$ y $\dfrac{1}{3}$:
+
+$$
+6x^3-5x^2-2x+1=(x-1)(2x+1)(3x-1).
+$$
+
+Fíjate en el reparto del 6 entre los dos paréntesis: $2\cdot 3=6$.
+:::
+
+**18 (avanzado).** Factoriza $x^4+x^3-x-1$ y explica por qué queda un factor de grado 2.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Agrupando: $x^3(x+1)-(x+1)=(x+1)\left(x^3-1\right)$, y como $x^3-1=(x-1)\left(x^2+x+1\right)$:
+
+$$
+x^4+x^3-x-1=(x+1)(x-1)\left(x^2+x+1\right).
+$$
+
+El factor $x^2+x+1$ tiene $\Delta=1-4=-3<0$, luego es irreducible: no tiene raíces reales y ahí se detiene la factorización. El polinomio, de grado 4, tiene solo dos raíces reales.
+:::
+
+**19 (avanzado).** Resuelve por factorización $x^4-5x^2+4=0$ y estudia el signo del polinomio.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^4-5x^2+4=\left(x^2-1\right)\left(x^2-4\right)=(x-1)(x+1)(x-2)(x+2)=0
+$$
+
+Soluciones: $x=-2,\,-1,\,1,\,2$. Con cuatro raíces simples el signo se alterna en los cinco intervalos:
+
+- $(-\infty,-2)$: positivo; $(-2,-1)$: negativo; $(-1,1)$: positivo; $(1,2)$: negativo; $(2,+\infty)$: positivo.
+
+Comprobación rápida con $x=0$: $0-0+4=4>0$, coherente con el intervalo $(-1,1)$.
+:::
+
+## m.c.d. y m.c.m. de polinomios
+
+**20 (básico).** Calcula el m.c.d. y el m.c.m. de $x^3-x$ y $x^2+2x+1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^3-x = x(x-1)(x+1), \qquad x^2+2x+1=(x+1)^2
+$$
+
+Común: $(x+1)$, al menor exponente $\Rightarrow \operatorname{m.c.d.}=x+1$.
+
+Todos los factores al mayor exponente $\Rightarrow \operatorname{m.c.m.}=x(x-1)(x+1)^2$.
+:::
+
+**21 (medio).** Calcula el m.c.d. y el m.c.m. de $x^3-3x+2$ y $2x^2-2$, y comprueba que su producto coincide con el producto de los polinomios.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^3-3x+2=(x-1)^2(x+2), \qquad 2x^2-2=2(x-1)(x+1)
+$$
+
+$$
+\operatorname{m.c.d.}=x-1, \qquad \operatorname{m.c.m.}=2(x-1)^2(x+1)(x+2)
+$$
+
+Producto del m.c.d. por el m.c.m.: $2(x-1)^3(x+1)(x+2)$, que es exactamente el producto de los dos polinomios de partida. La propiedad $\operatorname{m.c.d.}\cdot\operatorname{m.c.m.}=P\cdot Q$ sirve como comprobación.
+:::
+
+**22 (avanzado).** Calcula el m.c.d. y el m.c.m. de $x^4-1$ y $x^3+x^2+x+1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+x^4-1=(x-1)(x+1)\left(x^2+1\right)
+$$
+
+$$
+x^3+x^2+x+1=x^2(x+1)+(x+1)=(x+1)\left(x^2+1\right)
+$$
+
+Factores comunes: $(x+1)$ y $\left(x^2+1\right)$, ambos con exponente 1:
+
+$$
+\operatorname{m.c.d.}=(x+1)\left(x^2+1\right), \qquad \operatorname{m.c.m.}=(x-1)(x+1)\left(x^2+1\right)=x^4-1 .
+$$
+
+El m.c.m. coincide con $x^4-1$ porque el segundo polinomio es divisor del primero.
+:::
+
+## Fracciones algebraicas: simplificación
+
+**23 (básico).** Simplifica $\dfrac{x^2-9}{x^2+6x+9}$ e indica las restricciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\dfrac{x^2-9}{x^2+6x+9}=\dfrac{(x-3)(x+3)}{(x+3)^2}=\dfrac{x-3}{x+3}, \qquad x\neq -3 .
+$$
+
+La restricción se lee en el denominador original, cuya única raíz es $-3$ (doble).
+:::
+
+**24 (medio).** Simplifica $\dfrac{x^3-5x^2+7x-3}{x^3-2x^2-5x+6}$ e indica todas las restricciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Numerador: $P(1)=0$, y tras dos divisiones queda $(x-1)^2(x-3)$.
+
+Denominador: $Q(1)=0$, y queda $(x-1)(x-3)(x+2)$.
+
+$$
+\dfrac{(x-1)^2(x-3)}{(x-1)(x-3)(x+2)}=\dfrac{x-1}{x+2}, \qquad x\neq 1,\; x\neq 3,\; x\neq -2 .
+$$
+
+Aunque la fracción final solo «prohíbe» $-2$, las tres restricciones vienen del enunciado y hay que mantenerlas.
+:::
+
+**25 (avanzado).** Simplifica $\dfrac{x^3+8}{x^2-4}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x^3+8$ es una suma de cubos: $x^3+2^3=(x+2)\left(x^2-2x+4\right)$. Y $x^2-4=(x-2)(x+2)$:
+
+$$
+\dfrac{(x+2)\left(x^2-2x+4\right)}{(x-2)(x+2)}=\dfrac{x^2-2x+4}{x-2}, \qquad x\neq 2,\; x\neq -2 .
+$$
+
+El factor $x^2-2x+4$ tiene $\Delta=4-16<0$: es irreducible y no cancela nada más.
+:::
+
+**26 (avanzado).** ¿Es cierto que $\dfrac{x^2+4}{x+2}=x+2$? Justifica la respuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+No. Basta un contraejemplo: con $x=2$ la izquierda vale $\dfrac{8}{4}=2$ y la derecha $4$.
+
+El error consiste en tratar el 4 como si fuera un factor cuando es un **sumando**. Además $x^2+4$ es irreducible, así que la fracción ya es irreducible: no se puede simplificar de ninguna manera.
+:::
+
+## Suma, resta, producto y división de fracciones
+
+**27 (básico).** Calcula $\dfrac{1}{x-2}+\dfrac{1}{x+2}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El m.c.m. es $(x-2)(x+2)=x^2-4$:
+
+$$
+\dfrac{x+2}{x^2-4}+\dfrac{x-2}{x^2-4}=\dfrac{2x}{x^2-4}, \qquad x\neq \pm 2 .
+$$
+:::
+
+**28 (medio).** Calcula $\dfrac{x^2-1}{x^2+2x+1}\cdot\dfrac{x+1}{x-1}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se factoriza y se cancela antes de multiplicar:
+
+$$
+\dfrac{(x-1)(x+1)}{(x+1)^2}\cdot\dfrac{x+1}{x-1}=\dfrac{(x-1)(x+1)(x+1)}{(x+1)^2(x-1)}=1, \qquad x\neq 1,\; x\neq -1 .
+$$
+
+Las dos fracciones son inversas una de la otra, y por eso el producto vale 1 en todo el dominio.
+:::
+
+**29 (avanzado).** Calcula $\dfrac{x^2-4}{x^2+2x} : \dfrac{x-2}{x^2}$ y escribe todas las restricciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se multiplica por la inversa de la segunda:
+
+$$
+\dfrac{(x-2)(x+2)}{x(x+2)}\cdot\dfrac{x^2}{x-2}=\dfrac{x^2(x-2)(x+2)}{x(x+2)(x-2)}=x .
+$$
+
+Restricciones: $x\neq 0$ y $x\neq -2$ (denominadores iniciales) y $x\neq 2$, porque $x-2$ pasa a ser denominador al invertir. El resultado es la función $y=x$ salvo en esos tres puntos.
+:::
+
+**30 (avanzado).** Simplifica la fracción de dos pisos $\dfrac{\;1-\dfrac{1}{x^2}\;}{\;1+\dfrac{1}{x}\;}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Piso a piso:
+
+$$
+\dfrac{\dfrac{x^2-1}{x^2}}{\dfrac{x+1}{x}}=\dfrac{x^2-1}{x^2}\cdot\dfrac{x}{x+1}=\dfrac{(x-1)(x+1)\,x}{x^2(x+1)}=\dfrac{x-1}{x},
+$$
+
+con $x\neq 0$ y $x\neq -1$. Atajo: multiplicar numerador y denominador por $x^2$ da $\dfrac{x^2-1}{x^2+x}$, que simplifica al mismo resultado.
+:::
+
+**31 (avanzado).** Calcula $\dfrac{1}{x}+\dfrac{1}{x+1}+\dfrac{1}{x^2+x}$ y comenta el resultado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como $x^2+x=x(x+1)$, el m.c.m. es $x(x+1)$:
+
+$$
+\dfrac{x+1}{x(x+1)}+\dfrac{x}{x(x+1)}+\dfrac{1}{x(x+1)}=\dfrac{2x+2}{x(x+1)}=\dfrac{2(x+1)}{x(x+1)}=\dfrac{2}{x},
+$$
+
+con $x\neq 0$ y $x\neq -1$. El resultado sorprende por lo simple: la suma de tres fracciones se reduce a una sola con denominador de grado 1. La restricción $x\neq -1$ sigue vigente aunque no se vea en el resultado.
+:::
+
+**32 (avanzado).** Descompón $\dfrac{5x+1}{x^2+x-2}$ en suma de fracciones simples.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x^2+x-2=(x-1)(x+2)$, así que se busca
+
+$$
+\dfrac{5x+1}{(x-1)(x+2)}=\dfrac{A}{x-1}+\dfrac{B}{x+2} \Rightarrow 5x+1=A(x+2)+B(x-1).
+$$
+
+Con $x=1$: $6=3A \Rightarrow A=2$. Con $x=-2$: $-9=-3B \Rightarrow B=3$.
+
+$$
+\dfrac{5x+1}{x^2+x-2}=\dfrac{2}{x-1}+\dfrac{3}{x+2}
+$$
+
+Comprobación: $\dfrac{2(x+2)+3(x-1)}{(x-1)(x+2)}=\dfrac{5x+1}{(x-1)(x+2)}$. Correcto.
+:::
+
+## Dominios y ecuaciones racionales
+
+**33 (básico).** Halla el dominio de $f(x)=\dfrac{x^2+1}{x^3-x}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x^3-x=x(x-1)(x+1)$, que se anula en $0$, $1$ y $-1$:
+
+$$
+\operatorname{Dom} f = \mathbb{R}\setminus\{-1,0,1\}.
+$$
+
+El numerador $x^2+1$ nunca es cero, así que no hay cancelaciones: en los tres puntos habrá asíntotas verticales.
+:::
+
+**34 (medio).** Resuelve $\dfrac{x}{x+2}-\dfrac{3}{x-2}=1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restricciones: $x\neq -2$, $x\neq 2$. Se multiplica todo por $(x+2)(x-2)$:
+
+$$
+x(x-2)-3(x+2)=(x+2)(x-2) \Rightarrow x^2-5x-6=x^2-4
+$$
+
+$$
+-5x=2 \Rightarrow x=-\dfrac{2}{5}
+$$
+
+Como $-\dfrac{2}{5}$ no está prohibido, es la única solución.
+:::
+
+**35 (avanzado).** Resuelve $\dfrac{x}{x-3}=\dfrac{3}{x-3}+1$ y explica lo que ocurre.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restricción: $x\neq 3$. Multiplicando por $x-3$:
+
+$$
+x=3+(x-3) \Rightarrow x=x .
+$$
+
+La igualdad se cumple para **cualquier** $x$ distinto de 3, así que no es una ecuación con soluciones aisladas: es una identidad válida en todo el dominio. Comprueba con $x=0$: $\dfrac{0}{-3}=0$ y $\dfrac{3}{-3}+1=-1+1=0$. Coincide.
+
+Si el enunciado hubiera sido $\dfrac{x}{x-3}=\dfrac{3}{x-3}+2$, al operar saldría $x=3$, que está prohibido, y la ecuación **no tendría solución**. Dos ecuaciones casi idénticas con comportamientos opuestos: por eso hay que comprobar siempre las restricciones.
+:::
+
+## Problemas contextualizados
+
+**36 (medio) · Volumen de una caja.** De una cartulina rectangular de $20$ cm $\times$ $30$ cm se recortan cuadrados de lado $x$ en las cuatro esquinas y se doblan las pestañas para formar una caja sin tapa. Escribe el volumen como polinomio, indica los valores de $x$ que tienen sentido y calcula $V(4)$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La base mide $(20-2x)$ por $(30-2x)$ y la altura es $x$:
+
+$$
+V(x)=x(20-2x)(30-2x)=x\left(600-100x+4x^2\right)=4x^3-100x^2+600x .
+$$
+
+Tiene sentido $0<x<10$: si $x\geq 10$ el lado $20-2x$ dejaría de ser positivo. Los ceros del polinomio son $0$, $10$ y $15$, y los dos primeros son justo los extremos del intervalo válido.
+
+$$
+V(4)=4\cdot 64-100\cdot 16+600\cdot 4=256-1600+2400=1056 \text{ cm}^3
+$$
+:::
+
+**37 (medio) · Coste, ingresos y beneficio.** Una empresa vende $x$ unidades a un precio unitario de $50-x$ euros y su coste total es $C(x)=10x+300$ euros. Escribe el beneficio, factorízalo y halla los niveles de producción en los que no hay ni ganancia ni pérdida.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Ingresos: $I(x)=x(50-x)=50x-x^2$. Beneficio:
+
+$$
+B(x)=I(x)-C(x)=50x-x^2-10x-300=-x^2+40x-300 .
+$$
+
+Factorizando: $-\left(x^2-40x+300\right)=-(x-10)(x-30)$.
+
+El beneficio es cero en $x=10$ y $x=30$ unidades (puntos de equilibrio). Entre 10 y 30 el producto $(x-10)(x-30)$ es negativo, así que $B(x)>0$: ahí se gana dinero. Fuera de ese intervalo se pierde.
+:::
+
+**38 (medio) · Coste unitario.** El coste total de fabricar un lote es $C(x)=x^2+5x+6$ (en euros) y el lote contiene $x+2$ unidades. Halla el coste por unidad simplificando la fracción.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\dfrac{C(x)}{x+2}=\dfrac{x^2+5x+6}{x+2}=\dfrac{(x+2)(x+3)}{x+2}=x+3 \quad (x\neq -2)
+$$
+
+El coste por unidad es $x+3$ euros. Como $x$ representa una cantidad, en el contexto solo interesan valores $x>0$, y la restricción algebraica $x\neq-2$ no molesta. Observa que el coste unitario **crece** con el tamaño del lote: no hay economía de escala en este modelo.
+:::
+
+**39 (avanzado) · Diferencia de áreas.** Un cuadrado de lado $x+3$ tiene recortado en una esquina un cuadrado de lado $x-1$ (con $x>1$). Expresa el área restante y simplifícala al máximo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+A(x)=(x+3)^2-(x-1)^2
+$$
+
+Con la diferencia de cuadrados, tomando $A=x+3$ y $B=x-1$:
+
+$$
+A(x)=\big[(x+3)+(x-1)\big]\big[(x+3)-(x-1)\big]=(2x+2)\cdot 4=8x+8=8(x+1)
+$$
+
+Desarrollando por separado se llega a lo mismo: $x^2+6x+9-\left(x^2-2x+1\right)=8x+8$. El área restante crece **linealmente** con $x$, aunque las dos áreas de partida sean cuadráticas.
+:::
+
+**40 (avanzado) · Depósitos que se llenan a la vez.** Un grifo llena un depósito en $x$ horas y otro lo llena en $x+2$ horas. Expresa con una fracción algebraica el tiempo que tardan funcionando juntos y calcula el valor para $x=4$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+En una hora el primer grifo llena $\dfrac{1}{x}$ del depósito y el segundo $\dfrac{1}{x+2}$. Juntos:
+
+$$
+\dfrac{1}{x}+\dfrac{1}{x+2}=\dfrac{(x+2)+x}{x(x+2)}=\dfrac{2x+2}{x(x+2)} .
+$$
+
+El tiempo total es la inversa de esa cantidad:
+
+$$
+T(x)=\dfrac{x(x+2)}{2x+2}=\dfrac{x(x+2)}{2(x+1)}, \qquad x>0 .
+$$
+
+Para $x=4$: $T(4)=\dfrac{4\cdot 6}{10}=2{,}4$ horas, es decir 2 h 24 min. Tiene sentido: menos que las 4 horas del grifo más rápido.
+:::
+
+## Autoevaluación tipo test
+
+Elige una opción en cada pregunta y comprueba después todas las respuestas de golpe.
+
+1. El grado de $\left(2x^3-1\right)\left(x^2+5x\right)$ es: **(a)** 5 **(b)** 6 **(c)** 3.
+2. El resto de dividir $x^4-2x+1$ entre $x-1$ es: **(a)** $0$ **(b)** $1$ **(c)** $-2$.
+3. $x^2+9$ factoriza como: **(a)** $(x+3)^2$ **(b)** $(x+3)(x-3)$ **(c)** es irreducible.
+4. La factorización de $2x^2-5x-3$ es: **(a)** $(2x+1)(x-3)$ **(b)** $(2x-1)(x+3)$ **(c)** $2(x-3)(x-\frac{1}{2})$.
+5. Si $P(x)=(x-2)^2(x+1)$, la multiplicidad de la raíz $x=2$ es: **(a)** 1 **(b)** 2 **(c)** 3.
+6. El m.c.d. de $x^2-1$ y $x^2+2x+1$ es: **(a)** $x-1$ **(b)** $x+1$ **(c)** $(x+1)^2$.
+7. $\dfrac{x^2+5}{x+5}$ se simplifica a: **(a)** $x$ **(b)** $x+1$ **(c)** no se simplifica.
+8. El dominio de $\dfrac{x}{x^2-9}$ es: **(a)** $\mathbb{R}\setminus\{3\}$ **(b)** $\mathbb{R}\setminus\{-3,3\}$ **(c)** $\mathbb{R}$.
+9. $\dfrac{1}{x}+\dfrac{1}{x+1}$ es igual a: **(a)** $\dfrac{2}{2x+1}$ **(b)** $\dfrac{2x+1}{x(x+1)}$ **(c)** $\dfrac{1}{x(x+1)}$.
+10. Al resolver una ecuación racional obtienes $x=2$, pero el denominador era $x-2$. Entonces: **(a)** la solución es $x=2$ **(b)** hay que descartarla **(c)** hay infinitas soluciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+1. **(a)** 5. Los grados se suman: $3+2=5$.
+2. **(a)** $0$. Por el teorema del resto, $P(1)=1-2+1=0$; además eso indica que $x-1$ es factor.
+3. **(c)** Es irreducible: la suma de cuadrados no se descompone con coeficientes reales.
+4. **(a)** $(2x+1)(x-3)$. Las raíces son $3$ y $-\frac{1}{2}$; la opción (c) también es correcta como expresión equivalente, pero (a) es la forma factorizada habitual con coeficientes enteros. La opción (b) da $2x^2+5x-3$.
+5. **(b)** 2, porque el factor $(x-2)$ está elevado al cuadrado.
+6. **(b)** $x+1$. $x^2-1=(x-1)(x+1)$ y $x^2+2x+1=(x+1)^2$: el factor común al menor exponente es $x+1$.
+7. **(c)** No se simplifica: el 5 es un sumando, no un factor, y $x^2+5$ es irreducible.
+8. **(b)** $\mathbb{R}\setminus\{-3,3\}$, porque $x^2-9=(x-3)(x+3)$ se anula en los dos valores.
+9. **(b)** $\dfrac{2x+1}{x(x+1)}$. Hay que usar el m.c.m.; sumar numeradores y denominadores por separado, como en (a), es incorrecto.
+10. **(b)** Hay que descartarla: es una solución falsa introducida al multiplicar por el denominador.
+
+**Corrección:** 9 o 10 aciertos, dominas el tema; de 6 a 8, repasa los apartados de los fallos; menos de 6, vuelve a la teoría antes de seguir con ecuaciones e inecuaciones.
+:::
+
+## Entrenadores aleatorios
+
+Los dos applets siguientes generan ejercicios nuevos cada vez que los pulsas, con tres niveles y corrección inmediata. Son la mejor herramienta para las últimas sesiones antes de un examen: repetición con variedad.
+
+### Applet · Entrenador de factorización {.unnumbered}
+
+::: {#panel-entrenaFactoriza .applet-panel data-applet-pol="entrenaFactoriza"}
+:::
+
+Escribe la respuesta como producto, por ejemplo `(x-1)(x+2)` o `2(x-1)^2(x+3)`. El applet multiplica tu producto y lo compara con el polinomio original, así que se acepta cualquier escritura equivalente: no importa el orden de los factores.
+
+### Applet · Entrenador de fracciones algebraicas {.unnumbered}
+
+::: {#panel-entrenaFrax .applet-panel data-applet-pol="entrenaFrax"}
+:::
+
+Aquí la respuesta se escribe en dos casillas, numerador y denominador. La comprobación es por productos cruzados, de modo que $\dfrac{2x-2}{2x+4}$ se acepta igual que $\dfrac{x-1}{x+2}$. Si te equivocas dos veces, abre la solución y vuelve a intentarlo con un ejercicio nuevo del mismo nivel.
+
+## Errores frecuentes
+
+1. **Resolver de cabeza los básicos y fallar los signos.** La mayoría de los errores de esta hoja no son de método, sino de signo en una resta o en una casilla de Ruffini.
+2. **No comprobar la factorización.** Multiplicar los factores obtenidos cuesta poco y detecta el fallo al instante.
+3. **Detener la factorización antes de tiempo.** Si queda $x^2-4$ o $x^2-9$, todavía se descompone.
+4. **Cancelar sumandos en las fracciones.** Solo se cancelan factores; si dudas, evalúa en un número y compara.
+5. **Perder las restricciones del dominio.** Se leen en los denominadores originales y acompañan al resultado hasta el final.
+6. **Aceptar soluciones prohibidas en las ecuaciones racionales.** Toda solución hay que contrastarla con la lista de valores excluidos.
+7. **Olvidar el contexto en los problemas.** Un lado, un tiempo o un número de unidades no puede ser negativo: el dominio matemático se recorta con el sentido del enunciado.
+8. **Confundir m.c.d. y m.c.m.** El m.c.d. toma los comunes al menor exponente; el m.c.m., todos al mayor.
+
+## Qué debes saber hacer
+
+- Operar con polinomios (suma, resta, producto, potencias con identidades notables) y calcular valores numéricos con Horner.
+- Dividir polinomios con el algoritmo largo y con Ruffini, y escribir la identidad de la división.
+- Usar el teorema del resto y del factor para calcular restos, decidir divisibilidad y determinar parámetros.
+- Factorizar cualquier polinomio del curso aplicando la estrategia completa y comprobando el resultado.
+- Calcular el m.c.d. y el m.c.m. de dos polinomios y usarlos para operar con fracciones.
+- Simplificar, sumar, restar, multiplicar y dividir fracciones algebraicas, arrastrando siempre las restricciones.
+- Resolver fracciones de dos pisos y descomponer una fracción sencilla en fracciones simples.
+- Hallar el dominio de una función racional y resolver ecuaciones racionales descartando soluciones falsas.
+- Traducir enunciados de coste, ingresos, beneficio, volumen y área a polinomios o fracciones algebraicas, e interpretar el resultado en el contexto.
+- Autoevaluarte y detectar en qué apartado concreto necesitas más práctica.
+
+::: {.callout-tip}
+## Sigue practicando
+
+- [Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html)
+- [Entrenador de fracciones algebraicas](../../entrenador_fracciones_algebraicas.html)
+- [Entrenador de radicales](../../entrenador_radicales.html), para repasar el cálculo con raíces que aparece en los discriminantes.
+- [Visor de recta real](../../recta_real_pitagoras_tales.html), para el estudio de signos.
+:::
+
+## Comprobación técnica
+
+Si algún applet de esta página no aparece o no responde, este panel indica qué se ha cargado correctamente.
+
+### Applet · Diagnóstico técnico {.unnumbered}
+
+::: {#panel-diagnostico .applet-panel data-applet-pol="diagnostico"}
+:::

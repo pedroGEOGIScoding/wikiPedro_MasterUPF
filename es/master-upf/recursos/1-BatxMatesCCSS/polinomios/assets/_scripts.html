@@ -1,39 +1,62 @@
 <!-- =====================================================================
-     _scripts.html
-     Se inyecta al final de <body> en todas las paginas del libro
-     (via  format: html: include-after-body  en _quarto.yml).
+     _scripts.html — TEMA 3 POLINOMIOS Y FRACCIONES ALGEBRAICAS
+     1.º Bachillerato · Matemáticas Aplicadas a las CCSS
+     Ubicación: 1-BatxMatesCCSS/polinomios/assets/_scripts.html
 
-     ORDEN OBLIGATORIO:
-       1) poly-applets.js        -> motor algebraico exacto + applets 1..14
-       2) poly-applets-extra.js  -> modulo de ampliacion (applets 3, 15, 16)
-                                    usa la API publica window.POLY
+     Se inyecta al final de <body> en cada .qmd del tema:
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           html-math-method: katex
 
-     No se usa OJS ni Observable: son scripts clasicos, sin dependencias
-     externas mas alla de MathJax, que ya carga Quarto.
+     ORDEN DE CARGA OBLIGATORIO
+       1) ../assets/applets.css     estilos compartidos de la asignatura
+       2) assets/pol-applets.css    estilos propios de Polinomios
+       3) ../assets/katex/katex.min.css   KaTeX local, sin CDN
+       4) ../assets/katex/katex.min.js    motor local de fórmulas
+       5) assets/pol-applets.js     núcleo window.POL
+       6) assets/pol-applets-a.js   anatomía, operaciones, división
+       7) assets/pol-applets-b.js   Ruffini, teorema del resto, raíces
+       8) assets/pol-applets-c.js   factorización y fracciones algebraicas
+
+     RUTAS
+       Los .qmd se renderizan dentro de polinomios/. Por eso ../assets/
+       apunta a 1-BatxMatesCCSS/assets/, donde ya están applets.css y
+       katex/. Los módulos propios viven en polinomios/assets/.
+
+     KaTeX se aplica a mano sobre los nodos data-tex que genera el motor,
+     con throwOnError:false. No se usa OJS, auto-render, CDN ni librerías
+     de terceros: todo funciona también sin conexión.
+
+     INSERCIÓN DE APPLETS EN LOS .qmd
+       ::: {#panel-clave .applet-panel data-applet-pol="clave"}
+       :::
+
+     RECORDATORIO PARA es/_quarto.yml
+       resources:
+         - master-upf/recursos/1-BatxMatesCCSS/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
      ===================================================================== -->
 
-
 <link rel="stylesheet" href="../assets/applets.css">
-<link rel="stylesheet" href="../assets/applets-legacy-polinomios.css">
+<link rel="stylesheet" href="assets/pol-applets.css">
 
-<script>document.body.classList.add('tema-polinomios');</script>
+<!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
 
-<script src="assets/poly-applets.js"></script>
-<script src="assets/poly-applets-extra.js"></script>
+<!-- Núcleo y módulos, en este orden. -->
+<script defer src="assets/pol-applets.js"></script>
+<script defer src="assets/pol-applets-a.js"></script>
+<script defer src="assets/pol-applets-b.js"></script>
+<script defer src="assets/pol-applets-c.js"></script>
 
 <script>
-  /* Aviso de diagnostico en consola: ayuda a detectar rutas mal puestas
-     cuando el libro se publica en un subdirectorio (GitHub Pages, etc.). */
   window.addEventListener('load', function () {
-    if (!window.POLY) {
-      console.error('[Polinomios] No se ha cargado assets/poly-applets.js. ' +
-        'Revisa la ruta en _scripts.html o el valor de site-url si publicas en un subdirectorio.');
-    } else {
-      console.info('[Polinomios] Motor algebraico listo. Prueba en consola: ' +
-        'POLY.tex(POLY.factorize(POLY.parse("x^3-4x^2+5x-2")).original)');
-    }
+    if (!window.katex) console.warn('[polinomios] KaTeX no cargado: revisa ../assets/katex/.');
+    if (!window.POL) { console.warn('[polinomios] pol-applets.js no se ha cargado.'); return; }
+    if (window.POL.extraA !== true) console.warn('[polinomios] falta pol-applets-a.js');
+    if (window.POL.extraB !== true) console.warn('[polinomios] falta pol-applets-b.js');
+    if (window.POL.extraC !== true) console.warn('[polinomios] falta pol-applets-c.js');
   });
 </script>
-
-
-

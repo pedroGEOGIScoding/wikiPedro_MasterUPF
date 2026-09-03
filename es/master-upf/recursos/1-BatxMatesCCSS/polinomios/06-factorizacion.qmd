@@ -1,0 +1,422 @@
+---
+title: "Tema 2.6 Factorización de polinomios"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Polinomios y fracciones algebraicas"
+filename: 06-factorizacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Factorizar un polinomio paso a paso con la estrategia completa (factor común, identidades notables, ecuación de segundo grado y Ruffini con el criterio de la raíz racional), polinomios irreducibles, bicuadrados y agrupación, multiplicidad, unicidad de la descomposición, m.c.d. y m.c.m. de polinomios y resolución de ecuaciones por factorización, con applets manipulables.
+categories: [polinomios, 1 Batx, matemáticas CCSS, factorización, mcd y mcm, ecuaciones]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué significa factorizar
+
+Sumar, restar y multiplicar polinomios sirve para **construir** expresiones cada vez más grandes. Factorizar es el camino contrario: partir de un polinomio ya desarrollado y escribirlo como **producto** de polinomios más sencillos.
+
+$$
+x^3 - 4x^2 + x + 6 = (x+1)(x-2)(x-3)
+$$
+
+Las dos expresiones son el mismo polinomio: si multiplicas la derecha obtienes la izquierda. Pero la forma de la derecha dice muchísimo más, porque un producto revela de golpe cuándo el polinomio vale cero.
+
+::: {.callout-note}
+## Factorizar un polinomio
+
+**Factorizar** un polinomio $P(x)$ es escribirlo como producto de un número y de polinomios de grado lo más pequeño posible que ya no se puedan descomponer más:
+
+$$
+P(x) = a \cdot F_1(x) \cdot F_2(x) \cdots F_k(x).
+$$
+
+Cada $F_i(x)$ es un **factor** de $P(x)$, es decir, un polinomio que divide a $P(x)$ con resto cero.
+:::
+
+### Para qué sirve de verdad
+
+Factorizar no es un ejercicio decorativo: es la herramienta que desbloquea tres tareas que vas a hacer durante todo el bachillerato.
+
+1. **Resolver ecuaciones.** Un producto vale cero solo si alguno de sus factores vale cero. De $(x+1)(x-2)(x-3)=0$ se leen las tres soluciones sin ninguna cuenta más: $x=-1$, $x=2$, $x=3$.
+2. **Simplificar fracciones algebraicas.** Solo se pueden cancelar **factores**, y para tener factores hay que factorizar antes. Es exactamente lo que harás en el apartado siguiente.
+3. **Estudiar el signo de una expresión.** El signo de un producto se decide factor a factor. Así se resuelven inecuaciones y se localizan los intervalos donde una función es positiva o negativa.
+
+A esto se añaden dos usos más discretos pero constantes: calcular el **m.c.d. y el m.c.m.** de polinomios (necesarios para sumar fracciones) y detectar las **raíces con su multiplicidad**, que es lo que explica la forma de la gráfica cerca de cada corte con el eje.
+
+## Polinomios irreducibles: hasta dónde se puede llegar
+
+Al factorizar un número entero paras cuando todos los factores son primos. Con polinomios ocurre lo mismo, con una palabra distinta.
+
+::: {.callout-note}
+## Polinomio irreducible
+
+Un polinomio de grado $\geq 1$ es **irreducible** cuando no se puede escribir como producto de dos polinomios de grado menor (con el tipo de coeficientes con el que estemos trabajando).
+:::
+
+Trabajando con coeficientes reales, los irreducibles son solo de dos clases:
+
+- **Los de grado 1**, del tipo $x-a$ o $ax+b$. Siempre son irreducibles.
+- **Los de grado 2 sin raíces reales**, es decir, con discriminante $\Delta = b^2-4ac < 0$. Por ejemplo $x^2+1$ o $x^2+x+1$, cuyo discriminante es $1-4=-3$.
+
+Cualquier polinomio de grado 3 o más **se puede** descomponer en factores de grado 1 y 2: no existen irreducibles de grado alto. Esa es una consecuencia del teorema fundamental del álgebra, y es la razón de que la estrategia que viene a continuación siempre pueda seguir avanzando.
+
+::: {.callout-important}
+## «Irreducible» depende de dónde vivan los coeficientes
+
+$x^2-2$ es irreducible si exiges coeficientes **racionales**, porque $\sqrt{2}$ no es racional. En cambio, con coeficientes **reales** sí se descompone:
+
+$$
+x^2-2 = \left(x-\sqrt{2}\right)\left(x+\sqrt{2}\right).
+$$
+
+En los ejercicios del curso se sobreentiende que buscamos factores con coeficientes racionales o, cuando se pide expresamente, con las raíces reales exactas. Si un enunciado dice «factoriza» sin más, basta llegar a factores de grado 1 con números sencillos y factores de grado 2 con $\Delta<0$.
+:::
+
+## La estrategia completa, en orden
+
+Factorizar es un proceso mecánico si respetas el orden. Cada paso deja el polinomio más pequeño para el siguiente.
+
+::: {.callout-tip}
+## Guion de factorización
+
+1. **Saca factor común.** Un número, una potencia de $x$ o los dos. Esto baja el grado y limpia los coeficientes.
+2. **Mira si es una identidad notable.** Cuadrado de una suma o de una diferencia, suma por diferencia, cubo, bicuadrado. Es lo más rápido cuando encaja.
+3. **Si el grado es 2, usa la ecuación de segundo grado.** Con las raíces $x_1$ y $x_2$ la factorización es inmediata.
+4. **Si el grado es 3 o más, aplica Ruffini** probando solo los candidatos que da el criterio de la raíz racional.
+5. **Repite** con el cociente que te quede, hasta que todos los factores sean irreducibles.
+:::
+
+### Paso 1: factor común
+
+Todo lo que aparezca en **todos** los términos sale fuera del paréntesis: el m.c.d. de los coeficientes y la potencia de $x$ de menor exponente.
+
+$$
+12x^3-16x^2+4x = 4x\left(3x^2-4x+1\right) = 4x(3x-1)(x-1)
+$$
+
+Fíjate en el detalle que más se olvida: al sacar $4x$ de $4x$ queda **1**, no cero. Y si un polinomio no tiene término independiente, seguro que se puede sacar alguna potencia de $x$; eso ya te regala la raíz $x=0$.
+
+Escribe un polinomio en el applet y observa cómo se elige el factor común y cómo se comprueba el resultado deshaciendo el paréntesis.
+
+### Applet · Factor común guiado {.unnumbered}
+
+::: {#panel-factorComun .applet-panel data-applet-pol="factorComun"}
+:::
+
+Prueba con $3x^2+5x+7$: el applet avisa de que no hay nada que sacar, porque el término independiente no es cero y los coeficientes no tienen divisores comunes. Ese aviso también es información útil.
+
+### Paso 2: identidades notables
+
+Las identidades que ya conoces, leídas de derecha a izquierda, son atajos de factorización:
+
+$$
+A^2 \pm 2AB + B^2 = (A \pm B)^2, \qquad A^2-B^2 = (A+B)(A-B),
+$$
+
+$$
+A^3 \pm 3A^2B + 3AB^2 \pm B^3 = (A \pm B)^3.
+$$
+
+Para reconocerlas conviene preguntarse siempre lo mismo: *¿los extremos son cuadrados (o cubos) perfectos?* Si lo son, se comprueba el término central.
+
+$$
+4x^2+12x+9 = (2x)^2 + 2\cdot(2x)\cdot 3 + 3^2 = (2x+3)^2
+$$
+
+$$
+9x^2-4 = (3x)^2-2^2 = (3x+2)(3x-2)
+$$
+
+::: {.callout-warning}
+## La suma de cuadrados no se factoriza
+
+$x^2+4$ **no** es $(x+2)^2$ ni $(x+2)(x-2)$: es irreducible, porque no tiene raíces reales. Solo la **diferencia** de cuadrados se descompone. Comprueba siempre desarrollando: $(x+2)^2 = x^2+4x+4 \neq x^2+4$.
+:::
+
+### Applet · Detector de identidades notables {.unnumbered}
+
+::: {#panel-detectaNotable .applet-panel data-applet-pol="detectaNotable"}
+:::
+
+El applet no se limita a decir sí o no: cuando encuentra la identidad indica quiénes son $A$ y $B$ y multiplica para verificar la igualdad. Si contesta que no hay identidad, tendrás que seguir con los pasos 3 o 4.
+
+### Paso 3: trinomios de segundo grado a partir de sus raíces
+
+Con grado 2 no hace falta inventar nada: se resuelve la ecuación y se escribe la factorización.
+
+::: {.callout-note}
+## Factorización de un trinomio
+
+Si $x_1$ y $x_2$ son las raíces de $ax^2+bx+c=0$, entonces
+
+$$
+ax^2+bx+c = a\,(x-x_1)(x-x_2).
+$$
+
+Si $\Delta = 0$ hay una raíz doble y queda $a(x-x_1)^2$. Si $\Delta<0$ el trinomio es irreducible y se deja tal cual.
+:::
+
+El factor $a$ delante es imprescindible: sin él el coeficiente principal no cuadra. Por ejemplo, en $2x^2-5x-3$ las raíces son
+
+$$
+x = \dfrac{5 \pm \sqrt{25+24}}{4} = \dfrac{5 \pm 7}{4} \;\Rightarrow\; x_1 = 3,\quad x_2 = -\dfrac{1}{2},
+$$
+
+y por tanto
+
+$$
+2x^2-5x-3 = 2(x-3)\left(x+\dfrac{1}{2}\right) = (x-3)(2x+1).
+$$
+
+Las dos últimas formas son correctas; la segunda es más elegante porque reparte el 2 dentro del paréntesis con la raíz fraccionaria. Ese truco funciona siempre: si una raíz es $\dfrac{p}{q}$, puedes escribir el factor como $(qx-p)$.
+
+### Paso 4: Ruffini con el criterio de la raíz racional
+
+Para grado 3 o más se busca una raíz y se divide. La clave es no probar al azar.
+
+::: {.callout-note}
+## Criterio de la raíz racional
+
+Si el polinomio de coeficientes enteros
+
+$$
+P(x) = a_nx^n + \cdots + a_1x + a_0
+$$
+
+tiene una raíz racional $\dfrac{p}{q}$ irreducible, entonces $p$ es divisor de $a_0$ y $q$ es divisor de $a_n$.
+:::
+
+En particular, si el polinomio es **mónico** ($a_n=1$) las únicas raíces racionales posibles son los **divisores enteros del término independiente**. Ese es el caso más habitual en los ejercicios.
+
+Veamos $2x^3-3x^2-2x+3$. Los candidatos son $\pm 1, \pm 3, \pm\dfrac{1}{2}, \pm\dfrac{3}{2}$. Como $P(1) = 2-3-2+3 = 0$, dividimos entre $x-1$:
+
+$$
+\begin{array}{c|rrrr}
+ & 2 & -3 & -2 & 3\\
+1 & & 2 & -1 & -3\\
+\hline
+ & 2 & -1 & -3 & 0
+\end{array}
+$$
+
+El cociente es $2x^2-x-3$, de grado 2, y volvemos al paso 3: sus raíces son $\dfrac{3}{2}$ y $-1$, luego
+
+$$
+2x^3-3x^2-2x+3 = (x-1)(2x-3)(x+1).
+$$
+
+::: {.callout-caution}
+## Pensamiento crítico: ¿qué pasa si ningún candidato es raíz?
+
+Entonces el polinomio no tiene raíces racionales y Ruffini no puede ayudar. Con grado 4 aún queda una salida: probar si es bicuadrado o si admite agrupación. Con grado 3 y sin raíces racionales, el polinomio se deja como está (o se recurre a métodos que no son de este curso). Que Ruffini falle **no** significa que no haya raíces reales: $x^3-2$ tiene la raíz $\sqrt[3]{2}$, que no es racional.
+:::
+
+### Applet · Factorización paso a paso {.unnumbered}
+
+::: {#panel-factorizaGuia .applet-panel data-applet-pol="factorizaGuia"}
+:::
+
+Este applet es el guion completo en acción: en cada línea dice qué técnica aplica, muestra el resultado parcial y al final vuelve a multiplicar todos los factores para verificar la identidad. Úsalo para comprobar tus ejercicios, pero escribe primero tu propia factorización en papel: la gracia está en comparar tu camino con el suyo.
+
+## Dos casos con truco: bicuadrados y agrupación
+
+### Polinomios bicuadrados
+
+Un polinomio **bicuadrado** solo tiene potencias pares: $ax^4+bx^2+c$. Con el cambio $t=x^2$ se convierte en uno de segundo grado.
+
+$$
+x^4-8x^2-9 \;\xrightarrow{\,t=x^2\,}\; t^2-8t-9 = (t-9)(t+1)
+$$
+
+Deshaciendo el cambio,
+
+$$
+x^4-8x^2-9 = \left(x^2-9\right)\left(x^2+1\right) = (x-3)(x+3)\left(x^2+1\right).
+$$
+
+Observa el final: $x^2-9$ es diferencia de cuadrados y sigue rompiéndose, mientras que $x^2+1$ es irreducible y ahí se para. Un bicuadrado suele necesitar **dos** técnicas seguidas.
+
+### Factorización por agrupación
+
+Cuando hay cuatro términos y ninguna de las técnicas anteriores encaja, se agrupan de dos en dos buscando un paréntesis repetido:
+
+$$
+x^3+x^2-4x-4 = x^2(x+1)-4(x+1) = (x+1)\left(x^2-4\right) = (x+1)(x-2)(x+2).
+$$
+
+$$
+6x^3-3x^2-2x+1 = 3x^2(2x-1)-(2x-1) = (2x-1)\left(3x^2-1\right)
+$$
+
+La señal de que la agrupación funciona es que el paréntesis salga **idéntico** en los dos grupos. Si no coincide, cambia el emparejamiento; si sigue sin coincidir, vuelve a Ruffini.
+
+## Multiplicidad dentro de la factorización
+
+Cuando un mismo factor aparece repetido se escribe con exponente, y ese exponente es la **multiplicidad** de la raíz.
+
+$$
+x^4-x^3-3x^2+5x-2 = (x-1)^3(x+2)
+$$
+
+Aquí $x=1$ es raíz **triple** y $x=-2$ es raíz **simple**. Dos consecuencias que conviene tener claras:
+
+- La suma de las multiplicidades de todos los factores de grado 1, más el doble del número de factores de grado 2 irreducibles, es exactamente el **grado** del polinomio. En el ejemplo: $3+1=4$.
+- Un polinomio de grado $n$ tiene **como máximo** $n$ raíces distintas, y exactamente $n$ contando multiplicidades (si se admiten también las complejas).
+
+::: {.callout-tip}
+## Multiplicidad y gráfica
+
+Cerca de una raíz **simple** la gráfica atraviesa el eje $X$. Cerca de una raíz **doble** lo toca y rebota, sin cambiar de signo. Cerca de una raíz **triple** vuelve a atravesarlo, pero aplanándose. Es decir: la paridad de la multiplicidad decide si hay cambio de signo.
+:::
+
+## La factorización es única
+
+::: {.callout-note}
+## Unicidad de la factorización
+
+Todo polinomio de grado $\geq 1$ se descompone en producto de un número y de polinomios irreducibles, y esa descomposición es **única** salvo el orden de los factores y constantes multiplicativas.
+:::
+
+Es la misma idea que la descomposición de un entero en factores primos: $360 = 2^3\cdot 3^2\cdot 5$ y no hay otra manera. Da igual el camino que sigas —factor común primero, Ruffini después, o al revés—: si no te equivocas, llegarás a los mismos factores.
+
+Esa unicidad es la que permite comparar dos polinomios factorizados y calcular su m.c.d. y su m.c.m. igual que con los números.
+
+## m.c.d. y m.c.m. de polinomios
+
+::: {.callout-note}
+## Definiciones
+
+El **m.c.d.** de dos polinomios es el polinomio de mayor grado que divide a los dos. El **m.c.m.** es el de menor grado que es múltiplo de los dos. Ambos se determinan salvo un factor numérico, así que suelen escribirse mónicos o con el coeficiente que resulte del cálculo.
+:::
+
+La receta, calcada de la aritmética, es:
+
+- **m.c.d.**: producto de los factores **comunes** elevados al **menor** exponente.
+- **m.c.m.**: producto de **todos** los factores (comunes y no comunes) elevados al **mayor** exponente.
+
+Con $P(x) = x^3-3x+2$ y $Q(x)=2x^2-2$:
+
+$$
+P(x) = (x-1)^2(x+2), \qquad Q(x) = 2(x-1)(x+1)
+$$
+
+$$
+\operatorname{m.c.d.}(P,Q) = x-1, \qquad \operatorname{m.c.m.}(P,Q) = 2(x-1)^2(x+1)(x+2)
+$$
+
+Y se conserva la propiedad numérica que te va a servir de comprobación:
+
+$$
+\operatorname{m.c.d.}(P,Q) \cdot \operatorname{m.c.m.}(P,Q) = P(x) \cdot Q(x)
+$$
+
+(salvo constantes). Si al terminar el producto no encaja con $P\cdot Q$, hay un factor mal colocado.
+
+### Applet · m.c.d. y m.c.m. de dos polinomios {.unnumbered}
+
+::: {#panel-mcdMcmPol .applet-panel data-applet-pol="mcdMcmPol"}
+:::
+
+La tabla del applet separa los factores comunes de los que solo están en uno de los polinomios y muestra el exponente elegido en cada caso. Lee la tabla de arriba abajo antes de mirar el resultado: es la forma más rápida de aprender la receta.
+
+::: {.callout-tip}
+## Cuando factorizar se atasca: el algoritmo de Euclides
+
+Si no consigues factorizar, el m.c.d. se puede obtener con divisiones sucesivas, igual que con números: divide $P$ entre $Q$, después $Q$ entre el resto, y así hasta que el resto sea cero. El último divisor no nulo es el m.c.d. Es un método seguro, aunque no te da los factores.
+:::
+
+## Resolver ecuaciones por factorización
+
+Aquí se ve el rendimiento de todo el apartado. La herramienta es una propiedad elemental de los números:
+
+::: {.callout-note}
+## Propiedad del producto nulo
+
+$$
+A \cdot B = 0 \iff A = 0 \;\text{ o }\; B = 0.
+$$
+:::
+
+Por tanto, para resolver $P(x)=0$ basta factorizar $P$ e igualar a cero cada factor:
+
+$$
+x^3-4x^2+x+6 = 0 \iff (x+1)(x-2)(x-3)=0 \iff x=-1,\; x=2,\; x=3.
+$$
+
+::: {.callout-warning}
+## El producto nulo solo funciona contra el cero
+
+De $(x-1)(x-2)=6$ **no** se deduce $x-1=6$ o $x-2=6$. Hay que pasar todo a un miembro, dejar cero al otro lado y factorizar entonces: $x^2-3x+2=6 \Rightarrow x^2-3x-4=0 \Rightarrow (x-4)(x+1)=0$.
+:::
+
+### Applet · Resolver ecuaciones por factorización {.unnumbered}
+
+::: {#panel-ecuFactoriza .applet-panel data-applet-pol="ecuFactoriza"}
+:::
+
+El applet factoriza, escribe la lista de soluciones con su multiplicidad y sustituye cada una en el polinomio original para comprobar que da cero. Ese último paso es el que deberías hacer siempre tú también: cuesta diez segundos y detecta casi todos los errores.
+
+## Del producto al signo
+
+Un polinomio factorizado permite estudiar su signo sin calcular ni un valor: se colocan las raíces en la recta real, quedan varios intervalos y en cada uno se decide el signo multiplicando los signos de los factores. Los factores de multiplicidad par no cambian el signo; los de multiplicidad impar, sí.
+
+### Applet · Signo de un polinomio factorizado {.unnumbered}
+
+::: {#panel-signoFactorizado .applet-panel data-applet-pol="signoFactorizado"}
+:::
+
+Prueba con $(x+2)(x-1)^2$: verás que en $x=1$ la gráfica del signo **no** cambia, porque el factor está al cuadrado. Con $x^3-x$, en cambio, hay tres raíces simples y el signo se alterna en los cuatro intervalos. Esta lectura es la base de las inecuaciones polinómicas.
+
+## Nota histórica
+
+La pregunta «¿todo polinomio se puede factorizar?» tardó siglos en responderse. En el siglo XVI **Tartaglia** y **Cardano** encontraron fórmulas para las ecuaciones de tercer y cuarto grado, y en el camino aparecieron raíces de números negativos que nadie sabía interpretar; fue **Bombelli** quien empezó a operar con ellas sin escandalizarse. Dos siglos más tarde, **Gauss** demostró en su tesis doctoral (1799) el resultado que hoy llamamos **teorema fundamental del álgebra**: todo polinomio de grado $n\geq 1$ tiene al menos una raíz compleja y, por tanto, se descompone en $n$ factores de grado 1 con coeficientes complejos.
+
+La consecuencia práctica es la que usas en clase: con coeficientes reales, los factores complejos se emparejan de dos en dos y dan trinomios de grado 2 con $\Delta<0$. De ahí que la lista de irreducibles reales tenga solo dos entradas.
+
+Queda un contraste que merece la pena recordar: **Abel** demostró en 1824 que a partir del grado 5 no existe ninguna fórmula general con radicales para hallar las raíces. Es decir, sabemos con certeza que la factorización **existe** aunque no exista una receta para encontrarla. Por eso Ruffini y el criterio de la raíz racional siguen siendo tan valiosos: son las herramientas que sí funcionan en los casos con números manejables.
+
+::: {.callout-tip}
+## Practica con el entrenador
+
+Para automatizar la estrategia completa y el cálculo de m.c.d. y m.c.m., entrena con el
+[Entrenador de factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html):
+genera polinomios nuevos, factoriza y corrige al instante. Si quieres repasar el signo sobre la recta real, tienes también el
+[Visor de recta real](../../recta_real_pitagoras_tales.html).
+:::
+
+## Errores frecuentes
+
+1. **Sacar factor común y dejar el paréntesis incompleto.** En $4x^2+4x = 4x(x+\;?\;)$ falta el 1: es $4x(x+1)$. Comprueba siempre multiplicando de nuevo.
+2. **Confundir $x^2+9$ con una diferencia de cuadrados.** La suma de cuadrados es irreducible; solo se factoriza la diferencia.
+3. **Olvidar el coeficiente principal al factorizar un trinomio.** $2x^2-5x-3$ no es $(x-3)\left(x+\frac{1}{2}\right)$, sino $2(x-3)\left(x+\frac{1}{2}\right) = (x-3)(2x+1)$.
+4. **Probar en Ruffini números que no son candidatos.** Con $P(x)=x^3+2x^2-5x-6$ solo tienen sentido los divisores de 6; probar $x=4$ es perder el tiempo.
+5. **Parar la factorización demasiado pronto.** Si el cociente que queda es $x^2-4$ o $x^2-8x-9$, todavía se descompone. Solo se para en grado 1 o en grado 2 con $\Delta<0$.
+6. **Escribir el factor con el signo de la raíz.** Si la raíz es $-3$, el factor es $(x+3)$. Sale de $x-(-3)$.
+7. **Ignorar la multiplicidad.** Si Ruffini da dos veces la misma raíz, el factor va al cuadrado; escribirlo una sola vez cambia el polinomio.
+8. **Cambiar el polinomio al «simplificar» coeficientes.** Dividir $2x^2-2$ entre 2 y quedarse con $x^2-1$ es legítimo para hallar raíces, pero para factorizar hay que arrastrar el 2: $2(x-1)(x+1)$.
+9. **Tomar los factores comunes al mayor exponente en el m.c.d.** Es al **menor**; el mayor es para el m.c.m.
+10. **Aplicar el producto nulo con el segundo miembro distinto de cero.** Primero se iguala a cero, después se factoriza.
+
+## Qué debes saber hacer
+
+- Explicar qué es factorizar y para qué sirve, con al menos tres aplicaciones concretas.
+- Reconocer si un polinomio es irreducible y justificarlo con el grado o con el discriminante.
+- Aplicar la estrategia completa en el orden correcto: factor común, identidades notables, ecuación de segundo grado y Ruffini con el criterio de la raíz racional.
+- Sacar factor común numérico y de potencias de $x$, y comprobar el resultado deshaciendo el paréntesis.
+- Detectar y usar las identidades notables como atajo de factorización, incluida la diferencia de cuadrados.
+- Factorizar un trinomio $ax^2+bx+c$ a partir de sus raíces, colocando correctamente el coeficiente $a$.
+- Enumerar los candidatos a raíz racional de un polinomio con coeficientes enteros y usarlos en Ruffini.
+- Factorizar polinomios bicuadrados con el cambio $t=x^2$ y polinomios de cuatro términos por agrupación.
+- Escribir la factorización con multiplicidades y relacionar la suma de multiplicidades con el grado.
+- Calcular el m.c.d. y el m.c.m. de dos polinomios a partir de su factorización y comprobar el resultado con la propiedad del producto.
+- Resolver ecuaciones polinómicas por factorización usando la propiedad del producto nulo y verificar cada solución.
+- Estudiar el signo de un polinomio factorizado sobre la recta real, distinguiendo multiplicidades pares e impares.
