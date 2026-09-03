@@ -1,0 +1,363 @@
+---
+title: "Tema 1.3 Números reales, recta real y propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 03-numeros-reales-recta-real
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El conjunto R como unión de racionales e irracionales, la recta real y la completitud, orden y propiedades de las operaciones, valor absoluto y distancia, representación exacta de raíces con el teorema de Pitágoras y de fracciones con el teorema de Tales, densidad y cardinalidad, con applets manipulables.
+categories: [números reales, 1 Batx, matemáticas CCSS, recta real, valor absoluto, cardinalidad]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El conjunto de los números reales
+
+Los dos apartados anteriores han construido dos piezas complementarias: los racionales (decimales exactos o periódicos) y los irracionales (decimales infinitos no periódicos). Juntándolas se obtiene el conjunto con el que se trabaja en todo el bachillerato.
+
+::: {.callout-note}
+## Definición
+
+El conjunto de los **números reales** es la unión de los racionales y los irracionales:
+
+$$
+\mathbb{R} = \mathbb{Q} \cup \mathbb{I}, \qquad \mathbb{Q} \cap \mathbb{I} = \varnothing.
+$$
+
+La segunda igualdad es tan importante como la primera: ningún número es racional e irracional a la vez, así que la clasificación no deja dudas ni solapamientos.
+:::
+
+La cadena completa de inclusiones es
+
+$$
+\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R},
+$$
+
+y todas las inclusiones son **estrictas**: $-3 \in \mathbb{Z}$ pero $-3 \notin \mathbb{N}$; $\dfrac{1}{2} \in \mathbb{Q}$ pero $\dfrac{1}{2} \notin \mathbb{Z}$; $\sqrt{2} \in \mathbb{R}$ pero $\sqrt{2} \notin \mathbb{Q}$.
+
+Un número real puede verse siempre de dos maneras, y conviene dominar las dos:
+
+1. Como una **expresión decimal**, posiblemente infinita.
+2. Como un **punto de la recta**.
+
+### Applet · Clasificar números reales {.unnumbered}
+
+::: {#panel-clasifica .applet-panel data-applet-re="clasifica"}
+:::
+
+## La recta real y la completitud
+
+Para construir la recta real se fija un punto como origen ($0$), otro a su derecha como unidad ($1$), y con eso queda determinada la posición de todos los demás.
+
+::: {.callout-important}
+## Propiedad fundamental (completitud)
+
+A cada número real le corresponde **un** punto de la recta, y a cada punto de la recta le corresponde **un** número real. La correspondencia es biunívoca: la recta real no tiene agujeros.
+
+Esta propiedad es la que **no** tiene $\mathbb{Q}$, y es la verdadera razón de ser de $\mathbb{R}$.
+:::
+
+### Los agujeros de $\mathbb{Q}$: intervalos encajados
+
+Observa esta cadena de intervalos, cada uno dentro del anterior:
+
+$$
+[1{,}4;\, 1{,}5] \supset [1{,}41;\, 1{,}42] \supset [1{,}414;\, 1{,}415] \supset [1{,}4142;\, 1{,}4143] \supset \ldots
+$$
+
+Sus extremos son todos racionales, sus longitudes son $0{,}1$, $0{,}01$, $0{,}001$… y tienden a cero, así que atrapan **un único punto**. Ese punto es $\sqrt{2}$, que no es racional.
+
+Si solo existieran los racionales, la cadena no atraparía nada: habría un agujero justo ahí. En $\mathbb{R}$, en cambio, toda cadena de intervalos encajados cuya longitud tiende a cero determina exactamente un número real. Eso es la completitud.
+
+::: {.callout-tip}
+## Cómo pensar la recta
+
+$\mathbb{Q}$ es como una regla con infinitas marcas, tan juntas como quieras, pero con huecos microscópicos entre ellas. $\mathbb{R}$ es la regla sólida, sin huecos. Los dos conjuntos son densos; solo uno es completo.
+:::
+
+### Applet · Zoom en la recta real {.unnumbered}
+
+::: {#panel-rectaZoom .applet-panel data-applet-re="rectaZoom"}
+:::
+
+## Orden en $\mathbb{R}$
+
+En la recta, el orden es la posición: $a < b$ significa que $a$ está a la izquierda de $b$. Formalmente, $a < b$ cuando $b - a$ es positivo.
+
+::: {.callout-note}
+## Propiedades del orden
+
+Para cualesquiera $a, b, c \in \mathbb{R}$:
+
+- **Tricotomía**: se cumple una y solo una de las tres posibilidades $a < b$, $a = b$, $a > b$.
+- **Transitiva**: si $a < b$ y $b < c$, entonces $a < c$.
+- **Compatible con la suma**: si $a < b$, entonces $a + c < b + c$ para cualquier $c$.
+- **Compatible con el producto**: si $a < b$ y $c > 0$, entonces $a \cdot c < b \cdot c$. Pero si $c < 0$, la desigualdad **se invierte**: $a \cdot c > b \cdot c$.
+:::
+
+::: {.callout-warning}
+## La regla que más suspensos causa
+
+Multiplicar o dividir una desigualdad por un número negativo **cambia el sentido** del signo. De $-2x < 6$ se pasa a $x > -3$, no a $x < -3$. Compruébalo siempre con un valor: $x = 0$ cumple $-2 \cdot 0 = 0 < 6$, y efectivamente $0 > -3$.
+:::
+
+Comparar reales cualesquiera se hace comparando sus expresiones decimales cifra a cifra, de izquierda a derecha. Así, $\sqrt{2} = 1{,}41421\ldots$ y $1{,}414 < \sqrt{2} < 1{,}415$, porque la cuarta cifra decidiendo es $2 > 0$.
+
+## Propiedades de las operaciones
+
+La suma y el producto de reales cumplen las propiedades habituales, y merece la pena escribirlas con precisión porque justifican todas las manipulaciones algebraicas que harás este curso.
+
+::: {.callout-note}
+## Propiedades de la suma
+
+Para cualesquiera $a, b, c \in \mathbb{R}$:
+
+- **Asociativa**: $(a + b) + c = a + (b + c)$.
+- **Conmutativa**: $a + b = b + a$.
+- **Elemento neutro**: existe $0$ con $a + 0 = a$.
+- **Elemento opuesto**: para cada $a$ existe $-a$ con $a + (-a) = 0$.
+:::
+
+::: {.callout-note}
+## Propiedades del producto
+
+Para cualesquiera $a, b, c \in \mathbb{R}$:
+
+- **Asociativa**: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+- **Conmutativa**: $a \cdot b = b \cdot a$.
+- **Elemento neutro**: existe $1$ con $a \cdot 1 = a$.
+- **Elemento inverso**: para cada $a \neq 0$ existe $a^{-1} = \dfrac{1}{a}$ con $a \cdot \dfrac{1}{a} = 1$.
+- **Distributiva respecto de la suma**: $a \cdot (b + c) = a \cdot b + a \cdot c$.
+:::
+
+Con estas propiedades, $\mathbb{R}$ es un **cuerpo ordenado y completo**. La palabra «completo» es lo único que lo distingue de $\mathbb{Q}$, que también es un cuerpo ordenado.
+
+::: {.callout-important}
+## Para qué sirve la distributiva
+
+La distributiva leída de izquierda a derecha es **quitar paréntesis**; leída de derecha a izquierda es **sacar factor común**, la operación más rentable del álgebra:
+
+$$
+3x + 3y = 3(x + y), \qquad 5a^2 - 15a = 5a(a - 3).
+$$
+
+Cada vez que factorizas, simplificas una fracción algebraica o resuelves una ecuación igualando a cero, estás usando la distributiva.
+:::
+
+::: {.callout-caution}
+## Dos cosas que no son propiedades
+
+$\mathbb{R}$ **no** tiene divisores de cero: si $a \cdot b = 0$, entonces $a = 0$ o $b = 0$. Esto es lo que permite resolver $x(x-3) = 0$ diciendo $x = 0$ o $x = 3$.
+
+Y el cero **no** tiene inverso: no existe ningún real $z$ con $0 \cdot z = 1$. Por eso no se puede dividir entre cero, y no es una convención arbitraria.
+:::
+
+## Valor absoluto y distancia
+
+::: {.callout-note}
+## Definición de valor absoluto
+
+$$
+|x| = \begin{cases} x & \text{si } x \geq 0 \\ -x & \text{si } x < 0 \end{cases}
+$$
+
+Geométricamente, $|x|$ es la **distancia de $x$ al origen**, y por tanto nunca es negativo.
+:::
+
+**Ejemplo 1.** $|7| = 7$; $|-7| = -(-7) = 7$; $|0| = 0$; $|3 - 8| = |-5| = 5$.
+
+::: {.callout-note}
+## Propiedades del valor absoluto
+
+Para cualesquiera $a, b \in \mathbb{R}$:
+
+- **No negatividad**: $|a| \geq 0$.
+- **Definición positiva**: $|a| = 0 \iff a = 0$.
+- **Simetría**: $|a| = |-a|$.
+- **Producto**: $|a \cdot b| = |a| \cdot |b|$, y $\left|\dfrac{a}{b}\right| = \dfrac{|a|}{|b|}$ si $b \neq 0$.
+- **Desigualdad triangular**: $|a + b| \leq |a| + |b|$.
+- $|a|^2 = a^2$ y $\sqrt{a^2} = |a|$.
+:::
+
+::: {.callout-warning}
+## La desigualdad triangular es una desigualdad, no una igualdad
+
+Con $a = 3$ y $b = 5$: $|8| = 8 = 3 + 5$, hay igualdad. Con $a = 3$ y $b = -5$: $|-2| = 2$ mientras que $|3| + |-5| = 8$. La igualdad solo se da cuando $a$ y $b$ tienen el **mismo signo**. Y en general $|a + b| \neq |a| + |b|$.
+:::
+
+::: {.callout-important}
+## Distancia entre dos puntos de la recta
+
+$$
+\operatorname{dist}(x, y) = |x - y| = |y - x|
+$$
+
+El valor absoluto hace que el resultado no dependa del orden: la distancia no tiene signo.
+:::
+
+**Ejemplo 2.** Un ascensor sube del sótano $-9$ al piso $5$. Recorre $\operatorname{dist}(-9, 5) = |-9 - 5| = 14$ plantas. Restar sin valor absoluto da $-14$, que no tiene sentido como recorrido.
+
+**Ejemplo 3.** Un termómetro pasa de $-1\,^\circ$C a $5\,^\circ$C. La variación es de $|5 - (-1)| = 6$ grados.
+
+**Ejemplo 4.** Traducir a distancias:
+
+- $|x| = 4$: los puntos a distancia 4 del origen, es decir $x = 4$ o $x = -4$.
+- $|x - 3| = 5$: los puntos a distancia 5 del punto 3, es decir $x = 8$ o $x = -2$.
+- $|x + 2| < 1$: los puntos a distancia menor que 1 del punto $-2$, es decir $-3 < x < -1$.
+
+Esta lectura geométrica del valor absoluto es la que se explota en el apartado siguiente con los entornos.
+
+### Applet · Valor absoluto y distancia {.unnumbered}
+
+::: {#panel-valorAbsoluto .applet-panel data-applet-re="valorAbsoluto"}
+:::
+
+## Representación exacta en la recta
+
+Los decimales solo permiten **aproximar** la posición de un irracional. Con regla y compás se puede colocar el punto **exacto**.
+
+### Raíces cuadradas con el teorema de Pitágoras
+
+En un triángulo rectángulo de catetos $1$ y $1$, la hipotenusa mide
+
+$$
+\sqrt{1^2 + 1^2} = \sqrt{2}.
+$$
+
+Basta levantar ese triángulo sobre el segmento $[0,1]$ y trasladar la hipotenusa a la recta con el compás: el punto obtenido es $\sqrt{2}$ exactamente, sin ningún redondeo.
+
+El método general consiste en **descomponer el radicando en suma de cuadrados**:
+
+- $\sqrt{5} = \sqrt{2^2 + 1^2}$: catetos 2 y 1.
+- $\sqrt{10} = \sqrt{3^2 + 1^2}$: catetos 3 y 1.
+- $\sqrt{13} = \sqrt{3^2 + 2^2}$: catetos 3 y 2.
+
+Cuando no hay descomposición en dos cuadrados, se usan **triángulos encadenados**: se aprovecha una hipotenusa ya construida como cateto de la siguiente. Así,
+
+$$
+\sqrt{12} = \sqrt{3^2 + 1^2 + 1^2 + 1^2},
+$$
+
+es decir, se parte de $\sqrt{9} = 3$, se construye $\sqrt{10}$, luego $\sqrt{11}$ y finalmente $\sqrt{12}$, añadiendo cada vez un cateto de longitud 1 perpendicular a la hipotenusa anterior. La figura resultante se llama espiral de raíces.
+
+### Fracciones con el teorema de Tales
+
+Para colocar $\dfrac{p}{q}$ hay que dividir la unidad en $q$ partes iguales, y eso no se hace midiendo:
+
+1. Desde el punto entero se traza una **semirrecta auxiliar** cualquiera.
+2. Sobre ella se marcan $q$ segmentos iguales con el compás (la longitud es libre).
+3. Se une la última marca con el punto siguiente del eje.
+4. Se trazan **paralelas** a esa recta por las demás marcas.
+
+Por el teorema de Tales, las paralelas cortan la unidad en $q$ partes iguales, y contando $p$ de ellas se obtiene la fracción exacta.
+
+::: {.callout-tip}
+## Qué demuestra cada construcción
+
+Pitágoras coloca **irracionales cuadráticos**. Tales coloca **racionales**. Ninguna de las dos construcciones sirve para $\pi$: al ser trascendente, no se puede construir con regla y compás. Por eso la cuadratura del círculo es imposible.
+:::
+
+### Applet · Representar raíces y fracciones en la recta {.unnumbered}
+
+::: {#panel-raicesPitagoras .applet-panel data-applet-re="raicesPitagoras"}
+:::
+
+## Densidad y cardinalidad
+
+### Densidad
+
+::: {.callout-note}
+## Los tres conjuntos son densos
+
+Entre dos números reales distintos cualesquiera hay **infinitos racionales** e **infinitos irracionales**.
+
+Para encontrar un racional entre $a$ y $b$, basta truncar las expresiones decimales en la primera cifra en que difieren. Para encontrar un irracional, se toma un racional intermedio y se le suma un irracional suficientemente pequeño, por ejemplo $\dfrac{\sqrt{2}}{10^{n}}$ con $n$ grande.
+:::
+
+**Ejemplo 5.** Entre $\sqrt{2} = 1{,}41421\ldots$ y $1{,}415$: el racional $1{,}4142$ sirve, y el irracional $1{,}4143 + \dfrac{\sqrt{2}}{10^{6}}$ también.
+
+### Cardinalidad
+
+Aquí aparece una de las ideas más contraintuitivas de las matemáticas: hay **distintos tamaños de infinito**.
+
+::: {.callout-important}
+## Infinito numerable
+
+Un conjunto infinito es **numerable** si sus elementos se pueden poner en una lista, es decir, emparejarse uno a uno con los naturales. Resulta que
+
+$$
+\operatorname{Card}(\mathbb{N}) = \operatorname{Card}(\mathbb{Z}) = \operatorname{Card}(\mathbb{Q}).
+$$
+
+Con $\mathbb{Z}$ la lista es fácil: $0, 1, -1, 2, -2, 3, -3, \ldots$ Con $\mathbb{Q}$ se recorren las fracciones en diagonal por la suma de numerador y denominador: $\dfrac{1}{1}, \dfrac{1}{2}, \dfrac{2}{1}, \dfrac{1}{3}, \dfrac{3}{1}, \ldots$, saltando las repetidas.
+:::
+
+::: {.callout-important}
+## El continuo
+
+Cantor demostró que $\mathbb{R}$ **no** es numerable: por muy lista que sea tu lista de reales, siempre se puede construir un número que no está en ella (cambiando la primera cifra del primero, la segunda del segundo, y así). Su cardinal se llama **potencia del continuo**, y
+
+$$
+\operatorname{Card}(\mathbb{R}) = \operatorname{Card}\big((0,1)\big) > \operatorname{Card}(\mathbb{Q}).
+$$
+
+Como $\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$ y $\mathbb{Q}$ es numerable, los irracionales son los responsables de ese salto: **hay infinitamente más irracionales que racionales**.
+:::
+
+::: {.callout-caution}
+## Dos hechos que cuesta aceptar, y son ciertos
+
+En el intervalo $(0,1)$, tan pequeño, hay tantos números reales como en toda la recta.
+
+Y en ese mismo intervalo hay **más** números que racionales en toda la recta, aunque los racionales estén por todas partes. La densidad y el cardinal son propiedades independientes.
+:::
+
+## Curiosidades y pensamiento crítico
+
+- La construcción rigurosa de $\mathbb{R}$ es del siglo XIX, más de dos mil años después de que se usaran raíces y proporciones. Dedekind la hizo «cortando» la recta de racionales por los agujeros, y Cantor con sucesiones de racionales que se aprietan entre sí.
+- Escribir $\sqrt{2} = 1{,}41$ en un examen es un error conceptual, no un redondeo: se está afirmando que un irracional es racional. Lo correcto es $\sqrt{2} \approx 1{,}41$.
+- Un ordenador nunca maneja reales: trabaja con racionales de precisión limitada. Por eso una suma de decimales puede dar un resultado ligeramente distinto del esperado.
+- La recta real es el modelo de casi todo lo que se mide: tiempo, temperatura, altura, dinero. Que sea completa es lo que garantiza que una magnitud que crece de forma continua pase por todos los valores intermedios.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el entrenador [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html).
+:::
+
+## Errores frecuentes
+
+1. Escribir $\mathbb{R} = \mathbb{Q} \cap \mathbb{I}$ en lugar de $\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$. La intersección es vacía.
+2. Simplificar $\sqrt{a^2} = a$. Lo correcto es $\sqrt{a^2} = |a|$: con $a = -3$ el resultado es $3$.
+3. Olvidar invertir la desigualdad al multiplicar por un número negativo.
+4. Decir que $|a + b| = |a| + |b|$. Solo es cierto si $a$ y $b$ tienen el mismo signo.
+5. Escribir $|x| = -2$ como si tuviera solución. El valor absoluto nunca es negativo.
+6. Calcular una distancia sin valor absoluto y dar un resultado negativo.
+7. Interpretar $|-x| = x$ sin condiciones: si $x = -4$, $|-x| = 4 \neq -4$.
+8. Colocar $\sqrt{2}$ en la recta «a ojo» o midiendo $1{,}41$ cuando se pide construcción exacta con Pitágoras.
+9. Dividir la unidad en partes iguales con la regla milimetrada en lugar de aplicar Tales.
+10. Confundir densidad con completitud: $\mathbb{Q}$ es denso pero tiene agujeros.
+11. Pensar que todos los infinitos son iguales, o que $(0,1)$ tiene «menos» números que $\mathbb{R}$.
+12. Creer que el cero tiene inverso.
+
+## Qué debes saber hacer
+
+- Escribir $\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$ y clasificar cualquier número en el conjunto más pequeño al que pertenece.
+- Explicar qué significa la completitud y poner el ejemplo de los intervalos encajados que atrapan $\sqrt{2}$.
+- Enunciar las propiedades del orden y usarlas correctamente al manipular desigualdades, incluido el cambio de sentido con factores negativos.
+- Enumerar las propiedades asociativa, conmutativa, distributiva y la existencia de neutros e inversos, y reconocerlas en un cálculo concreto.
+- Calcular valores absolutos y distancias, y aplicar las propiedades, en especial $\sqrt{a^2} = |a|$ y la desigualdad triangular.
+- Traducir expresiones con valor absoluto a enunciados sobre distancias, y al revés.
+- Representar exactamente $\sqrt{n}$ en la recta descomponiendo $n$ en suma de cuadrados, encadenando triángulos si hace falta.
+- Representar exactamente una fracción con el teorema de Tales, describiendo los cuatro pasos de la construcción.
+- Encontrar racionales e irracionales entre dos reales dados.
+- Explicar con tus palabras la diferencia entre infinito numerable y potencia del continuo, y por qué hay más irracionales que racionales.

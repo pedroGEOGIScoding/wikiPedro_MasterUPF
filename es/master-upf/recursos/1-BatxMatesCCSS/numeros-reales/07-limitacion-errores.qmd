@@ -1,0 +1,346 @@
+---
+title: "Tema 1.7 Limitación de errores"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 07-limitacion-errores
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cota del error absoluto y del error relativo, relación entre número de decimales y cota, cotas en las aproximaciones de pi y de las raíces, propagación del error en suma, resta, producto y cociente, y expresión del resultado con la precisión adecuada en datos estadísticos y económicos.
+categories: [números reales, 1 Batx, matemáticas CCSS, errores, cotas de error, propagación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El problema: el error real no se conoce
+
+En el apartado anterior calculabas el error absoluto comparando la aproximación con el valor exacto. Pero en cualquier situación real —una medida con una regla, un dato de una encuesta, un precio— **el valor exacto es desconocido**. Si lo conocieras, no estarías aproximando.
+
+Lo que sí se puede hacer siempre es **acotar** el error: garantizar que, sea cual sea el valor exacto, la desviación no pasa de cierta cantidad.
+
+::: {.callout-important}
+## Idea clave
+
+Un dato aproximado sin cota de error es un dato incompleto. Decir «la longitud es $7{,}0$ cm» no informa igual que decir «la longitud es $7{,}0 \pm 0{,}05$ cm»: la segunda expresión dice además **cuánto podemos fiarnos**.
+:::
+
+## Cota del error absoluto
+
+::: {.callout-note}
+## Cota del error absoluto
+
+Una **cota del error absoluto** de una aproximación $\tilde{x}$ es cualquier número $\varepsilon > 0$ tal que se pueda garantizar
+
+$$
+E_a = |x - \tilde{x}| \leq \varepsilon .
+$$
+
+Equivale a afirmar que el valor exacto está en el intervalo
+
+$$
+x \in [\tilde{x} - \varepsilon,\; \tilde{x} + \varepsilon] ,
+$$
+
+lo que se escribe de forma abreviada $x = \tilde{x} \pm \varepsilon$.
+:::
+
+Reconocerás en ese intervalo el **entorno de centro $\tilde{x}$ y radio $\varepsilon$** del apartado de intervalos: acotar un error y describir un entorno son exactamente lo mismo.
+
+::: {.callout-note}
+## Cota según el método de aproximación
+
+Si se ha aproximado en un orden cuya unidad es $u$ (décimas, $u = 0{,}1$; centésimas, $u = 0{,}01$; centenas, $u = 100$, etc.):
+
+- por **redondeo**, la cota es **media unidad** de ese orden: $\varepsilon = \dfrac{u}{2}$;
+- por **truncamiento**, la cota es **una unidad** entera: $\varepsilon = u$.
+:::
+
+La razón es geométrica: al redondear se elige el vecino más próximo de la malla de paso $u$, y el punto más lejano posible es el punto medio, a distancia $u/2$. Al truncar, en cambio, siempre se cae en el extremo izquierdo de la casilla, y el valor exacto puede estar en cualquier punto de ella, hasta a una distancia $u$.
+
+**Ejemplo resuelto 1.** Si $\pi \approx 3{,}1416$, redondeado en las diezmilésimas, entonces
+
+$$
+E_a \leq \frac{0{,}0001}{2} = 0{,}00005 ,
+$$
+
+es decir, media unidad del último orden conservado, o lo que es lo mismo, cinco cienmilésimas. Se escribe $\pi = 3{,}1416 \pm 0{,}00005$.
+
+**Ejemplo resuelto 2.** Si $N \approx 3{,}7$, redondeado en las décimas, $E_a \leq 0{,}05$ y por tanto $N \in [3{,}65,\ 3{,}75]$.
+
+**Ejemplo resuelto 3.** Si $N \approx 300$ y sabemos que se ha redondeado en las **centenas**, entonces $E_a \leq 50$ y $N \in [250,\ 350]$. Si en cambio se hubiera redondeado en las unidades, la cota sería $0{,}5$. El mismo número escrito, dos precisiones completamente distintas: por eso hay que indicar siempre el orden de aproximación.
+
+**Ejemplo resuelto 4.** Halla una cota del error absoluto de estas aproximaciones: $6{,}3$; $562$; $562{,}00$.
+
+$$
+6{,}3 \rightarrow E_a \leq 0{,}05 ; \qquad
+562 \rightarrow E_a \leq 0{,}5 ; \qquad
+562{,}00 \rightarrow E_a \leq 0{,}005 .
+$$
+
+Aunque $562$ y $562{,}00$ valgan lo mismo, no dicen lo mismo: los ceros escritos afirman que la medida llega hasta las centésimas.
+
+## Relación entre el número de decimales y la cota
+
+Cada decimal que se conserva **divide la cota entre diez**:
+
+| Decimales conservados | Cota con redondeo | Cota con truncamiento |
+|---|---|---|
+| $0$ | $0{,}5$ | $1$ |
+| $1$ | $0{,}05$ | $0{,}1$ |
+| $2$ | $0{,}005$ | $0{,}01$ |
+| $3$ | $0{,}0005$ | $0{,}001$ |
+| $4$ | $0{,}00005$ | $0{,}0001$ |
+| $d$ | $\dfrac{10^{-d}}{2}$ | $10^{-d}$ |
+
+::: {.callout-tip}
+## Del lado contrario: cuántos decimales necesito
+
+Si te exigen que el error no pase de $\varepsilon$, basta con conservar $d$ decimales, donde $d$ es el menor entero que cumple
+
+$$
+\frac{10^{-d}}{2} \leq \varepsilon .
+$$
+
+Por ejemplo, para garantizar un error menor que una milésima hacen falta $3$ decimales redondeando ($0{,}0005 \leq 0{,}001$), pero $4$ si se trunca.
+:::
+
+## Cota del error relativo
+
+::: {.callout-note}
+## Cota del error relativo
+
+$$
+E_r = \frac{E_a}{|x|} \leq \frac{\varepsilon}{|\tilde{x}|} .
+$$
+
+Como el valor exacto se desconoce, se divide por la aproximación: la diferencia entre ambos denominadores es despreciable frente a la propia cota.
+:::
+
+**Ejemplo resuelto 5.** Para $\pi \approx 3{,}14$ (redondeo en las centésimas):
+
+$$
+E_a \leq 0{,}005 , \qquad
+E_r \leq \frac{0{,}005}{3{,}14} \approx 0{,}00159 \longrightarrow 0{,}159\,\% .
+$$
+
+**Ejemplo resuelto 6.** Para $\pi \approx 3{,}1416$:
+
+$$
+E_a \leq 0{,}00005 , \qquad
+E_r \leq \frac{0{,}00005}{3{,}1416} \approx 0{,}0000159 \longrightarrow 0{,}0016\,\% .
+$$
+
+Dos decimales más han dividido la cota relativa por cien.
+
+**Ejemplo resuelto 7 (raíces).** Si se toma $\sqrt{2} \approx 1{,}41$ **truncando** en las centésimas, la cota es $0{,}01$, no $0{,}005$:
+
+$$
+E_a \leq 0{,}01 , \qquad
+E_r \leq \frac{0{,}01}{1{,}41} \approx 0{,}0071 \longrightarrow 0{,}71\,\% ,
+$$
+
+y el valor exacto está garantizado en $[1{,}41,\ 1{,}42)$. Con el redondeo $\sqrt{2} \approx 1{,}41$ la cota sería la mitad y el intervalo $[1{,}405,\ 1{,}415]$. Como $\sqrt{2} = 1{,}41421356\ldots$, ambas afirmaciones son ciertas, pero la del redondeo es más informativa.
+
+::: {.callout-caution}
+## Comparar precisiones
+
+Dos medidas con cotas absolutas muy distintas pueden tener precisiones parecidas, y al revés. Una longitud de $7{,}4$ cm con cota $0{,}05$ cm tiene cota relativa $0{,}68\,\%$; una masa de $970$ g con cota $5$ g tiene cota relativa $0{,}52\,\%$. La segunda medida es proporcionalmente **más precisa**, aunque su cota absoluta sea cien veces mayor.
+:::
+
+### Applet · Cota del error absoluto y del error relativo {.unnumbered}
+
+::: {#panel-cotas .applet-panel data-applet-re="cotas"}
+:::
+
+## Propagación de errores al operar
+
+Los datos aproximados se usan para calcular otras cosas, y los errores **viajan** con ellos. Conviene saber cómo.
+
+### Suma y resta
+
+Si $a$ tiene cota $\varepsilon_a$ y $b$ tiene cota $\varepsilon_b$, entonces $a + b$ está entre $(a - \varepsilon_a) + (b - \varepsilon_b)$ y $(a + \varepsilon_a) + (b + \varepsilon_b)$, luego
+
+$$
+\varepsilon_{a+b} \leq \varepsilon_a + \varepsilon_b .
+$$
+
+Con la resta ocurre lo mismo, porque el peor caso se da cuando un dato falla por exceso y el otro por defecto:
+
+$$
+\varepsilon_{a-b} \leq \varepsilon_a + \varepsilon_b .
+$$
+
+::: {.callout-note}
+## Regla de la suma y la resta
+
+**En cada suma o resta, las cotas de error absoluto se suman.** Por tanto, encadenar muchas sumas y restas puede hacer crecer el error peligrosamente.
+:::
+
+**Ejemplo resuelto 8.** Una balanza comete un error menor o igual que $50$ g. Se preparan $5$ paquetes de medio kilo y se juntan en un lote. Cada paquete pesa entre $450$ g y $550$ g, de modo que el lote pesa entre $2\,250$ g y $2\,750$ g:
+
+$$
+\varepsilon_{\text{lote}} \leq 5 \cdot 50 = 250 \ \text{g},
+\qquad
+\text{lote} = 2\,500 \pm 250 \ \text{g}.
+$$
+
+La cota relativa sigue siendo el $10\,\%$, la misma que la de un paquete: al sumar cantidades del mismo tamaño y la misma precisión relativa, la precisión relativa se mantiene.
+
+::: {.callout-warning}
+## Restar cantidades parecidas es peligroso
+
+Si dos poblaciones se conocen con cota $50\,000$ y valen $47\,600\,000$ y $46\,700\,000$, la diferencia es $900\,000 \pm 100\,000$: la cota absoluta apenas ha cambiado, pero la **cota relativa se ha disparado** del $0{,}1\,\%$ al $11\,\%$. Este fenómeno, la cancelación, es la causa más habitual de conclusiones falsas al comparar datos aproximados parecidos.
+:::
+
+### Producto y cociente
+
+Aquí lo que se suma son los **errores relativos**:
+
+$$
+\varepsilon_{r,\,ab} \leq \varepsilon_{ra} + \varepsilon_{rb} ,
+\qquad
+\varepsilon_{r,\,a/b} \leq \varepsilon_{ra} + \varepsilon_{rb} .
+$$
+
+En términos de cotas absolutas, para el producto:
+
+$$
+\varepsilon_{ab} \leq |a|\,\varepsilon_b + |b|\,\varepsilon_a + \varepsilon_a \varepsilon_b ,
+$$
+
+donde el último término suele ser despreciable frente a los dos primeros.
+
+::: {.callout-note}
+## Regla del producto y del cociente
+
+**Al multiplicar o dividir, las cotas de error relativo se suman.** En consecuencia, al elevar al cuadrado la cota relativa se **duplica**, y al elevar al cubo se **triplica**.
+:::
+
+**Ejemplo resuelto 9 (el área de un círculo).** Se mide el radio de una circunferencia con una regla milimetrada y sale $r = 7{,}0$ cm, con cota $\varepsilon_r = 0{,}05$ cm. Se quiere el área $A = \pi r^{2}$.
+
+El radio está entre $6{,}95$ y $7{,}05$, así que el área está entre
+
+$$
+\pi \cdot 6{,}95^{2} \approx 151{,}7 \quad \text{y} \quad \pi \cdot 7{,}05^{2} \approx 156{,}1 .
+$$
+
+La amplitud del intervalo es $4{,}4$ y su mitad, $2{,}2$, es la cota del error absoluto. Por tanto
+
+$$
+A = 153{,}9 \pm 2{,}2 \ \text{cm}^{2} .
+$$
+
+Comparando precisiones relativas:
+
+$$
+r: \ E_r \leq \frac{0{,}05}{7} \approx 0{,}71\,\% ,
+\qquad
+A: \ E_r \leq \frac{2{,}2}{153{,}9} \approx 1{,}43\,\% .
+$$
+
+La cota relativa se ha **duplicado**, exactamente lo que predice la regla al elevar al cuadrado. **Se ha perdido precisión al operar.**
+
+**Ejemplo resuelto 10 (renta per cápita).** El PIB de una comunidad es $1\,460\,000 \pm 5\,000$ miles de euros y su población es $47{,}6 \pm 0{,}05$ (en unidades de diez mil habitantes). Las cotas relativas son
+
+$$
+\frac{5\,000}{1\,460\,000} \approx 0{,}34\,\% ,
+\qquad
+\frac{0{,}05}{47{,}6} \approx 0{,}11\,\% ,
+$$
+
+de modo que el cociente tiene cota relativa $\leq 0{,}45\,\%$. Como el cociente vale unos $30\,672$, la cota absoluta es $0{,}0045 \cdot 30\,672 \approx 138$, y el resultado se expresa como $30\,672 \pm 138$, o mejor aún, redondeado con sensatez: **unos $30\,700$ euros por habitante**.
+
+### Applet · Propagación de errores al operar {.unnumbered}
+
+::: {#panel-propagacion .applet-panel data-applet-re="propagacion"}
+:::
+
+## Expresar el resultado con la precisión adecuada
+
+::: {.callout-tip}
+## Criterio práctico
+
+1. Calcula el resultado y su cota de error.
+2. Redondea la **cota** a una o dos cifras significativas.
+3. Redondea el **resultado** al mismo orden que la cota.
+4. Escribe el resultado en la forma valor $\pm$ cota, indicando las unidades.
+:::
+
+No tiene ningún sentido escribir $A = 153{,}93804\ldots \pm 2{,}2$: si la cota está en las décimas, todas las cifras posteriores son ruido. Lo correcto es $A = 153{,}9 \pm 2{,}2\ \text{cm}^{2}$.
+
+::: {.callout-important}
+## Regla de oro de las cifras significativas al operar
+
+- En sumas y restas, el resultado tiene tantos **decimales** como el dato con menos decimales.
+- En productos y cocientes, el resultado tiene tantas **cifras significativas** como el dato con menos cifras significativas.
+:::
+
+**Ejemplo resuelto 11.** $12{,}4 + 3{,}671 = 16{,}071 \approx 16{,}1$, porque $12{,}4$ solo tiene un decimal.
+
+**Ejemplo resuelto 12.** $2{,}5 \cdot 3{,}14159 = 7{,}853975 \approx 7{,}9$, porque $2{,}5$ solo tiene dos cifras significativas.
+
+### Applet · Error absoluto y error relativo {.unnumbered}
+
+::: {#panel-errores .applet-panel data-applet-re="errores"}
+:::
+
+## Aplicación a datos estadísticos y económicos
+
+Los datos con los que trabajarás en estadística vienen casi siempre acompañados de una cota:
+
+- Las encuestas publican un **margen de error**: «$\pm 2{,}8$ puntos porcentuales, con un nivel de confianza del $95\,\%$». Ese margen es exactamente una cota de error, aunque probabilística.
+- Los índices económicos se publican redondeados: un IPC del $3{,}1\,\%$ significa $3{,}1 \pm 0{,}05$.
+- Los recuentos de población son estimaciones: la cifra $47\,615\,034$ transmite una falsa exactitud, cuando la cota real es de decenas de miles.
+
+::: {.callout-caution}
+## Pensamiento crítico
+
+Si una encuesta da al partido A un $31\,\%$ y al partido B un $29\,\%$, ambos con margen $\pm 2{,}8$ puntos, la diferencia real está entre $-3{,}6$ y $+7{,}6$ puntos: **el empate técnico entra dentro de lo posible**. Titular «A adelanta a B» es ir más allá de lo que los datos permiten. Comparar la diferencia con la suma de las cotas es la manera matemática de detectar ese abuso.
+:::
+
+**Ejemplo resuelto 13 (variación interanual).** El paro registrado pasa de $2\,785\,400$ a $2\,781\,100$ personas, cada dato con cota $\pm 5\,000$. La variación es
+
+$$
+-4\,300 \pm 10\,000 ,
+$$
+
+así que la disminución **no es significativa**: la cota del error de la resta es mayor que la propia diferencia. Con estos datos no se puede afirmar que el paro haya bajado.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa la [Calculadora de Notación Científica](../../calculadora_notacion_cientifica.html).
+:::
+
+## Errores frecuentes
+
+1. Confundir el error real con la cota: la cota es una garantía, no una medida del fallo cometido.
+2. Usar media unidad como cota cuando la aproximación es por truncamiento; en ese caso la cota es una unidad entera.
+3. Olvidar el orden de aproximación al acotar enteros acabados en ceros: $300$ redondeado en centenas tiene cota $50$, no $0{,}5$.
+4. Escribir el resultado con más cifras de las que la cota permite, como $153{,}93804 \pm 2{,}2$.
+5. Restar cotas al restar cantidades: las cotas **siempre se suman**, también en la resta.
+6. Sumar cotas absolutas en un producto: en el producto lo que se suma son las cotas **relativas**.
+7. Suponer que al elevar al cuadrado la precisión se mantiene: la cota relativa se duplica.
+8. Dar por buena una diferencia menor que la cota del error y sacar conclusiones de ella.
+9. Redondear la cota hacia abajo: la cota siempre se redondea **hacia arriba**, para seguir siendo una garantía.
+10. Encadenar operaciones con datos ya redondeados en lugar de arrastrar cifras extra y redondear solo al final.
+
+## Qué debes saber hacer
+
+- Calcular la cota del error absoluto de una aproximación conocido el orden y el método (redondeo o truncamiento).
+- Escribir el intervalo $[\tilde{x} - \varepsilon,\ \tilde{x} + \varepsilon]$ y la expresión abreviada $\tilde{x} \pm \varepsilon$.
+- Relacionar el número de decimales conservados con la cota, en los dos sentidos: de los decimales a la cota y de la cota exigida a los decimales necesarios.
+- Calcular la cota del error relativo y expresarla en porcentaje.
+- Acotar el error de aproximaciones de $\pi$, de raíces y de fracciones con distintos números de decimales.
+- Aplicar las reglas de propagación en suma, resta, producto y cociente, y reconocer cuándo se pierde precisión.
+- Detectar el peligro de restar cantidades parecidas.
+- Expresar un resultado con la precisión adecuada, coherente con su cota de error y con las cifras significativas de los datos.
+- Interpretar márgenes de error de encuestas y datos económicos, y decidir si una diferencia observada es significativa.

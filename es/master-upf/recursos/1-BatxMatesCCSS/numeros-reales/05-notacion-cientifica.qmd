@@ -1,0 +1,350 @@
+---
+title: "Tema 1.5 Notación científica y sus operaciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 05-notacion-cientifica
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Notación científica, mantisa y exponente, orden de magnitud, comparación de cantidades muy grandes y muy pequeñas, suma, resta, producto, cociente, potencias y raíces, uso de la calculadora y aplicaciones a la economía, la demografía y las ciencias naturales.
+categories: [números reales, 1 Batx, matemáticas CCSS, notación científica, orden de magnitud]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué hace falta otra forma de escribir los números
+
+Cuando trabajas con datos reales de economía, de demografía o de ciencias, aparecen números que no caben cómodamente en una línea:
+
+- La deuda pública española ronda los $1\,570\,000\,000\,000$ euros.
+- La población mundial supera los $8\,100\,000\,000$ habitantes.
+- La masa de un electrón es de $0{,}0000000000000000000000000000009109$ kilogramos.
+- El diámetro de un átomo mide unos $0{,}0000000001$ metros.
+
+Escribir todos esos ceros es incómodo, es fácil equivocarse contándolos y, sobre todo, **no se ve de un vistazo cuál es el tamaño del número**. La notación científica resuelve los tres problemas a la vez: comprime la escritura, evita los errores de recuento y deja el tamaño del número a la vista en forma de potencia de diez.
+
+::: {.callout-important}
+## Idea clave
+
+En notación científica, el número se parte en dos piezas con papeles distintos: unas pocas cifras que dicen **cómo es** el número y una potencia de diez que dice **cómo de grande** es.
+:::
+
+## Definición: mantisa y exponente
+
+::: {.callout-note}
+## Notación científica
+
+Un número real $N$ distinto de cero está escrito en **notación científica** si tiene la forma
+
+$$
+N = m \cdot 10^{n}, \qquad 1 \leq |m| < 10, \qquad n \in \mathbb{Z}.
+$$
+
+- El factor $m$ se llama **mantisa**: tiene una única cifra distinta de cero en la parte entera y el resto de cifras significativas como parte decimal.
+- El exponente entero $n$ se llama **orden de magnitud** del número.
+:::
+
+La condición $1 \leq |m| < 10$ es la que hace que la escritura sea **única**: el mismo número no se puede escribir de dos maneras distintas en notación científica. Por eso, aunque
+
+$$
+32{,}48 \cdot 10^{14} = 3{,}248 \cdot 10^{15} = 0{,}3248 \cdot 10^{16}
+$$
+
+sean tres expresiones del mismo número, **solo la del medio está en notación científica**: es la única cuya mantisa está entre $1$ y $10$.
+
+::: {.callout-tip}
+## Cómo leer el signo del exponente
+
+- Si $n > 0$, el número es **grande**: $3{,}248 \cdot 10^{15}$ tiene $16$ cifras enteras.
+- Si $n = 0$, el número está entre $1$ y $10$: $7{,}25 \cdot 10^{0} = 7{,}25$.
+- Si $n < 0$, el número es **pequeño**: $8{,}561 \cdot 10^{-18}$ empieza con diecisiete ceros detrás de la coma.
+:::
+
+## De la escritura decimal a la notación científica
+
+El procedimiento es siempre el mismo:
+
+1. Localiza la **primera cifra distinta de cero** empezando por la izquierda.
+2. Coloca la coma justo detrás de esa cifra: eso es la mantisa.
+3. Cuenta cuántos lugares se ha desplazado la coma respecto de su posición original. Ese número es el valor absoluto del exponente.
+4. El exponente es **positivo** si el número original era mayor o igual que $10$ (la coma se movió hacia la izquierda) y **negativo** si era menor que $1$ (la coma se movió hacia la derecha).
+
+**Ejemplo resuelto 1.** Escribe $384\,400\,000$ (la distancia media de la Tierra a la Luna, en metros) en notación científica.
+
+La primera cifra distinta de cero es el $3$. Al poner la coma detrás, la mantisa es $3{,}844$. La coma ha saltado $8$ lugares hacia la izquierda, y el número es grande, así que
+
+$$
+384\,400\,000 = 3{,}844 \cdot 10^{8}\ \text{m}.
+$$
+
+**Ejemplo resuelto 2.** Escribe $0{,}000000091$ en notación científica.
+
+La primera cifra distinta de cero es el $9$, situado en el octavo lugar detrás de la coma. La mantisa es $9{,}1$ y la coma se ha desplazado $8$ lugares hacia la derecha, así que el exponente es negativo:
+
+$$
+0{,}000000091 = 9{,}1 \cdot 10^{-8}.
+$$
+
+**Ejemplo resuelto 3.** Escribe $-0{,}00045$ en notación científica. El signo no interviene en el recuento, solo acompaña a la mantisa:
+
+$$
+-0{,}00045 = -4{,}5 \cdot 10^{-4}.
+$$
+
+### El camino de vuelta
+
+Para pasar de notación científica a escritura decimal se hace exactamente lo contrario: se desplaza la coma tantos lugares como indique el exponente, hacia la **derecha** si es positivo y hacia la **izquierda** si es negativo, completando con ceros lo que haga falta.
+
+$$
+6{,}022 \cdot 10^{23} = 602\,200\,000\,000\,000\,000\,000\,000 ,
+\qquad
+2{,}8 \cdot 10^{-10} = 0{,}00000000028 .
+$$
+
+### Applet · De la escritura decimal a la notación científica {.unnumbered}
+
+::: {#panel-notacion .applet-panel data-applet-re="notacion"}
+:::
+
+## Orden de magnitud y comparación de cantidades
+
+El **orden de magnitud** de un número es la potencia de diez de su notación científica. Es la herramienta que permite comparar cosas que, a simple vista, no son comparables.
+
+::: {.callout-note}
+## Comparación de dos números en notación científica
+
+Dados $A = a \cdot 10^{p}$ y $B = b \cdot 10^{q}$ con mantisas positivas:
+
+1. Si $p > q$, entonces $A > B$: manda el exponente.
+2. Si $p = q$, se comparan las mantisas.
+
+Además, el cociente $\dfrac{A}{B} = \dfrac{a}{b} \cdot 10^{p-q}$ dice directamente **cuántas veces** es una cantidad mayor que la otra.
+:::
+
+**Ejemplo resuelto 4.** ¿Cuántas veces mayor es el PIB mundial, unos $9{,}8 \cdot 10^{13}$ euros, que el PIB de España, unos $1{,}46 \cdot 10^{12}$ euros?
+
+$$
+\frac{9{,}8 \cdot 10^{13}}{1{,}46 \cdot 10^{12}} = \frac{9{,}8}{1{,}46} \cdot 10^{13-12} \approx 6{,}71 \cdot 10^{1} = 67{,}1 .
+$$
+
+La economía mundial es unas $67$ veces la española. Fíjate en que no ha hecho falta escribir ni un solo cero.
+
+**Ejemplo resuelto 5.** Compara el tamaño de un átomo, $1 \cdot 10^{-10}$ m, con el radio de la Tierra, $6{,}37 \cdot 10^{6}$ m:
+
+$$
+\frac{6{,}37 \cdot 10^{6}}{1 \cdot 10^{-10}} = 6{,}37 \cdot 10^{6-(-10)} = 6{,}37 \cdot 10^{16} .
+$$
+
+Hay dieciséis órdenes de magnitud de diferencia. Ninguna gráfica ordinaria puede representar las dos cosas a la vez: hace falta una **escala logarítmica**, en la que cada paso equivale a multiplicar por diez.
+
+::: {.callout-tip}
+## Pensamiento crítico
+
+Cuando en un periódico leas «el gasto se ha disparado en 500 millones», pregúntate siempre de qué orden de magnitud es el presupuesto total. Quinientos millones sobre un presupuesto de $10^{9}$ euros es la mitad del gasto; sobre un presupuesto de $10^{12}$ euros es una milésima parte. La cifra suelta no informa: informa la comparación de órdenes.
+:::
+
+### Applet · Orden de magnitud y comparación de cantidades {.unnumbered}
+
+::: {#panel-ordenMagnitud .applet-panel data-applet-re="ordenMagnitud"}
+:::
+
+## Suma y resta: primero hay que igualar exponentes
+
+Las potencias de diez solo se pueden sacar factor común si son **la misma**. Por eso, antes de sumar o restar, hay que reescribir los números con un exponente común, normalmente el mayor.
+
+::: {.callout-note}
+## Regla de la suma y la resta
+
+1. Se elige una potencia de diez común, habitualmente la mayor de las que aparecen.
+2. Se reescriben todos los sumandos con esa potencia, moviendo la coma de sus mantisas.
+3. Se saca factor común la potencia y se suman o restan las mantisas.
+4. Si la mantisa del resultado se sale del intervalo $[1,10)$, se reajusta el exponente.
+:::
+
+**Ejemplo resuelto 6.** Calcula $5{,}83 \cdot 10^{9} + 6{,}932 \cdot 10^{12} - 7{,}5 \cdot 10^{10}$.
+
+Se toma $10^{9}$ como potencia común, porque es la menor y evita decimales:
+
+$$
+5{,}83 \cdot 10^{9} + 6\,932 \cdot 10^{9} - 75 \cdot 10^{9} = (5{,}83 + 6\,932 - 75) \cdot 10^{9} = 6\,862{,}83 \cdot 10^{9}.
+$$
+
+La mantisa $6\,862{,}83$ no cumple $1 \leq m < 10$, así que se ajusta moviendo la coma tres lugares:
+
+$$
+6\,862{,}83 \cdot 10^{9} = 6{,}86283 \cdot 10^{12}.
+$$
+
+::: {.callout-warning}
+## Error frecuente
+
+$$
+5 \cdot 10^{9} + 3 \cdot 10^{12} \neq 8 \cdot 10^{21} \quad \text{ni} \quad 8 \cdot 10^{12}.
+$$
+
+Los exponentes **no se suman** al sumar, y tampoco se puede sumar las mantisas si los exponentes son distintos. Primero se igualan: $5 \cdot 10^{9} = 0{,}005 \cdot 10^{12}$, y entonces $0{,}005 \cdot 10^{12} + 3 \cdot 10^{12} = 3{,}005 \cdot 10^{12}$.
+:::
+
+## Producto y cociente
+
+Aquí las propiedades de las potencias hacen todo el trabajo, porque $10^{p} \cdot 10^{q} = 10^{p+q}$ y $10^{p} : 10^{q} = 10^{p-q}$.
+
+::: {.callout-note}
+## Regla del producto y del cociente
+
+$$
+(a \cdot 10^{p}) \cdot (b \cdot 10^{q}) = (a \cdot b) \cdot 10^{p+q},
+\qquad
+\frac{a \cdot 10^{p}}{b \cdot 10^{q}} = \frac{a}{b} \cdot 10^{p-q}.
+$$
+
+Después se reajusta la mantisa al intervalo $[1,10)$ si hace falta.
+:::
+
+**Ejemplo resuelto 7.** $(5{,}24 \cdot 10^{6}) \cdot (6{,}3 \cdot 10^{8})$.
+
+$$
+(5{,}24 \cdot 6{,}3) \cdot 10^{6+8} = 33{,}012 \cdot 10^{14} = 3{,}3012 \cdot 10^{15}.
+$$
+
+**Ejemplo resuelto 8.** $\dfrac{5{,}24 \cdot 10^{6}}{6{,}3 \cdot 10^{-8}}$.
+
+$$
+(5{,}24 : 6{,}3) \cdot 10^{6-(-8)} = 0{,}8317 \cdot 10^{14} = 8{,}317 \cdot 10^{13}.
+$$
+
+Observa el detalle del exponente: restar un exponente negativo equivale a sumarlo.
+
+**Ejemplo resuelto 9 (aplicación social).** La deuda pública de un país es de $1{,}57 \cdot 10^{12}$ euros y su población es de $4{,}85 \cdot 10^{7}$ habitantes. La deuda por habitante es
+
+$$
+\frac{1{,}57 \cdot 10^{12}}{4{,}85 \cdot 10^{7}} = \frac{1{,}57}{4{,}85} \cdot 10^{5} \approx 0{,}3237 \cdot 10^{5} = 3{,}237 \cdot 10^{4} \approx 32\,370 \text{ euros por habitante.}
+$$
+
+### Applet · Operaciones en notación científica {.unnumbered}
+
+::: {#panel-operaNotacion .applet-panel data-applet-re="operaNotacion"}
+:::
+
+## Potencias y raíces de números en notación científica
+
+Para elevar a una potencia se aplica la propiedad $(a \cdot 10^{p})^{k} = a^{k} \cdot 10^{p \cdot k}$: se eleva la mantisa y se **multiplica** el exponente.
+
+**Ejemplo resuelto 10.** $(7{,}8 \cdot 10^{-7})^{3} = 7{,}8^{3} \cdot 10^{-21} = 474{,}552 \cdot 10^{-21} = 4{,}74552 \cdot 10^{-19}$.
+
+Para extraer una raíz conviene primero **acomodar el exponente** para que sea múltiplo del índice, porque
+
+$$
+\sqrt[k]{a \cdot 10^{p}} = \sqrt[k]{a} \cdot 10^{p/k}
+$$
+
+solo es cómodo cuando $p/k$ es entero.
+
+**Ejemplo resuelto 11.** Calcula $\sqrt{4{,}9 \cdot 10^{7}}$. El exponente $7$ es impar, así que se reescribe el número como $49 \cdot 10^{6}$:
+
+$$
+\sqrt{49 \cdot 10^{6}} = \sqrt{49} \cdot 10^{3} = 7 \cdot 10^{3}.
+$$
+
+**Ejemplo resuelto 12.** Calcula $(4{,}3 \cdot 10^{3} - 7{,}2 \cdot 10^{5})^{2}$. Primero el paréntesis, igualando exponentes:
+
+$$
+4{,}3 \cdot 10^{3} - 720 \cdot 10^{3} = -715{,}7 \cdot 10^{3} = -7{,}157 \cdot 10^{5},
+$$
+
+y ahora la potencia: $(-7{,}157 \cdot 10^{5})^{2} = 51{,}22 \cdot 10^{10} = 5{,}122 \cdot 10^{11}$.
+
+## La calculadora científica
+
+En la calculadora, la notación científica se introduce con la tecla `EXP`, `EE` o `×10ˣ` según el modelo. Esa tecla **ya significa** «por diez elevado a», así que:
+
+- Para escribir $3{,}45 \cdot 10^{8}$ se teclea `3.45` `EXP` `8`.
+- Para escribir $9{,}1 \cdot 10^{-8}$ se teclea `9.1` `EXP` `(-)` `8`, usando la tecla de cambio de signo, no la de restar.
+
+::: {.callout-warning}
+## Error frecuente con la calculadora
+
+Teclear `3.45` `×` `10` `EXP` `8` da $3{,}45 \cdot 10^{9}$, diez veces más de lo que querías: la tecla `EXP` ya incluye el $10$. Otro fallo típico es olvidar los paréntesis en un cociente: para $\dfrac{7{,}35 \cdot 10^{4}}{5 \cdot 10^{-3}}$ hay que escribir el denominador entre paréntesis.
+:::
+
+Cuando la pantalla muestra `4.74552E-19` o `4.74552 -19`, está diciendo $4{,}74552 \cdot 10^{-19}$. Muchos modelos permiten fijar el modo `SCI` con un número de cifras determinado; es una forma cómoda de trabajar siempre con la misma precisión.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa la [Calculadora de Notación Científica](../../calculadora_notacion_cientifica.html).
+:::
+
+## Aplicaciones a las ciencias sociales y naturales
+
+La notación científica es el lenguaje habitual de los informes económicos, demográficos y científicos. Estos órdenes de magnitud te servirán de referencia:
+
+| Magnitud | Valor aproximado | Notación científica |
+|---|---|---|
+| Población mundial | 8 100 millones de personas | $8{,}1 \cdot 10^{9}$ |
+| Población de España | 48 500 000 habitantes | $4{,}85 \cdot 10^{7}$ |
+| PIB de España | 1,46 billones de euros | $1{,}46 \cdot 10^{12}$ |
+| Deuda pública mundial | 87 billones de euros | $8{,}7 \cdot 10^{13}$ |
+| Presupuesto de un ayuntamiento medio | 350 millones de euros | $3{,}5 \cdot 10^{8}$ |
+| Distancia Tierra-Sol | 149 600 000 000 m | $1{,}496 \cdot 10^{11}$ |
+| Año luz | 9 460 000 000 000 000 m | $9{,}46 \cdot 10^{15}$ |
+| Número de Avogadro | 602 200 trillones de partículas | $6{,}022 \cdot 10^{23}$ |
+| Diámetro de un átomo | 0,0000000001 m | $1 \cdot 10^{-10}$ |
+| Masa del electrón | 0,000…9109 kg | $9{,}109 \cdot 10^{-31}$ |
+
+**Ejemplo resuelto 13 (renta per cápita).** Con un PIB de $1{,}46 \cdot 10^{12}$ euros y $4{,}85 \cdot 10^{7}$ habitantes:
+
+$$
+\frac{1{,}46 \cdot 10^{12}}{4{,}85 \cdot 10^{7}} \approx 0{,}3010 \cdot 10^{5} = 3{,}010 \cdot 10^{4} \approx 30\,100 \text{ euros por habitante y año.}
+$$
+
+**Ejemplo resuelto 14 (escala astronómica).** ¿Cuánto tarda la luz en llegar del Sol a la Tierra, si recorre $3 \cdot 10^{8}$ metros por segundo?
+
+$$
+t = \frac{1{,}496 \cdot 10^{11}}{3 \cdot 10^{8}} \approx 0{,}4987 \cdot 10^{3} = 4{,}987 \cdot 10^{2} \approx 499 \text{ segundos} \approx 8{,}3 \text{ minutos.}
+$$
+
+**Ejemplo resuelto 15 (mundo microscópico).** ¿Cuántas moléculas de agua, de $2{,}8 \cdot 10^{-10}$ m de diámetro, caben en fila en un milímetro, es decir, en $10^{-3}$ m?
+
+$$
+\frac{10^{-3}}{2{,}8 \cdot 10^{-10}} = \frac{1}{2{,}8} \cdot 10^{-3+10} \approx 0{,}357 \cdot 10^{7} = 3{,}57 \cdot 10^{6},
+$$
+
+es decir, unos tres millones y medio de moléculas.
+
+::: {.callout-caution}
+## Curiosidad
+
+La notación científica está detrás de las escalas que usamos a diario sin darnos cuenta: la escala de magnitud de los terremotos, la del ruido en decibelios o la del pH avanzan de orden en orden. Que un terremoto sea «un punto mayor» que otro no significa un poco más de energía, sino unas decenas de veces más. Confundir escala lineal con escala de órdenes de magnitud es una de las fuentes más habituales de malas interpretaciones de datos en los medios.
+:::
+
+## Errores frecuentes
+
+1. Escribir la mantisa fuera del intervalo $[1,10)$: $32{,}48 \cdot 10^{14}$ o $0{,}32 \cdot 10^{16}$ no están en notación científica.
+2. Sumar los exponentes al sumar los números, o sumar las mantisas sin haber igualado antes los exponentes.
+3. Contar mal los lugares de desplazamiento de la coma: cuenta siempre desde la posición original hasta detrás de la primera cifra significativa.
+4. Poner el exponente positivo en un número pequeño. Si el número es menor que $1$, el exponente **tiene que ser negativo**.
+5. Restar mal exponentes negativos: $10^{6} : 10^{-8} = 10^{6-(-8)} = 10^{14}$, no $10^{-2}$.
+6. Al elevar, sumar el exponente en lugar de multiplicarlo: $(10^{3})^{2} = 10^{6}$, no $10^{5}$.
+7. Teclear el $10$ además de pulsar `EXP` en la calculadora, multiplicando el resultado por diez.
+8. Arrastrar toda la pantalla de la calculadora como si fuera exacta: si los datos tienen tres cifras significativas, el resultado no puede tener nueve.
+
+## Qué debes saber hacer
+
+- Reconocer si un número está o no escrito en notación científica y corregirlo si la mantisa se sale del intervalo $[1,10)$.
+- Pasar de escritura decimal a notación científica y al revés, en números grandes y pequeños, con signo o sin él.
+- Identificar la mantisa, el exponente y el orden de magnitud de una cantidad.
+- Comparar dos cantidades expresadas en notación científica y decir cuántas veces es mayor una que otra.
+- Sumar y restar en notación científica igualando exponentes previamente.
+- Multiplicar y dividir aplicando las propiedades de las potencias de base diez.
+- Elevar a una potencia y extraer raíces acomodando el exponente al índice.
+- Introducir y leer números en notación científica en la calculadora, sin duplicar el factor diez.
+- Interpretar datos reales de economía, demografía y ciencias en términos de órdenes de magnitud.

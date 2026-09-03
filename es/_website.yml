@@ -186,10 +186,16 @@ website:
           contents:
             - section: "Tema 1 Números reales"
               contents:
-              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/01-racionales-irracionales-reales-intervalos.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/02-notacion-cientifica-aprox.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/03-radicales-racionalizacion.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/04-logaritmos.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/01-numeros-racionales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/02-numeros-irracionales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/03-numeros-reales-recta-real.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/04-intervalos.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/05-notacion-cientifica.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/06-aproximaciones-errores.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/07-limitacion-errores.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/08-radicales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/09-logaritmos.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/10-practica-numeros-reales.qmd
             - section: "Tema 2 Polinomios"
               contents:  
               - master-upf/recursos/1-BatxMatesCCSS/polinomios/01-polinomios-operaciones.qmd

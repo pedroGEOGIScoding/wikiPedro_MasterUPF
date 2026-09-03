@@ -1,0 +1,501 @@
+---
+title: "Tema 1.10 Práctica de números reales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 10-practica-numeros-reales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Hoja de práctica final del tema completo con más de treinta ejercicios resueltos organizados por bloques (racionales, irracionales, intervalos, notación científica, errores, radicales y logaritmos), soluciones desplegables, applets de autoevaluación y acceso a los cinco entrenadores del sitio.
+categories: [números reales, 1 Batx, matemáticas CCSS, práctica, ejercicios, autoevaluación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Aquí tienes reunido todo el tema de números reales en forma de ejercicios. Cada bloque corresponde a uno de los apartados anteriores, y cada ejercicio lleva su solución **desplegable**: intenta resolverlo entero antes de abrirla, porque la solución solo enseña algo cuando ya te has peleado con el problema.
+
+Un consejo de método. Trabaja con lápiz y papel, escribe todos los pasos y **comprueba** el resultado: en radicales, con la calculadora; en logaritmos, volviendo a la forma exponencial; en ecuaciones, sustituyendo en la ecuación original. La comprobación es parte del ejercicio, no un extra.
+
+Al final de la hoja encontrarás los applets de autoevaluación, que generan ejercicios nuevos cada vez, y los enlaces a los cinco entrenadores del sitio.
+
+::: {.callout-tip}
+## Notación de las soluciones
+
+Los resultados exactos se dan con radicales o fracciones; cuando aparece una aproximación decimal se indica con el signo $\approx$ y se redondea a cuatro cifras decimales. Los decimales se escriben con coma y los millares se separan con un espacio fino, siguiendo el criterio internacional.
+:::
+
+## Bloque 1 · Números racionales
+
+**Ejercicio 1.** Clasifica estos números indicando el conjunto numérico más pequeño al que pertenecen: $-7$, $\;\dfrac{3}{4}$, $\;\sqrt{25}$, $\;0{,}\overline{3}$, $\;\pi$, $\;\sqrt[3]{-8}$, $\;2{,}718281828\ldots$ (no periódico).
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$-7 \in \mathbb{Z}$; $\;\dfrac{3}{4} \in \mathbb{Q}$; $\;\sqrt{25} = 5 \in \mathbb{N}$; $\;0{,}\overline{3} = \dfrac{1}{3} \in \mathbb{Q}$; $\;\pi \in \mathbb{I}$; $\;\sqrt[3]{-8} = -2 \in \mathbb{Z}$; $\;2{,}718281828\ldots \in \mathbb{I}$.
+
+La clave está en simplificar antes de clasificar: un radical puede esconder un entero.
+:::
+
+**Ejercicio 2.** Escribe la fracción irreducible de $0{,}\overline{45}$, de $1{,}2\overline{3}$ y de $0{,}125$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$0{,}\overline{45} = \dfrac{45}{99} = \dfrac{5}{11}$.
+
+$1{,}2\overline{3}$: se multiplica por 10 y por 100 y se restan: $100x - 10x = 123{,}\overline{3} - 12{,}\overline{3} = 111$, luego $x = \dfrac{111}{90} = \dfrac{37}{30}$.
+
+$0{,}125 = \dfrac{125}{1000} = \dfrac{1}{8}$ (decimal exacto).
+:::
+
+**Ejercicio 3.** Sin hacer la división, decide si $\dfrac{7}{40}$, $\dfrac{5}{12}$ y $\dfrac{9}{25}$ dan decimal exacto o periódico.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se factoriza el denominador de la fracción irreducible: si solo tiene factores 2 y 5, el decimal es exacto.
+
+$40 = 2^{3}\cdot 5$: **exacto** ($0{,}175$). $\;12 = 2^{2}\cdot 3$: **periódico** ($0{,}41\overline{6}$). $\;25 = 5^{2}$: **exacto** ($0{,}36$).
+:::
+
+**Ejercicio 4.** Calcula y da el resultado como fracción irreducible: $\dfrac{2}{3} - \dfrac{3}{4}\cdot\dfrac{5}{6} + \dfrac{1}{2}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primero el producto: $\dfrac{3}{4}\cdot\dfrac{5}{6} = \dfrac{15}{24} = \dfrac{5}{8}$. Con denominador común 24:
+
+$$
+\dfrac{16}{24} - \dfrac{15}{24} + \dfrac{12}{24} = \dfrac{13}{24} .
+$$
+:::
+
+**Ejercicio 5.** Ordena de menor a mayor: $\dfrac{7}{9}$, $\;0{,}78$, $\;\dfrac{4}{5}$, $\;0{,}\overline{7}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+En decimales: $\dfrac{7}{9} = 0{,}\overline{7} = 0{,}7777\ldots$, $\;0{,}78$, $\;\dfrac{4}{5} = 0{,}8$. Por tanto
+
+$$
+\dfrac{7}{9} = 0{,}\overline{7} < 0{,}78 < \dfrac{4}{5} .
+$$
+
+Ojo al detalle: dos de los cuatro números son **el mismo**.
+:::
+
+## Bloque 2 · Números irracionales y la recta real
+
+**Ejercicio 6.** Justifica que $\sqrt{2}$ no es racional, resumiendo el razonamiento por reducción al absurdo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Si $\sqrt{2}$ fuera racional se podría escribir $\sqrt{2} = \dfrac{p}{q}$ con la fracción irreducible. Elevando al cuadrado, $p^{2} = 2q^{2}$, así que $p^{2}$ es par y por tanto $p$ es par: $p = 2k$. Sustituyendo, $4k^{2} = 2q^{2}$, es decir $q^{2} = 2k^{2}$, y también $q$ resulta par. Pero entonces $p$ y $q$ tienen el factor 2 en común, en contra de que la fracción fuera irreducible. La contradicción prueba que $\sqrt{2}$ es irracional.
+:::
+
+**Ejercicio 7.** Sitúa $\sqrt{13}$ en la recta real con regla y compás, describiendo la construcción.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como $13 = 9+4 = 3^{2}+2^{2}$, se construye un triángulo rectángulo de cateto horizontal 3 sobre la recta y cateto vertical 2. Por el teorema de Pitágoras, la hipotenusa mide $\sqrt{3^{2}+2^{2}} = \sqrt{13}$. Con el compás se lleva esa longitud sobre la recta desde el origen. Se comprueba que $3 < \sqrt{13} \approx 3{,}6056 < 4$.
+:::
+
+**Ejercicio 8.** Da un número racional y un número irracional comprendidos entre $1{,}41$ y $1{,}42$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Racional: $1{,}415 = \dfrac{283}{200}$. Irracional: $\sqrt{2} = 1{,}41421\ldots$ Entre dos números reales distintos, por muy cerca que estén, hay infinitos racionales e infinitos irracionales.
+:::
+
+## Bloque 3 · Intervalos, semirrectas y valor absoluto
+
+**Ejercicio 9.** Escribe en forma de intervalo, en forma de desigualdad y sobre la recta: (a) los números mayores que $-2$ y menores o iguales que 5; (b) los números cuyo valor absoluto es menor que 3.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+(a) $(-2, 5]$, es decir $-2 < x \le 5$. Paréntesis en $-2$ porque no se incluye, corchete en 5 porque sí.
+
+(b) $|x| < 3 \iff -3 < x < 3 \iff x \in (-3, 3)$.
+:::
+
+**Ejercicio 10.** Halla $A \cap B$ y $A \cup B$ si $A = [-1, 4)$ y $B = (2, 7]$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A \cap B = (2, 4)$ y $A \cup B = [-1, 7]$. Conviene dibujar los dos intervalos uno encima del otro antes de responder.
+:::
+
+**Ejercicio 11.** Resuelve $|x-3| \le 2$ y expresa la solución como intervalo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$|x-3| \le 2 \iff -2 \le x-3 \le 2 \iff 1 \le x \le 5$, es decir $x \in [1, 5]$. Interpretación: los puntos cuya distancia a 3 no pasa de 2 unidades.
+:::
+
+**Ejercicio 12.** Escribe con valor absoluto el conjunto de los números que distan de $-4$ menos de $0{,}5$ unidades, e indica su intervalo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$|x+4| < 0{,}5$, que equivale a $-4{,}5 < x < -3{,}5$, o sea $x \in (-4{,}5\,,\; -3{,}5)$. El centro del intervalo es $-4$ y el radio, $0{,}5$.
+:::
+
+## Bloque 4 · Notación científica
+
+**Ejercicio 13.** Escribe en notación científica: $0{,}00000341$, $\;92\,500\,000\,000$, $\;-0{,}00072$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$3{,}41\cdot 10^{-6}$; $\;9{,}25\cdot 10^{10}$; $\;-7{,}2\cdot 10^{-4}$.
+
+Recuerda la condición: la mantisa debe cumplir $1 \le |m| < 10$.
+:::
+
+**Ejercicio 14.** Calcula y expresa el resultado en notación científica: $\left(4{,}5\cdot 10^{7}\right)\cdot\left(2\cdot 10^{-3}\right)$ y $\dfrac{6\cdot 10^{-4}}{1{,}5\cdot 10^{2}}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$4{,}5\cdot 2 = 9$ y $10^{7}\cdot 10^{-3} = 10^{4}$, luego $9\cdot 10^{4}$.
+
+$6 : 1{,}5 = 4$ y $10^{-4} : 10^{2} = 10^{-6}$, luego $4\cdot 10^{-6}$.
+:::
+
+**Ejercicio 15.** Calcula $3{,}2\cdot 10^{5} + 4\cdot 10^{4}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Para sumar hay que igualar los exponentes: $4\cdot 10^{4} = 0{,}4\cdot 10^{5}$, luego
+
+$$
+3{,}2\cdot 10^{5} + 0{,}4\cdot 10^{5} = 3{,}6\cdot 10^{5} .
+$$
+:::
+
+**Ejercicio 16.** La masa del Sol es $1{,}989\cdot 10^{30}$ kg y la de la Tierra, $5{,}972\cdot 10^{24}$ kg. ¿Cuántas veces mayor es la del Sol?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\dfrac{1{,}989\cdot 10^{30}}{5{,}972\cdot 10^{24}} = 0{,}3330\cdot 10^{6} = 3{,}330\cdot 10^{5} ,
+$$
+
+es decir, unas $333\,000$ veces mayor.
+:::
+
+## Bloque 5 · Aproximaciones y errores
+
+**Ejercicio 17.** Redondea $\pi = 3{,}14159265\ldots$ a las centésimas y calcula el error absoluto y el error relativo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Redondeo: $3{,}14$. Error absoluto $E_{a} = |3{,}14159265 - 3{,}14| = 0{,}00159265 \approx 1{,}6\cdot 10^{-3}$.
+
+Error relativo $E_{r} = \dfrac{0{,}00159265}{3{,}14159265} \approx 0{,}000507 = 0{,}0507 \%$.
+:::
+
+**Ejercicio 18.** Se mide una longitud y se obtiene $12{,}5$ cm con una cinta graduada en milímetros. Da una cota del error absoluto y del error relativo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La cota del error absoluto es media unidad del último orden fiable: $0{,}05$ cm. La cota del error relativo es
+
+$$
+\dfrac{0{,}05}{12{,}5} = 0{,}004 = 0{,}4 \% .
+$$
+:::
+
+**Ejercicio 19.** ¿Qué medida es más precisa: 5 m con un error de 1 cm, o 500 km con un error de 1 km?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Hay que comparar errores **relativos**, no absolutos.
+
+Primera medida: $\dfrac{0{,}01}{5} = 0{,}002 = 0{,}2\%$. Segunda: $\dfrac{1}{500} = 0{,}002 = 0{,}2\%$.
+
+Las dos son igual de precisas, aunque el error absoluto de la segunda sea cien mil veces mayor. Esa es exactamente la razón de ser del error relativo.
+:::
+
+**Ejercicio 20.** Truncando y redondeando a las milésimas el número $2{,}71828$, ¿cuál de las dos aproximaciones comete menos error?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Truncamiento: $2{,}718$, con error $0{,}00028$. Redondeo: $2{,}718$, con el mismo error, porque la cifra siguiente es 2 y no llega a 5. En general el redondeo comete un error menor o igual que el truncamiento, y nunca mayor.
+:::
+
+## Bloque 6 · Radicales
+
+**Ejercicio 21.** Simplifica $\sqrt{200}$, $\;\sqrt[3]{54}$ y $\;\sqrt[4]{162}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$200 = 2^{3}\cdot 5^{2} \Rightarrow \sqrt{200} = 2\cdot 5\sqrt{2} = 10\sqrt{2}$.
+
+$54 = 2\cdot 3^{3} \Rightarrow \sqrt[3]{54} = 3\sqrt[3]{2}$.
+
+$162 = 2\cdot 3^{4} \Rightarrow \sqrt[4]{162} = 3\sqrt[4]{2}$.
+:::
+
+**Ejercicio 22.** Calcula $\sqrt{75} - \sqrt{12} + \sqrt{300}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\sqrt{75} = 5\sqrt{3}$, $\;\sqrt{12} = 2\sqrt{3}$, $\;\sqrt{300} = 10\sqrt{3}$. Todos son semejantes:
+
+$$
+5\sqrt{3} - 2\sqrt{3} + 10\sqrt{3} = 13\sqrt{3} \approx 22{,}5167 .
+$$
+:::
+
+**Ejercicio 23.** Escribe como potencia de exponente fraccionario y simplifica: $\sqrt[6]{8}$, $\;\left(\sqrt[3]{7}\right)^{6}$, $\;\sqrt[3]{\sqrt{64}}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\sqrt[6]{8} = 8^{1/6} = \left(2^{3}\right)^{1/6} = 2^{1/2} = \sqrt{2}$.
+
+$\left(\sqrt[3]{7}\right)^{6} = 7^{6/3} = 7^{2} = 49$.
+
+$\sqrt[3]{\sqrt{64}} = \sqrt[6]{64} = 64^{1/6} = \left(2^{6}\right)^{1/6} = 2$.
+:::
+
+**Ejercicio 24.** Calcula $\sqrt[3]{4}\cdot\sqrt{2}$ reduciendo a índice común.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\text{m.c.m.}(3,2) = 6$, así que $\sqrt[3]{4} = \sqrt[6]{4^{2}} = \sqrt[6]{2^{4}}$ y $\sqrt{2} = \sqrt[6]{2^{3}}$. Entonces
+
+$$
+\sqrt[6]{2^{4}\cdot 2^{3}} = \sqrt[6]{2^{7}} = 2\sqrt[6]{2} \approx 2{,}2449 .
+$$
+:::
+
+**Ejercicio 25.** Racionaliza $\dfrac{5}{2\sqrt{3}}$, $\;\dfrac{2}{\sqrt[3]{4}}$ y $\;\dfrac{3}{\sqrt{5}-\sqrt{2}}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\dfrac{5}{2\sqrt{3}} = \dfrac{5\sqrt{3}}{2\cdot 3} = \dfrac{5\sqrt{3}}{6}$.
+
+$\dfrac{2}{\sqrt[3]{4}} = \dfrac{2}{\sqrt[3]{2^{2}}}\cdot\dfrac{\sqrt[3]{2}}{\sqrt[3]{2}} = \dfrac{2\sqrt[3]{2}}{2} = \sqrt[3]{2}$.
+
+$\dfrac{3}{\sqrt{5}-\sqrt{2}} = \dfrac{3(\sqrt{5}+\sqrt{2})}{5-2} = \sqrt{5}+\sqrt{2} \approx 3{,}6503$.
+:::
+
+**Ejercicio 26.** Ordena de menor a mayor sin calculadora: $\sqrt{3}$, $\;\sqrt[3]{5}$, $\;\sqrt[6]{30}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Índice común 6: $\sqrt{3} = \sqrt[6]{27}$, $\;\sqrt[3]{5} = \sqrt[6]{25}$, $\;\sqrt[6]{30}$. Con el mismo índice manda el radicando:
+
+$$
+\sqrt[3]{5} < \sqrt{3} < \sqrt[6]{30} .
+$$
+:::
+
+**Ejercicio 27.** Indica cuáles de estas expresiones existen en $\mathbb{R}$: $\sqrt[4]{-16}$, $\;\sqrt[5]{-32}$, $\;-\sqrt{49}$, $\;\sqrt{(-3)^{2}}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\sqrt[4]{-16}$ **no existe** (índice par, radicando negativo). $\;\sqrt[5]{-32} = -2$ (índice impar). $\;-\sqrt{49} = -7$ (el signo está fuera del radical). $\;\sqrt{(-3)^{2}} = \sqrt{9} = 3$, no $-3$: la raíz aritmética es positiva.
+:::
+
+### Applet · Comparar radicales reduciendo a índice común {.unnumbered}
+
+::: {#panel-comparaRad .applet-panel data-applet-re="comparaRad"}
+:::
+
+## Bloque 7 · Logaritmos
+
+**Ejercicio 28.** Calcula usando la definición: $\log_{3} 81$, $\;\log_{5}\dfrac{1}{25}$, $\;\log_{2}\sqrt{8}$, $\;\ln e^{4}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\log_{3} 81 = 4$ porque $3^{4} = 81$.
+
+$\log_{5}\dfrac{1}{25} = -2$ porque $5^{-2} = \dfrac{1}{25}$.
+
+$\log_{2}\sqrt{8} = \log_{2} 2^{3/2} = \dfrac{3}{2}$.
+
+$\ln e^{4} = 4$.
+:::
+
+**Ejercicio 29.** Desarrolla $\log\dfrac{100\,x^{3}}{\sqrt{y}}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\log 100 + 3\log x - \dfrac{1}{2}\log y = 2 + 3\log x - \dfrac{1}{2}\log y .
+$$
+:::
+
+**Ejercicio 30.** Escribe como un solo logaritmo: $2\log_{3} a + \log_{3} b - 3\log_{3} c$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\log_{3}\dfrac{a^{2}b}{c^{3}} .
+$$
+:::
+
+**Ejercicio 31.** Calcula $\log_{7} 200$ con la calculadora y comprueba el resultado acotándolo entre dos potencias de 7.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\log_{7} 200 = \dfrac{\log 200}{\log 7} = \dfrac{2{,}30103}{0{,}845098} \approx 2{,}7228 .
+$$
+
+Control: $7^{2} = 49 < 200 < 343 = 7^{3}$, luego el resultado tenía que estar entre 2 y 3.
+:::
+
+**Ejercicio 32.** Resuelve $5^{x} = 300$ y $3^{2x-1} = 27$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x = \dfrac{\log 300}{\log 5} = \dfrac{2{,}477121}{0{,}698970} \approx 3{,}5439$.
+
+En la segunda, la misma base a los dos lados: $3^{2x-1} = 3^{3} \Rightarrow 2x-1 = 3 \Rightarrow x = 2$.
+:::
+
+**Ejercicio 33.** Resuelve $\log(x+3) + \log x = 1$ y comprueba el dominio.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\log\left[x(x+3)\right] = 1 \Rightarrow x^{2}+3x = 10 \Rightarrow x^{2}+3x-10 = 0 \Rightarrow x = 2 \;\text{o}\; x = -5 .
+$$
+
+Se rechaza $x = -5$ porque $\log(-5)$ no existe. Solución: $x = 2$, y se comprueba: $\log 5 + \log 2 = \log 10 = 1$.
+:::
+
+**Ejercicio 34.** Se depositan $8\,000$ euros al 3 % anual de interés compuesto con capitalización anual. ¿Cuántos años tardan en convertirse en $10\,000$ euros?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+10\,000 = 8\,000\cdot 1{,}03^{t} \Rightarrow 1{,}03^{t} = 1{,}25 \Rightarrow t = \dfrac{\log 1{,}25}{\log 1{,}03} = \dfrac{0{,}096910}{0{,}012837} \approx 7{,}55 \text{ años}.
+$$
+
+Con capitalización anual habría que esperar 8 años completos para llegar a esa cantidad.
+:::
+
+**Ejercicio 35.** Un terremoto de magnitud $7{,}2$ y otro de magnitud $5{,}2$: ¿cuántas veces mayor es la amplitud del primero? Y una disolución de pH 2 frente a otra de pH 5: ¿cuántas veces más ácida es?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Richter: la diferencia de magnitudes es 2, luego la amplitud es $10^{2} = 100$ veces mayor.
+
+pH: $\left[\mathrm{H}^{+}\right] = 10^{-\mathrm{pH}}$, así que $\dfrac{10^{-2}}{10^{-5}} = 10^{3} = 1000$ veces más ácida.
+
+En las dos escalas, unas pocas unidades de diferencia esconden factores enormes.
+:::
+
+**Ejercicio 36.** Una población de bacterias sigue $P = 500\,e^{0{,}4t}$, con $t$ en horas. Halla la población a las 6 horas y el tiempo que tarda en duplicarse.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$P(6) = 500\,e^{2{,}4} = 500\cdot 11{,}0232 \approx 5\,512$ bacterias.
+
+Duplicación: $2 = e^{0{,}4t} \Rightarrow 0{,}4t = \ln 2 \Rightarrow t = \dfrac{0{,}693147}{0{,}4} \approx 1{,}73$ horas.
+
+Observa que el tiempo de duplicación no depende de la población inicial: es una constante del modelo.
+:::
+
+### Applet · Ecuaciones logarítmicas {.unnumbered}
+
+::: {#panel-ecuacionesLog .applet-panel data-applet-re="ecuacionesLog"}
+:::
+
+## Autoevaluación
+
+El applet siguiente genera ejercicios nuevos de todos los bloques del tema. Elige el bloque, escribe tu respuesta y comprueba; si te atascas, despliega la solución y vuelve a intentarlo con otro ejercicio.
+
+### Applet · Entrenador de números reales {.unnumbered}
+
+::: {#panel-entrenaReales .applet-panel data-applet-re="entrenaReales"}
+:::
+
+### Applet · Diagnóstico técnico {.unnumbered}
+
+::: {#panel-diagnostico .applet-panel data-applet-re="diagnostico"}
+:::
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Los cinco entrenadores del sitio cubren todo el tema con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos:
+
+- [Entrenador de Radicales](../../entrenador_radicales.html)
+- [Entrenador de Logaritmos y Neperianos](../../entrenador_logaritmos_neperianos.html)
+- [Calculadora de Notación Científica](../../calculadora_notacion_cientifica.html)
+- [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html)
+- [Factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html)
+
+Y para las construcciones geométricas sobre la recta: [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html).
+:::
+
+## Errores frecuentes
+
+1. Clasificar un número por su aspecto sin simplificarlo antes: $\sqrt{25}$ es natural, no irracional.
+2. Confundir el paréntesis y el corchete de un intervalo, incluyendo o excluyendo mal los extremos.
+3. Sumar números en notación científica sin igualar primero los exponentes.
+4. Dejar una mantisa que no cumple $1 \le |m| < 10$ y llamarla notación científica.
+5. Comparar la precisión de dos medidas por su error absoluto en lugar de por el relativo.
+6. Sumar radicales no semejantes o sumar los radicandos en vez de los coeficientes.
+7. Multiplicar radicales de distinto índice sin reducir antes al índice común.
+8. Escribir $\sqrt{a+b} = \sqrt{a}+\sqrt{b}$ o $\log(x+y) = \log x + \log y$: ninguna de las dos es cierta.
+9. Racionalizar cambiando el signo equivocado del binomio al construir el conjugado.
+10. Dar por válida en una ecuación logarítmica una solución que hace negativo algún argumento.
+11. Redondear demasiado pronto y arrastrar el error a los pasos siguientes.
+12. Terminar el ejercicio sin comprobar el resultado en la ecuación o la expresión original.
+
+## Qué debes saber hacer
+
+- Clasificar cualquier número real y pasar de decimal periódico a fracción y al revés.
+- Justificar la irracionalidad de $\sqrt{2}$ y representar radicales cuadráticos en la recta con regla y compás.
+- Escribir, operar y representar intervalos, semirrectas y entornos, incluida su expresión con valor absoluto.
+- Manejar la notación científica en sumas, restas, productos, cocientes y comparaciones de órdenes de magnitud.
+- Aproximar por truncamiento y por redondeo y calcular errores absoluto y relativo, con sus cotas.
+- Simplificar radicales, sumar semejantes, operar con distinto índice y racionalizar los tres tipos de denominador.
+- Usar la definición y las propiedades de los logaritmos, aplicar el cambio de base y resolver ecuaciones exponenciales y logarítmicas comprobando el dominio.
+- Aplicar los logaritmos al interés compuesto, la escala de Richter, el pH y el crecimiento de poblaciones.
+- Elegir en cada problema entre resultado exacto y aproximación decimal, justificando la decisión.
+- Comprobar sistemáticamente cada resultado antes de darlo por bueno.

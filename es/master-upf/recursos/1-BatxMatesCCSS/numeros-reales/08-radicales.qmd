@@ -1,0 +1,408 @@
+---
+title: "Tema 1.8 Radicales, potencias de exponente fraccionario y racionalización"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 08-radicales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Radical e índice, equivalencia entre potencias de exponente fraccionario y radicales, propiedades, radicales equivalentes, simplificación, extracción e introducción de factores, suma y resta de semejantes, producto y cociente con índice común, potencia y raíz de un radical y racionalización de denominadores.
+categories: [números reales, 1 Batx, matemáticas CCSS, radicales, racionalización, potencias]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué hacen falta los radicales
+
+Cuando en el apartado de los irracionales apareció $\sqrt{2}$ como la diagonal de un cuadrado de lado 1, apareció también un problema práctico: ese número tiene infinitas cifras decimales no periódicas, así que **nunca** se puede escribir del todo con decimales. Si trabajas con $1{,}41$ pierdes información; si trabajas con $\sqrt{2}$ no pierdes nada.
+
+Los radicales son el lenguaje que permite calcular con esos números de forma **exacta**: sumarlos, multiplicarlos, dividirlos y simplificarlos sin recurrir en ningún momento a una aproximación decimal. Solo al final, si el problema lo pide, se pulsa la calculadora.
+
+Y hay una segunda idea, todavía más potente: un radical **no es** un objeto nuevo. Es una potencia disfrazada, una potencia cuyo exponente es una fracción. Con esa sola observación, todas las reglas de los radicales dejan de ser una lista que memorizar y se convierten en las propiedades de las potencias que ya conoces.
+
+## Radical, índice y radicando
+
+::: {.callout-note}
+## Definición de raíz n-ésima
+
+Dados un número real $a$ y un número natural $n \ge 2$, se llama **raíz n-ésima de $a$** al número real $b$ que cumple
+
+$$
+\sqrt[n]{a} = b \iff b^{n} = a .
+$$
+
+En la expresión $\sqrt[n]{a}$:
+
+- $n$ es el **índice** del radical (siempre un natural mayor o igual que 2),
+- $a$ es el **radicando** o cantidad subradical,
+- toda la expresión $\sqrt[n]{a}$ es el **radical**.
+
+Cuando $n = 2$ el índice no se escribe: $\sqrt{a}$ significa $\sqrt[2]{a}$, y se lee «raíz cuadrada de $a$». Con $n = 3$ se dice «raíz cúbica».
+:::
+
+La radicación es la **operación inversa** de la potenciación: elevar a $n$ y extraer la raíz $n$-ésima se deshacen mutuamente. Comprobarlo es la única manera fiable de saber si una raíz está bien calculada.
+
+::: {.callout-important}
+## Condición de existencia: la paridad del índice manda
+
+- Si el índice $n$ es **par**, el radicando debe cumplir $a \ge 0$. No existe ningún número real cuyo cuadrado sea negativo, porque el cuadrado de un positivo y el de un negativo son ambos positivos. Por tanto $\sqrt{-9}$ **no es un número real**.
+- Si el índice $n$ es **impar**, el radicando puede ser cualquier número real. Por ejemplo $\sqrt[3]{-8} = -2$, porque $(-2)^{3} = -8$.
+- El índice es siempre positivo: no existe una raíz de índice $-5$.
+- Cuando el índice es par y el radicando positivo hay **dos** números que elevados a $n$ dan $a$, uno positivo y otro negativo: $2^{2} = 4$ y $(-2)^{2} = 4$. Por convenio, $\sqrt[n]{a}$ designa la **raíz positiva**, llamada raíz aritmética. Si se quiere la otra se escribe $-\sqrt{4} = -2$, y si se quieren las dos, $\pm\sqrt{4}$.
+:::
+
+**Ejemplo resuelto 1.** Decide si existen en $\mathbb{R}$ y calcúlalos si es posible: $\sqrt[4]{81}$, $\sqrt[3]{-125}$, $\sqrt{-16}$, $\sqrt[5]{32}$.
+
+- $\sqrt[4]{81} = 3$, porque $3^{4} = 81$. Existe: índice par, radicando positivo.
+- $\sqrt[3]{-125} = -5$, porque $(-5)^{3} = -125$. Existe: índice impar.
+- $\sqrt{-16}$ **no existe** en los reales: índice par y radicando negativo.
+- $\sqrt[5]{32} = 2$, porque $2^{5} = 32$.
+
+## Potencias de exponente fraccionario
+
+::: {.callout-note}
+## Definición y equivalencia fundamental
+
+Para $a > 0$ y una fracción $\dfrac{m}{n}$ con $n \ge 2$ se define
+
+$$
+a^{m/n} = \sqrt[n]{a^{m}} = \left(\sqrt[n]{a}\right)^{m} .
+$$
+
+En particular $a^{1/n} = \sqrt[n]{a}$ y, con exponente negativo,
+
+$$
+a^{-m/n} = \dfrac{1}{a^{m/n}} = \dfrac{1}{\sqrt[n]{a^{m}}} .
+$$
+:::
+
+¿Por qué esta definición y no otra? Porque es la única que **respeta las propiedades de las potencias**. Si se quiere que siga valiendo $(a^{p})^{q} = a^{pq}$, entonces
+
+$$
+\left(a^{1/n}\right)^{n} = a^{(1/n)\cdot n} = a^{1} = a ,
+$$
+
+es decir, $a^{1/n}$ es exactamente ese número que elevado a $n$ da $a$: la raíz $n$-ésima. No hay elección: la definición viene forzada por la coherencia.
+
+**Ejemplo resuelto 2.** Pasa de una forma a otra.
+
+$$
+(81)^{3/4} = \sqrt[4]{81^{3}} = \left(\sqrt[4]{81}\right)^{3} = 3^{3} = 27 ,
+$$
+
+$$
+\sqrt[3]{5^{2}} = 5^{2/3}, \qquad \sqrt{12} = 12^{1/2}, \qquad \dfrac{1}{\sqrt[5]{9^{4}}} = 9^{-4/5} .
+$$
+
+Observa el detalle de la primera línea: elevar $81$ al cubo antes de extraer la raíz obliga a manejar $531\,441$; extraer primero la raíz cuarta reduce la cuenta a $3^{3}$. Casi siempre conviene **extraer la raíz primero**.
+
+::: {.callout-tip}
+## Truco de cálculo
+
+Si el exponente fraccionario se puede simplificar, simplifícalo antes de hacer nada: bajar el índice del radical es siempre una ventaja.
+
+$$
+8^{2/3} = \sqrt[3]{8^{2}} = \sqrt[3]{64} = 4 \quad\text{o mejor}\quad 8^{2/3} = \left(\sqrt[3]{8}\right)^{2} = 2^{2} = 4 .
+$$
+:::
+
+### Applet · Potencias de exponente fraccionario {.unnumbered}
+
+::: {#panel-potenciaFraccionaria .applet-panel data-applet-re="potenciaFraccionaria"}
+:::
+
+## Propiedades de los radicales
+
+Todas se demuestran igual: se pasa a exponente fraccionario, se aplica la propiedad correspondiente de las potencias y se vuelve a la notación de raíz.
+
+::: {.callout-note}
+## Las cinco propiedades
+
+Con radicandos positivos y $n, m \ge 2$:
+
+1. **Radicales equivalentes.** Multiplicar el índice y el exponente del radicando por el mismo número $p \ne 0$ no cambia el valor:
+   $$
+   \sqrt[n]{a^{m}} = \sqrt[n\cdot p]{a^{m\cdot p}} .
+   $$
+2. **Producto de igual índice.** $\sqrt[n]{a}\cdot\sqrt[n]{b} = \sqrt[n]{a\,b}$.
+3. **Cociente de igual índice.** $\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\dfrac{a}{b}}$, con $b \ne 0$.
+4. **Potencia de un radical.** $\left(\sqrt[n]{a}\right)^{m} = \sqrt[n]{a^{m}}$.
+5. **Raíz de una raíz.** $\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a}$.
+:::
+
+**Demostraciones.**
+
+*Propiedad 1.* $\sqrt[np]{a^{mp}} = a^{mp/np} = a^{m/n} = \sqrt[n]{a^{m}}$, porque la fracción $\dfrac{mp}{np}$ se simplifica a $\dfrac{m}{n}$.
+
+*Propiedad 2.* $\sqrt[n]{a}\cdot\sqrt[n]{b} = a^{1/n}\,b^{1/n} = (a\,b)^{1/n} = \sqrt[n]{a\,b}$, usando que una potencia de un producto es el producto de las potencias.
+
+*Propiedad 3.* $\dfrac{a^{1/n}}{b^{1/n}} = \left(\dfrac{a}{b}\right)^{1/n} = \sqrt[n]{\dfrac{a}{b}}$.
+
+*Propiedad 4.* $\left(a^{1/n}\right)^{m} = a^{m/n} = \sqrt[n]{a^{m}}$.
+
+*Propiedad 5.* $\sqrt[m]{\sqrt[n]{a}} = \left(a^{1/n}\right)^{1/m} = a^{1/(mn)} = \sqrt[mn]{a}$.
+
+**Ejemplo resuelto 3.** $\sqrt{5} = \sqrt[6]{5^{3}} = \sqrt[6]{125}$, porque el índice y el exponente se han multiplicado ambos por 3. Los dos radicales son **equivalentes**: valen exactamente lo mismo, $2{,}23606\ldots$
+
+**Ejemplo resuelto 4.** $\sqrt[3]{\sqrt{x}} = \sqrt[6]{x}$ y $\sqrt[3]{\sqrt[5]{2}} = \sqrt[15]{2}$.
+
+::: {.callout-warning}
+## Error frecuentísimo
+
+No existe ninguna propiedad para la raíz de una suma:
+
+$$
+\sqrt{a+b} \neq \sqrt{a} + \sqrt{b} .
+$$
+
+Compruébalo: $\sqrt{9+16} = \sqrt{25} = 5$, mientras que $\sqrt{9}+\sqrt{16} = 3+4 = 7$. La raíz se reparte sobre productos y cocientes, **nunca** sobre sumas y restas.
+:::
+
+## Simplificación: extraer e introducir factores
+
+::: {.callout-note}
+## Regla de la extracción
+
+Se factoriza el radicando en factores primos y, para cada primo, se divide su exponente entre el índice:
+
+$$
+\sqrt[n]{a^{\,qn+r}} = a^{q}\,\sqrt[n]{a^{\,r}} .
+$$
+
+El **cociente** $q$ indica cuántas copias del factor salen fuera; el **resto** $r$, las que se quedan dentro. Un radical está **simplificado** cuando todos los exponentes del radicando son menores que el índice.
+:::
+
+**Ejemplo resuelto 5.** Simplifica $\sqrt{108}$.
+
+$$
+108 = 2^{2}\cdot 3^{3} \Rightarrow \sqrt{108} = \sqrt{2^{2}\cdot 3^{2}\cdot 3} = 2\cdot 3\sqrt{3} = 6\sqrt{3} .
+$$
+
+Comprobación numérica: $6\cdot 1{,}7320\ldots = 10{,}3923\ldots$, y $\sqrt{108} = 10{,}3923\ldots$
+
+**Ejemplo resuelto 6.** Simplifica $\sqrt[4]{1250}$.
+
+$$
+1250 = 2\cdot 5^{4} \Rightarrow \sqrt[4]{1250} = \sqrt[4]{5^{4}\cdot 2} = 5\sqrt[4]{2} .
+$$
+
+**Ejemplo resuelto 7.** El camino inverso, **introducir** factores, sirve para comparar radicales. Para meter un factor dentro de una raíz de índice $n$ hay que elevarlo a $n$:
+
+$$
+6\sqrt{3} = \sqrt{6^{2}\cdot 3} = \sqrt{108}, \qquad 2\sqrt[3]{5} = \sqrt[3]{2^{3}\cdot 5} = \sqrt[3]{40} .
+$$
+
+::: {.callout-tip}
+## Cuándo conviene cada dirección
+
+- **Extraer** factores es lo que se hace casi siempre: deja el radicando lo más pequeño posible y permite reconocer radicales semejantes para sumarlos.
+- **Introducir** factores es útil para comparar dos radicales del mismo índice: una vez todo está dentro, el mayor radicando es el mayor número.
+:::
+
+### Applet · Simplificación de radicales: extraer e introducir factores {.unnumbered}
+
+::: {#panel-simplificaRad .applet-panel data-applet-re="simplificaRad"}
+:::
+
+## Suma y resta de radicales semejantes
+
+::: {.callout-important}
+## Solo se suman los semejantes
+
+Dos radicales son **semejantes** cuando, ya simplificados, tienen el **mismo índice** y el **mismo radicando**. Únicamente en ese caso se pueden sumar o restar, y lo que se suma son los coeficientes:
+
+$$
+p\sqrt[n]{a} + q\sqrt[n]{a} = (p+q)\sqrt[n]{a} .
+$$
+
+Funciona exactamente igual que con los monomios semejantes: $3x + 5x = 8x$, pero $3x + 5y$ se queda como está.
+:::
+
+**Ejemplo resuelto 8.** $7\sqrt{5} + 15\sqrt{5} - \sqrt{5} = (7+15-1)\sqrt{5} = 21\sqrt{5}$.
+
+**Ejemplo resuelto 9.** A primera vista los tres sumandos de $\sqrt{18} + \sqrt{50} + \sqrt{8}$ no son semejantes. Se simplifican primero:
+
+$$
+\sqrt{18} = 3\sqrt{2}, \qquad \sqrt{50} = 5\sqrt{2}, \qquad \sqrt{8} = 2\sqrt{2},
+$$
+
+y ahora sí:
+
+$$
+\sqrt{18} + \sqrt{50} + \sqrt{8} = (3+5+2)\sqrt{2} = 10\sqrt{2} \approx 14{,}142 .
+$$
+
+**Ejemplo resuelto 10.** $3\sqrt{12} - \sqrt{27} = 3\cdot 2\sqrt{3} - 3\sqrt{3} = 6\sqrt{3} - 3\sqrt{3} = 3\sqrt{3}$.
+
+::: {.callout-warning}
+## Lo que no se puede hacer
+
+$\sqrt{4} + \sqrt{9}$ vale $2 + 3 = 5$, y no $\sqrt{13} \approx 3{,}61$. Cuando los radicales no son semejantes y las raíces no son exactas, la suma **se queda indicada**: $\sqrt{2} + \sqrt[3]{2}$ no se simplifica más. Solo si el problema pide un valor numérico se sustituye cada radical por su aproximación.
+:::
+
+### Applet · Suma y resta de radicales semejantes {.unnumbered}
+
+::: {#panel-sumaRad .applet-panel data-applet-re="sumaRad"}
+:::
+
+## Producto y cociente con distinto índice
+
+Las propiedades 2 y 3 exigen el **mismo índice**. Si los índices son distintos, primero se reducen a **índice común**.
+
+::: {.callout-note}
+## Método del índice común
+
+1. Se calcula el m.c.m. de los índices: ese es el índice común $c$.
+2. Para cada radical se divide $c$ entre su índice y el radicando se eleva a ese cociente (propiedad de los radicales equivalentes).
+3. Ya con el mismo índice se multiplican o dividen los radicandos.
+4. Se simplifica el resultado extrayendo factores.
+:::
+
+**Ejemplo resuelto 11.** Calcula $\sqrt{8}\cdot\sqrt[3]{7}$.
+
+$\text{m.c.m.}(2,3) = 6$, luego $\sqrt{8} = \sqrt[6]{8^{3}} = \sqrt[6]{2^{9}}$ y $\sqrt[3]{7} = \sqrt[6]{7^{2}} = \sqrt[6]{49}$. Por tanto
+
+$$
+\sqrt{8}\cdot\sqrt[3]{7} = \sqrt[6]{2^{9}\cdot 7^{2}} = 2\sqrt[6]{2^{3}\cdot 7^{2}} = 2\sqrt[6]{392} \approx 5{,}577 .
+$$
+
+**Ejemplo resuelto 12.** Calcula $\dfrac{\sqrt{3}\cdot\sqrt[3]{4}}{\sqrt[6]{24}}$.
+
+$$
+\dfrac{\sqrt[6]{3^{3}}\cdot\sqrt[6]{4^{2}}}{\sqrt[6]{24}} = \sqrt[6]{\dfrac{3^{3}\cdot 2^{4}}{2^{3}\cdot 3}} = \sqrt[6]{3^{2}\cdot 2} = \sqrt[6]{18} .
+$$
+
+**Ejemplo resuelto 13.** Potencia y raíz de un radical. Aplicando las propiedades 4 y 5:
+
+$$
+\left(\sqrt[5]{3}\right)^{2} = \sqrt[5]{9}, \qquad \sqrt[3]{\sqrt{x^{7}}} = \sqrt[6]{x^{7}} = x\sqrt[6]{x} .
+$$
+
+::: {.callout-tip}
+## Criterio de orden en los cálculos
+
+En una expresión larga con radicales, este orden ahorra mucho trabajo: **simplificar** cada radical, **reducir** a índice común solo si hay que multiplicar o dividir, **operar**, y **volver a simplificar** el resultado.
+:::
+
+### Applet · Producto y cociente de radicales de distinto índice {.unnumbered}
+
+::: {#panel-operaRad .applet-panel data-applet-re="operaRad"}
+:::
+
+## Racionalización de denominadores
+
+::: {.callout-note}
+## Qué es racionalizar
+
+**Racionalizar** una fracción consiste en encontrar otra **equivalente** que no tenga radicales en el denominador. Para conseguirlo se multiplica numerador y denominador por la expresión adecuada, lo cual no cambia el valor de la fracción porque equivale a multiplicar por 1.
+:::
+
+### Caso 1 · Denominador con una raíz cuadrada
+
+Se multiplica arriba y abajo por esa misma raíz:
+
+$$
+\dfrac{3}{\sqrt{5}} = \dfrac{3}{\sqrt{5}}\cdot\dfrac{\sqrt{5}}{\sqrt{5}} = \dfrac{3\sqrt{5}}{5} .
+$$
+
+### Caso 2 · Denominador con una raíz de índice $n$
+
+Hay que completar el exponente hasta el índice. Si el denominador es $\sqrt[n]{a^{m}}$, se multiplica por $\sqrt[n]{a^{\,n-m}}$, porque entonces $\sqrt[n]{a^{m}}\cdot\sqrt[n]{a^{n-m}} = \sqrt[n]{a^{n}} = a$.
+
+**Ejemplo resuelto 14.** Racionaliza $\dfrac{6}{\sqrt[4]{x^{3}}}$.
+
+$$
+\dfrac{6}{\sqrt[4]{x^{3}}} = \dfrac{6}{\sqrt[4]{x^{3}}}\cdot\dfrac{\sqrt[4]{x}}{\sqrt[4]{x}} = \dfrac{6\sqrt[4]{x}}{\sqrt[4]{x^{4}}} = \dfrac{6\sqrt[4]{x}}{x} .
+$$
+
+### Caso 3 · Denominador con un binomio de raíces cuadradas
+
+Se multiplica por el **conjugado**, que es el mismo binomio con el signo central cambiado, para poder usar la identidad $(x+y)(x-y) = x^{2}-y^{2}$ y hacer desaparecer las raíces.
+
+| Denominador | Conjugado | Producto |
+|---|---|---|
+| $\sqrt{a}+\sqrt{b}$ | $\sqrt{a}-\sqrt{b}$ | $a-b$ |
+| $c+\sqrt{b}$ | $c-\sqrt{b}$ | $c^{2}-b$ |
+| $\sqrt{a}-c$ | $\sqrt{a}+c$ | $a-c^{2}$ |
+
+**Ejemplo resuelto 15.** Racionaliza $\dfrac{2\sqrt{3}}{3+\sqrt{5}}$.
+
+$$
+\dfrac{2\sqrt{3}}{3+\sqrt{5}} = \dfrac{2\sqrt{3}\,(3-\sqrt{5})}{(3+\sqrt{5})(3-\sqrt{5})} = \dfrac{2\sqrt{3}\,(3-\sqrt{5})}{9-5} = \dfrac{2\sqrt{3}\,(3-\sqrt{5})}{4} = \dfrac{\sqrt{3}\,(3-\sqrt{5})}{2} .
+$$
+
+**Ejemplo resuelto 16.** Racionaliza $\dfrac{1}{\sqrt{7}-\sqrt{3}}$.
+
+$$
+\dfrac{1}{\sqrt{7}-\sqrt{3}} = \dfrac{\sqrt{7}+\sqrt{3}}{(\sqrt{7}-\sqrt{3})(\sqrt{7}+\sqrt{3})} = \dfrac{\sqrt{7}+\sqrt{3}}{7-3} = \dfrac{\sqrt{7}+\sqrt{3}}{4} .
+$$
+
+::: {.callout-tip}
+## ¿Para qué sirve realmente?
+
+Con calculadora podría parecer un capricho, pero racionalizar es imprescindible para **comparar** expresiones que parecen distintas y son iguales, para **sumar** fracciones con radicales (hace falta un denominador sin raíces para hallar el común) y para **detectar** simplificaciones escondidas. Además, dividir a mano entre $\sqrt{2} = 1{,}41421\ldots$ es incómodo, mientras que dividir entre 2 es inmediato: $\dfrac{1}{\sqrt{2}} = \dfrac{\sqrt{2}}{2} = 0{,}7071\ldots$
+:::
+
+### Applet · Racionalización de denominadores {.unnumbered}
+
+::: {#panel-racionalizar .applet-panel data-applet-re="racionalizar"}
+:::
+
+## Pensamiento crítico y curiosidades
+
+::: {.callout-caution}
+## ¿Es lo mismo exacto que preciso?
+
+Una calculadora te da $\sqrt{2} = 1{,}4142135624$: diez cifras, mucha **precisión**, pero no es **exacto**. La expresión $\sqrt{2}$ sí lo es. Cuando en un examen se pide «el resultado exacto», se está pidiendo justamente que no aparezcan decimales aproximados: $3\sqrt{2}$ en lugar de $4{,}2426$.
+
+Piensa además en cómo se acumulan los errores: si en un cálculo con cinco pasos redondeas en cada paso, el error final puede ser mucho mayor que el de un redondeo único al final. Trabajar con radicales hasta el último momento es también una estrategia de precisión.
+:::
+
+::: {.callout-note}
+## El símbolo de la raíz
+
+El signo $\sqrt{\ \ }$ se empezó a usar en el siglo XVI y parece proceder de una $r$ estilizada, inicial de *radix* («raíz» en latín). Antes se escribía literalmente «radix de 2». El trazo horizontal que cubre el radicando, hoy imprescindible para saber dónde acaba el radicando, se añadió después: en $\sqrt{a+b}$ y $\sqrt{a}+b$ toda la diferencia está en la longitud de ese trazo.
+:::
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el [Entrenador de Radicales](../../entrenador_radicales.html).
+:::
+
+## Errores frecuentes
+
+1. Escribir $\sqrt{a+b} = \sqrt{a}+\sqrt{b}$. La raíz solo se reparte sobre productos y cocientes.
+2. Sumar radicales que no son semejantes: $\sqrt{2}+\sqrt{3}$ no es $\sqrt{5}$.
+3. Sumar los radicandos en lugar de los coeficientes: $3\sqrt{2}+5\sqrt{2}$ es $8\sqrt{2}$, no $8\sqrt{4}$ ni $15\sqrt{2}$.
+4. Multiplicar radicandos con índices distintos sin reducir antes a índice común.
+5. Olvidar que al introducir un factor dentro de un radical de índice $n$ hay que elevarlo a $n$: $2\sqrt[3]{5} = \sqrt[3]{40}$, no $\sqrt[3]{10}$.
+6. Dar por válido $\sqrt{-16}$ o $\sqrt[4]{-3}$: con índice par el radicando no puede ser negativo.
+7. Escribir $\sqrt{4} = \pm 2$ cuando se pide la raíz aritmética: $\sqrt{4} = 2$, y $-2$ es $-\sqrt{4}$.
+8. Simplificar solo a medias: dejar $\sqrt{72}$ como $2\sqrt{18}$ en lugar de $6\sqrt{2}$.
+9. Racionalizar multiplicando solo el denominador: hay que multiplicar **numerador y denominador** por la misma expresión.
+10. Usar como conjugado de $3+\sqrt{5}$ la expresión $-3+\sqrt{5}$: el signo que cambia es el **central**, luego es $3-\sqrt{5}$.
+11. Confundir $a^{m/n}$ con $\dfrac{a^{m}}{n}$: el exponente fraccionario afecta a toda la potencia.
+12. No simplificar la fracción del exponente antes de operar, complicando la cuenta sin necesidad.
+
+## Qué debes saber hacer
+
+- Identificar índice, radicando y radical, y decidir si un radical existe en $\mathbb{R}$ según la paridad del índice.
+- Pasar de radical a potencia de exponente fraccionario y al revés, incluidos los exponentes negativos.
+- Enunciar y demostrar las cinco propiedades de los radicales pasando por las potencias.
+- Reconocer y construir radicales equivalentes multiplicando o dividiendo índice y exponente por el mismo número.
+- Simplificar un radical factorizando el radicando y extrayendo todos los factores posibles.
+- Introducir factores dentro de un radical para comparar dos radicales del mismo índice.
+- Sumar y restar radicales, simplificando antes para descubrir los que son semejantes.
+- Multiplicar y dividir radicales de distinto índice reduciendo al índice común.
+- Calcular potencias de radicales y raíces de raíces.
+- Racionalizar denominadores con un monomio, con una raíz de índice $n$ y con un binomio, usando el conjugado.
+- Comprobar cada resultado numéricamente con la calculadora, sabiendo distinguir un valor exacto de una aproximación.

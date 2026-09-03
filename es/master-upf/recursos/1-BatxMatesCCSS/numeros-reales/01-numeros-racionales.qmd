@@ -1,0 +1,332 @@
+---
+title: "Tema 1.1 Números racionales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 01-numeros-racionales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Fracciones equivalentes y representante canónico, paso de fracción a decimal (exacto, periódico puro y periódico mixto), fracción generatriz, densidad de Q, operaciones y comparación de fracciones, con applets manipulables.
+categories: [números reales, 1 Batx, matemáticas CCSS, racionales, fracciones, decimales]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De dónde salen los racionales
+
+Los conjuntos numéricos no aparecen por capricho: cada uno se inventa porque el anterior se queda corto.
+
+- Con los **naturales** $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$ se cuenta, pero no se puede resolver $x + 7 = 3$.
+- Con los **enteros** $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$ ya se puede restar siempre, pero no se puede resolver $3x = 7$.
+- Para repartir, medir y dividir hace falta un conjunto nuevo: los **racionales**.
+
+::: {.callout-note}
+## Definición de número racional
+
+Un número es **racional** si se puede escribir como cociente de dos números enteros con denominador distinto de cero:
+
+$$
+\mathbb{Q} = \left\{ \dfrac{a}{b} \;:\; a \in \mathbb{Z},\; b \in \mathbb{Z},\; b \neq 0 \right\}
+$$
+
+La letra $\mathbb{Q}$ viene de *quotient*, cociente.
+:::
+
+Como todo entero $a$ se puede escribir $\dfrac{a}{1}$, se cumple la cadena de inclusiones
+
+$$
+\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}.
+$$
+
+Lo importante de la definición es la palabra «se puede»: un número es racional si **existe** alguna forma de escribirlo como fracción de enteros, aunque te lo presenten con otra cara. Así, $0{,}75$, $-\sqrt{4}$, $\sqrt[3]{8}$ y $2{,}\overline{3}$ son todos racionales, porque valen $\dfrac{3}{4}$, $-2$, $2$ y $\dfrac{7}{3}$.
+
+::: {.callout-warning}
+## El denominador cero no se salva con ningún truco
+
+$\dfrac{5}{0}$ no es un número: no existe ningún valor $x$ con $0 \cdot x = 5$. Y $\dfrac{0}{0}$ tampoco, porque **cualquier** número lo cumpliría. En cambio $\dfrac{0}{5} = 0$ es perfectamente correcto: lo prohibido es el cero **abajo**.
+:::
+
+### Applet · Clasificar números reales {.unnumbered}
+
+::: {#panel-clasifica .applet-panel data-applet-re="clasifica"}
+:::
+
+## Fracciones equivalentes y representante canónico
+
+El mismo número racional admite infinitas escrituras distintas:
+
+$$
+\dfrac{1}{2} = \dfrac{2}{4} = \dfrac{3}{6} = \dfrac{50}{100} = \dfrac{-7}{-14} = \ldots
+$$
+
+::: {.callout-note}
+## Criterio de equivalencia
+
+Dos fracciones son **equivalentes** cuando representan el mismo número, y eso se comprueba con los productos cruzados:
+
+$$
+\dfrac{a}{b} = \dfrac{c}{d} \iff a \cdot d = b \cdot c
+$$
+:::
+
+**Ejemplo 1.** ¿Son equivalentes $\dfrac{12}{18}$ y $\dfrac{30}{45}$? Productos cruzados: $12 \cdot 45 = 540$ y $18 \cdot 30 = 540$. Coinciden, luego sí lo son: las dos valen $\dfrac{2}{3}$.
+
+Multiplicar o dividir numerador y denominador por el mismo número no nulo es lo que genera esas infinitas escrituras:
+
+$$
+\dfrac{a}{b} = \dfrac{a \cdot k}{b \cdot k} \quad (k \neq 0).
+$$
+
+De izquierda a derecha se llama **amplificar**; de derecha a izquierda, **simplificar**.
+
+::: {.callout-important}
+## Representante canónico
+
+De todas las fracciones equivalentes se elige una como representante oficial: la **irreducible con denominador positivo**. Se obtiene así:
+
+1. Se dividen numerador y denominador por su máximo común divisor.
+2. Si el denominador queda negativo, se cambia el signo de los dos términos.
+
+Ejemplo: $\dfrac{-36}{-48} \to \dfrac{36}{48} \to \dfrac{3}{4}$, porque $\operatorname{mcd}(36,48) = 12$.
+:::
+
+**Ejemplo 2.** Simplificar $\dfrac{420}{588}$. Factorizando, $420 = 2^2 \cdot 3 \cdot 5 \cdot 7$ y $588 = 2^2 \cdot 3 \cdot 7^2$, así que $\operatorname{mcd} = 2^2 \cdot 3 \cdot 7 = 84$ y
+
+$$
+\dfrac{420}{588} = \dfrac{420 : 84}{588 : 84} = \dfrac{5}{7}.
+$$
+
+::: {.callout-tip}
+## Trabaja siempre con el representante canónico
+
+Comparar, ordenar, decidir el tipo de decimal o reconocer si dos resultados son el mismo número es inmediato con fracciones irreducibles y confuso con fracciones sin simplificar. Simplificar es el primer reflejo, no el último paso.
+:::
+
+## De fracción a decimal
+
+Toda fracción es una división sin terminar de hacer. Al hacerla aparecen exactamente tres comportamientos.
+
+::: {.callout-note}
+## Los tres tipos de expresión decimal de una fracción
+
+- **Decimal exacto**: la división acaba, el resto llega a cero. Ejemplo: $\dfrac{7}{8} = 0{,}875$.
+- **Periódico puro**: el bloque que se repite empieza justo tras la coma. Ejemplo: $\dfrac{4}{11} = 0{,}\overline{36}$.
+- **Periódico mixto**: hay cifras que no se repiten (**anteperiodo**) y luego el bloque que se repite. Ejemplo: $\dfrac{7}{12} = 0{,}58\overline{3}$.
+:::
+
+La notación oficial del periodo es el **arco** o la **barra superior**: $0{,}\overline{36}$ significa $0{,}363636\ldots$, y $2{,}1\overline{45}$ significa $2{,}1454545\ldots$. Escribir puntos suspensivos es informal y ambiguo; la barra es precisa.
+
+### Por qué solo hay tres casos
+
+Al dividir $a$ entre $b$, los restos posibles son $0, 1, 2, \ldots, b-1$: hay como máximo $b$ valores. Si en algún momento sale resto $0$, la división termina y el decimal es exacto. Si no sale nunca, en cuanto se hayan hecho $b$ pasos algún resto tiene que repetirse, y a partir de ahí las cifras se repiten en el mismo orden para siempre. Por eso **una fracción nunca produce un decimal infinito no periódico**, y por eso el periodo tiene como máximo $b - 1$ cifras.
+
+::: {.callout-important}
+## Criterio del denominador
+
+Sea $\dfrac{a}{b}$ **irreducible** y $b > 0$. Se descompone $b$ en factores primos:
+
+- Si $b = 2^m \cdot 5^n$ (solo factores 2 y 5), el decimal es **exacto**.
+- Si $b$ no tiene ningún factor 2 ni 5, el decimal es **periódico puro**.
+- Si $b$ tiene factores 2 o 5 **y además** otros primos, el decimal es **periódico mixto**.
+
+La razón: $10 = 2 \cdot 5$, así que solo los denominadores hechos con 2 y 5 dividen a alguna potencia de 10.
+:::
+
+**Ejemplo 3.** $\dfrac{9}{40}$: como $40 = 2^3 \cdot 5$, es exacto. En efecto, $\dfrac{9}{40} = \dfrac{225}{1000} = 0{,}225$.
+
+**Ejemplo 4.** $\dfrac{5}{7}$: como $7$ no es 2 ni 5, es periódico puro, $0{,}\overline{714285}$, con periodo de 6 cifras.
+
+**Ejemplo 5.** $\dfrac{7}{15}$: como $15 = 3 \cdot 5$, es periódico mixto, $0{,}4\overline{6}$. El único factor «bueno» es el 5, que produce una cifra de anteperiodo.
+
+::: {.callout-caution}
+## El criterio exige fracción irreducible
+
+$\dfrac{3}{6}$ tiene un 3 en el denominador, pero no es periódica: al simplificar queda $\dfrac{1}{2} = 0{,}5$. Simplifica **antes** de aplicar el criterio o te equivocarás.
+:::
+
+### Applet · De fracción a decimal {.unnumbered}
+
+::: {#panel-fracDecimal .applet-panel data-applet-re="fracDecimal"}
+:::
+
+## De decimal a fracción: la generatriz
+
+El camino de vuelta también funciona siempre, y esto es lo que convierte los tres tipos de decimal en una caracterización completa de $\mathbb{Q}$.
+
+::: {.callout-note}
+## Fracción generatriz
+
+La **fracción generatriz** de una expresión decimal es la fracción irreducible que la produce. Se obtiene así.
+
+**Decimal exacto.** Se escribe el número sin coma en el numerador y una potencia de 10 con tantos ceros como decimales:
+
+$$
+0{,}136 = \dfrac{136}{1000} = \dfrac{17}{125}.
+$$
+
+**Periódico puro.** En el numerador, el número entero completo menos la parte anterior al periodo; en el denominador, tantos **nueves** como cifras tiene el periodo:
+
+$$
+1{,}\overline{27} = \dfrac{127 - 1}{99} = \dfrac{126}{99} = \dfrac{14}{11}.
+$$
+
+**Periódico mixto.** En el numerador, el número completo menos la parte que no se repite; en el denominador, tantos **nueves** como cifras del periodo seguidos de tantos **ceros** como cifras del anteperiodo:
+
+$$
+0{,}58\overline{3} = \dfrac{583 - 58}{900} = \dfrac{525}{900} = \dfrac{7}{12}.
+$$
+:::
+
+### La demostración con la incógnita
+
+Las reglas anteriores no hay que creerlas: se deducen. Sea $x = 0{,}58\overline{3}$.
+
+$$
+\begin{aligned}
+1000x &= 583{,}\overline{3} \\
+100x &= 58{,}\overline{3}
+\end{aligned}
+$$
+
+Se han elegido las potencias de 10 justas para que **las dos tengan la misma cola decimal**. Restando, la parte infinita desaparece:
+
+$$
+900x = 525 \quad \Longrightarrow \quad x = \dfrac{525}{900} = \dfrac{7}{12}.
+$$
+
+Ese $900$ es exactamente «un nueve (periodo de una cifra) y un cero (anteperiodo de una cifra)».
+
+::: {.callout-important}
+## Caracterización de los racionales
+
+Un número es racional **si y solo si** su expresión decimal es exacta o periódica.
+
+Consecuencia enorme: cualquier decimal infinito **no periódico** no puede ser racional. Ahí viven los irracionales del apartado siguiente.
+:::
+
+**Ejemplo 6.** $0{,}\overline{9} = \dfrac{9 - 0}{9} = 1$. No es una errata ni una aproximación: $0{,}\overline{9}$ y $1$ son dos nombres del mismo número. Si fueran distintos, existiría algún número estrictamente entre ellos, y no hay ninguno.
+
+**Ejemplo 7.** $2{,}4\overline{15} = \dfrac{2415 - 24}{990} = \dfrac{2391}{990} = \dfrac{797}{330}$.
+
+### Applet · Fracción generatriz {.unnumbered}
+
+::: {#panel-generatriz .applet-panel data-applet-re="generatriz"}
+:::
+
+## Operaciones y comparación
+
+### Suma y resta
+
+Se reducen a común denominador (lo más eficiente es usar el **mínimo común múltiplo**) y se suman los numeradores:
+
+$$
+\dfrac{5}{6} + \dfrac{7}{15} = \dfrac{25}{30} + \dfrac{14}{30} = \dfrac{39}{30} = \dfrac{13}{10},
+$$
+
+porque $\operatorname{mcm}(6,15) = 30$.
+
+### Producto y cociente
+
+$$
+\dfrac{a}{b} \cdot \dfrac{c}{d} = \dfrac{a \cdot c}{b \cdot d}, \qquad
+\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a \cdot d}{b \cdot c} \quad (c \neq 0).
+$$
+
+Dividir es multiplicar por el **inverso**. Conviene simplificar en cruz antes de multiplicar:
+
+$$
+\dfrac{14}{15} \cdot \dfrac{25}{21} = \dfrac{2 \cdot 5}{3 \cdot 3} = \dfrac{10}{9}.
+$$
+
+### Comparación
+
+Hay tres estrategias, y elegir bien ahorra mucho tiempo:
+
+1. **Mismo denominador**: gana el numerador mayor. $\dfrac{7}{12} > \dfrac{5}{12}$.
+2. **Productos cruzados** (con denominadores positivos): $\dfrac{a}{b} < \dfrac{c}{d} \iff a \cdot d < b \cdot c$. Así, $\dfrac{7}{9}$ frente a $\dfrac{8}{11}$: $7 \cdot 11 = 77 < 72 = 9 \cdot 8$ es falso, luego $\dfrac{7}{9} > \dfrac{8}{11}$.
+3. **Pasar a decimal**, útil cuando hay más de dos números y con signos mezclados.
+
+::: {.callout-warning}
+## Los negativos invierten la intuición
+
+$-\dfrac{1}{2} < -\dfrac{1}{3}$, aunque $\dfrac{1}{2} > \dfrac{1}{3}$. Cuanto mayor es el valor absoluto de un número negativo, **más pequeño** es el número. En la recta, más a la izquierda.
+:::
+
+## Densidad de los racionales
+
+::: {.callout-important}
+## $\mathbb{Q}$ es denso
+
+Entre dos racionales distintos cualesquiera hay **infinitos** racionales. Basta el punto medio: si $a < b$, entonces
+
+$$
+a < \dfrac{a+b}{2} < b,
+$$
+
+y el proceso se puede repetir sin fin con cada nuevo par.
+:::
+
+**Ejemplo 8.** Tres racionales entre $\dfrac{1}{3}$ y $\dfrac{1}{2}$. Punto medio: $\dfrac{1}{2}\left(\dfrac{1}{3} + \dfrac{1}{2}\right) = \dfrac{5}{12}$. Repitiendo con $\left(\dfrac{1}{3}, \dfrac{5}{12}\right)$ sale $\dfrac{3}{8}$, y con $\left(\dfrac{5}{12}, \dfrac{1}{2}\right)$ sale $\dfrac{11}{24}$. Así:
+
+$$
+\dfrac{1}{3} < \dfrac{3}{8} < \dfrac{5}{12} < \dfrac{11}{24} < \dfrac{1}{2}.
+$$
+
+**Truco alternativo.** Con denominador común grande es inmediato: $\dfrac{1}{3} = \dfrac{100}{300}$ y $\dfrac{1}{2} = \dfrac{150}{300}$, y entre medias tienes $\dfrac{101}{300}, \dfrac{102}{300}, \ldots, \dfrac{149}{300}$, cuarenta y nueve de golpe.
+
+::: {.callout-caution}
+## Denso no significa continuo
+
+La densidad es una propiedad muy fuerte, pero **no** llena la recta. Los racionales dejan agujeros: en el punto donde está $\sqrt{2}$ no hay ningún racional, y sin embargo hay racionales tan cerca de él como se quiera. Esta paradoja aparente es el motivo de que haya que construir $\mathbb{R}$.
+:::
+
+### Applet · Densidad de los racionales {.unnumbered}
+
+::: {#panel-densidad .applet-panel data-applet-re="densidad"}
+:::
+
+## Curiosidades y pensamiento crítico
+
+- El periodo de $\dfrac{1}{7} = 0{,}\overline{142857}$ tiene 6 cifras, y las de $\dfrac{2}{7}, \dfrac{3}{7}, \ldots$ son rotaciones cíclicas de las mismas seis cifras: $0{,}\overline{285714}$, $0{,}\overline{428571}$… El $142857$ se llama número cíclico por eso.
+- La calculadora **miente por omisión**: muestra $0{,}666666667$, un decimal exacto que **no** es $\dfrac{2}{3}$. Trabaja con fracciones mientras puedas y redondea solo al final.
+- Las fracciones egipcias solo admitían numerador 1: $\dfrac{3}{4}$ se escribía $\dfrac{1}{2} + \dfrac{1}{4}$. Todo racional positivo admite una descomposición así, aunque no sea única.
+- Los denominadores «raros» de la música y la informática son racionales muy concretos: un semitono temperado es $\sqrt[12]{2}$, que **no** es racional, y por eso la afinación perfecta es imposible.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa las herramientas [Factorización, m.c.d. y m.c.m.](../../factorizacion_mcd_mcm.html) y el [Entrenador de Fracciones Algebraicas](../../entrenador_fracciones_algebraicas.html).
+:::
+
+## Errores frecuentes
+
+1. Aplicar el criterio del denominador **sin simplificar** antes: $\dfrac{3}{6}$ no es periódica.
+2. Confundir anteperiodo y periodo en la generatriz, y poner los nueves y los ceros al revés. Los **nueves** cuentan cifras del periodo; los **ceros**, cifras del anteperiodo.
+3. Sumar fracciones sumando numeradores y denominadores: $\dfrac{1}{2} + \dfrac{1}{3} \neq \dfrac{2}{5}$. El resultado correcto es $\dfrac{5}{6}$.
+4. Simplificar sumas término a término: en $\dfrac{3 + 5}{3}$ no se puede «tachar» el 3. Solo se simplifican **factores** comunes, nunca sumandos.
+5. Escribir el periodo con puntos suspensivos y perder información: $0{,}12\ldots$ no dice qué se repite. Usa la barra: $0{,}\overline{12}$ o $0{,}1\overline{2}$ son números distintos.
+6. Creer que $0{,}\overline{9}$ es «casi 1». Es exactamente 1.
+7. Ordenar negativos por su valor absoluto: $-\dfrac{7}{2} < -\dfrac{5}{2}$, no al revés.
+8. Redondear en un paso intermedio y arrastrar el error al resultado final.
+9. Dar por hecho que un número con muchos decimales en la pantalla es irracional: la pantalla siempre se queda corta.
+10. Olvidar el denominador positivo en el representante canónico: $\dfrac{3}{-4}$ hay que escribirlo $-\dfrac{3}{4}$.
+
+## Qué debes saber hacer
+
+- Reconocer si un número dado es racional, aunque venga disfrazado de raíz, de decimal periódico o de porcentaje.
+- Decidir si dos fracciones son equivalentes con los productos cruzados.
+- Obtener el representante canónico de una fracción usando el máximo común divisor.
+- Predecir, mirando solo el denominador irreducible, si el decimal será exacto, periódico puro o periódico mixto, y justificar por qué.
+- Hacer la división y escribir correctamente el resultado con la notación de periodo.
+- Calcular la fracción generatriz en los tres casos, y saber deducirla con el método de la incógnita y las potencias de 10.
+- Operar y comparar fracciones eligiendo la estrategia más rápida en cada caso.
+- Encontrar tantos racionales como se pidan entre dos dados, y explicar qué significa que $\mathbb{Q}$ sea denso.
+- Explicar con un ejemplo por qué la densidad de $\mathbb{Q}$ no basta para llenar la recta.

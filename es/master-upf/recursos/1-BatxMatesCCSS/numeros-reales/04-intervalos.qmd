@@ -1,0 +1,366 @@
+---
+title: "Tema 1.4 Intervalos, semirrectas y entornos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 04-intervalos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Intervalos abiertos, cerrados y semiabiertos, semirrectas, entornos y entornos reducidos, unión e intersección de intervalos, notación de conjuntos y de valor absoluto e inecuaciones sencillas con valor absoluto, con applets manipulables.
+categories: [números reales, 1 Batx, matemáticas CCSS, intervalos, entornos, inecuaciones]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Para qué hacen falta los intervalos
+
+Casi ninguna situación real se describe con un solo número: se describe con un **tramo** de la recta. La velocidad permitida en una carretera, las notas que aprueban, las edades que pagan entrada reducida, los valores en los que una función existe, el margen de error de una medida… Todo son trozos de $\mathbb{R}$.
+
+Un **intervalo** es precisamente eso: el conjunto de todos los números reales comprendidos entre dos valores. Y como los reales llenan la recta sin agujeros (apartado anterior), un intervalo contiene infinitos números, aunque sea cortísimo.
+
+::: {.callout-tip}
+## Tres notaciones para lo mismo
+
+Un mismo tramo se puede escribir de tres formas, y hay que saber pasar de una a otra con soltura:
+
+- **Notación de intervalo**: $[2, 7)$.
+- **Notación de conjunto con desigualdades**: $\{x \in \mathbb{R} : 2 \leq x < 7\}$.
+- **Descripción verbal o gráfica**: «desde el 2 incluido hasta el 7 sin incluir».
+
+En los enunciados de examen te pueden pedir cualquiera de las tres.
+:::
+
+## Intervalos acotados
+
+::: {.callout-note}
+## Los cuatro tipos, con $a < b$
+
+**Intervalo abierto.** No incluye los extremos:
+
+$$
+(a, b) = \{x \in \mathbb{R} \;:\; a < x < b\}
+$$
+
+**Intervalo cerrado.** Incluye los dos extremos:
+
+$$
+[a, b] = \{x \in \mathbb{R} \;:\; a \leq x \leq b\}
+$$
+
+**Semiabierto por la izquierda.** Incluye solo el extremo derecho:
+
+$$
+(a, b] = \{x \in \mathbb{R} \;:\; a < x \leq b\}
+$$
+
+**Semiabierto por la derecha.** Incluye solo el extremo izquierdo:
+
+$$
+[a, b) = \{x \in \mathbb{R} \;:\; a \leq x < b\}
+$$
+:::
+
+En la recta, el criterio de dibujo es universal: **punto relleno** si el extremo entra, **punto hueco** si no entra.
+
+La **amplitud** o longitud del intervalo es $b - a$ en los cuatro casos: incluir o no los extremos no cambia la longitud, aunque sí cambia el conjunto.
+
+**Ejemplo 1.** Traducir enunciados a intervalos:
+
+- «La temperatura estuvo entre $18$ y $24$ grados, ambos alcanzados»: $[18, 24]$.
+- «Los aprobados son las notas de 5 en adelante, hasta el 10»: $[5, 10]$.
+- «La probabilidad es un número entre 0 y 1, ambos posibles»: $[0, 1]$.
+- «Hay que superar los 26 puntos sin llegar a 40»: $(26, 40)$.
+
+::: {.callout-warning}
+## Dos casos límite que conviene tener claros
+
+Con $a = b$, el intervalo cerrado se reduce a un punto: $[a, a] = \{a\}$. Y $(a,a)$, $(a,a]$ o $[a,a)$ son el **conjunto vacío** $\varnothing$, porque piden a la vez $x > a$ y $x < a$.
+
+Además, escribir $[7, 2]$ no significa nada: el extremo izquierdo debe ser el menor.
+:::
+
+## Semirrectas
+
+Cuando el tramo no termina por uno de los lados, se usa el símbolo de infinito.
+
+::: {.callout-note}
+## Las cuatro semirrectas
+
+$$
+\begin{aligned}
+(a, +\infty) &= \{x \in \mathbb{R} : x > a\} \\
+[a, +\infty) &= \{x \in \mathbb{R} : x \geq a\} \\
+(-\infty, b) &= \{x \in \mathbb{R} : x < b\} \\
+(-\infty, b] &= \{x \in \mathbb{R} : x \leq b\}
+\end{aligned}
+$$
+
+Y la recta completa es $\mathbb{R} = (-\infty, +\infty)$.
+:::
+
+::: {.callout-important}
+## El infinito no es un número
+
+$+\infty$ y $-\infty$ son símbolos que indican «sin final por ese lado», no valores que se puedan alcanzar. Por eso el paréntesis junto al infinito es **obligatorio**: escribir $[-\infty, 3]$ es un error, porque no existe ningún número que sea $-\infty$ y pueda estar incluido.
+:::
+
+Las semirrectas positiva y negativa tienen nombre propio: $\mathbb{R}^{+} = (0, +\infty)$ y $\mathbb{R}^{-} = (-\infty, 0)$. Fíjate en que el cero no está en ninguna de las dos, y de ahí la descomposición
+
+$$
+\mathbb{R} = (-\infty, 0) \cup \{0\} \cup (0, +\infty).
+$$
+
+**Ejemplo 2.** «Solo pueden votar los mayores de edad» es $[18, +\infty)$ si se cuenta la edad como número real. «El descuento se aplica hasta los 18 años inclusive» es $(0, 18]$.
+
+### Applet · Intervalos y semirrectas {.unnumbered}
+
+::: {#panel-intervalos .applet-panel data-applet-re="intervalos"}
+:::
+
+## Unión e intersección de intervalos
+
+Los intervalos son conjuntos, así que se pueden combinar con las operaciones de conjuntos. Y hay una traducción lingüística que resuelve la mitad de los problemas:
+
+::: {.callout-tip}
+## Traducción de las dos operaciones
+
+- **Intersección** $A \cap B$: los números que están en $A$ **y** en $B$ (las dos condiciones a la vez).
+- **Unión** $A \cup B$: los números que están en $A$ **o** en $B$ (al menos una de las dos).
+
+Cuando un enunciado dice «y», busca la intersección; cuando dice «o», la unión.
+:::
+
+### Cómo se calcula la intersección
+
+Se toma el **mayor** de los extremos izquierdos y el **menor** de los derechos. Si un extremo coincide en ambos intervalos, solo se incluye cuando lo incluyen los dos.
+
+**Ejemplo 3.** $A = [-2, 3)$ y $B = (1, 5]$.
+
+$$
+A \cap B = (1, 3), \qquad A \cup B = [-2, 5].
+$$
+
+El $1$ queda fuera porque $B$ no lo incluye; el $3$ queda fuera porque $A$ no lo incluye.
+
+**Ejemplo 4.** $A = [-4, -1)$ y $B = (2, 6]$. No hay ningún número común:
+
+$$
+A \cap B = \varnothing, \qquad A \cup B = [-4, -1) \cup (2, 6].
+$$
+
+::: {.callout-warning}
+## La unión no siempre es un intervalo
+
+Si los dos intervalos están separados, la unión se queda como **dos trozos** y hay que escribirla con el símbolo $\cup$. Escribir $[-4, 6]$ en el ejemplo anterior sería un error grave: estarías metiendo el $0$, que no está ni en $A$ ni en $B$.
+
+La unión es un solo intervalo únicamente si se solapan o si se tocan cerrando el punto de contacto: $[0,2) \cup [2,5) = [0,5)$, pero $[0,2) \cup (2,5) $ deja fuera el 2.
+:::
+
+**Ejemplo 5.** Intervalos encajados: $A = [0, 10]$ y $B = (2, 4)$. Como $B \subset A$:
+
+$$
+A \cap B = B = (2,4), \qquad A \cup B = A = [0, 10].
+$$
+
+**Ejemplo 6.** Con semirrectas: $A = (-\infty, 1]$ y $B = (-3, +\infty)$.
+
+$$
+A \cap B = (-3, 1], \qquad A \cup B = \mathbb{R}.
+$$
+
+### Applet · Unión e intersección de intervalos {.unnumbered}
+
+::: {#panel-operaIntervalos .applet-panel data-applet-re="operaIntervalos"}
+:::
+
+## Entornos
+
+Muchas veces no interesa un tramo cualquiera, sino los puntos que están **cerca** de uno dado. Esa es la idea de entorno, y es el lenguaje con el que se definirán los límites y la continuidad en cursos posteriores.
+
+::: {.callout-note}
+## Entorno de centro $a$ y radio $r$
+
+Dados $a \in \mathbb{R}$ y $r > 0$, el **entorno** de centro $a$ y radio $r$ es el conjunto de los números que distan de $a$ menos que $r$:
+
+$$
+E(a, r) = (a - r,\, a + r) = \{x \in \mathbb{R} \;:\; |x - a| < r\}
+$$
+
+Es siempre un intervalo **abierto** y **simétrico** respecto de su centro, de amplitud $2r$.
+:::
+
+La imagen mental es el compás: se pincha en $a$, se abre una distancia $r$ y se marca todo lo que queda dentro.
+
+**Ejemplo 7.** $E(5, 2) = (3, 7)$, porque $5 - 2 = 3$ y $5 + 2 = 7$.
+
+**Ejemplo 8.** $E(2, 4) = (-2, 6)$. El radio puede ser mayor que el centro sin ningún problema.
+
+### El camino inverso: de intervalo a entorno
+
+Todo intervalo abierto y acotado es un entorno. Para averiguar cuál:
+
+$$
+(b, c) = E\left( \dfrac{b+c}{2},\; \dfrac{c-b}{2} \right)
+$$
+
+El **centro** es el punto medio y el **radio** es la mitad de la amplitud.
+
+**Ejemplo 9.** $(3, 10)$: centro $\dfrac{3+10}{2} = 6{,}5$ y radio $\dfrac{10-3}{2} = 3{,}5$, luego $(3,10) = E(6{,}5;\, 3{,}5)$.
+
+**Ejemplo 10.** $(-8, 1)$: centro $\dfrac{-8+1}{2} = -3{,}5$ y radio $\dfrac{1-(-8)}{2} = 4{,}5$, luego $(-8,1) = E(-3{,}5;\, 4{,}5)$.
+
+::: {.callout-caution}
+## Un intervalo cerrado no es un entorno
+
+$[3, 7]$ **no** es $E(5,2)$, porque el entorno excluye los extremos. Existen los **entornos cerrados**, que se escriben $\overline{E}(a,r) = [a-r, a+r]$ y se usan poco. Si el problema no dice lo contrario, entorno significa entorno abierto.
+:::
+
+### Entornos reducidos
+
+::: {.callout-note}
+## Entorno reducido
+
+El **entorno reducido** de centro $a$ y radio $r$ es el entorno sin su centro:
+
+$$
+E^{*}(a, r) = E(a,r) - \{a\} = (a-r,\, a) \cup (a,\, a+r) = \{x \in \mathbb{R} \;:\; 0 < |x - a| < r\}
+$$
+
+La condición $0 < |x-a|$ es exactamente $x \neq a$.
+:::
+
+**Ejemplo 11.** $E^{*}(5, 2) = (3, 5) \cup (5, 7)$. Contiene $4{,}999$ y $5{,}001$, pero no el $5$.
+
+::: {.callout-important}
+## Por qué se quita el centro
+
+Cuando se estudia el comportamiento de una función **cerca** de un punto, muchas veces la función no está definida **en** ese punto. Por ejemplo, $\dfrac{x^2 - 4}{x - 2}$ no existe en $x = 2$, pero se puede analizar en cualquier entorno reducido de 2, y allí vale $x + 2$. El entorno reducido es la herramienta que permite decir «cerca de, pero no en».
+:::
+
+### Applet · Entornos y entornos reducidos {.unnumbered}
+
+::: {#panel-entornos .applet-panel data-applet-re="entornos"}
+:::
+
+## Inecuaciones sencillas con valor absoluto
+
+Aquí se juntan el valor absoluto del apartado anterior y los intervalos de este. La clave es leer siempre el valor absoluto como **distancia**.
+
+::: {.callout-note}
+## Las dos reglas básicas, con $r > 0$
+
+**Menor que: un intervalo.**
+
+$$
+|x - a| < r \iff -r < x - a < r \iff a - r < x < a + r \iff x \in (a-r,\, a+r)
+$$
+
+**Mayor que: dos semirrectas.**
+
+$$
+|x - a| > r \iff x - a < -r \;\text{ o }\; x - a > r \iff x \in (-\infty,\, a-r) \cup (a+r,\, +\infty)
+$$
+
+Con $\leq$ y $\geq$ es lo mismo, cambiando los intervalos abiertos por cerrados.
+:::
+
+Lo importante es entender **por qué**: los puntos a distancia menor que $r$ de $a$ forman un tramo alrededor de $a$ (una sola pieza), mientras que los que están a distancia mayor son los dos extremos de la recta (dos piezas separadas).
+
+**Ejemplo 12.** Resolver $|x - 4| \leq 3$.
+
+$$
+-3 \leq x - 4 \leq 3 \quad \Longrightarrow \quad 1 \leq x \leq 7 \quad \Longrightarrow \quad x \in [1, 7].
+$$
+
+**Ejemplo 13.** Resolver $|x + 2| > 5$. Primero se escribe como distancia al punto $-2$, ya que $|x + 2| = |x - (-2)|$:
+
+$$
+x + 2 < -5 \;\text{ o }\; x + 2 > 5 \quad \Longrightarrow \quad x < -7 \;\text{ o }\; x > 3 \quad \Longrightarrow \quad x \in (-\infty, -7) \cup (3, +\infty).
+$$
+
+**Ejemplo 14.** Resolver $|2x - 6| < 4$. Se puede sacar factor común el coeficiente usando $|2x-6| = 2|x-3|$:
+
+$$
+2|x-3| < 4 \quad \Longrightarrow \quad |x - 3| < 2 \quad \Longrightarrow \quad x \in (1, 5) = E(3, 2).
+$$
+
+**Ejemplo 15.** Escribir con valor absoluto el intervalo $(-1, 9)$. Centro $4$, radio $5$, luego la condición es $|x - 4| < 5$.
+
+::: {.callout-warning}
+## Casos sin solución y con solución total
+
+- $|x - 3| < -1$: **no tiene solución**, porque un valor absoluto nunca es negativo. La solución es $\varnothing$.
+- $|x - 3| > -1$: la cumplen **todos** los reales. La solución es $\mathbb{R}$.
+- $|x - 3| < 0$ tampoco tiene solución, mientras que $|x-3| \leq 0$ solo la cumple $x = 3$.
+
+Antes de operar, mira el signo del segundo miembro: te puede ahorrar todo el trabajo.
+:::
+
+::: {.callout-caution}
+## Errores de escritura al resolver
+
+Nunca escribas la solución de una inecuación de tipo «mayor que» como una desigualdad doble encadenada: $x < -7$ o $x > 3$ **no** es $3 < x < -7$, que no significa nada. Cuando la solución tiene dos piezas, la escritura correcta es la unión de intervalos.
+:::
+
+## Resumen de traducciones
+
+Esta tabla es la que hay que tener automatizada:
+
+| Con desigualdades | Como intervalo | Como entorno | Con valor absoluto |
+|---|---|---|---|
+| $3 < x < 7$ | $(3, 7)$ | $E(5, 2)$ | $\lvert x - 5 \rvert < 2$ |
+| $-2 \leq x \leq 6$ | $[-2, 6]$ | $\overline{E}(2, 4)$ | $\lvert x - 2 \rvert \leq 4$ |
+| $x > 4$ | $(4, +\infty)$ | — | — |
+| $x \leq -1$ | $(-\infty, -1]$ | — | — |
+| $x \neq 5$ y $\lvert x-5 \rvert < 2$ | $(3,5) \cup (5,7)$ | $E^{*}(5,2)$ | $0 < \lvert x - 5 \rvert < 2$ |
+
+## Curiosidades y pensamiento crítico
+
+- El intervalo $[0,1]$ y el intervalo $[0,100]$ tienen exactamente la misma cantidad de números: basta emparejar cada $x$ con $100x$. La longitud y el cardinal no tienen nada que ver.
+- Los márgenes de error de las mediciones son entornos disfrazados: «$12{,}4 \pm 0{,}2$ cm» significa que la medida está en $E(12{,}4;\, 0{,}2) = (12{,}2;\, 12{,}6)$.
+- En estadística, un intervalo de confianza es un intervalo centrado en la media muestral, es decir, un entorno cuyo radio se calcula a partir del nivel de confianza.
+- Un entorno de radio $10^{-9}$ parece vacío en cualquier dibujo, y contiene infinitos racionales e infinitos irracionales.
+- La palabra «cerrado» no significa «pequeño» ni «acotado»: $[3, +\infty)$ es un conjunto cerrado y no acotado, y $(0,1)$ es abierto y acotado.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el entrenador [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html).
+:::
+
+## Errores frecuentes
+
+1. Confundir el punto hueco con el relleno al dibujar, o incluir un extremo que el intervalo excluye.
+2. Escribir un corchete junto al infinito: $[-\infty, 4]$ no tiene sentido; es $(-\infty, 4]$.
+3. Escribir los extremos en orden inverso, como $[5, 2]$.
+4. Dar como unión un solo intervalo cuando los dos trozos están separados.
+5. En la intersección, tomar el menor de los extremos izquierdos en lugar del mayor.
+6. Olvidar el criterio de los extremos coincidentes: en $[0,3) \cap [3,5]$ la intersección es vacía, no $\{3\}$.
+7. Calcular el radio de un entorno como la amplitud completa en lugar de la mitad.
+8. Llamar entorno a un intervalo cerrado o a uno no simétrico, como $(1, 8)$ pensando que su centro es 1.
+9. Escribir $E^{*}(a,r)$ como un solo intervalo, olvidando que hay que quitar el centro.
+10. Resolver $|x - a| > r$ como una desigualdad doble encadenada, en lugar de una unión de dos semirrectas.
+11. Intentar resolver $|x + 1| < -3$ operando, sin darse cuenta de que no tiene solución.
+12. Perder la $x$ de vista al despejar: en $|2x - 6| < 4$, la solución es un intervalo para $x$, no para $2x$.
+
+## Qué debes saber hacer
+
+- Escribir cualquier tramo de la recta en las tres notaciones: intervalo, conjunto con desigualdades y gráfico.
+- Distinguir intervalo abierto, cerrado y semiabierto, y dibujarlos con el criterio de punto hueco y punto relleno.
+- Manejar semirrectas y justificar por qué el infinito nunca se incluye.
+- Calcular la amplitud y el punto medio de un intervalo acotado.
+- Calcular la unión y la intersección de dos intervalos cualesquiera, incluidos los casos disjuntos, encajados, pegados y con semirrectas.
+- Decidir cuándo la unión es un solo intervalo y cuándo hay que dejarla en dos trozos.
+- Pasar de entorno a intervalo y de intervalo abierto a entorno, calculando centro y radio.
+- Escribir un entorno reducido como unión de dos intervalos y con la doble desigualdad $0 < |x-a| < r$.
+- Resolver inecuaciones sencillas con valor absoluto de los tipos $|x - a| < r$ y $|x - a| > r$, y expresar la solución como intervalo o unión de intervalos.
+- Reconocer las inecuaciones con valor absoluto que no tienen solución o que las cumplen todos los reales.
+- Traducir un enunciado en palabras («margen de error», «al menos», «entre», «como máximo») a la notación de intervalos.

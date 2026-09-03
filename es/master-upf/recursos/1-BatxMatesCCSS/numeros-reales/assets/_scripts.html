@@ -1,60 +1,62 @@
 <!-- =====================================================================
-     _scripts.html — NÚMEROS REALES · 1r Batx Mates CCSS
+     _scripts.html — TEMA 1 NÚMEROS REALES · 1.º Batx Mates CCSS
+     Ubicación: 1-BatxMatesCCSS/numeros-reales/assets/_scripts.html
 
-     Se inyecta al final de <body> en las páginas del tema, mediante
-     format: html: include-after-body en cada .qmd.
+     Se inyecta al final de <body> en cada .qmd del tema:
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           html-math-method: katex
 
-     ORDEN OBLIGATORIO
-       1) applets.css        REUTILIZADA del tema de ecuaciones
-       2) katex.min.css      KaTeX servido en LOCAL, sin CDN
-       3) katex.min.js
-       4) auto-render        define window.renderMathInElement
-       5) re-applets.js       módulo 1 -> window.REAL
-       6) re-applets-extra.js módulo de ampliación -> window.REALX
+     ORDEN DE CARGA OBLIGATORIO
+       1) ../assets/applets.css        estilos compartidos de la asignatura
+       2) assets/re-applets.css       estilos propios de Números reales
+       3) ../assets/katex/katex.min.css   KaTeX local, sin CDN
+       4) ../assets/katex/katex.min.js    motor local de fórmulas
+       5) assets/re-applets.js        núcleo window.RE
+       6) assets/re-applets-a.js      racionales, irracionales, reales, intervalos
+       7) assets/re-applets-b.js      notación científica, aproximaciones, errores
+       8) assets/re-applets-c.js      radicales y logaritmos
 
-     ATRIBUTOS DE INSERCIÓN, uno por módulo, para que no se pisen:
-       polinomios                 data-applet="clave"
-       ecuaciones e inecuaciones  data-applet-eq="clave"
-       sistemas                   data-applet-sys="clave"
-       funciones                  data-applet-fn="clave"
-       números reales             data-applet-re="clave"
-       números reales, ampliación data-applet-rex="clave"
+     RUTAS
+       Los .qmd se renderizan dentro de numeros-reales/. Por eso
+       ../assets/ apunta a 1-BatxMatesCCSS/assets/, donde ya están
+       applets.css y katex/. Los módulos propios viven en
+       numeros-reales/assets/.
+
+     KaTeX se aplica a mano sobre los nodos data-tex que genera el motor,
+     con throwOnError:false. No se usa OJS, auto-render, CDN ni librerías
+     de terceros: todo funciona también sin conexión.
+
+     INSERCIÓN DE APPLETS EN LOS .qmd
+       ::: {#panel-clave .applet-panel data-applet-re="clave"}
+       :::
 
      RECORDATORIO PARA es/_quarto.yml
        resources:
-         - files/**
          - master-upf/recursos/1-BatxMatesCCSS/assets/**
-         - master-upf/recursos/1-BatxMatesCCSS/polinomios/assets/**
-         - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/assets/**
-         - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
-         - master-upf/recursos/1-BatxMatesCCSS/funciones/assets/**
          - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/assets/**
      ===================================================================== -->
 
 <link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/re-applets.css">
 
 <!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
 <link rel="stylesheet" href="../assets/katex/katex.min.css">
 <script defer src="../assets/katex/katex.min.js"></script>
-<script defer src="../assets/katex/contrib/auto-render.min.js"></script>
 
-<!-- Módulo principal y módulo de ampliación, en este orden. -->
+<!-- Núcleo y módulos, en este orden. -->
 <script defer src="assets/re-applets.js"></script>
-<script defer src="assets/re-applets-extra.js"></script>
+<script defer src="assets/re-applets-a.js"></script>
+<script defer src="assets/re-applets-b.js"></script>
+<script defer src="assets/re-applets-c.js"></script>
 
 <script>
   window.addEventListener('load', function () {
-    if (!window.katex) {
-      console.warn('[reales] KaTeX no cargado: revisa ../assets/katex/.');
-    }
-    if (!window.renderMathInElement) {
-      console.warn('[reales] auto-render no disponible.');
-    }
-    if (!window.REAL) {
-      console.warn('[reales] re-applets.js no se ha cargado.');
-    }
-    if (!window.REALX) {
-      console.warn('[reales] re-applets-extra.js no se ha cargado.');
-    }
+    if (!window.katex) console.warn('[reales] KaTeX no cargado: revisa ../assets/katex/.');
+    if (!window.RE) { console.warn('[reales] re-applets.js no se ha cargado.'); return; }
+    if (window.RE.extraA !== true) console.warn('[reales] falta re-applets-a.js');
+    if (window.RE.extraB !== true) console.warn('[reales] falta re-applets-b.js');
+    if (window.RE.extraC !== true) console.warn('[reales] falta re-applets-c.js');
   });
 </script>

@@ -1,0 +1,291 @@
+---
+title: "Tema 1.2 Números irracionales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 02-numeros-irracionales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de número irracional, demostración por reducción al absurdo de la irracionalidad de la raíz de 2, reglas de formación de irracionales, los números pi, e y el número de oro, raíces no exactas y curiosidades históricas, con applets manipulables.
+categories: [números reales, 1 Batx, matemáticas CCSS, irracionales, número de oro, pi]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El problema que no cabía en $\mathbb{Q}$
+
+En el apartado anterior quedó demostrado que las fracciones producen exactamente dos tipos de decimales: exactos y periódicos. La pregunta natural es inmediata: **¿existen decimales infinitos que no sean periódicos?**
+
+Existen, y son fáciles de fabricar. Mira este número:
+
+$$
+0{,}101001000100001000001\ldots
+$$
+
+donde tras cada 1 se pone un cero más que antes. Es infinito, la regla de construcción está clarísima, no hay ninguna ambigüedad sobre qué cifra ocupa cada posición… y **no hay periodo**, porque los bloques de ceros crecen indefinidamente y ningún bloque se repite cíclicamente. Por la caracterización del apartado anterior, este número no puede escribirse como fracción de enteros.
+
+::: {.callout-note}
+## Definición de número irracional
+
+Un número es **irracional** si su expresión decimal es **infinita y no periódica**; equivalentemente, si **no** se puede escribir como cociente de dos números enteros.
+
+El conjunto de los irracionales se denota $\mathbb{I}$ (a veces $\mathbb{R} \setminus \mathbb{Q}$), y se define por exclusión:
+
+$$
+\mathbb{I} = \mathbb{R} - \mathbb{Q}.
+$$
+:::
+
+::: {.callout-caution}
+## Un número con muchos decimales no es «casi irracional»
+
+$\dfrac{1}{7} = 0{,}\overline{142857}$ llena la pantalla de la calculadora, y es racional. $0{,}75$ tiene dos decimales, y también. Lo que decide no es **cuántos** decimales hay, sino si son **infinitos** y si **se repiten cíclicamente**. Ninguna calculadora puede responder a eso: hace falta un argumento matemático.
+:::
+
+### Applet · Fabricar números irracionales {.unnumbered}
+
+::: {#panel-irracionales .applet-panel data-applet-re="irracionales"}
+:::
+
+## Reglas de formación de irracionales
+
+Hay tres fábricas fiables de números irracionales.
+
+### Regla de las cifras
+
+Se inventa una **regla de construcción** de las cifras decimales que no dé lugar a periodo:
+
+- $0{,}1234567891011121314\ldots$ escribiendo todos los naturales seguidos.
+- $1{,}2468101214\ldots$ escribiendo los números pares.
+- $0{,}1101001000100001\ldots$ aumentando cada vez el bloque de ceros.
+
+El número queda perfectamente determinado (sabemos qué cifra hay en cada posición) y a la vez no es periódico, así que es irracional.
+
+### Suma y producto con racionales
+
+::: {.callout-important}
+## Racional operado con irracional
+
+Si $q$ es racional e $i$ es irracional:
+
+- $q + i$ es **irracional**.
+- $q \cdot i$ es **irracional** siempre que $q \neq 0$.
+
+Demostración de la primera (por reducción al absurdo): si $q + i$ fuera racional, digamos $q + i = r \in \mathbb{Q}$, entonces $i = r - q$ sería resta de dos racionales, y por tanto racional, en contra de lo supuesto.
+:::
+
+Así, sabiendo que $\sqrt{2}$ es irracional, son irracionales de regalo $\sqrt{2} + 3$, $-\sqrt{2}$, $\dfrac{\sqrt{2}}{5}$, $\dfrac{1 + \sqrt{2}}{2}$ y $100\sqrt{2}$.
+
+::: {.callout-warning}
+## Entre irracionales no hay ninguna regla
+
+Irracional más irracional puede ser racional: $(2 + \sqrt{2}) + (2 - \sqrt{2}) = 4$.
+Irracional por irracional puede ser racional: $\sqrt{2} \cdot \sqrt{2} = 2$, y $\sqrt{2} \cdot \sqrt{8} = 4$.
+Irracional entre irracional también: $\dfrac{\sqrt{18}}{\sqrt{2}} = 3$.
+
+Por tanto $\mathbb{I}$ **no** es cerrado para las operaciones: no hay teorema que valga, hay que estudiar cada caso.
+:::
+
+### Raíces no exactas
+
+::: {.callout-note}
+## Criterio de las raíces cuadradas
+
+Si $n$ es un número natural que **no** es un cuadrado perfecto, entonces $\sqrt{n}$ es irracional.
+
+Así, $\sqrt{2}, \sqrt{3}, \sqrt{5}, \sqrt{6}, \sqrt{7}, \sqrt{8}, \sqrt{10}, \ldots$ son irracionales, mientras que $\sqrt{1}, \sqrt{4}, \sqrt{9}, \sqrt{16}, \sqrt{25}, \ldots$ son enteros.
+:::
+
+La versión general es igual de útil: $\sqrt[k]{n}$ es irracional salvo que **todos** los exponentes de la factorización en primos de $n$ sean múltiplos de $k$. Por ejemplo $\sqrt[3]{54}$ es irracional, ya que $54 = 2 \cdot 3^3$ y el 2 aparece con exponente 1; en cambio $\sqrt[3]{216} = 6$, porque $216 = 2^3 \cdot 3^3$.
+
+## La irracionalidad de $\sqrt{2}$
+
+Este es el resultado histórico que rompió la matemática griega, y una de las demostraciones más bonitas que vas a ver: se demuestra que algo **no** existe.
+
+::: {.callout-important}
+## Teorema
+
+$\sqrt{2}$ no es un número racional.
+:::
+
+**Demostración (por reducción al absurdo).**
+
+Se supone lo contrario de lo que se quiere probar y se busca una contradicción.
+
+**Paso 1.** Supongamos que $\sqrt{2}$ es racional. Entonces se puede escribir
+
+$$
+\sqrt{2} = \dfrac{p}{q}
+$$
+
+con $p, q$ enteros, $q \neq 0$, y la fracción **irreducible** (siempre se puede simplificar hasta que lo sea: es el representante canónico del apartado 1). Esta hipótesis de irreducibilidad es la clave de toda la demostración.
+
+**Paso 2.** Elevando al cuadrado los dos miembros:
+
+$$
+2 = \dfrac{p^2}{q^2} \quad \Longrightarrow \quad p^2 = 2q^2.
+$$
+
+**Paso 3.** El miembro derecho es par, luego $p^2$ es par. Y si $p^2$ es par, $p$ tiene que ser par: si $p$ fuera impar, $p = 2k+1$, su cuadrado sería $p^2 = 4k^2 + 4k + 1$, impar.
+
+**Paso 4.** Al ser $p$ par, se escribe $p = 2k$ con $k$ entero. Sustituyendo:
+
+$$
+(2k)^2 = 2q^2 \quad \Longrightarrow \quad 4k^2 = 2q^2 \quad \Longrightarrow \quad q^2 = 2k^2.
+$$
+
+**Paso 5.** Ahora $q^2$ es par, y por el mismo razonamiento del paso 3, $q$ es par.
+
+**Paso 6.** Contradicción: $p$ y $q$ son los dos pares, así que la fracción $\dfrac{p}{q}$ se puede simplificar por 2. Pero habíamos supuesto que era **irreducible**. Imposible.
+
+Como el único punto de partida ha sido suponer que $\sqrt{2}$ es racional, y eso conduce a un absurdo, la suposición es falsa. Por tanto $\sqrt{2} \notin \mathbb{Q}$. $\blacksquare$
+
+::: {.callout-tip}
+## La misma demostración sirve para muchas más raíces
+
+El argumento funciona con cualquier primo: cambiando el 2 por 3 se demuestra que $\sqrt{3}$ es irracional; por 5, que lo es $\sqrt{5}$. La versión general se hace contando **exponentes** en la factorización: en $p^2 = n q^2$, cada primo aparece con exponente par en $p^2$ y en $q^2$; si $n$ tiene algún primo con exponente impar, los dos lados no pueden coincidir.
+
+Ojo: el argumento **no** funciona con $\sqrt{4}$, y no debe funcionar, porque $\sqrt{4} = 2$ sí es racional. Si crees que has demostrado que $\sqrt{4}$ es irracional, revisa el paso 3.
+:::
+
+### Applet · La irracionalidad de la raíz de 2 {.unnumbered}
+
+::: {#panel-raizDos .applet-panel data-applet-re="raizDos"}
+:::
+
+## Los irracionales con nombre propio
+
+### El número $\pi$
+
+$\pi$ es el cociente entre la longitud de una circunferencia y su diámetro, el mismo para todas las circunferencias:
+
+$$
+\pi = 3{,}14159265358979\ldots
+$$
+
+Su historia es la historia de la precisión del cálculo:
+
+| Época | Valor usado | Aproximación decimal |
+|---|---|---|
+| Textos antiguos | $3$ | $3$ |
+| Egipto | $\dfrac{256}{81}$ | $3{,}16049\ldots$ |
+| Babilonia | $3 + \dfrac{1}{8}$ | $3{,}125$ |
+| Matemática árabe medieval | 17 cifras exactas | — |
+| Primeras computadoras (1949) | 2\,037 cifras | — |
+| Cálculo distribuido (2011) | más de $10$ billones de cifras | — |
+
+::: {.callout-note}
+## Aproximaciones útiles de $\pi$
+
+$\dfrac{22}{7} = 3{,}\overline{142857}$ acierta 2 decimales y $\dfrac{355}{113} = 3{,}14159292\ldots$ acierta 6. Son **aproximaciones racionales**, no $\pi$: por muy buena que sea una fracción, siempre falla a partir de alguna cifra.
+:::
+
+### El número $e$
+
+$$
+e = 2{,}718281828459045\ldots
+$$
+
+Es la base de los **logaritmos neperianos** ($\ln x = \log_e x$) y aparece en todos los procesos de crecimiento o decrecimiento continuo: una población que crece de forma continua sigue $P = P_0 \cdot e^{t}$, y también gobierna el interés compuesto continuo, la desintegración radiactiva y el enfriamiento de un cuerpo.
+
+Se puede obtener como límite de $\left(1 + \dfrac{1}{n}\right)^n$ al crecer $n$: con $n = 10$ da $2{,}5937$; con $n = 1\,000$, $2{,}7169$; con $n = 1\,000\,000$, $2{,}718280$. Euler llegó a calcular 23 cifras a mano y le dio el nombre que aún usamos.
+
+::: {.callout-caution}
+## Cuidado con la memoria visual
+
+Las cifras $2{,}718281828\ldots$ parecen repetir «1828», y muchos estudiantes concluyen que $e$ es periódico. La cifra siguiente es $4$, y luego $59045\ldots$: la repetición es una casualidad de las primeras cifras. Un periodo tiene que repetirse **siempre**, no dos veces.
+:::
+
+### El número de oro $\varphi$
+
+$$
+\varphi = \dfrac{1 + \sqrt{5}}{2} = 1{,}6180339887498948\ldots
+$$
+
+Aparece al resolver el problema de la **proporción áurea**: dividir un segmento en dos partes $a$ y $b$ (con $a > b$) de modo que el total sea al mayor lo que el mayor es al menor:
+
+$$
+\dfrac{a + b}{a} = \dfrac{a}{b} = \varphi.
+$$
+
+Llamando $x = \dfrac{a}{b}$, la condición se convierte en $1 + \dfrac{1}{x} = x$, es decir $x^2 - x - 1 = 0$, cuya solución positiva es $\varphi$. Que en la fórmula aparezca $\sqrt{5}$ garantiza que $\varphi$ es irracional (racional más irracional, dividido por racional).
+
+::: {.callout-important}
+## Propiedades que hacen único a $\varphi$
+
+$$
+\varphi^2 = \varphi + 1, \qquad \dfrac{1}{\varphi} = \varphi - 1 = 0{,}6180339\ldots
+$$
+
+Es el único número positivo cuyo inverso se obtiene restándole 1. Además, los cocientes de términos consecutivos de la sucesión de Fibonacci ($1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots$) se acercan a $\varphi$:
+
+$$
+\dfrac{8}{5} = 1{,}6, \quad \dfrac{13}{8} = 1{,}625, \quad \dfrac{21}{13} = 1{,}6154\ldots, \quad \dfrac{55}{34} = 1{,}61764\ldots
+$$
+:::
+
+### Applet · El número de oro {.unnumbered}
+
+::: {#panel-aureo .applet-panel data-applet-re="aureo"}
+:::
+
+## Algebraicos y trascendentes
+
+No todos los irracionales son igual de «salvajes».
+
+::: {.callout-note}
+## Dos familias de irracionales
+
+- Un número es **algebraico** si es solución de alguna ecuación polinómica con coeficientes enteros. $\sqrt{2}$ lo es ($x^2 - 2 = 0$), y $\varphi$ también ($x^2 - x - 1 = 0$).
+- Un número es **trascendente** si no lo es de ninguna. $\pi$ y $e$ son trascendentes; demostrarlo costó siglos.
+:::
+
+De la trascendencia de $\pi$ se deduce que **la cuadratura del círculo es imposible**: no hay forma de construir con regla y compás un cuadrado con la misma área que un círculo dado, porque las construcciones con regla y compás solo producen ciertos números algebraicos. Un problema abierto durante más de dos mil años se cerró estudiando el tipo de número que es $\pi$.
+
+## Curiosidades históricas y pensamiento crítico
+
+- El descubrimiento de que la diagonal del cuadrado de lado 1 no es conmensurable con el lado fue una crisis intelectual para la escuela pitagórica, que sostenía que todo era expresable mediante razones de números enteros. La diagonal mide $\sqrt{2}$ por el teorema de Pitágoras, así que el contraejemplo estaba dibujado en cualquier baldosa.
+- La palabra «irracional» no significa «ilógico»: viene de *ratio*, razón o cociente. Irracional es lo que no es cociente de enteros.
+- Hay muchísimos más irracionales que racionales, aunque los irracionales sean más difíciles de escribir. Se verá en el apartado siguiente con la idea de cardinal.
+- Si eliges un número «al azar» del intervalo $(0,1)$, la probabilidad de que salga racional es cero. Los números con los que trabajamos a diario son la excepción, no la regla.
+- Nadie ha demostrado todavía si $\pi + e$ es irracional. Parece obvio, pero no hay demostración.
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el entrenador [Recta real, Pitágoras y Tales](../../recta_real_pitagoras_tales.html).
+:::
+
+## Errores frecuentes
+
+1. Decidir si un número es irracional mirando la pantalla de la calculadora. La pantalla siempre muestra un decimal finito, es decir, un racional.
+2. Creer que $\dfrac{22}{7}$ o $3{,}14$ «son» $\pi$. Son aproximaciones racionales; $\pi$ es irracional por definición.
+3. Pensar que $e$ es periódico porque las cifras $1828$ parecen repetirse.
+4. Suponer que la suma o el producto de dos irracionales es siempre irracional. $\sqrt{2} \cdot \sqrt{2} = 2$.
+5. Afirmar que todas las raíces son irracionales: $\sqrt{49} = 7$ y $\sqrt[3]{125} = 5$ son enteros.
+6. Olvidar la hipótesis de fracción **irreducible** en la demostración de $\sqrt{2}$. Sin ella no hay contradicción y la demostración se cae.
+7. Escribir $\sqrt{a + b} = \sqrt{a} + \sqrt{b}$. Con $a = b = 2$: $\sqrt{4} = 2$ pero $\sqrt{2} + \sqrt{2} = 2{,}828\ldots$
+8. Confundir «infinitos decimales» con «irracional»: $\dfrac{1}{3}$ tiene infinitos decimales y es racional.
+9. Decir que $\varphi = 1{,}618$. Ese es un redondeo; $\varphi = \dfrac{1 + \sqrt{5}}{2}$ es el valor exacto.
+10. Mezclar «irracional» con «trascendente». Todo trascendente es irracional, pero $\sqrt{2}$ es irracional y algebraico.
+
+## Qué debes saber hacer
+
+- Definir número irracional de las dos formas equivalentes (por su expresión decimal y por la imposibilidad de escribirlo como fracción).
+- Construir números irracionales con una regla de cifras y justificar por qué no pueden tener periodo.
+- Aplicar las reglas de formación: racional más irracional, y racional no nulo por irracional.
+- Poner contraejemplos que muestren que la suma y el producto de irracionales pueden ser racionales.
+- Decidir si una raíz es exacta o irracional factorizando el radicando.
+- Reproducir completa y ordenadamente la demostración por reducción al absurdo de la irracionalidad de $\sqrt{2}$, señalando dónde se usa la hipótesis de irreducibilidad.
+- Adaptar esa demostración a $\sqrt{3}$ y explicar por qué falla con $\sqrt{4}$.
+- Reconocer $\pi$, $e$ y $\varphi$, saber de dónde sale cada uno y manejar sus aproximaciones sin confundirlas con el número.
+- Deducir $\varphi$ a partir de la proporción áurea resolviendo $x^2 - x - 1 = 0$.
+- Distinguir número algebraico de número trascendente con ejemplos.

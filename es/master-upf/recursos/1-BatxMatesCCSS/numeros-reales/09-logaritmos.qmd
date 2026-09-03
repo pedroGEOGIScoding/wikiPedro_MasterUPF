@@ -1,0 +1,479 @@
+---
+title: "Tema 1.9 Logaritmos y sus propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 09-logaritmos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de logaritmo como exponente, relación con la función exponencial, logaritmos decimales y neperianos, propiedades con sus demostraciones, cambio de base, dominio, uso de la calculadora, ecuaciones exponenciales y logarítmicas y aplicaciones (interés compuesto, escala Richter, decibelios, pH y crecimiento de poblaciones).
+categories: [números reales, 1 Batx, matemáticas CCSS, logaritmos, exponenciales, número e]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Una idea sencilla con consecuencias enormes
+
+La palabra *logaritmo* viene del griego: une *logos* (relación) y *arithmos* (número). Se refiere a la relación entre dos números que se comparan, uno de ellos tomado como base o referencia.
+
+Piensa en esta pregunta: ¿cuántas veces es más grande un elefante que una pulga? La respuesta «unos cuantos millones» no dice gran cosa; lo que de verdad informa es el **orden de magnitud**. Una elefanta adulta pesa unos $2\,700$ kilogramos, y como pensamos en base 10 podemos decir que el orden de su masa es aproximadamente $3{,}43$, porque $10^{3{,}43} \approx 2\,700$. Ese exponente es su logaritmo decimal.
+
+Los logaritmos nacieron en el Renacimiento con una finalidad muy práctica: **convertir multiplicaciones en sumas**. En los cálculos astronómicos había que multiplicar números de más de diez cifras decimales, algo agotador y propenso a errores. Con logaritmos, esa multiplicación se convierte en una suma que se lee en unas tablas. Un matemático escocés, Neper (John Napier), publicó las primeras tablas en el siglo XVII y dio nombre a los logaritmos neperianos.
+
+Hoy hay calculadoras, pero los logaritmos siguen siendo imprescindibles por otra razón: son la herramienta para **despejar una incógnita que está en el exponente** y para **medir en escalas que crecen multiplicativamente**, como los terremotos, el sonido o la acidez.
+
+## Definición
+
+::: {.callout-note}
+## Definición de logaritmo
+
+Sea $a > 0$ con $a \neq 1$. El **logaritmo en base $a$** de un número $m > 0$ es el exponente al que hay que elevar la base para obtener ese número:
+
+$$
+\log_{a} m = z \iff a^{z} = m .
+$$
+
+Se llama *base* al número $a$ y *argumento* al número $m$.
+:::
+
+Es decir, un logaritmo **es un exponente**. Toda la teoría se reduce a saber leer esa equivalencia en los dos sentidos, y toda comprobación consiste en volver a la forma exponencial.
+
+**Ejemplo resuelto 1.** $\log_{2} 16 = 4$, porque hay que elevar 2 a la cuarta para obtener 16: $2^{4} = 16$.
+
+**Ejemplo resuelto 2.** $\log_{3} 27 = 3 \iff 3^{3} = 27$; $\;\log_{3} 9 = 2 \iff 3^{2} = 9$; $\;\log_{2} 32 = 5 \iff 2^{5} = 32$.
+
+**Ejemplo resuelto 3.** $\log_{3}\sqrt{243} = x \iff 3^{x} = 243^{1/2} = (3^{5})^{1/2} = 3^{5/2}$, luego $x = \dfrac{5}{2}$.
+
+::: {.callout-important}
+## Dominio: solo los positivos tienen logaritmo
+
+Como la base es positiva, ninguna potencia de la base puede dar 0 ni un número negativo. Por eso:
+
+- $\log_{2}(-4)$ **no existe**;
+- $\log_{2} 0$ **no existe**;
+- pero el **valor** de un logaritmo sí puede ser negativo, fraccionario o incluso irracional: $\log 0{,}1 = -1$, $\;\log\sqrt{10} = \dfrac{1}{2}$, $\;\log 2 = 0{,}301029\ldots$
+
+Además la base debe cumplir $a > 0$ y $a \neq 1$: si fuera $a = 1$, todas las potencias valdrían 1 y la definición no tendría sentido.
+:::
+
+### Consecuencias inmediatas de la definición
+
+::: {.callout-note}
+## Dos logaritmos que hay que saber de memoria
+
+**El logaritmo de 1 es 0 en cualquier base.** Demostración: como $a^{0} = 1$, por definición de logaritmo $\log_{a} 1 = 0$.
+
+**El logaritmo de la base es 1.** Demostración: como $a^{1} = a$, por definición $\log_{a} a = 1$.
+
+Y de manera más general, $\log_{a} a^{k} = k$ para cualquier exponente $k$, porque la base elevada a $k$ da exactamente $a^{k}$.
+:::
+
+### Applet · Definición de logaritmo {.unnumbered}
+
+::: {#panel-logaritmo .applet-panel data-applet-re="logaritmo"}
+:::
+
+## Relación con la función exponencial
+
+La exponencial $y = a^{x}$ y el logaritmo $y = \log_{a} x$ son **funciones inversas**: cada una deshace lo que hace la otra.
+
+$$
+a^{\log_{a} x} = x \quad (x>0), \qquad \log_{a}\left(a^{x}\right) = x .
+$$
+
+De ahí se deducen sin esfuerzo tres hechos gráficos: las dos gráficas son simétricas respecto de la recta $y = x$; la exponencial pasa por $(0,1)$ y el logaritmo por $(1,0)$; y como la exponencial de base mayor que 1 es creciente, el logaritmo también lo es, lo que permite comparar: si $x < y$, entonces $\log_{a} x < \log_{a} y$.
+
+::: {.callout-tip}
+## Cómo estimar un logaritmo sin calculadora
+
+Basta encerrar el argumento entre dos potencias consecutivas de la base. Como $2^{3} = 8 < 10 < 16 = 2^{4}$, se sabe que $3 < \log_{2} 10 < 4$ sin calcular nada. Es un control de errores rapidísimo: si la calculadora te da 2,3, has escrito algo mal.
+:::
+
+## Logaritmos decimales y neperianos
+
+::: {.callout-note}
+## Las dos bases con nombre propio
+
+- **Logaritmos decimales**, de base 10. Se escriben sin indicar la base: $\log m$ significa $\log_{10} m$. Son los naturales para nosotros, que contamos en base 10.
+- **Logaritmos neperianos** o naturales, de base $e$. Se escriben $\ln m$. El número $e = 2{,}718281828459\ldots$ es irracional (tiene infinitas cifras decimales no periódicas) y aparece por todas partes en los modelos de crecimiento continuo.
+
+$$
+\log_{10} m = \log m, \qquad \log_{e} m = \ln m .
+$$
+:::
+
+**Ejemplo resuelto 4.** $\log 100 = 2$ porque $10^{2} = 100$; $\;\log 0{,}001 = -3$ porque $10^{-3} = 0{,}001$; $\;\ln e = 1$ porque $e^{1} = e$; $\;\ln 1 = 0$.
+
+::: {.callout-tip}
+## Uso de la calculadora
+
+En la calculadora científica solo hay dos teclas: `log` (base 10) y `ln` (base $e$). Para cualquier otra base hace falta la fórmula del cambio de base, que verás más abajo.
+
+Ten cuidado con dos detalles muy habituales: algunas calculadoras exigen cerrar el paréntesis, y en la mayoría hay que escribir primero la tecla y luego el número. Comprueba siempre con un caso que sepas de memoria: si `log 1000` no te da 3, estás usando mal la tecla.
+:::
+
+### Applet · Logaritmos neperianos y el número e {.unnumbered}
+
+::: {#panel-neperiano .applet-panel data-applet-re="neperiano"}
+:::
+
+## Propiedades de los logaritmos
+
+Todas las propiedades se **heredan** de las propiedades de las potencias: no hay nada nuevo que memorizar, solo que traducir.
+
+::: {.callout-note}
+## Las cuatro propiedades básicas
+
+Con $a > 0$, $a \neq 1$, $x > 0$ e $y > 0$:
+
+1. **Producto.** $\log_{a}(x\,y) = \log_{a} x + \log_{a} y$
+2. **Cociente.** $\log_{a}\dfrac{x}{y} = \log_{a} x - \log_{a} y$
+3. **Potencia.** $\log_{a} x^{p} = p\,\log_{a} x$
+4. **Raíz.** $\log_{a}\sqrt[n]{x} = \dfrac{1}{n}\log_{a} x$
+:::
+
+### Demostración de cada propiedad
+
+Se llama $A = \log_{a} x$ y $B = \log_{a} y$. Por definición de logaritmo, $a^{A} = x$ y $a^{B} = y$.
+
+**1 · Producto.** Se multiplican las dos igualdades. Como al multiplicar potencias de la misma base se suman los exponentes,
+
+$$
+x\,y = a^{A}\cdot a^{B} = a^{A+B} \iff \log_{a}(x\,y) = A+B = \log_{a} x + \log_{a} y .
+$$
+
+**2 · Cociente.** Se dividen las dos igualdades. Como al dividir potencias de la misma base se restan los exponentes,
+
+$$
+\dfrac{x}{y} = \dfrac{a^{A}}{a^{B}} = a^{A-B} \iff \log_{a}\dfrac{x}{y} = A-B = \log_{a} x - \log_{a} y .
+$$
+
+**3 · Potencia.** Se eleva a $p$ la igualdad $a^{A} = x$. Como al elevar una potencia a otra se multiplican los exponentes,
+
+$$
+x^{p} = \left(a^{A}\right)^{p} = a^{A p} \iff \log_{a} x^{p} = A\,p = p\,\log_{a} x .
+$$
+
+**4 · Raíz.** Una raíz es una potencia de exponente fraccionario, así que es un caso particular de la propiedad 3 con $p = \dfrac{1}{n}$:
+
+$$
+\log_{a}\sqrt[n]{x} = \log_{a} x^{1/n} = \dfrac{1}{n}\log_{a} x .
+$$
+
+**Ejemplo resuelto 5.** $\log_{a}(2\cdot 7) = \log_{a} 2 + \log_{a} 7$; $\;\log_{a}\dfrac{75}{25} = \log_{a} 75 - \log_{a} 25$; $\;\log_{a} 2^{5} = 5\log_{a} 2$; $\;\log_{a}\sqrt[3]{27} = \dfrac{\log_{a} 27}{3}$.
+
+**Ejemplo resuelto 6.** Desarrolla $\log_{5}\dfrac{a^{3}b^{2}}{c^{4}}$.
+
+$$
+\log_{5}\dfrac{a^{3}b^{2}}{c^{4}} = \log_{5}\left(a^{3}b^{2}\right) - \log_{5} c^{4} = 3\log_{5} a + 2\log_{5} b - 4\log_{5} c .
+$$
+
+**Ejemplo resuelto 7.** Desarrolla $\log\dfrac{x^{2}}{y\sqrt{z}}$.
+
+$$
+\log\dfrac{x^{2}}{y\,z^{1/2}} = 2\log x - \log y - \dfrac{1}{2}\log z .
+$$
+
+**Ejemplo resuelto 8.** El camino inverso: escribe con un solo logaritmo $3\log_{2} x - 2\log_{2} y + \dfrac{1}{2}\log_{2} z$.
+
+$$
+3\log_{2} x - 2\log_{2} y + \dfrac{1}{2}\log_{2} z = \log_{2}\dfrac{x^{3}\sqrt{z}}{y^{2}} .
+$$
+
+::: {.callout-warning}
+## El error más caro del apartado
+
+**No existe** ninguna propiedad para el logaritmo de una suma:
+
+$$
+\log_{a}(x+y) \neq \log_{a} x + \log_{a} y .
+$$
+
+Compruébalo con números: $\log(10+100) = \log 110 = 2{,}041\ldots$, mientras que $\log 10 + \log 100 = 1+2 = 3$. Lo que sí es cierto es que $\log 10 + \log 100 = \log 1000 = 3$: la suma de logaritmos es el logaritmo del **producto**, no de la suma.
+
+Tampoco es cierto que $\dfrac{\log x}{\log y} = \log\dfrac{x}{y}$ ni que $(\log x)^{2} = 2\log x$. El exponente que sale afuera debe estar **dentro** del logaritmo.
+:::
+
+### Applet · Propiedades de los logaritmos {.unnumbered}
+
+::: {#panel-propLog .applet-panel data-applet-re="propLog"}
+:::
+
+## Cambio de base
+
+::: {.callout-note}
+## Fórmula del cambio de base
+
+Para bases $a, c > 0$ distintas de 1 y $x > 0$:
+
+$$
+\log_{a} x = \dfrac{\log_{c} x}{\log_{c} a} .
+$$
+
+En la práctica se toma $c = 10$ o $c = e$, las dos bases que trae la calculadora:
+
+$$
+\log_{a} x = \dfrac{\log x}{\log a} = \dfrac{\ln x}{\ln a} .
+$$
+:::
+
+**Demostración.** Sea $z = \log_{a} x$, que por definición significa $a^{z} = x$. Se toman logaritmos en base $c$ en ambos miembros y se aplica la propiedad de la potencia:
+
+$$
+\log_{c}\left(a^{z}\right) = \log_{c} x \;\Longrightarrow\; z\,\log_{c} a = \log_{c} x \;\Longrightarrow\; z = \dfrac{\log_{c} x}{\log_{c} a} .
+$$
+
+**Ejemplo resuelto 9.** Calcula $\log_{2} 11$ con la calculadora.
+
+$$
+\log_{2} 11 = \dfrac{\log 11}{\log 2} = \dfrac{1{,}041392\ldots}{0{,}301030\ldots} = 3{,}459431\ldots
+$$
+
+Control de errores: $2^{3} = 8 < 11 < 16 = 2^{4}$, así que el resultado tenía que estar entre 3 y 4.
+
+**Ejemplo resuelto 10.** El mismo cálculo con logaritmos neperianos da lo mismo:
+
+$$
+\log_{2} 11 = \dfrac{\ln 11}{\ln 2} = \dfrac{2{,}397895\ldots}{0{,}693147\ldots} = 3{,}459431\ldots
+$$
+
+::: {.callout-tip}
+## Consecuencia útil
+
+De la fórmula se deduce $\log_{a} x = \dfrac{1}{\log_{x} a}$: invertir el logaritmo equivale a intercambiar base y argumento. Por ejemplo $\log_{2} 8 = 3$ y $\log_{8} 2 = \dfrac{1}{3}$.
+:::
+
+### Applet · Cambio de base {.unnumbered}
+
+::: {#panel-cambioBase .applet-panel data-applet-re="cambioBase"}
+:::
+
+## Ecuaciones exponenciales
+
+::: {.callout-note}
+## Método general
+
+Si la incógnita está en el exponente, se aísla la potencia y se toman logaritmos en los dos miembros: la propiedad de la potencia «baja» la incógnita y la ecuación pasa a ser de primer grado.
+
+$$
+A\cdot b^{x} = C \;\Longrightarrow\; b^{x} = \dfrac{C}{A} \;\Longrightarrow\; x\log b = \log\dfrac{C}{A} \;\Longrightarrow\; x = \dfrac{\log(C/A)}{\log b} = \log_{b}\dfrac{C}{A} .
+$$
+:::
+
+**Ejemplo resuelto 11.** Resuelve $2^{x} = 50$.
+
+$$
+x\log 2 = \log 50 \Rightarrow x = \dfrac{\log 50}{\log 2} = \dfrac{1{,}69897}{0{,}30103} = 5{,}6438\ldots
+$$
+
+Comprobación: $2^{5{,}6438} = 49{,}999\ldots$
+
+**Ejemplo resuelto 12.** Si las dos potencias se pueden poner con la misma base, ni hacen falta logaritmos: $3^{x} = 81 = 3^{4} \Rightarrow x = 4$. Merece la pena mirarlo siempre antes de calcular.
+
+**Ejemplo resuelto 13.** Números demasiado grandes para la calculadora. Calcula $26^{378}$.
+
+La calculadora da error, pero los logaritmos sí lo resuelven:
+
+$$
+x = 26^{378} \Rightarrow \log x = 378\cdot\log 26 = 378\cdot 1{,}414973 = 534{,}86 ,
+$$
+
+luego $x = 10^{534{,}86} = 10^{534}\cdot 10^{0{,}86} = 7{,}24\cdot 10^{534}$.
+
+### Applet · Ecuaciones exponenciales resueltas con logaritmos {.unnumbered}
+
+::: {#panel-expLog .applet-panel data-applet-re="expLog"}
+:::
+
+## Ecuaciones logarítmicas
+
+::: {.callout-important}
+## Estrategia y comprobación obligatoria
+
+1. Se usan las propiedades para dejar **un solo logaritmo** en cada miembro.
+2. Si queda $\log_{b} P = \log_{b} Q$, entonces $P = Q$; si queda $\log_{b} P = m$, se pasa a la forma exponencial $P = b^{m}$.
+3. Se resuelve la ecuación resultante.
+4. **Se comprueba el dominio**: los argumentos de todos los logaritmos deben quedar positivos. Al juntar logaritmos el dominio se amplía, así que pueden aparecer **soluciones falsas** que hay que rechazar. Esta comprobación no es opcional: forma parte de la resolución.
+:::
+
+**Ejemplo resuelto 14.** Resuelve $\log_{2}(x+6) = 3$.
+
+Forma exponencial: $x+6 = 2^{3} = 8$, luego $x = 2$. Comprobación: el argumento vale $8 > 0$, y $\log_{2} 8 = 3$. Solución válida.
+
+**Ejemplo resuelto 15.** Resuelve $\log_{2} x + \log_{2}(x+6) = 4$.
+
+Se junta la suma en un solo logaritmo y se pasa a forma exponencial:
+
+$$
+\log_{2}\left[x(x+6)\right] = 4 \Rightarrow x^{2}+6x = 16 \Rightarrow x^{2}+6x-16 = 0 ,
+$$
+
+$$
+x = \dfrac{-6 \pm \sqrt{36+64}}{2} = \dfrac{-6 \pm 10}{2} \Rightarrow x_{1} = 2, \quad x_{2} = -8 .
+$$
+
+La raíz $x_{2} = -8$ hay que **rechazarla**: $\log_{2}(-8)$ no existe. La única solución es $x = 2$, y se comprueba: $\log_{2} 2 + \log_{2} 8 = 1+3 = 4$.
+
+::: {.callout-tip}
+## Sigue practicando
+
+En la hoja de práctica del tema encontrarás un applet dedicado a las ecuaciones logarítmicas de los dos tipos, con el estudio del dominio y el rechazo de soluciones falsas paso a paso.
+:::
+
+## Aplicaciones
+
+### Interés compuesto
+
+Colocar un capital a **interés compuesto** significa que los intereses de cada periodo se suman al capital, de modo que el capital crece y con él los intereses siguientes. Si $C$ es el capital inicial y $r$ el tanto por uno anual, al final del primer año se tiene $C(1+r)$; al final del segundo, $C(1+r)^{2}$; y en general, al cabo de $t$ años el **montante** es
+
+$$
+M = C\,(1+r)^{t} .
+$$
+
+Si la capitalización se produce $n$ veces al año durante $T$ periodos,
+
+$$
+M = C\left(1+\dfrac{r}{n}\right)^{T} .
+$$
+
+La incógnita interesante suele ser el **tiempo**, y está en el exponente: hacen falta logaritmos.
+
+**Ejemplo resuelto 16.** ¿Cuánto tiempo hay que invertir $12\,000$ euros al 2 % de interés compuesto con capitalización trimestral para obtener $12\,325$ euros?
+
+Capitalización trimestral significa $n = 4$. Despejando en la fórmula:
+
+$$
+T = \dfrac{\log M - \log C}{\log\left(1+\dfrac{r}{n}\right)} = \dfrac{\log 12\,325 - \log 12\,000}{\log(1+0{,}005)} \approx 5{,}5 \text{ trimestres},
+$$
+
+es decir, 16 meses y medio.
+
+### Escala de Richter
+
+La escala de Richter cuantifica con un solo número la energía que libera un terremoto, y es una escala **logarítmica decimal**. Por cada unidad que sube la magnitud, la amplitud de la onda sísmica se multiplica por 10. Por eso un terremoto de magnitud 4 no libera el doble de energía que uno de magnitud 2, sino unas 1000 veces más.
+
+Si $M$ es la magnitud y $E$ la energía liberada,
+
+$$
+\log E = 11{,}8 + 1{,}5\,M \quad\Longleftrightarrow\quad E = 10^{\,11{,}8+1{,}5 M} .
+$$
+
+**Ejemplo resuelto 17.** El terremoto de Granada de 1884 tuvo magnitud $6{,}7$ y el de San Francisco de 1906, magnitud $8{,}25$. ¿Cuántas veces mayor fue la amplitud del segundo?
+
+Si $M = \log P$, donde $P$ indica cuántas veces mayor es la amplitud, entonces
+
+$$
+\dfrac{P_{2}}{P_{1}} = \dfrac{10^{8{,}25}}{10^{6{,}7}} = 10^{1{,}55} \approx 35{,}5 .
+$$
+
+Unas 35 veces mayor, aunque en la escala «solo» haya una diferencia de 1,55.
+
+### Decibelios
+
+El decibelio mide la intensidad sonora comparándola con el umbral de audición $I_{0} = 10^{-12}$ vatios por metro cuadrado:
+
+$$
+D = 10\log\dfrac{I}{I_{0}} .
+$$
+
+**Ejemplo resuelto 18.** Un martillo mecánico produce una intensidad de $3\cdot 10^{-3}$ W/m². ¿Cuántos decibelios soporta quien lo maneja?
+
+$$
+D = 10\log\dfrac{3\cdot 10^{-3}}{10^{-12}} = 10\log\left(3\cdot 10^{9}\right) = 10\,(\log 3 + 9) = 10\,(0{,}477+9) \approx 94{,}8 \text{ dB}.
+$$
+
+### Escala de pH
+
+El pH mide la acidez o la alcalinidad de una disolución y es el logaritmo decimal **negativo** de la concentración de iones hidrógeno:
+
+$$
+\mathrm{pH} = -\log\left[\mathrm{H}^{+}\right] .
+$$
+
+Un pH igual a 7 es neutro (el agua); por debajo de 7 están los ácidos (limón, vinagre, café, tomate) y por encima, las bases (bicarbonato, amoníaco, jabón, lejía). Como la escala es logarítmica, una disolución de pH 3 es **diez veces** más ácida que una de pH 4, no un poco más.
+
+**Ejemplo resuelto 19.** Si $\left[\mathrm{H}^{+}\right] = 4\cdot 10^{-5}$ mol/l, entonces
+
+$$
+\mathrm{pH} = -\log\left(4\cdot 10^{-5}\right) = -(\log 4 - 5) = 5 - 0{,}602 = 4{,}398 .
+$$
+
+### Crecimiento de poblaciones
+
+En los modelos de población se supone que una especie crece exponencialmente mientras tenga alimento suficiente y no haya depredadores:
+
+$$
+P = P_{0}\,e^{r t} ,
+$$
+
+donde $P_{0}$ es la población inicial, $r$ la tasa de crecimiento y $t$ el tiempo. Cuando la población llena el territorio, el modelo deja de valer y el crecimiento se estabiliza. Con este modelo se estudian bacterias que se reproducen por fisión binaria, células de un feto o especies introducidas en un ecosistema nuevo.
+
+**Ejemplo resuelto 20.** La población de un país es de 30 millones de habitantes y crece un 2 % anual. ¿Qué población tendrá al cabo de 20 años y cuántos años tardará en llegar a 55 millones?
+
+Con el modelo discreto $P = 30\cdot 1{,}02^{t}$:
+
+$$
+P(20) = 30\cdot 1{,}02^{20} = 30\cdot 1{,}4859 = 44{,}58 \text{ millones}.
+$$
+
+Para la segunda pregunta la incógnita está en el exponente:
+
+$$
+55 = 30\cdot 1{,}02^{t} \Rightarrow 1{,}02^{t} = \dfrac{55}{30} = 1{,}8\overline{3} \Rightarrow t = \dfrac{\log 1{,}8\overline{3}}{\log 1{,}02} \approx 30{,}6 \text{ años}.
+$$
+
+::: {.callout-caution}
+## Pensamiento crítico: los números no engañan, las escalas sí
+
+Cuando una magnitud crece de forma multiplicativa, un gráfico lineal puede resultar engañoso y un gráfico logarítmico lo aclara: en escala logarítmica, un crecimiento exponencial se ve como una **recta**, y la pendiente de esa recta es la tasa de crecimiento.
+
+Ahí está el peligro de las lecturas apresuradas: decir que una magnitud «se reduce a la mitad» suena tranquilizador, pero si el número de casos se ha multiplicado por 27 en tres semanas, el crecimiento sigue siendo exponencial. Antes de aceptar una conclusión, mira la escala del eje vertical y pregúntate si el crecimiento es aditivo o multiplicativo.
+:::
+
+::: {.callout-note}
+## Curiosidad histórica
+
+Las tablas de logaritmos eran un libro de tres dedos de grosor y se usaban a diario en astronomía y en navegación. Neper inventó además un ábaco de varillas, conocido como «los huesos de Napier», para multiplicar de forma mecánica. Curiosamente, los logaritmos que él definió no usaban la base $e$: la asociación entre su nombre y esa base es posterior, y por eso hoy muchos prefieren llamarlos **logaritmos naturales**. El número $e$ debe su notación y su estudio sistemático a Euler, ya en el siglo XVIII.
+:::
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa el [Entrenador de Logaritmos y Neperianos](../../entrenador_logaritmos_neperianos.html).
+:::
+
+## Errores frecuentes
+
+1. Escribir $\log_{a}(x+y) = \log_{a} x + \log_{a} y$. No existe propiedad para la suma.
+2. Confundir $\dfrac{\log x}{\log y}$ con $\log\dfrac{x}{y}$. La primera expresión es un cambio de base; la segunda, una resta de logaritmos.
+3. Aceptar logaritmos de números negativos o de 0: no existen.
+4. Usar base 1 o base negativa.
+5. Escribir $(\log x)^{2} = 2\log x$: el exponente debe estar dentro del argumento para poder salir.
+6. Olvidar comprobar el dominio en una ecuación logarítmica y dar por buena una solución falsa.
+7. Pensar que $\log 0{,}5$ no existe porque es negativo: el argumento es positivo, y el logaritmo simplemente vale $-0{,}301\ldots$
+8. Escribir $\log_{2} 8 = 4$ por confundir base y argumento. Comprueba siempre volviendo a la exponencial: $2^{3} = 8$.
+9. En la escala de Richter o en el pH, interpretar linealmente una escala logarítmica: dos unidades de diferencia son un factor 100, no un factor 2.
+10. Aplicar la fórmula del interés compuesto con la tasa en tanto por ciento en lugar de en tanto por uno: el 2 % es $r = 0{,}02$.
+11. Redondear los logaritmos intermedios a dos decimales y arrastrar un error grande al resultado final.
+12. Confundir $\ln$ con $\log$ en la calculadora: dan resultados distintos porque las bases son distintas.
+
+## Qué debes saber hacer
+
+- Pasar de la forma logarítmica a la exponencial y al revés, y usar esa equivalencia para comprobar cualquier resultado.
+- Calcular logaritmos sencillos con la definición, sin calculadora.
+- Reconocer el dominio: solo los argumentos positivos tienen logaritmo, y la base debe ser positiva y distinta de 1.
+- Aplicar y **demostrar** las propiedades del producto, del cociente, de la potencia y de la raíz.
+- Desarrollar el logaritmo de una expresión algebraica y hacer el camino inverso, agrupándolo en un solo logaritmo.
+- Usar la fórmula del cambio de base para calcular con la calculadora logaritmos en cualquier base.
+- Distinguir logaritmos decimales y neperianos y manejar el número $e$.
+- Resolver ecuaciones exponenciales tomando logaritmos y ecuaciones logarítmicas comprobando siempre el dominio.
+- Aplicar los logaritmos al interés compuesto, a la escala de Richter, a los decibelios, al pH y al crecimiento de poblaciones.
+- Estimar el valor de un logaritmo encerrando el argumento entre dos potencias consecutivas de la base, como control de errores.

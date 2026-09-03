@@ -1,0 +1,287 @@
+---
+title: "Tema 1.6 Aproximaciones y errores"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Números reales"
+filename: 06-aproximaciones-errores
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Aproximación por redondeo y por truncamiento, cifras significativas, error absoluto y error relativo en porcentaje, redondeo a cifras significativas y criterios para decidir la precisión adecuada, con ejemplos comparados de economía y medida.
+categories: [números reales, 1 Batx, matemáticas CCSS, aproximaciones, errores, cifras significativas]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué casi nunca se trabaja con el valor exacto
+
+Los números reales tienen, en general, infinitas cifras decimales. En la vida real no se pueden usar todas:
+
+- Si quieres comprar un tercio de metro de cinta, no le pides al dependiente $0{,}333\ldots$ metros: le pides $33$ o $34$ centímetros.
+- Un folio A4 mide $29{,}7$ cm con una regla que llega al milímetro. Si lo divides en $8$ partes, la calculadora dice $3{,}7125$ cm, pero tu regla no distingue esa precisión: lo razonable es $3{,}7$ cm.
+- En un examen de $9$ preguntas iguales tienes $5$ bien. La nota es $10 \cdot 5 : 9 = 5{,}5555\ldots$; escribir todos esos decimales sería fingir que se puede distinguir una parte entre diez mil millones del examen. Lo sensato es $5{,}6$.
+
+::: {.callout-important}
+## Idea clave
+
+Aproximar no es «hacer trampa» ni «tener menos cuidado»: es **decir la verdad sobre lo que realmente se sabe**. Escribir más cifras de las que los datos permiten es una forma de mentir con números.
+:::
+
+Una **aproximación** de un número real $x$ es otro número $\tilde{x}$, con pocas cifras, que se usa en su lugar. Aproximar **por defecto** significa quedarse por debajo del valor real, y **por exceso**, quedarse por encima.
+
+## Aproximación por truncamiento
+
+::: {.callout-note}
+## Truncamiento
+
+Truncar un número a $d$ decimales consiste en **suprimir** todas las cifras a partir del decimal $d$-ésimo, sin modificar las que se conservan.
+:::
+
+Ejemplos con $\pi = 3{,}14159265\ldots$
+
+$$
+\pi \approx 3{,}1 \ (\text{1 decimal}), \qquad
+\pi \approx 3{,}14 \ (\text{2 decimales}), \qquad
+\pi \approx 3{,}1415 \ (\text{4 decimales}).
+$$
+
+En los números positivos, el truncamiento es siempre una aproximación **por defecto**: el valor que se obtiene nunca supera al exacto. Es lo que hace, por ejemplo, un surtidor que solo cobra céntimos enteros, o un contador que solo cuenta unidades completas.
+
+## Aproximación por redondeo
+
+::: {.callout-note}
+## Regla del redondeo
+
+Para redondear a $d$ decimales:
+
+1. Localiza la **cifra de redondeo**, la que ocupa el lugar decimal $d$-ésimo.
+2. Mira **solo la cifra siguiente**.
+3. Si esa cifra es menor que $5$, la cifra de redondeo se queda igual.
+4. Si es $5$ o mayor, se suma una unidad a la cifra de redondeo.
+5. Se suprimen todas las cifras posteriores.
+:::
+
+**Ejemplo resuelto 1.** Redondea $\pi = 3{,}1415926535\ldots$ a las diezmilésimas. La cifra de las diezmilésimas es $5$ y la siguiente es $9 \geq 5$, así que se suma una unidad: $\pi \approx 3{,}1416$. Comprueba que, efectivamente, $\pi$ está más cerca de $3{,}1416$ que de $3{,}1415$.
+
+**Ejemplo resuelto 2.** Redondea $\sqrt{2} = 1{,}41421356\ldots$ a las centésimas. La cifra de las centésimas es $1$ y la siguiente es $4 < 5$, luego se deja igual: $\sqrt{2} \approx 1{,}41$.
+
+**Ejemplo resuelto 3.** Redondea $5{,}995$ a las centésimas. Al sumar una unidad a la última cifra se produce un arrastre: $5{,}995 \approx 6{,}00$. **Los dos ceros hay que escribirlos**, porque indican hasta dónde se ha redondeado.
+
+**Ejemplo resuelto 4.** Redondea $7\,555\,555$ a los millares: $7\,556\,000$. Hay que completar con ceros a la derecha, porque el número sigue siendo del mismo tamaño.
+
+**Ejemplo resuelto 5.** Redondea $8{,}94999$ a las décimas. Se mira **solo** el $4$, no toda la cola: $8{,}9$.
+
+::: {.callout-warning}
+## Error frecuente
+
+Redondear «en cadena»: $8{,}94999 \to 8{,}9500 \to 8{,}95 \to 9{,}0$. Está mal. La regla mira **una única cifra**, la inmediatamente siguiente a la de redondeo. Redondear por etapas infla el resultado.
+:::
+
+::: {.callout-tip}
+## Dos criterios prácticos
+
+- Si el resultado de un problema son euros, se redondea **siempre en los céntimos**.
+- Si quieres dar un resultado con $2$ decimales, trabaja con $3$ o $4$ en los pasos intermedios y redondea **solo al final**. Con $A = 9{,}65$, $B = 6{,}98$ y $C = 4{,}99$, calcular $(A \cdot B) \cdot C^{2}$ redondeando por el camino da $1\,677{,}26$, mientras que el resultado correcto, redondeando solo al final, es $1\,677{,}20$.
+:::
+
+### Applet · Redondeo y truncamiento {.unnumbered}
+
+::: {#panel-aproxima .applet-panel data-applet-re="aproxima"}
+:::
+
+## Cifras significativas
+
+::: {.callout-note}
+## Cifras significativas
+
+Son las cifras «con valor» que se utilizan para expresar un número aproximado: las que aportan información sobre la cantidad medida, no las que solo sitúan la coma.
+:::
+
+Reglas para contarlas:
+
+1. Toda cifra **distinta de cero** es significativa: $7{,}42$ tiene $3$ y $89{,}053$ tiene $5$.
+2. Los **ceros intermedios** son significativos: $2\,004$ tiene $4$ cifras significativas y $7\,000{,}03$ tiene $6$.
+3. Los **ceros a la izquierda nunca** son significativos, solo colocan la coma: $0{,}0002$ tiene $1$ cifra significativa.
+4. Los **ceros finales detrás de la coma sí** lo son, porque informan de la precisión de la medida: $65{,}00$ tiene $4$ cifras significativas, y escribirlo así afirma que se ha medido hasta las centésimas.
+
+::: {.callout-warning}
+## El caso ambiguo de los enteros acabados en ceros
+
+En $30\,000$ no se sabe cuántas cifras son significativas: podrían ser $1$, $2$, $3$, $4$ o $5$, según en qué orden se haya aproximado. La notación científica deshace la ambigüedad:
+
+$$
+3 \cdot 10^{4} \ (1\ \text{cifra}), \quad
+3{,}0 \cdot 10^{4} \ (2), \quad
+3{,}00 \cdot 10^{4} \ (3), \quad
+3{,}0000 \cdot 10^{4} \ (5).
+$$
+:::
+
+::: {.callout-important}
+## Idea clave
+
+La precisión de una aproximación se mide mejor por el número de **cifras significativas** que por el número de decimales. $0{,}0002$ tiene cuatro decimales y solo una cifra significativa: se conoce con muy poca precisión.
+:::
+
+### Redondeo a un número dado de cifras significativas
+
+Se procede igual que en el redondeo decimal, pero contando las cifras significativas desde la primera distinta de cero.
+
+**Ejemplo resuelto 6.** Redondea $3{,}7182$ a $1$, $2$, $3$ y $4$ cifras significativas:
+
+$$
+4 ; \qquad 3{,}7 ; \qquad 3{,}72 ; \qquad 3{,}718 .
+$$
+
+**Ejemplo resuelto 7.** Redondea $42{,}27$ a $3$ cifras significativas: $42{,}3$. Y a $2$: $42$.
+
+**Ejemplo resuelto 8.** Redondea $\dfrac{1}{9} = 0{,}1111\ldots$ a $3$ cifras significativas: $0{,}111$. Los ceros de la izquierda no cuentan.
+
+**Ejemplo resuelto 9.** Redondea $2\,785\,400$ (número de personas en paro) a $2$ cifras significativas: $2{,}8 \cdot 10^{6}$, es decir, «unos $2{,}8$ millones». Así es como se comunican estas cifras en la prensa, y así es como debe interpretarse su precisión.
+
+### Applet · Cifras significativas {.unnumbered}
+
+::: {#panel-cifrasSignificativas .applet-panel data-applet-re="cifrasSignificativas"}
+:::
+
+## Error absoluto
+
+::: {.callout-note}
+## Error absoluto
+
+Si $x$ es el valor exacto y $\tilde{x}$ una aproximación suya, el **error absoluto** es
+
+$$
+E_a = |x - \tilde{x}| .
+$$
+
+Se mide en las mismas unidades que el número y representa la **distancia** entre los dos valores en la recta real.
+:::
+
+**Ejemplo resuelto 10.** Si se aproxima $\pi \approx 3{,}1416$, el error absoluto es
+
+$$
+E_a = |\pi - 3{,}1416| = |3{,}14159265\ldots - 3{,}1416| \approx 0{,}0000073 ,
+$$
+
+unas siete millonésimas.
+
+**Ejemplo resuelto 11.** Si se aproxima $\sqrt{3} \approx 1{,}73$, como $\sqrt{3} = 1{,}7320508\ldots$,
+
+$$
+E_a = |1{,}7320508\ldots - 1{,}73| \approx 0{,}0021 .
+$$
+
+::: {.callout-warning}
+## Cuidado
+
+Si no conoces el valor exacto —y en una medida real nunca lo conoces— **no puedes calcular el error absoluto**. Solo puedes acotarlo, es decir, garantizar que no pasa de cierta cantidad. De eso trata el apartado siguiente.
+:::
+
+## Error relativo
+
+El error absoluto no basta para juzgar la calidad de una aproximación: equivocarse en $1$ metro al medir un campo de fútbol es grave, y equivocarse en $1$ metro al medir la distancia entre Madrid y Barcelona es irrelevante.
+
+::: {.callout-note}
+## Error relativo
+
+$$
+E_r = \frac{E_a}{|x|} = \frac{|x - \tilde{x}|}{|x|} ,
+$$
+
+que suele expresarse en tanto por ciento multiplicando por $100$. No tiene unidades, de modo que permite comparar aproximaciones de magnitudes completamente distintas. Si no se conoce el valor exacto, se sustituye por el aproximado: la diferencia es despreciable.
+:::
+
+**Ejemplo resuelto 12.** Con $\sqrt{3} \approx 1{,}73$ y $E_a \approx 0{,}0021$:
+
+$$
+E_r = \frac{0{,}0021}{1{,}7320508\ldots} \approx 0{,}0012 \longrightarrow 0{,}12\,\% .
+$$
+
+**Ejemplo resuelto 13 (comparación).** Se tienen dos aproximaciones: $A = 7{,}4$ con $E_a \leq 0{,}05$ y $B = 970$ con $E_a \leq 5$. El error absoluto de $B$ es cien veces mayor, pero:
+
+$$
+A: \ E_r \leq \frac{0{,}05}{7{,}4} \approx 0{,}0068 \longrightarrow 0{,}68\,\% ,
+\qquad
+B: \ E_r \leq \frac{5}{970} \approx 0{,}0052 \longrightarrow 0{,}52\,\% .
+$$
+
+Proporcionalmente, la aproximación **mejor es la de $B$**.
+
+**Ejemplo resuelto 14 (datos sociales).** El número de habitantes de un país es $47\,615\,034$ y se publica redondeado como $47\,600\,000$:
+
+$$
+E_a = 15\,034 , \qquad
+E_r = \frac{15\,034}{47\,615\,034} \approx 0{,}000316 \longrightarrow 0{,}032\,\% .
+$$
+
+Un error absoluto de quince mil personas suena enorme, pero es un error relativo de tres centésimas de uno por ciento: la aproximación es perfectamente razonable para hablar de población.
+
+::: {.callout-tip}
+## Criterio de precisión
+
+Un error relativo por debajo del $1\,\%$ suele considerarse aceptable en medidas escolares y en datos socioeconómicos. Para cálculos financieros con dinero se exige mucho más: el redondeo se hace en el céntimo, y la ley obliga a especificar el criterio.
+:::
+
+### Applet · Error absoluto y error relativo {.unnumbered}
+
+::: {#panel-errores .applet-panel data-applet-re="errores"}
+:::
+
+## Comparación de aproximaciones: una tabla resumen
+
+Para $x = \pi$, con distintos criterios:
+
+| Aproximación | Método | Cifras significativas | Error absoluto | Error relativo |
+|---|---|---|---|---|
+| $3$ | redondeo a unidades | 1 | $0{,}1416$ | $4{,}507\,\%$ |
+| $3{,}1$ | truncamiento a 1 decimal | 2 | $0{,}0416$ | $1{,}324\,\%$ |
+| $3{,}14$ | redondeo a 2 decimales | 3 | $0{,}0016$ | $0{,}051\,\%$ |
+| $3{,}1416$ | redondeo a 4 decimales | 5 | $0{,}0000073$ | $0{,}00023\,\%$ |
+| $\dfrac{22}{7}$ | fracción clásica | — | $0{,}00126$ | $0{,}040\,\%$ |
+
+Fíjate en dos cosas. Primera: **cada cifra significativa más divide el error aproximadamente entre diez**. Segunda: la fracción $\tfrac{22}{7}$, conocida desde la Antigüedad, es mejor que $3{,}14$ con solo dos cifras en juego; las aproximaciones racionales pueden ser sorprendentemente eficientes.
+
+::: {.callout-caution}
+## Pensamiento crítico
+
+Cuando un titular dice «el paro baja en 4 300 personas», conviene preguntarse por la precisión del dato. Si la encuesta que lo produce tiene un margen de error de decenas de miles de personas, esa variación está **por debajo del error** y no significa nada. Comparar una diferencia con la cota de error de los datos es el primer reflejo crítico ante cualquier estadística.
+:::
+
+::: {.callout-tip}
+## Herramienta de entrenamiento
+
+Para practicar este apartado con corrección automática, pistas graduadas, resolución paso a paso, modo examen y repaso de fallos, usa la [Calculadora de Notación Científica](../../calculadora_notacion_cientifica.html).
+:::
+
+## Errores frecuentes
+
+1. Redondear mirando más de una cifra o redondeando por etapas: $8{,}94999$ se redondea a $8{,}9$, no a $9{,}0$.
+2. Confundir redondear con truncar: truncar $3{,}19$ a un decimal da $3{,}1$; redondear da $3{,}2$.
+3. No escribir los ceros finales que indican la precisión: si el redondeo es $6{,}00$, escribir $6$ pierde información.
+4. Contar como significativos los ceros de la izquierda: $0{,}0002$ tiene una sola cifra significativa.
+5. Olvidar que $65$ y $65{,}00$ no expresan la misma precisión.
+6. Dar el error absoluto con signo negativo: el error absoluto es un valor absoluto, siempre $\geq 0$.
+7. Calcular el error relativo dividiendo por la aproximación cuando se conoce el valor exacto (aunque en la práctica la diferencia sea mínima, la definición divide por el valor exacto).
+8. Expresar el error relativo como si fuera un porcentaje sin multiplicar por $100$: $0{,}0012$ es $0{,}12\,\%$, no $0{,}0012\,\%$.
+9. Redondear en los pasos intermedios y arrastrar el error hasta el resultado final.
+10. Copiar todas las cifras de la calculadora en la respuesta: si los datos tienen tres cifras significativas, el resultado no puede tener nueve.
+
+## Qué debes saber hacer
+
+- Aproximar un número por truncamiento y por redondeo al número de decimales pedido, aplicando la regla correctamente.
+- Distinguir aproximaciones por defecto y por exceso.
+- Contar las cifras significativas de un número escrito y explicar el papel de cada cero.
+- Redondear a un número dado de cifras significativas y expresar el resultado en notación científica.
+- Resolver la ambigüedad de los enteros acabados en ceros mediante notación científica.
+- Calcular el error absoluto y el error relativo de una aproximación, y expresar el relativo en porcentaje.
+- Comparar dos aproximaciones de magnitudes distintas y decidir cuál es proporcionalmente mejor.
+- Elegir la precisión adecuada a la situación: céntimos en dinero, milímetros con una regla milimetrada, cifras significativas coherentes con los datos.
+- Interpretar críticamente datos estadísticos publicados, valorando si una diferencia está por encima o por debajo del error de los datos.
