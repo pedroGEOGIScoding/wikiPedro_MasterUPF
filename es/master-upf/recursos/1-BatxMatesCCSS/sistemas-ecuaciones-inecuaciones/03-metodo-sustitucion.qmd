@@ -1,0 +1,284 @@
+---
+title: "Tema 4.3 Método de sustitución"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 03-metodo-sustitucion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El método de sustitución paso a paso para resolver sistemas lineales de dos ecuaciones con dos incógnitas, criterios para elegir qué incógnita despejar y en qué ecuación, ejemplos resueltos con coeficientes enteros y con fracciones, sistemas con paréntesis y denominadores, detección de sistemas incompatibles e indeterminados durante el cálculo, extensión a sistemas de tres incógnitas y a sistemas no lineales, con un applet paso a paso.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método de sustitución, álgebra]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Reducir dos incógnitas a una
+
+Todo lo que sabes hacer con ecuaciones lo aprendiste con **una** incógnita. Un sistema, en cambio, tiene dos. La idea que resuelve el problema es tan simple como potente: **convertir el sistema en una única ecuación con una única incógnita**, resolverla con las técnicas de siempre y recuperar después el valor que falta.
+
+El método de sustitución es la forma más directa de conseguirlo. Consiste en despejar una incógnita en una de las ecuaciones y **sustituir** esa expresión en la otra. Al hacerlo, la segunda ecuación se queda con una sola incógnita, y ahí ya sabes seguir.
+
+De los tres métodos algebraicos que verás, este es el más mecánico y también el más general: funciona con cualquier número de ecuaciones e incógnitas y, a diferencia de los otros, sigue funcionando cuando el sistema **no es lineal**. Si algún día dudas de qué método usar, la sustitución es la apuesta segura.
+
+## El procedimiento
+
+::: {.callout-note}
+## Método de sustitución
+
+Para resolver un sistema de dos ecuaciones con dos incógnitas:
+
+1. **Elige una incógnita y una ecuación** y despeja esa incógnita, dejándola sola en un miembro.
+2. **Sustituye** la expresión obtenida en el lugar que ocupa esa incógnita en la **otra** ecuación. Nunca en la misma de la que has despejado.
+3. Queda una ecuación con **una sola incógnita**. Resuélvela.
+4. **Sustituye** el valor obtenido en la expresión despejada del paso 1 y calcula la otra incógnita.
+5. **Comprueba** el par obtenido en las **dos ecuaciones originales**.
+:::
+
+El paso 2 es el que decide si el método funciona. Si sustituyes en la misma ecuación de la que despejaste, obtendrás una identidad del tipo $x = x$, que es cierta pero inútil: has vuelto al punto de partida sin usar la información de la segunda ecuación.
+
+**Ejemplo 1.** Resolvamos
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ x & + &  y & = & 1 \\
+2x & - & 3y & = & 2
+\end{array}
+\right.
+$$
+
+**Paso 1.** En la primera ecuación, el coeficiente de $x$ es $1$, así que despejar $x$ no produce fracciones: $x = 1 - y$.
+
+**Paso 2.** Sustituimos en la **segunda**: $2(1 - y) - 3y = 2$.
+
+**Paso 3.** Resolvemos esa ecuación de primer grado: $2 - 2y - 3y = 2$, es decir $-5y = 0$, de donde $y = 0$.
+
+**Paso 4.** Volvemos a la expresión despejada: $x = 1 - 0 = 1$.
+
+**Paso 5.** Comprobamos en el sistema original: $1 + 0 = 1$ y $2\cdot 1 - 3 \cdot 0 = 2$. Las dos se cumplen, así que la solución es $x = 1$, $y = 0$, o sea el punto $(1,0)$.
+
+::: {.callout-caution}
+## Los paréntesis del paso 2 no son opcionales
+
+Al sustituir $x$ por $1 - y$ dentro de $2x$, hay que escribir $2(1 - y)$, no $2\cdot 1 - y$. La expresión despejada sustituye a la incógnita **entera**, y si va multiplicada o precedida de un signo menos hay que encerrarla entre paréntesis.
+
+El error se vuelve especialmente destructivo con el signo menos: si $x = 1 - y$ y en la otra ecuación aparece $-3x$, lo correcto es $-3(1-y) = -3 + 3y$, y no $-3 - 3y$. Escribir el paréntesis siempre, aunque parezca innecesario, cuesta un segundo y evita la mitad de los fallos.
+:::
+
+## Elegir bien qué despejar
+
+El método funciona **siempre**, elijas lo que elijas. Pero unas elecciones dan cuentas limpias y otras llenan la hoja de fracciones. Merece la pena mirar el sistema antes de empezar.
+
+::: {.callout-tip}
+## Criterio para decidir
+
+Busca una incógnita cuyo coeficiente sea $1$ o $-1$: al despejarla no aparece ningún denominador. Si hay varias posibilidades, elige la que deje la expresión más corta.
+
+Si ninguna tiene coeficiente $\pm 1$, elige la de coeficiente más pequeño en valor absoluto, o aquella cuyo coeficiente divida al término independiente. Y si todos los coeficientes son grandes o incómodos, plantéate que quizá el sistema se resuelva más rápido por reducción.
+:::
+
+**Ejemplo 2.** En el sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 11 \\
+ x & - &  y & = &  8
+\end{array}
+\right.
+$$
+
+la segunda ecuación ofrece dos incógnitas con coeficiente $\pm 1$. Despejamos $x = 8 + y$ y sustituimos en la primera: $2(8 + y) + 3y = 11$, es decir $16 + 2y + 3y = 11$, luego $5y = -5$ y $y = -1$. Entonces $x = 8 + (-1) = 7$. Comprobación: $2\cdot 7 + 3\cdot(-1) = 14 - 3 = 11$ y $7 - (-1) = 8$. La solución es $(7,-1)$.
+
+Si hubiéramos despejado $x$ en la **primera** ecuación tendríamos $x = \dfrac{11 - 3y}{2}$, y la sustitución habría llevado a $\dfrac{11-3y}{2} - y = 8$: se llega al mismo sitio, pero pasando por fracciones innecesarias.
+
+**Ejemplo 3 (cuando no queda más remedio que usar fracciones).** Resolvamos
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & - & 2y & = & -2 \\
+4x & + & 3y & = & 20
+\end{array}
+\right.
+$$
+
+Ningún coeficiente vale $\pm 1$. Despejamos $y$ en la primera, que es la de coeficiente menor en valor absoluto: de $-2y = -2 - 3x$ sale $y = \dfrac{2 + 3x}{2}$. Sustituyendo en la segunda,
+
+$$
+4x + 3 \cdot \frac{2 + 3x}{2} = 20 .
+$$
+
+Multiplicamos los dos miembros por $2$ para quitar el denominador: $8x + 3(2 + 3x) = 40$, es decir $8x + 6 + 9x = 40$, luego $17x = 34$ y $x = 2$. Entonces $y = \dfrac{2 + 6}{2} = 4$. Comprobación: $3\cdot 2 - 2\cdot 4 = -2$ y $4 \cdot 2 + 3\cdot 4 = 20$. La solución es $(2,4)$.
+
+::: {.callout-important}
+## Por qué el método es legítimo
+
+Sustituir una incógnita por una expresión igual a ella es una de las transformaciones que producen **sistemas equivalentes**. Si $(x_0,y_0)$ es solución del sistema, cumple la primera ecuación, luego cumple la forma despejada $x_0 = 1 - y_0$; y como cumple también la segunda, al sustituir la igualdad se mantiene. Recíprocamente, cualquier valor de $y$ que resuelva la ecuación obtenida, junto con el $x$ que le asigna la expresión despejada, cumple las dos ecuaciones de partida.
+
+Es decir: el método no pierde soluciones y no inventa ninguna. Por eso la comprobación final casi siempre sale bien, y cuando no sale es señal de un error aritmético en algún paso, no del método.
+:::
+
+### Applet · Método de sustitución paso a paso {.unnumbered}
+
+Introduce las dos ecuaciones del sistema y decide tú mismo **qué incógnita despejar y en qué ecuación**; el applet ejecuta el paso a paso completo con la elección que hayas hecho y muestra la expresión despejada, la ecuación con una sola incógnita, su solución y la recuperación de la otra incógnita. Prueba a resolver el mismo sistema con las cuatro elecciones posibles y compara la cantidad de fracciones que aparece en cada una: verás en la práctica por qué conviene despejar la incógnita de coeficiente $1$ o $-1$. Intenta también un sistema sin solución y otro con infinitas para ver qué señal aparece en el paso 3. En las casillas se admiten enteros, decimales con coma (por ejemplo $0{,}5$) y fracciones con barra (por ejemplo $3/4$).
+
+::: {#panel-sustitucion .applet-panel data-applet-sys="sustitucion"}
+:::
+
+::: {.callout-tip}
+## Sustituir es una idea muy antigua
+
+La maniobra de expresar una cantidad en función de otra y llevarla a una segunda condición aparece ya en problemas de reparto de hace más de dos milenios, mucho antes de que existieran las letras para representar incógnitas. En aquellos textos el razonamiento se contaba con palabras: «si la parte del segundo es la total menos la del primero, entonces…». Lo que añadió el álgebra simbólica, siglos después, no fue la idea, sino la posibilidad de escribirla en tres líneas y aplicarla mecánicamente a cualquier sistema, por feo que sea. De hecho, buena parte de los programas de cálculo actuales resuelven sistemas pequeños con una versión interna de este mismo procedimiento.
+:::
+
+## Sistemas que hay que preparar antes
+
+Muchos sistemas no llegan en forma general: traen paréntesis, denominadores o incógnitas repartidas entre los dos miembros. Antes de despejar hay que dejarlos limpios.
+
+::: {.callout-note}
+## Preparación previa
+
+1. Quita los **paréntesis**, aplicando la propiedad distributiva y cuidando los signos.
+2. Elimina los **denominadores numéricos** multiplicando los dos miembros de cada ecuación por el mínimo común múltiplo de sus denominadores.
+3. **Agrupa** los términos con incógnita en un miembro y los números en el otro.
+4. **Simplifica** dividiendo, si se puede, entre un factor común.
+:::
+
+**Ejemplo 4.** Resolvamos
+
+$$
+\left\{
+\begin{array}{l}
+2(x - 1) + y = 3y - 4 \\[2pt]
+\dfrac{x}{2} + \dfrac{y}{3} = 2
+\end{array}
+\right.
+$$
+
+La primera ecuación se desarrolla: $2x - 2 + y = 3y - 4$, y agrupando queda $2x - 2y = -2$, que se simplifica dividiendo entre $2$ en $x - y = -1$. La segunda se multiplica por $6$: $3x + 2y = 12$. El sistema preparado es $\{x - y = -1,\ 3x + 2y = 12\}$.
+
+Ahora sí, sustitución: de la primera, $x = y - 1$. Sustituyendo en la segunda, $3(y-1) + 2y = 12$, es decir $3y - 3 + 2y = 12$, luego $5y = 15$ y $y = 3$. Entonces $x = 3 - 1 = 2$. Comprobación en las ecuaciones **originales**: $2(2-1) + 3 = 5$ y $3\cdot 3 - 4 = 5$, coinciden; y $\tfrac{2}{2} + \tfrac{3}{3} = 1 + 1 = 2$, correcto. La solución es $(2,3)$.
+
+**Ejemplo 5 (agrupar antes de despejar).** Consideremos el sistema $\{5x - (y - 3) = 2x + 9,\ 4y - 3x = x + 2y\}$. La primera ecuación se desarrolla con cuidado del signo del paréntesis: $5x - y + 3 = 2x + 9$, y agrupando, $3x - y = 6$. La segunda da $4y - 3x = x + 2y$, es decir $2y = 4x$, que simplificada es $y = 2x$.
+
+Esta segunda forma ya viene despejada, así que sustituimos directamente en la primera: $3x - 2x = 6$, luego $x = 6$ y entonces $y = 12$. Comprobación en las ecuaciones originales: $5\cdot 6 - (12 - 3) = 30 - 9 = 21$ y $2 \cdot 6 + 9 = 21$, coinciden; y $4\cdot 12 - 3\cdot 6 = 30$ frente a $6 + 24 = 30$, también. La solución es $(6,12)$.
+
+## Qué ocurre cuando no hay solución única
+
+El método de sustitución también detecta los otros dos casos, y lo hace en el paso 3: la incógnita **desaparece** de la ecuación.
+
+::: {.callout-note}
+## Lectura del paso 3
+
+- Si al sustituir queda una ecuación del tipo $ky = m$ con $k \neq 0$, el sistema es **compatible determinado** y hay una única solución.
+- Si queda una igualdad **siempre cierta**, como $0 = 0$ o $6 = 6$, el sistema es **compatible indeterminado**: las dos ecuaciones dicen lo mismo. La solución se expresa en función de un parámetro.
+- Si queda una igualdad **imposible**, como $0 = 5$, el sistema es **incompatible** y no tiene solución.
+:::
+
+**Ejemplo 6 (indeterminado).** En $\{x + y = 1,\ 2x + 2y = 2\}$ despejamos $x = 1 - y$ y sustituimos en la segunda: $2(1-y) + 2y = 2$, es decir $2 - 2y + 2y = 2$, o sea $2 = 2$. La igualdad es cierta para cualquier valor de $y$: el sistema es compatible indeterminado. Sus soluciones son todos los pares $(1 - t,\ t)$ con $t$ real; por ejemplo $(1,0)$, $(0,1)$, $(-2,3)$ o $(0{,}5;\,0{,}5)$.
+
+**Ejemplo 7 (incompatible).** En $\{x + y = 1,\ 2x + 2y = 5\}$ el mismo camino lleva a $2(1-y) + 2y = 5$, es decir $2 = 5$, que es falso. No existe ningún par que cumpla las dos ecuaciones: el sistema es incompatible, y gráficamente las rectas son paralelas.
+
+::: {.callout-warning}
+## No confundas «la incógnita se ha ido» con «la incógnita vale cero»
+
+Cuando en el paso 3 los términos en $y$ se cancelan, la conclusión **no** es $y = 0$: es que la ecuación ya no dice nada sobre $y$. Si lo que queda es cierto, hay infinitas soluciones; si es falso, no hay ninguna. Escribir «$y = 0$» en ese punto convierte una discusión correcta en una respuesta equivocada.
+:::
+
+## El método más allá de los sistemas $2 \times 2$
+
+::: {.callout-tip}
+## Tres incógnitas y sistemas no lineales
+
+Con **tres** incógnitas el esquema es el mismo, aplicado dos veces: se despeja una incógnita en una ecuación, se sustituye en las otras dos y queda un sistema $2 \times 2$, que ya sabes resolver; después se recuperan los valores hacia atrás. Por ejemplo, en el sistema formado por $x + 2y - z = -1$, $2x - y + 3z = 3$ y $5x + y + 2z = 4$ se puede despejar $z = x + 2y + 1$ en la primera y llevarlo a las otras dos; el resultado final es $(1,-1,0)$.
+
+Con sistemas **no lineales** la sustitución es prácticamente el único método disponible. Si una de las ecuaciones es lineal, se despeja en ella una incógnita y se sustituye en la otra, que puede ser de segundo grado; entonces se resuelve la ecuación resultante con la fórmula general y puede haber dos soluciones, una o ninguna. Esa es la razón de que este método, aparentemente el más rudimentario, sea el más importante a largo plazo.
+:::
+
+## Errores frecuentes
+
+- **Sustituir en la misma ecuación de la que se despejó.** Se obtiene una identidad inútil, como $8 = 8$, y se pierde la información de la otra ecuación.
+- **Olvidar los paréntesis al sustituir**, sobre todo cuando la expresión va multiplicada por un número o precedida de un signo menos.
+- **Cambiar de incógnita a mitad del proceso**, despejando $x$ y sustituyendo después como si fuera $y$.
+- **Dejar el sistema sin preparar**, con paréntesis o denominadores, y despejar sobre una ecuación desordenada.
+- **Dar solo el valor de la incógnita calculada en el paso 3** y olvidar el paso 4. La solución es un **par**, no un número.
+- **Equivocarse de signo al despejar**, especialmente cuando el coeficiente es $-1$: de $-y = 3 - x$ se sigue $y = x - 3$, no $y = 3 - x$.
+- **Interpretar la cancelación de la incógnita como que vale cero**, en lugar de leerla como sistema indeterminado o incompatible.
+- **Comprobar en el sistema ya transformado** en vez de en el original, con lo que un error de manipulación queda oculto.
+- **Perder los denominadores por el camino**, multiplicando por el mínimo común múltiplo solo algunos términos de la ecuación.
+
+## Resumen del apartado
+
+- El método de sustitución transforma un sistema de dos ecuaciones con dos incógnitas en **una ecuación con una sola incógnita**.
+- Los pasos son: despejar una incógnita en una ecuación, sustituir la expresión en la **otra**, resolver la ecuación resultante, recuperar la incógnita despejada y comprobar en el sistema original.
+- Conviene despejar una incógnita cuyo coeficiente sea $1$ o $-1$, porque evita denominadores; si no la hay, se elige la de coeficiente menor en valor absoluto.
+- Al sustituir hay que **encerrar entre paréntesis** la expresión despejada siempre que vaya multiplicada o restada.
+- Si el sistema trae paréntesis o denominadores numéricos, se prepara antes: desarrollar, multiplicar por el mínimo común múltiplo, agrupar y simplificar.
+- El método es legítimo porque sustituir una incógnita por una expresión igual a ella produce un sistema **equivalente**: no se ganan ni se pierden soluciones.
+- Si en el paso 3 la incógnita se cancela y queda una igualdad cierta, el sistema es **compatible indeterminado**; si queda una igualdad falsa, es **incompatible**.
+- La sustitución se extiende a sistemas de tres o más incógnitas y es el método de referencia para los **sistemas no lineales**.
+
+## Ejercicios propuestos
+
+1. Resuelve por sustitución, indicando en cada caso qué incógnita has despejado y por qué:
+   a) $\{x + y = 5,\ x - y = 1\}$;  b) $\{2x + 3y = 11,\ x - y = 8\}$;  c) $\{5x - y = 3,\ 2x + 3y = 8\}$.
+
+2. Sin resolver, indica qué incógnita conviene despejar y en qué ecuación, y justifica la elección:
+   a) $\{7x + 2y = 3,\ x - 5y = 12\}$;  b) $\{4x - 3y = 1,\ 6x + y = 9\}$;  c) $\{2x + 6y = 8,\ 5x - 4y = 3\}$.
+
+3. Resuelve por sustitución el sistema $\{x + 3y = 9,\ x - 2y = 10\}$ y comprueba la solución en las dos ecuaciones.
+
+4. Resuelve $\{3x - 2y = -2,\ 4x + 3y = 20\}$ despejando primero $x$ en la primera ecuación. Compara el trabajo con el del Ejemplo 3, donde se despejó $y$.
+
+5. Prepara y resuelve por sustitución el sistema $\left\{\dfrac{x}{3} + \dfrac{y}{2} = 4,\ 2x - y = 2\right\}$.
+
+6. Prepara y resuelve $\{3(x + y) - 2 = x + 8,\ 2(y - 1) = x + 1\}$.
+
+7. Resuelve $\{2x - y = 4,\ -6x + 3y = -12\}$ y explica qué significa el resultado del paso 3. Escribe tres soluciones concretas del sistema.
+
+8. Resuelve $\{2x - y = 4,\ -6x + 3y = 5\}$ y clasifica el sistema a partir de lo que ocurre al sustituir.
+
+9. La suma de dos números es $32$ y su diferencia es $8$. Plantea el sistema, resuélvelo por sustitución y comprueba la respuesta sobre el enunciado.
+
+10. En una cafetería, $3$ cafés y $2$ zumos cuestan $9{,}20$ € y $1$ café y $4$ zumos cuestan $10{,}40$ €. Averigua el precio de cada consumición.
+
+11. Un rectángulo tiene $34$ cm de perímetro y su base mide $5$ cm más que su altura. Calcula sus dimensiones por sustitución.
+
+12. Resuelve por sustitución el sistema de tres incógnitas formado por $x + 2y - z = -1$, $2x - y + 3z = 3$ y $5x + y + 2z = 4$, despejando $z$ en la primera ecuación.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** a) Despejando $x = 5 - y$ en la primera (coeficiente $1$): $5 - y - y = 1$, luego $y = 2$ y $x = 3$. Solución $(3,2)$. b) Despejando $x = 8 + y$ en la segunda: $2(8+y) + 3y = 11$, luego $5y = -5$, $y = -1$ y $x = 7$. Solución $(7,-1)$. c) Despejando $y = 5x - 3$ en la primera: $2x + 3(5x-3) = 8$, es decir $17x = 17$, $x = 1$ e $y = 2$. Solución $(1,2)$.
+
+**2.** a) Conviene despejar $x$ en la segunda ecuación, porque su coeficiente es $1$: $x = 12 + 5y$. b) Conviene despejar $y$ en la segunda, cuyo coeficiente es $1$: $y = 9 - 6x$. c) Ningún coeficiente vale $\pm 1$, pero la primera ecuación se puede dividir entre $2$, quedando $x + 3y = 4$; entonces se despeja $x = 4 - 3y$ sin fracciones.
+
+**3.** De la segunda, $x = 10 + 2y$. Sustituyendo en la primera: $10 + 2y + 3y = 9$, luego $5y = -1$ e $y = -\dfrac{1}{5}$. Entonces $x = 10 - \dfrac{2}{5} = \dfrac{48}{5}$. Comprobación: $\dfrac{48}{5} + 3\cdot\left(-\dfrac{1}{5}\right) = \dfrac{45}{5} = 9$ y $\dfrac{48}{5} + \dfrac{2}{5} = 10$. Solución $\left(\dfrac{48}{5},\,-\dfrac{1}{5}\right)$.
+
+**4.** De $3x = -2 + 2y$ sale $x = \dfrac{2y - 2}{3}$. Sustituyendo: $4\cdot\dfrac{2y-2}{3} + 3y = 20$; multiplicando por $3$, $8y - 8 + 9y = 60$, luego $17y = 68$ e $y = 4$, y entonces $x = \dfrac{8-2}{3} = 2$. Misma solución $(2,4)$, con un trabajo parecido: aquí el denominador es $3$ en lugar de $2$.
+
+**5.** Multiplicando la primera por $6$: $2x + 3y = 24$. De la segunda, $y = 2x - 2$. Sustituyendo: $2x + 3(2x - 2) = 24$, es decir $8x = 30$ y $x = \dfrac{15}{4}$; entonces $y = \dfrac{15}{2} - 2 = \dfrac{11}{2}$. Solución $\left(\dfrac{15}{4},\,\dfrac{11}{2}\right)$.
+
+**6.** La primera da $3x + 3y - 2 = x + 8$, es decir $2x + 3y = 10$. La segunda da $2y - 2 = x + 1$, es decir $x = 2y - 3$. Sustituyendo: $2(2y-3) + 3y = 10$, luego $7y = 16$ e $y = \dfrac{16}{7}$, y $x = \dfrac{32}{7} - 3 = \dfrac{11}{7}$. Solución $\left(\dfrac{11}{7},\,\dfrac{16}{7}\right)$.
+
+**7.** De la primera, $y = 2x - 4$. Sustituyendo en la segunda: $-6x + 3(2x-4) = -12$, es decir $-12 = -12$. La igualdad es cierta siempre: el sistema es **compatible indeterminado**, porque la segunda ecuación es la primera multiplicada por $-3$. Soluciones: todos los pares $(t,\ 2t-4)$; por ejemplo $(0,-4)$, $(2,0)$ y $(3,2)$.
+
+**8.** El mismo camino lleva a $-6x + 3(2x - 4) = 5$, es decir $-12 = 5$, que es falso. El sistema es **incompatible**: no tiene solución y las rectas son paralelas.
+
+**9.** Con $x$ e $y$ los dos números, $\{x + y = 32,\ x - y = 8\}$. De la segunda, $x = 8 + y$; sustituyendo, $8 + 2y = 32$, luego $y = 12$ y $x = 20$. En efecto, $20 + 12 = 32$ y $20 - 12 = 8$.
+
+**10.** Con $c$ = precio del café e $z$ = precio del zumo, $\{3c + 2z = 9{,}20,\ c + 4z = 10{,}40\}$. De la segunda, $c = 10{,}40 - 4z$; sustituyendo, $3(10{,}40 - 4z) + 2z = 9{,}20$, es decir $31{,}20 - 10z = 9{,}20$, luego $z = 2{,}20$ y $c = 10{,}40 - 8{,}80 = 1{,}60$. El café cuesta $1{,}60$ € y el zumo $2{,}20$ €.
+
+**11.** Con $b$ = base y $h$ = altura, $\{2b + 2h = 34,\ b = h + 5\}$. Sustituyendo la segunda en la primera: $2(h+5) + 2h = 34$, luego $4h = 24$, $h = 6$ y $b = 11$. El rectángulo mide $11$ cm de base y $6$ cm de altura; el perímetro es $2\cdot 11 + 2 \cdot 6 = 34$ cm.
+
+**12.** De la primera, $z = x + 2y + 1$. Sustituyendo en la segunda: $2x - y + 3(x+2y+1) = 3$, es decir $5x + 5y = 0$, o sea $x = -y$. Sustituyendo en la tercera: $5x + y + 2(x+2y+1) = 4$, es decir $7x + 5y = 2$. Con $x = -y$ queda $-7y + 5y = 2$, luego $y = -1$ y $x = 1$; entonces $z = 1 - 2 + 1 = 0$. La solución es $(1,-1,0)$, que cumple las tres ecuaciones.
+:::

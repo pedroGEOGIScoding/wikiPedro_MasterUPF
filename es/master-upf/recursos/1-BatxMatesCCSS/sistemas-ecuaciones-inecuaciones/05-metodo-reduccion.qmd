@@ -1,0 +1,521 @@
+---
+title: "Tema 4.5 Método de reducción"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 05-metodo-reduccion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Idea y justificación del método de reducción, combinación lineal de ecuaciones, elección de la incógnita a eliminar, cálculo de los multiplicadores con el mínimo común múltiplo, multiplicación cruzada, preparación previa de sistemas con paréntesis, fracciones y decimales, detección de los casos degenerados 0=0 y 0=k, comparación razonada de los tres métodos elementales y problemas resueltos, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método de reducción, combinación lineal, mínimo común múltiplo]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Sumar dos ecuaciones para que desaparezca una incógnita
+
+Los dos métodos anteriores atacaban el problema de la misma manera: despejar una incógnita y arrastrarla hasta la otra ecuación. Funcionan siempre, pero obligan a manejar fracciones en cuanto los coeficientes no son $1$ o $-1$. El método de reducción cambia de estrategia y, cuando el sistema viene bien puesto, es con diferencia el más rápido de los tres.
+
+La idea se ve mejor con un caso extremo. Observa este sistema:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & + & 2y & = & 12 \\
+5x & - & 2y & = & 4
+\end{array}
+\right.
+$$
+
+Los coeficientes de la $y$ son $+2$ y $-2$: opuestos. Si sumamos las dos ecuaciones término a término, los sumandos $+2y$ y $-2y$ se cancelan y queda $8x = 16$, es decir, $x = 2$. Sin despejar nada, sin una sola fracción, en un renglón. Sustituyendo en la primera ecuación, $3\cdot 2 + 2y = 12$, sale $2y = 6$ e $y = 3$. La solución es $(2,3)$, y se comprueba en la segunda ecuación: $5\cdot 2 - 2\cdot 3 = 10 - 6 = 4$.
+
+Todo el método consiste en provocar esa cancelación cuando no viene regalada. Pero antes hay que responder a una pregunta legítima: ¿por qué está permitido sumar dos ecuaciones?
+
+::: {.callout-important}
+## Por qué se pueden sumar dos ecuaciones
+
+Supón que el par $(x_0,y_0)$ es solución del sistema. Entonces cumple las dos igualdades a la vez:
+
+$$
+ax_0 + by_0 = c \qquad \text{y} \qquad a'x_0 + b'y_0 = c'
+$$
+
+Si dos igualdades numéricas son ciertas, sumando miembro a miembro se obtiene otra igualdad cierta:
+
+$$
+(a+a')x_0 + (b+b')y_0 = c + c'
+$$
+
+Es decir: **toda solución del sistema es también solución de la ecuación suma**. Lo mismo vale si antes multiplicamos cada ecuación por un número: si $ax_0+by_0=c$ es cierta, también lo es $\lambda(ax_0+by_0)=\lambda c$ para cualquier $\lambda$.
+
+La ecuación que se obtiene al multiplicar las ecuaciones por sendos números y sumarlas se llama **combinación lineal** de las ecuaciones del sistema, y acabamos de demostrar que cualquier combinación lineal es consecuencia del sistema. Reducir es elegir la combinación lineal en la que una incógnita desaparece.
+
+Un detalle importante: la combinación lineal debe hacerse con multiplicadores **distintos de cero**. Multiplicar una ecuación por $0$ la convierte en $0=0$, que es cierta pero no dice nada, y así se pierde información.
+:::
+
+## El método paso a paso
+
+::: {.callout-note}
+## Método de reducción
+
+Para resolver un sistema lineal de dos ecuaciones con dos incógnitas:
+
+1. **Prepara el sistema.** Quita paréntesis, denominadores y decimales y deja las dos ecuaciones en la forma ordenada $ax+by=c$, con las incógnitas en el mismo orden y en el primer miembro.
+2. **Elige la incógnita que vas a eliminar.** Conviene la que tenga coeficientes iguales, opuestos, múltiplos uno del otro o simplemente más pequeños.
+3. **Calcula los multiplicadores.** Si los coeficientes de esa incógnita son $b$ y $b'$, se busca el mínimo común múltiplo $m = \operatorname{mcm}(|b|,|b'|)$ y se multiplica cada ecuación por el factor que lleva su coeficiente a $m$: la primera por $m/|b|$ y la segunda por $m/|b'|$.
+4. **Suma o resta las ecuaciones así obtenidas.** Se suman si los coeficientes quedaron opuestos y se restan si quedaron iguales. Otra opción equivalente: cambiar de signo uno de los multiplicadores y sumar siempre.
+5. **Resuelve la ecuación de primer grado con una sola incógnita** que resulta.
+6. **Calcula la otra incógnita** sustituyendo el valor hallado en cualquiera de las **ecuaciones originales** —preferiblemente la de coeficientes más sencillos—, o repitiendo la reducción con la otra incógnita.
+7. **Comprueba** la solución en las dos ecuaciones iniciales.
+:::
+
+El paso 6 admite dos variantes y las dos son correctas. La sustitución es más corta; la doble reducción tiene la ventaja de que, si te equivocas en una de las dos, la comprobación final lo detecta, mientras que un error arrastrado por sustitución puede pasar desapercibido.
+
+::: {.callout-warning}
+## Sustituye en una ecuación original, no en una transformada
+
+Al calcular la segunda incógnita es fácil ir a buscar el valor a una de las ecuaciones que hemos multiplicado. No es un error matemático —esas ecuaciones también son ciertas—, pero sí es una imprudencia: si el multiplicador se aplicó mal en algún término, el fallo se propaga y la comprobación final aparenta cuadrar. Vuelve siempre al enunciado.
+:::
+
+## Cuando los coeficientes ya encajan
+
+**Ejemplo 1.** Resuelve por reducción
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 1 \\
+2x & - & 3y & = & 2
+\end{array}
+\right.
+$$
+
+El coeficiente de la $x$ en la primera ecuación es $1$ y en la segunda es $2$: son múltiplos, así que basta multiplicar la primera por $-2$ para que aparezcan $-2x$ y $+2x$.
+
+$$
+\left\{
+\begin{array}{rcrcr}
+-2x & - & 2y & = & -2 \\
+2x & - & 3y & = & 2
+\end{array}
+\right.
+\;\Longrightarrow\;
+-5y = 0
+\;\Longrightarrow\;
+y = 0
+$$
+
+Sustituyendo $y=0$ en la primera ecuación original, $x + 0 = 1$, luego $x=1$. La solución es $(1,0)$, y en efecto $2\cdot 1 - 3\cdot 0 = 2$.
+
+También se podría haber eliminado la $y$: multiplicando la primera por $3$ se obtiene $3x+3y=3$, que sumada a la segunda da $5x = 5$, o sea $x=1$. Mismo resultado por otro camino; el método no impone la elección.
+
+**Ejemplo 2.** Resuelve
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 11 \\
+x & - & y & = & 8
+\end{array}
+\right.
+$$
+
+Aquí la $y$ tiene coeficientes $+3$ y $-1$: uno es múltiplo del otro. Multiplicamos la segunda ecuación por $3$:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 11 \\
+3x & - & 3y & = & 24
+\end{array}
+\right.
+\;\Longrightarrow\;
+5x = 35
+\;\Longrightarrow\;
+x = 7
+$$
+
+Y de $x - y = 8$ con $x=7$ se sigue $7 - y = 8$, es decir $-y = 1$ e $y = -1$. Solución: $(7,-1)$. Comprobación en la primera: $2\cdot 7 + 3\cdot(-1) = 14 - 3 = 11$.
+
+::: {.callout-tip}
+## El signo del multiplicador es tuyo
+
+Multiplicar la segunda ecuación por $3$ y **restar**, o multiplicarla por $-3$ y **sumar**, es exactamente lo mismo. Muchos errores de este tema son restas mal hechas: al restar hay que cambiar el signo de **todos** los términos de la ecuación, incluido el término independiente. Si te ocurre a menudo, adopta la costumbre de elegir siempre el multiplicador con el signo que permita **sumar**. Sumar es más difícil de equivocar que restar.
+:::
+
+## Cuando no encajan: el mínimo común múltiplo
+
+Si ninguno de los coeficientes de una misma incógnita es múltiplo del otro, se recurre al mínimo común múltiplo.
+
+**Ejemplo 3.** Resuelve
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & - & 2y & = & -2 \\
+4x & + & 3y & = & 20
+\end{array}
+\right.
+$$
+
+Para eliminar la $x$: $\operatorname{mcm}(3,4)=12$, así que multiplicamos la primera por $4$ y la segunda por $-3$:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+12x & - & 8y & = & -8 \\
+-12x & - & 9y & = & -60
+\end{array}
+\right.
+\;\Longrightarrow\;
+-17y = -68
+\;\Longrightarrow\;
+y = \dfrac{-68}{-17} = 4
+$$
+
+Para eliminar la $y$: $\operatorname{mcm}(2,3)=6$, y multiplicamos la primera por $3$ y la segunda por $2$:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+9x & - & 6y & = & -6 \\
+8x & + & 6y & = & 40
+\end{array}
+\right.
+\;\Longrightarrow\;
+17x = 34
+\;\Longrightarrow\;
+x = 2
+$$
+
+Las dos reducciones son independientes y juntas dan la solución completa $(2,4)$ sin necesidad de sustituir. La comprobación es inmediata: $3\cdot2-2\cdot4=6-8=-2$ y $4\cdot2+3\cdot4=8+12=20$.
+
+Observa que el coeficiente que aparece al final, $-17$ y $17$, es el mismo salvo el signo en las dos reducciones. No es casualidad: como veremos en el apartado dedicado a la discusión, ese número es $ab'-a'b$, la cantidad que decide si el sistema tiene solución única.
+
+::: {.callout-note}
+## Multiplicación cruzada: la receta que nunca falla
+
+Si no te apetece calcular mínimos comunes múltiplos, siempre puedes eliminar la $x$ multiplicando la primera ecuación por $a'$ y la segunda por $-a$:
+
+$$
+\left\{
+\begin{array}{rcl}
+a'ax + a'by & = & a'c \\
+-aa'x - ab'y & = & -ac'
+\end{array}
+\right.
+\;\Longrightarrow\;
+(a'b - ab')\,y = a'c - ac'
+$$
+
+Funciona siempre, pero produce números más grandes de lo necesario cuando los coeficientes tienen factores comunes. El mínimo común múltiplo es la versión económica de esta misma idea.
+:::
+
+## Preparar el sistema: paréntesis, fracciones y decimales
+
+El método exige que las ecuaciones estén en la forma $ax+by=c$. Ese trabajo previo es el mismo que ya hacías con las ecuaciones de una incógnita.
+
+**Ejemplo 4 (paréntesis).** Resuelve
+
+$$
+\left\{
+\begin{array}{rcl}
+3(x-1) + 2(y+2) & = & 11 \\
+2(x+y) - (x-y) & = & 8
+\end{array}
+\right.
+$$
+
+Desarrollando la primera: $3x - 3 + 2y + 4 = 11$, o sea $3x + 2y = 10$. Desarrollando la segunda: $2x + 2y - x + y = 8$, es decir $x + 3y = 8$. Cuidado con el signo menos delante del paréntesis: cambia los dos términos de dentro.
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & + & 2y & = & 10 \\
+x & + & 3y & = & 8
+\end{array}
+\right.
+$$
+
+Multiplicamos la segunda por $-3$ y sumamos: $3x+2y=10$ junto con $-3x-9y=-24$ da $-7y = -14$, luego $y=2$. Entonces $x = 8 - 3\cdot 2 = 2$. Solución $(2,2)$; en la primera ecuación original, $3(2-1)+2(2+2)=3+8=11$.
+
+**Ejemplo 5 (fracciones).** Resuelve
+
+$$
+\left\{
+\begin{array}{rcl}
+\dfrac{x}{2} + \dfrac{y}{3} & = & 4 \\[6pt]
+\dfrac{x}{4} - \dfrac{y}{6} & = & 1
+\end{array}
+\right.
+$$
+
+Se multiplica cada ecuación completa por el mínimo común múltiplo de sus denominadores. La primera por $6$: $3x + 2y = 24$. La segunda por $12$: $3x - 2y = 12$. Ahora los coeficientes de la $y$ son opuestos y basta sumar:
+
+$$
+6x = 36 \;\Longrightarrow\; x = 6, \qquad 2y = 24 - 18 = 6 \;\Longrightarrow\; y = 3
+$$
+
+Comprobación en las ecuaciones con fracciones: $\dfrac{6}{2}+\dfrac{3}{3} = 3+1 = 4$ y $\dfrac{6}{4}-\dfrac{3}{6} = 1{,}5 - 0{,}5 = 1$.
+
+**Ejemplo 6 (decimales).** Resuelve
+
+$$
+\left\{
+\begin{array}{rcl}
+0{,}2x + 0{,}3y & = & 1{,}3 \\
+0{,}5x - 0{,}1y & = & 0{,}7
+\end{array}
+\right.
+$$
+
+Multiplicando las dos ecuaciones por $10$ desaparecen los decimales: $2x+3y=13$ y $5x-y=7$. Multiplicando la segunda por $3$ y sumando, $17x = 13 + 21 = 34$, luego $x=2$ y $y = 5\cdot 2 - 7 = 3$. Solución $(2,3)$.
+
+::: {.callout-caution}
+## Al quitar denominadores, multiplica **toda** la ecuación
+
+El error más repetido de este bloque consiste en multiplicar solo los términos que tienen denominador. En $\dfrac{x}{2}+\dfrac{y}{3}=4$, al multiplicar por $6$ el término independiente también se multiplica: queda $24$, no $4$. Y en $0{,}2x+0{,}3y=1{,}3$, al multiplicar por $10$ el segundo miembro pasa a $13$, no a $1{,}3$.
+:::
+
+### Applet · Método de reducción {.unnumbered}
+
+Escribe las dos ecuaciones, elige qué incógnita quieres eliminar y observa cómo se calculan los multiplicadores a partir del mínimo común múltiplo, cómo queda el sistema equivalente y qué ecuación de una sola incógnita resulta al sumar. Prueba a eliminar primero la $x$ y luego la $y$ para comparar qué elección da números más cómodos. Los coeficientes se pueden escribir como enteros, como decimales con coma —por ejemplo $0{,}5$— o como fracciones con barra —por ejemplo $3/4$—; también se aceptan paréntesis y las incógnitas en cualquier orden.
+
+::: {#panel-reduccion .applet-panel data-applet-sys="reduccion"}
+:::
+
+Fíjate especialmente en los sistemas donde los coeficientes de una incógnita ya son opuestos: el applet no necesita multiplicar nada y la reducción se hace de un solo golpe. Ese es el escenario ideal del método.
+
+## Los casos degenerados: cuando desaparecen las dos incógnitas
+
+Al reducir puede ocurrir algo inesperado: que se vaya la incógnita que buscábamos eliminar y, con ella, también la otra. Lejos de ser un problema, esa situación es la respuesta.
+
+**Ejemplo 7.** Resuelve
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 5 \\
+4x & + & 6y & = & 10
+\end{array}
+\right.
+$$
+
+Multiplicando la primera por $-2$ y sumando: $-4x-6y=-10$ más $4x+6y=10$ da $0 = 0$.
+
+No hay ecuación que resolver, porque la igualdad obtenida es cierta pero vacía de contenido. Lo que ha pasado es que la segunda ecuación es la primera multiplicada por $2$: las dos dicen exactamente lo mismo. El sistema tiene **infinitas soluciones**: todos los pares que cumplen $2x+3y=5$. Se expresan tomando una incógnita como parámetro:
+
+$$
+y = \lambda, \qquad x = \dfrac{5-3\lambda}{2}, \qquad \lambda \in \mathbb{R}
+$$
+
+Con $\lambda = 1$ sale $(1,1)$; con $\lambda = -1$ sale $(4,-1)$; y así infinitos pares, todos ellos solución.
+
+**Ejemplo 8.** Resuelve
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 5 \\
+4x & + & 6y & = & 7
+\end{array}
+\right.
+$$
+
+Con la misma reducción se obtiene $0 = -3$, que es **falso**. Ninguna pareja de números puede cumplir a la vez las dos ecuaciones: si $2x+3y$ vale $5$, entonces $4x+6y$ tiene que valer $10$, y la segunda ecuación exige $7$. El sistema **no tiene solución**.
+
+::: {.callout-note}
+## Cómo leer el resultado de la reducción
+
+Después de reducir puedes encontrarte con tres finales distintos:
+
+- Una **ecuación de primer grado** del tipo $ky = k'$ con $k \neq 0$: el sistema tiene una única solución. Es **compatible determinado**.
+- Una **igualdad numérica cierta**, $0=0$: las dos ecuaciones son proporcionales y hay infinitas soluciones. Es **compatible indeterminado**.
+- Una **igualdad numérica falsa**, $0 = k$ con $k \neq 0$: no hay solución. Es **incompatible**.
+
+Esta lectura es el germen de la discusión de sistemas y del método de Gauss, y funciona igual con tres o más incógnitas.
+:::
+
+## Los tres métodos, uno al lado del otro
+
+Sustitución, igualación y reducción resuelven el mismo problema y dan siempre la misma respuesta. La diferencia está en la comodidad, y elegir bien ahorra la mitad del trabajo.
+
+Tomemos el sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+5x & - & y & = & 3 \\
+2x & + & 3y & = & 8
+\end{array}
+\right.
+$$
+
+**Por sustitución.** La $y$ de la primera ecuación tiene coeficiente $-1$: se despeja sin fracciones, $y = 5x-3$. Sustituyendo en la segunda, $2x + 3(5x-3) = 8$, es decir $2x + 15x - 9 = 8$, luego $17x = 17$ y $x = 1$. Entonces $y = 5\cdot 1 - 3 = 2$.
+
+**Por igualación.** Despejando la $y$ en las dos ecuaciones: $y = 5x-3$ y $y = \dfrac{8-2x}{3}$. Igualando, $5x-3 = \dfrac{8-2x}{3}$, y multiplicando por $3$, $15x - 9 = 8 - 2x$, de donde $17x = 17$ y $x=1$; la $y$ sale sin más de cualquiera de los dos despejes.
+
+**Por reducción.** Multiplicando la primera ecuación por $3$: $15x - 3y = 9$. Sumada a la segunda, $17x = 17$ y $x=1$; después $y = 5-3 = 2$.
+
+Los tres caminos desembocan en la misma ecuación $17x=17$, lo cual no es casualidad: los tres métodos son, en el fondo, formas distintas de escribir la misma combinación lineal. La solución es $(1,2)$.
+
+::: {.callout-tip}
+## Qué método elegir
+
+- **Reducción**, si los coeficientes de una incógnita son iguales, opuestos o múltiplos uno del otro. Es el más rápido y el único que evita fracciones intermedias.
+- **Sustitución**, si alguna incógnita tiene coeficiente $1$ o $-1$, porque se despeja sin denominadores. Es también el método que se generaliza mejor a tres o más incógnitas.
+- **Igualación**, si la **misma** incógnita se despeja con facilidad en las dos ecuaciones, o cuando el sistema ya viene dado en la forma $y = \ldots$, $y = \ldots$, típica de los problemas de tarifas y de puntos de equilibrio.
+
+Y una regla general: mira el sistema unos segundos antes de empezar a escribir. Esos segundos valen más que cualquier atajo.
+:::
+
+### Applet · Los tres métodos en paralelo {.unnumbered}
+
+Introduce un sistema y observa cómo se resuelve simultáneamente por sustitución, por igualación y por reducción en tres columnas paralelas, con todos los pasos intermedios y una recomendación razonada de qué método conviene en ese caso concreto. Compara el número de fracciones que aparece en cada columna: es el mejor indicador de comodidad. Escribe los coeficientes como enteros, como decimales con coma —por ejemplo $1{,}5$— o como fracciones con barra —por ejemplo $3/4$.
+
+::: {#panel-comparaMetodos .applet-panel data-applet-sys="comparaMetodos"}
+:::
+
+## Problemas resueltos
+
+**Problema 1 · Taquilla.** En una sesión de cine se han vendido $120$ entradas y se han recaudado $810$ euros. La entrada de adulto cuesta $8$ euros y la infantil, $5$ euros. ¿Cuántas entradas de cada tipo se han vendido?
+
+Llamamos $x$ al número de entradas de adulto e $y$ al de entradas infantiles.
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 120 \\
+8x & + & 5y & = & 810
+\end{array}
+\right.
+$$
+
+Multiplicando la primera ecuación por $-5$ y sumando: $-5x-5y=-600$ más $8x+5y=810$ da $3x = 210$, luego $x = 70$ e $y = 50$. Se vendieron $70$ entradas de adulto y $50$ infantiles, y la recaudación cuadra: $70\cdot 8 + 50\cdot 5 = 560 + 250 = 810$ euros.
+
+**Problema 2 · Mezcla de cafés.** Se quieren preparar $30$ kilos de una mezcla de café que se venderá a $10$ euros el kilo, combinando un café de $12$ euros el kilo con otro de $9$ euros el kilo. ¿Cuántos kilos de cada uno hacen falta?
+
+Con $x$ kilos del primero e $y$ del segundo:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 30 \\
+12x & + & 9y & = & 300
+\end{array}
+\right.
+$$
+
+La segunda ecuación expresa que el valor total de la mezcla es $30\cdot 10 = 300$ euros. Multiplicando la primera por $-9$: $-9x-9y=-270$, y sumando, $3x = 30$, o sea $x = 10$ e $y = 20$. Se necesitan $10$ kilos del café caro y $20$ del barato.
+
+Merece la pena mirar la respuesta con ojos críticos: el precio de la mezcla, $10$ euros, está más cerca de $9$ que de $12$, y en consecuencia hay más kilos del café de $9$ euros. Si el resultado hubiera salido al contrario, sabríamos sin comprobar nada que hay un error.
+
+**Problema 3 · Dos inversiones.** Se reparten $12\,000$ euros entre dos productos financieros, uno al $3\,\%$ anual y otro al $5\,\%$ anual, y al final del año los intereses suman $460$ euros. ¿Cuánto se invirtió en cada producto?
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 12\,000 \\
+0{,}03x & + & 0{,}05y & = & 460
+\end{array}
+\right.
+$$
+
+Multiplicando la segunda ecuación por $100$ se obtiene $3x+5y = 46\,000$, y multiplicando la primera por $-3$, $-3x-3y = -36\,000$. Sumando, $2y = 10\,000$, luego $y = 5\,000$ y $x = 7\,000$. Se invirtieron $7\,000$ euros al $3\,\%$ y $5\,000$ euros al $5\,\%$, y los intereses son $210 + 250 = 460$ euros.
+
+**Problema 4 · La botella y el tapón.** Una botella con su tapón pesa $1$ kilo y $10$ gramos, y la botella pesa $1$ kilo más que el tapón. ¿Cuánto pesa cada cosa?
+
+Trabajando en gramos, con $x$ el peso de la botella e $y$ el del tapón:
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 1010 \\
+x & - & y & = & 1000
+\end{array}
+\right.
+$$
+
+Los coeficientes de la $y$ ya son opuestos: sumando, $2x = 2010$ y $x = 1005$; restando, $2y = 10$ e $y = 5$. La botella pesa $1005$ gramos y el tapón, $5$ gramos.
+
+Este enunciado es una trampa clásica: la respuesta intuitiva «la botella pesa $1$ kilo y el tapón $10$ gramos» falla, porque entonces el conjunto pesaría $1010$ gramos pero la diferencia sería de $990$ gramos, no de $1000$. El sistema no se deja engañar por la intuición.
+
+::: {.callout-caution}
+## Errores típicos en el método de reducción
+
+1. Multiplicar solo un miembro de la ecuación, o solo los términos con incógnita, olvidando el término independiente.
+2. Restar mal: cambiar el signo del primer término y olvidar el resto.
+3. Elegir los multiplicadores con el mismo signo cuando los coeficientes ya lo tienen, y acabar duplicando la incógnita en vez de eliminarla.
+4. Reducir sin haber ordenado antes las ecuaciones, sumando la $x$ de una con la $y$ de la otra.
+5. Usar el multiplicador $0$ en una de las ecuaciones: eso destruye la información de esa ecuación.
+6. Sustituir el valor hallado en una ecuación ya transformada en lugar de una original.
+7. Interpretar $0=0$ como «no tiene solución» y $0=5$ como «infinitas soluciones». Es exactamente al revés.
+8. Dar por terminado el ejercicio con una sola incógnita calculada.
+9. No comprobar. Una comprobación en las dos ecuaciones cuesta veinte segundos y detecta casi todos los fallos.
+:::
+
+::: {.callout-tip}
+## De dónde viene esta idea
+
+Eliminar una incógnita combinando ecuaciones es una de las técnicas más antiguas del álgebra. En un texto matemático chino de hace más de dos mil años, dedicado a repartos de grano y a problemas de rendimiento agrícola, se resuelven sistemas de varias ecuaciones colocando los coeficientes en columnas sobre un tablero de cálculo y restando columnas entre sí hasta dejar una sola incógnita. El procedimiento es, salvo la notación, idéntico al que acabas de aprender.
+
+Casi dos milenios después, esa misma idea se sistematizó en lo que hoy llamamos método de Gauss, que estudiarás más adelante en este tema: no es otra cosa que la reducción aplicada de forma ordenada a sistemas de tres, cuatro o cien incógnitas. Por eso vale la pena hacerse con ella ahora, con dos.
+:::
+
+## Resumen del apartado
+
+- El **método de reducción** consiste en multiplicar las ecuaciones por números adecuados y sumarlas para que desaparezca una incógnita.
+- Está justificado porque toda **combinación lineal** de las ecuaciones de un sistema es consecuencia del sistema: si el par $(x_0,y_0)$ cumple las dos ecuaciones, cumple cualquier suma de múltiplos de ellas.
+- Los multiplicadores no pueden ser cero, porque multiplicar una ecuación por $0$ elimina su información.
+- Para eliminar una incógnita se lleva su coeficiente al **mínimo común múltiplo** de los dos valores absolutos y se ajustan los signos para poder sumar.
+- La **multiplicación cruzada** (primera por $a'$, segunda por $-a$) funciona siempre, aunque genere números mayores de lo necesario.
+- Antes de reducir hay que **preparar** el sistema: quitar paréntesis, denominadores y decimales y ordenar las ecuaciones en la forma $ax+by=c$.
+- Al quitar denominadores o decimales se multiplica la ecuación **completa**, término independiente incluido.
+- Se puede calcular la segunda incógnita por sustitución en una ecuación original o repitiendo la reducción con la otra incógnita.
+- El resultado de la reducción clasifica el sistema: una ecuación de primer grado indica **solución única**; $0=0$ indica **infinitas soluciones**; $0=k$ con $k\neq0$ indica que **no hay solución**.
+- Las infinitas soluciones se expresan con un **parámetro**: se toma una incógnita igual a $\lambda$ y se despeja la otra en función de $\lambda$.
+- Reducción, sustitución e igualación conducen a la misma ecuación final; la elección es una cuestión de comodidad y se decide mirando los coeficientes.
+- La reducción es el antecedente directo del método de Gauss para sistemas con más incógnitas.
+
+## Ejercicios propuestos
+
+1. Resuelve por reducción, eliminando primero la $x$ y después la $y$, y comprueba que obtienes lo mismo:
+   a) $\left\{\begin{array}{l} 3x-2y=4 \\ 2x-3y=2 \end{array}\right.$
+   b) $\left\{\begin{array}{l} x-3y=1 \\ 4x+5y=-2 \end{array}\right.$
+2. Resuelve por reducción $\left\{\begin{array}{l} 3x+4y=10 \\ 5x-2y=8 \end{array}\right.$ e indica qué multiplicadores has usado y por qué.
+3. Quita los denominadores y resuelve $\left\{\begin{array}{l} \dfrac{x}{2}+\dfrac{y}{5}=4 \\[4pt] \dfrac{x}{3}-\dfrac{y}{2}=-\dfrac{1}{2} \end{array}\right.$
+4. Desarrolla los paréntesis y resuelve $\left\{\begin{array}{l} 2(x-y)+3y=9 \\ 3(x+2y)-2(x-y)=12 \end{array}\right.$
+5. Resuelve $\left\{\begin{array}{l} 0{,}3x+0{,}4y=2{,}5 \\ 0{,}5x-0{,}2y=0{,}7 \end{array}\right.$ multiplicando previamente por $10$.
+6. Reduce y clasifica según lo que obtengas:
+   a) $\left\{\begin{array}{l} 3x-6y=9 \\ -x+2y=-3 \end{array}\right.$
+   b) $\left\{\begin{array}{l} 3x-6y=9 \\ -x+2y=1 \end{array}\right.$
+   En el caso de infinitas soluciones, escríbelas con un parámetro $\lambda$ y da tres soluciones concretas.
+7. Un espectáculo vende dos tipos de entrada. Tres entradas de adulto y dos infantiles cuestan $61$ euros; dos de adulto y cinco infantiles cuestan $70$ euros. Halla los dos precios.
+8. Halla dos números cuya suma sea $45$ y cuya diferencia sea $11$, planteando y reduciendo el sistema correspondiente.
+9. Resuelve el mismo sistema $\left\{\begin{array}{l} 4x+y=9 \\ 3x-2y=4 \end{array}\right.$ por los tres métodos y decide, argumentando, cuál ha sido el más cómodo.
+10. Explica con un ejemplo por qué no está permitido multiplicar una de las ecuaciones por $0$ antes de sumar.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+1. a) Eliminando la $x$ con multiplicadores $2$ y $-3$: $5y=2$, luego $y=\dfrac{2}{5}$; eliminando la $y$ con multiplicadores $3$ y $-2$: $5x=8$, luego $x=\dfrac{8}{5}$. Solución $\left(\dfrac{8}{5},\dfrac{2}{5}\right)$. Comprobación: $2\cdot\dfrac{8}{5}-3\cdot\dfrac{2}{5}=\dfrac{16-6}{5}=2$.
+   b) Multiplicando la primera por $-4$: $-17y=6$, luego $y=-\dfrac{6}{17}$ y $x=1+3y=-\dfrac{1}{17}$. Solución $\left(-\dfrac{1}{17},-\dfrac{6}{17}\right)$.
+2. Multiplicando la segunda ecuación por $2$ los coeficientes de la $y$ quedan $+4$ y $-4$: $3x+4y=10$ y $10x-4y=16$ dan $13x=26$, $x=2$, y de ahí $y=\dfrac{10-6}{4}=1$. Solución $(2,1)$. Se ha elegido la $y$ porque $4$ es múltiplo de $2$ y no hace falta tocar la primera ecuación.
+3. Multiplicando por $10$ y por $6$: $5x+2y=40$ y $2x-3y=-3$. Con multiplicadores $3$ y $2$ se elimina la $y$: $19x=114$, luego $x=6$ e $y=5$. Solución $(6,5)$.
+4. Las ecuaciones se reducen a $2x+y=9$ y $x+8y=12$. Multiplicando la segunda por $-2$: $-15y=-15$, luego $y=1$ y $x=4$. Solución $(4,1)$.
+5. Queda $3x+4y=25$ y $5x-2y=7$. Multiplicando la segunda por $2$: $13x=39$, luego $x=3$ e $y=4$. Solución $(3,4)$.
+6. a) Multiplicando la segunda por $3$ y sumando resulta $0=0$: sistema compatible indeterminado. Todas las soluciones cumplen $x-2y=3$, es decir $y=\lambda$, $x=3+2\lambda$. Con $\lambda=0,1,-1$ se obtienen $(3,0)$, $(5,1)$ y $(1,-1)$.
+   b) La misma operación da $0=12$, falso: sistema incompatible, sin solución.
+7. Con $a$ el precio de adulto y $n$ el infantil, $3a+2n=61$ y $2a+5n=70$. Multiplicando por $5$ y $-2$: $11a=165$, luego $a=15$ euros y $n=8$ euros.
+8. $x+y=45$ y $x-y=11$. Sumando, $2x=56$ y $x=28$; restando, $2y=34$ e $y=17$. Los números son $28$ y $17$.
+9. Solución $(2,1)$. Por sustitución conviene despejar $y=9-4x$ en la primera, porque su coeficiente es $1$; por reducción basta multiplicar la primera por $2$ y sumar, lo que da $11x=22$; la igualación obliga a despejar $x$ o $y$ dos veces y arrastra denominadores. El más cómodo es la reducción, seguido de cerca por la sustitución.
+10. En $\left\{\begin{array}{l} x+y=3 \\ x-y=1 \end{array}\right.$, cuya solución es $(2,1)$, multiplicar la segunda ecuación por $0$ la convierte en $0=0$ y deja solo $x+y=3$, que tiene infinitas soluciones. Al multiplicar por cero se ha perdido información y el sistema resultante ya no es equivalente al de partida.
+:::

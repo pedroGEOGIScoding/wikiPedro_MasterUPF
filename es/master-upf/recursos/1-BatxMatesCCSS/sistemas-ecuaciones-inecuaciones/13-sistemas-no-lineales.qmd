@@ -1,0 +1,346 @@
+---
+title: "Tema 4.13 Sistemas de ecuaciones no lineales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 13-sistemas-no-lineales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué hace que un sistema sea no lineal, resolución por sustitución paso a paso, sistemas recta-parábola, recta-circunferencia y xy = k, sistemas con radicales, exponenciales y logaritmos sencillos, número de soluciones e interpretación gráfica de los cortes de dos curvas, y la comprobación obligatoria de todas las soluciones para descartar las falsas.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, sistemas no lineales, sustitución, parábola, circunferencia, soluciones falsas]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuando las rectas dejan de ser rectas
+
+Todos los sistemas que has resuelto hasta ahora tenían una propiedad común: cada ecuación representaba una **recta**. Por eso las posibilidades eran solo tres, y muy fáciles de imaginar: las rectas se cortan en un punto, son paralelas y no se cortan, o son la misma recta y comparten infinitos puntos.
+
+En cuanto una de las ecuaciones deja de ser lineal, ese panorama tan ordenado se rompe. Una parábola y una recta pueden cortarse en dos puntos, en uno o en ninguno. Una circunferencia y una recta, lo mismo. Dos curvas cualesquiera pueden cortarse en cuatro puntos. La pregunta «¿cuántas soluciones tiene el sistema?» pasa a tener una respuesta que depende del caso, y la única forma de contestarla con seguridad es **resolver** y **comprobar**.
+
+Este apartado te va a dar dos cosas: un método de trabajo que funciona en casi todos los sistemas no lineales de este curso, y la costumbre de verificar el resultado. Esa costumbre no es un adorno pedagógico: en los sistemas no lineales aparecen con normalidad **soluciones falsas**, pares de números que salen impecables del álgebra y que no cumplen el sistema original.
+
+## Qué hace que un sistema sea no lineal
+
+::: {.callout-note}
+## Definición
+
+Un **sistema de ecuaciones no lineal** es un sistema en el que **al menos una** de sus ecuaciones no es de primer grado, es decir, no se puede escribir en la forma $ax + by = c$.
+:::
+
+Basta con que una sola ecuación se salga de la forma lineal para que todo el sistema sea no lineal. Estas son las señales que lo delatan:
+
+- Una incógnita **elevada a un exponente** distinto de $1$: $x^2$, $y^3$, $x^2 + y^2$.
+- Un **producto de incógnitas**: $xy$, $x^2y$.
+- Una incógnita **bajo un radical**: $\sqrt{x}$, $\sqrt{x+y}$.
+- Una incógnita en el **denominador**: $\dfrac{1}{x}$, $\dfrac{y}{x-1}$.
+- Una incógnita en el **exponente** o dentro de un **logaritmo**: $2^x$, $\log y$.
+
+Así, $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ x + y & = & 7 \end{array}\right.$ es no lineal por su primera ecuación, aunque la segunda sea de lo más lineal que hay.
+
+::: {.callout-important}
+## Por qué no valen Gauss ni la reducción
+
+El método de Gauss y el de reducción se apoyan en una propiedad que **solo tienen las ecuaciones lineales**: si sumas dos ecuaciones lineales o multiplicas una por un número, obtienes otra ecuación lineal equivalente y el sistema no cambia de soluciones. Con $x^2$ o con $xy$ por medio eso deja de cumplirse: sumar $x^2 + y^2 = 25$ con $x + y = 7$ no simplifica absolutamente nada, porque los términos no son semejantes y no se cancelan.
+
+La consecuencia práctica es clara: en los sistemas no lineales, el método casi universal es la **sustitución**. Se despeja una incógnita en la ecuación más sencilla y se lleva a la otra.
+:::
+
+## El método de sustitución paso a paso
+
+::: {.callout-note}
+## Procedimiento general
+
+1. **Elige la ecuación más sencilla** del sistema, que casi siempre es la lineal si hay alguna.
+2. **Despeja en ella** una incógnita, preferiblemente la que tenga coeficiente $1$ o $-1$, para no arrastrar fracciones.
+3. **Sustituye** esa expresión en la otra ecuación. Obtendrás una ecuación con **una sola incógnita**.
+4. **Resuelve** esa ecuación: será de segundo grado, bicuadrada, racional, radical, exponencial o logarítmica, y ya sabes tratar todos esos tipos.
+5. Para **cada** valor obtenido, calcula el valor de la otra incógnita con la expresión despejada en el paso 2.
+6. **Comprueba cada par** en las **dos** ecuaciones originales y descarta los que fallen.
+7. **Escribe la solución** como pares ordenados $(x,y)$, no como listas de valores sueltos.
+:::
+
+Los pasos 5 y 7 esconden el error más frecuente de todo el apartado. Si obtienes $x = 4$ y $x = -1$ por un lado, y $y = 5$ y $y = 0$ por otro, **no tienes cuatro soluciones**: tienes dos, porque cada valor de $x$ va emparejado con **su** valor de $y$. Emparejar mal es como cambiar los zapatos de pie.
+
+**Ejemplo resuelto 1.** Resuelve $\left\{\begin{array}{rcl} y & = & x^2 - 2x - 3 \\ y & = & x + 1 \end{array}\right.$
+
+Las dos ecuaciones tienen la $y$ ya despejada, así que igualamos las expresiones: $x^2 - 2x - 3 = x + 1$, es decir $x^2 - 3x - 4 = 0$. Sus raíces son
+$$
+x = \frac{3 \pm \sqrt{9 + 16}}{2} = \frac{3 \pm 5}{2}
+$$
+o sea $x = 4$ y $x = -1$. Ahora, con $y = x + 1$: para $x = 4$ sale $y = 5$; para $x = -1$ sale $y = 0$. Las soluciones son $(4,5)$ y $(-1,0)$.
+
+**Comprobación.** En $(4,5)$: la parábola da $16 - 8 - 3 = 5$, correcto, y la recta $4 + 1 = 5$, correcto. En $(-1,0)$: $1 + 2 - 3 = 0$ y $-1+1 = 0$, correcto. Geométricamente, la recta corta a la parábola en dos puntos.
+
+**Ejemplo resuelto 2.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ x + y & = & 7 \end{array}\right.$
+
+Despejamos en la lineal, $y = 7 - x$, y sustituimos:
+$$
+x^2 + (7-x)^2 = 25 \;\Longrightarrow\; x^2 + 49 - 14x + x^2 = 25 \;\Longrightarrow\; 2x^2 - 14x + 24 = 0
+$$
+Dividiendo entre $2$ queda $x^2 - 7x + 12 = 0$, con raíces $x = 3$ y $x = 4$. Emparejando: para $x = 3$, $y = 4$; para $x = 4$, $y = 3$. Las soluciones son $(3,4)$ y $(4,3)$, los dos puntos donde la recta corta a la circunferencia de centro el origen y radio $5$.
+
+Fíjate en que $(3,4)$ y $(4,3)$ son **puntos distintos**: el orden importa. Aquí el sistema es simétrico en $x$ e $y$, y eso hace que las soluciones aparezcan por parejas intercambiadas.
+
+::: {.callout-caution}
+## El desarrollo del cuadrado del binomio
+
+Al sustituir en una ecuación de segundo grado casi siempre hay que elevar un binomio al cuadrado, y ahí se pierden muchos ejercicios. Recuerda que $(7-x)^2 = 49 - 14x + x^2$ y **no** $49 - x^2$ ni $49 + x^2$. El término del doble producto no se puede olvidar. Un control rápido: sustituye un número cualquiera, por ejemplo $x = 1$, en el binomio y en tu desarrollo; si no coinciden, hay un error.
+:::
+
+### Applet · Sistemas no lineales en el plano {.unnumbered}
+
+Elige el tipo de sistema (recta y parábola, recta y circunferencia, o hipérbola $xy=k$ con una recta) y ajusta los coeficientes con los deslizadores; las entradas se escriben como en `y=x^2-2x-3` y `y=x+1`, con `^` para las potencias y `sqrt(...)` para las raíces. Observa cómo las dos curvas se dibujan por separado y cómo el applet marca los puntos de corte con sus coordenadas. Mueve la recta poco a poco y busca la posición en la que los dos cortes se juntan en uno solo: ese es el caso tangente, y verás que justo después no queda ningún corte.
+
+::: {#panel-noLinealGraf .applet-panel data-applet-sys="noLinealGraf"}
+:::
+
+## Sistemas de recta y parábola
+
+Son los más habituales del curso. La ecuación no lineal es del tipo $y = ax^2 + bx + c$ y la otra es una recta. Como en ambas la $y$ se despeja con facilidad, lo natural es **igualar** las dos expresiones y resolver la ecuación de segundo grado que resulta.
+
+El número de soluciones lo decide el **discriminante** $\Delta = b^2 - 4ac$ de esa ecuación final:
+
+- $\Delta > 0$: **dos soluciones**, la recta es **secante** a la parábola.
+- $\Delta = 0$: **una solución** (doble), la recta es **tangente**.
+- $\Delta < 0$: **ninguna solución real**, la recta pasa **de largo** sin tocarla.
+
+**Ejemplo resuelto 3.** Resuelve $\left\{\begin{array}{rcl} y & = & x^2 \\ y & = & x - 2 \end{array}\right.$
+
+Igualando, $x^2 = x - 2$, o sea $x^2 - x + 2 = 0$. Su discriminante es $\Delta = 1 - 8 = -7 < 0$, luego la ecuación no tiene soluciones reales y **el sistema es incompatible**. Gráficamente, la recta $y = x-2$ queda entera por debajo de la parábola $y = x^2$ y nunca la alcanza.
+
+**Ejemplo resuelto 4.** Resuelve $\left\{\begin{array}{rcl} y & = & x^2 \\ y & = & 2x - 1 \end{array}\right.$
+
+Ahora $x^2 = 2x - 1$, es decir $x^2 - 2x + 1 = 0$, que es $(x-1)^2 = 0$. Hay una única raíz, $x = 1$, doble, y le corresponde $y = 1$. La solución es el punto $(1,1)$ y la recta es **tangente** a la parábola en él. Que la raíz sea doble no significa que haya dos soluciones: el sistema tiene **una**, y la duplicidad solo indica que se trata de un contacto tangente.
+
+::: {.callout-important}
+## Cuidado con confundir «raíz doble» y «dos soluciones»
+
+En la ecuación final, una raíz doble se cuenta una vez cuando se escriben las soluciones del sistema. La multiplicidad tiene un significado **geométrico** —tangencia— pero no aporta un segundo punto de corte. Escribir «las soluciones son $(1,1)$ y $(1,1)$» es incorrecto.
+:::
+
+## Sistemas de recta y circunferencia
+
+La ecuación $x^2 + y^2 = r^2$ representa la circunferencia de centro el origen y radio $r$. Combinada con una recta, hay que despejar en la lineal y sustituir, sin olvidar desarrollar el cuadrado del binomio. La interpretación de los tres casos es la misma que antes: la recta puede ser **secante** (dos puntos), **tangente** (uno) o **exterior** (ninguno).
+
+**Ejemplo resuelto 5.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ y & = & x + 7 \end{array}\right.$
+
+Sustituyendo: $x^2 + (x+7)^2 = 25$, es decir $2x^2 + 14x + 24 = 0$, y dividiendo entre $2$, $x^2 + 7x + 12 = 0$. Las raíces son $x = -3$ y $x = -4$, que dan $y = 4$ e $y = 3$. Soluciones: $(-3,4)$ y $(-4,3)$. Ambas cumplen $9 + 16 = 25$ y $16 + 9 = 25$.
+
+**Ejemplo resuelto 6.** Estudia el sistema $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ x + y & = & 10 \end{array}\right.$
+
+Con $y = 10 - x$: $x^2 + (10-x)^2 = 25$, o sea $2x^2 - 20x + 100 = 25$ y por tanto $2x^2 - 20x + 75 = 0$. El discriminante es $\Delta = 400 - 600 = -200 < 0$: **no hay solución**. Tenía que ser así, porque todos los puntos de la circunferencia están a distancia $5$ del origen y la recta $x+y=10$ pasa demasiado lejos.
+
+**Ejemplo resuelto 7.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ x & = & 5 \end{array}\right.$
+
+Aquí la sustitución es inmediata: $25 + y^2 = 25$, luego $y^2 = 0$ e $y = 0$. La única solución es $(5,0)$, y la recta vertical $x = 5$ es **tangente** a la circunferencia en el extremo derecho. Este ejemplo enseña además que a veces la incógnita despejada es la $x$, no la $y$: se despeja **lo que sea más cómodo**.
+
+## Sistemas con productos de incógnitas: $xy = k$
+
+La ecuación $xy = k$, con $k \neq 0$, representa una **hipérbola** de dos ramas. Combinada con una recta o con una circunferencia da lugar a sistemas muy elegantes.
+
+**Ejemplo resuelto 8.** Resuelve $\left\{\begin{array}{rcl} x + y & = & 5 \\ xy & = & 6 \end{array}\right.$
+
+Despejando $y = 5 - x$ y sustituyendo: $x(5-x) = 6$, es decir $5x - x^2 = 6$, y ordenando, $x^2 - 5x + 6 = 0$. Las raíces son $x = 2$ y $x = 3$, que dan $y = 3$ e $y = 2$. Soluciones: $(2,3)$ y $(3,2)$.
+
+Este sistema es el clásico «dos números cuya suma es $5$ y cuyo producto es $6$», y muestra un atajo muy útil: si conoces la suma $s$ y el producto $p$ de dos números, ambos son raíces de $t^2 - st + p = 0$.
+
+**Ejemplo resuelto 9.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 13 \\ xy & = & 6 \end{array}\right.$
+
+Despejamos en la segunda, $y = \dfrac{6}{x}$ con $x \neq 0$, y sustituimos:
+$$
+x^2 + \frac{36}{x^2} = 13
+$$
+Multiplicando todo por $x^2$ queda $x^4 - 13x^2 + 36 = 0$, una ecuación **bicuadrada**. Con el cambio $z = x^2$ se convierte en $z^2 - 13z + 36 = 0$, cuyas raíces son $z = 9$ y $z = 4$. Deshaciendo el cambio, $x = \pm 3$ y $x = \pm 2$, y con $y = 6/x$:
+
+- $x = 3 \Rightarrow y = 2$
+- $x = -3 \Rightarrow y = -2$
+- $x = 2 \Rightarrow y = 3$
+- $x = -2 \Rightarrow y = -3$
+
+Las cuatro soluciones son $(3,2)$, $(-3,-2)$, $(2,3)$ y $(-2,-3)$. Este es el ejemplo que demuestra que un sistema no lineal de dos ecuaciones **puede tener cuatro soluciones**: la circunferencia de radio $\sqrt{13}$ corta a las dos ramas de la hipérbola en dos puntos cada una. Observa que los signos van siempre **emparejados**, porque el producto $xy$ debe ser positivo.
+
+### Applet · Resolución de sistemas no lineales {.unnumbered}
+
+Introduce las dos ecuaciones tal como aparecen en los ejemplos, una por línea (por ejemplo `x^2+y^2=13` y `x*y=6`), y pulsa para avanzar. El panel muestra qué incógnita conviene despejar, la sustitución completa, la ecuación de una sola incógnita que resulta, sus raíces y el emparejamiento de cada $x$ con su $y$. Presta especial atención a la última etapa: el applet sustituye cada par candidato en las dos ecuaciones originales y **tacha en rojo** los que no las cumplen. Prueba con el sistema del radical del ejemplo siguiente para ver una solución falsa siendo descartada.
+
+::: {#panel-noLinealPaso .applet-panel data-applet-sys="noLinealPaso"}
+:::
+
+## Sistemas con radicales: aparecen soluciones falsas
+
+Cuando una ecuación tiene una incógnita bajo un radical, hay que elevar al cuadrado para librarse de la raíz. Y elevar al cuadrado **no es una transformación equivalente**: puede añadir soluciones que no lo eran. Por eso, en estos sistemas la comprobación no es una recomendación, es parte del método.
+
+::: {.callout-warning}
+## Elevar al cuadrado inventa soluciones
+
+La igualdad $a = b$ implica $a^2 = b^2$, pero al revés no: de $a^2 = b^2$ solo se deduce $a = b$ **o** $a = -b$. Al elevar al cuadrado se pierde la información del signo, y con ella se cuelan pares que resuelven la ecuación elevada pero no la original. Esas soluciones se llaman **falsas** o **extrañas**, y solo se detectan sustituyendo en el sistema de partida.
+:::
+
+**Ejemplo resuelto 10.** Resuelve $\left\{\begin{array}{rcl} y & = & \sqrt{x+1} \\ y & = & x - 1 \end{array}\right.$
+
+Igualando, $\sqrt{x+1} = x - 1$. Elevamos al cuadrado: $x + 1 = (x-1)^2 = x^2 - 2x + 1$, de donde $x^2 - 3x = 0$, es decir $x(x-3) = 0$, con raíces $x = 0$ y $x = 3$.
+
+**Comprobación, que aquí decide el resultado.** Para $x = 0$: el primer miembro vale $\sqrt{1} = 1$ y el segundo, $0 - 1 = -1$. Como $1 \neq -1$, el par $(0,-1)$ **no es solución**; era una solución falsa, nacida de que al elevar al cuadrado $1$ y $-1$ se vuelven indistinguibles. Para $x = 3$: $\sqrt{4} = 2$ y $3 - 1 = 2$, coinciden, luego $(3,2)$ **sí es solución**.
+
+La única solución del sistema es $(3,2)$. Gráficamente, la rama de raíz cuadrada y la recta se cortan en un solo punto; el $x = 0$ correspondía al corte de la recta con la rama negativa $y = -\sqrt{x+1}$, que **no** forma parte del sistema.
+
+**Ejemplo resuelto 11.** Resuelve $\left\{\begin{array}{rcl} \sqrt{x+y} & = & 3 \\ x - y & = & 1 \end{array}\right.$
+
+Elevando al cuadrado la primera, $x + y = 9$. Junto con $x - y = 1$ queda un sistema lineal sencillo: sumando las dos, $2x = 10$, luego $x = 5$ e $y = 4$. Comprobamos: $\sqrt{5+4} = 3$, correcto, y $5 - 4 = 1$, correcto. La solución es $(5,4)$. Aquí no ha aparecido ninguna solución falsa porque el miembro que hemos elevado, $3$, era positivo; pero la comprobación se hace igualmente, porque de antemano no se sabe.
+
+## Sistemas exponenciales y logarítmicos sencillos
+
+Con incógnitas en el exponente o dentro de un logaritmo, la estrategia consiste en **cambiar de variable** para volver a un sistema conocido, y después deshacer el cambio.
+
+**Ejemplo resuelto 12.** Resuelve $\left\{\begin{array}{rcl} 2^x + 2^y & = & 12 \\ 2^{x+y} & = & 32 \end{array}\right.$
+
+Llamamos $u = 2^x$ y $v = 2^y$. Como $2^{x+y} = 2^x \cdot 2^y = uv$, el sistema se convierte en $u + v = 12$, $uv = 32$. Es el caso suma-producto: $u$ y $v$ son raíces de $t^2 - 12t + 32 = 0$, o sea $t = 4$ y $t = 8$. Deshaciendo el cambio: si $2^x = 4$ entonces $x = 2$, y si $2^y = 8$ entonces $y = 3$; o al revés. Las soluciones son $(2,3)$ y $(3,2)$, y las dos cumplen $4 + 8 = 12$ y $2^5 = 32$.
+
+**Ejemplo resuelto 13.** Resuelve $\left\{\begin{array}{rcl} \log x + \log y & = & 2 \\ x - y & = & 15 \end{array}\right.$
+
+Por la propiedad del producto, $\log(xy) = 2$, luego $xy = 10^2 = 100$. Con $x = y + 15$ sustituimos: $(y+15)y = 100$, es decir $y^2 + 15y - 100 = 0$, cuyas raíces son
+$$
+y = \frac{-15 \pm \sqrt{225 + 400}}{2} = \frac{-15 \pm 25}{2}
+$$
+o sea $y = 5$ e $y = -10$. El valor $y = -10$ **debe descartarse**: no existe $\log(-10)$. Queda $y = 5$ y por tanto $x = 20$. Comprobación: $\log 20 + \log 5 = \log 100 = 2$, y $20 - 5 = 15$. La única solución es $(20,5)$.
+
+::: {.callout-caution}
+## El dominio manda por encima del álgebra
+
+En estos sistemas hay valores que el álgebra produce y el enunciado no admite. Antes de dar una solución por buena, revisa que:
+
+- ningún **denominador** se anule;
+- ningún **radicando** de índice par sea negativo;
+- ningún **argumento de logaritmo** sea cero o negativo;
+- si el problema es contextualizado, las cantidades sean **positivas** cuando representen longitudes, precios o unidades producidas.
+:::
+
+## Cuántas soluciones puede tener un sistema no lineal
+
+En un sistema lineal de dos ecuaciones, el número de soluciones es $0$, $1$ o infinito. En un sistema no lineal el abanico es mayor, y la lectura gráfica lo explica todo: **cada solución es un punto donde las dos curvas se cortan**.
+
+| Sistema | Curvas | Soluciones posibles |
+|---|---|---|
+| Recta y parábola | recta, parábola | $0$, $1$ (tangente) o $2$ |
+| Recta y circunferencia | recta, circunferencia | $0$, $1$ (tangente) o $2$ |
+| Recta e hipérbola $xy=k$ | recta, dos ramas | $0$, $1$ o $2$ |
+| Circunferencia e hipérbola | circunferencia, dos ramas | hasta $4$ |
+| Dos parábolas | dos parábolas | hasta $4$ |
+
+Por eso el dibujo, aunque sea aproximado, es un aliado tan valioso: te dice **cuántas** soluciones debes esperar antes de calcularlas, y si tu álgebra devuelve un número distinto, sabes que hay que revisar el desarrollo.
+
+::: {.callout-tip}
+## Curvas que ya estudiaban los griegos
+
+Las parábolas, elipses e hipérbolas que aparecen en estos sistemas son las **secciones cónicas**: las curvas que se obtienen al cortar un cono con un plano según distintas inclinaciones. Los matemáticos de la Grecia clásica las estudiaron con métodos puramente geométricos, sin ecuaciones, siglos antes de que existiera el álgebra simbólica. La posibilidad de escribir una circunferencia como $x^2+y^2=r^2$ y de resolver su corte con una recta haciendo cuentas llegó mucho más tarde, con la geometría analítica del siglo XVII, y fue una de las mayores simplificaciones de la historia de las matemáticas: problemas que exigían construcciones ingeniosas con regla y compás pasaron a resolverse con una ecuación de segundo grado.
+:::
+
+## Errores frecuentes
+
+1. Intentar aplicar **reducción o Gauss** a un sistema no lineal: los términos $x^2$, $xy$ o $\sqrt{x}$ no se cancelan al sumar ecuaciones.
+2. Desarrollar mal el **cuadrado de un binomio** al sustituir: $(7-x)^2$ no es $49 - x^2$.
+3. **Emparejar mal** los valores: cada $x$ va con la $y$ que se obtiene al sustituirlo, y no con todas.
+4. Dar como soluciones **listas de números** ($x=3$, $x=4$, $y=3$, $y=4$) en lugar de **pares ordenados**.
+5. **No comprobar** en el sistema original, sobre todo si ha habido radicales: las soluciones falsas pasan desapercibidas.
+6. Olvidar el **dominio**: aceptar un logaritmo de número negativo, una raíz par de radicando negativo o un denominador nulo.
+7. Confundir **raíz doble** con dos soluciones distintas en los casos de tangencia.
+8. Perder soluciones al resolver una **bicuadrada**: de $x^2 = 9$ salen $x = 3$ y $x = -3$, no solo $x = 3$.
+
+## Resumen del apartado
+
+Un sistema es **no lineal** cuando al menos una de sus ecuaciones no es de primer grado, ya sea por potencias, productos de incógnitas, radicales, denominadores, exponenciales o logaritmos. Los métodos de reducción y de Gauss dejan de servir, y el camino habitual es la **sustitución**: despejar una incógnita en la ecuación más sencilla, llevarla a la otra, resolver la ecuación de una incógnita que resulte y emparejar cada valor con el que le corresponde.
+
+Los tipos que debes reconocer al primer vistazo son **recta-parábola**, **recta-circunferencia**, sistemas con **producto $xy = k$** —que a menudo conducen a una bicuadrada—, sistemas con **radicales** y sistemas **exponenciales o logarítmicos** resolubles con un cambio de variable. Cada solución del sistema es un **punto de corte** de dos curvas del plano, de modo que el número de soluciones va de ninguna a cuatro según los casos, y el discriminante de la ecuación final distingue las situaciones secante, tangente y sin corte.
+
+La última etapa es siempre la misma y no es opcional: **comprobar cada par en las dos ecuaciones originales** y descartar las soluciones falsas que la elevación al cuadrado o el dominio de las expresiones dejen fuera.
+
+## Ejercicios propuestos
+
+**1.** Indica cuáles de estos sistemas son no lineales y por qué: (a) $\left\{ 3x - y = 2,\ x + 4y = 5 \right\}$; (b) $\left\{ xy = 8,\ x - y = 2 \right\}$; (c) $\left\{ x^2 - y = 0,\ 2x + 3y = 1 \right\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+(a) Es **lineal**: las dos ecuaciones son de primer grado. (b) Es **no lineal** por el producto de incógnitas $xy$. (c) Es **no lineal** por el término $x^2$, aunque la segunda ecuación sea lineal.
+:::
+
+**2.** Resuelve $\left\{\begin{array}{rcl} y & = & x^2 - 4 \\ y & = & 3x \end{array}\right.$ e interpreta el resultado gráficamente.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Igualando: $x^2 - 4 = 3x$, o sea $x^2 - 3x - 4 = 0$, con raíces $x = 4$ y $x = -1$. Con $y = 3x$: $(4,12)$ y $(-1,-3)$. Comprobación en la parábola: $16-4=12$ y $1-4=-3$, correcto. La recta es **secante** a la parábola y la corta en dos puntos.
+:::
+
+**3.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 20 \\ y & = & 2x \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Sustituyendo: $x^2 + 4x^2 = 20$, luego $5x^2 = 20$ y $x^2 = 4$, de donde $x = 2$ y $x = -2$. Con $y = 2x$ se obtienen $(2,4)$ y $(-2,-4)$. Ambos cumplen $4 + 16 = 20$. La recta pasa por el centro de la circunferencia, así que la corta en dos puntos diametralmente opuestos.
+:::
+
+**4.** Estudia cuántas soluciones tiene $\left\{\begin{array}{rcl} y & = & x^2 + 1 \\ y & = & x \end{array}\right.$ sin resolverlo del todo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Igualando queda $x^2 - x + 1 = 0$, cuyo discriminante es $\Delta = 1 - 4 = -3 < 0$. No hay soluciones reales: el sistema es **incompatible** y la recta $y=x$ pasa por debajo de la parábola sin tocarla.
+:::
+
+**5.** Resuelve $\left\{\begin{array}{rcl} x + y & = & 7 \\ xy & = & 12 \end{array}\right.$ y explica por qué salen dos soluciones intercambiadas.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $y = 7 - x$: $x(7-x) = 12$, es decir $x^2 - 7x + 12 = 0$, con raíces $x = 3$ y $x = 4$; las soluciones son $(3,4)$ y $(4,3)$. Las dos ecuaciones no cambian si se intercambian $x$ e $y$, y por eso las soluciones aparecen por parejas simétricas.
+:::
+
+**6.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 10 \\ xy & = & 3 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la segunda, $y = 3/x$ con $x \neq 0$. Sustituyendo: $x^2 + \dfrac{9}{x^2} = 10$, y multiplicando por $x^2$, $x^4 - 10x^2 + 9 = 0$. Con $z = x^2$: $z^2 - 10z + 9 = 0$, luego $z = 9$ y $z = 1$, y por tanto $x = \pm 3$ y $x = \pm 1$. Emparejando con $y = 3/x$: $(3,1)$, $(-3,-1)$, $(1,3)$ y $(-1,-3)$. Cuatro soluciones, todas con los signos iguales porque $xy$ es positivo.
+:::
+
+**7.** Resuelve $\left\{\begin{array}{rcl} y & = & \sqrt{x+3} \\ y & = & x + 1 \end{array}\right.$ y comprueba cuidadosamente.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Igualando y elevando al cuadrado: $x + 3 = (x+1)^2 = x^2 + 2x + 1$, de donde $x^2 + x - 2 = 0$, con raíces $x = 1$ y $x = -2$. Comprobación: para $x = 1$, $\sqrt{4} = 2$ y $1+1 = 2$, coinciden, luego $(1,2)$ es solución. Para $x = -2$, $\sqrt{1} = 1$ pero $-2+1 = -1$, y $1 \neq -1$: es una **solución falsa** y se descarta. La única solución es $(1,2)$.
+:::
+
+**8.** Resuelve $\left\{\begin{array}{rcl} \log x + \log y & = & 1 \\ x + y & = & 7 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la primera, $\log(xy) = 1$, luego $xy = 10$. Con $y = 7 - x$: $x(7-x) = 10$, es decir $x^2 - 7x + 10 = 0$, con raíces $x = 2$ y $x = 5$. Las soluciones son $(2,5)$ y $(5,2)$; las dos son válidas porque ambos valores son positivos y admiten logaritmo.
+:::
+
+**9.** La diagonal de un rectángulo mide $17$ cm y su perímetro, $46$ cm. Halla sus dimensiones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Si los lados son $x$ e $y$, el teorema de Pitágoras da $x^2 + y^2 = 289$ y el perímetro, $2x + 2y = 46$, o sea $x + y = 23$. Sustituyendo $y = 23 - x$: $x^2 + (23-x)^2 = 289$, es decir $2x^2 - 46x + 529 = 289$, luego $2x^2 - 46x + 240 = 0$ y, dividiendo entre $2$, $x^2 - 23x + 120 = 0$. Las raíces son $x = 15$ y $x = 8$. Las dos son positivas y dan el mismo rectángulo: los lados miden $15$ cm y $8$ cm. Comprobación: $225 + 64 = 289$ y $2(15+8) = 46$.
+:::
+
+**10.** Resuelve, con el cambio $X = \dfrac{1}{x}$ e $Y = \dfrac{1}{y}$, el sistema $\left\{\begin{array}{rcl} \dfrac{1}{x} + \dfrac{1}{y} & = & \dfrac{8}{15} \\[4pt] \dfrac{1}{xy} & = & \dfrac{1}{15} \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con el cambio queda $X + Y = \dfrac{8}{15}$ y $XY = \dfrac{1}{15}$. Es un caso suma-producto: $X$ e $Y$ son raíces de $t^2 - \dfrac{8}{15}t + \dfrac{1}{15} = 0$, o bien, multiplicando por $15$, de $15t^2 - 8t + 1 = 0$, cuyas raíces son $t = \dfrac{1}{3}$ y $t = \dfrac{1}{5}$. Deshaciendo el cambio, $x = 3$ e $y = 5$, o bien $x = 5$ e $y = 3$. Las soluciones son $(3,5)$ y $(5,3)$, y ninguna anula los denominadores.
+:::

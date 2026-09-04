@@ -1,0 +1,442 @@
+---
+title: "Tema 4.14 Práctica del tema"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 14-practica-sistemas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Hoja de práctica completa del tema de sistemas de ecuaciones e inecuaciones, con mapa de contenidos, tabla resumen de estrategias de resolución, catálogo de errores frecuentes, seis bloques de ejercicios resueltos graduados por dificultad sobre sistemas lineales, método de Gauss, discusión con parámetro, problemas contextualizados, recintos e inecuaciones y sistemas no lineales, autoevaluación tipo test y batería final con soluciones.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, práctica, Gauss, discusión de sistemas, recintos, sistemas no lineales, autoevaluación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Esta hoja no introduce contenidos nuevos: recoge todo lo que has trabajado en el tema y lo pone a prueba en el orden en que suele aparecer en un examen. Cada ejercicio lleva su nivel indicado —**básico**, **medio** o **avanzado**— y su solución completa en un desplegable justo debajo.
+
+Trabaja con papel y lápiz, y **no abras la solución hasta haber terminado**. Cuando la abras, no te limites a comparar el resultado final: compara también el camino, porque una respuesta correcta obtenida por un método largo indica que hay un atajo que todavía no dominas. Y si el resultado no coincide, busca el punto exacto donde se separan los dos desarrollos; ese punto es lo que tienes que corregir, no el ejercicio entero.
+
+::: {.callout-tip}
+## Plan de trabajo recomendado
+
+- **Sesión 1 (45 min).** Bloques 1 y 2: sistemas lineales de dos y tres incógnitas. Son la base de todo lo demás.
+- **Sesión 2 (45 min).** Bloque 3, discusión con parámetro, y bloque 4, problemas contextualizados. El bloque 4 es el que más puntúa en los exámenes.
+- **Sesión 3 (45 min).** Bloques 5 y 6: recintos y sistemas no lineales, donde el dibujo y la comprobación son imprescindibles.
+- **Sesión 4 (30 min).** Autoevaluación tipo test, entrenadores aleatorios y batería final, sin mirar apuntes y con reloj.
+
+Si andas justo de tiempo, prioriza los ejercicios de nivel **medio**: son los que mejor discriminan si el tema está asentado.
+:::
+
+## Mapa del tema
+
+Antes de calcular, conviene ver el tema entero de un vistazo. Todo gira alrededor de una única pregunta: **qué valores cumplen varias condiciones a la vez**. Lo que cambia es el tipo de condición y, con él, la forma de la respuesta.
+
+| Bloque | Qué se pide | Herramienta principal | Forma de la respuesta |
+|---|---|---|---|
+| Sistemas lineales $2\times 2$ | valores de $x$ e $y$ | sustitución, igualación, reducción | un punto, ninguno o infinitos |
+| Sistemas lineales $3\times 3$ | valores de $x$, $y$, $z$ | método de Gauss | un punto, ninguno o infinitos |
+| Discusión con parámetro | para qué valores del parámetro hay solución | Gauss dejando el parámetro sin dividir | clasificación por casos |
+| Problemas contextualizados | magnitudes del enunciado | traducción a sistema y resolución | cantidades con unidades |
+| Inecuaciones y recintos | zona del plano que cumple todo | semiplanos, punto de prueba, vértices | una región |
+| Sistemas no lineales | cortes de dos curvas | sustitución y comprobación | de $0$ a $4$ pares $(x,y)$ |
+
+::: {.callout-important}
+## La idea que une el tema
+
+Un sistema de **ecuaciones** pregunta dónde se **cortan** unos objetos geométricos: dos rectas, tres planos, una recta y una parábola. Un sistema de **inecuaciones** pregunta qué **zona** cumple varias desigualdades. En el primer caso la respuesta suele ser un puñado de puntos; en el segundo, una región entera. Si tienes clara esa diferencia, no confundirás nunca los métodos ni la forma de escribir la solución.
+:::
+
+## Tabla resumen de estrategias
+
+Ante un sistema, la primera decisión —y la que ahorra más tiempo— es **qué método usar**. Esta tabla resume el criterio.
+
+| Si el sistema… | Usa… | Porque… |
+|---|---|---|
+| tiene una incógnita con coeficiente $1$ o $-1$ | **sustitución** | se despeja sin fracciones |
+| tiene la misma incógnita despejada en las dos ecuaciones | **igualación** | se igualan las dos expresiones directamente |
+| tiene coeficientes opuestos o fáciles de igualar | **reducción** | se elimina una incógnita sumando |
+| tiene tres o más incógnitas | **Gauss** | se escalona y se resuelve de abajo arriba |
+| lleva un parámetro | **Gauss sin dividir por el parámetro** | dividir por algo que puede ser $0$ pierde casos |
+| lleva denominadores numéricos | **quitar denominadores primero** | se reduce a un sistema de coeficientes enteros |
+| es de desigualdades | **dibujar semiplanos** | la solución es una región, no un punto |
+| tiene $x^2$, $xy$, $\sqrt{x}$, $2^x$ o $\log x$ | **sustitución y comprobación** | Gauss y reducción no valen aquí |
+| pide el máximo o el mínimo de $F=px+qy$ | **vértices del recinto** | el óptimo se alcanza en una esquina |
+
+::: {.callout-note}
+## Los cuatro pasos de un problema contextualizado
+
+1. **Nombrar las incógnitas** con una frase completa: «$x$ = número de mesas fabricadas a la semana». Sin unidades explícitas, el resto del problema se descontrola.
+2. **Traducir cada frase del enunciado** en una ecuación o inecuación. Cada dato numérico suele dar una condición.
+3. **Resolver** el sistema con el método más cómodo.
+4. **Interpretar y comprobar**: revisar que los valores tengan sentido —positivos, enteros si son unidades— y releer el enunciado para responder a lo que se preguntaba, con sus unidades.
+:::
+
+## Errores más frecuentes
+
+Este catálogo reúne los fallos que más puntos cuestan. Léelo antes de empezar y vuelve a leerlo después de corregir.
+
+1. **Al despejar, no cambiar el signo** de todos los términos que cruzan el igual.
+2. **Multiplicar solo una parte** de la ecuación al quitar denominadores: hay que multiplicar **todos** los términos, incluido el término independiente.
+3. **Sustituir en la misma ecuación** de la que se ha despejado: se obtiene una identidad del tipo $0=0$ que no informa de nada.
+4. En Gauss, **usar como pivote una fila ya escalonada** y deshacer el trabajo hecho.
+5. Interpretar mal la última fila de Gauss: $0 = k$ con $k \neq 0$ significa **incompatible**, y $0 = 0$ significa **compatible indeterminado**, no «sin solución».
+6. Al discutir con parámetro, **dividir entre el parámetro** sin analizar antes qué ocurre si vale cero.
+7. Dar la solución de un sistema indeterminado como un punto concreto en vez de con un **parámetro libre**.
+8. En las inecuaciones, **olvidar girar el sentido** de la desigualdad al multiplicar o dividir por un número negativo.
+9. Usar el **origen como punto de prueba** cuando la recta frontera pasa por el origen.
+10. Tomar como vértice del recinto **cualquier corte de rectas**, sin comprobar que cumple todas las restricciones.
+11. Buscar el óptimo de $F = px+qy$ probando puntos interiores en lugar de los **vértices**.
+12. En los sistemas no lineales, **emparejar mal** los valores de $x$ con los de $y$, o dar listas de números en lugar de pares ordenados.
+13. **No comprobar** las soluciones de un sistema con radicales y aceptar así una solución falsa.
+14. Aceptar valores que el **dominio** prohíbe: denominadores nulos, radicandos negativos, logaritmos de números no positivos.
+
+## Bloque 1 · Sistemas lineales de dos incógnitas
+
+**1 (básico).** Resuelve por sustitución $\left\{\begin{array}{rcl} x + 2y & = & 11 \\ 3x - y & = & 5 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Despejamos $x = 11 - 2y$ y sustituimos en la segunda: $3(11-2y) - y = 5$, es decir $33 - 6y - y = 5$, luego $-7y = -28$ e $y = 4$. Entonces $x = 11 - 8 = 3$. La solución es $(3,4)$, y se comprueba en las dos ecuaciones: $3 + 8 = 11$ y $9 - 4 = 5$.
+:::
+
+**2 (básico).** Resuelve por reducción $\left\{\begin{array}{rcl} 4x + 3y & = & 17 \\ 2x - 3y & = & -5 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los coeficientes de $y$ son opuestos, así que basta sumar las dos ecuaciones: $6x = 12$, luego $x = 2$. Sustituyendo en la primera, $8 + 3y = 17$, de donde $y = 3$. Solución: $(2,3)$. Comprobación en la segunda: $4 - 9 = -5$.
+:::
+
+**3 (medio).** Resuelve $\left\{\begin{array}{rcl} \dfrac{x}{2} + \dfrac{y}{3} & = & 4 \\[4pt] x - y & = & 3 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Multiplicamos la primera ecuación por $6$: $3x + 2y = 24$. De la segunda, $x = y + 3$. Sustituyendo: $3(y+3) + 2y = 24$, es decir $5y = 15$ e $y = 3$; entonces $x = 6$. Solución: $(6,3)$. Comprobación: $\frac{6}{2} + \frac{3}{3} = 3 + 1 = 4$ y $6 - 3 = 3$.
+:::
+
+**4 (medio).** Clasifica y resuelve, si es posible, $\left\{\begin{array}{rcl} 2x - 4y & = & 6 \\ -x + 2y & = & 1 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Multiplicamos la segunda por $2$: $-2x + 4y = 2$. Sumándola a la primera queda $0 = 8$, que es falso. El sistema es **incompatible** y no tiene solución. Geométricamente, las dos rectas son **paralelas**: ambas tienen pendiente $\frac{1}{2}$ pero distinta ordenada en el origen.
+:::
+
+**5 (medio).** Clasifica y resuelve $\left\{\begin{array}{rcl} x - 3y & = & 2 \\ 2x - 6y & = & 4 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La segunda ecuación es exactamente el doble de la primera, así que no aporta información nueva. El sistema es **compatible indeterminado** y tiene infinitas soluciones. Tomando $y = t$ como parámetro libre, $x = 2 + 3t$, y la solución se escribe $(2+3t,\ t)$ con $t$ real. Las dos ecuaciones representan **la misma recta**.
+:::
+
+## Bloque 2 · Sistemas de tres incógnitas y método de Gauss
+
+**6 (medio).** Resuelve $\left\{\begin{array}{rcl} x + y + z & = & 6 \\ x - y + z & = & 2 \\ x + y - z & = & 0 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Aquí conviene aprovechar la simetría antes de escalonar. Restando la segunda de la primera: $2y = 4$, luego $y = 2$. Restando la tercera de la primera: $2z = 6$, luego $z = 3$. Sustituyendo en la primera, $x = 6 - 2 - 3 = 1$. La solución es $(1,2,3)$, y cumple las tres ecuaciones: $1+2+3=6$, $1-2+3=2$ y $1+2-3=0$.
+:::
+
+**7 (avanzado).** Resuelve por Gauss $\left\{\begin{array}{rcl} x + y + z & = & 6 \\ 2x - y + 3z & = & 9 \\ x + 2y - z & = & 2 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Usamos la primera fila como pivote. A la segunda le restamos el doble de la primera: $-3y + z = -3$. A la tercera le restamos la primera: $y - 2z = -4$. De la primera de estas dos, $z = 3y - 3$; sustituyendo en la segunda, $y - 2(3y-3) = -4$, es decir $-5y = -10$ e $y = 2$. Entonces $z = 3$ y, de la ecuación inicial, $x = 6 - 2 - 3 = 1$. Solución: $(1,2,3)$. Comprobación en la segunda ecuación: $2 - 2 + 9 = 9$; en la tercera: $1 + 4 - 3 = 2$.
+:::
+
+**8 (avanzado).** Discute y resuelve $\left\{\begin{array}{rcl} x + y + z & = & 3 \\ 2x + 2y + 2z & = & 6 \\ x - y & = & 1 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La segunda ecuación es el doble de la primera, así que sobra: en realidad hay **dos** ecuaciones útiles y **tres** incógnitas, de modo que el sistema es **compatible indeterminado** con un parámetro libre. Tomando $x = t$, de la tercera sale $y = t - 1$ y de la primera, $z = 3 - t - (t-1) = 4 - 2t$. La solución es $(t,\ t-1,\ 4-2t)$ con $t$ real. Para $t = 2$, por ejemplo, se obtiene $(2,1,0)$, que efectivamente cumple las tres ecuaciones.
+:::
+
+## Bloque 3 · Discusión de sistemas con un parámetro
+
+**9 (medio).** Discute según $k$ el sistema $\left\{\begin{array}{rcl} x + y & = & 1 \\ 2x + ky & = & 3 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restamos a la segunda ecuación el doble de la primera: $(k-2)y = 1$.
+
+- Si $k \neq 2$, se puede dividir y sale $y = \dfrac{1}{k-2}$, con $x = 1 - y = \dfrac{k-3}{k-2}$. El sistema es **compatible determinado** con solución única.
+- Si $k = 2$, la ecuación queda $0 = 1$, que es falsa: el sistema es **incompatible**. En efecto, con $k=2$ las rectas $x+y=1$ y $2x+2y=3$ son paralelas.
+
+Nunca hay caso indeterminado, porque el término independiente $1$ no depende de $k$.
+:::
+
+**10 (avanzado).** Discute según $a$ y $b$ el sistema $\left\{\begin{array}{rcl} x + 2y & = & 3 \\ 3x + ay & = & b \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restamos a la segunda el triple de la primera: $(a-6)y = b - 9$.
+
+- Si $a \neq 6$, hay **solución única** para cualquier $b$: $y = \dfrac{b-9}{a-6}$ y $x = 3 - 2y$.
+- Si $a = 6$ y $b = 9$, la ecuación queda $0 = 0$: el sistema es **compatible indeterminado** y la segunda ecuación es el triple de la primera. Las soluciones son $(3-2t,\ t)$.
+- Si $a = 6$ y $b \neq 9$, queda $0 = b-9 \neq 0$: el sistema es **incompatible**.
+
+Observa que en ningún momento hemos dividido entre $a-6$ sin haber discutido antes si puede valer cero. Ese es el hábito que evita perder casos.
+:::
+
+## Bloque 4 · Problemas contextualizados
+
+**11 (básico).** Un padre tiene $30$ años más que su hijo y dentro de $10$ años tendrá el doble de años que él. ¿Qué edad tiene cada uno?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Sean $x$ la edad del padre e $y$ la del hijo, ambas en años. El enunciado da $x - y = 30$ y $x + 10 = 2(y + 10)$, es decir $x = 2y + 10$. Sustituyendo en la primera: $2y + 10 - y = 30$, luego $y = 20$ y $x = 50$. El padre tiene $50$ años y el hijo, $20$. Comprobación: la diferencia es $30$, y dentro de $10$ años tendrán $60$ y $30$, que efectivamente están en razón doble.
+:::
+
+**12 (medio).** Se quieren preparar $20$ kg de una mezcla de café que cueste $8$ euros el kilo, combinando un café de $5$ euros el kilo con otro de $9$ euros el kilo. ¿Cuántos kilos hay que poner de cada uno?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Sean $x$ los kilos del café de $5$ euros e $y$ los del de $9$ euros. Entonces $x + y = 20$ y, igualando el coste total, $5x + 9y = 8 \cdot 20 = 160$. Multiplicando la primera por $5$ y restando: $4y = 60$, luego $y = 15$ y $x = 5$. Hay que mezclar $5$ kg del café de $5$ euros con $15$ kg del de $9$ euros. Comprobación: $25 + 135 = 160$ euros para $20$ kg, o sea $8$ euros por kilo.
+:::
+
+**13 (medio).** En un espectáculo se han vendido $200$ entradas, a $12$ euros las de adulto y a $7$ euros las infantiles, y se han recaudado $1\,950$ euros. ¿Cuántas entradas se han vendido de cada tipo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $x$ entradas de adulto e $y$ infantiles: $x + y = 200$ y $12x + 7y = 1950$. Multiplicando la primera por $7$ y restando: $5x = 1950 - 1400 = 550$, luego $x = 110$ e $y = 90$. Se han vendido $110$ entradas de adulto y $90$ infantiles. Comprobación: $1320 + 630 = 1\,950$ euros. Los dos valores son enteros y positivos, como debe ser al contar entradas.
+:::
+
+**14 (avanzado).** Se reparten $30\,000$ euros entre tres fondos que rinden el $2\,\%$, el $4\,\%$ y el $6\,\%$ anual. Los intereses del primer año suman $1\,250$ euros y en el fondo del $6\,\%$ se ha colocado el doble que en el del $2\,\%$. ¿Cuánto se ha invertido en cada fondo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Sean $x$, $y$ y $z$ los euros invertidos al $2\,\%$, al $4\,\%$ y al $6\,\%$. Las condiciones son
+$$
+x + y + z = 30\,000, \qquad 0{,}02x + 0{,}04y + 0{,}06z = 1\,250, \qquad z = 2x
+$$
+Sustituyendo $z = 2x$ en la primera: $3x + y = 30\,000$, luego $y = 30\,000 - 3x$. Llevando ambas a la segunda:
+$$
+0{,}02x + 0{,}04(30\,000 - 3x) + 0{,}12x = 1\,250
+$$
+es decir $0{,}02x + 1\,200 - 0{,}12x + 0{,}12x = 1\,250$, o sea $0{,}02x = 50$ y $x = 2\,500$. Entonces $z = 5\,000$ e $y = 30\,000 - 7\,500 = 22\,500$. Comprobación de intereses: $50 + 900 + 300 = 1\,250$ euros. Las tres cantidades son positivas, como exige el contexto.
+:::
+
+## Bloque 5 · Inecuaciones, recintos y valores extremos
+
+**15 (básico).** Representa la inecuación $3x - 2y < 6$ indicando el punto de prueba utilizado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La recta frontera $3x - 2y = 6$ pasa por $(2,0)$ y por $(0,-3)$, y se dibuja **discontinua** porque la desigualdad es estricta. Con el punto de prueba $(0,0)$: $0 < 6$ es cierto, así que la solución es el semiplano que contiene al origen. Por la otra vía, $-2y < 6 - 3x$ y, al dividir entre $-2$, el sentido gira: $y > \dfrac{3x-6}{2}$, el semiplano superior. Las dos vías coinciden.
+:::
+
+**16 (medio).** Dibuja el recinto de $\left\{ x \geq 0,\ y \geq 0,\ 2x + y \leq 8,\ x + 2y \leq 10 \right\}$ y halla sus vértices.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los candidatos son los cortes de las rectas frontera tomadas de dos en dos. Salen $(0,0)$; el corte de $x=0$ con $x+2y=10$, que es $(0,5)$; el corte de las dos oblicuas, y el corte de $y=0$ con $2x+y=8$, que es $(4,0)$. Para las oblicuas, multiplicamos $2x+y=8$ por $2$ y restamos $x+2y=10$: $3x = 6$, luego $x = 2$ e $y = 4$.
+
+Hay que **filtrar**: $(0,8)$, corte de $x=0$ con $2x+y=8$, incumple $x+2y \leq 10$ porque $16 > 10$; y $(10,0)$ incumple $2x+y\leq 8$. Los vértices del recinto son $(0,0)$, $(0,5)$, $(2,4)$ y $(4,0)$, y el recinto es un cuadrilátero **acotado**.
+:::
+
+**17 (avanzado).** Halla el máximo y el mínimo de $F(x,y) = 3x + 4y$ sobre el recinto del ejercicio anterior.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El recinto es acotado y no vacío, luego el máximo y el mínimo existen y se alcanzan en los vértices. Evaluamos: $F(0,0) = 0$; $F(0,5) = 20$; $F(2,4) = 6 + 16 = 22$; $F(4,0) = 12$. El **máximo** es $22$ y se alcanza en $(2,4)$; el **mínimo** es $0$ y se alcanza en $(0,0)$. Como los valores en los vértices son todos distintos, el óptimo es único y no hay soluciones múltiples en un lado.
+:::
+
+**18 (medio).** Estudia si el recinto de $\left\{ x + y \geq 5,\ x + y \leq 2 \right\}$ es acotado, no acotado o vacío.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Las dos rectas frontera, $x+y=5$ y $x+y=2$, son **paralelas**. La primera condición pide los puntos que están por encima de la recta más alta y la segunda, los que están por debajo de la más baja: los dos semiplanos apuntan en direcciones opuestas y no se solapan. El recinto es **vacío**, $\varnothing$, y el sistema es incompatible. Basta con observar que $x+y$ no puede ser a la vez $\geq 5$ y $\leq 2$.
+:::
+
+## Bloque 6 · Sistemas no lineales
+
+**19 (básico).** Resuelve $\left\{\begin{array}{rcl} y & = & x^2 \\ y & = & x + 6 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Igualando: $x^2 = x + 6$, es decir $x^2 - x - 6 = 0$, con raíces $x = 3$ y $x = -2$. Con $y = x+6$: para $x=3$, $y=9$; para $x=-2$, $y=4$. Las soluciones son $(3,9)$ y $(-2,4)$, y las dos cumplen $y = x^2$. La recta es secante a la parábola.
+:::
+
+**20 (medio).** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 9 \\ x + y & = & 3 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Despejamos $y = 3 - x$ y sustituimos: $x^2 + (3-x)^2 = 9$, es decir $2x^2 - 6x + 9 = 9$, luego $2x^2 - 6x = 0$ y $2x(x-3) = 0$. Las raíces son $x = 0$ y $x = 3$, que dan $y = 3$ e $y = 0$. Las soluciones son $(0,3)$ y $(3,0)$: la recta corta a la circunferencia justo en sus dos intersecciones con los ejes.
+:::
+
+**21 (avanzado).** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 25 \\ xy & = & 12 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la segunda, $y = \dfrac{12}{x}$ con $x \neq 0$. Sustituyendo en la primera: $x^2 + \dfrac{144}{x^2} = 25$ y, multiplicando todo por $x^2$, $x^4 - 25x^2 + 144 = 0$. Con el cambio $z = x^2$ queda $z^2 - 25z + 144 = 0$, cuyas raíces son $z = 16$ y $z = 9$. Deshaciendo el cambio, $x = \pm 4$ y $x = \pm 3$, y con $y = 12/x$ se obtienen $(4,3)$, $(-4,-3)$, $(3,4)$ y $(-3,-4)$. Son **cuatro** soluciones, todas con signos iguales porque el producto $xy$ es positivo.
+:::
+
+**22 (avanzado).** Resuelve $\left\{\begin{array}{rcl} y & = & \sqrt{2x+3} \\ y & = & x \end{array}\right.$ y justifica el descarte.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Igualando y elevando al cuadrado: $x^2 = 2x + 3$, es decir $x^2 - 2x - 3 = 0$, con raíces $x = 3$ y $x = -1$. Comprobamos en el sistema original. Para $x = 3$: $\sqrt{9} = 3$, coincide con $y = 3$, luego $(3,3)$ **es solución**. Para $x = -1$: $\sqrt{1} = 1$, pero $y$ debería valer $-1$, y $1 \neq -1$; el par $(-1,-1)$ es una **solución falsa**, aparecida al elevar al cuadrado, y se descarta. La única solución es $(3,3)$.
+:::
+
+## Autoevaluación tipo test
+
+Responde sin calculadora y sin mirar los apartados anteriores; después compara con las respuestas del desplegable.
+
+**T1.** Un sistema lineal $2\times 2$ cuyas rectas son paralelas y distintas es: (a) compatible determinado; (b) compatible indeterminado; (c) incompatible.
+
+**T2.** Si la última fila de un sistema escalonado queda $0 = 0$, el sistema es: (a) incompatible; (b) compatible indeterminado; (c) compatible determinado.
+
+**T3.** Al resolver $-3y > 12$ se obtiene: (a) $y > -4$; (b) $y < -4$; (c) $y > 4$.
+
+**T4.** El conjunto solución de $2x + y \leq 4$ es: (a) una recta; (b) un semiplano con la frontera incluida; (c) un semiplano sin la frontera.
+
+**T5.** Para hallar el máximo de $F = px + qy$ sobre un recinto acotado hay que evaluar $F$ en: (a) todos los puntos del recinto; (b) los vértices; (c) el centro del recinto.
+
+**T6.** Un sistema formado por una recta y una circunferencia puede tener como máximo: (a) $1$ solución; (b) $2$ soluciones; (c) $4$ soluciones.
+
+**T7.** Al resolver un sistema con un radical, la comprobación de las soluciones es: (a) opcional; (b) obligatoria, porque elevar al cuadrado puede añadir soluciones; (c) innecesaria si el radicando es positivo.
+
+**T8.** En el sistema $\left\{ x+y=1,\ 2x+ky=3 \right\}$, el valor de $k$ que lo hace incompatible es: (a) $k=0$; (b) $k=2$; (c) ningún valor.
+
+::: {.callout-note collapse="true"}
+## Soluciones del test
+
+**T1** (c): rectas paralelas y distintas no tienen ningún punto común. **T2** (b): la fila $0=0$ no aporta información y deja una incógnita libre. **T3** (b): al dividir entre $-3$ el sentido gira, y queda $y < -4$. **T4** (b): la desigualdad es no estricta, así que la recta frontera pertenece a la solución. **T5** (b): el teorema de los vértices garantiza que el óptimo está en una esquina. **T6** (b): una recta corta a una circunferencia en dos puntos como máximo. **T7** (b): la elevación al cuadrado no es una transformación equivalente. **T8** (b): con $k=2$ la segunda ecuación pide $2x+2y=3$, incompatible con $x+y=1$.
+
+Si has fallado T1 o T2, repasa la clasificación de sistemas; si has fallado T3 o T4, las inecuaciones; si has fallado T5, los recintos y la optimización; y si has fallado T6 o T7, los sistemas no lineales.
+:::
+
+### Applet · Autoevaluación del tema {.unnumbered}
+
+Elige el bloque que quieras entrenar —sistemas lineales, Gauss, discusión con parámetro, recintos o sistemas no lineales— y el número de preguntas; el panel genera enunciados nuevos cada vez, con coeficientes elegidos para que las soluciones sean manejables. Escribe tu respuesta en el formato que indica cada pregunta: los pares se introducen como `(3,4)`, las fracciones como `7/2` y los sistemas sin solución como `incompatible`. Al corregir verás, para cada fallo, el paso concreto en el que se separa tu resultado del correcto, y el resumen final te dice qué bloque conviene repasar.
+
+::: {#panel-autoevaluacion .applet-panel data-applet-sys="autoevaluacion"}
+:::
+
+### Applet · Diagnóstico del motor {.unnumbered}
+
+Este panel no plantea ejercicios: comprueba que los applets de la página funcionan correctamente en tu navegador. Muestra qué módulos de cálculo y de dibujo se han cargado, si la representación de fórmulas está activa y si el motor gráfico responde. Úsalo solo si algún applet aparece en blanco o no reacciona: si algún módulo aparece marcado como no disponible, recarga la página antes de seguir practicando.
+
+::: {#panel-diagnostico .applet-panel data-applet-sys="diagnostico"}
+:::
+
+## Qué debes saber hacer
+
+Repasa esta lista y márcate cada punto solo si podrías hacerlo en un examen, sin apuntes y sin dudar:
+
+- Resolver un sistema lineal $2\times2$ por sustitución, igualación y reducción, y **elegir** el método más cómodo según los coeficientes.
+- Clasificar un sistema como compatible determinado, compatible indeterminado o incompatible, y explicar el significado **geométrico** de cada caso.
+- Escalonar un sistema $3\times3$ por Gauss y leer correctamente la última fila.
+- Escribir la solución de un sistema indeterminado con un **parámetro libre**.
+- Discutir un sistema con parámetro sin dividir nunca por una expresión que pueda anularse.
+- Traducir un enunciado con dos o tres incógnitas en un sistema, resolverlo y **responder con unidades**.
+- Representar una inecuación lineal con dos incógnitas eligiendo bien el punto de prueba y el trazo de la frontera.
+- Dibujar el recinto de un sistema de inecuaciones, calcular sus vértices **exactos** y clasificarlo como acotado, no acotado o vacío.
+- Hallar el máximo y el mínimo de $F = px+qy$ evaluando en los vértices, y reconocer cuándo el óptimo se alcanza en todo un lado.
+- Resolver sistemas no lineales por sustitución, emparejar bien los valores y **comprobar** siempre las soluciones.
+- Interpretar gráficamente el número de soluciones de un sistema no lineal según los cortes de las dos curvas.
+
+## Resumen del apartado
+
+Todo el tema responde a la misma pregunta con distintos ropajes: **qué valores cumplen varias condiciones simultáneamente**. Cuando las condiciones son ecuaciones lineales, la respuesta es un punto, ninguno o infinitos, y las herramientas son la sustitución, la igualación, la reducción y el método de Gauss, que se generaliza a cualquier número de incógnitas. La lectura geométrica —rectas que se cortan, que son paralelas o que coinciden— permite anticipar el resultado y detectar errores de cálculo.
+
+Cuando aparece un **parámetro**, el trabajo consiste en escalonar sin dividir por expresiones que puedan anularse y en clasificar por casos. Cuando las condiciones son **desigualdades**, la respuesta pasa a ser una región del plano: se dibuja cada semiplano con su frontera continua o discontinua, se toma la intersección y se calculan los vértices, que son la clave para hallar los valores extremos de una función lineal. Y cuando alguna ecuación deja de ser lineal, el método pasa a ser la **sustitución** seguida de una **comprobación obligatoria**, porque los sistemas no lineales admiten de cero a cuatro soluciones y generan con facilidad soluciones falsas.
+
+En los problemas contextualizados, que son los que más aparecen en Ciencias Sociales, la parte difícil casi nunca es el cálculo: es **nombrar bien las incógnitas**, traducir cada frase del enunciado y comprobar que el resultado tiene sentido en la situación descrita.
+
+## Ejercicios propuestos
+
+**23.** Resuelve $\left\{\begin{array}{rcl} 5x - y & = & 9 \\ 2x + 3y & = & 7 \end{array}\right.$ por el método que consideres más rápido, justificando la elección.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La $y$ de la primera ecuación tiene coeficiente $-1$, así que la sustitución no genera fracciones: $y = 5x - 9$. Llevándolo a la segunda, $2x + 3(5x-9) = 7$, es decir $17x = 34$ y $x = 2$; entonces $y = 1$. Solución: $(2,1)$. Comprobación: $10 - 1 = 9$ y $4 + 3 = 7$.
+:::
+
+**24.** Resuelve por Gauss $\left\{\begin{array}{rcl} x + y + z & = & 2 \\ 2x - y + 3z & = & -3 \\ x + 2y - z & = & 6 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+A la segunda fila le restamos el doble de la primera: $-3y + z = -7$. A la tercera le restamos la primera: $y - 2z = 4$. De la primera, $z = 3y - 7$; sustituyendo, $y - 2(3y-7) = 4$, o sea $-5y = -10$ e $y = 2$. Entonces $z = -1$ y $x = 2 - 2 + 1 = 1$. Solución: $(1,2,-1)$. Comprobación en la segunda ecuación: $2 - 2 - 3 = -3$; en la tercera: $1 + 4 + 1 = 6$.
+:::
+
+**25.** Discute según $m$ el sistema $\left\{\begin{array}{rcl} 2x + y & = & 3 \\ 4x + 2y & = & m \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restando a la segunda ecuación el doble de la primera queda $0 = m - 6$, y ahí ya no queda ninguna incógnita. Si $m = 6$, la igualdad es cierta y la segunda ecuación es el doble de la primera: el sistema es **compatible indeterminado**, con soluciones $(t,\ 3-2t)$. Si $m \neq 6$, la igualdad es falsa y el sistema es **incompatible**. Nunca hay solución única, porque las dos rectas tienen la misma pendiente para cualquier valor de $m$.
+:::
+
+**26.** Una papelería vende bolígrafos a $2$ euros y cuadernos a $5$ euros. En una mañana ha vendido $40$ artículos y ha recaudado $143$ euros. ¿Cuántos ha vendido de cada clase?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Sean $x$ los bolígrafos e $y$ los cuadernos vendidos. Entonces $x + y = 40$ y $2x + 5y = 143$. Multiplicando la primera por $2$ y restando: $3y = 63$, luego $y = 21$ y $x = 19$. Se han vendido $19$ bolígrafos y $21$ cuadernos. Comprobación: $38 + 105 = 143$ euros, y los dos valores son enteros positivos, como exige el contexto.
+:::
+
+**27.** Dibuja el recinto de $\left\{ x \geq 0,\ y \geq 1,\ x + y \leq 7,\ y \leq 2x \right\}$ y calcula sus vértices exactos.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Buscamos los cortes de las fronteras y los filtramos. El corte de $y=1$ con $x+y=7$ es $(6,1)$, que cumple $1 \leq 12$. El corte de $y=1$ con $y=2x$ es $\left(\frac{1}{2},1\right)$, que cumple $\frac{1}{2} + 1 \leq 7$. El corte de $y=2x$ con $x+y=7$ se obtiene de $x + 2x = 7$, luego $x = \frac{7}{3}$ e $y = \frac{14}{3}$. Los cortes con $x=0$ se descartan porque no cumplen $y \leq 2x$ salvo el origen, que incumple $y \geq 1$. Los vértices son $\left(\frac{1}{2},1\right)$, $(6,1)$ y $\left(\frac{7}{3},\frac{14}{3}\right)$, y el recinto es un triángulo **acotado**.
+:::
+
+**28.** Halla el máximo de $F(x,y) = 4x + 3y$ sobre el recinto $\left\{ x \geq 0,\ y \geq 0,\ x + 2y \leq 10,\ 3x + 2y \leq 18 \right\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los vértices son $(0,0)$; $(0,5)$, corte de $x=0$ con $x+2y=10$; el corte de las dos oblicuas, que se obtiene restando $x+2y=10$ de $3x+2y=18$, o sea $2x=8$, luego $(4,3)$; y $(6,0)$, corte de $y=0$ con $3x+2y=18$. Se descartan $(0,9)$, porque $18 > 10$, y $(10,0)$, porque $30 > 18$. Evaluando: $F(0,0)=0$, $F(0,5)=15$, $F(4,3)=25$ y $F(6,0)=24$. El máximo es $25$ y se alcanza en $(4,3)$.
+:::
+
+**29.** Resuelve $\left\{\begin{array}{rcl} x^2 + y^2 & = & 20 \\ x - y & = & 2 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Despejamos $x = y + 2$ y sustituimos: $(y+2)^2 + y^2 = 20$, es decir $2y^2 + 4y + 4 = 20$, luego $2y^2 + 4y - 16 = 0$ y, dividiendo entre $2$, $y^2 + 2y - 8 = 0$. Las raíces son $y = 2$ e $y = -4$, que dan $x = 4$ y $x = -2$. Las soluciones son $(4,2)$ y $(-2,-4)$; ambas cumplen $16+4=20$ y $4+16=20$.
+:::
+
+**30.** Resuelve $\left\{\begin{array}{rcl} \log x - \log y & = & 1 \\ x + y & = & 44 \end{array}\right.$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por la propiedad del cociente, $\log \dfrac{x}{y} = 1$, luego $\dfrac{x}{y} = 10$ y $x = 10y$. Sustituyendo en la segunda ecuación: $11y = 44$, de donde $y = 4$ y $x = 40$. Comprobación: $\log 40 - \log 4 = \log 10 = 1$, y $40 + 4 = 44$. Los dos valores son positivos, así que los logaritmos existen y la solución $(40,4)$ es válida.
+:::

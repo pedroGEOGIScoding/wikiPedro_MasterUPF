@@ -1,0 +1,564 @@
+---
+title: "Tema 4.11 Problemas de ecuaciones lineales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 11-problemas-sistemas-lineales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Método completo de resolución de problemas mediante sistemas lineales, elección y definición de las incógnitas, diccionario de traducción del lenguaje corriente al algebraico, planteamiento razonado y resolución por el método de Gauss, comprobación en el enunciado e interpretación del resultado en su contexto, con una batería amplia de problemas de edades, mezclas, precios y compras, cifras de un número, móviles y trayectos, oferta y demanda, repartos e inversiones, además del tratamiento de los datos redundantes y contradictorios.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, problemas, modelización, método de Gauss, mezclas, oferta y demanda]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La parte difícil no son las cuentas
+
+Ya sabes resolver un sistema $3\times3$ por el método de Gauss y discutirlo comparando rangos. Eso es la mitad del trabajo. La otra mitad consiste en **pasar de un texto en castellano a un sistema de ecuaciones**.
+
+Es una tarea distinta y hay que entrenarla aparte. Un problema no se resuelve leyéndolo por encima y buscando números que sumar: se resuelve decidiendo qué se desconoce, poniéndole nombre y traduciendo cada frase del enunciado en una igualdad. Una vez planteado el sistema, el resto es rutina mecánica que ya dominas.
+
+Y conviene decirlo con claridad: **en un problema no importa tanto llegar al número final como el proceso seguido**. Un planteamiento correcto con un error aritmético demuestra que has entendido la situación; un resultado acertado sin justificación, no.
+
+## El método de resolución de problemas
+
+::: {.callout-note}
+## Las cuatro fases
+
+**1. Comprender.** Lee el enunciado entero, sin prisa, al menos dos veces. Identifica qué se pregunta, qué datos hay y qué relaciones se establecen entre ellos. Si te ayuda, haz un esquema, una tabla o un dibujo. No empieces a escribir ecuaciones hasta tener clara la situación.
+
+**2. Plantear.** Elige las incógnitas y **defínelas por escrito**, con sus unidades: «$x$ = número de entradas normales vendidas». Después traduce cada condición del enunciado en una ecuación. Al terminar, cuenta: debes tener tantas ecuaciones **independientes** como incógnitas para esperar una solución única.
+
+**3. Resolver.** Aplica el método de Gauss al sistema. Aquí no hay que pensar, solo calcular con orden.
+
+**4. Comprobar e interpretar.** Sustituye la solución en el **enunciado**, no solo en las ecuaciones: comprueba que cada frase se cumple. Y pregúntate si el resultado tiene sentido: ¿puede haber $-3$ personas?, ¿pueden venderse $7{,}4$ entradas?, ¿es razonable un precio de $0{,}02$ €? Termina redactando la respuesta con palabras y unidades.
+:::
+
+::: {.callout-warning}
+## La comprobación se hace en el enunciado
+
+Comprobar en las ecuaciones que tú has escrito solo detecta errores de cálculo. Si te has equivocado **al traducir**, el sistema será coherente consigo mismo y la comprobación no dirá nada. Vuelve al texto original y verifica frase a frase: «la tercera recibe tanto como las otras dos juntas»: $600 = 400 + 200$, correcto.
+:::
+
+## Cómo elegir las incógnitas
+
+No hay una única elección posible, pero unas son mucho más cómodas que otras. Estas orientaciones ayudan:
+
+- **Llama incógnita a lo que se pregunta.** Si se pide «cuántos hombres, mujeres y niños hay», las incógnitas naturales son esos tres números.
+- **Elige magnitudes de la misma naturaleza.** Mezclar «kilos de café» con «precio del café» suele producir ecuaciones no lineales; que las tres incógnitas sean cantidades del mismo tipo (todas kilos, todas euros, todas años).
+- **Evita incógnitas derivadas.** Si $x$ es la edad actual, la edad dentro de $5$ años es $x+5$: cada incógnita innecesaria exige una ecuación más.
+- **Usa unidades coherentes.** Decide una unidad y conviértelo todo antes de plantear.
+
+## Diccionario de traducción
+
+Casi todas las frases de los enunciados de este tema responden a un puñado de patrones. Conviene tenerlos automatizados.
+
+::: {.callout-note}
+## Del castellano al álgebra
+
+| Se dice | Se escribe |
+|---|---|
+| la suma de $x$, $y$ y $z$ es $S$ | $x+y+z=S$ |
+| $x$ es el doble de $y$ | $x = 2y$ |
+| $x$ excede a $y$ en $k$ unidades | $x = y + k$ |
+| $x$ es tanto como $y$ y $z$ juntos | $x = y+z$ |
+| la media de $x$ y $z$ es $y$ | $2y = x + z$ |
+| hace $t$ años, $x$ era el doble que $y$ | $x - t = 2(y-t)$ |
+| dentro de $t$ años, $x$ será $k$ veces $y$ | $x + t = k(y+t)$ |
+| el $r$ por ciento de $x$ | $\dfrac{r}{100}\,x$ |
+| número de tres cifras $x$, $y$, $z$ | $100x + 10y + z$ |
+| invertir el orden de las cifras | $100z + 10y + x$ |
+| tiempo empleado a velocidad $v$ en recorrer $x$ | $\dfrac{x}{v}$ |
+| coste total de $x$ unidades a $p$ euros | $p\,x$ |
+:::
+
+::: {.callout-caution}
+## Los dos errores clásicos de traducción
+
+**«$x$ es el doble de $y$» se escribe $x = 2y$, no $2x = y$.** Comprueba siempre con un caso concreto: si $y=3$ y $x$ es el doble, $x=6$; sustituyendo, $6 = 2\cdot3$ es cierto y $2\cdot6 = 3$ es falso.
+
+**«Hace dos años» afecta a todas las edades, no solo a una.** Si hoy tienen $x$ e $y$ años, hace dos años tenían $x-2$ e $y-2$. Escribir $x-2 = 2y$ en lugar de $x-2 = 2(y-2)$ es el fallo más repetido de los problemas de edades.
+:::
+
+### Applet · Del enunciado al sistema {.unnumbered}
+
+El applet propone un problema contextualizado de un banco amplio (edades, mezclas, compras, cifras, trayectos, mercados e inversiones) y te acompaña en las dos fases delicadas. Primero eliges y defines las incógnitas entre varias opciones; después escribes tú las ecuaciones, una por línea, con el formato habitual (`x+y+z=200`, `x=3z`, `9x+6y+4z=1340`). El applet comprueba si tu sistema es equivalente al correcto, avisa de qué condición falta o has traducido mal y, si el planteamiento es válido, lo resuelve por Gauss con todos los pasos y la comprobación final.
+
+::: {#panel-problemas .applet-panel data-applet-sys="problemas"}
+:::
+
+Aprovecha que puedes plantear el mismo problema con **incógnitas distintas**: comprobarás que el sistema cambia por completo y la solución no. También te será útil escribir a propósito una ecuación mal traducida (por ejemplo, $2x = y$ donde debía ir $x = 2y$) para ver cómo el applet detecta la discrepancia y qué solución absurda produce.
+
+## Problemas de edades
+
+**Problema 1.** Una madre tiene una edad igual al doble de la suma de las edades de sus dos hijos. La edad del hijo menor es la mitad de la de su hermano, y la suma de las edades de los dos niños y la de la madre es de $45$ años. ¿Qué edad tiene cada uno?
+
+**Planteamiento.** Las tres cantidades desconocidas son las tres edades actuales:
+
+- $x$ = edad de la madre, en años,
+- $y$ = edad del hijo mayor, en años,
+- $z$ = edad del hijo menor, en años.
+
+Traducimos frase a frase:
+
+- «la madre tiene el doble de la suma de las edades de sus hijos»: $x = 2(y+z)$, es decir, $x - 2y - 2z = 0$;
+- «el menor tiene la mitad que su hermano»: $z = \dfrac{y}{2}$, es decir, $-y + 2z = 0$;
+- «la suma de las tres edades es $45$»: $x + y + z = 45$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & - & 2y & - & 2z & = & 0 \\
+ & - & y & + & 2z & = & 0 \\
+x & + & y & + & z & = & 45
+\end{array}
+\right.
+$$
+
+**Resolución.** Con $F_3 \to F_3 - F_1$ queda $3y + 3z = 45$, o sea, $y + z = 15$. Junto con $-y + 2z = 0$, sumando: $3z = 15 \Rightarrow z = 5$. Entonces $y = 10$ y $x = 2(10+5) = 30$.
+
+**Comprobación en el enunciado.** La madre tiene $30$ años y sus hijos $10$ y $5$. La suma de las edades de los hijos es $15$, y su doble es $30$: correcto. El menor, $5$, tiene la mitad que el mayor, $10$: correcto. Las tres edades suman $30+10+5 = 45$: correcto.
+
+**Respuesta.** La madre tiene $30$ años; el hijo mayor, $10$, y el menor, $5$.
+
+**Problema 2.** En una reunión hay hombres, mujeres y niños. Si hubiera un niño más, habría tantos niños como hombres y mujeres juntos. Si hubiera ocho mujeres más, el número de mujeres duplicaría a la suma de hombres y niños. Y el triple del número de hombres más el número de mujeres es igual al número de niños más cinco. ¿Cuántas personas de cada clase hay?
+
+**Planteamiento.** $x$ = número de hombres, $y$ = número de mujeres, $z$ = número de niños.
+
+- «si hubiera un niño más, habría tantos niños como hombres y mujeres juntos»: $z + 1 = x + y$, o sea, $x + y - z = 1$;
+- «si hubiera ocho mujeres más, duplicarían a hombres y niños juntos»: $y + 8 = 2(x+z)$, o sea, $-2x + y - 2z = -8$;
+- «el triple de hombres más las mujeres es igual a los niños más cinco»: $3x + y = z + 5$, o sea, $3x + y - z = 5$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & - & z & = & 1 \\
+-2x & + & y & - & 2z & = & -8 \\
+3x & + & y & - & z & = & 5
+\end{array}
+\right.
+$$
+
+**Resolución por Gauss.** $F_2 \to F_2 + 2F_1$ da $3y - 4z = -6$. $F_3 \to F_3 - 3F_1$ da $-2y + 2z = 2$, que se simplifica a $-y + z = 1$, es decir, $y = z - 1$.
+
+Sustituyendo en $3y - 4z = -6$: $3(z-1) - 4z = -6 \Rightarrow -z - 3 = -6 \Rightarrow z = 3$. Entonces $y = 2$ y, de la primera ecuación, $x = 1 - y + z = 1 - 2 + 3 = 2$.
+
+**Comprobación en el enunciado.** Hay $2$ hombres, $2$ mujeres y $3$ niños. Con un niño más serían $4$, igual que $2+2$ adultos: correcto. Con ocho mujeres más serían $10$, el doble de $2+3=5$: correcto. El triple de hombres más mujeres es $6+2=8$, y los niños más cinco son $3+5=8$: correcto.
+
+**Respuesta.** Asisten $2$ hombres, $2$ mujeres y $3$ niños.
+
+::: {.callout-tip}
+## Comprueba que la solución es «posible»
+
+Aquí las incógnitas cuentan personas: deben salir números **enteros y no negativos**. Pregúntate siempre, antes de resolver, qué valores puede tomar cada incógnita: entero, positivo, menor que un total, comprendido entre $0$ y $9$ si es una cifra.
+:::
+
+## Problemas de mezclas y de precios
+
+**Problema 3.** Un comercio prepara $100$ kg de una mezcla de tres cafés que cuestan $9$, $7$ y $5$ euros el kilo, respectivamente, y quiere venderla a $7{,}20$ euros el kilo. Además, la cantidad de café del primer tipo debe ser igual a la suma de las cantidades de los otros dos. ¿Cuántos kilos hay que poner de cada clase?
+
+**Planteamiento.** $x$, $y$, $z$ = kilos de café de la primera, segunda y tercera clase.
+
+- «la mezcla pesa $100$ kg»: $x + y + z = 100$;
+- «vale $7{,}20$ €/kg», luego el valor total es $100 \cdot 7{,}20 = 720$ euros, y ese valor es la suma de los valores parciales: $9x + 7y + 5z = 720$;
+- «la primera clase es tanto como las otras dos juntas»: $x = y + z$, o sea, $x - y - z = 0$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 100 \\
+9x & + & 7y & + & 5z & = & 720 \\
+x & - & y & - & z & = & 0
+\end{array}
+\right.
+$$
+
+**Resolución.** Sumando la primera y la tercera: $2x = 100 \Rightarrow x = 50$, y por tanto $y + z = 50$. Llevando $x=50$ a la segunda: $450 + 7y + 5z = 720 \Rightarrow 7y + 5z = 270$. Como $z = 50 - y$:
+$$
+7y + 5(50-y) = 270 \;\Longrightarrow\; 2y + 250 = 270 \;\Longrightarrow\; y = 10, \qquad z = 40 .
+$$
+
+**Comprobación en el enunciado.** $50 + 10 + 40 = 100$ kg. Valor: $50\cdot9 + 10\cdot7 + 40\cdot5 = 450 + 70 + 200 = 720$ euros, que entre $100$ kg son $7{,}20$ €/kg. Y $50 = 10 + 40$: correcto.
+
+**Respuesta.** Hay que mezclar $50$ kg de la primera clase, $10$ kg de la segunda y $40$ kg de la tercera.
+
+::: {.callout-important}
+## La ecuación del valor en una mezcla
+
+En todo problema de mezcla hay **dos ecuaciones estructurales**: una de **cantidades** (los kilos, litros o unidades se suman) y otra de **valor** (precio por cantidad se suma). Nunca se suman los precios entre sí: $9 + 7 + 5$ no significa nada en este problema. El precio de la mezcla es una **media ponderada**, no una media aritmética, y por eso se calcula dividiendo el valor total entre la cantidad total.
+:::
+
+**Problema 4.** En una papelería, dos cuadernos, un bolígrafo y tres carpetas cuestan $22$ euros; un cuaderno, tres bolígrafos y una carpeta cuestan $14$ euros; y tres cuadernos, dos bolígrafos y dos carpetas cuestan $24$ euros. ¿Cuál es el precio de cada artículo?
+
+**Planteamiento.** $x$, $y$, $z$ = precio en euros de un cuaderno, de un bolígrafo y de una carpeta.
+$$
+\left\{
+\begin{array}{rcrcrcr}
+2x & + & y & + & 3z & = & 22 \\
+x & + & 3y & + & z & = & 14 \\
+3x & + & 2y & + & 2z & = & 24
+\end{array}
+\right.
+$$
+
+**Resolución por Gauss.** Conviene poner arriba la segunda ecuación, cuyo coeficiente en $x$ es $1$:
+$$
+\left(\begin{array}{rrr|r}
+1 & 3 & 1 & 14 \\
+2 & 1 & 3 & 22 \\
+3 & 2 & 2 & 24
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - 3F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 3 & 1 & 14 \\
+0 & -5 & 1 & -6 \\
+0 & -7 & -1 & -18
+\end{array}\right)
+$$
+$$
+\xrightarrow{\ F_3 \to 5F_3 - 7F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 3 & 1 & 14 \\
+0 & -5 & 1 & -6 \\
+0 & 0 & -12 & -48
+\end{array}\right)
+$$
+De la última fila, $z = 4$. De la segunda, $-5y + 4 = -6 \Rightarrow y = 2$. De la primera, $x = 14 - 6 - 4 = 4$.
+
+**Comprobación en el enunciado.** $2\cdot4 + 2 + 3\cdot4 = 8+2+12 = 22$ €; $4 + 6 + 4 = 14$ €; $12 + 4 + 8 = 24$ €. Todo correcto, y los tres precios son positivos, como debe ser.
+
+**Respuesta.** El cuaderno cuesta $4$ euros; el bolígrafo, $2$ euros, y la carpeta, $4$ euros.
+
+## Problemas de cifras
+
+Los problemas sobre las cifras de un número tienen un patrón fijo que conviene memorizar: un número de tres cifras $x$, $y$, $z$ (centenas, decenas, unidades) **vale** $100x + 10y + z$. Confundir el número con la suma de sus cifras es el error central de este tipo de problemas.
+
+**Problema 5.** Las tres cifras de un número suman $24$. Si a ese número se le resta el que resulta de invertir el orden de sus cifras, se obtiene $198$. La cifra de las decenas es la media aritmética de las otras dos. Halla el número.
+
+**Planteamiento.** $x$ = cifra de las centenas, $y$ = cifra de las decenas, $z$ = cifra de las unidades, con $x, y, z$ enteros entre $0$ y $9$ y $x \neq 0$.
+
+- «las cifras suman $24$»: $x + y + z = 24$;
+- «el número menos el invertido es $198$»:
+$$
+(100x + 10y + z) - (100z + 10y + x) = 198 \;\Longrightarrow\; 99x - 99z = 198 \;\Longrightarrow\; x - z = 2;
+$$
+- «la cifra de las decenas es la media de las otras dos»: $y = \dfrac{x+z}{2}$, o sea, $x - 2y + z = 0$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 24 \\
+x &  &  & - & z & = & 2 \\
+x & - & 2y & + & z & = & 0
+\end{array}
+\right.
+$$
+
+**Resolución.** Restando la tercera de la primera: $3y = 24 \Rightarrow y = 8$. Entonces $x + z = 16$, y con $x - z = 2$ se obtiene $2x = 18 \Rightarrow x = 9$ y $z = 7$.
+
+**Comprobación en el enunciado.** El número es $987$. Sus cifras suman $9+8+7=24$. El invertido es $789$, y $987 - 789 = 198$. La media de $9$ y $7$ es $8$, la cifra de las decenas. Además $x$, $y$, $z$ son cifras válidas y $x\neq0$.
+
+**Respuesta.** El número es $987$.
+
+::: {.callout-tip}
+## Por qué siempre aparece un múltiplo de $99$
+
+Restar un número de tres cifras y su invertido deja $99(x-z)$: el término de las decenas se cancela y las centenas y unidades intercambian su papel. Por eso ese tipo de diferencias son siempre múltiplos de $99$: $198$, $297$, $396$, $594$… Si un enunciado te dice que la diferencia es $200$, el problema no tiene solución con cifras enteras, y conviene detectarlo antes de perder diez minutos.
+:::
+
+## Problemas de móviles y trayectos
+
+**Problema 6.** Un ciclista recorre un trayecto de $180$ km compuesto por un tramo llano, uno de subida y otro de bajada. Circula a $60$ km/h en el llano, a $40$ km/h en la subida y a $80$ km/h en la bajada, y tarda en total tres horas y media. El tramo de subida mide el doble que el de bajada. ¿Cuánto mide cada tramo?
+
+**Planteamiento.** $x$, $y$, $z$ = longitud en kilómetros del tramo llano, del de subida y del de bajada. Recuerda que el tiempo empleado en un tramo es $\dfrac{\text{distancia}}{\text{velocidad}}$.
+
+- «el trayecto mide $180$ km»: $x + y + z = 180$;
+- «tarda $3{,}5$ horas»: $\dfrac{x}{60} + \dfrac{y}{40} + \dfrac{z}{80} = 3{,}5$;
+- «la subida es el doble que la bajada»: $y = 2z$, o sea, $y - 2z = 0$.
+
+La segunda ecuación tiene denominadores; el mínimo común múltiplo de $60$, $40$ y $80$ es $240$, y multiplicando por él:
+$$
+4x + 6y + 3z = 840 .
+$$
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 180 \\
+4x & + & 6y & + & 3z & = & 840 \\
+ &  & y & - & 2z & = & 0
+\end{array}
+\right.
+$$
+
+**Resolución.** $F_2 \to F_2 - 4F_1$ da $2y - z = 120$. Con $y = 2z$: $4z - z = 120 \Rightarrow z = 40$, luego $y = 80$ y $x = 180 - 80 - 40 = 60$.
+
+**Comprobación en el enunciado.** Los tramos miden $60 + 80 + 40 = 180$ km. Tiempos: $\dfrac{60}{60} = 1$ h, $\dfrac{80}{40} = 2$ h, $\dfrac{40}{80} = 0{,}5$ h; en total $3{,}5$ horas. Y la subida, $80$ km, es el doble de la bajada, $40$ km.
+
+**Respuesta.** El tramo llano mide $60$ km; el de subida, $80$ km, y el de bajada, $40$ km.
+
+::: {.callout-caution}
+## Quita los denominadores antes de escalonar
+
+La ecuación de tiempos casi siempre viene con fracciones. Multiplicarla por el mínimo común múltiplo de los denominadores **antes** de escalonar no es un capricho: trabajar con $4x+6y+3z=840$ evita la mitad de los errores posibles.
+:::
+
+## Problemas de oferta y demanda
+
+En economía, la **demanda** de un bien suele modelizarse como una función decreciente de su precio (cuanto más caro, menos se compra) y la **oferta** como una función creciente (cuanto más caro, más se produce). Cuando ambas son lineales, determinar sus coeficientes a partir de unos pocos datos observados conduce a un sistema lineal.
+
+**Problema 7.** La cantidad demandada semanalmente de un artículo viene dada por $D = a - b\,p$, y la ofertada por $S = c + 3p$, donde $p$ es el precio en euros. Se sabe que a un precio de $4$ euros se demandan $80$ unidades, que a un precio de $10$ euros se demandan $50$ unidades y que el precio de equilibrio, aquel para el que oferta y demanda coinciden, es de $6$ euros. Halla $a$, $b$ y $c$, y comprueba el equilibrio.
+
+**Planteamiento.** Aquí las incógnitas **no** son cantidades de producto, sino los **parámetros del modelo**: $a$, $b$ y $c$. Es un buen ejemplo de que las incógnitas son «lo que no se sabe», no necesariamente «lo que se compra».
+
+- «a $4$ euros se demandan $80$ unidades»: $a - 4b = 80$;
+- «a $10$ euros se demandan $50$ unidades»: $a - 10b = 50$;
+- «a $6$ euros la oferta iguala a la demanda»: $a - 6b = c + 3\cdot 6$, o sea, $a - 6b - c = 18$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+a & - & 4b &  &  & = & 80 \\
+a & - & 10b &  &  & = & 50 \\
+a & - & 6b & - & c & = & 18
+\end{array}
+\right.
+$$
+
+**Resolución.** $F_2 \to F_2 - F_1$ da $-6b = -30 \Rightarrow b = 5$, y entonces $a = 80 + 20 = 100$. En la tercera: $100 - 30 - c = 18 \Rightarrow c = 52$.
+
+**Comprobación e interpretación.** El modelo es $D = 100 - 5p$ y $S = 52 + 3p$. A $4$ euros: $D = 80$, correcto. A $10$ euros: $D = 50$, correcto. Equilibrio:
+$$
+100 - 5p = 52 + 3p \;\Longrightarrow\; 48 = 8p \;\Longrightarrow\; p = 6 ,
+$$
+y la cantidad de equilibrio es $D(6) = S(6) = 70$ unidades.
+
+**Respuesta.** $a = 100$, $b = 5$ y $c = 52$. En el equilibrio se intercambian $70$ unidades semanales a $6$ euros cada una.
+
+::: {.callout-tip}
+## Qué significan los coeficientes
+
+En $D = 100 - 5p$, el $100$ es la demanda «teórica» a precio cero y el $5$ mide la **sensibilidad** al precio: por cada euro de subida se pierden $5$ unidades de demanda. En $S = 52 + 3p$, el $3$ dice que por cada euro de subida los productores ofrecen $3$ unidades más.
+:::
+
+## Problemas de repartos e inversiones
+
+**Problema 8.** Una persona invierte $30\,000$ euros repartidos en tres productos financieros que rinden, respectivamente, el $2\,\%$, el $4\,\%$ y el $6\,\%$ anual, y obtiene al cabo de un año $1\,100$ euros de intereses. Lo invertido al $6\,\%$ es la mitad de lo invertido al $2\,\%$. ¿Cuánto colocó en cada producto?
+
+**Planteamiento.** $x$, $y$, $z$ = euros invertidos al $2\,\%$, al $4\,\%$ y al $6\,\%$.
+
+- «el total invertido es $30\,000$»: $x + y + z = 30\,000$;
+- «los intereses suman $1\,100$»: $0{,}02x + 0{,}04y + 0{,}06z = 1\,100$, que multiplicada por $100$ queda $2x + 4y + 6z = 110\,000$ y, dividida entre $2$, $x + 2y + 3z = 55\,000$;
+- «lo invertido al $6\,\%$ es la mitad de lo invertido al $2\,\%$»: $z = \dfrac{x}{2}$, o sea, $x - 2z = 0$.
+
+**Resolución.** Restando la primera de la segunda ecuación simplificada: $y + 2z = 25\,000$. Con $x = 2z$, la primera queda $2z + y + z = 30\,000$, es decir, $y + 3z = 30\,000$. Restando: $z = 5\,000$. Entonces $y = 15\,000$ y $x = 10\,000$.
+
+**Comprobación en el enunciado.** El total es $10\,000 + 15\,000 + 5\,000 = 30\,000$ euros. Intereses: $200 + 600 + 300 = 1\,100$ euros. Y $5\,000$ es la mitad de $10\,000$.
+
+**Respuesta.** Invirtió $10\,000$ euros al $2\,\%$, $15\,000$ al $4\,\%$ y $5\,000$ al $6\,\%$.
+
+## Cuando el sistema no tiene solución única
+
+No todos los problemas conducen a un sistema compatible determinado, y saber leer los otros dos casos también se evalúa.
+
+**Problema 9 (datos redundantes).** Un almacén vende tornillos, tuercas y arandelas. Un lote con un tornillo, una tuerca y una arandela cuesta $30$ céntimos; otro con dos tornillos, tres tuercas y una arandela cuesta $65$ céntimos; y otro con tres tornillos, cuatro tuercas y dos arandelas cuesta $95$ céntimos. ¿Cuánto vale cada pieza?
+
+**Planteamiento.** $x$, $y$, $z$ = precio en céntimos de un tornillo, una tuerca y una arandela.
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 30 \\
+2x & + & 3y & + & z & = & 65 \\
+3x & + & 4y & + & 2z & = & 95
+\end{array}
+\right.
+$$
+
+**Resolución.** $F_2 \to F_2 - 2F_1$ da $y - z = 5$; $F_3 \to F_3 - 3F_1$ da $y - z = 5$; y $F_3 \to F_3 - F_2$ deja $0 = 0$. El sistema es **compatible indeterminado**: la tercera condición era la suma de las dos primeras y no aportaba información nueva.
+
+Con $z = k$: $y = 5 + k$ y $x = 30 - y - z = 25 - 2k$, con $k \in \mathbb{R}$.
+
+**Interpretación en el contexto.** Hay infinitas soluciones matemáticas, pero el contexto las restringe: los precios deben ser **enteros positivos** en céntimos, lo que exige
+$$
+k \geq 1 \quad \text{y} \quad 25 - 2k \geq 1 \;\Longrightarrow\; k \leq 12 .
+$$
+Hay, por tanto, $12$ repartos de precios posibles. Por ejemplo, con $k = 10$: tornillo $5$ céntimos, tuerca $15$, arandela $10$; comprobación: $5+15+10=30$, $10+45+10=65$, $15+60+20=95$. Todo correcto.
+
+**Respuesta.** Los datos no bastan para determinar los precios: hacen falta más información o un dato distinto. El problema tiene infinitas soluciones matemáticas y doce soluciones con sentido económico.
+
+**Problema 10 (datos contradictorios).** Con los mismos lotes, si el tercero costara $100$ céntimos en lugar de $95$, al escalonar se obtendría $0 = 5$ y el sistema sería **incompatible**: no es que esté mal resuelto, es que **los datos se contradicen** y alguno de los precios anunciados estaría mal.
+
+::: {.callout-important}
+## Qué responder en cada caso
+
+- **SCD:** hay una única respuesta. Se da con sus unidades y se comprueba que tiene sentido (positiva, entera, dentro del rango razonable).
+- **SCI:** el enunciado no aporta información suficiente. Se escribe la solución paramétrica y se **restringe con las condiciones del contexto**, que a menudo dejan un número finito de posibilidades.
+- **SI:** los datos son incompatibles entre sí. Se explica cuál es la contradicción, señalando qué combinación de ecuaciones la produce.
+:::
+
+## Errores frecuentes
+
+1. **No definir las incógnitas.** Escribir ecuaciones con $x$, $y$, $z$ sin decir qué son, y en qué unidades, hace que la mitad del razonamiento sea imposible de seguir y de corregir.
+2. **Mezclar unidades.** Sumar euros con céntimos, o kilómetros con metros, produce sistemas cuya solución no significa nada.
+3. **Traducir «el doble de» al revés.** «$x$ es el doble de $y$» es $x = 2y$. Compruébalo siempre con un ejemplo numérico.
+4. **Olvidar aplicar el desplazamiento temporal a todas las edades.** «Hace $t$ años» resta $t$ a **todas** las incógnitas de esa frase.
+5. **Confundir el número con la suma de sus cifras.** El número es $100x+10y+z$; la suma de las cifras es $x+y+z$. Son dos cosas distintas y aparecen ambas en el mismo problema.
+6. **Sumar precios en un problema de mezclas.** El precio final es una media ponderada; la ecuación correcta iguala **valores**, no precios.
+7. **No quitar los denominadores.** Las ecuaciones de tiempos y las de porcentajes se manejan mucho mejor multiplicadas por el mínimo común múltiplo o por $100$.
+8. **Plantear más incógnitas de las necesarias.** Si la edad dentro de cinco años es $x+5$, no hace falta una incógnita nueva; cada incógnita sobrante exige una ecuación adicional.
+9. **Comprobar solo en las ecuaciones.** Hay que volver al texto del enunciado; es la única forma de detectar un error de traducción.
+10. **Dar una respuesta sin unidades ni frase.** «$x=4$» no es una respuesta; «el cuaderno cuesta $4$ euros» sí lo es.
+11. **Aceptar resultados imposibles.** Un número negativo de personas, una cifra mayor que $9$ o un precio negativo indican que hay que revisar el planteamiento, no que el problema sea así.
+
+## Resumen del apartado
+
+- Resolver un problema con sistemas tiene **cuatro fases**: comprender, plantear, resolver y comprobar e interpretar. La parte difícil, y la que más puntúa, es plantear.
+- Las incógnitas se **definen por escrito** con sus unidades, y conviene elegirlas entre las magnitudes que pregunta el enunciado, evitando incógnitas derivadas.
+- Cada frase se traduce en una ecuación siguiendo los patrones del **diccionario de traducción**: dobles y mitades, sumas y diferencias, medias, porcentajes, edades desplazadas en el tiempo, valor posicional de las cifras y relación entre distancia, velocidad y tiempo.
+- En los problemas de **mezclas** hay siempre una ecuación de **cantidades** y otra de **valor**; el precio de la mezcla es una **media ponderada**.
+- En los problemas de **cifras**, el número de tres cifras vale $100x+10y+z$, y la diferencia con su invertido es siempre múltiplo de $99$.
+- En los problemas de **trayectos**, el tiempo de cada tramo es distancia dividida entre velocidad, y conviene quitar denominadores; en los de **oferta y demanda**, las incógnitas pueden ser los **parámetros del modelo**, y el precio de equilibrio es el que iguala oferta y demanda.
+- Un sistema **compatible indeterminado** significa que faltan datos: se da la solución paramétrica y se restringe con las condiciones del contexto (enteros, positivos, acotados), que suelen dejar un número finito de posibilidades.
+- Un sistema **incompatible** significa que los datos del enunciado se contradicen; hay que explicar dónde está la contradicción.
+- La comprobación se hace **en el enunciado**, frase a frase, y la respuesta se redacta con palabras y unidades.
+
+## Ejercicios propuestos
+
+**1 (básico · edades).** Las edades de tres hermanos suman $28$ años. Hace dos años, la edad del mayor era igual a la suma de las edades de los otros dos. Dentro de tres años, el mediano tendrá el doble que el pequeño. ¿Qué edad tiene cada uno?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = edades actuales del mayor, del mediano y del pequeño, en años.
+
+- $x + y + z = 28$;
+- $x - 2 = (y-2) + (z-2)$, es decir, $x - y - z = -2$;
+- $y + 3 = 2(z+3)$, es decir, $y - 2z = 3$.
+
+Sumando las dos primeras: $2x = 26 \Rightarrow x = 13$, y por tanto $y + z = 15$. Con $y = 2z + 3$: $3z + 3 = 15 \Rightarrow z = 4$ y $y = 11$.
+
+Comprobación: $13+11+4=28$; hace dos años, $11 = 9 + 2$; dentro de tres, $14 = 2\cdot 7$. Correcto.
+
+**Respuesta:** tienen $13$, $11$ y $4$ años.
+:::
+
+**2 (básico · mezclas).** Se preparan $20$ kg de una mezcla de frutos secos con almendras a $12$ €/kg, nueces a $8$ €/kg y avellanas a $6$ €/kg, que se vende a $9{,}50$ €/kg. La cantidad de almendras es igual a la suma de las otras dos. ¿Cuántos kilos hay de cada fruto?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = kilos de almendras, nueces y avellanas.
+
+- $x + y + z = 20$;
+- $12x + 8y + 6z = 20 \cdot 9{,}50 = 190$;
+- $x = y + z$.
+
+De la primera y la tercera: $2x = 20 \Rightarrow x = 10$ y $y + z = 10$. En la segunda: $120 + 8y + 6z = 190 \Rightarrow 8y + 6z = 70$. Con $z = 10 - y$: $8y + 60 - 6y = 70 \Rightarrow 2y = 10 \Rightarrow y = 5$ y $z = 5$.
+
+Comprobación: $10+5+5=20$ kg; valor $120 + 40 + 30 = 190$ €, que entre $20$ kg son $9{,}50$ €/kg.
+
+**Respuesta:** $10$ kg de almendras, $5$ kg de nueces y $5$ kg de avellanas.
+:::
+
+**3 (medio · entradas).** En una sesión de cine se venden entradas normales a $9$ €, reducidas a $6$ € e infantiles a $4$ €. Se vendieron $200$ entradas y se recaudaron $1\,340$ euros. El número de entradas normales fue el triple del de infantiles. ¿Cuántas entradas de cada tipo se vendieron?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = número de entradas normales, reducidas e infantiles.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 200 \\
+9x & + & 6y & + & 4z & = & 1\,340 \\
+x &  &  & - & 3z & = & 0
+\end{array}
+\right.
+$$
+
+De la tercera, $x = 3z$. En la primera: $4z + y = 200 \Rightarrow y = 200 - 4z$. En la segunda:
+$$
+27z + 6(200-4z) + 4z = 1\,340 \;\Longrightarrow\; 27z + 1\,200 - 24z + 4z = 1\,340 \;\Longrightarrow\; 7z = 140 \;\Longrightarrow\; z = 20 .
+$$
+Entonces $x = 60$ y $y = 120$.
+
+Comprobación: $60+120+20 = 200$ entradas; $540 + 720 + 80 = 1\,340$ euros; y $60 = 3\cdot20$.
+
+**Respuesta:** $60$ normales, $120$ reducidas y $20$ infantiles.
+:::
+
+**4 (medio · trayectos).** Un ciclista recorre $120$ km en $5$ horas, distribuidos en un tramo llano a $30$ km/h, uno de subida a $15$ km/h y uno de bajada a $40$ km/h. El tramo llano mide tanto como los otros dos juntos. Halla la longitud de cada tramo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = kilómetros de llano, subida y bajada.
+
+- $x+y+z = 120$;
+- $\dfrac{x}{30} + \dfrac{y}{15} + \dfrac{z}{40} = 5$, que multiplicada por $120$ queda $4x + 8y + 3z = 600$;
+- $x = y+z$.
+
+De la primera y la tercera: $2x = 120 \Rightarrow x = 60$ y $y+z = 60$. En la ecuación de tiempos: $240 + 8y + 3z = 600 \Rightarrow 8y + 3z = 360$. Con $z = 60-y$: $8y + 180 - 3y = 360 \Rightarrow 5y = 180 \Rightarrow y = 36$ y $z = 24$.
+
+Comprobación de tiempos: $\dfrac{60}{30} = 2$ h, $\dfrac{36}{15} = 2{,}4$ h, $\dfrac{24}{40} = 0{,}6$ h; total $5$ horas.
+
+**Respuesta:** $60$ km de llano, $36$ km de subida y $24$ km de bajada.
+:::
+
+**5 (medio · inversiones).** Se reparten $24\,000$ euros entre tres fondos que rinden el $3\,\%$, el $5\,\%$ y el $8\,\%$ anual, y se obtienen $1\,290$ euros de intereses. Lo invertido al $8\,\%$ es la tercera parte de lo invertido al $3\,\%$. ¿Cuánto se colocó en cada fondo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = euros al $3\,\%$, al $5\,\%$ y al $8\,\%$.
+
+- $x+y+z = 24\,000$;
+- $3x + 5y + 8z = 129\,000$ (la ecuación $0{,}03x+0{,}05y+0{,}08z = 1\,290$ multiplicada por $100$);
+- $x = 3z$.
+
+Sustituyendo $x = 3z$: $3z + y + z = 24\,000 \Rightarrow y = 24\,000 - 4z$, y
+$$
+9z + 5(24\,000 - 4z) + 8z = 129\,000 \;\Longrightarrow\; 9z + 120\,000 - 20z + 8z = 129\,000 \;\Longrightarrow\; -3z = 9\,000 .
+$$
+Sale $z = -3\,000$, un valor **negativo**, imposible en este contexto.
+
+**Respuesta:** el sistema es compatible determinado, pero su solución no tiene sentido en el contexto: una cantidad invertida no puede ser negativa. Los datos del enunciado son, por tanto, incompatibles con la situación descrita, y detectarlo y explicarlo es la respuesta correcta.
+:::
+
+**6 (avanzado · monedas, solución indeterminada).** Una máquina expendedora ha recaudado $6$ euros en monedas de $20$ céntimos, de $50$ céntimos y de $1$ euro, con un total de $15$ monedas. ¿Cuántas monedas hay de cada clase?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$x$, $y$, $z$ = número de monedas de $20$ céntimos, de $50$ céntimos y de $1$ euro. Trabajando en céntimos:
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 15 \\
+20x & + & 50y & + & 100z & = & 600
+\end{array}
+\right.
+$$
+
+Solo hay **dos** ecuaciones y **tres** incógnitas: el sistema es compatible indeterminado. Simplificando la segunda entre $10$: $2x + 5y + 10z = 60$. Sustituyendo $x = 15 - y - z$:
+$$
+30 - 2y - 2z + 5y + 10z = 60 \;\Longrightarrow\; 3y + 8z = 30 .
+$$
+
+Ahora entra el contexto: $x$, $y$, $z$ deben ser **enteros no negativos**. De $3y = 30 - 8z$ se deduce que $8z$ ha de ser múltiplo de $3$, luego $z$ es múltiplo de $3$; y $z \leq 3$ porque si $z\geq 6$ el valor de $y$ sería negativo.
+
+- $z = 0$: $y = 10$, $x = 5$. Comprobación: $5+10+0=15$ monedas y $100 + 500 + 0 = 600$ céntimos.
+- $z = 3$: $y = 2$, $x = 10$. Comprobación: $10+2+3=15$ monedas y $200+100+300=600$ céntimos.
+
+**Respuesta:** hay dos repartos posibles: $5$ monedas de $20$ céntimos y $10$ de $50$; o bien $10$ monedas de $20$ céntimos, $2$ de $50$ y $3$ de $1$ euro. Con los datos dados no se puede decidir entre ellos.
+:::

@@ -1,0 +1,540 @@
+---
+title: "Tema 4.8 Sistemas lineales con tres incógnitas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 08-sistemas-tres-incognitas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Ecuaciones lineales con tres incógnitas, forma general de un sistema 3×3, la terna ordenada como solución y su comprobación, interpretación geométrica de cada ecuación como un plano y de la solución como intersección, las posiciones relativas de tres planos y su correspondencia con sistemas compatibles determinados, indeterminados e incompatibles, sistemas escalonados y resolución por sustitución sucesiva hacia atrás, sistemas con más o menos ecuaciones que incógnitas y primera mirada a los sistemas homogéneos, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, tres incógnitas, planos, sistemas escalonados, clasificación de sistemas]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De dos incógnitas a tres
+
+Hasta ahora todos los sistemas que has resuelto tenían dos incógnitas, y eso te ha permitido apoyarte constantemente en un dibujo: cada ecuación era una recta del plano y resolver el sistema era localizar el punto donde se cortaban. Ese apoyo visual es cómodo, pero es también una limitación, porque la inmensa mayoría de las situaciones reales tienen más de dos datos desconocidos.
+
+Piensa en un problema tan corriente como este: en una reunión hay hombres, mujeres y niños; se conoce el total de asistentes, se conoce la relación entre el número de niños y el de adultos, y se conoce el dinero recaudado con tres precios de entrada distintos. Hay **tres** cantidades desconocidas y **tres** informaciones. Con dos incógnitas no cabe: hace falta ampliar el marco.
+
+La buena noticia es que casi nada de lo aprendido se pierde. Las ideas de **solución**, de **sistema equivalente**, de **transformación permitida** y de **clasificación en compatible determinado, compatible indeterminado e incompatible** funcionan exactamente igual. Lo que cambia es la cantidad de cuentas y, sobre todo, la imagen geométrica: en lugar de rectas en un plano, ahora tendremos **planos en el espacio**.
+
+## Ecuaciones lineales con tres incógnitas
+
+::: {.callout-note}
+## Definición
+
+Una **ecuación lineal con tres incógnitas** es toda ecuación que se puede escribir en la forma
+$$
+ax + by + cz = d,
+$$
+donde $x$, $y$, $z$ son las **incógnitas**; $a$, $b$, $c$ son los **coeficientes**, y $d$ es el **término independiente**.
+
+Es «lineal» porque cada incógnita aparece elevada a la primera potencia, multiplicada solo por números, sin productos entre incógnitas, sin raíces, sin denominadores con letras y sin funciones.
+:::
+
+Conviene tener claro qué **no** es lineal. No lo son $x^2 + y - z = 1$ (hay un cuadrado), ni $xy + z = 4$ (hay un producto de incógnitas), ni $\dfrac{1}{x} + y + z = 0$ (la incógnita está en un denominador), ni $\sqrt{x} + y = z$. En cambio sí son lineales $-3x + \dfrac{y}{2} - z = 0$ (el $2$ es un número, no una incógnita) y $0{,}5x - y = 7$, donde falta la $z$: eso significa simplemente que su coeficiente es $c = 0$.
+
+::: {.callout-note}
+## Solución de una ecuación lineal con tres incógnitas
+
+Una **solución** es cada **terna ordenada** de números $(x_0, y_0, z_0)$ que, sustituida en la ecuación, la convierte en una igualdad numérica verdadera.
+
+El orden importa: $(1, 2, 3)$ y $(3, 2, 1)$ son ternas distintas, aunque tengan los mismos números.
+:::
+
+**Ejemplo 1.** En la ecuación $3x + 4y - 2z + t = 15$ hay cuatro incógnitas ($x$, $y$, $z$, $t$), los coeficientes son $3$, $4$, $-2$ y $1$, y el término independiente es $15$. La cuaterna $x=1$, $y=3$, $z=2$, $t=4$ es solución, porque
+$$
+3\cdot 1 + 4\cdot 3 - 2\cdot 2 + 4 = 3 + 12 - 4 + 4 = 15 .
+$$
+El ejemplo muestra que la idea se extiende sin ningún cambio a cuatro o más incógnitas; nosotros trabajaremos casi siempre con tres.
+
+Una sola ecuación lineal con tres incógnitas tiene **infinitas** soluciones, y además con mucha libertad: puedes elegir libremente dos de las tres incógnitas y la tercera queda determinada. Por ejemplo, en $x + y + z = 6$, si decides $y = 2$ y $z = 1$, entonces obligatoriamente $x = 3$. Esa doble libertad se traduce geométricamente en que el conjunto de soluciones es una superficie de dos dimensiones: **un plano**.
+
+## Sistemas de tres ecuaciones con tres incógnitas
+
+::: {.callout-note}
+## Forma general de un sistema $3\times 3$
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+a_1x & + & b_1y & + & c_1z & = & d_1 \\
+a_2x & + & b_2y & + & c_2z & = & d_2 \\
+a_3x & + & b_3y & + & c_3z & = & d_3
+\end{array}
+\right.
+$$
+
+Los números $a_i$, $b_i$, $c_i$ son los **coeficientes** y los $d_i$ los **términos independientes**. Una **solución del sistema** es una terna $(x_0,y_0,z_0)$ que verifica **las tres ecuaciones a la vez**. **Resolver** el sistema es hallar todas sus soluciones; **discutirlo** es decir cuántas tiene sin necesidad de calcularlas.
+:::
+
+La palabra clave de la definición es **a la vez**. Un error muy repetido consiste en encontrar valores que cumplen dos de las tres ecuaciones y darlos por buenos. Con tres ecuaciones hay que comprobar las tres, sin excepción.
+
+**Ejemplo 2.** ¿Es $(1,-1,0)$ solución del sistema
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & - & z & = & -1 \\
+2x & - & y & + & 3z & = & 3 \\
+5x & + & y & + & 2z & = & 4
+\end{array}
+\right. \ ?
+$$
+
+Sustituimos ordenadamente $x=1$, $y=-1$, $z=0$ en cada ecuación:
+
+- Primera: $1 + 2\cdot(-1) - 0 = 1 - 2 = -1$. Coincide con $-1$. **Se cumple.**
+- Segunda: $2\cdot 1 - (-1) + 3\cdot 0 = 2 + 1 = 3$. Coincide con $3$. **Se cumple.**
+- Tercera: $5\cdot 1 + (-1) + 2\cdot 0 = 5 - 1 = 4$. Coincide con $4$. **Se cumple.**
+
+Las tres se cumplen, luego $(1,-1,0)$ **es** solución del sistema.
+
+**Ejemplo 3.** ¿Y la terna $(0,0,1)$ en el mismo sistema? Primera ecuación: $0 + 0 - 1 = -1$, correcto. Segunda: $0 - 0 + 3 = 3$, correcto. Tercera: $0 + 0 + 2 = 2 \neq 4$. **No es solución.** Dos aciertos y un fallo bastan para descartarla: no hay soluciones «parciales».
+
+::: {.callout-caution}
+## Sustituir es sustituir, con signos y todo
+
+Al comprobar una terna, escribe siempre los valores **entre paréntesis**: $2\cdot 1 - (-1) + 3\cdot 0$. Si escribes $2 - -1$ sin paréntesis es cuestión de tiempo que pierdas un signo. Y no reutilices resultados de una ecuación en otra: cada ecuación se comprueba desde cero.
+:::
+
+### Applet · Comprobación de ternas en un sistema 3×3 {.unnumbered}
+
+Escribe las tres ecuaciones del sistema (una por línea, con el formato habitual `2x-y+3z=3`, admitiendo coeficientes negativos, fracciones como `3/4` y decimales con coma) y a continuación una terna $(x_0,y_0,z_0)$. El applet sustituye la terna en cada ecuación por separado, muestra el valor que toma el primer miembro, lo compara con el término independiente y marca con claridad cuáles se cumplen y cuáles no. Observa que solo cuando **las tres** quedan marcadas la terna es solución del sistema.
+
+::: {#panel-ternaSolucion .applet-panel data-applet-sys="ternaSolucion"}
+:::
+
+Prueba a partir de una solución correcta y modifica **una sola** de las tres coordenadas: verás cómo normalmente fallan varias ecuaciones a la vez. Prueba también ternas que satisfagan exactamente dos ecuaciones; te ayudará a interiorizar que ese caso, geométricamente, corresponde a un punto que está en dos de los planos pero no en el tercero.
+
+## Interpretación geométrica: cada ecuación es un plano
+
+En dos incógnitas, la ecuación $ax + by = c$ representaba una **recta** del plano. Con tres incógnitas, la situación se traslada al espacio de tres dimensiones, donde cada punto viene dado por tres coordenadas $(x,y,z)$.
+
+::: {.callout-important}
+## Una ecuación lineal con tres incógnitas es un plano
+
+El conjunto de puntos $(x,y,z)$ del espacio que verifican $ax + by + cz = d$ (con $a$, $b$, $c$ no todos nulos) es un **plano**.
+
+En consecuencia, un sistema de tres ecuaciones con tres incógnitas describe **tres planos**, y su conjunto de soluciones es exactamente la **intersección** de esos tres planos.
+:::
+
+Esta traducción es muy rentable, porque convierte una pregunta algebraica («¿cuántas soluciones tiene?») en una pregunta geométrica («¿cómo se cortan tres planos?») que la intuición maneja mucho mejor. Y la lista de posibilidades es corta: dos planos distintos o son paralelos, o se cortan en una recta; al añadir el tercero, la intersección común solo puede ser **un punto**, **una recta**, **un plano entero** o **el conjunto vacío**.
+
+Fíjate en el paralelismo con el caso de dos incógnitas. Allí, dos rectas se cortaban en un punto (sistema compatible determinado), eran paralelas (incompatible) o coincidían (compatible indeterminado). Aquí la clasificación es la misma, pero hay más maneras geométricas distintas de llegar a cada una de ellas.
+
+## Los tres tipos de sistema y sus imágenes
+
+::: {.callout-note}
+## Clasificación
+
+- **Sistema compatible determinado (SCD):** tiene una **única** solución. Los tres planos tienen exactamente **un punto** común.
+- **Sistema compatible indeterminado (SCI):** tiene **infinitas** soluciones. Los tres planos comparten **una recta** (infinitas soluciones con un parámetro) o son **el mismo plano** (infinitas soluciones con dos parámetros).
+- **Sistema incompatible (SI):** **no tiene** solución. Los tres planos **no tienen ningún punto** en común.
+:::
+
+Merece la pena detallar cómo puede producirse cada caso, porque en los ejercicios aparecen todos:
+
+**Un punto (SCD).** Los tres planos se cortan dos a dos en rectas distintas que concurren en un punto, como el rincón de una habitación: suelo y dos paredes se encuentran en una única esquina.
+
+**Una recta (SCI con un parámetro).** Los tres planos pasan por una misma recta, como las tres hojas de un libro abierto que comparten el lomo. También ocurre si dos de los planos son coincidentes y el tercero los corta.
+
+**Un plano (SCI con dos parámetros).** Las tres ecuaciones describen el mismo plano; una es múltiplo de otra y la tercera también. Cualquier punto del plano es solución.
+
+**Sin solución (SI).** Aquí hay varias formas geométricas distintas:
+
+- Los tres planos son **paralelos** y distintos (imagina tres estantes de una librería).
+- **Dos son paralelos** y el tercero los corta: cada corte es una recta, pero no hay punto común a los tres.
+- Los tres se cortan **dos a dos** en tres rectas **paralelas** distintas, formando una especie de **prisma triangular** sin tapas. Este caso es traicionero: cualquier pareja de planos se corta, y sin embargo no hay ningún punto que esté en los tres.
+
+::: {.callout-warning}
+## Que se corten dos a dos no garantiza solución
+
+El caso del prisma triangular es el mejor antídoto contra un razonamiento tentador y falso: «como cada par de ecuaciones tiene solución, el sistema debe tenerla». No es cierto. La compatibilidad es una propiedad del sistema **completo**, no de sus parejas.
+:::
+
+### Applet · Posiciones relativas de tres planos {.unnumbered}
+
+El applet presenta un esquema de las posiciones que pueden adoptar tres planos en el espacio y lo enlaza con el tipo de sistema correspondiente. Elige un escenario (planos secantes en un punto, con recta común, coincidentes, paralelos, dos paralelos y uno secante, o prisma triangular), observa el esquema y lee el sistema que lo produce junto con su clasificación y su conjunto de soluciones. Presta atención a qué distingue geométricamente el SCI de recta del SCI de plano.
+
+::: {#panel-planos3 .applet-panel data-applet-sys="planos3"}
+:::
+
+Después de recorrer todos los escenarios, intenta el ejercicio inverso: mira un sistema y anticipa el dibujo antes de pulsar. Esa capacidad de imaginar la configuración es la que después te permitirá interpretar un resultado algebraico sin quedarte solo con las cuentas.
+
+## Sistemas escalonados: el caso que se resuelve solo
+
+Hay una familia de sistemas $3\times 3$ que se resuelve casi sin esfuerzo, y va a ser la pieza central de todo lo que viene después.
+
+::: {.callout-note}
+## Sistema escalonado (o triangular)
+
+Un sistema es **escalonado** cuando cada ecuación tiene, al menos, una incógnita menos que la anterior:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+Ax & + & By & + & Cz & = & D \\
+ &  & B'y & + & C'z & = & D' \\
+ &  &  &  & C''z & = & D''
+\end{array}
+\right.
+$$
+:::
+
+Su resolución es inmediata y se hace **de abajo arriba**, procedimiento que recibe el nombre de **sustitución hacia atrás**: de la tercera ecuación se despeja $z$; ese valor se lleva a la segunda y se obtiene $y$; con ambos se va a la primera y se obtiene $x$.
+
+**Ejemplo 4.** Resuelve
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 0 \\
+ & - & y & - & 4z & = & 7 \\
+ &  &  &  & 3z & = & -6
+\end{array}
+\right.
+$$
+
+De la tercera: $3z = -6 \Rightarrow z = -2$.
+
+A la segunda: $-y - 4\cdot(-2) = 7 \Rightarrow -y + 8 = 7 \Rightarrow -y = -1 \Rightarrow y = 1$.
+
+A la primera: $x + 1 + (-2) = 0 \Rightarrow x - 1 = 0 \Rightarrow x = 1$.
+
+La solución es $(1, 1, -2)$, y el sistema es **compatible determinado**. Comprobación en la ecuación que no se usó para despejar nada nuevo, la primera: $1 + 1 - 2 = 0$. Correcto.
+
+La última ecuación del sistema escalonado es la que manda, y merece la pena adelantar ya lo que ocurre según su aspecto:
+
+- Si es $C''z = D''$ con $C'' \neq 0$, hay un único valor de $z$ y el sistema es **SCD**.
+- Si queda $0z = 0$, es decir, una **fila nula**, esa ecuación no aporta información: sobra, y el sistema pasa a tener dos ecuaciones útiles con tres incógnitas. Es **SCI**.
+- Si queda $0z = D''$ con $D'' \neq 0$, tenemos una **fila incompatible**: ningún número multiplicado por cero da un valor distinto de cero. El sistema es **SI**.
+
+Todo el trabajo del método de Gauss, que verás en el apartado siguiente, consiste precisamente en transformar cualquier sistema en uno escalonado equivalente para poder leer la respuesta en esa última fila.
+
+## Resolución por sustitución sucesiva
+
+Antes de disponer de un método sistemático, un sistema $3\times 3$ se puede atacar con la técnica que ya conoces: **despejar una incógnita y sustituirla** en las demás ecuaciones, reduciendo el problema a un sistema $2\times 2$ y después a una ecuación de primer grado.
+
+**Ejemplo 5 (completo).** Resuelve
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & - & z & = & -1 \\
+2x & - & y & + & 3z & = & 3 \\
+5x & + & y & + & 2z & = & 4
+\end{array}
+\right.
+$$
+
+**Paso 1. Elegir bien qué se despeja.** Conviene una incógnita con coeficiente $1$ o $-1$, para no arrastrar fracciones. En la primera ecuación, $x$ tiene coeficiente $1$:
+$$
+x = -1 - 2y + z .
+$$
+
+**Paso 2. Sustituir en las otras dos.** En la segunda:
+$$
+2(-1 - 2y + z) - y + 3z = 3 \;\Longrightarrow\; -2 - 4y + 2z - y + 3z = 3 \;\Longrightarrow\; -5y + 5z = 5 .
+$$
+Dividiendo entre $5$: $-y + z = 1$, es decir, $y = z - 1$.
+
+**Paso 3. Expresar también $x$ en función de $z$.** Como $x = -1 - 2y + z$ y $y = z-1$:
+$$
+x = -1 - 2(z-1) + z = -1 - 2z + 2 + z = 1 - z .
+$$
+
+**Paso 4. Llevar todo a la ecuación que aún no se ha usado.** En la tercera:
+$$
+5(1-z) + (z-1) + 2z = 4 \;\Longrightarrow\; 5 - 5z + z - 1 + 2z = 4 \;\Longrightarrow\; 4 - 2z = 4 \;\Longrightarrow\; z = 0 .
+$$
+
+**Paso 5. Recuperar las demás incógnitas.**
+$$
+x = 1 - z = 1, \qquad y = z - 1 = -1, \qquad z = 0 .
+$$
+
+**Paso 6. Comprobar en el sistema original.** $1 - 2 - 0 = -1$; $2 + 1 + 0 = 3$; $5 - 1 + 0 = 4$. Las tres ecuaciones se cumplen: la solución es $(1,-1,0)$ y el sistema es compatible determinado. Geométricamente, los tres planos se cortan en ese único punto.
+
+::: {.callout-tip}
+## Elige la incógnita más cómoda, no la primera que veas
+
+Antes de despejar, recorre las nueve casillas de coeficientes buscando un $1$ o un $-1$. Despejar $x$ de $7x + 3y - 5z = 2$ produce fracciones con denominador $7$ en todas las cuentas siguientes; despejar $z$ de $x + y - z = 4$ no produce ninguna. Los cinco minutos que dedicas a mirar te ahorran media página de errores.
+:::
+
+::: {.callout-caution}
+## La ecuación gastada
+
+Si despejas $x$ en la primera ecuación y sustituyes en la segunda y la tercera, la primera ecuación queda **usada**: ya no puedes volver a ella como si fuera información nueva. Un fallo típico consiste en sustituir en las tres, incluida aquella de la que se despejó, y obtener la identidad $0=0$; parece que aparece un sistema indeterminado cuando en realidad no se ha hecho nada.
+:::
+
+## Sistemas con más o con menos ecuaciones que incógnitas
+
+No todos los sistemas son cuadrados. Puede haber dos ecuaciones con tres incógnitas, o cuatro ecuaciones con tres incógnitas, y ambas situaciones aparecen con frecuencia en los problemas.
+
+**Menos ecuaciones que incógnitas.** El sistema
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & - & z & = & 2 \\
+2x & + & y & - & 2z & = & 1
+\end{array}
+\right.
+$$
+es un sistema lineal perfectamente legítimo con tres incógnitas. Geométricamente son dos planos: o son paralelos (sin solución) o se cortan en una recta (infinitas soluciones). Nunca puede tener solución única. Restando el doble de la primera a la segunda se obtiene $-3y = -3$, luego $y = 1$; sustituyendo, $x = 2 - 2 + z = z$. Tomando $z = k$ como parámetro, las soluciones son
+$$
+x = k, \qquad y = 1, \qquad z = k, \qquad k \in \mathbb{R},
+$$
+es decir, infinitas soluciones que forman una recta. El sistema es **compatible indeterminado**.
+
+::: {.callout-important}
+## Regla de la escasez de información
+
+Un sistema lineal con **menos ecuaciones que incógnitas** nunca puede ser compatible determinado: o es incompatible, o tiene infinitas soluciones. Es un resultado de puro sentido común: con dos datos no se pueden fijar tres cantidades.
+
+Cuidado con el recíproco, que es falso: tener tantas ecuaciones como incógnitas **no** garantiza solución única. Basta con que una ecuación repita la información de otra.
+:::
+
+**Más ecuaciones que incógnitas.** Añadir una cuarta ecuación a un sistema $3\times 3$ suele hacerlo incompatible, porque impone una condición adicional que el punto solución probablemente no cumpla. Pero no siempre: si la cuarta ecuación es consecuencia de las anteriores (por ejemplo, la suma de dos de ellas), no aporta nada nuevo y el sistema sigue siendo compatible. En los problemas contextualizados esto ocurre cuando un dato del enunciado es redundante.
+
+## Sistemas homogéneos: una primera mirada
+
+::: {.callout-note}
+## Sistema homogéneo
+
+Un sistema es **homogéneo** cuando todos sus términos independientes son cero:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+a_1x & + & b_1y & + & c_1z & = & 0 \\
+a_2x & + & b_2y & + & c_2z & = & 0 \\
+a_3x & + & b_3y & + & c_3z & = & 0
+\end{array}
+\right.
+$$
+:::
+
+Los sistemas homogéneos tienen una propiedad que los hace especiales: **nunca son incompatibles**. La terna $(0,0,0)$ siempre es solución, porque al sustituir se obtiene $0 = 0$ en las tres ecuaciones. Esa solución recibe el nombre de **solución trivial**.
+
+Por tanto, la única pregunta interesante en un sistema homogéneo es si tiene **solo** la solución trivial (SCD) o si tiene además **infinitas soluciones no triviales** (SCI). Geométricamente, los tres planos pasan todos por el origen, así que forzosamente comparten al menos ese punto; la duda es si comparten además una recta o un plano entero.
+
+**Ejemplo 6.** El sistema $\{x+y+z=0,\ x-y=0,\ 2x+z=0\}$ tiene, además de $(0,0,0)$, la solución $(1,1,-2)$, como se comprueba de inmediato: $1+1-2=0$, $1-1=0$, $2-2=0$. Es, por tanto, compatible indeterminado, y sus infinitas soluciones forman una recta que pasa por el origen.
+
+::: {.callout-tip}
+## De dónde viene todo esto
+
+Los sistemas lineales con varias incógnitas se resolvían por eliminación mucho antes de que existiera el álgebra simbólica. En el tratado chino conocido como *Los nueve capítulos del arte matemático*, compilado hace más de dos mil años, aparece un procedimiento llamado *fangcheng* en el que los coeficientes de un sistema se colocan en columnas sobre un tablero de cálculo y se van combinando hasta dejar una única incógnita en la última columna. Es, con otra notación y otro soporte, exactamente el método que estás a punto de estudiar.
+
+En Europa el procedimiento se popularizó a partir de los trabajos de Carl Friedrich Gauss a comienzos del siglo XIX, que lo empleó para ajustar observaciones astronómicas: el cálculo de la órbita del asteroide Ceres a partir de unas pocas mediciones exigía resolver sistemas grandes con la máxima economía de operaciones. De ahí que el método lleve hoy su nombre.
+:::
+
+## Errores frecuentes
+
+1. **Dar por solución una terna que cumple solo dos ecuaciones.** Con tres ecuaciones hay que verificar las tres, siempre.
+2. **Confundir el orden de la terna.** La solución es $(x,y,z)$ en ese orden; escribir los números al azar convierte una respuesta correcta en incorrecta.
+3. **Llamar lineal a lo que no lo es.** Un producto $xy$, un cuadrado o una incógnita en el denominador rompen la linealidad y todo lo dicho aquí deja de aplicarse.
+4. **Olvidar que un coeficiente puede ser cero.** La ecuación $x + 2y = 5$ dentro de un sistema con tres incógnitas es $x + 2y + 0z = 5$: sigue siendo un plano, y hay que tratarla con las tres columnas.
+5. **Perder signos al sustituir.** Sustituir $x = -1 - 2y + z$ en $2x$ da $-2 - 4y + 2z$; escribir $-2 - 2y + z$ (olvidando multiplicar todo por $2$) es el fallo más habitual del método de sustitución.
+6. **Sustituir en la ecuación de la que se despejó.** Se obtiene $0=0$ y se cree, erróneamente, que el sistema es indeterminado.
+7. **Creer que tres ecuaciones garantizan solución única.** El caso del prisma triangular y el de las ecuaciones repetidas demuestran lo contrario.
+8. **Suponer que un sistema con menos ecuaciones que incógnitas es siempre compatible.** Dos planos paralelos y distintos forman un sistema incompatible con dos ecuaciones y tres incógnitas.
+9. **Decir que un sistema homogéneo puede ser incompatible.** Nunca lo es: la solución trivial siempre está ahí.
+10. **No comprobar la solución final.** La comprobación en el sistema original cuesta treinta segundos y detecta prácticamente cualquier error de cálculo.
+
+## Resumen del apartado
+
+- Una **ecuación lineal con tres incógnitas** es de la forma $ax+by+cz=d$, con las incógnitas en primer grado, sin productos entre ellas ni denominadores con letras.
+- Una **solución** es una **terna ordenada** $(x_0,y_0,z_0)$; una solución del **sistema** debe verificar **todas** las ecuaciones a la vez.
+- Cada ecuación lineal con tres incógnitas representa un **plano** en el espacio, y el conjunto de soluciones del sistema es la **intersección** de los tres planos.
+- La intersección solo puede ser **un punto** (SCD), **una recta** o **un plano** (SCI) o **el vacío** (SI).
+- Hay tres configuraciones geométricas distintas que producen un sistema incompatible: planos paralelos, dos paralelos con uno secante y el **prisma triangular**. Que los planos se corten dos a dos no basta para que haya solución.
+- Un **sistema escalonado** se resuelve por **sustitución hacia atrás**, empezando por la última ecuación.
+- La última fila de un sistema escalonado decide el tipo: coeficiente no nulo $\Rightarrow$ SCD; **fila nula** $0=0$ $\Rightarrow$ SCI; **fila incompatible** $0 = d$ con $d\neq 0$ $\Rightarrow$ SI.
+- La **sustitución sucesiva** resuelve cualquier sistema $3\times3$, pero conviene despejar la incógnita con coeficiente $1$ o $-1$ para evitar fracciones.
+- Un sistema con **menos ecuaciones que incógnitas** nunca es compatible determinado.
+- Un **sistema homogéneo** ($d_1=d_2=d_3=0$) siempre es compatible, porque admite la **solución trivial** $(0,0,0)$; solo cabe decidir si tiene además soluciones no triviales.
+
+## Ejercicios propuestos
+
+**1 (básico).** Indica cuáles de estas ecuaciones son lineales con tres incógnitas y, en las que lo sean, señala coeficientes y término independiente: a) $8 - 4x + 2y = z$; b) $x^2 + y - z = 3$; c) $5y + 2x + z = 8$; d) $\dfrac{x}{3} - y + 2z = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) Es lineal. Reordenada: $-4x + 2y - z = -8$, coeficientes $-4$, $2$, $-1$ y término independiente $-8$.
+
+b) **No** es lineal: aparece $x^2$.
+
+c) Es lineal: $2x + 5y + z = 8$, coeficientes $2$, $5$, $1$ y término independiente $8$.
+
+d) Es lineal: coeficientes $\dfrac{1}{3}$, $-1$, $2$ y término independiente $0$. Que un coeficiente sea fraccionario no rompe la linealidad; lo que la rompería sería tener la incógnita en el denominador.
+:::
+
+**2 (básico).** Comprueba si $(2,-1,1)$ es solución del sistema $\{x+y+z=2,\ 2x-y-3z=2,\ x+3y+z=0\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primera: $2 - 1 + 1 = 2$. Correcto. Segunda: $4 + 1 - 3 = 2$. Correcto. Tercera: $2 - 3 + 1 = 0$. Correcto.
+
+Las tres se cumplen, luego **sí** es solución.
+:::
+
+**3 (básico).** Resuelve el sistema escalonado
+$$
+\left\{
+\begin{array}{rcrcrcr}
+2x & - & y & + & z & = & 3 \\
+ &  & 3y & - & 2z & = & -1 \\
+ &  &  &  & 4z & = & 8
+\end{array}
+\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la tercera, $z = 2$. En la segunda, $3y - 4 = -1 \Rightarrow 3y = 3 \Rightarrow y = 1$. En la primera, $2x - 1 + 2 = 3 \Rightarrow 2x = 2 \Rightarrow x = 1$.
+
+Solución: $(1,1,2)$. Sistema compatible determinado. Comprobación: $2-1+2=3$; $3-4=-1$; $8=8$.
+:::
+
+**4 (básico).** Clasifica sin resolver, mirando solo la última ecuación, estos tres sistemas escalonados: a) $\{x+y+z=1,\ y-z=2,\ 5z=10\}$; b) $\{x+y+z=1,\ y-z=2,\ 0z=0\}$; c) $\{x+y+z=1,\ y-z=2,\ 0z=7\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) El coeficiente de $z$ no es cero: **compatible determinado**, solución única.
+
+b) Fila nula, $0=0$: la tercera ecuación no aporta nada, quedan dos ecuaciones útiles con tres incógnitas. **Compatible indeterminado**, infinitas soluciones dependientes de un parámetro.
+
+c) Fila incompatible: $0z = 7$ es imposible. **Incompatible**, sin solución.
+:::
+
+**5 (medio).** Resuelve por sustitución sucesiva
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & - & z & = & 0 \\
+x & - & y & + & z & = & 2 \\
+-x & + & y & + & z & = & 4
+\end{array}
+\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la primera, $x = z - y$. Sustituyendo en la segunda: $(z-y) - y + z = 2 \Rightarrow -2y + 2z = 2 \Rightarrow z = y + 1$. Entonces $x = (y+1) - y = 1$.
+
+En la tercera: $-1 + y + (y+1) = 4 \Rightarrow 2y = 4 \Rightarrow y = 2$. Por tanto $z = 3$ y $x = 1$.
+
+Solución: $(1,2,3)$. Comprobación: $1+2-3=0$; $1-2+3=2$; $-1+2+3=4$. Correcto.
+:::
+
+**6 (medio).** Resuelve $\{x+z=1,\ 2x-y-2z=4,\ x+3y+z=3\}$ e interpreta el resultado geométricamente.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la primera, $x = 1 - z$. En la segunda: $2(1-z) - y - 2z = 4 \Rightarrow 2 - 2z - y - 2z = 4 \Rightarrow -y - 4z = 2 \Rightarrow y = -2 - 4z$.
+
+En la tercera: $(1-z) + 3(-2-4z) + z = 3 \Rightarrow 1 - z - 6 - 12z + z = 3 \Rightarrow -5 - 12z = 3 \Rightarrow z = -\dfrac{2}{3}$.
+
+Entonces $x = 1 + \dfrac{2}{3} = \dfrac{5}{3}$ y $y = -2 + \dfrac{8}{3} = \dfrac{2}{3}$.
+
+Solución única $\left(\dfrac{5}{3}, \dfrac{2}{3}, -\dfrac{2}{3}\right)$: es un sistema compatible determinado y los tres planos se cortan en ese único punto.
+:::
+
+**7 (medio).** Estudia el sistema $\{x+y=1,\ x+z=1,\ y+z=1\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+De la primera, $y = 1-x$; de la segunda, $z = 1-x$. En la tercera: $(1-x)+(1-x)=1 \Rightarrow 2-2x=1 \Rightarrow x = \dfrac{1}{2}$.
+
+Entonces $y = z = \dfrac{1}{2}$. Solución única $\left(\dfrac{1}{2},\dfrac{1}{2},\dfrac{1}{2}\right)$: compatible determinado.
+
+Observa que ninguna ecuación contiene las tres incógnitas y aun así el sistema queda perfectamente determinado. Los coeficientes nulos no son un obstáculo.
+:::
+
+**8 (medio).** Resuelve el sistema de dos ecuaciones con tres incógnitas $\{x + y + 2z = 0,\ 2x + 5y - 6z = 0\}$ y describe el conjunto de soluciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Es un sistema **homogéneo**, así que $(0,0,0)$ es solución y el sistema es compatible. Restando el doble de la primera a la segunda: $3y - 10z = 0$, es decir, $y = \dfrac{10z}{3}$.
+
+Sustituyendo en la primera: $x = -y - 2z = -\dfrac{10z}{3} - 2z = -\dfrac{16z}{3}$.
+
+Tomando $z = 3k$ para evitar denominadores: $x = -16k$, $y = 10k$, $z = 3k$, con $k \in \mathbb{R}$.
+
+Hay infinitas soluciones: es **compatible indeterminado**, y las soluciones forman una recta que pasa por el origen. Con $k=1$ se obtiene $(-16, 10, 3)$; comprobación: $-16+10+6=0$ y $-32+50-18=0$.
+:::
+
+**9 (avanzado).** Sin hacer cuentas largas, razona qué tipo de sistema es
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 1 \\
+2x & + & 2y & + & 2z & = & 2 \\
+3x & + & 3y & + & 3z & = & 5
+\end{array}
+\right.
+$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La segunda ecuación es exactamente el doble de la primera: representan **el mismo plano** y no aporta información nueva.
+
+La tercera tiene los mismos coeficientes multiplicados por $3$, pero el término independiente debería ser $3$ para ser el mismo plano, y vale $5$. Es un plano **paralelo** y distinto al primero.
+
+Por tanto no hay ningún punto común: el sistema es **incompatible**. Geométricamente, dos planos coincidentes y un tercero paralelo a ellos.
+:::
+
+**10 (avanzado).** Halla el valor de $m$ para que la terna $(1,-2,3)$ sea solución del sistema $\{x - y + z = 6,\ 2x + y + mz = 6,\ x + y - z = -4\}$ y comprueba después las tres ecuaciones.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primera: $1 + 2 + 3 = 6$. Se cumple sin condiciones sobre $m$.
+
+Tercera: $1 - 2 - 3 = -4$. También se cumple.
+
+Segunda: $2\cdot 1 + (-2) + m\cdot 3 = 6 \Rightarrow 3m = 6 \Rightarrow m = 2$.
+
+Con $m = 2$: $2 - 2 + 6 = 6$. Correcto. Las tres ecuaciones se verifican y $(1,-2,3)$ es solución.
+:::
+
+**11 (avanzado).** Un sistema $3\times 3$ tiene por soluciones todas las ternas de la forma $(1+k,\ 2-k,\ k)$ con $k \in \mathbb{R}$. ¿De qué tipo es? Escribe dos soluciones concretas y explica qué figura geométrica forman todas ellas.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Hay **infinitas** soluciones, una por cada valor del parámetro $k$, así que el sistema es **compatible indeterminado**.
+
+Con $k=0$ se obtiene $(1,2,0)$; con $k=1$, $(2,1,1)$.
+
+Todas las soluciones dependen de **un solo** parámetro, y al variar $k$ el punto se desplaza en una dirección fija: forman una **recta** del espacio. Los tres planos del sistema comparten, por tanto, esa recta.
+
+Observa además que en todas las soluciones se cumple $x + y = 3$ y $x - z = 1$: son dos de las relaciones que definen la recta.
+:::
+
+**12 (avanzado).** Justifica que el sistema homogéneo $\{x+y+z=0,\ x-y+2z=0,\ 3x+y+4z=0\}$ tiene soluciones distintas de la trivial y descríbelas.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Observa que la tercera ecuación es la suma de la primera multiplicada por $2$ y la segunda: $2(x+y+z) + (x-y+2z) = 3x + y + 4z$, y $2\cdot 0 + 0 = 0$. Es, pues, **redundante**: el sistema equivale a las dos primeras ecuaciones.
+
+Con dos ecuaciones útiles y tres incógnitas hay infinitas soluciones. Restando la segunda de la primera: $2y - z = 0$, luego $z = 2y$. Y de la primera, $x = -y - z = -y - 2y = -3y$.
+
+Tomando $y = k$: $x = -3k$, $y = k$, $z = 2k$, con $k \in \mathbb{R}$. Es **compatible indeterminado**, y las soluciones forman una recta por el origen. Con $k=1$: $(-3,1,2)$, que efectivamente cumple $-3+1+2=0$, $-3-1+4=0$ y $-9+1+8=0$.
+:::

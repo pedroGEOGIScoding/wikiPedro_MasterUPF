@@ -222,9 +222,20 @@ website:
               - master-upf/recursos/1-BatxMatesCCSS/ecuaciones-inecuaciones/12-practica-ecuaciones-inecuaciones.qmd
             - section: "Tema 4 Sistemas de Ecuaciones e Inecuaciones"
               contents:
-              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-lineales.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/02-sistemas-no-lineales.qmd
-              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/03-inecuaciones-dos-incognitas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/01-sistemas-ecuaciones-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/02-sistemas-dos-incognitas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/03-metodo-sustitucion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/04-metodo-igualacion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/05-metodo-reduccion.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/06-metodo-grafico.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/07-discusion-sistemas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/08-sistemas-tres-incognitas.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/09-metodo-gauss.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/10-discusion-gauss-matricial.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/11-problemas-sistemas-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/12-sistemas-inecuaciones-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/13-sistemas-no-lineales.qmd
+              - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/14-practica-sistemas.qmd
             - section: "Tema 5 Funciones"
               contents:
               - master-upf/recursos/1-BatxMatesCCSS/funciones/01-concepto-dominio-simetrias.qmd

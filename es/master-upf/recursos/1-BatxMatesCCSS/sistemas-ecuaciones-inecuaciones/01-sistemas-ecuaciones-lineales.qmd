@@ -1,0 +1,381 @@
+---
+title: "Tema 4.1 Sistemas de ecuaciones lineales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 01-sistemas-ecuaciones-lineales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué es una ecuación lineal con una o varias incógnitas, coeficientes y términos independientes, notación con subíndices, qué expresiones no son lineales, solución de una ecuación lineal y por qué una sola ecuación con dos incógnitas tiene infinitas soluciones, el paso a la forma explícita y a la recta, definición de sistema de ecuaciones lineales y de solución común, comprobación de un candidato ecuación por ecuación, primera clasificación en compatible determinado, compatible indeterminado e incompatible, sistemas homogéneos y traducción de enunciados a sistemas, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, ecuaciones lineales, álgebra]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De una incógnita a varias
+
+Cuando resuelves $3x - 5 = 7$ hay una sola cantidad desconocida y la respuesta es un número: $x = 4$. Pero la mayoría de las situaciones reales no vienen así de limpias:
+
+> Dos personas tienen entre las dos $15$ libros, y la primera tiene uno más que la segunda. ¿Cuántos libros tiene cada una?
+
+Aquí hay **dos** cantidades desconocidas y **dos** informaciones que las relacionan. Con paciencia se acierta por tanteo —$8$ y $7$—, pero el tanteo se agota en cuanto los números dejan de ser bonitos. Necesitamos un lenguaje que permita escribir a la vez las dos condiciones y un procedimiento que las resuelva siempre: los **sistemas de ecuaciones**.
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 15 \\
+x & - & y & = & 1
+\end{array}
+\right.
+$$
+
+La idea de fondo del tema entero es esta: **una ecuación con varias incógnitas casi nunca determina nada; varias ecuaciones juntas sí pueden hacerlo**. Y la técnica de todos los métodos que vas a aprender consiste en reducir el problema, paso a paso, a una única ecuación con una única incógnita, que ya sabes resolver.
+
+En este primer apartado no vamos a resolver nada: vamos a fijar con precisión qué es una ecuación lineal, qué es un sistema, qué significa «ser solución» y cuántas soluciones puede haber. Sin esas cuatro ideas claras, los métodos de cálculo se convierten en recetas ciegas.
+
+## Ecuaciones lineales
+
+::: {.callout-note}
+## Definición de ecuación lineal
+
+Una **ecuación lineal** (o de primer grado) es aquella en la que todas las incógnitas aparecen elevadas a la primera potencia, multiplicadas únicamente por números, y sin productos ni cocientes entre incógnitas. Su forma general con $n$ incógnitas es
+
+$$
+a_1 x_1 + a_2 x_2 + a_3 x_3 + \cdots + a_n x_n = b
+$$
+
+donde:
+
+- $x_1, x_2, \dots, x_n$ son las **incógnitas**;
+- $a_1, a_2, \dots, a_n$ son los **coeficientes**, los números que multiplican a cada incógnita;
+- $b$ es el **término independiente**, el número que no está asociado a ninguna incógnita.
+:::
+
+La palabra *lineal* no es decorativa: con dos incógnitas, el conjunto de soluciones de una de estas ecuaciones es exactamente una **línea recta** del plano; con tres, un plano del espacio. Esa geometría tan simple es la que hace de los sistemas lineales el único tipo de sistema que se resuelve siempre y de forma completamente mecánica.
+
+::: {.callout-tip}
+## Cómo se nombran las incógnitas
+
+Con dos incógnitas se suelen llamar $x$ e $y$; con tres, $x$, $y$, $z$; con cuatro, $x$, $y$, $z$, $t$. A partir de cinco se recurre a subíndices sobre una sola letra: $x_1$, $x_2$, …, $x_n$. En los problemas contextualizados es buena costumbre elegir letras que recuerden lo que representan: si el enunciado habla de coches y motos, llamarlos $c$ y $m$ ayuda más que $x$ e $y$ al interpretar la respuesta.
+:::
+
+**Ejemplo 1.** En la ecuación lineal $3x + 4y - 2z + t = 15$ hay cuatro incógnitas, $x$, $y$, $z$ y $t$; los coeficientes son $3$, $4$, $-2$ y $1$; y el término independiente es $15$. Fíjate en dos detalles que se pasan por alto continuamente: el coeficiente de $z$ es $-2$, **con el signo incluido**, y el de $t$ es $1$, aunque no esté escrito.
+
+**Ejemplo 2.** La ecuación $8 - 4x + 2y = z$ también es lineal, pero no está en forma general. Para leer sus coeficientes hay que ordenarla primero, pasando las incógnitas a un miembro y los números al otro: $-4x + 2y - z = -8$. Ahora sí: incógnitas $x$, $y$, $z$; coeficientes $-4$, $2$ y $-1$; término independiente $-8$. **Ordenar antes de clasificar** evita la mitad de los errores del tema.
+
+::: {.callout-caution}
+## Estas ecuaciones **no** son lineales
+
+- $x^2 + y = 5$: la incógnita $x$ está elevada al cuadrado.
+- $xy = 6$: hay un **producto de dos incógnitas**; aunque cada una aparezca elevada a $1$, el término $xy$ es de grado $2$.
+- $\dfrac{1}{x} + y = 2$: una incógnita aparece en un denominador, con exponente $-1$.
+- $\sqrt{x} - y = 0$: la raíz es una potencia de exponente $\tfrac{1}{2}$.
+- $2^x + y = 9$: la incógnita está en el exponente.
+
+En cambio, sí es lineal $\dfrac{x}{3} - \dfrac{2y}{5} = 1$: los denominadores son **números**, no incógnitas, y basta multiplicar por $15$ para obtener $5x - 6y = 15$.
+:::
+
+Estos casos aparecerán al final del tema como **sistemas no lineales**, con un comportamiento mucho menos previsible.
+
+## Solución de una ecuación lineal
+
+::: {.callout-note}
+## Definición de solución
+
+Una **solución** de una ecuación lineal es cada conjunto de valores que, sustituidos en el lugar de las incógnitas, convierten la igualdad en una igualdad numérica verdadera.
+
+Con dos incógnitas una solución es un **par ordenado** $(x_0, y_0)$; con tres, una **terna** $(x_0, y_0, z_0)$; con $n$ incógnitas, una lista ordenada de $n$ números.
+:::
+
+El orden importa: en $x - 2y = 3$ el par $(1, -1)$ es solución, porque $1 - 2\cdot(-1) = 3$, pero $(-1, 1)$ no lo es, porque $-1 - 2 \cdot 1 = -3$. Escribir «la solución es $1$ y $-1$» sin decir qué valor corresponde a cada incógnita es incompleto.
+
+**Ejemplo 3.** Comprobemos que $x = 1$, $y = 3$, $z = 2$, $t = 4$ es solución de $3x + 4y - 2z + t = 15$. Sustituyendo en el primer miembro, $3 \cdot 1 + 4 \cdot 3 - 2 \cdot 2 + 4 = 15$, que coincide con el segundo, así que sí lo es.
+
+### Una sola ecuación con dos incógnitas tiene infinitas soluciones
+
+Este es el hecho decisivo del apartado. Toma la ecuación $x + y = 15$: ¿cuántos pares la cumplen? Elige tú el valor de $x$ que quieras y la ecuación te dice cuánto vale entonces $y$: si $x = 0$, $y = 15$; si $x = 4$, $y = 11$; si $x = 7{,}5$, $y = 7{,}5$; si $x = -3$, $y = 18$. Cada valor de $x$ produce una solución, y hay infinitos valores posibles de $x$.
+
+| $x$ | $-3$ | $0$ | $4$ | $7{,}5$ | $10$ | $20$ |
+|---|---|---|---|---|---|---|
+| $y$ | $18$ | $15$ | $11$ | $7{,}5$ | $5$ | $-5$ |
+
+Una ecuación lineal con dos incógnitas, por tanto, **no las determina**: solo impone una relación entre ellas, y fijado uno de los dos valores el otro queda obligado. Por eso el problema de los libros necesitaba dos informaciones.
+
+::: {.callout-note}
+## De la forma general a la forma explícita
+
+Si en $ax + by = c$ el coeficiente $b$ no es nulo, se puede despejar $y$:
+$$
+by = c - ax \iff y = \frac{c - ax}{b} = -\frac{a}{b}\,x + \frac{c}{b} .
+$$
+La expresión resultante $y = mx + n$ se llama **forma explícita**. En ella $m = -\dfrac{a}{b}$ es la **pendiente** y $n = \dfrac{c}{b}$ es la **ordenada en el origen**.
+
+Cada solución $(x_0, y_0)$ es un **punto del plano**, y el conjunto de todas ellas es la **recta** de ecuación $ax + by = c$.
+:::
+
+Por ejemplo, de $2x + 3y = 12$ sale $y = -\dfrac{2}{3}x + 4$: una recta que corta al eje vertical en $4$ y baja dos unidades cada vez que avanza tres. El caso $b = 0$ merece atención aparte: $2x = 6$, vista con dos incógnitas, es $2x + 0y = 6$, o sea $x = 3$, y su gráfica es una **recta vertical**, que no se puede escribir como $y = mx + n$. Conviene, pues, no identificar «ecuación lineal con dos incógnitas» con «función $y = mx+n$».
+
+### Applet · Una ecuación, infinitas soluciones {.unnumbered}
+
+Escribe los tres coeficientes de una ecuación $ax + by = c$ y observa a la vez la tabla de soluciones, el paso a la forma explícita $y = mx + n$ y la recta que forman esos puntos. Cambia $c$ dejando fijos $a$ y $b$ y fíjate en que la recta se traslada sin girar; cambia $a$ o $b$ y verás que lo que cambia es la inclinación. Prueba también el caso $b = 0$. En las casillas se admiten enteros, decimales escritos con coma (por ejemplo $0{,}5$) y fracciones con barra (por ejemplo $3/4$).
+
+::: {#panel-unaEcuacion .applet-panel data-applet-sys="unaEcuacion"}
+:::
+
+## Sistemas de ecuaciones lineales
+
+::: {.callout-note}
+## Definición de sistema de ecuaciones lineales
+
+Un **sistema de ecuaciones lineales** es un conjunto de dos o más ecuaciones lineales para el que se busca una **solución común**, es decir, unos valores de las incógnitas que verifiquen **todas** las ecuaciones a la vez.
+
+Se llama **solución del sistema** a cada conjunto de valores que, sustituidos en las incógnitas, satisface simultáneamente todas las ecuaciones. **Resolver** el sistema es encontrar todas sus soluciones o demostrar que no tiene ninguna.
+:::
+
+Las llaves que se escriben a la izquierda del sistema significan precisamente esa simultaneidad: no son un adorno tipográfico, son una **y** lógica. El sistema formado por $2x + 3y = 8$ y $5x - y = 3$ pregunta por los pares que cumplen la primera **y** la segunda condición, no por los que cumplen una u otra.
+
+Un sistema de $m$ ecuaciones con $n$ incógnitas se llama sistema $m \times n$. En este curso trabajarás sobre todo los $2 \times 2$ y los $3 \times 3$, pero el número de ecuaciones no tiene por qué coincidir con el de incógnitas.
+
+::: {.callout-important}
+## Por qué hacen falta «tantas ecuaciones como incógnitas»
+
+Cada ecuación lineal aporta, como máximo, una restricción sobre las incógnitas. Con dos incógnitas y una sola ecuación queda un grado de libertad y hay infinitas soluciones; al añadir una segunda ecuación que diga algo **nuevo**, ese grado de libertad desaparece y la solución queda fijada.
+
+La expresión «como máximo» es la clave: si la segunda ecuación repite la información de la primera, no restringe nada y siguen habiendo infinitas soluciones; si la contradice, no hay ninguna. Por eso contar ecuaciones no basta nunca: hay que mirar **qué dicen**.
+:::
+
+**Ejemplo 4 (el sistema de los libros).** Si $x$ es el número de libros de la primera persona e $y$ el de la segunda, «entre las dos suman $15$» es $x + y = 15$ y «la primera tiene uno más» es $x - y = 1$. La solución es $x = 8$, $y = 7$: $8 + 7 = 15$ y $8 - 7 = 1$, se cumplen las dos ecuaciones.
+
+::: {.callout-note}
+## Sistemas homogéneos
+
+Un sistema lineal se llama **homogéneo** cuando todos sus términos independientes son nulos:
+$$
+\left\{
+\begin{array}{rcrcr}
+a x & + & b y & = & 0 \\
+a' x & + & b' y & = & 0
+\end{array}
+\right.
+$$
+
+Todo sistema homogéneo tiene **al menos** una solución: la formada por ceros, $x = 0$, $y = 0$, llamada **solución trivial**. Por eso nunca es incompatible; la única pregunta interesante es si tiene otras.
+:::
+
+Compruébalo: sustituir ceros en $ax + by = 0$ da $0 = 0$, sean cuales sean $a$ y $b$. El sistema formado por $2x - 7y = 0$ y $3x - 2y = 0$ tiene **solo** la trivial; el formado por $x - 2y = 0$ y $-2x + 4y = 0$ tiene infinitas, porque la segunda ecuación es la primera multiplicada por $-2$.
+
+## Comprobar si un candidato es solución
+
+Comprobar es la operación más rentable del tema: no exige resolver nada, solo sustituir y sumar, y detecta errores que de otro modo pasarían desapercibidos.
+
+::: {.callout-note}
+## Procedimiento de comprobación
+
+Para decidir si un par $(x_0, y_0)$ es solución de un sistema:
+
+1. Sustituye $x_0$ e $y_0$ en el primer miembro de la **primera** ecuación y calcula el número que sale.
+2. Compáralo con el segundo miembro: si coinciden, esa ecuación se cumple.
+3. Repite el proceso con **cada una** de las ecuaciones restantes.
+4. El par es solución **solo si se cumplen todas**. Basta que falle una para que no lo sea.
+:::
+
+**Ejemplo 5.** Indica cuáles de estos pares son solución del sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & - &  y & = & 1 \\
+x & - & 2y & = & -3
+\end{array}
+\right.
+$$
+
+a) $(2, 1)$. Primera ecuación: $2 - 1 = 1$, se cumple. Segunda: $2 - 2 \cdot 1 = 0 \neq -3$, **no** se cumple. Como falla una, el par **no** es solución del sistema.
+
+b) $(5, 4)$. Primera: $5 - 4 = 1$, se cumple. Segunda: $5 - 2 \cdot 4 = 5 - 8 = -3$, se cumple. Las dos se cumplen, así que $(5,4)$ **sí** es solución.
+
+c) $(-1, 1)$. Primera: $-1 - 1 = -2 \neq 1$, falla ya la primera. No es solución.
+
+::: {.callout-caution}
+## El error más común al comprobar
+
+Comprobar solo en la ecuación que resulta más cómoda, o solo en la que se usó para despejar, no comprueba nada: el par $(2,1)$ del ejemplo anterior cumple la primera ecuación y sin embargo no es solución del sistema. **Ser solución del sistema es serlo de todas las ecuaciones**, verificadas una por una. El segundo error habitual es sustituir en una versión ya manipulada del sistema: si al despejar hubo un error de signo, la comprobación saldrá bien y el resultado será falso. Comprueba siempre en el sistema **original**.
+:::
+
+Geométricamente: cada ecuación es una recta y el par $(x_0,y_0)$ es un punto del plano. Cumplir una ecuación significa **estar sobre** esa recta, y ser solución del sistema significa estar sobre **todas** a la vez. El caso b) dice que las dos rectas pasan por $(5,4)$; el caso a), que $(2,1)$ está en la primera recta pero fuera de la segunda.
+
+### Applet · Comprobación de soluciones {.unnumbered}
+
+Escribe las dos ecuaciones del sistema, una en cada línea, y a continuación las coordenadas de un punto. El applet sustituye el punto en cada ecuación por separado, muestra el número que sale en cada miembro, marca qué ecuaciones se cumplen y dibuja el punto junto con las dos rectas para que veas la razón geométrica del resultado. Busca a mano, moviendo el punto, la posición en la que se cumplen las dos condiciones. Las ecuaciones se escriben tal cual, del tipo `2x-3y=5`, y se admiten enteros, decimales con coma (como $1{,}5$) y fracciones con barra (como $3/4$).
+
+::: {#panel-esSolucion .applet-panel data-applet-sys="esSolucion"}
+:::
+
+## Cuántas soluciones puede tener un sistema
+
+Ya sabes que una ecuación lineal con dos incógnitas tiene infinitas soluciones. ¿Y un sistema? Aquí aparece la clasificación que estructura todo el tema.
+
+::: {.callout-note}
+## Clasificación de un sistema según el número de soluciones
+
+- **Compatible**: el sistema tiene alguna solución.
+  - **Compatible determinado** (SCD): tiene una **única** solución.
+  - **Compatible indeterminado** (SCI): tiene **más de una** solución y, cuando el sistema es lineal, entonces tiene **infinitas**.
+- **Incompatible** (SI): el sistema **no tiene** ninguna solución.
+
+**Discutir** un sistema es clasificarlo en una de estas categorías, aunque no se calculen las soluciones.
+:::
+
+::: {.callout-important}
+## Por qué un sistema lineal no puede tener exactamente dos soluciones
+
+Si un sistema lineal tuviera dos soluciones distintas, todos los puntos del segmento que las une serían también solución, y habría infinitas. Con dos incógnitas la razón es inmediata: dos rectas distintas se cortan en un punto o en ninguno, y solo si son la **misma** recta comparten más de un punto, y entonces comparten infinitos. Compáralo con un sistema no lineal: una recta y una circunferencia pueden cortarse en exactamente dos puntos; allí «dos soluciones» es normal, aquí es imposible.
+:::
+
+**Ejemplo 6 (los tres casos con el mismo aspecto).** Observa estos tres sistemas, tan parecidos por fuera y tan distintos por dentro:
+
+$$
+\text{(a)}\;
+\left\{
+\begin{array}{rcrcr}
+ x & + & y & = & 1 \\
+2x & + & y & = & 2
+\end{array}
+\right.
+\qquad
+\text{(b)}\;
+\left\{
+\begin{array}{rcrcr}
+ x & + &  y & = & 1 \\
+2x & + & 2y & = & 2
+\end{array}
+\right.
+\qquad
+\text{(c)}\;
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 1 \\
+x & + & y & = & 2
+\end{array}
+\right.
+$$
+
+En **(a)** las dos ecuaciones dicen cosas distintas: restando la primera de la segunda queda $x = 1$, y entonces $y = 0$. Hay una única solución, $(1,0)$: **compatible determinado**. En **(b)** la segunda ecuación es exactamente la primera multiplicada por $2$, así que no aporta información nueva y cualquier par que cumpla $x + y = 1$ cumple también la segunda: hay infinitas soluciones —$(0,1)$, $(1,0)$, $(3,-2)$, $(0{,}5;\,0{,}5)$…— y el sistema es **compatible indeterminado**. En **(c)** las dos se contradicen: si $x + y$ vale $1$, no puede valer $2$ a la vez, y el sistema es **incompatible**.
+
+Geométricamente, (a) son dos rectas **secantes**, (b) dos rectas **coincidentes** —la misma recta escrita de dos maneras— y (c) dos **paralelas** distintas. Esta correspondencia entre álgebra y geometría es el eje del apartado siguiente.
+
+::: {.callout-warning}
+## «Incompatible» no es «la solución es cero»
+
+Que un sistema sea incompatible significa que su conjunto solución es vacío, $S = \varnothing$: no existe ningún par de números que lo satisfaga. Es muy distinto de que la solución sea $x = 0$, $y = 0$, que es una solución perfectamente válida —de hecho, la trivial de cualquier sistema homogéneo—. Es un error conceptual, no de cálculo.
+:::
+
+## Del enunciado al sistema
+
+Casi todos los sistemas que resolverás provienen de un texto, y la parte difícil no es resolverlos sino escribirlos. El guion es siempre el mismo: nombrar con una letra cada cantidad desconocida, **escribiendo con palabras y con unidades qué representa**; escribir una ecuación por cada información independiente; ordenarlas en la forma $ax + by = c$; resolver; comprobar la solución sobre el enunciado original y verificar que tiene sentido en el contexto; y responder con una frase completa.
+
+**Ejemplo 7.** En un aparcamiento hay coches y motos: $34$ vehículos y $116$ ruedas. Si $c$ es el número de coches y $m$ el de motos, el recuento de vehículos da $c + m = 34$ y el de ruedas $4c + 2m = 116$. La solución es $c = 24$ y $m = 10$: $24 + 10 = 34$ y $4\cdot 24 + 2 \cdot 10 = 116$, con valores enteros y positivos, como exige el contexto.
+
+**Ejemplo 8 (la trampa del envase).** Una botella con su tapón pesa $1$ kg y $10$ g, y la botella pesa $1$ kg más que el tapón. Llamando $b$ al peso de la botella y $t$ al del tapón, los dos en gramos,
+$$
+\left\{
+\begin{array}{rcrcr}
+b & + & t & = & 1010 \\
+b & - & t & = & 1000
+\end{array}
+\right.
+$$
+Sumando las dos ecuaciones, $2b = 2010$, de donde $b = 1005$ g y $t = 5$ g. La respuesta intuitiva —«la botella pesa un kilo y el tapón diez gramos»— es falsa: $1000 - 10 = 990 \neq 1000$. Conviene plantear el sistema en lugar de fiarse del ojo.
+
+::: {.callout-tip}
+## Los sistemas son mucho más antiguos que su notación
+
+El planteamiento y la resolución de sistemas lineales están documentados hace más de dos mil años. En un tratado matemático chino organizado en nueve capítulos se resolvían ya problemas con varias condiciones simultáneas —repartos de grano, precios de animales— mediante una técnica de eliminación por filas que es, en esencia, el método que hoy se estudia con el nombre de Gauss. Aquellos textos no escribían letras ni signos de igualdad: describían el procedimiento con palabras y disponían los números en columnas sobre un tablero de cálculo. El álgebra simbólica que hoy parece natural tardó siglos en consolidarse.
+:::
+
+## Errores frecuentes
+
+- **Confundir ecuación lineal con ecuación de una incógnita.** $2x + 3y = 8$ es lineal y tiene dos incógnitas; «lineal» se refiere al grado, no al número de letras.
+- **Considerar lineal una ecuación con producto de incógnitas.** El término $xy$ es de grado $2$; $xy = 6$ no es lineal aunque cada letra esté elevada a $1$.
+- **Leer los coeficientes sin ordenar la ecuación.** En $8 - 4x + 2y = z$ los coeficientes no son $8$, $-4$ y $2$: hay que pasarla antes a la forma general.
+- **Olvidar el signo o el coeficiente invisible.** En $3x - 2y = 7$ el coeficiente de $y$ es $-2$; en $x + y = 5$ los coeficientes son $1$ y $1$, no «ninguno».
+- **Dar la solución como un solo número o invertir el orden del par.** La respuesta es un par ordenado, y $(1,-1)$ y $(-1,1)$ son puntos distintos.
+- **Comprobar solo en una ecuación**, o comprobar en el sistema ya manipulado en vez de en el original.
+- **Creer que un sistema lineal puede tener exactamente dos o tres soluciones.** Solo son posibles ninguna, una o infinitas.
+- **Confundir sistema incompatible con solución nula.** $S = \varnothing$ y $S = \{(0,0)\}$ son respuestas opuestas.
+- **Pensar que dos ecuaciones garantizan solución única**, o plantear un sistema sin escribir qué representa cada incógnita y llegar al final sin saber qué contestar.
+
+## Resumen del apartado
+
+- Una **ecuación lineal** con $n$ incógnitas tiene la forma $a_1x_1 + \cdots + a_nx_n = b$: incógnitas de grado $1$, sin productos ni cocientes entre ellas, sin raíces ni exponentes. Los $a_i$ son los **coeficientes** —con su signo, y valen $1$ cuando no se escriben— y $b$ es el **término independiente**.
+- No son lineales las ecuaciones con $x^2$, con $xy$, con la incógnita en un denominador, bajo una raíz o en un exponente. Sí lo son las que tienen denominadores **numéricos**.
+- Una **solución** es una lista ordenada de valores que hace verdadera la igualdad; con dos incógnitas, un par ordenado $(x_0,y_0)$, que se interpreta como un punto del plano.
+- Una sola ecuación lineal con dos incógnitas tiene **infinitas** soluciones: los puntos de la recta $ax + by = c$. Si $b \neq 0$ se escribe en forma explícita $y = -\tfrac{a}{b}x + \tfrac{c}{b}$; si $b = 0$ la recta es vertical.
+- Un **sistema** busca la solución **común** a todas sus ecuaciones: las llaves significan «y», no «o». Un par es solución **solo si cumple todas** las ecuaciones, comprobadas una a una sobre el sistema original.
+- Un sistema lineal es **compatible determinado** (una solución), **compatible indeterminado** (infinitas) o **incompatible** (ninguna). No hay más posibilidades.
+- Los sistemas **homogéneos** —todos los términos independientes nulos— siempre son compatibles, porque admiten la solución trivial.
+- Al traducir un enunciado hay que nombrar las incógnitas por escrito, escribir una ecuación por cada información independiente y comprobar el resultado en el texto del problema.
+
+## Ejercicios propuestos
+
+1. Determina las incógnitas, los coeficientes y el término independiente de cada ecuación lineal, ordenándola antes si es necesario:
+   a) $3x - 2y = -3$;  b) $5y + 2x + z = 8$;  c) $8 - 4x + 2y = z$;  d) $2t + 4x - 7 = y + 4z$.
+
+2. Indica cuáles de las siguientes ecuaciones son lineales y por qué no lo son las demás:
+   a) $\dfrac{x}{2} - 3y = 1$;  b) $x^2 + y = 4$;  c) $3xy - x = 0$;  d) $\dfrac{2}{x} + y = 5$;  e) $\sqrt{3}\,x - y = 0$;  f) $2^x + y = 8$.
+
+3. Escribe cuatro soluciones distintas de la ecuación $2x - 3y = 6$, una de ellas con $x$ negativo y otra con $y$ decimal. Pásala después a forma explícita e indica su pendiente y su ordenada en el origen.
+
+4. Indica cuáles de estos pares son solución del sistema formado por $x - y = 1$ y $x - 2y = -3$: a) $(1,0)$; b) $(-1,1)$; c) $(5,4)$; d) $(3,2)$.
+
+5. Comprueba si la terna $(1,-1,0)$ es solución del sistema formado por $x + 2y - z = -1$, $2x - y + 3z = 3$ y $5x + y + 2z = 4$, verificando las tres ecuaciones por separado.
+
+6. Clasifica cada sistema sin resolverlo, razonando si las dos ecuaciones dicen lo mismo, cosas distintas o cosas contradictorias:
+   a) $8x - 2y = 4$ y $-12x + 3y = -6$;  b) $x + 2y = 1$ y $3x - y = 11$;  c) $x - y = 3$ y $x - y = 5$;  d) $4x + 6y = 2$ y $3y + 2x = 1$.
+
+7. Inventa un sistema $2 \times 2$ compatible determinado cuya solución sea $(2,-3)$, otro compatible indeterminado que contenga la ecuación $x + y = 4$ y otro incompatible que también contenga $x + y = 4$.
+
+8. ¿Puede un sistema lineal de dos ecuaciones con dos incógnitas tener exactamente tres soluciones? Justifica la respuesta con el argumento geométrico de las rectas.
+
+9. Comprueba que $(0,0)$ es solución del sistema homogéneo formado por $5x - 2y = 0$ y $3x + 2y = 0$, y decide si tiene alguna otra. Compáralo con el sistema homogéneo formado por $x - 2y = 0$ y $-2x + 4y = 0$.
+
+10. Plantea el sistema correspondiente a cada enunciado, **sin resolverlo**, escribiendo qué representa cada incógnita:
+    a) En una hucha hay $28$ monedas de $1$ y de $2$ euros, que suman $41$ euros.
+    b) Un rectángulo tiene $34$ cm de perímetro y su base mide $5$ cm más que su altura.
+    c) En un examen de $30$ preguntas cada acierto suma $1$ punto y cada fallo resta $0{,}25$; un alumno responde todas y obtiene $20$ puntos.
+
+11. Del sistema formado por $x + y = 15$ y $x - y = 1$, comprueba que $(8,7)$ es solución y que $(9,6)$ no lo es, indicando qué ecuación falla y en cuánto.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** a) Incógnitas $x$, $y$; coeficientes $3$ y $-2$; término independiente $-3$. b) Ordenada, $2x + 5y + z = 8$: coeficientes $2$, $5$, $1$ y término independiente $8$. c) Ordenada, $-4x + 2y - z = -8$: coeficientes $-4$, $2$, $-1$ y término independiente $-8$. d) Ordenada, $4x - y - 4z + 2t = 7$: coeficientes $4$, $-1$, $-4$, $2$ y término independiente $7$.
+
+**2.** Lineales: a) (denominador numérico) y e) ($\sqrt{3}$ es un coeficiente, no una raíz de la incógnita). No lineales: b) por $x^2$; c) por el producto $xy$; d) por la incógnita en el denominador; f) por la incógnita en el exponente.
+
+**3.** Por ejemplo $(3,0)$, $(0,-2)$, $(-3,-4)$ y $(1{,}5;\,-1)$. Forma explícita: $y = \dfrac{2}{3}x - 2$; pendiente $m = \dfrac{2}{3}$ y ordenada en el origen $n = -2$.
+
+**4.** a) $(1,0)$: cumple la primera pero la segunda da $1 \neq -3$; no lo es. b) $(-1,1)$: falla ya la primera ($-2 \neq 1$); no lo es. c) $(5,4)$: $5-4=1$ y $5-8=-3$; **sí** lo es. d) $(3,2)$: cumple la primera, pero la segunda da $-1 \neq -3$; no lo es.
+
+**5.** Primera: $1 + 2(-1) - 0 = -1$, correcto. Segunda: $2 \cdot 1 - (-1) + 0 = 3$, correcto. Tercera: $5 \cdot 1 + (-1) + 0 = 4$, correcto. Las tres se cumplen, así que $(1,-1,0)$ **es** solución.
+
+**6.** a) La segunda es la primera multiplicada por $-\tfrac{3}{2}$: dicen lo mismo, **compatible indeterminado** (rectas coincidentes). b) Dicen cosas distintas e independientes: **compatible determinado** (rectas secantes), con solución $(3,-1)$. c) Se contradicen, **incompatible** (rectas paralelas). d) La segunda, ordenada, es $2x + 3y = 1$, igual que la primera dividida entre $2$: **compatible indeterminado**.
+
+**7.** Determinado: por ejemplo $x + y = -1$ y $x - y = 5$, cuya solución es $(2,-3)$. Indeterminado: $x + y = 4$ y $3x + 3y = 12$. Incompatible: $x + y = 4$ y $x + y = 7$.
+
+**8.** No. Dos rectas del plano se cortan en un punto (una solución), en ninguno (paralelas distintas) o coinciden (infinitos puntos). Exactamente tres puntos comunes es imposible: si comparten dos, son la misma recta y comparten infinitos.
+
+**9.** En el primero, $(0,0)$ cumple las dos ecuaciones. Sumando ambas se obtiene $8x = 0$, luego $x = 0$ y $y = 0$: la trivial es la **única** solución, compatible determinado. En el segundo, la segunda ecuación es la primera multiplicada por $-2$; cualquier par con $x = 2y$ es solución —$(2,1)$, $(4,2)$, $(-6,-3)$…—, así que hay infinitas y es compatible indeterminado.
+
+**10.** a) Con $u$ = monedas de $1$ € y $d$ = monedas de $2$ €: $u + d = 28$ y $u + 2d = 41$. b) Con $b$ = base y $h$ = altura en centímetros: $2b + 2h = 34$ y $b - h = 5$. c) Con $a$ = aciertos y $f$ = fallos: $a + f = 30$ y $a - 0{,}25f = 20$.
+
+**11.** $(8,7)$: $8+7 = 15$ y $8-7 = 1$; cumple las dos, es solución. $(9,6)$: la primera se cumple, $9+6 = 15$, pero la segunda da $9 - 6 = 3$ en lugar de $1$; falla por $2$ unidades, así que no es solución del sistema.
+:::

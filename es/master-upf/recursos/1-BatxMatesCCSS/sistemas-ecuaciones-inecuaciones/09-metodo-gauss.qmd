@@ -1,0 +1,618 @@
+---
+title: "Tema 4.9 Resolución por el método de Gauss"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 09-metodo-gauss
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Sistemas equivalentes y operaciones elementales por filas con la notación F_i → F_i − kF_j, algoritmo completo del método de Gauss para sistemas 3×3, elección del pivote y del orden de las ecuaciones, escalonamiento y sustitución hacia atrás, ejemplos resueltos de los tres tipos de sistema, aparición de filas nulas y de filas incompatibles, forma escalonada y pivotes, variante de Gauss-Jordan y estrategias de simplificación, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método de Gauss, sistemas escalonados, operaciones elementales, pivotes]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué hace falta un método, y no solo ingenio
+
+Un sistema $3\times3$ se puede resolver despejando y sustituyendo, como viste en el apartado anterior. El problema es que ese camino depende de tu habilidad para elegir bien: qué incógnita despejas, en qué ecuación, en qué orden. Con suerte salen números enteros; con mala suerte, fracciones que se van complicando hasta que un signo perdido arruina media página.
+
+Además, la sustitución no responde con claridad a la pregunta más importante: **¿cuántas soluciones tiene?** Cuando aparece algo raro a mitad de camino —una identidad, una contradicción— hay que pararse a interpretarla, y no siempre resulta evidente.
+
+El **método de Gauss** resuelve las dos cosas a la vez. Es un **algoritmo**: una secuencia fija de pasos que, aplicada sin pensar, siempre llega al final. Y su resultado es un sistema escalonado cuya última fila dice, de un vistazo, si el sistema tiene una solución, infinitas o ninguna. Funciona con tres incógnitas y con treinta, y es exactamente lo que hace un ordenador cuando le pides resolver un sistema lineal.
+
+::: {.callout-note}
+## La idea en una frase
+
+El método de Gauss consiste en transformar el sistema, mediante operaciones que **no cambian sus soluciones**, en otro **equivalente** y **escalonado**, en el que cada ecuación tiene al menos una incógnita menos que la anterior; ese sistema se resuelve de abajo arriba por sustitución hacia atrás.
+:::
+
+Es una generalización del método de reducción que ya conoces: allí sumabas o restabas ecuaciones para eliminar una incógnita; aquí haces lo mismo, pero de forma ordenada y sistemática, eliminando primero $x$ de todas las ecuaciones salvo la primera, y después $y$ de todas salvo las dos primeras.
+
+## Sistemas equivalentes y transformaciones permitidas
+
+::: {.callout-note}
+## Sistemas equivalentes
+
+Dos sistemas son **equivalentes** cuando tienen **exactamente las mismas soluciones**. No hace falta que tengan las mismas ecuaciones, ni siquiera el mismo número de ecuaciones: lo único que importa es el conjunto solución.
+:::
+
+Todo el método se apoya en que existen transformaciones que convierten un sistema en otro equivalente. Son tres, y conviene entender por qué cada una es lícita.
+
+::: {.callout-important}
+## Operaciones elementales por filas
+
+Sea un sistema cuyas ecuaciones (o **filas**) llamamos $F_1$, $F_2$, $F_3$.
+
+1. **Intercambiar dos filas**: $F_i \leftrightarrow F_j$. El orden en que escribes las condiciones de un problema no cambia el problema.
+2. **Multiplicar una fila por un número no nulo**: $F_i \to k\,F_i$ con $k \neq 0$. Multiplicar los dos miembros de una igualdad por el mismo número no altera qué valores la cumplen; se exige $k\neq0$ porque al multiplicar por cero se perdería toda la información de esa ecuación.
+3. **Sumar a una fila un múltiplo de otra**: $F_i \to F_i + k\,F_j$, con $i \neq j$. Si una terna cumple $F_i$ y cumple $F_j$, también cumple cualquier combinación de ambas; y como $F_j$ se conserva intacta, el paso se puede deshacer restando lo mismo. Por eso la operación es reversible y no gana ni pierde soluciones.
+:::
+
+La tercera es la operación de trabajo del método, y su forma más usada es
+$$
+F_i \to F_i - k\,F_j ,
+$$
+donde $k$ se elige justamente para que se anule un coeficiente de $F_i$.
+
+::: {.callout-caution}
+## Dos transformaciones prohibidas
+
+- **Multiplicar una fila por cero.** $F_2 \to 0\cdot F_2$ convierte la ecuación en $0=0$ y borra información: el sistema resultante puede tener más soluciones que el original.
+- **Sustituir dos filas a la vez por combinaciones suyas**, del tipo $F_1 \to F_1+F_2$ y $F_2 \to F_1 - F_2$ hechas **simultáneamente** con las filas ya modificadas. Si mezclas las dos ecuaciones y pierdes las originales, puedes acabar con un sistema que no es equivalente. La regla de oro es: **en cada paso se modifica una sola fila, y la fila que se usa como auxiliar se deja intacta**.
+:::
+
+::: {.callout-note}
+## Cómo se escribe cada paso
+
+La notación es obligatoria en cualquier examen, porque es lo que permite a quien lee (y a ti mismo, al revisar) seguir el razonamiento:
+
+- $F_1 \leftrightarrow F_2$: se intercambian la primera y la segunda ecuaciones.
+- $F_2 \to F_2 - 2F_1$: la nueva segunda ecuación es la antigua segunda menos el doble de la primera.
+- $F_3 \to 3F_3 + 2F_2$: la nueva tercera es el triple de la antigua tercera más el doble de la segunda.
+
+Escribe la operación **al lado de la fila que cambia**, nunca al lado de la que se usa como auxiliar.
+:::
+
+## El algoritmo, paso a paso
+
+::: {.callout-note}
+## Método de Gauss para un sistema $3\times3$
+
+**Paso 0. Preparar.** Escribe las tres ecuaciones con las incógnitas **en el mismo orden y alineadas en columnas**, y los términos independientes solos en el segundo miembro. Si falta una incógnita, deja el hueco: su coeficiente es $0$.
+
+**Paso 1. Elegir la primera ecuación.** Coloca arriba una ecuación cuyo coeficiente de $x$ sea $1$ o $-1$, o al menos un divisor de los otros coeficientes de esa columna. Ese coeficiente es el **primer pivote**. Si hace falta, usa $F_1 \leftrightarrow F_2$ o $F_1 \leftrightarrow F_3$.
+
+**Paso 2. Hacer ceros en la primera columna.** Con $F_2 \to F_2 - k_2F_1$ y $F_3 \to F_3 - k_3F_1$, eligiendo $k_2$ y $k_3$ para que desaparezca la $x$ de la segunda y la tercera ecuaciones.
+
+**Paso 3. Hacer un cero en la segunda columna.** Trabajando ya solo con las filas segunda y tercera, aplica $F_3 \to F_3 - k\,F_2$ para eliminar la $y$ de la tercera ecuación. **No vuelvas a tocar la primera fila**: si lo haces, reaparecerá la $x$ que tanto te costó eliminar.
+
+**Paso 4. Leer la última fila y concluir.** Ya tienes un sistema escalonado. Si el coeficiente de $z$ no es nulo, despeja $z$ y sube por sustitución hacia atrás. Si la fila es $0=0$ o $0=d$ con $d \neq 0$, interpreta el caso como se explica más abajo.
+
+**Paso 5. Comprobar.** Sustituye la solución en el **sistema original**, no en el escalonado.
+:::
+
+::: {.callout-tip}
+## Simplifica siempre que puedas
+
+Si en algún momento una ecuación queda con todos los coeficientes múltiplos de un mismo número, divídela: $F_2 \to \dfrac{1}{2}F_2$ convierte $-4y+6z=10$ en $-2y+3z=5$ y ahorra cuentas en todo lo que sigue. Del mismo modo, si una ecuación tiene denominadores, multiplícala por el mínimo común múltiplo antes de empezar. Trabajar con números pequeños no es una cuestión de elegancia: es la mejor prevención contra los errores.
+:::
+
+## Ejemplo completo 1: sistema compatible determinado
+
+**Ejemplo 1.** Resuelve por Gauss
+$$
+\left\{
+\begin{array}{rcrcrcr}
+2x & + & y & - & 2z & = & 7 \\
+x & + & y & + & z & = & 0 \\
+3x & + & 2y & + & 2z & = & 1
+\end{array}
+\right.
+$$
+
+**Paso 1.** La segunda ecuación tiene coeficiente $1$ en $x$: la subo al primer lugar con $F_1 \leftrightarrow F_2$.
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 0 \\
+2x & + & y & - & 2z & = & 7 \\
+3x & + & 2y & + & 2z & = & 1
+\end{array}
+\right.
+$$
+
+**Paso 2.** Elimino la $x$ de las filas segunda y tercera:
+$$
+F_2 \to F_2 - 2F_1, \qquad F_3 \to F_3 - 3F_1 .
+$$
+Para $F_2$: $(2-2)x + (1-2)y + (-2-2)z = 7 - 0$, es decir, $-y - 4z = 7$.
+Para $F_3$: $(3-3)x + (2-3)y + (2-3)z = 1 - 0$, es decir, $-y - z = 1$.
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 0 \\
+ & - & y & - & 4z & = & 7 \\
+ & - & y & - & z & = & 1
+\end{array}
+\right.
+$$
+
+**Paso 3.** Elimino la $y$ de la tercera con $F_3 \to F_3 - F_2$:
+$$
+(-1+1)y + (-1+4)z = 1 - 7 \;\Longrightarrow\; 3z = -6 .
+$$
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 0 \\
+ & - & y & - & 4z & = & 7 \\
+ &  &  &  & 3z & = & -6
+\end{array}
+\right.
+$$
+
+**Paso 4. Sustitución hacia atrás.**
+$$
+3z = -6 \Rightarrow z = -2; \qquad -y - 4(-2) = 7 \Rightarrow -y + 8 = 7 \Rightarrow y = 1; \qquad x + 1 + (-2) = 0 \Rightarrow x = 1 .
+$$
+
+**Paso 5. Comprobación en el sistema original.**
+$$
+2\cdot1 + 1 - 2\cdot(-2) = 2+1+4 = 7; \qquad 1+1-2 = 0; \qquad 3\cdot1 + 2\cdot1 + 2\cdot(-2) = 3+2-4 = 1 .
+$$
+Todo cuadra. La solución es $(1, 1, -2)$ y el sistema es **compatible determinado**: los tres planos se cortan en ese único punto.
+
+**Ejemplo 2 (cuando el pivote no divide).** Resuelve
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 4y & + & 3z & = & -1 \\
+2x & - & 3y & - & 2z & = & 1 \\
+-x & + & 2y & + & 4z & = & 2
+\end{array}
+\right.
+$$
+
+La primera ecuación ya tiene pivote $1$, así que se puede empezar directamente. Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 + F_1$:
+
+- $F_2$: $(2-2)x + (-3-8)y + (-2-6)z = 1 - (-2)$, es decir, $-11y - 8z = 3$.
+- $F_3$: $(-1+1)x + (2+4)y + (4+3)z = 2 + (-1)$, es decir, $6y + 7z = 1$.
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 4y & + & 3z & = & -1 \\
+ & - & 11y & - & 8z & = & 3 \\
+ &  & 6y & + & 7z & = & 1
+\end{array}
+\right.
+$$
+
+Ahora hay que eliminar la $y$ de la tercera fila, pero $-11$ no divide a $6$ ni al revés. En lugar de introducir fracciones, se hace como en el método de reducción: se multiplica cada fila por lo necesario para que los coeficientes de $y$ sean opuestos. Con $F_3 \to 11F_3 + 6F_2$:
+$$
+11\cdot 6y + 6\cdot(-11y) = 0; \qquad 11\cdot7z + 6\cdot(-8z) = 77z - 48z = 29z; \qquad 11\cdot1 + 6\cdot3 = 11 + 18 = 29 .
+$$
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 4y & + & 3z & = & -1 \\
+ & - & 11y & - & 8z & = & 3 \\
+ &  &  &  & 29z & = & 29
+\end{array}
+\right.
+$$
+
+Sustitución hacia atrás: $z = 1$; después $-11y - 8 = 3 \Rightarrow -11y = 11 \Rightarrow y = -1$; y por último $x + 4(-1) + 3 = -1 \Rightarrow x - 1 = -1 \Rightarrow x = 0$.
+
+Solución: $(0,-1,1)$. Comprobación en el sistema original: $0 - 4 + 3 = -1$; $0 + 3 - 2 = 1$; $0 - 2 + 4 = 2$. Correcto.
+
+::: {.callout-tip}
+## Multiplicar una fila también está permitido
+
+En el paso $F_3 \to 11F_3 + 6F_2$ se ha multiplicado la fila que cambia por $11$. Es una combinación de dos operaciones elementales (multiplicar por $11\neq0$ y sumar un múltiplo de otra fila), así que es perfectamente lícita y evita trabajar con fracciones desde el principio. Lo que **no** puedes hacer es multiplicar por $11$ la fila auxiliar $F_2$ y dejarla modificada.
+:::
+
+### Applet · Método de Gauss paso a paso {.unnumbered}
+
+Introduce el sistema (una ecuación por línea, con el formato `2x+y-2z=7`; se admiten fracciones como `3/4`, decimales con coma y ecuaciones con incógnitas ausentes) y elige el modo de trabajo. En **modo automático** el applet ejecuta el escalonamiento completo y muestra la matriz ampliada tras cada paso junto con la operación empleada, escrita en la notación $F_i \to F_i - kF_j$. En **modo manual** eres tú quien decide en cada momento qué operación aplicar —intercambiar dos filas, multiplicar una fila por un número o sumarle un múltiplo de otra— y el applet la ejecuta y te avisa si la operación no es válida o si no acerca al objetivo.
+
+::: {#panel-gauss .applet-panel data-applet-sys="gauss"}
+:::
+
+Empieza en modo automático con un sistema sencillo para ver el guion completo, y pasa después al modo manual: es ahí donde se aprende de verdad, porque tienes que decidir qué coeficiente quieres anular y calcular tú el multiplicador $k$. Un buen ejercicio consiste en intentar escalonar un sistema en el mínimo número de operaciones posible.
+
+## Filas nulas y filas incompatibles
+
+Al escalonar no siempre se llega a una tercera ecuación del tipo $C''z = D''$ con $C''\neq0$. Hay dos desenlaces más, y son tan importantes como el primero.
+
+::: {.callout-important}
+## Lectura de la última fila
+
+- **Fila con pivote**: $C''z = D''$ con $C''\neq 0$. Hay un único valor de $z$ y, subiendo, un único valor de $y$ y de $x$. El sistema es **compatible determinado**.
+- **Fila nula**: $0x + 0y + 0z = 0$, o sea $0 = 0$. Es una igualdad cierta pero vacía: esa ecuación era **consecuencia** de las otras y no aporta información. Quedan dos ecuaciones útiles con tres incógnitas, así que el sistema es **compatible indeterminado**, con infinitas soluciones.
+- **Fila incompatible**: $0x+0y+0z = d$ con $d \neq 0$, o sea $0 = d$. Es una igualdad **falsa**: ninguna terna puede cumplirla. El sistema es **incompatible** y no tiene solución.
+:::
+
+Detrás de esta lectura hay una interpretación muy concreta. Una fila nula significa que una de las ecuaciones del enunciado era **redundante**: repetía, quizá disfrazada, algo que las otras ya decían. Una fila incompatible significa que las ecuaciones se **contradicen**: el enunciado pide algo imposible. En un problema real, lo primero suele indicar que un dato sobraba y lo segundo que un dato está mal tomado.
+
+::: {.callout-caution}
+## $0=0$ no es un error, y $0=5$ tampoco
+
+Cuando aparece $0=0$ muchos alumnos creen que se han equivocado y vuelven atrás a buscar el fallo. No hay tal: es un resultado legítimo que significa «infinitas soluciones». Y $0=5$ tampoco es un error de cálculo: es la forma en que el método te comunica que el sistema no tiene solución. Lo único que hay que hacer en ambos casos es **interpretar** y escribir la conclusión.
+:::
+
+## Ejemplo completo 2: sistema compatible indeterminado
+
+**Ejemplo 3.** Resuelve
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & + & 3z & = & 4 \\
+-x & + & 3y & - & z & = & -2 \\
+2x & - & y & + & 4z & = & 6
+\end{array}
+\right.
+$$
+
+Con $F_2 \to F_2 + F_1$ y $F_3 \to F_3 - 2F_1$:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & + & 3z & = & 4 \\
+ &  & 5y & + & 2z & = & 2 \\
+ & - & 5y & - & 2z & = & -2
+\end{array}
+\right.
+$$
+Y ahora $F_3 \to F_3 + F_2$ da $0y + 0z = 0$:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & 2y & + & 3z & = & 4 \\
+ &  & 5y & + & 2z & = & 2 \\
+ &  &  &  & 0 & = & 0
+\end{array}
+\right.
+$$
+
+**Fila nula: sistema compatible indeterminado.** La tercera ecuación era la suma de las dos primeras multiplicadas convenientemente, y por eso ha desaparecido. Quedan dos ecuaciones con tres incógnitas: hay que dejar una incógnita libre.
+
+**Escritura de la solución paramétrica.** Se toma como parámetro la incógnita que no tiene pivote, en este caso $z$, y se escribe $z = k$ con $k \in \mathbb{R}$. De la segunda ecuación:
+$$
+5y = 2 - 2k \;\Longrightarrow\; y = \dfrac{2-2k}{5} .
+$$
+De la primera:
+$$
+x = 4 - 3k - 2\cdot\dfrac{2-2k}{5} = \dfrac{20 - 15k - 4 + 4k}{5} = \dfrac{16 - 11k}{5} .
+$$
+La solución general es
+$$
+x = \dfrac{16-11k}{5}, \qquad y = \dfrac{2-2k}{5}, \qquad z = k, \qquad k \in \mathbb{R}.
+$$
+
+**Comprobación con un valor concreto.** Con $k = 1$: $x = 1$, $y = 0$, $z = 1$. En el sistema original: $1 + 0 + 3 = 4$; $-1 + 0 - 1 = -2$; $2 - 0 + 4 = 6$. Correcto. Con $k = -2$: $x = \dfrac{38}{5}$, $y = \dfrac{6}{5}$, $z = -2$, que también cumple las tres ecuaciones.
+
+Geométricamente, los tres planos comparten una recta: todos los puntos de esa recta, y solo ellos, son solución.
+
+## Ejemplo completo 3: sistema incompatible
+
+**Ejemplo 4.** Resuelve y clasifica
+$$
+\left\{
+\begin{array}{rcrcrcr}
+2x & - & 3y & + & z & = & 2 \\
+3x & - & 2y & + & z & = & -4 \\
+-x & - & y &  &  & = & 1
+\end{array}
+\right.
+$$
+
+La tercera ecuación tiene coeficiente $-1$ en $x$ y además le falta la $z$: es la candidata ideal para encabezar. Aplico $F_1 \leftrightarrow F_3$:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+-x & - & y & + & 0z & = & 1 \\
+3x & - & 2y & + & z & = & -4 \\
+2x & - & 3y & + & z & = & 2
+\end{array}
+\right.
+$$
+Ahora $F_2 \to F_2 + 3F_1$ y $F_3 \to F_3 + 2F_1$:
+$$
+F_2: \ (3-3)x + (-2-3)y + z = -4 + 3 \;\Rightarrow\; -5y + z = -1,
+$$
+$$
+F_3: \ (2-2)x + (-3-2)y + z = 2 + 2 \;\Rightarrow\; -5y + z = 4 .
+$$
+$$
+\left\{
+\begin{array}{rcrcrcr}
+-x & - & y & + & 0z & = & 1 \\
+ & - & 5y & + & z & = & -1 \\
+ & - & 5y & + & z & = & 4
+\end{array}
+\right.
+$$
+Finalmente, $F_3 \to F_3 - F_2$ deja $0y + 0z = 4 - (-1) = 5$:
+$$
+0 = 5 .
+$$
+
+**Fila incompatible: el sistema no tiene solución.** Y la lectura es transparente: las dos últimas ecuaciones dicen que la misma expresión $-5y+z$ vale a la vez $-1$ y $4$, lo cual es imposible. Geométricamente, los tres planos se cortan dos a dos pero no tienen ningún punto común.
+
+::: {.callout-warning}
+## En cuanto aparece la contradicción, se acaba
+
+Si en mitad del escalonamiento te sale $0 = 5$, no sigas calculando ni intentes «despejar $z$». El sistema es incompatible y la respuesta es «no tiene solución». Escribe esa conclusión y, si el enunciado lo pide, interpreta geométricamente.
+:::
+
+## Forma escalonada y pivotes
+
+Merece la pena poner nombre a lo que se obtiene al final del proceso, porque en el apartado siguiente ese vocabulario será la base de la discusión.
+
+::: {.callout-note}
+## Pivote y forma escalonada
+
+En un sistema escalonado, el **pivote** de una fila es el **primer coeficiente no nulo** de esa fila, leyendo de izquierda a derecha.
+
+Un sistema está en **forma escalonada** cuando:
+
+- las filas nulas, si las hay, están todas al final;
+- el pivote de cada fila está **estrictamente más a la derecha** que el de la fila anterior.
+
+El número de pivotes coincide con el número de ecuaciones **realmente independientes** del sistema, es decir, con la cantidad de información no redundante que contiene.
+:::
+
+En el ejemplo 1, la forma escalonada tenía pivotes en $x$, en $y$ y en $z$: tres pivotes y tres incógnitas, y por eso la solución era única. En el ejemplo 3 había pivotes en $x$ y en $y$, pero no en $z$: dos pivotes y tres incógnitas, y la incógnita sin pivote, $z$, se convirtió en el parámetro. Esta correspondencia no es casual:
+
+::: {.callout-important}
+## Incógnitas con pivote e incógnitas libres
+
+En un sistema compatible, cada incógnita **con pivote** queda determinada; cada incógnita **sin pivote** es **libre** y se toma como parámetro. El número de parámetros es
+$$
+\text{(número de incógnitas)} - \text{(número de pivotes)} ,
+$$
+y se llama **grados de libertad** del sistema.
+:::
+
+### Applet · Forma escalonada, pivotes y filas especiales {.unnumbered}
+
+Escribe un sistema o una matriz ampliada y el applet la escalona marcando en cada paso los **pivotes** encontrados, contando cuántos hay y señalando de forma destacada las **filas nulas** ($0=0$) y las **filas incompatibles** ($0=d$ con $d\neq0$) que vayan apareciendo. Al final indica cuántas incógnitas tienen pivote, cuántas quedan libres y qué conclusión se sigue sobre el número de soluciones.
+
+::: {#panel-escalonada .applet-panel data-applet-sys="escalonada"}
+:::
+
+Un experimento muy revelador: parte de un sistema con solución única y modifica **solo el término independiente** de la tercera ecuación. Verás que el sistema pasa a ser incompatible sin que cambie ningún pivote. Después, en un sistema indeterminado, haz lo mismo: comprobarás que ahí sí basta tocar un término independiente para convertir la fila nula en fila incompatible. Es la diferencia entre lo que aportan los coeficientes y lo que aportan los términos independientes.
+
+## Una variante: el método de Gauss-Jordan
+
+El método de Gauss deja ceros **por debajo** de los pivotes y termina con una sustitución hacia atrás. Si se continúa el proceso haciendo ceros también **por encima** de los pivotes y se divide cada fila por su pivote, se llega a un sistema del tipo
+$$
+\left\{
+\begin{array}{rcl}
+x & = & p \\
+y & = & q \\
+z & = & r
+\end{array}
+\right.
+$$
+en el que la solución se lee directamente, sin sustituir nada. Esa variante se conoce como **método de Gauss-Jordan**.
+
+¿Cuál conviene? A mano, para sistemas $3\times3$, el método de Gauss puro suele ser más rápido: la sustitución hacia atrás cuesta muy poco y evita fracciones intermedias. Gauss-Jordan resulta preferible cuando hay que resolver muchos sistemas con los mismos coeficientes o cuando se trabaja con un ordenador, donde la sistematicidad importa más que el número de cuentas.
+
+::: {.callout-tip}
+## Un método con dos mil años de historia
+
+La eliminación ordenada de incógnitas aparece descrita en un tratado chino de hace más de dos milenios, donde los coeficientes se colocaban con varillas sobre un tablero en columnas y se restaban columnas entre sí exactamente como aquí se restan filas. En Europa, el procedimiento se difundió a comienzos del siglo XIX ligado a los cálculos astronómicos y geodésicos, donde había que ajustar sistemas grandes a partir de observaciones con error, y de ahí tomó el nombre con el que hoy se estudia.
+
+Lo llamativo es que el algoritmo no ha cambiado: la rutina que resuelve sistemas lineales dentro de una hoja de cálculo, de un programa de estadística o del motor de recomendaciones de una plataforma digital es, con optimizaciones técnicas, este mismo escalonamiento. Aprenderlo a mano con tres incógnitas es aprender lo que después se ejecuta con miles.
+:::
+
+## Errores frecuentes
+
+1. **No alinear las incógnitas en columnas.** Si una ecuación viene como $3x = 2y - 1$, hay que reescribirla como $3x - 2y + 0z = -1$ antes de empezar. Escalonar con las columnas desordenadas garantiza el desastre.
+2. **Olvidar los coeficientes nulos.** En $-x - y = 1$ el coeficiente de $z$ es $0$, y esa columna existe. Saltársela desplaza todas las cuentas.
+3. **Aplicar la operación a la fila equivocada.** $F_3 \to F_3 - 2F_1$ modifica $F_3$; $F_1$ queda **igual**. Modificar también la auxiliar rompe la equivalencia.
+4. **Volver a tocar la primera fila en el tercer paso.** Al eliminar la $y$ de la tercera ecuación solo se pueden usar las filas segunda y tercera; si se mezcla la primera, reaparece la $x$.
+5. **Errores de signo al restar.** $F_3 \to F_3 - F_2$ resta **todos** los términos, incluido el independiente y con su signo: $1 - 7 = -6$, no $1 + 7$.
+6. **Multiplicar por cero.** $F_2 \to 0\cdot F_2$ está prohibido: no es una transformación válida.
+7. **Interpretar $0=0$ como error.** Es una fila nula y significa infinitas soluciones.
+8. **Interpretar $0=d$ como «$z=0$».** No: $0z = 5$ no tiene solución, no da $z=0$. Esa confusión convierte un sistema incompatible en una respuesta inventada.
+9. **Dar la solución de un SCI como si fuera única.** Hay que escribir la solución **paramétrica** completa, con el parámetro y su recorrido, no un punto suelto.
+10. **Comprobar en el sistema escalonado en lugar de en el original.** Si te has equivocado al escalonar, el sistema escalonado será coherente consigo mismo y no detectarás nada. La comprobación solo vale en las ecuaciones de partida.
+
+## Resumen del apartado
+
+- Dos sistemas son **equivalentes** si tienen las mismas soluciones. El método de Gauss produce sistemas equivalentes cada vez más sencillos.
+- Las **operaciones elementales por filas** son tres: $F_i \leftrightarrow F_j$, $F_i \to k F_i$ con $k \neq 0$, y $F_i \to F_i + kF_j$ con $i \neq j$. Solo se modifica la fila indicada; la auxiliar se conserva.
+- Está prohibido multiplicar una fila por $0$ y está prohibido sustituir dos filas a la vez por combinaciones mutuas.
+- El **algoritmo** consiste en colocar arriba una ecuación con pivote cómodo, hacer ceros en la primera columna, hacer un cero en la segunda columna sin volver a tocar la primera fila y resolver por **sustitución hacia atrás**.
+- Si los multiplicadores salen fraccionarios, se puede usar $F_3 \to a F_3 + b F_2$ con el mínimo común múltiplo, igual que en el método de reducción.
+- La **última fila** decide: pivote no nulo $\Rightarrow$ **SCD**; **fila nula** $0=0$ $\Rightarrow$ **SCI**; **fila incompatible** $0=d$ con $d\neq0$ $\Rightarrow$ **SI**.
+- Una fila nula indica una ecuación **redundante**; una fila incompatible indica ecuaciones **contradictorias**.
+- El **pivote** de una fila es su primer coeficiente no nulo. Las incógnitas con pivote quedan determinadas; las **incógnitas libres** se toman como parámetros, y su número son los **grados de libertad**.
+- En un **SCI** la solución se escribe en **forma paramétrica**, con $z = k$ (o la incógnita libre que corresponda) y las demás en función de $k$.
+- El **método de Gauss-Jordan** prolonga el proceso hasta dejar la solución escrita directamente, haciendo ceros también por encima de los pivotes.
+- La comprobación final se hace siempre en el **sistema original**.
+
+## Ejercicios propuestos
+
+**1 (básico).** Escribe qué operación elemental se ha aplicado en cada caso y di si es válida: a) pasar de $F_2: 2x+4y=6$ a $F_2: x+2y=3$; b) pasar de $F_2: 2x+y=5$ a $F_2: 0=0$ multiplicando por $0$; c) intercambiar $F_1$ y $F_3$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+a) $F_2 \to \dfrac{1}{2}F_2$. **Válida**: se ha multiplicado por $\dfrac{1}{2} \neq 0$.
+
+b) $F_2 \to 0\cdot F_2$. **No válida**: multiplicar por cero destruye la ecuación y puede añadir soluciones.
+
+c) $F_1 \leftrightarrow F_3$. **Válida**: el orden de las ecuaciones es irrelevante.
+:::
+
+**2 (básico).** Resuelve por Gauss $\{x+y+z=2,\ 3x-y=1,\ 5x+7y-3z=3\}$, escribiendo cada operación elemental que apliques.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 3F_1$ y $F_3 \to F_3 - 5F_1$:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 2 \\
+ & - & 4y & - & 3z & = & -5 \\
+ &  & 2y & - & 8z & = & -7
+\end{array}
+\right.
+$$
+Ahora $F_3 \to 2F_3 + F_2$: $4y - 4y = 0$; $-16z - 3z = -19z$; $-14 - 5 = -19$. Queda $-19z = -19$, luego $z = 1$.
+
+Sustituyendo: $-4y - 3 = -5 \Rightarrow -4y = -2 \Rightarrow y = \dfrac{1}{2}$. Y $x = 2 - \dfrac{1}{2} - 1 = \dfrac{1}{2}$.
+
+Solución: $\left(\dfrac{1}{2}, \dfrac{1}{2}, 1\right)$. Comprobación: $\dfrac{1}{2}+\dfrac{1}{2}+1=2$; $\dfrac{3}{2}-\dfrac{1}{2}=1$; $\dfrac{5}{2}+\dfrac{7}{2}-3=3$. Correcto.
+:::
+
+**3 (básico).** Clasifica sin terminar de resolver: al escalonar tres sistemas se ha llegado a las terceras filas $7z = 14$, $0 = 0$ y $0 = -3$. ¿De qué tipo es cada uno?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$7z = 14$: pivote no nulo, **compatible determinado**.
+
+$0 = 0$: fila nula, **compatible indeterminado** con un parámetro.
+
+$0 = -3$: fila incompatible, **incompatible**, sin solución.
+:::
+
+**4 (medio).** Resuelve $\{x - y - 4z = -1,\ 2x + y - 3z = 0,\ x + 2y + 3z = 1\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$: $3y + 5z = 2$. $F_3 \to F_3 - F_1$: $3y + 7z = 2$.
+
+$F_3 \to F_3 - F_2$: $2z = 0 \Rightarrow z = 0$.
+
+Entonces $3y = 2 \Rightarrow y = \dfrac{2}{3}$, y $x = -1 + y + 4z = -1 + \dfrac{2}{3} = -\dfrac{1}{3}$.
+
+Solución: $\left(-\dfrac{1}{3}, \dfrac{2}{3}, 0\right)$. Comprobación en la tercera ecuación original: $-\dfrac{1}{3} + \dfrac{4}{3} + 0 = 1$. Correcto.
+:::
+
+**5 (medio).** Resuelve y clasifica $\{x + y - z = 1,\ 2x + 3y - z = 4,\ 3x + 4y - 2z = 6\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$: $y + z = 2$. $F_3 \to F_3 - 3F_1$: $y + z = 3$.
+
+$F_3 \to F_3 - F_2$: $0 = 1$. **Fila incompatible**.
+
+El sistema es **incompatible**: no tiene solución. Los planos segundo y tercero exigen que $y+z$ valga a la vez $2$ y $3$.
+:::
+
+**6 (medio).** Resuelve el sistema homogéneo $\{x + y + 2z = 0,\ 2x + 5y - 6z = 0,\ 3x + 4y + z = 0\}$ y di si tiene soluciones distintas de la trivial.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$: $3y - 10z = 0$. $F_3 \to F_3 - 3F_1$: $y - 5z = 0$.
+
+Intercambio $F_2 \leftrightarrow F_3$ para tener pivote $1$: la segunda fila es $y - 5z = 0$ y la tercera $3y - 10z = 0$. Con $F_3 \to F_3 - 3F_2$: $5z = 0 \Rightarrow z = 0$.
+
+Entonces $y = 0$ y $x = 0$. La **única** solución es la trivial $(0,0,0)$: el sistema es **compatible determinado**.
+
+Fíjate en que en un sistema homogéneo los términos independientes son cero y **siguen siendo cero** después de cualquier operación elemental: nunca puede aparecer una fila incompatible.
+:::
+
+**7 (medio).** Resuelve $\{x + 4y - z = 2,\ 3x - y + z = 1,\ -2x + y - z = 0\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 3F_1$: $-13y + 4z = -5$. $F_3 \to F_3 + 2F_1$: $9y - 3z = 4$.
+
+Los coeficientes $9$, $-3$ y $4$ no tienen ningún factor común, así que la tercera fila no se puede simplificar; recurro al mínimo común múltiplo con $F_3 \to 13F_3 + 9F_2$: $117y - 117y = 0$; $-39z + 36z = -3z$; $52 - 45 = 7$. Queda $-3z = 7 \Rightarrow z = -\dfrac{7}{3}$.
+
+De la segunda: $-13y = -5 - 4z = -5 + \dfrac{28}{3} = \dfrac{13}{3} \Rightarrow y = -\dfrac{1}{3}$.
+
+De la primera: $x = 2 - 4y + z = 2 + \dfrac{4}{3} - \dfrac{7}{3} = 1$.
+
+Solución: $\left(1, -\dfrac{1}{3}, -\dfrac{7}{3}\right)$. Sistema compatible determinado.
+:::
+
+**8 (avanzado).** Resuelve y expresa la solución en forma paramétrica: $\{x + y + z = 3,\ 2x - y + z = 3,\ 3x + 0y + 2z = 6\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$: $-3y - z = -3$. $F_3 \to F_3 - 3F_1$: $-3y - z = -3$.
+
+$F_3 \to F_3 - F_2$: $0 = 0$. **Fila nula: sistema compatible indeterminado.**
+
+Hay pivotes en $x$ y en $y$; la incógnita libre es $z$. Tomo $z = k$.
+
+De la segunda: $-3y = -3 + k \Rightarrow y = \dfrac{3-k}{3} = 1 - \dfrac{k}{3}$.
+
+De la primera: $x = 3 - y - z = 3 - 1 + \dfrac{k}{3} - k = 2 - \dfrac{2k}{3}$.
+
+Solución general: $x = 2 - \dfrac{2k}{3}$, $y = 1 - \dfrac{k}{3}$, $z = k$, con $k \in \mathbb{R}$. Un grado de libertad: los tres planos comparten una recta.
+
+Comprobación con $k=3$: $(0,0,3)$, que cumple $0+0+3=3$, $0-0+3=3$ y $0+0+6=6$.
+:::
+
+**9 (avanzado).** Al resolver por Gauss un sistema $3\times3$ se llega a la forma escalonada con filas $x - 2y + z = 1$, $3y - 2z = 0$ y $0 = 0$. ¿Cuántos pivotes hay? ¿Cuántos grados de libertad? Escribe la solución general.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Hay **dos pivotes**: el $1$ de la $x$ en la primera fila y el $3$ de la $y$ en la segunda. La tercera fila es nula.
+
+Grados de libertad $= 3 - 2 = 1$. La incógnita libre es $z$.
+
+Con $z = k$: de la segunda, $y = \dfrac{2k}{3}$; de la primera, $x = 1 + 2y - z = 1 + \dfrac{4k}{3} - k = 1 + \dfrac{k}{3}$.
+
+Solución: $x = 1 + \dfrac{k}{3}$, $y = \dfrac{2k}{3}$, $z = k$, $k \in \mathbb{R}$.
+:::
+
+**10 (avanzado).** Encuentra el valor de $a$ para que el sistema $\{x + y + z = 1,\ 2x + 3y + z = 4,\ 3x + 4y + az = 5\}$ sea incompatible.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$: $y - z = 2$. $F_3 \to F_3 - 3F_1$: $y + (a-3)z = 2$.
+
+$F_3 \to F_3 - F_2$: $(a-3+1)z = 0$, es decir, $(a-2)z = 0$.
+
+Si $a \neq 2$, hay pivote y el sistema es compatible determinado ($z=0$, $y=2$, $x=-1$).
+
+Si $a = 2$, la última fila es $0 = 0$: fila **nula**, sistema **compatible indeterminado**.
+
+Conclusión: **no existe ningún valor de $a$** que haga incompatible el sistema. El término independiente de la tercera fila se anula siempre, así que nunca puede aparecer una fila incompatible. Si en lugar de $5$ el tercer término independiente fuera $6$, la última fila sería $(a-2)z = 1$ y el sistema sí sería incompatible para $a = 2$.
+:::
+
+**11 (avanzado).** Diseña tú un sistema $3\times3$ incompatible en el que las tres ecuaciones sean distintas y ninguna sea múltiplo de otra. Explica cómo lo has construido.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Basta con que el primer miembro de la tercera ecuación sea la suma de los dos primeros y el término independiente **no** sea la suma de los suyos. Por ejemplo:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 1 \\
+x & - & y & + & 2z & = & 3 \\
+2x & +&0y & + & 3z & = & 7
+\end{array}
+\right.
+$$
+Aquí $F_3$ tiene por coeficientes la suma de los de $F_1$ y $F_2$ ($2$, $0$, $3$), pero el término independiente debería ser $1+3=4$ y vale $7$.
+
+Al escalonar, $F_3 \to F_3 - F_1 - F_2$ deja $0 = 3$: fila incompatible. Ninguna ecuación es múltiplo de otra y, sin embargo, el sistema no tiene solución. Geométricamente, los tres planos forman un prisma triangular.
+:::

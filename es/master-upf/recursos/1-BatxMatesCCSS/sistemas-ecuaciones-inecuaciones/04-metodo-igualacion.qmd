@@ -1,0 +1,255 @@
+---
+title: "Tema 4.4 Método de igualación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 04-metodo-igualacion
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El método de igualación paso a paso para resolver sistemas lineales de dos ecuaciones con dos incógnitas, despeje de la misma incógnita en las dos ecuaciones e igualación de las expresiones obtenidas, tratamiento de las fracciones, relación con el método gráfico y con la sustitución, detección de sistemas incompatibles e indeterminados, criterios para elegir el método más rápido y aplicación a enunciados, con un applet paso a paso.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método de igualación, álgebra]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Dos expresiones para la misma cantidad
+
+En el apartado anterior reducías el sistema a una sola incógnita despejando en una ecuación y llevando el resultado a la otra. Existe una variante de esa misma idea, igual de sencilla y a veces más elegante: **despejar la misma incógnita en las dos ecuaciones** y, como las dos expresiones representan la misma cantidad, **igualarlas**.
+
+El razonamiento de fondo es un viejo conocido del álgebra: si $x = A$ y también $x = B$, entonces $A = B$. Y en esa igualdad $A = B$ ya no aparece $x$: solo queda la otra incógnita, y estamos otra vez ante una ecuación de primer grado con una sola letra.
+
+Este método se llama **método de igualación**, y tiene una lectura gráfica preciosa. Al despejar $y$ en las dos ecuaciones escribes las dos rectas en la forma $y = mx + n$; igualar significa preguntar en qué punto las dos rectas alcanzan la **misma altura**, que es exactamente el punto donde se cortan.
+
+## El procedimiento
+
+::: {.callout-note}
+## Método de igualación
+
+Para resolver un sistema de dos ecuaciones con dos incógnitas:
+
+1. Elige **una** incógnita y despéjala en **las dos** ecuaciones, obteniendo dos expresiones.
+2. **Iguala** ambas expresiones. La igualdad resultante contiene una sola incógnita.
+3. Resuelve esa ecuación de primer grado.
+4. **Sustituye** el valor obtenido en cualquiera de las dos expresiones despejadas y calcula la otra incógnita.
+5. **Comprueba** el par obtenido en las **dos ecuaciones originales**.
+:::
+
+La diferencia con la sustitución está solo en los pasos 1 y 2: allí se despejaba **una vez** y se sustituía; aquí se despeja **dos veces** y se igualan los resultados. A cambio, el paso 4 es más cómodo, porque ya tienes escrita una fórmula lista para calcular la incógnita que falta.
+
+**Ejemplo 1.** Resolvamos por igualación
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ x & + &  y & = & 1 \\
+2x & - & 3y & = & 2
+\end{array}
+\right.
+$$
+
+**Paso 1.** Despejamos $x$ en las dos ecuaciones. De la primera, $x = 1 - y$. De la segunda, $2x = 2 + 3y$, es decir $x = \dfrac{2 + 3y}{2}$.
+
+**Paso 2.** Igualamos las dos expresiones:
+$$
+1 - y = \frac{2 + 3y}{2} .
+$$
+
+**Paso 3.** Multiplicamos los dos miembros por $2$: $2 - 2y = 2 + 3y$, luego $-5y = 0$ y $y = 0$.
+
+**Paso 4.** Sustituimos en la primera expresión: $x = 1 - 0 = 1$.
+
+**Paso 5.** Comprobación en el sistema original: $1 + 0 = 1$ y $2\cdot 1 - 3\cdot 0 = 2$. Correcto. La solución es $(1,0)$, la misma que obtuvimos por sustitución, como no podía ser de otra manera.
+
+::: {.callout-important}
+## Por qué igualar es legítimo
+
+Supongamos que $(x_0, y_0)$ es solución del sistema. Al cumplir la primera ecuación, cumple la forma despejada $x_0 = A(y_0)$; al cumplir la segunda, cumple $x_0 = B(y_0)$. Como los dos segundos miembros valen lo mismo, $x_0$, necesariamente $A(y_0) = B(y_0)$: la ecuación del paso 2 se cumple.
+
+Y al revés: si un valor $y_1$ cumple $A(y_1) = B(y_1)$, el número $x_1 = A(y_1)$ satisface la primera ecuación por construcción, y satisface la segunda porque $x_1 = A(y_1) = B(y_1)$. Así que el par $(x_1,y_1)$ es solución del sistema.
+
+Ninguna solución se pierde y ninguna se inventa: el sistema del que se parte y la ecuación a la que se llega son **equivalentes**. Y observa que el argumento solo usa la propiedad transitiva de la igualdad, el hecho de que dos cosas iguales a una tercera son iguales entre sí.
+:::
+
+## Elegir qué incógnita despejar
+
+::: {.callout-tip}
+## Criterio para decidir
+
+Despeja la incógnita que tenga coeficiente $1$ o $-1$ **en las dos ecuaciones**, si la hay: entonces las dos expresiones salen sin denominadores y la igualación es inmediata.
+
+Si solo una de las ecuaciones tiene un coeficiente cómodo, la igualación producirá una fracción; sigue siendo perfectamente viable, pero quizá la sustitución sea más rápida.
+
+Y si ningún coeficiente es $\pm 1$, hay un truco útil: multiplica la primera ecuación por el coeficiente que esa incógnita tiene en la segunda, y la segunda por el que tiene en la primera. Los coeficientes quedan iguales y el despeje resulta más limpio.
+:::
+
+**Ejemplo 2 (el caso cómodo).** Resolvamos $\{x + 3y = 9,\ x - 2y = 10\}$. La incógnita $x$ tiene coeficiente $1$ en las dos ecuaciones, así que despejamos $x$: de la primera, $x = 9 - 3y$; de la segunda, $x = 10 + 2y$. Igualando,
+$$
+9 - 3y = 10 + 2y .
+$$
+De aquí $-5y = 1$, luego $y = -\dfrac{1}{5}$, y sustituyendo, $x = 9 + \dfrac{3}{5} = \dfrac{48}{5}$. Comprobación: $\dfrac{48}{5} + 3\cdot\left(-\dfrac{1}{5}\right) = \dfrac{48 - 3}{5} = 9$ y $\dfrac{48}{5} + \dfrac{2}{5} = 10$. La solución es $\left(\dfrac{48}{5},\,-\dfrac{1}{5}\right)$.
+
+**Ejemplo 3 (con fracciones).** Resolvamos
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & - & 2y & = & -2 \\
+4x & + & 3y & = & 20
+\end{array}
+\right.
+$$
+
+Despejamos $y$ en ambas. De la primera, $-2y = -2 - 3x$, o sea $y = \dfrac{2 + 3x}{2}$. De la segunda, $3y = 20 - 4x$, o sea $y = \dfrac{20 - 4x}{3}$. Igualando,
+
+$$
+\frac{2 + 3x}{2} = \frac{20 - 4x}{3} .
+$$
+
+Multiplicamos en cruz —o, lo que es lo mismo, los dos miembros por $6$—: $3(2 + 3x) = 2(20 - 4x)$, es decir $6 + 9x = 40 - 8x$, luego $17x = 34$ y $x = 2$. Sustituyendo en la primera expresión, $y = \dfrac{2 + 6}{2} = 4$. Comprobación: $3\cdot 2 - 2\cdot 4 = -2$ y $4\cdot 2 + 3\cdot 4 = 20$. La solución es $(2,4)$.
+
+::: {.callout-caution}
+## Los errores típicos al igualar
+
+- **Despejar incógnitas distintas en cada ecuación.** Si en una despejas $x$ y en la otra $y$, la igualdad $x = y$ que escribes es falsa: no hay ninguna razón para que las dos incógnitas valgan lo mismo. Hay que despejar **la misma** en las dos.
+- **Igualar los primeros miembros en lugar de los segundos.** Lo que se iguala son las dos expresiones despejadas, no las ecuaciones enteras.
+- **Perder un signo al despejar con coeficiente negativo.** De $-2y = -2 - 3x$ se sigue $y = \dfrac{2 + 3x}{2}$, porque hay que cambiar el signo de los **dos** términos del numerador.
+- **Quitar mal los denominadores.** Al pasar de $\dfrac{A}{2} = \dfrac{B}{3}$ a la forma sin fracciones queda $3A = 2B$, con $A$ y $B$ entre paréntesis si son expresiones con varios términos.
+:::
+
+### Applet · Método de igualación paso a paso {.unnumbered}
+
+Introduce las dos ecuaciones y elige **qué incógnita quieres despejar**; el applet muestra en paralelo las dos expresiones despejadas, la igualdad que resulta al compararlas, la ecuación ya sin denominadores, su solución y la recuperación de la otra incógnita. Fíjate especialmente en la pantalla de las dos expresiones: cuando el sistema es indeterminado las dos coinciden término a término, y cuando es incompatible tienen la misma parte con la incógnita pero distinto número suelto. Prueba a despejar primero una incógnita y después la otra en el mismo sistema y compara cuál da cuentas más limpias. En las casillas se admiten enteros, decimales con coma (por ejemplo $0{,}5$) y fracciones con barra (por ejemplo $3/4$).
+
+::: {#panel-igualacion .applet-panel data-applet-sys="igualacion"}
+:::
+
+## Igualación y método gráfico son la misma idea
+
+Cuando despejas $y$ en las dos ecuaciones obtienes justamente las formas explícitas de las dos rectas:
+$$
+y = m x + n \qquad\text{y}\qquad y = m' x + n' .
+$$
+Igualarlas, $mx + n = m'x + n'$, es preguntar para qué valor de $x$ las dos rectas tienen la misma ordenada, es decir, dónde se cortan. Por eso el método de igualación es la traducción algebraica exacta del método gráfico, con la ventaja de dar valores exactos en lugar de aproximados.
+
+Esa lectura explica también los dos casos especiales:
+
+- Si $m = m'$ y $n \neq n'$, la ecuación $mx + n = m'x + n'$ se convierte en $n = n'$, que es falso: rectas paralelas, sistema **incompatible**.
+- Si $m = m'$ y $n = n'$, la igualdad se convierte en algo siempre cierto: es la **misma recta**, sistema **compatible indeterminado**.
+
+**Ejemplo 4 (incompatible).** En $\{x + y = 1,\ 2x + 2y = 5\}$ despejamos $y$ en las dos: $y = 1 - x$ y $y = \dfrac{5 - 2x}{2} = 2{,}5 - x$. Igualando, $1 - x = 2{,}5 - x$, y al pasar las $x$ a un miembro se cancelan: queda $1 = 2{,}5$, que es falso. El sistema no tiene solución.
+
+**Ejemplo 5 (indeterminado).** En $\{x + y = 1,\ 2x + 2y = 2\}$ el mismo procedimiento da $y = 1 - x$ y $y = \dfrac{2-2x}{2} = 1 - x$. Las dos expresiones son idénticas: al igualarlas queda $1 - x = 1 - x$, cierta para cualquier $x$. El sistema es compatible indeterminado y sus soluciones son todos los pares $(t,\ 1-t)$; por ejemplo $(0,1)$, $(1,0)$ y $(3,-2)$.
+
+::: {.callout-warning}
+## Cancelarse no es valer cero
+
+Igual que en la sustitución, cuando la incógnita desaparece del paso 3 no debes escribir «$x = 0$». La ecuación ha dejado de decir nada sobre $x$: si lo que queda es cierto, hay infinitas soluciones; si es falso, no hay ninguna. La respuesta correcta es una frase de clasificación, no un número.
+:::
+
+## ¿Sustitución o igualación?
+
+Los dos métodos llegan siempre al mismo resultado, así que la elección es una cuestión de comodidad.
+
+::: {.callout-note}
+## Cuándo conviene cada uno
+
+- **Igualación**, cuando la **misma** incógnita tiene coeficiente $1$ o $-1$ en las dos ecuaciones, o cuando una de ellas ya viene despejada en la forma $y = \ldots$ Es muy cómodo con sistemas de tarifas, costes o movimientos, donde las dos ecuaciones describen la misma magnitud calculada de dos maneras.
+- **Sustitución**, cuando solo una ecuación tiene un coeficiente cómodo, o cuando el sistema no es lineal.
+- **Reducción**, que estudiarás a continuación, cuando los coeficientes de una incógnita son iguales, opuestos o múltiplos.
+
+En un examen, elegir bien puede ahorrarte la mitad del tiempo; pero elegir «mal» no da un resultado incorrecto, solo un camino más largo.
+:::
+
+**Ejemplo 6 (un enunciado que pide igualación).** Dos operadoras ofrecen tarifas distintas: la primera cobra $12$ € fijos más $0{,}10$ € por gigabyte y la segunda $8$ € fijos más $0{,}20$ € por gigabyte. ¿A partir de cuántos gigabytes deja de ser ventajosa la segunda?
+
+Si $x$ son los gigabytes consumidos e $y$ el coste en euros, el sistema es $\{y = 12 + 0{,}1x,\ y = 8 + 0{,}2x\}$. Las dos ecuaciones **ya vienen despejadas** en $y$, así que igualamos directamente: $12 + 0{,}1x = 8 + 0{,}2x$, de donde $4 = 0{,}1x$ y $x = 40$. Entonces $y = 12 + 4 = 16$. Las dos tarifas cuestan lo mismo, $16$ €, con $40$ gigabytes; por debajo sale mejor la segunda y por encima, la primera.
+
+::: {.callout-tip}
+## Un método antiguo con nombre moderno
+
+Los nombres «sustitución», «igualación» y «reducción» son etiquetas escolares relativamente recientes para procedimientos que se usaban mucho antes de que existieran. En los tratados de álgebra de los siglos XVI y XVII los sistemas se resolvían combinando estas ideas sin distinguirlas, y no era raro que un mismo autor mezclara los tres caminos en un solo problema.
+
+La formalización llegó con la teoría de matrices y determinantes: el método de Cramer, publicado a mediados del siglo XVIII, dio una fórmula cerrada para la solución, y en el siglo XIX el resultado que hoy se conoce como teorema de Rouché–Frobenius permitió decidir de antemano cuántas soluciones tiene un sistema sin resolverlo. Los métodos que aprendes aquí son el caso más pequeño de esa maquinaria: la que hay detrás de la resolución de sistemas con cientos de incógnitas en economía, logística o tratamiento de datos.
+:::
+
+## Errores frecuentes
+
+- **Despejar incógnitas distintas en cada ecuación** y luego igualarlas.
+- **Sustituir una expresión en la otra ecuación** en lugar de igualar las dos expresiones: es mezclar los dos métodos y suele acabar en una identidad inútil.
+- **Olvidar el paréntesis** al quitar denominadores, sobre todo cuando el numerador tiene dos términos.
+- **Cambiar de signo solo un término** al despejar con coeficiente negativo.
+- **Dar por terminada la resolución en el paso 3**, sin calcular la segunda incógnita.
+- **Sustituir el valor hallado en una expresión mal copiada**; si hay dudas, conviene usar la otra expresión despejada y comprobar que da lo mismo.
+- **Interpretar la cancelación de la incógnita como que vale cero** en lugar de clasificar el sistema.
+- **No preparar el sistema** (paréntesis, denominadores, términos repartidos entre los dos miembros) antes de despejar.
+- **Comprobar en las expresiones despejadas** en lugar de hacerlo en las dos ecuaciones originales.
+
+## Resumen del apartado
+
+- El método de igualación despeja **la misma incógnita en las dos ecuaciones** e **iguala** las dos expresiones obtenidas, con lo que queda una ecuación con una sola incógnita.
+- Los pasos son: despejar dos veces, igualar, resolver la ecuación resultante, sustituir el valor en una de las expresiones despejadas y comprobar en el sistema original.
+- Se apoya en la propiedad transitiva de la igualdad: si $x = A$ y $x = B$, entonces $A = B$. Por eso el sistema de partida y la ecuación obtenida son **equivalentes**.
+- Conviene despejar la incógnita cuyo coeficiente sea $1$ o $-1$ en las dos ecuaciones; si no la hay, se pueden igualar antes los coeficientes multiplicando cada ecuación por el coeficiente de la otra.
+- Al despejar con coeficiente negativo hay que cambiar el signo de **todos** los términos, y al quitar denominadores hay que usar paréntesis.
+- Es la versión algebraica exacta del **método gráfico**: igualar $mx + n = m'x + n'$ es buscar dónde las dos rectas tienen la misma altura.
+- Si las dos expresiones despejadas son idénticas, el sistema es **compatible indeterminado**; si coinciden en la parte con incógnita pero no en el término independiente, es **incompatible**.
+- La igualación es especialmente cómoda cuando las dos ecuaciones ya vienen en la forma $y = \ldots$, como ocurre en los problemas de comparación de tarifas o de costes.
+
+## Ejercicios propuestos
+
+1. Resuelve por igualación, indicando qué incógnita has despejado y por qué:
+   a) $\{x + y = 5,\ x - y = 1\}$;  b) $\{x + 3y = 9,\ x - 2y = 10\}$;  c) $\{2x + 3y = 11,\ x - y = 8\}$.
+
+2. Resuelve por igualación $\{5x - y = 3,\ 2x + 3y = 8\}$ despejando $y$ en las dos ecuaciones, y comprueba la solución.
+
+3. Resuelve $\{3x - 2y = -2,\ 4x + 3y = 20\}$ despejando ahora $x$ en las dos ecuaciones. Compara el trabajo con el del Ejemplo 3, donde se despejó $y$.
+
+4. Prepara y resuelve por igualación $\left\{\dfrac{x}{2} - \dfrac{y}{3} = 1,\ x + y = 7\right\}$.
+
+5. Prepara y resuelve $\{3(x - 1) = y + 2,\ 2y - x = 4\}$.
+
+6. Resuelve por igualación $\{2x - y = 4,\ -6x + 3y = -12\}$ y explica qué relación hay entre las dos expresiones despejadas. Escribe tres soluciones del sistema.
+
+7. Resuelve por igualación $\{2x - y = 4,\ -6x + 3y = 5\}$ y clasifica el sistema justificando la respuesta.
+
+8. Resuelve el mismo sistema $\{2x + 3y = 11,\ x - y = 8\}$ por sustitución y por igualación, y razona cuál de los dos caminos te ha resultado más corto.
+
+9. Dos empresas de alquiler de bicicletas cobran: la primera, $5$ € de fianza más $2$ € por hora; la segunda, $11$ € de fianza más $1{,}25$ € por hora. Plantea el sistema, resuélvelo por igualación e interpreta el resultado.
+
+10. Un depósito contiene $200$ litros y pierde $6$ litros por minuto; otro contiene $80$ litros y recibe $4$ litros por minuto. Averigua en qué momento tienen la misma cantidad de agua y cuánta es.
+
+11. La edad de una persona es el triple que la de otra, y dentro de $10$ años será solo el doble. Plantea el sistema, resuélvelo por igualación y comprueba la respuesta en el enunciado.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** a) Despejamos $x$, que tiene coeficiente $1$ en las dos: $x = 5 - y$ y $x = 1 + y$. Igualando, $5 - y = 1 + y$, luego $y = 2$ y $x = 3$. Solución $(3,2)$. b) Despejamos $x$: $x = 9 - 3y$ y $x = 10 + 2y$; igualando, $-5y = 1$, $y = -\dfrac{1}{5}$ y $x = \dfrac{48}{5}$. c) Despejamos $x$: $x = \dfrac{11 - 3y}{2}$ y $x = 8 + y$; igualando y multiplicando por $2$, $11 - 3y = 16 + 2y$, luego $y = -1$ y $x = 7$. Solución $(7,-1)$.
+
+**2.** De la primera, $y = 5x - 3$; de la segunda, $y = \dfrac{8 - 2x}{3}$. Igualando y multiplicando por $3$: $15x - 9 = 8 - 2x$, luego $17x = 17$ y $x = 1$; entonces $y = 5 - 3 = 2$. Comprobación: $5\cdot 1 - 2 = 3$ y $2\cdot 1 + 3\cdot 2 = 8$. Solución $(1,2)$.
+
+**3.** De la primera, $x = \dfrac{2y - 2}{3}$; de la segunda, $x = \dfrac{20 - 3y}{4}$. Igualando y multiplicando por $12$: $4(2y-2) = 3(20-3y)$, es decir $8y - 8 = 60 - 9y$, luego $17y = 68$ e $y = 4$; entonces $x = \dfrac{8-2}{3} = 2$. Misma solución $(2,4)$: el trabajo es equivalente, con denominadores $3$ y $4$ en lugar de $2$ y $3$.
+
+**4.** Multiplicando la primera por $6$: $3x - 2y = 6$. Despejamos $y$ en las dos: $y = \dfrac{3x - 6}{2}$ y $y = 7 - x$. Igualando y multiplicando por $2$: $3x - 6 = 14 - 2x$, luego $5x = 20$ y $x = 4$; entonces $y = 3$. Comprobación: $\dfrac{4}{2} - \dfrac{3}{3} = 2 - 1 = 1$ y $4 + 3 = 7$. Solución $(4,3)$.
+
+**5.** La primera da $3x - 3 = y + 2$, es decir $y = 3x - 5$. La segunda da $y = \dfrac{4 + x}{2}$. Igualando y multiplicando por $2$: $6x - 10 = 4 + x$, luego $5x = 14$ y $x = \dfrac{14}{5}$; entonces $y = \dfrac{42}{5} - 5 = \dfrac{17}{5}$. Solución $\left(\dfrac{14}{5},\,\dfrac{17}{5}\right)$.
+
+**6.** De la primera, $y = 2x - 4$; de la segunda, $3y = 6x - 12$, o sea $y = 2x - 4$. Las dos expresiones son **idénticas**, porque la segunda ecuación es la primera multiplicada por $-3$. Al igualarlas queda una identidad y el sistema es compatible indeterminado: sus soluciones son los pares $(t,\ 2t-4)$, por ejemplo $(0,-4)$, $(2,0)$ y $(4,4)$.
+
+**7.** De la primera, $y = 2x - 4$; de la segunda, $y = \dfrac{5 + 6x}{3} = 2x + \dfrac{5}{3}$. Al igualar, los términos en $x$ se cancelan y queda $-4 = \dfrac{5}{3}$, que es falso. El sistema es **incompatible**: las dos rectas tienen la misma pendiente, $2$, y distinta ordenada en el origen, así que son paralelas.
+
+**8.** Por sustitución: de $x - y = 8$ sale $x = 8 + y$, y al llevarlo a la primera, $2(8+y) + 3y = 11$, luego $y = -1$ y $x = 7$. Por igualación hay que despejar $x$ dos veces, y una de ellas produce el denominador $2$. En este sistema la sustitución es algo más corta, porque solo una de las ecuaciones tiene coeficientes $\pm 1$.
+
+**9.** Con $x$ = horas de alquiler e $y$ = coste en euros, $\{y = 5 + 2x,\ y = 11 + 1{,}25x\}$. Igualando: $5 + 2x = 11 + 1{,}25x$, luego $0{,}75x = 6$ y $x = 8$; entonces $y = 5 + 16 = 21$. A las $8$ horas ambas cuestan $21$ €: por debajo conviene la primera y por encima, la segunda.
+
+**10.** Con $t$ = minutos transcurridos y $V$ = volumen en litros, $\{V = 200 - 6t,\ V = 80 + 4t\}$. Igualando: $200 - 6t = 80 + 4t$, luego $10t = 120$ y $t = 12$; entonces $V = 200 - 72 = 128$. A los $12$ minutos los dos depósitos tienen $128$ litros.
+
+**11.** Con $x$ = edad mayor e $y$ = edad menor, $\{x = 3y,\ x + 10 = 2(y + 10)\}$. La segunda da $x = 2y + 10$. Igualando: $3y = 2y + 10$, luego $y = 10$ y $x = 30$. Comprobación: $30$ es el triple de $10$, y dentro de diez años serán $40$ y $20$, es decir, el doble. Las edades son $30$ y $10$ años.
+:::

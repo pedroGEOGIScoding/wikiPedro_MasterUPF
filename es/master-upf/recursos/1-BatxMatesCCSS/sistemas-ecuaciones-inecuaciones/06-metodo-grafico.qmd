@@ -1,0 +1,369 @@
+---
+title: "Tema 4.6 Método gráfico"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 06-metodo-grafico
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cada ecuación lineal como recta del plano, paso de la forma general a la explícita, pendiente y ordenada en el origen, rectas verticales y horizontales, procedimiento completo del método gráfico con tabla de valores y cortes con los ejes, la solución como punto de intersección, los tres casos de posición relativa (secantes, paralelas y coincidentes) y su vínculo con la clasificación del sistema, limitaciones de precisión y problemas de punto de equilibrio y tarifas, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método gráfico, rectas, pendiente, punto de equilibrio]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cada ecuación es una recta
+
+Hasta ahora hemos tratado un sistema como un objeto algebraico: dos igualdades que hay que satisfacer a la vez. Existe otra manera de mirarlo, y es la que da sentido geométrico a todo lo anterior.
+
+Una ecuación lineal con dos incógnitas, $ax+by=c$ con $a$ y $b$ no simultáneamente nulos, tiene infinitas soluciones. Si cada solución $(x_0,y_0)$ se dibuja como un punto del plano cartesiano, el conjunto de todas ellas es exactamente una **recta**. Por eso a $ax+by=c$ se la llama *ecuación de una recta*, y por eso los sistemas de este tema se llaman **lineales**.
+
+Con esa lectura, resolver un sistema de dos ecuaciones se convierte en un problema de geometría:
+
+::: {.callout-note}
+## La solución es la intersección
+
+Resolver el sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ax & + & by & = & c \\
+a'x & + & b'y & = & c'
+\end{array}
+\right.
+$$
+
+equivale a **hallar los puntos comunes a las dos rectas** que representan sus ecuaciones.
+
+Un punto está en la primera recta si sus coordenadas cumplen la primera ecuación; está en la segunda recta si cumplen la segunda. Estar en las dos a la vez es, palabra por palabra, la definición de solución del sistema.
+:::
+
+Esto explica de golpe por qué un sistema lineal solo puede tener una solución, ninguna o infinitas: dos rectas del plano solo pueden cortarse en un punto, ser paralelas sin puntos comunes o ser la misma recta. No hay una cuarta posibilidad, y por tanto tampoco hay sistemas lineales con exactamente dos o exactamente siete soluciones.
+
+## De la forma general a la forma explícita
+
+Para dibujar una recta lo más cómodo es despejar la $y$. De $ax+by=c$, si $b \neq 0$,
+
+$$
+by = c - ax \;\Longrightarrow\; y = -\dfrac{a}{b}\,x + \dfrac{c}{b}
+$$
+
+que se escribe $y = mx + n$.
+
+::: {.callout-note}
+## Pendiente y ordenada en el origen
+
+En la **forma explícita** $y = mx+n$:
+
+- $m$ es la **pendiente**. Mide cuánto sube la recta cuando $x$ aumenta una unidad. Si $m>0$ la recta es creciente; si $m<0$, decreciente; si $m=0$, horizontal. A partir de la forma general, $m = -\dfrac{a}{b}$.
+- $n$ es la **ordenada en el origen**: el valor de $y$ cuando $x=0$, es decir, la altura a la que la recta corta al eje vertical. A partir de la forma general, $n = \dfrac{c}{b}$.
+
+Dos rectas son **paralelas** cuando tienen la misma pendiente, y **secantes** cuando sus pendientes son distintas. Si además de la pendiente coincide la ordenada en el origen, las dos rectas son la **misma**.
+:::
+
+Por ejemplo, $4x - 2y = 6$ se convierte en $-2y = 6-4x$, y dividiendo entre $-2$, $y = 2x - 3$: pendiente $2$ y ordenada en el origen $-3$. Al dividir entre un número negativo hay que cambiar el signo de los dos términos; olvidar uno de ellos es el error más frecuente de este paso.
+
+::: {.callout-warning}
+## El caso $b=0$: rectas verticales
+
+Si $b=0$ la ecuación es $ax = c$, o sea $x = \dfrac{c}{a}$, y **no se puede despejar la $y$**: la ecuación no impone ninguna condición sobre ella. Su gráfica es la recta **vertical** formada por todos los puntos de abscisa $c/a$, y no tiene pendiente (o se dice que su pendiente es infinita).
+
+De manera simétrica, si $a=0$ la ecuación es $by=c$ y su gráfica es una recta **horizontal**, de pendiente $0$.
+
+Estas rectas no son casos raros: aparecen constantemente en cuanto un problema fija el valor de una de las variables.
+:::
+
+## El procedimiento
+
+::: {.callout-note}
+## Método gráfico
+
+1. **Despeja la $y$** en cada ecuación, o localiza los cortes con los ejes de cada recta.
+2. **Construye para cada ecuación una tabla con al menos dos puntos.** Dos puntos determinan una recta; el tercero, si se calcula, sirve de comprobación. Los puntos más cómodos suelen ser los cortes con los ejes: $x=0$ da el corte con el eje vertical y $y=0$ el corte con el eje horizontal.
+3. **Dibuja las dos rectas** en unos mismos ejes, con una escala que permita ver la zona donde se cruzan.
+4. **Observa la posición relativa** de las rectas y localiza el punto de intersección, si existe.
+5. **Lee las coordenadas** del punto de corte: la abscisa es el valor de $x$ y la ordenada el de $y$.
+6. **Comprueba algebraicamente** el resultado sustituyéndolo en las dos ecuaciones originales.
+:::
+
+El paso 6 no es un adorno. El dibujo indica **dónde** está la solución y **cuántas** hay, pero solo la comprobación algebraica garantiza los valores exactos.
+
+**Ejemplo 1.** Resuelve gráficamente
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & 2y & = & 8 \\
+3x & - & y & = & 3
+\end{array}
+\right.
+$$
+
+Despejamos la $y$ en las dos ecuaciones:
+
+$$
+y = \dfrac{8-x}{2} = 4 - \dfrac{x}{2}, \qquad y = 3x - 3
+$$
+
+Tabla de valores de la primera recta:
+
+| $x$ | $0$ | $2$ | $8$ |
+|---|---|---|---|
+| $y = 4 - x/2$ | $4$ | $3$ | $0$ |
+
+: Puntos de la recta $x+2y=8$ {.striped}
+
+Tabla de valores de la segunda recta:
+
+| $x$ | $0$ | $1$ | $2$ |
+|---|---|---|---|
+| $y = 3x-3$ | $-3$ | $0$ | $3$ |
+
+: Puntos de la recta $3x-y=3$ {.striped}
+
+La primera recta pasa por $(0,4)$ y $(8,0)$; es decreciente, con pendiente $-\dfrac{1}{2}$. La segunda pasa por $(0,-3)$ y $(1,0)$; es creciente y bastante empinada, con pendiente $3$. Al dibujarlas se cruzan en el punto $(2,3)$, que aparece ya en las dos tablas: esa coincidencia es la solución detectada sin dibujar.
+
+Comprobación: $2 + 2\cdot 3 = 8$ y $3\cdot 2 - 3 = 3$. Las dos se cumplen, luego la solución es $x=2$, $y=3$.
+
+::: {.callout-tip}
+## Elige valores de $x$ que no den fracciones
+
+Al hacer la tabla de $y = 4 - \dfrac{x}{2}$ conviene tomar valores **pares** de $x$, porque así la división es exacta y los puntos caen en nudos de la cuadrícula. En general, si al despejar aparece un denominador $k$, elige múltiplos de $k$. Un punto con coordenadas enteras se dibuja bien; uno con coordenadas como $\left(\dfrac{3}{7},\dfrac{11}{7}\right)$ solo se dibuja aproximadamente.
+:::
+
+### Applet · Método gráfico {.unnumbered}
+
+Introduce las dos ecuaciones y observa la tabla de valores de cada recta, su forma explícita $y=mx+n$ con la pendiente y la ordenada en el origen, el dibujo de las dos rectas en el plano y el punto de corte con sus coordenadas exactas. Arrastra los coeficientes para ver cómo se mueve cada recta: al cambiar el término independiente la recta se traslada sin girar, y al cambiar los coeficientes de las incógnitas la recta gira. Las entradas admiten enteros, decimales con coma —como $2{,}5$— y fracciones con barra —como $3/4$.
+
+::: {#panel-metodoGrafico .applet-panel data-applet-sys="metodoGrafico"}
+:::
+
+Detente en un detalle: mueve el término independiente de una sola ecuación y observa que el punto de corte se desplaza a lo largo de la otra recta. Eso significa que cambiar el segundo miembro de una ecuación mueve la solución, pero no cambia la clasificación del sistema mientras las pendientes sigan siendo distintas.
+
+## Los tres casos de posición relativa
+
+Aquí está la aportación conceptual de este apartado: la geometría clasifica el sistema antes de resolverlo.
+
+### Rectas secantes: solución única
+
+**Ejemplo 2.** Considera
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 3 \\
+x & - & y & = & 1
+\end{array}
+\right.
+$$
+
+En forma explícita, $y = -x+3$ y $y = x-1$: pendientes $-1$ y $1$, distintas. Las rectas se cortan, y lo hacen en un solo punto, porque dos rectas distintas no pueden compartir dos puntos. Sumando las ecuaciones, $2x=4$, luego $x=2$ e $y=1$: el punto de corte es $(2,1)$.
+
+Un sistema cuyas rectas son secantes tiene **exactamente una solución**. Se dice que es **compatible determinado**.
+
+### Rectas paralelas: sin solución
+
+**Ejemplo 3.** Considera
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 3 \\
+2x & + & 2y & = & 8
+\end{array}
+\right.
+$$
+
+En forma explícita, $y=-x+3$ y $y = -x+4$: **la misma pendiente** y **ordenadas en el origen distintas**. Las rectas son paralelas y no se cortan nunca. No hay ningún punto en las dos, así que el sistema **no tiene solución**: es **incompatible**.
+
+La lectura algebraica dice lo mismo. Si $x+y$ vale $3$, entonces $2x+2y$ tiene que valer $6$; la segunda ecuación exige $8$, y $6 \neq 8$. Las dos ecuaciones se contradicen. Y si intentas resolverlo por reducción obtienes $0 = 2$, una igualdad falsa: la traducción algebraica de «las rectas no se encuentran».
+
+### Rectas coincidentes: infinitas soluciones
+
+**Ejemplo 4.** Considera
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 3 \\
+2x & + & 2y & = & 6
+\end{array}
+\right.
+$$
+
+Ahora la segunda ecuación es la primera multiplicada por $2$: las dos rectas tienen la misma pendiente **y** la misma ordenada en el origen, luego son la **misma recta** dibujada dos veces. Todos los puntos de esa recta son solución del sistema: hay **infinitas soluciones** y el sistema es **compatible indeterminado**.
+
+Las soluciones se describen con un parámetro: tomando $y=\lambda$ resulta $x = 3-\lambda$, y cada valor de $\lambda$ da una solución distinta, como $(3,0)$, $(2,1)$ o $(0,3)$. Por reducción se obtiene $0=0$: una igualdad cierta pero vacía, la traducción algebraica de «las dos ecuaciones dicen lo mismo».
+
+::: {.callout-note}
+## Resumen del vínculo entre geometría y álgebra
+
+| Posición de las rectas | Puntos comunes | Al reducir aparece | Tipo de sistema |
+|---|---|---|---|
+| Secantes (pendientes distintas) | uno | $ky=k'$ con $k\neq0$ | compatible determinado |
+| Paralelas (igual pendiente, distinta ordenada) | ninguno | $0=k$ con $k\neq0$ | incompatible |
+| Coincidentes (igual pendiente e igual ordenada) | infinitos | $0=0$ | compatible indeterminado |
+
+: Los tres casos posibles de un sistema lineal $2\times 2$ {.striped}
+:::
+
+### Applet · Los tres casos gráficos {.unnumbered}
+
+Usa los escenarios predefinidos para colocarte en cada uno de los tres casos y observa a la vez el dibujo de las dos rectas, la comparación de sus pendientes y de sus ordenadas en el origen, el resultado que daría la reducción y el nombre del tipo de sistema. Después modifica un solo coeficiente para pasar de un caso a otro y localiza el valor exacto en el que se produce el salto. Puedes escribir los coeficientes como enteros, como decimales con coma —por ejemplo $0{,}5$— o como fracciones con barra —por ejemplo $2/3$.
+
+::: {#panel-tresCasos .applet-panel data-applet-sys="tresCasos"}
+:::
+
+El experimento más instructivo es partir de dos rectas paralelas y mover poquísimo la pendiente de una de ellas: el sistema pasa de incompatible a compatible determinado, pero el punto de corte se va lejísimo. Ese fenómeno tiene nombre en matemática aplicada —se dice que el sistema está **mal condicionado**— y explica por qué en economía o en ingeniería un error de medida diminuto puede alterar por completo la respuesta de un modelo lineal.
+
+## Lo que el método gráfico hace bien y lo que hace mal
+
+Conviene ser honesto sobre el alcance de este método.
+
+::: {.callout-warning}
+## El dibujo no da valores exactos
+
+El método gráfico es excelente para **entender** y para **clasificar**, y bastante malo para **calcular**. Si la solución de un sistema es $\left(\dfrac{8}{5},\dfrac{2}{5}\right)$, en un dibujo sobre papel cuadriculado leerás «algo así como $(1{,}6\,;0{,}4)$», y con suerte. Y si la solución es $\left(\dfrac{53}{17},\dfrac{6}{17}\right)$ no la leerás en absoluto.
+
+Peor aún: dos rectas casi paralelas se cortan en un punto muy alejado y muy sensible al trazo del lápiz. En cambio, dos rectas que se cruzan formando un ángulo próximo al recto dan una lectura fiable.
+
+Por eso el criterio práctico es: **dibuja para saber qué está pasando y calcula para dar la respuesta**. Un ejercicio que pida resolver gráficamente espera el dibujo, la lectura del punto y su verificación algebraica.
+:::
+
+Dicho esto, hay tres cosas que el método gráfico hace mejor que ningún otro. La primera es explicar por qué las tres clasificaciones son las únicas posibles. La segunda es hacer visible el papel de cada coeficiente: el término independiente traslada la recta y los coeficientes de las incógnitas la giran. Y la tercera es preparar el terreno para los sistemas de inecuaciones, donde una recta ya no aportará un conjunto de puntos, sino la frontera entre dos semiplanos; ahí el dibujo dejará de ser un auxiliar y pasará a ser el método principal.
+
+## Un sistema con una recta vertical
+
+**Ejemplo 5.** Resuelve gráficamente
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & & & = & 6 \\
+2x & + & y & = & 8
+\end{array}
+\right.
+$$
+
+La primera ecuación es $x=3$: una recta vertical. La segunda, $y = 8-2x$, corta a los ejes en $(4,0)$ y $(0,8)$. La vertical $x=3$ corta a esa recta en el punto de abscisa $3$, cuya ordenada es $y = 8-6=2$. La solución es $(3,2)$.
+
+Este ejemplo muestra que un sistema donde una ecuación fija directamente una incógnita se resuelve prácticamente sin trabajo: es el caso ideal al que apuntan los métodos algebraicos, y en particular el método de Gauss, que trata de llevar cualquier sistema a esta forma.
+
+## Problemas resueltos
+
+**Problema 1 · Comparación de tarifas.** Una compañía ofrece dos tarifas de telefonía. La tarifa A cobra una cuota fija de $10$ euros más $0{,}05$ euros por minuto hablado. La tarifa B cobra $4$ euros de cuota fija más $0{,}10$ euros por minuto. ¿A partir de cuántos minutos conviene la tarifa A?
+
+Llamando $t$ a los minutos hablados y $y$ al gasto mensual en euros, cada tarifa es una recta:
+
+$$
+y = 10 + 0{,}05t \qquad \text{(tarifa A)}, \qquad y = 4 + 0{,}10t \qquad \text{(tarifa B)}
+$$
+
+Igualando las dos expresiones, $10 + 0{,}05t = 4 + 0{,}10t$, de donde $6 = 0{,}05t$ y $t = 120$ minutos, con un gasto de $y = 10 + 0{,}05\cdot 120 = 16$ euros.
+
+La interpretación gráfica es la clave del problema. La tarifa B parte más abajo —cuota fija menor— pero sube más deprisa —pendiente mayor—. Las dos rectas se cortan en $(120,16)$: hasta los $120$ minutos la recta de B queda por debajo y conviene B; a partir de $120$ minutos queda por encima y conviene A. Justo en $120$ minutos las dos cuestan lo mismo.
+
+Observa que el punto de corte no responde por sí solo a la pregunta: responde **cuándo se igualan**, y hay que mirar las pendientes para decidir qué pasa a cada lado. Esta es la estructura de todos los problemas de comparación de ofertas, de planes de datos o de precios con descuento por volumen.
+
+**Problema 2 · Punto de equilibrio de un mercado.** En un mercado, la cantidad demandada de un producto, en miles de unidades, en función de su precio $p$ en euros es $q_d = 100 - 2p$, y la cantidad ofertada es $q_s = 3p - 50$. Halla el precio y la cantidad de equilibrio.
+
+El equilibrio se alcanza cuando la cantidad ofertada coincide con la demandada:
+
+$$
+100 - 2p = 3p - 50 \;\Longrightarrow\; 150 = 5p \;\Longrightarrow\; p = 30
+$$
+
+y entonces $q = 100 - 60 = 40$ miles de unidades. El punto de equilibrio es $(30,40)$.
+
+Gráficamente, la curva de demanda es una recta decreciente —a más precio, menos compradores— y la de oferta una recta creciente —a más precio, más productores dispuestos a vender—. El equilibrio es su intersección, y su existencia y unicidad se deben precisamente a que una pendiente es negativa y la otra positiva, luego las rectas son secantes.
+
+¿Qué significa que el precio sea distinto de $30$? Si $p=20$, la demanda es $60$ y la oferta $10$: falta producto, hay escasez y la presión de los compradores empuja el precio hacia arriba. Si $p=40$, la demanda es $20$ y la oferta $70$: hay excedente y el precio tiende a bajar. El punto de corte es el único precio en el que no hay presión en ninguna dirección.
+
+**Problema 3 · Dos depósitos.** Un depósito contiene $500$ litros y pierde $8$ litros por minuto; otro contiene $200$ litros y recibe $7$ litros por minuto. ¿Cuándo tendrán la misma cantidad de agua?
+
+Con $t$ en minutos, los volúmenes son $V_1 = 500 - 8t$ y $V_2 = 200 + 7t$. Igualando, $500-8t = 200+7t$, luego $300 = 15t$ y $t=20$ minutos, con $V = 500-160 = 340$ litros.
+
+Las dos rectas se cortan en $(20,340)$. Antes de ese instante el primer depósito tiene más agua; después, el segundo. Y hay un detalle de interpretación: el modelo solo tiene sentido mientras $V_1 \geq 0$, es decir, hasta $t = 62{,}5$ minutos, momento en que el primer depósito se vacía. Fuera de ese intervalo la recta sigue existiendo pero el problema, no.
+
+::: {.callout-caution}
+## Errores típicos en el método gráfico
+
+1. Dibujar la recta a partir de un solo punto, o de dos puntos demasiado próximos, con lo que un error mínimo de trazo desvía mucho la recta.
+2. Perder un signo al despejar la $y$ dividiendo entre un número negativo.
+3. Intercambiar las coordenadas del punto de corte y dar la solución como $(y,x)$.
+4. Usar escalas distintas en los dos ejes sin darse cuenta, y concluir que dos rectas son perpendiculares o paralelas cuando no lo son.
+5. Afirmar que un sistema es incompatible porque en el trozo de plano dibujado las rectas no se cortan. Si las pendientes son distintas, se cortarán en algún sitio: hay que ampliar la ventana.
+6. Confundir rectas paralelas con coincidentes cuando el dibujo es impreciso. La comprobación segura es algebraica: compara pendientes y ordenadas en el origen.
+7. Dar como respuesta un valor leído del dibujo sin comprobarlo en las ecuaciones.
+8. Intentar despejar la $y$ en una ecuación del tipo $3x=12$, en la que no aparece.
+9. En los problemas de comparación, contestar solo con el punto de corte sin decir qué opción conviene a cada lado de ese valor.
+10. Olvidar el dominio con sentido: minutos negativos, precios negativos o litros negativos no forman parte de la respuesta.
+:::
+
+::: {.callout-tip}
+## Álgebra y geometría, dos idiomas para lo mismo
+
+La posibilidad de traducir una ecuación en una recta y un sistema en una intersección no es evidente ni antigua: nace en el siglo XVII, cuando se introduce la idea de asignar coordenadas a los puntos del plano y describir las curvas mediante ecuaciones. Aquella fusión de dos ramas que habían crecido separadas durante dos mil años —el álgebra, heredada de la tradición árabe, y la geometría, heredada de la griega— es lo que hoy llamamos **geometría analítica**, y es la base de todo lo que dibuja un ordenador en una pantalla.
+
+La consecuencia práctica es doble y funciona en los dos sentidos. Un problema geométrico difícil puede convertirse en un cálculo algebraico rutinario, y un problema algebraico abstracto puede volverse evidente al dibujarlo. Cuando en el próximo apartado discutamos un sistema con un parámetro, esa doble mirada será justamente la herramienta que permita entender qué está ocurriendo en los valores críticos: dos rectas que giran hasta ponerse paralelas.
+:::
+
+## Resumen del apartado
+
+- Cada ecuación lineal $ax+by=c$ con dos incógnitas representa una **recta del plano**: el conjunto de todos sus puntos solución.
+- Resolver un sistema $2\times2$ equivale a **hallar los puntos comunes** a las dos rectas.
+- La **forma explícita** $y = mx+n$ se obtiene despejando la $y$; entonces $m = -\dfrac{a}{b}$ es la pendiente y $n = \dfrac{c}{b}$ la ordenada en el origen.
+- Si $b=0$ la recta es **vertical** y no tiene pendiente; si $a=0$ es **horizontal**, de pendiente $0$.
+- Para dibujar una recta basta con **dos puntos**; los cortes con los ejes son los más cómodos, y conviene elegir valores de $x$ que eviten fracciones.
+- **Pendientes distintas** significa rectas **secantes**, un punto común y sistema **compatible determinado**.
+- **Igual pendiente y distinta ordenada** significa rectas **paralelas**, ningún punto común y sistema **incompatible**; al reducir aparece $0=k$ con $k\neq0$.
+- **Igual pendiente e igual ordenada** significa rectas **coincidentes**, infinitos puntos comunes y sistema **compatible indeterminado**; al reducir aparece $0=0$.
+- Como dos rectas solo admiten esas tres posiciones, un sistema lineal nunca puede tener un número finito de soluciones mayor que uno.
+- El método gráfico es insuperable para **clasificar y entender**, e insuficiente para **calcular**: la respuesta se cierra siempre con la comprobación algebraica.
+- Modificar el término independiente **traslada** la recta; modificar los coeficientes de las incógnitas la **gira**.
+- Muchos problemas de comparación de tarifas, de puntos de equilibrio o de procesos que evolucionan a ritmo constante se resuelven igualando dos rectas y mirando qué ocurre a cada lado del punto de corte.
+
+## Ejercicios propuestos
+
+1. Resuelve gráficamente y comprueba después de forma algebraica:
+   a) $\left\{\begin{array}{l} x+y=5 \\ x-y=1 \end{array}\right.$
+   b) $\left\{\begin{array}{l} 2x+y=4 \\ x-y=-1 \end{array}\right.$
+2. Escribe en la forma $y=mx+n$ e indica la pendiente y la ordenada en el origen: a) $4x-2y=6$; b) $3x+5y=10$; c) $-x-5y=1$; d) $2y=7$.
+3. Sin resolverlos, clasifica estos sistemas comparando pendientes y ordenadas en el origen, y describe la posición de las rectas:
+   a) $\left\{\begin{array}{l} 3x-6y=12 \\ x-2y=4 \end{array}\right.$
+   b) $\left\{\begin{array}{l} 3x-6y=12 \\ x-2y=1 \end{array}\right.$
+   c) $\left\{\begin{array}{l} 5x-2y=2 \\ x+3y=11 \end{array}\right.$
+4. Resuelve gráficamente $\left\{\begin{array}{l} y=2x-1 \\ y=-x+5 \end{array}\right.$ y explica por qué en este caso el dibujo es especialmente fiable.
+5. Resuelve $\left\{\begin{array}{l} -x-5y=1 \\ x-2y=-1 \end{array}\right.$ y localiza el punto de corte en el plano.
+6. Halla el valor de $k$ para que las rectas $2x+3y=7$ y $4x+ky=1$ sean paralelas, y di qué tipo de sistema resulta con ese valor.
+7. Dibuja el sistema $\left\{\begin{array}{l} 3x=9 \\ x+2y=11 \end{array}\right.$ y da su solución.
+8. Un gimnasio ofrece dos planes: el primero cobra $30$ euros al mes sin coste por sesión; el segundo cobra $12$ euros al mes más $1{,}50$ euros por sesión. Escribe las dos rectas, halla el número de sesiones en el que cuestan lo mismo y di qué plan conviene por encima y por debajo de ese número.
+9. Estima en el dibujo la solución de $\left\{\begin{array}{l} 3x+2y=7 \\ x-y=-1 \end{array}\right.$ y compárala con el valor exacto obtenido por reducción.
+10. Explica, con un ejemplo dibujado, por qué la afirmación «si en mi cuaderno las rectas no se cortan, el sistema no tiene solución» es falsa.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+1. a) $y=5-x$ e $y=x-1$: pendientes $-1$ y $1$. Se cortan en $(3,2)$; comprobación: $3+2=5$ y $3-2=1$.
+   b) $y=4-2x$ e $y=x+1$: se cortan en $(1,2)$; comprobación: $2+2=4$ y $1-2=-1$.
+2. a) $y=2x-3$, con $m=2$ y $n=-3$. b) $y=-\dfrac{3}{5}x+2$, con $m=-\dfrac{3}{5}$ y $n=2$. c) $y=-\dfrac{1}{5}x-\dfrac{1}{5}$, con $m=n=-\dfrac{1}{5}$. d) $y=\dfrac{7}{2}$: recta horizontal, $m=0$ y $n=\dfrac{7}{2}$.
+3. a) Las dos se reducen a $y=\dfrac{x}{2}-2$: rectas coincidentes, sistema compatible indeterminado con infinitas soluciones.
+   b) $y=\dfrac{x}{2}-2$ y $y=\dfrac{x}{2}-\dfrac{1}{2}$: misma pendiente y distinta ordenada, rectas paralelas, sistema incompatible.
+   c) Pendientes $\dfrac{5}{2}$ y $-\dfrac{1}{3}$, distintas: rectas secantes, sistema compatible determinado.
+4. Se cortan en $(2,3)$. El dibujo es fiable porque las dos rectas ya vienen en forma explícita, sus pendientes son de signo opuesto y por tanto se cruzan formando un ángulo grande, lo que hace que la lectura del punto no dependa de la precisión del trazo.
+5. Sumando las dos ecuaciones, $-7y=0$, luego $y=0$ y $x=-1$. El punto de corte es $(-1,0)$, sobre el eje horizontal.
+6. Las pendientes son $-\dfrac{2}{3}$ y $-\dfrac{4}{k}$; igualándolas, $2k=12$ y $k=6$. Con $k=6$ la segunda ecuación es $4x+6y=1$, que no es proporcional a la primera en el término independiente —sería $4x+6y=14$—, así que las rectas son paralelas distintas y el sistema es incompatible.
+7. La primera es la recta vertical $x=3$; sustituyendo en la segunda, $3+2y=11$, luego $y=4$. Solución $(3,4)$.
+8. $y=30$ e $y=12+1{,}5s$, donde $s$ es el número de sesiones. Igualando, $18=1{,}5s$ y $s=12$ sesiones, con un coste de $30$ euros en ambos planes. Por debajo de $12$ sesiones conviene el segundo plan, que crece desde $12$ euros; por encima de $12$ sesiones conviene el primero, cuyo coste no aumenta.
+9. En el dibujo se lee un punto próximo a $(1,2)$. Por reducción, multiplicando la segunda ecuación por $2$ y sumando, $5x=5$, luego $x=1$ e $y=2$. La estimación coincide con el valor exacto $(1,2)$ porque las coordenadas son enteras.
+10. Basta tomar $\left\{\begin{array}{l} y=x \\ y=1{,}01x-10 \end{array}\right.$: las pendientes son distintas, luego el sistema es compatible determinado, pero el punto de corte está en $x=1000$, muy lejos de cualquier cuaderno. Que las rectas no se cruzan **dentro del dibujo** no significa que no se crucen; lo único que decide es la comparación de pendientes.
+:::

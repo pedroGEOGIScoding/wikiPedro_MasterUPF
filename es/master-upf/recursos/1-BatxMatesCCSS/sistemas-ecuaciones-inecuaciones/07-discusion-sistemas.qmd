@@ -1,0 +1,478 @@
+---
+title: "Tema 4.7 Discusión de un sistema de ecuaciones"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 07-discusion-sistemas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué significa discutir un sistema, sistemas equivalentes y transformaciones válidas y prohibidas, clasificación en compatible determinado, compatible indeterminado e incompatible, criterio de las razones de coeficientes a/a', b/b' y c/c' con su formulación segura mediante productos cruzados, el determinante de orden dos como atajo y su relación con la regla de Cramer, interpretación geométrica de los tres casos, expresión paramétrica de las infinitas soluciones y discusión completa de sistemas con un parámetro con cálculo de valores críticos, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, discusión de sistemas, determinante, parámetro, sistemas equivalentes]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Qué significa discutir un sistema
+
+Hasta aquí el objetivo era siempre el mismo: encontrar la solución. Pero en muchas situaciones interesa una pregunta previa y más fina: **¿cuántas soluciones tiene este sistema?** Responderla sin resolver el sistema, o antes de resolverlo, es lo que se llama **discutir** el sistema.
+
+::: {.callout-note}
+## Discutir un sistema
+
+**Discutir** un sistema de ecuaciones es clasificarlo según el número de soluciones que tiene. La clasificación es esta:
+
+- **Compatible**, si tiene alguna solución.
+  - **Compatible determinado** (abreviado **SCD**), si la solución es **única**.
+  - **Compatible indeterminado** (abreviado **SCI**), si tiene **más de una** solución. En los sistemas lineales, «más de una» implica automáticamente **infinitas**.
+- **Incompatible** (abreviado **SI**), si **no tiene ninguna** solución.
+
+Discutir no es resolver: se puede saber que un sistema tiene solución única sin haberla calculado, y se puede saber que no tiene ninguna sin haber intentado hallarla.
+:::
+
+¿Por qué merece la pena esta distinción? Porque en las aplicaciones el tipo de sistema es información valiosa por sí misma. Un sistema incompatible que modeliza una situación real avisa de que los datos del enunciado se contradicen; uno compatible indeterminado avisa de que faltan datos, porque las condiciones son coherentes pero insuficientes; y uno compatible determinado garantiza que el problema está bien planteado.
+
+En un sistema **lineal** no hay término medio entre una y infinitas soluciones, y la razón es geométrica: dos rectas distintas del plano se cortan como máximo en un punto, y si comparten dos puntos son la misma recta. La propiedad falla en cuanto el sistema deja de ser lineal, porque una recta y una circunferencia sí pueden cortarse en exactamente dos puntos.
+
+## Sistemas equivalentes
+
+Todos los métodos de resolución hacen lo mismo: sustituir el sistema por otro más sencillo con las mismas soluciones. Conviene poner nombre a esa idea.
+
+::: {.callout-note}
+## Definición de sistemas equivalentes
+
+Dos sistemas de ecuaciones son **equivalentes** si tienen exactamente **las mismas soluciones**.
+
+No hace falta que tengan el mismo número de ecuaciones ni que se parezcan: lo único que importa es el conjunto solución.
+:::
+
+Las transformaciones que producen sistemas equivalentes son estas:
+
+::: {.callout-note}
+## Transformaciones que conservan las soluciones
+
+1. **Intercambiar** dos ecuaciones de lugar.
+2. **Multiplicar** (o dividir) una ecuación completa por un número **distinto de cero**.
+3. **Sustituir una ecuación por la suma de ella misma y un múltiplo de otra**, es decir, por $E_i + \lambda E_j$ con $i \neq j$.
+4. **Suprimir** una ecuación que sea combinación lineal de las demás, porque no aporta información nueva.
+5. **Simplificar** cada ecuación por separado: quitar paréntesis, denominadores y decimales, agrupar términos semejantes y trasponer términos de un miembro a otro.
+
+Las transformaciones 1, 2 y 3 son las llamadas **operaciones elementales**, y son la base tanto del método de reducción como del método de Gauss.
+:::
+
+::: {.callout-warning}
+## Transformaciones prohibidas
+
+Hay operaciones que parecen inocentes y destruyen información:
+
+- **Multiplicar una ecuación por $0$.** La convierte en $0=0$, que es cierta pero vacía. El sistema resultante suele tener más soluciones que el original.
+- **Sustituir las dos ecuaciones por combinaciones proporcionales entre sí**, como cambiar $E_1$ por $E_1+E_2$ y a la vez $E_2$ por $2E_1+2E_2$: las nuevas ecuaciones dicen lo mismo y se ha perdido una condición.
+- **Elevar al cuadrado** una ecuación o multiplicarla por una expresión con incógnitas: puede introducir soluciones falsas.
+
+La regla segura es sencilla: en la operación 3, la ecuación que se modifica debe conservar su coeficiente $1$ y solo se le añade un múltiplo de **otra** ecuación.
+:::
+
+**Ejemplo 1.** Los sistemas
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 3 \\
+x & - & y & = & 1
+\end{array}
+\right.
+\qquad\text{y}\qquad
+\left\{
+\begin{array}{rcrcr}
+2x & & & = & 4 \\
+x & - & y & = & 1
+\end{array}
+\right.
+$$
+
+son equivalentes: el segundo se obtiene sustituyendo la primera ecuación por la suma de las dos. Los dos tienen como única solución $(2,1)$, y el segundo la delata a la primera mirada. Resolver un sistema es encadenar transformaciones de este tipo hasta que la respuesta se lea sin esfuerzo.
+
+## El criterio de las razones de coeficientes
+
+Para un sistema de dos ecuaciones con dos incógnitas escrito en la forma
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ax & + & by & = & c \\
+a'x & + & b'y & = & c'
+\end{array}
+\right.
+$$
+
+existe un criterio de clasificación puramente aritmético: basta comparar tres cocientes.
+
+::: {.callout-note}
+## Criterio de las razones
+
+- Si $\dfrac{a}{a'} \neq \dfrac{b}{b'}$, el sistema es **compatible determinado**: tiene solución única. Las rectas son **secantes**.
+- Si $\dfrac{a}{a'} = \dfrac{b}{b'} = \dfrac{c}{c'}$, el sistema es **compatible indeterminado**: tiene infinitas soluciones. Las rectas son **coincidentes**.
+- Si $\dfrac{a}{a'} = \dfrac{b}{b'} \neq \dfrac{c}{c'}$, el sistema es **incompatible**: no tiene solución. Las rectas son **paralelas**.
+:::
+
+La razón de fondo es fácil de ver. Que las tres razones coincidan significa que la segunda ecuación es la primera multiplicada por un número: dice lo mismo con otras cifras, y sobra. Que coincidan las dos primeras pero no la tercera significa que los miembros izquierdos son proporcionales pero los derechos no: si $ax+by$ vale $c$, entonces $a'x+b'y$ está obligado a valer $\lambda c$, y la ecuación exige otra cosa. Contradicción.
+
+::: {.callout-caution}
+## Cuidado con los denominadores nulos
+
+El criterio de las razones se escribe con fracciones y, en cuanto un coeficiente de la segunda ecuación es $0$, alguna de esas fracciones no existe. En
+
+$$
+\left\{
+\begin{array}{rcrcr}
+3x & - & 2y & = & 5 \\
+-6x & + & 4y & = & 0
+\end{array}
+\right.
+$$
+
+las dos primeras razones valen $-\dfrac{1}{2}$, pero $\dfrac{c}{c'} = \dfrac{5}{0}$ no tiene sentido. La conclusión correcta es que la tercera razón **no** es igual a las otras dos —si lo fuera, $c'$ tendría que ser $-10$— y el sistema es incompatible.
+
+Para no depender de divisiones, el criterio se enuncia con **productos cruzados**, que siempre están definidos:
+
+- $ab' - a'b \neq 0$ $\Rightarrow$ **SCD**.
+- $ab' - a'b = 0$ y $ac' - a'c = 0$ y $bc' - b'c = 0$ $\Rightarrow$ **SCI**.
+- $ab' - a'b = 0$ y alguno de $ac' - a'c$ o $bc' - b'c$ distinto de cero $\Rightarrow$ **SI**.
+
+En el ejemplo, $ab'-a'b = 3\cdot4-(-6)(-2) = 0$ y $ac'-a'c = 3\cdot0-(-6)\cdot5 = 30 \neq 0$: incompatible.
+:::
+
+**Ejemplo 2.** Clasifica los dos sistemas siguientes.
+
+$$
+\text{a) } \left\{
+\begin{array}{rcrcr}
+4x & - & 6y & = & 2 \\
+-6x & + & 9y & = & -3
+\end{array}
+\right.
+\qquad\qquad
+\text{b) } \left\{
+\begin{array}{rcrcr}
+x & + & 2y & = & 1 \\
+3x & - & y & = & 11
+\end{array}
+\right.
+$$
+
+En a) las tres razones valen $-\dfrac{2}{3}$, luego es **compatible indeterminado**: la segunda ecuación es la primera multiplicada por $-\dfrac{3}{2}$. En b), $\dfrac{1}{3} \neq \dfrac{2}{-1}$, luego es **compatible determinado**, con solución única.
+
+## El determinante de orden dos
+
+La cantidad $ab'-a'b$ del criterio de los productos cruzados tiene nombre propio y notación específica.
+
+::: {.callout-note}
+## Determinante de una matriz cuadrada de orden dos
+
+Se llama **determinante** de la matriz de coeficientes del sistema al número
+
+$$
+D = \begin{vmatrix} a & b \\ a' & b' \end{vmatrix} = ab' - a'b
+$$
+
+Se calcula multiplicando en cruz: **producto de la diagonal principal menos producto de la diagonal secundaria**.
+:::
+
+::: {.callout-important}
+## Por qué el determinante decide
+
+Reduzcamos el sistema general eliminando la $x$. Multiplicamos la primera ecuación por $a'$ y la segunda por $-a$, y sumamos:
+
+$$
+(a'b - ab')\,y = a'c - ac'
+\qquad\text{es decir}\qquad
+-D\,y = a'c - ac'
+$$
+
+Análogamente, eliminando la $y$ se obtiene $D\,x = cb' - c'b$. Ahora todo depende de $D$:
+
+- Si $D \neq 0$, las dos ecuaciones se pueden dividir entre $D$ y hay **una única** solución:
+  $$
+  x = \dfrac{cb' - c'b}{ab' - a'b}, \qquad y = \dfrac{ac' - a'c}{ab' - a'b}
+  $$
+- Si $D = 0$, las ecuaciones quedan en la forma $0 = k$. Si además los segundos miembros son nulos, se convierten en $0=0$ y hay **infinitas** soluciones; si alguno no lo es, la igualdad es falsa y **no hay** solución.
+
+Es decir: **el determinante distingue el caso determinado de los otros dos, y para separar esos otros dos hay que mirar los términos independientes.**
+:::
+
+Las dos fórmulas del caso $D\neq0$ se pueden escribir de forma memorizable observando que los numeradores son también determinantes:
+
+$$
+x = \dfrac{\begin{vmatrix} c & b \\ c' & b' \end{vmatrix}}{\begin{vmatrix} a & b \\ a' & b' \end{vmatrix}},
+\qquad
+y = \dfrac{\begin{vmatrix} a & c \\ a' & c' \end{vmatrix}}{\begin{vmatrix} a & b \\ a' & b' \end{vmatrix}}
+$$
+
+El denominador es siempre $D$, y el numerador de cada incógnita se obtiene sustituyendo **su** columna de coeficientes por la de términos independientes. Esta es la **regla de Cramer**, válida para sistemas de cualquier tamaño y que aquí usaremos como atajo de cálculo y como criterio de discusión.
+
+**Ejemplo 3.** Discute y resuelve, si es posible,
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 5 \\
+x & - & y & = & 1
+\end{array}
+\right.
+$$
+
+El determinante es $D = 2\cdot(-1) - 1\cdot 3 = -2-3 = -5 \neq 0$, luego el sistema es compatible determinado. Aplicando las fórmulas,
+
+$$
+x = \dfrac{\begin{vmatrix} 5 & 3 \\ 1 & -1 \end{vmatrix}}{-5} = \dfrac{-5-3}{-5} = \dfrac{-8}{-5} = \dfrac{8}{5},
+\qquad
+y = \dfrac{\begin{vmatrix} 2 & 5 \\ 1 & 1 \end{vmatrix}}{-5} = \dfrac{2-5}{-5} = \dfrac{-3}{-5} = \dfrac{3}{5}
+$$
+
+Comprobación: $2\cdot\dfrac{8}{5} + 3\cdot\dfrac{3}{5} = \dfrac{16+9}{5} = 5$ y $\dfrac{8}{5}-\dfrac{3}{5} = 1$.
+
+::: {.callout-tip}
+## Tres herramientas para lo mismo
+
+Razones, determinante y reducción son tres presentaciones de un mismo hecho:
+
+- El **criterio de las razones** es el más rápido, pero hay que vigilar los ceros en el denominador.
+- El **determinante** es el más seguro y se generaliza a sistemas mayores, aunque no distingue por sí solo incompatible de indeterminado.
+- **Resolver por reducción** y leer si sale una ecuación, $0=0$ o $0=k$ es lo más lento y lo que nunca falla, y además da la solución.
+
+Buen hábito: discutir con el determinante y, si sale $D=0$, mirar los términos independientes.
+:::
+
+## Interpretación geométrica
+
+La discusión tiene una lectura visual que el determinante completa.
+
+| Álgebra | Determinante | Rectas | Tipo | Soluciones |
+|---|---|---|---|---|
+| $\dfrac{a}{a'}\neq\dfrac{b}{b'}$ | $D \neq 0$ | secantes | SCD | una |
+| $\dfrac{a}{a'}=\dfrac{b}{b'}=\dfrac{c}{c'}$ | $D = 0$ | coincidentes | SCI | infinitas |
+| $\dfrac{a}{a'}=\dfrac{b}{b'}\neq\dfrac{c}{c'}$ | $D = 0$ | paralelas | SI | ninguna |
+
+: Discusión de un sistema lineal de dos ecuaciones con dos incógnitas {.striped}
+
+Que $D = ab'-a'b$ se anule significa que las pendientes coinciden, porque $-\dfrac{a}{b} = -\dfrac{a'}{b'}$ equivale a $ab'=a'b$: **el determinante mide el paralelismo**.
+
+## Cómo se escriben las infinitas soluciones
+
+Decir «infinitas soluciones» no es una respuesta completa: hay que describirlas.
+
+::: {.callout-note}
+## Expresión paramétrica de la solución de un SCI
+
+1. Comprueba que el sistema es compatible indeterminado (las dos ecuaciones son proporcionales) y **quédate con una sola ecuación**; la otra sobra.
+2. Iguala una de las incógnitas a un **parámetro**: $y = \lambda$, con $\lambda \in \mathbb{R}$.
+3. Despeja la otra incógnita en función de $\lambda$.
+4. Escribe la solución como un par que depende de $\lambda$ y, si quieres, da dos o tres soluciones concretas asignando valores a $\lambda$.
+:::
+
+**Ejemplo 4.** Describe las soluciones de
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & - & 4y & = & 6 \\
+x & - & 2y & = & 3
+\end{array}
+\right.
+$$
+
+La primera ecuación es el doble de la segunda, así que el sistema es compatible indeterminado y basta con $x-2y=3$. Tomando $y=\lambda$ resulta $x = 3+2\lambda$, de modo que las soluciones son
+
+$$
+(x,y) = (3+2\lambda,\ \lambda), \qquad \lambda \in \mathbb{R}
+$$
+
+Con $\lambda = 0$ sale $(3,0)$; con $\lambda=1$, $(5,1)$; con $\lambda=-2$, $(-1,-2)$. Todas ellas, y solo ellas, son los puntos de la recta $x-2y=3$. El número de parámetros necesarios se llama **grado de libertad**, y en un sistema de dos incógnitas compatible indeterminado siempre es $1$.
+
+### Applet · Discusión de un sistema 2×2 {.unnumbered}
+
+Escribe los seis coeficientes del sistema y observa a la vez las tres razones $a/a'$, $b/b'$ y $c/c'$ con la advertencia correspondiente si algún denominador es nulo, el valor del determinante $D$ con su cálculo en cruz, la posición relativa de las dos rectas y la clasificación razonada del sistema. Cuando el sistema resulta compatible indeterminado, aparece además la expresión paramétrica de las infinitas soluciones. Las entradas admiten enteros, decimales con coma —como $1{,}5$— y fracciones con barra —como $3/4$.
+
+::: {#panel-discusion2 .applet-panel data-applet-sys="discusion2"}
+:::
+
+Un experimento que conviene hacer: fija los coeficientes de las incógnitas de forma que $D=0$ y cambia solo los términos independientes. El sistema salta entre incompatible e indeterminado sin que el determinante se mueva, lo que demuestra que $D=0$ por sí solo no decide cuál de los dos casos se da.
+
+## Sistemas con un parámetro
+
+Un **sistema con parámetro** es un sistema en el que algún coeficiente o algún término independiente no es un número concreto, sino una letra —habitualmente $k$, $m$ o $a$— que puede tomar cualquier valor real. No es un sistema, sino una familia infinita de sistemas, uno por cada valor del parámetro, y el objetivo es clasificarlos todos a la vez.
+
+::: {.callout-note}
+## Método para discutir un sistema con un parámetro
+
+1. **Calcula el determinante** $D$ de la matriz de coeficientes. Saldrá una expresión que depende del parámetro.
+2. **Resuelve la ecuación $D=0$.** Sus soluciones son los **valores críticos** del parámetro: los únicos en los que el sistema puede dejar de ser compatible determinado.
+3. **Para todo valor del parámetro distinto de los críticos**, $D \neq 0$ y el sistema es compatible determinado. Si se pide, da la solución en función del parámetro.
+4. **Estudia cada valor crítico por separado.** Sustituye ese valor concreto en el sistema y clasifícalo con las razones o resolviéndolo: saldrá compatible indeterminado o incompatible.
+5. **Redacta la discusión** en una tabla o lista de casos, sin dejar ningún valor del parámetro sin clasificar.
+:::
+
+El paso 4 es el que más se olvida: saber que $D=0$ para un cierto valor del parámetro no dice si en ese caso hay infinitas soluciones o ninguna. Hay que sustituir y mirar.
+
+**Ejemplo 5.** Discute, según los valores de $k$, el sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+kx & + & y & = & 1 \\
+x & + & ky & = & 1
+\end{array}
+\right.
+$$
+
+El determinante es
+
+$$
+D = \begin{vmatrix} k & 1 \\ 1 & k \end{vmatrix} = k^2 - 1
+$$
+
+y se anula cuando $k^2=1$, es decir, para $k=1$ y $k=-1$. Estos son los dos valores críticos.
+
+**Caso $k \neq 1$ y $k \neq -1$.** Como $D = k^2-1 \neq 0$, el sistema es **compatible determinado**. Su solución se obtiene con las fórmulas del determinante:
+
+$$
+x = \dfrac{\begin{vmatrix} 1 & 1 \\ 1 & k \end{vmatrix}}{k^2-1} = \dfrac{k-1}{k^2-1} = \dfrac{k-1}{(k-1)(k+1)} = \dfrac{1}{k+1}
+$$
+
+y por simetría $y = \dfrac{1}{k+1}$. Se comprueba: $k\cdot\dfrac{1}{k+1} + \dfrac{1}{k+1} = \dfrac{k+1}{k+1} = 1$.
+
+**Caso $k=1$.** Queda
+
+$$
+\left\{
+\begin{array}{rcrcr}
+x & + & y & = & 1 \\
+x & + & y & = & 1
+\end{array}
+\right.
+$$
+
+Las dos ecuaciones son idénticas: **compatible indeterminado**, con soluciones $x = 1-\lambda$, $y=\lambda$. Geométricamente, las dos rectas se han superpuesto.
+
+**Caso $k=-1$.** Queda
+
+$$
+\left\{
+\begin{array}{rcrcr}
+-x & + & y & = & 1 \\
+x & - & y & = & 1
+\end{array}
+\right.
+$$
+
+Sumando las dos ecuaciones se obtiene $0 = 2$, falso: **incompatible**. La primera ecuación dice que $y-x$ vale $1$ y la segunda que vale $-1$. Geométricamente, las dos rectas se han vuelto paralelas.
+
+La discusión completa se resume así:
+
+| Valores de $k$ | $D = k^2-1$ | Tipo | Soluciones |
+|---|---|---|---|
+| $k \neq 1$ y $k \neq -1$ | $\neq 0$ | SCD | $x = y = \dfrac{1}{k+1}$ |
+| $k = 1$ | $0$ | SCI | $x=1-\lambda$, $y=\lambda$ |
+| $k = -1$ | $0$ | SI | ninguna |
+
+: Discusión del sistema del ejemplo 5 {.striped}
+
+Nótese que la fórmula $x=y=\dfrac{1}{k+1}$ deja de tener sentido justamente en $k=-1$: la aparición del valor crítico en el denominador de la solución general no es casual, es la misma información vista de otra manera.
+
+**Ejemplo 6.** Discute, según los valores de $m$, el sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 5 \\
+4x & + & my & = & 10
+\end{array}
+\right.
+$$
+
+El determinante es $D = 2m-12$, que se anula en $m=6$: único valor crítico. Para $m \neq 6$ el sistema es **compatible determinado**; para $m=6$ la segunda ecuación es $4x+6y=10$, exactamente el doble de la primera, luego las tres razones valen $\dfrac{1}{2}$ y el sistema es **compatible indeterminado**, con soluciones $y=\lambda$, $x = \dfrac{5-3\lambda}{2}$.
+
+Este ejemplo enseña algo importante: **hay familias en las que nunca aparece el caso incompatible**. Si la segunda ecuación hubiera sido $4x+my=7$, en $m=6$ tendríamos $4x+6y=7$ frente a $4x+6y=10$ y el sistema habría sido incompatible. El tipo que aparece en el valor crítico depende de los términos independientes, no del determinante.
+
+::: {.callout-caution}
+## Errores típicos al discutir un sistema
+
+1. Confundir «indeterminado» con «incompatible»: el primero tiene demasiadas soluciones, el segundo no tiene ninguna. En la misma línea, interpretar $0=0$ como que no hay solución o $0=5$ como que hay infinitas, cuando es exactamente al revés.
+2. Aplicar el criterio de las razones con algún coeficiente nulo en la segunda ecuación, dividiendo entre cero sin darse cuenta.
+3. Comparar las razones sin ordenar antes las ecuaciones en la forma $ax+by=c$.
+4. Calcular el determinante como $ab'+a'b$ o como $ab-a'b'$: es $ab'-a'b$, en cruz.
+5. Concluir de $D=0$ que el sistema es incompatible sin estudiar los términos independientes: con $D=0$ caben los dos casos.
+6. Resolver $D=0$ y detenerse ahí, sin clasificar los valores críticos, u olvidar alguna solución de $D=0$: si es de segundo grado, puede haber **dos** valores críticos.
+7. Aplicar la solución general del parámetro también en los valores críticos, donde el denominador se anula y la fórmula no vale.
+8. Responder «infinitas soluciones» sin escribirlas con un parámetro, o decir que un sistema lineal tiene «dos soluciones», lo cual es imposible.
+:::
+
+### Applet · Sistemas con parámetro {.unnumbered}
+
+Elige un sistema de la familia con parámetro, mueve el deslizador de $k$ y observa cómo se desplazan y giran las dos rectas mientras el applet calcula el determinante, señala los valores críticos, clasifica el sistema para el valor actual y muestra la tabla de discusión completa. Detente exactamente en cada valor crítico: verás las rectas superponerse —caso indeterminado— o ponerse paralelas —caso incompatible—. Los coeficientes fijos se escriben como enteros, como decimales con coma —por ejemplo $2{,}5$— o como fracciones con barra —por ejemplo $1/3$.
+
+::: {#panel-parametro .applet-panel data-applet-sys="parametro"}
+:::
+
+::: {.callout-tip}
+## Discutir antes de calcular
+
+En cualquier modelo con datos reales los coeficientes llevan incorporado un error, y un sistema cuyo determinante está muy cerca de cero es inestable: una variación diminuta puede desplazar la solución sin límite.
+
+La idea de clasificar un sistema comparando información con incógnitas culmina, en cursos posteriores, en un resultado que compara el rango de la matriz de coeficientes con el de la matriz ampliada. Lo que has hecho aquí es el caso más pequeño de ese teorema: dos ecuaciones proporcionales aportan una sola condición, y con una condición no se determinan dos números.
+:::
+
+## Resumen del apartado
+
+- **Discutir** un sistema es clasificarlo según su número de soluciones, sin necesidad de resolverlo.
+- Un sistema es **compatible determinado** si tiene solución única, **compatible indeterminado** si tiene infinitas e **incompatible** si no tiene ninguna. En los sistemas lineales no hay otras posibilidades.
+- Dos sistemas son **equivalentes** si tienen las mismas soluciones. Se pasa de uno a otro con las **operaciones elementales**: intercambiar ecuaciones, multiplicar una ecuación por un número **no nulo** y sumar a una ecuación un múltiplo de otra. Multiplicar por $0$ está prohibido.
+- **Criterio de las razones**: $\dfrac{a}{a'}\neq\dfrac{b}{b'}$ da SCD; $\dfrac{a}{a'}=\dfrac{b}{b'}=\dfrac{c}{c'}$ da SCI; $\dfrac{a}{a'}=\dfrac{b}{b'}\neq\dfrac{c}{c'}$ da SI.
+- Si algún coeficiente de la segunda ecuación es cero, el criterio se aplica mediante **productos cruzados** para no dividir entre cero.
+- El **determinante** $D = \begin{vmatrix} a & b \\ a' & b' \end{vmatrix} = ab'-a'b$ es el atajo de la discusión: $D\neq0$ equivale a compatible determinado.
+- Cuando $D=0$ hay que mirar los **términos independientes** para decidir entre indeterminado e incompatible: el determinante solo no basta.
+- Con $D \neq 0$ la solución se obtiene con la **regla de Cramer**: cada incógnita es un cociente de determinantes con $D$ en el denominador.
+- **Geométricamente**, $D\neq0$ significa rectas secantes y $D=0$ rectas con la misma pendiente: coincidentes si además coinciden las ordenadas en el origen y paralelas si no.
+- Las **infinitas soluciones** de un SCI se escriben con un parámetro: se toma $y=\lambda$ y se despeja $x$. El grado de libertad es $1$.
+- Para **discutir un sistema con parámetro** se calcula $D$, se resuelve $D=0$ para hallar los **valores críticos**, se concluye que fuera de ellos el sistema es determinado y se estudia después cada valor crítico sustituyéndolo en el sistema.
+
+## Ejercicios propuestos
+
+1. Clasifica sin resolver, usando el criterio de las razones, indica en cada caso la posición de las rectas y calcula además el determinante para comprobar que el resultado es coherente:
+   a) $\left\{\begin{array}{l} 3x-2y=5 \\ -6x+4y=0 \end{array}\right.$
+   b) $\left\{\begin{array}{l} 4x-6y=2 \\ -6x+9y=-3 \end{array}\right.$
+   c) $\left\{\begin{array}{l} -x+y=3 \\ 2x-y=-1 \end{array}\right.$
+   d) $\left\{\begin{array}{l} 2x+y=-3 \\ -4x+2y=-6 \end{array}\right.$
+2. Resuelve por la regla de Cramer $\left\{\begin{array}{l} 3x+5y=1 \\ 2x-y=7 \end{array}\right.$ y comprueba la solución.
+3. Escribe con un parámetro todas las soluciones de $\left\{\begin{array}{l} 3x-6y=9 \\ -x+2y=-3 \end{array}\right.$ y da tres soluciones concretas.
+4. Halla el valor de $m$ para el que $\left\{\begin{array}{l} 2x+3y=1 \\ 4x+my=2 \end{array}\right.$ es compatible indeterminado, y explica por qué esta familia no tiene ningún valor de $m$ que la haga incompatible.
+5. Halla el valor de $a$ para el que $\left\{\begin{array}{l} 3x-y=2 \\ ax+2y=5 \end{array}\right.$ es incompatible, y comprueba que con ese valor las rectas son paralelas.
+6. Discute según los valores de $k$ el sistema $\left\{\begin{array}{l} x+ky=3 \\ 2x+4y=k \end{array}\right.$ y presenta el resultado en una tabla.
+7. Discute según los valores de $k$ el sistema $\left\{\begin{array}{l} kx+y=1 \\ x+ky=1 \end{array}\right.$, dando la solución general cuando exista.
+8. Encuentra valores de $b$ y $c$ para que el sistema $\left\{\begin{array}{l} 2x-3y=6 \\ bx+9y=c \end{array}\right.$ sea: a) compatible determinado; b) compatible indeterminado; c) incompatible.
+9. Decide si son equivalentes los sistemas $\left\{\begin{array}{l} x+y=4 \\ x-y=2 \end{array}\right.$ y $\left\{\begin{array}{l} 2x=6 \\ 2y=2 \end{array}\right.$, y justifica qué transformaciones llevan del primero al segundo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+1. a) $\dfrac{3}{-6}=\dfrac{-2}{4}=-\dfrac{1}{2}$, pero el término independiente de la segunda es $0$ y tendría que ser $-10$: incompatible, rectas paralelas.
+   b) Las tres razones valen $-\dfrac{2}{3}$: compatible indeterminado, rectas coincidentes.
+   c) $\dfrac{-1}{2}\neq\dfrac{1}{-1}$, es decir $-\dfrac{1}{2}\neq-1$: compatible determinado, rectas secantes.
+   d) $\dfrac{2}{-4}=-\dfrac{1}{2}$ y $\dfrac{1}{2}$ son distintas: compatible determinado, rectas secantes.
+   Determinantes: $0$, $0$, $-1$ y $8$ respectivamente, coherentes con las cuatro clasificaciones.
+2. $D = 3(-1)-2\cdot5=-13$. Entonces $x = \dfrac{1\cdot(-1)-7\cdot5}{-13} = \dfrac{-36}{-13}=\dfrac{36}{13}$ e $y = \dfrac{3\cdot7-2\cdot1}{-13} = \dfrac{19}{-13}=-\dfrac{19}{13}$. Comprobación en la segunda ecuación: $2\cdot\dfrac{36}{13}+\dfrac{19}{13} = \dfrac{72+19}{13} = \dfrac{91}{13} = 7$.
+3. La primera ecuación es la segunda multiplicada por $-3$: el sistema es compatible indeterminado y basta con $x-2y=3$. Tomando $y=\lambda$, las soluciones son $(3+2\lambda,\lambda)$. Por ejemplo $(3,0)$, $(5,1)$ y $(1,-1)$.
+4. $D = 2m-12$ se anula en $m=6$, y entonces la segunda ecuación es $4x+6y=2$, exactamente el doble de la primera: compatible indeterminado. La familia no puede ser incompatible porque el término independiente de la segunda ya es el doble del de la primera, así que al hacerse proporcionales los coeficientes las dos ecuaciones coinciden.
+5. $D = 3\cdot2-a\cdot(-1) = 6+a$, que se anula en $a=-6$. Con ese valor el sistema es $3x-y=2$ y $-6x+2y=5$; las razones de los coeficientes valen $-\dfrac{1}{2}$ y la de los términos independientes $\dfrac{2}{5}$, distinta: incompatible. Las pendientes son ambas $3$, luego las rectas son paralelas.
+6. $D = 4-2k$, que se anula en $k=2$. Para $k\neq2$ el sistema es compatible determinado. Para $k=2$ queda $x+2y=3$ y $2x+4y=2$; la segunda equivale a $x+2y=1$, incompatible con la primera. Tabla: si $k\neq2$, SCD; si $k=2$, SI. Esta familia nunca es indeterminada.
+7. $D = k^2-1$, con valores críticos $k=1$ y $k=-1$. Para $k\neq\pm1$ el sistema es compatible determinado con $x=y=\dfrac{1}{k+1}$. Para $k=1$ las dos ecuaciones son $x+y=1$: compatible indeterminado, con soluciones $(1-\lambda,\lambda)$. Para $k=-1$ el sistema es $-x+y=1$ y $x-y=1$, cuya suma da $0=2$: incompatible.
+8. El determinante es $D = 18+3b$, que se anula en $b=-6$. a) Cualquier $b\neq-6$ con cualquier $c$, por ejemplo $b=1$ y $c=0$. b) $b=-6$ y $c=-18$, porque entonces la segunda ecuación es la primera multiplicada por $-3$. c) $b=-6$ y cualquier $c\neq-18$, por ejemplo $c=0$.
+9. Sí son equivalentes: los dos tienen como única solución $(3,1)$. Se pasa del primero al segundo sustituyendo la primera ecuación por la suma de las dos, que da $2x=6$, y la segunda por la resta de la primera menos la segunda, que da $2y=2$. Ambas son operaciones elementales admisibles.
+:::

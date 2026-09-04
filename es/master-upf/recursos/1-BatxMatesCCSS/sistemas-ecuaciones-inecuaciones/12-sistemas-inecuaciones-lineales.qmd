@@ -1,0 +1,404 @@
+---
+title: "Tema 4.12 Sistemas de inecuaciones lineales y su interpretación gráfica"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 12-sistemas-inecuaciones-lineales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Inecuaciones lineales con dos incógnitas y el semiplano como solución, frontera continua o discontinua, punto de prueba, sistemas de inecuaciones, recinto o región factible, cálculo exacto de los vértices, recintos acotados, no acotados y vacíos, e introducción a los valores extremos de F = px + qy con rectas de nivel.
+categories: [sistemas de inecuaciones, 1 Batx, matemáticas CCSS, semiplano, recinto, región factible, optimización]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De una recta a media hoja de papel
+
+Ya sabes resolver una inecuación de primer grado con **una** incógnita, cuya respuesta es un tramo de la recta real, y un sistema lineal con **dos** incógnitas, cuya respuesta es casi siempre un punto. ¿Qué ocurre al mezclar las dos ideas, con una **desigualdad** y **dos** incógnitas? La respuesta pasa a ser una **zona del plano**, media hoja de papel entera; y cuando imponemos varias condiciones a la vez, esas zonas se recortan unas a otras y aparece una figura poligonal que es la protagonista del apartado.
+
+Este cambio no es un capricho. En Ciencias Sociales casi ninguna restricción real es una igualdad: una fábrica no consume *exactamente* todo el acero disponible, lo consume *como mucho*; una dieta no aporta *exactamente* las calorías mínimas, aporta *al menos* las mínimas. Traducir esas condiciones a inecuaciones y dibujarlas es el primer paso de la **programación lineal**.
+
+## Inecuaciones lineales con dos incógnitas
+
+::: {.callout-note}
+## Definición
+
+Una **inecuación lineal (o de primer grado) con dos incógnitas** es una desigualdad que, tras operar y pasar todo a un miembro, se puede escribir en una de estas cuatro formas:
+$$
+ax + by + c < 0, \qquad ax + by + c > 0, \qquad ax + by + c \leq 0, \qquad ax + by + c \geq 0
+$$
+con $a$, $b$ y $c$ reales y **$a$ y $b$ no nulos a la vez**. Una **solución** es un par ordenado $(x_0, y_0)$ que, al sustituirlo, convierte la desigualdad en una afirmación cierta, y el **conjunto solución** reúne todos esos pares.
+:::
+
+Las soluciones ya no son números sueltos, sino **puntos del plano**. En $3x - y + 5 > 0$, el par $(2,0)$ **sí** es solución, porque $11 > 0$; en cambio $(0,6)$ **no** lo es, ya que $-6+5 = -1$ no es mayor que $0$. Comprobar un punto es fácil: se sustituye y se mira si la desigualdad queda bien orientada. Lo difícil es otra cosa.
+
+::: {.callout-important}
+## Un conjunto solución que no se puede escribir con una lista
+
+Con una incógnita podíamos escribir la solución como un intervalo y quedarnos tranquilos. Con dos ya no: el conjunto solución es **doblemente infinito**. Si fijas $x = 2$ en $3x - y + 5 > 0$, queda $y < 11$, toda una semirrecta vertical de soluciones; y **para cada uno de los infinitos valores de $x$** obtienes otra semirrecta entera. No hay fórmula que escriba esa lista y, sin embargo, sí se puede **dibujar** el conjunto completo con dos trazos. Donde el álgebra se queda muda, la geometría lo dice todo de golpe.
+:::
+
+## El semiplano: la solución de una sola inecuación
+
+La recta $ax + by + c = 0$, la que se obtiene cambiando la desigualdad por un igual, parte el plano en dos trozos. Cada trozo se llama **semiplano** y la recta que los separa es la **frontera**.
+
+::: {.callout-note}
+## El resultado clave
+
+El conjunto solución de una inecuación lineal con dos incógnitas es **uno de los dos semiplanos** determinados por la recta frontera $ax + by + c = 0$.
+
+- Si la desigualdad es **estricta** ($<$ o $>$), la frontera **no** pertenece a la solución: se dibuja **discontinua**.
+- Si es **no estricta** ($\leq$ o $\geq$), la frontera **sí** pertenece: se dibuja **continua**.
+:::
+
+Es el convenio del punto relleno y el punto hueco de la recta real, ascendido una dimensión. ¿Y cómo se sabe **cuál** de los dos semiplanos es el bueno? Hay dos vías, y conviene dominar las dos.
+
+::: {.callout-note}
+## Vía 1 · Despejar la $y$
+
+Si $b \neq 0$, despeja la $y$ y deja la inecuación como $y < mx + n$ o $y > mx + n$. La lectura es entonces inmediata: $y > mx + n$ es el semiplano **de encima** de la recta y $y < mx + n$, el **de debajo**. Eso sí, al despejar, si divides entre un número negativo **tienes que girar el sentido**; ahí se pierden más ejercicios que en ningún otro sitio del apartado.
+:::
+
+::: {.callout-note}
+## Vía 2 · El punto de prueba
+
+1. Dibuja la recta frontera $ax+by+c=0$; bastan dos de sus puntos, normalmente los cortes con los ejes.
+2. Elige un **punto de prueba** que **no** esté sobre la frontera. Si la recta no pasa por el origen, $(0,0)$ es siempre la mejor elección.
+3. Sustitúyelo en la inecuación original: si la cumple, el semiplano bueno es **el que lo contiene**; si no, es **el otro**.
+4. Sombrea ese semiplano y marca la frontera continua o discontinua según el tipo de desigualdad.
+:::
+
+**Ejemplo resuelto 1.** Representa $2x + 3y \leq 12$.
+
+La frontera es $2x + 3y = 12$, que pasa por $(6,0)$ y por $(0,4)$; como la desigualdad es $\leq$, se dibuja **continua**. Punto de prueba $(0,0)$: $0 \leq 12$, **cierto**, así que la solución es el semiplano que contiene al origen, **incluida la recta**. Por la otra vía: $y \leq -\dfrac{2}{3}x + 4$, «lo de debajo». Coinciden.
+
+**Ejemplo resuelto 2.** Representa $y > 2x + 1$.
+
+Ya viene despejada: es el semiplano **superior**, sin incluir la recta, que se dibuja **discontinua** por ser estricta la desigualdad. La recta $y = 2x+1$ pasa por $(0,1)$ y por $(-2,-3)$, y el punto de prueba $(0,0)$ da $0 > 1$, **falso**: el semiplano bueno es el de arriba.
+
+**Ejemplo resuelto 3.** Representa $x - 2y \geq 3$.
+
+Frontera continua $x - 2y = 3$, por $(3,0)$ y $(1,-1)$. Punto de prueba $(0,0)$: $0 \geq 3$ es **falso**, luego el semiplano solución es el que **no** contiene al origen. Despejando: $-2y \geq 3 - x$ y, al dividir entre $-2$, **el sentido gira**, quedando $y \leq \dfrac{x-3}{2}$, el de debajo.
+
+::: {.callout-caution}
+## Tres errores clásicos con el punto de prueba
+
+1. **Elegir un punto de prueba que está sobre la frontera.** Si la recta pasa por el origen, como en $y < 3x$, el punto $(0,0)$ **no sirve**: cumple la igualdad y no decide nada. Usa $(1,0)$.
+2. **Olvidar girar el sentido** al despejar la $y$ cuando su coeficiente es negativo: de $x - 2y \geq 3$ sale $y \leq \frac{x-3}{2}$, no $y \geq \frac{x-3}{2}$.
+3. **Dibujar continua una frontera estricta.** No es estética: en un problema real distingue si el presupuesto se puede gastar entero o hay que quedarse por debajo.
+:::
+
+### Applet · Una inecuación es un semiplano {.unnumbered}
+
+Escribe una inecuación del tipo `2x+3y<=12` usando `<=`, `>=`, `<` o `>` (los coeficientes admiten fracciones como `3/4`) y elige el punto de prueba. Observa la recta frontera con su trazo continuo o discontinuo, la sustitución numérica del punto de prueba y el semiplano sombreado que resulta. Cambia solo el signo de la desigualdad y comprueba que el sombreado salta al otro lado sin que la recta se mueva.
+
+::: {#panel-semiplano .applet-panel data-applet-sys="semiplano"}
+:::
+
+## Sistemas de inecuaciones lineales: aparece el recinto
+
+::: {.callout-note}
+## Definición
+
+Un **sistema de inecuaciones lineales con dos incógnitas** es un conjunto de dos o más inecuaciones lineales que deben cumplirse **a la vez**. Su conjunto solución es la **intersección** de varios semiplanos, y a esa intersección dibujada en el plano se le llama **recinto** o **región factible**.
+:::
+
+La palabra «recinto» está bien elegida: lo que sale casi siempre es una parcela del plano delimitada por segmentos de recta, y cada inecuación aporta un lado.
+
+::: {.callout-note}
+## Procedimiento para dibujar un recinto
+
+1. Dibuja **todas** las rectas frontera en unos mismos ejes, con trazo continuo o discontinuo según corresponda, y **etiquétalas**: al calcular vértices necesitarás saber qué recta es cada una.
+2. Decide el semiplano bueno de cada inecuación con un punto de prueba.
+3. El recinto es la zona que cumple **todas** las condiciones a la vez.
+4. Comprueba el resultado con un punto claramente interior: debe cumplir todas las inecuaciones.
+:::
+
+::: {.callout-tip}
+## Sombrear al revés: el truco que salva el dibujo
+
+Con cinco inecuaciones sombreadas, la región buena es la que ha quedado sombreada **cinco veces**, ni cuatro ni tres, y distinguir eso a lápiz es casi imposible. El truco es **sombrear al revés**: tachar en cada inecuación los puntos que **no** son solución. Al final, el recinto es **la única zona que ha quedado limpia**, los vértices se localizan de un vistazo y el dibujo no se convierte en una mancha.
+:::
+
+**Ejemplo resuelto 4.** Dibuja el recinto del sistema
+$$
+\left\{
+\begin{array}{rcl}
+x + y & \leq & 6 \\
+y & \leq & 2x \\
+y & \geq & 1
+\end{array}
+\right.
+$$
+
+- $x + y \leq 6$: recta por $(6,0)$ y $(0,6)$, continua. Prueba $(0,0)$: cierto, semiplano de abajo.
+- $y \leq 2x$: recta por el origen, continua. El origen **no** vale como punto de prueba; con $(1,0)$ sale $0 \leq 2$, cierto: semiplano por debajo de esa recta.
+- $y \geq 1$: recta horizontal continua. Prueba $(0,0)$: falso, semiplano de arriba.
+
+Un punto interior claro es $(3,2)$, que cumple las tres condiciones. El resultado es un triángulo con los tres lados continuos. Si la tercera condición hubiera sido $y > 1$, el triángulo sería el mismo, pero **su base quedaría fuera**: en un mismo recinto pueden convivir lados continuos y discontinuos.
+
+### Applet · Recinto de un sistema de inecuaciones {.unnumbered}
+
+Escribe hasta cinco inecuaciones, **una por línea**, con la sintaxis del applet anterior (`x>=0`, `3x+2y<=120`, `y<2x-1`). El panel dibuja todos los semiplanos, resalta la región común, calcula los **vértices exactos** en forma de fracción, informa de si el recinto es acotado, no acotado o vacío, y permite comprobar la pertenencia de un punto inecuación por inecuación. Empieza con el sistema anterior y añade después $y \leq 2$ para ver cómo el triángulo se convierte en un trapecio.
+
+::: {#panel-recinto .applet-panel data-applet-sys="recinto"}
+:::
+
+## Los vértices del recinto
+
+Los **vértices** son las esquinas del recinto y la información más valiosa que este contiene: en el apartado siguiente verás que los valores extremos de una función lineal se alcanzan precisamente ahí.
+
+::: {.callout-note}
+## Cómo se calcula un vértice
+
+1. Toma dos de las inecuaciones y conviértelas en **ecuaciones**, cambiando la desigualdad por un igual.
+2. Resuelve ese sistema $2\times 2$ con **valores exactos** (fracciones, no decimales redondeados).
+3. **Comprueba que el punto obtenido cumple todas las demás inecuaciones.** Si no, ese corte existe pero **no es un vértice del recinto**.
+
+El paso 3 no es opcional: con cinco restricciones hay hasta diez cortes posibles y solo unos pocos son vértices.
+:::
+
+**Ejemplo resuelto 6.** Halla los vértices del recinto
+$$
+\left\{
+\begin{array}{rcl}
+x & \geq & 0 \\
+y & \geq & 0 \\
+x + 2y & \leq & 80 \\
+3x + 2y & \leq & 120
+\end{array}
+\right.
+$$
+
+Vamos corte por corte.
+
+- $x = 0$ con $y = 0$: el punto $(0,0)$, que cumple $0 \leq 80$ y $0 \leq 120$. **Es vértice.**
+- $x = 0$ con $x + 2y = 80$: sale $(0,40)$, y $2\cdot 40 = 80 \leq 120$. **Es vértice.**
+- $x + 2y = 80$ con $3x + 2y = 120$: restando, $2x = 40$, luego $x = 20$ e $y = 30$. **Es vértice.**
+- $3x + 2y = 120$ con $y = 0$: sale $(40,0)$, y $40 \leq 80$. **Es vértice.**
+- $x + 2y = 80$ con $y = 0$: sale $(80,0)$, pero $3\cdot 80 = 240 \leq 120$ es **falso**. Ese corte **no es vértice**.
+
+El recinto es el cuadrilátero de vértices $(0,0)$, $(0,40)$, $(20,30)$ y $(40,0)$.
+
+::: {.callout-warning}
+## No todo corte de rectas es un vértice
+
+El punto $(80,0)$ del ejemplo anterior existe, está bien calculado y no sirve para nada. Es el error más caro del apartado, porque arrastra el máximo y el mínimo: cada candidato hay que **filtrarlo** sustituyéndolo en las inecuaciones que no se usaron para obtenerlo.
+:::
+
+## Recintos acotados, no acotados y vacíos
+
+::: {.callout-note}
+## Los tres tipos de recinto
+
+- **Acotado**: cabe dentro de un círculo suficientemente grande; es un polígono cerrado con superficie finita.
+- **No acotado**: se prolonga indefinidamente en alguna dirección; tiene vértices, pero también lados infinitos.
+- **Vacío**: ningún punto cumple todas las condiciones a la vez. Se escribe $\varnothing$.
+
+Tampoco tiene por qué ser **cerrado**: si alguna desigualdad es estricta, parte de su borde no le pertenece.
+:::
+
+El recinto del ejemplo 6 es **acotado**. En cambio, $x\geq0$, $y\geq0$, $x+y\geq4$ define uno **no acotado**: tiene solo dos vértices, $(4,0)$ y $(0,4)$, y se extiende indefinidamente hacia arriba y hacia la derecha, conteniendo por ejemplo a $(1000,1000)$.
+
+Si las rectas frontera son **paralelas** ocurre algo curioso. El sistema $x + y \leq 3$ junto con $x + y \geq -2$ da una **banda infinita**, que no es un polígono y no tiene ningún vértice. Y con esas mismas rectas, girando las condiciones, $x + y \geq 3$ junto con $x + y \leq -2$ **no tiene solución**: los semiplanos apuntan en direcciones opuestas y el recinto es **vacío**.
+
+::: {.callout-important}
+## $\varnothing$ es una respuesta, no un fracaso
+
+Si al dibujar no queda ninguna zona limpia, el ejercicio no está mal hecho: está terminado, y la respuesta es que el sistema es **incompatible**; en un problema real, que las condiciones del enunciado son contradictorias. Regla útil: si **dos** inecuaciones ya tienen intersección vacía, el recinto completo será vacío.
+:::
+
+::: {.callout-tip}
+## Por qué el recinto siempre es convexo
+
+Un semiplano es **convexo**: si tomas dos puntos suyos, el segmento que los une queda entero dentro. Y la intersección de convexos vuelve a ser convexa, así que un recinto nunca puede tener «entrantes» ni forma de estrella: un pico hacia dentro delata un error de sombreado. Esta propiedad es la que hará que baste con mirar los vértices.
+:::
+
+## Valores extremos de $F = px + qy$ sobre el recinto
+
+Hasta ahora hemos descrito el conjunto de las soluciones posibles. La pregunta que de verdad interesa en las aplicaciones es otra: entre todos los puntos posibles, ¿**cuál es el mejor**?
+
+::: {.callout-note}
+## El planteamiento
+
+Se llama **función objetivo** a una expresión lineal $F(x,y) = p\,x + q\,y$ que mide lo que se quiere maximizar (un beneficio, una producción) o minimizar (un coste, un tiempo). Las inecuaciones del sistema son las **restricciones** y su recinto es la **región factible**. El punto de la región factible que hace $F$ máxima o mínima es la **solución óptima**.
+:::
+
+Las **rectas de nivel** son la clave para entender por qué la solución está donde está.
+
+::: {.callout-important}
+## Rectas de nivel y teorema de los vértices
+
+Fijado un número $k$, la ecuación $p\,x + q\,y = k$ reúne los puntos donde la función objetivo vale exactamente $k$, y es una **recta**. Al cambiar $k$ se obtiene una **familia de rectas paralelas**, todas de pendiente $-\dfrac{p}{q}$ (si $q \neq 0$). Se llaman **rectas de nivel** de $F$ y son lo mismo que las curvas de nivel de un mapa topográfico.
+
+Desliza esa recta paralelamente a sí misma sobre el dibujo: en un sentido $k$ aumenta y en el contrario disminuye. El **máximo** de $F$ se alcanza en la **última posición de la recta de nivel que todavía toca al recinto** en el sentido creciente, y el **mínimo**, en la última que lo toca en el sentido decreciente. Y aquí está el resultado central: como el recinto es convexo, esa última posición de contacto **es siempre un vértice** o, si la recta de nivel resulta paralela a un lado, **todo un lado** completo.
+
+**Consecuencia práctica.** Para hallar el máximo y el mínimo de $F$ sobre un recinto **acotado** basta con evaluar $F$ en **todos los vértices** y comparar.
+:::
+
+::: {.callout-note}
+## Procedimiento completo
+
+1. Identifica las incógnitas y escribe la función objetivo $F = px+qy$.
+2. Traduce cada condición a una inecuación, sin olvidar las **condiciones de no negatividad** $x \geq 0$ e $y \geq 0$ cuando las incógnitas representan cantidades.
+3. Dibuja el recinto y calcula **todos** los vértices, filtrando los que no cumplen todas las restricciones.
+4. Evalúa $F$ en cada vértice y ordena los resultados en una tabla.
+5. El mayor valor es el máximo y el menor es el mínimo. Interpreta la respuesta en el contexto, con sus unidades.
+:::
+
+**Ejemplo resuelto 7 · optimización completa.** Halla el máximo y el mínimo de $F(x,y) = 5x + 3y$ sobre el recinto
+$$
+\left\{
+\begin{array}{rcl}
+x & \geq & 0 \\
+y & \geq & 0 \\
+x + y & \leq & 8 \\
+2x + y & \leq & 10
+\end{array}
+\right.
+$$
+
+**Vértices.** $(0,0)$, corte de los ejes; $(0,8)$, válido porque $8 \leq 10$; $(2,6)$, corte de $x+y=8$ con $2x+y=10$ (restando, $x=2$ y de ahí $y=6$); y $(5,0)$, válido porque $5 \leq 8$. El corte $(8,0)$ **no** cumple $16 \leq 10$ y se descarta.
+
+**Evaluación de la función objetivo.**
+
+| Vértice | $F = 5x + 3y$ |
+|---|---|
+| $(0,0)$ | $0$ · mínimo |
+| $(0,8)$ | $24$ |
+| $(2,6)$ | $28$ · máximo |
+| $(5,0)$ | $25$ |
+
+El **máximo** vale $28$ y se alcanza en $(2,6)$; el **mínimo** vale $0$, en $(0,0)$. Con rectas de nivel: la familia $5x+3y=k$ tiene pendiente $-\tfrac{5}{3}$, y la que pasa por $(2,6)$ es $5x+3y=28$; cualquier paralela con $k>28$ ya no toca el recinto.
+
+**Ejemplo resuelto 8 · cuando el óptimo no es único.** Sobre el **mismo** recinto, optimiza ahora $F(x,y) = 3x + 3y$. Los valores en los vértices son $F(0,0)=0$, $F(0,8)=24$, $F(2,6)=6+18=24$ y $F(5,0)=15$.
+
+El máximo, $24$, se alcanza en **dos vértices adyacentes** y, por tanto, en **todos los puntos del segmento** que los une, contenido en $x+y=8$: por ejemplo, $(1,7)$ también da $F=24$. La razón gráfica es que la recta de nivel $3x+3y=24$, de pendiente $-1$, es **paralela** a ese lado, así que al deslizarla se apoya sobre un lado entero en vez de tocar una esquina.
+
+**Ejemplo resuelto 9 · problema contextualizado.** Con $80$ kg de acero y $120$ kg de aluminio se fabrican bicicletas de montaña y de paseo, con un beneficio de $200$ y $150$ euros respectivamente. Cada bicicleta de montaña necesita $1$ kg de acero y $3$ kg de aluminio; cada una de paseo, $2$ kg de cada metal. ¿Cuántas conviene fabricar de cada tipo?
+
+**Incógnitas.** $x$ = bicicletas de montaña, $y$ = bicicletas de paseo. **Función objetivo.** $F(x,y) = 200x + 150y$ euros, a maximizar.
+
+**Restricciones.** Conviene ordenar los datos en una tabla, que se rellena por columnas y se lee por filas:
+
+| Material | Montaña ($x$) | Paseo ($y$) | Disponible |
+|---|---|---|---|
+| Acero | $1x$ | $2y$ | $80$ |
+| Aluminio | $3x$ | $2y$ | $120$ |
+
+De ahí salen $x + 2y \leq 80$ y $3x + 2y \leq 120$, a las que hay que añadir $x \geq 0$ e $y \geq 0$: no se puede fabricar un número negativo de bicicletas. Es exactamente el recinto del ejemplo 6, con vértices $(0,0)$, $(0,40)$, $(20,30)$ y $(40,0)$. Evaluando $F$: $F(0,0)=0$; $F(0,40)=6\,000$ €; $F(20,30)=4\,000+4\,500=8\,500$ €, el **máximo**; $F(40,0)=8\,000$ €.
+
+Conviene fabricar **$20$ bicicletas de montaña y $30$ de paseo**, con un beneficio de $8\,500$ euros. Con ese plan se gastan $20 + 60 = 80$ kg de acero y $60+60=120$ kg de aluminio: los dos materiales se agotan exactamente, algo muy típico del punto óptimo.
+
+::: {.callout-warning}
+## En un recinto no acotado puede no haber máximo
+
+El teorema de los vértices garantiza máximo y mínimo cuando el recinto es **acotado y no vacío**; si no está acotado, la garantía desaparece. En el recinto $x\geq0$, $y\geq0$, $x+y\geq4$, la función $F = x+y$ tiene mínimo $4$, alcanzado en todo el segmento entre $(4,0)$ y $(0,4)$, pero **no tiene máximo**: se puede hacer tan grande como se quiera. Comprueba siempre si el recinto está acotado en la dirección en que crece la función objetivo.
+:::
+
+### Applet · Valores extremos sobre el recinto {.unnumbered}
+
+Introduce las restricciones (una por línea) y los coeficientes $p$ y $q$ de $F = px + qy$. El panel calcula los vértices exactos, construye la tabla de valores de $F$, señala el máximo y el mínimo, avisa cuando el recinto no está acotado o el óptimo se alcanza en todo un lado, y dibuja una **recta de nivel deslizante** con la que ver el momento en que abandona el recinto. Prueba con $F=5x+3y$ y después con $F=3x+3y$ sobre el mismo recinto, para comparar los dos ejemplos del texto.
+
+::: {#panel-optimiza .applet-panel data-applet-sys="optimiza"}
+:::
+
+::: {.callout-tip}
+## De dónde viene todo esto
+
+Estas técnicas nacieron a mediados del siglo XX, en la logística de guerra y la planificación económica posterior, para repartir recursos escasos entre usos que compiten. El método general con muchas incógnitas se llama **método del símplex**, y con él un ordenador resuelve hoy en segundos problemas con miles de restricciones. Con dos incógnitas la región factible es un polígono; con tres, un poliedro; con doscientas, una figura que nadie puede dibujar. La idea, sin embargo, sigue siendo la misma: el óptimo está en una esquina.
+:::
+
+## Errores frecuentes
+
+1. Dar la solución como si fuera un punto o un intervalo, en lugar de como una **región** del plano.
+2. Dibujar continua una frontera estricta, o discontinua una no estricta.
+3. Elegir como punto de prueba un punto que está **sobre** la recta frontera.
+4. No girar el sentido de la desigualdad al despejar la $y$ cuando su coeficiente es negativo.
+5. En un sistema, **unir** las regiones en lugar de **intersecarlas**.
+6. Olvidar las condiciones de no negatividad $x\geq0$, $y\geq0$ en un problema con cantidades reales.
+7. Tomar como vértice cualquier corte de dos rectas frontera, sin comprobar que cumple las demás restricciones.
+8. Calcular los vértices con decimales redondeados en vez de con fracciones exactas.
+9. Evaluar la función objetivo solo en algunos vértices, olvidando los que están sobre los ejes.
+10. Afirmar que existe un máximo en un recinto **no acotado** sin comprobarlo, o no detectar el óptimo múltiple cuando dos vértices dan el mismo valor.
+11. Interpretar un recinto vacío como un error de cálculo en vez de responder $\varnothing$.
+12. Dar la respuesta final como un par de números sin interpretarla en el contexto ni indicar las unidades.
+
+## Resumen del apartado
+
+- Una **inecuación lineal con dos incógnitas** compara $ax+by+c$ con $0$, y sus soluciones son **pares** $(x,y)$: un conjunto doblemente infinito que no se puede escribir con una lista, pero sí dibujar.
+- Su conjunto solución es un **semiplano** limitado por la recta frontera $ax+by+c=0$, que se dibuja **discontinua** si la desigualdad es estricta y **continua** si no lo es.
+- El semiplano correcto se identifica **despejando la $y$** (girando el sentido si su coeficiente es negativo) o con un **punto de prueba** que no esté sobre la frontera.
+- Un **sistema de inecuaciones** exige que todo se cumpla a la vez: su solución es la **intersección** de los semiplanos, el **recinto** o región factible.
+- Los **vértices** salen de resolver los sistemas de parejas de rectas frontera, y **hay que filtrarlos** comprobando que cumplen las demás inecuaciones.
+- Un recinto puede ser **acotado**, **no acotado**, una **banda** sin vértices o **vacío**. Siempre es **convexo** y no tiene por qué contener todo su borde.
+- Sobre un recinto acotado y no vacío, $F = px+qy$ alcanza máximo y mínimo **en un vértice**; si la recta de nivel es paralela a un lado, en todo ese lado.
+- Método práctico: plantear restricciones, dibujar el recinto, calcular y filtrar vértices, evaluar $F$ en todos ellos y comparar.
+
+## Ejercicios propuestos
+
+**1.** Comprueba si los puntos $(0,0)$, $(3,1)$ y $(-2,5)$ son soluciones de la inecuación $2x - y + 1 \geq 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$(0,0)$ da $1 \geq 0$ y $(3,1)$ da $6 \geq 0$: los dos **sí** son solución. En cambio $(-2,5)$ da $-4-5+1 = -8$, que no es $\geq 0$: **no** lo es. Los dos primeros están en el mismo semiplano; el tercero, en el otro.
+:::
+
+**2.** Representa $y \leq -x$ eligiendo un punto de prueba adecuado y explicando por qué no sirve el origen.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La recta $y = -x$ **pasa por el origen**, así que $(0,0)$ está sobre la frontera y no decide nada. Con el punto de prueba $(1,0)$: $0 \leq -1$ es **falso**, luego el semiplano bueno es el que **no** contiene a $(1,0)$, el de abajo a la izquierda, con frontera continua. Comprobación con $(-1,0)$: $0 \leq 1$, cierto.
+:::
+
+**3.** Dibuja el recinto de $\left\{ x \geq 0,\ y \geq 0,\ x + y \leq 5,\ y \leq 3 \right\}$ y halla sus vértices.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los cortes válidos son $(0,0)$; $(0,3)$, porque $3\leq5$; $(2,3)$, corte de $y=3$ con $x+y=5$; y $(5,0)$, porque $0\leq3$. En cambio, $(0,5)$ falla $y \leq 3$ y **se descarta**. El recinto es **acotado**: un trapecio de vértices $(0,0)$, $(0,3)$, $(2,3)$ y $(5,0)$.
+:::
+
+**4.** Estudia si el recinto de $\left\{ x + y \geq 4,\ x + y \leq 1 \right\}$ es acotado, no acotado o vacío.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Las dos rectas frontera son **paralelas** (misma pendiente $-1$). La primera condición exige estar por encima de la recta más alta y la segunda, por debajo de la más baja: son incompatibles. El recinto es **vacío**, $\varnothing$, porque ningún punto tiene suma de coordenadas a la vez $\geq 4$ y $\leq 1$.
+:::
+
+**5.** Halla el máximo y el mínimo de $F(x,y) = 4x + y$ sobre el recinto $\left\{ x\geq0,\ y\geq0,\ x+y\leq6,\ x \leq 4 \right\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Vértices: $(0,0)$; $(0,6)$; $(4,2)$, corte de $x=4$ con $x+y=6$; y $(4,0)$. El corte $(6,0)$ falla $x\leq4$ y se descarta. Evaluando: $F(0,0)=0$, $F(0,6)=6$, $F(4,2)=18$ y $F(4,0)=16$. Máximo $18$ en $(4,2)$; mínimo $0$ en $(0,0)$.
+:::
+
+**6.** Una empresa dispone de $60$ horas de taller y $48$ de acabado a la semana. Cada mesa requiere $3$ horas de taller y $2$ de acabado y deja $90$ euros; cada silla, $2$ de taller y $3$ de acabado, y deja $60$ euros. Plantea el problema y halla el plan óptimo.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $x$ mesas e $y$ sillas: maximizar $F = 90x + 60y$ sujeto a $3x + 2y \leq 60$, $2x + 3y \leq 48$, $x \geq 0$, $y \geq 0$. Los vértices son $(0,0)$; $(0,16)$, válido porque $32 \leq 60$; el corte de las dos rectas oblicuas, que da $5x = 84$, o sea $\left(\frac{84}{5},\frac{24}{5}\right)$; y $(20,0)$, válido porque $40 \leq 48$. El corte $(24,0)$ falla $3\cdot24 \leq 60$ y se descarta.
+
+Evaluando $F$ se obtiene $0$; $960$; $\frac{7560 + 1440}{5} = 1800$; y $1800$. El máximo es $1\,800$ euros y se alcanza en **dos vértices**, luego también en todo el lado que los une. Como las cantidades deben ser **enteras**, valen $x=20$, $y=0$, y también $x=18$, $y=3$.
+:::
+
+**7.** Explica, sin calcular nada, por qué para hallar el máximo de $F=px+qy$ sobre un recinto acotado no hace falta probar puntos interiores.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Porque las rectas de nivel $px+qy=k$ son paralelas entre sí y $F$ crece al desplazarlas en un sentido fijo. Si tomas un punto **interior**, siempre puedes desplazar un poco su recta de nivel en el sentido creciente sin salirte de la región: ese punto no puede ser el máximo. El óptimo solo puede estar en el borde y, como el recinto es convexo, la última recta de nivel que lo toca lo hace en un vértice o en un lado cuyos extremos son vértices.
+:::

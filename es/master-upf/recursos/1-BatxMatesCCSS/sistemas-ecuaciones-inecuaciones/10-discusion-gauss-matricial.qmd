@@ -1,0 +1,854 @@
+---
+title: "Tema 4.10 Discusión de un sistema mediante el método de Gauss"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 10-discusion-gauss-matricial
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Expresión matricial de un sistema lineal, matriz de coeficientes, matriz de incógnitas y matriz de términos independientes, ecuación matricial A·X=B, matriz ampliada y escalonamiento sobre ella, concepto de rango a partir de los pivotes, criterio de discusión comparando el rango de la matriz de coeficientes con el de la ampliada y con el número de incógnitas, grados de libertad y solución paramétrica de un sistema compatible indeterminado, sistemas homogéneos y discusión de sistemas con parámetros, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, matriz ampliada, expresión matricial, rango, discusión de sistemas, sistemas homogéneos, parámetros]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Escribir menos para ver más
+
+Cuando aplicas el método de Gauss a mano, gran parte del tiempo se te va en copiar una y otra vez las letras $x$, $y$, $z$, los signos $+$ y los signos $=$. Esa escritura no aporta nada: las incógnitas están siempre en el mismo sitio y en el mismo orden. Lo único que cambia de un paso a otro son **los números**.
+
+De ahí surge una idea muy sencilla y enormemente fértil: **prescindir de las letras y quedarse solo con los coeficientes**, colocados en una tabla rectangular que conserve las posiciones. Esa tabla se llama **matriz**, y trabajar con ella no solo ahorra escritura, sino que hace visible de un vistazo la estructura del sistema: dónde hay ceros, qué filas se parecen, cuántas ecuaciones aportan información nueva.
+
+Este apartado tiene dos mitades. En la primera aprenderás a escribir un sistema en **forma matricial** y a volver de la matriz al sistema. En la segunda usarás esa escritura para **discutir** un sistema, es decir, para decidir si tiene una solución, infinitas o ninguna, y cuántos parámetros necesita la respuesta.
+
+## Expresión matricial de un sistema
+
+::: {.callout-note}
+## Matrices asociadas a un sistema
+
+Dado el sistema
+$$
+\left\{
+\begin{array}{rcrcrcr}
+a_1x & + & b_1y & + & c_1z & = & d_1 \\
+a_2x & + & b_2y & + & c_2z & = & d_2 \\
+a_3x & + & b_3y & + & c_3z & = & d_3
+\end{array}
+\right.
+$$
+se definen:
+
+- la **matriz de coeficientes** $A$, que recoge los coeficientes de las incógnitas;
+- la **matriz de incógnitas** $X$, una columna con $x$, $y$, $z$;
+- la **matriz de términos independientes** $B$, una columna con $d_1$, $d_2$, $d_3$.
+
+$$
+A = \begin{pmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{pmatrix}, \qquad
+X = \begin{pmatrix} x \\ y \\ z \end{pmatrix}, \qquad
+B = \begin{pmatrix} d_1 \\ d_2 \\ d_3 \end{pmatrix}.
+$$
+:::
+
+Las **filas** de $A$ corresponden a las **ecuaciones** y las **columnas** a las **incógnitas**: la primera columna guarda todos los coeficientes de $x$, la segunda los de $y$ y la tercera los de $z$. Por eso el orden importa tanto: si en una ecuación falta una incógnita, hay que escribir un $0$ en su casilla, porque de lo contrario las columnas dejan de significar lo que deben.
+
+::: {.callout-important}
+## La ecuación matricial $A\cdot X = B$
+
+El sistema completo se resume en una sola igualdad:
+$$
+A \cdot X = B,
+$$
+donde el producto $A\cdot X$ se calcula multiplicando **cada fila de $A$ por la columna $X$**, término a término, y sumando:
+$$
+\begin{pmatrix} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ a_3 & b_3 & c_3 \end{pmatrix}
+\cdot
+\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+=
+\begin{pmatrix} a_1x + b_1y + c_1z \\ a_2x + b_2y + c_2z \\ a_3x + b_3y + c_3z \end{pmatrix}.
+$$
+Igualar esa columna a $B$ es exactamente igualar cada ecuación a su término independiente.
+:::
+
+Esta escritura es mucho más que una abreviatura elegante. Convierte «un sistema de tres ecuaciones» en «una ecuación con una incógnita», donde la incógnita es la columna $X$. Toda la teoría posterior de matrices —y buena parte de la estadística, la economía y la informática que se apoyan en ella— nace de tomarse en serio esa analogía.
+
+**Ejemplo 1.** Escribe en forma matricial el sistema
+$$
+\left\{
+\begin{array}{rcrcrcr}
+2x & + & y & - & 2z & = & 7 \\
+x & + & y & + & z & = & 0 \\
+3x & + & 2y & + & 2z & = & 1
+\end{array}
+\right.
+$$
+$$
+\begin{pmatrix} 2 & 1 & -2 \\ 1 & 1 & 1 \\ 3 & 2 & 2 \end{pmatrix}
+\cdot
+\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+=
+\begin{pmatrix} 7 \\ 0 \\ 1 \end{pmatrix}.
+$$
+
+**Ejemplo 2.** Escribe en forma matricial $\{x - y = 3,\ x - z = 2,\ y - z = -1\}$. Aquí a cada ecuación le falta una incógnita, y los ceros son imprescindibles:
+$$
+\begin{pmatrix} 1 & -1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & -1 \end{pmatrix}
+\cdot
+\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+=
+\begin{pmatrix} 3 \\ 2 \\ -1 \end{pmatrix}.
+$$
+
+**Ejemplo 3 (camino inverso).** ¿Qué sistema representa la ecuación matricial siguiente?
+$$
+\begin{pmatrix} 3 & 0 & -1 \\ 0 & 2 & 5 \\ 1 & 1 & 0 \end{pmatrix}
+\cdot
+\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+=
+\begin{pmatrix} 4 \\ -1 \\ 6 \end{pmatrix}
+$$
+Se lee fila a fila, saltando los coeficientes nulos:
+$$
+\left\{
+\begin{array}{rcrcrcr}
+3x &  &  & - & z & = & 4 \\
+ &  & 2y & + & 5z & = & -1 \\
+x & + & y &  &  & = & 6
+\end{array}
+\right.
+$$
+
+## La matriz ampliada
+
+Para resolver, sin embargo, no basta con $A$: hacen falta también los términos independientes, porque las operaciones elementales los modifican igual que a los coeficientes.
+
+::: {.callout-note}
+## Matriz ampliada
+
+La **matriz ampliada** del sistema, que se denota $(A\,|\,B)$, se obtiene añadiendo a $A$ la columna $B$ separada por una línea vertical:
+$$
+(A\,|\,B) = \left(\begin{array}{rrr|r}
+a_1 & b_1 & c_1 & d_1 \\
+a_2 & b_2 & c_2 & d_2 \\
+a_3 & b_3 & c_3 & d_3
+\end{array}\right).
+$$
+La línea vertical no es un signo de operación: es solo un recordatorio de que esa última columna no es el coeficiente de ninguna incógnita, sino el segundo miembro de cada ecuación.
+:::
+
+::: {.callout-important}
+## Las operaciones elementales se aplican a filas completas
+
+Las tres transformaciones que ya conoces —$F_i \leftrightarrow F_j$, $F_i \to kF_i$ con $k\neq0$, $F_i \to F_i + kF_j$— se aplican a la matriz ampliada exactamente igual que al sistema, **incluyendo siempre la columna de términos independientes**. Olvidar esa columna es el error más frecuente al empezar a trabajar con matrices, y produce un sistema que ya no es equivalente al original.
+:::
+
+**Ejemplo 4 (Gauss sobre la matriz ampliada).** Resolvamos otra vez el sistema del ejemplo 1, ahora en forma matricial.
+$$
+\left(\begin{array}{rrr|r}
+2 & 1 & -2 & 7 \\
+1 & 1 & 1 & 0 \\
+3 & 2 & 2 & 1
+\end{array}\right)
+\xrightarrow{\ F_1 \leftrightarrow F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+2 & 1 & -2 & 7 \\
+3 & 2 & 2 & 1
+\end{array}\right)
+$$
+$$
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - 3F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -1 & -4 & 7 \\
+0 & -1 & -1 & 1
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -1 & -4 & 7 \\
+0 & 0 & 3 & -6
+\end{array}\right)
+$$
+Se vuelve al lenguaje de ecuaciones y se resuelve hacia atrás:
+$$
+3z = -6 \Rightarrow z = -2; \qquad -y - 4(-2) = 7 \Rightarrow y = 1; \qquad x + 1 - 2 = 0 \Rightarrow x = 1 .
+$$
+La solución es $(1,1,-2)$. Compara la cantidad de escritura con la del apartado anterior: es el mismo cálculo con la mitad de tinta y con las columnas siempre alineadas, lo que reduce muchísimo los errores de despiste.
+
+### Applet · Del sistema a la ecuación matricial y a la matriz ampliada {.unnumbered}
+
+Escribe un sistema (una ecuación por línea, con el formato `2x+y-2z=7`, admitiendo incógnitas ausentes, fracciones y decimales con coma) y el applet construye la matriz de coeficientes $A$, la columna de incógnitas $X$, la columna de términos independientes $B$, la ecuación matricial $A\cdot X = B$ y la matriz ampliada $(A\,|\,B)$. También funciona al revés: introduce una matriz ampliada fila a fila y el applet reconstruye el sistema de ecuaciones correspondiente.
+
+::: {#panel-matricial .applet-panel data-applet-sys="matricial"}
+:::
+
+Practica sobre todo con sistemas a los que **les falten incógnitas**, como $x - z = 2$ o $y + z = 1$: es donde se aprende que un hueco en la ecuación es un $0$ en la matriz, y no una columna que desaparece. Prueba también a alterar el orden de las incógnitas en una ecuación (escribir `4y+2x=6`) y comprueba que el applet las coloca igualmente en su columna.
+
+## El rango de una matriz
+
+Ya sabes que, al escalonar, unas filas se convierten en filas nulas y otras conservan un pivote. Conviene poner nombre a esa cuenta, porque es la que decide todo.
+
+::: {.callout-note}
+## Definición de rango
+
+El **rango** de una matriz es el número de **pivotes** que aparecen al llevarla a forma escalonada mediante operaciones elementales, es decir, el número de **filas no nulas** de la matriz escalonada. Se escribe $\operatorname{rg}(A)$.
+
+Interpretado en términos del sistema: el rango es el número de ecuaciones que aportan **información realmente nueva**. Las ecuaciones redundantes se convierten en filas nulas y no cuentan.
+:::
+
+Aunque el escalonamiento se puede hacer de varias formas distintas, el número de pivotes que se obtiene al final es **siempre el mismo**: el rango es una propiedad de la matriz, no del camino elegido. Además, el rango nunca puede superar ni al número de filas ni al número de columnas.
+
+**Ejemplo 5.** En la matriz escalonada del ejemplo 4,
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -1 & -4 & 7 \\
+0 & 0 & 3 & -6
+\end{array}\right),
+$$
+hay tres filas no nulas, con pivotes $1$, $-1$ y $3$. Por tanto $\operatorname{rg}(A) = 3$ y también $\operatorname{rg}(A\,|\,B) = 3$: añadir la columna de términos independientes no crea ningún pivote nuevo.
+
+**Ejemplo 6.** Calculemos los dos rangos del sistema $\{x+2y+3z=4,\ -x+3y-z=-2,\ 2x-y+4z=6\}$:
+$$
+\left(\begin{array}{rrr|r}
+1 & 2 & 3 & 4 \\
+-1 & 3 & -1 & -2 \\
+2 & -1 & 4 & 6
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 + F_1,\ \ F_3 \to F_3 - 2F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 2 & 3 & 4 \\
+0 & 5 & 2 & 2 \\
+0 & -5 & -2 & -2
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 + F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 2 & 3 & 4 \\
+0 & 5 & 2 & 2 \\
+0 & 0 & 0 & 0
+\end{array}\right)
+$$
+La última fila es nula **entera**, columna de términos independientes incluida. Hay dos pivotes en la parte de coeficientes y ninguno más al añadir la última columna:
+$$
+\operatorname{rg}(A) = 2, \qquad \operatorname{rg}(A\,|\,B) = 2 .
+$$
+
+**Ejemplo 7.** Y ahora el sistema $\{2x-3y+z=2,\ 3x-2y+z=-4,\ -x-y=1\}$:
+$$
+\left(\begin{array}{rrr|r}
+2 & -3 & 1 & 2 \\
+3 & -2 & 1 & -4 \\
+-1 & -1 & 0 & 1
+\end{array}\right)
+\xrightarrow{\ F_1 \leftrightarrow F_3\ }
+\left(\begin{array}{rrr|r}
+-1 & -1 & 0 & 1 \\
+3 & -2 & 1 & -4 \\
+2 & -3 & 1 & 2
+\end{array}\right)
+$$
+$$
+\xrightarrow{\ F_2 \to F_2 + 3F_1,\ \ F_3 \to F_3 + 2F_1\ }
+\left(\begin{array}{rrr|r}
+-1 & -1 & 0 & 1 \\
+0 & -5 & 1 & -1 \\
+0 & -5 & 1 & 4
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+-1 & -1 & 0 & 1 \\
+0 & -5 & 1 & -1 \\
+0 & 0 & 0 & 5
+\end{array}\right)
+$$
+En la parte de coeficientes la última fila es nula, pero la matriz ampliada tiene ahí un $5$: esa fila **sí** es no nula y aporta un pivote más. Así:
+$$
+\operatorname{rg}(A) = 2, \qquad \operatorname{rg}(A\,|\,B) = 3 .
+$$
+Los rangos **no coinciden**, y esa diferencia es exactamente la fila incompatible $0=5$.
+
+## El criterio de discusión
+
+Los tres ejemplos anteriores contienen ya toda la teoría. Solo falta enunciarla.
+
+::: {.callout-important}
+## Criterio del rango (teorema de Rouché-Frobenius)
+
+Sea un sistema lineal $A\cdot X = B$ con $n$ incógnitas. Entonces:
+
+- Si $\operatorname{rg}(A) \neq \operatorname{rg}(A\,|\,B)$, el sistema es **incompatible** (SI): no tiene solución.
+- Si $\operatorname{rg}(A) = \operatorname{rg}(A\,|\,B) = n$, el sistema es **compatible determinado** (SCD): tiene solución única.
+- Si $\operatorname{rg}(A) = \operatorname{rg}(A\,|\,B) = r < n$, el sistema es **compatible indeterminado** (SCI): tiene infinitas soluciones, que dependen de
+$$
+n - r
+$$
+**parámetros**. Ese número se llama **grados de libertad** del sistema.
+:::
+
+Conviene entender por qué el criterio funciona, porque así deja de ser una regla que memorizar.
+
+Que $\operatorname{rg}(A) \neq \operatorname{rg}(A\,|\,B)$ significa que, al escalonar, ha aparecido una fila con todos los coeficientes nulos y término independiente no nulo: la ecuación $0 = d$ con $d\neq0$, que ninguna terna puede cumplir. Y solo puede ocurrir que el rango de la ampliada sea **una unidad mayor**, nunca menor, porque añadir una columna no destruye pivotes.
+
+Que los rangos coincidan y valgan $n$ significa que cada incógnita tiene su pivote: la sustitución hacia atrás determina una a una todas ellas, sin margen de elección.
+
+Y que los rangos coincidan pero sean menores que $n$ significa que hay $n-r$ incógnitas **sin pivote**: son libres, se les asigna un parámetro y las demás quedan escritas en función de ellos.
+
+::: {.callout-note}
+## Cuadro resumen para un sistema $3\times3$
+
+| $\operatorname{rg}(A)$ | $\operatorname{rg}(A\vert B)$ | Tipo | Soluciones | Geometría |
+|---|---|---|---|---|
+| $3$ | $3$ | SCD | una | tres planos con un punto común |
+| $2$ | $2$ | SCI | infinitas, $1$ parámetro | tres planos con una recta común |
+| $1$ | $1$ | SCI | infinitas, $2$ parámetros | los tres planos coinciden |
+| $2$ | $3$ | SI | ninguna | prisma triangular o dos paralelos |
+| $1$ | $2$ | SI | ninguna | planos paralelos distintos |
+:::
+
+::: {.callout-caution}
+## Comparar tres números, no dos
+
+La discusión exige mirar **tres** cantidades: $\operatorname{rg}(A)$, $\operatorname{rg}(A|B)$ y el número de incógnitas $n$. Un fallo típico consiste en comprobar solo que los rangos coinciden y concluir «compatible», sin decir si es determinado o indeterminado. Otro, aún más grave, es comparar el rango con el número de **ecuaciones** en lugar de con el número de **incógnitas**.
+:::
+
+### Applet · Comparación de rangos y tipo de sistema {.unnumbered}
+
+Introduce el sistema o directamente su matriz ampliada. El applet escalona, marca los pivotes, calcula $\operatorname{rg}(A)$ y $\operatorname{rg}(A\,|\,B)$, los compara entre sí y con el número de incógnitas, y muestra la conclusión razonada: tipo de sistema, número de grados de libertad y, cuando procede, la solución escrita en forma paramétrica.
+
+::: {#panel-rangoDiscusion .applet-panel data-applet-sys="rangoDiscusion"}
+:::
+
+Un experimento que aclara mucho: parte de un sistema compatible indeterminado y cambia **solo** el término independiente de la última ecuación. Verás que $\operatorname{rg}(A)$ no se mueve —los coeficientes no han cambiado— pero $\operatorname{rg}(A|B)$ sube una unidad y el sistema pasa a ser incompatible. Los coeficientes deciden la «forma» del sistema; los términos independientes deciden si esa forma es compatible con lo que se pide.
+
+## La solución de un sistema compatible indeterminado
+
+Cuando el sistema es SCI, la respuesta no es un punto sino una **familia infinita** de ternas, y hay que saber escribirla con precisión.
+
+::: {.callout-note}
+## Cómo escribir la solución paramétrica
+
+1. Escalona y localiza los **pivotes**. Las incógnitas con pivote son las **principales**; las que no lo tienen son **libres**.
+2. Asigna un parámetro a cada incógnita libre: $z = k$, y si hubiera dos, $y = t$, $z = k$.
+3. Despeja hacia atrás las incógnitas principales en función de los parámetros.
+4. Escribe la solución indicando explícitamente que los parámetros recorren todos los números reales: «con $k \in \mathbb{R}$».
+:::
+
+**Ejemplo 8.** Del ejemplo 6, la matriz escalonada era
+$$
+\left(\begin{array}{rrr|r}
+1 & 2 & 3 & 4 \\
+0 & 5 & 2 & 2 \\
+0 & 0 & 0 & 0
+\end{array}\right),
+$$
+con $\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2 < 3 = n$: es **SCI con un grado de libertad**. Los pivotes están en las columnas de $x$ y de $y$, luego $z$ es libre. Con $z = k$:
+$$
+5y + 2k = 2 \Rightarrow y = \dfrac{2-2k}{5}; \qquad x = 4 - 2y - 3k = 4 - \dfrac{4-4k}{5} - 3k = \dfrac{16-11k}{5} .
+$$
+$$
+x = \dfrac{16-11k}{5}, \qquad y = \dfrac{2-2k}{5}, \qquad z = k, \qquad k \in \mathbb{R}.
+$$
+Con $k = 1$ se obtiene la solución particular $(1,0,1)$, que efectivamente cumple las tres ecuaciones originales: $1+0+3=4$, $-1+0-1=-2$ y $2-0+4=6$.
+
+::: {.callout-warning}
+## El parámetro no es una respuesta a medias
+
+Un alumno que escribe «$x$ depende de $z$» no ha terminado el ejercicio. Hay que **dar el parámetro un nombre**, escribir las tres coordenadas en función de él y decir que recorre $\mathbb{R}$. Y conviene comprobar la solución sustituyendo un valor concreto del parámetro: si con $k=0$ y con $k=1$ se cumplen las tres ecuaciones, la familia es casi con seguridad correcta.
+:::
+
+## Sistemas homogéneos
+
+::: {.callout-note}
+## Sistema homogéneo y su discusión
+
+Un sistema es **homogéneo** cuando $B$ es la columna nula:
+$$
+A \cdot X = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.
+$$
+
+Al añadir a $A$ una columna de ceros no puede aparecer ningún pivote nuevo, de modo que
+$$
+\operatorname{rg}(A) = \operatorname{rg}(A\,|\,B) \quad \text{siempre}.
+$$
+Por tanto **un sistema homogéneo nunca es incompatible**. Solo caben dos posibilidades:
+
+- $\operatorname{rg}(A) = n$: **SCD**, y la única solución es la **trivial** $(0,0,0)$.
+- $\operatorname{rg}(A) = r < n$: **SCI**, con infinitas soluciones no triviales y $n-r$ parámetros.
+:::
+
+Esto tiene una lectura geométrica clara: los tres planos pasan por el origen, así que ese punto está siempre en la intersección. La pregunta es si la intersección se reduce a él o contiene además una recta o un plano.
+
+**Ejemplo 9.** Discute $\{x+y+z=0,\ x-y=0,\ 2x+z=0\}$.
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+1 & -1 & 0 & 0 \\
+2 & 0 & 1 & 0
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - F_1,\ \ F_3 \to F_3 - 2F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -2 & -1 & 0 \\
+0 & -2 & -1 & 0
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -2 & -1 & 0 \\
+0 & 0 & 0 & 0
+\end{array}\right)
+$$
+$\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2 < 3$: **SCI con un parámetro**. Con $z = 2k$ (elijo $2k$ para evitar denominadores): $-2y - 2k = 0 \Rightarrow y = -k$; y $x = -y - z = k - 2k = -k$. Solución:
+$$
+x = -k, \qquad y = -k, \qquad z = 2k, \qquad k \in \mathbb{R}.
+$$
+Con $k=-1$ se obtiene $(1,1,-2)$: $1+1-2=0$, $1-1=0$, $2-2=0$. Correcto. Las soluciones forman una recta que pasa por el origen.
+
+## Discusión de sistemas con parámetros
+
+El uso más exigente del criterio del rango aparece cuando alguno de los coeficientes o de los términos independientes no es un número, sino una **letra** que puede tomar cualquier valor. La pregunta ya no es «resuelve», sino «**discute según los valores del parámetro**».
+
+::: {.callout-note}
+## Estrategia
+
+1. Escalona **como si el parámetro fuera un número**, pero **sin dividir nunca por una expresión que contenga el parámetro** ni multiplicar por ella, porque podría valer cero.
+2. Llegarás a una última fila del tipo $p(m)\,z = q(m)$, donde $p$ y $q$ son expresiones con el parámetro.
+3. Halla los **valores críticos**: los que anulan el pivote, es decir, las soluciones de $p(m) = 0$.
+4. **Caso general** ($p(m)\neq 0$): hay pivote, el sistema es SCD.
+5. **Casos críticos**: sustituye cada valor crítico y mira qué queda en la última fila. Si es $0=0$, SCI; si es $0=q$ con $q\neq0$, SI.
+6. Presenta el resultado en una **tabla de discusión** y resuelve los casos que pida el enunciado.
+:::
+
+::: {.callout-caution}
+## Nunca dividas por el parámetro
+
+Si en algún paso te ves tentado de hacer $F_3 \to \dfrac{1}{m-2}F_3$, detente: si $m = 2$ estarías dividiendo por cero y perderías precisamente el caso interesante. Reordena las filas o usa multiplicadores enteros; siempre hay una forma de escalonar sin dividir por expresiones con el parámetro.
+:::
+
+**Ejemplo 10 (discusión completa).** Discute, según los valores de $m$ y $n$, el sistema
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x & + & y & + & z & = & 1 \\
+2x & + & 3y & + & z & = & 4 \\
+3x & + & 4y & + & mz & = & n
+\end{array}
+\right.
+$$
+
+**Escalonamiento.**
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+2 & 3 & 1 & 4 \\
+3 & 4 & m & n
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - 3F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & 1 & -1 & 2 \\
+0 & 1 & m-3 & n-3
+\end{array}\right)
+$$
+$$
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & 1 & -1 & 2 \\
+0 & 0 & m-2 & n-5
+\end{array}\right)
+$$
+
+**Valor crítico.** El tercer pivote es $m-2$, que se anula si $m = 2$.
+
+**Caso 1: $m \neq 2$** (con $n$ cualquiera). Hay tres pivotes:
+$$
+\operatorname{rg}(A) = \operatorname{rg}(A|B) = 3 = n_{\text{inc}} \;\Longrightarrow\; \textbf{SCD}.
+$$
+La solución es $z = \dfrac{n-5}{m-2}$, $y = 2 + z$ y $x = 1 - y - z = -1 - 2z$. Por ejemplo, con $m=3$ y $n=5$ resulta $z=0$, $y=2$, $x=-1$; comprobación: $-1+2+0=1$, $-2+6+0=4$, $-3+8+0=5$. Correcto.
+
+**Caso 2: $m = 2$ y $n = 5$.** La última fila es $0 = 0$:
+$$
+\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2 < 3 \;\Longrightarrow\; \textbf{SCI con un parámetro}.
+$$
+Con $z = k$: $y = 2+k$ y $x = 1 - (2+k) - k = -1-2k$. Solución: $x = -1-2k$, $y = 2+k$, $z = k$, con $k \in \mathbb{R}$. Comprobación en la tercera ecuación original con $m=2$, $n=5$: $3(-1-2k) + 4(2+k) + 2k = -3-6k+8+4k+2k = 5$. Correcto para todo $k$.
+
+**Caso 3: $m = 2$ y $n \neq 5$.** La última fila es $0 = n-5 \neq 0$:
+$$
+\operatorname{rg}(A) = 2 \neq 3 = \operatorname{rg}(A|B) \;\Longrightarrow\; \textbf{SI}.
+$$
+
+**Tabla de discusión.**
+
+| Valores | $\operatorname{rg}(A)$ | $\operatorname{rg}(A\vert B)$ | Tipo |
+|---|---|---|---|
+| $m \neq 2$, cualquier $n$ | $3$ | $3$ | SCD |
+| $m = 2$, $n = 5$ | $2$ | $2$ | SCI, un parámetro |
+| $m = 2$, $n \neq 5$ | $2$ | $3$ | SI |
+
+**Ejemplo 11 (un solo parámetro).** Discute $\{x+y+z=1,\ x+2y+3z=3,\ x+4y+mz=m\}$.
+
+Con $F_2 \to F_2 - F_1$ y $F_3 \to F_3 - F_1$:
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & 1 & 2 & 2 \\
+0 & 3 & m-1 & m-1
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - 3F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & 1 & 2 & 2 \\
+0 & 0 & m-7 & m-7
+\end{array}\right)
+$$
+
+Valor crítico: $m = 7$.
+
+- **Si $m \neq 7$:** tres pivotes, **SCD**. De la tercera, $z = 1$; de la segunda, $y = 2 - 2 = 0$; de la primera, $x = 1 - 0 - 1 = 0$. Solución $(0,0,1)$, la misma para todos esos valores de $m$. Comprobación en la tercera: $0 + 0 + m\cdot 1 = m$. Correcto.
+- **Si $m = 7$:** la última fila es $0 = 0$, **SCI con un parámetro**. Con $z = k$: $y = 2-2k$ y $x = 1 - (2-2k) - k = k - 1$. Solución: $x = k-1$, $y = 2-2k$, $z = k$, con $k\in\mathbb{R}$. Comprobación en la segunda ecuación: $(k-1) + 2(2-2k) + 3k = k-1+4-4k+3k = 3$. Correcto.
+
+Observa que aquí **no hay ningún valor de $m$ que haga el sistema incompatible**: el término independiente de la última fila se anula exactamente para el mismo valor que el pivote. Ese detalle depende del enunciado y hay que comprobarlo siempre; no se puede dar por supuesto que los tres casos aparecen.
+
+### Applet · Discusión con parámetro por el método de Gauss {.unnumbered}
+
+Escribe un sistema en el que alguno de los coeficientes o términos independientes sea la letra `m` (por ejemplo, `x+y+m z = 2` o `3x+4y+m z = n`) y el applet lo escalona tratando el parámetro de forma simbólica, sin dividir nunca por expresiones que puedan anularse. Muestra el pivote final, calcula los **valores críticos** que lo anulan, estudia cada uno de ellos por separado y construye la tabla de discusión con los rangos y el tipo de sistema en cada caso; además resuelve el caso general y los casos compatibles.
+
+::: {#panel-discuteGauss .applet-panel data-applet-sys="discuteGauss"}
+:::
+
+Utiliza el deslizador del parámetro para ver cómo se comporta la solución **cerca** de un valor crítico: comprobarás que las coordenadas se disparan al acercarse a él, lo que anticipa que en ese punto exacto el sistema deja de tener solución única. Es una buena manera de entender por qué los valores críticos son especiales y no una rareza algebraica.
+
+## Errores frecuentes
+
+1. **Olvidar los ceros de las incógnitas ausentes.** En $-x-y=1$ el coeficiente de $z$ es $0$; sin ese cero las columnas se desplazan y toda la matriz es falsa.
+2. **No aplicar las operaciones a la columna de términos independientes.** La línea vertical separa, pero no aísla: las operaciones afectan a la fila completa.
+3. **Confundir $\operatorname{rg}(A)$ con $\operatorname{rg}(A|B)$.** Son dos números distintos, y la discusión consiste precisamente en compararlos.
+4. **Comparar el rango con el número de ecuaciones.** El criterio compara con el número de **incógnitas**.
+5. **Decir «compatible» y quedarse ahí.** Hay que precisar si es determinado o indeterminado y, en el segundo caso, cuántos parámetros hay.
+6. **Contar mal los grados de libertad.** Son $n - r$, no $n$ ni $r$.
+7. **Dividir por una expresión con el parámetro.** Esa división esconde justamente el caso crítico y hace desaparecer la discusión.
+8. **Olvidar estudiar el caso crítico.** Encontrar $m=2$ y no sustituirlo deja el ejercicio a medias: hay que ver qué queda en la última fila con ese valor.
+9. **Suponer que un sistema homogéneo puede ser incompatible.** Nunca lo es, porque la columna de ceros no aporta pivotes.
+10. **Dar la solución de un SCI sin nombrar el parámetro ni indicar que recorre $\mathbb{R}$.**
+11. **Creer que el rango depende de cómo se escalone.** No depende: el número de pivotes es siempre el mismo.
+
+## Resumen del apartado
+
+- Un sistema lineal se escribe en **forma matricial** como $A \cdot X = B$, con $A$ la matriz de coeficientes, $X$ la columna de incógnitas y $B$ la columna de términos independientes.
+- Las **filas** de $A$ son las ecuaciones y las **columnas**, las incógnitas; toda incógnita ausente aporta un $0$.
+- La **matriz ampliada** $(A\,|\,B)$ añade la columna de términos independientes tras una línea vertical, y sobre ella se aplican las operaciones elementales por filas **completas**.
+- El **rango** de una matriz es el número de pivotes de su forma escalonada, o sea, el número de ecuaciones con información independiente. No depende del camino de escalonamiento.
+- **Criterio de discusión**: si $\operatorname{rg}(A) \neq \operatorname{rg}(A|B)$, **SI**; si $\operatorname{rg}(A) = \operatorname{rg}(A|B) = n$, **SCD**; si $\operatorname{rg}(A) = \operatorname{rg}(A|B) = r < n$, **SCI** con $n-r$ parámetros.
+- Los **grados de libertad** de un SCI son $n - r$, y coinciden con el número de incógnitas **sin pivote**, que son las que se toman como parámetros.
+- La solución de un SCI se escribe en **forma paramétrica**, nombrando el parámetro y señalando que recorre $\mathbb{R}$; conviene comprobarla con un valor concreto.
+- Un **sistema homogéneo** cumple siempre $\operatorname{rg}(A) = \operatorname{rg}(A|B)$: nunca es incompatible. O tiene solo la solución trivial ($r = n$) o infinitas soluciones ($r < n$).
+- Para **discutir con parámetro** se escalona sin dividir nunca por expresiones que lo contengan, se hallan los **valores críticos** que anulan el último pivote y se estudia por separado el caso general y cada caso crítico, resumiendo en una **tabla de discusión**.
+
+## Ejercicios propuestos
+
+**1 (básico).** Escribe la ecuación matricial $A\cdot X = B$ y la matriz ampliada del sistema $\{3x+4y+5z=2,\ x-y+2z=-6,\ -2x-y+z=8\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\begin{pmatrix} 3 & 4 & 5 \\ 1 & -1 & 2 \\ -2 & -1 & 1 \end{pmatrix}
+\cdot
+\begin{pmatrix} x \\ y \\ z \end{pmatrix}
+=
+\begin{pmatrix} 2 \\ -6 \\ 8 \end{pmatrix},
+\qquad
+(A\,|\,B) = \left(\begin{array}{rrr|r}
+3 & 4 & 5 & 2 \\
+1 & -1 & 2 & -6 \\
+-2 & -1 & 1 & 8
+\end{array}\right).
+$$
+:::
+
+**2 (básico).** Escribe el sistema de ecuaciones que corresponde a la matriz ampliada
+$$
+\left(\begin{array}{rrr|r}
+1 & 0 & -1 & 2 \\
+0 & 1 & -1 & -1 \\
+1 & -1 & 0 & 3
+\end{array}\right).
+$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left\{
+\begin{array}{rcrcrcr}
+x &  &  & - & z & = & 2 \\
+ &  & y & - & z & = & -1 \\
+x & - & y &  &  & = & 3
+\end{array}
+\right.
+$$
+
+Los ceros de la matriz indican incógnitas ausentes, no ecuaciones incompletas mal escritas.
+:::
+
+**3 (básico).** Calcula $\operatorname{rg}(A)$ y $\operatorname{rg}(A|B)$ y clasifica el sistema cuya matriz escalonada es
+$$
+\left(\begin{array}{rrr|r}
+1 & 2 & -1 & 3 \\
+0 & 1 & 4 & -2 \\
+0 & 0 & 0 & 7
+\end{array}\right).
+$$
+
+::: {.callout-note collapse="true"}
+## Solución
+
+En la parte de coeficientes hay dos filas no nulas: $\operatorname{rg}(A) = 2$. En la ampliada, la tercera fila no es nula porque acaba en $7$: $\operatorname{rg}(A|B) = 3$.
+
+Como $2 \neq 3$, el sistema es **incompatible**. La tercera fila es la ecuación $0=7$.
+:::
+
+**4 (básico).** Clasifica el sistema cuya matriz escalonada es
+$$
+\left(\begin{array}{rrr|r}
+2 & -1 & 3 & 1 \\
+0 & 5 & 1 & 0 \\
+0 & 0 & 0 & 0
+\end{array}\right)
+$$
+e indica cuántos parámetros tendrá su solución.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2$ y hay $n = 3$ incógnitas. Como $2 = 2 < 3$, el sistema es **compatible indeterminado**.
+
+Grados de libertad: $3 - 2 = 1$. La solución tendrá **un** parámetro. Los pivotes están en las columnas de $x$ y de $y$, así que la incógnita libre es $z$.
+:::
+
+**5 (medio).** Discute y resuelve $\{x-y=3,\ x-z=2,\ y-z=-1\}$ usando la matriz ampliada.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|r}
+1 & -1 & 0 & 3 \\
+1 & 0 & -1 & 2 \\
+0 & 1 & -1 & -1
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - F_1\ }
+\left(\begin{array}{rrr|r}
+1 & -1 & 0 & 3 \\
+0 & 1 & -1 & -1 \\
+0 & 1 & -1 & -1
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & -1 & 0 & 3 \\
+0 & 1 & -1 & -1 \\
+0 & 0 & 0 & 0
+\end{array}\right)
+$$
+
+$\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2 < 3$: **SCI con un parámetro**.
+
+Con $z = k$: $y = -1 + k$ y $x = 3 + y = 2 + k$. Solución: $x = 2+k$, $y = k-1$, $z = k$, con $k \in \mathbb{R}$.
+
+Comprobación con $k=1$: $(3,0,1)$, que cumple $3-0=3$, $3-1=2$ y $0-1=-1$. Correcto.
+:::
+
+**6 (medio).** Discute y resuelve $\{x+4y-z=2,\ 3x-y+z=1,\ -2x+y-z=0\}$ mediante rangos.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|r}
+1 & 4 & -1 & 2 \\
+3 & -1 & 1 & 1 \\
+-2 & 1 & -1 & 0
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 3F_1,\ \ F_3 \to F_3 + 2F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 4 & -1 & 2 \\
+0 & -13 & 4 & -5 \\
+0 & 9 & -3 & 4
+\end{array}\right)
+$$
+$$
+\xrightarrow{\ F_3 \to 13F_3 + 9F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 4 & -1 & 2 \\
+0 & -13 & 4 & -5 \\
+0 & 0 & -3 & 7
+\end{array}\right)
+$$
+
+Tres pivotes: $\operatorname{rg}(A) = \operatorname{rg}(A|B) = 3 = n$, **SCD**.
+
+$-3z = 7 \Rightarrow z = -\dfrac{7}{3}$; $-13y + 4\left(-\dfrac{7}{3}\right) = -5 \Rightarrow -13y = \dfrac{13}{3} \Rightarrow y = -\dfrac{1}{3}$; $x = 2 - 4y + z = 2 + \dfrac{4}{3} - \dfrac{7}{3} = 1$.
+
+Solución: $\left(1, -\dfrac{1}{3}, -\dfrac{7}{3}\right)$.
+:::
+
+**7 (medio).** Estudia el sistema homogéneo $\{x - 3y + 2z = 0,\ 2x - 2y - z = 0,\ x + y - 5z = 0\}$ y da su solución.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|r}
+1 & -3 & 2 & 0 \\
+2 & -2 & -1 & 0 \\
+1 & 1 & -5 & 0
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - F_1\ }
+\left(\begin{array}{rrr|r}
+1 & -3 & 2 & 0 \\
+0 & 4 & -5 & 0 \\
+0 & 4 & -7 & 0
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & -3 & 2 & 0 \\
+0 & 4 & -5 & 0 \\
+0 & 0 & -2 & 0
+\end{array}\right)
+$$
+
+$\operatorname{rg}(A) = \operatorname{rg}(A|B) = 3 = n$: **SCD**, y por ser homogéneo la única solución es la **trivial** $(0,0,0)$.
+
+Fíjate en que la columna de términos independientes ha permanecido nula durante todo el proceso: en un sistema homogéneo siempre ocurre así.
+:::
+
+**8 (medio).** Un sistema $3\times3$ tiene $\operatorname{rg}(A) = 1$ y $\operatorname{rg}(A|B) = 1$. ¿De qué tipo es? ¿Cuántos parámetros tiene su solución? ¿Cómo son los tres planos?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los rangos coinciden, así que es **compatible**; como $1 < 3$, es **compatible indeterminado**.
+
+Grados de libertad: $3 - 1 = 2$. La solución depende de **dos** parámetros.
+
+Geométricamente, solo hay una ecuación con información propia: las otras dos son múltiplos suyas. Los tres planos son **el mismo plano**, y todos sus puntos son solución.
+:::
+
+**9 (avanzado).** Discute según los valores de $a$ el sistema $\{x+y+z=1,\ 2x+y+az=2,\ x+2y+z=3\}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+2 & 1 & a & 2 \\
+1 & 2 & 1 & 3
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & -1 & a-2 & 0 \\
+0 & 1 & 0 & 2
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 + F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 1 \\
+0 & -1 & a-2 & 0 \\
+0 & 0 & a-2 & 2
+\end{array}\right)
+$$
+
+Valor crítico: $a = 2$.
+
+**Si $a \neq 2$:** tres pivotes, $\operatorname{rg}(A) = \operatorname{rg}(A|B) = 3$, **SCD**. Se obtiene $z = \dfrac{2}{a-2}$, $y = (a-2)z = 2$ y $x = 1 - y - z = -1 - \dfrac{2}{a-2}$.
+
+**Si $a = 2$:** la última fila es $0 = 2$, luego $\operatorname{rg}(A) = 2 \neq 3 = \operatorname{rg}(A|B)$: **SI**, sin solución.
+
+No hay ningún valor de $a$ para el que el sistema sea compatible indeterminado.
+:::
+
+**10 (avanzado).** Discute según $k$ el sistema homogéneo $\{x+y+z=0,\ x-y+kz=0,\ 2x+kz=0\}$ y halla las soluciones cuando no sea determinado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por ser homogéneo, los rangos coinciden siempre y el sistema nunca es incompatible.
+
+$$
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+1 & -1 & k & 0 \\
+2 & 0 & k & 0
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - F_1,\ \ F_3 \to F_3 - 2F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -2 & k-1 & 0 \\
+0 & -2 & k-2 & 0
+\end{array}\right)
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\left(\begin{array}{rrr|r}
+1 & 1 & 1 & 0 \\
+0 & -2 & k-1 & 0 \\
+0 & 0 & -1 & 0
+\end{array}\right)
+$$
+
+El tercer pivote es $-1$ para **cualquier** valor de $k$: nunca se anula. Por tanto $\operatorname{rg}(A) = 3 = n$ siempre y el sistema es **SCD** para todo $k$, con la única solución trivial $(0,0,0)$.
+
+Es un buen recordatorio de que la presencia de un parámetro no garantiza que existan valores críticos: hay que calcularlos, y a veces no los hay.
+:::
+
+**11 (avanzado).** Sea el sistema $\{x + 2y - z = 1,\ 2x + 4y + mz = 2,\ 3x + 6y + z = n\}$. Discútelo según $m$ y $n$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+2 & 4 & m & 2 \\
+3 & 6 & 1 & n
+\end{array}\right)
+\xrightarrow{\ F_2 \to F_2 - 2F_1,\ \ F_3 \to F_3 - 3F_1\ }
+\left(\begin{array}{rrr|r}
+1 & 2 & -1 & 1 \\
+0 & 0 & m+2 & 0 \\
+0 & 0 & 4 & n-3
+\end{array}\right)
+$$
+
+La segunda columna se ha vaciado por completo: la incógnita $y$ **nunca** tiene pivote, así que el rango no podrá pasar de $2$ y el sistema no puede ser compatible determinado en ningún caso.
+
+Intercambiando las dos últimas filas para tener el pivote $4$ arriba y aplicando después $F_3 \to 4F_3 - (m+2)F_2$, la última fila queda $0 = -(m+2)(n-3)$.
+
+- **Si $(m+2)(n-3) = 0$**, es decir, si $m = -2$ o $n = 3$: la última fila es $0=0$ y $\operatorname{rg}(A) = \operatorname{rg}(A|B) = 2 < 3$. **SCI con un parámetro**, la incógnita libre es $y$. Por ejemplo, con $n = 3$: $z = 0$ y $x = 1 - 2y + z = 1 - 2k$ tomando $y = k$; solución $x = 1-2k$, $y=k$, $z=0$.
+- **Si $m \neq -2$ y $n \neq 3$:** la última fila es $0 = d$ con $d \neq 0$, luego $\operatorname{rg}(A) = 2 \neq 3 = \operatorname{rg}(A|B)$. **SI**.
+
+Este ejercicio muestra un caso en que el sistema **nunca** es compatible determinado, porque dos de las ecuaciones tienen proporcionales los coeficientes de $x$ y de $y$.
+:::
+
+**12 (avanzado).** Explica por qué, si al escalonar una matriz ampliada aparece una fila nula en la parte de coeficientes, el rango de la ampliada solo puede ser igual o una unidad mayor que el de $A$, nunca dos unidades mayor.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Añadir la columna $B$ puede convertir en no nula una fila que era nula en $A$, y eso añade como mucho **un** pivote nuevo: el de la última columna.
+
+En efecto, todas las filas nulas de la parte de coeficientes son iguales entre sí en esa parte (todo ceros); si dos de ellas tuvieran término independiente no nulo, con una resta $F_i \to F_i - \lambda F_j$ adecuada se anularía una de las dos. Es decir, todas las filas incompatibles se reducen a **una sola**.
+
+Por tanto
+$$
+\operatorname{rg}(A) \leq \operatorname{rg}(A|B) \leq \operatorname{rg}(A) + 1 ,
+$$
+y la discusión solo tiene dos escenarios: rangos iguales (compatible) o rangos que difieren en una unidad (incompatible).
+:::

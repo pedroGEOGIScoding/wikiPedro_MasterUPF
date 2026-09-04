@@ -1,0 +1,71 @@
+<!-- =====================================================================
+     _scripts.html — TEMA 4 SISTEMAS DE ECUACIONES E INECUACIONES
+     1.º Bachillerato · Matemáticas Aplicadas a las CCSS
+     Ubicación: 1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/_scripts.html
+
+     Se inyecta al final de <body> en cada .qmd del tema:
+       format:
+         html:
+           include-after-body: assets/_scripts.html
+           html-math-method: katex
+
+     ORDEN DE CARGA OBLIGATORIO
+       1) ../assets/applets.css        estilos compartidos de la asignatura
+       2) assets/sys-applets.css       estilos propios del Tema 4
+       3) ../assets/katex/katex.min.css  KaTeX local, sin CDN
+       4) ../assets/katex/katex.min.js   motor local de fórmulas
+       5) assets/sys-applets.js        núcleo window.SYS
+       6) assets/sys-applets-lin.js    capa de álgebra lineal (matrices,
+                                       Gauss, rangos, recintos, plano)
+       7) assets/sys-applets-a.js      apartados 4.1 a 4.6
+       8) assets/sys-applets-b.js      apartados 4.7 a 4.11
+       9) assets/sys-applets-c.js      apartados 4.12 a 4.14
+
+     RUTAS
+       Los .qmd se renderizan dentro de sistemas-ecuaciones-inecuaciones/.
+       Por eso ../assets/ apunta a 1-BatxMatesCCSS/assets/, donde están
+       applets.css y katex/. Los módulos propios viven en assets/.
+
+     El núcleo es autónomo: incorpora su propio motor algebraico exacto
+     (fracciones con BigInt, polinomios, Ruffini, factorización) y la capa
+     lineal añade matrices exactas, eliminación de Gauss con todos los
+     pasos, rangos, discusión de sistemas y geometría del plano.
+
+     KaTeX se aplica a mano sobre los nodos data-tex que genera el motor,
+     con throwOnError:false. No se usa OJS, auto-render, CDN ni librerías
+     de terceros: todo funciona también sin conexión.
+
+     INSERCIÓN DE APPLETS EN LOS .qmd
+       ::: {#panel-clave .applet-panel data-applet-sys="clave"}
+       :::
+
+     RECORDATORIO PARA es/_quarto.yml
+       resources:
+         - master-upf/recursos/1-BatxMatesCCSS/assets/**
+         - master-upf/recursos/1-BatxMatesCCSS/sistemas-ecuaciones-inecuaciones/assets/**
+     ===================================================================== -->
+
+<link rel="stylesheet" href="../assets/applets.css">
+<link rel="stylesheet" href="assets/sys-applets.css">
+
+<!-- KaTeX local: una sola copia para todo el sitio, sin dependencia de red. -->
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+
+<!-- Núcleo, capa lineal y módulos, en este orden. -->
+<script defer src="assets/sys-applets.js"></script>
+<script defer src="assets/sys-applets-lin.js"></script>
+<script defer src="assets/sys-applets-a.js"></script>
+<script defer src="assets/sys-applets-b.js"></script>
+<script defer src="assets/sys-applets-c.js"></script>
+
+<script>
+  window.addEventListener('load', function () {
+    if (!window.katex) console.warn('[sistemas] KaTeX no cargado: revisa ../assets/katex/.');
+    if (!window.SYS) { console.warn('[sistemas] sys-applets.js no se ha cargado.'); return; }
+    if (window.SYS.lineal !== true) console.warn('[sistemas] falta sys-applets-lin.js');
+    if (window.SYS.extraA !== true) console.warn('[sistemas] falta sys-applets-a.js');
+    if (window.SYS.extraB !== true) console.warn('[sistemas] falta sys-applets-b.js');
+    if (window.SYS.extraC !== true) console.warn('[sistemas] falta sys-applets-c.js');
+  });
+</script>

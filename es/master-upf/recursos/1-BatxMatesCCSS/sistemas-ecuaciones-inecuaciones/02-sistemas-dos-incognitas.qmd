@@ -1,0 +1,329 @@
+---
+title: "Tema 4.2 Sistemas lineales con dos incógnitas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 1.º de Bachillerato — Sistemas de ecuaciones e inecuaciones"
+filename: 02-sistemas-dos-incognitas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Forma general de un sistema lineal de dos ecuaciones con dos incógnitas, interpretación gráfica como par de rectas, resolución por el método gráfico, discusión mediante la comparación de las razones de los coeficientes, criterio de rectas secantes, coincidentes y paralelas, sistemas equivalentes y transformaciones que conservan las soluciones, transformaciones prohibidas, y ejemplos completos de los tres tipos, con applets manipulables.
+categories: [sistemas de ecuaciones, 1 Batx, matemáticas CCSS, método gráfico, sistemas equivalentes, álgebra]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El caso que más vas a usar
+
+De todos los sistemas posibles, hay uno que aparece una y otra vez: dos ecuaciones lineales con dos incógnitas. Es el que sale al traducir la mayoría de los enunciados —dos datos, dos preguntas— y el que sirve de modelo para entender todos los demás. Además tiene una ventaja enorme: **se puede dibujar**. Cada ecuación es una recta del plano, y todo lo que le pasa al sistema se ve con los ojos.
+
+En el apartado anterior aprendiste a reconocer una ecuación lineal, a comprobar si un par es solución y a distinguir los tres tipos de sistema. Aquí vamos a mirarlos de frente: cómo se escribe un sistema $2 \times 2$ en forma general, cómo se resuelve gráficamente, cómo se puede **discutir** —es decir, clasificar sin resolver— con solo comparar coeficientes, y qué manipulaciones se pueden hacer sobre un sistema sin cambiar sus soluciones. Esta última idea, la de **sistema equivalente**, es la que sostiene todos los métodos de los apartados siguientes.
+
+## Forma general de un sistema $2 \times 2$
+
+::: {.callout-note}
+## Sistema lineal de dos ecuaciones con dos incógnitas
+
+Es todo sistema que puede escribirse en la forma
+
+$$
+\left\{
+\begin{array}{rcrcr}
+a x & + & b y & = & c \\
+a' x & + & b' y & = & c'
+\end{array}
+\right.
+$$
+
+donde $a$, $b$, $c$, $a'$, $b'$ y $c'$ son números conocidos y $x$, $y$ son las incógnitas. Los números $a$, $b$, $a'$, $b'$ son los **coeficientes**; $c$ y $c'$, los **términos independientes**.
+
+**Resolver** el sistema es encontrar todos los pares $(x,y)$ que cumplen las dos ecuaciones a la vez. **Discutirlo** es decidir cuántas soluciones tiene, aunque no se calculen.
+:::
+
+Los apóstrofos de $a'$, $b'$ y $c'$ no son una operación: solo distinguen los coeficientes de la segunda ecuación de los de la primera. Es una notación cómoda porque deja a la vista qué números se están comparando: $a$ con $a'$, $b$ con $b'$ y $c$ con $c'$.
+
+**Ejemplo 1.** El sistema
+
+$$
+\left\{
+\begin{array}{rcrcr}
+2x & + & 3y & = & 11 \\
+ x & - &  y & = &  8
+\end{array}
+\right.
+$$
+
+tiene $a = 2$, $b = 3$, $c = 11$ y $a' = 1$, $b' = -1$, $c' = 8$. Fíjate otra vez en que el coeficiente de $y$ en la segunda ecuación es $-1$, con el signo, y el de $x$ es $1$ aunque no se escriba.
+
+::: {.callout-caution}
+## Ordena antes de leer los coeficientes
+
+Muchos sistemas no llegan escritos en forma general. Por ejemplo,
+
+$$
+\left\{
+\begin{array}{l}
+3x = 5 - 2y \\
+7 - y = 4x
+\end{array}
+\right.
+\qquad\text{se ordena como}\qquad
+\left\{
+\begin{array}{rcrcr}
+3x & + & 2y & = & 5 \\
+4x & + &  y & = & 7
+\end{array}
+\right.
+$$
+
+Si hay paréntesis, se quitan primero; si hay denominadores numéricos, se multiplican los dos miembros por el mínimo común múltiplo. Solo después tiene sentido comparar coeficientes o aplicar cualquier método.
+:::
+
+## Cada ecuación es una recta
+
+Ya sabes que las soluciones de $ax + by = c$ (con $a$ y $b$ no simultáneamente nulos) forman una recta. Un sistema $2 \times 2$ es, por tanto, la pregunta **¿qué puntos están a la vez en las dos rectas?**, es decir, dónde se cortan.
+
+::: {.callout-note}
+## Método gráfico
+
+Para resolver gráficamente un sistema de dos ecuaciones con dos incógnitas:
+
+1. Despeja $y$ en cada ecuación, o construye una tabla con dos puntos de cada recta.
+2. Dibuja las dos rectas en los mismos ejes.
+3. Observa su posición relativa:
+   - si se **cortan** en un punto, sus coordenadas son la solución única;
+   - si son **paralelas** distintas, el sistema no tiene solución;
+   - si son la **misma recta**, hay infinitas soluciones.
+4. Comprueba siempre en las ecuaciones originales el punto que hayas leído en el dibujo.
+:::
+
+**Ejemplo 2.** Resolvamos gráficamente
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ x & + &  y & = & 1 \\
+2x & - & 3y & = & 2
+\end{array}
+\right.
+$$
+
+Despejando $y$ en las dos ecuaciones, la primera es $y = 1 - x$ y la segunda $y = \dfrac{2x - 2}{3}$. Con dos puntos de cada una basta: la primera pasa por $(0,1)$ y $(1,0)$; la segunda, por $(1,0)$ y $(4,2)$. Al dibujarlas se ve que se cortan en $(1,0)$. Comprobación en el sistema original: $1 + 0 = 1$ y $2\cdot 1 - 3 \cdot 0 = 2$. Correcto, la solución es $x = 1$, $y = 0$.
+
+::: {.callout-warning}
+## El dibujo sugiere, no demuestra
+
+El método gráfico es insustituible para **entender** lo que ocurre, pero poco fiable para calcular. Si la solución es $\left(\tfrac{7}{3}, -\tfrac{5}{4}\right)$, ningún dibujo a mano te la va a dar; leerás algo como $(2{,}3;\,-1{,}2)$ y creerás que has terminado. Por eso el gráfico se usa para discutir, para comprobar el sentido de un resultado y para interpretar, mientras que el valor exacto se obtiene siempre con un método algebraico.
+:::
+
+### Applet · Laboratorio de sistemas 2×2 {.unnumbered}
+
+Mueve los seis deslizadores que controlan $a$, $b$, $c$, $a'$, $b'$ y $c'$ y observa simultáneamente tres cosas: las dos rectas dibujadas, las razones $\dfrac{a}{a'}$, $\dfrac{b}{b'}$ y $\dfrac{c}{c'}$, y la clasificación del sistema que aparece al instante. Empieza con un sistema de solución única y modifica poco a poco $a'$ y $b'$ hasta que las dos primeras razones coincidan: verás cómo las rectas se vuelven paralelas y la solución desaparece. Ajusta después $c'$ para que la tercera razón se iguale también y comprueba que las rectas se superponen. En las casillas se admiten enteros, decimales con coma (por ejemplo $0{,}5$) y fracciones con barra (por ejemplo $3/4$).
+
+::: {#panel-sistemaLab .applet-panel data-applet-sys="sistemaLab"}
+:::
+
+## Discutir un sistema comparando coeficientes
+
+Dibujar cuesta tiempo. Como las tres posiciones posibles de dos rectas dependen solo de sus coeficientes, existe un criterio numérico que permite clasificar el sistema **de un vistazo**.
+
+::: {.callout-note}
+## Criterio de discusión de un sistema $2 \times 2$
+
+Dado el sistema de coeficientes $a$, $b$, $c$ y $a'$, $b'$, $c'$, se comparan las razones $\dfrac{a}{a'}$, $\dfrac{b}{b'}$ y $\dfrac{c}{c'}$:
+
+- Si $\dfrac{a}{a'} \neq \dfrac{b}{b'}$, el sistema es **compatible determinado**: las rectas son **secantes** y hay una única solución.
+- Si $\dfrac{a}{a'} = \dfrac{b}{b'} = \dfrac{c}{c'}$, el sistema es **compatible indeterminado**: las rectas son **coincidentes** y hay infinitas soluciones.
+- Si $\dfrac{a}{a'} = \dfrac{b}{b'} \neq \dfrac{c}{c'}$, el sistema es **incompatible**: las rectas son **paralelas** distintas y no hay solución.
+:::
+
+::: {.callout-important}
+## De dónde sale el criterio
+
+Que $\dfrac{a}{a'} = \dfrac{b}{b'}$ significa que existe un número $k$ con $a = k a'$ y $b = k b'$: los coeficientes de la segunda ecuación son proporcionales a los de la primera, y las dos rectas tienen la **misma pendiente**.
+
+A partir de ahí solo quedan dos posibilidades. Si además $c = k c'$, la primera ecuación **entera** es la segunda multiplicada por $k$: dicen exactamente lo mismo y la recta es una sola. Si $c \neq k c'$, las dos ecuaciones piden que la misma combinación $a'x + b'y$ valga dos números distintos, lo cual es imposible: rectas paralelas sin punto común.
+
+Y si las pendientes son distintas, las rectas se cortan, y se cortan en un solo punto.
+:::
+
+**Ejemplo 3.** Discutamos los tres sistemas siguientes sin resolverlos.
+
+a) Ecuaciones $5x - y = 3$ y $2x + 3y = 8$: aquí $\tfrac{5}{2} \neq \tfrac{-1}{3}$, luego es **compatible determinado**. (Su solución, que calcularemos más adelante, es $(1,2)$.)
+
+b) Ecuaciones $x + y = 1$ y $2x + 2y = 2$: se cumple $\tfrac{1}{2} = \tfrac{1}{2} = \tfrac{1}{2}$, luego es **compatible indeterminado**. Las dos rectas son la misma.
+
+c) Ecuaciones $x + y = 1$ y $2x + 2y = 5$: ahora $\tfrac{1}{2} = \tfrac{1}{2} \neq \tfrac{1}{5}$, luego es **incompatible**.
+
+::: {.callout-caution}
+## Cuidado con los denominadores nulos
+
+El criterio se escribe con fracciones, pero conviene manejarlo como una **comparación de productos cruzados**, que nunca falla: las rectas son secantes si $a b' - a' b \neq 0$. Así evitas el problema de dividir entre cero cuando algún coeficiente se anula.
+
+Por ejemplo, en el sistema formado por $2x = 6$ y $x + y = 5$ tienes $b = 0$, y la razón $\tfrac{b}{b'} = \tfrac{0}{1} = 0$ mientras que $\tfrac{a}{a'} = 2$: son distintas y el sistema es compatible determinado, como confirma el producto cruzado $2 \cdot 1 - 1 \cdot 0 = 2 \neq 0$.
+:::
+
+::: {.callout-tip}
+## Los tres casos, en una frase de contexto
+
+Piensa en dos empresas de reparto que cobran una parte fija y una parte por kilómetro. Si sus tarifas son distintas, existe una distancia exacta a la que cuestan lo mismo: rectas secantes, solución única. Si una cobra exactamente el doble que la otra en todos los conceptos, las dos ofertas son la misma escrita a otra escala: rectas coincidentes, infinitas distancias en las que la proporción se mantiene. Y si suben igual pero una parte de un fijo mayor, nunca llegan a igualarse: rectas paralelas, sistema incompatible. Los tres casos no son rarezas de examen; describen situaciones reales distintas.
+:::
+
+## Sistemas equivalentes
+
+Resolver un sistema consiste, en realidad, en **transformarlo** hasta que la respuesta sea evidente. Para que eso sea legítimo, las transformaciones no pueden cambiar las soluciones.
+
+::: {.callout-note}
+## Definición de sistemas equivalentes
+
+Dos sistemas son **equivalentes** cuando tienen exactamente las mismas soluciones, aunque sus ecuaciones sean distintas. No hace falta que tengan el mismo número de ecuaciones ni el mismo aspecto: lo único que importa es que el conjunto de soluciones coincida.
+:::
+
+Por ejemplo, los sistemas formados por $\{x + y = 15,\ x - y = 1\}$ y por $\{2x = 16,\ x - y = 1\}$ son equivalentes: los dos tienen como única solución $(8,7)$.
+
+::: {.callout-note}
+## Transformaciones que conservan las soluciones
+
+Si en un sistema se realiza cualquiera de estas operaciones, se obtiene un sistema equivalente:
+
+1. **Intercambiar** el orden de dos ecuaciones.
+2. **Multiplicar o dividir los dos miembros** de una ecuación por un mismo número **distinto de cero**.
+3. **Sustituir una ecuación por la suma** de ella misma con otra ecuación del sistema, multiplicada previamente por un número.
+4. **Sustituir una incógnita** por una expresión igual a ella obtenida de otra ecuación del sistema.
+5. **Suprimir una ecuación** que sea proporcional a otra, o que se obtenga de las demás combinándolas.
+
+Para escribir estos pasos se usa la notación $E_1$, $E_2$, … para las ecuaciones. Así, $E_2 \to E_2 - 2E_1$ significa «sustituye la segunda ecuación por ella misma menos el doble de la primera».
+:::
+
+**Ejemplo 4.** Partimos de
+
+$$
+\left\{
+\begin{array}{rcrcr}
+ x & + &  y & = & 15 \\
+ x & - &  y & = &  1
+\end{array}
+\right.
+$$
+
+y aplicamos $E_2 \to E_1 + E_2$. La suma miembro a miembro da $2x = 16$, así que el sistema equivalente es $\{x + y = 15,\ 2x = 16\}$. De la segunda ecuación sale $x = 8$ y, llevándolo a la primera, $y = 7$. La transformación ha eliminado una incógnita sin perder ni añadir soluciones.
+
+**Ejemplo 5.** En el sistema $\{3x - 2y = -2,\ 4x + 3y = 20\}$ aplicamos $E_1 \to 3E_1$ y $E_2 \to 2E_2$, obteniendo $9x - 6y = -6$ y $8x + 6y = 40$. Sumando ahora las dos, $17x = 34$, de donde $x = 2$; sustituyendo en $3x - 2y = -2$ resulta $6 - 2y = -2$, o sea $y = 4$. Comprobación en el sistema original: $3 \cdot 2 - 2\cdot 4 = -2$ y $4\cdot 2 + 3\cdot 4 = 20$. Correcto.
+
+::: {.callout-caution}
+## Transformaciones que **no** están permitidas
+
+- **Multiplicar una ecuación por cero.** La ecuación se convierte en $0 = 0$, que es cierta siempre y no dice nada: se pierde información y aparecen soluciones que no lo eran.
+- **Multiplicar solo un miembro** de la ecuación, o solo algunos términos. Si multiplicas por $3$, tienen que quedar multiplicados **todos** los términos de los dos miembros.
+- **Sumar un número a una sola ecuación** sin sumarlo a los dos miembros.
+- **Elevar al cuadrado** una ecuación. Puede introducir soluciones falsas, como ocurre con las ecuaciones irracionales.
+- **Sumar una ecuación consigo misma y quedarse solo con eso**, perdiendo la otra ecuación: el sistema resultante tiene menos información.
+:::
+
+::: {.callout-important}
+## Por qué la suma de ecuaciones es legítima
+
+Si un par $(x_0,y_0)$ cumple $E_1$ y cumple $E_2$, entonces los dos miembros de $E_1$ valen lo mismo y los de $E_2$ también, así que al sumarlos miembro a miembro la igualdad se conserva: $(x_0,y_0)$ cumple $E_1 + E_2$. Y al revés, si cumple $E_1$ y $E_1 + E_2$, restando recupera $E_2$. Por eso la operación no gana ni pierde soluciones: es reversible.
+
+Multiplicar por un número $k \neq 0$ es reversible por la misma razón: siempre se puede deshacer dividiendo entre $k$. Con $k = 0$ no hay vuelta atrás, y ahí está exactamente el motivo de la prohibición.
+:::
+
+### Applet · Sistemas equivalentes {.unnumbered}
+
+Escribe un sistema de partida y aplica sobre él las transformaciones disponibles: intercambiar las dos ecuaciones, multiplicar una de ellas por un número, o sustituir una por la suma de ella con la otra multiplicada por un factor. En cada paso el applet dibuja las rectas antes y después y marca la solución: comprueba que el punto de corte **no se mueve** por muy distinto que parezca el sistema. Prueba también la transformación prohibida —multiplicar por cero— y observa cómo una de las rectas desaparece y el conjunto de soluciones cambia por completo. En las casillas se admiten enteros, decimales con coma (por ejemplo $1{,}5$) y fracciones con barra (por ejemplo $3/4$).
+
+::: {#panel-equivalentes .applet-panel data-applet-sys="equivalentes"}
+:::
+
+## Cómo se leen los tres casos en la solución
+
+Cuando resuelvas algebraicamente, el propio cálculo te avisa de en cuál de los tres casos estás:
+
+- Si llegas a algo del tipo $5x = 10$, el sistema es **compatible determinado**: hay una solución.
+- Si llegas a una igualdad siempre cierta, como $0 = 0$ o $7 = 7$, el sistema es **compatible indeterminado**. Entonces la respuesta no es un punto: se despeja una incógnita en función de la otra y se escribe la solución en función de un parámetro. Por ejemplo, en $\{x + y = 1,\ 2x + 2y = 2\}$ las soluciones son todos los pares de la forma $(t,\ 1 - t)$ con $t$ un número real cualquiera.
+- Si llegas a una igualdad imposible, como $0 = 3$, el sistema es **incompatible** y la respuesta es que no tiene solución.
+
+**Ejemplo 6.** En $\{x + y = 1,\ x + y = 2\}$, restando la primera de la segunda queda $0 = 1$, absurdo: incompatible, tal como anticipaba el criterio de las razones, ya que $\tfrac{1}{1} = \tfrac{1}{1} \neq \tfrac{1}{2}$.
+
+## Errores frecuentes
+
+- **Comparar coeficientes sin haber ordenado las ecuaciones** en la forma $ax + by = c$. Las razones se calculan sobre el sistema ordenado, nunca sobre el original desordenado.
+- **Olvidar el signo al leer un coeficiente.** En $x - y = 8$ el coeficiente de $y$ es $-1$, no $1$.
+- **Confundir el criterio de indeterminado con el de incompatible.** Las tres razones iguales dan infinitas soluciones; las dos primeras iguales y la tercera distinta, ninguna.
+- **Dividir entre cero al aplicar el criterio.** Si algún coeficiente se anula, usa la comparación de productos cruzados $ab' - a'b$.
+- **Leer del dibujo una solución con decimales y darla por exacta.** El gráfico orienta; el valor exacto se calcula.
+- **Multiplicar una ecuación por un número y aplicarlo solo a algunos términos**, olvidando el término independiente.
+- **Multiplicar una ecuación por cero** creyendo que es una simplificación válida.
+- **Dar como respuesta un solo número en un sistema indeterminado.** La respuesta es la familia entera de soluciones, escrita en función de un parámetro.
+- **Sustituir el resultado en el sistema transformado** en vez de en el original, con lo que un error de manipulación queda escondido.
+
+## Resumen del apartado
+
+- Un sistema lineal $2 \times 2$ se escribe en forma general como $\{ax + by = c,\ a'x + b'y = c'\}$, y antes de manipularlo hay que ordenar las dos ecuaciones a esa forma.
+- Cada ecuación representa una **recta**, y resolver el sistema equivale a buscar los puntos comunes a las dos rectas.
+- El **método gráfico** dibuja ambas rectas y lee su intersección; sirve para entender y discutir, pero no da valores exactos.
+- **Criterio de discusión**: si $\tfrac{a}{a'} \neq \tfrac{b}{b'}$, compatible determinado (secantes); si $\tfrac{a}{a'} = \tfrac{b}{b'} = \tfrac{c}{c'}$, compatible indeterminado (coincidentes); si $\tfrac{a}{a'} = \tfrac{b}{b'} \neq \tfrac{c}{c'}$, incompatible (paralelas).
+- Cuando algún coeficiente es cero conviene usar la versión con productos cruzados: hay solución única si $ab' - a'b \neq 0$.
+- Dos sistemas son **equivalentes** si tienen las mismas soluciones. Conservan las soluciones: intercambiar ecuaciones, multiplicar una ecuación completa por un número no nulo, sustituir una ecuación por su suma con un múltiplo de otra, sustituir una incógnita por una expresión igual a ella y suprimir una ecuación proporcional a otra.
+- **No** conservan las soluciones multiplicar por cero, multiplicar un solo miembro o algunos términos, o elevar al cuadrado.
+- Al resolver, una igualdad del tipo $0 = 0$ indica sistema indeterminado y una igualdad imposible como $0 = 3$ indica sistema incompatible.
+
+## Ejercicios propuestos
+
+1. Ordena cada sistema en la forma general e indica los valores de $a$, $b$, $c$, $a'$, $b'$ y $c'$:
+   a) $\{3x = 5 - 2y,\ 7 - y = 4x\}$;  b) $\{2(x - y) = x + 1,\ y = 3x - 4\}$.
+
+2. Discute sin resolver, comparando razones, y di qué posición relativa tienen las rectas:
+   a) $\{2x + 3y = 5,\ 4x + 6y = 10\}$;  b) $\{2x + 3y = 5,\ 4x + 6y = 7\}$;  c) $\{2x + 3y = 5,\ 4x - 6y = 10\}$;  d) $\{x - 2y = 4,\ -3x + 6y = -12\}$.
+
+3. Resuelve gráficamente el sistema $\{x + y = 5,\ x - y = 1\}$ construyendo una tabla con dos puntos de cada recta, y comprueba después el resultado en las ecuaciones.
+
+4. Halla el valor de $k$ para que el sistema $\{2x + 3y = 7,\ 4x + ky = 14\}$ sea compatible indeterminado. ¿Para qué valores de $k$ es compatible determinado?
+
+5. Halla el valor de $m$ para que el sistema $\{x - 2y = 3,\ 2x - 4y = m\}$ sea incompatible, y razona qué ocurre con el único valor de $m$ que no lo hace incompatible.
+
+6. Aplica al sistema $\{x + y = 1,\ 2x - 3y = 2\}$ la transformación $E_2 \to E_2 - 2E_1$ y escribe el sistema resultante. Resuélvelo y comprueba la solución en el sistema de partida.
+
+7. Indica cuáles de estas transformaciones producen un sistema equivalente y por qué:
+   a) multiplicar la primera ecuación por $-4$;  b) multiplicar la segunda ecuación por $0$;  c) intercambiar las dos ecuaciones;  d) sumar $5$ únicamente al primer miembro de la primera ecuación;  e) sustituir $E_1$ por $E_1 + 3E_2$.
+
+8. Escribe dos sistemas distintos, ninguno de ellos igual al de partida, que sean equivalentes a $\{x + y = 15,\ x - y = 1\}$.
+
+9. Un sistema tiene por soluciones todos los pares de la forma $(t,\ 1-t)$. Escribe un sistema $2 \times 2$ con esas soluciones y clasifícalo.
+
+10. Dos tarifas de telefonía: la primera cobra $10$ € fijos más $0{,}05$ € por minuto, y la segunda $6$ € fijos más $0{,}09$ € por minuto. Plantea el sistema que da los minutos a los que ambas cuestan lo mismo, discútelo y resuélvelo gráficamente de forma aproximada.
+
+11. Razona si es posible que un sistema $2 \times 2$ con $c = c' = 0$ sea incompatible. Pon un ejemplo con solución única y otro con infinitas soluciones.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** a) $3x + 2y = 5$ y $4x + y = 7$: $a = 3$, $b = 2$, $c = 5$, $a' = 4$, $b' = 1$, $c' = 7$. b) Desarrollando, $2x - 2y = x + 1$ da $x - 2y = 1$, y $y = 3x - 4$ da $3x - y = 4$: $a = 1$, $b = -2$, $c = 1$, $a' = 3$, $b' = -1$, $c' = 4$.
+
+**2.** a) $\tfrac{2}{4} = \tfrac{3}{6} = \tfrac{5}{10}$: compatible indeterminado, rectas coincidentes. b) $\tfrac{2}{4} = \tfrac{3}{6} \neq \tfrac{5}{7}$: incompatible, rectas paralelas. c) $\tfrac{2}{4} \neq \tfrac{3}{-6}$: compatible determinado, rectas secantes. d) $\tfrac{1}{-3} = \tfrac{-2}{6} = \tfrac{4}{-12}$: compatible indeterminado, rectas coincidentes.
+
+**3.** La primera recta pasa por $(0,5)$ y $(5,0)$; la segunda, por $(1,0)$ y $(0,-1)$. Se cortan en $(3,2)$. Comprobación: $3 + 2 = 5$ y $3 - 2 = 1$. Correcto.
+
+**4.** Para que sea indeterminado hacen falta las tres razones iguales: $\tfrac{2}{4} = \tfrac{3}{k} = \tfrac{7}{14}$. Como $\tfrac{2}{4} = \tfrac{7}{14} = \tfrac{1}{2}$, basta con $\tfrac{3}{k} = \tfrac{1}{2}$, o sea $k = 6$. Para cualquier $k \neq 6$ las dos primeras razones son distintas y el sistema es compatible determinado; nunca es incompatible, porque la razón de los términos independientes ya coincide con la de los coeficientes de $x$.
+
+**5.** Se cumple $\tfrac{1}{2} = \tfrac{-2}{-4}$ siempre, así que basta con que $\tfrac{3}{m} \neq \tfrac{1}{2}$, es decir, $m \neq 6$. Con $m = 6$ las tres razones coinciden y el sistema pasa a ser compatible indeterminado: la segunda ecuación es el doble de la primera.
+
+**6.** $E_2 - 2E_1$ da $(2x - 3y) - 2(x+y) = 2 - 2$, es decir $-5y = 0$. El sistema equivalente es $\{x + y = 1,\ -5y = 0\}$, de donde $y = 0$ y $x = 1$. Comprobación en el original: $1 + 0 = 1$ y $2\cdot 1 - 3\cdot 0 = 2$. Correcto.
+
+**7.** a) Sí, es multiplicar una ecuación completa por un número no nulo. b) No: la ecuación se convierte en $0 = 0$ y se pierde información. c) Sí, el orden de las ecuaciones no afecta a las soluciones. d) No: al alterar un solo miembro se rompe la igualdad. e) Sí, es sustituir una ecuación por su suma con un múltiplo de otra.
+
+**8.** Por ejemplo $\{2x + 2y = 30,\ x - y = 1\}$ y $\{x + y = 15,\ 2x = 16\}$. Los dos tienen como única solución $(8,7)$.
+
+**9.** Por ejemplo $\{x + y = 1,\ 3x + 3y = 3\}$. Es compatible indeterminado: la segunda ecuación es el triple de la primera y las tres razones coinciden.
+
+**10.** Con $x$ = minutos y $y$ = coste en euros, el sistema es $\{y = 10 + 0{,}05x,\ y = 6 + 0{,}09x\}$, es decir $\{0{,}05x - y = -10,\ 0{,}09x - y = -6\}$. Como $\tfrac{0{,}05}{0{,}09} \neq \tfrac{-1}{-1}$, es compatible determinado. Gráficamente las rectas se cortan cerca de $x = 100$ minutos, con un coste de $15$ € en ambas tarifas; por debajo de esos minutos sale mejor la segunda y por encima, la primera.
+
+**11.** No es posible: un sistema con $c = c' = 0$ es homogéneo y siempre admite la solución trivial $(0,0)$, así que nunca es incompatible. Con solución única, por ejemplo $\{5x - 2y = 0,\ 3x + 2y = 0\}$; con infinitas, $\{x - 2y = 0,\ -2x + 4y = 0\}$.
+:::
