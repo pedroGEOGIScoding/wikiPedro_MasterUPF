@@ -156,6 +156,15 @@ $breadcrumb-divider: quote("/");
   }
 }
 
+//Codigo sin asignar lenguaje
+code {
+  font-size: 0.95em;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #d63384;
+  padding: 0.1em 0.3em;
+  border-radius: 0.2em;
+}
+
 // links
 .navbar-nav .nav-link {
     color: $secondary !important;

@@ -17,7 +17,7 @@ execute:
   cache: true
   freeze: auto
 
-highlight-style: breezedark
+highlight-style: pygments
 
 editor:
     render-on-save: true
