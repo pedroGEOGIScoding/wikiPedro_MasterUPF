@@ -1,0 +1,587 @@
+---
+title: "Tema 1.8 Producto de una matriz por un número"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 8 de 17)"
+filename: 08-producto-por-un-numero
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición del producto de un número real o escalar por una matriz, cálculo elemento a elemento, casos particulares del cero, del uno y del menos uno, propiedades distributiva respecto de la suma de matrices y respecto de la suma de escalares, propiedad asociativa mixta, elemento unidad, extracción de factor común, la matriz escalar como múltiplo de la identidad, combinaciones lineales de matrices y sistemas de ecuaciones matriciales, ejemplos resueltos paso a paso, errores típicos y ejercicios con solución.
+categories: [matrices, producto por escalar, combinación lineal, operaciones, propiedades, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Duplicar una tabla entera
+
+Supón que una matriz $A$ recoge los precios de los artículos de un catálogo, con una fila por proveedor y una columna por artículo, y que se aplica una subida del $10\,\%$ a todos ellos. La nueva tabla no exige recalcular nada complicado: cada precio se multiplica por $1{,}1$ y ya está. La operación afecta a todas las casillas por igual.
+
+Esa es exactamente la idea del **producto de un número por una matriz**. Es la segunda operación del tema y, como la suma, se realiza elemento a elemento, así que tampoco reserva sorpresas. Pero conviene estudiarla con detalle por dos motivos: porque sus propiedades se usan constantemente al manipular expresiones matriciales, y porque combinada con la suma da lugar a las **combinaciones lineales**, un concepto que será central cuando estudiemos las combinaciones lineales de filas y el rango de una matriz.
+
+Empecemos por observar que la operación no es realmente nueva. Ya sabemos sumar matrices, y por tanto sabemos calcular $A+A$. El resultado es una matriz de la misma dimensión en la que cada casilla contiene el elemento correspondiente de $A$ dos veces, es decir, multiplicado por $2$. Del mismo modo, $A+A+A$ tiene en cada posición el elemento de $A$ multiplicado por $3$. La definición que viene a continuación es, sencillamente, la extensión natural de esa idea a cualquier número real, incluidos los negativos y los fraccionarios.
+
+::: {.callout-note}
+## Definición: producto de un número por una matriz
+
+Dada una matriz $A=(a_{ij})$ de dimensión $m\times n$ y un número real $k$ —al que en este contexto se le llama **escalar**—, se define el producto $k\cdot A$ como la matriz de la **misma dimensión** $m\times n$ cuyos elementos se obtienen multiplicando cada elemento de $A$ por $k$:
+
+$$
+k\cdot A = C, \qquad \text{donde}\qquad c_{ij} = k\cdot a_{ij}
+$$
+:::
+
+En forma extendida:
+
+$$
+k\cdot
+\begin{pmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{pmatrix}
+=
+\begin{pmatrix}
+k\,a_{11} & \cdots & k\,a_{1n} \\
+\vdots & & \vdots \\
+k\,a_{m1} & \cdots & k\,a_{mn}
+\end{pmatrix}
+$$
+
+A diferencia de la suma, aquí **no hay ninguna condición previa**: cualquier número se puede multiplicar por cualquier matriz, sea cual sea su dimensión. El producto está siempre definido y el resultado nunca cambia de tamaño.
+
+::: {.callout-warning}
+## Escalar no significa «pequeño»
+
+La palabra *escalar* se usa en álgebra para distinguir los números de los objetos con los que se está trabajando —en este caso, las matrices—. Un escalar puede ser cualquier número real: $5$, $-\tfrac{2}{3}$, $0{,}25$ o $\sqrt{2}$. El nombre alude a que multiplicar por él «escala» el objeto, es decir, lo agranda o lo empequeñece manteniendo su forma.
+:::
+
+### Ejemplos inmediatos
+
+$$
+3\cdot \begin{pmatrix} 1 & 0 & 3 & 4 \\ 2 & 5 & 4 & 7 \end{pmatrix}
+= \begin{pmatrix} 3 & 0 & 9 & 12 \\ 6 & 15 & 12 & 21 \end{pmatrix}
+$$
+
+$$
+-2\cdot \begin{pmatrix} 2 & 0 \\ -1 & 3 \\ 4 & 7 \end{pmatrix}
+= \begin{pmatrix} -4 & 0 \\ 2 & -6 \\ -8 & -14 \end{pmatrix}
+$$
+
+$$
+\frac{1}{7}\cdot \begin{pmatrix} 49 & -56 \\ 21 & -7 \end{pmatrix}
+= \begin{pmatrix} 7 & -8 \\ 3 & -1 \end{pmatrix}
+$$
+
+En el segundo ejemplo hay que vigilar los signos: al multiplicar por un número negativo, los elementos negativos se vuelven positivos. En el tercero, multiplicar por $\tfrac17$ equivale a dividir entre $7$; de hecho **dividir una matriz entre un número** significa exactamente multiplicarla por el inverso de ese número, y es la única «división» que existe en este tema. Dividir una matriz entre otra matriz no tiene sentido, y esa advertencia será fundamental al final del tema.
+
+### Casos particulares que conviene tener memorizados
+
+- $\;1\cdot A = A$. Multiplicar por uno no cambia nada.
+- $\;0\cdot A = O$. Multiplicar por cero da la matriz nula de la misma dimensión que $A$.
+- $\;(-1)\cdot A = -A$. Multiplicar por menos uno da la matriz opuesta, la que definimos en el apartado anterior. Por eso la resta $A-B$ se puede escribir también como $A + (-1)\cdot B$.
+- $\;k\cdot O = O$ para cualquier escalar $k$.
+
+::: {.callout-important}
+## Una propiedad que el producto de matrices no tendrá
+
+Si $k\cdot A = O$, entonces necesariamente $k=0$ o bien $A=O$.
+
+La justificación es corta: si $k\neq 0$, se puede multiplicar la igualdad por $\tfrac{1}{k}$, y entonces $\tfrac1k\,(k A) = \tfrac1k\, O$, es decir $A = O$. Dicho de otro modo, **el producto por un escalar no tiene divisores de cero**: para que se anule, tiene que anularse uno de los dos factores.
+
+Reténlo, porque cuando estudiemos el producto de dos matrices veremos que allí **esto falla**: existen matrices $A\neq O$ y $B\neq O$ cuyo producto $A\cdot B$ es la matriz nula. Es una de las diferencias más llamativas entre el álgebra de matrices y el álgebra de los números.
+:::
+
+### Applet · Producto de una matriz por un número {.unnumbered}
+
+Mueve el deslizador del escalar $k$ —admite valores negativos y fraccionarios— y observa cómo cada elemento de la matriz se multiplica a la vez. Presta atención a lo que ocurre cuando $k$ vale $0$, $1$ o $-1$, y usa los botones de comprobación para verificar las propiedades que estudiamos a continuación con tus propias matrices.
+
+::: {#panel-escalar .applet-panel data-applet-mtx="escalar"}
+:::
+
+## Propiedades
+
+Sean $A$ y $B$ matrices de la misma dimensión $m\times n$, y sean $k$ y $h$ números reales cualesquiera.
+
+::: {.callout-note}
+## Las cuatro propiedades
+
+**Distributiva respecto de la suma de matrices.**
+
+$$
+k\,(A+B) = k\,A + k\,B
+$$
+
+**Distributiva respecto de la suma de escalares.**
+
+$$
+(k+h)\,A = k\,A + h\,A
+$$
+
+**Asociativa mixta (o pseudoasociativa).**
+
+$$
+k\,(h\,A) = (k\,h)\,A
+$$
+
+**Elemento unidad (o propiedad modular).**
+
+$$
+1\cdot A = A
+$$
+:::
+
+::: {.callout-important}
+## Por qué se cumplen
+
+Como en el apartado anterior, todas las demostraciones consisten en comprobar la igualdad en una casilla genérica $(i,j)$ y apoyarse en las propiedades de los números reales.
+
+**Distributiva respecto de la suma de matrices.** El elemento $(i,j)$ del primer miembro es $k\,(a_{ij}+b_{ij})$. El del segundo es $k\,a_{ij} + k\,b_{ij}$. Son iguales porque la multiplicación de números reales es distributiva respecto de la suma.
+
+**Distributiva respecto de la suma de escalares.** El elemento $(i,j)$ del primer miembro es $(k+h)\,a_{ij}$ y el del segundo es $k\,a_{ij}+h\,a_{ij}$; de nuevo la distributiva de los números reales.
+
+**Asociativa mixta.** El elemento $(i,j)$ del primer miembro es $k\,(h\,a_{ij})$ y el del segundo, $(k\,h)\,a_{ij}$; coinciden por la asociativa del producto de números reales.
+
+**Elemento unidad.** El elemento $(i,j)$ de $1\cdot A$ es $1\cdot a_{ij} = a_{ij}$.
+
+Y las dimensiones coinciden en todos los casos, porque ninguna de las dos operaciones altera el tamaño de las matrices.
+:::
+
+Estas cuatro propiedades, junto con las cuatro de la suma del apartado anterior, se resumen diciendo que el conjunto de las matrices de una dimensión fija tiene **estructura de espacio vectorial**. No hace falta manejar esa expresión en Bachillerato; lo que sí hace falta es entender su significado práctico, que es muy concreto: **las expresiones con matrices, sumas y escalares se manipulan con las mismas reglas que las expresiones algebraicas de siempre**. Se pueden quitar paréntesis, sacar factor común, agrupar términos semejantes y despejar. Todo lo que aprendiste a hacer con $2(x+y)-3x$ vale igual con $2(A+B)-3A$.
+
+### Sacar factor común
+
+La propiedad distributiva leída de derecha a izquierda permite **extraer un factor común** de una matriz, lo cual simplifica muchísimo las cuentas cuando todos los elementos son múltiplos de un mismo número:
+
+$$
+\begin{pmatrix} 12 & -18 \\ 6 & 30 \end{pmatrix}
+= 6\cdot \begin{pmatrix} 2 & -3 \\ 1 & 5 \end{pmatrix}
+$$
+
+Y también permite escribir con elegancia las matrices con fracciones, evitando arrastrar denominadores:
+
+$$
+\begin{pmatrix} \tfrac{1}{3} & \tfrac{2}{3} \\[4pt] -\tfrac{4}{3} & \tfrac{5}{3} \end{pmatrix}
+= \frac{1}{3}\begin{pmatrix} 1 & 2 \\ -4 & 5 \end{pmatrix}
+$$
+
+Un caso especialmente útil es el de las **matrices escalares**, aquellas matrices diagonales cuyos elementos de la diagonal son todos iguales. Cualquier matriz escalar es un múltiplo de la identidad:
+
+$$
+\begin{pmatrix} k & 0 & 0 \\ 0 & k & 0 \\ 0 & 0 & k \end{pmatrix}
+= k\cdot \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+= k\cdot I
+$$
+
+De ahí les viene el nombre: se comportan igual que el escalar $k$. Esta observación será muy cómoda cuando aparezcan expresiones como $A - 3I$ en las ecuaciones matriciales del final del tema.
+
+::: {.callout-caution}
+## Errores típicos
+
+- **Multiplicar solo la primera fila o solo la diagonal.** El escalar afecta a **todos** los elementos, sin excepción. Es el error número uno del apartado, y conviene desactivarlo ahora, porque en el tema de determinantes aparecerá una regla que se le parece pero que dice algo muy distinto: allí se saca factor común de **una sola fila**, y no de la matriz entera. Confundir ambas cosas es un clásico. Para las matrices, la regla es sencilla: si multiplicas por $k$ una matriz $3\times 3$, quedan multiplicados los nueve elementos.
+- **Olvidar el signo al distribuir un escalar negativo.** En $-2(A-B)$ el resultado es $-2A+2B$, no $-2A-2B$.
+- **Escribir $k(A+B) = kA + B$.** El escalar entra en los dos sumandos.
+- **Pensar que $2A$ significa poner un $2$ en algún sitio de la matriz.** $2A$ es $A+A$: todos los elementos duplicados.
+- **Confundir $kA$ con $A^k$.** El primero es un producto por un número y existe siempre; el segundo es una potencia, solo tiene sentido para matrices cuadradas y se calcula con el producto de matrices, que veremos más adelante.
+:::
+
+## Ejemplos resueltos
+
+### Ejemplo 1: una expresión con paréntesis
+
+Dadas
+
+$$
+A = \begin{pmatrix} 3 & 1 \\ -1 & 4 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 2 & 0 \\ -3 & -1 \end{pmatrix}, \qquad
+C = \begin{pmatrix} -2 & 3 \\ 1 & -2 \end{pmatrix}
+$$
+
+calcula $2(A-B) + 3C$.
+
+**Paso 1: la resta del paréntesis.**
+
+$$
+A - B = \begin{pmatrix} 3-2 & 1-0 \\ -1-(-3) & 4-(-1) \end{pmatrix}
+= \begin{pmatrix} 1 & 1 \\ 2 & 5 \end{pmatrix}
+$$
+
+**Paso 2: los dos productos por un número.**
+
+$$
+2(A-B) = \begin{pmatrix} 2 & 2 \\ 4 & 10 \end{pmatrix},
+\qquad
+3C = \begin{pmatrix} -6 & 9 \\ 3 & -6 \end{pmatrix}
+$$
+
+**Paso 3: la suma final.**
+
+$$
+2(A-B)+3C = \begin{pmatrix} 2-6 & 2+9 \\ 4+3 & 10-6 \end{pmatrix}
+= \begin{pmatrix} -4 & 11 \\ 7 & 4 \end{pmatrix}
+$$
+
+Nada impide hacerlo por el otro camino, distribuyendo primero: $2A - 2B + 3C$. Se obtiene el mismo resultado, y precisamente eso es lo que garantiza la propiedad distributiva. Elige el camino con menos operaciones: aquí ha sido más corto restar primero.
+
+### Ejemplo 2: comprobación de las propiedades distributivas
+
+Con las matrices
+
+$$
+A = \begin{pmatrix} 1 & -2 \\ 0 & 3 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 4 & 1 \\ -1 & 2 \end{pmatrix}
+$$
+
+y los escalares $k=3$, $h=-1$, comprobemos las tres propiedades principales.
+
+**Primera: $k(A+B) = kA+kB$.**
+
+$$
+A+B = \begin{pmatrix} 5 & -1 \\ -1 & 5 \end{pmatrix}
+\;\Longrightarrow\;
+3(A+B) = \begin{pmatrix} 15 & -3 \\ -3 & 15 \end{pmatrix}
+$$
+
+$$
+3A = \begin{pmatrix} 3 & -6 \\ 0 & 9 \end{pmatrix},
+\quad
+3B = \begin{pmatrix} 12 & 3 \\ -3 & 6 \end{pmatrix}
+\;\Longrightarrow\;
+3A+3B = \begin{pmatrix} 15 & -3 \\ -3 & 15 \end{pmatrix}
+$$
+
+**Segunda: $(k+h)A = kA+hA$.** Aquí $k+h = 3+(-1) = 2$, luego
+
+$$
+2A = \begin{pmatrix} 2 & -4 \\ 0 & 6 \end{pmatrix}
+$$
+
+$$
+3A + (-1)A = \begin{pmatrix} 3 & -6 \\ 0 & 9 \end{pmatrix} + \begin{pmatrix} -1 & 2 \\ 0 & -3 \end{pmatrix}
+= \begin{pmatrix} 2 & -4 \\ 0 & 6 \end{pmatrix}
+$$
+
+**Tercera: $k(hA) = (kh)A$.** Por un lado, $hA = (-1)A = \begin{pmatrix} -1 & 2 \\ 0 & -3 \end{pmatrix}$ y
+
+$$
+3\,(hA) = \begin{pmatrix} -3 & 6 \\ 0 & -9 \end{pmatrix}
+$$
+
+Por otro, $kh = 3\cdot(-1) = -3$ y
+
+$$
+(-3)A = \begin{pmatrix} -3 & 6 \\ 0 & -9 \end{pmatrix}
+$$
+
+Las tres comprobaciones salen. Insistimos en que una comprobación con matrices concretas **no demuestra** la propiedad: la demostración es la del razonamiento por casillas que hemos escrito más arriba. Lo que sí hacen estos cálculos es afianzar el manejo y detectar errores propios.
+
+### Ejemplo 3: producto por un escalar y transposición
+
+Comprueba con $A = \begin{pmatrix} 2 & -1 & 0 \\ 5 & 3 & -4 \end{pmatrix}$ que $(kA)^t = k\,A^t$ para $k=-3$.
+
+$$
+-3A = \begin{pmatrix} -6 & 3 & 0 \\ -15 & -9 & 12 \end{pmatrix}
+\;\Longrightarrow\;
+(-3A)^t = \begin{pmatrix} -6 & -15 \\ 3 & -9 \\ 0 & 12 \end{pmatrix}
+$$
+
+$$
+A^t = \begin{pmatrix} 2 & 5 \\ -1 & 3 \\ 0 & -4 \end{pmatrix}
+\;\Longrightarrow\;
+-3A^t = \begin{pmatrix} -6 & -15 \\ 3 & -9 \\ 0 & 12 \end{pmatrix}
+$$
+
+Es la propiedad que ya vimos en el apartado de la transpuesta, ahora con las dos operaciones bien definidas: multiplicar por un número y transponer son operaciones que se pueden intercambiar sin consecuencias.
+
+## Combinaciones lineales de matrices
+
+Al juntar las dos operaciones que llevamos aparece un tipo de expresión que va a resultar central en el resto del tema.
+
+::: {.callout-note}
+## Definición: combinación lineal
+
+Dadas dos matrices $A$ y $B$ de la misma dimensión y dos escalares $\alpha$ y $\beta$, se llama **combinación lineal** de $A$ y $B$ con coeficientes $\alpha$ y $\beta$ a la matriz
+
+$$
+\alpha\,A + \beta\,B
+$$
+
+De forma general, una combinación lineal de las matrices $A_1, A_2, \dots, A_p$ (todas de la misma dimensión) es cualquier matriz de la forma
+
+$$
+\alpha_1 A_1 + \alpha_2 A_2 + \cdots + \alpha_p A_p
+$$
+
+con $\alpha_1,\dots,\alpha_p$ números reales.
+:::
+
+Toda combinación lineal de matrices $m\times n$ vuelve a ser una matriz $m\times n$: la suma no cambia la dimensión y el producto por un escalar tampoco. Esta idea reaparecerá en el apartado 1.11 aplicada a las **filas** de una matriz, y de ella nacerá el concepto de rango. Merece la pena, por tanto, familiarizarse con ella ahora en su versión más sencilla.
+
+### Ejemplo 4: calcular y reconocer una combinación lineal
+
+Con
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 0 & -1 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 3 & 0 \\ 1 & 2 \end{pmatrix}
+$$
+
+**(a)** Calcula $2A+3B$.
+
+$$
+2A = \begin{pmatrix} 2 & 4 \\ 0 & -2 \end{pmatrix}, \qquad
+3B = \begin{pmatrix} 9 & 0 \\ 3 & 6 \end{pmatrix}
+\;\Longrightarrow\;
+2A+3B = \begin{pmatrix} 11 & 4 \\ 3 & 4 \end{pmatrix}
+$$
+
+**(b)** Halla, si existen, escalares $\alpha$ y $\beta$ tales que $\alpha A + \beta B = \begin{pmatrix} 11 & 4 \\ 3 & 4 \end{pmatrix}$.
+
+Escribimos la combinación en general:
+
+$$
+\alpha A + \beta B = \begin{pmatrix} \alpha + 3\beta & 2\alpha \\ \beta & -\alpha + 2\beta \end{pmatrix}
+$$
+
+e igualamos casilla a casilla con la matriz objetivo. Se obtiene un sistema de cuatro ecuaciones con dos incógnitas:
+
+$$
+\begin{array}{ll}
+\alpha + 3\beta = 11 & \\
+2\alpha = 4 & \Longrightarrow\; \alpha = 2 \\
+\beta = 3 & \\
+-\alpha + 2\beta = 4 &
+\end{array}
+$$
+
+De la segunda ecuación sale $\alpha=2$ y de la tercera $\beta=3$. Comprobamos que esos valores satisfacen también las otras dos: $2+3\cdot 3 = 11$ y $-2+2\cdot 3 = 4$. Efectivamente, la matriz objetivo es la combinación $2A+3B$, como sabíamos por el apartado (a).
+
+Merece la pena observar que un sistema con más ecuaciones que incógnitas **puede no tener solución**. Si en la matriz objetivo cambiáramos un solo número, por ejemplo el $4$ de abajo a la derecha por un $7$, la última ecuación pasaría a ser $-\alpha+2\beta=7$, incompatible con $\alpha=2$ y $\beta=3$: entonces esa matriz **no** sería combinación lineal de $A$ y $B$.
+
+### Ejemplo 5: anular una combinación lineal
+
+¿Existen escalares $\alpha$ y $\beta$, no ambos nulos, tales que $\alpha A + \beta B = O$ con las matrices anteriores?
+
+Igualando la combinación general a la matriz nula:
+
+$$
+\begin{cases}
+\alpha + 3\beta = 0 \\
+2\alpha = 0 \\
+\beta = 0 \\
+-\alpha + 2\beta = 0
+\end{cases}
+$$
+
+La segunda da $\alpha = 0$ y la tercera $\beta=0$, valores que satisfacen todas las demás. La única forma de anular la combinación es tomar los dos coeficientes nulos. Cuando esto ocurre se dice que las matrices son **linealmente independientes**, y en el apartado 1.11 veremos la enorme importancia de esta idea aplicada a las filas de una matriz.
+
+### Applet · Combinaciones lineales de matrices {.unnumbered}
+
+Ajusta los dos coeficientes $\alpha$ y $\beta$ con los deslizadores y observa cómo cambia en directo la matriz $\alpha A+\beta B$. Prueba los escenarios preparados para anular la combinación y para alcanzar una matriz objetivo, y fíjate en que muchas matrices del mismo tamaño **no** se pueden obtener por más que muevas los coeficientes.
+
+::: {#panel-combinaLineal .applet-panel data-applet-mtx="combinaLineal"}
+:::
+
+### Ejemplo 6: un sistema de ecuaciones matriciales
+
+Resuelve el sistema
+
+$$
+\begin{cases}
+2X + Y = A \\
+X - Y = B
+\end{cases}
+\qquad\text{con}\qquad
+A = \begin{pmatrix} 4 & 2 \\ 0 & 6 \end{pmatrix}, \quad
+B = \begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix}
+$$
+
+Las incógnitas $X$ e $Y$ son matrices de dimensión $2\times 2$, pero eso apenas cambia el procedimiento: **todas las propiedades que usa el método de reducción son las que hemos demostrado en este apartado y en el anterior**, así que se puede operar igual que con un sistema numérico.
+
+**Paso 1: sumar las dos ecuaciones.** El término $Y$ se cancela con $-Y$:
+
+$$
+(2X+Y) + (X-Y) = A + B \;\Longrightarrow\; 3X = A+B
+$$
+
+$$
+A+B = \begin{pmatrix} 6 & 3 \\ 3 & 6 \end{pmatrix}
+\;\Longrightarrow\;
+X = \frac{1}{3}\begin{pmatrix} 6 & 3 \\ 3 & 6 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}
+$$
+
+Fíjate en que dividir entre $3$ es multiplicar por el escalar $\tfrac13$, operación que sí está permitida.
+
+**Paso 2: sustituir para hallar $Y$.** De la segunda ecuación, $Y = X - B$:
+
+$$
+Y = \begin{pmatrix} 2-2 & 1-1 \\ 1-3 & 2-0 \end{pmatrix}
+= \begin{pmatrix} 0 & 0 \\ -2 & 2 \end{pmatrix}
+$$
+
+**Paso 3: comprobar.**
+
+$$
+2X + Y = \begin{pmatrix} 4 & 2 \\ 2 & 4 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ -2 & 2 \end{pmatrix}
+= \begin{pmatrix} 4 & 2 \\ 0 & 6 \end{pmatrix} = A
+$$
+
+$$
+X - Y = \begin{pmatrix} 2-0 & 1-0 \\ 1+2 & 2-2 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 3 & 0 \end{pmatrix} = B
+$$
+
+::: {.callout-warning}
+## Un aviso para más adelante
+
+Este sistema se ha resuelto exactamente como uno de números porque en él solo aparecen sumas de matrices y productos por escalares. Cuando las ecuaciones matriciales incluyan **productos de matrices**, del tipo $A\cdot X + B = C$, el método cambiará radicalmente: habrá que multiplicar por la inversa de $A$ y, además, decidir si se multiplica por la izquierda o por la derecha, porque el producto de matrices no es conmutativo. Es el contenido del apartado 1.16, y una de las preguntas más frecuentes en las pruebas de acceso.
+:::
+
+::: {.callout-tip}
+## Escalar arriba, escalar abajo
+
+La multiplicación por un escalar tiene una lectura geométrica muy visual cuando las matrices representan puntos o transformaciones del plano. Si una matriz columna $\begin{pmatrix} x \\ y \end{pmatrix}$ representa un punto, multiplicarla por $k$ produce el punto situado en la misma dirección desde el origen, pero a $k$ veces la distancia: si $k>1$ el punto se aleja, si $0<k<1$ se acerca y si $k<0$ salta al otro lado del origen.
+
+Esa imagen —estirar, encoger o dar la vuelta sin cambiar de dirección— es la que justifica el nombre de *escalar*, y explica por qué esta operación es tan importante en informática gráfica: cambiar el tamaño de una imagen es, literalmente, multiplicar una matriz por un número.
+:::
+
+## Resumen del apartado
+
+- El producto de un escalar $k$ por una matriz $A$ se obtiene multiplicando **todos** los elementos de $A$ por $k$: $(kA)_{ij} = k\,a_{ij}$. Está siempre definido y no cambia la dimensión.
+- Casos particulares: $1\cdot A = A$, $\;0\cdot A = O$, $\;(-1)\cdot A = -A$, $\;k\cdot O = O$.
+- Si $kA = O$, entonces $k=0$ o $A=O$: no hay divisores de cero. El producto de matrices no tendrá esta buena propiedad.
+- Propiedades: $k(A+B) = kA+kB$, $\;(k+h)A = kA+hA$, $\;k(hA) = (kh)A$, $\;1\cdot A = A$.
+- Leídas al revés, las distributivas permiten **sacar factor común**; toda matriz escalar se escribe como $k\cdot I$.
+- Una **combinación lineal** de matrices de la misma dimensión es una expresión $\alpha A + \beta B + \cdots$, y el resultado tiene siempre esa misma dimensión.
+- Los sistemas de ecuaciones matriciales en los que solo intervienen sumas y escalares se resuelven por reducción o sustitución, exactamente igual que los sistemas numéricos.
+
+## Ejercicios propuestos
+
+**1.** Calcula $-3A$ y $\tfrac12 A$ para
+
+$$
+A = \begin{pmatrix} 2 & -4 & 6 \\ 0 & 8 & -10 \end{pmatrix}
+$$
+
+**2.** Con
+
+$$
+A = \begin{pmatrix} 1 & 3 \\ -2 & 0 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 2 & 0 \\ -3 & -1 \end{pmatrix}, \qquad
+C = \begin{pmatrix} -2 & 3 \\ 1 & -2 \end{pmatrix}
+$$
+
+calcula $\;(-2)(A-C) - 3(B+2C)$.
+
+**3.** Saca factor común en la matriz $\begin{pmatrix} -15 & 25 \\ 10 & -5 \end{pmatrix}$ y escríbela como un escalar por una matriz de elementos enteros lo más pequeños posible.
+
+**4.** Escribe como múltiplo de la identidad la matriz $\begin{pmatrix} -4 & 0 & 0 \\ 0 & -4 & 0 \\ 0 & 0 & -4 \end{pmatrix}$.
+
+**5.** Comprueba con $k=5$, $h=-2$ y la matriz $A = \begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix}$ que se cumplen $(k+h)A = kA+hA$ y $k(hA) = (kh)A$.
+
+**6.** Resuelve la ecuación matricial $3X - A = 2X + B$, siendo
+
+$$
+A = \begin{pmatrix} 1 & 0 \\ 4 & -2 \end{pmatrix}, \qquad
+B = \begin{pmatrix} -3 & 5 \\ 0 & 1 \end{pmatrix}
+$$
+
+**7.** Resuelve el sistema
+
+$$
+\begin{cases}
+X + Y = \begin{pmatrix} 5 & 1 \\ 3 & 7 \end{pmatrix} \\[6pt]
+X - Y = \begin{pmatrix} 1 & -3 \\ 1 & 1 \end{pmatrix}
+\end{cases}
+$$
+
+**8.** Determina si la matriz $\begin{pmatrix} 5 & 8 \\ -1 & 1 \end{pmatrix}$ es combinación lineal de $A = \begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ -1 & 0 \end{pmatrix}$, y en caso afirmativo halla los coeficientes.
+
+**9.** Razona si es verdadero o falso: si $kA = kB$ con $k\neq 0$, entonces $A=B$.
+
+**10.** Sea $A$ una matriz simétrica y $k$ un número real. Demuestra que $kA$ también es simétrica, y explica qué ocurre si $A$ es antisimétrica.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.**
+
+$$
+-3A = \begin{pmatrix} -6 & 12 & -18 \\ 0 & -24 & 30 \end{pmatrix},
+\qquad
+\tfrac12 A = \begin{pmatrix} 1 & -2 & 3 \\ 0 & 4 & -5 \end{pmatrix}
+$$
+
+**2.** Primero los paréntesis: $A-C = \begin{pmatrix} 3 & 0 \\ -3 & 2 \end{pmatrix}$ y $2C = \begin{pmatrix} -4 & 6 \\ 2 & -4 \end{pmatrix}$, luego $B+2C = \begin{pmatrix} -2 & 6 \\ -1 & -5 \end{pmatrix}$. Ahora los productos:
+
+$$
+(-2)(A-C) = \begin{pmatrix} -6 & 0 \\ 6 & -4 \end{pmatrix},
+\qquad
+3(B+2C) = \begin{pmatrix} -6 & 18 \\ -3 & -15 \end{pmatrix}
+$$
+
+y finalmente la resta:
+
+$$
+(-2)(A-C) - 3(B+2C) = \begin{pmatrix} -6+6 & 0-18 \\ 6+3 & -4+15 \end{pmatrix} = \begin{pmatrix} 0 & -18 \\ 9 & 11 \end{pmatrix}
+$$
+
+**3.** Todos los elementos son múltiplos de $5$:
+
+$$
+\begin{pmatrix} -15 & 25 \\ 10 & -5 \end{pmatrix} = 5\begin{pmatrix} -3 & 5 \\ 2 & -1 \end{pmatrix}
+$$
+
+También se podría sacar $-5$, obteniendo $-5\begin{pmatrix} 3 & -5 \\ -2 & 1 \end{pmatrix}$; las dos respuestas son correctas.
+
+**4.** Es una matriz escalar de orden $3$, luego $\;-4\cdot I$.
+
+**5.** Con $k+h = 3$: $\;3A = \begin{pmatrix} 3 & -3 \\ 6 & 0 \end{pmatrix}$, y $5A + (-2)A = \begin{pmatrix} 5 & -5 \\ 10 & 0 \end{pmatrix} + \begin{pmatrix} -2 & 2 \\ -4 & 0 \end{pmatrix} = \begin{pmatrix} 3 & -3 \\ 6 & 0 \end{pmatrix}$. Coinciden. Para la segunda, $hA = \begin{pmatrix} -2 & 2 \\ -4 & 0 \end{pmatrix}$ y $5(hA) = \begin{pmatrix} -10 & 10 \\ -20 & 0 \end{pmatrix}$; por otro lado $kh = -10$ y $(-10)A = \begin{pmatrix} -10 & 10 \\ -20 & 0 \end{pmatrix}$. Coinciden.
+
+**6.** Se agrupan las $X$ en un miembro: $3X - 2X = A + B$, es decir $X = A+B$:
+
+$$
+X = \begin{pmatrix} 1-3 & 0+5 \\ 4+0 & -2+1 \end{pmatrix} = \begin{pmatrix} -2 & 5 \\ 4 & -1 \end{pmatrix}
+$$
+
+**7.** Sumando las dos ecuaciones, $2X = \begin{pmatrix} 6 & -2 \\ 4 & 8 \end{pmatrix}$, luego
+
+$$
+X = \tfrac12\begin{pmatrix} 6 & -2 \\ 4 & 8 \end{pmatrix} = \begin{pmatrix} 3 & -1 \\ 2 & 4 \end{pmatrix}
+$$
+
+Restándolas, $2Y = \begin{pmatrix} 4 & 4 \\ 2 & 6 \end{pmatrix}$, luego $Y = \begin{pmatrix} 2 & 2 \\ 1 & 3 \end{pmatrix}$. Comprobación: $X+Y = \begin{pmatrix} 5 & 1 \\ 3 & 7 \end{pmatrix}$ y $X-Y = \begin{pmatrix} 1 & -3 \\ 1 & 1 \end{pmatrix}$.
+
+**8.** Se plantea $\alpha A + \beta B = \begin{pmatrix} \alpha+\beta & 2\alpha \\ \alpha-\beta & \alpha \end{pmatrix}$ y se iguala:
+
+$$
+\begin{cases}
+\alpha + \beta = 5 \\
+2\alpha = 8 \\
+\alpha - \beta = -1 \\
+\alpha = 1
+\end{cases}
+$$
+
+La segunda ecuación exige $\alpha = 4$ y la cuarta exige $\alpha = 1$. Son incompatibles, de modo que la matriz **no** es combinación lineal de $A$ y $B$.
+
+**9. Verdadero.** De $kA = kB$ se sigue $kA - kB = O$, es decir $k(A-B) = O$ por la distributiva. Como el producto por un escalar no tiene divisores de cero y $k\neq 0$, ha de ser $A-B = O$, o sea $A=B$. La hipótesis $k\neq 0$ es imprescindible: si $k=0$, la igualdad $0\cdot A = 0\cdot B$ se cumple para cualesquiera $A$ y $B$ de la misma dimensión y no permite concluir nada.
+
+**10.** Si $A^t = A$, entonces, usando la propiedad de la transpuesta de un múltiplo,
+
+$$
+(kA)^t = k\,A^t = k\,A
+$$
+
+luego $kA$ coincide con su transpuesta y es simétrica. Si $A$ es antisimétrica, $A^t=-A$ y entonces $(kA)^t = kA^t = -kA = -(kA)$, de modo que $kA$ es antisimétrica. Multiplicar por un número **conserva** ambos tipos de simetría, y también conserva la propiedad de ser diagonal o triangular. El único caso degenerado es $k=0$, que convierte cualquier matriz en la nula, la cual, como vimos, es a la vez simétrica y antisimétrica.
+:::
+
+## Continúa
+
+Con la suma y el producto por un número dominados, llega el momento de la operación grande del tema. En el apartado siguiente empezaremos por el caso más simple —el producto de una matriz fila por una matriz columna— para construir después, sobre él, el **producto de dos matrices**, la operación que da a las matrices toda su potencia y que rompe con varias de las reglas del álgebra que hasta ahora dábamos por seguras.

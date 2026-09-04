@@ -1,0 +1,436 @@
+---
+title: "Tema 1.12 Rango de una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 12 de 17)"
+filename: 12-rango-de-una-matriz
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de rango de una matriz como número máximo de líneas linealmente independientes, igualdad entre el rango por filas y el rango por columnas, la cota rg(A) menor o igual que el mínimo de m y n con su justificación, rango de la matriz nula y de la identidad, rango de la traspuesta, las tres transformaciones elementales que no alteran el rango y las operaciones prohibidas que sí lo alteran, ejemplos resueltos de cálculo y conexión con la matriz inversa y con la discusión de sistemas, con errores típicos y applets manipulables.
+categories: [matrices, rango, dependencia lineal, transformaciones elementales, sistemas de ecuaciones, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un número que resume toda una tabla
+
+En el apartado anterior aprendiste a detectar si una fila de una matriz aporta información nueva o si es solo una copia disfrazada de las demás. Al final de cada ejemplo aparecía siempre la misma frase: «hay dos filas independientes», «hay una sola», «hay tres». Y aparecía además una observación importante: **qué filas** son las independientes puede elegirse de varias formas, pero **cuántas** hay es siempre lo mismo.
+
+Ese número no depende de cómo mires la matriz. Es una propiedad suya, tan objetiva como su dimensión o su determinante. Se llama **rango**, y es probablemente el concepto más rentable de todo el bloque de álgebra: con él se decide si una matriz tiene inversa, cuántas soluciones tiene un sistema de ecuaciones lineales y si un conjunto de datos contiene información repetida.
+
+Todo lo que sigue en el curso —la matriz inversa, las ecuaciones matriciales, el teorema de Rouché-Frobenius, la discusión de sistemas con parámetros— se apoya en saber calcular rangos con soltura.
+
+::: {.callout-tip}
+## Para qué sirve un rango fuera del examen
+
+Imagina una empresa que registra siete indicadores mensuales de su actividad en una tabla. Si al calcular el rango de esa matriz sale $4$, significa que solo cuatro de los siete indicadores aportan información propia: los otros tres se pueden reconstruir a partir de ellos y su medición es esfuerzo desperdiciado. Este razonamiento es exactamente el que se usa en estadística y en economía para reducir el número de variables de un modelo.
+
+El mismo cálculo aparece en el análisis de redes sociales, en el estudio de la estabilidad de estructuras, en la compresión de imágenes y en los sistemas de recomendación. En todos los casos la pregunta es la misma: de todos estos datos, ¿cuántos son realmente independientes?
+:::
+
+## Definición
+
+::: {.callout-note}
+## Definición: rango de una matriz
+
+Se llama **rango** de una matriz $A$ de dimensión $m\times n$, y se escribe $\operatorname{rg}(A)$, al **número máximo de filas linealmente independientes** que tiene, es decir, al número de filas que no se pueden expresar como combinación lineal de las restantes.
+
+Equivalentemente, es el número máximo de columnas linealmente independientes. Ambas cantidades coinciden siempre, como se justifica más abajo.
+:::
+
+Antes de calcular nada, conviene fijar los casos extremos, que sirven de control de calidad de cualquier resultado.
+
+::: {.callout-note}
+## Casos inmediatos
+
+- **Matriz nula.** $\operatorname{rg}(A) = 0$ si y solo si $A$ es la matriz nula. Ninguna fila aporta información porque todas son de ceros, y esta es la **única** situación en la que el rango vale cero. Si en un ejercicio te sale rango $0$ y la matriz tiene algún elemento no nulo, hay un error.
+- **Matriz identidad.** $\operatorname{rg}(I_n) = n$. Cada fila tiene un $1$ en una posición donde todas las demás tienen ceros, así que ninguna puede obtenerse combinando las otras: las $n$ filas son independientes.
+- **Matriz escalonada.** El rango es el número de filas **no nulas**, por el razonamiento del apartado anterior. Este es el caso que nos interesará provocar mediante transformaciones.
+- **Cualquier matriz no nula.** $\operatorname{rg}(A)\ge 1$, ya que una fila con algún elemento distinto de cero es, por sí sola, linealmente independiente.
+:::
+
+### Ejemplo resuelto 1: rangos que se leen directamente
+
+$$
+A = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & 2 \\ 3 & 3 & 3 \end{pmatrix},
+\quad
+B = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 4 \\ 1 & 2 & 5 \end{pmatrix},
+\quad
+C = \begin{pmatrix} 1 & 2 & 4 \\ 0 & 3 & 2 \\ 0 & 0 & 0 \end{pmatrix},
+\quad
+D = \begin{pmatrix} 1 & \pi & e \\ 0 & 1 & a \\ 0 & 0 & 2 \end{pmatrix}
+$$
+
+**$\operatorname{rg}(A) = 1$.** Las tres filas son proporcionales: $F_2 = 2F_1$ y $F_3 = 3F_1$. Solo una aporta información.
+
+**$\operatorname{rg}(B) = 2$.** Aquí es más cómodo mirar las columnas: $C_2 = 2C_1$, luego $C_2$ es dependiente. Quedan $C_1$ y $C_3$, que no son proporcionales, así que hay dos columnas independientes. Por filas se llega a lo mismo: $F_3 = 2F_2 - F_1$.
+
+**$\operatorname{rg}(C) = 2$.** Está escalonada y tiene dos filas no nulas.
+
+**$\operatorname{rg}(D) = 3$.** Está escalonada, ninguna fila es nula y ningún elemento de la diagonal se anula. Observa que el resultado **no depende del valor de $a$**, ni de que aparezcan números irracionales: lo único que cuenta es la estructura de ceros.
+
+## La cota fundamental
+
+::: {.callout-important}
+## Por qué $0 \le \operatorname{rg}(A) \le \min(m,n)$
+
+Si $A$ tiene dimensión $m\times n$, su rango no puede pasar del menor de los dos números:
+
+$$
+0 \le \operatorname{rg}(A) \le \min\{m, n\}
+$$
+
+**Justificación.** Por definición, el rango es a la vez el número de filas independientes y el número de columnas independientes. Como solo hay $m$ filas, no puede haber más de $m$ independientes; y como solo hay $n$ columnas, no puede haber más de $n$. El rango tiene que cumplir las dos condiciones simultáneamente, así que es menor o igual que el mínimo.
+
+**Un ejemplo que lo hace evidente.** Sea una matriz de $4$ filas y $3$ columnas. Tiene como máximo $3$ columnas independientes, luego su rango es como mucho $3$. Y por tanto **no puede tener cuatro filas independientes**, aunque a primera vista ninguna parezca combinación de las otras: alguna dependencia habrá necesariamente, aunque haga falta buscarla con coeficientes.
+
+Recuerda el último ejercicio del apartado anterior: dos filas independientes de longitud $2$ generan ya todas las filas de dos elementos, así que una matriz con $2$ columnas nunca tiene rango mayor que $2$, por muchas filas que se le añadan.
+:::
+
+::: {.callout-note}
+## El rango por filas coincide con el rango por columnas
+
+Este es un resultado profundo y nada obvio: en cualquier matriz, el número máximo de filas independientes es **exactamente igual** al número máximo de columnas independientes. La demostración completa se hace en cursos posteriores, pero la consecuencia es inmediata y utilísima:
+
+$$
+\operatorname{rg}(A) = \operatorname{rg}\!\left(A^{t}\right)
+$$
+
+porque trasponer intercambia el papel de filas y columnas y el número resultante es el mismo.
+
+**Cómo se aprovecha.** Si una matriz tiene **más filas que columnas**, calcular el rango por filas obliga a manejar muchas relaciones. Es más cómodo trasponerla y trabajar con la traspuesta, que tiene menos filas. El rango obtenido es el mismo y el trabajo es bastante menor.
+:::
+
+### Applet · Rango de una matriz {.unnumbered}
+
+Edita los elementos de la matriz y observa cómo el applet marca las filas que aportan información nueva y las que se pueden deducir de las anteriores; comprueba en cada caso que el rango que aparece nunca supera el mínimo entre el número de filas y el de columnas.
+
+::: {#panel-rango .applet-panel data-applet-mtx="rango"}
+:::
+
+### Ejemplo resuelto 2: rango máximo en una matriz rectangular
+
+Calcula el rango de
+
+$$
+A = \begin{pmatrix} 1 & 4 & 6 & 2 \\ 3 & 2 & 5 & 1 \\ 4 & 6 & 1 & 0 \end{pmatrix}
+$$
+
+**Cota previa.** La matriz es $3\times 4$, luego $\operatorname{rg}(A)\le \min\{3,4\} = 3$. El rango solo puede ser $0$, $1$, $2$ o $3$; y como hay elementos no nulos, al menos $1$.
+
+**Descartar valores bajos.** No hay filas proporcionales: por ejemplo, $F_2$ no es múltiplo de $F_1$ porque $3/1 = 3$ pero $2/4 = 0{,}5$. Luego $F_1$ y $F_2$ son independientes y $\operatorname{rg}(A)\ge 2$.
+
+**Investigar si hay dependencia.** Planteamos $F_3 = k_1F_1 + k_2F_2$ y comparamos por columnas:
+
+$$
+\begin{array}{ll}
+\text{columna 1:} & 4 = k_1 + 3k_2 \\
+\text{columna 2:} & 6 = 4k_1 + 2k_2 \\
+\text{columna 3:} & 1 = 6k_1 + 5k_2 \\
+\text{columna 4:} & 0 = 2k_1 + k_2
+\end{array}
+$$
+
+De la cuarta ecuación, $k_2 = -2k_1$. Sustituyendo en la primera:
+
+$$
+4 = k_1 + 3(-2k_1) = -5k_1 \;\Rightarrow\; k_1 = -\frac{4}{5},
+\qquad
+k_2 = \frac{8}{5}
+$$
+
+**Comprobación en la columna 2:**
+
+$$
+4\left(-\frac{4}{5}\right) + 2\left(\frac{8}{5}\right) = -\frac{16}{5} + \frac{16}{5} = 0 \neq 6 \;\times
+$$
+
+Falla, luego $F_3$ **no** es combinación lineal de $F_1$ y $F_2$. Las tres filas son independientes y
+
+$$
+\operatorname{rg}(A) = 3
+$$
+
+que además es el valor máximo posible. Se dice entonces que la matriz tiene **rango máximo**.
+
+### Ejemplo resuelto 3: aprovechar la traspuesta
+
+Calcula el rango de
+
+$$
+B = \begin{pmatrix} 1 & 2 \\ 2 & 4 \\ 3 & 6 \\ -1 & -2 \end{pmatrix}
+$$
+
+**Cota previa.** Es $4\times 2$, luego $\operatorname{rg}(B) \le \min\{4,2\} = 2$. Buscar dependencias entre cuatro filas sería laborioso, pero la cota nos dice que sobran filas por fuerza.
+
+**Por columnas.** Solo hay dos columnas, y $C_2 = 2C_1$: son dependientes. Como $C_1$ no es nula, hay exactamente **una** columna independiente:
+
+$$
+\operatorname{rg}(B) = 1
+$$
+
+**Contraste por filas.** Efectivamente, $F_2 = 2F_1$, $F_3 = 3F_1$ y $F_4 = -F_1$: las cuatro filas son múltiplos de la primera, y solo una es independiente. El mismo número, con mucho menos trabajo.
+
+::: {.callout-warning}
+## Estrategia de cálculo antes del método de Gauss
+
+Mientras no dispongas del escalonamiento, este orden de trabajo resuelve la mayoría de los ejercicios:
+
+1. **Escribe la cota** $\operatorname{rg}(A)\le\min(m,n)$. Delimita las posibilidades y demuestra que has entendido la definición.
+2. **Elimina filas o columnas obviamente dependientes**: nulas, repetidas, proporcionales.
+3. **Elige el camino más corto**: si hay más filas que columnas, trabaja por columnas o con la traspuesta.
+4. **Busca un conjunto independiente lo más grande posible** y demuestra que las líneas restantes dependen de él, o que no dependen.
+5. **Contrasta con la cota**: si obtienes un rango mayor que $\min(m,n)$, hay un error seguro.
+:::
+
+## Qué operaciones no cambian el rango
+
+Calcular rangos investigando dependencias una por una es lento. La alternativa consiste en **modificar la matriz** hasta que su rango se lea de un vistazo, usando operaciones que garanticen que el rango no cambia. Esas operaciones se llaman **transformaciones elementales**, y son la base del método que se desarrolla en el apartado siguiente.
+
+::: {.callout-note}
+## Definición: transformaciones elementales
+
+Las siguientes operaciones **no alteran el rango** de una matriz:
+
+**T1. Intercambiar dos filas.** $F_i \leftrightarrow F_j$.
+
+**T2. Multiplicar una fila por un número distinto de cero.** $F_i \to aF_i$ con $a \neq 0$.
+
+**T3. Sumar a una fila un múltiplo de otra.** $F_i \to aF_i + bF_j$ con $a\neq 0$, siendo $i \neq j$.
+
+Como el rango por filas coincide con el rango por columnas, las tres transformaciones valen igual sustituyendo «fila» por «columna». Además, **para calcular un rango sí se pueden mezclar** transformaciones de filas y de columnas en el mismo proceso. Esto es una diferencia importante respecto a la resolución de sistemas de ecuaciones, donde solo están permitidas las operaciones por filas porque las columnas representan incógnitas.
+:::
+
+::: {.callout-important}
+## Por qué el rango se conserva
+
+Las tres transformaciones respetan el rango porque **no crean ni destruyen información**: la matriz nueva y la antigua se pueden obtener una de la otra.
+
+**T1, intercambiar filas.** El rango es el número máximo de filas independientes, y ese número no depende del orden en que estén escritas. Reordenar una lista no cambia cuántos elementos distintos contiene.
+
+**T2, multiplicar por $a\neq 0$.** Si $F_i$ era independiente de las demás, $aF_i$ también lo es: cualquier relación de dependencia para $aF_i$ se convierte en una para $F_i$ dividiendo entre $a$. Y la operación es reversible, porque basta multiplicar por $1/a$ para volver atrás. **El requisito $a\neq 0$ es esencial**: multiplicar por cero destruye la fila.
+
+**T3, sumar un múltiplo de otra fila.** La nueva fila $aF_i + bF_j$ sigue conteniendo la información de $F_i$, porque $F_j$ permanece en la matriz y se puede recuperar $F_i$ despejando: $F_i = \frac{1}{a}\left[(aF_i + bF_j) - bF_j\right]$. La condición $a\neq 0$ garantiza que esa recuperación es posible. Cualquier fila que fuera combinación lineal de las antiguas lo sigue siendo de las nuevas, y al revés.
+:::
+
+::: {.callout-caution}
+## Dos operaciones prohibidas
+
+**Multiplicar una fila por cero.** La transformación $F_2 \to 0\cdot F_2$ convierte la fila en una fila de ceros: la información desaparece y el rango baja. Es la razón exacta de la condición $a\neq 0$ en T2.
+
+$$
+\begin{pmatrix} 1 & 2 \\ 3 & 5 \end{pmatrix} \;\text{tiene rango } 2,
+\qquad
+\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix} \;\text{tiene rango } 1
+$$
+
+**Sustituir una fila por una combinación de otras dos, sin que ella intervenga.** La operación $F_2 \to F_1 + F_3$ es ilegal: destruye por completo la información de $F_2$ y la reemplaza por algo que ya estaba en la matriz. Por ejemplo,
+
+$$
+A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+\;\xrightarrow{\;F_2 \to F_1 + F_3\;}\;
+\begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 1 \\ 0 & 0 & 1 \end{pmatrix}
+$$
+
+La primera tiene rango $3$; la segunda, rango $2$, porque su segunda fila es la suma de las otras dos. El rango ha cambiado.
+
+**Regla que evita los dos errores:** en toda transformación, **la fila que se modifica debe seguir apareciendo en la operación** con coeficiente distinto de cero. Es decir, $F_2 \to 3F_2 - 5F_1$ es correcta; $F_2 \to -5F_1$ no lo es.
+:::
+
+### Applet · El rango no cambia con las operaciones elementales {.unnumbered}
+
+Aplica a la matriz las tres transformaciones permitidas —intercambiar dos filas, multiplicar una fila por un número no nulo y sumar a una fila un múltiplo de otra— y comprueba que el rango se mantiene invariable en todos los pasos; prueba después la operación prohibida de multiplicar una fila por cero y observa cómo el rango sí disminuye.
+
+::: {#panel-rangoLab .applet-panel data-applet-mtx="rangoLab"}
+:::
+
+### Ejemplo resuelto 4: usar transformaciones para simplificar
+
+Calcula el rango de
+
+$$
+A = \begin{pmatrix} 2 & 4 & 6 \\ 1 & 3 & 5 \\ 3 & 7 & 11 \end{pmatrix}
+$$
+
+**Cota:** $\operatorname{rg}(A)\le 3$.
+
+**Simplificamos.** Aplicamos $F_1 \to \tfrac12 F_1$ (permitido, el factor no es cero):
+
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 5 \\ 3 & 7 & 11 \end{pmatrix}
+$$
+
+Ahora restamos la primera fila a la segunda, $F_2 \to F_2 - F_1$, y le restamos el triple a la tercera, $F_3 \to F_3 - 3F_1$. En ambas la fila que cambia sigue presente con coeficiente $1$, así que son legales:
+
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 1 & 2 \end{pmatrix}
+$$
+
+Las filas segunda y tercera son ahora idénticas. Con $F_3 \to F_3 - F_2$:
+
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+
+**Lectura del resultado.** La matriz final está escalonada y tiene dos filas no nulas, luego su rango es $2$. Como ninguna de las transformaciones altera el rango,
+
+$$
+\operatorname{rg}(A) = 2
+$$
+
+**Interpretación.** En la matriz original, la tercera fila dependía de las otras dos. En efecto, $F_3 = F_1 + F_2$: $2+1 = 3$, $4+3 = 7$, $6+5 = 11$. La transformación lo ha sacado a la luz sin necesidad de plantear ningún sistema de coeficientes, y ese es precisamente el atractivo del método que se desarrolla en el apartado 1.13.
+
+### Ejemplo resuelto 5: el rango puede depender de un parámetro
+
+Estudia el rango de
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 3 & k \end{pmatrix}
+$$
+
+según los valores de $k$.
+
+Las dos filas son dependientes exactamente cuando son proporcionales, es decir, cuando existe $\alpha$ con $\begin{pmatrix} 3 & k \end{pmatrix} = \alpha\begin{pmatrix} 1 & 2 \end{pmatrix}$. De la primera coordenada, $\alpha = 3$; entonces la segunda exige $k = 6$.
+
+- Si $k = 6$, la matriz es $\begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}$, con $F_2 = 3F_1$, y $\operatorname{rg}(A) = 1$.
+- Si $k \neq 6$, las filas no son proporcionales, son independientes y $\operatorname{rg}(A) = 2$.
+
+Este tipo de discusión, en la que el rango cambia para ciertos valores del parámetro, es el corazón de los ejercicios de sistemas de ecuaciones. Aquí solo se ha visto el caso más sencillo; con el método de Gauss del apartado siguiente se resolverán casos de mayor tamaño de forma sistemática.
+
+## Para qué se usará el rango
+
+::: {.callout-tip}
+## Dos destinos inmediatos
+
+**La matriz inversa.** Una matriz cuadrada $A$ de orden $n$ tiene inversa si y solo si $\operatorname{rg}(A) = n$, es decir, si tiene rango máximo. Cuando alguna fila depende de las demás, la matriz «pierde información» al multiplicar y su acción no se puede deshacer: no hay inversa. Las matrices de rango máximo se llaman **regulares** o **inversibles**; las demás, **singulares**. Recuerda la lectura geométrica del apartado del producto: una matriz singular aplasta el plano sobre una recta, y ese aplastamiento no tiene marcha atrás.
+
+**La discusión de sistemas.** Todo sistema de ecuaciones lineales se escribe como $A\cdot X = B$, donde $A$ es la matriz de coeficientes. El **teorema de Rouché-Frobenius** afirma que el número de soluciones queda determinado por dos rangos: el de $A$ y el de la matriz ampliada con la columna de términos independientes. Comparando esos dos números con el número de incógnitas se decide si el sistema no tiene solución, tiene una sola o tiene infinitas. Sin saber calcular rangos, esa discusión es imposible; con el rango, se convierte en un procedimiento mecánico.
+:::
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Dar un rango mayor que $\min(m,n)$.** Es imposible. En una matriz $2\times 5$ el rango nunca pasa de $2$.
+- **Decir que el rango es $0$ porque «casi todo son ceros».** El rango vale $0$ **solo** para la matriz nula.
+- **Contar filas en lugar de filas independientes.** El rango no es el número de filas de la matriz, sino el de las que aportan información nueva.
+- **Multiplicar una fila por cero al simplificar.** Reduce el rango y falsea el resultado.
+- **Hacer $F_2 \to F_1 + F_3$.** La fila que se modifica tiene que intervenir en la operación con coeficiente no nulo.
+- **Suponer que el rango de una matriz con parámetros es siempre el mismo.** Casi nunca lo es: hay que discutir los valores que anulan las dependencias.
+- **Confundir rango y dimensión.** Una matriz $3\times 3$ puede tener rango $3$, $2$, $1$ o $0$; la dimensión no decide el rango.
+:::
+
+::: {.callout-warning}
+## Qué se pide justificar en las pruebas
+
+En un examen no basta con escribir el número. Un cálculo de rango bien presentado incluye:
+
+1. La **cota** $\operatorname{rg}(A)\le\min(m,n)$, indicada al principio.
+2. La **justificación de la cota inferior**: qué filas concretas son independientes y por qué.
+3. La **justificación de la cota superior**: qué filas dependen de las anteriores y con qué combinación, escrita explícitamente, o bien la comprobación de que ninguna depende.
+4. La **conclusión** en la forma $\operatorname{rg}(A) = 2$.
+
+Si empleas transformaciones elementales, cada paso debe ir **anotado** ($F_2 \to F_2 - 3F_1$) para que se vea que la operación es de las permitidas. Un escalonamiento sin anotaciones se lee como una serie de números que aparecen de la nada.
+:::
+
+## Resumen del apartado
+
+- El **rango** de una matriz, $\operatorname{rg}(A)$, es el número máximo de filas linealmente independientes, o equivalentemente de columnas.
+- **El rango por filas coincide con el rango por columnas**, y por tanto $\operatorname{rg}(A) = \operatorname{rg}(A^{t})$.
+- **Cota fundamental**: $0 \le \operatorname{rg}(A) \le \min\{m,n\}$. Un rango mayor es imposible y delata un error.
+- $\operatorname{rg}(A) = 0$ **solo** si $A$ es la matriz nula; $\operatorname{rg}(I_n) = n$; el rango de una matriz escalonada es su número de filas no nulas.
+- Si la matriz tiene más filas que columnas, conviene calcular el rango **por columnas** o trabajar con la traspuesta.
+- **Transformaciones elementales que conservan el rango**: intercambiar dos filas; multiplicar una fila por $a\neq 0$; sustituir $F_i$ por $aF_i + bF_j$ con $a\neq 0$. Valen igual por columnas, y para calcular rangos se pueden **mezclar** filas y columnas.
+- **Prohibido** multiplicar una fila por cero y prohibido sustituir una fila por una combinación en la que ella no aparezca.
+- Una matriz cuadrada de orden $n$ tiene **inversa** si y solo si su rango es $n$.
+- El rango es la herramienta con la que se **discute el número de soluciones** de un sistema de ecuaciones lineales.
+
+## Ejercicios propuestos
+
+**1.** Sin hacer cálculos largos, indica el rango de cada matriz y justifica la respuesta:
+
+$$
+A = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix},
+\quad
+B = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix},
+\quad
+C = \begin{pmatrix} 5 & -1 & 3 & 0 \end{pmatrix},
+\quad
+D = \begin{pmatrix} 2 & 4 \\ 1 & 2 \\ -3 & -6 \end{pmatrix}
+$$
+
+**2.** ¿Cuál es el máximo rango posible de una matriz de dimensión $2\times 7$? ¿Y de una de $6\times 3$? Razona las respuestas.
+
+**3.** Calcula el rango de
+
+$$
+A = \begin{pmatrix} 1 & 3 & 2 \\ 2 & 1 & 4 \\ 4 & 7 & 8 \end{pmatrix}
+$$
+
+indicando la relación de dependencia si existe.
+
+**4.** Calcula el rango de $A = \begin{pmatrix} 1 & -1 & 2 & 3 \\ 2 & 1 & 1 & 0 \\ 3 & 0 & 3 & 3 \end{pmatrix}$ usando transformaciones elementales y anotando cada paso.
+
+**5.** Discute el rango de $A = \begin{pmatrix} 1 & 1 & 1 \\ 2 & 2 & m \end{pmatrix}$ según los valores de $m$.
+
+**6.** Justifica que si una matriz cuadrada de orden $3$ tiene dos filas iguales, su rango es como máximo $2$ y por tanto no tiene inversa.
+
+**7.** Se sabe que una matriz $A$ es de dimensión $5\times 3$ y que $\operatorname{rg}(A) = 3$. ¿Cuántas de sus filas son necesariamente combinación lineal de las demás?
+
+**8.** Aplica a $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ la operación $F_2 \to 2F_2 - 6F_1$ y comprueba que el rango no cambia. Aplícale después $F_2 \to 0\cdot F_2$ y comprueba que sí cambia. Explica la diferencia.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $\operatorname{rg}(A) = 0$, porque es la matriz nula (único caso posible de rango cero). $\operatorname{rg}(B) = 3$, por ser la identidad de orden $3$. $\operatorname{rg}(C) = 1$: tiene una sola fila y no es nula. $\operatorname{rg}(D) = 1$, porque $C_2 = 2C_1$ y solo queda una columna independiente; equivalentemente, $F_2 = \tfrac12 F_1$ y $F_3 = -\tfrac32 F_1$.
+
+**2.** Para una matriz $2\times 7$: $\min\{2,7\} = 2$, luego el rango máximo es $2$. Para una $6\times 3$: $\min\{6,3\} = 3$, luego el rango máximo es $3$. En ambos casos el número de columnas o de filas más pequeño limita cuántas líneas independientes puede haber.
+
+**3.** Cota: $\operatorname{rg}(A)\le 3$. $F_1$ y $F_2$ no son proporcionales, luego el rango es al menos $2$. Planteamos $F_3 = k_1F_1 + k_2F_2$:
+
+- columna 1: $4 = k_1 + 2k_2$
+- columna 2: $7 = 3k_1 + k_2$
+- columna 3: $8 = 2k_1 + 4k_2$
+
+De las dos primeras: multiplicando la primera por $3$ y restando, $12 - 7 = (3k_1 + 6k_2) - (3k_1 + k_2)$, es decir, $5 = 5k_2$, luego $k_2 = 1$ y $k_1 = 2$. Comprobación en la tercera: $2\cdot 2 + 4\cdot 1 = 8$, correcto. Por tanto $F_3 = 2F_1 + F_2$ y
+
+$$
+\operatorname{rg}(A) = 2
+$$
+
+**4.** Cota: $\operatorname{rg}(A)\le 3$. Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - 3F_1$:
+
+$$
+\begin{pmatrix} 1 & -1 & 2 & 3 \\ 0 & 3 & -3 & -6 \\ 0 & 3 & -3 & -6 \end{pmatrix}
+$$
+
+Con $F_3 \to F_3 - F_2$:
+
+$$
+\begin{pmatrix} 1 & -1 & 2 & 3 \\ 0 & 3 & -3 & -6 \\ 0 & 0 & 0 & 0 \end{pmatrix}
+$$
+
+Matriz escalonada con dos filas no nulas, luego $\operatorname{rg}(A) = 2$. En la matriz original se cumplía $F_3 = F_1 + F_2$.
+
+**5.** Cota: $\operatorname{rg}(A)\le\min\{2,3\} = 2$, y como la matriz no es nula, el rango es $1$ o $2$. Las dos filas son proporcionales cuando $F_2 = 2F_1$, lo que exige $m = 2$.
+
+- Si $m = 2$: $\operatorname{rg}(A) = 1$.
+- Si $m \neq 2$: $\operatorname{rg}(A) = 2$.
+
+**6.** Si $F_1 = F_2$, entonces $F_2 = 1\cdot F_1$ es combinación lineal de las demás, luego no puede formar parte de un conjunto independiente junto con $F_1$. Como mucho quedan $F_1$ y $F_3$ independientes, así que $\operatorname{rg}(A)\le 2 < 3$. Al no tener rango máximo, la matriz es singular y no tiene inversa.
+
+**7.** La matriz tiene $5$ filas y rango $3$, es decir, solo $3$ de ellas son independientes. Las otras $\mathbf{2}$ son necesariamente combinación lineal de las demás. Observa además que el rango $3$ es el máximo posible aquí, porque $\min\{5,3\} = 3$.
+
+**8.** La matriz de partida tiene rango $2$: sus filas no son proporcionales, ya que $3/1 = 3$ pero $4/2 = 2$.
+
+Con $F_2 \to 2F_2 - 6F_1$ se obtiene $\begin{pmatrix} 1 & 2 \\ 0 & -4 \end{pmatrix}$, que está escalonada con dos filas no nulas: rango $2$, sin cambios. La operación es legítima porque $F_2$ interviene con coeficiente $2\neq 0$, de modo que se puede recuperar la fila original despejando.
+
+Con $F_2 \to 0\cdot F_2$ se obtiene $\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}$, de rango $1$. Aquí la información de la segunda fila se ha destruido y no hay forma de recuperarla: la operación no es reversible y por eso no está permitida.
+:::

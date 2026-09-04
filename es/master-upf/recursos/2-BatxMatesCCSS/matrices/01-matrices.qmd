@@ -1,12 +1,12 @@
 ---
 title: "Tema 1.1 Matrices"
-subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 1 de 7)"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 1 de 17)"
 filename: 01-matrices
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: Una matriz es una tabla de números ordenada en filas y columnas. Este apartado fija el vocabulario de todo el tema como dimensión, elemento a_ij, los once tipos de matriz del temario y qué significa exactamente que dos matrices sean iguales.
-categories: [matrices, dimensión, tipos de matriz, igualdad de matrices, 2 Batx, matemáticas CCSS]
+description: Qué es una matriz y por qué aparece siempre que hay datos clasificados por dos criterios a la vez, notación abreviada A igual a (a_ij), dimensión u orden m por n, elemento genérico y significado de cada subíndice, filas y columnas como piezas con nombre propio, lectura e interpretación de tablas de doble entrada escritas como matriz, matrices definidas por una ley de formación en i y j, construcción de una matriz a partir de condiciones sobre sus elementos y primeras aplicaciones reales, con applets manipulables.
+categories: [matrices, dimensión, elemento genérico, tablas de doble entrada, álgebra, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:
@@ -20,51 +20,30 @@ format:
     html-math-method: katex
 ---
 
-## Por qué empieza aquí el curso
+## Datos que llegan en forma de tabla
 
-Este es el primer tema de 2.º de bachillerato, y no es casualidad. Las matrices son la herramienta con la que se organizan datos cuando hay **dos criterios de clasificación a la vez**: productos y meses, ciudades y ciudades, alumnos y asignaturas.
+Piensa en el navegador del móvil. Cuando escribes una dirección, el aparato consulta una base de datos de calles y carreteras, mira qué tramos conectan cada punto con cada punto y calcula la ruta más corta, la más rápida o la más ecológica. Esa base de datos no es una lista: es una **tabla de doble entrada** en la que las filas son lugares, las columnas son lugares y en cada casilla está la información que relaciona el lugar de la fila con el de la columna. Es decir, exactamente lo que en matemáticas se llama una **matriz**.
 
-El libro de texto abre el tema con el **navegador GPS**, que utiliza una base de datos de mapas para identificar las carreteras disponibles y un algoritmo para calcular la ruta más adecuada entre el punto de partida y el de llegada, teniendo en cuenta la distancia y la duración del viaje. Ese mapa de carreteras es exactamente una matriz: filas y columnas son lugares, y en cada casilla va la conexión.
+Y no hace falta irse tan lejos. Abre la clasificación de una liga deportiva: filas los equipos, columnas los partidos jugados, ganados, empatados y perdidos. Mira la tabla de precios de una panadería que vende pan de dos harinas y en dos tamaños: filas las harinas, columnas los tamaños. Consulta las notas de un grupo: filas los alumnos, columnas las asignaturas. Observa la recogida solidaria de juguetes de un instituto durante tres semanas, separando juguetes tradicionales, juegos de mesa y juegos electrónicos: filas las semanas, columnas los tipos de juguete.
 
-::: {.callout-note}
-## Qué se espera de ti al final del tema
-
-Los objetivos son ocho, muy concretos: calcular el producto de dos matrices, calcular el rango por Gauss, calcular la inversa por Gauss-Jordan, resolver ecuaciones de los tipos $AX=B$, $XA=B$ y $AX+B=C$, determinar matrices que cumplen una condición dada y calcular las constantes que hacen cierta una igualdad entre matrices.
-
-Fíjate en que **ninguno** es teórico. Todos son cálculos. Pero cada cálculo se apoya en una definición que hay que tener clara, y de eso trata este primer apartado.
-
-El tema se trabaja en las **tres primeras semanas de septiembre**, y aunque los saberes cambian, las nueve competencias específicas CE1 a CE9 se trabajan en todas y cada una de las once unidades del curso.
-:::
-
-## Actividad de introducción: la recogida solidaria
-
-Esta actividad está tomada de los apuntes de Marea Verde, y merece hacerla **antes** de leer la teoría, porque el concepto de matriz se descubre solo.
-
-En el IES Virgen de Covadonga de El Entrego se desarrolla una recogida solidaria de juguetes. Las tareas se reparten por cursos: los alumnos de 1.º de ESO recogen juguetes tradicionales, los de 2.º juegos de mesa y los de 3.º juegos electrónicos.
-
-| Semana | Juguetes tradicionales | Juegos de mesa | Juegos electrónicos |
+| Colecta | Juguetes tradicionales | Juegos de mesa | Juegos electrónicos |
 |---|---|---|---|
-| 1.ª semana | 35 | 24 | 33 |
-| 2.ª semana | 28 | 18 | 37 |
-| 3.ª semana | 18 | 25 | 16 |
+| 1.ª semana | $35$ | $24$ | $33$ |
+| 2.ª semana | $28$ | $18$ | $37$ |
+| 3.ª semana | $18$ | $25$ | $16$ |
 
-Los profesores premian con **4 caramelos** por cada juguete tradicional, **2 morenitos** por cada juego de mesa y **un pincho** por cada juego electrónico. Y los caramelos cuestan un céntimo, los morenitos 5 céntimos y los pinchos 75 céntimos.
+En todos los casos el patrón es el mismo: **hay dos criterios de clasificación actuando a la vez**, y cada dato queda determinado por un par de coordenadas, la del criterio de las filas y la del criterio de las columnas. Cuando eso ocurre, la lista se queda corta y la tabla es la única forma razonable de escribir la información.
 
-**Las preguntas:** ¿cuántos juguetes de cada tipo se recogieron en total? ¿Cuántos caramelos, morenitos y pinchos hay que comprar? ¿Cuánto costará recompensar a los alumnos?
+Lo interesante viene después. Si preguntamos cuántos juguetes de cada tipo se recogieron en total, o cuántos caramelos hay que comprar sabiendo que se premia con cuatro caramelos cada juguete tradicional, o cuánto cuesta todo, veremos que las respuestas se obtienen **operando con tablas enteras**: sumándolas semana a semana, combinando la tabla de juguetes con la de premios, combinando el resultado con la de precios. Esas operaciones existen, tienen nombre y reglas precisas, y son el contenido de las partes 3 y siguientes de este tema. Antes de operar, sin embargo, hay que fijar el vocabulario con una precisión casi obsesiva, porque casi todos los errores del tema son errores de lectura de subíndices, no de cálculo.
 
-::: {.callout-tip}
-## Lo que descubres al organizar los datos en tablas
-
-Para responder has tenido que hacer tres cosas: **sumar** tablas semana a semana, **combinar** la tabla de juguetes con la de premios, y **combinar** el resultado con la de precios.
-
-Esas tres operaciones son, exactamente, la suma de matrices y el producto de matrices que estudiaremos en la parte 3. Nadie te las ha enseñado todavía y ya las has usado, porque son la forma natural de manejar información tabulada.
-
-Y hay una pregunta final que el propio texto plantea y que conviene responder por escrito: ¿habrías sabido resolver el problema **sin** usar las tablas? ¿Te ha parecido más fácil con la información ordenada?
-:::
+Este primer apartado hace exactamente eso: define qué es una matriz, cómo se nombra, cómo se mide su tamaño, cómo se localiza cada uno de sus números y cómo se construye una matriz cuando en lugar de dártela escrita te dan una regla para fabricarla.
 
 ## Qué es una matriz
 
-Una **matriz** de dimensión $m\times n$ es un conjunto de $m\cdot n$ números reales ordenados en $m$ filas y $n$ columnas:
+::: {.callout-note}
+## Definición de matriz
+
+Se llama **matriz de dimensión $m\times n$** a un conjunto de $m\cdot n$ números reales dispuestos en $m$ **filas** (líneas horizontales) y $n$ **columnas** (líneas verticales), de la forma
 
 $$
 A = \begin{pmatrix}
@@ -75,339 +54,351 @@ a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{pmatrix}
 $$
 
-El número $a_{ij}$ es el **elemento** que ocupa la fila $i$ y la columna $j$. Se escribe abreviadamente $A = (a_{ij})$, y si se quiere indicar la dimensión, $A = (a_{ij})_{m\times n}$.
-
-Las matrices se nombran con letras mayúsculas y sus elementos con la misma letra en minúscula acompañada de los subíndices fila-columna. Cuando no hay confusión posible se puede quitar la coma que separa los subíndices, escribiendo $a_{ij}$ en lugar de $a_{i,j}$.
-
-::: {.callout-important}
-## Primero la fila, después la columna
-
-En $a_{23}$ el 2 es la fila y el 3 la columna. Siempre en ese orden, sin excepciones, en todo el curso.
-
-Puede parecer una trivialidad, pero es la causa de buena parte de los errores en el producto de matrices y en el cálculo de adjuntos. Cuando en la parte 5 tengas que calcular $A_{32}$, necesitarás saber sin dudar qué fila y qué columna hay que tapar.
+Los números $a_{ij}$ son los **elementos** o **términos** de la matriz. El primer subíndice, $i$, indica la fila que ocupa el elemento, y el segundo, $j$, la columna. Las filas se cuentan de arriba abajo empezando por $1$; las columnas, de izquierda a derecha, también desde $1$.
 :::
 
-### Ejemplo del libro de texto
+Las matrices se nombran con letras mayúsculas, $A$, $B$, $C$, …, y sus elementos con la misma letra en minúscula acompañada de los dos subíndices. Cuando no hay confusión posible se escribe $a_{ij}$ en lugar de $a_{i,j}$; la coma solo se conserva si los índices pueden pasar de nueve y podría dudarse entre $a_{1,12}$ y $a_{11,2}$.
 
-Determina la dimensión de esta matriz e identifica los elementos $a_{23}$ y $a_{32}$:
+::: {.callout-note}
+## Notación abreviada y dimensión
+
+Para escribir una matriz de forma resumida se usa
+
+$$
+A = (a_{ij})
+$$
+
+y si además se quiere indicar el tamaño,
+
+$$
+A = (a_{ij})_{m\times n}.
+$$
+
+Al par $m\times n$ se le llama **dimensión**, **orden** o **tamaño** de la matriz. **No es una multiplicación**: el primer número dice cuántas filas hay y el segundo cuántas columnas. Eso sí, si se efectúa el producto $m\cdot n$ se obtiene el número total de elementos.
+:::
+
+Conviene entender bien la diferencia entre las tres notaciones que vas a ver todo el curso. Escribir $A$ es referirse a la matriz completa como un único objeto. Escribir $(a_{ij})$, con paréntesis, es también referirse a la matriz entera, pero describiéndola por su elemento genérico. Y escribir $a_{ij}$, sin paréntesis, es referirse a **un** número concreto de la tabla, el que está en la fila $i$ y la columna $j$. Esta distinción, que ahora parece un capricho tipográfico, será decisiva cuando definamos las operaciones: la suma se define diciendo que el elemento genérico de $A+B$ es $a_{ij}+b_{ij}$, y esa frase no tiene sentido si no se distingue el todo de la parte.
+
+::: {.callout-important}
+## Primero la fila, después la columna. Sin excepciones
+
+En $a_{23}$ el $2$ es la **fila** y el $3$ es la **columna**. Este orden se mantiene durante todo el curso y en toda la literatura matemática, sin ninguna excepción.
+
+Puede parecer una trivialidad, pero es la causa de buena parte de los errores del tema. Cuando en la parte 10 multipliques matrices tendrás que tomar la fila $i$ de la primera y la columna $j$ de la segunda para obtener $c_{ij}$; si dudas del orden, el producto entero sale mal. Y cuando hables de matrices simétricas la definición será $a_{ij}=a_{ji}$, una igualdad que no significa nada si los subíndices no tienen un papel fijo.
+
+Un truco que funciona: la palabra «fila» empieza por f, y la letra $i$ va antes que la $j$ igual que las **f**ilas se leen antes que las **c**olumnas en la expresión «fila-columna».
+:::
+
+### Ejemplo 1. Dimensión y localización de elementos
+
+Determina la dimensión de la matriz siguiente e identifica los elementos $a_{23}$ y $a_{32}$:
 
 $$
 A = \begin{pmatrix} 4 & 5 & 2 & -1 \\ 0 & 2 & 1 & 5 \\ -2 & 3 & 0 & -4 \end{pmatrix}
 $$
 
-La matriz está formada por 3 filas y 4 columnas, luego su dimensión es $3\times 4$. Para localizar $a_{23}$ se busca la **segunda fila** y la **tercera columna**, y sale $a_{23}=1$. Para $a_{32}$, tercera fila y segunda columna: $a_{32}=3$.
+Contamos primero las líneas horizontales: hay tres, luego $m=3$. Después las verticales: hay cuatro, luego $n=4$. La dimensión es, por tanto, $3\times 4$, y la matriz tiene $3\cdot 4 = 12$ elementos. Se puede escribir $A=(a_{ij})_{3\times 4}$.
 
-### Ejemplo con interpretación: los deportes
+Para localizar $a_{23}$ nos situamos en la **segunda fila**, $(0,\ 2,\ 1,\ 5)$, y dentro de ella tomamos el **tercer** número: $a_{23}=1$.
 
-Esta tabla muestra los deportes que practica un grupo de amigos:
+Para localizar $a_{32}$ nos situamos en la **tercera fila**, $(-2,\ 3,\ 0,\ -4)$, y tomamos el **segundo** número: $a_{32}=3$.
 
-| | Natación | Tenis | Básquet |
+Fíjate en que $a_{23}\ne a_{32}$. Los subíndices no son intercambiables: $a_{23}$ y $a_{32}$ son dos casillas distintas de la tabla, y solo por casualidad podrían coincidir sus valores.
+
+### Ejemplo 2. Una tabla de datos leída como matriz
+
+Esta tabla recoge los deportes que practica un grupo de amigos:
+
+|  | Natación | Tenis | Baloncesto |
 |---|---|---|---|
-| Chicas | 3 | 4 | 2 |
-| Chicos | 2 | 1 | 5 |
+| Chicas | $3$ | $4$ | $2$ |
+| Chicos | $2$ | $1$ | $5$ |
 
-Escrita como matriz de dimensión $2\times 3$:
+Escrita como matriz, con las filas en el orden «chicas, chicos» y las columnas en el orden «natación, tenis, baloncesto», queda una matriz de dimensión $2\times 3$:
 
 $$
 A = \begin{pmatrix} 3 & 4 & 2 \\ 2 & 1 & 5 \end{pmatrix}
 $$
 
-Y ahora lo interesante, que es **leer** la matriz:
+Y ahora viene lo verdaderamente útil, que es **leerla**:
 
-- $a_{12}=4$ significa que hay 4 chicas que practican tenis.
-- $a_{21}=2$ significa que hay 2 chicos que practican natación.
-- $a_{11}+a_{12}+a_{13}$ es el número total de chicas del grupo.
-- $a_{13}+a_{23}$ es el número de amigos que practican básquet.
-- La suma de los seis elementos es el total de amigos.
+- $a_{12}=4$: hay $4$ chicas que practican tenis (fila $1$ = chicas, columna $2$ = tenis).
+- $a_{21}=2$: hay $2$ chicos que practican natación.
+- $a_{11}+a_{12}+a_{13}=3+4+2=9$ es el número total de chicas del grupo: sumar toda una **fila** significa recorrer todas las columnas manteniendo fijo el criterio de la fila.
+- $a_{13}+a_{23}=2+5=7$ es el número de amigos que practican baloncesto: sumar una **columna** entera.
+- $a_{11}+a_{21}+a_{12}+a_{22}=3+2+4+1=10$ es el número de amigos que practican natación o tenis.
+- La suma de los seis elementos, $17$, es el total de personas del grupo.
 
-::: {.callout-note}
-## La información de los rótulos no está en la matriz
+Este ejercicio de lectura es tan importante como cualquier cálculo. En una prueba de acceso, un problema de matrices con contexto siempre termina pidiendo **interpretar** el resultado, y la interpretación consiste precisamente en saber qué significa cada posición.
 
-Al escribir la tabla como matriz, «chicas», «chicos», «natación», «tenis» y «básquet» **desaparecen**. Esa información la guardas tú.
+::: {.callout-caution}
+## Los rótulos desaparecen y esa información la guardas tú
 
-Ese es el precio de la abstracción, y también su ventaja: ahora puedes operar con la tabla como si fuera un número. Pero cuando en la parte 7 multipliquemos matrices de datos reales, tendrás que ser muy cuidadoso etiquetando qué representa cada fila y cada columna, o el resultado no significará nada.
+Al pasar de la tabla a la matriz, las palabras «chicas», «chicos», «natación», «tenis» y «baloncesto» **se pierden**. La matriz solo conserva los números y su posición.
+
+Eso tiene una ventaja enorme —ahora podremos operar con la tabla como si fuera un número— y un peligro evidente: si cambias el orden de las filas o de las columnas obtienes una matriz **distinta**, aunque la información sea la misma. Por eso, siempre que traduzcas un enunciado a una matriz, escribe al lado, aunque sea a lápiz, qué representa cada fila y cada columna. Cuando en la parte 10 multipliques dos matrices de datos reales, el resultado solo significará algo si las columnas de la primera y las filas de la segunda se refieren a lo mismo y en el mismo orden.
 :::
 
-### Applet · Dimensión y elementos {.unnumbered}
+### Applet · Dimensión y elementos de una matriz {.unnumbered}
 
-<div data-applet-mat="dimension"></div>
+Mueve los deslizadores de filas y de columnas para cambiar el tamaño de la matriz y pulsa sobre cualquier casilla: el applet resalta su fila y su columna y te dice qué elemento $a_{ij}$ es. Observa cómo cambia la notación $A=(a_{ij})_{m\times n}$ y cómo el número total de elementos es siempre el producto $m\cdot n$.
+
+::: {#panel-dimension .applet-panel data-applet-mtx="dimension"}
+:::
+
+## Filas y columnas: piezas con nombre propio
+
+Una matriz se puede leer de tres maneras, y las tres se usan constantemente.
+
+Como **colección de números sueltos**, cada uno con su dirección $(i,j)$. Es la lectura que hemos hecho hasta ahora.
+
+Como **conjunto de filas**. A la fila $i$-ésima se la llama $F_i$, y es la lista ordenada $(a_{i1},\ a_{i2},\ \dots,\ a_{in})$. En la matriz del ejemplo 1, $F_2=(0,\ 2,\ 1,\ 5)$. Esta lectura es la que domina el estudio del **rango** en las partes 11 a 13: allí preguntaremos si una fila aporta información nueva o si se puede reconstruir a partir de las demás.
+
+Como **conjunto de columnas**. A la columna $j$-ésima se la llama $C_j$, y es la lista $(a_{1j},\ a_{2j},\ \dots,\ a_{mj})$, escrita verticalmente. En la misma matriz, $C_3$ está formada por $2$, $1$ y $0$.
+
+Cada fila de una matriz $m\times n$ es, por sí sola, una matriz de dimensión $1\times n$, y cada columna es una matriz $m\times 1$. Estas dos formas tan delgadas tienen nombre propio —**matriz fila** y **matriz columna**— y las estudiaremos con detalle en la parte 3, dedicada a la clasificación. Adelantamos ya la idea porque el producto de matrices, que es la operación central del tema, se define justamente como una colección de productos de una fila por una columna.
+
+::: {.callout-tip}
+## Por qué las filas se cuentan de arriba abajo
+
+No hay ninguna razón profunda: es un convenio, heredado de la forma en que se escriben las tablas contables desde hace siglos, y de la escritura occidental de izquierda a derecha y de arriba abajo. Lo importante es que **todo el mundo usa el mismo convenio**, incluidas las hojas de cálculo (donde la fila 1 está arriba) y los lenguajes de programación.
+
+Hay un detalle en el que la informática se separa: muchos lenguajes empiezan a contar en $0$, de modo que lo que en matemáticas es $a_{11}$ allí se escribe `A[0][0]`. Si alguna vez programas con matrices, tenlo presente, porque es una fuente clásica de errores de una unidad.
+:::
 
 ## Matrices definidas por una fórmula
 
-En los exámenes las matrices no siempre se dan escritas. A menudo se dan por su **ley de formación**: «la matriz $A$ de orden 3 cuyos elementos cumplen $a_{ij} = i + j$».
+En los exámenes las matrices no siempre se dan escritas casilla a casilla. Muy a menudo se dan por su **ley de formación**, es decir, por una fórmula que dice cómo se calcula el elemento $a_{ij}$ a partir de sus subíndices. Un enunciado típico es: «escribe la matriz $A$ de orden $3$ cuyos elementos cumplen $a_{ij}=i+j$».
 
-Se construye sustituyendo cada posición:
+El procedimiento es siempre el mismo y conviene automatizarlo:
+
+::: {.callout-note}
+## Cómo se construye una matriz a partir de su ley de formación
+
+1. Determina la dimensión: cuántas filas $m$ y cuántas columnas $n$. Si dicen «de orden $n$» sin más, la matriz es cuadrada, $n\times n$.
+2. Dibuja el hueco de la matriz con esa dimensión.
+3. Recorre las posiciones **por filas**, de izquierda a derecha, y en cada una sustituye $i$ y $j$ por los valores concretos de esa casilla.
+4. Escribe el resultado en su sitio y no reordenes nada al final.
+:::
+
+### Ejemplo 3. La ley $a_{ij}=i+j$ en orden 3
+
+Al ser de orden $3$, la matriz es $3\times 3$. Calculamos los nueve elementos:
 
 $$
-a_{11}=1+1=2, \quad a_{12}=1+2=3, \quad a_{13}=1+3=4, \quad \ldots
+a_{11}=1+1=2,\qquad a_{12}=1+2=3,\qquad a_{13}=1+3=4,
+$$
+$$
+a_{21}=2+1=3,\qquad a_{22}=2+2=4,\qquad a_{23}=2+3=5,
+$$
+$$
+a_{31}=3+1=4,\qquad a_{32}=3+2=5,\qquad a_{33}=3+3=6.
 $$
 
-y sale
+Colocando cada uno en su casilla:
 
 $$
 A = \begin{pmatrix} 2 & 3 & 4 \\ 3 & 4 & 5 \\ 4 & 5 & 6 \end{pmatrix}
 $$
 
-En la hoja de ejercicios del profesor Gonzalo aparece otra variante, muy frecuente en examen: se dan **los elementos desordenados** y hay que colocarlos. Por ejemplo, escribir la matriz $2\times 3$ con $a_{12}=4$, $a_{11}=0$, $a_{22}=0$, $a_{23}=4$, $a_{13}=3$ y $a_{21}=-1$. Colocando cada uno en su casilla:
+Observa un detalle que no es casual: como la fórmula $i+j$ da lo mismo al intercambiar los papeles de $i$ y $j$, se cumple $a_{ij}=a_{ji}$ para todas las posiciones, y la matriz queda **simétrica respecto de su diagonal principal**. Volveremos sobre ello en la parte 6.
+
+### Ejemplo 4. Una ley definida por casos
+
+Escribe una matriz de dimensión $2\times 4$ cuyos elementos valgan $0$ si $i+j$ es par y $1$ si $i+j$ es impar.
+
+Aquí la fórmula no es una expresión aritmética sino una condición. Vamos posición a posición mirando la paridad de la suma de los subíndices:
+
+- Fila $1$: $1+1=2$ par $\to 0$; $1+2=3$ impar $\to 1$; $1+3=4$ par $\to 0$; $1+4=5$ impar $\to 1$.
+- Fila $2$: $2+1=3$ impar $\to 1$; $2+2=4$ par $\to 0$; $2+3=5$ impar $\to 1$; $2+4=6$ par $\to 0$.
 
 $$
-A = \begin{pmatrix} 0 & 4 & 3 \\ -1 & 0 & 4 \end{pmatrix}
+A = \begin{pmatrix} 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 0 \end{pmatrix}
 $$
 
-Y también se pide lo contrario en el libro de texto: escribir una matriz $2\times 4$ cuyos elementos valgan 0 si $i+j$ es par y 1 si es impar. Prueba a hacerla mentalmente antes de usar el applet: sale un tablero de ajedrez.
+El resultado es un tablero de ajedrez, y no por casualidad: la paridad de $i+j$ es exactamente lo que distingue las casillas blancas de las negras.
+
+### Ejemplo 5. La ley $a_{ij}=(-1)^{i+j}$
+
+Con la misma idea de paridad, pero produciendo signos en lugar de ceros y unos, la ley $a_{ij}=(-1)^{i+j}$ da $+1$ cuando $i+j$ es par y $-1$ cuando es impar. En orden $3$:
+
+$$
+A = \begin{pmatrix} 1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & 1 \end{pmatrix}
+$$
+
+Guarda esta matriz de signos alternados en la memoria: es exactamente el patrón que aparecerá en la parte 14, al calcular la matriz adjunta para obtener la inversa. Allí cada adjunto lleva delante un signo $(-1)^{i+j}$, y quien reconoce el tablero de signos no necesita recalcularlo nunca.
+
+### Ejemplo 6. Una ley con resta: $a_{ij}=i-j$
+
+En orden $3$ obtenemos
+
+$$
+A = \begin{pmatrix} 0 & -1 & -2 \\ 1 & 0 & -1 \\ 2 & 1 & 0 \end{pmatrix}
+$$
+
+Aquí la diagonal principal es toda de ceros, porque $a_{ii}=i-i=0$, y las posiciones simétricas son **opuestas**: $a_{12}=-1$ mientras que $a_{21}=1$. Una matriz con esta propiedad, $a_{ij}=-a_{ji}$, se llama **antisimétrica**, y también la estudiaremos en la parte 6. Merece la pena que compares esta matriz con la del ejemplo 3: cambiar un signo en la fórmula cambia por completo el tipo de matriz que sale.
+
+### Applet · Matrices definidas por una fórmula {.unnumbered}
+
+Elige el número de filas y de columnas y escribe la ley de formación de $a_{ij}$ —prueba con `i+j`, `i*j`, `i-j`, `2i-j` o `(-1)^(i+j)`—. Observa cómo se va rellenando la matriz casilla a casilla y fíjate en el cálculo concreto que se muestra para cada elemento: es la sustitución de $i$ y $j$ por los índices de esa posición.
+
+::: {#panel-constructor .applet-panel data-applet-mtx="constructor"}
+:::
+
+## Construir una matriz a partir de condiciones sueltas
+
+Otra variante habitual del mismo tipo de ejercicio consiste en dar la dimensión y una lista de condiciones sobre algunos elementos, dejando que tú deduzcas el resto.
+
+### Ejemplo 7
+
+Escribe una matriz de dimensión $3\times 2$ que cumpla
+
+$$
+a_{32}=-a_{21}=a_{11}=1, \qquad a_{22}=a_{12}=-a_{31}=-2,
+$$
+
+y que tenga ceros en las posiciones no mencionadas si quedara alguna.
+
+Se trata de traducir cada cadena de igualdades. De la primera: $a_{11}=1$, $a_{32}=1$ y $-a_{21}=1$, es decir, $a_{21}=-1$. De la segunda: $a_{12}=-2$, $a_{22}=-2$ y $-a_{31}=-2$, es decir, $a_{31}=2$. Ya están las seis posiciones de una matriz $3\times 2$, así que no queda ninguna libre:
+
+$$
+A = \begin{pmatrix} 1 & -2 \\ -1 & -2 \\ 2 & 1 \end{pmatrix}
+$$
+
+::: {.callout-caution}
+## El error del signo colgado
+
+En una cadena como $a_{32}=-a_{21}=a_{11}=1$ hay que ser muy cuidadoso: el signo menos afecta **solo** a $a_{21}$. Leer «$a_{21}=1$» porque «todo vale $1$» es el error más frecuente. Escribe cada igualdad por separado antes de sustituir:
+
+$$
+a_{32}=1,\qquad -a_{21}=1 \Rightarrow a_{21}=-1,\qquad a_{11}=1 .
+$$
+
+Y comprueba al final que has rellenado **todas** las casillas: una matriz $3\times 2$ tiene seis elementos, ni uno más ni uno menos.
+:::
+
+## Matrices en el mundo real
+
+Merece la pena ver tres situaciones muy distintas que producen matrices, para convencerse de que no es un juego de notación.
+
+**Precios cruzados.** Una panadería vende pan de dos harinas, centeno y espelta, y en dos tamaños, grande y pequeño. El grande de centeno cuesta $0{,}75$ €, el grande de espelta $1$ €, el pequeño de centeno $0{,}45$ € y el pequeño de espelta $0{,}60$ €. Tomando como filas los tamaños y como columnas las harinas:
+
+$$
+P = \begin{pmatrix} 0{,}75 & 1 \\ 0{,}45 & 0{,}60 \end{pmatrix}
+$$
+
+Aquí $p_{12}=1$ es el precio del pan grande de espelta. La matriz es $2\times 2$, y la elección de qué va en filas y qué en columnas es libre, pero una vez hecha hay que mantenerla.
+
+**Producción agrícola.** Un agricultor cultiva lechugas, naranjas y melones. En un año recogió $1000$ lechugas, $2000$ kilos de naranjas y $500$ melones; en el año anterior, $500$, $1000$ y $400$. Con las filas como años y las columnas como productos:
+
+$$
+C = \begin{pmatrix} 500 & 1000 & 400 \\ 1000 & 2000 & 500 \end{pmatrix}
+$$
+
+Si además cobra un céntimo por lechuga, tres céntimos por kilo de naranjas y cinco céntimos por melón, esos precios forman una matriz columna $3\times 1$, y las ganancias de cada año saldrán de multiplicar ambas matrices. No sabemos hacerlo todavía, pero ya se ve por qué hará falta.
+
+**Conexiones.** Si tenemos cinco puntos y queremos registrar cuáles están conectados entre sí —cinco ciudades y sus vuelos directos, cinco personas y quién habla con quién, cinco páginas web y sus enlaces—, basta escribir un $1$ cuando hay conexión y un $0$ cuando no la hay. Sale una matriz cuadrada $5\times 5$ llamada **matriz de adyacencia** del grafo:
+
+$$
+G = \begin{pmatrix}
+0 & 1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 1 & 0
+\end{pmatrix}
+$$
+
+Que la diagonal principal sea toda de ceros significa que ningún punto está conectado consigo mismo. Que la matriz coincida con su reflejo respecto de esa diagonal significa que las conexiones son de doble sentido. Y lo más sorprendente, que veremos al final del tema: al multiplicar esta matriz por sí misma se obtienen los caminos de longitud dos, es decir, con cuántos intermediarios distintos se puede ir de un punto a otro. Ese es el fundamento de los algoritmos de rutas del navegador con el que empezaba este apartado.
 
 ::: {.callout-tip}
-## Una observación que ahorra la mitad del trabajo
+## Un poco de historia
 
-Si la ley es **simétrica** al intercambiar $i$ y $j$, como en $a_{ij}=i+j$ o $a_{ij}=i\cdot j$, la matriz sale simétrica y basta con calcular la mitad de los elementos.
+Las tablas rectangulares de números son antiquísimas: aparecen en textos matemáticos chinos de hace más de dos mil años, donde se colocaban los coeficientes de varios sistemas de ecuaciones en columnas para resolverlos con manipulaciones que hoy reconoceríamos como el método de Gauss. También los cuadrados mágicos, conocidos desde el siglo VII a. C., son matrices en las que se pide que todas las filas, todas las columnas y las dos diagonales sumen lo mismo.
 
-Si al intercambiar $i$ y $j$ la fórmula cambia de signo, como en $a_{ij}=i-j$, la matriz sale antisimétrica y la diagonal es toda de ceros. Con eso te ahorras rellenarla.
-
-De hecho, en los ejercicios de Gonzalo hay uno que pide comprobar precisamente que una matriz cuadrada que verifica $a_{ij}=i-j$ es antisimétrica.
+Sin embargo, la matriz como **objeto matemático con vida propia**, con el que se puede sumar y multiplicar como si fuera un número, es mucho más reciente: se consolidó a mediados del siglo XIX, cuando el álgebra dejó de ocuparse solo de resolver ecuaciones y empezó a estudiar estructuras. La palabra «matriz» se acuñó entonces con el sentido de «molde» o «lugar del que nacen» los determinantes, que históricamente son anteriores. Hoy el cálculo matricial es la herramienta básica de la economía, la estadística, la física cuántica, la teoría de grafos, los gráficos por ordenador y prácticamente todo lo que llamamos inteligencia artificial, en buena medida porque los ordenadores manejan tablas de números con una eficiencia extraordinaria.
 :::
 
-### Applet · Ley de formación {.unnumbered}
+## Resumen del apartado
 
-<div data-applet-mat="elemento"></div>
+- Una **matriz** de dimensión $m\times n$ es un conjunto de $m\cdot n$ números reales colocados en $m$ filas y $n$ columnas. Se nombra con una letra mayúscula y se abrevia $A=(a_{ij})$ o $A=(a_{ij})_{m\times n}$.
+- El elemento $a_{ij}$ ocupa la **fila $i$ y la columna $j$**, siempre en ese orden. Los subíndices no son intercambiables: en general $a_{ij}\ne a_{ji}$.
+- La **dimensión** $m\times n$ no es un producto; se lee «$m$ por $n$» y describe la forma de la tabla. El número total de elementos sí es $m\cdot n$.
+- La fila $i$-ésima se denota $F_i$ y es una matriz $1\times n$; la columna $j$-ésima se denota $C_j$ y es una matriz $m\times 1$.
+- Una matriz puede darse escrita o mediante una **ley de formación** que expresa $a_{ij}$ en función de $i$ y $j$; para construirla se sustituyen los índices posición a posición.
+- Escribir una tabla de doble entrada como matriz hace perder los rótulos, de modo que hay que anotar aparte qué representa cada fila y cada columna: de ello depende que el resultado de las operaciones sea interpretable.
 
-## Tipos de matrices
+## Ejercicios propuestos
 
-El vocabulario que sigue no es decorativo: cada nombre se corresponde con una propiedad que usaremos más adelante. Los reúno todos, incluidos los cuatro que los apuntes de Gonzalo añaden a la lista habitual.
-
-### Según la forma
-
-- **Matriz rectangular**: el número de filas es distinto del de columnas, $m\neq n$.
-- **Matriz fila**: una sola fila, dimensión $1\times n$.
-- **Matriz columna**: una sola columna, dimensión $m\times 1$.
-- **Matriz cuadrada**: tantas filas como columnas. Se dice que es de **orden** $n$.
-- **Matriz nula**, escrita $O$: todos sus elementos son cero. Hay una matriz nula para cada dimensión, y también rectangulares.
-
-Solo las matrices cuadradas tienen **diagonal principal**, formada por los elementos $a_{11}, a_{22}, \ldots, a_{nn}$, y **diagonal secundaria**, formada por los elementos con $i+j=n+1$. La suma de la diagonal principal se llama **traza**.
-
-### Matrices cuadradas con nombre propio
-
-| Nombre | Condición | Ejemplo |
-|---|---|---|
-| Triangular superior | Ceros debajo de la diagonal | $\begin{pmatrix}1&2&3\\0&4&5\\0&0&6\end{pmatrix}$ |
-| Triangular inferior | Ceros encima de la diagonal | $\begin{pmatrix}1&0&0\\2&4&0\\3&5&6\end{pmatrix}$ |
-| Diagonal | Triangular por los dos lados a la vez | $\begin{pmatrix}2&0\\0&-3\end{pmatrix}$ |
-| Escalar | Diagonal con todos los elementos iguales | $\begin{pmatrix}5&0\\0&5\end{pmatrix}$ |
-| Identidad $I_n$ | Escalar con unos | $\begin{pmatrix}1&0\\0&1\end{pmatrix}$ |
-
-### Cuatro tipos más, definidos por lo que les pasa al operar
-
-Estos cuatro no se reconocen mirando la matriz, sino **calculando**. Los apuntes de Gonzalo los definen así:
-
-| Nombre | Condición | Ejemplo |
-|---|---|---|
-| Idempotente | $A^2 = A$ | $\begin{pmatrix}1&0\\0&0\end{pmatrix}$ |
-| Unipotente o involutiva | $A^2 = I$ | $\begin{pmatrix}1&0\\2&-1\end{pmatrix}$ |
-| Nilpotente | $A^2 = O$ | $\begin{pmatrix}1&-1\\1&-1\end{pmatrix}$ |
-| Ortogonal | $A\cdot A^t = A^t\cdot A = I$ | $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ |
-
-::: {.callout-note}
-## La identidad es el 1 de las matrices
-
-$I$ hace con el producto de matrices lo que el número 1 hace con el producto de números: $A\cdot I = I \cdot A = A$.
-
-Esa propiedad parece anecdótica ahora, pero es la clave de todo el apartado 5. La inversa $A^{-1}$ se define precisamente como la matriz que multiplicada por $A$ da $I$, igual que el inverso de 3 es el número que multiplicado por 3 da 1.
-
-Y la matriz ortogonal es un caso llamativo: su inversa **coincide con su traspuesta**, así que calcularla es gratis. Los apuntes añaden una condición necesaria que entenderás en el tema 2: para que una matriz sea ortogonal su determinante debe valer $\pm 1$.
-:::
-
-::: {.callout-tip}
-## Los tipos no son excluyentes
-
-La identidad es a la vez diagonal, escalar, triangular superior, triangular inferior, simétrica, idempotente, unipotente y ortogonal. Ocho etiquetas para la misma matriz.
-
-Cuando en un examen te pidan «clasifica esta matriz», la respuesta correcta suele ser una **lista**, no una sola palabra. El applet siguiente te muestra todas las que cumple a la vez.
-:::
-
-### Applet · Tipos de matriz {.unnumbered}
-
-<div data-applet-mat="tipos"></div>
-
-## Igualdad de matrices
-
-Dos matrices $A$ y $B$ son **iguales** cuando cumplen dos condiciones:
-
-1. Tienen la misma dimensión.
-2. Coinciden elemento a elemento: $a_{ij} = b_{ij}$ para todos los $i$ y $j$.
-
-La primera condición es eliminatoria. Dos matrices de dimensiones distintas no son iguales, ni siquiera se pueden comparar, aunque contengan los mismos números.
-
-### Ejemplo del libro de texto
-
-Clasifica estas matrices según sean iguales o no:
-
+1. Indica la dimensión de cada una de estas matrices y di cuántos elementos tiene cada una:
 $$
-A = \begin{pmatrix} 3 & 3 \\ 3 & 3 \\ 3 & 3 \end{pmatrix}, \qquad
-B = \begin{pmatrix} 3 & 3 & 3 \\ 3 & 3 & 3 \end{pmatrix}, \qquad
-C = \begin{pmatrix} 3 & 3 \\ 3 & x \\ 3 & 3 \end{pmatrix}
+A=\begin{pmatrix} 1 & 0 \\ 3 & 2 \\ 4 & 2 \end{pmatrix},\quad
+B=\begin{pmatrix} 1 & 0 & 5 \\ 2 & 3 & 6 \end{pmatrix},\quad
+C=\begin{pmatrix} 3 \end{pmatrix},\quad
+D=\begin{pmatrix} 1 \\ 3 \\ 5 \\ 6 \end{pmatrix},\quad
+E=\begin{pmatrix} 1 & 2 \end{pmatrix}.
 $$
 
-$A$ y $B$ **no** son iguales, y no hay nada más que discutir: la dimensión de $A$ es $3\times 2$ y la de $B$ es $2\times 3$. En cambio $A$ y $C$ tienen la misma dimensión, y serán iguales si $x=3$.
+2. En la matriz $A=\begin{pmatrix} 5 & -1 & 4 \\ 7 & 0 & 9 \\ -1 & 2 & 3 \end{pmatrix}$, escribe los valores de $a_{13}$, $a_{31}$, $a_{22}$ y $a_{32}$, y di qué elementos forman la fila $F_3$ y la columna $C_2$.
 
-### Para qué sirve esto en un examen
+3. Escribe una matriz de dimensión $2\times 3$ con $a_{12}=4$, $a_{11}=0$, $a_{22}=0$, $a_{23}=4$, $a_{13}=3$ y $a_{21}=1$.
 
-Este es uno de los ocho objetivos del tema: **calcular las constantes que hacen que se cumpla una igualdad entre matrices**. El mecanismo es siempre el mismo, y consiste en convertir una igualdad de matrices en un sistema de ecuaciones.
+4. Escribe la matriz de orden $3$ definida por $a_{ij}=i\cdot j$ y la matriz de dimensión $3\times 4$ definida por $a_{ij}=2i-j$.
 
-Halla $x$, $y$ y $z$ para que
+5. Escribe una matriz de dimensión $2\times 4$ cuyos elementos valgan $1$ si $i+j$ es múltiplo de $3$ y $0$ en caso contrario.
 
-$$
-\begin{pmatrix} x+1 & 4 \\ 3 & 2z \end{pmatrix} = \begin{pmatrix} 5 & y \\ 3 & 8 \end{pmatrix}
-$$
+6. Una tienda de ropa vende camisetas, sudaderas y pantalones en tres tallas. En una semana ha vendido: camisetas, $12$ pequeñas, $20$ medianas y $9$ grandes; sudaderas, $5$, $11$ y $7$; pantalones, $8$, $14$ y $6$. Escribe la matriz de ventas tomando como filas los productos y como columnas las tallas, indica su dimensión y explica qué significan $v_{23}$ y la suma de la segunda columna.
 
-Igualando posición a posición se obtienen cuatro ecuaciones:
+7. Escribe una matriz de dimensión $3\times 3$ que cumpla $a_{11}=a_{22}=a_{33}=0$, $a_{12}=-a_{21}=3$, $a_{13}=-a_{31}=-2$ y $a_{23}=-a_{32}=5$. ¿Qué tienen en común los elementos situados en posiciones simétricas respecto de la diagonal?
 
-$$
-x+1 = 5, \qquad 4 = y, \qquad 3 = 3, \qquad 2z = 8
-$$
-
-La tercera no aporta nada, es una identidad. De las otras tres sale $x=4$, $y=4$, $z=4$.
-
-### El mismo mecanismo, en versión difícil
-
-Los ejercicios de Gonzalo suben la apuesta. Uno pide hallar $x$, $y$, $z$, $t$ tales que
-
-$$
-2\begin{pmatrix} x & y \\ z & t \end{pmatrix} = \begin{pmatrix} x & 6 \\ -1 & 2t \end{pmatrix} + \begin{pmatrix} 4 & x+y \\ z+t & 3 \end{pmatrix}
-$$
-
-Aquí las incógnitas aparecen **en los dos miembros**, así que primero hay que operar cada lado y luego igualar. La solución es $x=4$, $y=6$, $z=-1$, $t=3$, pero el valor importa menos que el método: operar, igualar posición a posición, resolver el sistema.
-
-::: {.callout-important}
-## Una igualdad de matrices son muchas ecuaciones a la vez
-
-Esta es la idea que hay que llevarse. Una sola igualdad entre dos matrices de orden 3 equivale a **nueve** ecuaciones simultáneas.
-
-Ese poder de condensación es la razón de ser de las matrices, y explica por qué en el tema 3 podremos escribir un sistema de tres ecuaciones con tres incógnitas como una única expresión $AX = B$.
-:::
-
-::: {.callout-warning}
-## Cuidado con el sistema sobredeterminado
-
-Al igualar dos matrices de orden 2 salen **cuatro** ecuaciones, pero puede haber solo dos incógnitas. Eso significa que el sistema puede ser **incompatible**, y entonces la respuesta correcta es «no existen valores que cumplan la igualdad».
-
-En los apuntes de Gonzalo hay un ejercicio resuelto que insiste en esto: tras igualar, algunas ecuaciones son idénticas o proporcionales y se eliminan, pero si alguna resulta imposible, el problema no tiene solución. Y hay que comprobar la solución encontrada **en todas** las ecuaciones, no solo en las dos que usaste para despejar.
-:::
-
-### Applet · Igualdad de matrices con incógnitas {.unnumbered}
-
-<div data-applet-mat="igualdad"></div>
-
-## Actividades propuestas
-
-**1.** Utiliza matrices para representar esta información: un agricultor cultiva lechugas, naranjas y melones. En 2014 recogió 1000 lechugas, 2000 kg de naranjas y 500 melones; en los años anteriores su producción fue de 500, 1000 y 400 respectivamente. Por cada lechuga recibe 1 céntimo, por cada kilo de naranjas 3 céntimos y por cada melón 5 céntimos. Escribe la matriz de sus ganancias de 2014.
-
-**2.** Analiza estos elementos de tu entorno y determina si son matrices o no: un calendario, la clasificación de la Liga, el disco duro de un ordenador, un armario de copas, los lineales de un supermercado, una pantalla de televisión, el boleto de la Lotería Primitiva, los buzones de una vivienda, los pupitres de una clase.
-
-**3.** Indica la dimensión de cada matriz:
-
-$$
-A = \begin{pmatrix} 5 & 1 & 4 \\ 7 & 9 & 0 \end{pmatrix}, \quad
-B = \begin{pmatrix} 3 & 2 & 6 & 0 \end{pmatrix}, \quad
-C = \begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}, \quad
-D = \begin{pmatrix} 0&0&1\\0&1&0\\1&0&0 \end{pmatrix}
-$$
-
-**4.** Escribe la matriz $3\times 2$ cuyos elementos cumplen $a_{ij} = 2i - j$.
-
-**5.** Escribe la matriz $3\times 3$ con $a_{21}=3$, $a_{13}=1$, $a_{22}=-3$, $a_{23}=0$, $a_{31}=2$, $a_{32}=3$, $a_{33}=5$, $a_{11}=2$, $a_{12}=-3$.
-
-**6.** Clasifica según todos los tipos que le correspondan:
-
-$$
-A = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix}, \quad
-B = \begin{pmatrix} 0 & 5 & -2 \\ -5 & 0 & 1 \\ 2 & -1 & 0 \end{pmatrix}, \quad
-C = \begin{pmatrix} 1 & 7 \\ 0 & 4 \end{pmatrix}, \quad
-D = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}
-$$
-
-**7.** Determina los valores de $a$, $b$, $x$, $y$ para que $A=B$, con
-
-$$
-A = \begin{pmatrix} 3 & a \\ 6 & b \end{pmatrix}, \qquad B = \begin{pmatrix} x & 2 \\ y & 0 \end{pmatrix}
-$$
-
-**8.** Halla $a$, $b$ y $c$ para que se cumpla
-
-$$
-\begin{pmatrix} 2a & b-1 \\ 5 & c+c \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 5 & 10 \end{pmatrix}
-$$
-
-**9.** ¿Existe algún valor de $x$ que haga iguales estas dos matrices? Justifica la respuesta **sin calcular nada**.
-
-$$
-\begin{pmatrix} x & 1 \\ 2 & 3 \end{pmatrix}, \qquad \begin{pmatrix} x & 1 & 0 \\ 2 & 3 & 0 \end{pmatrix}
-$$
-
-**10.** Una matriz cuadrada de orden 3 es a la vez triangular superior y triangular inferior. ¿Qué tipo de matriz es necesariamente? Razónalo.
-
-**11.** Escribe una matriz cuadrada de orden 4 de cada uno de estos tipos: triangular superior, diagonal, identidad, triangular inferior, simétrica, escalar, nula, antisimétrica.
-
-**12.** Comprueba que la matriz $A = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}$ es nilpotente, y que $B = \begin{pmatrix} \tfrac{2}{3} & \tfrac{1}{3} \\ \tfrac{2}{3} & \tfrac{1}{3} \end{pmatrix}$ es idempotente.
+8. Cuatro amigos se comunican por mensajería: A escribe a B y a D; B escribe a C y a D; C escribe a A; D no escribe a nadie. Escribe la matriz $4\times 4$ que registra con un $1$ quién escribe a quién (filas: quien escribe; columnas: quien recibe) y explica por qué esta matriz **no** coincide con su reflejo respecto de la diagonal principal.
 
 ::: {.callout-note collapse="true"}
 ## Soluciones
 
-**1.** La producción de 2014 y los precios se escriben así, y la matriz de ganancias en céntimos se obtiene multiplicando cada cantidad por su precio:
+**1.** $A$ es $3\times 2$ y tiene $6$ elementos. $B$ es $2\times 3$ y tiene $6$. $C$ es $1\times 1$ y tiene $1$. $D$ es $4\times 1$ y tiene $4$. $E$ es $1\times 2$ y tiene $2$. Observa que $A$ y $B$ tienen el mismo número de elementos y sin embargo **no** tienen la misma dimensión.
 
+**2.** $a_{13}=4$, $a_{31}=-1$, $a_{22}=0$, $a_{32}=2$. La fila $F_3$ está formada por $-1$, $2$ y $3$; la columna $C_2$, por $-1$, $0$ y $2$.
+
+**3.** Colocando cada dato en su posición:
 $$
-\begin{pmatrix} 1000 & 2000 & 500 \end{pmatrix}, \quad \begin{pmatrix} 1 \\ 3 \\ 5 \end{pmatrix}
-\;\Longrightarrow\;
-\begin{pmatrix} 1000 & 6000 & 2500 \end{pmatrix}
-$$
-
-En total, $1000+6000+2500 = 9500$ céntimos, o sea 95 euros. Fíjate en que ya has hecho un producto de matriz fila por matriz columna.
-
-**2.** Son matrices propiamente el calendario y el boleto de la Primitiva. La clasificación de la Liga, el disco duro y la pantalla de televisión se pueden representar como matrices sustituyendo los datos por números. El armario de copas, los lineales, los buzones y los pupitres podrían representarse como matrices aunque sus contenidos no sean numéricos, porque están dispuestos en filas y columnas.
-
-**3.** $A$ es $2\times 3$. $B$ es $1\times 4$. $C$ es $3\times 1$. $D$ es $3\times 3$.
-
-**4.** Sustituyendo en $a_{ij}=2i-j$:
-
-$$
-A = \begin{pmatrix} 1 & 0 \\ 3 & 2 \\ 5 & 4 \end{pmatrix}
+A=\begin{pmatrix} 0 & 4 & 3 \\ 1 & 0 & 4 \end{pmatrix}
 $$
 
-**5.**
-
+**4.** Con $a_{ij}=i\cdot j$:
 $$
-A = \begin{pmatrix} 2 & -3 & 1 \\ 3 & -3 & 0 \\ 2 & 3 & 5 \end{pmatrix}
+\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}
 $$
-
-**6.** $A$ es cuadrada, diagonal, escalar, triangular por los dos lados y simétrica. No es la identidad porque la diagonal no vale 1.
-
-$B$ es cuadrada y antisimétrica, con la diagonal de ceros que eso obliga.
-
-$C$ es cuadrada y triangular superior, y nada más.
-
-$D$ es cuadrada y **nilpotente**, porque $D^2 = O$ como comprobarás en la actividad 12.
-
-**7.** $x=3$, $a=2$, $y=6$, $b=0$.
-
-**8.** De $2a=6$ sale $a=3$. De $b-1=4$ sale $b=5$. De $c+c=10$ sale $c=5$. La posición $(2,1)$ da $5=5$, que se cumple sola.
-
-**9.** No existe ninguno. La primera es $2\times 2$ y la segunda $2\times 3$: al tener dimensiones distintas no pueden ser iguales, y el valor de $x$ es irrelevante. Esta comprobación hay que hacerla **antes** de plantear ecuaciones, y ahorra todo el trabajo.
-
-**10.** Es **diagonal**. Ser triangular superior obliga a que todo lo que está debajo de la diagonal sea cero, y ser triangular inferior obliga a que todo lo que está encima también lo sea. Solo puede sobrevivir la diagonal.
-
-**11.** Respuesta libre. Ejemplos válidos: para la antisimétrica de orden 4, cualquiera con diagonal de ceros y elementos opuestos respecto de ella; para la escalar, la identidad multiplicada por cualquier número.
-
-**12.** Para $A$:
-
+Con $a_{ij}=2i-j$ y dimensión $3\times 4$, por ejemplo $a_{11}=2\cdot 1-1=1$ y $a_{34}=2\cdot 3-4=2$:
 $$
-A^2 = \begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & -1 \\ 1 & -1 \end{pmatrix} = \begin{pmatrix} 1-1 & -1+1 \\ 1-1 & -1+1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+\begin{pmatrix} 1 & 0 & -1 & -2 \\ 3 & 2 & 1 & 0 \\ 5 & 4 & 3 & 2 \end{pmatrix}
 $$
 
-Nilpotente, en efecto. Y observa lo insólito del hecho: una matriz **no nula** cuyo cuadrado es cero. Con números eso es imposible.
+**5.** Las posiciones con $i+j$ múltiplo de $3$ son $(1,2)$, $(2,1)$ y $(2,4)$, ya que $1+2=3$, $2+1=3$ y $2+4=6$:
+$$
+\begin{pmatrix} 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 1 \end{pmatrix}
+$$
 
-Para $B$, al elevar al cuadrado se obtiene la misma matriz $B$, así que es idempotente y por tanto $B^n = B$ para todo $n$.
+**6.** Con filas «camisetas, sudaderas, pantalones» y columnas «pequeña, mediana, grande»:
+$$
+V=\begin{pmatrix} 12 & 20 & 9 \\ 5 & 11 & 7 \\ 8 & 14 & 6 \end{pmatrix}
+$$
+Su dimensión es $3\times 3$. El elemento $v_{23}=7$ son las sudaderas grandes vendidas. La suma de la segunda columna, $20+11+14=45$, es el total de prendas de talla mediana vendidas.
+
+**7.** Las condiciones dan $a_{21}=-3$, $a_{31}=2$ y $a_{32}=-5$:
+$$
+\begin{pmatrix} 0 & 3 & -2 \\ -3 & 0 & 5 \\ 2 & -5 & 0 \end{pmatrix}
+$$
+Los elementos en posiciones simétricas son **opuestos**, $a_{ij}=-a_{ji}$, y la diagonal principal es de ceros: es una matriz antisimétrica, tipo que estudiaremos en la parte 6.
+
+**8.** Ordenando A, B, C, D tanto en filas como en columnas:
+$$
+\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+0 & 0 & 1 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+No coincide con su reflejo porque la relación «escribir a» **no es recíproca**: $C$ escribe a $A$ pero $A$ no escribe a $C$, de modo que $a_{31}=1$ mientras que $a_{13}=0$. En cambio, si registrásemos «haber intercambiado mensajes», la relación sería mutua y la matriz coincidiría con su reflejo.
 :::
-
-## Continúa
-
-En la parte 2 llega la primera operación del tema, la **traspuesta**, que es la más sencilla y la que da lugar a las matrices simétricas y antisimétricas.
-
-<div data-applet-mat="diagnostico">

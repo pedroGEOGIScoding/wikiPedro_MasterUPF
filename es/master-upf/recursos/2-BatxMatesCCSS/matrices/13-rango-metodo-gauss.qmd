@@ -1,0 +1,463 @@
+---
+title: "Tema 1.13 Método de Gauss para el cálculo del rango"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 13 de 17)"
+filename: 13-rango-metodo-gauss
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Transformaciones elementales por filas y por columnas y demostración de que conservan el rango, forma escalonada de una matriz, pivotes y filas nulas, algoritmo completo del método de Gauss con la notación de operaciones, ejemplos resueltos de matrices cuadradas de orden tres y de matrices rectangulares, el truco de la transpuesta, y estudio del rango de una matriz que depende de un parámetro con valores críticos y tabla de casos, con applets manipulables.
+categories: [matrices, álgebra, 2 Batx, matemáticas CCSS, rango, método de Gauss, transformaciones elementales, forma escalonada, parámetros]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De la definición al procedimiento
+
+En el apartado anterior quedó claro qué es el rango de una matriz: el número de filas —o de columnas, que da lo mismo— linealmente independientes. La definición es impecable, pero como **método de cálculo** resulta desastrosa. Para averiguar el rango de una matriz $4\times 5$ habría que plantear, una tras otra, todas las combinaciones lineales posibles entre sus filas y comprobar si alguna de ellas se anula. Con matrices pequeñas se puede hacer a ojo; en cuanto la matriz crece, el trabajo se vuelve inabordable y, sobre todo, poco fiable: es facilísimo pasar por alto una dependencia escondida.
+
+Hace falta un **algoritmo**: una lista de pasos que se apliquen siempre igual, que no dependa de la inspiración del momento y que termine dando el rango con certeza. Ese algoritmo es el **método de Gauss**, y consiste en una idea de una sencillez casi decepcionante: si no puedo leer el rango en la matriz que tengo, la transformo en otra matriz **con el mismo rango** pero en la que el rango se lea de un vistazo.
+
+Las matrices en las que el rango se lee de un vistazo son las **escalonadas**, esas que van dejando un triángulo de ceros abajo a la izquierda. En ellas basta contar filas no nulas. Todo el apartado se reduce, entonces, a dos preguntas: ¿qué transformaciones puedo hacer sin estropear el rango?, y ¿en qué orden hay que hacerlas para llegar siempre a la forma escalonada? Y no es una técnica de usar y tirar: el mismo escalonamiento sirve para calcular la matriz inversa, para simplificar determinantes en el tema siguiente y para resolver y discutir sistemas de ecuaciones lineales.
+
+## Las transformaciones elementales
+
+::: {.callout-note}
+## Transformaciones elementales por filas
+
+Dada una matriz $A$, se llaman **transformaciones elementales por filas** a estas tres operaciones:
+
+1. **Intercambiar dos filas** entre sí. Se escribe $F_i \leftrightarrow F_j$.
+2. **Multiplicar una fila por un número $k \neq 0$**. Se escribe $F_i \to k F_i$.
+3. **Sumar a una fila un múltiplo de otra fila**. Se escribe $F_i \to F_i + k F_j$, con $i \neq j$.
+
+Las tres tienen su versión por columnas, con la letra $C$ en lugar de $F$: $C_i \leftrightarrow C_j$, $C_i \to kC_i$ y $C_i \to C_i + kC_j$.
+:::
+
+La tercera operación es la verdadera protagonista: es la que fabrica ceros. Cuando escribimos $F_3 \to F_3 - 2F_1$ queremos decir que la nueva tercera fila se obtiene restando a la antigua el doble de la primera, **elemento por elemento**, y que la fila $F_1$ **no se toca**. Esa segunda parte se olvida con frecuencia: en una operación $F_i \to F_i + kF_j$ solo cambia una fila, la $i$; la fila $j$ actúa de herramienta y sale intacta.
+
+::: {.callout-important}
+## Por qué el rango no cambia
+
+Que estas operaciones conserven el rango no es un capricho de la notación: se puede razonar.
+
+**Intercambiar dos filas.** El rango cuenta cuántas filas son linealmente independientes, y ese número no depende del orden en que las escribamos. Si $F_1$ y $F_2$ eran independientes, siguen siéndolo después de cambiarlas de sitio. El rango, por tanto, es el mismo.
+
+**Multiplicar una fila por $k\neq 0$.** Cualquier combinación lineal que antes se hacía con $F_i$ ahora se puede hacer con $kF_i$ dividiendo el coeficiente entre $k$: donde antes escribíamos $\alpha F_i$, ahora escribimos $\tfrac{\alpha}{k}(kF_i)$. La información del conjunto de filas es la misma, así que también lo es el número de filas independientes. **La condición $k\neq 0$ es imprescindible**: multiplicar por $0$ destruye la fila y puede bajar el rango.
+
+**Sumar a una fila un múltiplo de otra.** Aquí está el argumento fino, y conviene entenderlo bien. La operación $F_i \to F_i + kF_j$ sustituye $F_i$ por una combinación lineal de $F_i$ y $F_j$ en la que $F_i$ aparece con coeficiente $1$. Lo importante es que la operación es **reversible**: aplicando después $F_i \to F_i - kF_j$ recuperamos la matriz de partida. Como la nueva fila se obtiene combinando filas antiguas, ninguna información nueva aparece, y como la operación se puede deshacer, ninguna información se pierde. Si dos filas eran dependientes, siguen siéndolo; si eran independientes, siguen siéndolo. El número de filas independientes se conserva.
+
+De ahí sale la palabra clave de todo el apartado: dos matrices que se obtienen una de otra mediante transformaciones elementales se llaman **equivalentes**, y **las matrices equivalentes tienen el mismo rango**.
+:::
+
+::: {.callout-caution}
+## Operaciones que sí estropean el rango
+
+- **Multiplicar una fila por $0$**: $F_2 \to 0\cdot F_2$ convierte la fila en nula y puede reducir el rango. Está prohibido.
+- **Sustituir una fila por un múltiplo de otra**, del tipo $F_2 \to 3F_1$: eso no es una transformación elemental, es borrar $F_2$ y duplicar $F_1$. Se pierde información.
+- **Combinar filas con columnas** en la misma operación, como $2F_1 + C_2$: no tiene sentido, porque los elementos que se sumarían no ocupan posiciones correspondientes.
+- **Operar dos filas y guardar el resultado en las dos** a la vez, del estilo «$F_1$ pasa a ser $F_1+F_2$ y $F_2$ pasa a ser $F_1-F_2$». Cada operación afecta a **una sola** fila.
+
+Y un aviso de gestión: la operación $F_i \to aF_i + bF_j$ con $a\neq 0$ también es válida (es la composición de multiplicar por $a$ y sumar $bF_j$), y a veces evita fracciones. Pero si $a=0$ se destruye la fila $i$, así que hay que vigilarlo.
+:::
+
+## Forma escalonada, pivotes y filas nulas
+
+::: {.callout-note}
+## Matriz escalonada
+
+Una matriz está en **forma escalonada** (por filas) cuando:
+
+- todas las filas nulas, si hay alguna, están **al final**;
+- en cada fila no nula, el primer elemento distinto de cero —llamado **pivote**— está **estrictamente más a la derecha** que el pivote de la fila anterior.
+
+El resultado es una escalera de ceros por debajo de los pivotes:
+$$
+\begin{pmatrix}
+\boxed{2} & -1 & 3 & 0 \\
+0 & \boxed{5} & 1 & 4 \\
+0 & 0 & 0 & \boxed{-3} \\
+0 & 0 & 0 & 0
+\end{pmatrix}
+$$
+Los tres elementos recuadrados son los pivotes. Fíjate en que los pivotes **no tienen que estar en la diagonal**: en el ejemplo, el tercer pivote está en la cuarta columna porque en la tercera no quedaba nada que salvar.
+:::
+
+::: {.callout-important}
+## El teorema que hace funcionar el método
+
+**En una matriz escalonada, el rango es igual al número de filas no nulas, es decir, al número de pivotes.**
+
+La razón es la que ya se vio con las matrices triangulares. Supongamos que una fila escalonada no nula fuese combinación lineal de las que están por debajo de ella. Su pivote ocupa una columna en la que **todas** las filas inferiores tienen un cero, porque los pivotes de esas filas están más a la derecha. Cualquier combinación lineal de esas filas inferiores tendría, por tanto, un cero en esa columna, y no puede reproducir un pivote distinto de cero. Contradicción: ninguna fila no nula depende de las siguientes, así que todas las filas no nulas son linealmente independientes. Y las filas nulas no aportan nada, porque la fila de ceros es combinación lineal de cualquier cosa (con todos los coeficientes iguales a cero).
+
+Uniendo las dos piezas —las transformaciones conservan el rango y en la escalonada el rango se cuenta— tenemos el método:
+$$
+\operatorname{rg}(A) = \text{número de filas no nulas de cualquier forma escalonada de } A .
+$$
+:::
+
+## El algoritmo, paso a paso
+
+::: {.callout-note}
+## Método de Gauss para el rango
+
+1. **Busca el primer pivote.** Mira la primera columna. Si $a_{11}=0$, intercambia la primera fila con otra cuyo primer elemento no sea cero. Si toda la primera columna es de ceros, pasa a la columna siguiente y repite.
+2. **Haz ceros debajo del pivote.** Para cada fila $i$ por debajo de la primera, aplica
+$$
+F_i \to F_i - \frac{a_{i1}}{a_{11}}\,F_1 ,
+$$
+que anula el elemento $a_{i1}$. Si prefieres evitar fracciones, usa la versión $F_i \to a_{11}F_i - a_{i1}F_1$, recordando que $a_{11}\neq 0$.
+3. **Repite con la submatriz que queda.** Olvídate de la primera fila y de la primera columna y vuelve al paso 1 con lo que sobra: busca el segundo pivote, haz ceros por debajo, y así sucesivamente.
+4. **Para cuando ya no queden filas** por debajo del último pivote o cuando todo lo que quede sea ceros.
+5. **Cuenta las filas no nulas.** Ese número es $\operatorname{rg}(A)$.
+:::
+
+Tres observaciones prácticas que ahorran mucho tiempo. **El orden importa**: hay que anular la primera columna hacia abajo, después la segunda, después la tercera…; si empiezas por la tercera, los ceros que ganes se perderán al operar con la primera. **Anota siempre la operación** al lado de la flecha, con la notación $F_i \to F_i - kF_j$: es lo que permite repasar el ejercicio y encontrar el error sin repetirlo todo, y en las pruebas una respuesta sin operaciones indicadas se considera sin justificar. Y **no hace falta llegar a la escalonada reducida**: para el rango basta con la escalonada, sin exigir que los pivotes valgan $1$ ni hacer ceros por encima de ellos.
+
+Además, para el rango —y solo para el rango— se pueden **mezclar operaciones por filas y por columnas**, porque el rango por filas coincide con el rango por columnas. En el cálculo de la inversa este permiso desaparece.
+
+## Ejemplo resuelto 1 · Una matriz $3\times 3$ con una dependencia escondida
+
+Calcula el rango de
+$$
+A = \begin{pmatrix} 1 & 2 & -1 \\ 2 & 5 & 1 \\ 3 & 7 & 0 \end{pmatrix}.
+$$
+
+**Paso 1.** El pivote de la primera columna es $a_{11}=1$, el mejor pivote posible, porque las operaciones saldrán sin fracciones. Anulamos los dos elementos que quedan debajo:
+$$
+\begin{pmatrix} 1 & 2 & -1 \\ 2 & 5 & 1 \\ 3 & 7 & 0 \end{pmatrix}
+\begin{array}{l} \\ F_2 \to F_2 - 2F_1 \\ F_3 \to F_3 - 3F_1 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \\ 0 & 1 & 3 \end{pmatrix}.
+$$
+Detalle del cálculo de $F_2$: $(2,5,1) - 2(1,2,-1) = (2-2,\ 5-4,\ 1+2) = (0,1,3)$. Y de $F_3$: $(3,7,0)-3(1,2,-1) = (0,1,3)$.
+
+**Paso 2.** Ahora trabajamos en la submatriz formada por las filas segunda y tercera. El pivote es el $1$ de la posición $(2,2)$, y debajo hay otro $1$:
+$$
+\begin{pmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \\ 0 & 1 & 3 \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to F_3 - F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 2 & -1 \\ 0 & 1 & 3 \\ 0 & 0 & 0 \end{pmatrix}.
+$$
+
+**Paso 3.** La matriz ya está escalonada: hay dos pivotes y una fila nula al final. Por tanto $\operatorname{rg}(A) = 2$.
+
+**Lectura del resultado.** La fila nula no significa que la tercera fila de $A$ fuese cero: significa que **era combinación lineal de las anteriores**. De hecho, deshaciendo las operaciones, $F_3 - 3F_1 - (F_2-2F_1) = 0$, es decir $F_3 = F_1 + F_2$. Compruébalo: $(1,2,-1)+(2,5,1) = (3,7,0)$. Efectivamente. Al ser $A$ una matriz cuadrada de orden $3$ con rango $2 < 3$, adelantamos algo que se usará en los apartados siguientes: $A$ es **singular** y no tendrá inversa.
+
+## Ejemplo resuelto 2 · Una matriz $3\times 3$ de rango máximo
+
+Calcula el rango de
+$$
+B = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 3 & 7 & 11 \end{pmatrix}.
+$$
+
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 3 & 7 & 11 \end{pmatrix}
+\begin{array}{l} \\ F_2 \to F_2 - 2F_1 \\ F_3 \to F_3 - 3F_1 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to F_3 - F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}.
+$$
+
+Tres filas no nulas, tres pivotes: $\operatorname{rg}(B) = 3$. La matriz es cuadrada de orden $3$ y su rango es máximo, así que $B$ es **regular** y tendrá inversa. Compara los dos ejemplos: $A$ y $B$ se parecen mucho y sin embargo su comportamiento es opuesto. El rango es justamente la herramienta que distingue estos dos mundos.
+
+## Ejemplo resuelto 3 · Una matriz rectangular $3\times 4$
+
+Calcula el rango de
+$$
+C = \begin{pmatrix} 0 & -2 & 2 & 4 \\ 2 & -1 & -1 & 1 \\ 2 & -2 & 0 & 3 \end{pmatrix}.
+$$
+
+**Cota previa.** Antes de calcular, conviene saber qué esperamos: $\operatorname{rg}(C) \le \min(3,4) = 3$. El rango no podrá pasar de $3$, porque solo hay tres filas.
+
+**Paso 1.** El elemento $c_{11}$ vale $0$, así que no sirve de pivote. Intercambiamos la primera fila con la segunda, cuyo primer elemento es $2$:
+$$
+\begin{pmatrix} 0 & -2 & 2 & 4 \\ 2 & -1 & -1 & 1 \\ 2 & -2 & 0 & 3 \end{pmatrix}
+\begin{array}{l} F_1 \leftrightarrow F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 2 & -1 & -1 & 1 \\ 0 & -2 & 2 & 4 \\ 2 & -2 & 0 & 3 \end{pmatrix}.
+$$
+
+**Paso 2.** La segunda fila ya empieza por cero; solo hay que arreglar la tercera:
+$$
+\begin{pmatrix} 2 & -1 & -1 & 1 \\ 0 & -2 & 2 & 4 \\ 2 & -2 & 0 & 3 \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to F_3 - F_1 \end{array}
+\longrightarrow
+\begin{pmatrix} 2 & -1 & -1 & 1 \\ 0 & -2 & 2 & 4 \\ 0 & -1 & 1 & 2 \end{pmatrix}.
+$$
+
+**Paso 3.** Segundo pivote: el $-2$ de la posición $(2,2)$. Debajo hay un $-1$, y para no arrastrar fracciones usamos la variante con dos coeficientes:
+$$
+\begin{pmatrix} 2 & -1 & -1 & 1 \\ 0 & -2 & 2 & 4 \\ 0 & -1 & 1 & 2 \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to 2F_3 - F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 2 & -1 & -1 & 1 \\ 0 & -2 & 2 & 4 \\ 0 & 0 & 0 & 0 \end{pmatrix}.
+$$
+El cálculo: $2(0,-1,1,2) - (0,-2,2,4) = (0,-2,2,4)-(0,-2,2,4) = (0,0,0,0)$.
+
+**Conclusión.** Dos pivotes, una fila nula: $\operatorname{rg}(C) = 2$. Aunque la matriz tenga cuatro columnas, solo dos de sus filas aportan información independiente; equivalentemente, solo dos de sus cuatro columnas son linealmente independientes.
+
+::: {.callout-tip}
+## El truco de la transpuesta
+
+Como $\operatorname{rg}(A) = \operatorname{rg}(A^t)$, si una matriz tiene **muchas más filas que columnas** conviene escalonar la transpuesta: habrá menos filas que arreglar y muchas menos operaciones. Por ejemplo, para
+$$
+D = \begin{pmatrix} 2 & 1 \\ 0 & 3 \\ 1 & -3 \\ 4 & 5 \end{pmatrix}
+$$
+escalonar $D$ exige anular tres elementos en la primera columna; escalonar
+$$
+D^t = \begin{pmatrix} 2 & 0 & 1 & 4 \\ 1 & 3 & -3 & 5 \end{pmatrix}
+$$
+exige una sola operación, $F_2 \to 2F_2 - F_1$, que da $\begin{pmatrix} 2 & 0 & 1 & 4 \\ 0 & 6 & -7 & 6 \end{pmatrix}$ y el rango $2$ de inmediato. Mismo resultado, la cuarta parte del trabajo.
+:::
+
+### Applet · Método de Gauss para el rango {.unnumbered}
+
+Escribe una matriz cualquiera y elige el modo. En **modo automático** el panel escalona la matriz mostrando todos los pasos con la notación $F_i \to F_i - kF_j$, marca los pivotes, señala las filas que se anulan y da el rango; observa cómo cada fila nula corresponde a una dependencia lineal entre las filas originales. En **modo manual** propones tú cada operación: el applet la valida, la ejecuta y te avisa si el paso no acerca la matriz a la forma escalonada, además de rechazar las operaciones prohibidas como multiplicar una fila por cero.
+
+::: {#panel-gaussRango .applet-panel data-applet-mtx="gaussRango"}
+:::
+
+## El rango de una matriz con un parámetro
+
+Este es el tipo de ejercicio que aparece con más frecuencia en las pruebas, y también donde se cometen más errores. El enunciado tiene siempre la misma forma: «estudia el rango de la matriz según los valores del parámetro $k$». La respuesta **no es un número**: es una clasificación por casos.
+
+::: {.callout-important}
+## La regla de oro: no dividir por lo que puede valer cero
+
+Al escalonar una matriz con un parámetro, cada vez que uses una expresión como pivote estarás implícitamente **dividiendo** por ella. Si esa expresión contiene el parámetro, puede anularse para algún valor concreto, y ese caso quedaría fuera del razonamiento sin que te dieras cuenta.
+
+La estrategia correcta tiene tres fases:
+
+1. **Coloca como pivotes, siempre que puedas, elementos numéricos** que no dependan del parámetro. Un intercambio de filas o de columnas suele bastar para conseguirlo.
+2. **Escalona** hasta que el parámetro quede acorralado en el último pivote (o en los últimos).
+3. **Iguala a cero** cada pivote que dependa del parámetro: sus soluciones son los **valores críticos**. Estudia por separado el caso general (parámetro distinto de todos los valores críticos) y cada valor crítico, sustituyéndolo en la matriz **desde el principio** o en la última matriz escalonada válida.
+
+Y cuando no haya manera de evitar dividir por una expresión con el parámetro, hazlo, pero **escribe la condición**: «suponiendo $k\neq 1$…», y trata el caso $k=1$ aparte.
+:::
+
+## Ejemplo resuelto 4 · Un parámetro con un único valor crítico
+
+Estudia el rango de
+$$
+M = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 3 & k \end{pmatrix}
+\quad \text{según los valores de } k .
+$$
+
+La primera columna no contiene el parámetro y empieza por $1$: pivote inmejorable.
+$$
+\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 3 & k \end{pmatrix}
+\begin{array}{l} \\ F_2 \to F_2 - F_1 \\ F_3 \to F_3 - F_1 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 2 & k-1 \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to F_3 - 2F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & k-5 \end{pmatrix}.
+$$
+Observa que en ningún momento hemos dividido por nada que contenga $k$: los dos pivotes usados han sido $1$ y $1$. El parámetro ha quedado aislado en la posición $(3,3)$.
+
+Ahora la discusión es transparente: si $k-5\neq 0$, es decir **si $k \neq 5$**, hay tres pivotes y $\operatorname{rg}(M) = 3$; si $k = 5$, la tercera fila se anula, quedan dos pivotes y $\operatorname{rg}(M) = 2$.
+
+El rango nunca vale $1$ ni $0$: los dos primeros pivotes son numéricos y no dependen de $k$, así que el rango es **al menos** $2$ para cualquier valor del parámetro. Esa observación —acotar el rango por abajo mirando los pivotes numéricos— es una comprobación rápida de que la discusión tiene sentido.
+
+## Ejemplo resuelto 5 · Dos valores críticos
+
+Estudia el rango de
+$$
+N = \begin{pmatrix} k & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{pmatrix}
+\quad \text{según los valores de } k .
+$$
+
+**Paso 0. Elegir un buen pivote.** Si usáramos $a_{11}=k$ como pivote, estaríamos dividiendo por $k$ y perderíamos el caso $k=0$. Lo evitamos con un intercambio de filas que sube un $1$ a la esquina:
+$$
+\begin{pmatrix} k & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{pmatrix}
+\begin{array}{l} F_1 \leftrightarrow F_3 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & k \\ 1 & k & 1 \\ k & 1 & 1 \end{pmatrix}.
+$$
+
+**Paso 1. Primera columna.**
+$$
+\begin{pmatrix} 1 & 1 & k \\ 1 & k & 1 \\ k & 1 & 1 \end{pmatrix}
+\begin{array}{l} \\ F_2 \to F_2 - F_1 \\ F_3 \to F_3 - kF_1 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & k \\ 0 & k-1 & 1-k \\ 0 & 1-k & 1-k^2 \end{pmatrix}.
+$$
+Aquí sí hemos multiplicado por $k$, pero **multiplicar** por el parámetro es lícito; lo prohibido es dividir. El coeficiente de $F_1$ puede ser cualquier número, incluido el cero.
+
+**Paso 2. Detectar el primer valor crítico.** El siguiente pivote sería $k-1$, que se anula si $k=1$. Antes de dividir, paremos y analicemos ese caso.
+
+**Caso $k=1$.** Sustituyendo en la matriz original,
+$$
+N = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix},
+$$
+las tres filas son idénticas: con $F_2\to F_2-F_1$ y $F_3\to F_3-F_1$ quedan dos filas nulas y un solo pivote. Por tanto $\operatorname{rg}(N) = 1$.
+
+**Caso $k \neq 1$.** Ahora sí podemos dividir. Simplificamos $F_2$ entre $k-1$ y $F_3$ entre $1-k$, recordando que $1-k^2 = (1-k)(1+k)$:
+$$
+\begin{pmatrix} 1 & 1 & k \\ 0 & k-1 & 1-k \\ 0 & 1-k & 1-k^2 \end{pmatrix}
+\begin{array}{l} \\ F_2 \to \frac{1}{k-1}F_2 \\ F_3 \to \frac{1}{1-k}F_3 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & k \\ 0 & 1 & -1 \\ 0 & 1 & 1+k \end{pmatrix}
+\begin{array}{l} \\ \\ F_3 \to F_3 - F_2 \end{array}
+\longrightarrow
+\begin{pmatrix} 1 & 1 & k \\ 0 & 1 & -1 \\ 0 & 0 & k+2 \end{pmatrix}.
+$$
+El último pivote es $k+2$, que se anula si $k=-2$. Segundo valor crítico.
+
+**Discusión completa.**
+
+| caso | rango | por qué |
+|---|---|---|
+| $k = 1$ | $\operatorname{rg}(N) = 1$ | las tres filas coinciden |
+| $k = -2$ | $\operatorname{rg}(N) = 2$ | el tercer pivote se anula |
+| $k \neq 1$ y $k \neq -2$ | $\operatorname{rg}(N) = 3$ | tres pivotes no nulos |
+
+**Comprobación rápida.** Con $k=-2$ la matriz es $\begin{pmatrix} -2 & 1 & 1 \\ 1 & -2 & 1 \\ 1 & 1 & -2 \end{pmatrix}$, y se ve que $F_1+F_2+F_3 = (0,0,0)$: hay una dependencia lineal, así que el rango no llega a $3$; y como $F_1$ y $F_2$ no son proporcionales, es exactamente $2$. Sustituir el valor crítico y buscar la dependencia a ojo es la mejor manera de comprobar la discusión.
+
+### Applet · Rango de una matriz con un parámetro {.unnumbered}
+
+Introduce una matriz cuyos elementos pueden contener la letra `k` y el panel escalona tratando el parámetro de forma simbólica, sin dividir nunca por expresiones que puedan anularse. Fíjate en cómo se localizan los **valores críticos** al igualar a cero el último pivote y en la tabla de casos que resume el rango en cada situación; después mueve el deslizador del parámetro y observa el **salto** del rango exactamente en los valores críticos, mientras que entre ellos el rango se mantiene constante.
+
+::: {#panel-rangoParam .applet-panel data-applet-mtx="rangoParam"}
+:::
+
+::: {.callout-caution}
+## Errores típicos
+
+1. **Dividir entre una expresión con el parámetro sin avisar.** Es el error que más casos se lleva por delante: si usas $k-1$ como pivote y no estudias $k=1$ aparte, la discusión está incompleta y el ejercicio se considera mal resuelto.
+2. **Dar un número como respuesta** en un ejercicio con parámetro. La respuesta es una tabla de casos, no un rango único.
+3. **Confundir «fila nula» con «rango cero».** Una fila nula resta uno al recuento, no lo anula todo.
+4. **Operar sobre una fila que ya se está usando como pivote** y deshacer los ceros conseguidos. Si el pivote está en $F_2$, no modifiques $F_2$ mientras la uses.
+5. **Cambiar dos filas a la vez** usando valores ya modificados. Anota una operación por línea.
+6. **Olvidar la cota $\operatorname{rg}(A)\le\min(m,n)$** y concluir que una matriz $2\times 5$ tiene rango $5$ porque salen cinco columnas no nulas.
+7. **No escribir las operaciones.** Sin ellas no hay justificación, y en las pruebas se pide justificar cada paso.
+8. **Perder un signo al restar filas con números negativos.** Escribe el cálculo elemento a elemento en sucio cuando la fila tenga varios signos menos.
+:::
+
+::: {.callout-tip}
+## Un algoritmo con más de dos mil años
+
+La eliminación por filas se atribuye a Gauss, que la utilizó a comienzos del siglo XIX para ajustar las observaciones astronómicas del asteroide Ceres, pero el procedimiento es muchísimo más antiguo: aparece descrito en el clásico chino *Los nueve capítulos sobre el arte matemático*, escrito hacia el siglo I, donde se resuelven sistemas colocando los coeficientes en un tablero y restando columnas hasta triangularizarlo. Es, en esencia, lo que acabas de hacer.
+
+Hoy el escalonamiento sigue siendo el caballo de batalla del cálculo numérico. Su coste crece aproximadamente como $n^3$: escalonar una matriz de orden $1000$ exige del orden de mil millones de operaciones, algo trivial para un ordenador y imposible a mano. Por eso los programas de cálculo no usan la definición de rango ni desarrollan determinantes: escalonan.
+:::
+
+## Resumen del apartado
+
+El **método de Gauss** convierte el cálculo del rango en un procedimiento mecánico y fiable. Se basa en dos hechos: las **transformaciones elementales** —intercambiar filas, multiplicar una fila por un número no nulo y sumar a una fila un múltiplo de otra— **no alteran el rango**, porque no añaden ni destruyen información y son reversibles; y en una matriz **escalonada** el rango es simplemente el **número de filas no nulas**, es decir, el número de **pivotes**.
+
+El algoritmo consiste en buscar un pivote en la primera columna (intercambiando filas si hace falta), hacer ceros por debajo con operaciones del tipo $F_i \to F_i - kF_j$, y repetir el proceso con la submatriz restante, columna a columna y en ese orden. Cada fila que se anula delata una **dependencia lineal** entre las filas originales. Siempre se cumple $\operatorname{rg}(A)\le\min(m,n)$, y como $\operatorname{rg}(A)=\operatorname{rg}(A^t)$, cuando hay más filas que columnas conviene escalonar la transpuesta.
+
+Cuando la matriz depende de un **parámetro**, la respuesta es una **clasificación por casos**. La técnica consiste en usar como pivotes elementos numéricos, dejar el parámetro acorralado en los últimos pivotes, igualar esos pivotes a cero para obtener los **valores críticos** y estudiar cada uno de ellos por separado, sin dividir nunca por una expresión que pueda anularse.
+
+Todo esto se reutilizará de inmediato: el rango decide si una matriz cuadrada tiene **inversa** (apartado 1.14), el mismo escalonamiento la calcula (apartado 1.15) y, en el tema siguiente, los **determinantes** darán un atajo para lo mismo.
+
+## Ejercicios propuestos
+
+**1 (básico).** Indica qué operaciones de esta lista son transformaciones elementales por filas válidas y por qué: $F_2 \to 3F_2$; $F_1 \to 0\cdot F_1$; $F_3 \to F_3 - 4F_1$; $F_2 \to 2F_1$; $F_1 \leftrightarrow F_3$; $F_2 \to 2F_2 + C_1$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Válidas: $F_2 \to 3F_2$ (multiplicar por $3\neq 0$), $F_3 \to F_3 - 4F_1$ (sumar un múltiplo de otra fila) y $F_1 \leftrightarrow F_3$ (intercambio).
+
+No válidas: $F_1 \to 0\cdot F_1$, porque el factor debe ser distinto de cero y esta operación puede bajar el rango; $F_2 \to 2F_1$, porque sustituye la fila $F_2$ por un múltiplo de otra fila y destruye la información de $F_2$; y $F_2 \to 2F_2 + C_1$, porque mezcla una fila con una columna, cuyos elementos no ocupan posiciones correspondientes.
+:::
+
+**2 (básico).** Escalona y da el rango de $\begin{pmatrix} 2 & 4 & 6 \\ 1 & 1 & 1 \\ 3 & 5 & 7 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Conviene subir la fila con el $1$: $F_1 \leftrightarrow F_2$ da $\begin{pmatrix} 1 & 1 & 1 \\ 2 & 4 & 6 \\ 3 & 5 & 7 \end{pmatrix}$. Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - 3F_1$:
+$$
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 4 \\ 0 & 2 & 4 \end{pmatrix}
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 4 \\ 0 & 0 & 0 \end{pmatrix}.
+$$
+$\operatorname{rg} = 2$. La tercera fila de la matriz original era la suma de las otras dos.
+:::
+
+**3 (medio).** Calcula el rango de $\begin{pmatrix} 1 & -1 & 2 & 0 \\ 2 & 1 & 1 & 3 \\ 3 & 0 & 3 & 3 \end{pmatrix}$ e interpreta el resultado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - 3F_1$:
+$$
+\begin{pmatrix} 1 & -1 & 2 & 0 \\ 0 & 3 & -3 & 3 \\ 0 & 3 & -3 & 3 \end{pmatrix}
+\xrightarrow{\ F_3 \to F_3 - F_2\ }
+\begin{pmatrix} 1 & -1 & 2 & 0 \\ 0 & 3 & -3 & 3 \\ 0 & 0 & 0 & 0 \end{pmatrix}.
+$$
+$\operatorname{rg} = 2$: la tercera fila era $F_1+F_2$, es decir, no aportaba información nueva. De las cuatro columnas, solo dos son linealmente independientes.
+:::
+
+**4 (medio).** Calcula el rango de $\begin{pmatrix} 1 & 2 \\ -1 & 0 \\ 3 & 1 \\ 0 & 5 \end{pmatrix}$ usando el truco de la transpuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+A^t = \begin{pmatrix} 1 & -1 & 3 & 0 \\ 2 & 0 & 1 & 5 \end{pmatrix}
+\xrightarrow{\ F_2 \to F_2 - 2F_1\ }
+\begin{pmatrix} 1 & -1 & 3 & 0 \\ 0 & 2 & -5 & 5 \end{pmatrix}.
+$$
+Dos pivotes, $\operatorname{rg}(A^t) = 2$, y por tanto $\operatorname{rg}(A) = 2$. Era previsible: con solo dos columnas, el rango no podía pasar de $2$, y como hay dos filas no proporcionales, es exactamente $2$.
+:::
+
+**5 (medio).** Estudia el rango de $\begin{pmatrix} 1 & 2 & 1 \\ 2 & 4 & k \\ 1 & 1 & 1 \end{pmatrix}$ según los valores de $k$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - F_1$:
+$$
+\begin{pmatrix} 1 & 2 & 1 \\ 0 & 0 & k-2 \\ 0 & -1 & 0 \end{pmatrix}
+\xrightarrow{\ F_2 \leftrightarrow F_3\ }
+\begin{pmatrix} 1 & 2 & 1 \\ 0 & -1 & 0 \\ 0 & 0 & k-2 \end{pmatrix}.
+$$
+Ya está escalonada, y no se ha dividido por nada que contenga $k$.
+
+- Si $k \neq 2$: tres pivotes, $\operatorname{rg} = 3$.
+- Si $k = 2$: la tercera fila se anula, $\operatorname{rg} = 2$ (y en efecto, con $k=2$ la segunda fila de la matriz original es el doble de la primera).
+:::
+
+**6 (medio).** Estudia el rango de $\begin{pmatrix} k & 2 \\ 2 & k \end{pmatrix}$ según los valores de $k$, evitando dividir por el parámetro.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Intercambiamos filas para tener un pivote numérico: $\begin{pmatrix} 2 & k \\ k & 2 \end{pmatrix}$. Con $F_2 \to 2F_2 - kF_1$ obtenemos $\begin{pmatrix} 2 & k \\ 0 & 4-k^2 \end{pmatrix}$.
+
+El pivote $4-k^2 = (2-k)(2+k)$ se anula si $k=2$ o $k=-2$.
+
+- Si $k \neq 2$ y $k\neq -2$: $\operatorname{rg} = 2$.
+- Si $k = 2$: la matriz es $\begin{pmatrix} 2 & 2 \\ 2 & 2\end{pmatrix}$ y $\operatorname{rg} = 1$.
+- Si $k = -2$: la matriz es $\begin{pmatrix} -2 & 2 \\ 2 & -2\end{pmatrix}$, cuyas filas son opuestas, y $\operatorname{rg} = 1$.
+
+El rango nunca es $0$, porque la matriz no es nula para ningún valor de $k$ (siempre hay un $2$).
+:::
+
+**7 (avanzado).** Sea $A$ una matriz $3\times 3$ cuya tercera fila es $F_3 = 2F_1 - F_2$. ¿Cuánto puede valer $\operatorname{rg}(A)$? Justifica la respuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Como $F_3$ es combinación lineal de $F_1$ y $F_2$, al escalonar se anulará y el rango no puede ser $3$: $\operatorname{rg}(A) \le 2$.
+
+Si $F_1$ y $F_2$ son linealmente independientes, $\operatorname{rg}(A) = 2$. Si son proporcionales pero no nulas, $\operatorname{rg}(A) = 1$. Y si $F_1 = F_2 = (0,0,0)$, entonces también $F_3 = (0,0,0)$ y $\operatorname{rg}(A) = 0$.
+
+Por tanto $\operatorname{rg}(A) \in \{0, 1, 2\}$, y en particular $A$ es siempre singular.
+:::
+

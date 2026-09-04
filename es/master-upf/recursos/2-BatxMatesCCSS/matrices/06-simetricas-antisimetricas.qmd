@@ -1,0 +1,552 @@
+---
+title: "Tema 1.6 Matrices simétricas y antisimétricas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 6 de 17)"
+filename: 06-simetricas-antisimetricas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de matriz simétrica y de matriz antisimétrica a partir de la transpuesta, condición de ser cuadrada, por qué la diagonal principal de una matriz antisimétrica es necesariamente nula, propiedades de la suma y del producto por un número, recuento de los elementos libres de cada tipo, la única matriz simétrica y antisimétrica a la vez, el teorema de descomposición de toda matriz cuadrada como suma de una parte simétrica y otra antisimétrica con demostración de existencia y unicidad, ejemplos resueltos y ejercicios con solución.
+categories: [matrices, simétrica, antisimétrica, transpuesta, descomposición, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuando una tabla se lee igual en los dos sentidos
+
+Piensa en una tabla de distancias por carretera entre cinco ciudades. En la casilla de la fila «Girona» y la columna «Lleida» aparece un número, y en la casilla de la fila «Lleida» y la columna «Girona» aparece exactamente el mismo. No podría ser de otro modo: la distancia es una relación **mutua**. Si escribes esa tabla como una matriz $A$ de orden $5$, resulta que $a_{ij}=a_{ji}$ para todos los pares de índices, es decir, que la matriz coincide con su transpuesta. Y en la diagonal, la distancia de cada ciudad a sí misma, hay ceros.
+
+Ahora piensa en otra tabla: el saldo de partidos ganados menos perdidos entre los equipos de una liguilla. Si el equipo $1$ le ha ganado tres partidos netos al equipo $2$, entonces el equipo $2$ tiene un saldo de $-3$ frente al equipo $1$. Aquí ocurre lo contrario: $a_{ij}=-a_{ji}$. Y en la diagonal, el saldo de cada equipo consigo mismo, necesariamente cero.
+
+Estos dos comportamientos —la relación que se lee igual en los dos sentidos y la que se lee cambiada de signo— dan lugar a los dos tipos de matrices cuadradas de este apartado. Ambos se definen a partir de la transpuesta, que ya sabemos calcular.
+
+## Matrices simétricas
+
+::: {.callout-note}
+## Definición: matriz simétrica
+
+Una matriz **cuadrada** $A$ es **simétrica** si coincide con su transpuesta:
+
+$$
+A = A^t
+$$
+
+En términos de elementos, esto equivale a que
+
+$$
+a_{ij} = a_{ji} \qquad \text{para todos los valores de } i,j
+$$
+
+es decir, a que los elementos situados en posiciones simétricas respecto de la diagonal principal sean iguales.
+:::
+
+La condición de ser cuadrada no es un capricho, sino una exigencia inevitable. Si $A$ fuese $m\times n$ con $m\neq n$, su transpuesta sería $n\times m$ y las dos matrices tendrían dimensiones distintas; nunca podrían ser iguales, por mucho que los números encajaran. De modo que ante la pregunta «¿puede ser simétrica esta matriz $3\times 2$?», la respuesta correcta es **no**, y se puede dar sin mirar un solo número.
+
+Estas matrices son simétricas:
+
+$$
+\begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix}, \qquad
+\begin{pmatrix} 2 & 4 & 3 \\ 4 & 5 & 7 \\ 3 & 7 & 0 \end{pmatrix}, \qquad
+\begin{pmatrix} 1 & 5 & 3 & 2 \\ 5 & 0 & 6 & 4 \\ 3 & 6 & 7 & 8 \\ 2 & 4 & 8 & 9 \end{pmatrix}
+$$
+
+En la de orden $3$, por ejemplo, se corresponden las parejas $a_{12}=a_{21}=4$, $a_{13}=a_{31}=3$ y $a_{23}=a_{32}=7$. La diagonal principal, en cambio, puede contener cualquier cosa: $2$, $5$ y $0$ en este caso. **En una matriz simétrica la diagonal es libre.**
+
+Un caso particular que conviene tener presente: toda matriz **diagonal** es simétrica, porque fuera de la diagonal solo hay ceros y $0=0$ se cumple trivialmente. En particular, la matriz identidad y la matriz nula cuadrada son simétricas.
+
+::: {.callout-tip}
+## Dónde aparecen realmente
+
+Las matrices simétricas no son una curiosidad de los libros de texto: surgen siempre que la relación descrita es recíproca.
+
+- **Tablas de distancias** o de tiempos de viaje entre localidades.
+- **Matrices de correlaciones** en estadística, donde la correlación entre dos variables no depende del orden en que se citen. Las verás en el bloque de estadística bidimensional.
+- **Matrices de adyacencia de grafos no dirigidos**, en las que se anota con un $1$ que dos nodos están conectados. Como la conexión funciona en los dos sentidos, la matriz es siempre simétrica; de hecho, comprobar la simetría es la manera más rápida de saber si un grafo está orientado o no.
+
+Cuando la relación **no** es mutua, la simetría se rompe: un mapa de vuelos con precios distintos según el sentido del viaje, o una tabla de flujos migratorios entre países, dan matrices que en general no son simétricas.
+:::
+
+## Matrices antisimétricas
+
+::: {.callout-note}
+## Definición: matriz antisimétrica
+
+Una matriz **cuadrada** $A$ es **antisimétrica** (también se dice *hemisimétrica*) si es la opuesta de su transpuesta:
+
+$$
+A = -A^t \qquad\text{o, equivalentemente,}\qquad A^t = -A
+$$
+
+En términos de elementos:
+
+$$
+a_{ij} = -a_{ji} \qquad \text{para todos los valores de } i,j
+$$
+
+es decir, los elementos simétricos respecto de la diagonal principal son opuestos, y **los de la propia diagonal son todos nulos**.
+:::
+
+Ejemplos de matrices antisimétricas:
+
+$$
+\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}, \qquad
+\begin{pmatrix} 0 & 1 & -2 \\ -1 & 0 & -3 \\ 2 & 3 & 0 \end{pmatrix}, \qquad
+\begin{pmatrix} 0 & 2 & 4 & -3 \\ -2 & 0 & -5 & -6 \\ -4 & 5 & 0 & 7 \\ 3 & 6 & -7 & 0 \end{pmatrix}
+$$
+
+La afirmación sobre la diagonal merece justificarse, porque no es una convención ni una casualidad de los ejemplos elegidos: es una consecuencia forzosa de la definición.
+
+::: {.callout-important}
+## Por qué la diagonal de una matriz antisimétrica es forzosamente nula
+
+Apliquemos la condición $a_{ij}=-a_{ji}$ a un elemento de la diagonal principal, es decir, al caso particular $j=i$:
+
+$$
+a_{ii} = -a_{ii}
+$$
+
+Pasando el término de la derecha al primer miembro:
+
+$$
+a_{ii} + a_{ii} = 0 \;\Longrightarrow\; 2\,a_{ii} = 0 \;\Longrightarrow\; a_{ii} = 0
+$$
+
+y esto vale para cada índice $i$, de modo que toda la diagonal principal es de ceros. El único número real que coincide con su opuesto es el cero, y ahí está toda la demostración.
+
+Esta justificación, corta y limpia, es exactamente el tipo de razonamiento que se pide en las preguntas de «razona» de las pruebas de acceso. Merece la pena aprender a escribirla en tres líneas.
+:::
+
+::: {.callout-caution}
+## La diagonal nula es necesaria, pero no suficiente
+
+Es una condición **necesaria** para la antisimetría: si un solo elemento de la diagonal es distinto de cero, la matriz no es antisimétrica y se acabó la discusión. Pero **no es suficiente**: la matriz
+
+$$
+\begin{pmatrix} 0 & 3 \\ 5 & 0 \end{pmatrix}
+$$
+
+tiene la diagonal llena de ceros y no es antisimétrica, porque $a_{21}=5$ debería valer $-3$. Hacen falta las dos cosas: diagonal nula y elementos simétricos opuestos. En realidad, como acabamos de ver, la primera condición se deduce de la segunda; enunciar ambas es solo una comodidad para revisar más rápido.
+:::
+
+## Cuántos elementos son libres
+
+Una manera muy útil de entender estos dos tipos de matrices es contar cuántos números puedes elegir a tu antojo en cada caso. En una matriz cuadrada de orden $n$ cualquiera hay $n^2$ elementos y todos son libres.
+
+En una **simétrica**, en cambio, basta con dar los elementos de la diagonal ($n$ números) y los que están por encima de ella; los de debajo quedan determinados por reflexión. Por encima de la diagonal hay
+
+$$
+\frac{n^2-n}{2} = \frac{n(n-1)}{2}
+$$
+
+posiciones, así que el total de elementos libres es
+
+$$
+n + \frac{n(n-1)}{2} = \frac{n(n+1)}{2}
+$$
+
+Para $n=3$ salen $6$ elementos libres de los $9$ posibles: los tres de la diagonal y los tres de encima.
+
+En una **antisimétrica** la diagonal está obligada a ser nula, así que solo se pueden elegir los elementos de encima de la diagonal:
+
+$$
+\frac{n(n-1)}{2}
+$$
+
+Para $n=3$ salen $3$: una vez fijados $a_{12}$, $a_{13}$ y $a_{23}$, toda la matriz está determinada.
+
+::: {.callout-tip}
+## Una suma que anticipa el teorema del final
+
+Fíjate en lo que ocurre al sumar los dos recuentos:
+
+$$
+\frac{n(n+1)}{2} + \frac{n(n-1)}{2} = \frac{n^2+n+n^2-n}{2} = \frac{2n^2}{2} = n^2
+$$
+
+Justo el número de elementos libres de una matriz cuadrada cualquiera de orden $n$. Esa coincidencia no es casual: es la huella aritmética del teorema que demostraremos al final del apartado, según el cual toda matriz cuadrada se parte de manera única en una simétrica más una antisimétrica. La información de $A$ se reparte exactamente, sin sobrar ni faltar nada, entre las dos piezas.
+:::
+
+## Propiedades
+
+Las siguientes propiedades se demuestran todas con las reglas de transposición del apartado anterior. Ninguna requiere hacer cuentas con números concretos, y todas son ejercicios habituales de razonamiento.
+
+::: {.callout-important}
+## Cuatro resultados y sus demostraciones
+
+**1. La suma de dos matrices simétricas del mismo orden es simétrica.** Si $A^t=A$ y $B^t=B$, entonces
+
+$$
+(A+B)^t = A^t + B^t = A + B
+$$
+
+**2. Un múltiplo de una matriz simétrica es simétrico.** Si $A^t=A$ y $k$ es un número real,
+
+$$
+(kA)^t = k\,A^t = kA
+$$
+
+Combinando 1 y 2: cualquier combinación $\alpha A+\beta B$ de matrices simétricas vuelve a ser simétrica. Lo mismo, palabra por palabra, vale para las antisimétricas: si $A^t=-A$ y $B^t=-B$, entonces $(A+B)^t=-A-B=-(A+B)$.
+
+**3. La única matriz que es a la vez simétrica y antisimétrica es la matriz nula.** Supongamos que $A$ cumple las dos condiciones: $A^t=A$ y $A^t=-A$. Entonces $A=-A$, luego $2A=O$ y por tanto $A=O$. La respuesta a «¿puede una matriz ser simétrica y antisimétrica a la vez?» es, pues, sí, pero solo una: la matriz nula.
+
+**4. Para cualquier matriz cuadrada $A$, la matriz $A+A^t$ es simétrica y la matriz $A-A^t$ es antisimétrica.** En efecto,
+
+$$
+(A+A^t)^t = A^t + (A^t)^t = A^t + A = A + A^t
+$$
+
+$$
+(A-A^t)^t = A^t - (A^t)^t = A^t - A = -(A - A^t)
+$$
+
+Este cuarto resultado es el que abrirá la puerta al teorema de descomposición.
+:::
+
+::: {.callout-caution}
+## El producto de dos simétricas no tiene por qué ser simétrico
+
+Es la pregunta que más gente falla. Si $A$ y $B$ son simétricas del mismo orden, ¿es $A\cdot B$ simétrica? La tentación es contestar que sí, por analogía con la suma. Pero aplicando la regla de la transpuesta de un producto:
+
+$$
+(AB)^t = B^t A^t = B\,A
+$$
+
+y $BA$ solo coincide con $AB$ si las dos matrices **conmutan**, cosa que en general no ocurre, porque el producto de matrices no es conmutativo. La respuesta correcta es «**no en general**», y hay que acompañarla de un contraejemplo. Este es sencillo:
+
+$$
+A = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}
+\;\Longrightarrow\;
+A\cdot B = \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix}
+$$
+
+Las dos matrices de partida son simétricas y el producto no lo es, porque $1\neq 2$ en las posiciones $(1,2)$ y $(2,1)$.
+
+Estas dos preguntas juntas —la suma sí, el producto no— resumen una de las ideas centrales del tema: **la suma de matrices se porta como la de los números; el producto, no**.
+:::
+
+### Applet · Simetría y antisimetría {.unnumbered}
+
+Edita solo el triángulo superior de la matriz y elige el modo simétrico o el antisimétrico: el applet completa el triángulo inferior por reflexión y, en el caso antisimétrico, fuerza los ceros de la diagonal. Observa qué pares de posiciones $(i,j)$ y $(j,i)$ se corresponden y qué ocurre cuando modificas un elemento aislado y rompes la correspondencia.
+
+::: {#panel-simetrica .applet-panel data-applet-mtx="simetrica"}
+:::
+
+## Ejemplos resueltos
+
+### Ejemplo 1: completar una matriz antisimétrica
+
+Dada una matriz cuadrada $A$ de orden $3$ de la que se sabe que $a_{12}=1$, $a_{22}=0$, $a_{23}=-3$ y $a_{31}=2$, halla el resto de elementos para que sea antisimétrica.
+
+Solo nos han dado cuatro datos de los nueve elementos, pero la definición aporta el resto.
+
+**Paso 1: la diagonal.** Por ser antisimétrica, $a_{11}=a_{22}=a_{33}=0$. El dato $a_{22}=0$ era, por tanto, redundante: se cumple obligatoriamente.
+
+**Paso 2: los elementos simétricos.** Se aplica $a_{ji}=-a_{ij}$ a cada dato:
+
+- de $a_{12}=1$ se sigue $a_{21}=-1$;
+- de $a_{23}=-3$ se sigue $a_{32}=3$;
+- de $a_{31}=2$ se sigue $a_{13}=-2$.
+
+**Paso 3: se escribe la matriz.**
+
+$$
+A = \begin{pmatrix} 0 & 1 & -2 \\ -1 & 0 & -3 \\ 2 & 3 & 0 \end{pmatrix}
+$$
+
+**Comprobación.** Su transpuesta es
+
+$$
+A^t = \begin{pmatrix} 0 & -1 & 2 \\ 1 & 0 & 3 \\ -2 & -3 & 0 \end{pmatrix} = -A
+$$
+
+Efectivamente, $A^t$ es la matriz $A$ con todos los signos cambiados. Obsérvese que la solución es única: en una antisimétrica de orden $3$ hay exactamente tres elementos libres, y nos habían dado tres datos independientes.
+
+### Ejemplo 2: imponer la simetría
+
+Determina $x$, $y$ y $z$ para que la matriz siguiente sea simétrica:
+
+$$
+A = \begin{pmatrix} 1 & x & 3 \\ 5 & 2 & y \\ z & -1 & 4 \end{pmatrix}
+$$
+
+Hay que imponer $a_{ij}=a_{ji}$ en las tres parejas de posiciones simétricas:
+
+- $a_{12}=a_{21}$: $x = 5$.
+- $a_{23}=a_{32}$: $y = -1$.
+- $a_{13}=a_{31}$: $3 = z$, luego $z=3$.
+
+La diagonal, con $1$, $2$ y $4$, no impone ninguna condición. La matriz resultante es
+
+$$
+A = \begin{pmatrix} 1 & 5 & 3 \\ 5 & 2 & -1 \\ 3 & -1 & 4 \end{pmatrix}
+$$
+
+### Ejemplo 3: descartar sin calcular
+
+¿Puede alguna de estas matrices ser simétrica?
+
+$$
+\begin{pmatrix} 6 & 0 \\ 5 & 4 \\ -6 & 2 \end{pmatrix}, \qquad
+\begin{pmatrix} 0 & 5 & 0 \\ 4 & 6 & 2 \end{pmatrix}
+$$
+
+**Ninguna**, y la razón no tiene nada que ver con los números: la primera es $3\times 2$ y la segunda $2\times 3$. Sus transpuestas tienen dimensión distinta de la original, así que la igualdad $A=A^t$ es imposible. Solo las matrices cuadradas son candidatas.
+
+## Toda matriz cuadrada se parte en dos
+
+Llegamos al resultado más elegante del apartado. Tiene aire de truco de magia y se demuestra en pocas líneas, pero es un teorema de verdad, con existencia y unicidad.
+
+::: {.callout-important}
+## Teorema de descomposición
+
+Toda matriz cuadrada $A$ se puede escribir de forma **única** como suma de una matriz simétrica y una matriz antisimétrica:
+
+$$
+A = S + H, \qquad
+S = \tfrac{1}{2}\left(A + A^t\right), \qquad
+H = \tfrac{1}{2}\left(A - A^t\right)
+$$
+
+**Existencia.** Hay que comprobar tres cosas.
+
+*Que suman $A$*: al sumar $S$ y $H$, los términos con $A^t$ se cancelan,
+
+$$
+S + H = \tfrac{1}{2}\left(A + A^t\right) + \tfrac{1}{2}\left(A - A^t\right) = \tfrac{1}{2}\left(A + A^t + A - A^t\right) = \tfrac{1}{2}\,(2A) = A
+$$
+
+*Que $S$ es simétrica*: aplicando las propiedades de la transposición,
+
+$$
+S^t = \left[\tfrac{1}{2}\left(A + A^t\right)\right]^t = \tfrac{1}{2}\left(A + A^t\right)^t = \tfrac{1}{2}\left(A^t + A\right) = S
+$$
+
+*Que $H$ es antisimétrica*:
+
+$$
+H^t = \tfrac{1}{2}\left(A - A^t\right)^t = \tfrac{1}{2}\left(A^t - A\right) = -\tfrac{1}{2}\left(A - A^t\right) = -H
+$$
+
+**Unicidad.** Supongamos que $A$ admitiera otra descomposición cualquiera $A = S' + H'$, con $S'$ simétrica y $H'$ antisimétrica. Transponiendo esa igualdad:
+
+$$
+A^t = (S'+H')^t = S'^{\,t} + H'^{\,t} = S' - H'
+$$
+
+Tenemos entonces dos igualdades:
+
+$$
+A = S' + H' \qquad\text{y}\qquad A^t = S' - H'
+$$
+
+Sumándolas se obtiene $A + A^t = 2S'$, es decir $S' = \tfrac{1}{2}(A+A^t) = S$. Restándolas se obtiene $A - A^t = 2H'$, es decir $H' = \tfrac{1}{2}(A-A^t) = H$.
+
+Cualquier descomposición coincide con la que hemos construido, luego **solo hay una**.
+:::
+
+Observa el truco de la demostración de unicidad: es el mismo mecanismo de sumar y restar dos ecuaciones que usabas para resolver sistemas por reducción. Aquí las «ecuaciones» son igualdades entre matrices y las «incógnitas» son las matrices $S'$ y $H'$.
+
+### Ejemplo 4: descomposición de una matriz de orden 2
+
+Con $A = \begin{pmatrix} 1 & 2 \\ 4 & 5 \end{pmatrix}$ se tiene $A^t = \begin{pmatrix} 1 & 4 \\ 2 & 5 \end{pmatrix}$, y por tanto
+
+$$
+S = \tfrac{1}{2}\begin{pmatrix} 2 & 6 \\ 6 & 10 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 3 & 5 \end{pmatrix},
+\qquad
+H = \tfrac{1}{2}\begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+$$
+
+La primera es simétrica, la segunda es antisimétrica —diagonal nula y elementos opuestos— y su suma es
+
+$$
+S + H = \begin{pmatrix} 1+0 & 3-1 \\ 3+1 & 5+0 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 4 & 5 \end{pmatrix} = A
+$$
+
+### Ejemplo 5: descomposición de una matriz de orden 3
+
+Descompón como suma de una simétrica y una antisimétrica la matriz
+
+$$
+A = \begin{pmatrix} 2 & 3 & -1 \\ 1 & 4 & 3 \\ 0 & -2 & 0 \end{pmatrix}
+$$
+
+**Paso 1: la transpuesta.**
+
+$$
+A^t = \begin{pmatrix} 2 & 1 & 0 \\ 3 & 4 & -2 \\ -1 & 3 & 0 \end{pmatrix}
+$$
+
+**Paso 2: la parte simétrica.** Sumamos y dividimos entre dos:
+
+$$
+A + A^t = \begin{pmatrix} 4 & 4 & -1 \\ 4 & 8 & 1 \\ -1 & 1 & 0 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+S = \begin{pmatrix} 2 & 2 & -\tfrac{1}{2} \\[4pt] 2 & 4 & \tfrac{1}{2} \\[4pt] -\tfrac{1}{2} & \tfrac{1}{2} & 0 \end{pmatrix}
+$$
+
+**Paso 3: la parte antisimétrica.** Restamos y dividimos entre dos:
+
+$$
+A - A^t = \begin{pmatrix} 0 & 2 & -1 \\ -2 & 0 & 5 \\ 1 & -5 & 0 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+H = \begin{pmatrix} 0 & 1 & -\tfrac{1}{2} \\[4pt] -1 & 0 & \tfrac{5}{2} \\[4pt] \tfrac{1}{2} & -\tfrac{5}{2} & 0 \end{pmatrix}
+$$
+
+**Paso 4: comprobación.** Se verifica de un vistazo que $S$ coincide con su transpuesta y que $H$ tiene diagonal nula y elementos opuestos. Y sumando casilla a casilla:
+
+$$
+S + H = \begin{pmatrix} 2+0 & 2+1 & -\tfrac{1}{2}-\tfrac{1}{2} \\[4pt] 2-1 & 4+0 & \tfrac{1}{2}+\tfrac{5}{2} \\[4pt] -\tfrac{1}{2}+\tfrac{1}{2} & \tfrac{1}{2}-\tfrac{5}{2} & 0 \end{pmatrix}
+= \begin{pmatrix} 2 & 3 & -1 \\ 1 & 4 & 3 \\ 0 & -2 & 0 \end{pmatrix} = A
+$$
+
+Observa que aparecen fracciones aunque la matriz de partida fuese entera: es lo normal, porque hay una división entre dos. Solo se libran de ellas las matrices cuya suma $A+A^t$ tiene todos los elementos pares.
+
+### Applet · Descomposición en parte simétrica y antisimétrica {.unnumbered}
+
+Introduce una matriz cuadrada y sigue el cálculo de $S=\tfrac12(A+A^t)$ y $H=\tfrac12(A-A^t)$ paso a paso: comprueba que la suma reconstruye $A$, que $S$ es simétrica y que $H$ es antisimétrica, y prueba a introducir una matriz que ya sea simétrica para ver qué le ocurre entonces a la parte antisimétrica.
+
+::: {#panel-descomponSim .applet-panel data-applet-mtx="descomponSim"}
+:::
+
+::: {.callout-tip}
+## Una idea que reaparece en muchos sitios
+
+Descomponer un objeto en una parte «que no cambia» y otra «que cambia de signo» al aplicarle una transformación es una estrategia muy general en matemáticas. La habrás visto ya con las funciones: cualquier función $f$ se escribe como suma de una función par y una impar,
+
+$$
+f(x) = \underbrace{\frac{f(x)+f(-x)}{2}}_{\text{par}} + \underbrace{\frac{f(x)-f(-x)}{2}}_{\text{impar}}
+$$
+
+La estructura de la fórmula es idéntica a la del teorema que acabamos de demostrar, cambiando «transponer» por «cambiar $x$ por $-x$». En física, la descomposición de una matriz en parte simétrica y parte antisimétrica separa, en el estudio de la deformación de un material, el estiramiento puro del giro puro.
+:::
+
+::: {.callout-warning}
+## Qué se pide en las pruebas de acceso
+
+Las preguntas sobre este apartado casi nunca piden cuentas largas: piden **razonar**. Los enunciados típicos son del estilo «si $A$ es simétrica, ¿lo es $A^2$?», «demuestra que $A\cdot A^t$ es simétrica», «¿puede una matriz $2\times 3$ ser antisimétrica?». En todos ellos la respuesta esperada es una cadena corta de igualdades usando las propiedades de la transposición, no una comprobación numérica con un ejemplo. Recuerda: un ejemplo no demuestra nada general, pero **un contraejemplo sí refuta**.
+:::
+
+## Resumen del apartado
+
+- $A$ es **simétrica** si $A=A^t$, es decir, si $a_{ij}=a_{ji}$. Solo las cuadradas pueden serlo. La diagonal es libre.
+- $A$ es **antisimétrica** si $A=-A^t$, es decir, si $a_{ij}=-a_{ji}$. Su diagonal principal es **necesariamente nula**, porque $a_{ii}=-a_{ii}$ obliga a $a_{ii}=0$.
+- Una simétrica de orden $n$ tiene $\tfrac{n(n+1)}{2}$ elementos libres; una antisimétrica, $\tfrac{n(n-1)}{2}$. Los dos números suman $n^2$.
+- La suma de simétricas es simétrica y un múltiplo de una simétrica es simétrico; lo mismo vale para las antisimétricas. El **producto**, en cambio, no conserva la simetría en general.
+- La única matriz simétrica y antisimétrica a la vez es la **matriz nula**.
+- Para cualquier matriz cuadrada, $A+A^t$ es simétrica y $A-A^t$ es antisimétrica.
+- **Teorema:** toda matriz cuadrada se descompone de forma única como $A=S+H$ con $S=\tfrac12(A+A^t)$ simétrica y $H=\tfrac12(A-A^t)$ antisimétrica.
+
+## Ejercicios propuestos
+
+**1.** Indica cuáles de estas matrices son simétricas, cuáles antisimétricas y cuáles ninguna de las dos cosas:
+
+$$
+\begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 7 \\ 1 & 1 & 8 \end{pmatrix}, \quad
+\begin{pmatrix} 1 & 4 & 2 \\ 4 & 5 & 7 \\ 2 & 7 & 1 \end{pmatrix}, \quad
+\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}
+$$
+
+**2.** Determina todos los valores posibles de $a$, $b$ y $c$ para que la matriz $B = \begin{pmatrix} a & 4 \\ b & c \end{pmatrix}$ sea antisimétrica.
+
+**3.** Halla $x$ e $y$ para que $A = \begin{pmatrix} 3 & x-1 \\ 2y & -5 \end{pmatrix}$ sea simétrica.
+
+**4.** Descompón $A = \begin{pmatrix} 3 & 1 \\ 7 & -2 \end{pmatrix}$ como suma de una matriz simétrica y una antisimétrica.
+
+**5.** ¿Cuántos elementos libres tiene una matriz simétrica de orden $4$? ¿Y una antisimétrica del mismo orden? Comprueba que la suma es $16$.
+
+**6.** Razona si es verdadero o falso: si $A$ y $B$ son antisimétricas del mismo orden, entonces $A-B$ es antisimétrica.
+
+**7.** Sea $A$ una matriz antisimétrica. Demuestra que $A^2$ es simétrica. (Puedes usar la regla $(A\cdot B)^t=B^t\cdot A^t$.)
+
+**8.** Escribe una matriz antisimétrica de orden $3$ cuyos elementos por encima de la diagonal sean $a_{12}=-4$, $a_{13}=1$ y $a_{23}=6$.
+
+**9.** Sea $A$ una matriz cuadrada cualquiera. Demuestra que si $A$ es simétrica, su descomposición del teorema tiene parte antisimétrica nula, y que si $A$ es antisimétrica, su parte simétrica es nula.
+
+**10.** Descompón como suma de una simétrica y una antisimétrica la matriz
+
+$$
+A = \begin{pmatrix} 1 & 0 & 5 \\ 2 & -3 & 1 \\ -1 & 4 & 2 \end{pmatrix}
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** La primera **no** es simétrica: $a_{23}=7$ pero $a_{32}=1$; tampoco es antisimétrica, entre otras razones porque $a_{33}=8\neq 0$. La segunda **sí** es simétrica: se corresponden $4$ con $4$, $2$ con $2$ y $7$ con $7$. La tercera **sí** es antisimétrica: la diagonal es nula y $a_{12}=1$ frente a $a_{21}=-1$, $a_{23}=1$ frente a $a_{32}=-1$, y $a_{13}=a_{31}=0$, que son opuestos entre sí porque $0=-0$.
+
+**2.** La diagonal debe anularse, luego $a=0$ y $c=0$. Y por ser $b_{21}=-b_{12}$ se tiene $b=-4$. Solo hay una posibilidad:
+
+$$
+B = \begin{pmatrix} 0 & 4 \\ -4 & 0 \end{pmatrix}
+$$
+
+**3.** Hay que imponer $a_{12}=a_{21}$, esto es $x-1 = 2y$. No hay solución única: cualquier par de valores que cumpla esa relación sirve, por ejemplo $x=5$, $y=2$. La diagonal no impone nada. Este ejercicio recuerda que la simetría es **una sola** condición por cada pareja de posiciones, no dos.
+
+**4.** Con $A^t = \begin{pmatrix} 3 & 7 \\ 1 & -2 \end{pmatrix}$:
+
+$$
+S = \tfrac{1}{2}\begin{pmatrix} 6 & 8 \\ 8 & -4 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 4 & -2 \end{pmatrix},
+\qquad
+H = \tfrac{1}{2}\begin{pmatrix} 0 & -6 \\ 6 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -3 \\ 3 & 0 \end{pmatrix}
+$$
+
+y en efecto $S+H=A$.
+
+**5.** Simétrica de orden $4$: $\tfrac{4\cdot 5}{2} = 10$ elementos libres (los $4$ de la diagonal y los $6$ de encima). Antisimétrica de orden $4$: $\tfrac{4\cdot 3}{2} = 6$. Y $10+6=16=4^2$.
+
+**6. Verdadero.** Si $A^t=-A$ y $B^t=-B$, entonces
+
+$$
+(A-B)^t = A^t - B^t = -A - (-B) = -A + B = -(A-B)
+$$
+
+**7.** Si $A^t=-A$, entonces
+
+$$
+(A^2)^t = (A\cdot A)^t = A^t\cdot A^t = (-A)\cdot(-A) = A\cdot A = A^2
+$$
+
+luego $A^2$ coincide con su transpuesta, es decir, es simétrica. El signo menos aparece dos veces y se cancela.
+
+**8.** La diagonal es nula y los elementos de debajo son los opuestos de los de encima:
+
+$$
+A = \begin{pmatrix} 0 & -4 & 1 \\ 4 & 0 & 6 \\ -1 & -6 & 0 \end{pmatrix}
+$$
+
+**9.** Si $A$ es simétrica, $A^t=A$, luego $H = \tfrac12(A-A^t) = \tfrac12(A-A) = O$ y $S = \tfrac12(A+A)=A$. La descomposición es $A = A + O$, como cabía esperar: una matriz simétrica ya es toda ella «parte simétrica». Si $A$ es antisimétrica, $A^t=-A$, luego $S = \tfrac12(A-A) = O$ y $H = \tfrac12(A+A) = A$, de modo que $A = O + A$. En ambos casos la unicidad del teorema garantiza que no hay otra descomposición posible.
+
+**10.** La transpuesta es
+
+$$
+A^t = \begin{pmatrix} 1 & 2 & -1 \\ 0 & -3 & 4 \\ 5 & 1 & 2 \end{pmatrix}
+$$
+
+de donde
+
+$$
+A+A^t = \begin{pmatrix} 2 & 2 & 4 \\ 2 & -6 & 5 \\ 4 & 5 & 4 \end{pmatrix}
+\;\Longrightarrow\;
+S = \begin{pmatrix} 1 & 1 & 2 \\[4pt] 1 & -3 & \tfrac{5}{2} \\[4pt] 2 & \tfrac{5}{2} & 2 \end{pmatrix}
+$$
+
+$$
+A-A^t = \begin{pmatrix} 0 & -2 & 6 \\ 2 & 0 & -3 \\ -6 & 3 & 0 \end{pmatrix}
+\;\Longrightarrow\;
+H = \begin{pmatrix} 0 & -1 & 3 \\[4pt] 1 & 0 & -\tfrac{3}{2} \\[4pt] -3 & \tfrac{3}{2} & 0 \end{pmatrix}
+$$
+
+Sumando casilla a casilla se recupera $A$, y se comprueba que $S=S^t$ y $H=-H^t$.
+:::
+
+## Continúa
+
+Hasta ahora hemos aprendido a describir matrices y a clasificarlas. A partir del apartado siguiente empezamos a **operar** con ellas: primero la suma, la más amable de todas, y después el producto por un número, el producto de matrices y, ya al final del tema, la inversa.

@@ -1,0 +1,367 @@
+---
+title: "Tema 1.2 Matrices iguales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 2 de 17)"
+filename: 02-matrices-iguales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cuándo dos matrices son iguales, la doble condición de misma dimensión y elementos iguales término a término, la igualdad matricial como abreviatura de m por n igualdades numéricas simultáneas, problemas de determinación de incógnitas que conducen a sistemas de ecuaciones, casos con solución única, sin solución e indeterminados, y el papel de la igualdad de matrices como criterio de comprobación en todo el tema.
+categories: [matrices, igualdad de matrices, sistemas de ecuaciones, álgebra, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## ¿Cuándo dicen lo mismo dos tablas?
+
+Con los números la pregunta «¿son iguales?» no tiene misterio: $3$ y $3$ son el mismo número, y $3$ y $3{,}1$ no lo son. Con las matrices hay que afinar un poco más, porque una matriz no es un número sino **un montón de números colocados de una forma concreta**, y por tanto puede fallar la igualdad por dos motivos completamente distintos: porque los números no coincidan o porque la colocación no coincida.
+
+Míralo con un ejemplo cotidiano. Una tabla con las notas de tres alumnos en dos asignaturas y otra tabla con las notas de dos alumnos en tres asignaturas pueden contener exactamente los mismos seis números, y sin embargo describen situaciones que no tienen nada que ver. Si un ordenador tuviera que decidir si las dos tablas son «la misma información», lo primero que comprobaría no serían los números: sería la forma.
+
+Por eso la definición de igualdad de matrices tiene **dos condiciones encadenadas**, y el orden en que se comprueban importa mucho a la hora de redactar un ejercicio.
+
+Este apartado es breve en teoría y muy rentable en ejercicios, porque la igualdad de matrices es la puerta de entrada a un tipo de problema que aparece una y otra vez en las pruebas de acceso: aquellos en los que se pide **determinar los valores de unos parámetros para que se cumpla cierta igualdad**. Todos ellos se resuelven de la misma manera: convertir una igualdad entre matrices en un sistema de ecuaciones y resolverlo.
+
+## La definición
+
+::: {.callout-note}
+## Definición de matrices iguales
+
+Dos matrices $A=(a_{ij})$ y $B=(b_{ij})$ son **iguales**, y se escribe $A=B$, cuando se cumplen a la vez las dos condiciones siguientes:
+
+1. **Tienen la misma dimensión**: si $A$ es $m\times n$, entonces $B$ ha de ser también $m\times n$. Es decir, el mismo número de filas *y* el mismo número de columnas.
+2. **Los elementos que ocupan la misma posición coinciden**, es decir,
+$$
+a_{ij}=b_{ij} \quad \text{para todo } i \text{ y todo } j .
+$$
+
+Si falla cualquiera de las dos condiciones, las matrices son distintas y se escribe $A\ne B$.
+:::
+
+La segunda condición está escrita de forma muy compacta, así que conviene desplegarla. Cuando decimos que $a_{ij}=b_{ij}$ para todo $i$ y todo $j$, estamos diciendo, en el caso de dos matrices $2\times 3$, esto:
+
+$$
+a_{11}=b_{11},\quad a_{12}=b_{12},\quad a_{13}=b_{13},\quad a_{21}=b_{21},\quad a_{22}=b_{22},\quad a_{23}=b_{23}.
+$$
+
+Seis igualdades numéricas que se han de cumplir **simultáneamente**. Ahí está la clave de todo el apartado.
+
+::: {.callout-important}
+## Una igualdad de matrices son $m\cdot n$ igualdades de números
+
+Escribir $A=B$ entre dos matrices de dimensión $m\times n$ **no es una ecuación**: es un paquete de $m\cdot n$ ecuaciones numéricas empaquetadas en un solo símbolo.
+
+Esta es la razón de que las matrices sean tan útiles y también la razón de que se resuelvan tantos problemas con ellas. Un enunciado que diga «halla $x$, $y$, $z$ y $t$ sabiendo que estas dos matrices son iguales» te está dando, en realidad, un sistema de tantas ecuaciones como casillas tenga la matriz. Puede que el sistema sea trivial —cada ecuación despeja directamente una incógnita— o puede que las incógnitas aparezcan mezcladas y haya que resolverlo con los métodos de sustitución, igualación o reducción que ya conoces.
+
+Y funciona en los dos sentidos: para **comprobar** que un resultado es correcto (por ejemplo, que la matriz inversa que has calculado cumple $A\cdot A^{-1}=I$) hay que verificar que coinciden **todas** las casillas, no una o dos.
+:::
+
+## Primero la forma, después los números
+
+### Ejemplo 1. Dos matrices con los mismos números que no son iguales
+
+Consideremos
+
+$$
+A = \begin{pmatrix} 3 & 3 \\ 3 & 3 \\ 3 & 3 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 3 & 3 & 3 \\ 3 & 3 & 3 \end{pmatrix}.
+$$
+
+Todos los elementos de ambas valen $3$ y ambas tienen seis elementos. Sin embargo:
+
+- Dimensión de $A$: $3\times 2$.
+- Dimensión de $B$: $2\times 3$.
+
+Como las dimensiones no coinciden, **$A\ne B$**, y ni siquiera tiene sentido plantearse la comparación elemento a elemento: en $B$ existe una casilla $b_{13}$ que en $A$ simplemente no existe.
+
+La conclusión práctica es que **la comprobación de dimensiones va siempre primero**. Si falla, el ejercicio termina ahí y se responde que la igualdad es imposible, sea cual sea el valor de los parámetros que aparezcan.
+
+### Ejemplo 2. Igualdad con una incógnita
+
+Sean
+
+$$
+A = \begin{pmatrix} 3 & 3 & 3 \\ 3 & 3 & 3 \end{pmatrix},
+\qquad
+C = \begin{pmatrix} 3 & 3 & 3 \\ 3 & x & 3 \end{pmatrix}.
+$$
+
+Ahora las dimensiones sí coinciden: ambas son $2\times 3$. Comparamos posición a posición y vemos que cinco de las seis igualdades se cumplen solas ($3=3$). La única que impone una condición es la de la posición $(2,2)$:
+
+$$
+a_{22}=c_{22} \iff 3=x .
+$$
+
+Por tanto $A=C$ **si y solo si** $x=3$. Cuando $x$ toma cualquier otro valor las matrices son distintas, aunque se parezcan mucho.
+
+## Problemas de igualdad con varias incógnitas
+
+Este es el modelo de ejercicio que hay que dominar. Se dan dos matrices con letras y se pide encontrar los valores que hacen que sean iguales.
+
+::: {.callout-note}
+## Procedimiento
+
+1. **Compara las dimensiones.** Si no coinciden, la respuesta es que no existe ningún valor que haga iguales las matrices, y se acabó.
+2. **Iguala posición a posición**, escribiendo una ecuación por casilla y en orden (primero toda la fila $1$, luego la fila $2$, …). Numerar las ecuaciones ayuda mucho.
+3. **Descarta las identidades**, es decir, las igualdades que se cumplen solas como $2=2$; no aportan información. Y detecta enseguida las **contradicciones** como $5=3$, que hacen imposible la igualdad.
+4. **Resuelve el sistema** que queda. Puede que cada ecuación despeje una incógnita directamente o que estén enlazadas.
+5. **Comprueba** sustituyendo los valores obtenidos en las dos matrices y verificando que salen idénticas.
+:::
+
+### Ejemplo 3. Ecuaciones independientes
+
+Determina $a$, $b$, $x$, $y$ y $z$ para que
+
+$$
+A = \begin{pmatrix} a & 1 & 4 \\ 1 & 5 & -9 \end{pmatrix}
+\qquad\text{y}\qquad
+B = \begin{pmatrix} 3 & 1 & 4 \\ b & x & z \end{pmatrix}
+$$
+
+sean iguales, sabiendo además que $y=x$.
+
+Las dimensiones coinciden, ambas son $2\times 3$. Igualamos casilla a casilla:
+
+$$
+a=3,\qquad 1=1,\qquad 4=4,
+$$
+$$
+1=b,\qquad 5=x,\qquad -9=z .
+$$
+
+Las igualdades $1=1$ y $4=4$ son identidades y no dicen nada. Las demás despejan directamente cada incógnita:
+
+$$
+a=3,\qquad b=1,\qquad x=5,\qquad z=-9,
+$$
+
+y de la condición añadida, $y=x=5$.
+
+Comprobación: sustituyendo, ambas matrices quedan $\begin{pmatrix} 3 & 1 & 4 \\ 1 & 5 & -9 \end{pmatrix}$, así que la solución es correcta. Este es el caso fácil: **cada casilla contiene una sola incógnita**, y el «sistema» se resuelve por simple lectura.
+
+### Ejemplo 4. Incógnitas mezcladas: aparece un sistema de verdad
+
+Halla los valores de $x$, $y$, $z$ y $t$ para que se cumpla
+
+$$
+\begin{pmatrix} x+y & 3 \\ z-t & 2z+t \end{pmatrix}
+=
+\begin{pmatrix} 7 & 3 \\ 1 & 8 \end{pmatrix}.
+$$
+
+Las dimensiones coinciden ($2\times 2$). Igualamos posición a posición:
+
+$$
+\text{(1)}\ x+y=7, \qquad \text{(2)}\ 3=3, \qquad \text{(3)}\ z-t=1, \qquad \text{(4)}\ 2z+t=8 .
+$$
+
+La ecuación (2) es una identidad. Nos quedan tres ecuaciones con cuatro incógnitas, pero **no forman un único sistema enredado**: las incógnitas $x$, $y$ aparecen solo en (1), y $z$, $t$ solo en (3) y (4). Se pueden tratar por separado.
+
+Del bloque $\{z-t=1,\ 2z+t=8\}$, sumando las dos ecuaciones se elimina $t$:
+
+$$
+(z-t)+(2z+t)=1+8 \;\Longrightarrow\; 3z=9 \;\Longrightarrow\; z=3,
+$$
+
+y sustituyendo en la primera, $3-t=1$, luego $t=2$.
+
+Del bloque $\{x+y=7\}$ hay una sola ecuación con dos incógnitas: **infinitas soluciones**. Podemos escribirlas en función de un parámetro: $x=\lambda$, $y=7-\lambda$ con $\lambda$ cualquier número real.
+
+La respuesta completa es, por tanto: $z=3$, $t=2$, y cualquier par $x$, $y$ con $x+y=7$. Merece la pena decirlo por escrito así, porque una respuesta del tipo «$x=3$, $y=4$» sería incompleta: sería *una* solución, no *la* solución.
+
+::: {.callout-important}
+## Por qué esto conecta con los sistemas de ecuaciones
+
+Igualar dos matrices produce un sistema de ecuaciones, y ya sabes que un sistema puede ser **compatible determinado** (una única solución), **compatible indeterminado** (infinitas) o **incompatible** (ninguna). Los tres casos se dan en los problemas de igualdad de matrices, y en un examen hay que decir explícitamente en cuál estás.
+
+La relación funciona también al revés y es una de las ideas más potentes del curso: cualquier sistema de ecuaciones lineales se puede escribir como una **igualdad entre matrices**, del tipo $A\cdot X=B$, donde $A$ contiene los coeficientes, $X$ las incógnitas y $B$ los términos independientes. Ese será el contenido de la parte 16. Que la igualdad de matrices signifique «coinciden todas las casillas» es precisamente lo que hace que esa escritura sea fiel al sistema original.
+:::
+
+### Ejemplo 5. Cuando la igualdad es imposible
+
+Estudia si existen valores de $x$ e $y$ tales que
+
+$$
+\begin{pmatrix} x+2 & 5 \\ 1 & y \end{pmatrix}
+=
+\begin{pmatrix} x+2 & 5 \\ 4 & y \end{pmatrix}.
+$$
+
+Las dimensiones coinciden. Igualando:
+
+$$
+x+2=x+2,\qquad 5=5,\qquad 1=4,\qquad y=y .
+$$
+
+La tercera igualdad es **falsa cualquiera que sea el valor de las incógnitas**: no contiene ninguna letra y afirma que $1=4$. Basta con eso: no existen valores de $x$ e $y$ que hagan iguales las matrices. El sistema es incompatible.
+
+Observa que las otras tres igualdades se cumplen siempre. No importa: para que $A=B$ hacen falta **todas**. Una sola casilla discrepante ya rompe la igualdad, igual que un solo dígito distinto rompe la igualdad entre dos números de teléfono.
+
+### Ejemplo 6. Una igualdad que esconde una ecuación de segundo grado
+
+Determina $x$ para que
+
+$$
+\begin{pmatrix} x^2 & 0 \\ 0 & x \end{pmatrix}
+=
+\begin{pmatrix} 9 & 0 \\ 0 & 3 \end{pmatrix}.
+$$
+
+Las igualdades que resultan son $x^2=9$, $0=0$, $0=0$ y $x=3$.
+
+De la primera, $x=3$ o $x=-3$. De la última, $x=3$. Como el sistema exige que **ambas** se cumplan a la vez, el valor $x=-3$ queda descartado y la única solución es
+
+$$
+x=3 .
+$$
+
+Este ejemplo muestra un descuido muy frecuente: resolver solo una de las ecuaciones y dar por buenas todas sus soluciones. Las ecuaciones de un problema de igualdad de matrices se resuelven **conjuntamente**, y las soluciones válidas son las comunes a todas ellas.
+
+### Applet · Igualdad de matrices {.unnumbered}
+
+Escribe dos matrices, con incógnitas si quieres (`x`, `y`, `z`, `t`), y pulsa para compararlas. El applet comprueba primero las dimensiones y, si coinciden, plantea el sistema casilla a casilla y te dice qué valores hacen iguales las matrices o por qué es imposible. Fíjate especialmente en qué casillas producen ecuaciones útiles, cuáles son identidades que no aportan nada y cuáles generan una contradicción.
+
+::: {#panel-igualdad .applet-panel data-applet-mtx="igualdad"}
+:::
+
+## Errores típicos
+
+::: {.callout-caution}
+## Los cinco fallos más frecuentes
+
+**Comparar sin mirar la dimensión.** Es el error grave. Antes de escribir una sola ecuación hay que verificar que ambas matrices tienen el mismo número de filas y el mismo de columnas. En un examen, escribir esa comprobación vale puntos.
+
+**Creer que basta con que coincidan «casi todas» las casillas.** No hay igualdad parcial: o coinciden todas o las matrices son distintas.
+
+**Confundir $a_{ij}$ con $a_{ji}$ al emparejar.** Se comparan casillas **de la misma posición**: $a_{12}$ con $b_{12}$, no con $b_{21}$. Comparar posiciones cruzadas es otra cosa, y tiene su propio nombre: transposición, que veremos en la parte 5.
+
+**Dar una sola solución cuando hay infinitas.** Si en el sistema queda alguna incógnita libre, hay que decirlo y expresar la solución con un parámetro. Escribir un ejemplo concreto no es responder al enunciado.
+
+**Aceptar soluciones que solo cumplen una de las ecuaciones.** Cuando aparecen ecuaciones de segundo grado o valores absolutos, cada una puede dar varias soluciones; solo valen las que satisfacen todas a la vez. Comprobar al final sustituyendo es rápido y evita perder el ejercicio.
+:::
+
+::: {.callout-tip}
+## Dónde volverás a usar esto
+
+La igualdad de matrices reaparecerá constantemente, casi siempre disfrazada:
+
+- Al calcular la **matriz inversa por definición** (parte 14) plantearemos $A\cdot X=I$ con las incógnitas de $X$ sin conocer, e igualaremos casilla a casilla. Sale un sistema, exactamente como aquí.
+- Al **comprobar** cualquier resultado —una inversa, la solución de una ecuación matricial, una potencia— la verificación consiste en ver que dos matrices coinciden en todas sus casillas.
+- En los problemas del tipo «determina la matriz $X$ que conmuta con $A$», es decir, que cumple $A\cdot X=X\cdot A$, la técnica es la misma: escribir $X$ con incógnitas genéricas, hacer los dos productos e igualar posición a posición.
+- Y en la parte 16, cuando escribamos un sistema de ecuaciones lineales como una única igualdad matricial, será la definición de este apartado la que garantice que no se pierde ni se añade información.
+
+Dicho de otro modo: este apartado no es un trámite. Es la definición que convierte el álgebra de matrices en una herramienta con la que se pueden plantear y comprobar problemas.
+:::
+
+## Resumen del apartado
+
+- Dos matrices son **iguales** cuando tienen la **misma dimensión** y además **coinciden elemento a elemento**: $a_{ij}=b_{ij}$ para todo $i$ y todo $j$.
+- Las dos condiciones son necesarias. Si las dimensiones difieren, la igualdad es imposible aunque los números sean los mismos; si coinciden las dimensiones pero falla una sola casilla, tampoco hay igualdad.
+- Una igualdad entre matrices $m\times n$ equivale a un **sistema de $m\cdot n$ ecuaciones** numéricas que se han de cumplir simultáneamente.
+- Ese sistema puede ser compatible determinado, compatible indeterminado o incompatible, y en la respuesta hay que indicar cuál es el caso: una solución concreta, una familia de soluciones con parámetro o la inexistencia de solución.
+- Las igualdades del tipo $2=2$ son identidades y se descartan; una igualdad falsa sin incógnitas, como $1=4$, basta para concluir que la igualdad matricial es imposible.
+- La igualdad de matrices es la base de la comprobación de todos los resultados posteriores del tema y de la escritura matricial de los sistemas de ecuaciones.
+
+## Ejercicios propuestos
+
+1. Di razonadamente si son iguales las matrices
+$$
+A=\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}, \qquad B=\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}.
+$$
+
+2. Halla $a$, $b$, $x$ e $y$ para que
+$$
+\begin{pmatrix} a & 6 & 3 \\ b & 0 & -1 \end{pmatrix}
+=
+\begin{pmatrix} 2 & y & 3 \\ 0 & x & -1 \end{pmatrix}.
+$$
+
+3. Determina $x$, $y$ y $z$ para que se cumpla
+$$
+\begin{pmatrix} x+1 & 3 & 0 \\ z+1 & x+2 & z-1 \end{pmatrix}
+=
+\begin{pmatrix} 2 & y+1 & 0 \\ y & 3 & 2 \end{pmatrix}.
+$$
+
+4. Halla $x$, $y$, $z$ y $t$ sabiendo que
+$$
+\begin{pmatrix} 2x-y & 4 \\ z+t & z-t \end{pmatrix}
+=
+\begin{pmatrix} 5 & 4 \\ 6 & 2 \end{pmatrix}
+\qquad\text{y}\qquad x+y=4 .
+$$
+
+5. Estudia si existen valores de $m$ que hagan iguales
+$$
+\begin{pmatrix} m & 2 \\ 3 & m \end{pmatrix}
+\qquad\text{y}\qquad
+\begin{pmatrix} m & 2 \\ 3 & m+1 \end{pmatrix}.
+$$
+
+6. Determina todos los valores de $x$ e $y$ que cumplen
+$$
+\begin{pmatrix} x^2 & y \\ 0 & 1 \end{pmatrix}
+=
+\begin{pmatrix} 4 & y^2 \\ 0 & 1 \end{pmatrix}.
+$$
+
+7. Escribe todas las matrices $X$ de dimensión $2\times 2$ de la forma $X=\begin{pmatrix} a & b \\ 0 & a \end{pmatrix}$ que cumplan $X=\begin{pmatrix} 3 & b \\ 0 & 3 \end{pmatrix}$. ¿Cuántas hay?
+
+8. Una matriz $2\times 2$ tiene por elementos $a_{ij}=i+jx$. Halla $x$ para que esa matriz sea igual a $\begin{pmatrix} 3 & 5 \\ 4 & 6 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** No son iguales. $A$ tiene dimensión $1\times 3$ y $B$ tiene dimensión $3\times 1$: son una matriz fila y una matriz columna, y aunque contengan los mismos números en el mismo orden, la primera condición de la definición ya falla. Este par es, de hecho, el ejemplo más sencillo de una matriz y su transpuesta.
+
+**2.** Las dimensiones coinciden ($2\times 3$). Igualando: $a=2$, $6=y$, $3=3$, $b=0$, $0=x$, $-1=-1$. Por tanto
+$$
+a=2,\qquad b=0,\qquad x=0,\qquad y=6 .
+$$
+
+**3.** Las igualdades son $x+1=2$, $3=y+1$, $0=0$, $z+1=y$, $x+2=3$ y $z-1=2$.
+
+De $x+1=2$ sale $x=1$, valor coherente con $x+2=3$. De $3=y+1$ sale $y=2$. De $z-1=2$ sale $z=3$, y hay que comprobar que también se cumple $z+1=y$: sustituyendo, $3+1=4$ frente a $y=2$, es decir, $4=2$, que es **falso**.
+
+Conclusión: **no existen** valores de $x$, $y$, $z$ que hagan iguales las dos matrices; el sistema es incompatible. El ejercicio enseña que hay que resolver el sistema completo y no detenerse en cuanto se ha despejado cada letra una vez.
+
+**4.** Las igualdades útiles son $2x-y=5$, $z+t=6$ y $z-t=2$, junto con la condición añadida $x+y=4$.
+
+Para $z$ y $t$: sumando, $2z=8$, luego $z=4$, y entonces $t=6-4=2$.
+
+Para $x$ e $y$: del sistema $\{2x-y=5,\ x+y=4\}$, sumando ambas se elimina $y$ y queda $3x=9$, luego $x=3$ e $y=1$.
+
+Solución: $x=3$, $y=1$, $z=4$, $t=2$. Comprobación: $2\cdot3-1=5$, $4+2=6$, $4-2=2$. Correcto.
+
+**5.** Las igualdades son $m=m$, $2=2$, $3=3$ y $m=m+1$. Esta última equivale a $0=1$, que es falsa para cualquier $m$. No existe ningún valor de $m$: las matrices son distintas siempre.
+
+**6.** Las condiciones son $x^2=4$ e $y=y^2$ (las otras dos son identidades).
+
+De $x^2=4$: $x=2$ o $x=-2$.
+
+De $y=y^2$: $y^2-y=0$, es decir, $y(y-1)=0$, luego $y=0$ o $y=1$.
+
+Como las dos ecuaciones son independientes entre sí, valen todas las combinaciones: hay **cuatro** soluciones, $(x,y)=(2,0)$, $(2,1)$, $(-2,0)$ y $(-2,1)$.
+
+**7.** Igualando casilla a casilla: $a=3$, $b=b$, $0=0$, $a=3$. La única condición es $a=3$; el elemento $b$ queda **libre**. Por tanto hay infinitas matrices, todas de la forma
+$$
+X=\begin{pmatrix} 3 & b \\ 0 & 3 \end{pmatrix}
+$$
+
+con $b$ cualquier número real.
+
+**8.** La matriz definida por $a_{ij}=i+jx$ es
+$$
+\begin{pmatrix} 1+x & 1+2x \\ 2+x & 2+2x \end{pmatrix}.
+$$
+Igualando: $1+x=3$ da $x=2$; $1+2x=5$ da $x=2$; $2+x=4$ da $x=2$; $2+2x=6$ da $x=2$. Las cuatro ecuaciones son compatibles y dan el mismo valor, luego $x=2$. Si alguna de ellas hubiera dado un valor distinto, la respuesta habría sido que no existe tal $x$.
+:::

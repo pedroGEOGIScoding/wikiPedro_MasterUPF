@@ -1,0 +1,529 @@
+---
+title: "Tema 1.7 Suma de matrices y sus propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 7 de 17)"
+filename: 07-suma-de-matrices
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Panorama de las operaciones con matrices, definición de la suma de matrices elemento a elemento, condición imprescindible de igual dimensión, matriz opuesta y resta de matrices, propiedades asociativa y conmutativa, la matriz nula como elemento neutro, la matriz opuesta como elemento simétrico, la estructura de grupo abeliano explicada sin tecnicismos y su consecuencia práctica al despejar en ecuaciones matriciales, ejemplos resueltos paso a paso, errores típicos y ejercicios con solución.
+categories: [matrices, suma de matrices, operaciones, propiedades, grupo abeliano, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Empieza el álgebra de las matrices
+
+Hasta ahora las matrices han sido, sobre todo, una forma ordenada de guardar información: hemos aprendido a leerlas, a medirlas, a clasificarlas y a girarlas. A partir de aquí las matrices dejan de ser tablas y pasan a ser **objetos con los que se calcula**. Igual que con los números reales se suma, se resta, se multiplica y se divide, con las matrices vamos a definir operaciones, a estudiar qué propiedades tienen y —esto es lo interesante— a descubrir cuáles de las reglas del álgebra de toda la vida siguen siendo válidas y cuáles se rompen.
+
+El plan del tema es este:
+
+- La **suma** y la **resta** de matrices, que es lo que veremos ahora. Se hace elemento a elemento y se comporta prácticamente igual que la suma de números.
+- El **producto de una matriz por un número**, que también se hace elemento a elemento y tampoco reserva sorpresas.
+- El **producto de dos matrices**, que no se hace elemento a elemento, exige una condición de compatibilidad y rompe con casi todo lo que sabías: no es conmutativo, no se puede cancelar y hay matrices no nulas cuyo producto es la matriz nula.
+- La **potencia** y, al final del tema, la **matriz inversa**, que es lo más parecido a una división que existe en este mundo.
+
+Empezamos, pues, por la operación más amable de todas.
+
+::: {.callout-tip}
+## Una motivación con datos
+
+Una cadena tiene dos tiendas y vende tres productos. Las ventas de enero, por tienda y producto, se recogen en una matriz $E$ de dimensión $2\times 3$, y las de febrero en otra matriz $F$ de la misma dimensión. ¿Cómo se obtiene la tabla del primer bimestre? Es evidente: sumando cada casilla con la casilla correspondiente. Las ventas del producto 2 en la tienda 1 durante el bimestre son las de enero más las de febrero, y nada más.
+
+Esa operación tan natural es exactamente la suma de matrices. Y también explica por qué es imprescindible que las dos matrices tengan la misma dimensión: si una tabla tuviera tres productos y la otra cuatro, no habría manera de emparejar las casillas.
+:::
+
+## Definición de la suma
+
+::: {.callout-note}
+## Definición: suma de matrices
+
+Dadas dos matrices $A=(a_{ij})$ y $B=(b_{ij})$ **de la misma dimensión** $m\times n$, se llama **matriz suma** $A+B$ a la matriz de esa misma dimensión $m\times n$ cuyos elementos son la suma de los elementos de $A$ y de $B$ que ocupan la misma posición:
+
+$$
+A+B = C, \qquad \text{donde}\qquad c_{ij} = a_{ij} + b_{ij}
+$$
+
+Si las dimensiones de $A$ y $B$ no coinciden, **la suma no está definida**.
+:::
+
+Escrito en forma extendida:
+
+$$
+\begin{pmatrix}
+a_{11} & \cdots & a_{1n} \\
+\vdots & & \vdots \\
+a_{m1} & \cdots & a_{mn}
+\end{pmatrix}
++
+\begin{pmatrix}
+b_{11} & \cdots & b_{1n} \\
+\vdots & & \vdots \\
+b_{m1} & \cdots & b_{mn}
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11}+b_{11} & \cdots & a_{1n}+b_{1n} \\
+\vdots & & \vdots \\
+a_{m1}+b_{m1} & \cdots & a_{mn}+b_{mn}
+\end{pmatrix}
+$$
+
+Tres observaciones importantes antes de calcular nada:
+
+1. **El resultado tiene la misma dimensión que los sumandos.** Sumar dos matrices $2\times 3$ da una matriz $2\times 3$. Nunca cambia el tamaño.
+2. **No hay ninguna otra condición.** Se pueden sumar matrices de cualquier dimensión, cuadradas o no, siempre que ambas tengan la misma.
+3. **La operación es «local»**: cada casilla del resultado depende únicamente de las dos casillas correspondientes. Esto, que ahora parece una obviedad, dejará de ser cierto en el producto de matrices, donde cada casilla del resultado depende de una fila entera y de una columna entera.
+
+### Ejemplo 1
+
+Suma, si es posible, las matrices
+
+$$
+A = \begin{pmatrix} 3 & -3 & 2 \\ 7 & -5 & 6 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 4 & 5 & 0 \\ -2 & 6 & -3 \end{pmatrix}, \qquad
+C = \begin{pmatrix} 3 & 2 & 4 & 2 \\ 2 & 5 & 2 & 3 \\ 7 & 6 & 1 & 2 \end{pmatrix}
+$$
+
+Las matrices $A$ y $B$ tienen ambas dimensión $2\times 3$, así que se pueden sumar:
+
+$$
+A+B = \begin{pmatrix} 3+4 & -3+5 & 2+0 \\ 7+(-2) & -5+6 & 6+(-3) \end{pmatrix}
+= \begin{pmatrix} 7 & 2 & 2 \\ 5 & 1 & 3 \end{pmatrix}
+$$
+
+En cambio, **no es posible** sumar $C$ con $A$ ni con $B$: $C$ es $3\times 4$ y las otras son $2\times 3$. No es que el resultado salga raro; es que la operación no está definida. Y en un examen la respuesta correcta a «calcula $A+C$» es escribir que esa suma no existe y explicar por qué, no inventarse un resultado.
+
+## La matriz opuesta y la resta
+
+::: {.callout-note}
+## Definición: matriz opuesta y resta
+
+La **matriz opuesta** de $A=(a_{ij})$ es la matriz $-A$ formada por los opuestos de los elementos de $A$:
+
+$$
+-A = (-a_{ij})
+$$
+
+Tiene, obviamente, la misma dimensión que $A$.
+
+La **resta** o **diferencia** de dos matrices de la misma dimensión se define como
+
+$$
+A - B = A + (-B), \qquad \text{es decir}\qquad (A-B)_{ij} = a_{ij} - b_{ij}
+$$
+:::
+
+Dicho de otro modo, restar es sumar la opuesta, exactamente igual que con los números. En la práctica no hace falta escribir la matriz opuesta como paso intermedio: se resta directamente casilla a casilla.
+
+### Ejemplo 2
+
+Con las matrices $A$ y $B$ del ejemplo anterior:
+
+$$
+-B = \begin{pmatrix} -4 & -5 & 0 \\ 2 & -6 & 3 \end{pmatrix}
+$$
+
+$$
+A - B = \begin{pmatrix} 3-4 & -3-5 & 2-0 \\ 7-(-2) & -5-6 & 6-(-3) \end{pmatrix}
+= \begin{pmatrix} -1 & -8 & 2 \\ 9 & -11 & 9 \end{pmatrix}
+$$
+
+Fíjate en el cuidado que hay que tener con los signos: $7-(-2) = 7+2 = 9$ y $6-(-3) = 6+3 = 9$. La mayoría de los errores en este apartado no son conceptuales, son de signo.
+
+::: {.callout-caution}
+## La resta no es conmutativa
+
+Salvo que las dos matrices sean idénticas, $A-B$ y $B-A$ son distintas. Lo que sí se cumple siempre es
+
+$$
+A - B = -(B-A)
+$$
+
+es decir, una es la opuesta de la otra. Compruébalo con el ejemplo anterior: $B-A = \begin{pmatrix} 1 & 8 & -2 \\ -9 & 11 & -9 \end{pmatrix}$, que es exactamente $A-B$ con todos los signos cambiados.
+:::
+
+### Applet · Suma y resta de matrices {.unnumbered}
+
+Escribe dos matrices y observa el cálculo casilla a casilla. Prueba a cambiar el número de filas o de columnas de una de ellas para ver qué mensaje aparece cuando las dimensiones dejan de ser compatibles, y compara el resultado de $A-B$ con el de $B-A$.
+
+::: {#panel-suma .applet-panel data-applet-mtx="suma"}
+:::
+
+## Propiedades de la suma
+
+Como la suma de matrices se hace elemento a elemento, hereda directamente las propiedades de la suma de números reales. Esa es la idea que hay detrás de todas las demostraciones que siguen: cada igualdad entre matrices se reduce a comprobar una igualdad entre números en una casilla genérica.
+
+::: {.callout-note}
+## Las cuatro propiedades
+
+Sean $A$, $B$ y $C$ matrices de la misma dimensión $m\times n$.
+
+**Asociativa.** $\quad A + (B+C) = (A+B) + C$
+
+**Conmutativa.** $\quad A + B = B + A$
+
+**Elemento neutro.** Existe la **matriz nula** $O$ de dimensión $m\times n$, formada íntegramente por ceros, que cumple
+
+$$
+A + O = O + A = A
+$$
+
+**Elemento opuesto.** Para cada matriz $A$ existe su opuesta $-A$, de la misma dimensión, que cumple
+
+$$
+A + (-A) = (-A) + A = O
+$$
+:::
+
+::: {.callout-important}
+## Por qué se cumplen
+
+**Asociativa.** El elemento $(i,j)$ de $A+(B+C)$ es $a_{ij} + (b_{ij}+c_{ij})$, y el elemento $(i,j)$ de $(A+B)+C$ es $(a_{ij}+b_{ij}) + c_{ij}$. Estos dos números son iguales porque la suma de números reales es asociativa. Como ocurre en todas las posiciones y las dimensiones coinciden, las dos matrices son iguales.
+
+**Conmutativa.** El elemento $(i,j)$ del primer miembro es $a_{ij}+b_{ij}$ y el del segundo es $b_{ij}+a_{ij}$; son iguales porque la suma de números reales es conmutativa.
+
+**Elemento neutro.** El elemento $(i,j)$ de $A+O$ es $a_{ij}+0 = a_{ij}$.
+
+**Elemento opuesto.** El elemento $(i,j)$ de $A+(-A)$ es $a_{ij} + (-a_{ij}) = 0$, luego todas las casillas del resultado son cero y la matriz obtenida es la nula.
+
+En los cuatro casos la demostración tiene la misma estructura: **se comprueba la igualdad en una casilla genérica $(i,j)$ y se invoca la propiedad correspondiente de los números reales**. Merece la pena aprender ese esquema, porque es el que se pide cuando un enunciado dice «justifica la propiedad».
+:::
+
+::: {.callout-warning}
+## Hay una matriz nula para cada dimensión
+
+Cuando escribimos $O$ estamos siendo deliberadamente imprecisos: no hay «una» matriz nula, sino una por cada dimensión posible. La matriz nula que actúa como neutro para las matrices $2\times 3$ es
+
+$$
+O = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+
+y no sirve para sumar con una matriz $3\times 3$. En los apuntes se escribe simplemente $O$ porque el contexto deja claro de qué dimensión se habla; en un examen, si hay riesgo de confusión, conviene indicarla.
+:::
+
+### Ejemplo 3: comprobación de la asociativa
+
+Sean
+
+$$
+A = \begin{pmatrix} 1 & 3 \\ 6 & -2 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 0 & 1 \\ 3 & -4 \end{pmatrix}, \qquad
+C = \begin{pmatrix} 2 & -1 \\ 0 & 5 \end{pmatrix}
+$$
+
+**Camino de la izquierda.** Primero $B+C = \begin{pmatrix} 2 & 0 \\ 3 & 1 \end{pmatrix}$, y después
+
+$$
+A + (B+C) = \begin{pmatrix} 1+2 & 3+0 \\ 6+3 & -2+1 \end{pmatrix} = \begin{pmatrix} 3 & 3 \\ 9 & -1 \end{pmatrix}
+$$
+
+**Camino de la derecha.** Primero $A+B = \begin{pmatrix} 1 & 4 \\ 9 & -6 \end{pmatrix}$, y después
+
+$$
+(A+B) + C = \begin{pmatrix} 1+2 & 4-1 \\ 9+0 & -6+5 \end{pmatrix} = \begin{pmatrix} 3 & 3 \\ 9 & -1 \end{pmatrix}
+$$
+
+Coinciden. La consecuencia práctica de la asociativa es que en una suma de varias matrices **los paréntesis sobran**: se puede escribir $A+B+C$ sin ambigüedad y sumar en el orden que resulte más cómodo. Combinada con la conmutativa, permite además reordenar los sumandos libremente, algo que se usa constantemente al simplificar expresiones matriciales.
+
+### Ejemplo 4: la matriz opuesta
+
+Determina la matriz opuesta de
+
+$$
+A = \begin{pmatrix} -1 & 3 & 4 \\ 0 & 2 & -4 \end{pmatrix}
+$$
+
+y comprueba que es su elemento opuesto respecto de la suma.
+
+$$
+-A = \begin{pmatrix} 1 & -3 & -4 \\ 0 & -2 & 4 \end{pmatrix}
+$$
+
+$$
+A + (-A) = \begin{pmatrix} -1+1 & 3-3 & 4-4 \\ 0+0 & 2-2 & -4+4 \end{pmatrix}
+= \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} = O
+$$
+
+Obsérvese que el $0$ de la posición $(2,1)$ tiene por opuesto otra vez $0$: el opuesto de cero es cero, y por eso las casillas nulas no cambian.
+
+### Applet · Propiedades de la suma {.unnumbered}
+
+Genera matrices al azar o escribe las tuyas y comprueba en paralelo las dos cuentas de cada propiedad: la conmutativa, la asociativa, el papel de la matriz nula y el de la matriz opuesta. Fíjate en que las dos columnas de cálculo siempre terminan en la misma matriz, aunque el camino sea distinto.
+
+::: {#panel-propSuma .applet-panel data-applet-mtx="propSuma"}
+:::
+
+## Qué significa «grupo abeliano»
+
+Es posible que oigas o leas que el conjunto de las matrices de dimensión $m\times n$, con la operación suma, «tiene estructura de grupo abeliano» o «grupo conmutativo». Suena intimidante, pero no dice nada que no hayamos demostrado ya.
+
+::: {.callout-note}
+## La idea, sin tecnicismos
+
+Decir que un conjunto con una operación forma un **grupo abeliano** significa exactamente cinco cosas:
+
+1. **La operación no se sale del conjunto.** Al sumar dos matrices $m\times n$ obtenemos otra matriz $m\times n$. Nunca aparece un objeto de otra especie.
+2. **Es asociativa**, de modo que los paréntesis no importan.
+3. **Hay un elemento neutro**, la matriz nula, que sumada a cualquier otra la deja igual.
+4. **Cada elemento tiene su opuesto**, y al sumarlos se obtiene el neutro.
+5. **Es conmutativa** —esto es lo que añade el adjetivo *abeliano*—, así que el orden de los sumandos da igual.
+
+Los números enteros con la suma cumplen exactamente lo mismo, y también los números reales con la suma. Decir que las matrices $m\times n$ forman un grupo abeliano es, ni más ni menos, decir que **con la suma de matrices se puede trabajar con la misma libertad con la que trabajas con la suma de números**.
+:::
+
+Esto tiene una consecuencia práctica que usarás constantemente y que conviene formular explícitamente.
+
+::: {.callout-important}
+## Se puede despejar como siempre
+
+Considera una ecuación matricial del tipo
+
+$$
+X + B = C
+$$
+
+donde $X$ es una matriz desconocida y $B$, $C$ son datos de la misma dimensión. Para despejar $X$ se suma $-B$ en los dos miembros:
+
+$$
+(X + B) + (-B) = C + (-B)
+$$
+
+Aplicando la asociativa en el primer miembro, $X + \bigl(B + (-B)\bigr) = X + O = X$. Y por tanto
+
+$$
+X = C - B
+$$
+
+Es decir: **en las sumas y restas de matrices se puede pasar un término de un miembro a otro cambiando el signo**, igual que en las ecuaciones numéricas. La justificación de esa costumbre son precisamente las cuatro propiedades anteriores.
+
+Guarda esta observación, porque cuando lleguemos a las ecuaciones matriciales con productos, del tipo $A\cdot X = B$, **esa libertad desaparecerá**: allí no se podrá «pasar dividiendo», ni siquiera «pasar multiplicando» sin decir por qué lado se multiplica. La suma es dócil; el producto, no.
+:::
+
+## Ejemplos resueltos
+
+### Ejemplo 5: hallar elementos desconocidos
+
+Halla los valores de $x$, $y$ y $z$ sabiendo que $A+B=C$, donde
+
+$$
+A = \begin{pmatrix} 2 & -1 \\ 0 & 5 \end{pmatrix}, \qquad
+B = \begin{pmatrix} x & 3 \\ y & z \end{pmatrix}, \qquad
+C = \begin{pmatrix} 5 & 2 \\ -4 & 5 \end{pmatrix}
+$$
+
+Al sumar casilla a casilla e igualar con $C$ se obtiene un sistema de cuatro ecuaciones, cada una con una sola incógnita:
+
+$$
+\begin{array}{ll}
+2 + x = 5 & \Longrightarrow\; x = 3 \\
+-1 + 3 = 2 & \text{se cumple siempre} \\
+0 + y = -4 & \Longrightarrow\; y = -4 \\
+5 + z = 5 & \Longrightarrow\; z = 0
+\end{array}
+$$
+
+Por tanto $B = \begin{pmatrix} 3 & 3 \\ -4 & 0 \end{pmatrix}$. Obsérvese que la segunda ecuación es una **condición de compatibilidad**: si en lugar de un $2$ hubiera aparecido un $7$ en esa posición de $C$, el problema no tendría solución, por muchos valores de $x$, $y$ y $z$ que probáramos.
+
+Otra manera de resolverlo, más rápida, es despejar la matriz entera: de $A+B=C$ se sigue $B = C - A$, y basta calcular la resta.
+
+$$
+B = C - A = \begin{pmatrix} 5-2 & 2-(-1) \\ -4-0 & 5-5 \end{pmatrix} = \begin{pmatrix} 3 & 3 \\ -4 & 0 \end{pmatrix}
+$$
+
+que confirma el resultado y de paso ilustra el despeje que acabamos de justificar.
+
+### Ejemplo 6: una ecuación matricial de suma
+
+Resuelve la ecuación $X - A = B + A$, donde
+
+$$
+A = \begin{pmatrix} 1 & 0 & -2 \\ 3 & 1 & 4 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 0 & 5 & 1 \\ -1 & 2 & 0 \end{pmatrix}
+$$
+
+Se despeja $X$ pasando $-A$ al segundo miembro:
+
+$$
+X = B + A + A = B + 2A
+$$
+
+Aunque el producto por un número lo estudiaremos formalmente en el apartado siguiente, $2A$ es aquí simplemente $A+A$:
+
+$$
+A + A = \begin{pmatrix} 2 & 0 & -4 \\ 6 & 2 & 8 \end{pmatrix}
+$$
+
+$$
+X = \begin{pmatrix} 0+2 & 5+0 & 1-4 \\ -1+6 & 2+2 & 0+8 \end{pmatrix}
+= \begin{pmatrix} 2 & 5 & -3 \\ 5 & 4 & 8 \end{pmatrix}
+$$
+
+**Comprobación.** $X - A = \begin{pmatrix} 1 & 5 & -1 \\ 2 & 3 & 4 \end{pmatrix}$ y $B + A = \begin{pmatrix} 1 & 5 & -1 \\ 2 & 3 & 4 \end{pmatrix}$. Coinciden.
+
+### Ejemplo 7: sumas que respetan un tipo de matriz
+
+Comprueba que la suma de dos matrices triangulares superiores del mismo orden vuelve a ser triangular superior.
+
+$$
+\begin{pmatrix} 2 & 5 & -1 \\ 0 & 3 & 4 \\ 0 & 0 & 7 \end{pmatrix}
++
+\begin{pmatrix} 1 & 0 & 6 \\ 0 & -2 & 1 \\ 0 & 0 & 5 \end{pmatrix}
+=
+\begin{pmatrix} 3 & 5 & 5 \\ 0 & 1 & 5 \\ 0 & 0 & 12 \end{pmatrix}
+$$
+
+Y la razón general es inmediata: por debajo de la diagonal ambas matrices tienen ceros, y $0+0=0$, así que la suma también los tiene. El mismo argumento vale para las triangulares inferiores, para las diagonales, para las simétricas y para las antisimétricas. **La suma respeta los tipos de matrices**, cosa que, adelantamos ya, el producto no siempre hace.
+
+::: {.callout-caution}
+## Errores típicos del apartado
+
+- **Sumar matrices de dimensiones distintas** rellenando con ceros la más pequeña. No está permitido: si las dimensiones no coinciden, la suma no existe, y punto.
+- **Sumar «como si fuera un producto»**, es decir, multiplicando filas por columnas. La suma es casilla con casilla, sin más.
+- **Perder signos al restar.** Recuerda que $a - (-b) = a+b$. Si trabajas escribiendo primero la opuesta y sumando después, cometerás menos errores.
+- **Escribir $A+O=O$** por analogía con el producto por cero. La matriz nula es el neutro de la suma, no un elemento absorbente: $A+O=A$.
+- **Creer que $A-B$ y $B-A$ son iguales.** Son opuestas.
+- **Confundir la matriz nula con la matriz identidad.** La nula, $O$, es toda de ceros y es el neutro de la **suma**. La identidad, $I$, tiene unos en la diagonal y será el neutro del **producto** de matrices cuadradas.
+:::
+
+::: {.callout-tip}
+## Por qué la suma se define así y no de otro modo
+
+Podría parecer arbitrario definir la suma casilla a casilla, pero no lo es: es la única definición que hace que las matrices sirvan para lo que se usan. Si una matriz representa un conjunto de datos —ventas, stocks, flujos, notas—, sumar dos matrices tiene que significar acumular los datos, y eso solo se consigue casilla con casilla.
+
+Cuando en cursos posteriores las matrices representen **transformaciones** en lugar de datos, la suma seguirá siendo la misma y su significado será igualmente natural: la transformación suma es la que aplica las dos y suma los resultados. El caso del producto será muy distinto, y por eso su definición te parecerá al principio mucho más extraña: representa **encadenar** dos transformaciones, no acumular datos.
+:::
+
+## Resumen del apartado
+
+- Dos matrices se pueden sumar **si y solo si tienen la misma dimensión**. El resultado tiene esa misma dimensión.
+- La suma se hace **elemento a elemento**: $(A+B)_{ij} = a_{ij}+b_{ij}$.
+- La **matriz opuesta** $-A$ está formada por los opuestos de los elementos de $A$, y **restar es sumar la opuesta**: $A-B = A+(-B)$.
+- La suma es **asociativa** y **conmutativa**, tiene como **elemento neutro** la matriz nula $O$ de la dimensión correspondiente y cada matriz tiene su **elemento opuesto**.
+- Esas cuatro propiedades, más el hecho de que la suma de dos matrices $m\times n$ vuelva a ser $m\times n$, se resumen diciendo que las matrices de una dimensión fija forman un **grupo abeliano** con la suma.
+- Consecuencia práctica: en las igualdades matriciales con sumas y restas se puede **despejar pasando términos de un miembro a otro cambiando el signo**, exactamente igual que con números.
+- La suma **respeta los tipos**: la suma de triangulares superiores es triangular superior, la de simétricas es simétrica, y así sucesivamente.
+
+## Ejercicios propuestos
+
+**1.** Calcula $A+B$ y $A-B$ para
+
+$$
+A = \begin{pmatrix} 2 & -3 \\ 0 & 5 \\ 1 & -1 \end{pmatrix}, \qquad
+B = \begin{pmatrix} -4 & 1 \\ 6 & -5 \\ 0 & 2 \end{pmatrix}
+$$
+
+**2.** Indica razonadamente cuáles de estas operaciones se pueden efectuar, siendo $A$ de dimensión $2\times 4$, $B$ de dimensión $4\times 2$ y $C$ de dimensión $2\times 4$: $A+B$, $A+C$, $A - C$, $B + B$, $A + B^t$.
+
+**3.** Efectúa la operación
+
+$$
+\begin{pmatrix} -1 & 2 & 3 \\ 0 & -4 & 5 \end{pmatrix}
+- \begin{pmatrix} -2 & -3 & 1 \\ 4 & 0 & -1 \end{pmatrix}
++ \begin{pmatrix} -1 & 1 & 0 \\ 2 & 3 & 1 \end{pmatrix}
+$$
+
+**4.** Halla los elementos que faltan sabiendo que $A+B=C$:
+
+$$
+A = \begin{pmatrix} 1 & x & 4 \\ 0 & 2 & -3 \end{pmatrix}, \quad
+B = \begin{pmatrix} y & 5 & -1 \\ 3 & z & 3 \end{pmatrix}, \quad
+C = \begin{pmatrix} 4 & 2 & 3 \\ 3 & 0 & 0 \end{pmatrix}
+$$
+
+**5.** Resuelve la ecuación matricial $X + A = B$, con
+
+$$
+A = \begin{pmatrix} 3 & -1 \\ 2 & 0 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & 1 \\ -5 & 4 \end{pmatrix}
+$$
+
+y comprueba el resultado.
+
+**6.** Escribe la matriz opuesta de $A = \begin{pmatrix} 0 & -7 \\ 2 & 3 \end{pmatrix}$ y calcula $A+(-A)$.
+
+**7.** Razona si es verdadero o falso: si $A$ y $B$ son dos matrices de la misma dimensión y $A+B=A$, entonces $B$ es la matriz nula.
+
+**8.** Sean $A$ y $B$ dos matrices simétricas del mismo orden. Demuestra que $A-B$ también es simétrica.
+
+**9.** Una empresa fabrica dos modelos de mochila en tres talleres. La matriz $P$ recoge la producción del primer trimestre y la matriz $Q$ la del segundo, con una fila por modelo y una columna por taller:
+
+$$
+P = \begin{pmatrix} 120 & 95 & 140 \\ 80 & 110 & 60 \end{pmatrix}, \qquad
+Q = \begin{pmatrix} 130 & 90 & 150 \\ 75 & 120 & 65 \end{pmatrix}
+$$
+
+Calcula la producción del semestre y la variación del segundo trimestre respecto del primero, e interpreta el signo de cada elemento de esa segunda matriz.
+
+**10.** Razona si es cierto que la suma de dos matrices diagonales del mismo orden vuelve a ser diagonal, y si ocurre lo mismo con la suma de dos matrices identidad del mismo orden.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.**
+
+$$
+A+B = \begin{pmatrix} -2 & -2 \\ 6 & 0 \\ 1 & 1 \end{pmatrix},
+\qquad
+A-B = \begin{pmatrix} 6 & -4 \\ -6 & 10 \\ 1 & -3 \end{pmatrix}
+$$
+
+**2.** $A+B$ **no** se puede: $2\times 4$ frente a $4\times 2$. $A+C$ **sí**: ambas son $2\times 4$. $A-C$ **sí**, por la misma razón. $B+B$ **sí**: es una matriz $4\times 2$ sumada consigo misma, y da $2B$. $A+B^t$ **sí**: la transpuesta de $B$ es $2\times 4$, igual que $A$.
+
+**3.** Se opera de izquierda a derecha, o se agrupan las tres casillas a la vez:
+
+$$
+\begin{pmatrix} -1+2-1 & 2+3+1 & 3-1+0 \\ 0-4+2 & -4-0+3 & 5+1+1 \end{pmatrix}
+= \begin{pmatrix} 0 & 6 & 2 \\ -2 & -1 & 7 \end{pmatrix}
+$$
+
+**4.** De la primera fila: $1+y=4$ da $y=3$; $x+5=2$ da $x=-3$; y $4-1=3$ se cumple. De la segunda fila: $0+3=3$ se cumple; $2+z=0$ da $z=-2$; y $-3+3=0$ se cumple. Así pues $x=-3$, $y=3$, $z=-2$.
+
+**5.** Despejando, $X = B - A$:
+
+$$
+X = \begin{pmatrix} 1-3 & 1-(-1) \\ -5-2 & 4-0 \end{pmatrix} = \begin{pmatrix} -2 & 2 \\ -7 & 4 \end{pmatrix}
+$$
+
+Comprobación: $X + A = \begin{pmatrix} -2+3 & 2-1 \\ -7+2 & 4+0 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ -5 & 4 \end{pmatrix} = B$.
+
+**6.** $-A = \begin{pmatrix} 0 & 7 \\ -2 & -3 \end{pmatrix}$ y $A+(-A) = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = O$.
+
+**7. Verdadero.** Sumando $-A$ en los dos miembros de $A+B=A$ se obtiene $(-A)+A+B = (-A)+A$, es decir $O+B=O$ y por tanto $B=O$. Es la propiedad de simplificación de la suma, y solo puede aplicarse porque toda matriz tiene opuesta.
+
+**8.** Si $A^t=A$ y $B^t=B$, entonces, usando que la transpuesta de una suma es la suma de las transpuestas y que la transpuesta de $-B$ es $-B^t$:
+
+$$
+(A-B)^t = A^t - B^t = A - B
+$$
+
+luego $A-B$ coincide con su transpuesta.
+
+**9.** La producción del semestre es
+
+$$
+P+Q = \begin{pmatrix} 250 & 185 & 290 \\ 155 & 230 & 125 \end{pmatrix}
+$$
+
+y la variación es
+
+$$
+Q-P = \begin{pmatrix} 10 & -5 & 10 \\ -5 & 10 & 5 \end{pmatrix}
+$$
+
+Los elementos positivos indican que la producción de ese modelo en ese taller ha aumentado en el segundo trimestre, y los negativos que ha disminuido: el modelo 1 bajó cinco unidades en el taller 2 y el modelo 2 bajó cinco unidades en el taller 1. El resto de casillas crecieron. Obsérvese que la matriz de variación tiene la misma dimensión que las de partida y que su interpretación es inmediata precisamente porque la resta se hace casilla a casilla.
+
+**10.** **Sí** en el primer caso: fuera de la diagonal ambas matrices tienen ceros y $0+0=0$, así que la suma también los tiene y sigue siendo diagonal. **No** en el segundo, si por «ser la matriz identidad» se entiende tener unos exactamente en la diagonal: $I+I$ es una matriz diagonal con doses en la diagonal, que es escalar pero ya no es la identidad. La suma conserva la propiedad de ser diagonal, pero no la de ser identidad.
+:::
+
+## Continúa
+
+En el apartado siguiente formalizamos lo que en el ejemplo 6 hemos usado de tapadillo: **multiplicar una matriz por un número**. Veremos sus propiedades y, con ellas, aprenderemos a manejar combinaciones lineales de matrices, una herramienta que reaparecerá al estudiar el rango.

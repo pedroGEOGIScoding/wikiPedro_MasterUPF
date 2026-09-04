@@ -1,0 +1,439 @@
+---
+title: "Tema 1.14 Matriz inversa y sus propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 14 de 17)"
+filename: 14-matriz-inversa
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de matriz inversa mediante la doble igualdad con la matriz identidad, demostración de la unicidad, matrices regulares y singulares, condición de existencia en términos del rango, cálculo de la inversa por definición resolviendo sistemas de ecuaciones, fórmula rápida para el orden dos y propiedades de la inversa con sus justificaciones, incluida la inversión del orden en el producto, con applets manipulables.
+categories: [matrices, álgebra, 2 Batx, matemáticas CCSS, matriz inversa, matrices regulares, matrices singulares, rango, propiedades]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La operación que falta
+
+Repasa mentalmente lo que sabes hacer con matrices: sumar, restar, multiplicar por un número, multiplicar dos matrices, elevar a una potencia, transponer. Y ahora fíjate en lo que **no** aparece en esa lista: **dividir**. No es un olvido ni una omisión pedagógica. La división de matrices, tal como la conoces con los números, **no existe**.
+
+Con los números reales la división funciona porque todo número distinto de cero tiene un **inverso**: el inverso de $3$ es $\tfrac13$, y dividir entre $3$ es exactamente lo mismo que multiplicar por $\tfrac13$. La igualdad que define esa relación es
+$$
+3 \cdot \tfrac13 = \tfrac13 \cdot 3 = 1 .
+$$
+La estrategia con matrices será calcar esta idea. El papel del $1$ lo desempeña la **matriz identidad** $I$, que es el elemento neutro del producto de matrices: $A\cdot I = I\cdot A = A$. Diremos entonces que una matriz $A^{-1}$ es la inversa de $A$ cuando el producto de ambas dé la identidad.
+
+Pero aquí aparecen dos diferencias que lo cambian todo, y conviene tenerlas presentes desde el primer minuto. La primera: entre los números reales solo el $0$ se queda sin inverso; entre las matrices, **muchísimas matrices se quedan sin inversa**, y no tienen por qué parecerse en nada a la matriz nula. La segunda: el producto de matrices **no es conmutativo**, así que multiplicar por la inversa por la izquierda y por la derecha son operaciones distintas, y en las ecuaciones habrá que elegir el lado con cuidado. Ese será el tema del apartado 1.16.
+
+## Definición y unicidad
+
+::: {.callout-note}
+## Matriz inversa
+
+Sea $A$ una matriz **cuadrada** de orden $n$. Se dice que $A$ tiene **inversa** si existe otra matriz cuadrada del mismo orden, que se representa por $A^{-1}$, tal que
+$$
+A\cdot A^{-1} = A^{-1}\cdot A = I_n ,
+$$
+donde $I_n$ es la matriz identidad de orden $n$.
+
+- Si esa matriz existe, se dice que $A$ es **regular** o **invertible**, y $A^{-1}$ se llama **matriz inversa** de $A$.
+- Si no existe, se dice que $A$ es **singular** o **no invertible**.
+:::
+
+Hay tres detalles en esta definición que merecen atención.
+
+**Solo las matrices cuadradas pueden tener inversa.** Si $A$ es de orden $m\times n$ con $m\neq n$, el producto $A\cdot B$ y el producto $B\cdot A$ no pueden dar los dos una matriz identidad del mismo orden, porque las dimensiones no cuadran. Ante un enunciado que pida la inversa de una matriz rectangular, la respuesta completa es: no existe, porque no es cuadrada.
+
+**Ser cuadrada no basta.** La matriz $\begin{pmatrix} 1 & 2 \\ 2 & 4\end{pmatrix}$ es cuadrada y no tiene inversa, como comprobaremos más abajo. Hay infinitas matrices cuadradas singulares.
+
+**La definición exige el producto por los dos lados.** Se pide $A\cdot A^{-1}=I$ **y** $A^{-1}\cdot A=I$. Como el producto de matrices no es conmutativo, en principio son dos condiciones distintas. Ahora bien, para matrices cuadradas se demuestra que si una se cumple la otra también, de modo que en la práctica basta comprobar una de ellas. Este es el único lugar de todo el tema donde el orden de los factores da igual, y precisamente por eso conviene no fiarse: en las ecuaciones matriciales el orden vuelve a ser decisivo.
+
+::: {.callout-important}
+## La inversa, si existe, es única
+
+Este es un resultado corto y elegante, y es el tipo de demostración que se pide en las pruebas. Supongamos que $B$ y $C$ son las dos inversas de la misma matriz $A$, es decir
+$$
+A\cdot B = B\cdot A = I, \qquad A\cdot C = C\cdot A = I .
+$$
+Partimos de $B$ y usamos que $I$ es el neutro del producto:
+$$
+B = B\cdot I = B\cdot (A\cdot C) = (B\cdot A)\cdot C = I\cdot C = C .
+$$
+En el tercer paso hemos usado la **propiedad asociativa** del producto de matrices, que sí se cumple. La conclusión es que $B=C$: la inversa es única, y por eso tiene sentido darle un nombre propio, $A^{-1}$, y hablar de «la» inversa y no de «una» inversa.
+
+Fíjate en la estructura del argumento: se coloca la identidad donde interesa, se sustituye por un producto y se reagrupa. Es el mismo truco que se usa en casi todas las demostraciones de este apartado.
+:::
+
+## ¿Cuándo existe la inversa? El criterio del rango
+
+Todavía no hemos visto los determinantes, así que el criterio de existencia lo daremos en términos del **rango**, que ya sabemos calcular por el método de Gauss.
+
+::: {.callout-note}
+## Condición de existencia
+
+Una matriz cuadrada $A$ de orden $n$ tiene inversa **si y solo si** su rango es máximo:
+$$
+A \text{ es regular} \iff \operatorname{rg}(A) = n .
+$$
+Equivalentemente: $A$ tiene inversa si y solo si sus $n$ filas son linealmente independientes, es decir, si al escalonarla no aparece ninguna fila nula.
+:::
+
+::: {.callout-important}
+## Por qué el rango tiene que ser máximo
+
+**Si $\operatorname{rg}(A) < n$, la inversa no puede existir.** Para verlo usamos una propiedad del producto: **las filas de un producto $A\cdot B$ son combinaciones lineales de las filas de $B$** (cada fila del resultado se obtiene combinando las filas de $B$ con los coeficientes de la fila correspondiente de $A$). De ahí se deduce que
+$$
+\operatorname{rg}(A\cdot B) \le \operatorname{rg}(A) \quad \text{y} \quad \operatorname{rg}(A\cdot B)\le \operatorname{rg}(B):
+$$
+un producto no puede tener más rango que ninguno de sus factores. Ahora bien, si $A$ tuviera inversa se cumpliría $A\cdot A^{-1} = I_n$, y la identidad tiene rango $n$ (es escalonada con $n$ pivotes). Entonces
+$$
+n = \operatorname{rg}(I_n) = \operatorname{rg}(A\cdot A^{-1}) \le \operatorname{rg}(A),
+$$
+lo que fuerza $\operatorname{rg}(A)=n$. Si el rango es menor, no hay inversa posible.
+
+**Y si $\operatorname{rg}(A)=n$, la inversa existe.** Esto lo veremos de forma constructiva en el apartado siguiente: el método de Gauss-Jordan la fabrica. Cuando el rango es máximo, el escalonamiento nunca produce una fila nula y siempre se puede llegar a la identidad; la matriz que aparece al otro lado es la inversa.
+
+Una lectura intuitiva: si el rango es menor que $n$, alguna fila de $A$ es combinación lineal de las demás, así que $A$ «pierde información» al multiplicar. Y lo que se pierde no se puede recuperar: no hay ninguna matriz que deshaga la operación.
+:::
+
+### Applet · ¿Cuándo tiene inversa una matriz? {.unnumbered}
+
+Edita una matriz cuadrada y el panel calcula su rango, su determinante y el veredicto: regular o singular, con la explicación de por qué una matriz singular no puede tener inversa. Prueba los escenarios de matrices **casi singulares** y observa qué ocurre al cambiar un solo elemento: verás que basta modificar un número para que el rango baje y la inversa desaparezca, y que el rango y el determinante siempre dan el mismo veredicto.
+
+::: {#panel-inversaExiste .applet-panel data-applet-mtx="inversaExiste"}
+:::
+
+## Cálculo de la inversa por definición
+
+El primer método para calcular una inversa es el más directo posible: **aplicar la definición**. Se llama a la inversa desconocida $X$, se escriben sus elementos como incógnitas, se plantea la igualdad $A\cdot X = I$, se efectúa el producto y se igualan las matrices elemento a elemento. Lo que sale es un sistema de ecuaciones lineales.
+
+::: {.callout-note}
+## Método directo (o por definición)
+
+Para una matriz $A$ de orden $n$:
+
+1. Escribe $X = (x_{ij})$ con $n^2$ incógnitas.
+2. Plantea $A\cdot X = I_n$ y efectúa el producto.
+3. Iguala elemento a elemento. Aparece un sistema de $n^2$ ecuaciones con $n^2$ incógnitas que **se descompone en $n$ sistemas independientes** de $n$ ecuaciones con $n$ incógnitas: uno por cada columna de $X$.
+4. Resuelve cada sistema. Si alguno es incompatible, la inversa no existe.
+5. Comprueba que también $X\cdot A = I_n$.
+
+La descomposición del paso 3 es la clave para no ahogarse: la primera columna de $X$ solo interviene en la primera columna del producto, la segunda en la segunda, y así sucesivamente.
+:::
+
+### Ejemplo resuelto 1 · Una inversa con números enteros
+
+Calcula, si existe, la inversa de $A = \begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix}$.
+
+Llamamos $X = \begin{pmatrix} x & y \\ z & t \end{pmatrix}$ e imponemos $A\cdot X = I_2$:
+$$
+\begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix}\cdot\begin{pmatrix} x & y \\ z & t \end{pmatrix}
+= \begin{pmatrix} 7x+3z & 7y+3t \\ 2x+z & 2y+t \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.
+$$
+Igualando elemento a elemento salen cuatro ecuaciones que se separan en dos bloques que no comparten incógnitas:
+$$
+\left\{\begin{array}{rcl} 7x+3z & = & 1 \\ 2x+z & = & 0 \end{array}\right.
+\qquad\qquad
+\left\{\begin{array}{rcl} 7y+3t & = & 0 \\ 2y+t & = & 1 \end{array}\right.
+$$
+**Primer sistema.** De la segunda ecuación, $z = -2x$. Sustituyendo en la primera: $7x + 3(-2x) = 1$, es decir $x = 1$, y entonces $z=-2$.
+
+**Segundo sistema.** De la segunda ecuación, $t = 1-2y$. Sustituyendo: $7y + 3(1-2y) = 0$, o sea $y+3 = 0$, luego $y=-3$ y $t = 1-2(-3) = 7$.
+
+La candidata a inversa es
+$$
+X = \begin{pmatrix} 1 & -3 \\ -2 & 7 \end{pmatrix}.
+$$
+**Comprobación por el otro lado**, que es lo que convierte la candidata en la inversa:
+$$
+\begin{pmatrix} 1 & -3 \\ -2 & 7 \end{pmatrix}\cdot\begin{pmatrix} 7 & 3 \\ 2 & 1 \end{pmatrix}
+= \begin{pmatrix} 7-6 & 3-3 \\ -14+14 & -6+7 \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}. \quad\checkmark
+$$
+Por tanto $A^{-1} = \begin{pmatrix} 1 & -3 \\ -2 & 7 \end{pmatrix}$.
+
+### Ejemplo resuelto 2 · Una inversa con fracciones
+
+Calcula la inversa de $A = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$.
+
+$$
+\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}\cdot\begin{pmatrix} x & y \\ z & t \end{pmatrix}
+= \begin{pmatrix} x+2z & y+2t \\ 3z & 3t \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.
+$$
+Los sistemas son
+$$
+\left\{\begin{array}{rcl} x+2z & = & 1 \\ 3z & = & 0 \end{array}\right.
+\qquad\qquad
+\left\{\begin{array}{rcl} y+2t & = & 0 \\ 3t & = & 1 \end{array}\right.
+$$
+Del primero: $z=0$ y $x=1$. Del segundo: $t=\tfrac13$ e $y = -2t = -\tfrac23$. Así
+$$
+A^{-1} = \begin{pmatrix} 1 & -\tfrac23 \\[2pt] 0 & \tfrac13 \end{pmatrix},
+$$
+y la comprobación es inmediata. Observa dos cosas: la inversa de una matriz de números enteros **no tiene por qué tener elementos enteros**, y la inversa de una matriz triangular superior vuelve a ser triangular superior. Esto último no es casualidad y se puede razonar mirando el sistema: el $0$ de la posición $(2,1)$ obliga a que $z=0$.
+
+### Ejemplo resuelto 3 · Cuando la inversa no existe
+
+Intenta calcular la inversa de $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$.
+
+$$
+\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}\cdot\begin{pmatrix} x & y \\ z & t \end{pmatrix}
+= \begin{pmatrix} x+2z & y+2t \\ 2x+4z & 2y+4t \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}.
+$$
+El primer sistema es
+$$
+\left\{\begin{array}{rcl} x+2z & = & 1 \\ 2x+4z & = & 0 \end{array}\right.
+$$
+y no tiene solución: la segunda ecuación es el doble de la primera en su parte izquierda, así que exigiría a la vez $x+2z = 1$ y $x+2z = 0$. El sistema es **incompatible** y, por tanto, **$A$ no tiene inversa**: es singular.
+
+Esto era previsible sin hacer ninguna cuenta. La segunda fila de $A$ es el doble de la primera, así que $\operatorname{rg}(A) = 1 < 2$ y el criterio del rango ya dictaba sentencia. Por eso conviene **calcular primero el rango**: si no es máximo, el ejercicio termina ahí, y esa es la respuesta completa.
+
+### Applet · La inversa por definición {.unnumbered}
+
+El panel plantea $A\cdot X = I$ con las incógnitas de $X$ para una matriz de orden $2$, muestra el producto simbólico, separa el sistema de cuatro ecuaciones en los dos sistemas de dos incógnitas, los resuelve paso a paso y comprueba después que también $X\cdot A = I$. Prueba con una matriz singular y observa en qué momento exacto el sistema se vuelve incompatible: ahí está la razón de que la inversa no exista.
+
+::: {#panel-inversaDef .applet-panel data-applet-mtx="inversaDef"}
+:::
+
+## La fórmula rápida del orden 2
+
+Si el método directo se aplica a una matriz general de orden $2$, el resultado es una fórmula que conviene memorizar porque ahorra muchísimo tiempo.
+
+::: {.callout-note}
+## Inversa de una matriz de orden 2
+
+Si $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ y $ad - bc \neq 0$, entonces
+$$
+A^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+$$
+La receta se recuerda en tres gestos: **se intercambian los elementos de la diagonal principal**, **se cambia de signo a los de la diagonal secundaria** y **se divide todo entre $ad-bc$**.
+
+Si $ad - bc = 0$, la matriz es singular y no tiene inversa.
+:::
+
+::: {.callout-important}
+## Comprobación de la fórmula
+
+No hay que creerse la fórmula: se verifica multiplicando.
+$$
+\begin{pmatrix} a & b \\ c & d \end{pmatrix}\cdot\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+= \begin{pmatrix} ad-bc & -ab+ba \\ cd-dc & -cb+da \end{pmatrix}
+= \begin{pmatrix} ad-bc & 0 \\ 0 & ad-bc \end{pmatrix}
+= (ad-bc)\, I_2 .
+$$
+Dividiendo entre $ad-bc$ —lo que exige que no sea cero— queda exactamente $I_2$. Y el mismo cálculo por el otro lado da lo mismo.
+
+El número $ad-bc$ se llamará **determinante** de $A$ y se escribirá $|A|$; es el protagonista del tema siguiente. Ya puedes intuir su papel: **es el número que decide si una matriz tiene inversa o no**. Fíjate en el ejemplo 3: para $\begin{pmatrix} 1 & 2 \\ 2 & 4\end{pmatrix}$ se tiene $ad-bc = 4-4 = 0$, y en efecto no había inversa.
+:::
+
+Con la fórmula, el ejemplo 1 se resuelve en una línea. Para $A = \begin{pmatrix} 7 & 3 \\ 2 & 1\end{pmatrix}$, el número $ad-bc = 7\cdot 1 - 3\cdot 2 = 1$, y por tanto
+$$
+A^{-1} = \frac{1}{1}\begin{pmatrix} 1 & -3 \\ -2 & 7 \end{pmatrix} = \begin{pmatrix} 1 & -3 \\ -2 & 7 \end{pmatrix},
+$$
+que coincide con lo obtenido resolviendo los sistemas. Otro ejemplo: si $B = \begin{pmatrix} 3 & 5 \\ 1 & 2 \end{pmatrix}$, entonces $ad-bc = 6-5 = 1$ y $B^{-1} = \begin{pmatrix} 2 & -5 \\ -1 & 3\end{pmatrix}$. Y si $C = \begin{pmatrix} 2 & 1 \\ 4 & 3\end{pmatrix}$, con $ad-bc = 6-4 = 2$, sale
+$$
+C^{-1} = \frac12\begin{pmatrix} 3 & -1 \\ -4 & 2 \end{pmatrix} = \begin{pmatrix} \tfrac32 & -\tfrac12 \\[2pt] -2 & 1 \end{pmatrix}.
+$$
+
+::: {.callout-warning}
+## La fórmula solo vale para el orden 2
+
+No existe ninguna versión de este atajo para el orden $3$ que consista en intercambiar y cambiar signos. Aplicarla a una matriz $3\times 3$ es uno de los errores más graves que se pueden cometer en el tema, porque produce una matriz con aspecto razonable que no es la inversa de nada. Para orden $3$ o superior hay dos caminos: el método de **Gauss-Jordan** (apartado 1.15) y, en el tema siguiente, el método de la **matriz adjunta**.
+:::
+
+### Applet · Fórmula rápida de la inversa de orden 2 {.unnumbered}
+
+Escribe los cuatro elementos de una matriz de orden $2$ y sigue la fórmula paso a paso: primero el cálculo de $ad-bc$, después el intercambio de la diagonal principal y el cambio de signo de la secundaria, y por último la división. Observa el aviso que aparece cuando $ad-bc=0$ y comprueba con el producto que el resultado es correcto; prueba también a mover un elemento hasta anular $ad-bc$ para ver cómo la inversa «explota» al acercarse a ese valor.
+
+::: {#panel-inversa2x2 .applet-panel data-applet-mtx="inversa2x2"}
+:::
+
+## Propiedades de la matriz inversa
+
+Estas cuatro propiedades se usan constantemente para simplificar expresiones sin calcular ninguna inversa, y sus demostraciones son cortas. Todas siguen el mismo esquema: **para demostrar que cierta matriz es la inversa de otra, basta multiplicarlas y ver que sale la identidad**, porque la inversa es única.
+
+::: {.callout-note}
+## Las cuatro propiedades
+
+Si $A$ y $B$ son matrices regulares del mismo orden y $k\neq 0$:
+
+$$
+(A^{-1})^{-1} = A, \qquad
+(A\cdot B)^{-1} = B^{-1}\cdot A^{-1},
+$$
+$$
+(A^t)^{-1} = (A^{-1})^t, \qquad
+(kA)^{-1} = \frac{1}{k}\,A^{-1}.
+$$
+:::
+
+::: {.callout-important}
+## Las cuatro demostraciones
+
+**$(A^{-1})^{-1} = A$.** La definición de $A^{-1}$ dice que $A\cdot A^{-1} = A^{-1}\cdot A = I$. Leída al revés, esa misma igualdad afirma que $A$ es una matriz que multiplicada por $A^{-1}$ por los dos lados da la identidad, es decir, que $A$ es la inversa de $A^{-1}$. Por la unicidad, $(A^{-1})^{-1} = A$. Invertir dos veces devuelve al punto de partida.
+
+**$(A\cdot B)^{-1} = B^{-1}\cdot A^{-1}$.** Multipliquemos $A\cdot B$ por $B^{-1}\cdot A^{-1}$ y veamos qué sale, usando la asociativa:
+$$
+(A\cdot B)\cdot(B^{-1}\cdot A^{-1}) = A\cdot (B\cdot B^{-1})\cdot A^{-1} = A\cdot I\cdot A^{-1} = A\cdot A^{-1} = I .
+$$
+Y por el otro lado, $(B^{-1}\cdot A^{-1})\cdot (A\cdot B) = B^{-1}\cdot(A^{-1}\cdot A)\cdot B = B^{-1}\cdot B = I$. Luego $B^{-1}A^{-1}$ es la inversa de $AB$.
+
+El orden **tiene que invertirse**, y la demostración explica por qué: solo colocando $B^{-1}$ junto a $B$ se produce la cancelación que hace funcionar el argumento. Si se escribiera $A^{-1}B^{-1}$, quedaría $A B A^{-1} B^{-1}$, que en general no es la identidad. Es la misma inversión de orden que ya viste en $(A\cdot B)^t = B^t\cdot A^t$, y responde a la misma lógica: para deshacer dos acciones encadenadas hay que deshacer primero la última.
+
+**$(A^t)^{-1} = (A^{-1})^t$.** Transponemos la igualdad $A\cdot A^{-1} = I$ y usamos que la transposición invierte el orden del producto y que $I^t = I$:
+$$
+(A\cdot A^{-1})^t = I^t \implies (A^{-1})^t\cdot A^t = I .
+$$
+Del mismo modo, transponiendo $A^{-1}\cdot A = I$ se obtiene $A^t\cdot (A^{-1})^t = I$. Las dos igualdades juntas dicen que $(A^{-1})^t$ es la inversa de $A^t$.
+
+**$(kA)^{-1} = \frac1k A^{-1}$.** El producto por un número se puede sacar fuera del producto de matrices, así que
+$$
+(kA)\cdot\left(\tfrac1k A^{-1}\right) = k\cdot\tfrac1k\,(A\cdot A^{-1}) = 1\cdot I = I,
+$$
+y análogamente por el otro lado. La condición $k\neq 0$ es imprescindible: si $k=0$, entonces $kA$ es la matriz nula, que nunca tiene inversa.
+:::
+
+De estas propiedades se deduce alguna más que resulta útil. Aplicando la segunda repetidamente, $(A^n)^{-1} = (A^{-1})^n$, lo que permite escribir $A^{-n}$ sin ambigüedad. Y si $A$ es regular, la igualdad $A\cdot B = A\cdot C$ **sí** permite cancelar: multiplicando por $A^{-1}$ por la izquierda se obtiene $B=C$. Recuerda que sin la hipótesis de regularidad esa cancelación es falsa, como viste con los divisores de cero.
+
+::: {.callout-caution}
+## Errores típicos
+
+1. **Escribir $A^{-1} = \dfrac{1}{A}$** o calcular la inversa invirtiendo cada elemento. La inversa de $\begin{pmatrix} 1 & 2 \\ 3 & 4\end{pmatrix}$ no es $\begin{pmatrix} 1 & 1/2 \\ 1/3 & 1/4\end{pmatrix}$. La notación $A^{-1}$ es un símbolo, no una fracción.
+2. **Aplicar la fórmula del orden 2 a matrices de orden 3.** No existe tal fórmula.
+3. **Olvidar dividir entre $ad-bc$** al usar la fórmula, o dividir solo un elemento en lugar de los cuatro.
+4. **Escribir $(AB)^{-1} = A^{-1}B^{-1}$.** El orden se invierte: $(AB)^{-1} = B^{-1}A^{-1}$.
+5. **Suponer que $(A+B)^{-1} = A^{-1}+B^{-1}$.** Es falso casi siempre. Prueba con $A=B=I$: la izquierda es $\tfrac12 I$ y la derecha es $2I$.
+6. **Intentar calcular la inversa de una matriz rectangular.** No existe, y decirlo es la respuesta completa.
+7. **Dar la inversa sin comprobar.** La comprobación $A\cdot A^{-1}=I$ cuesta pocos segundos, detecta cualquier error de cálculo y en las pruebas se valora.
+8. **Confundir «singular» con «matriz nula».** Una matriz singular puede tener todos sus elementos distintos de cero; lo que le ocurre es que su rango no es máximo.
+:::
+
+::: {.callout-tip}
+## Para qué sirve deshacer una matriz
+
+La inversa es la herramienta de **deshacer**. Si una matriz codifica una transformación —girar una figura, mezclar unas cantidades, repartir una producción entre sectores—, su inversa es la operación que devuelve las cosas a su estado inicial. Esa es la razón de que las matrices singulares no tengan inversa: representan transformaciones que **destruyen información**, como aplastar una figura del plano sobre una recta, y una vez aplastada no hay manera de saber de dónde venía cada punto.
+
+Con esta idea se construyen aplicaciones muy reconocibles. En criptografía clásica, un mensaje se cifra multiplicando bloques de letras convertidas en números por una matriz regular, y el destinatario descifra multiplicando por la inversa; si la matriz elegida fuese singular, el mensaje sería irrecuperable incluso para quien conociera la clave. En economía, los modelos de entradas y salidas entre sectores productivos calculan cuánto hay que producir para satisfacer una demanda resolviendo un sistema cuya solución es $X = (I-A)^{-1}D$. Y en los gráficos por ordenador, cada vez que una cámara vuelve a su posición inicial se está aplicando la inversa de la matriz que la había movido.
+:::
+
+## Resumen del apartado
+
+Entre las matrices **no existe la división**; su papel lo desempeña la **matriz inversa**. Una matriz cuadrada $A$ de orden $n$ es **regular** si existe $A^{-1}$ del mismo orden con $A\cdot A^{-1} = A^{-1}\cdot A = I_n$, y es **singular** si no existe. Solo las matrices cuadradas pueden tener inversa, y no todas la tienen. Cuando existe, es **única**, como se demuestra en tres líneas con la asociativa y el neutro.
+
+El criterio de existencia se expresa con el rango: $A$ tiene inversa si y solo si $\operatorname{rg}(A) = n$, es decir, si sus filas son linealmente independientes y al escalonarla no aparece ninguna fila nula. La razón profunda es que un producto no puede tener más rango que sus factores, y la identidad tiene rango máximo.
+
+Para calcularla se puede usar la **definición**: se llama $X$ a la inversa, se plantea $A\cdot X = I$ y se resuelven los $n$ sistemas que aparecen, uno por columna; si alguno es incompatible, la inversa no existe. En el **orden 2** hay un atajo que conviene memorizar:
+$$
+\begin{pmatrix} a & b \\ c & d\end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a\end{pmatrix},
+$$
+válido siempre que $ad-bc\neq 0$; ese número será el **determinante**, protagonista del tema siguiente.
+
+Las **propiedades** fundamentales son $(A^{-1})^{-1}=A$, $(A\cdot B)^{-1} = B^{-1}\cdot A^{-1}$ —con el orden invertido—, $(A^t)^{-1} = (A^{-1})^t$ y $(kA)^{-1} = \tfrac1k A^{-1}$ con $k\neq 0$. Todas se demuestran multiplicando y comprobando que sale la identidad, y todas se usarán sin descanso al resolver ecuaciones matriciales.
+
+Falta lo más práctico: un método eficaz para invertir matrices de orden $3$ o mayor. Eso es exactamente el apartado siguiente.
+
+## Ejercicios propuestos
+
+**1 (básico).** Comprueba que $B = \begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix}$ es la inversa de $A = \begin{pmatrix} 2 & 5 \\ 1 & 3 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A\cdot B = \begin{pmatrix} 6-5 & -10+10 \\ 3-3 & -5+6 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$, y $B\cdot A = \begin{pmatrix} 6-5 & 15-15 \\ -2+2 & -5+6\end{pmatrix} = I_2$. Se cumple por los dos lados, así que $B = A^{-1}$.
+:::
+
+**2 (básico).** Usa la fórmula del orden $2$ para calcular la inversa de $\begin{pmatrix} 4 & 7 \\ 1 & 2 \end{pmatrix}$ y de $\begin{pmatrix} 3 & 6 \\ 1 & 2 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Para la primera, $ad-bc = 8-7 = 1$, luego la inversa es $\begin{pmatrix} 2 & -7 \\ -1 & 4\end{pmatrix}$.
+
+Para la segunda, $ad-bc = 6-6 = 0$: la matriz es **singular** y no tiene inversa. Se veía a simple vista, porque la primera fila es el triple de la segunda y por tanto el rango es $1$.
+:::
+
+**3 (básico).** ¿Puede tener inversa la matriz $\begin{pmatrix} 1 & 0 & 2 \\ 3 & 1 & 4 \end{pmatrix}$? Razona la respuesta.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+No: no es cuadrada, es de orden $2\times 3$. Ninguna matriz rectangular tiene inversa, porque los productos $A\cdot X$ y $X\cdot A$ no pueden dar las dos la misma matriz identidad.
+:::
+
+**4 (medio).** Calcula por definición la inversa de $A = \begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix}$ y comprueba después el resultado con la fórmula del orden $2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $X = \begin{pmatrix} x & y \\ z & t\end{pmatrix}$, el producto $A\cdot X = \begin{pmatrix} 2x+z & 2y+t \\ 3x+2z & 3y+2t \end{pmatrix} = I_2$ da los sistemas
+$$
+\left\{\begin{array}{rcl} 2x+z & = & 1 \\ 3x+2z & = & 0\end{array}\right.
+\qquad
+\left\{\begin{array}{rcl} 2y+t & = & 0 \\ 3y+2t & = & 1\end{array}\right.
+$$
+Del primero, $z = 1-2x$ y $3x + 2 - 4x = 0$, luego $x = 2$ y $z = -3$. Del segundo, $t = -2y$ y $3y - 4y = 1$, luego $y = -1$ y $t = 2$. Así $A^{-1} = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}$.
+
+Con la fórmula: $ad-bc = 4-3 = 1$ y $A^{-1} = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}$. Coincide.
+:::
+
+**5 (medio).** Estudia para qué valores de $k$ tiene inversa la matriz $A = \begin{pmatrix} k & 1 \\ 4 & k \end{pmatrix}$ y calcula $A^{-1}$ cuando exista.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$ad-bc = k^2 - 4$, que se anula si $k=2$ o $k=-2$. Por tanto $A$ es regular si $k\neq 2$ y $k\neq -2$, y en ese caso
+$$
+A^{-1} = \frac{1}{k^2-4}\begin{pmatrix} k & -1 \\ -4 & k \end{pmatrix}.
+$$
+Para $k=2$ la matriz es $\begin{pmatrix} 2 & 1 \\ 4 & 2\end{pmatrix}$, cuya segunda fila es el doble de la primera: rango $1$, singular. Para $k=-2$ ocurre lo análogo.
+:::
+
+**6 (medio).** Sabiendo que $A^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 2 \end{pmatrix}$, calcula $A$, $(A^t)^{-1}$ y $(3A)^{-1}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por la propiedad $(A^{-1})^{-1}=A$, basta invertir la matriz dada. Su $ad-bc$ vale $2$, así que
+$$
+A = \frac12\begin{pmatrix} 2 & 1 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 1 & \tfrac12 \\[2pt] 0 & \tfrac12 \end{pmatrix}.
+$$
+Por la propiedad de la transpuesta, $(A^t)^{-1} = (A^{-1})^t = \begin{pmatrix} 1 & 0 \\ -1 & 2\end{pmatrix}$.
+
+Y por la del producto por un número, $(3A)^{-1} = \tfrac13 A^{-1} = \begin{pmatrix} \tfrac13 & -\tfrac13 \\[2pt] 0 & \tfrac23\end{pmatrix}$.
+:::
+
+**7 (avanzado).** Demuestra que si $A$ es regular y $A\cdot B = A\cdot C$, entonces $B = C$. ¿Por qué hace falta la hipótesis de que $A$ sea regular?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Multiplicando por $A^{-1}$ **por la izquierda** en los dos miembros:
+$$
+A^{-1}(A\cdot B) = A^{-1}(A\cdot C) \implies (A^{-1}A)B = (A^{-1}A)C \implies I\cdot B = I\cdot C \implies B = C .
+$$
+La hipótesis es imprescindible porque sin ella la cancelación es falsa. Con $A = \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$ y $C = \begin{pmatrix} 0 & 1 \\ 1 & 0\end{pmatrix}$ se cumple $A\cdot B = A\cdot C = \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}$ y sin embargo $B\neq C$. Esa $A$ es singular, con rango $1$.
+:::
+
+**8 (avanzado).** Sea $A$ una matriz que cumple $A^2 = A$ (idempotente) y $A \neq I$. Demuestra que $A$ no puede ser regular.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Supongamos que $A$ fuese regular. Multiplicando la igualdad $A^2 = A$ por $A^{-1}$ por la izquierda:
+$$
+A^{-1}A^2 = A^{-1}A \implies (A^{-1}A)A = I \implies A = I,
+$$
+en contra de la hipótesis $A\neq I$. Por tanto $A$ es singular.
+
+Un ejemplo concreto: $A = \begin{pmatrix} 1 & 0 \\ 0 & 0\end{pmatrix}$ cumple $A^2 = A$, no es la identidad y su rango es $1$, menor que $2$.
+:::

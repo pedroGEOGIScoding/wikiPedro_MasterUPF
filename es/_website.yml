@@ -271,12 +271,22 @@ website:
             - section: "Tema 1 Matrices"
               contents:
                 - master-upf/recursos/2-BatxMatesCCSS/matrices/01-matrices.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/02-matriz-transpuesta.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/03-operaciones-matrices.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/04-rango-matriz.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/05-matriz-inversa.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/06-ecuaciones-matriciales.qmd
-                - master-upf/recursos/2-BatxMatesCCSS/matrices/07-aplicaciones-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/02-matrices-iguales.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/03-clasificacion-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/04-matrices-cuadradas.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/05-matriz-transpuesta.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/06-simetricas-antisimetricas.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/07-suma-de-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/08-producto-por-un-numero.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/09-fila-por-columna.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/10-producto-de-matrices.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/11-combinaciones-lineales-filas.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/12-rango-de-una-matriz.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/13-rango-metodo-gauss.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/14-matriz-inversa.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/15-metodo-gauss-jordan.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/16-ecuaciones-matriciales.qmd
+                - master-upf/recursos/2-BatxMatesCCSS/matrices/17-practica-matrices.qmd
             - section: "Tema 2 Determinantes"
               contents:
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/01-determinantes.qmd

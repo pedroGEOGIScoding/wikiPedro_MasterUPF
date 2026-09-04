@@ -11,6 +11,8 @@ project:
     - master-upf/recursos/1-BatxMatesCCSS/numeros-reales/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/limites/assets/**
     - master-upf/recursos/1-BatxMatesCCSS/derivadas/assets/**
+    - master-upf/recursos/2-BatxMatesCCSS/assets/**
+    - master-upf/recursos/2-BatxMatesCCSS/matrices/assets/**
 
   preview:
 #    port: 3000                  # Port number for local preview server (default random 3000-8000)

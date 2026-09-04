@@ -1,0 +1,481 @@
+---
+title: "Tema 1.15 Método de Gauss-Jordan"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 15 de 17)"
+filename: 15-metodo-gauss-jordan
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Método de Gauss-Jordan para el cálculo de la matriz inversa, construcción de la matriz ampliada con la identidad, algoritmo de la transformación de A en la identidad y justificación de por qué la identidad se convierte en la inversa, ejemplos completos resueltos de orden dos y de orden tres, detección de las matrices singulares mediante la aparición de una fila nula, prohibición de mezclar operaciones de filas y de columnas y consejos prácticos para trabajar con fracciones, con applet manipulable.
+categories: [matrices, álgebra, 2 Batx, matemáticas CCSS, matriz inversa, Gauss-Jordan, matriz ampliada, transformaciones elementales]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Un método que aprovecha lo que ya sabes
+
+Calcular una inversa por definición funciona, pero solo es cómodo en el orden $2$. Para una matriz de orden $3$ habría que plantear nueve incógnitas y resolver tres sistemas de tres ecuaciones con tres incógnitas cada uno; para el orden $4$, dieciséis incógnitas y cuatro sistemas. El método es correcto y es lentísimo.
+
+La buena noticia es que no hace falta inventar nada nuevo. Los tres sistemas que aparecen en el orden $3$ tienen **la misma matriz de coeficientes**, $A$, y solo se diferencian en el término independiente: la primera columna de la identidad, la segunda y la tercera. Y resolver varios sistemas con la misma matriz de coeficientes es precisamente lo que hace el método de Gauss cuando se aplica a una matriz ampliada. La idea, entonces, es escribir $A$ y la identidad **una al lado de la otra** y escalonar las dos a la vez.
+
+Ese procedimiento se llama **método de Gauss-Jordan**, y se resume en una fórmula que conviene grabar:
+$$
+(A \mid I) \ \xrightarrow{\ \text{transformaciones elementales}\ } \ (I \mid A^{-1}) .
+$$
+Todo el trabajo consiste en **fabricar la identidad en el bloque de la izquierda**. Cuando se consigue, la inversa aparece sola en el bloque de la derecha, sin ningún cálculo extra. Es el mismo escalonamiento que usaste para el rango, llevado un paso más allá: no basta con hacer ceros por debajo de los pivotes, hay que hacerlos también por encima y dejar los pivotes valiendo $1$.
+
+## El algoritmo
+
+::: {.callout-note}
+## Método de Gauss-Jordan para calcular $A^{-1}$
+
+Sea $A$ una matriz cuadrada de orden $n$.
+
+1. **Construye la matriz ampliada** $(A \mid I_n)$: la matriz $A$ a la izquierda, la identidad del mismo orden a la derecha, separadas por una línea vertical. Es una matriz de $n$ filas y $2n$ columnas.
+2. **Hacia abajo.** Con transformaciones elementales **por filas**, consigue ceros por debajo de la diagonal principal del bloque izquierdo: primero la columna $1$, después la columna $2$, después la $3$… en ese orden. Si un elemento de la diagonal es cero, intercambia esa fila con otra de más abajo cuyo elemento en esa columna no sea cero.
+3. **Hacia arriba.** Con el bloque izquierdo ya triangular, repite el proceso en sentido contrario: usa la última fila para hacer ceros por encima del último pivote, después la penúltima, y así hasta la primera.
+4. **Normaliza.** Divide cada fila entre su elemento de la diagonal, para que el bloque izquierdo quede exactamente $I_n$.
+5. **Lee la respuesta.** El bloque derecho es $A^{-1}$.
+6. **Comprueba** que $A\cdot A^{-1} = I_n$.
+
+**Si en algún momento aparece una fila de ceros en el bloque izquierdo, el proceso se detiene: $A$ es singular y no tiene inversa.**
+:::
+
+Los pasos 3 y 4 se pueden intercambiar, y a veces conviene: normalizar antes de subir suele simplificar los cálculos, aunque introduce fracciones más pronto. Cada persona acaba encontrando su orden favorito; lo importante es no perder de vista el objetivo, que es la identidad a la izquierda.
+
+::: {.callout-important}
+## Por qué el bloque derecho acaba siendo la inversa
+
+Hay dos maneras de entenderlo, y las dos son instructivas.
+
+**Primera explicación: son $n$ sistemas resueltos a la vez.** Buscar $A^{-1}$ es buscar la matriz $X$ tal que $A\cdot X = I$. Si llamamos $X_1, X_2, \dots, X_n$ a las columnas de $X$ y $e_1, e_2, \dots, e_n$ a las columnas de la identidad, esa igualdad equivale a los $n$ sistemas
+$$
+A\cdot X_1 = e_1, \quad A\cdot X_2 = e_2, \quad \dots, \quad A\cdot X_n = e_n .
+$$
+Todos tienen la misma matriz de coeficientes, así que las operaciones necesarias para escalonar son **idénticas** en todos ellos: lo único que cambia es el término independiente. Colocando todos los términos independientes juntos —es decir, colocando la identidad entera a la derecha de la línea— resolvemos los $n$ sistemas de una sola pasada. Cuando el bloque izquierdo llega a ser $I$, cada sistema queda en la forma $X_j = (\text{columna } j \text{ del bloque derecho})$, ya resuelto.
+
+**Segunda explicación: cada operación es una multiplicación.** Toda transformación elemental por filas se puede realizar multiplicando por la izquierda por una matriz muy sencilla, obtenida aplicando esa misma transformación a la identidad. Si $E_1, E_2, \dots, E_r$ son las matrices que corresponden a las operaciones que hemos hecho, el resultado de todo el proceso en el bloque izquierdo es
+$$
+E_r \cdots E_2 E_1 A = I .
+$$
+Esa igualdad dice exactamente que el producto $P = E_r\cdots E_2E_1$ es la inversa de $A$. Y en el bloque derecho hemos hecho las mismas operaciones partiendo de la identidad, así que lo que ha quedado allí es
+$$
+E_r\cdots E_2E_1 \cdot I = P = A^{-1} .
+$$
+El bloque derecho lleva la cuenta de todo lo que le hemos hecho al izquierdo. Por eso, si el proceso llega a buen puerto, la inversa aparece «gratis».
+:::
+
+::: {.callout-warning}
+## Solo filas, o solo columnas, pero nunca las dos cosas
+
+En el cálculo del rango estaba permitido mezclar operaciones por filas con operaciones por columnas, porque el rango por filas coincide con el rango por columnas. **Aquí no.**
+
+Al calcular una inversa, cada operación por filas corresponde a multiplicar por la izquierda y cada operación por columnas corresponde a multiplicar por la derecha. Si se mezclan, el resultado final no es $A^{-1}$, sino un producto desordenado de factores que no significa nada. Se puede trabajar todo el ejercicio por filas —lo habitual, y lo recomendable— o todo por columnas, pero **no se pueden alternar dentro del mismo cálculo**.
+
+Si eliges columnas, la disposición cambia: hay que escribir la identidad **debajo** de $A$, no a su derecha. Lo más sencillo es acostumbrarse a trabajar siempre por filas y no volver a pensar en esto.
+:::
+
+## Ejemplo resuelto 1 · Orden 2, paso a paso
+
+Calcula la inversa de $A = \begin{pmatrix} 1 & 2 \\ 3 & 5 \end{pmatrix}$ por Gauss-Jordan.
+
+**Paso 1. Matriz ampliada.**
+$$
+(A\mid I) = \left(\begin{array}{rr|rr}
+1 & 2 & 1 & 0 \\
+3 & 5 & 0 & 1
+\end{array}\right)
+$$
+
+**Paso 2. Ceros debajo de la diagonal.** El pivote es el $1$ de la esquina. Restamos tres veces la primera fila a la segunda, **operando también en el bloque derecho**:
+$$
+\left(\begin{array}{rr|rr}
+1 & 2 & 1 & 0 \\
+3 & 5 & 0 & 1
+\end{array}\right)
+\begin{array}{l} \\ F_2 \to F_2 - 3F_1 \end{array}
+\longrightarrow
+\left(\begin{array}{rr|rr}
+1 & 2 & 1 & 0 \\
+0 & -1 & -3 & 1
+\end{array}\right)
+$$
+
+**Paso 3. Normalizamos la segunda fila.** El pivote vale $-1$, así que multiplicamos la fila por $-1$:
+$$
+\begin{array}{l} \\ F_2 \to -F_2 \end{array}
+\longrightarrow
+\left(\begin{array}{rr|rr}
+1 & 2 & 1 & 0 \\
+0 & 1 & 3 & -1
+\end{array}\right)
+$$
+
+**Paso 4. Ceros encima de la diagonal.** Ahora usamos la segunda fila para limpiar el $2$ de la primera:
+$$
+\begin{array}{l} F_1 \to F_1 - 2F_2 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rr|rr}
+1 & 0 & -5 & 2 \\
+0 & 1 & 3 & -1
+\end{array}\right)
+$$
+El detalle del cálculo en el bloque derecho: $(1,0) - 2(3,-1) = (1-6,\ 0+2) = (-5, 2)$.
+
+**Paso 5. Lectura.** El bloque izquierdo es la identidad, así que
+$$
+A^{-1} = \begin{pmatrix} -5 & 2 \\ 3 & -1 \end{pmatrix}.
+$$
+
+**Paso 6. Comprobación.**
+$$
+\begin{pmatrix} 1 & 2 \\ 3 & 5\end{pmatrix}\cdot\begin{pmatrix} -5 & 2 \\ 3 & -1\end{pmatrix}
+= \begin{pmatrix} -5+6 & 2-2 \\ -15+15 & 6-5 \end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}. \quad\checkmark
+$$
+
+**Contraste con la fórmula del orden 2.** Aquí $ad-bc = 5 - 6 = -1$, y la fórmula da
+$$
+A^{-1} = \frac{1}{-1}\begin{pmatrix} 5 & -2 \\ -3 & 1 \end{pmatrix} = \begin{pmatrix} -5 & 2 \\ 3 & -1\end{pmatrix},
+$$
+el mismo resultado. En el orden $2$ la fórmula siempre es más rápida; Gauss-Jordan se justifica a partir del orden $3$, donde la fórmula ya no existe.
+
+## Ejemplo resuelto 2 · Orden 3 completo
+
+Calcula la inversa de
+$$
+A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}.
+$$
+
+**Comprobación previa del rango.** Antes de empezar conviene asegurarse de que el ejercicio tiene solución. Escalonando mentalmente: $F_2 \to F_2 - F_1$ da $(0,-1,1)$ y luego $F_3 \to F_3 + F_2$ da $(0,0,2)$, no nula. Hay tres pivotes, $\operatorname{rg}(A)=3$ y la inversa existe.
+
+**Paso 1. Matriz ampliada.**
+$$
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 & 0 \\
+0 & 1 & 1 & 0 & 0 & 1
+\end{array}\right)
+$$
+
+**Paso 2. Primera columna.** El pivote es el $1$ de arriba a la izquierda. El tercer elemento de la columna ya es cero, así que solo hay que arreglar el segundo:
+$$
+\begin{array}{l} \\ F_2 \to F_2 - F_1 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+0 & -1 & 1 & -1 & 1 & 0 \\
+0 & 1 & 1 & 0 & 0 & 1
+\end{array}\right)
+$$
+
+**Paso 3. Segunda columna, hacia abajo.** El pivote es $-1$ en la posición $(2,2)$ y debajo hay un $1$. Sumando las dos filas se anula:
+$$
+\begin{array}{l} \\ \\ F_3 \to F_3 + F_2 \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+0 & -1 & 1 & -1 & 1 & 0 \\
+0 & 0 & 2 & -1 & 1 & 1
+\end{array}\right)
+$$
+El bloque izquierdo ya es triangular superior y ninguna fila se ha anulado: la inversa existe, como habíamos previsto.
+
+**Paso 4. Normalizamos la tercera fila.**
+$$
+\begin{array}{l} \\ \\ F_3 \to \tfrac12 F_3 \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+0 & -1 & 1 & -1 & 1 & 0 \\
+0 & 0 & 1 & -\tfrac12 & \tfrac12 & \tfrac12
+\end{array}\right)
+$$
+
+**Paso 5. Hacia arriba: limpiamos la tercera columna.** La única fila con un elemento no nulo por encima del último pivote es la segunda:
+$$
+\begin{array}{l} \\ F_2 \to F_2 - F_3 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+0 & -1 & 0 & -\tfrac12 & \tfrac12 & -\tfrac12 \\
+0 & 0 & 1 & -\tfrac12 & \tfrac12 & \tfrac12
+\end{array}\right)
+$$
+Detalle: $(-1,1,0) - \left(-\tfrac12,\tfrac12,\tfrac12\right) = \left(-\tfrac12,\ \tfrac12,\ -\tfrac12\right)$.
+
+**Paso 6. Normalizamos la segunda fila.**
+$$
+\begin{array}{l} \\ F_2 \to -F_2 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & \tfrac12 & -\tfrac12 & \tfrac12 \\
+0 & 0 & 1 & -\tfrac12 & \tfrac12 & \tfrac12
+\end{array}\right)
+$$
+
+**Paso 7. Limpiamos la segunda columna hacia arriba.**
+$$
+\begin{array}{l} F_1 \to F_1 - F_2 \\ \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 0 & 0 & \tfrac12 & \tfrac12 & -\tfrac12 \\
+0 & 1 & 0 & \tfrac12 & -\tfrac12 & \tfrac12 \\
+0 & 0 & 1 & -\tfrac12 & \tfrac12 & \tfrac12
+\end{array}\right)
+$$
+
+**Paso 8. Lectura del resultado.** El bloque izquierdo es $I_3$, luego
+$$
+A^{-1} = \begin{pmatrix}
+\tfrac12 & \tfrac12 & -\tfrac12 \\[2pt]
+\tfrac12 & -\tfrac12 & \tfrac12 \\[2pt]
+-\tfrac12 & \tfrac12 & \tfrac12
+\end{pmatrix}
+= \frac12\begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1 \end{pmatrix}.
+$$
+Sacar el factor $\tfrac12$ fuera de la matriz no es obligatorio, pero hace la respuesta mucho más legible y facilita la comprobación.
+
+**Paso 9. Comprobación.** Multiplicamos $A$ por la inversa obtenida, dejando el $\tfrac12$ fuera:
+$$
+\begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1\end{pmatrix}\cdot\frac12\begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1\end{pmatrix}
+= \frac12\begin{pmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 2 \end{pmatrix} = I_3 . \quad\checkmark
+$$
+Por ejemplo, el elemento de la posición $(1,1)$ del producto es $1\cdot 1 + 1\cdot 1 + 0\cdot(-1) = 2$, y el de la posición $(1,2)$ es $1\cdot 1 + 1\cdot(-1) + 0\cdot 1 = 0$.
+
+## Ejemplo resuelto 3 · Una matriz triangular, muy rápida
+
+Calcula la inversa de $B = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{pmatrix}$.
+
+El bloque izquierdo ya es triangular superior y los tres pivotes valen $1$, así que los pasos «hacia abajo» y de normalización están hechos. Solo queda subir:
+$$
+\left(\begin{array}{rrr|rrr}
+1 & 2 & 3 & 1 & 0 & 0 \\
+0 & 1 & 4 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 & 0 & 1
+\end{array}\right)
+\begin{array}{l} F_1 \to F_1 - 3F_3 \\ F_2 \to F_2 - 4F_3 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 2 & 0 & 1 & 0 & -3 \\
+0 & 1 & 0 & 0 & 1 & -4 \\
+0 & 0 & 1 & 0 & 0 & 1
+\end{array}\right)
+$$
+$$
+\begin{array}{l} F_1 \to F_1 - 2F_2 \\ \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 0 & 0 & 1 & -2 & 5 \\
+0 & 1 & 0 & 0 & 1 & -4 \\
+0 & 0 & 1 & 0 & 0 & 1
+\end{array}\right)
+$$
+El último cálculo: $(1,0,-3) - 2(0,1,-4) = (1,-2,-3+8) = (1,-2,5)$. Por tanto
+$$
+B^{-1} = \begin{pmatrix} 1 & -2 & 5 \\ 0 & 1 & -4 \\ 0 & 0 & 1 \end{pmatrix},
+$$
+que vuelve a ser triangular superior. **La inversa de una matriz triangular es triangular del mismo tipo**, y sus elementos diagonales son los inversos de los originales: una observación que ahorra mucho trabajo y que conviene recordar.
+
+## Qué ocurre cuando la matriz es singular
+
+::: {.callout-note}
+## La señal de alarma
+
+Si al escalonar el bloque izquierdo aparece una **fila entera de ceros a la izquierda de la línea**, el proceso se detiene. Esa fila nula indica que $\operatorname{rg}(A) < n$, y por el criterio del apartado anterior la matriz es **singular**: no tiene inversa.
+
+No hay que seguir operando ni intentar arreglarlo con más transformaciones: el rango no cambia con las operaciones elementales, así que la fila nula ya no se puede eliminar. La respuesta correcta al ejercicio es «$A$ no tiene inversa porque su rango es menor que su orden», indicando el rango obtenido.
+:::
+
+Veámoslo con
+$$
+C = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 0 & 1 \end{pmatrix}.
+$$
+$$
+\left(\begin{array}{rrr|rrr}
+1 & 2 & 3 & 1 & 0 & 0 \\
+2 & 4 & 6 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 1
+\end{array}\right)
+\begin{array}{l} \\ F_2 \to F_2 - 2F_1 \\ F_3 \to F_3 - F_1 \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr}
+1 & 2 & 3 & 1 & 0 & 0 \\
+0 & 0 & 0 & -2 & 1 & 0 \\
+0 & -2 & -2 & -1 & 0 & 1
+\end{array}\right)
+$$
+La segunda fila del bloque izquierdo se ha anulado, aunque a la derecha queden números. Se ve por qué: la segunda fila de $C$ era exactamente el doble de la primera, de modo que $\operatorname{rg}(C) = 2 < 3$. **$C$ es singular y no tiene inversa.**
+
+Fíjate en la interpretación desde el punto de vista de los sistemas: esa fila dice $0 = -2$ en el primer sistema, lo que confirma que $C\cdot X = I$ es incompatible. Es el mismo fenómeno que en el ejemplo 3 del apartado anterior, visto con otra notación.
+
+::: {.callout-tip}
+## Consejos prácticos para no perderse con las fracciones
+
+Las fracciones son la principal fuente de errores en este método, no la teoría. Estas costumbres reducen los fallos a la mitad.
+
+- **Retrasa las divisiones.** Haz primero todos los ceros con operaciones que no dividan, y normaliza los pivotes al final. Cuanto más tarde entren las fracciones, menos operaciones las arrastrarán.
+- **Usa la variante $F_i \to aF_i - bF_j$.** Para anular un $3$ debajo de un pivote $2$ es mejor $F_2 \to 2F_2 - 3F_1$ que $F_2 \to F_2 - \tfrac32 F_1$: se evita la fracción por completo. Recuerda que el factor $a$ debe ser distinto de cero.
+- **Saca factor común al final.** Si toda la inversa lleva denominador $2$, escríbela como $\tfrac12$ multiplicando una matriz de enteros. Se lee mejor y la comprobación es más rápida.
+- **Nunca aproximes con decimales.** Trabaja con fracciones exactas; $0{,}333$ no es $\tfrac13$ y los errores de redondeo se multiplican en cada paso.
+- **Una operación por línea.** Si haces dos operaciones a la vez, asegúrate de que ninguna usa una fila que la otra esté modificando.
+- **Escribe las operaciones al margen.** Cuando la comprobación final falle —y alguna vez fallará—, poder repasar los pasos evita repetir el ejercicio entero.
+- **Comprueba siempre.** Multiplicar $A$ por el resultado cuesta menos que rehacer el ejercicio, y el producto debe dar la identidad exacta. Si sale «casi» la identidad, hay un error.
+:::
+
+### Applet · Método de Gauss-Jordan {.unnumbered}
+
+Escribe una matriz cuadrada de orden $2$, $3$ o $4$ y elige el modo. En **modo automático** el panel construye $(A\mid I)$ y avanza paso a paso hasta $(I\mid A^{-1})$, mostrando la operación de cada etapa y el estado de los dos bloques: observa cómo el bloque derecho va acumulando exactamente lo que se le hace al izquierdo. En **modo manual** propones tú cada operación y el applet la valida, avisando si no acerca al objetivo. Prueba también con una matriz singular y fíjate en el momento en que aparece la fila nula y el panel detiene el proceso.
+
+::: {#panel-gaussJordan .applet-panel data-applet-mtx="gaussJordan"}
+:::
+
+::: {.callout-caution}
+## Errores típicos
+
+1. **Operar solo en un bloque.** Cada transformación debe aplicarse a la fila **completa**, a los dos lados de la línea. Es el error más frecuente y arruina el resultado sin dar ninguna señal.
+2. **Mezclar operaciones por filas y por columnas.** Permitido para el rango, prohibido para la inversa.
+3. **Detenerse en la forma triangular** y dar el bloque derecho como respuesta. Hay que llegar a la identidad exacta, con ceros arriba y abajo y unos en la diagonal.
+4. **Desordenar los pasos** y perder ceros ya conseguidos. Primero la columna $1$ hacia abajo, luego la $2$, luego la $3$; y solo después, hacia arriba.
+5. **Continuar operando después de una fila nula.** Cuando aparece, el ejercicio ha terminado: la matriz es singular.
+6. **Confundir el orden de lectura.** La inversa es el bloque **derecho** al final del proceso, no el izquierdo ni una mezcla de los dos.
+7. **Dar el resultado sin comprobar.** La comprobación es parte del ejercicio.
+8. **Olvidar normalizar un pivote** y entregar como inversa un bloque derecho que corresponde a $\begin{pmatrix} 1 & 0 \\ 0 & 2\end{pmatrix}$ en lugar de a la identidad.
+:::
+
+::: {.callout-tip}
+## De dónde viene el nombre y por qué sigue vigente
+
+El apellido doble del método recuerda su doble origen: la eliminación hacia abajo se asocia a Gauss, y la variante que continúa hacia arriba hasta dejar la identidad se popularizó a finales del siglo XIX en manuales de geodesia, la ciencia de medir la Tierra, donde había que resolver sistemas enormes de ecuaciones procedentes de triangulaciones. No es casual que las dos ideas nacieran en contextos aplicados: nadie inventa algoritmos por gusto, se inventan cuando hay demasiadas cuentas que hacer.
+
+Hoy, curiosamente, los programas de cálculo **evitan** invertir matrices siempre que pueden. Para resolver $A\cdot X = B$ es más rápido y más estable escalonar directamente que calcular $A^{-1}$ y multiplicar después, porque el segundo camino hace más operaciones y acumula más error de redondeo. La inversa sigue siendo imprescindible como **concepto** —y en los exámenes, como herramienta—, pero en el cálculo numérico se ha convertido en un objeto que se estudia más que se calcula.
+:::
+
+## Resumen del apartado
+
+El **método de Gauss-Jordan** calcula la inversa de una matriz cuadrada mediante el esquema
+$$
+(A\mid I) \longrightarrow (I \mid A^{-1}) .
+$$
+Se escribe la matriz ampliada con la identidad al lado, se aplican transformaciones elementales **por filas** hasta convertir el bloque izquierdo en la identidad, y el bloque derecho pasa a ser la inversa. El orden de trabajo es: ceros por debajo de la diagonal, columna a columna de izquierda a derecha; después ceros por encima, de abajo arriba; y por último normalización de los pivotes a $1$.
+
+Funciona por dos razones equivalentes: la matriz ampliada resuelve simultáneamente los $n$ sistemas $A\cdot X_j = e_j$ que definen las columnas de la inversa, y cada operación por filas equivale a multiplicar por la izquierda por una matriz elemental, de modo que el bloque derecho acumula el producto $E_r\cdots E_1 = A^{-1}$.
+
+Dos restricciones importantes: **no se pueden mezclar** operaciones por filas con operaciones por columnas, a diferencia de lo que ocurría con el rango; y si aparece una **fila nula** en el bloque izquierdo, la matriz es **singular** y el ejercicio termina ahí. Conviene calcular el rango antes de empezar para no trabajar en vano.
+
+En la práctica, la mayor dificultad son las **fracciones**: retrasar las divisiones, usar operaciones del tipo $F_i \to aF_i - bF_j$, sacar factor común al final y trabajar siempre con fracciones exactas evita casi todos los errores. Y la **comprobación** $A\cdot A^{-1} = I$ nunca debe omitirse.
+
+Con la inversa ya calculable para cualquier orden, estamos listos para el objetivo final del tema: resolver **ecuaciones matriciales**.
+
+## Ejercicios propuestos
+
+**1 (básico).** Calcula por Gauss-Jordan la inversa de $\begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$ y comprueba el resultado con la fórmula del orden $2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rr|rr} 2 & 1 & 1 & 0 \\ 5 & 3 & 0 & 1\end{array}\right)
+\xrightarrow{F_2 \to 2F_2 - 5F_1}
+\left(\begin{array}{rr|rr} 2 & 1 & 1 & 0 \\ 0 & 1 & -5 & 2\end{array}\right)
+\xrightarrow{F_1 \to F_1 - F_2}
+\left(\begin{array}{rr|rr} 2 & 0 & 6 & -2 \\ 0 & 1 & -5 & 2\end{array}\right)
+$$
+Normalizando con $F_1 \to \tfrac12 F_1$ queda $\left(\begin{array}{rr|rr} 1 & 0 & 3 & -1 \\ 0 & 1 & -5 & 2\end{array}\right)$, luego $A^{-1} = \begin{pmatrix} 3 & -1 \\ -5 & 2\end{pmatrix}$.
+
+Con la fórmula: $ad-bc = 6-5 = 1$ y $A^{-1} = \begin{pmatrix} 3 & -1 \\ -5 & 2\end{pmatrix}$. Coincide.
+:::
+
+**2 (básico).** ¿Tiene inversa la matriz $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}$? Empieza el método de Gauss-Jordan y explica lo que ocurre.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rr|rr} 1 & 3 & 1 & 0 \\ 2 & 6 & 0 & 1\end{array}\right)
+\xrightarrow{F_2 \to F_2 - 2F_1}
+\left(\begin{array}{rr|rr} 1 & 3 & 1 & 0 \\ 0 & 0 & -2 & 1\end{array}\right)
+$$
+La segunda fila del bloque izquierdo es nula, así que $\operatorname{rg} = 1 < 2$ y la matriz es **singular**: no tiene inversa. En efecto, $ad-bc = 6-6 = 0$.
+:::
+
+**3 (medio).** Calcula por Gauss-Jordan la inversa de $\begin{pmatrix} 1 & 0 & 2 \\ 0 & 1 & 3 \\ 0 & 0 & 1 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Es triangular con unos en la diagonal, así que basta subir:
+$$
+\left(\begin{array}{rrr|rrr} 1 & 0 & 2 & 1 & 0 & 0 \\ 0 & 1 & 3 & 0 & 1 & 0 \\ 0 & 0 & 1 & 0 & 0 & 1\end{array}\right)
+\begin{array}{l} F_1 \to F_1 - 2F_3 \\ F_2 \to F_2 - 3F_3 \\ \\ \end{array}
+\longrightarrow
+\left(\begin{array}{rrr|rrr} 1 & 0 & 0 & 1 & 0 & -2 \\ 0 & 1 & 0 & 0 & 1 & -3 \\ 0 & 0 & 1 & 0 & 0 & 1\end{array}\right)
+$$
+Por tanto la inversa es $\begin{pmatrix} 1 & 0 & -2 \\ 0 & 1 & -3 \\ 0 & 0 & 1\end{pmatrix}$: triangular superior, como la original.
+:::
+
+**4 (medio).** Calcula por Gauss-Jordan la inversa de $A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+\left(\begin{array}{rrr|rrr} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 0 & 0 & 1\end{array}\right)
+\xrightarrow{F_3 \to F_3 - F_1}
+\left(\begin{array}{rrr|rrr} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & -2 & 1 & -1 & 0 & 1\end{array}\right)
+$$
+$$
+\xrightarrow{F_3 \to F_3 + 2F_2}
+\left(\begin{array}{rrr|rrr} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & 0 & 3 & -1 & 2 & 1\end{array}\right)
+\xrightarrow{F_3 \to \tfrac13 F_3}
+\left(\begin{array}{rrr|rrr} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & 0 & 1 & -\tfrac13 & \tfrac23 & \tfrac13\end{array}\right)
+$$
+Con $F_2 \to F_2 - F_3$ la segunda fila derecha pasa a $\left(\tfrac13, \tfrac13, -\tfrac13\right)$, y con $F_1 \to F_1 - 2F_2$ la primera pasa a $\left(1-\tfrac23,\ -\tfrac23,\ \tfrac23\right) = \left(\tfrac13, -\tfrac23, \tfrac23\right)$. Por tanto
+$$
+A^{-1} = \frac13\begin{pmatrix} 1 & -2 & 2 \\ 1 & 1 & -1 \\ -1 & 2 & 1 \end{pmatrix}.
+$$
+Comprobación: $A\cdot A^{-1} = \tfrac13\begin{pmatrix} 3 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 3\end{pmatrix} = I_3$.
+:::
+
+**5 (medio).** Comprueba, empezando el método, que $\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 5 & 7 & 9 \end{pmatrix}$ no tiene inversa, y explica la razón mirando las filas.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 4F_1$ y $F_3 \to F_3 - 5F_1$ el bloque izquierdo pasa a $\begin{pmatrix} 1 & 2 & 3 \\ 0 & -3 & -6 \\ 0 & -3 & -6\end{pmatrix}$, y con $F_3 \to F_3 - F_2$ la tercera fila se anula. Luego $\operatorname{rg} = 2 < 3$ y la matriz es singular.
+
+La razón salta a la vista en la matriz original: $F_3 = F_1 + F_2$, porque $(1,2,3)+(4,5,6) = (5,7,9)$. La tercera fila no aporta información nueva.
+:::
+
+**6 (avanzado).** Estudia para qué valores de $k$ tiene inversa la matriz $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 1 & 2 & k \end{pmatrix}$ y calcula $A^{-1}$ para $k=4$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+**Existencia.** Escalonando: $F_3 \to F_3 - F_1$ da $(0,1,k-1)$, y $F_3 \to F_3 - F_2$ da $(0,0,k-3)$. Hay tres pivotes si $k\neq 3$, así que $A$ es regular para $k\neq 3$ y singular para $k=3$.
+
+**Caso $k=4$.**
+$$
+\left(\begin{array}{rrr|rrr} 1 & 1 & 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 1 & 2 & 4 & 0 & 0 & 1\end{array}\right)
+\xrightarrow{F_3 \to F_3 - F_1}
+\left(\begin{array}{rrr|rrr} 1 & 1 & 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 0 & 1 & 3 & -1 & 0 & 1\end{array}\right)
+$$
+$$
+\xrightarrow{F_3 \to F_3 - F_2}
+\left(\begin{array}{rrr|rrr} 1 & 1 & 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 1 & 0 \\ 0 & 0 & 1 & -1 & -1 & 1\end{array}\right)
+$$
+Subiendo: $F_2 \to F_2 - 2F_3$ deja la segunda fila derecha en $(2,3,-2)$; $F_1 \to F_1 - F_3$ deja la primera en $(2,1,-1)$; y $F_1 \to F_1 - F_2$ la deja en $(0,-2,1)$. Por tanto
+$$
+A^{-1} = \begin{pmatrix} 0 & -2 & 1 \\ 2 & 3 & -2 \\ -1 & -1 & 1 \end{pmatrix}.
+$$
+Comprobación de la primera fila del producto: $(1,1,1)$ por las columnas de $A^{-1}$ da $0+2-1 = 1$, $-2+3-1 = 0$ y $1-2+1 = 0$. Correcto.
+:::

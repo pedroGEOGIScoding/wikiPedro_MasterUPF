@@ -1,0 +1,348 @@
+---
+title: "Tema 1.3 Clasificación de matrices"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 3 de 17)"
+filename: 03-clasificacion-matrices
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Clasificación de las matrices atendiendo a su forma, matriz rectangular y matriz cuadrada, orden de una matriz cuadrada, matriz fila y matriz columna y su papel como vectores, matriz nula de cada dimensión y por qué hay muchas matrices nulas, primer contacto con la matriz transpuesta y con el intercambio de filas por columnas, esquema completo de tipos por forma y criterios para clasificar cualquier matriz con seguridad.
+categories: [matrices, clasificación, matriz cuadrada, matriz fila, matriz columna, matriz nula, transpuesta, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Por qué hace falta clasificar
+
+Hasta ahora una matriz era simplemente una tabla de números. Podría parecer que con eso basta, pero en cuanto se empieza a operar aparece un hecho incómodo: **no todas las matrices se comportan igual**. Dos matrices se pueden sumar solo si tienen la misma dimensión. Dos matrices se pueden multiplicar solo si las columnas de la primera coinciden en número con las filas de la segunda. Una matriz solo puede elevarse al cuadrado si es cuadrada. Solo algunas matrices tienen inversa. Y hay matrices que, multiplicadas por cualquier otra, la dejan igual.
+
+Todas esas diferencias dependen de la **forma** de la matriz y de la **disposición de sus ceros**. Por eso el vocabulario de tipos que se introduce en este apartado no es un catálogo decorativo: es la manera de saber de antemano qué se puede hacer con una matriz y qué no.
+
+En este apartado clasificamos las matrices atendiendo únicamente a su forma —cuántas filas y cuántas columnas tienen— y presentamos además dos tipos que dependen de sus elementos y que se necesitan enseguida: la matriz nula y, como adelanto, la matriz transpuesta. La clasificación fina de las matrices cuadradas, que es mucho más rica, es el contenido de la parte 4.
+
+## El criterio de la forma: rectangulares y cuadradas
+
+::: {.callout-note}
+## Matriz rectangular y matriz cuadrada
+
+Sea $A$ una matriz de dimensión $m\times n$.
+
+- Si el número de filas es **distinto** del número de columnas, $m\ne n$, la matriz se llama **rectangular**.
+- Si el número de filas **coincide** con el de columnas, $m=n$, la matriz se llama **cuadrada**, y a ese número común $n$ se le llama **orden** de la matriz. Se dice entonces que $A$ es una matriz cuadrada de orden $n$, y su dimensión $n\times n$ se abrevia a menudo escribiendo simplemente $n$.
+:::
+
+Por ejemplo,
+
+$$
+A=\begin{pmatrix} 1 & 0 & 5 \\ 2 & 3 & 6 \end{pmatrix}
+\qquad\text{es rectangular de dimensión } 2\times 3,
+$$
+
+mientras que
+
+$$
+B=\begin{pmatrix} 2 & 4 & 5 \\ 0 & 3 & 2 \\ 1 & 3 & 0 \end{pmatrix}
+\qquad\text{es cuadrada de orden } 3 .
+$$
+
+La distinción parece menor y sin embargo lo cambia todo. En una matriz cuadrada tiene sentido hablar de **diagonal**, de **potencias** $A^2$, $A^3$, …, de **inversa** y de **determinante**; en una rectangular, ninguna de esas cuatro cosas existe. De hecho, casi todo el interés del álgebra de matrices se concentra en las cuadradas, y las rectangulares aparecen sobre todo como tablas de datos y como matrices de coeficientes de sistemas de ecuaciones.
+
+::: {.callout-important}
+## «Cuadrada» no significa «con los mismos números»
+
+Una matriz es cuadrada por su **forma**, no por su contenido. Estas dos son cuadradas de orden $2$:
+
+$$
+\begin{pmatrix} 7 & 0 \\ -1 & 4 \end{pmatrix}
+\qquad\text{y}\qquad
+\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix},
+$$
+
+y esta no lo es aunque tenga cuatro elementos:
+
+$$
+\begin{pmatrix} 1 & 2 & 3 & 4 \end{pmatrix}.
+$$
+
+Para decidirlo basta contar líneas horizontales y verticales. Nada más.
+:::
+
+## Dentro de las rectangulares: matrices fila y matrices columna
+
+Entre las matrices rectangulares hay dos casos extremos que reciben nombre propio porque aparecen continuamente.
+
+::: {.callout-note}
+## Matriz fila y matriz columna
+
+- Una **matriz fila** es la que tiene una sola fila. Su dimensión es $1\times n$.
+- Una **matriz columna** es la que tiene una sola columna. Su dimensión es $m\times 1$.
+:::
+
+Ejemplos de matrices fila:
+
+$$
+\begin{pmatrix} 2 & 3 \end{pmatrix}_{1\times 2},
+\qquad
+\begin{pmatrix} 1 & 0 & -3 \end{pmatrix}_{1\times 3},
+\qquad
+\begin{pmatrix} 3 & 5 & 2 & -3 \end{pmatrix}_{1\times 4}.
+$$
+
+Ejemplos de matrices columna:
+
+$$
+\begin{pmatrix} 2 \\ 3 \end{pmatrix}_{2\times 1},
+\qquad
+\begin{pmatrix} 1 \\ 0 \\ -3 \end{pmatrix}_{3\times 1},
+\qquad
+\begin{pmatrix} 3 \\ 5 \\ 2 \\ -3 \end{pmatrix}_{4\times 1}.
+$$
+
+Estas matrices tan delgadas se llaman también **vectores fila** y **vectores columna**, y no por capricho: un vector del plano, $(3,-1)$, o del espacio, $(2,0,5)$, es exactamente una lista ordenada de números, es decir, una matriz fila. Escribirlo en vertical, como matriz columna, es lo habitual cuando se quiere multiplicar por una matriz, porque el producto de matrices exige que las dimensiones encajen de una forma muy concreta.
+
+Hay que retener una idea que se usará en la parte 9: **cualquier fila de una matriz es, por sí sola, una matriz fila, y cualquier columna es una matriz columna**. Cuando se descompone una matriz $A$ de dimensión $m\times n$ en sus filas $F_1$, $F_2$, …, $F_m$, se está viendo como una pila de $m$ matrices $1\times n$. Y cuando la operación básica del producto se define como «fila por columna», se está multiplicando una matriz $1\times n$ por una matriz $n\times 1$ para obtener un solo número.
+
+Un caso curioso: una matriz de dimensión $1\times 1$, como $\begin{pmatrix} 3 \end{pmatrix}$, es a la vez matriz fila, matriz columna y matriz cuadrada de orden $1$. Es la matriz que más se parece a un número, aunque formalmente no lo sea.
+
+## La matriz nula
+
+::: {.callout-note}
+## Definición de matriz nula
+
+Se llama **matriz nula**, o matriz cero, a aquella en la que **todos** sus elementos son cero. Se representa con el símbolo $0$, y si se quiere precisar su tamaño, $0_{m\times n}$ o, si es cuadrada de orden $n$, $0_n$.
+:::
+
+Lo importante aquí es que **hay una matriz nula para cada dimensión**, y todas se escriben con el mismo símbolo:
+
+$$
+0_{2\times 1}=\begin{pmatrix} 0 \\ 0 \end{pmatrix},
+\qquad
+0_{1\times 2}=\begin{pmatrix} 0 & 0 \end{pmatrix},
+\qquad
+0_{2}=\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix},
+\qquad
+0_{2\times 3}=\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}.
+$$
+
+Las cuatro son distintas entre sí —no tienen la misma dimensión, luego por la definición del apartado anterior no son iguales—, pero cumplen todas el mismo papel: el de **elemento neutro de la suma** dentro de su tamaño. En la parte 7 veremos que $A+0=A$, siempre que $0$ tenga exactamente la dimensión de $A$.
+
+La matriz nula es también la protagonista de una de las sorpresas más famosas del tema. Con números reales, si un producto es cero, alguno de los factores es cero. Con matrices esto **deja de ser cierto**: existen matrices $A\ne 0$ y $B\ne 0$ cuyo producto es la matriz nula. Lo comprobaremos en la parte 10, y es una de las razones por las que no se puede «dividir» matrices ni simplificar factores alegremente.
+
+::: {.callout-caution}
+## Ojo con el símbolo $0$
+
+El mismo símbolo designa el número cero y la matriz nula, y hay que deducir del contexto cuál es cuál. En una expresión como $A+B=0$, el $0$ es la matriz nula de la dimensión de $A$; en $\det(A)=0$, el $0$ es el número cero.
+
+Un aviso adicional: que una matriz tenga muchos ceros **no** la convierte en la matriz nula. La matriz nula los tiene **todos** a cero, sin excepción. Y no confundas tampoco la matriz nula con la matriz identidad, que estudiaremos en la parte 4: la nula es el neutro de la suma y la identidad es el neutro del producto.
+:::
+
+## Adelanto: la matriz transpuesta
+
+Aunque la transposición tiene apartado propio —la parte 5—, conviene presentarla ya, porque aparece en la clasificación de las matrices cuadradas y porque explica de un plumazo la relación entre matrices fila y matrices columna.
+
+::: {.callout-note}
+## Definición de matriz transpuesta
+
+Dada una matriz $A$ de dimensión $m\times n$, se llama **matriz transpuesta** de $A$, y se denota $A^{t}$, a la matriz de dimensión $n\times m$ que se obtiene **cambiando ordenadamente las filas por las columnas**: la fila $i$ de $A$ pasa a ser la columna $i$ de $A^{t}$.
+
+En notación de elementos, si $A=(a_{ij})$ entonces $A^{t}=(a_{ji})$.
+:::
+
+Por ejemplo, dada
+
+$$
+A=\begin{pmatrix} 2 & -3 & 1 \\ 0 & 4 & 5 \end{pmatrix}
+$$
+
+de dimensión $2\times 3$, su transpuesta es
+
+$$
+A^{t}=\begin{pmatrix} 2 & 0 \\ -3 & 4 \\ 1 & 5 \end{pmatrix}
+$$
+
+de dimensión $3\times 2$. La primera fila de $A$, $(2,\ -3,\ 1)$, se ha convertido en la primera columna de $A^{t}$; la segunda fila, en la segunda columna.
+
+De aquí salen tres consecuencias inmediatas que conviene tener claras desde ya:
+
+1. La transpuesta de una **matriz fila** es una **matriz columna** con los mismos números, y viceversa. Aquellas dos matrices del apartado anterior que contenían $1$, $2$ y $3$ pero no eran iguales son, precisamente, una la transpuesta de la otra.
+2. Al transponer, la dimensión $m\times n$ se convierte en $n\times m$. Por tanto, **solo si la matriz es cuadrada** su transpuesta tiene la misma dimensión que ella.
+3. Transponer dos veces devuelve la matriz de partida: $(A^{t})^{t}=A$.
+
+Que una matriz cuadrada coincida o no con su transpuesta da lugar a dos tipos importantes, las matrices **simétricas** ($A=A^{t}$) y **antisimétricas** ($A^{t}=-A$), que se estudian en la parte 6.
+
+## Esquema de la clasificación por forma
+
+Reuniendo todo lo anterior, cualquier matriz cae en alguna de estas categorías:
+
+| Tipo | Condición | Dimensión | Ejemplo |
+|---|---|---|---|
+| Matriz fila | una sola fila | $1\times n$ | $\begin{pmatrix} 1 & 0 & 4 \end{pmatrix}$ |
+| Matriz columna | una sola columna | $m\times 1$ | $\begin{pmatrix} 2 \\ -1 \end{pmatrix}$ |
+| Matriz rectangular | $m\ne n$ | $m\times n$ | $\begin{pmatrix} 1 & 0 & 2 \\ 3 & 1 & 5 \end{pmatrix}$ |
+| Matriz cuadrada de orden $n$ | $m=n$ | $n\times n$ | $\begin{pmatrix} 0 & 2 \\ 1 & 4 \end{pmatrix}$ |
+| Matriz nula | todos los elementos cero | cualquiera | $\begin{pmatrix} 0 & 0 \\ 0 & 0 \\ 0 & 0 \end{pmatrix}$ |
+
+Fíjate en que las categorías **no son excluyentes**. Una matriz fila $1\times 4$ es también rectangular. Una matriz nula de orden $3$ es también cuadrada. Una matriz $1\times 1$ es fila, columna y cuadrada a la vez. Cuando en un examen se pide «clasifica esta matriz», la respuesta correcta suele incluir **varias** etiquetas, no una sola, y conviene darlas todas ordenadas de lo general a lo particular: «es una matriz cuadrada de orden $3$, y además es nula».
+
+### Ejemplo 1. Clasificación de un grupo de matrices
+
+Clasifiquemos estas cinco:
+
+$$
+A=\begin{pmatrix} -2 & 1 & 0 \end{pmatrix},\quad
+B=\begin{pmatrix} 4 \\ 7 \end{pmatrix},\quad
+C=\begin{pmatrix} 0 & 0 \\ 0 & 0 \\ 0 & 0 \end{pmatrix},\quad
+D=\begin{pmatrix} 1 & 2 & 0 \\ 0 & 4 & 2 \\ 1 & 0 & 1 \end{pmatrix},\quad
+E=\begin{pmatrix} 1 & 0 & 5 \\ 2 & 3 & 6 \end{pmatrix}
+$$
+
+- $A$ tiene una fila y tres columnas: es una **matriz fila** de dimensión $1\times 3$; al ser $1\ne 3$, también es rectangular.
+- $B$ tiene dos filas y una columna: es una **matriz columna** de dimensión $2\times 1$, igualmente rectangular.
+- $C$ tiene tres filas y dos columnas y todos sus elementos valen cero: es una **matriz nula** de dimensión $3\times 2$, y también es rectangular. No es cuadrada, así que no puede llamarse $0_3$; se escribe $0_{3\times 2}$.
+- $D$ tiene tres filas y tres columnas: es una **matriz cuadrada de orden $3$**. Sus elementos no siguen ningún patrón especial, de modo que dentro de las cuadradas no recibe otro nombre.
+- $E$ tiene dos filas y tres columnas: es **rectangular** de dimensión $2\times 3$, y no es ni fila, ni columna, ni nula, ni cuadrada.
+
+### Ejemplo 2. Escribir matrices con condiciones de forma
+
+Escribe un ejemplo de cada una de estas matrices: a) una matriz fila con cuatro columnas; b) una matriz columna con cuatro filas; c) una matriz cuadrada de orden $4$; d) la matriz nula de dimensión $2\times 3$.
+
+a) Ha de tener dimensión $1\times 4$, por ejemplo $\begin{pmatrix} 3 & -1 & 0 & 2 \end{pmatrix}$.
+
+b) Ha de tener dimensión $4\times 1$:
+
+$$
+\begin{pmatrix} 3 \\ -1 \\ 0 \\ 2 \end{pmatrix}
+$$
+
+Es, de hecho, la transpuesta de la anterior.
+
+c) Ha de tener dimensión $4\times 4$, es decir, dieciséis elementos:
+
+$$
+\begin{pmatrix} 1 & 2 & 0 & 1 \\ 0 & 3 & 1 & 1 \\ 2 & 0 & 1 & 3 \\ 1 & 1 & 0 & 2 \end{pmatrix}
+$$
+
+d) La matriz nula de esa dimensión es única:
+
+$$
+0_{2\times 3}=\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+
+Merece la pena notar la diferencia entre los apartados a), b) y c), donde hay **infinitos** ejemplos válidos, y el d), donde solo hay **uno**: fijada la dimensión, la matriz nula está completamente determinada.
+
+### Ejemplo 3. Deducir el tipo a partir de la dimensión de otra matriz
+
+Si $A$ es una matriz de dimensión $3\times 5$, ¿de qué tipo es $A^{t}$? ¿Y qué se puede afirmar de una matriz $B$ tal que $B$ y $B^{t}$ tengan la misma dimensión?
+
+$A$ es rectangular, con más columnas que filas. Su transpuesta tiene dimensión $5\times 3$, luego $A^{t}$ es también rectangular, pero ahora con más filas que columnas. Ninguna de las dos es fila ni columna.
+
+Para la segunda pregunta: si $B$ es $m\times n$, entonces $B^{t}$ es $n\times m$. Que ambas tengan la misma dimensión obliga a que $m=n$, es decir, $B$ ha de ser **cuadrada**. Este pequeño razonamiento es el que justifica que solo las matrices cuadradas puedan ser simétricas: para poder comparar $B$ con $B^{t}$ hace falta, antes que nada, que tengan la misma forma.
+
+### Applet · Clasificador de matrices {.unnumbered}
+
+Escribe una matriz cualquiera, o usa los botones de escenario, y el applet te dirá **todas** las etiquetas que le corresponden, explicando en cada caso por qué sí o por qué no. Prueba a modificar un solo elemento —por ejemplo, romper un cero de una esquina— y observa qué etiquetas se pierden. En el modo reto, intenta adivinar la clasificación antes de destaparla.
+
+::: {#panel-clasifica .applet-panel data-applet-mtx="clasifica"}
+:::
+
+## Errores típicos al clasificar
+
+::: {.callout-caution}
+## Lo que más se falla
+
+**Confundir dimensión con número de elementos.** Una matriz $2\times 3$ y una $3\times 2$ tienen ambas seis elementos y no son del mismo tipo ni se pueden sumar entre sí. La dimensión es un **par** de números y hay que darlo siempre en el orden filas por columnas.
+
+**Llamar cuadrada a una matriz «gorda».** El único criterio es $m=n$. Una matriz $2\times 4$ no es cuadrada ni se le parece, aunque tenga muchos elementos.
+
+**Dar una sola etiqueta.** Las categorías se solapan. Una matriz nula de orden $2$ es nula, cuadrada, diagonal, triangular superior, triangular inferior y simétrica al mismo tiempo. En un ejercicio de clasificación, quedarse corto también resta.
+
+**Decir «la matriz nula» sin indicar la dimensión.** Hay infinitas matrices nulas, una por cada dimensión, y son distintas entre sí. Cuando el contexto no lo aclare, hay que escribir $0_{m\times n}$.
+
+**Transponer «girando» la matriz.** La transposición no es un giro ni una simetría cualquiera: la fila $1$ pasa a ser la columna $1$, la fila $2$ la columna $2$, y así sucesivamente, conservando el orden. Si al transponer inviertes también el orden de los elementos dentro de la fila, el resultado es incorrecto.
+:::
+
+::: {.callout-tip}
+## Para qué sirve cada tipo
+
+**Matriz fila y matriz columna** son la forma matemática de escribir una lista de datos: los precios de varios productos, las coordenadas de un punto, las probabilidades de varios sucesos. En economía, un vector fila de precios multiplicado por un vector columna de cantidades da directamente el gasto total, y ese producto —el de la parte 9— es la operación matricial más elemental que existe.
+
+**Matrices rectangulares** son las tablas de datos: encuestas, producción, notas, ventas. Y son también las matrices de coeficientes de los sistemas de ecuaciones, donde el número de filas es el de ecuaciones y el de columnas el de incógnitas, dos números que no tienen por qué coincidir.
+
+**Matrices cuadradas** son las que describen relaciones de un conjunto consigo mismo —conexiones entre ciudades, transiciones entre estados, enlaces entre páginas web— y las que representan transformaciones geométricas como giros y simetrías. Son las únicas que se pueden elevar a potencias, y por eso son las que aparecen cuando se estudia cómo evoluciona un sistema al repetir un proceso muchas veces: multiplicar $n$ veces por la misma matriz describe el estado tras $n$ etapas.
+
+**La matriz nula** es el punto de partida de todo: el estado «no hay nada», el neutro de la suma, el resultado de restar una matriz de sí misma.
+:::
+
+## Resumen del apartado
+
+- Según su forma, una matriz de dimensión $m\times n$ es **rectangular** si $m\ne n$ y **cuadrada de orden $n$** si $m=n$.
+- Una **matriz fila** tiene dimensión $1\times n$ y una **matriz columna** dimensión $m\times 1$. Ambas son casos particulares de matriz rectangular, salvo la matriz $1\times 1$, que además es cuadrada.
+- Cada fila de una matriz es una matriz fila y cada columna es una matriz columna; sobre esta idea se construye el producto de matrices.
+- La **matriz nula** tiene todos sus elementos iguales a cero; hay una para cada dimensión y se denota $0_{m\times n}$. Es el elemento neutro de la suma.
+- La **matriz transpuesta** $A^{t}$ se obtiene cambiando ordenadamente filas por columnas; si $A$ es $m\times n$, entonces $A^{t}$ es $n\times m$, y $(A^{t})^{t}=A$. Solo las matrices cuadradas tienen la misma dimensión que su transpuesta.
+- Las categorías no son excluyentes: al clasificar hay que dar **todas** las etiquetas que correspondan, y en las pruebas de acceso se valora justificar cada una.
+
+## Ejercicios propuestos
+
+1. Clasifica cada una de estas matrices indicando su dimensión y **todos** los nombres que le correspondan:
+$$
+A=\begin{pmatrix} 7 & 0 & 1 & 2 \end{pmatrix},\quad
+B=\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix},\quad
+C=\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix},\quad
+D=\begin{pmatrix} 1 & 0 & 0 \\ 3 & 1 & 4 \\ 1 & 2 & 0 \\ 0 & 3 & 5 \end{pmatrix},\quad
+E=\begin{pmatrix} 5 \end{pmatrix}.
+$$
+
+2. Escribe, si es posible, un ejemplo de: a) matriz rectangular de orden $3$; b) matriz cuadrada con seis elementos; c) matriz fila que sea también nula; d) matriz cuadrada de orden $2$ que sea a la vez fila.
+
+3. Una matriz tiene $12$ elementos. ¿Qué dimensiones puede tener? ¿En cuáles de esos casos es cuadrada? ¿En cuáles es matriz fila o columna?
+
+4. Escribe la transpuesta de
+$$
+A=\begin{pmatrix} 2 & -1 & 3 & 5 \\ 4 & 2 & 0 & 1 \end{pmatrix}
+$$
+e indica la dimensión de $A$ y la de $A^{t}$.
+
+5. Sea $A$ una matriz de dimensión $4\times 7$. Di, razonando la respuesta, cuál es la dimensión de $A^{t}$, de $(A^{t})^{t}$ y si alguna de las tres matrices puede ser cuadrada.
+
+6. Escribe la matriz de dimensión $3\times 3$ definida por $a_{ij}=0$ para todos los valores de $i$ y $j$, y explica por qué esa matriz cumple simultáneamente varias de las definiciones de este apartado.
+
+7. Cinco ciudades están unidas por líneas de autobús. Explica qué forma tendrá la matriz que registra con un $1$ la existencia de línea directa entre cada par de ciudades y con un $0$ su ausencia, y di de qué tipo es. ¿Qué pasaría si registrásemos, en vez de eso, las líneas entre esas cinco ciudades y tres aeropuertos?
+
+8. Razona si son verdaderas o falsas estas afirmaciones: a) toda matriz nula es cuadrada; b) toda matriz cuadrada de orden $1$ es matriz fila; c) si $A$ es rectangular, $A^{t}$ también lo es; d) dos matrices con el mismo número de elementos tienen la misma dimensión.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $A$ es de dimensión $1\times 4$: matriz **fila** y rectangular. $B$ es $3\times 1$: matriz **columna**, rectangular y además **nula**, $0_{3\times 1}$. $C$ es $2\times 2$: matriz **cuadrada de orden $2$**. $D$ es $4\times 3$: **rectangular**, sin más etiquetas. $E$ es $1\times 1$: es a la vez matriz **fila**, matriz **columna** y matriz **cuadrada de orden $1$**.
+
+**2.** a) No es posible: la palabra «orden» solo se usa con matrices cuadradas, y una matriz cuadrada no es rectangular. Si el enunciado quisiera decir «de dimensión $3\times n$», valdría por ejemplo una $3\times 5$. b) Tampoco es posible: una matriz cuadrada de orden $n$ tiene $n^2$ elementos, y $6$ no es un cuadrado perfecto. c) Sí: $\begin{pmatrix} 0 & 0 & 0 \end{pmatrix}$, la matriz nula $0_{1\times 3}$. d) No es posible: una matriz cuadrada de orden $2$ tiene dos filas, y una matriz fila tiene solo una.
+
+**3.** Las dimensiones posibles son las parejas cuyo producto es $12$: $1\times 12$, $2\times 6$, $3\times 4$, $4\times 3$, $6\times 2$ y $12\times 1$. Ninguna es cuadrada, porque $12$ no es un cuadrado perfecto. Es matriz fila en el caso $1\times 12$ y matriz columna en el caso $12\times 1$.
+
+**4.** Intercambiando filas por columnas:
+$$
+A^{t}=\begin{pmatrix} 2 & 4 \\ -1 & 2 \\ 3 & 0 \\ 5 & 1 \end{pmatrix}
+$$
+$A$ tiene dimensión $2\times 4$ y $A^{t}$ tiene dimensión $4\times 2$.
+
+**5.** $A^{t}$ tiene dimensión $7\times 4$, porque al transponer se intercambian filas y columnas. $(A^{t})^{t}$ vuelve a tener dimensión $4\times 7$, es decir, es la propia $A$. Ninguna puede ser cuadrada, ya que $4\ne 7$: una matriz y su transpuesta solo tienen la misma dimensión cuando la matriz de partida es cuadrada.
+
+**6.** La matriz es
+$$
+0_3=\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+Es **nula**, porque todos sus elementos valen cero, y es **cuadrada de orden $3$**, porque tiene tantas filas como columnas. Cuando estudiemos la parte 4 comprobarás que también es diagonal, triangular superior y triangular inferior, ya que todas las condiciones de esos tipos se refieren a que ciertos elementos sean cero, y aquí lo son todos.
+
+**7.** Como se relacionan las cinco ciudades consigo mismas, filas y columnas representan el mismo conjunto: la matriz tiene cinco filas y cinco columnas, es decir, es **cuadrada de orden $5$**. Además, como la existencia de línea entre dos ciudades no depende del sentido, coincidirá con su transpuesta, y su diagonal principal será de ceros si no se cuentan las líneas de una ciudad consigo misma. Si en cambio cruzamos cinco ciudades con tres aeropuertos, filas y columnas describen conjuntos distintos y la matriz sería **rectangular** de dimensión $5\times 3$.
+
+**8.** a) **Falsa**: hay matrices nulas de cualquier dimensión, como $0_{2\times 3}$. b) **Verdadera**: una matriz $1\times 1$ tiene una sola fila, luego es matriz fila (y también columna). c) **Falsa** en general en cuanto al aspecto, pero **verdadera** como afirmación: si $A$ es $m\times n$ con $m\ne n$, entonces $A^{t}$ es $n\times m$ y sigue cumpliendo que sus dos dimensiones son distintas, luego también es rectangular. d) **Falsa**: $\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}$ y $\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$ tienen tres elementos cada una y dimensiones $1\times 3$ y $3\times 1$.
+:::

@@ -1,0 +1,458 @@
+---
+title: "Tema 1.16 Ecuaciones matriciales"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 16 de 17)"
+filename: 16-ecuaciones-matriciales
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Concepto de ecuación matricial, por qué no existe la división de matrices y cómo se sustituye por el producto por la matriz inversa eligiendo el lado correcto, resolución razonada de los tipos AX=B, XA=B y AX+B=C, casos mixtos como AXB=C y ecuaciones con la incógnita en los dos miembros, dimensiones de la matriz incógnita, comprobación obligatoria de la solución y ejemplos completos resueltos paso a paso, con applets manipulables.
+categories: [matrices, álgebra, 2 Batx, matemáticas CCSS, ecuaciones matriciales, matriz inversa, despeje, producto de matrices]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Ecuaciones cuyas incógnitas son matrices
+
+Hasta ahora las incógnitas de tus ecuaciones habían sido números. En este apartado la incógnita es **una matriz entera**: un objeto con varias filas y varias columnas, todas ellas desconocidas a la vez. Una **ecuación matricial** es una igualdad entre expresiones formadas por matrices en la que aparece una matriz incógnita, que llamaremos $X$, y resolverla consiste en **despejar $X$**.
+
+El planteamiento se parece mucho al de una ecuación de primer grado, y esa semejanza es la mejor guía. Con números, para resolver $3x = 12$ se multiplica por el inverso de $3$; con matrices, para resolver $A\cdot X = B$ se multiplicará por $A^{-1}$. Pero hay dos diferencias que convierten este tema en un examen de todo lo aprendido:
+
+- **No existe la división de matrices.** No hay ninguna operación $B/A$, ni $\dfrac{B}{A}$, ni nada parecido. Lo único disponible es multiplicar por la inversa.
+- **El producto de matrices no es conmutativo.** Por tanto multiplicar por $A^{-1}$ **por la izquierda** y multiplicar por $A^{-1}$ **por la derecha** son dos operaciones distintas, y solo una de ellas resuelve cada ecuación.
+
+Esa segunda observación es la clave de todo el apartado. Casi todos los errores que se cometen aquí consisten en multiplicar por el lado equivocado, y todos son evitables con un razonamiento de dos segundos.
+
+::: {.callout-important}
+## Por qué hay que elegir el lado
+
+Supón que quieres resolver $A\cdot X = B$ con $A$ regular. Como $A$ multiplica a $X$ **por la izquierda**, para que $A^{-1}$ se junte con $A$ y produzca la identidad hay que colocar $A^{-1}$ **también por la izquierda**:
+$$
+A^{-1}\cdot (A\cdot X) = A^{-1}\cdot B \implies (A^{-1}\cdot A)\cdot X = A^{-1}\cdot B \implies I\cdot X = A^{-1}\cdot B \implies X = A^{-1}\cdot B .
+$$
+Si en cambio multiplicáramos por la derecha, obtendríamos $A\cdot X\cdot A^{-1}$, donde $A^{-1}$ **no toca a $A$**: no se cancela nada y la ecuación queda peor que antes.
+
+La regla es siempre la misma: **$A^{-1}$ debe quedar pegado a $A$**, y para eso hay que multiplicar por el mismo lado por el que $A$ está pegado a $X$. Y una precaución imprescindible: al multiplicar los dos miembros de una igualdad matricial, hay que hacerlo **por el mismo lado en los dos**. Multiplicar a la izquierda en uno y a la derecha en el otro no es una operación válida.
+:::
+
+::: {.callout-note}
+## Preguntas previas a cualquier despeje
+
+Antes de operar, comprueba tres cosas. Ahorran mucho tiempo perdido.
+
+1. **¿La matriz que hay que invertir es cuadrada?** Si no lo es, no tiene inversa y el problema exige otro método (por ejemplo, escribir $X$ con incógnitas y resolver el sistema).
+2. **¿Es regular?** Calcula su rango o su $ad-bc$ si es de orden $2$. Si es singular, no hay despeje posible con inversas: hay que discutir el problema por otro camino.
+3. **¿Qué dimensiones tiene $X$?** Se deducen de la compatibilidad del producto. En $A_{n\times n}\cdot X = B_{n\times p}$ la matriz $X$ es $n\times p$. En $X\cdot A_{n\times n} = B_{m\times n}$ es $m\times n$. Indicarlo evita disparates y en las pruebas se valora.
+:::
+
+## El tipo $A\cdot X = B$
+
+::: {.callout-note}
+## Despeje del tipo $A\cdot X = B$
+
+Si $A$ es regular, se multiplican los dos miembros por $A^{-1}$ **por la izquierda**:
+$$
+A\cdot X = B \implies A^{-1}A\cdot X = A^{-1}B \implies I\cdot X = A^{-1}B \implies \boxed{X = A^{-1}\cdot B}
+$$
+El resultado es $A^{-1}\cdot B$, **en ese orden**. Escribir $B\cdot A^{-1}$ es otra matriz distinta y es un error.
+:::
+
+### Ejemplo resuelto 1
+
+Resuelve $A\cdot X = B$ con $A = \begin{pmatrix} 2 & 1 \\ 3 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$.
+
+**Paso 1. Comprobar que $A$ es regular.** $ad-bc = 4-3 = 1 \neq 0$, así que $A$ tiene inversa y el despeje es legítimo.
+
+**Paso 2. Calcular $A^{-1}$** con la fórmula del orden $2$:
+$$
+A^{-1} = \frac{1}{1}\begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}.
+$$
+
+**Paso 3. Despejar.** Como $A$ multiplica a $X$ por la izquierda, multiplicamos por la izquierda: $X = A^{-1}\cdot B$.
+
+**Paso 4. Calcular el producto.**
+$$
+X = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}\cdot\begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}
+= \begin{pmatrix} 2-1 & 0-1 \\ -3+2 & 0+2 \end{pmatrix}
+= \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}.
+$$
+
+**Paso 5. Comprobar.** Sustituimos en la ecuación original:
+$$
+A\cdot X = \begin{pmatrix} 2 & 1 \\ 3 & 2\end{pmatrix}\cdot\begin{pmatrix} 1 & -1 \\ -1 & 2\end{pmatrix}
+= \begin{pmatrix} 2-1 & -2+2 \\ 3-2 & -3+4\end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix} = B . \quad\checkmark
+$$
+
+### Ejemplo resuelto 2 · Con una matriz de orden 3 y $B$ columna
+
+Resuelve $A\cdot X = B$ con
+$$
+A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}.
+$$
+La inversa de esta matriz se calculó en el apartado anterior por Gauss-Jordan:
+$$
+A^{-1} = \frac12\begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1 \end{pmatrix}.
+$$
+Como $A$ es $3\times 3$ y $B$ es $3\times 1$, la incógnita $X$ es una matriz **columna** $3\times 1$. Entonces
+$$
+X = A^{-1}\cdot B = \frac12\begin{pmatrix} 1 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 1 \end{pmatrix}\cdot\begin{pmatrix} 1 \\ 2 \\ 3\end{pmatrix}
+= \frac12\begin{pmatrix} 1+2-3 \\ 1-2+3 \\ -1+2+3 \end{pmatrix}
+= \frac12\begin{pmatrix} 0 \\ 2 \\ 4\end{pmatrix}
+= \begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}.
+$$
+**Comprobación:** $A\cdot X = \begin{pmatrix} 0+1+0 \\ 0+0+2 \\ 0+1+2\end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3\end{pmatrix} = B$. Correcto.
+
+::: {.callout-tip}
+## Esta ecuación ya la conocías
+
+Fíjate en lo que acabamos de hacer. Si $X = \begin{pmatrix} x \\ y \\ z\end{pmatrix}$, la ecuación $A\cdot X = B$ del ejemplo 2 es exactamente el sistema
+$$
+\left\{\begin{array}{rcl} x + y & = & 1 \\ x + z & = & 2 \\ y + z & = & 3 \end{array}\right.
+$$
+y la solución $x=0$, $y=1$, $z=2$ se puede comprobar directamente en él. Es decir: **todo sistema de ecuaciones lineales es una ecuación matricial del tipo $A\cdot X = B$**, y cuando la matriz de coeficientes es regular, el sistema se resuelve de golpe con $X = A^{-1}B$. Esa fórmula es la puerta de entrada al tema de sistemas, donde volverá a aparecer con más herramientas.
+:::
+
+## El tipo $X\cdot A = B$
+
+::: {.callout-note}
+## Despeje del tipo $X\cdot A = B$
+
+Aquí $A$ multiplica a $X$ **por la derecha**, así que hay que multiplicar los dos miembros por $A^{-1}$ **por la derecha**:
+$$
+X\cdot A = B \implies X\cdot A\cdot A^{-1} = B\cdot A^{-1} \implies X\cdot I = B\cdot A^{-1} \implies \boxed{X = B\cdot A^{-1}}
+$$
+Ahora la inversa va **detrás**. Compara los dos resultados y guárdalos juntos en la memoria:
+$$
+A\cdot X = B \implies X = A^{-1}B, \qquad X\cdot A = B \implies X = BA^{-1}.
+$$
+:::
+
+### Ejemplo resuelto 3 · Los mismos datos, otra ecuación
+
+Resuelve $X\cdot A = B$ con las **mismas** matrices del ejemplo 1: $A = \begin{pmatrix} 2 & 1 \\ 3 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$.
+
+Ya sabemos que $A^{-1} = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}$. Ahora el despeje es $X = B\cdot A^{-1}$:
+$$
+X = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}\cdot\begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}
+= \begin{pmatrix} 2+0 & -1+0 \\ 2-3 & -1+2\end{pmatrix}
+= \begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}.
+$$
+**Comprobación:**
+$$
+X\cdot A = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}\cdot\begin{pmatrix} 2 & 1 \\ 3 & 2\end{pmatrix}
+= \begin{pmatrix} 4-3 & 2-2 \\ -2+3 & -1+2\end{pmatrix}
+= \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix} = B . \quad\checkmark
+$$
+
+**La moraleja del ejemplo.** Con los mismos datos $A$ y $B$, las dos ecuaciones dan resultados **distintos**:
+$$
+A\cdot X = B \implies X = \begin{pmatrix} 1 & -1 \\ -1 & 2\end{pmatrix},
+\qquad
+X\cdot A = B \implies X = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}.
+$$
+No hay ninguna ambigüedad ni ninguna «forma equivalente»: son dos problemas diferentes con dos soluciones diferentes. Por eso lo primero que hay que mirar en el enunciado es **dónde está la $X$**, si delante o detrás.
+
+## El tipo $A\cdot X + B = C$
+
+::: {.callout-note}
+## Despeje del tipo $A\cdot X + B = C$
+
+Se resuelve en dos etapas. Primero se aísla el término que contiene la incógnita usando la **suma**, que sí se comporta como la de los números:
+$$
+A\cdot X + B = C \implies A\cdot X = C - B .
+$$
+Y después se aplica el despeje del primer tipo:
+$$
+\boxed{X = A^{-1}\cdot (C-B)}
+$$
+El **paréntesis es obligatorio**: la inversa multiplica a la matriz $C-B$ completa. Escribir $A^{-1}C - B$ es un error grave, porque solo el primer término quedaría multiplicado.
+:::
+
+Del mismo modo, la ecuación $X\cdot A + B = C$ se convierte en $X\cdot A = C-B$ y su solución es $X = (C-B)\cdot A^{-1}$, con la inversa detrás.
+
+Un detalle práctico: en general **conviene calcular primero la matriz $C-B$**, que es una simple resta, y solo después multiplicar por la inversa. Así se hace un único producto de matrices en lugar de dos, y hay menos ocasiones de equivocarse.
+
+### Ejemplo resuelto 4
+
+Resuelve $A\cdot X + B = C$ con
+$$
+A = \begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}, \qquad
+C = \begin{pmatrix} 3 & 2 \\ 4 & 5\end{pmatrix}.
+$$
+
+**Paso 1. Aislar el término con la incógnita.**
+$$
+A\cdot X = C - B = \begin{pmatrix} 3 & 2 \\ 4 & 5\end{pmatrix} - \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 4 & 4\end{pmatrix}.
+$$
+
+**Paso 2. Comprobar que $A$ es regular y calcular su inversa.** $ad-bc = 3-2 = 1$, luego
+$$
+A^{-1} = \begin{pmatrix} 3 & -2 \\ -1 & 1\end{pmatrix}.
+$$
+
+**Paso 3. Multiplicar por la izquierda.**
+$$
+X = A^{-1}(C-B) = \begin{pmatrix} 3 & -2 \\ -1 & 1\end{pmatrix}\cdot\begin{pmatrix} 2 & 2 \\ 4 & 4\end{pmatrix}
+= \begin{pmatrix} 6-8 & 6-8 \\ -2+4 & -2+4\end{pmatrix}
+= \begin{pmatrix} -2 & -2 \\ 2 & 2 \end{pmatrix}.
+$$
+
+**Paso 4. Comprobar en la ecuación original**, que es lo que de verdad valida el resultado:
+$$
+A\cdot X + B = \begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix}\cdot\begin{pmatrix} -2 & -2 \\ 2 & 2\end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}
+= \begin{pmatrix} 2 & 2 \\ 4 & 4\end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}
+= \begin{pmatrix} 3 & 2 \\ 4 & 5\end{pmatrix} = C . \quad\checkmark
+$$
+
+Un aviso sobre los coeficientes numéricos: si la ecuación fuese $A\cdot X + 3B = C$, el primer paso sería $A\cdot X = C - 3B$, y hay que multiplicar por $3$ **todos** los elementos de $B$ antes de restar. Y si fuese $2A\cdot X = C$, se puede despejar como $X = \tfrac12 A^{-1}C$, porque los números salen y entran libremente en el producto de matrices.
+
+## Casos mixtos
+
+Los tres tipos anteriores son los del temario, pero en las pruebas aparecen combinaciones que se resuelven con las mismas dos ideas: **aislar el término de la incógnita** y **multiplicar por el lado correcto**.
+
+::: {.callout-note}
+## Ecuaciones con matrices a los dos lados: $A\cdot X\cdot B = C$
+
+Aquí la incógnita está atrapada entre dos matrices, así que hay que quitar una por la izquierda y otra por la derecha. Si $A$ y $B$ son regulares:
+$$
+A\cdot X\cdot B = C
+\implies A^{-1}A\cdot X\cdot B = A^{-1}C
+\implies X\cdot B = A^{-1}C
+\implies \boxed{X = A^{-1}\cdot C\cdot B^{-1}}
+$$
+El orden de los tres factores es rígido: $A^{-1}$ delante, porque $A$ estaba delante, y $B^{-1}$ detrás, porque $B$ estaba detrás. Los dos pasos se pueden hacer en cualquier orden, pero cada uno por su lado.
+:::
+
+### Ejemplo resuelto 5 · Tipo $A\cdot X\cdot B = C$
+
+Resuelve $A\cdot X\cdot B = C$ con
+$$
+A = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}, \qquad
+B = \begin{pmatrix} 2 & 0 \\ 0 & 1\end{pmatrix}, \qquad
+C = \begin{pmatrix} 4 & 3 \\ 2 & 1\end{pmatrix}.
+$$
+Las dos matrices son regulares: para $A$, $ad-bc = 1$; para $B$, $ad-bc = 2$. Sus inversas son
+$$
+A^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1\end{pmatrix},
+\qquad
+B^{-1} = \begin{pmatrix} \tfrac12 & 0 \\[2pt] 0 & 1\end{pmatrix}.
+$$
+Calculamos $X = A^{-1}\cdot C\cdot B^{-1}$ en dos etapas, empezando por la izquierda:
+$$
+A^{-1}\cdot C = \begin{pmatrix} 1 & -1 \\ 0 & 1\end{pmatrix}\cdot\begin{pmatrix} 4 & 3 \\ 2 & 1\end{pmatrix}
+= \begin{pmatrix} 4-2 & 3-1 \\ 2 & 1\end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 1\end{pmatrix},
+$$
+$$
+X = \begin{pmatrix} 2 & 2 \\ 2 & 1\end{pmatrix}\cdot\begin{pmatrix} \tfrac12 & 0 \\[2pt] 0 & 1\end{pmatrix}
+= \begin{pmatrix} 1 & 2 \\ 1 & 1\end{pmatrix}.
+$$
+**Comprobación:** $A\cdot X = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}\begin{pmatrix} 1 & 2 \\ 1 & 1\end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 1 & 1\end{pmatrix}$, y multiplicando por $B$ por la derecha se obtiene $\begin{pmatrix} 4 & 3 \\ 2 & 1\end{pmatrix} = C$. Correcto.
+
+### La incógnita en los dos miembros: $A\cdot X = X + B$
+
+Cuando $X$ aparece a los dos lados hay que agruparla, y aquí surge el error más elegante del tema. Se pasa todo lo que lleva $X$ a un miembro:
+$$
+A\cdot X - X = B .
+$$
+Y ahora hay que sacar factor común. La tentación es escribir $(A-1)X$, pero **$1$ no es una matriz** y esa expresión no significa nada. El factor común correcto usa la identidad, porque $X = I\cdot X$:
+$$
+A\cdot X - I\cdot X = B \implies (A - I)\cdot X = B \implies X = (A-I)^{-1}\cdot B ,
+$$
+siempre que $A-I$ sea regular. Con datos concretos: si $A = \begin{pmatrix} 2 & 1 \\ 1 & 3\end{pmatrix}$ y $B = I_2$, entonces
+$$
+A - I = \begin{pmatrix} 1 & 1 \\ 1 & 2\end{pmatrix}, \qquad ad-bc = 1, \qquad (A-I)^{-1} = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix},
+$$
+y por tanto $X = (A-I)^{-1}\cdot I = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}$. Comprobación: $A\cdot X = \begin{pmatrix} 3 & -1 \\ -1 & 2\end{pmatrix}$ y $X + B = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix} + I = \begin{pmatrix} 3 & -1 \\ -1 & 2\end{pmatrix}$. Coinciden.
+
+::: {.callout-warning}
+## Cuando no se puede despejar con inversas
+
+Si la matriz que multiplica a la incógnita es **singular** o **no cuadrada**, el método de la inversa no sirve. Entonces se recurre al **método de las incógnitas**: se escribe $X$ con letras, se efectúan los productos y se plantea el sistema elemento a elemento. Ese camino siempre funciona, y además revela lo que la inversa esconde: la ecuación puede tener **una solución, ninguna o infinitas**, exactamente como un sistema lineal cualquiera.
+
+Por ejemplo, para $\begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}\cdot X = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$ con $X = \begin{pmatrix} x & y \\ z & t\end{pmatrix}$ salen las condiciones $x+z=1$ y $x+z = 0$ a la vez: no hay solución. Es coherente con lo que ya sabes, porque esa matriz de coeficientes tiene rango $1$ y es singular.
+:::
+
+### Applet · Resolutor de ecuaciones matriciales {.unnumbered}
+
+Elige el tipo de ecuación —$AX=B$, $XA=B$, $AX+B=C$, $XA+B=C$ o $AXB=C$—, escribe las matrices y el panel desarrolla el despeje razonado paso a paso, explicando en cada uno por qué se multiplica por la inversa por la izquierda o por la derecha, calculando la solución y comprobándola en la ecuación original. Presta atención a lo que ocurre al cambiar solo el tipo de ecuación manteniendo las mismas matrices: la solución cambia, y ese contraste es justo lo que hay que tener claro.
+
+::: {#panel-ecuacionMatricial .applet-panel data-applet-mtx="ecuacionMatricial"}
+:::
+
+### Applet · Entrenador de despeje {.unnumbered}
+
+Este panel no calcula: pregunta. Plantea cuestiones de opción múltiple sobre cuál es el paso siguiente al despejar una ecuación matricial y corrige cada respuesta explicando el error concreto —dividir matrices, multiplicar por el lado equivocado, invertir el orden del producto o sacar factor común con un $1$ en lugar de la identidad—. Úsalo antes de los ejercicios largos: casi todos los fallos en este tema son de decisión, no de cálculo.
+
+::: {#panel-despeja .applet-panel data-applet-mtx="despeja"}
+:::
+
+## Protocolo de resolución
+
+::: {.callout-note}
+## Cinco pasos que conviene seguir siempre
+
+1. **Identifica el tipo.** ¿Dónde está la $X$: delante, detrás o en medio? ¿Hay algún término suelto que sumar o restar?
+2. **Aísla el término con la incógnita** con sumas y restas, sin tocar todavía las inversas. Recuerda los paréntesis.
+3. **Comprueba que la matriz que hay que invertir es cuadrada y regular**, y calcula su inversa por el método más cómodo: fórmula rápida en el orden $2$, Gauss-Jordan en el orden $3$.
+4. **Multiplica por el lado correcto**, el mismo en los dos miembros, y escribe el producto en el orden que salga del despeje.
+5. **Comprueba la solución** sustituyendo en la ecuación **original**, no en una intermedia. Si no da la igualdad, hay un error que localizar.
+
+Escribir el despeje simbólico antes de meter números —«$X = A^{-1}(C-B)$»— es la mejor costumbre posible: separa la decisión del cálculo y permite ganar la parte conceptual del ejercicio incluso si una multiplicación sale mal.
+:::
+
+::: {.callout-caution}
+## Errores típicos
+
+1. **Dividir matrices**: escribir $X = \dfrac{B}{A}$. Esa operación no existe.
+2. **Multiplicar por el lado equivocado**: dar $X = BA^{-1}$ cuando la ecuación era $AX = B$.
+3. **Invertir el orden del producto** en el resultado. $A^{-1}B$ y $BA^{-1}$ son matrices distintas.
+4. **Olvidar el paréntesis** y escribir $X = A^{-1}C - B$ en lugar de $X = A^{-1}(C-B)$.
+5. **Sacar factor común con un $1$**: escribir $(A-1)X$ en vez de $(A-I)X$. Solo se pueden restar matrices del mismo orden.
+6. **No verificar que la matriz es regular** antes de invertirla, y despejar con una inversa que no existe.
+7. **Multiplicar por la izquierda en un miembro y por la derecha en el otro.** No es una transformación válida.
+8. **Cancelar matrices**: pasar de $AX = AY$ a $X=Y$ sin comprobar que $A$ es regular. Sin esa hipótesis la cancelación es falsa.
+9. **Aplicar mal la transposición**: en una ecuación con $A^t$, recuerda que $(A^t)^{-1} = (A^{-1})^t$ y que $(AB)^t = B^tA^t$.
+10. **No comprobar la solución.** Es el paso que detecta todo lo anterior y el que menos cuesta.
+:::
+
+::: {.callout-tip}
+## Dónde aparece esto fuera de clase
+
+Una ecuación matricial es la forma compacta de escribir muchas ecuaciones a la vez, y por eso aparece siempre que hay que resolver un montón de problemas con la misma estructura. En el modelo económico de entradas y salidas entre sectores productivos, la producción necesaria para cubrir una demanda $D$ se obtiene resolviendo $X = A\cdot X + D$, es decir $(I-A)\cdot X = D$, cuya solución es $X = (I-A)^{-1}D$: exactamente el caso de la incógnita en los dos miembros que hemos visto.
+
+En criptografía clásica, cifrar un mensaje consiste en multiplicar bloques de números por una matriz regular $A$; descifrar es resolver $A\cdot X = C$ para recuperar el texto original, y quien no conozca $A^{-1}$ no puede hacerlo. Y en los gráficos por ordenador, encontrar la transformación que lleva una figura a otra posición conocida es resolver una ecuación matricial del tipo $A\cdot X\cdot B = C$.
+
+En todos los casos la moraleja es la misma: la inversa es la operación de **deshacer**, y las ecuaciones matriciales son la forma de preguntar «¿qué había antes?».
+:::
+
+## Resumen del apartado
+
+Una **ecuación matricial** es una igualdad entre expresiones con matrices en la que la incógnita $X$ es una matriz. Como **no existe la división de matrices**, la única herramienta disponible es **multiplicar por la matriz inversa**, y como el producto **no es conmutativo**, hay que elegir el lado: la inversa debe quedar pegada a la matriz que se quiere eliminar.
+
+Los tres tipos básicos y sus despejes son:
+
+| ecuación | se multiplica por $A^{-1}$… | solución |
+|---|---|---|
+| $A\cdot X = B$ | por la **izquierda** | $X = A^{-1}\cdot B$ |
+| $X\cdot A = B$ | por la **derecha** | $X = B\cdot A^{-1}$ |
+| $A\cdot X + B = C$ | por la **izquierda**, tras aislar | $X = A^{-1}\cdot (C-B)$ |
+
+A ellos se añaden los casos mixtos: $X\cdot A + B = C$ con solución $X = (C-B)\cdot A^{-1}$; el tipo $A\cdot X\cdot B = C$, que exige quitar una matriz por cada lado y da $X = A^{-1}\cdot C\cdot B^{-1}$; y las ecuaciones con la incógnita en los dos miembros, como $A\cdot X = X+B$, que se resuelven sacando factor común **con la identidad**, $(A-I)\cdot X = B$.
+
+Antes de despejar hay que verificar que la matriz que se va a invertir es **cuadrada y regular** y deducir las **dimensiones** de $X$. Si la matriz es singular, el camino de la inversa se cierra y hay que escribir $X$ con incógnitas y resolver el sistema resultante, que puede tener una solución, ninguna o infinitas. Y la **comprobación** en la ecuación original nunca es opcional: es la parte del ejercicio que garantiza que todo lo demás está bien.
+
+Este apartado cierra el recorrido del tema, porque reúne todo lo anterior: dimensiones, producto, transposición, rango e inversa trabajando juntos en un mismo ejercicio.
+
+## Ejercicios propuestos
+
+**1 (básico).** Resuelve $A\cdot X = B$ con $A = \begin{pmatrix} 3 & 1 \\ 5 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}$, y comprueba la solución.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$ad-bc = 6-5 = 1$, luego $A^{-1} = \begin{pmatrix} 2 & -1 \\ -5 & 3\end{pmatrix}$ y
+$$
+X = A^{-1}B = \begin{pmatrix} 2 & -1 \\ -5 & 3\end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 2 & 3 \\ -5 & -7\end{pmatrix}.
+$$
+Comprobación: $A\cdot X = \begin{pmatrix} 6-5 & 9-7 \\ 10-10 & 15-14\end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix} = B$.
+:::
+
+**2 (básico).** Con las mismas matrices del ejercicio 1, resuelve ahora $X\cdot A = B$. ¿Sale lo mismo?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+X = B\cdot A^{-1} = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}\begin{pmatrix} 2 & -1 \\ -5 & 3\end{pmatrix} = \begin{pmatrix} 2-10 & -1+6 \\ -5 & 3\end{pmatrix} = \begin{pmatrix} -8 & 5 \\ -5 & 3\end{pmatrix}.
+$$
+No sale lo mismo, y no tiene por qué: son ecuaciones distintas porque el producto no es conmutativo. Comprobación: $X\cdot A = \begin{pmatrix} -24+25 & -8+10 \\ -15+15 & -5+6\end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix} = B$.
+:::
+
+**3 (básico).** Sin hacer cálculos, indica el despeje correcto de cada ecuación: $X\cdot A = B$; $A\cdot X + C = B$; $A\cdot X\cdot B = C$; $X\cdot A - B = C$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$X = B\cdot A^{-1}$; $X = A^{-1}\cdot(B-C)$; $X = A^{-1}\cdot C\cdot B^{-1}$; $X = (C+B)\cdot A^{-1}$.
+
+En todos los casos la inversa va del lado por el que la matriz multiplicaba a $X$, y los paréntesis agrupan la matriz completa que queda en el otro miembro.
+:::
+
+**4 (medio).** Resuelve $A\cdot X + B = C$ con $A = \begin{pmatrix} 2 & 1 \\ 1 & 1\end{pmatrix}$, $B = \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}$ y $C = \begin{pmatrix} 3 & 2 \\ 2 & 2\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$C - B = \begin{pmatrix} 2 & 1 \\ 1 & 1\end{pmatrix}$, que es precisamente $A$. Como $ad-bc = 2-1 = 1$, se tiene $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2\end{pmatrix}$ y
+$$
+X = A^{-1}(C-B) = A^{-1}A = I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}.
+$$
+Comprobación: $A\cdot I + B = A + B = \begin{pmatrix} 3 & 2 \\ 2 & 2\end{pmatrix} = C$.
+:::
+
+**5 (medio).** Resuelve $X\cdot A - B = 2B$ con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primero se aísla: $X\cdot A = 3B = \begin{pmatrix} 3 & 0 \\ 3 & 3\end{pmatrix}$. Como $ad-bc = 1$, $A^{-1} = \begin{pmatrix} 1 & -2 \\ 0 & 1\end{pmatrix}$, y multiplicando por la derecha:
+$$
+X = 3B\cdot A^{-1} = \begin{pmatrix} 3 & 0 \\ 3 & 3\end{pmatrix}\begin{pmatrix} 1 & -2 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 3 & -6 \\ 3 & -3\end{pmatrix}.
+$$
+Comprobación: $X\cdot A = \begin{pmatrix} 3 & 6-6 \\ 3 & 6-3\end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 3 & 3\end{pmatrix}$, y restando $B$ queda $\begin{pmatrix} 2 & 0 \\ 2 & 2\end{pmatrix} = 2B$.
+:::
+
+**6 (medio).** Resuelve $A\cdot X\cdot B = C$ con $A = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$, $B = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}$ y $C = \begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A^{-1} = \begin{pmatrix} 1 & 0 \\ -1 & 1\end{pmatrix}$ y $B^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1\end{pmatrix}$, porque en los dos casos $ad-bc = 1$.
+$$
+A^{-1}C = \begin{pmatrix} 1 & 0 \\ -1 & 1\end{pmatrix}\begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix},
+\qquad
+X = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}\begin{pmatrix} 1 & -1 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}.
+$$
+Comprobación: $A\cdot X = \begin{pmatrix} 1 & 1 \\ 1 & 2\end{pmatrix}$ y multiplicando por $B$ por la derecha sale $\begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix} = C$.
+:::
+
+**7 (avanzado).** Resuelve $A\cdot X = X + B$ con $A = \begin{pmatrix} 3 & 1 \\ 0 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Agrupando la incógnita con el factor común correcto: $(A-I)\cdot X = B$, con
+$$
+A - I = \begin{pmatrix} 2 & 1 \\ 0 & 1\end{pmatrix}, \qquad ad-bc = 2 \neq 0,
+\qquad (A-I)^{-1} = \frac12\begin{pmatrix} 1 & -1 \\ 0 & 2\end{pmatrix}.
+$$
+Como $B = I$, la solución es $X = (A-I)^{-1} = \begin{pmatrix} \tfrac12 & -\tfrac12 \\[2pt] 0 & 1\end{pmatrix}$.
+
+Comprobación: $A\cdot X = \begin{pmatrix} \tfrac32 & -\tfrac32+1 \\[2pt] 0 & 2\end{pmatrix} = \begin{pmatrix} \tfrac32 & -\tfrac12 \\[2pt] 0 & 2\end{pmatrix}$, y $X+B = \begin{pmatrix} \tfrac32 & -\tfrac12 \\[2pt] 0 & 2\end{pmatrix}$. Coinciden.
+:::
+
+**8 (avanzado).** Justifica que la ecuación $\begin{pmatrix} 2 & 4 \\ 1 & 2\end{pmatrix}\cdot X = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$ no tiene solución.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La matriz de la izquierda tiene $ad-bc = 4-4 = 0$, es singular y no se puede invertir, así que el despeje habitual no sirve. Recurrimos al método de las incógnitas con $X = \begin{pmatrix} x & y \\ z & t\end{pmatrix}$:
+$$
+\begin{pmatrix} 2x+4z & 2y+4t \\ x+2z & y+2t \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}.
+$$
+De la primera columna sale $2x+4z = 1$ y $x+2z = 0$; multiplicando la segunda por $2$ se obtiene $2x+4z = 0$, en contradicción con $2x+4z=1$. El sistema es incompatible y la ecuación **no tiene solución**.
+
+Era previsible: si existiera $X$ con $A\cdot X = I$, la matriz $A$ tendría inversa, y su rango es $1 < 2$.
+:::

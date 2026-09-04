@@ -1,0 +1,468 @@
+---
+title: "Tema 1.5 Matriz transpuesta"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 5 de 17)"
+filename: 05-matriz-transpuesta
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de la matriz transpuesta de una matriz, notación, cómo se obtiene cambiando filas por columnas, dimensión del resultado, comportamiento de la diagonal principal, propiedades de la transposición con sus justificaciones, la doble transposición, la transpuesta de una suma y de un producto por un número, el adelanto de la transpuesta de un producto con la inversión del orden de los factores, ejemplos resueltos paso a paso, errores típicos y ejercicios con solución.
+categories: [matrices, transpuesta, álgebra, 2 Batx, matemáticas CCSS, propiedades]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La misma información leída al revés
+
+Imagina una tabla en la que las filas son tres tiendas y las columnas son cuatro productos, y en cada casilla aparece cuántas unidades se han vendido. Es una matriz de dimensión $3\times 4$. Ahora imagina que el departamento de producción quiere la misma información pero organizada al revés: una fila por producto y una columna por tienda. Nadie ha medido nada nuevo, nadie ha calculado nada: simplemente se ha girado la tabla. Ese giro, que en la práctica de una hoja de cálculo se hace con un solo clic, tiene nombre propio en el álgebra de matrices y es la operación más sencilla de todo el tema.
+
+Se llama **transposición**, y aunque parezca un mero cambio de formato, resulta ser una pieza esencial. De ella nacen dos tipos de matrices muy importantes —las simétricas y las antisimétricas, que estudiaremos en el apartado siguiente—, aparece de nuevo al calcular inversas mediante determinantes y es la operación que relaciona el rango por filas con el rango por columnas. Conviene, por tanto, dominarla bien desde el principio, porque va a estar presente en el resto del tema.
+
+::: {.callout-note}
+## Definición: matriz transpuesta
+
+Dada una matriz $A$ de dimensión $m\times n$, se llama **matriz transpuesta de $A$**, y se representa por $A^t$, a la matriz de dimensión $n\times m$ que se obtiene al cambiar en $A$ las filas por las columnas (o, lo que es lo mismo, las columnas por las filas).
+
+En términos de elementos, la definición cabe en un renglón:
+
+$$
+\text{si } A = (a_{ij}) \quad\text{entonces}\quad A^t = (a_{ji})
+$$
+
+Es decir: el elemento que ocupaba la posición $(i,j)$ en $A$ pasa a ocupar la posición $(j,i)$ en $A^t$.
+:::
+
+Merece la pena detenerse un momento en las dos consecuencias inmediatas de esta definición, porque son las que permiten detectar errores de bulto sin hacer ninguna cuenta.
+
+**La dimensión se da la vuelta.** Si $A$ tiene $m$ filas y $n$ columnas, entonces $A^t$ tiene $n$ filas y $m$ columnas. Una matriz $2\times 5$ se transpone en una $5\times 2$. Solo hay un caso en el que la dimensión no cambia: cuando $A$ es cuadrada, es decir, cuando $m=n$. Por eso la transposición de matrices cuadradas es especialmente interesante, y por eso solo tiene sentido preguntarse si una matriz coincide con su transpuesta cuando es cuadrada.
+
+**Los elementos de la diagonal principal no se mueven.** Un elemento de la diagonal principal es de la forma $a_{ii}$, con los dos subíndices iguales; al intercambiarlos se queda como estaba. La diagonal principal actúa, pues, como un eje de simetría: todo lo que está por encima se refleja abajo y todo lo que está por debajo se refleja arriba, mientras la diagonal permanece fija.
+
+## Cómo se transpone en la práctica
+
+El procedimiento más seguro no consiste en ir elemento por elemento buscando su nueva posición, que es lento y propenso a despistes, sino en trabajar por líneas completas:
+
+::: {.callout-note}
+## Procedimiento
+
+1. Comprueba la dimensión de $A$, pongamos $m\times n$, y escribe el hueco de una matriz $n\times m$.
+2. Toma la **primera fila** de $A$ entera y escríbela como **primera columna** de $A^t$.
+3. Toma la segunda fila de $A$ y escríbela como segunda columna de $A^t$.
+4. Continúa hasta agotar las $m$ filas de $A$.
+5. Verifica que la matriz obtenida tiene exactamente $n$ filas y $m$ columnas.
+:::
+
+Veamos el caso más habitual, una matriz $2\times 3$:
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+A^t = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}
+$$
+
+La primera fila $(1,2,3)$ se ha convertido en la primera columna, y la segunda fila $(4,5,6)$ en la segunda columna. La dimensión ha pasado de $2\times 3$ a $3\times 2$, como debía.
+
+Con una matriz cuadrada el efecto de espejo se ve mucho mejor:
+
+$$
+B = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+B^t = \begin{pmatrix} 1 & 4 & 7 \\ 2 & 5 & 8 \\ 3 & 6 & 9 \end{pmatrix}
+$$
+
+Fíjate en que $1$, $5$ y $9$ —la diagonal principal— siguen exactamente donde estaban, y que las parejas $\{2,4\}$, $\{3,7\}$ y $\{6,8\}$ se han intercambiado.
+
+Y un caso extremo pero muy útil: una matriz fila se transpone en una matriz columna, y viceversa.
+
+$$
+F = \begin{pmatrix} 2 & -1 & 0 & 5 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+F^t = \begin{pmatrix} 2 \\ -1 \\ 0 \\ 5 \end{pmatrix}
+$$
+
+Esta observación no es anecdótica: cuando en el apartado del producto de matrices necesitemos multiplicar una fila por una columna, la columna suele ser la transpuesta de otra fila.
+
+::: {.callout-tip}
+## Un truco para matrices muy alargadas
+
+En matrices muy rectangulares, del tipo $3\times 5$, es fácil perder la cuenta y saltarse una columna. Un recurso cómodo consiste en **completar mentalmente la matriz hasta hacerla cuadrada**, añadiendo filas (o columnas) imaginarias rellenas de asteriscos, transponer la matriz cuadrada resultante —lo cual es sencillísimo, porque basta reflejar respecto de la diagonal— y suprimir después las filas o columnas añadidas, que en la transpuesta se habrán convertido respectivamente en columnas o filas.
+
+$$
+\begin{pmatrix} 0 & 1 & 2 & 3 \\ 5 & 6 & 7 & 8 \\ 9 & 10 & 11 & 12 \end{pmatrix}^{t}
+=
+\begin{pmatrix} 0 & 5 & 9 \\ 1 & 6 & 10 \\ 2 & 7 & 11 \\ 3 & 8 & 12 \end{pmatrix}
+$$
+
+Y una comprobación instantánea que deberías hacer siempre: si $A$ era $3\times 4$, la transpuesta tiene que ser $4\times 3$. Si te sale otra cosa, hay un error de bulto y no hace falta ni mirar los números.
+:::
+
+::: {.callout-note}
+## Transpuesta o traspuesta
+
+Las dos formas son correctas y las verás escritas de las dos maneras en distintos libros. Lo que no cambia nunca es el símbolo: $A^t$. En algunos textos universitarios se emplea también $A^{T}$ o $A'$, pero en Bachillerato la notación estándar es $A^t$, con la $t$ minúscula colocada como exponente.
+:::
+
+### Applet · Transposición de matrices {.unnumbered}
+
+Escribe una matriz cualquiera y observa cómo cada fila de $A$ se convierte en una columna de $A^t$: fíjate en cómo cambia la dimensión, comprueba que la diagonal principal se queda quieta y usa los botones de verificación para poner a prueba las propiedades que estudiamos a continuación con tus propias matrices.
+
+::: {#panel-transpuesta .applet-panel data-applet-mtx="transpuesta"}
+:::
+
+## Propiedades de la transposición
+
+Las propiedades de la transposición son cuatro. Tres de ellas son casi evidentes en cuanto se piensa en lo que hace la operación, y la cuarta esconde una sorpresa que conviene entender bien porque es una fuente clásica de errores.
+
+### La doble transposición devuelve la matriz original
+
+$$
+(A^t)^t = A
+$$
+
+Es la propiedad más intuitiva: si cambio filas por columnas y vuelvo a cambiar filas por columnas, estoy donde empecé.
+
+::: {.callout-important}
+## Justificación
+
+Trabajemos con los subíndices, que es donde la demostración se vuelve transparente. Llamemos $B=A^t$. Por definición de transpuesta, $b_{ij}=a_{ji}$.
+
+Ahora transponemos $B$ y llamamos $C=B^t$. De nuevo por definición, $c_{ij}=b_{ji}$. Y sustituyendo lo anterior con los índices intercambiados, $b_{ji}=a_{ij}$. Por tanto
+
+$$
+c_{ij} = b_{ji} = a_{ij} \qquad \text{para todo } i,j
+$$
+
+Las dos matrices tienen además la misma dimensión: si $A$ era $m\times n$, entonces $A^t$ es $n\times m$ y $(A^t)^t$ vuelve a ser $m\times n$. Coinciden dimensiones y coinciden todos los elementos, luego $(A^t)^t=A$.
+:::
+
+En el lenguaje del álgebra se dice que la transposición es una operación **involutiva**: aplicada dos veces, deja las cosas como estaban. Otros ejemplos conocidos son el opuesto de un número, $-(-a)=a$, o el inverso, $(a^{-1})^{-1}=a$.
+
+### La transpuesta de una suma
+
+$$
+(A+B)^t = A^t + B^t
+$$
+
+Con la condición, evidentemente, de que $A$ y $B$ tengan la misma dimensión, que es lo que hace falta para poder sumarlas.
+
+::: {.callout-important}
+## Justificación
+
+El elemento $(i,j)$ de $(A+B)^t$ es, por definición de transpuesta, el elemento $(j,i)$ de $A+B$, es decir, $a_{ji}+b_{ji}$.
+
+Por otro lado, el elemento $(i,j)$ de $A^t+B^t$ es la suma del elemento $(i,j)$ de $A^t$ más el elemento $(i,j)$ de $B^t$, o sea, $a_{ji}+b_{ji}$.
+
+Los dos coinciden para cualquier posición, así que las matrices son iguales. En el fondo la razón es que sumar y transponer son dos operaciones que actúan casilla a casilla y no se estorban: da igual sumar primero y girar después, que girar primero y sumar después.
+:::
+
+### La transpuesta de un producto por un número
+
+$$
+(k\cdot A)^t = k\cdot A^t \qquad \text{para todo escalar } k
+$$
+
+El escalar sale intacto. La justificación es del mismo estilo: el elemento $(i,j)$ de $(kA)^t$ es el elemento $(j,i)$ de $kA$, que vale $k\,a_{ji}$; y el elemento $(i,j)$ de $kA^t$ es $k$ por el elemento $(i,j)$ de $A^t$, que también vale $k\,a_{ji}$. Multiplicar por un número afecta a todos los elementos por igual, sin importar en qué posición estén, y por eso el orden en que se hacen las dos operaciones es irrelevante.
+
+### La transpuesta de un producto invierte el orden
+
+$$
+(A\cdot B)^t = B^t\cdot A^t
+$$
+
+Aquí está la propiedad que hay que memorizar con cuidado, porque el orden de los factores **se invierte**. Todavía no hemos definido el producto de matrices —lo haremos en los apartados 1.9 y 1.10—, pero conviene adelantar el enunciado ahora, porque es una propiedad de la transposición y porque su justificación en términos de dimensiones se entiende perfectamente sin saber calcular ni un solo producto.
+
+::: {.callout-important}
+## Por qué el orden tiene que invertirse
+
+Recordemos la regla de compatibilidad que veremos con detalle más adelante: para poder multiplicar $A\cdot B$ hace falta que el número de columnas de $A$ coincida con el número de filas de $B$, y el resultado tiene tantas filas como $A$ y tantas columnas como $B$. Esquemáticamente:
+
+$$
+(m\times n)\cdot(n\times p) = m\times p
+$$
+
+Supongamos ahora que $A$ es $2\times 3$ y $B$ es $3\times 4$. Entonces $A\cdot B$ es $2\times 4$, y su transpuesta $(A\cdot B)^t$ es $4\times 2$.
+
+Miremos qué ocurre con las transpuestas por separado: $A^t$ es $3\times 2$ y $B^t$ es $4\times 3$.
+
+- El producto $A^t\cdot B^t$ sería $(3\times 2)\cdot(4\times 3)$: el $2$ no coincide con el $4$, de modo que **ese producto ni siquiera existe**.
+- El producto $B^t\cdot A^t$ es $(4\times 3)\cdot(3\times 2) = 4\times 2$, que es exactamente la dimensión que necesitábamos.
+
+Es decir, la propiedad no podría ser de otra manera: el único orden que produce una matriz de la dimensión correcta es el invertido. No hay nada que memorizar si se razona con las dimensiones.
+:::
+
+::: {.callout-caution}
+## Errores típicos
+
+- **Escribir $(A\cdot B)^t = A^t\cdot B^t$.** Es el error más frecuente del apartado. El orden se invierte siempre. En cambio, con la suma no se invierte nada, porque la suma sí es conmutativa: $(A+B)^t=A^t+B^t=B^t+A^t$.
+- **Conservar la dimensión al transponer una matriz rectangular.** Si $A$ es $2\times 3$ y escribes una $A^t$ de dimensión $2\times 3$, has copiado la matriz cambiando algún número de sitio, pero no la has transpuesto.
+- **Confundir transponer con cambiar de signo.** La transpuesta de $A$ no es $-A$: los números no cambian de valor, solo de posición. La matriz opuesta $-A$ es otra cosa completamente distinta.
+- **Transponer solo la parte de encima de la diagonal.** El reflejo es completo: lo de arriba baja y lo de abajo sube, simultáneamente.
+- **Creer que $A\cdot A^t$ y $A^t\cdot A$ son la misma matriz.** Si $A$ es $2\times 3$, la primera es $2\times 2$ y la segunda es $3\times 3$. Ni siquiera tienen el mismo tamaño.
+:::
+
+## Ejemplos resueltos
+
+### Ejemplo 1: transponer y volver a transponer
+
+Dada
+
+$$
+A = \begin{pmatrix} 2 & -1 & 0 \\ 3 & 5 & -4 \end{pmatrix}
+$$
+
+calcula $A^t$ y comprueba que $(A^t)^t = A$.
+
+La matriz $A$ es $2\times 3$, luego $A^t$ debe ser $3\times 2$. La primera fila $(2,-1,0)$ pasa a ser la primera columna y la segunda fila $(3,5,-4)$ la segunda columna:
+
+$$
+A^t = \begin{pmatrix} 2 & 3 \\ -1 & 5 \\ 0 & -4 \end{pmatrix}
+$$
+
+Repetimos la operación sobre $A^t$, que es $3\times 2$ y por tanto dará una matriz $2\times 3$. Su primera fila $(2,3)$ se convierte en primera columna, la segunda fila $(-1,5)$ en segunda columna y la tercera $(0,-4)$ en tercera columna:
+
+$$
+(A^t)^t = \begin{pmatrix} 2 & -1 & 0 \\ 3 & 5 & -4 \end{pmatrix} = A
+$$
+
+### Ejemplo 2: la transpuesta de una suma
+
+Dadas
+
+$$
+A = \begin{pmatrix} 1 & 2 & -1 \\ 3 & 0 & 1 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 4 & 0 & -1 \\ -2 & 1 & 0 \end{pmatrix}
+$$
+
+comprueba que $(A+B)^t = A^t + B^t$.
+
+**Camino de la izquierda.** Sumamos primero, elemento a elemento, y transponemos después:
+
+$$
+A+B = \begin{pmatrix} 1+4 & 2+0 & -1-1 \\ 3-2 & 0+1 & 1+0 \end{pmatrix}
+= \begin{pmatrix} 5 & 2 & -2 \\ 1 & 1 & 1 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+(A+B)^t = \begin{pmatrix} 5 & 1 \\ 2 & 1 \\ -2 & 1 \end{pmatrix}
+$$
+
+**Camino de la derecha.** Transponemos primero y sumamos después:
+
+$$
+A^t = \begin{pmatrix} 1 & 3 \\ 2 & 0 \\ -1 & 1 \end{pmatrix},
+\qquad
+B^t = \begin{pmatrix} 4 & -2 \\ 0 & 1 \\ -1 & 0 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+A^t+B^t = \begin{pmatrix} 5 & 1 \\ 2 & 1 \\ -2 & 1 \end{pmatrix}
+$$
+
+Los dos caminos conducen a la misma matriz, como anunciaba la propiedad.
+
+### Ejemplo 3: la transpuesta de un múltiplo
+
+Con la misma matriz $A$ del ejemplo anterior, comprobemos que $(3A)^t = 3A^t$.
+
+$$
+3A = \begin{pmatrix} 3 & 6 & -3 \\ 9 & 0 & 3 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+(3A)^t = \begin{pmatrix} 3 & 9 \\ 6 & 0 \\ -3 & 3 \end{pmatrix}
+$$
+
+$$
+3A^t = 3\begin{pmatrix} 1 & 3 \\ 2 & 0 \\ -1 & 1 \end{pmatrix}
+= \begin{pmatrix} 3 & 9 \\ 6 & 0 \\ -3 & 3 \end{pmatrix}
+$$
+
+Coinciden. Como decíamos, el factor $3$ no distingue posiciones y por eso puede entrar o salir de la transposición sin consecuencias.
+
+### Ejemplo 4: la inversión del orden en un producto
+
+Consideremos
+
+$$
+D = \begin{pmatrix} -1 & 2 \\ 3 & 1 \end{pmatrix} \ (2\times 2),
+\qquad
+A = \begin{pmatrix} 3 & 0 & 4 \\ -2 & 1 & 1 \end{pmatrix} \ (2\times 3)
+$$
+
+El producto $D\cdot A$ sí se puede hacer, porque $D$ tiene $2$ columnas y $A$ tiene $2$ filas, y da una matriz $2\times 3$. Aunque el procedimiento completo lo veremos más adelante, adelantamos el resultado:
+
+$$
+D\cdot A = \begin{pmatrix} -7 & 2 & -2 \\ 7 & 1 & 13 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+(D\cdot A)^t = \begin{pmatrix} -7 & 7 \\ 2 & 1 \\ -2 & 13 \end{pmatrix}
+$$
+
+Ahora las transpuestas por separado:
+
+$$
+D^t = \begin{pmatrix} -1 & 3 \\ 2 & 1 \end{pmatrix} \ (2\times 2),
+\qquad
+A^t = \begin{pmatrix} 3 & -2 \\ 0 & 1 \\ 4 & 1 \end{pmatrix} \ (3\times 2)
+$$
+
+La propiedad afirma que $(D\cdot A)^t = A^t\cdot D^t$, y en efecto ese producto es $(3\times 2)\cdot(2\times 2) = 3\times 2$, la dimensión correcta. Su valor es
+
+$$
+A^t\cdot D^t = \begin{pmatrix} -7 & 7 \\ 2 & 1 \\ -2 & 13 \end{pmatrix}
+$$
+
+exactamente $(D\cdot A)^t$. En cambio, $D^t\cdot A^t$ sería $(2\times 2)\cdot(3\times 2)$, un producto que **no existe**. Cuando dentro de unos apartados sepas multiplicar matrices, vuelve a este ejemplo y rehaz las cuentas: es la mejor manera de fijar la propiedad.
+
+::: {.callout-tip}
+## Dos consecuencias que salen gratis
+
+**Primera.** La matriz $A\cdot A^t$ es siempre simétrica, sea cual sea $A$, cuadrada o no. En efecto, aplicando la cuarta propiedad y luego la primera:
+
+$$
+(A\,A^t)^t = (A^t)^t\, A^t = A\,A^t
+$$
+
+Además siempre existe y siempre es cuadrada, porque si $A$ es $m\times n$ el producto tiene dimensión $(m\times n)\cdot(n\times m) = m\times m$. Es una pregunta de razonar clásica en las pruebas de acceso a la universidad.
+
+**Segunda.** Esta misma inversión del orden reaparecerá al final del tema con las matrices inversas, en la fórmula $(A\cdot B)^{-1} = B^{-1}\cdot A^{-1}$. No es casualidad: siempre que una operación «deshace» el orden en que se han encadenado dos transformaciones, aparece el mismo fenómeno. Es lo mismo que ocurre al vestirse y desvestirse: si primero te pones los calcetines y después los zapatos, para deshacerlo tienes que quitarte primero los zapatos.
+:::
+
+::: {.callout-warning}
+## Lo que se pide en un examen
+
+En las pruebas de acceso no basta con escribir la matriz transpuesta: cuando el enunciado dice «razona» o «justifica», hay que citar la propiedad que se usa. Una respuesta completa a «¿es $A\,A^t$ simétrica?» no es «sí, lo he comprobado con un ejemplo», sino la cadena de igualdades anterior, que vale para todas las matrices a la vez. Un ejemplo nunca demuestra una afirmación general, aunque sí basta para refutarla: para justificar que algo **no** se cumple siempre, un solo contraejemplo es suficiente y es la respuesta esperada.
+:::
+
+## Una nota sobre el rango
+
+Aunque el rango de una matriz lo estudiaremos en los apartados 1.12 y 1.13, conviene dejar caer aquí un resultado que se apoya directamente en la transposición: el rango de una matriz coincide con el de su transpuesta,
+
+$$
+\operatorname{rg}(A) = \operatorname{rg}(A^t)
+$$
+
+Dicho en palabras, el número de filas realmente independientes de una matriz es igual a su número de columnas independientes. Es un hecho nada evidente y sorprendentemente útil: permite calcular el rango trabajando con filas o con columnas, según lo que resulte más cómodo. Guárdalo para cuando llegue el momento.
+
+## Resumen del apartado
+
+- La **transpuesta** de $A=(a_{ij})$ de dimensión $m\times n$ es la matriz $A^t=(a_{ji})$ de dimensión $n\times m$, obtenida al cambiar filas por columnas.
+- La dimensión se invierte; solo se conserva si la matriz es **cuadrada**.
+- Los elementos de la **diagonal principal** no cambian de posición.
+- Una matriz fila se transpone en una matriz columna, y al revés.
+- Propiedades: $(A^t)^t = A$; $(A+B)^t = A^t+B^t$; $(kA)^t = kA^t$; y $(A\cdot B)^t = B^t\cdot A^t$, **con el orden invertido**.
+- La razón de la inversión del orden es de dimensiones: solo así el producto es compatible y tiene el tamaño correcto.
+- Consecuencia útil: $A\cdot A^t$ es siempre una matriz cuadrada y simétrica.
+
+## Ejercicios propuestos
+
+**1.** Calcula $A^t$ e indica su dimensión, para
+
+$$
+A = \begin{pmatrix} 2 & -1 & 3 & 5 \\ -4 & 2 & 0 & 1 \end{pmatrix}
+$$
+
+**2.** Transpone las matrices siguientes e indica cuáles coinciden con su transpuesta:
+
+$$
+P = \begin{pmatrix} 1 & 5 \\ 5 & 0 \end{pmatrix}, \qquad
+Q = \begin{pmatrix} 4 & 5 \\ 2 & 0 \end{pmatrix}, \qquad
+R = \begin{pmatrix} 3 & 0 \\ 0 & -3 \end{pmatrix}
+$$
+
+**3.** Sea $M$ una matriz de dimensión $4\times 7$. Sin hacer ninguna cuenta, indica la dimensión de $M^t$, de $(M^t)^t$ y de $M+M^t$ si es que esta última existe.
+
+**4.** Dadas
+
+$$
+A = \begin{pmatrix} 2 & 0 \\ -1 & 3 \\ 4 & 1 \end{pmatrix}, \qquad
+B = \begin{pmatrix} 1 & -2 \\ 5 & 0 \\ -3 & 2 \end{pmatrix}
+$$
+
+comprueba que $(A+B)^t = A^t+B^t$ y que $(-2A)^t = -2A^t$.
+
+**5.** Halla $x$ e $y$ para que se cumpla
+
+$$
+\begin{pmatrix} 1 & x \\ -3 & 4 \end{pmatrix}^{t} = \begin{pmatrix} 1 & -3 \\ y & 4 \end{pmatrix}
+$$
+
+**6.** Sea $A$ una matriz de dimensión $3\times 5$ y $B$ de dimensión $5\times 2$. Indica, razonadamente, cuáles de estos productos existen y qué dimensión tienen: $A\cdot B$, $B^t\cdot A^t$, $A^t\cdot B^t$, $A\cdot A^t$, $A^t\cdot A$.
+
+**7.** Razona si es verdadero o falso: existe alguna matriz $2\times 3$ que coincida con su transpuesta.
+
+**8.** Sea $A$ una matriz cualquiera. Demuestra, usando las propiedades de la transposición, que $A+A^t$ solo tiene sentido si $A$ es cuadrada y que, en ese caso, coincide con su propia transpuesta.
+
+**9.** Escribe la transpuesta de la matriz columna $C = \begin{pmatrix} 3 \\ -2 \\ 0 \end{pmatrix}$ y explica qué tipo de matriz es el resultado.
+
+**10.** Si $A$ y $B$ son matrices cuadradas del mismo orden y $k$ es un número real, demuestra que $(kA+B)^t = kA^t+B^t$ combinando dos de las propiedades del apartado.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $A$ es $2\times 4$, luego $A^t$ es $4\times 2$:
+
+$$
+A^t = \begin{pmatrix} 2 & -4 \\ -1 & 2 \\ 3 & 0 \\ 5 & 1 \end{pmatrix}
+$$
+
+**2.**
+
+$$
+P^t = \begin{pmatrix} 1 & 5 \\ 5 & 0 \end{pmatrix} = P, \qquad
+Q^t = \begin{pmatrix} 4 & 2 \\ 5 & 0 \end{pmatrix} \neq Q, \qquad
+R^t = \begin{pmatrix} 3 & 0 \\ 0 & -3 \end{pmatrix} = R
+$$
+
+Coinciden con su transpuesta $P$ y $R$. La matriz $R$ es diagonal, y toda matriz diagonal coincide con su transpuesta, porque fuera de la diagonal solo hay ceros.
+
+**3.** $M^t$ es $7\times 4$ y $(M^t)^t$ es $4\times 7$, la propia $M$. La suma $M+M^t$ **no existe**: habría que sumar una matriz $4\times 7$ con una $7\times 4$ y las dimensiones no coinciden.
+
+**4.** Sumando primero, $A+B = \begin{pmatrix} 3 & -2 \\ 4 & 3 \\ 1 & 3 \end{pmatrix}$, y por tanto
+
+$$
+(A+B)^t = \begin{pmatrix} 3 & 4 & 1 \\ -2 & 3 & 3 \end{pmatrix}
+$$
+
+Transponiendo primero, $A^t = \begin{pmatrix} 2 & -1 & 4 \\ 0 & 3 & 1 \end{pmatrix}$ y $B^t = \begin{pmatrix} 1 & 5 & -3 \\ -2 & 0 & 2 \end{pmatrix}$, cuya suma es la misma matriz. Para la segunda igualdad, $-2A = \begin{pmatrix} -4 & 0 \\ 2 & -6 \\ -8 & -2 \end{pmatrix}$ y
+
+$$
+(-2A)^t = \begin{pmatrix} -4 & 2 & -8 \\ 0 & -6 & -2 \end{pmatrix} = -2A^t
+$$
+
+**5.** La transpuesta de la matriz de la izquierda es $\begin{pmatrix} 1 & -3 \\ x & 4 \end{pmatrix}$. Igualando elemento a elemento con la matriz de la derecha resulta $y = x$, y no hay más condiciones: cualquier par de valores iguales sirve. Si el enunciado exigiera además, por ejemplo, que la matriz fuese simétrica, habría que imponer $x=-3$ y entonces $y=-3$.
+
+**6.** $A$ es $3\times 5$, $B$ es $5\times 2$, $A^t$ es $5\times 3$ y $B^t$ es $2\times 5$.
+
+- $A\cdot B$: $(3\times 5)(5\times 2)$, **existe**, dimensión $3\times 2$.
+- $B^t\cdot A^t$: $(2\times 5)(5\times 3)$, **existe**, dimensión $2\times 3$. Es justamente $(A\cdot B)^t$.
+- $A^t\cdot B^t$: $(5\times 3)(2\times 5)$, **no existe**, porque $3\neq 2$.
+- $A\cdot A^t$: $(3\times 5)(5\times 3)$, **existe**, dimensión $3\times 3$.
+- $A^t\cdot A$: $(5\times 3)(3\times 5)$, **existe**, dimensión $5\times 5$. Obsérvese que no es la misma matriz que la anterior: ni siquiera tienen el mismo tamaño.
+
+**7. Falso.** Si $A$ es $2\times 3$, su transpuesta es $3\times 2$, y dos matrices de dimensiones distintas nunca pueden ser iguales, con independencia de los números que contengan. Solo una matriz cuadrada puede coincidir con su transpuesta.
+
+**8.** Para sumar $A$ y $A^t$ hace falta que tengan la misma dimensión. Si $A$ es $m\times n$, entonces $A^t$ es $n\times m$, y la igualdad de dimensiones obliga a $m=n$: la matriz debe ser cuadrada. En ese caso, aplicando la propiedad de la suma y la de la doble transposición:
+
+$$
+(A+A^t)^t = A^t + (A^t)^t = A^t + A = A + A^t
+$$
+
+donde el último paso usa que la suma de matrices es conmutativa. La matriz $A+A^t$ coincide, pues, con su transpuesta; en el apartado siguiente diremos que es **simétrica**.
+
+**9.** $C^t = \begin{pmatrix} 3 & -2 & 0 \end{pmatrix}$. La transpuesta de una matriz columna de dimensión $3\times 1$ es una matriz fila de dimensión $1\times 3$.
+
+**10.** Aplicando primero la propiedad de la suma y después la del producto por un número:
+
+$$
+(kA+B)^t = (kA)^t + B^t = k\,A^t + B^t
+$$
+
+Esta igualdad, válida para cualesquiera escalares y matrices sumables, se resume diciendo que la transposición es una operación **lineal**: respeta las sumas y los múltiplos.
+:::
+
+## Continúa
+
+En el apartado siguiente usaremos la transposición para definir dos familias de matrices cuadradas con una estructura muy particular —las **simétricas** y las **antisimétricas**— y demostraremos un resultado elegante: toda matriz cuadrada se descompone, de una única manera, como suma de una de cada clase.

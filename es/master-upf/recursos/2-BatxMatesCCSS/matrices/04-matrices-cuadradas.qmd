@@ -1,0 +1,420 @@
+---
+title: "Tema 1.4 Tipos de matrices cuadradas"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 4 de 17)"
+filename: 04-matrices-cuadradas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Diagonal principal y diagonal secundaria de una matriz cuadrada, traza y sus propiedades, matrices triangulares superior e inferior, matriz diagonal, matriz escalar, matriz identidad o unidad y su papel como elemento neutro del producto, jerarquía entre todos estos tipos y adelanto de las matrices simétricas, antisimétricas, regulares y singulares, con ejemplos resueltos y applet manipulable.
+categories: [matrices, matriz cuadrada, diagonal principal, traza, matriz triangular, matriz identidad, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## El territorio donde ocurre casi todo
+
+En la parte anterior separamos las matrices en rectangulares y cuadradas y dijimos que casi todo el interés del tema se concentra en las segundas. Aquí se ve por qué. En una matriz cuadrada, filas y columnas hablan del mismo conjunto de objetos y aparece una línea privilegiada, la **diagonal principal**, que va de la esquina superior izquierda a la inferior derecha. Esa línea marca un dentro y un fuera, un arriba y un abajo, y clasificar una matriz cuadrada consiste, casi siempre, en preguntarse **qué elementos son cero respecto de esa diagonal**.
+
+La cosecha es abundante: matrices triangulares, diagonales, escalares y la matriz identidad, que es a las matrices lo que el número $1$ es a los números. Y todas ellas tienen algo en común: los cálculos con ellas son mucho más rápidos que con una matriz cualquiera. Multiplicar dos matrices diagonales de orden $3$ cuesta tres multiplicaciones en lugar de veintisiete. Elevar una matriz diagonal a la potencia $100$ es inmediato. Por eso, en la práctica, buena parte del trabajo del álgebra lineal consiste en transformar matrices complicadas en matrices de estos tipos.
+
+En este apartado se define además la **traza**, un número asociado a cada matriz cuadrada, y se adelantan cuatro etiquetas más —simétrica, antisimétrica, regular y singular— que se desarrollarán en las partes 6 y 14. Conviene tener el mapa completo desde el principio, aunque algunos territorios se visiten más adelante.
+
+## Las dos diagonales
+
+::: {.callout-note}
+## Diagonal principal y diagonal secundaria
+
+Sea $A$ una matriz cuadrada de orden $n$.
+
+- La **diagonal principal** está formada por los elementos $a_{ii}$, es decir, aquellos cuyos dos subíndices coinciden: $a_{11}$, $a_{22}$, …, $a_{nn}$. Geométricamente, son los que se recorren partiendo de la esquina superior izquierda y avanzando una fila y una columna en cada paso.
+- La **diagonal secundaria** está formada por los elementos $a_{ij}$ con $i+j=n+1$: $a_{1n}$, $a_{2,\,n-1}$, …, $a_{n1}$. Se recorren partiendo de la esquina superior derecha, avanzando una fila y retrocediendo una columna en cada paso.
+:::
+
+En la matriz de orden $3$
+
+$$
+A = \begin{pmatrix} 5 & 2 & 0 \\ 3 & 0 & 2 \\ 1 & 3 & 4 \end{pmatrix}
+$$
+
+la diagonal principal está formada por $a_{11}=5$, $a_{22}=0$ y $a_{33}=4$, y la diagonal secundaria por $a_{13}=0$, $a_{22}=0$ y $a_{31}=1$. Observa que en orden impar las dos diagonales comparten el elemento central; en orden par no comparten ninguno.
+
+La diagonal principal es, con diferencia, la más importante: sobre ella se define la traza, respecto de ella se definen las matrices triangulares, diagonales y simétricas, y en ella se apoyan los pivotes del método de Gauss que estudiaremos en la parte 13. La diagonal secundaria aparece bastante menos, sobre todo en los determinantes de orden $2$ y $3$, pero conviene saber localizarla porque los enunciados la mencionan.
+
+::: {.callout-caution}
+## El error de contar mal la diagonal
+
+Para saber si un elemento está en la diagonal principal basta comprobar si sus dos subíndices son iguales. Así, $a_{33}$ está en la diagonal y $a_{23}$ no, por muy cerca que parezca estar.
+
+Con la diagonal secundaria el criterio es distinto: sus subíndices deben **sumar** $n+1$. En orden $4$, esa diagonal la forman $a_{14}$, $a_{23}$, $a_{32}$ y $a_{41}$, porque en todos ellos $i+j=5$. Un fallo típico consiste en aplicar el criterio del orden $3$ a una matriz de orden $4$ y colocar mal los elementos.
+:::
+
+## La traza
+
+::: {.callout-note}
+## Definición de traza
+
+Se llama **traza** de una matriz cuadrada $A$ de orden $n$, y se escribe $\operatorname{tr}(A)$, a la suma de los elementos de su diagonal principal:
+
+$$
+\operatorname{tr}(A)=a_{11}+a_{22}+\cdots+a_{nn}.
+$$
+
+La traza es un **número**, no una matriz, y solo está definida para matrices cuadradas.
+:::
+
+Por ejemplo, para la matriz $A$ de más arriba, $\operatorname{tr}(A)=5+0+4=9$. Para
+
+$$
+B=\begin{pmatrix} 2 & 7 \\ -1 & -3 \end{pmatrix}
+$$
+
+resulta $\operatorname{tr}(B)=2+(-3)=-1$.
+
+La traza tiene tres propiedades sencillas y muy útiles, que se comprueban directamente sumando diagonales:
+
+::: {.callout-important}
+## Propiedades de la traza
+
+Si $A$ y $B$ son matrices cuadradas del mismo orden y $k$ es un número real:
+
+1. $\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$.
+2. $\operatorname{tr}(k\,A)=k\cdot\operatorname{tr}(A)$.
+3. $\operatorname{tr}(A^{t})=\operatorname{tr}(A)$.
+
+Las dos primeras son inmediatas: como la suma de matrices y el producto por un número se hacen elemento a elemento, en particular se hacen así sobre la diagonal. La tercera lo es todavía más: al transponer, el elemento $a_{ii}$ va a parar a la posición $(i,i)$, es decir, **la diagonal principal no se mueve**.
+
+Estas justificaciones tan cortas son exactamente el tipo de razonamiento que se pide en una prueba de acceso cuando el enunciado dice «justifica tu respuesta». No hace falta más, pero hace falta escribirlo.
+:::
+
+Hay una cuarta propiedad, más sorprendente, que se puede comprobar con ejemplos aunque su demostración general quede fuera del curso: $\operatorname{tr}(A\cdot B)=\operatorname{tr}(B\cdot A)$, **aunque** en general $A\cdot B\ne B\cdot A$. Es decir, el producto de matrices no es conmutativo, pero su traza no se entera. Es un buen ejemplo de que ciertas cantidades resumen información que se conserva aunque el objeto cambie.
+
+## Matrices triangulares
+
+::: {.callout-note}
+## Definición de matriz triangular
+
+Sea $A$ una matriz cuadrada de orden $n$.
+
+- $A$ es **triangular superior** si todos los elementos situados **por debajo** de la diagonal principal son cero, es decir, $a_{ij}=0$ siempre que $i>j$.
+- $A$ es **triangular inferior** si todos los elementos situados **por encima** de la diagonal principal son cero, es decir, $a_{ij}=0$ siempre que $i<j$.
+
+Los elementos de la diagonal y los del otro lado pueden valer cualquier cosa, incluido cero.
+:::
+
+$$
+\text{Triangular superior: }
+\begin{pmatrix} 1 & 2 & 0 \\ 0 & 3 & 1 \\ 0 & 0 & 1 \end{pmatrix},
+\qquad
+\text{triangular inferior: }
+\begin{pmatrix} 1 & 0 & 0 \\ 2 & 4 & 0 \\ 2 & 0 & 3 \end{pmatrix}.
+$$
+
+El nombre es transparente: los elementos que pueden ser distintos de cero dibujan un triángulo con vértice en una esquina y base en la diagonal. La forma de recordar cuál es cuál es fijarse en **dónde está el triángulo de números**, no en dónde están los ceros: si los números ocupan la zona de arriba, la matriz es triangular superior.
+
+::: {.callout-caution}
+## «Por debajo» significa $i>j$
+
+Traducir la frase a subíndices evita el mareo. Estar por debajo de la diagonal significa haber bajado más filas de las columnas que se han avanzado, es decir, $i>j$: son posiciones como $a_{21}$, $a_{31}$, $a_{32}$. Estar por encima significa $i<j$: $a_{12}$, $a_{13}$, $a_{23}$.
+
+Y ojo con una trampa clásica de los exámenes: una matriz triangular superior **puede** tener ceros en la diagonal o en la parte de arriba. La definición solo exige que la parte de abajo sea toda de ceros; no dice nada de lo demás. Por eso la matriz nula es, a la vez, triangular superior y triangular inferior.
+:::
+
+## Matriz diagonal
+
+::: {.callout-note}
+## Definición de matriz diagonal
+
+Una matriz cuadrada es **diagonal** cuando todos los elementos que **no** están en la diagonal principal son cero:
+
+$$
+a_{ij}=0 \quad \text{siempre que } i\ne j .
+$$
+
+Equivalentemente, una matriz es diagonal si y solo si es a la vez triangular superior y triangular inferior.
+:::
+
+Ejemplos:
+
+$$
+\begin{pmatrix} 1 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 2 \end{pmatrix},
+\qquad
+\begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 2 \end{pmatrix},
+\qquad
+\begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}.
+$$
+
+Observa el segundo ejemplo: **los elementos de la diagonal pueden ser cero** y la matriz sigue siendo diagonal. La definición solo habla de lo que hay fuera.
+
+Las matrices diagonales son cómodas hasta el escándalo. Su suma se calcula sumando las diagonales, su producto se calcula multiplicando las diagonales término a término, y sus potencias se obtienen elevando cada elemento de la diagonal:
+
+$$
+\begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}^{3}
+=
+\begin{pmatrix} 2^3 & 0 \\ 0 & 5^3 \end{pmatrix}
+=
+\begin{pmatrix} 8 & 0 \\ 0 & 125 \end{pmatrix}.
+$$
+
+Lo comprobaremos formalmente en la parte 10, pero puedes anticiparlo mentalmente: al multiplicar, cada fila solo tiene un número distinto de cero y cada columna también, así que casi todos los productos que intervienen se anulan.
+
+## Matriz escalar
+
+::: {.callout-note}
+## Definición de matriz escalar
+
+Una **matriz escalar** es una matriz diagonal en la que **todos** los elementos de la diagonal principal son iguales.
+:::
+
+$$
+\begin{pmatrix} 7 & 0 \\ 0 & 7 \end{pmatrix},
+\qquad
+\begin{pmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 4 \end{pmatrix},
+\qquad
+\begin{pmatrix} -3 & 0 & 0 & 0 \\ 0 & -3 & 0 & 0 \\ 0 & 0 & -3 & 0 \\ 0 & 0 & 0 & -3 \end{pmatrix}.
+$$
+
+El nombre viene de que una matriz escalar se puede escribir como un número —un **escalar**— multiplicando a la matriz identidad:
+
+$$
+\begin{pmatrix} k & 0 & 0 \\ 0 & k & 0 \\ 0 & 0 & k \end{pmatrix}
+= k\cdot \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+= k\cdot I .
+$$
+
+Esta factorización es muy práctica: cuando en un cálculo aparece una matriz escalar, se saca $k$ como factor común y queda solo la identidad, que no molesta.
+
+## Matriz identidad o unidad
+
+::: {.callout-note}
+## Definición de matriz identidad
+
+La **matriz identidad**, también llamada **matriz unidad**, es la matriz escalar cuyos elementos de la diagonal principal valen todos $1$. Se denota por $I$, o por $I_n$ si se quiere precisar el orden:
+
+$$
+I_1=\begin{pmatrix} 1 \end{pmatrix},\quad
+I_2=\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},\quad
+I_3=\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix},\quad
+I_4=\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}.
+$$
+
+Hay una matriz identidad de cada orden, y su traza es $\operatorname{tr}(I_n)=n$.
+:::
+
+::: {.callout-important}
+## La identidad es el $1$ de las matrices
+
+La razón de que esta matriz tenga nombre propio y símbolo propio es la siguiente propiedad, que demostraremos en la parte 10:
+
+$$
+I_m\cdot A = A \qquad\text{y}\qquad A\cdot I_n = A
+$$
+
+para cualquier matriz $A$ de dimensión $m\times n$. Es decir, multiplicar por la identidad **no cambia nada**, exactamente igual que multiplicar un número por $1$.
+
+De ahí que la identidad sea el **elemento neutro del producto de matrices**, mientras que la matriz nula es el elemento neutro de la suma. Y de ahí también la definición de matriz inversa que veremos en la parte 14: $A^{-1}$ es la matriz que cumple $A\cdot A^{-1}=A^{-1}\cdot A=I$, del mismo modo que el inverso de un número es aquel por el que hay que multiplicarlo para obtener $1$.
+
+En las pruebas de acceso, media docena de ecuaciones matriciales se resuelven usando únicamente esta propiedad. Conviene tenerla completamente automatizada.
+:::
+
+## Cómo encajan unos tipos dentro de otros
+
+Los tipos anteriores no son independientes: forman una cadena de casos cada vez más particulares.
+
+$$
+\text{identidad} \subset \text{escalar} \subset \text{diagonal} \subset
+\begin{cases} \text{triangular superior} \\ \text{triangular inferior} \end{cases}
+\subset \text{cuadrada}
+$$
+
+Leído en palabras: toda matriz identidad es escalar; toda escalar es diagonal; toda diagonal es a la vez triangular superior y triangular inferior; y todas ellas son cuadradas. Las implicaciones **no** funcionan al revés: hay matrices diagonales que no son escalares, como $\begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$, y matrices triangulares que no son diagonales, como cualquiera con un elemento no nulo fuera de la diagonal.
+
+Un caso que conviene tener resuelto de antemano: la **matriz nula de orden $n$** es escalar (con $k=0$), diagonal, triangular superior, triangular inferior y simétrica. Es, junto con la identidad, la matriz que acumula más etiquetas.
+
+### Ejemplo 1. Clasificación de cuatro matrices cuadradas
+
+$$
+A=\begin{pmatrix} 2 & 0 & 0 \\ 0 & -7 & 0 \\ 0 & 0 & 1 \end{pmatrix},\quad
+B=\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix},\quad
+C=\begin{pmatrix} -1 & 0 & 0 \\ 2 & 3 & 0 \\ 4 & 6 & 9 \end{pmatrix},\quad
+D=\begin{pmatrix} 3 & 5 & -2 \\ 0 & 1 & 7 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+
+- $A$ tiene ceros en todas las posiciones fuera de la diagonal, luego es **diagonal** (y por tanto triangular superior y triangular inferior). No es escalar, porque $2$, $-7$ y $1$ no son iguales. Su traza es $2-7+1=-4$.
+- $B$ es diagonal con todos los elementos de la diagonal iguales a $1$: es la **matriz identidad** de orden $3$, y en consecuencia escalar y diagonal. Su traza es $3$.
+- $C$ tiene ceros en toda la zona de encima de la diagonal, luego es **triangular inferior**. No es diagonal, porque $c_{21}=2\ne 0$. Su traza es $-1+3+9=11$.
+- $D$ tiene ceros en toda la zona de debajo de la diagonal: es **triangular superior**. Que $d_{33}=0$ no lo impide, porque la definición no pone condiciones sobre la diagonal. Su traza es $3+1+0=4$.
+
+### Ejemplo 2. Construir matrices con condiciones
+
+**a)** Escribe una matriz diagonal de orden $4$ que cumpla $a_{22}=7$.
+
+Basta con poner un $7$ en la segunda posición de la diagonal, cualquier cosa en el resto de la diagonal y ceros fuera. Por ejemplo:
+
+$$
+\begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 7 & 0 & 0 \\ 0 & 0 & -2 & 0 \\ 0 & 0 & 0 & 5 \end{pmatrix}
+$$
+
+Hay infinitas respuestas válidas, y por eso el enunciado dice «escribe una».
+
+**b)** Escribe una matriz triangular superior con tres columnas cuyos elementos distintos de cero cumplan $a_{ij}=i+j$.
+
+Al pedir tres columnas y ser triangular, se entiende cuadrada de orden $3$. Los elementos que pueden ser no nulos son los de la diagonal y los de encima, es decir, los que cumplen $i\le j$; en ellos ponemos $a_{ij}=i+j$, y en el resto, ceros:
+
+$$
+\begin{pmatrix} 2 & 3 & 4 \\ 0 & 4 & 5 \\ 0 & 0 & 6 \end{pmatrix}
+$$
+
+Compara con el ejemplo de la parte 1, donde la ley $a_{ij}=i+j$ se aplicaba a **todas** las posiciones y salía una matriz simétrica. La misma fórmula, restringida a una zona, produce un tipo de matriz completamente distinto.
+
+**c)** Escribe una matriz escalar de orden $3$ cuya traza valga $-12$.
+
+Si es escalar, sus tres elementos diagonales son iguales a cierto $k$, así que $\operatorname{tr}(A)=3k=-12$, de donde $k=-4$:
+
+$$
+\begin{pmatrix} -4 & 0 & 0 \\ 0 & -4 & 0 \\ 0 & 0 & -4 \end{pmatrix} = -4\,I_3 .
+$$
+
+Aquí, a diferencia de los apartados anteriores, la respuesta es **única**.
+
+## Adelanto: simétricas, antisimétricas, regulares y singulares
+
+Para completar el mapa, cuatro etiquetas más que se desarrollarán en apartados posteriores pero que conviene conocer ya, porque aparecen en el clasificador y en muchos enunciados.
+
+::: {.callout-note}
+## Cuatro tipos que se estudian más adelante
+
+- **Matriz simétrica**: matriz cuadrada que coincide con su transpuesta, $A=A^{t}$, lo que equivale a que $a_{ij}=a_{ji}$ para todos los índices. Los elementos colocados en posiciones simétricas respecto de la diagonal principal son iguales, de modo que la matriz «se refleja» en su diagonal. Ejemplo: $\begin{pmatrix} 1 & 4 \\ 4 & 3 \end{pmatrix}$. Se estudia en la parte 6.
+- **Matriz antisimétrica**: matriz cuadrada cuya transpuesta coincide con su opuesta, $A^{t}=-A$, es decir, $a_{ij}=-a_{ji}$. Como consecuencia, **todos los elementos de la diagonal principal son cero**, ya que $a_{ii}=-a_{ii}$ obliga a $a_{ii}=0$; en particular su traza es siempre $0$. Ejemplo: $\begin{pmatrix} 0 & 5 \\ -5 & 0 \end{pmatrix}$. Se estudia en la parte 6.
+- **Matriz regular** (o inversible): matriz cuadrada que tiene **matriz inversa**, es decir, para la que existe otra matriz $B$ con $A\cdot B=B\cdot A=I$. Se estudia en la parte 14.
+- **Matriz singular**: matriz cuadrada que **no** tiene inversa. Toda matriz cuadrada es regular o singular, y no hay término medio.
+:::
+
+Estas dos últimas etiquetas son de naturaleza distinta a las anteriores. Que una matriz sea triangular o diagonal se ve de un vistazo: basta mirar dónde están los ceros. Que sea regular o singular **no se ve**: hay que calcular algo, o bien el rango (parte 12) o bien el determinante, y solo entonces se puede decidir. Por ejemplo, $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$ parece perfectamente normal y sin embargo es singular, porque su segunda fila es el doble de la primera y no aporta información nueva.
+
+Un aviso útil para más adelante: en las matrices **triangulares y diagonales** sí hay un criterio rápido, que justificaremos cuando toque. Una matriz triangular es regular si y solo si **ningún** elemento de su diagonal principal es cero. Por eso la matriz $D$ del ejemplo 1, con un cero en la diagonal, será singular.
+
+### Applet · Matrices cuadradas notables {.unnumbered}
+
+Elige un tipo de matriz cuadrada en la galería y el applet genera un ejemplo, resalta la diagonal principal y la secundaria y muestra el orden y la traza. Después modifica algún elemento y observa qué etiquetas se conservan y cuáles se pierden: es la mejor forma de entender que cambiar un solo cero puede sacar a una matriz de la familia de las diagonales pero dejarla dentro de la de las triangulares.
+
+::: {#panel-cuadradas .applet-panel data-applet-mtx="cuadradas"}
+:::
+
+## Errores típicos
+
+::: {.callout-caution}
+## Cinco confusiones frecuentes
+
+**Cambiar «superior» por «inferior».** Se llama triangular **superior** a la que tiene los números arriba y los ceros abajo. Piensa siempre en dónde está el triángulo de números, no en dónde están los ceros.
+
+**Exigir que la diagonal sea no nula.** Ni las triangulares ni las diagonales piden nada sobre la diagonal principal. Una matriz con ceros en la diagonal puede ser perfectamente triangular o diagonal; lo que ocurre es que entonces será singular.
+
+**Confundir diagonal con escalar.** Diagonal significa «ceros fuera de la diagonal». Escalar significa además «todos los de la diagonal iguales». La segunda es un caso particular de la primera.
+
+**Creer que la traza es una matriz.** La traza es un número. Escribir $\operatorname{tr}(A)=\begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix}$ no tiene sentido; lo correcto sería $\operatorname{tr}(A)=4$.
+
+**Decidir a ojo si una matriz es regular.** La regularidad no se ve en la disposición de los ceros salvo en los casos triangulares. Hay que calcular rango o determinante y justificarlo; en una prueba de acceso, afirmarlo sin cálculo no puntúa.
+:::
+
+::: {.callout-tip}
+## Por qué estos tipos importan tanto en la práctica
+
+Las matrices diagonales son las que describen procesos **independientes**: cada variable evoluciona por su cuenta, sin mezclarse con las demás. Si una matriz de un modelo económico o poblacional resulta ser diagonal, el problema se descompone en varios problemas de una sola variable, mucho más fáciles.
+
+Las matrices triangulares son el resultado natural del **método de Gauss**: escalonar una matriz es, precisamente, transformarla en una triangular sin cambiar la información esencial. Toda la parte 13 consiste en hacer eso, y funciona porque en una matriz triangular la información se lee de un vistazo.
+
+La matriz identidad es el objetivo del **método de Gauss-Jordan** de la parte 15: se parte de $(A\mid I)$ y se opera hasta convertir la parte izquierda en la identidad; lo que aparece a la derecha es la inversa. Y la propiedad $A\cdot I=I\cdot A=A$ es la que permite despejar matrices en las ecuaciones de la parte 16.
+
+Por último, la traza y el determinante son los dos números que resumen una matriz cuadrada. En cursos posteriores se descubre que ambos están relacionados con los llamados valores propios, que son los que gobiernan el comportamiento a largo plazo de los modelos matriciales: qué población se estabiliza, qué proceso se dispara y qué proceso se extingue.
+:::
+
+## Resumen del apartado
+
+- En una matriz cuadrada de orden $n$, la **diagonal principal** la forman los elementos $a_{ii}$ y la **diagonal secundaria** los elementos con $i+j=n+1$.
+- La **traza**, $\operatorname{tr}(A)$, es la suma de los elementos de la diagonal principal. Es un número, solo existe para matrices cuadradas y cumple $\operatorname{tr}(A+B)=\operatorname{tr}(A)+\operatorname{tr}(B)$, $\operatorname{tr}(kA)=k\operatorname{tr}(A)$ y $\operatorname{tr}(A^{t})=\operatorname{tr}(A)$.
+- Una matriz es **triangular superior** si $a_{ij}=0$ para $i>j$ y **triangular inferior** si $a_{ij}=0$ para $i<j$.
+- Una matriz es **diagonal** si $a_{ij}=0$ para $i\ne j$, es decir, si es a la vez triangular superior e inferior. Es **escalar** si además todos los elementos de la diagonal son iguales, e **identidad** si esos elementos valen todos $1$.
+- Se cumple la cadena identidad $\subset$ escalar $\subset$ diagonal $\subset$ triangular $\subset$ cuadrada, y ninguna implicación es reversible.
+- La matriz identidad es el **elemento neutro del producto**: $I\cdot A=A\cdot I=A$. La matriz nula lo es de la suma.
+- Se llaman **simétrica** si $A=A^{t}$, **antisimétrica** si $A^{t}=-A$ (con diagonal de ceros y traza nula), **regular** si tiene inversa y **singular** si no la tiene. Las dos últimas no se reconocen a simple vista: hay que calcular.
+
+## Ejercicios propuestos
+
+1. Para cada matriz, indica su orden, todos los tipos a los que pertenece y su traza:
+$$
+A=\begin{pmatrix} 2 & 0 & 0 \\ 0 & -7 & 0 \\ 0 & 0 & 1 \end{pmatrix},\quad
+B=\begin{pmatrix} 5 & 0 \\ 0 & 5 \end{pmatrix},\quad
+C=\begin{pmatrix} 1 & 3 & 0 & 3 \\ 0 & 2 & 4 & 6 \\ 0 & 0 & 3 & 2 \\ 0 & 0 & 0 & 7 \end{pmatrix},\quad
+D=\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}.
+$$
+
+2. Escribe los elementos de la diagonal principal y de la diagonal secundaria de
+$$
+M=\begin{pmatrix} 2 & 0 & 3 & 0 \\ 3 & 2 & 1 & 0 \\ 2 & 1 & 3 & 1 \\ 0 & 0 & 1 & 2 \end{pmatrix}
+$$
+y calcula su traza.
+
+3. Escribe una matriz diagonal de orden $3$ cuya traza sea $10$ y en la que ningún elemento de la diagonal sea cero. ¿Es única tu respuesta?
+
+4. Escribe una matriz escalar de orden $4$ cuya traza valga $22$. ¿Es única ahora?
+
+5. Sea $A$ una matriz cuadrada de orden $3$ con $\operatorname{tr}(A)=6$. Calcula $\operatorname{tr}(5A)$, $\operatorname{tr}(A^{t})$ y $\operatorname{tr}(A+I_3)$, justificando cada resultado.
+
+6. Razona si son verdaderas o falsas las siguientes afirmaciones: a) toda matriz triangular superior es diagonal; b) toda matriz diagonal es triangular superior; c) la matriz nula de orden $3$ es escalar; d) una matriz antisimétrica puede tener traza $5$; e) la traza de $I_5$ es $1$.
+
+7. Escribe una matriz cuadrada de orden $3$, con $a_{12}=1$, $a_{22}=0$, $a_{23}=-3$ y $a_{31}=2$, que sea antisimétrica. Comprueba que su traza es cero.
+
+8. Sea $T$ una matriz triangular superior de orden $3$ cuya diagonal principal es $(2,\,k,\,5)$. ¿Para qué valores de $k$ puedes asegurar que $T$ es regular? ¿Qué ocurre si $k=0$?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $A$ es cuadrada de orden $3$ y **diagonal**, luego también triangular superior e inferior; no es escalar porque los elementos de la diagonal son distintos. $\operatorname{tr}(A)=2-7+1=-4$.
+
+$B$ es cuadrada de orden $2$, diagonal y además **escalar**, ya que ambos elementos diagonales valen $5$; se puede escribir $B=5I_2$. No es la identidad. $\operatorname{tr}(B)=10$.
+
+$C$ es cuadrada de orden $4$ y **triangular superior**; no es diagonal porque hay elementos no nulos por encima de la diagonal. $\operatorname{tr}(C)=1+2+3+7=13$.
+
+$D$ es la **matriz nula** de orden $2$: es cuadrada, nula, diagonal, escalar (con $k=0$), triangular superior, triangular inferior, simétrica y antisimétrica. $\operatorname{tr}(D)=0$. También es singular, porque una matriz triangular con ceros en la diagonal no tiene inversa.
+
+**2.** La diagonal principal está formada por $m_{11}=2$, $m_{22}=2$, $m_{33}=3$ y $m_{44}=2$. La diagonal secundaria la forman los elementos con $i+j=5$: $m_{14}=0$, $m_{23}=1$, $m_{32}=1$ y $m_{41}=0$. La traza es $2+2+3+2=9$.
+
+**3.** Por ejemplo,
+$$
+\begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix},
+$$
+ya que $2+3+5=10$ y ningún elemento diagonal es cero. **No** es única: cualquier terna de números no nulos que sume $10$ sirve, como $(1,4,5)$ o $(-1,4,7)$.
+
+**4.** Si es escalar de orden $4$, sus cuatro elementos diagonales valen lo mismo, $k$, y $4k=22$, de donde $k=5{,}5$. La matriz es
+$$
+\begin{pmatrix} 5{,}5 & 0 & 0 & 0 \\ 0 & 5{,}5 & 0 & 0 \\ 0 & 0 & 5{,}5 & 0 \\ 0 & 0 & 0 & 5{,}5 \end{pmatrix} = 5{,}5\,I_4 ,
+$$
+y esta vez sí es **única**: la condición de ser escalar fija todos los elementos en cuanto se conoce la traza.
+
+**5.** Aplicando las propiedades:
+
+- $\operatorname{tr}(5A)=5\operatorname{tr}(A)=5\cdot 6=30$, porque al multiplicar la matriz por $5$ cada elemento de la diagonal queda multiplicado por $5$.
+- $\operatorname{tr}(A^{t})=\operatorname{tr}(A)=6$, porque al transponer la diagonal principal no se altera.
+- $\operatorname{tr}(A+I_3)=\operatorname{tr}(A)+\operatorname{tr}(I_3)=6+3=9$, ya que la traza de la suma es la suma de las trazas y la identidad de orden $3$ tiene traza $3$.
+
+**6.** a) **Falsa**: $\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$ es triangular superior y no es diagonal. b) **Verdadera**: si todos los elementos fuera de la diagonal son cero, en particular lo son los de debajo. c) **Verdadera**: es diagonal con todos los elementos de la diagonal iguales a $0$, luego es escalar con $k=0$. d) **Falsa**: en una matriz antisimétrica la diagonal es de ceros, así que su traza vale siempre $0$. e) **Falsa**: $\operatorname{tr}(I_5)=1+1+1+1+1=5$; en general $\operatorname{tr}(I_n)=n$.
+
+**7.** Como es antisimétrica, la diagonal es de ceros y las posiciones simétricas son opuestas. De $a_{12}=1$ sale $a_{21}=-1$; de $a_{23}=-3$ sale $a_{32}=3$; de $a_{31}=2$ sale $a_{13}=-2$. El dato $a_{22}=0$ es coherente con la diagonal nula:
+$$
+\begin{pmatrix} 0 & 1 & -2 \\ -1 & 0 & -3 \\ 2 & 3 & 0 \end{pmatrix}
+$$
+Su traza es $0+0+0=0$, como tenía que ocurrir.
+
+**8.** Una matriz triangular es regular exactamente cuando **ningún** elemento de su diagonal principal es cero. Aquí los elementos son $2$, $k$ y $5$; los dos primeros y el último ya son no nulos, así que la condición se reduce a $k\ne 0$.
+
+Si $k=0$, la matriz tiene un cero en la diagonal y resulta **singular**: no tiene inversa. En la parte 12 verás la razón de fondo, que es que en ese caso su rango es menor que $3$, es decir, alguna de sus filas no aporta información nueva.
+:::

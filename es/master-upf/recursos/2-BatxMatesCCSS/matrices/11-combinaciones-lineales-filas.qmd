@@ -1,0 +1,514 @@
+---
+title: "Tema 1.11 Combinaciones lineales de filas en una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 11 de 17)"
+filename: 11-combinaciones-lineales-filas
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Qué es una combinación lineal de filas de una matriz, definición de fila linealmente dependiente e independiente, criterios rápidos de detección (fila nula, filas proporcionales, filas escalonadas), método general para averiguar si una fila depende de las otras planteando y comprobando el sistema de coeficientes, carácter simétrico de la dependencia, la versión para columnas, y por qué toda esta idea es exactamente la que da lugar al concepto de rango, con ejemplos resueltos, errores típicos y applets manipulables.
+categories: [matrices, combinación lineal, dependencia lineal, independencia lineal, filas, rango, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cuánta información hay realmente en una tabla
+
+Mira esta matriz y pregúntate cuánta información contiene:
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}
+$$
+
+A primera vista hay nueve números. Pero si observas un momento verás que la segunda fila es el doble de la primera y que la tercera es el triple. Es decir: si te dan la primera fila, las otras dos **no aportan absolutamente nada nuevo**; podrías reconstruirlas de memoria. La tabla ocupa nueve casillas, pero solo contiene la información de una fila.
+
+Ese fenómeno tiene un nombre técnico y una medida precisa. El nombre es **dependencia lineal**; la medida es el **rango**, que veremos en el apartado siguiente. Y ambos se apoyan en una única idea, la de **combinación lineal de filas**, que es la que se estudia aquí.
+
+No es un concepto decorativo. Cuando en el próximo tema tengas un sistema de tres ecuaciones con tres incógnitas y una de las ecuaciones sea, sin que se note, la suma de las otras dos, ese sistema tendrá infinitas soluciones y no una sola. Detectar información repetida entre filas es lo que decide el número de soluciones de un sistema, y por tanto es la puerta de entrada a todo lo que viene después.
+
+::: {.callout-tip}
+## Una idea que no es solo matemática
+
+La pregunta «¿cuánta información nueva aporta cada fila de esta tabla?» aparece en muchos sitios fuera de clase. En una encuesta con veinte preguntas, si dos de ellas miden lo mismo, una sobra. En un modelo económico con varios indicadores, si uno es combinación de los otros, no añade capacidad de predicción. En la compresión de imágenes y de datos, la técnica consiste precisamente en detectar y eliminar la información redundante.
+
+Todos esos problemas se formulan igual: se colocan los datos en una matriz y se pregunta cuántas filas son realmente independientes. Ese número es el rango, y aprender a reconocer combinaciones lineales es aprender a calcularlo.
+:::
+
+## Combinación lineal de filas
+
+Empecemos por fijar la notación. Si $A$ es una matriz de $m$ filas, llamaremos $F_1$, $F_2$, ..., $F_m$ a sus filas, entendidas como listas de números. Las filas se pueden sumar entre sí y multiplicar por números, exactamente igual que las matrices fila que son:
+
+$$
+F_1 = \begin{pmatrix} 1 & 2 & 3 \end{pmatrix},
+\quad
+F_2 = \begin{pmatrix} 0 & -1 & 4 \end{pmatrix}
+\;\Rightarrow\;
+2F_1 + 3F_2 = \begin{pmatrix} 2 & 1 & 18 \end{pmatrix}
+$$
+
+::: {.callout-note}
+## Definición: combinación lineal de filas
+
+Dadas las filas $F_{j_1}, F_{j_2}, \dots, F_{j_m}$ de una matriz, se llama **combinación lineal** de ellas a cualquier fila de la forma
+
+$$
+k_1F_{j_1} + k_2F_{j_2} + \cdots + k_mF_{j_m}
+$$
+
+donde $k_1, k_2, \dots, k_m$ son números reales cualesquiera, llamados **coeficientes** de la combinación.
+
+Una fila no nula $F_i$ **depende linealmente** de las filas $F_{j_1}, \dots, F_{j_m}$ si se puede escribir como combinación lineal de ellas, es decir, si existen números reales $k_1, \dots, k_m$ tales que
+
+$$
+F_i = k_1F_{j_1} + k_2F_{j_2} + \cdots + k_mF_{j_m}
+$$
+
+Una fila es **linealmente independiente** cuando **no** depende linealmente de las demás filas de la matriz: no hay ninguna elección de coeficientes que la reproduzca.
+:::
+
+Conviene leer la definición con calma, porque encierra dos cosas distintas. «Ser combinación lineal» es una **construcción**: coges filas, las multiplicas por números y las sumas. «Depender linealmente» es una **propiedad**: una fila concreta resulta ser el resultado de esa construcción hecha con las otras.
+
+::: {.callout-note}
+## La misma definición vale para columnas
+
+Todo lo que se dice en este apartado sobre filas es válido, palabra por palabra, para columnas. Una columna no nula $C_j$ depende linealmente de las columnas $C_{j_1}, \dots, C_{j_m}$ si
+
+$$
+C_j = k_1C_{j_1} + k_2C_{j_2} + \cdots + k_mC_{j_m}
+$$
+
+y es linealmente independiente cuando no depende de las demás. Para no repetirlo todo dos veces, es costumbre usar la palabra **línea** cuando el razonamiento sirve tanto para una fila como para una columna.
+
+En la práctica trabajaremos casi siempre con filas, porque el método de Gauss opera por filas y porque, como se verá, el resultado final es el mismo.
+:::
+
+## Casos que se reconocen a simple vista
+
+Antes de montar ningún sistema, conviene tener el ojo entrenado. Hay situaciones en las que la dependencia salta a la vista y no hace falta calcular nada.
+
+::: {.callout-note}
+## Cuatro señales de dependencia inmediata
+
+1. **Una fila de ceros.** La fila nula es siempre combinación lineal de las demás: basta tomar todos los coeficientes iguales a cero. Una fila nula nunca aporta información.
+2. **Dos filas iguales.** Si $F_2 = F_1$, entonces $F_2 = 1\cdot F_1$: dependencia con coeficiente $1$.
+3. **Dos filas proporcionales.** Si los elementos de una fila son todos el mismo múltiplo de los de otra, $F_i = kF_j$, hay dependencia. Es el caso más frecuente en los ejercicios.
+4. **Una fila que es suma o resta de otras dos.** $F_3 = F_1 + F_2$ o $F_3 = F_1 - F_2$ son combinaciones lineales con coeficientes $1$ y $\pm 1$.
+
+Si no ves ninguna de estas cuatro cosas, no significa que las filas sean independientes: significa que hay que investigar con el método general.
+:::
+
+### Ejemplo resuelto 1: dependencias visibles
+
+Analiza la dependencia de las filas de
+
+$$
+A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \\ -2 & -4 \end{pmatrix}
+$$
+
+**La cuarta fila.** Es evidente que $F_4 = -2F_1$, porque $-2\cdot 1 = -2$ y $-2\cdot 2 = -4$. Luego $F_4$ depende linealmente de $F_1$.
+
+**La tercera fila.** No es múltiplo de ninguna otra, pero se puede probar con dos. Resulta que
+
+$$
+2F_2 - F_1 = \begin{pmatrix} 6-1 & 8-2 \end{pmatrix} = \begin{pmatrix} 5 & 6 \end{pmatrix} = F_3
+$$
+
+luego $F_3 = 2F_2 - F_1$ y también depende.
+
+**Las dos primeras filas.** ¿Son independientes entre sí? Para que $F_1$ dependiera de $F_2$ tendría que existir un número $\alpha$ con
+
+$$
+\begin{pmatrix} 1 & 2 \end{pmatrix} = \alpha\begin{pmatrix} 3 & 4 \end{pmatrix} = \begin{pmatrix} 3\alpha & 4\alpha \end{pmatrix}
+$$
+
+De la primera coordenada saldría $\alpha = \tfrac13$ y de la segunda $\alpha = \tfrac12$. Como $\tfrac13 \neq \tfrac12$, **no existe tal $\alpha$**: las dos primeras filas son linealmente independientes.
+
+**Conclusión.** En esta matriz hay **dos** filas linealmente independientes, por ejemplo $F_1$ y $F_2$, y otras dos que dependen de ellas.
+
+::: {.callout-important}
+## La dependencia es una relación mutua, no una jerarquía
+
+Es tentador decir «$F_4$ depende de $F_1$» como si $F_1$ fuera la fila importante y $F_4$ la subordinada. Pero de $F_4 = -2F_1$ se deduce igualmente $F_1 = -\tfrac12 F_4$. La dependencia es una relación **entre** las filas, no una propiedad de una de ellas.
+
+Lo mismo pasa con relaciones más largas. De $F_3 = 2F_2 - F_1$ se obtiene, despejando:
+
+$$
+F_1 = 2F_2 - F_3,
+\qquad
+F_2 = \tfrac12\left(F_1 + F_3\right)
+$$
+
+Las tres formas dicen exactamente lo mismo. Por eso, cuando en un ejercicio te pidan «qué filas son independientes», la respuesta correcta empieza por «hay dos filas independientes, **por ejemplo** $F_1$ y $F_2$»: la elección no es única, pero el **número** sí lo es. Ese número invariante es lo que se llamará rango.
+:::
+
+### Ejemplo resuelto 2: todo depende de una sola fila
+
+Volvamos a la matriz del principio:
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}
+$$
+
+Aquí $F_2 = 2F_1$ y $F_3 = 3F_1$. También se puede escribir $F_3 = F_1 + F_2$, que es otra combinación lineal válida de las mismas filas. Sea cual sea la que elijas, la conclusión es la misma: hay **una sola** fila linealmente independiente, y las otras dos dependen de ella.
+
+Compara este resultado con la sensación inicial de «nueve números, mucha información». La matriz solo contiene, en realidad, la información de tres números.
+
+### Ejemplo resuelto 3: filas escalonadas siempre son independientes
+
+Analiza las filas de
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 0 & 0 & 6 \end{pmatrix}
+$$
+
+Este razonamiento es importante porque justifica todo el método de Gauss del apartado siguiente. Se hace de abajo arriba.
+
+**$F_3$ es independiente**, porque no es nula y no hay filas por debajo.
+
+**$F_2$ es independiente de $F_3$.** El elemento $a_{22} = 4$ es distinto de cero, pero el elemento correspondiente de $F_3$ es $a_{32} = 0$. Ninguna cantidad de $F_3$ puede generar ese $4$: por mucho que multipliques $F_3$ por un número, en esa posición seguirás teniendo un cero.
+
+**$F_1$ es independiente de $F_2$ y $F_3$.** El elemento $a_{11} = 1$ no es nulo, mientras que $a_{21} = 0$ y $a_{31} = 0$. Cualquier combinación $k_1F_2 + k_2F_3$ tiene un cero en la primera posición, así que nunca podrá dar $1$.
+
+**Conclusión.** Las tres filas son linealmente independientes.
+
+::: {.callout-important}
+## Por qué esto es tan útil
+
+En una matriz **escalonada** —es decir, con ceros por debajo de la diagonal y donde cada fila empieza con más ceros que la anterior— todas las filas no nulas son automáticamente independientes, por el argumento que acabas de leer: cada fila tiene un primer elemento no nulo en una posición donde todas las de abajo tienen ceros, y ese elemento no puede fabricarse combinando las demás.
+
+De aquí sale la estrategia del apartado 1.13: en lugar de investigar dependencias a mano, se transforma la matriz en una escalonada mediante operaciones que no alteran la dependencia, y entonces basta **contar las filas que no se han anulado**. Todo el método de Gauss aplicado al rango se apoya en la demostración anterior.
+:::
+
+## El método general: plantear y comprobar
+
+Cuando ninguna dependencia es visible, hay que trabajar. El procedimiento consiste en **suponer** que una fila depende de las otras, escribir la igualdad con coeficientes desconocidos, obtenerlos con unas cuantas columnas y —esto es lo esencial— **comprobarlos en todas las demás**.
+
+::: {.callout-note}
+## Procedimiento
+
+Para averiguar si $F_1$ depende de $F_2$ y $F_3$:
+
+**Paso 1.** Plantear $F_1 = k_1F_2 + k_2F_3$ e igualar elemento a elemento. Cada columna produce una ecuación.
+
+**Paso 2.** Tomar tantas ecuaciones como incógnitas (aquí, dos columnas) y resolver el sistema para hallar $k_1$ y $k_2$.
+
+**Paso 3. Comprobar** los valores obtenidos en **todas** las ecuaciones restantes.
+
+- Si se cumplen todas, la dependencia es cierta y se escribe la relación.
+- Si falla **una sola**, la dependencia **no existe** y las filas son independientes.
+:::
+
+### Ejemplo resuelto 4: una dependencia que no se ve
+
+Determina el número de filas linealmente independientes de
+
+$$
+A = \begin{pmatrix} 2 & 0 & 3 & -4 \\ 3 & -5 & 2 & 3 \\ 8 & -10 & 7 & 2 \end{pmatrix}
+$$
+
+**Descartar lo fácil.** Ninguna fila es nula y ninguna es múltiplo de otra: los cocientes entre elementos correspondientes no son constantes. Hay que ir al método general.
+
+**Paso 1. Plantear.** Suponemos $F_1 = k_1F_2 + k_2F_3$ y comparamos columna a columna:
+
+$$
+\begin{array}{ll}
+\text{columna 1:} & 2 = 3k_1 + 8k_2 \\
+\text{columna 2:} & 0 = -5k_1 - 10k_2 \\
+\text{columna 3:} & 3 = 2k_1 + 7k_2 \\
+\text{columna 4:} & -4 = 3k_1 + 2k_2
+\end{array}
+$$
+
+**Paso 2. Resolver con las dos primeras.** De la segunda ecuación, $-5k_1 = 10k_2$, es decir, $k_1 = -2k_2$. Sustituyendo en la primera:
+
+$$
+2 = 3(-2k_2) + 8k_2 = -6k_2 + 8k_2 = 2k_2 \;\Rightarrow\; k_2 = 1
+$$
+
+y por tanto $k_1 = -2$.
+
+**Paso 3. Comprobar en las columnas que sobran.**
+
+$$
+\text{columna 3:}\quad 2\cdot(-2) + 7\cdot 1 = -4 + 7 = 3 \;\checkmark
+$$
+
+$$
+\text{columna 4:}\quad 3\cdot(-2) + 2\cdot 1 = -6 + 2 = -4 \;\checkmark
+$$
+
+Las dos comprobaciones cuadran, luego la dependencia es real:
+
+$$
+F_1 = -2F_2 + F_3
+$$
+
+**Conclusión.** $F_2$ y $F_3$ son independientes entre sí (no son proporcionales) y $F_1$ depende de ellas. Hay **dos** filas linealmente independientes.
+
+### Ejemplo resuelto 5: cuando la comprobación falla
+
+Estudia si $F_3$ depende de $F_1$ y $F_2$ en
+
+$$
+B = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1 & 1 & 1 & 1 \\ 2 & 3 & 4 & 6 \end{pmatrix}
+$$
+
+**Planteamos** $F_3 = k_1F_1 + k_2F_2$:
+
+$$
+\begin{array}{ll}
+\text{columna 1:} & 2 = k_1 + k_2 \\
+\text{columna 2:} & 3 = 2k_1 + k_2 \\
+\text{columna 3:} & 4 = 3k_1 + k_2 \\
+\text{columna 4:} & 6 = 4k_1 + k_2
+\end{array}
+$$
+
+**Resolvemos con las dos primeras.** Restando la primera de la segunda: $1 = k_1$. Entonces $k_2 = 2 - 1 = 1$.
+
+**Comprobamos.** En la columna 3: $3\cdot 1 + 1\cdot 1 = 4$, correcto. Todo va bien... hasta la última:
+
+$$
+\text{columna 4:}\quad 4\cdot 1 + 1\cdot 1 = 5 \neq 6 \;\times
+$$
+
+**Falla.** Por tanto **no existen** coeficientes que funcionen en todas las columnas a la vez, y $F_3$ **no** es combinación lineal de $F_1$ y $F_2$. Las tres filas son linealmente independientes.
+
+::: {.callout-caution}
+## El paso que no se puede saltar
+
+Fíjate en lo que ha ocurrido en el ejemplo 5: los coeficientes $k_1 = 1$ y $k_2 = 1$ funcionaban en **tres** de las cuatro columnas. Si te hubieras parado al ver que cuadran las tres primeras, habrías afirmado una dependencia falsa y el ejercicio entero estaría mal.
+
+La regla es tajante: los coeficientes se **obtienen** con algunas ecuaciones, pero se **verifican en todas las demás**, sin excepción. Basta que una falle para que no haya dependencia.
+
+Este es el error clásico del apartado, y también la razón por la que el método de Gauss, que se estudia más adelante, resulta preferible: no exige adivinar coeficientes ni comprobar nada, porque el escalonamiento hace el trabajo solo.
+:::
+
+### Applet · Combinaciones lineales de filas {.unnumbered}
+
+Elige los coeficientes con los que quieres combinar las dos primeras filas y observa cómo se construye la fila resultante elemento a elemento; después usa el modo inverso, en el que se te da una tercera fila y el applet averigua si es combinación lineal de las anteriores y con qué coeficientes exactos.
+
+::: {#panel-combFilas .applet-panel data-applet-mtx="combFilas"}
+:::
+
+## La versión con la combinación igualada a cero
+
+Hay otra forma de enunciar la independencia, equivalente a la anterior y más simétrica, que conviene conocer porque es la que se utiliza en cursos posteriores.
+
+::: {.callout-important}
+## Formulación equivalente
+
+Las filas $F_1, F_2, \dots, F_m$ son **linealmente independientes** si la única forma de conseguir
+
+$$
+k_1F_1 + k_2F_2 + \cdots + k_mF_m = 0
+$$
+
+es tomando $k_1 = k_2 = \cdots = k_m = 0$. Si existe alguna elección de coeficientes **no todos nulos** que anule la combinación, las filas son **dependientes**.
+
+**¿Por qué es equivalente?** Supón que hay una combinación nula con algún coeficiente distinto de cero, por ejemplo $k_1\neq 0$. Entonces se puede despejar:
+
+$$
+F_1 = -\frac{k_2}{k_1}F_2 - \cdots - \frac{k_m}{k_1}F_m
+$$
+
+y $F_1$ resulta ser combinación lineal de las demás. Recíprocamente, si $F_1 = c_2F_2 + \cdots + c_mF_m$, pasando todo a un miembro se obtiene $1\cdot F_1 - c_2F_2 - \cdots - c_mF_m = 0$, una combinación nula con un coeficiente igual a $1$, que desde luego no es cero.
+
+Esta versión tiene una ventaja: **no privilegia a ninguna fila**. En vez de preguntar «¿depende esta fila de las otras?», pregunta «¿hay alguna relación entre todas ellas?», que es la formulación honesta del problema.
+:::
+
+### Ejemplo resuelto 6: escribir la relación en forma nula
+
+En el ejemplo 4 obtuvimos $F_1 = -2F_2 + F_3$. Pasando todo al primer miembro:
+
+$$
+F_1 + 2F_2 - F_3 = 0
+$$
+
+Aquí los coeficientes son $1$, $2$ y $-1$: no todos nulos, luego las tres filas son dependientes. La igualdad se puede comprobar directamente:
+
+$$
+\begin{pmatrix} 2 & 0 & 3 & -4 \end{pmatrix} + 2\begin{pmatrix} 3 & -5 & 2 & 3 \end{pmatrix} - \begin{pmatrix} 8 & -10 & 7 & 2 \end{pmatrix}
+$$
+
+$$
+= \begin{pmatrix} 2 + 6 - 8 & 0 - 10 + 10 & 3 + 4 - 7 & -4 + 6 - 2 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 0 & 0 \end{pmatrix}
+$$
+
+Escribir la relación en esta forma es la manera más limpia de presentar el resultado en un examen: una sola igualdad que se verifica de un vistazo.
+
+### Applet · Filas dependientes e independientes {.unnumbered}
+
+Introduce una matriz completa y deja que el applet clasifique sus filas: verás cuáles forman un conjunto independiente, cuáles se pueden escribir en función de otras y con qué coeficientes exactos, con la relación de dependencia escrita en forma de igualdad para que puedas comprobarla a mano.
+
+::: {#panel-dependencia .applet-panel data-applet-mtx="dependencia"}
+:::
+
+## De aquí sale el rango
+
+::: {.callout-important}
+## La idea que enlaza con el apartado siguiente
+
+Recapitulemos lo que hemos visto en los ejemplos:
+
+- En $\begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}$ hay **una** fila independiente.
+- En $\begin{pmatrix} 2 & 0 & 3 & -4 \\ 3 & -5 & 2 & 3 \\ 8 & -10 & 7 & 2 \end{pmatrix}$ hay **dos**.
+- En $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 0 & 0 & 6 \end{pmatrix}$ hay **tres**.
+
+En cada caso, la **elección concreta** de las filas independientes admitía varias respuestas, pero su **número** era siempre el mismo. Ese número es una característica de la matriz, no de la manera de mirarla, y merece un nombre propio: es el **rango**.
+
+Con él se responde de golpe a la pregunta del principio: cuánta información no repetida contiene una tabla de números.
+:::
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Comprobar solo en algunas columnas.** Ya se ha dicho, y se repite porque es el error dominante: los coeficientes deben verificarse en **todas**.
+- **Confundir «no proporcionales» con «independientes».** Que ninguna fila sea múltiplo de otra no basta cuando hay tres o más filas: puede haber dependencia con dos coeficientes, como en el ejemplo 4.
+- **Creer que la fila dependiente es siempre la última.** La dependencia es mutua; cualquiera de las filas implicadas puede despejarse en función de las otras.
+- **Olvidar que una fila nula siempre es dependiente.** Aunque el resto de la matriz sea perfectamente independiente, la fila de ceros nunca cuenta.
+- **Mezclar filas y columnas en la misma relación.** Una combinación lineal de filas produce una fila; no tiene sentido igualarla a una columna.
+- **Dar por buena una dependencia sin escribirla.** En una prueba hay que dejar escrita la relación concreta, por ejemplo $F_1 = -2F_2 + F_3$, no basta con decir «son dependientes».
+:::
+
+::: {.callout-warning}
+## Qué se pide justificar en las pruebas
+
+En las pruebas de acceso, los enunciados de este bloque suelen tener la forma «estudia la dependencia lineal de las filas» o «indica cuántas filas independientes tiene». En ambos casos se espera:
+
+1. Que descartes explícitamente los casos inmediatos (fila nula, filas proporcionales).
+2. Que plantees la combinación con coeficientes y muestres **cómo** los obtienes.
+3. Que hagas la **comprobación** en las columnas restantes, escrita.
+4. Que concluyas con una frase clara: «hay dos filas independientes, por ejemplo $F_2$ y $F_3$, y se cumple $F_1 = -2F_2 + F_3$».
+
+Los tres primeros puntos son el razonamiento; el cuarto es la respuesta. Faltar cualquiera de ellos cuesta puntuación aunque el número final sea correcto.
+:::
+
+## Resumen del apartado
+
+- Una **combinación lineal** de filas es cualquier expresión $k_1F_{j_1} + \cdots + k_mF_{j_m}$ con coeficientes reales.
+- Una fila **depende linealmente** de otras si se puede escribir como combinación lineal de ellas; es **independiente** si no se puede.
+- Todo lo dicho para filas vale igual para **columnas**; por eso se habla de «líneas».
+- **Dependencias inmediatas**: fila nula, filas iguales, filas proporcionales, fila que es suma o diferencia de otras dos.
+- Las filas no nulas de una matriz **escalonada** son siempre independientes, porque cada una tiene un elemento no nulo donde las de abajo tienen ceros.
+- **Método general**: plantear $F_i = k_1F_j + k_2F_l$, obtener los coeficientes con algunas columnas y **comprobarlos en todas las demás**. Si falla una sola comprobación, no hay dependencia.
+- La dependencia es una relación **mutua**: de $F_3 = 2F_2 - F_1$ se deduce $F_1 = 2F_2 - F_3$.
+- Formulación equivalente: las filas son independientes cuando la única combinación lineal suya que da la fila nula es la de **todos los coeficientes cero**.
+- La elección de las filas independientes no es única, pero **su número sí lo es**: ese número es el **rango**, que se define en el apartado siguiente.
+
+## Ejercicios propuestos
+
+**1.** Escribe la fila que resulta de la combinación lineal $3F_1 - 2F_2$, siendo $F_1 = \begin{pmatrix} 2 & -1 & 0 & 5 \end{pmatrix}$ y $F_2 = \begin{pmatrix} 1 & 3 & -2 & 4 \end{pmatrix}$.
+
+**2.** Indica, razonando la respuesta, cuántas filas linealmente independientes tienen estas matrices:
+
+$$
+A = \begin{pmatrix} 0 & 1 & 3 \\ 1 & 0 & -4 \\ 1 & 1 & -1 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 0 & 1 & 3 \\ 1 & 0 & -4 \\ -1 & 2 & 2 \end{pmatrix}
+$$
+
+**3.** Estudia la dependencia lineal de las filas de
+
+$$
+C = \begin{pmatrix} 1 & -1 & 2 \\ 2 & 1 & 3 \\ 4 & -1 & 7 \end{pmatrix}
+$$
+
+y, si la hay, escribe la relación en la forma $k_1F_1 + k_2F_2 + k_3F_3 = 0$.
+
+**4.** Completa los elementos que faltan para que las filas de la matriz sean linealmente dependientes:
+
+$$
+\begin{pmatrix} 3 & -1 & b & 2 \\ -9 & a & 0 & c \end{pmatrix}
+$$
+
+**5.** Demuestra que si una matriz tiene una fila nula, sus filas no pueden ser todas linealmente independientes.
+
+**6.** Sean $F_1 = \begin{pmatrix} 1 & 2 \end{pmatrix}$ y $F_2 = \begin{pmatrix} 3 & 4 \end{pmatrix}$. Comprueba que **cualquier** fila $\begin{pmatrix} x & y \end{pmatrix}$ se puede escribir como combinación lineal de $F_1$ y $F_2$, y halla los coeficientes en función de $x$ e $y$.
+
+**7.** ¿Puede una matriz de $5$ filas y $2$ columnas tener sus cinco filas linealmente independientes? Razona la respuesta pensando en el ejercicio anterior.
+
+**8.** Estudia la dependencia de las **columnas** de la matriz $\begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 4 \\ 1 & 2 & 5 \end{pmatrix}$ y compárala con la de sus filas.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.**
+
+$$
+3F_1 - 2F_2 = \begin{pmatrix} 6 & -3 & 0 & 15 \end{pmatrix} - \begin{pmatrix} 2 & 6 & -4 & 8 \end{pmatrix} = \begin{pmatrix} 4 & -9 & 4 & 7 \end{pmatrix}
+$$
+
+**2.** En $A$, la tercera fila se obtiene sumando las dos primeras: $F_3 = F_1 + F_2$, ya que $0+1 = 1$, $1+0=1$ y $3-4 = -1$. Como $F_1$ y $F_2$ no son proporcionales, son independientes entre sí. Hay **dos** filas independientes.
+
+En $B$, se prueba $F_3 = k_1F_1 + k_2F_2$. De la primera columna, $-1 = k_2$; de la segunda, $2 = k_1$. Comprobación en la tercera: $2\cdot 3 + (-1)\cdot(-4) = 6 + 4 = 10 \neq 2$. **Falla**, luego no hay dependencia y las **tres** filas son independientes.
+
+**3.** No hay filas proporcionales. Planteamos $F_3 = k_1F_1 + k_2F_2$:
+
+- columna 1: $4 = k_1 + 2k_2$
+- columna 2: $-1 = -k_1 + k_2$
+- columna 3: $7 = 2k_1 + 3k_2$
+
+Sumando las dos primeras: $3 = 3k_2$, luego $k_2 = 1$ y $k_1 = 2$. Comprobación en la tercera: $2\cdot 2 + 3\cdot 1 = 7$, correcto. Por tanto $F_3 = 2F_1 + F_2$, y en forma nula:
+
+$$
+2F_1 + F_2 - F_3 = 0
+$$
+
+Hay dos filas independientes.
+
+**4.** Con dos filas, la dependencia equivale a que sean proporcionales. Como $-9 = -3\cdot 3$, la constante es $-3$ y debe cumplirse $F_2 = -3F_1$:
+
+$$
+a = -3\cdot(-1) = 3,
+\qquad
+0 = -3b \;\Rightarrow\; b = 0,
+\qquad
+c = -3\cdot 2 = -6
+$$
+
+**5.** Sea $F_i$ la fila nula. Tomando el coeficiente $1$ para ella y $0$ para todas las demás se obtiene
+
+$$
+0\cdot F_1 + \cdots + 1\cdot F_i + \cdots + 0\cdot F_m = 0
+$$
+
+una combinación lineal que da la fila nula **sin que todos los coeficientes sean cero**. Según la formulación equivalente, las filas son dependientes. (Dicho de otro modo: la fila nula es siempre combinación lineal de las demás, con todos los coeficientes iguales a cero.)
+
+**6.** Hay que resolver $\begin{pmatrix} x & y \end{pmatrix} = k_1\begin{pmatrix} 1 & 2 \end{pmatrix} + k_2\begin{pmatrix} 3 & 4 \end{pmatrix}$, es decir, el sistema
+
+$$
+\left\{
+\begin{array}{l}
+k_1 + 3k_2 = x \\
+2k_1 + 4k_2 = y
+\end{array}
+\right.
+$$
+
+Restando el doble de la primera a la segunda: $-2k_2 = y - 2x$, luego
+
+$$
+k_2 = \frac{2x - y}{2},
+\qquad
+k_1 = x - 3k_2 = \frac{3y - 4x}{2}
+$$
+
+Siempre hay solución, así que **cualquier** fila de dos elementos es combinación lineal de $F_1$ y $F_2$.
+
+**7.** No. Por el ejercicio anterior, dos filas independientes de longitud $2$ ya generan **todas** las filas de dos elementos. Cualquier fila adicional será por fuerza combinación lineal de ellas. Con filas de $2$ elementos no puede haber más de $2$ independientes, por muchas filas que tenga la matriz. Esta observación es la que dará lugar a la cota $\operatorname{rg}(A)\le \min(m,n)$ del apartado siguiente.
+
+**8.** **Columnas**: $C_2 = 2C_1$, luego dependen; y $C_3$ no es múltiplo de $C_1$, así que $C_1$ y $C_3$ son independientes. Hay **dos** columnas independientes.
+
+**Filas**: $F_2 - F_1 = \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}$ y $F_3 - F_2 = \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}$, de donde $F_3 = 2F_2 - F_1$. Como $F_1$ y $F_2$ no son proporcionales, hay **dos** filas independientes.
+
+Los dos números coinciden, y no es casualidad: en el apartado siguiente se enuncia que el rango por filas siempre es igual al rango por columnas.
+:::

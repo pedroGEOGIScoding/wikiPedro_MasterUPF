@@ -1,0 +1,472 @@
+---
+title: "Tema 1.17 Práctica del tema"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 17 de 17)"
+filename: 17-practica-matrices
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Hoja de práctica global del tema de matrices, con mapa de contenidos, tabla resumen de tipos de matriz, catálogo de propiedades que se cumplen y que no, estrategias de resolución, errores más frecuentes de todo el tema, seis bloques de ejercicios resueltos graduados sobre tipos y transposición, operaciones y potencias, rango, matriz inversa, ecuaciones matriciales y problemas contextualizados, autoevaluación tipo test y batería final con soluciones.
+categories: [matrices, álgebra, 2 Batx, matemáticas CCSS, práctica, rango, matriz inversa, ecuaciones matriciales, autoevaluación]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Esta hoja no introduce contenidos nuevos: reúne todo el tema y lo pone a prueba en el orden en que suele aparecer en un examen. Cada ejercicio lleva su nivel indicado —**básico**, **medio** o **avanzado**— y su solución completa en un desplegable justo debajo.
+
+Trabaja con papel y lápiz, y **no abras la solución hasta haber terminado**. Cuando la abras, compara también el camino, no solo el resultado: una respuesta incorrecta casi nunca falla en el último paso, sino mucho antes. Busca el punto exacto donde se separan los dos desarrollos, porque eso es lo que hay que corregir.
+
+::: {.callout-tip}
+## Plan de trabajo recomendado
+
+- **Sesión 1 (45 min).** Bloques 1 y 2: tipos, transposición, operaciones y potencias. Es la base de todo lo demás.
+- **Sesión 2 (45 min).** Bloques 3 y 4: rango por Gauss e inversa por Gauss-Jordan, con parámetro incluido.
+- **Sesión 3 (45 min).** Bloques 5 y 6: ecuaciones matriciales y problemas contextualizados, que son los que más puntúan.
+- **Sesión 4 (30 min).** Test, applet de entrenamiento y batería final, sin apuntes y con reloj.
+
+Si andas justo de tiempo, prioriza los ejercicios de nivel **medio**: son los que mejor discriminan si el tema está asentado.
+:::
+
+## Mapa del tema
+
+Todo el tema gira alrededor de una misma idea: **organizar información en una tabla rectangular y operar con la tabla entera**. Lo que cambia de un apartado a otro es la operación y la pregunta.
+
+| Bloque | Qué se pide | Herramienta principal | Forma de la respuesta |
+|---|---|---|---|
+| Tipos y transposición | reconocer y clasificar | definición y dimensiones | un nombre y un orden $m\times n$ |
+| Operaciones | sumar, multiplicar por un número, multiplicar matrices | reglas de las operaciones | una matriz |
+| Potencias | calcular $A^n$ | patrón y comprobación | una matriz que depende de $n$ |
+| Rango | número de filas independientes | método de Gauss | un número entero |
+| Inversa | deshacer un producto | Gauss-Jordan o fórmula de orden $2$ | una matriz o «no existe» |
+| Ecuaciones matriciales | despejar $X$ | multiplicar por la inversa por el lado correcto | una matriz |
+
+::: {.callout-important}
+## La idea que une el tema
+
+Una matriz es a la vez **dos cosas**: una tabla de datos y una operación que transforma unas cantidades en otras. La suma corresponde a acumular tablas; el producto, a encadenar transformaciones —por eso no es conmutativo: encadenar en un orden u otro no da lo mismo—; el **rango** mide cuánta información distinta contiene realmente la tabla; y la **inversa** es la transformación que deshace lo que hizo la matriz, y por eso solo existe cuando no se ha perdido información, es decir, cuando el rango es máximo.
+
+Si tienes clara esta lectura, dejarás de memorizar reglas sueltas: casi todo el tema se deduce de ella.
+:::
+
+## Tabla resumen de tipos de matriz
+
+| Tipo | Condición | Ejemplo |
+|---|---|---|
+| Fila | una sola fila, orden $1\times n$ | $\begin{pmatrix} 2 & 5 & 1\end{pmatrix}$ |
+| Columna | una sola columna, orden $m\times 1$ | $\begin{pmatrix} 3 \\ 0 \end{pmatrix}$ |
+| Cuadrada | mismo número de filas que de columnas | $\begin{pmatrix} 1 & 2 \\ 3 & 4\end{pmatrix}$ |
+| Nula | todos los elementos valen $0$ | $\begin{pmatrix} 0 & 0 \\ 0 & 0\end{pmatrix}$ |
+| Diagonal | cuadrada y $a_{ij}=0$ si $i\neq j$ | $\begin{pmatrix} 2 & 0 \\ 0 & 5\end{pmatrix}$ |
+| Escalar | diagonal con todos los elementos iguales | $\begin{pmatrix} 3 & 0 \\ 0 & 3\end{pmatrix}$ |
+| Identidad | escalar con unos en la diagonal | $\begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$ |
+| Triangular superior | ceros por debajo de la diagonal | $\begin{pmatrix} 1 & 4 \\ 0 & 2\end{pmatrix}$ |
+| Triangular inferior | ceros por encima de la diagonal | $\begin{pmatrix} 1 & 0 \\ 7 & 2\end{pmatrix}$ |
+| Simétrica | $A^t = A$ | $\begin{pmatrix} 1 & 3 \\ 3 & 5\end{pmatrix}$ |
+| Antisimétrica | $A^t = -A$, con diagonal nula | $\begin{pmatrix} 0 & 2 \\ -2 & 0\end{pmatrix}$ |
+| Regular | tiene inversa, $\operatorname{rg}(A)=n$ | $\begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}$ |
+| Singular | no tiene inversa, $\operatorname{rg}(A)<n$ | $\begin{pmatrix} 1 & 2 \\ 2 & 4\end{pmatrix}$ |
+
+## Qué se cumple y qué no
+
+Esta es probablemente la tabla más rentable de todo el tema. La mitad de los errores de examen consisten en aplicar a las matrices una propiedad de los números que **no** es cierta.
+
+| Propiedad | ¿Se cumple? | Comentario |
+|---|---|---|
+| $A+B = B+A$ | **Sí** | la suma sí es conmutativa |
+| $A\cdot B = B\cdot A$ | **No** | en general son distintas, e incluso puede que una no exista |
+| $(A\cdot B)\cdot C = A\cdot(B\cdot C)$ | **Sí** | el producto es asociativo |
+| $A\cdot (B+C) = A\cdot B + A\cdot C$ | **Sí** | distributiva, respetando el orden |
+| $A\cdot I = I\cdot A = A$ | **Sí** | la identidad es el elemento neutro |
+| $A\cdot B = 0 \implies A=0$ o $B=0$ | **No** | existen **divisores de cero** |
+| $A\cdot B = A\cdot C \implies B = C$ | **No** | solo si $A$ es regular; no hay ley de cancelación general |
+| $(A+B)^2 = A^2 + 2AB + B^2$ | **No** | lo correcto es $A^2 + AB + BA + B^2$ |
+| $(A+B)^t = A^t + B^t$ | **Sí** | la transposición respeta la suma |
+| $(A\cdot B)^t = B^t\cdot A^t$ | **Sí** | el orden **se invierte** |
+| $(A\cdot B)^{-1} = B^{-1}\cdot A^{-1}$ | **Sí** | el orden **se invierte** también aquí |
+| $(A+B)^{-1} = A^{-1} + B^{-1}$ | **No** | no hay ninguna fórmula sencilla para la inversa de una suma |
+| $(A^{-1})^{-1} = A$ y $(kA)^{-1} = \tfrac1k A^{-1}$ | **Sí** | deshacer lo deshecho, con $k\neq 0$ |
+| $\operatorname{rg}(A^t) = \operatorname{rg}(A)$ | **Sí** | el rango por filas y por columnas coincide |
+| Toda matriz cuadrada tiene inversa | **No** | solo las de rango máximo |
+| Existe la división de matrices | **No** | se sustituye por el producto por la inversa |
+
+## Estrategias de resolución
+
+| Si el enunciado pide… | Haz… | Porque… |
+|---|---|---|
+| clasificar una matriz | mirar orden, ceros y comparar con $A^t$ | la clasificación es cuestión de definición |
+| un producto $A\cdot B$ | comprobar antes que las dimensiones encajan | si las interiores no coinciden, el producto no existe |
+| una potencia $A^n$ alta | calcular $A^2$, $A^3$ y buscar el patrón | casi siempre hay periodicidad o una fórmula en $n$ |
+| el rango | escalonar por Gauss y contar filas no nulas | es el método sistemático y siempre funciona |
+| el rango con parámetro | escalonar **sin dividir por el parámetro** | dividir por algo que puede valer $0$ pierde casos |
+| la inversa | fórmula rápida en el orden $2$, Gauss-Jordan en el $3$ | son los métodos del curso |
+| resolver $A\cdot X = B$ | multiplicar por $A^{-1}$ **por la izquierda** | la inversa debe quedar pegada a $A$ |
+| resolver $X\cdot A = B$ | multiplicar por $A^{-1}$ **por la derecha** | el producto no es conmutativo |
+| un problema con tablas de datos | escribir las matrices y comprobar qué significa cada producto | el producto encadena filas con columnas |
+
+::: {.callout-caution}
+## Errores más frecuentes de todo el tema
+
+1. **Sumar matrices de distinto orden.** La suma solo existe entre matrices del mismo orden.
+2. **Multiplicar elemento a elemento.** El producto de matrices combina **filas por columnas**, no posiciones con posiciones.
+3. **Dar por hecho que $A\cdot B = B\cdot A$**, o escribir el resultado de un despeje con los factores cambiados de orden.
+4. **Desarrollar $(A+B)^2$ como si fueran números**, olvidando que $AB$ y $BA$ no se pueden juntar en $2AB$.
+5. **Cancelar matrices** en $A\cdot B = A\cdot C$ sin comprobar que $A$ es regular.
+6. **Deducir de $A\cdot B = 0$ que una de las dos es nula.** Hay divisores de cero.
+7. **Olvidar invertir el orden** en $(A\cdot B)^t$ y en $(A\cdot B)^{-1}$.
+8. Al calcular el rango, **dividir una fila por un parámetro** sin discutir el caso en que valga cero.
+9. Contar como rango el **número de filas de la matriz** en lugar de las filas no nulas de la forma escalonada.
+10. En Gauss-Jordan, aplicar una operación a la parte izquierda y **olvidarla en la derecha**, o mezclar operaciones por filas y por columnas.
+11. **Dividir matrices**, escribiendo $B/A$ en un despeje.
+12. Sacar factor común con un **$1$** en lugar de la identidad: $(A-1)X$ no significa nada, lo correcto es $(A-I)X$.
+13. **Olvidar el paréntesis** en $X = A^{-1}(C-B)$.
+14. **No comprobar** el resultado, ni con $A\cdot A^{-1} = I$ ni sustituyendo en la ecuación original.
+15. En los problemas con datos, **no decir qué representa cada fila y cada columna**.
+:::
+
+## Bloque 1 · Tipos de matriz y transposición
+
+**1 (básico).** Dada $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6\end{pmatrix}$, indica su orden, el elemento $a_{23}$ y escribe $A^t$ con su orden.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A$ es de orden $2\times 3$ y $a_{23} = 6$ (fila $2$, columna $3$). Su transpuesta es de orden $3\times 2$:
+$$
+A^t = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6\end{pmatrix}.
+$$
+:::
+
+**2 (básico).** Halla $x$ e $y$ para que $M = \begin{pmatrix} 2 & x & 0 \\ 3 & 5 & y \\ 0 & -1 & 4\end{pmatrix}$ sea simétrica.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Ser simétrica significa $a_{ij} = a_{ji}$. De $a_{12} = a_{21}$ sale $x = 3$; de $a_{23} = a_{32}$ sale $y = -1$. Además $a_{13} = a_{31} = 0$, que ya se cumple.
+:::
+
+**3 (medio).** Si $A$ es de orden $3\times 4$ y $B$ es de orden $4\times 2$, ¿qué orden tienen $A\cdot B$, $B^t\cdot A^t$ y $A\cdot A^t$? ¿Existe $B\cdot A$?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A\cdot B$ es $3\times 2$, porque las dimensiones interiores ($4$ y $4$) coinciden. $B^t\cdot A^t$ es $2\times 3$, y es precisamente $(A\cdot B)^t$. $A\cdot A^t$ es $3\times 3$. En cambio $B\cdot A$ **no existe**: sería $(4\times 2)\cdot(3\times 4)$ y las dimensiones interiores, $2$ y $3$, no coinciden.
+:::
+
+## Bloque 2 · Operaciones y potencias
+
+**4 (medio).** Con $A = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$, calcula $A\cdot B$ y $B\cdot A$ y comprueba que $(A+B)^2 \neq A^2 + 2AB + B^2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+A\cdot B = \begin{pmatrix} 2 & 1 \\ 1 & 1\end{pmatrix}, \qquad B\cdot A = \begin{pmatrix} 1 & 1 \\ 1 & 2\end{pmatrix}.
+$$
+Son distintas, así que $AB \neq BA$ y no se pueden agrupar en $2AB$. El desarrollo correcto es
+$$
+(A+B)^2 = (A+B)(A+B) = A^2 + AB + BA + B^2 ,
+$$
+y como $AB\neq BA$, esa suma no coincide con $A^2+2AB+B^2$. En concreto, $A+B = \begin{pmatrix} 2 & 1 \\ 1 & 2\end{pmatrix}$ y $(A+B)^2 = \begin{pmatrix} 5 & 4 \\ 4 & 5\end{pmatrix}$, mientras que $A^2 + 2AB + B^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix} + \begin{pmatrix} 4 & 2 \\ 2 & 2\end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 2 & 1\end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 4 & 4\end{pmatrix}$.
+:::
+
+**5 (medio).** Halla $A^n$ para $A = \begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$A^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1\end{pmatrix}$ y $A^3 = A^2\cdot A = \begin{pmatrix} 1 & 3 \\ 0 & 1\end{pmatrix}$. El patrón es $A^n = \begin{pmatrix} 1 & n \\ 0 & 1\end{pmatrix}$.
+
+Se justifica por inducción: si vale para $n$, entonces
+$$
+A^{n+1} = A^n\cdot A = \begin{pmatrix} 1 & n \\ 0 & 1\end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1\end{pmatrix} = \begin{pmatrix} 1 & n+1 \\ 0 & 1\end{pmatrix},
+$$
+que es la fórmula para $n+1$.
+:::
+
+**6 (avanzado).** Comprueba que $N = \begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix}$ cumple $N^2 = 0$ sin ser la matriz nula, y explica qué propiedad de los números falla aquí.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+N^2 = \begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix}\begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0\end{pmatrix}.
+$$
+Con números, $x^2 = 0$ obliga a $x=0$; con matrices no. Existen **divisores de cero**: matrices no nulas cuyo producto es la matriz nula. Como consecuencia, tampoco vale la ley de cancelación, y $N$ no puede ser regular (si tuviera inversa, multiplicando $N^2=0$ por $N^{-1}$ saldría $N=0$).
+:::
+
+## Bloque 3 · Rango
+
+**7 (básico).** Calcula el rango de $A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 0 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - F_1$:
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & -2 & -2 \end{pmatrix}.
+$$
+Intercambiando las dos últimas filas queda escalonada con dos filas no nulas, así que $\operatorname{rg}(A) = 2$. Era previsible: la segunda fila es el doble de la primera.
+:::
+
+**8 (medio).** Discute el rango de $M = \begin{pmatrix} 1 & 2 \\ 2 & k\end{pmatrix}$ según los valores de $k$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$F_2 \to F_2 - 2F_1$ da $\begin{pmatrix} 1 & 2 \\ 0 & k-4\end{pmatrix}$. Si $k \neq 4$, hay dos filas no nulas y $\operatorname{rg}(M) = 2$. Si $k = 4$, la segunda fila se anula y $\operatorname{rg}(M) = 1$. Obsérvese que la operación empleada no divide por nada que pueda anularse, que es la precaución esencial en estos ejercicios.
+:::
+
+**9 (avanzado).** Discute el rango de $P = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 3 & k\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - F_1$ y $F_3 \to F_3 - F_1$:
+$$
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 2 & k-1\end{pmatrix}
+\xrightarrow{\;F_3 \to F_3 - 2F_2\;}
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & k-5\end{pmatrix}.
+$$
+Si $k \neq 5$, el rango es $3$; si $k = 5$, la última fila se anula y el rango es $2$. Nunca baja de $2$, porque las dos primeras filas escalonadas no se anulan para ningún valor de $k$.
+:::
+
+## Bloque 4 · Matriz inversa
+
+**10 (básico).** Calcula la inversa de $A = \begin{pmatrix} 2 & 3 \\ 1 & 2\end{pmatrix}$ y compruébala.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$ad-bc = 4-3 = 1 \neq 0$, luego $A$ es regular y
+$$
+A^{-1} = \frac{1}{1}\begin{pmatrix} 2 & -3 \\ -1 & 2\end{pmatrix} = \begin{pmatrix} 2 & -3 \\ -1 & 2\end{pmatrix}.
+$$
+Comprobación: $A\cdot A^{-1} = \begin{pmatrix} 4-3 & -6+6 \\ 2-2 & -3+4\end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix}$.
+:::
+
+**11 (medio).** Calcula por Gauss-Jordan la inversa de $C = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Partimos de $(C\mid I)$:
+$$
+\left(\begin{array}{ccc|ccc} 1 & 2 & 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 0 & 0 & 1\end{array}\right)
+\xrightarrow{\;F_1 \to F_1 - 2F_2\;}
+\left(\begin{array}{ccc|ccc} 1 & 0 & 0 & 1 & -2 & 0 \\ 0 & 1 & 0 & 0 & 1 & 0 \\ 0 & 0 & 2 & 0 & 0 & 1\end{array}\right)
+$$
+y con $F_3 \to \tfrac12 F_3$ la parte izquierda ya es la identidad:
+$$
+C^{-1} = \begin{pmatrix} 1 & -2 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & \tfrac12\end{pmatrix}.
+$$
+Comprobación: $C\cdot C^{-1} = I_3$, como puedes verificar multiplicando fila por columna.
+:::
+
+**12 (avanzado).** Si $A$ y $B$ son regulares del mismo orden, demuestra que $(A\cdot B)^{-1} = B^{-1}\cdot A^{-1}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Basta comprobar que ese candidato cumple la definición de inversa:
+$$
+(A\cdot B)\cdot(B^{-1}A^{-1}) = A\cdot (B\cdot B^{-1})\cdot A^{-1} = A\cdot I\cdot A^{-1} = A\cdot A^{-1} = I ,
+$$
+y de forma análoga $(B^{-1}A^{-1})\cdot(A\cdot B) = I$. Como la inversa es única, se concluye la igualdad. El orden **se invierte**: en $A^{-1}B^{-1}$ los factores centrales no se cancelan.
+:::
+
+## Bloque 5 · Ecuaciones matriciales
+
+**13 (básico).** Resuelve $A\cdot X = B$ con $A = \begin{pmatrix} 2 & 1 \\ 3 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$ad-bc = 1$, luego $A^{-1} = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}$ y, multiplicando **por la izquierda**,
+$$
+X = A^{-1}B = \begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix}\begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix} = \begin{pmatrix} 1 & -1 \\ -1 & 2\end{pmatrix}.
+$$
+Comprobación: $A\cdot X = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix} = B$.
+:::
+
+**14 (medio).** Con las mismas matrices, resuelve $X\cdot A = B$ y explica por qué el resultado es distinto.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Ahora hay que multiplicar **por la derecha**:
+$$
+X = B\cdot A^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1\end{pmatrix}\begin{pmatrix} 2 & -1 \\ -3 & 2\end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}.
+$$
+Es distinto del ejercicio anterior porque el producto de matrices no es conmutativo: $A^{-1}B$ y $BA^{-1}$ son matrices diferentes, y cada ecuación exige la suya. Comprobación: $X\cdot A = \begin{pmatrix} 4-3 & 2-2 \\ -2+3 & -1+2\end{pmatrix} = B$.
+:::
+
+**15 (medio).** Resuelve $A\cdot X + B = C$ con $A = \begin{pmatrix} 1 & 2 \\ 1 & 3\end{pmatrix}$, $B = I_2$ y $C = \begin{pmatrix} 3 & 2 \\ 4 & 5\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Primero se aísla: $A\cdot X = C - B = \begin{pmatrix} 2 & 2 \\ 4 & 4\end{pmatrix}$. Como $ad-bc = 1$, $A^{-1} = \begin{pmatrix} 3 & -2 \\ -1 & 1\end{pmatrix}$ y
+$$
+X = A^{-1}(C-B) = \begin{pmatrix} 6-8 & 6-8 \\ -2+4 & -2+4\end{pmatrix} = \begin{pmatrix} -2 & -2 \\ 2 & 2\end{pmatrix}.
+$$
+Comprobación en la ecuación original: $A\cdot X + B = \begin{pmatrix} 2 & 2 \\ 4 & 4\end{pmatrix} + I = C$.
+:::
+
+**16 (avanzado).** Resuelve $A\cdot X = X + B$ con $A = \begin{pmatrix} 2 & 1 \\ 1 & 3\end{pmatrix}$ y $B = I_2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Se agrupa la incógnita usando $X = I\cdot X$, nunca un $1$ suelto:
+$$
+A\cdot X - I\cdot X = B \implies (A-I)\cdot X = B, \qquad A - I = \begin{pmatrix} 1 & 1 \\ 1 & 2\end{pmatrix}.
+$$
+Como $ad-bc = 1$, se tiene $(A-I)^{-1} = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}$ y, al ser $B=I$, resulta $X = \begin{pmatrix} 2 & -1 \\ -1 & 1\end{pmatrix}$.
+
+Comprobación: $A\cdot X = \begin{pmatrix} 3 & -1 \\ -1 & 2\end{pmatrix}$ y $X + B = \begin{pmatrix} 3 & -1 \\ -1 & 2\end{pmatrix}$. Coinciden.
+:::
+
+## Bloque 6 · Problemas contextualizados
+
+**17 (medio).** Dos tiendas venden tres artículos. La matriz $V = \begin{pmatrix} 10 & 20 & 30 \\ 5 & 10 & 15\end{pmatrix}$ recoge las unidades vendidas en una semana: cada fila es una tienda y cada columna, un artículo. Los precios unitarios, en euros, son $2$, $3$ y $4$. Calcula los ingresos de cada tienda con un producto de matrices.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los precios se escriben en columna, $P = \begin{pmatrix} 2 \\ 3 \\ 4\end{pmatrix}$, para que el producto $V\cdot P$ tenga sentido: $(2\times 3)\cdot(3\times 1) = 2\times 1$.
+$$
+V\cdot P = \begin{pmatrix} 10\cdot 2 + 20\cdot 3 + 30\cdot 4 \\ 5\cdot 2 + 10\cdot 3 + 15\cdot 4\end{pmatrix} = \begin{pmatrix} 200 \\ 100 \end{pmatrix}.
+$$
+La primera tienda ingresa $200$ € y la segunda, $100$ €. Cada elemento del resultado es una fila de ventas multiplicada por la columna de precios, que es justo lo que significa «ingreso».
+:::
+
+**18 (avanzado).** Tres ciudades están conectadas por carreteras directas dos a dos. Su matriz de adyacencia es $G = \begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0\end{pmatrix}$, donde un $1$ indica que hay carretera directa. Calcula $G^2$ e interpreta el resultado.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$$
+G^2 = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2\end{pmatrix}.
+$$
+El elemento de la posición $(i,j)$ de $G^2$ cuenta los **recorridos de longitud dos** que van de la ciudad $i$ a la $j$. Por ejemplo, de la ciudad $1$ a la $2$ hay un único camino con dos tramos, pasando por la $3$; y de la ciudad $1$ a sí misma hay dos, uno por cada vecina, ida y vuelta. En general, el elemento $(i,j)$ de $G^n$ cuenta los recorridos de $n$ tramos entre esas dos ciudades, y esta es una de las aplicaciones más usadas de las potencias de matrices, desde las redes de transporte hasta las redes sociales.
+:::
+
+## Autoevaluación tipo test
+
+Responde sin calculadora y sin mirar los apartados anteriores; después compara con las respuestas del desplegable.
+
+**T1.** El producto $A\cdot B$ de dos matrices existe cuando: (a) tienen el mismo orden; (b) el número de columnas de $A$ coincide con el de filas de $B$; (c) las dos son cuadradas.
+
+**T2.** Si $A\cdot B = 0$, entonces: (a) $A = 0$ o $B = 0$; (b) puede ocurrir con $A$ y $B$ no nulas; (c) $A$ y $B$ son regulares.
+
+**T3.** Una matriz cuadrada de orden $3$ tiene inversa si y solo si: (a) no tiene ceros; (b) su rango es $3$; (c) es simétrica.
+
+**T4.** La expresión $(A\cdot B)^{-1}$ es igual a: (a) $A^{-1}B^{-1}$; (b) $B^{-1}A^{-1}$; (c) $(B\cdot A)^{-1}$.
+
+**T5.** Para resolver $X\cdot A = B$ hay que multiplicar por $A^{-1}$: (a) por la izquierda; (b) por la derecha; (c) da igual.
+
+**T6.** Al discutir el rango de una matriz con un parámetro $k$, la operación $F_2 \to \frac{1}{k}F_2$ es: (a) siempre válida; (b) peligrosa, porque $k$ puede valer $0$; (c) obligatoria para escalonar.
+
+**T7.** Si en Gauss-Jordan la parte izquierda produce una fila de ceros, entonces: (a) hay que empezar de nuevo; (b) la matriz es singular y no tiene inversa; (c) la inversa es la matriz nula.
+
+::: {.callout-note collapse="true"}
+## Soluciones del test
+
+**T1** (b): las dimensiones interiores deben coincidir. **T2** (b): existen divisores de cero, como $\begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix}$ al cuadrado. **T3** (b): la existencia de inversa equivale a rango máximo. **T4** (b): el orden se invierte. **T5** (b): la inversa debe quedar pegada a $A$, que está a la derecha. **T6** (b): dividir por el parámetro pierde el caso $k=0$. **T7** (b): una fila nula significa rango menor que el orden y, por tanto, matriz singular.
+
+Si has fallado T1 o T2, repasa las operaciones y sus propiedades; si has fallado T6, el rango por Gauss; si has fallado T3, T4 o T7, la matriz inversa; y si has fallado T5, las ecuaciones matriciales.
+:::
+
+### Applet · Autoevaluación del tema {.unnumbered}
+
+Elige el bloque que quieras entrenar —tipos y transposición, operaciones y potencias, rango, inversa o ecuaciones matriciales— y el número de preguntas; el panel genera enunciados nuevos cada vez, con coeficientes elegidos para que las soluciones sean manejables. Introduce las matrices en el formato que indica cada pregunta, escribe las fracciones como `7/2` y responde `no existe` cuando una matriz sea singular. Al corregir verás, en cada fallo, el paso concreto en el que tu desarrollo se separa del correcto, y el resumen final te dice qué apartado conviene repasar.
+
+::: {#panel-autoevaluacion .applet-panel data-applet-mtx="autoevaluacion"}
+:::
+
+### Applet · Diagnóstico del motor {.unnumbered}
+
+Este panel no plantea ejercicios: comprueba que los applets de la página funcionan correctamente en tu navegador. Muestra qué módulos de cálculo y de dibujo se han cargado, si la representación de fórmulas está activa y si el motor responde a las órdenes. Úsalo solo si algún applet aparece en blanco o no reacciona: si algún módulo figura como no disponible, recarga la página antes de seguir practicando.
+
+::: {#panel-diagnostico .applet-panel data-applet-mtx="diagnostico"}
+:::
+
+## Qué debes saber hacer
+
+Repasa esta lista y márcate cada punto solo si podrías hacerlo en un examen, sin apuntes y sin dudar:
+
+- Indicar el orden de una matriz, localizar el elemento $a_{ij}$, escribir la transpuesta y reconocer los tipos —diagonal, escalar, identidad, triangular, simétrica, antisimétrica—.
+- Sumar matrices, multiplicarlas por un número y multiplicar dos matrices comprobando antes las dimensiones.
+- Explicar con un ejemplo por qué el producto no es conmutativo y por qué no se puede cancelar.
+- Calcular potencias sucesivas, encontrar el patrón de $A^n$ y **justificarlo**.
+- Escalonar una matriz por Gauss, dar su rango contando filas no nulas y discutirlo con un parámetro **sin dividir nunca** por una expresión que pueda anularse.
+- Decidir si una matriz es regular o singular y explicar la relación entre inversa y rango.
+- Calcular la inversa de orden $2$ con la fórmula rápida y la de orden $3$ por Gauss-Jordan, **comprobarla** con $A\cdot A^{-1} = I$ y usar las propiedades $(A^{-1})^{-1} = A$, $(AB)^{-1} = B^{-1}A^{-1}$, $(A^t)^{-1} = (A^{-1})^t$ y $(kA)^{-1} = \tfrac1k A^{-1}$.
+- Resolver ecuaciones matriciales de los tipos $A\cdot X = B$, $X\cdot A = B$ y $A\cdot X + B = C$, eligiendo bien el lado y comprobando la solución.
+- Traducir una situación con tablas de datos a matrices, interpretar qué significa cada producto y responder con unidades.
+
+::: {.callout-tip}
+## Hacia dónde sigue esto
+
+El tema siguiente introduce el **determinante**, un número asociado a cada matriz cuadrada que resume de golpe buena parte de lo que aquí has calculado paso a paso. Ya has visto un anticipo: la expresión $ad-bc$ de la fórmula de la inversa de orden $2$ es exactamente el determinante de esa matriz, y su anulación es la frontera entre regular y singular. Con determinantes podrás decidir si una matriz tiene inversa sin escalonar, calcular el rango de otra manera y obtener la inversa con una fórmula cerrada válida para cualquier orden.
+
+Después llegan los **sistemas de ecuaciones lineales**, y allí verás que todo este tema estaba preparando el terreno. Un sistema no es más que una ecuación matricial $A\cdot X = B$; su matriz de coeficientes y su matriz ampliada tienen rangos que deciden si hay solución y cuántas; y cuando $A$ es regular, la solución es sencillamente $X = A^{-1}\cdot B$. Los métodos que ya dominas —escalonar, contar filas no nulas, discutir con parámetro— se convertirán allí en la herramienta principal, y detrás de ellos están los modelos económicos de sectores productivos, el tratamiento de imágenes y casi cualquier cálculo grande que haga hoy un ordenador.
+:::
+
+## Resumen del apartado
+
+Todo el tema responde a una misma idea con distintos ropajes: **organizar datos en una tabla y operar con la tabla entera**. La suma y el producto por un número funcionan como cabría esperar; el **producto de matrices**, en cambio, encadena filas con columnas, exige que las dimensiones encajen y **no es conmutativo**, lo que arrastra consecuencias que hay que tener siempre presentes: no se puede cancelar, existen divisores de cero y las identidades notables cambian de forma.
+
+El **rango**, calculado escalonando por Gauss y contando filas no nulas, mide cuánta información independiente contiene la matriz. La **matriz inversa** existe justamente cuando ese rango es máximo, se calcula con la fórmula rápida en el orden $2$ y por **Gauss-Jordan** sobre $(A\mid I)$ en los órdenes mayores, y cumple $(A^{-1})^{-1} = A$, $(AB)^{-1} = B^{-1}A^{-1}$, $(A^t)^{-1} = (A^{-1})^t$ y $(kA)^{-1} = \tfrac1k A^{-1}$.
+
+Con la inversa se resuelven las **ecuaciones matriciales**, sustituyendo la división inexistente por el producto por la inversa **por el lado correcto**: $X = A^{-1}B$ para $A\cdot X = B$ y $X = B\cdot A^{-1}$ para $X\cdot A = B$. Y en los problemas con datos reales la parte difícil casi nunca es el cálculo, sino decidir qué representa cada fila y cada columna y comprobar que el resultado tiene sentido.
+
+## Ejercicios propuestos
+
+**19.** Halla $x$ para que la matriz $\begin{pmatrix} x & 4 \\ 1 & x\end{pmatrix}$ sea singular.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Es singular cuando $ad-bc = x^2 - 4 = 0$, es decir $x = 2$ o $x = -2$. Para cualquier otro valor la matriz es regular y tiene inversa.
+:::
+
+**20.** Calcula el rango de $\begin{pmatrix} 1 & -1 & 2 & 0 \\ 2 & -2 & 4 & 1 \\ 0 & 1 & 1 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $F_2 \to F_2 - 2F_1$ queda la fila $\begin{pmatrix} 0 & 0 & 0 & 1\end{pmatrix}$; intercambiándola con la tercera, la matriz está escalonada y tiene tres filas no nulas, así que el rango es $3$, el máximo posible con tres filas.
+:::
+
+**21.** Explica por qué de $A\cdot B = A\cdot C$ no se puede deducir $B = C$, y di qué hipótesis habría que añadir.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+La igualdad equivale a $A\cdot(B-C) = 0$, y como existen divisores de cero, eso no obliga a que $B-C$ sea nula. Por ejemplo, con $A = \begin{pmatrix} 1 & 1 \\ 1 & 1\end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 0\end{pmatrix}$ y $C = \begin{pmatrix} 0 & 0 \\ 1 & 0\end{pmatrix}$ se cumple $A\cdot B = A\cdot C = \begin{pmatrix} 1 & 0 \\ 1 & 0\end{pmatrix}$ y sin embargo $B \neq C$.
+
+La hipótesis que falta es que $A$ sea **regular**: en ese caso se multiplica por $A^{-1}$ por la izquierda y sí se concluye $B = C$.
+:::
+
+**22.** Demuestra que si $A$ es regular y $A\cdot B = A$, entonces $B = I$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Multiplicando los dos miembros por $A^{-1}$ **por la izquierda**:
+$$
+A^{-1}(A\cdot B) = A^{-1}A \implies (A^{-1}A)\cdot B = I \implies I\cdot B = I \implies B = I .
+$$
+La hipótesis de que $A$ sea regular es imprescindible: sin ella no existe $A^{-1}$ y el razonamiento se cae.
+:::

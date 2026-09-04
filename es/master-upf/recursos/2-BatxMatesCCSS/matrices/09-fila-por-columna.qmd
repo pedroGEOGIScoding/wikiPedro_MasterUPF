@@ -1,0 +1,423 @@
+---
+title: "Tema 1.9 Producto de una matriz fila por una matriz columna"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Matrices (Parte 9 de 17)"
+filename: 09-fila-por-columna
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: La operación elemental sobre la que se construye todo el producto de matrices; definición del producto de una matriz fila de dimensión 1×n por una matriz columna de dimensión n×1, condición de que coincida el número de elementos, la suma de productos término a término, relación con el producto escalar de vectores, e interpretación como importe total de una compra, coste de un menú o nota media ponderada, con ejemplos resueltos paso a paso, errores típicos y applet manipulable.
+categories: [matrices, producto de matrices, matriz fila, matriz columna, suma de productos, media ponderada, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## La cuenta que ya sabes hacer
+
+Imagina que entras en una frutería y compras $3$ kilos de manzanas, $2$ kilos de peras y $5$ kilos de naranjas. En el cartel de precios lees: manzanas a $2$ euros el kilo, peras a $3$ euros el kilo y naranjas a $1$ euro el kilo. ¿Cuánto pagas?
+
+Nadie duda de la respuesta:
+
+$$
+3\cdot 2 + 2\cdot 3 + 5\cdot 1 = 6 + 6 + 5 = 17 \text{ euros}
+$$
+
+Has multiplicado **cada cantidad por su precio** y has **sumado** los resultados. Esa cuenta, tan cotidiana que ni la piensas, tiene un nombre en el lenguaje de las matrices: es el **producto de una matriz fila por una matriz columna**. Y no es una curiosidad menor. Es, literalmente, la operación de la que está hecho todo el producto de matrices que verás en el apartado siguiente: multiplicar dos matrices consiste en repetir esta misma cuenta muchas veces, cambiando cada vez la fila y la columna que se emparejan.
+
+Por eso conviene dedicarle un apartado entero. Si esta operación te sale automática, con las cantidades bien colocadas y sin perder ningún término, el producto de matrices deja de ser un laberinto y se convierte en una rutina ordenada.
+
+::: {.callout-tip}
+## Por qué la información se coloca así
+
+Fíjate en cómo está organizado el problema de la frutería. Las **cantidades** forman una lista horizontal, una fila: $\begin{pmatrix} 3 & 2 & 5 \end{pmatrix}$. Los **precios** forman una lista vertical, una columna. Esta disposición no es un capricho tipográfico: es la que hace que la operación funcione mecánicamente, emparejando el primer elemento de la fila con el primero de la columna, el segundo con el segundo, y así hasta el final.
+
+Cuando en un examen te den una tabla de datos y otra de precios o de pesos, lo primero que debes decidir es **cuál escribes en filas y cuál en columnas**. Colocarlas al revés impide multiplicar.
+:::
+
+## Definición
+
+::: {.callout-note}
+## Producto de una matriz fila por una matriz columna
+
+Sean una matriz fila $A$ de dimensión $1\times n$ y una matriz columna $B$ de dimensión $n\times 1$:
+
+$$
+A = \begin{pmatrix} a_1 & a_2 & \cdots & a_n \end{pmatrix},
+\qquad
+B = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{pmatrix}
+$$
+
+Su producto $A\cdot B$ es el **número real** que se obtiene multiplicando sus elementos **término a término** y sumando todos los resultados:
+
+$$
+A\cdot B = a_1 b_1 + a_2 b_2 + \cdots + a_n b_n = \sum_{k=1}^{n} a_k\,b_k
+$$
+
+Para poder efectuar esta operación es **imprescindible** que la fila y la columna tengan el mismo número de elementos, es decir, que el número de columnas de la primera matriz coincida con el número de filas de la segunda.
+:::
+
+Merece la pena leer despacio la última frase. La condición se puede enunciar de dos maneras equivalentes, y las dos son útiles:
+
+- **Versión intuitiva**: la fila y la columna deben tener la misma **longitud**, porque hay que emparejar sus elementos uno a uno y no puede sobrar ninguno.
+- **Versión de dimensiones**: $(1\times n)\cdot(n\times 1)$. El número que aparece a la derecha de la primera dimensión debe coincidir con el que aparece a la izquierda de la segunda. Ese $n$ compartido es el que «se cancela» y deja como resultado una matriz $1\times 1$, es decir, un número.
+
+::: {.callout-important}
+## ¿El resultado es un número o una matriz $1\times 1$?
+
+Estrictamente, si aplicamos la regla general de dimensiones, el producto $(1\times n)\cdot(n\times 1)$ es una matriz de dimensión $1\times 1$, o sea, una matriz con un único elemento:
+
+$$
+\begin{pmatrix} 3 & 2 & 5 \end{pmatrix}\cdot\begin{pmatrix} 2 \\ 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 17 \end{pmatrix}
+$$
+
+Como una matriz $1\times 1$ contiene exactamente la misma información que el número que hay dentro, la costumbre universal es **identificarlas** y escribir simplemente $17$. En este curso haremos lo mismo, sin más ceremonia; escribe el resultado como un número y nadie te lo corregirá.
+
+Lo que sí debes conservar es la idea de que ese número **procede de una matriz**, porque cuando la operación se repita dentro de un producto de matrices grande, cada uno de estos números irá a parar a una casilla concreta del resultado.
+:::
+
+## El procedimiento, paso a paso
+
+El cálculo se hace siempre en el mismo orden, y conviene escribirlo entero antes de operar. Los errores en este apartado no vienen de multiplicar mal, sino de emparejar mal.
+
+::: {.callout-note}
+## Cómo se calcula
+
+**Paso 1. Comprobar la compatibilidad.** Cuenta los elementos de la fila y los de la columna. Si no coinciden, la operación **no existe** y hay que decirlo así, no inventar un resultado parcial.
+
+**Paso 2. Emparejar.** El primer elemento de la fila con el primero de la columna, el segundo con el segundo, y así sucesivamente. Es cómodo imaginar que la fila «se tumba» sobre la columna.
+
+**Paso 3. Multiplicar cada pareja.** Escribe los $n$ productos sin simplificar todavía, respetando los signos con paréntesis: $a_3\cdot(-4)$, no $a_3\cdot-4$.
+
+**Paso 4. Sumar.** El resultado de la suma es el número buscado.
+:::
+
+### Ejemplo resuelto 1: el caso básico
+
+Sean
+
+$$
+A = \begin{pmatrix} 6 & 2 & 1 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}
+$$
+
+**Compatibilidad.** $A$ es $1\times 3$ y $B$ es $3\times 1$. El número de columnas de $A$ es $3$ y el número de filas de $B$ es $3$: coinciden, luego el producto se puede hacer.
+
+**Cálculo.**
+
+$$
+A\cdot B = 6\cdot 2 + 2\cdot 3 + 1\cdot(-1) = 12 + 6 - 1 = 17
+$$
+
+**Resultado.** $A\cdot B = 17$.
+
+Observa que hemos escrito $1\cdot(-1)$ con paréntesis. Ese paréntesis no es decorativo: es el que evita el error más común de todo el apartado, que consiste en olvidar un signo menos al arrastrar el término.
+
+### Ejemplo resuelto 2: cuando no se puede
+
+Sean
+
+$$
+C = \begin{pmatrix} 2 & 1 & 0 & 4 \end{pmatrix},
+\qquad
+A = \begin{pmatrix} 6 & 2 & 1 \end{pmatrix}
+$$
+
+¿Se puede calcular $C\cdot A$?
+
+$C$ es una matriz fila $1\times 4$; para multiplicarla necesita a su derecha una matriz con **cuatro filas**, es decir, una columna $4\times 1$. Pero $A$ es $1\times 3$: tiene una sola fila. Como $4 \neq 1$, el producto $C\cdot A$ **no está definido**.
+
+La respuesta correcta a la pregunta es exactamente eso: «no se puede efectuar, porque el número de columnas de $C$, que es $4$, no coincide con el número de filas de $A$, que es $1$». En una prueba, esa frase vale toda la puntuación del apartado; escribir cualquier número, en cambio, la pierde entera.
+
+### Ejemplo resuelto 3: el importe de un pedido
+
+Un restaurante hace un pedido de $8$ unidades del producto $P_1$, $5$ unidades de $P_2$ y $12$ unidades de $P_3$. Los precios unitarios, en euros, son $6$, $5$ y $9$ respectivamente. ¿Cuánto cuesta el pedido?
+
+Escribimos las cantidades en una matriz fila y los precios en una matriz columna:
+
+$$
+Q = \begin{pmatrix} 8 & 5 & 12 \end{pmatrix},
+\qquad
+P = \begin{pmatrix} 6 \\ 5 \\ 9 \end{pmatrix}
+$$
+
+$$
+Q\cdot P = 8\cdot 6 + 5\cdot 5 + 12\cdot 9 = 48 + 25 + 108 = 181
+$$
+
+El pedido cuesta $181$ euros. Y aquí está la parte interesante: la **estructura** de la cuenta es la misma que en la frutería, aunque los datos no tengan nada que ver. Siempre que tengas «tantas unidades de cada cosa» por un lado y «tanto vale cada cosa» por el otro, el total es un producto fila por columna.
+
+### Ejemplo resuelto 4: la nota media ponderada
+
+Un curso se evalúa con tres instrumentos: exámenes, que pesan un $60\,\%$; trabajos, que pesan un $25\,\%$; y participación, que pesa un $15\,\%$. Un alumno obtiene $7{,}5$ en exámenes, $8{,}4$ en trabajos y $9$ en participación. ¿Cuál es su nota final?
+
+Colocamos las notas en fila y los pesos en columna:
+
+$$
+N = \begin{pmatrix} 7{,}5 & 8{,}4 & 9 \end{pmatrix},
+\qquad
+W = \begin{pmatrix} 0{,}60 \\ 0{,}25 \\ 0{,}15 \end{pmatrix}
+$$
+
+$$
+N\cdot W = 7{,}5\cdot 0{,}60 + 8{,}4\cdot 0{,}25 + 9\cdot 0{,}15
+$$
+
+$$
+N\cdot W = 4{,}5 + 2{,}1 + 1{,}35 = 7{,}95
+$$
+
+La nota final es $7{,}95$.
+
+::: {.callout-important}
+## Por qué la media ponderada es exactamente esta operación
+
+Una media ponderada se define como
+
+$$
+\bar{x} = \frac{w_1x_1 + w_2x_2 + \cdots + w_nx_n}{w_1 + w_2 + \cdots + w_n}
+$$
+
+Cuando los pesos están expresados en tanto por uno y suman $1$, como en el ejemplo ($0{,}60+0{,}25+0{,}15 = 1$), el denominador vale $1$ y desaparece. Lo que queda, $w_1x_1 + \cdots + w_nx_n$, es **literalmente** un producto fila por columna.
+
+Es decir: la media aritmética que llevas calculando desde primaria es un caso particular de esta operación, con todos los pesos iguales a $\tfrac1n$. Las matrices no inventan una cuenta nueva; le ponen nombre y notación a una que ya usabas.
+:::
+
+### Ejemplo resuelto 5: con fracciones y signos
+
+Calcula el producto
+
+$$
+\begin{pmatrix} \tfrac12 & -3 & \tfrac23 & 0 \end{pmatrix}\cdot\begin{pmatrix} 4 \\ -2 \\ 9 \\ 7 \end{pmatrix}
+$$
+
+**Compatibilidad.** $1\times 4$ por $4\times 1$: los cuatro elementos de la fila se emparejan con los cuatro de la columna. Correcto.
+
+**Productos, uno a uno.**
+
+$$
+\tfrac12\cdot 4 = 2,\qquad
+(-3)\cdot(-2) = 6,\qquad
+\tfrac23\cdot 9 = 6,\qquad
+0\cdot 7 = 0
+$$
+
+**Suma.**
+
+$$
+2 + 6 + 6 + 0 = 14
+$$
+
+Dos observaciones útiles. Primera: el elemento nulo de la fila anula su pareja, por muy grande que sea; el $7$ de la columna no interviene en absoluto. Segunda: el producto de dos negativos es positivo, y ese es el término donde más gente se equivoca. Escríbelo con paréntesis siempre.
+
+## La fila por la columna es un producto escalar
+
+::: {.callout-tip}
+## El puente con la geometría de 1.º de Bachillerato
+
+Si en $1$.º viste vectores, esta operación te resultará familiar con otro nombre. Dados los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$, su **producto escalar** es
+
+$$
+\vec{u}\cdot\vec{v} = u_1v_1 + u_2v_2 + u_3v_3
+$$
+
+que es exactamente lo que acabamos de definir. Por eso a veces se dice que $c_{ij}$ se obtiene «multiplicando escalarmente» la fila $i$ por la columna $j$.
+
+La consecuencia interesante es la interpretación: el producto escalar mide **cuánto se parecen dos listas de números**. Si dos filas de datos crecen y decrecen a la vez, su producto escalar es grande; si una sube donde la otra baja, sale pequeño o negativo. Sobre esa idea se construyen los coeficientes de correlación de estadística y los sistemas que recomiendan películas o canciones a partir de tus valoraciones.
+:::
+
+### Fila por columna y columna por fila no son lo mismo
+
+Este es un punto que conviene aclarar ahora, porque en el apartado siguiente se convierte en una de las razones profundas por las que el producto de matrices no es conmutativo.
+
+Ya hemos visto que
+
+$$
+\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}\cdot\begin{pmatrix} 4 \\ 5 \\ 6 \end{pmatrix} = 4 + 10 + 18 = 32
+$$
+
+un solo número. Pero si intercambiamos el orden de los factores, las dimensiones son $(3\times 1)\cdot(1\times 3)$: el $1$ interior coincide consigo mismo, así que el producto **también existe**, solo que su resultado es una matriz $3\times 3$:
+
+$$
+\begin{pmatrix} 4 \\ 5 \\ 6 \end{pmatrix}\cdot\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}
+=
+\begin{pmatrix} 4 & 8 & 12 \\ 5 & 10 & 15 \\ 6 & 12 & 18 \end{pmatrix}
+$$
+
+Cada casilla se obtiene multiplicando el elemento correspondiente de la columna por el de la fila. Los mismos seis números, en el otro orden, producen un objeto completamente distinto: en un caso un número, en el otro una tabla de nueve elementos.
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Multiplicar fila por fila o columna por columna.** No existe tal operación. Si te dan dos matrices fila y te piden su producto, la respuesta es que no se puede, salvo que transpongas una de ellas (y entonces debes decirlo expresamente).
+- **Sumar los productos «a medias».** El resultado es **un solo número**: hay que sumar los $n$ productos, todos. Dejar escrito $12+6-1$ sin rematar la suma es dejar el ejercicio incompleto.
+- **Perder un signo.** El error más frecuente, con diferencia. Escribe cada producto entre paréntesis cuando haya negativos: $2\cdot(-3) = -6$, y no $2\cdot -3$.
+- **Confundir el número de elementos con la dimensión.** Una fila $1\times 5$ tiene cinco elementos, no cinco filas. La condición de compatibilidad se refiere a **columnas de la primera** contra **filas de la segunda**.
+- **Dar un resultado cuando la operación no existe.** Si las longitudes no coinciden, la única respuesta válida es explicar por qué no se puede. Aquí no vale «aproximar».
+- **Escribir el resultado como matriz cuando ya lo has identificado con un número, o al revés, sin coherencia.** Elige una convención y mantenla en todo el ejercicio.
+:::
+
+### Applet · Producto de una fila por una columna {.unnumbered}
+
+Escribe una matriz fila y una matriz columna con los elementos que quieras y observa cómo se emparejan término a término, qué producto genera cada pareja y cómo se acumulan en la suma final; prueba también a poner longitudes distintas para ver qué mensaje aparece y por qué la operación deja de tener sentido.
+
+::: {#panel-filaColumna .applet-panel data-applet-mtx="filaColumna"}
+:::
+
+## Una propiedad que se usará constantemente
+
+Aunque el resultado sea un simple número, esta operación tiene una propiedad de comportamiento que conviene tener presente, porque es la que hará que el producto de matrices sea distributivo respecto de la suma.
+
+::: {.callout-important}
+## La operación es lineal en cada factor
+
+Si $A$ es una matriz fila y $B$, $C$ son matrices columna del mismo tamaño, y $k$ es un número real, se cumple:
+
+$$
+A\cdot(B + C) = A\cdot B + A\cdot C,
+\qquad
+A\cdot(kB) = k\,(A\cdot B)
+$$
+
+**Justificación de la primera.** El elemento $k$-ésimo de $B+C$ es $b_k + c_k$. Por tanto
+
+$$
+A\cdot(B+C) = \sum_{k=1}^{n} a_k(b_k + c_k) = \sum_{k=1}^{n} (a_kb_k + a_kc_k) = \sum_{k=1}^{n} a_kb_k + \sum_{k=1}^{n} a_kc_k
+$$
+
+y eso es precisamente $A\cdot B + A\cdot C$. Solo hemos usado la propiedad distributiva de los números reales y el hecho de que una suma se puede separar en dos.
+
+**Interpretación.** Si un cliente hace dos pedidos, el importe total es el mismo tanto si sumas primero las cantidades y multiplicas una vez por los precios, como si calculas cada factura por separado y luego las sumas. Es evidente en la vida real, y esta igualdad lo es en el papel.
+:::
+
+Lo mismo vale simétricamente para el otro factor: $(A + A')\cdot B = A\cdot B + A'\cdot B$. Cuando en el apartado siguiente se demuestre la propiedad distributiva del producto de matrices, la demostración consistirá en aplicar esta igualdad casilla a casilla.
+
+## Cómo se pregunta esto en las pruebas
+
+En una prueba de acceso rara vez encontrarás el enunciado seco «multiplica esta fila por esta columna». Lo que sí aparece con frecuencia es esta operación **camuflada** dentro de un problema con contexto:
+
+- Tablas de precios y de cantidades: se pide el importe total, o comparar dos proveedores.
+- Composición de productos: tantos gramos de cada ingrediente por su coste o por su aporte energético.
+- Notas y ponderaciones: la calificación final de un curso o de una oposición.
+- Escalas de puntuación: partidos ganados, empatados y perdidos por $3$, $1$ y $0$ puntos.
+
+En todos ellos, la nota máxima se lleva quien además de dar el número **explica qué significa cada matriz y por qué se pueden multiplicar en ese orden**. Acostúmbrate a rotular: «la fila recoge las cantidades y la columna los precios; el producto es el importe en euros».
+
+::: {.callout-warning}
+## Escribe siempre la comprobación de dimensiones
+
+En cualquier ejercicio de matrices, dedicar una línea a escribir $(1\times 3)\cdot(3\times 1) = 1\times 1$ antes de operar cuesta cinco segundos y evita la mitad de los errores. Además, en las correcciones se valora explícitamente: justificar que la operación es posible forma parte del ejercicio, no es un adorno previo.
+:::
+
+## Resumen del apartado
+
+- El producto de una matriz fila $1\times n$ por una matriz columna $n\times 1$ es el **número** $a_1b_1 + a_2b_2 + \cdots + a_nb_n$; se multiplican los elementos **término a término** y se suman todos los productos.
+- La operación solo existe si la fila y la columna tienen el **mismo número de elementos**, es decir, si el número de columnas de la primera coincide con el número de filas de la segunda.
+- Formalmente el resultado es una matriz $1\times 1$, que se identifica con el número que contiene.
+- Coincide con el **producto escalar** de dos vectores y aparece siempre que hay que combinar «cantidades» con «precios», «notas» con «pesos» o «resultados» con «puntuaciones».
+- La **media ponderada** con pesos que suman $1$ es exactamente este producto.
+- Fila por columna da un número; **columna por fila** da una matriz cuadrada. El orden importa muchísimo.
+- La operación es **lineal**: $A(B+C) = AB + AC$ y $A(kB) = k(AB)$. De aquí saldrá la propiedad distributiva del producto de matrices.
+- Esta cuenta es la **pieza elemental** con la que se construye el producto de dos matrices cualesquiera: el elemento $c_{ij}$ del producto será la fila $i$ de la primera por la columna $j$ de la segunda.
+
+## Ejercicios propuestos
+
+**1.** Calcula, cuando sea posible, los productos siguientes; cuando no lo sea, explica por qué.
+
+a) $\begin{pmatrix} 2 & -1 & 5 \end{pmatrix}\cdot\begin{pmatrix} 3 \\ 4 \\ -2 \end{pmatrix}$
+b) $\begin{pmatrix} 1 & 0 & 3 & -2 \end{pmatrix}\cdot\begin{pmatrix} 5 \\ -1 \\ 2 \end{pmatrix}$
+c) $\begin{pmatrix} -3 & 6 \end{pmatrix}\cdot\begin{pmatrix} -4 \\ -2 \end{pmatrix}$
+
+**2.** Sea $A = \begin{pmatrix} 1 & 2 & 3 & 4 \end{pmatrix}$. Halla una matriz columna $B$, distinta de la nula, tal que $A\cdot B = 0$.
+
+**3.** Una tienda vende tres modelos de camiseta a $12$, $15$ y $20$ euros. En un día se venden $14$, $9$ y $6$ unidades respectivamente. Escribe las matrices adecuadas y calcula la recaudación del día.
+
+**4.** Un alumno tiene $6{,}8$ en la primera evaluación, $7{,}2$ en la segunda y $8{,}5$ en la tercera, que ponderan un $30\,\%$, un $30\,\%$ y un $40\,\%$. Plantea el cálculo como un producto fila por columna y obtén la nota final.
+
+**5.** Determina el valor de $x$ para que se cumpla
+
+$$
+\begin{pmatrix} x & 3 & -1 \end{pmatrix}\cdot\begin{pmatrix} 2 \\ x \\ 4 \end{pmatrix} = 0
+$$
+
+**6.** Calcula $\begin{pmatrix} 3 \\ -1 \\ 2 \end{pmatrix}\cdot\begin{pmatrix} 1 & 0 & -4 \end{pmatrix}$ e indica la dimensión del resultado. Compáralo con el producto en el orden contrario.
+
+**7.** Dos fábricas venden cuatro artículos $A$, $B$, $C$ y $D$. Los precios de la primera fábrica son $34$, $11$, $23$ y $25$ euros. Se quiere comprar $25$ unidades de $A$, $30$ de $B$, $60$ de $C$ y $75$ de $D$. ¿Cuánto costaría el pedido en esa fábrica? Escribe la fila y la columna que utilizas.
+
+**8.** Justifica, sin hacer ninguna cuenta, que si una matriz fila tiene todos sus elementos positivos y una matriz columna compatible tiene todos los suyos negativos, el producto es negativo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.**
+
+a) $(1\times3)\cdot(3\times1)$, compatible. $2\cdot3 + (-1)\cdot4 + 5\cdot(-2) = 6 - 4 - 10 = -8$.
+
+b) **No se puede.** La primera matriz es $1\times 4$ y necesita a su derecha una matriz de $4$ filas; la segunda solo tiene $3$. Como $4\neq 3$, el producto no está definido.
+
+c) $(1\times2)\cdot(2\times1)$, compatible. $(-3)\cdot(-4) + 6\cdot(-2) = 12 - 12 = 0$. Observa que el resultado es cero sin que ninguna de las dos matrices sea nula: eso ya anticipa la existencia de divisores de cero.
+
+**2.** Hay infinitas soluciones. Basta imponer $1x_1 + 2x_2 + 3x_3 + 4x_4 = 0$ y elegir valores. Por ejemplo, tomando $x_1 = 2$, $x_2 = -1$, $x_3 = 0$, $x_4 = 0$:
+
+$$
+B = \begin{pmatrix} 2 \\ -1 \\ 0 \\ 0 \end{pmatrix},
+\qquad
+A\cdot B = 2 - 2 + 0 + 0 = 0
+$$
+
+Otra solución válida es $\begin{pmatrix} 4 & 0 & 0 & -1\end{pmatrix}^t$.
+
+**3.** Cantidades en fila y precios en columna:
+
+$$
+\begin{pmatrix} 14 & 9 & 6 \end{pmatrix}\cdot\begin{pmatrix} 12 \\ 15 \\ 20 \end{pmatrix} = 168 + 135 + 120 = 423
+$$
+
+La recaudación es de $423$ euros.
+
+**4.**
+
+$$
+\begin{pmatrix} 6{,}8 & 7{,}2 & 8{,}5 \end{pmatrix}\cdot\begin{pmatrix} 0{,}3 \\ 0{,}3 \\ 0{,}4 \end{pmatrix} = 2{,}04 + 2{,}16 + 3{,}4 = 7{,}6
+$$
+
+La nota final es $7{,}6$. Como los pesos suman $1$, no hay que dividir por nada.
+
+**5.** El producto vale $2x + 3x - 4 = 5x - 4$. Igualando a cero, $5x = 4$, luego
+
+$$
+x = \frac{4}{5} = 0{,}8
+$$
+
+**6.** Es $(3\times1)\cdot(1\times3)$, compatible porque el $1$ interior coincide. El resultado es una matriz $3\times 3$:
+
+$$
+\begin{pmatrix} 3 \\ -1 \\ 2 \end{pmatrix}\cdot\begin{pmatrix} 1 & 0 & -4 \end{pmatrix}
+=
+\begin{pmatrix} 3 & 0 & -12 \\ -1 & 0 & 4 \\ 2 & 0 & -8 \end{pmatrix}
+$$
+
+En el orden contrario, $(1\times3)\cdot(3\times1)$, el resultado es el número $3\cdot1 + 0\cdot(-1) + (-4)\cdot 2 = 3 + 0 - 8 = -5$. Los dos productos existen, pero uno es una matriz $3\times3$ y el otro un número: no tiene ningún sentido compararlos.
+
+**7.** Cantidades en fila, precios en columna:
+
+$$
+\begin{pmatrix} 25 & 30 & 60 & 75 \end{pmatrix}\cdot\begin{pmatrix} 34 \\ 11 \\ 23 \\ 25 \end{pmatrix}
+$$
+
+$$
+= 850 + 330 + 1380 + 1875 = 4435
+$$
+
+El pedido costaría $4\,435$ euros en esa fábrica.
+
+**8.** Cada producto $a_kb_k$ es el producto de un número positivo por uno negativo, luego es negativo. La suma de números todos negativos es negativa, así que el resultado lo es. No hace falta calcular nada: basta razonar sobre los signos, y ese razonamiento es la respuesta completa.
+:::
