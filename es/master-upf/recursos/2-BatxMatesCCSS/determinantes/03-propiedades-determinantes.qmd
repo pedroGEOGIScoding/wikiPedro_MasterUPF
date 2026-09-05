@@ -1,0 +1,527 @@
+---
+title: "Tema 2.3 Propiedades de los determinantes"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 3 de 16)"
+filename: 03-propiedades-determinantes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Las once propiedades que convierten el cálculo de determinantes en un juego de observación, desde la igualdad entre una matriz y su transpuesta hasta el determinante del producto, pasando por el efecto de intercambiar líneas, de multiplicarlas por un número, de que sean iguales o proporcionales o combinación lineal de las demás, la propiedad clave de sumar a una línea una combinación de las otras y el determinante de una matriz triangular, con la advertencia esencial de que el determinante de una suma no es la suma de los determinantes, y con applets manipulables.
+categories: [determinantes, propiedades, matriz triangular, producto de matrices, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Al final del apartado anterior te encontraste varias veces con la misma escena: un determinante que valía cero, y una razón visible para que valiese cero. Dos filas iguales. Dos filas proporcionales. Una fila que era la suma de las otras dos. En todos esos casos hiciste los seis productos de Sarrus, los sumaste con cuidado y obtuviste cero, cuando podrías haberlo dicho de un vistazo.
+
+Este apartado convierte esas observaciones en **once propiedades** con enunciado preciso y con justificación. No son once reglas sueltas que haya que memorizar: son once consecuencias de la misma definición, la de la parte 1, y todas se demuestran mirando qué les ocurre a los $n!$ productos cuando se manipula la matriz.
+
+Su utilidad es doble. Por un lado permiten **anticipar** el resultado en muchos casos, ahorrando todo el cálculo. Por otro, y esto es lo decisivo, permiten **transformar** un determinante en otro que vale lo mismo pero es mucho más fácil de calcular. Esa segunda vía es la que hace posible resolver determinantes de orden 4, 5 o 6, para los que Sarrus no existe y el desarrollo directo es inabordable.
+
+Una advertencia de vocabulario: en lo que sigue, **línea** significa indistintamente fila o columna. Gracias a la primera propiedad, lo que vale para las filas vale para las columnas.
+
+## Propiedad 1. El determinante de la transpuesta
+
+::: {.callout-note}
+## Propiedad 1
+
+El determinante de una matriz coincide con el de su transpuesta:
+
+$$
+|A^{t}| = |A|
+$$
+:::
+
+**Justificación.** Cada sumando del determinante toma un elemento de cada fila y de cada columna. Al transponer, filas y columnas intercambian sus papeles, de modo que los sumandos siguen siendo los mismos productos de los mismos números, solo que descritos al revés. Puede comprobarse en orden 3 escribiendo los seis productos de $|A|$ y los seis de $|A^{t}|$: son idénticos, y también coinciden sus signos.
+
+**Ejemplo.** Con
+
+$$
+A = \begin{pmatrix} 1 & 2 & 0 \\ 3 & -1 & 2 \\ 0 & 4 & 1 \end{pmatrix},
+\qquad
+A^{t} = \begin{pmatrix} 1 & 3 & 0 \\ 2 & -1 & 4 \\ 0 & 2 & 1 \end{pmatrix}
+$$
+
+se obtiene, aplicando Sarrus a cada una,
+
+$$
+|A| = -1 + 0 + 0 - 0 - 8 - 6 = -15,
+\qquad
+|A^{t}| = -1 + 0 + 0 - 0 - 6 - 8 = -15
+$$
+
+Esta propiedad se enuncia la primera porque duplica gratis todas las demás: cualquier afirmación sobre filas se traduce automáticamente en la misma afirmación sobre columnas. Y tiene una consecuencia práctica enorme: al simplificar un determinante **no estás obligado a trabajar por filas**, puedes operar por columnas o alternar ambas cosas, una libertad que no tenías al calcular rangos por Gauss.
+
+## Propiedad 2. Una línea de ceros
+
+::: {.callout-note}
+## Propiedad 2
+
+Si una matriz cuadrada tiene una fila o una columna cuyos elementos son todos cero, su determinante es cero.
+:::
+
+**Justificación.** Cada uno de los $n!$ sumandos contiene, por definición, un elemento de esa línea. Como todos sus elementos valen cero, cada sumando contiene un factor nulo y, por tanto, vale cero. La suma de $n!$ ceros es cero.
+
+**Ejemplo.**
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 4 & 5 & 6 \end{vmatrix} = 0
+$$
+
+No hace falta escribir ningún producto: la segunda fila decide el resultado.
+
+## Propiedad 3. Intercambiar dos líneas
+
+::: {.callout-note}
+## Propiedad 3
+
+Si en una matriz cuadrada se intercambian dos filas (o dos columnas), el determinante **cambia de signo**:
+
+$$
+|B| = -|A|
+$$
+
+donde $B$ es la matriz que resulta de $A$ tras el intercambio.
+:::
+
+**Justificación.** Los $n!$ productos siguen siendo los mismos números multiplicados entre sí, porque los elementos no han cambiado de valor, solo de posición. Lo que cambia es la paridad del emparejamiento entre filas y columnas: intercambiar dos filas invierte esa paridad en **todos** los sumandos a la vez, así que los que eran positivos pasan a ser negativos y viceversa. El resultado es el opuesto.
+
+**Ejemplo en orden 2.**
+
+$$
+\begin{vmatrix} 1 & 2 \\ 3 & 4 \end{vmatrix} = -2,
+\qquad
+\begin{vmatrix} 3 & 4 \\ 1 & 2 \end{vmatrix} = 3\cdot 2 - 4\cdot 1 = 2
+$$
+
+**Ejemplo en orden 3.** Partiendo de la matriz $A$ de la propiedad 1, con $|A|=-15$, e intercambiando sus dos primeras filas:
+
+$$
+\begin{vmatrix} 3 & -1 & 2 \\ 1 & 2 & 0 \\ 0 & 4 & 1 \end{vmatrix} = 6 + 0 + 8 - 0 - 0 + 1 = 15
+$$
+
+::: {.callout-warning}
+## Contar los intercambios
+
+Si se intercambian dos líneas **dos veces**, el determinante vuelve a su valor inicial, porque $-(-|A|) = |A|$. En general, tras $p$ intercambios el determinante queda multiplicado por $(-1)^{p}$: un número par de intercambios lo deja igual y un número impar lo cambia de signo.
+
+Esto es esencial cuando reordenes filas para colocar un $1$ en una posición cómoda. **Lleva la cuenta de los intercambios que haces.** Perder un signo por descuido es el error que más ejercicios estropea en la parte 9.
+:::
+
+## Propiedad 4. Dos líneas iguales
+
+::: {.callout-note}
+## Propiedad 4
+
+Si una matriz cuadrada tiene dos filas (o dos columnas) iguales, su determinante es cero.
+:::
+
+**Justificación.** Es una consecuencia elegante de la propiedad anterior. Si $A$ tiene las filas $i$ y $j$ iguales e intercambiamos precisamente esas dos, la matriz **no cambia en absoluto**, porque las filas eran idénticas. Pero, por la propiedad 3, su determinante debe haber cambiado de signo. Así que $|A| = -|A|$, es decir, $2|A| = 0$ y por tanto $|A| = 0$.
+
+**Ejemplo.**
+
+$$
+\begin{vmatrix} 2 & 5 & 1 \\ 3 & 0 & 4 \\ 2 & 5 & 1 \end{vmatrix} = 0
+$$
+
+Las filas primera y tercera coinciden. Si desarrollas por Sarrus obtendrás $0+40+15-0-40-15 = 0$, pero el cálculo era innecesario.
+
+### Applet · Laboratorio de propiedades {.unnumbered}
+
+Este applet es el banco de pruebas del apartado. Introduce una matriz de orden 2 o 3, anota su determinante y aplícale después las transformaciones que ofrece el panel: transponer, intercambiar dos líneas, multiplicar una línea por un número, sumar a una línea un múltiplo de otra, repetir una línea. En cada caso el applet muestra la matriz transformada, su determinante y el **factor** por el que ha quedado multiplicado el original.
+
+Haz al menos estos cuatro experimentos y anota tus conclusiones antes de leer las propiedades siguientes. Primero, transpón y comprueba que el determinante no se mueve. Segundo, intercambia dos filas y después las mismas dos columnas, y observa que los dos cambios de signo se cancelan. Tercero, multiplica una fila por $3$ y comprueba que el factor que aparece es exactamente $3$; multiplica después **todas** las filas por $3$ y verás que el factor es $27$, no $3$. Y cuarto, suma a una fila el doble de otra y comprueba que el determinante no varía en absoluto: esa será la propiedad 9, la más útil de todas.
+
+::: {#panel-propiedades .applet-panel data-applet-det="propiedades"}
+:::
+
+## Propiedad 5. Multiplicar una línea por un número
+
+::: {.callout-note}
+## Propiedad 5
+
+Si todos los elementos de una fila (o de una columna) de una matriz cuadrada se multiplican por un número $k$, el determinante queda multiplicado por $k$:
+
+$$
+\begin{vmatrix} k\,a_{11} & k\,a_{12} & k\,a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{vmatrix}
+= k\,\begin{vmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{vmatrix}
+$$
+:::
+
+**Justificación.** En cada sumando del determinante aparece **exactamente un** factor procedente de esa línea. Al multiplicar la línea por $k$, cada sumando queda multiplicado por $k$ una sola vez, y $k$ se puede sacar factor común de la suma entera.
+
+**Ejemplo.** Partimos de $\begin{vmatrix} 1 & 2 \\ 3 & 4 \end{vmatrix} = -2$ y multiplicamos la primera fila por $5$:
+
+$$
+\begin{vmatrix} 5 & 10 \\ 3 & 4 \end{vmatrix} = 20 - 30 = -10 = 5\cdot(-2)
+$$
+
+Leída al revés, esta propiedad es la herramienta que más trabajo ahorra: **de una línea se puede sacar factor común**. Si una fila es $(6,\,9,\,12)$, se extrae el $3$ y la fila pasa a ser $(2,\,3,\,4)$, quedando el determinante multiplicado por $3$ por fuera. Con números grandes o con fracciones, este movimiento simplifica el cálculo de forma espectacular, y lo explotaremos sistemáticamente en el apartado siguiente.
+
+::: {.callout-caution}
+## $|kA|$ no es $k\,|A|$
+
+Aquí se esconde uno de los errores más frecuentes de todo el tema. La propiedad habla de multiplicar **una sola línea**. Pero cuando escribimos $kA$ estamos multiplicando por $k$ **todos** los elementos de la matriz, es decir, las $n$ filas a la vez. Aplicando la propiedad una vez por cada fila:
+
+$$
+|kA| = k^{n}\,|A|
+$$
+
+donde $n$ es el orden de la matriz. Así, para una matriz de orden 3, $|2A| = 8|A|$, no $2|A|$. Y para una de orden 4, $|2A| = 16|A|$.
+
+**Ejemplo.** Con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, cuyo determinante es $-2$:
+
+$$
+|3A| = \begin{vmatrix} 3 & 6 \\ 9 & 12 \end{vmatrix} = 36 - 54 = -18 = 3^{2}\cdot(-2)
+$$
+
+Si hubiéramos escrito $3\cdot(-2) = -6$ nos habríamos equivocado por un factor de $3$. Cada vez que veas un número multiplicando a una matriz completa dentro de un determinante, pregúntate cuál es el orden.
+:::
+
+## Propiedad 6. Dos líneas proporcionales
+
+::: {.callout-note}
+## Propiedad 6
+
+Si una matriz cuadrada tiene dos filas (o dos columnas) proporcionales, su determinante es cero.
+:::
+
+**Justificación.** Si la fila $j$ es $k$ veces la fila $i$, sacamos $k$ factor común de la fila $j$ usando la propiedad 5. Lo que queda dentro es un determinante con las filas $i$ y $j$ iguales, que vale cero por la propiedad 4. Y $k\cdot 0 = 0$.
+
+**Ejemplo.**
+
+$$
+\begin{vmatrix} 2 & 3 \\ 8 & 12 \end{vmatrix} = 24 - 24 = 0,
+\qquad
+\begin{vmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 5 & 0 & 1 \end{vmatrix} = 0
+$$
+
+En el segundo, $F_2 = 2F_1$. Merece la pena entrenar el ojo: el factor no siempre es entero ni salta a la vista, así que compara elemento a elemento y comprueba que la razón es la misma en las $n$ posiciones.
+
+## Propiedad 7. Descomposición de una línea en suma
+
+::: {.callout-note}
+## Propiedad 7
+
+Si todos los elementos de una línea son suma de dos sumandos, el determinante se descompone en la **suma de dos determinantes**: uno con los primeros sumandos en esa línea y otro con los segundos, dejando el resto de líneas intactas en ambos.
+
+$$
+\begin{vmatrix} a_{11}+b_{11} & a_{12}+b_{12} \\ a_{21} & a_{22} \end{vmatrix}
+=
+\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}
++
+\begin{vmatrix} b_{11} & b_{12} \\ a_{21} & a_{22} \end{vmatrix}
+$$
+:::
+
+**Justificación.** En cada sumando del determinante hay exactamente un factor de esa línea, de la forma $a_{1j}+b_{1j}$. Aplicando la propiedad distributiva, cada sumando se parte en dos, uno con $a_{1j}$ y otro con $b_{1j}$. Agrupando por separado todos los primeros y todos los segundos se obtienen justamente los dos determinantes del enunciado.
+
+**Ejemplo en orden 2.**
+
+$$
+\begin{vmatrix} 5 & 2 \\ 3 & 5 \end{vmatrix} = 25 - 6 = 19
+$$
+
+y descomponiendo $(5,\,2) = (1,\,2) + (4,\,0)$:
+
+$$
+\begin{vmatrix} 1 & 2 \\ 3 & 5 \end{vmatrix} + \begin{vmatrix} 4 & 0 \\ 3 & 5 \end{vmatrix}
+= (5-6) + (20-0) = -1 + 20 = 19
+$$
+
+**Ejemplo en orden 3.**
+
+$$
+\begin{vmatrix} 1+2 & 3+1 & 0+5 \\ 2 & 1 & 3 \\ 4 & 0 & 1 \end{vmatrix}
+=
+\begin{vmatrix} 1 & 3 & 0 \\ 2 & 1 & 3 \\ 4 & 0 & 1 \end{vmatrix}
++
+\begin{vmatrix} 2 & 1 & 5 \\ 2 & 1 & 3 \\ 4 & 0 & 1 \end{vmatrix}
+$$
+
+Los tres determinantes valen, respectivamente, $23$, $31$ y $-8$, y en efecto $31 + (-8) = 23$.
+
+## Propiedad 8. Una línea combinación lineal de las demás
+
+::: {.callout-note}
+## Propiedad 8
+
+Si en una matriz cuadrada una línea es **combinación lineal** de las otras, su determinante es cero.
+:::
+
+**Justificación.** Supongamos que $F_3 = \lambda F_1 + \mu F_2$. Por la propiedad 7 descomponemos el determinante en dos: uno con $\lambda F_1$ en la tercera fila y otro con $\mu F_2$. En el primero, la tercera fila es proporcional a la primera; en el segundo, es proporcional a la segunda. Ambos son cero por la propiedad 6, y su suma también.
+
+**Ejemplo.**
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 6 & 9 & 12 \end{vmatrix} = 0
+$$
+
+En efecto, $F_3 = 2F_1 + F_2$, porque $2\cdot(1,\,2,\,3) + (4,\,5,\,6) = (6,\,9,\,12)$. Desarrollando por Sarrus se obtiene $60 + 72 + 108 - 90 - 54 - 96 = 0$, pero la propiedad ahorra las seis multiplicaciones.
+
+Esta propiedad conecta el determinante con el concepto de **rango** que estudiaste en el tema anterior. Si una fila es combinación lineal de las demás, las filas no son independientes, la matriz de orden $n$ tiene rango menor que $n$ y su determinante se anula. El recíproco también es cierto, y sobre esa equivalencia se construye todo el cálculo de rangos de las partes 11 a 13:
+
+$$
+|A| \neq 0 \iff \text{las filas de } A \text{ son linealmente independientes} \iff \operatorname{rg}(A) = n
+$$
+
+## Propiedad 9. Sumar a una línea una combinación de las demás
+
+::: {.callout-note}
+## Propiedad 9
+
+Si a una fila (o columna) de una matriz cuadrada se le suma una combinación lineal de las restantes, el determinante **no varía**. En particular, la transformación
+
+$$
+F_i \rightarrow F_i + k\,F_j \qquad (i \neq j)
+$$
+
+deja el determinante exactamente igual.
+:::
+
+**Justificación.** Descomponemos por la propiedad 7 el determinante de la matriz transformada: queda el determinante original más otro en el que la fila $i$ es $k\,F_j$. Este segundo tiene dos filas proporcionales —la $i$ y la $j$— y vale cero por la propiedad 6. Por tanto, el determinante no cambia.
+
+**Ejemplo.** Volvemos a la matriz $A$ de la propiedad 1, con $|A| = -15$, y hacemos $F_2 \rightarrow F_2 - 3F_1$:
+
+$$
+\begin{vmatrix} 1 & 2 & 0 \\ 3 & -1 & 2 \\ 0 & 4 & 1 \end{vmatrix}
+\;\longrightarrow\;
+\begin{vmatrix} 1 & 2 & 0 \\ 0 & -7 & 2 \\ 0 & 4 & 1 \end{vmatrix}
+$$
+
+El nuevo determinante tiene dos ceros en la primera columna y se calcula casi de cabeza: solo sobrevive el sumando de la diagonal principal más el que baja por la izquierda, y resulta $1\cdot(-7)\cdot 1 - 1\cdot 2\cdot 4 = -7 - 8 = -15$. Coincide, como debía.
+
+::: {.callout-important}
+## La propiedad más importante del tema
+
+Compara las propiedades 3, 5 y 9, porque las tres describen operaciones con filas y las tres se comportan de manera distinta:
+
+- $F_i \leftrightarrow F_j$ (intercambiar): el determinante **cambia de signo**.
+- $F_i \rightarrow k\,F_i$ (multiplicar una fila): el determinante **queda multiplicado por $k$**.
+- $F_i \rightarrow F_i + k\,F_j$ (sumar a una fila un múltiplo de otra): el determinante **no cambia**.
+
+Solo la tercera es gratuita, y por eso es la que se usa una y otra vez. Con ella se pueden fabricar tantos ceros como se quiera en una línea sin alterar el valor del determinante, y llevar así cualquier matriz a forma triangular o a una forma con una línea casi vacía. Ese es el **método de hacer ceros**, que desarrollaremos en la parte 9, y es la única manera razonable de calcular determinantes de orden 4 o superior.
+
+Dos avisos sobre su uso. El primero, la fila que se **modifica** es $F_i$, la que va delante de la flecha; $F_j$ se usa pero no cambia. El segundo, el coeficiente $k$ multiplica a la fila que se usa, **nunca** a la que se modifica: la transformación $F_2 \rightarrow 3F_2 + F_1$ **sí** altera el determinante, multiplicándolo por $3$, y confundirla con $F_2 \rightarrow F_2 + 3F_1$ es un error clásico.
+:::
+
+## Propiedad 10. El determinante de un producto
+
+::: {.callout-note}
+## Propiedad 10
+
+El determinante del producto de dos matrices cuadradas del mismo orden es el producto de sus determinantes:
+
+$$
+|A\cdot B| = |A|\cdot|B|
+$$
+:::
+
+**Ejemplo.** Sean
+
+$$
+A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 1 & -1 \\ 2 & 0 \end{pmatrix}
+$$
+
+con $|A| = 6-1 = 5$ y $|B| = 0-(-2) = 2$. Su producto es
+
+$$
+A\cdot B = \begin{pmatrix} 2\cdot 1 + 1\cdot 2 & 2\cdot(-1)+1\cdot 0 \\ 1\cdot 1 + 3\cdot 2 & 1\cdot(-1)+3\cdot 0 \end{pmatrix}
+= \begin{pmatrix} 4 & -2 \\ 7 & -1 \end{pmatrix}
+$$
+
+y su determinante vale $4\cdot(-1) - (-2)\cdot 7 = -4 + 14 = 10 = 5\cdot 2$, como anunciaba la propiedad.
+
+Merece la pena destacar dos consecuencias inmediatas. La primera: como el producto de números sí es conmutativo, se tiene $|A\cdot B| = |B\cdot A|$ **aunque $A\cdot B \neq B\cdot A$**. Es decir, dos productos que dan matrices distintas tienen el mismo determinante. La segunda, aplicando la propiedad repetidamente:
+
+$$
+|A^{n}| = |A|^{n}
+$$
+
+Y una tercera, que usaremos en la parte 15: si $A$ tiene inversa, de $A\cdot A^{-1} = I$ y de $|I| = 1$ se deduce que $|A|\cdot|A^{-1}| = 1$, o sea,
+
+$$
+|A^{-1}| = \frac{1}{|A|}
+$$
+
+lo que exige, de paso, que $|A| \neq 0$. Ahí está, en una línea, la razón de que una matriz con determinante nulo no pueda tener inversa.
+
+### Applet · Determinante de un producto {.unnumbered}
+
+Comprueba la propiedad 10 por ti mismo con el applet. Introduce dos matrices cuadradas del mismo orden y el panel calcula $|A|$, $|B|$, la matriz producto $A\cdot B$ y su determinante, para que verifiques la igualdad en cada caso. Haz tres pruebas dirigidas: calcula también $B\cdot A$ y comprueba que, siendo una matriz distinta de $A\cdot B$, tiene el mismo determinante; pon una matriz con determinante cero y observa que el producto también lo tiene, decidiendo el resultado por sí sola; y prueba con potencias, calculando $A^{3}$ y comparando su determinante con $|A|^{3}$.
+
+::: {#panel-productoDet .applet-panel data-applet-det="productoDet"}
+:::
+
+## Propiedad 11. Matrices triangulares y diagonales
+
+::: {.callout-note}
+## Propiedad 11
+
+El determinante de una matriz **triangular** —superior o inferior— o **diagonal** es el producto de los elementos de su diagonal principal:
+
+$$
+\begin{vmatrix} a_{11} & a_{12} & a_{13} \\ 0 & a_{22} & a_{23} \\ 0 & 0 & a_{33} \end{vmatrix}
+= a_{11}\,a_{22}\,a_{33}
+$$
+
+En particular, el determinante de la matriz identidad es $|I| = 1$.
+:::
+
+**Justificación.** Todos los sumandos del determinante, salvo el de la diagonal principal, contienen al menos un factor situado por debajo de ella, y en una matriz triangular superior esos factores son cero. Solo sobrevive, pues, el producto $a_{11}a_{22}\cdots a_{nn}$. Para una triangular inferior el razonamiento es simétrico, y una matriz diagonal es a la vez de los dos tipos.
+
+**Ejemplo.**
+
+$$
+\begin{vmatrix} 2 & 5 & -1 \\ 0 & 3 & 4 \\ 0 & 0 & -2 \end{vmatrix} = 2\cdot 3\cdot(-2) = -12
+$$
+
+Da igual lo que valgan el $5$, el $-1$ y el $4$: no intervienen. Si algún elemento de la diagonal fuese cero, el determinante entero sería cero.
+
+Esta propiedad es el destino natural del método de hacer ceros: se usa la propiedad 9 para transformar la matriz en triangular sin alterar el determinante y después se multiplica la diagonal. Lo verás aplicado con detalle en el apartado siguiente.
+
+### Applet · Determinante de una matriz triangular {.unnumbered}
+
+Usa este applet para ver por qué la propiedad 11 es cierta y no solo para creerla. Introduce una matriz triangular y el panel te muestra los $n!$ sumandos del desarrollo señalando en rojo el factor nulo que anula a cada uno; al final queda uno solo en pie, el de la diagonal. Experimenta cambiando los elementos que están **por encima** de la diagonal y comprueba que el resultado no se mueve ni un ápice; cambia después uno de la diagonal y verás que el determinante cambia proporcionalmente. Pon un cero en la diagonal y observa cómo todo se anula. Prueba también con la identidad de varios órdenes para confirmar que su determinante vale siempre $1$.
+
+::: {#panel-triangular .applet-panel data-applet-det="triangular"}
+:::
+
+## El aviso que hay que recordar: la suma
+
+::: {.callout-warning}
+## En general, $|A+B| \neq |A| + |B|$
+
+El determinante **no** es compatible con la suma de matrices. La igualdad $|A+B| = |A|+|B|$ es falsa, y no por casualidad ni por un caso raro: es falsa casi siempre.
+
+Un contraejemplo mínimo lo aclara todo. Tomemos $A = B = I$, la identidad de orden 2. Entonces $|A| = |B| = 1$, de modo que $|A|+|B| = 2$. Pero
+
+$$
+A + B = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix},
+\qquad
+|A+B| = 4
+$$
+
+y $4 \neq 2$. De hecho, la propiedad 5 explica lo que pasa: $A+B = 2I$ y, siendo de orden 2, $|2I| = 2^{2}|I| = 4$.
+
+La razón profunda es la que ya se advirtió en la propiedad 7. Allí se podía descomponer el determinante en suma **porque solo una línea era suma de dos sumandos**. Al sumar dos matrices, en cambio, se modifican todas las líneas a la vez, y esa descomposición ordenada deja de funcionar.
+:::
+
+### Applet · El determinante de una suma {.unnumbered}
+
+Este applet existe para que la advertencia anterior deje de ser una frase y pase a ser una evidencia. Introduce dos matrices cuadradas y compara en pantalla $|A+B|$ con $|A|+|B|$: el panel te muestra los dos números juntos y su diferencia. Genera diez pares de matrices al azar y cuenta en cuántos casos coinciden; comprobarás que casi nunca. Busca después algún par en que sí coincidan —los hay— y razona por qué esos casos no salvan la igualdad general: **una propiedad matemática debe cumplirse siempre, y basta un contraejemplo para derribarla**. Aprovecha también para comparar $|A\cdot B|$ con $|A|\cdot|B|$ en los mismos pares y ver la diferencia de comportamiento.
+
+::: {#panel-sumaNoSuma .applet-panel data-applet-det="sumaNoSuma"}
+:::
+
+## Resumen del apartado
+
+1. $|A^{t}| = |A|$: todo lo válido para filas lo es para columnas.
+2. Una línea de ceros anula el determinante.
+3. Intercambiar dos líneas cambia el signo del determinante.
+4. Dos líneas iguales lo anulan.
+5. Multiplicar una línea por $k$ multiplica el determinante por $k$; por tanto $|kA| = k^{n}|A|$.
+6. Dos líneas proporcionales lo anulan.
+7. Si una línea es suma de dos sumandos, el determinante se descompone en suma de dos determinantes.
+8. Una línea combinación lineal de las demás lo anula, y esto equivale a que el rango sea menor que el orden.
+9. Sumar a una línea una combinación lineal de las otras **no altera** el determinante: es la propiedad clave del método de hacer ceros.
+10. $|A\cdot B| = |A|\cdot|B|$, de donde $|A^{n}| = |A|^{n}$ y $|A^{-1}| = 1/|A|$.
+11. El determinante de una matriz triangular o diagonal es el producto de su diagonal principal, y $|I| = 1$.
+
+Y el aviso: **$|A+B| \neq |A|+|B|$** en general.
+
+## Ejercicios propuestos
+
+**1.** Sabiendo que $\begin{vmatrix} a & b \\ c & d \end{vmatrix} = -1$, calcula razonadamente:
+
+a) $\begin{vmatrix} c & d \\ a & b \end{vmatrix}$, b) $\begin{vmatrix} 3a & 3b \\ c & d \end{vmatrix}$, c) $\begin{vmatrix} a & c \\ b & d \end{vmatrix}$, d) $\begin{vmatrix} 2a & 2b \\ 2c & 2d \end{vmatrix}$.
+
+**2.** Sin desarrollar, justifica por qué valen cero estos determinantes:
+
+$$
+\begin{vmatrix} 3 & 6 & 9 \\ 1 & 2 & 3 \\ 5 & 7 & 4 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 7 & 8 & 9 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 3 & 4 \\ 2 & 1 & 3 \\ 3 & 4 & 7 \end{vmatrix}
+$$
+
+**3.** Si $A$ es una matriz cuadrada de orden $3$ con $|A| = 4$, calcula $|3A|$, $|A^{t}|$, $|A^{2}|$ y $|A^{-1}|$.
+
+**4.** Razona si son verdaderas o falsas:
+
+a) Si $|A| = |B|$, entonces $A = B$.
+
+b) Si $A$ es de orden $4$, entonces $|-A| = |A|$.
+
+c) $|A\cdot B| = |B\cdot A|$ siempre que ambos productos existan y sean cuadrados del mismo orden.
+
+d) Si una matriz tiene dos columnas iguales, su determinante es cero.
+
+**5.** Comprueba con las matrices $A = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$ y $B = \begin{pmatrix} 2 & -1 \\ 1 & 1 \end{pmatrix}$ que $|A\cdot B| = |A|\cdot|B|$ y que, en cambio, $|A+B| \neq |A| + |B|$.
+
+**6.** Sabiendo que $\begin{vmatrix} x & y & z \\ 3 & 0 & 2 \\ 1 & 1 & 1 \end{vmatrix} = 5$, calcula sin desarrollar:
+
+a) $\begin{vmatrix} 2x & 2y & 2z \\ 3 & 0 & 2 \\ 1 & 1 & 1 \end{vmatrix}$, b) $\begin{vmatrix} 1 & 1 & 1 \\ 3 & 0 & 2 \\ x & y & z \end{vmatrix}$, c) $\begin{vmatrix} x+3 & y & z+2 \\ 3 & 0 & 2 \\ 1 & 1 & 1 \end{vmatrix}$.
+
+**7.** Calcula el determinante de la matriz triangular
+
+$$
+\begin{pmatrix} 1 & 7 & -3 & 2 \\ 0 & -2 & 5 & 9 \\ 0 & 0 & 4 & -6 \\ 0 & 0 & 0 & 3 \end{pmatrix}
+$$
+
+**8.** Explica por qué, si una matriz cuadrada de orden $3$ cumple $A^{2} = A$ y $|A| \neq 0$, necesariamente $|A| = 1$.
+
+**9.** Sea $A$ una matriz cuadrada de orden $3$ tal que $|A| = -2$. Calcula $|2A^{t}\cdot A|$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** a) Se han intercambiado las dos filas, luego el determinante cambia de signo: vale $1$. b) Se ha multiplicado la primera fila por $3$, luego vale $3\cdot(-1) = -3$. c) Es la transpuesta, luego vale $-1$. d) Se han multiplicado las dos filas por $2$, es decir, es $|2A|$ con $n=2$: vale $2^{2}\cdot(-1) = -4$.
+
+**2.** El primero tiene $F_1 = 3F_2$, filas proporcionales. El segundo tiene una fila de ceros. El tercero tiene $F_3 = F_1 + F_2$, es decir, una fila combinación lineal de las otras dos.
+
+**3.** $|3A| = 3^{3}\cdot 4 = 27\cdot 4 = 108$. $|A^{t}| = 4$. $|A^{2}| = |A|^{2} = 16$. $|A^{-1}| = 1/4 = 0{,}25$.
+
+**4.** a) **Falsa.** Infinitas matrices distintas comparten determinante; por ejemplo, todas las de determinante cero. b) **Verdadera.** $|-A| = (-1)^{4}|A| = |A|$, porque el orden es par. Si el orden fuese impar el signo cambiaría. c) **Verdadera.** Ambos valen $|A|\cdot|B|$, aunque las matrices $A\cdot B$ y $B\cdot A$ sean distintas. d) **Verdadera**, por las propiedades 1 y 4 combinadas.
+
+**5.** $|A| = 3$ y $|B| = 2\cdot 1 - (-1)\cdot 1 = 3$. El producto es
+
+$$
+A\cdot B = \begin{pmatrix} 4 & 1 \\ 3 & 3 \end{pmatrix}, \qquad |A\cdot B| = 12 - 3 = 9 = 3\cdot 3
+$$
+
+En cambio,
+
+$$
+A+B = \begin{pmatrix} 3 & 1 \\ 1 & 4 \end{pmatrix}, \qquad |A+B| = 12 - 1 = 11 \neq 3 + 3 = 6
+$$
+
+**6.** a) La primera fila se ha multiplicado por $2$: vale $2\cdot 5 = 10$. b) Se han intercambiado las filas primera y tercera, un solo intercambio: vale $-5$. c) Por la propiedad 7, se descompone en el determinante original más otro cuya primera fila es $(3,\,0,\,2)$, igual a la segunda; ese segundo vale cero. Total: $5$.
+
+**7.** Es triangular superior, así que el determinante es el producto de la diagonal: $1\cdot(-2)\cdot 4\cdot 3 = -24$.
+
+**8.** Tomando determinantes en $A^{2} = A$ y usando la propiedad 10: $|A|^{2} = |A|$, de donde $|A|^{2} - |A| = 0$ y $|A|\,(|A|-1) = 0$. Las únicas posibilidades son $|A| = 0$ y $|A| = 1$; como se descarta la primera por hipótesis, queda $|A| = 1$.
+
+**9.** Se aplican tres propiedades encadenadas. Primero, $|2A^{t}| = 2^{3}|A^{t}| = 8\cdot(-2) = -16$, porque el orden es $3$ y el determinante de la transpuesta coincide con el de $A$. Después, por la propiedad del producto,
+
+$$
+|2A^{t}\cdot A| = |2A^{t}|\cdot|A| = (-16)\cdot(-2) = 32
+$$
+:::
+
+## Continúa
+
+Ya tienes el catálogo completo de propiedades. En el apartado siguiente dejarán de ser teoría para convertirse en **estrategia**: aprenderás a mirar un determinante antes de tocarlo, a decidir qué propiedad aplicar en cada situación, a sacar factores comunes y a triangular con la propiedad 9, resolviendo determinantes que por el camino directo serían inabordables.

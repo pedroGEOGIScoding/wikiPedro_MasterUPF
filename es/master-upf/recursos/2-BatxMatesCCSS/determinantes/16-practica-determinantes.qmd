@@ -1,0 +1,513 @@
+---
+title: "Tema 2.16 Práctica y autoevaluación"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 16 de 16)"
+filename: 16-practica-determinantes
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Hoja de práctica global del tema de determinantes, con el mapa de los quince apartados, tablas resumen de los métodos de cálculo de determinantes, del rango y de la inversa, recopilación de los errores típicos del tema, veinte ejercicios de repaso graduados con soluciones completas, autoevaluación tipo test y applets de entrenamiento y diagnóstico.
+categories: [determinantes, práctica, autoevaluación, rango, matriz inversa, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## Cómo usar esta hoja
+
+Esta hoja **no introduce contenidos nuevos**: recoge los quince apartados del tema, los ordena en un mapa, resume los métodos en tablas de decisión, reúne los errores más frecuentes y los pone a prueba con ejercicios graduados. Cada ejercicio lleva su nivel —**básico**, **medio** o **avanzado**— y su solución completa en un desplegable.
+
+Trabaja con papel y lápiz, y **no abras la solución hasta haber terminado**. Cuando la abras, compara el camino, no solo el resultado: el fallo casi nunca está en el último paso, sino antes, en un signo del tablero de adjuntos o en una operación de fila que sí alteraba el determinante.
+
+::: {.callout-tip}
+## Plan de trabajo recomendado
+
+- **Sesión 1 (45 min).** Bloques 1 y 2: orden $2$ y $3$, y propiedades. Es la base de todo lo demás.
+- **Sesión 2 (45 min).** Bloque 3: desarrollo por adjuntos, hacer ceros y órdenes superiores.
+- **Sesión 3 (45 min).** Bloques 4 y 5: rango por menores, con parámetro incluido, y matriz inversa.
+- **Sesión 4 (30 min).** Test y applet de entrenamiento, sin apuntes y con reloj.
+
+Si andas justo de tiempo, prioriza los de nivel **medio**: son los que mejor indican si el tema está asentado.
+:::
+
+## Mapa del tema
+
+Todo el tema nace de una idea: **a cada matriz cuadrada se le asocia un número**, su determinante, y ese número contiene una cantidad sorprendente de información sobre la matriz. Los quince apartados anteriores no son quince temas: son una sola idea desplegada en tres movimientos.
+
+**Primer movimiento: qué es y cómo se calcula (apartados 2.1 a 2.4).** En el 2.1 aparece la definición: una suma de productos de elementos, uno de cada fila y uno de cada columna, la mitad con un signo y la mitad con el contrario, definida solo para matrices cuadradas. Los casos manejables llegan en el 2.2: $ad-bc$ en el orden $2$ y la **regla de Sarrus** en el orden $3$, que no vale en ningún otro orden. Calcular a lo bruto es caro, y por eso el 2.3 recoge las **once propiedades** y el 2.4 las convierte en estrategia: mirar la matriz antes de calcular, porque muchos determinantes se resuelven sin desarrollar nada.
+
+**Segundo movimiento: el desarrollo por adjuntos (apartados 2.5 a 2.9).** El 2.5 define el **menor complementario** $\alpha_{ij}$, el determinante que queda al tachar una fila y una columna; el 2.6 le añade el signo del tablero de ajedrez y obtiene el **adjunto** $A_{ij} = (-1)^{i+j}\alpha_{ij}$. Con ellos, el 2.7 enuncia el resultado central: el determinante es la suma de los productos de los elementos de **una línea cualquiera** por sus adjuntos, y conviene elegir la línea con más ceros. El 2.8 lo aplica de forma recursiva a los órdenes $4$ y $5$, y el 2.9 lo combina con la propiedad de que sumar a una línea una combinación lineal de las otras no altera el determinante: es el **método de hacer ceros**.
+
+**Tercer movimiento: las dos aplicaciones (apartados 2.10 a 2.15).** La primera es el **rango**: el 2.10 generaliza el menor a cualquier submatriz cuadrada, el 2.11 define el rango como el orden del mayor menor no nulo y lo identifica con el que ya conocías por Gauss, el 2.12 da el algoritmo de orlado y el 2.13 lo lleva al caso con **parámetros**, donde la discusión se reduce a resolver $\det = 0$ y estudiar cada raíz por separado. La segunda es la **inversa**: el 2.14 reúne los adjuntos en $\operatorname{Adj}(A)$ y demuestra que $A\cdot \operatorname{Adj}(A)^t = |A|\cdot I$, y el 2.15 divide entre $|A|$ para obtener $A^{-1} = \frac{1}{|A|}\operatorname{Adj}(A)^t$, con el criterio $|A| \neq 0$.
+
+Visto así, el tema tiene una columna vertebral clara:
+
+| Bloque | Qué se pide | Herramienta | Forma de la respuesta |
+|---|---|---|---|
+| Cálculo (2.1–2.4) | $\lvert A\rvert$ con el mínimo trabajo | $ad-bc$, Sarrus, propiedades | un número |
+| Adjuntos (2.5–2.9) | $\lvert A\rvert$ en cualquier orden | desarrollo y $F_i \to F_i + k\,F_j$ | un número |
+| Rango (2.10–2.13) | filas realmente independientes | menores y orlado | un entero, o varios casos |
+| Inversa (2.14–2.15) | deshacer el producto | $\frac{1}{\lvert A\rvert}\operatorname{Adj}(A)^t$ | una matriz o «no existe» |
+
+::: {.callout-important}
+## La idea que une el tema
+
+El determinante es un **detector de dependencia lineal**. Vale cero exactamente cuando las filas de la matriz no son independientes, es decir, cuando una de ellas se puede escribir con las demás. Todo lo demás se deduce de ahí: por eso dos filas iguales o proporcionales lo anulan; por eso el rango se mide buscando el mayor menor **no** nulo; por eso hay inversa si y solo si el determinante no es cero, ya que solo se puede deshacer una transformación que no haya perdido información.
+:::
+
+## Tabla resumen · Métodos de cálculo de un determinante
+
+| Método | Válido en | Coste | Cuándo usarlo |
+|---|---|---|---|
+| $\lvert a_{11}\rvert = a_{11}$ | orden $1$ | nulo | siempre |
+| $ad-bc$ | orden $2$ | inmediato | siempre |
+| Regla de Sarrus | **solo orden $3$** | seis productos | orden $3$ sin ceros aprovechables |
+| Propiedades | cualquier orden | casi nulo | si hay línea de ceros, líneas iguales o proporcionales, o factores comunes |
+| Triangular o diagonal | cualquier orden | producto de la diagonal | si la matriz ya es triangular |
+| Desarrollo por adjuntos | cualquier orden | $n$ determinantes de orden $n-1$ | si alguna línea tiene varios ceros |
+| Hacer ceros y desarrollar | cualquier orden | un solo determinante de orden $n-1$ | orden $4$ o $5$, y siempre que haya un $1$ o un $-1$ para usar de pivote |
+
+::: {.callout-tip}
+## El orden en que hay que pensar
+
+1. **¿Hay una línea de ceros, dos líneas iguales o dos proporcionales?** Vale $0$ y has terminado.
+2. **¿Se puede sacar algún factor común de una línea?** Sácalo: los números se hacen pequeños.
+3. **¿Es triangular o casi triangular?** Multiplica la diagonal, o termina de triangular.
+4. **¿Es de orden $2$ o $3$?** Aplica $ad-bc$ o Sarrus.
+5. **¿Es de orden $4$ o más?** Busca un pivote $1$ o $-1$, haz ceros en su columna y desarrolla por ella.
+:::
+
+## Tabla resumen · Rango e inversa
+
+| Objetivo | Método | Procedimiento | Señal de alto |
+|---|---|---|---|
+| Rango | Gauss | escalonar y contar filas no nulas | aparecen filas nulas |
+| Rango | menores | orlar un menor no nulo hasta que todos los orlados sean cero | todos los orlados valen $0$ |
+| Rango con parámetro | menores | resolver $\det = 0$ y estudiar cada raíz aparte | ninguna: dar todos los casos |
+| ¿Existe la inversa? | determinante | calcular $\lvert A\rvert$ | $\lvert A\rvert = 0$: no existe |
+| Inversa de orden $2$ | fórmula rápida | intercambiar la diagonal principal, cambiar el signo de la secundaria, dividir entre $ad-bc$ | $ad-bc=0$ |
+| Inversa de orden $3$ | determinantes | $\lvert A\rvert$, nueve adjuntos, transponer, dividir | $\lvert A\rvert = 0$ |
+| Inversa de orden $\ge 4$ | Gauss-Jordan | escalonar $(A\mid I)$ hasta $(I\mid A^{-1})$ | fila nula a la izquierda |
+| Inversa con parámetro | determinantes | raíces de $\lvert A\rvert = 0$ y fórmula para el resto | — |
+
+Equivalencias que conviene tener grabadas para una matriz cuadrada de orden $n$:
+$$
+|A| \neq 0
+\iff \operatorname{rg}(A) = n
+\iff A \text{ es regular}
+\iff \text{existe } A^{-1} .
+$$
+Con las propiedades numéricas asociadas: $|A^t| = |A|$, $|kA| = k^n|A|$, $|A\cdot B| = |A|\cdot|B|$, $|A^{-1}| = \dfrac{1}{|A|}$ y $|\operatorname{Adj}(A)| = |A|^{\,n-1}$.
+
+::: {.callout-caution}
+## Errores típicos de todo el tema
+
+**Sobre la definición y el cálculo directo**
+
+1. Calcular el determinante de una matriz **no cuadrada**: no existe.
+2. Interpretar $|A|$ como un **valor absoluto**: el determinante puede ser negativo.
+3. Usar la **regla de Sarrus en orden $4$**: solo vale para el orden $3$.
+4. En Sarrus, olvidar que los tres productos de las diagonales secundarias van **restados**, o restar solo uno.
+5. Escribir $+ -3$ en lugar de $+ (-3)$ y perder el control de los signos.
+
+**Sobre las propiedades**
+
+6. Creer que $|A + B| = |A| + |B|$: **falso** en general, mientras que $|A\cdot B| = |A|\cdot|B|$ sí es cierto.
+7. Usar $|kA| = k\,|A|$: lo correcto es $|kA| = k^n|A|$, porque el factor sale de **cada** una de las $n$ líneas.
+8. Creer que $F_i \to k\,F_i$ no cambia nada: multiplica el determinante por $k$, y $F_i \leftrightarrow F_j$ le cambia el **signo**. La única operación inocua es $F_i \to F_i + k\,F_j$.
+9. Sacar factor común de **toda la matriz** cuando solo se puede sacar de una línea a la vez.
+
+**Sobre menores y adjuntos**
+
+10. Confundir el **menor complementario** con el **adjunto**: se diferencian en el signo $(-1)^{i+j}$.
+11. Aplicar ese signo al elemento $a_{ij}$ en lugar de al menor, u olvidar los signos alternados al desarrollar.
+12. Elegir para desarrollar la línea con más números grandes en vez de la que tiene más ceros.
+13. Multiplicar los elementos de una línea por los adjuntos de **otra**: esa suma vale $0$, no $|A|$.
+
+**Sobre el rango**
+
+14. Decir que el rango es el número de filas, sin comprobar la independencia.
+15. Al orlar, cambiar de menor testigo a mitad del proceso y perder el hilo del razonamiento.
+16. Descartar el orden $3$ porque **un** menor de orden $3$ es cero: han de ser cero **todos** los orlados del menor no nulo elegido.
+17. Dar solo el caso general de un parámetro y **olvidar estudiar cada raíz** de $\det = 0$ por separado.
+18. Dividir una fila entre el parámetro sin discutir el caso en que valga cero.
+
+**Sobre la inversa**
+
+19. Olvidar la **transposición** en $A^{-1} = \frac{1}{|A|}\operatorname{Adj}(A)^t$.
+20. Aplicar la regla rápida del orden $2$ a una matriz de orden $3$.
+21. Dividir entre $|A|$ solo algunos elementos, o perder signos al dividir entre un determinante negativo.
+22. Seguir calculando adjuntos cuando ya se sabe que $|A| = 0$, o no **comprobar** con $A\cdot A^{-1} = I$.
+23. Dar solo el resultado final sin indicar el método, o no cerrar la discusión con la lista completa de casos.
+:::
+
+## Bloque 1 · Determinantes de orden 2 y 3
+
+**1 (básico).** Calcula $\begin{vmatrix} 3 & -1 \\ 2 & 4\end{vmatrix}$ y $\begin{vmatrix} 2 & 5 \\ 4 & 10\end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$\begin{vmatrix} 3 & -1 \\ 2 & 4\end{vmatrix} = 3\cdot 4 - (-1)\cdot 2 = 12 + 2 = 14$.
+
+$\begin{vmatrix} 2 & 5 \\ 4 & 10\end{vmatrix} = 20 - 20 = 0$, previsible porque la segunda fila es el doble de la primera.
+:::
+
+**2 (básico).** Calcula por la regla de Sarrus $\begin{vmatrix} 1 & 2 & 3 \\ 0 & -1 & 4 \\ 2 & 1 & 5\end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los productos con signo $+$ son $1\cdot(-1)\cdot 5 = -5$, $2\cdot 4\cdot 2 = 16$ y $3\cdot 0\cdot 1 = 0$; suman $11$. Los de signo $-$ son $3\cdot(-1)\cdot 2 = -6$, $1\cdot 4\cdot 1 = 4$ y $2\cdot 0\cdot 5 = 0$; suman $-2$. Por tanto
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 0 & -1 & 4 \\ 2 & 1 & 5\end{vmatrix} = 11 - (-2) = 13 .
+$$
+:::
+
+**3 (medio).** Resuelve $\begin{vmatrix} x & 1 & 1 \\ 1 & x & 1 \\ 1 & 1 & x\end{vmatrix} = 0$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por Sarrus, el determinante es $x^3 + 1 + 1 - (x + x + x) = x^3 - 3x + 2$. Se factoriza porque $x = 1$ es raíz evidente:
+$$
+x^3 - 3x + 2 = (x-1)(x^2 + x - 2) = (x-1)(x-1)(x+2) = (x-1)^2(x+2).
+$$
+Las soluciones son $x = 1$ (doble) y $x = -2$. Que $x=1$ lo anule era previsible: con $x = 1$ las tres filas son iguales.
+:::
+
+**4 (medio).** Calcula el área del triángulo de vértices $A(1, 1)$, $B(4, 2)$ y $C(2, 5)$ usando un determinante.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Con $\overrightarrow{AB} = (3, 1)$ y $\overrightarrow{AC} = (1, 4)$, el área es la mitad del valor absoluto del determinante que forman:
+$$
+\frac{1}{2}\left|\begin{vmatrix} 3 & 1 \\ 1 & 4\end{vmatrix}\right| = \frac{1}{2}\,|12 - 1| = \frac{11}{2} = 5{,}5 \text{ u.c.}
+$$
+Si hubiese salido $0$, los tres puntos estarían alineados.
+:::
+
+## Bloque 2 · Propiedades
+
+**5 (básico).** Sea $A$ de orden $3$ con $|A| = 5$. Calcula $|A^t|$, $|2A|$, $|-A|$, $|A^2|$ y $|A^{-1}|$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$|A^t| = 5$. Como el orden es $3$, $|2A| = 2^3\cdot 5 = 40$ y $|-A| = (-1)^3\cdot 5 = -5$. Por la propiedad del producto, $|A^2| = 25$. Y $|A^{-1}| = \dfrac{1}{5}$, que existe porque $|A| \neq 0$.
+:::
+
+**6 (medio).** Se sabe que $\begin{vmatrix} a & b & c \\ d & e & f \\ g & h & i\end{vmatrix} = 4$. Calcula, justificando cada paso:
+
+(i) $\begin{vmatrix} 2a & 2b & 2c \\ d & e & f \\ g & h & i\end{vmatrix}$, (ii) $\begin{vmatrix} a & b & c \\ g & h & i \\ d & e & f\end{vmatrix}$, (iii) $\begin{vmatrix} a+2d & b+2e & c+2f \\ d & e & f \\ g & h & i\end{vmatrix}$, (iv) $\begin{vmatrix} 3a & 3b & 3c \\ 3d & 3e & 3f \\ 3g & 3h & 3i\end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+(i) Se ha multiplicado **una** línea por $2$: vale $8$.
+
+(ii) Se han intercambiado dos filas, luego cambia de signo: vale $-4$.
+
+(iii) A la primera fila se le ha sumado $2$ veces la segunda; esa operación **no altera** el determinante: sigue valiendo $4$.
+
+(iv) Se han multiplicado las tres filas por $3$: el determinante queda multiplicado por $3^3 = 27$ y vale $108$.
+:::
+
+**7 (medio).** Sean $A$ y $B$ de orden $3$ con $|A| = 2$ y $|B| = -3$. Calcula $|A\cdot B|$, $|B^t\cdot A|$, $|2A\cdot B|$ y $|A^{-1}\cdot B|$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$|A\cdot B| = 2\cdot(-3) = -6$. Como $|B^t| = |B|$, también $|B^t\cdot A| = -6$. Además $|2A| = 2^3\cdot 2 = 16$, luego $|2A\cdot B| = 16\cdot(-3) = -48$. Y $|A^{-1}\cdot B| = \dfrac{1}{|A|}\cdot|B| = \dfrac{-3}{2} = -1{,}5$.
+:::
+
+**8 (avanzado).** Demuestra que si $A$ es de orden $3$ y cumple $A^2 = I$, entonces $|A| = 1$ o $|A| = -1$, y que $A^{-1} = A$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Tomando determinantes en $A^2 = I$ y usando $|A\cdot B| = |A|\cdot|B|$: $|A|^2 = |I| = 1$, luego $|A| = \pm 1$. En particular $|A| \neq 0$, así que $A$ es regular y existe $A^{-1}$. Multiplicando $A\cdot A = I$ por $A^{-1}$ por la izquierda:
+$$
+A^{-1}(A\cdot A) = A^{-1}\cdot I \implies (A^{-1}A)\cdot A = A^{-1} \implies A = A^{-1} .
+$$
+La matriz es su propia inversa. Un ejemplo de orden $2$ es $\begin{pmatrix} 0 & 1 \\ 1 & 0\end{pmatrix}$, con determinante $-1$.
+:::
+
+## Bloque 3 · Adjuntos, hacer ceros y órdenes superiores
+
+**9 (básico).** Para $A = \begin{pmatrix} 1 & 2 & -1 \\ 0 & 3 & 2 \\ 2 & 1 & 1\end{pmatrix}$, calcula el menor complementario $\alpha_{23}$ y el adjunto $A_{23}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Suprimiendo la fila $2$ y la columna $3$ queda $\alpha_{23} = \begin{vmatrix} 1 & 2 \\ 2 & 1\end{vmatrix} = 1 - 4 = -3$. El signo es $(-1)^{2+3} = -1$, luego $A_{23} = -(-3) = 3$: menor y adjunto se diferencian exactamente en ese signo.
+:::
+
+**10 (medio).** Calcula el determinante de orden $4$
+$$
+\begin{vmatrix} 1 & 2 & -1 & 3 \\ 2 & 1 & 0 & 1 \\ 0 & 1 & 2 & -1 \\ 1 & 0 & 1 & 2\end{vmatrix}
+$$
+haciendo ceros en la primera columna.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El elemento $a_{11} = 1$ es un pivote ideal. Con $F_2 \to F_2 - 2F_1$ y $F_4 \to F_4 - F_1$, que **no alteran** el determinante:
+$$
+\begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -3 & 2 & -5 \\ 0 & 1 & 2 & -1 \\ 0 & -2 & 2 & -1\end{vmatrix}.
+$$
+Se desarrolla por la primera columna, donde solo sobrevive el $1$ de la posición $(1,1)$, con signo $+$:
+$$
+= 1\cdot\begin{vmatrix} -3 & 2 & -5 \\ 1 & 2 & -1 \\ -2 & 2 & -1\end{vmatrix}.
+$$
+Por Sarrus, los productos positivos son $6$, $4$ y $-10$, que suman $0$; los negativos son $20$, $6$ y $-2$, que suman $24$. El determinante de orden $3$ vale $0 - 24 = -24$, y el de orden $4$ también: **$-24$**.
+:::
+
+## Bloque 4 · Menores y rango
+
+**11 (básico).** ¿Cuántos menores de orden $2$ tiene una matriz de dimensión $3\times 4$?
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Hay $3$ parejas de filas y $6$ de columnas, así que hay $3\cdot 6 = 18$ menores de orden $2$. El mayor orden posible es $3$, y de ese orden hay $4$ menores.
+:::
+
+**12 (básico).** Calcula el rango de $A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 1 & 1 & 1\end{pmatrix}$ por menores.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El determinante de orden $3$ es cero porque $F_2 = 2F_1$. Buscamos un menor de orden $2$ no nulo:
+$$
+\begin{vmatrix} 1 & 2 \\ 1 & 1\end{vmatrix} = 1 - 2 = -1 \neq 0
+$$
+con las filas $1$ y $3$ y las columnas $1$ y $2$. Por tanto $\operatorname{rg}(A) = 2$.
+:::
+
+**13 (medio).** Calcula el rango de $M = \begin{pmatrix} 1 & 2 & 0 & 1 \\ 2 & 1 & 1 & 0 \\ 0 & 1 & -1 & 1\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+El menor de las dos primeras filas y columnas es $\begin{vmatrix} 1 & 2 \\ 2 & 1\end{vmatrix} = -3 \neq 0$, así que el rango es al menos $2$. Lo orlamos con la tercera fila y la tercera columna:
+$$
+\begin{vmatrix} 1 & 2 & 0 \\ 2 & 1 & 1 \\ 0 & 1 & -1\end{vmatrix} = 1\cdot(-1-1) - 2\cdot(-2-0) + 0 = -2 + 4 = 2 \neq 0 .
+$$
+Hay un menor de orden $3$ no nulo y la matriz solo tiene tres filas, así que $\operatorname{rg}(M) = 3$.
+:::
+
+**14 (medio).** Discute el rango de $P = \begin{pmatrix} 1 & 1 & k \\ 1 & k & 1 \\ k & 1 & 1\end{pmatrix}$ según los valores de $k$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por Sarrus,
+$$
+|P| = 1 + k + k - (k^3 + 1 + 1) = -k^3 + 3k - 2 = -(k^3 - 3k + 2) = -(k-1)^2(k+2).
+$$
+- Si $k \neq 1$ y $k \neq -2$, entonces $|P| \neq 0$ y $\operatorname{rg}(P) = 3$.
+- Si $k = 1$, las tres filas son $(1,1,1)$: $\operatorname{rg}(P) = 1$.
+- Si $k = -2$, el determinante es cero, pero el menor $\begin{vmatrix} 1 & 1 \\ 1 & -2\end{vmatrix} = -3 \neq 0$, luego $\operatorname{rg}(P) = 2$.
+:::
+
+**15 (avanzado).** Discute el rango de $Q = \begin{pmatrix} 1 & -1 & 2 \\ 2 & 1 & -1 \\ 1 & 5 & a\end{pmatrix}$ según los valores de $a$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Desarrollando por la primera fila,
+$$
+|Q| = 1\cdot(a + 5) + 1\cdot(2a + 1) + 2\cdot 9 = 3a + 24 = 3(a + 8).
+$$
+- Si $a \neq -8$, entonces $|Q| \neq 0$ y $\operatorname{rg}(Q) = 3$.
+- Si $a = -8$, el determinante se anula, pero el menor $\begin{vmatrix} 1 & -1 \\ 2 & 1\end{vmatrix} = 3 \neq 0$, así que $\operatorname{rg}(Q) = 2$.
+
+Ese menor no depende de $a$, así que el rango nunca baja de $2$.
+:::
+
+## Bloque 5 · Matriz de los adjuntos e inversa
+
+**16 (básico).** Calcula $\operatorname{Adj}(A)$, $\operatorname{Adj}(A)^t$ y $A^{-1}$ para $A = \begin{pmatrix} 2 & 1 \\ 3 & 4\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Los adjuntos son $A_{11} = 4$, $A_{12} = -3$, $A_{21} = -1$ y $A_{22} = 2$, luego
+$$
+\operatorname{Adj}(A) = \begin{pmatrix} 4 & -3 \\ -1 & 2\end{pmatrix}, \qquad \operatorname{Adj}(A)^t = \begin{pmatrix} 4 & -1 \\ -3 & 2\end{pmatrix}.
+$$
+Como $|A| = 8 - 3 = 5 \neq 0$,
+$$
+A^{-1} = \frac{1}{5}\begin{pmatrix} 4 & -1 \\ -3 & 2\end{pmatrix} = \begin{pmatrix} \tfrac45 & -\tfrac15 \\[2pt] -\tfrac35 & \tfrac25\end{pmatrix}.
+$$
+Comprobación con enteros: $A\cdot \operatorname{Adj}(A)^t = \begin{pmatrix} 8-3 & -2+2 \\ 12-12 & -3+8\end{pmatrix} = 5\cdot I_2$.
+:::
+
+**17 (medio).** Calcula por determinantes la inversa de $B = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 1 & 1 \\ 1 & 1 & 2\end{pmatrix}$ y compruébala.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+**Determinante**, desarrollando por la primera fila:
+$$
+|B| = 1\cdot\begin{vmatrix} 1 & 1 \\ 1 & 2\end{vmatrix} - 0 + 2\cdot\begin{vmatrix} 0 & 1 \\ 1 & 1\end{vmatrix} = 1\cdot 1 + 2\cdot(-1) = -1 \neq 0 .
+$$
+**Adjuntos**, cada menor con su signo del tablero:
+$$
+B_{11} = 1, \quad B_{12} = -\begin{vmatrix} 0 & 1 \\ 1 & 2\end{vmatrix} = 1, \quad B_{13} = -1, \quad
+B_{21} = -\begin{vmatrix} 0 & 2 \\ 1 & 2\end{vmatrix} = 2, \quad B_{22} = 0 ,
+$$
+$$
+B_{23} = -\begin{vmatrix} 1 & 0 \\ 1 & 1\end{vmatrix} = -1, \quad
+B_{31} = \begin{vmatrix} 0 & 2 \\ 1 & 1\end{vmatrix} = -2, \quad B_{32} = -1, \quad B_{33} = 1 .
+$$
+Entonces
+$$
+\operatorname{Adj}(B) = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 0 & -1 \\ -2 & -1 & 1\end{pmatrix},
+\qquad
+\operatorname{Adj}(B)^t = \begin{pmatrix} 1 & 2 & -2 \\ 1 & 0 & -1 \\ -1 & -1 & 1\end{pmatrix},
+$$
+y al dividir entre $|B| = -1$ todos los signos cambian:
+$$
+B^{-1} = \begin{pmatrix} -1 & -2 & 2 \\ -1 & 0 & 1 \\ 1 & 1 & -1\end{pmatrix}.
+$$
+Comprobación de la primera fila del producto $B\cdot B^{-1}$: $(1,0,2)\cdot(-1,-1,1) = 1$, $(1,0,2)\cdot(-2,0,1) = 0$ y $(1,0,2)\cdot(2,1,-1) = 0$. Las otras dos filas dan $(0,1,0)$ y $(0,0,1)$.
+:::
+
+**18 (medio).** Determina para qué valores de $m$ existe la inversa de $C = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & m\end{pmatrix}$ y calcúlala para $m = 2$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Restando la primera fila a las otras dos, lo que no altera el determinante:
+$$
+|C| = \begin{vmatrix} 1 & 1 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & m-1\end{vmatrix} = m - 1 ,
+$$
+por ser triangular. Existe $C^{-1}$ si y solo si $m \neq 1$; con $m = 1$ las filas primera y tercera son iguales.
+
+Para $m = 2$ se tiene $|C| = 1$ y los adjuntos son $C_{11} = 3$, $C_{12} = C_{13} = C_{21} = C_{31} = -1$, $C_{22} = C_{33} = 1$ y $C_{23} = C_{32} = 0$, de donde
+$$
+C^{-1} = \frac{1}{1}\operatorname{Adj}(C)^t = \begin{pmatrix} 3 & -1 & -1 \\ -1 & 1 & 0 \\ -1 & 0 & 1\end{pmatrix}.
+$$
+Comprobación de la primera fila: $(1,1,1)\cdot(3,-1,-1) = 1$, $(1,1,1)\cdot(-1,1,0) = 0$ y $(1,1,1)\cdot(-1,0,1) = 0$.
+:::
+
+**19 (medio).** Resuelve la ecuación matricial $A\cdot X = B$ con $A = \begin{pmatrix} 3 & 1 \\ 5 & 2\end{pmatrix}$ y $B = \begin{pmatrix} 2 & 1 \\ 1 & 0\end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+$|A| = 6 - 5 = 1 \neq 0$, luego $A^{-1} = \begin{pmatrix} 2 & -1 \\ -5 & 3\end{pmatrix}$. Como $A$ multiplica a $X$ por la izquierda, se multiplican los dos miembros por $A^{-1}$ **por la izquierda**:
+$$
+X = A^{-1}B = \begin{pmatrix} 2 & -1 \\ -5 & 3\end{pmatrix}\begin{pmatrix} 2 & 1 \\ 1 & 0\end{pmatrix} = \begin{pmatrix} 4-1 & 2 \\ -10+3 & -5\end{pmatrix} = \begin{pmatrix} 3 & 2 \\ -7 & -5\end{pmatrix}.
+$$
+Comprobación: $A\cdot X = \begin{pmatrix} 9-7 & 6-5 \\ 15-14 & 10-10\end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 0\end{pmatrix} = B$.
+:::
+
+**20 (avanzado).** Sea $A$ de orden $3$ con $|A| = 3$. Calcula $|\operatorname{Adj}(A)|$, $\big|A\cdot \operatorname{Adj}(A)^t\big|$ y $\big|2\operatorname{Adj}(A)^t\big|$.
+
+::: {.callout-note collapse="true"}
+## Solución
+
+Por la propiedad $|\operatorname{Adj}(A)| = |A|^{\,n-1}$ con $n = 3$: $|\operatorname{Adj}(A)| = 3^2 = 9$.
+
+Por la identidad fundamental, $A\cdot \operatorname{Adj}(A)^t = 3I_3$, y $|3I_3| = 3^3 = 27$; también sale como $|A|\cdot|\operatorname{Adj}(A)^t| = 3\cdot 9 = 27$.
+
+Y $|2\operatorname{Adj}(A)^t| = 2^3\cdot 9 = 72$, porque transponer no cambia el determinante y el factor $2$ sale de cada una de las tres filas.
+:::
+
+## Autoevaluación tipo test
+
+Responde sin calculadora ni apuntes y compara después con el desplegable.
+
+**T1.** El determinante está definido para: (a) cualquier matriz; (b) solo las cuadradas; (c) solo las regulares.
+
+**T2.** La regla de Sarrus sirve para: (a) cualquier orden; (b) solo el orden $3$; (c) los órdenes $2$ y $4$.
+
+**T3.** Si una matriz tiene dos columnas proporcionales, su determinante: (a) vale $0$; (b) es positivo; (c) no se sabe.
+
+**T4.** Para una matriz de orden $3$, $|3A|$ vale: (a) $3|A|$; (b) $9|A|$; (c) $27|A|$.
+
+**T5.** La operación $F_2 \to F_2 + 5F_1$: (a) deja el determinante igual; (b) lo multiplica por $5$; (c) le cambia el signo.
+
+**T6.** El adjunto $A_{32}$ es igual a: (a) $\alpha_{32}$; (b) $-\alpha_{32}$; (c) $a_{32}\cdot\alpha_{32}$.
+
+**T7.** La suma de los elementos de la fila $1$ por los adjuntos de la fila $2$ vale: (a) $|A|$; (b) $0$; (c) depende.
+
+**T8.** Si en una matriz $3\times 5$ todos los menores de orden $3$ son cero y hay uno de orden $2$ no nulo, el rango es: (a) $2$; (b) $3$; (c) $5$.
+
+**T9.** Una matriz cuadrada tiene inversa si y solo si: (a) no tiene ceros; (b) $|A| \neq 0$; (c) es simétrica.
+
+**T10.** La fórmula correcta de la inversa es: (a) $\frac{1}{|A|}\operatorname{Adj}(A)$; (b) $\frac{1}{|A|}\operatorname{Adj}(A)^t$; (c) $|A|\cdot\operatorname{Adj}(A)^t$.
+
+::: {.callout-note collapse="true"}
+## Soluciones del test
+
+**T1** (b). **T2** (b): únicamente el orden $3$. **T3** (a): dos líneas proporcionales lo anulan. **T4** (c): $|kA| = k^n|A|$ con $n = 3$. **T5** (a). **T6** (b): el signo es $(-1)^{3+2} = -1$. **T7** (b): propiedad de la línea ajena. **T8** (a). **T9** (b). **T10** (b): con la transposición.
+
+Repaso según los fallos: T1 y T2 → 2.1 y 2.2; T3, T4 y T5 → propiedades (2.3, 2.4 y 2.9); T6 y T7 → adjuntos (2.6 y 2.7); T8 → rango por menores (2.11 y 2.12); T9 y T10 → inversa (2.14 y 2.15).
+:::
+
+### Applet · Autoevaluación del tema {.unnumbered}
+
+Elige el bloque que quieras entrenar —cálculo directo, propiedades, adjuntos, hacer ceros, rango o inversa— y el número de preguntas; el panel genera enunciados nuevos cada vez. Escribe las matrices por filas separadas por `;`, usa fracciones del tipo `7/2` y responde `no existe` cuando una matriz sea singular. En cada fallo verás el paso en el que tu desarrollo se separa del correcto, y el resumen final indica qué apartado repasar.
+
+::: {#panel-autoevaluacion .applet-panel data-applet-det="autoevaluacion"}
+:::
+
+### Applet · Entrenador de determinantes {.unnumbered}
+
+Este panel funciona a contrarreloj: propone determinantes y rangos de dificultad creciente y pide **solo el resultado**. Puedes fijar el orden de las matrices, decidir si aparecen ceros aprovechables o parámetros y ver, tras cada respuesta, el camino más corto que existía —a menudo una propiedad que ahorraba todo el desarrollo—.
+
+::: {#panel-entrenador .applet-panel data-applet-det="entrenador"}
+:::
+
+### Applet · Diagnóstico del motor {.unnumbered}
+
+Este panel no plantea ejercicios: comprueba que los applets funcionan en tu navegador, indicando qué módulos se han cargado y si la representación de fórmulas está activa. Úsalo solo si algún applet aparece en blanco.
+
+::: {#panel-diagnostico .applet-panel data-applet-det="diagnostico"}
+:::
+
+## Qué debes saber hacer
+
+Márcate un punto solo si podrías hacerlo en un examen, sin apuntes y sin dudar:
+
+- Explicar qué es un determinante, para qué matrices está definido y por qué $|A|$ no es un valor absoluto.
+- Calcular determinantes de orden $2$ y $3$ con $ad-bc$ y con Sarrus, sabiendo que esta **solo** vale en el orden $3$.
+- Enunciar y **usar** las propiedades, y conocer el efecto de cada operación elemental.
+- Distinguir menor complementario y adjunto, y colocar bien los signos del tablero de ajedrez.
+- Desarrollar por la línea con más ceros, y hacer ceros con $F_i \to F_i + k\,F_j$ en los órdenes $4$ y $5$.
+- Calcular el rango por orlado y discutirlo con parámetro, sin olvidar ningún caso.
+- Construir $\operatorname{Adj}(A)$ y su transpuesta, y comprobar que $A\cdot \operatorname{Adj}(A)^t = |A|\cdot I$.
+- Decidir si una matriz es regular o singular, calcular la inversa con la fórmula de los adjuntos, **comprobarla** con $A\cdot A^{-1} = I$ y discutir para qué valores de un parámetro existe.
+- Elegir con criterio entre determinantes y Gauss-Jordan según el orden.
+
+::: {.callout-tip}
+## Hacia dónde sigue esto
+
+El tema siguiente son los **sistemas de ecuaciones lineales**, y todo esto estaba preparando el terreno. Un sistema se escribe como una ecuación matricial $A\cdot X = B$, y las dos herramientas de este tema deciden su comportamiento: comparando el rango de la matriz de coeficientes con el de la ampliada se sabe si hay solución y cuántas, y cuando $A$ es cuadrada con $|A| \neq 0$ la solución es única y se obtiene con $X = A^{-1}B$ o con cocientes de determinantes.
+
+Las discusiones con parámetro que has practicado son las que aparecerán allí, con una diferencia: en lugar de «el rango es $2$» habrá que responder «el sistema es compatible indeterminado». El cálculo será el mismo; cambiará lo que significa.
+:::
+
+## Resumen del tema
+
+Un **determinante** es un número asociado a cada matriz **cuadrada**: $ad-bc$ en el orden $2$, la **regla de Sarrus** en el orden $3$ y, en cualquier orden, el desarrollo por los **adjuntos** de una línea, $|A| = a_{i1}A_{i1} + \cdots + a_{in}A_{in}$, con $A_{ij} = (-1)^{i+j}\alpha_{ij}$.
+
+Las **propiedades** son la herramienta más rentable: permiten anular un determinante de un vistazo cuando hay una línea de ceros o dos líneas proporcionales, extraer factores comunes de una línea y hacer ceros con $F_i \to F_i + k\,F_j$, la única operación que no altera el valor. Conviene recordar que $F_i \leftrightarrow F_j$ cambia el signo, que $F_i \to k\,F_i$ multiplica por $k$, que $|kA| = k^n|A|$, que $|A\cdot B| = |A|\cdot|B|$ y que $|A+B| \neq |A| + |B|$ en general.
+
+De ahí salen las dos aplicaciones. El **rango** es el orden del mayor menor no nulo y se calcula orlando hasta que todos los orlados se anulan; con parámetros, la discusión gira en torno a las raíces de $\det = 0$. Y la **inversa** existe si y solo si $|A| \neq 0$, con la fórmula
+$$
+A^{-1} = \frac{1}{|A|}\operatorname{Adj}(A)^t ,
+$$
+consecuencia de la identidad $A\cdot \operatorname{Adj}(A)^t = |A|\cdot I$. Un solo número decide si una matriz tiene rango máximo, si sus filas son independientes y si se puede invertir: eso hace del determinante la herramienta central del álgebra del curso.

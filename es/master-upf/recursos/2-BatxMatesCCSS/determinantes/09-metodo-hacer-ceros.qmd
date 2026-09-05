@@ -1,0 +1,514 @@
+---
+title: "Tema 2.9 Cálculo de un determinante haciendo ceros"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 9 de 16)"
+filename: 09-metodo-hacer-ceros
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Método para calcular determinantes de orden alto fabricando ceros con la transformación de sumar a una línea un múltiplo de otra, elección del pivote, reducción a un único sumando al desarrollar por la línea preparada, ejemplos completos de orden 4 y de orden 5, alternativa de triangular la matriz y aviso detallado sobre qué transformaciones alteran el determinante y cuáles no, con errores típicos y applets manipulables.
+categories: [determinantes, hacer ceros, pivote, transformaciones elementales, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+En el apartado anterior quedó claro el diagnóstico: el desarrollo por adjuntos funciona para cualquier orden, pero su coste depende brutalmente de cuántos ceros tenga la línea elegida. Con una línea sin ceros, un determinante de orden $4$ obliga a cuatro reglas de Sarrus; con tres ceros, a una sola.
+
+Y también quedó abierta la pregunta evidente: ¿y si la matriz no trae ceros? La respuesta es tan directa como potente: **se fabrican**.
+
+Existe una transformación que modifica los números de una matriz sin tocar el valor de su determinante: sumar a una línea un múltiplo de otra línea paralela. Es la propiedad 9 del apartado 2.3, y en este apartado se convierte en un motor de cálculo. La idea completa cabe en tres frases:
+
+1. Se elige un elemento cómodo como **pivote**, preferiblemente un $1$ o un $-1$.
+2. Con esa transformación se anulan **todos los demás elementos de su columna** (o de su fila).
+3. Se desarrolla por esa columna: como solo queda un elemento no nulo, **el determinante se reduce a un único sumando** de orden $n-1$.
+
+Repitiendo el proceso se baja de orden en orden hasta llegar a un determinante de orden $3$ que se resuelve con Sarrus. Es el método que se usa de verdad en los ejercicios de orden $4$ y $5$, y el que conviene dominar antes de la selectividad.
+
+Pero hay un peligro que hay que señalar desde ya: **no todas las transformaciones dejan el determinante igual**. Confundirlas es el fallo más caro de este apartado, porque produce resultados erróneos que parecen perfectamente razonables.
+
+## La propiedad que lo hace posible
+
+::: {.callout-note}
+## La transformación que no altera el determinante
+
+Si a una línea de un determinante se le suma otra línea paralela multiplicada por un número, el valor del determinante **no varía**:
+
+$$
+F_i \to F_i + k\,F_j \qquad \text{con } i \neq j
+$$
+
+El número $k$ puede ser cualquiera: entero, fraccionario, positivo o negativo. Lo mismo vale para columnas: $C_i \to C_i + k\,C_j$.
+
+Más generalmente, se puede sumar a una línea **cualquier combinación lineal de las demás** sin que el determinante cambie.
+:::
+
+::: {.callout-important}
+## Por qué el determinante no cambia
+
+La justificación combina dos propiedades ya conocidas.
+
+Supongamos que a la fila $F_2$ le sumamos $k\,F_1$. Por la propiedad de descomposición en suma (propiedad 7), el determinante de la matriz resultante se parte en dos:
+
+$$
+\begin{vmatrix} F_1 \\ F_2 + kF_1 \\ F_3 \end{vmatrix}
+= \begin{vmatrix} F_1 \\ F_2 \\ F_3 \end{vmatrix} + \begin{vmatrix} F_1 \\ kF_1 \\ F_3 \end{vmatrix}
+$$
+
+El primer sumando es el determinante original. En el segundo, la segunda fila es $k$ veces la primera: hay **dos líneas proporcionales**, y por la propiedad 6 ese determinante vale $0$.
+
+Por tanto, la suma total coincide con el determinante de partida. La transformación es gratis: cambia los números pero no el resultado.
+:::
+
+Esta propiedad es la misma que se usa en el método de Gauss para escalonar matrices y calcular rangos. La diferencia es que aquí, además de escalonar, hay que llevar la cuenta de lo que pasa con el valor del determinante, y por eso conviene ser mucho más estricto con qué operaciones se permiten.
+
+## Qué transformaciones se pueden usar y cuáles no
+
+Este es el punto donde más resultados se echan a perder. Conviene tenerlo escrito y revisarlo antes de cada ejercicio.
+
+::: {.callout-warning}
+## Efecto de cada transformación sobre el determinante
+
+| Transformación | Efecto sobre el determinante | ¿Se puede usar libremente? |
+|---|---|---|
+| $F_i \to F_i + k\,F_j$ (con $i \neq j$) | **No cambia** | Sí, es la operación del método |
+| $C_i \to C_i + k\,C_j$ (con $i \neq j$) | **No cambia** | Sí |
+| $F_i \leftrightarrow F_j$ | **Cambia de signo** | Sí, compensando con un signo $-$ |
+| $F_i \to k\,F_i$ (con $k \neq 0$) | **Queda multiplicado por $k$** | Sí, compensando con un factor $1/k$ |
+| $F_i \to k\,F_j$ (sustituir por otra fila) | Destruye la matriz | **No** |
+| $F_i \to F_i + k\,C_j$ (mezclar fila y columna) | Sin sentido | **No** |
+| $F_i \to 0\cdot F_i$ | Anula el determinante | **No** |
+
+Las tres primeras filas de la tabla son las herramientas del método. Las tres últimas no son «operaciones peligrosas»: son operaciones **incorrectas**, que no tienen ningún significado en este contexto.
+:::
+
+::: {.callout-caution}
+## Multiplicar una fila no es gratis
+
+Aquí está la diferencia esencial entre calcular un **rango** y calcular un **determinante**.
+
+Cuando se calcula un rango, multiplicar una fila por $3$ es inofensivo: el rango no varía. Cuando se calcula un determinante, esa misma operación **multiplica el resultado por 3**, y si no se compensa, el número final está mal por un factor $3$.
+
+Ejemplo concreto. Sea $\begin{vmatrix} 2 & 1 \\ 4 & 3\end{vmatrix} = 2$. Si hacemos $F_1 \to 3F_1$:
+
+$$
+\begin{vmatrix} 6 & 3 \\ 4 & 3\end{vmatrix} = 18 - 12 = 6 = 3\cdot 2
+$$
+
+El determinante se ha triplicado. Para recuperar el valor original hay que dividir por $3$ al final, o bien sacar el $3$ como factor común desde el principio:
+
+$$
+\begin{vmatrix} 6 & 3 \\ 4 & 3\end{vmatrix} = 3\begin{vmatrix} 2 & 1 \\ 4 & 3\end{vmatrix} = 3\cdot 2 = 6
+$$
+:::
+
+::: {.callout-caution}
+## La trampa del doble múltiplo
+
+Cuidado con las operaciones que multiplican **también la fila que se modifica**. Escribir
+
+$$
+F_1 \to 2F_1 + 3F_2
+$$
+
+**no** es la transformación permitida. La permitida es $F_1 \to F_1 + k F_2$, con la fila $F_1$ intacta y sin factor. Al poner $2F_1$ estamos, de hecho, multiplicando la primera fila por $2$, y eso duplica el determinante.
+
+Hay dos formas correctas de proceder:
+
+- **Usar fracciones:** hacer $F_1 \to F_1 + \frac{3}{2}F_2$, que sí es legítima. El inconveniente son los denominadores.
+- **Compensar:** hacer $F_1 \to 2F_1 + 3F_2$ y recordar que el determinante obtenido es el **doble** del buscado, de modo que al final hay que dividir por $2$.
+
+Las dos son válidas si se hacen conscientemente. Lo que no vale es hacer $F_1 \to 2F_1 + 3F_2$ y no acordarse del factor: el resultado saldrá el doble de grande y parecerá perfectamente creíble.
+:::
+
+## El método, paso a paso
+
+::: {.callout-note}
+## Cálculo de un determinante haciendo ceros
+
+1. **Elegir la línea** en la que sea más sencillo fabricar ceros. Conviene que contenga como mínimo un $1$ o un $-1$.
+2. **Elegir el pivote:** el elemento $1$ o $-1$ de esa línea. Su fila (o columna) será la que se sume a las demás.
+3. **Hacer ceros:** con transformaciones del tipo $F_i \to F_i + k F_p$, anular todos los elementos de la línea elegida salvo el pivote. Cada $k$ se elige de modo que la resta salga exactamente cero.
+4. **Desarrollar** por la línea preparada. Solo sobrevive el sumando del pivote: el determinante queda igual al pivote por su adjunto.
+5. **Repetir** con el determinante de orden $n-1$ obtenido, hasta llegar al orden $3$, que se resuelve por Sarrus.
+:::
+
+::: {.callout-tip}
+## Cómo se elige el pivote y por qué importa tanto
+
+Se busca un $1$ o un $-1$ porque el multiplicador que hay que aplicar es entonces un número entero. Si el pivote fuese, por ejemplo, un $4$ y quisiéramos anular un $3$ de su columna, haría falta el factor $-\frac{3}{4}$ y aparecerían fracciones en toda la matriz.
+
+Si en toda la matriz no hay ningún $1$ ni ningún $-1$, hay dos salidas elegantes:
+
+- **Restar dos líneas parecidas** para fabricar un $1$. Por ejemplo, si una fila empieza por $7$ y otra por $6$, su diferencia empieza por $1$.
+- **Sacar factor común** de alguna línea para simplificar los números antes de empezar.
+
+Y una advertencia práctica: cuando hay que decidir entre pivotar sobre un $4$ o sobre un $-1$ de la misma línea, siempre conviene pivotar sobre el $-1$ y anular el $4$, aunque en la línea el $-1$ esté «más incómodo». Trabajar con enteros vale más que cualquier otra consideración estética.
+:::
+
+### Applet · Elección del pivote {.unnumbered}
+
+Carga una matriz y prueba a designar distintos elementos como pivote; el applet te mostrará los multiplicadores necesarios en cada caso. Experimenta comparando un pivote igual a $1$ con otro cualquiera y observa cómo aparecen fracciones en cuanto el pivote deja de ser $1$ o $-1$; usa esa comparación para decidir el pivote antes de escribir nada en el papel.
+
+::: {#panel-pivote .applet-panel data-applet-det="pivote"}
+:::
+
+## Ejemplos resueltos de orden 4
+
+### Ejemplo resuelto 1: pivote en la esquina
+
+Calcula
+
+$$
+|A| = \begin{vmatrix} 1 & 2 & -1 & 3 \\ 2 & 1 & 0 & 4 \\ -1 & 3 & 2 & 1 \\ 0 & 2 & 1 & -2 \end{vmatrix}
+$$
+
+**Elección del pivote.** El elemento $a_{11} = 1$ es ideal: está en una esquina y vale exactamente $1$. Vamos a anular el resto de la **primera columna**, cuyos elementos son $2$, $-1$ y $0$.
+
+**Hacer ceros.**
+
+- Para anular el $2$ de la segunda fila: $F_2 \to F_2 - 2F_1$. La nueva fila es $(2-2,\ 1-4,\ 0+2,\ 4-6) = (0,\ -3,\ 2,\ -2)$.
+- Para anular el $-1$ de la tercera fila: $F_3 \to F_3 + F_1$. La nueva fila es $(-1+1,\ 3+2,\ 2-1,\ 1+3) = (0,\ 5,\ 1,\ 4)$.
+- La cuarta fila ya empieza por $0$: no se toca.
+
+El determinante, que **no ha cambiado de valor**, es ahora
+
+$$
+|A| = \begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -3 & 2 & -2 \\ 0 & 5 & 1 & 4 \\ 0 & 2 & 1 & -2 \end{vmatrix}
+$$
+
+**Desarrollar por la primera columna.** Solo hay un elemento no nulo, el pivote $1$, en la posición $(1,1)$, cuyo signo es $+$:
+
+$$
+|A| = 1\cdot\begin{vmatrix} -3 & 2 & -2 \\ 5 & 1 & 4 \\ 2 & 1 & -2 \end{vmatrix}
+$$
+
+**Resolver el determinante de orden 3.** Productos positivos: $(-3)\cdot 1\cdot(-2) = 6$, $2\cdot 4\cdot 2 = 16$ y $(-2)\cdot 5\cdot 1 = -10$; suman $12$. Productos negativos: $(-2)\cdot 1\cdot 2 = -4$, $(-3)\cdot 4\cdot 1 = -12$ y $2\cdot 5\cdot(-2) = -20$; suman $-36$. Por tanto
+
+$$
+|A| = 12 - (-36) = 48
+$$
+
+Compara con el ejercicio 4 del apartado anterior, donde el mismo determinante se calculó desarrollando por la cuarta fila: allí hicieron falta **tres** reglas de Sarrus y aquí ha bastado **una**.
+
+### Ejemplo resuelto 2: pivote en un $-1$ interior
+
+Calcula
+
+$$
+|B| = \begin{vmatrix} 2 & 0 & 5 & 1 \\ 3 & 4 & 2 & 0 \\ 6 & -1 & 3 & 2 \\ 4 & 0 & 2 & 1 \end{vmatrix}
+$$
+
+Es el determinante que ya resolvimos por adjuntos en el apartado anterior, donde salió $19$. Vamos a hacerlo ahora haciendo ceros para comprobar que los dos métodos coinciden.
+
+**Elección de la línea y del pivote.** La segunda columna es $(0,\ 4,\ -1,\ 0)$: ya tiene dos ceros y solo falta anular el $4$. Como pivote elegimos el $-1$ de la posición $(3,2)$, no el $4$. La razón es la de siempre: si pivotásemos sobre el $4$ habría que multiplicar la tercera fila por $\frac{1}{4}$ y aparecerían decimales.
+
+**Hacer ceros.** Para anular el $4$ de la segunda fila usando la tercera:
+
+$$
+F_2 \to F_2 + 4F_3
+$$
+
+La nueva segunda fila es $(3+24,\ 4-4,\ 2+12,\ 0+8) = (27,\ 0,\ 14,\ 8)$. El determinante no cambia:
+
+$$
+|B| = \begin{vmatrix} 2 & 0 & 5 & 1 \\ 27 & 0 & 14 & 8 \\ 6 & -1 & 3 & 2 \\ 4 & 0 & 2 & 1 \end{vmatrix}
+$$
+
+**Desarrollar por la segunda columna,** que ahora es $(0,\ 0,\ -1,\ 0)$. El único sumando vivo corresponde al elemento $-1$ en la posición $(3,2)$, cuyo signo es $(-1)^{3+2} = -1$:
+
+$$
+|B| = -(-1)\cdot\begin{vmatrix} 2 & 5 & 1 \\ 27 & 14 & 8 \\ 4 & 2 & 1 \end{vmatrix} = \begin{vmatrix} 2 & 5 & 1 \\ 27 & 14 & 8 \\ 4 & 2 & 1 \end{vmatrix}
+$$
+
+**Resolver el determinante de orden 3.** Productos positivos: $2\cdot 14\cdot 1 = 28$, $5\cdot 8\cdot 4 = 160$ y $1\cdot 27\cdot 2 = 54$; suman $242$. Productos negativos: $1\cdot 14\cdot 4 = 56$, $2\cdot 8\cdot 2 = 32$ y $5\cdot 27\cdot 1 = 135$; suman $223$. Por tanto
+
+$$
+|B| = 242 - 223 = 19
+$$
+
+Coincide con el resultado del apartado anterior, como tenía que ser. Los números intermedios han crecido ($27$, $14$), pero solo ha hecho falta **una** regla de Sarrus en lugar de dos.
+
+### Applet · Hacer ceros {.unnumbered}
+
+Introduce una matriz, marca el pivote y ejecuta las transformaciones paso a paso viendo el determinante recalculado después de cada una. Experimenta comprobando que el valor se mantiene constante cuando la operación es del tipo $F_i \to F_i + k F_j$, y observa qué ocurre con ese valor si en cambio intercambias dos filas o multiplicas una fila por un número.
+
+::: {#panel-hacerCeros .applet-panel data-applet-det="hacerCeros"}
+:::
+
+## Un determinante de orden 5
+
+### Ejemplo resuelto 3: dos rondas de ceros
+
+Calcula
+
+$$
+|C| = \begin{vmatrix} 1 & 0 & -1 & -1 & -2 \\ -1 & -1 & 1 & 3 & 3 \\ 3 & 0 & 0 & 0 & -1 \\ -2 & 3 & 3 & -1 & 2 \\ -1 & 0 & 0 & -1 & 3 \end{vmatrix}
+$$
+
+**Primera ronda.** El pivote natural es $c_{11} = 1$. Anulamos el resto de la primera columna:
+
+- $F_2 \to F_2 + F_1$: $(-1+1,\ -1+0,\ 1-1,\ 3-1,\ 3-2) = (0,\ -1,\ 0,\ 2,\ 1)$.
+- $F_3 \to F_3 - 3F_1$: $(3-3,\ 0-0,\ 0+3,\ 0+3,\ -1+6) = (0,\ 0,\ 3,\ 3,\ 5)$.
+- $F_4 \to F_4 + 2F_1$: $(-2+2,\ 3+0,\ 3-2,\ -1-2,\ 2-4) = (0,\ 3,\ 1,\ -3,\ -2)$.
+- $F_5 \to F_5 + F_1$: $(-1+1,\ 0+0,\ 0-1,\ -1-1,\ 3-2) = (0,\ 0,\ -1,\ -2,\ 1)$.
+
+El determinante, sin cambiar de valor, queda
+
+$$
+|C| = \begin{vmatrix} 1 & 0 & -1 & -1 & -2 \\ 0 & -1 & 0 & 2 & 1 \\ 0 & 0 & 3 & 3 & 5 \\ 0 & 3 & 1 & -3 & -2 \\ 0 & 0 & -1 & -2 & 1 \end{vmatrix}
+= 1\cdot\begin{vmatrix} -1 & 0 & 2 & 1 \\ 0 & 3 & 3 & 5 \\ 3 & 1 & -3 & -2 \\ 0 & -1 & -2 & 1 \end{vmatrix}
+$$
+
+porque al desarrollar por la primera columna solo sobrevive el pivote, con signo $+$.
+
+**Segunda ronda.** En el determinante de orden $4$, la primera columna es $(-1,\ 0,\ 3,\ 0)$: hay un $-1$ como pivote y solo un elemento que anular, el $3$ de la tercera fila.
+
+$$
+F_3 \to F_3 + 3F_1
+$$
+
+La nueva tercera fila es $(3-3,\ 1+0,\ -3+6,\ -2+3) = (0,\ 1,\ 3,\ 1)$. El determinante pasa a ser
+
+$$
+\begin{vmatrix} -1 & 0 & 2 & 1 \\ 0 & 3 & 3 & 5 \\ 0 & 1 & 3 & 1 \\ 0 & -1 & -2 & 1 \end{vmatrix}
+= -1\cdot\begin{vmatrix} 3 & 3 & 5 \\ 1 & 3 & 1 \\ -1 & -2 & 1 \end{vmatrix}
+$$
+
+de nuevo desarrollando por la primera columna, donde el pivote $-1$ está en la posición $(1,1)$ y lleva signo $+$.
+
+**Tercera etapa: el determinante de orden 3.** Productos positivos: $3\cdot 3\cdot 1 = 9$, $3\cdot 1\cdot(-1) = -3$ y $5\cdot 1\cdot(-2) = -10$; suman $-4$. Productos negativos: $5\cdot 3\cdot(-1) = -15$, $3\cdot 1\cdot(-2) = -6$ y $3\cdot 1\cdot 1 = 3$; suman $-18$. Por tanto el determinante de orden $3$ vale $-4 - (-18) = 14$.
+
+**Resultado.**
+
+$$
+|C| = -1\cdot 14 = -14
+$$
+
+Un determinante de orden $5$ resuelto con **una sola** regla de Sarrus y ocho transformaciones elementales. Por la definición habrían hecho falta $120$ productos de cinco factores.
+
+::: {.callout-tip}
+## La variante de triangular
+
+Existe una alternativa al método anterior: en lugar de preparar una sola línea, seguir haciendo ceros hasta convertir la matriz en **triangular**. Entonces el determinante es directamente el producto de los elementos de la diagonal principal.
+
+En el ejemplo 3, después de la primera ronda ya teníamos ceros bajo el $1$ de la esquina. Continuando con la misma estrategia en cada columna sucesiva se llegaría a una matriz triangular superior y el resultado sería el producto de su diagonal.
+
+¿Cuál de las dos variantes conviene? Depende del ejercicio:
+
+- **Preparar una línea y desarrollar** es preferible cuando aparecen pivotes cómodos en posiciones dispersas, porque cada ronda reduce el orden en una unidad.
+- **Triangular** es preferible cuando la matriz ya viene casi escalonada, porque entonces no hay que calcular ningún determinante intermedio.
+
+En cualquiera de las dos, las reglas sobre qué transformaciones alteran el determinante son exactamente las mismas.
+:::
+
+::: {.callout-tip}
+## Un método clásico con nombre propio
+
+La idea de pivotar para reducir el orden de un determinante está en la base de un procedimiento clásico conocido como **regla de Chío**, que sistematiza el paso de un determinante de orden $n$ a otro de orden $n-1$ cuando hay un $1$ en la esquina superior izquierda.
+
+Con esa regla, cada elemento del nuevo determinante se obtiene con un pequeño determinante de orden $2$ formado por el pivote, el elemento, y los dos que completan el rectángulo. En el fondo es la misma cuenta que hemos hecho fila por fila, escrita de forma más compacta. Merece la pena conocer su existencia: si alguna vez ves un procedimiento así, ya sabes de dónde sale y por qué funciona.
+:::
+
+### Applet · Laboratorio de ceros {.unnumbered}
+
+Diseña tu propia secuencia de transformaciones sobre una matriz y comprueba en cada paso si el determinante se ha conservado, ha cambiado de signo o se ha multiplicado por un factor. Experimenta deliberadamente con operaciones prohibidas —sustituir una fila por un múltiplo de otra, o hacer $2F_1 + 3F_2$— para ver con tus propios ojos en qué se estropea el resultado y cómo habría que compensarlo.
+
+::: {#panel-laboratorioCeros .applet-panel data-applet-det="laboratorioCeros"}
+:::
+
+::: {.callout-caution}
+## Errores típicos del método
+
+- **Olvidar compensar un intercambio de filas.** Si en algún momento haces $F_1 \leftrightarrow F_3$ para colocar un $1$ arriba, el determinante cambia de signo. Anótalo en el margen en el momento de hacerlo, no al final.
+- **Olvidar compensar un factor.** Si sacas un $2$ de una fila, ese $2$ multiplica al determinante y tiene que reaparecer en el resultado.
+- **Modificar la fila del pivote.** La fila que se usa para hacer ceros **no se toca**: es la que se suma a las demás. Si la modificas a mitad de proceso, las transformaciones siguientes ya no anulan lo que debían.
+- **Hacer dos transformaciones encadenadas mal.** Si haces $F_2 \to F_2 + F_1$ y a continuación $F_3 \to F_3 + F_2$, la segunda usa la **nueva** $F_2$, no la original. Es válido, pero hay que ser consciente de ello. Lo más seguro es hacer todas las operaciones de una ronda tomando siempre como referencia la fila del pivote, que no cambia.
+- **Errores de aritmética con los negativos.** El $80\,\%$ de los fallos de este método son sumas mal hechas con signos, no errores de concepto. Escribe cada nueva fila completa antes de pasar a la siguiente y comprueba que el elemento que debía anularse ha quedado efectivamente en cero.
+- **No verificar el resultado.** Si el determinante debía salir entero y sale fraccionario, hay un error. Y si tienes tiempo, calcula el mismo determinante desarrollando por otra línea: es la mejor comprobación posible.
+:::
+
+## Resumen del apartado
+
+- La transformación $F_i \to F_i + k F_j$ (y su versión por columnas) **no altera el determinante**. Es el motor del método.
+- $F_i \leftrightarrow F_j$ **cambia el signo**; $F_i \to k F_i$ **multiplica el determinante por $k$**. Ambas son utilizables si se compensan.
+- $F_i \to 2F_1 + 3F_2$ no es la transformación permitida: multiplica el determinante por $2$.
+- Sustituir una fila por un múltiplo de otra, o mezclar filas con columnas, son operaciones **incorrectas**.
+- **Método:** elegir un pivote $1$ o $-1$, anular el resto de su columna (o fila) y desarrollar por ella, con lo que queda un único sumando de orden $n-1$.
+- El proceso se repite hasta llegar al orden $3$, que se resuelve con Sarrus.
+- La variante de **triangular** la matriz también es válida: el determinante es entonces el producto de la diagonal principal.
+- Con este método, un determinante de orden $5$ se resuelve con una o dos reglas de Sarrus, frente a los $120$ productos de la definición.
+
+## Ejercicios propuestos
+
+**1 (básico).** Indica cómo cambia el determinante de una matriz al aplicar cada una de estas transformaciones: $F_2 \to F_2 - 5F_1$; $F_1 \leftrightarrow F_4$; $C_3 \to 4C_3$; $F_3 \to F_3 + 2C_1$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+- $F_2 \to F_2 - 5F_1$: **no cambia**. Es la transformación permitida.
+- $F_1 \leftrightarrow F_4$: **cambia de signo**.
+- $C_3 \to 4C_3$: queda **multiplicado por $4$**.
+- $F_3 \to F_3 + 2C_1$: **no es una operación válida**. No se pueden mezclar filas con columnas, porque sus elementos no ocupan posiciones correspondientes.
+:::
+
+**2 (básico).** Calcula $\begin{vmatrix} 1 & 2 & 3 \\ 2 & 5 & 4 \\ 1 & 1 & 5 \end{vmatrix}$ haciendo ceros en la primera columna.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Con pivote $a_{11} = 1$, hacemos $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - F_1$:
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 0 & 1 & -2 \\ 0 & -1 & 2 \end{vmatrix} = 1\cdot\begin{vmatrix} 1 & -2 \\ -1 & 2\end{vmatrix} = 2 - 2 = 0
+$$
+
+El determinante es nulo. Y se ve por qué: en la matriz transformada, la tercera fila es la opuesta de la segunda.
+:::
+
+**3 (básico).** Un alumno calcula un determinante haciendo $F_1 \to 3F_1$ y obtiene $30$. ¿Cuánto vale el determinante original?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Al multiplicar una fila por $3$, el determinante queda multiplicado por $3$. Si el resultado obtenido es $30$, el original vale
+
+$$
+\frac{30}{3} = 10
+$$
+:::
+
+**4 (medio).** Calcula $\begin{vmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 \\ 1 & 4 & 9 & 16 \\ 1 & 8 & 27 & 64 \end{vmatrix}$ haciendo ceros en la primera columna.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Con pivote $1$ arriba a la izquierda, restamos la primera fila a las otras tres:
+
+$$
+\begin{vmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 2 & 3 \\ 0 & 3 & 8 & 15 \\ 0 & 7 & 26 & 63 \end{vmatrix} = \begin{vmatrix} 1 & 2 & 3 \\ 3 & 8 & 15 \\ 7 & 26 & 63 \end{vmatrix}
+$$
+
+Por Sarrus: productos positivos $1\cdot 8\cdot 63 = 504$, $2\cdot 15\cdot 7 = 210$ y $3\cdot 3\cdot 26 = 234$, que suman $948$. Productos negativos: $3\cdot 8\cdot 7 = 168$, $1\cdot 15\cdot 26 = 390$ y $2\cdot 3\cdot 63 = 378$, que suman $936$. El determinante vale
+
+$$
+948 - 936 = 12
+$$
+:::
+
+**5 (medio).** Calcula $\begin{vmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 2 & 2 \\ 3 & 1 & 1 & 0 \\ 1 & 2 & 0 & 1 \end{vmatrix}$ eligiendo un pivote razonable.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Un buen pivote es el $1$ de la posición $(2,1)$, porque su fila contiene además un cero. Anulamos el resto de la primera columna:
+
+- $F_1 \to F_1 - 2F_2$: $(0,\ 1,\ -1,\ -3)$.
+- $F_3 \to F_3 - 3F_2$: $(0,\ 1,\ -5,\ -6)$.
+- $F_4 \to F_4 - F_2$: $(0,\ 2,\ -2,\ -1)$.
+
+El pivote está en la posición $(2,1)$, cuyo signo es $(-1)^{2+1} = -1$:
+
+$$
+|A| = -1\cdot\begin{vmatrix} 1 & -1 & -3 \\ 1 & -5 & -6 \\ 2 & -2 & -1 \end{vmatrix}
+$$
+
+Por Sarrus: positivos $1\cdot(-5)\cdot(-1) = 5$, $(-1)(-6)(2) = 12$ y $(-3)(1)(-2) = 6$, que suman $23$. Negativos: $(-3)(-5)(2) = 30$, $1\cdot(-6)\cdot(-2) = 12$ y $(-1)(1)(-1) = 1$, que suman $43$. El determinante de orden $3$ vale $23 - 43 = -20$, luego
+
+$$
+|A| = -1\cdot(-20) = 20
+$$
+:::
+
+**6 (medio).** Calcula $\begin{vmatrix} 3 & 6 & 9 \\ 1 & 2 & 4 \\ 2 & 1 & 0 \end{vmatrix}$ sacando primero factor común.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La primera fila es múltiplo de $3$, así que sacamos ese factor fuera:
+
+$$
+|A| = 3\begin{vmatrix} 1 & 2 & 3 \\ 1 & 2 & 4 \\ 2 & 1 & 0 \end{vmatrix}
+$$
+
+Ahora $F_2 \to F_2 - F_1$ y $F_3 \to F_3 - 2F_1$:
+
+$$
+|A| = 3\begin{vmatrix} 1 & 2 & 3 \\ 0 & 0 & 1 \\ 0 & -3 & -6 \end{vmatrix} = 3\cdot 1\cdot\begin{vmatrix} 0 & 1 \\ -3 & -6 \end{vmatrix} = 3\cdot(0 + 3) = 9
+$$
+:::
+
+**7 (medio).** ¿Es correcto escribir $F_2 \to 3F_2 - 2F_1$ al calcular un determinante? Explica qué habría que hacer.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La operación se puede hacer, pero **no es neutra**: al multiplicar $F_2$ por $3$, el determinante queda multiplicado por $3$. Si se usa, hay que dividir el resultado final entre $3$ para recuperar el valor original.
+
+La alternativa limpia es $F_2 \to F_2 - \frac{2}{3}F_1$, que sí deja el determinante intacto, a costa de manejar fracciones. Cualquiera de las dos vías es aceptable siempre que se sea consciente del factor.
+:::
+
+**8 (avanzado).** Calcula $\begin{vmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 2 & 1 & 1 & 1 \\ 1 & 1 & 3 & 1 & 1 \\ 1 & 1 & 1 & 4 & 1 \\ 1 & 1 & 1 & 1 & 5 \end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Restamos la primera fila a todas las demás, operación que no altera el determinante:
+
+$$
+\begin{vmatrix} 1 & 1 & 1 & 1 & 1 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 2 & 0 & 0 \\ 0 & 0 & 0 & 3 & 0 \\ 0 & 0 & 0 & 0 & 4 \end{vmatrix}
+$$
+
+La matriz resultante es triangular superior, así que el determinante es el producto de su diagonal principal:
+
+$$
+1\cdot 1\cdot 2\cdot 3\cdot 4 = 24
+$$
+
+Un determinante de orden $5$ resuelto sin calcular ni un solo determinante de orden $3$.
+:::
+
+**9 (avanzado).** Sea $A$ una matriz de orden $4$ con $|A| = 5$. Se le aplican, en este orden: $F_1 \leftrightarrow F_2$, después $F_3 \to 2F_3$ y por último $F_4 \to F_4 + 7F_1$. ¿Cuál es el determinante de la matriz final?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Se aplican los efectos uno a uno:
+
+- $F_1 \leftrightarrow F_2$ cambia el signo: el determinante pasa a valer $-5$.
+- $F_3 \to 2F_3$ lo multiplica por $2$: pasa a valer $-10$.
+- $F_4 \to F_4 + 7F_1$ no lo altera: sigue valiendo $-10$.
+
+La matriz final tiene determinante $-10$.
+:::
+
+**10 (avanzado).** Demuestra que si una fila de una matriz es combinación lineal de otras dos, su determinante es nulo, usando el método de hacer ceros.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Supongamos que $F_3 = \lambda F_1 + \mu F_2$. Aplicamos la transformación
+
+$$
+F_3 \to F_3 - \lambda F_1 - \mu F_2
+$$
+
+que es una sucesión de dos operaciones permitidas y, por tanto, **no altera el determinante**. La nueva tercera fila es
+
+$$
+(\lambda F_1 + \mu F_2) - \lambda F_1 - \mu F_2 = (0,\ 0,\ \dots,\ 0)
+$$
+
+El determinante resultante tiene una fila de ceros, luego vale $0$. Como las transformaciones no lo han modificado, el determinante original también era $0$.
+
+Este argumento demuestra de golpe las propiedades sobre líneas iguales, proporcionales y combinación lineal de las demás: todas son casos particulares del mismo razonamiento.
+:::

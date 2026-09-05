@@ -1,0 +1,469 @@
+---
+title: "Tema 2.12 Cálculo del rango a partir de sus menores"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 12 de 16)"
+filename: 12-calculo-del-rango-por-menores
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El método de los orlados para calcular el rango de una matriz sin examinar todos sus menores, definición de menor orlado, enunciado y justificación del teorema de los orlados, algoritmo ordenado paso a paso y ejemplos resueltos completos en matrices de dimensión 3 por 4 y 4 por 4.
+categories: [determinantes, rango, orlados, algoritmos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+La definición del rango como orden del mayor menor no nulo es impecable desde el punto de vista teórico y desastrosa desde el punto de vista práctico. Recuerda el recuento: una matriz $3\times 4$ tiene $34$ menores, una $4\times 4$ tiene $69$ y una $4\times 5$ tiene $125$. Aplicar la definición al pie de la letra significaría empezar por los menores del orden más alto, calcularlos todos, y si se anulan bajar un orden y volver a calcularlos todos. Nadie hace eso.
+
+Lo que se hace es lo contrario: **empezar por abajo y subir**, y en cada subida examinar solo un puñado muy reducido de menores. La herramienta que lo permite se llama **orlar**, y el resultado que garantiza que el atajo es legítimo se conoce como **teorema de los orlados**. Con él, el rango de una matriz $4\times 4$ se decide con seis o siete determinantes en lugar de sesenta y nueve.
+
+::: {.callout-tip}
+## De dónde viene la palabra
+
+«Orlar» significa rodear algo con una orla, es decir, con un borde o una cenefa. Un menor orlado es un menor al que se le ha añadido un borde: una fila más y una columna más de la matriz original. La imagen es exacta, porque el menor de partida queda **dentro** del nuevo, ocupando su esquina, y las líneas añadidas lo rodean.
+
+Esa relación de contención es la clave de todo. No vamos a examinar menores de orden $h+1$ cualesquiera: vamos a examinar solo los que **contienen** a un menor de orden $h$ que ya sabemos que no es cero. Y el teorema dice que con esos basta.
+:::
+
+## Menores orlados
+
+::: {.callout-note}
+## Definición: menor orlado
+
+Sea $M$ un menor de orden $h$ de una matriz $A$ de dimensión $m\times n$, formado con ciertas $h$ filas y ciertas $h$ columnas. Se llama **menor orlado** de $M$ a cualquier menor de orden $h+1$ obtenido añadiendo a $M$:
+
+- una de las $m-h$ filas de $A$ que no intervienen en $M$, y
+- una de las $n-h$ columnas de $A$ que no intervienen en $M$.
+
+Por tanto, un menor de orden $h$ tiene exactamente
+
+$$
+(m-h)\cdot(n-h)
+$$
+
+menores orlados: hay que elegir una fila entre las $m-h$ sobrantes y una columna entre las $n-h$ sobrantes.
+:::
+
+Compara esa cantidad con el número total de menores de orden $h+1$, que es $\dbinom{m}{h+1}\dbinom{n}{h+1}$. En una matriz $4\times 4$, un menor de orden $2$ tiene $(4-2)(4-2) = 4$ orlados, mientras que menores de orden $3$ hay $\dbinom{4}{3}^2 = 16$. Pasamos de dieciséis determinantes a cuatro, y en matrices mayores el ahorro es mucho más espectacular.
+
+### Ejemplo: identificar los orlados de un menor
+
+Sea
+
+$$
+A = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 2 & 1 & 3 & 0 \\ 0 & 1 & -1 & -2 \\ 1 & 1 & 1 & 1 \end{pmatrix}
+$$
+
+y sea $M$ el menor formado con las filas $1$, $2$ y las columnas $1$, $2$:
+
+$$
+M = \begin{vmatrix} 1 & 0 \\ 2 & 1 \end{vmatrix} = 1
+$$
+
+Las filas sobrantes son la $3$ y la $4$; las columnas sobrantes, la $3$ y la $4$. Los $(4-2)(4-2) = 4$ orlados de $M$ son, por tanto, los menores de orden $3$ con listas
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,2\,3}, \quad
+M_{\,1\,2\,3\;\mid\;1\,2\,4}, \quad
+M_{\,1\,2\,4\;\mid\;1\,2\,3}, \quad
+M_{\,1\,2\,4\;\mid\;1\,2\,4}
+$$
+
+Todos ellos contienen las filas $1$, $2$ y las columnas $1$, $2$, es decir, contienen a $M$. Los otros doce menores de orden $3$ de la matriz **no** son orlados de $M$: por ejemplo, $M_{\,1\,3\,4\,\mid\,2\,3\,4}$ no contiene la fila $2$ ni la columna $1$.
+
+### Applet · Orlar un menor {.unnumbered}
+
+Selecciona un menor de orden pequeño en la matriz y pide al applet que muestre uno por uno sus orlados: comprueba que en cada orlado el menor de partida aparece completo dentro del nuevo, cuenta cuántos orlados hay y verifica que ese número coincide con el producto de las filas sobrantes por las columnas sobrantes.
+
+::: {#panel-orlado .applet-panel data-applet-det="orlado"}
+:::
+
+## El teorema de los orlados
+
+::: {.callout-important}
+## Teorema de los orlados
+
+Sea $A$ una matriz de dimensión $m\times n$ y sea $M$ un menor de orden $h$ de $A$ con $M \neq 0$. Si **todos** los menores orlados de $M$ son nulos, entonces
+
+$$
+\operatorname{rg}(A) = h
+$$
+
+**Qué afirma exactamente.** Que para descartar el rango $h+1$ no hace falta comprobar los $\dbinom{m}{h+1}\dbinom{n}{h+1}$ menores de ese orden: basta comprobar los $(m-h)(n-h)$ que rodean a un menor no nulo concreto. Si esos se anulan, todos los demás se anulan también, y el rango se queda en $h$.
+
+**Idea de la justificación.** Llamemos $F_{i_1},\ldots,F_{i_h}$ a las filas de $M$ y $C_{j_1},\ldots,C_{j_h}$ a sus columnas. Como $M \neq 0$, esas $h$ filas son linealmente independientes y $\operatorname{rg}(A)\ge h$.
+
+Tomemos ahora cualquier otra fila $F_p$ de $A$, con $p$ distinto de todos los $i_k$. La hipótesis dice que, al añadir $F_p$ y cualquier columna sobrante $C_q$, el determinante resultante es cero. Esos $n-h$ determinantes nulos forman un sistema de condiciones sobre $F_p$, y de él se deduce que $F_p$ es combinación lineal de $F_{i_1},\ldots,F_{i_h}$. La razón, en términos que ya manejas: si $F_p$ aportara información nueva respecto de esas $h$ filas, alguno de los orlados tendría sus $h+1$ filas independientes y su determinante no sería cero.
+
+Como esto ocurre para **toda** fila $F_p$ fuera de $M$, todas las filas de $A$ son combinación lineal de las $h$ filas de $M$. El número máximo de filas independientes es entonces exactamente $h$, y por la equivalencia del apartado anterior, $\operatorname{rg}(A) = h$.
+:::
+
+::: {.callout-warning}
+## Las dos condiciones son inseparables
+
+El teorema exige dos cosas a la vez, y quitar cualquiera de ellas lo invalida:
+
+**El menor de partida tiene que ser distinto de cero.** Si $M = 0$, sus orlados pueden ser todos nulos y el rango ser mayor que $h$. Ejemplo:
+
+$$
+A = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 2 \\ 1 & 3 & 0 \end{pmatrix}
+$$
+
+El menor $M_{\,1\,2\,\mid\,1\,2} = \begin{vmatrix} 0 & 0 \\ 0 & 0 \end{vmatrix} = 0$ tiene un único orlado, el determinante completo, que también es cero. Si el teorema valiera para menores nulos concluiríamos rango $2$, pero de hecho $\begin{vmatrix} 0 & 1 \\ 1 & 0 \end{vmatrix} = -1 \neq 0$ obliga a que el rango sea al menos $2$, y hay que investigar más. **Solo se orlan menores no nulos.**
+
+**Han de anularse todos los orlados, sin excepción.** Basta que uno no se anule para que el rango sea al menos $h+1$, y entonces hay que continuar el proceso con ese nuevo menor como punto de partida. En el ejemplo resuelto 2 verás un caso en el que tres de los cuatro orlados son cero y el cuarto no: la conclusión cambia por completo.
+:::
+
+## El algoritmo
+
+::: {.callout-note}
+## Cálculo del rango por orlados, paso a paso
+
+**Paso 0.** Si $A$ es la matriz nula, $\operatorname{rg}(A) = 0$ y se ha terminado. Escribe también la cota $\operatorname{rg}(A)\le\min\{m,n\}$.
+
+**Paso 1.** Busca un elemento distinto de cero. Es un menor de orden $1$ no nulo, luego $\operatorname{rg}(A)\ge 1$. Conviene elegir un $1$ o un $-1$ si hay alguno.
+
+**Paso 2.** Orla ese elemento: busca entre sus orlados un menor de orden $2$ distinto de cero. Si lo encuentras, $\operatorname{rg}(A)\ge 2$ y pasas al paso siguiente con él. Si **todos** sus orlados son cero, el teorema cierra el problema: $\operatorname{rg}(A) = 1$.
+
+**Paso 3.** Con el menor de orden $2$ no nulo hallado, repite: calcula sus orlados de orden $3$. Si alguno no se anula, tienes $\operatorname{rg}(A)\ge 3$ y continúas con él. Si todos se anulan, $\operatorname{rg}(A) = 2$.
+
+**Paso $k$.** El proceso se repite subiendo de orden. Termina de una de estas dos formas:
+
+- todos los orlados de un menor no nulo de orden $h$ se anulan, y entonces $\operatorname{rg}(A) = h$;
+- se alcanza el orden máximo $\min\{m,n\}$ con un menor no nulo, y entonces $\operatorname{rg}(A) = \min\{m,n\}$, porque ya no hay orden superior que investigar.
+:::
+
+::: {.callout-tip}
+## Cómo elegir bien el menor de partida
+
+Esta elección decide cuánto vas a trabajar, porque el menor elegido aparecerá dentro de **todos** los determinantes posteriores. Tres criterios:
+
+1. **Busca ceros alrededor.** Si eliges una submatriz cuya vecindad está llena de ceros, los orlados tendrán muchos ceros y se calcularán casi de cabeza.
+2. **Busca unos y menos unos.** Un menor como $\begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix}$ o $\begin{vmatrix} 1 & 0 \\ 2 & 1 \end{vmatrix}$ vale $1$ y no arrastra números grandes.
+3. **Si hay parámetros, evítalos.** Cuando la matriz depende de $k$, intenta que el menor de partida **no contenga el parámetro**. Así su no anulación queda garantizada para todos los valores de $k$ y la cota inferior del rango no depende de la discusión. Es la idea central del apartado siguiente.
+
+Y una observación de bulto: si en la matriz aparecen a simple vista dos filas iguales, proporcionales o una que es suma de otras dos, anótalo antes de empezar. Cada relación de ese tipo anula de golpe familias completas de menores.
+:::
+
+## Ejemplos resueltos completos
+
+### Ejemplo resuelto 1: matriz $3\times 4$
+
+Calcula el rango de
+
+$$
+A = \begin{pmatrix} 1 & 2 & -1 & 3 \\ 2 & 4 & 1 & 0 \\ 3 & 6 & 0 & 3 \end{pmatrix}
+$$
+
+**Paso 0: cota.** $\operatorname{rg}(A)\le\min\{3,4\} = 3$. La matriz no es nula, luego el rango es $1$, $2$ o $3$.
+
+**Paso 1: menor de orden $1$.** Tomamos $a_{11} = 1 \neq 0$. Luego $\operatorname{rg}(A)\ge 1$. Elegimos este elemento porque vale $1$ y está en una esquina, lo que facilita los orlados.
+
+**Paso 2: orlar hasta orden $2$.** Nuestro menor está en la fila $1$ y la columna $1$. Le sobran las filas $2$, $3$ y las columnas $2$, $3$, $4$: tiene $(3-1)(4-1) = 6$ orlados. Probamos con la fila $2$ y la columna $2$:
+
+$$
+\begin{vmatrix} 1 & 2 \\ 2 & 4 \end{vmatrix} = 4 - 4 = 0
+$$
+
+Se anula. No hay que rendirse: basta que **uno** de los seis no se anule. Probamos con la fila $2$ y la columna $3$:
+
+$$
+M_{\,1\,2\;\mid\;1\,3} = \begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1 + 2 = 3 \neq 0
+$$
+
+Por tanto $\operatorname{rg}(A)\ge 2$ y seguimos con este menor, que llamaremos $M_2$. Fila sobrante: la $3$. Columnas sobrantes: la $2$ y la $4$.
+
+**Paso 3: orlar hasta orden $3$.** El menor $M_2$ tiene $(3-2)(4-2) = 1\cdot 2 = 2$ orlados. Solo dos determinantes de orden $3$ deciden todo el problema, frente a los cuatro menores de orden $3$ que tiene la matriz.
+
+*Primer orlado:* añadimos la fila $3$ y la columna $2$. Las filas quedan $1$, $2$, $3$ y las columnas $1$, $2$, $3$ ordenadas de forma creciente:
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,2\,3} = \begin{vmatrix} 1 & 2 & -1 \\ 2 & 4 & 1 \\ 3 & 6 & 0 \end{vmatrix}
+$$
+
+Aquí no hace falta ni Sarrus: la segunda columna es el doble de la primera, $C_2 = 2C_1$, y un determinante con dos columnas proporcionales vale cero. Primer orlado nulo.
+
+*Segundo orlado:* añadimos la fila $3$ y la columna $4$. Filas $1$, $2$, $3$ y columnas $1$, $3$, $4$:
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,3\,4} = \begin{vmatrix} 1 & -1 & 3 \\ 2 & 1 & 0 \\ 3 & 0 & 3 \end{vmatrix}
+$$
+
+Por Sarrus, los productos positivos suman
+
+$$
+1\cdot 1\cdot 3 + (-1)\cdot 0\cdot 3 + 3\cdot 2\cdot 0 = 3
+$$
+
+y los negativos
+
+$$
+3\cdot 1\cdot 3 + 1\cdot 0\cdot 0 + (-1)\cdot 2\cdot 3 = 9 - 6 = 3
+$$
+
+luego el determinante vale $3 - 3 = 0$. Segundo orlado nulo.
+
+**Conclusión.** Los dos orlados de $M_2$ son nulos y $M_2 \neq 0$. Por el teorema de los orlados,
+
+$$
+\operatorname{rg}(A) = 2
+$$
+
+**Comprobación independiente.** En $A$ se cumple $F_3 = F_1 + F_2$: $3 = 1+2$, $6 = 2+4$, $0 = -1+1$ y $3 = 3+0$. Hay pues dos filas independientes y la tercera se deduce de ellas, lo que confirma el rango $2$.
+
+**Coste.** Hemos calculado un menor de orden $1$, dos de orden $2$ y dos de orden $3$: cinco evaluaciones. El método directo habría exigido, en el peor de los casos, examinar los cuatro menores de orden $3$ y los dieciocho de orden $2$.
+
+### Ejemplo resuelto 2: matriz $4\times 4$
+
+Calcula el rango de
+
+$$
+B = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 2 & 1 & 3 & 0 \\ 0 & 1 & -1 & -2 \\ 1 & 1 & 1 & 1 \end{pmatrix}
+$$
+
+**Paso 0: cota.** $\operatorname{rg}(B)\le 4$. Al ser cuadrada, lo más rápido sería calcular $|B|$; lo haremos, pero al final, para ver el algoritmo completo en acción.
+
+**Paso 1: menor de orden $1$.** Tomamos $b_{11} = 1 \neq 0$, luego $\operatorname{rg}(B)\ge 1$.
+
+**Paso 2: orlar hasta orden $2$.** Añadimos la fila $2$ y la columna $2$:
+
+$$
+M_2 = M_{\,1\,2\;\mid\;1\,2} = \begin{vmatrix} 1 & 0 \\ 2 & 1 \end{vmatrix} = 1 - 0 = 1 \neq 0
+$$
+
+Ha salido a la primera. Además vale $1$, lo cual es cómodo. Luego $\operatorname{rg}(B)\ge 2$. Filas sobrantes: $3$ y $4$. Columnas sobrantes: $3$ y $4$.
+
+**Paso 3: orlar hasta orden $3$.** Hay $(4-2)(4-2) = 4$ orlados, frente a los $16$ menores de orden $3$ de la matriz. Los recorremos.
+
+*Orlado con la fila $3$ y la columna $3$:*
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,2\,3} = \begin{vmatrix} 1 & 0 & 2 \\ 2 & 1 & 3 \\ 0 & 1 & -1 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 1\cdot(-1) + 0\cdot 3\cdot 0 + 2\cdot 2\cdot 1 = -1 + 0 + 4 = 3$. Productos negativos: $0\cdot 1\cdot 2 + 1\cdot 3\cdot 1 + 0\cdot 2\cdot(-1) = 0 + 3 + 0 = 3$. Valor: $3 - 3 = 0$. **Nulo.**
+
+*Orlado con la fila $3$ y la columna $4$:*
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,2\,4} = \begin{vmatrix} 1 & 0 & 1 \\ 2 & 1 & 0 \\ 0 & 1 & -2 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 1\cdot(-2) + 0\cdot 0\cdot 0 + 1\cdot 2\cdot 1 = -2 + 0 + 2 = 0$. Productos negativos: $0\cdot 1\cdot 1 + 1\cdot 0\cdot 1 + 0\cdot 2\cdot(-2) = 0$. Valor: $0 - 0 = 0$. **Nulo.**
+
+*Orlado con la fila $4$ y la columna $3$:*
+
+$$
+M_{\,1\,2\,4\;\mid\;1\,2\,3} = \begin{vmatrix} 1 & 0 & 2 \\ 2 & 1 & 3 \\ 1 & 1 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 1\cdot 1 + 0\cdot 3\cdot 1 + 2\cdot 2\cdot 1 = 1 + 0 + 4 = 5$. Productos negativos: $1\cdot 1\cdot 2 + 1\cdot 3\cdot 1 + 0\cdot 2\cdot 1 = 2 + 3 + 0 = 5$. Valor: $5 - 5 = 0$. **Nulo.**
+
+*Orlado con la fila $4$ y la columna $4$:*
+
+$$
+M_3 = M_{\,1\,2\,4\;\mid\;1\,2\,4} = \begin{vmatrix} 1 & 0 & 1 \\ 2 & 1 & 0 \\ 1 & 1 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 1\cdot 1 + 0\cdot 0\cdot 1 + 1\cdot 2\cdot 1 = 1 + 0 + 2 = 3$. Productos negativos: $1\cdot 1\cdot 1 + 1\cdot 0\cdot 1 + 0\cdot 2\cdot 1 = 1 + 0 + 0 = 1$. Valor: $3 - 1 = 2 \neq 0$. **No nulo.**
+
+**Momento didáctico.** Si tras el tercer orlado nulo hubiéramos concluido «rango $2$», el ejercicio estaría mal. Tres de los cuatro orlados se anulan y el cuarto no: **el teorema exige los cuatro nulos**, y aquí no se cumple. Lo que hay es $\operatorname{rg}(B)\ge 3$, y seguimos con $M_3$.
+
+**Paso 4: orlar hasta orden $4$.** El menor $M_3$ usa las filas $1$, $2$, $4$ y las columnas $1$, $2$, $4$. Le sobra la fila $3$ y le sobra la columna $3$, así que tiene $(4-3)(4-3) = 1$ orlado, que es necesariamente el determinante completo de $B$:
+
+$$
+|B| = \begin{vmatrix} 1 & 0 & 2 & 1 \\ 2 & 1 & 3 & 0 \\ 0 & 1 & -1 & -2 \\ 1 & 1 & 1 & 1 \end{vmatrix}
+$$
+
+Lo calculamos haciendo ceros en la primera columna con la propiedad que no altera el determinante, tomando $F_1$ como pivote. Aplicamos $F_2 \to F_2 - 2F_1$ y $F_4 \to F_4 - F_1$ (la fila $3$ ya tiene un cero):
+
+$$
+|B| = \begin{vmatrix} 1 & 0 & 2 & 1 \\ 0 & 1 & -1 & -2 \\ 0 & 1 & -1 & -2 \\ 0 & 1 & -1 & 0 \end{vmatrix}
+$$
+
+Las filas segunda y tercera de esta matriz son **idénticas**, y un determinante con dos filas iguales vale cero. Por tanto $|B| = 0$.
+
+**Conclusión.** El único orlado de $M_3$ es nulo y $M_3 = 2 \neq 0$. Por el teorema de los orlados,
+
+$$
+\operatorname{rg}(B) = 3
+$$
+
+**Comprobación independiente.** El determinante se anulaba porque, en la matriz original, $F_3 = F_2 - 2F_1$: en efecto, $2 - 2\cdot 1 = 0$, $1 - 2\cdot 0 = 1$, $3 - 2\cdot 2 = -1$ y $0 - 2\cdot 1 = -2$. Hay entonces tres filas independientes —por ejemplo $F_1$, $F_2$, $F_4$, precisamente las que forman $M_3$— y la cuarta se deduce de ellas.
+
+**Coste.** Un menor de orden $1$, uno de orden $2$, cuatro de orden $3$ y uno de orden $4$: siete evaluaciones frente a los $69$ menores que tiene la matriz. Y de esas siete, dos se han resuelto sin aritmética, viendo una columna proporcional o dos filas iguales.
+
+### Applet · Rango por menores {.unnumbered}
+
+Introduce una matriz y sigue el algoritmo con el applet: elige tú el menor de partida y observa cómo cambia el número de orlados que hay que examinar según esa elección; prueba en la misma matriz un menor de partida rodeado de ceros y otro rodeado de números grandes para ver la diferencia de trabajo con idéntico resultado final.
+
+::: {#panel-rangoMenores .applet-panel data-applet-det="rangoMenores"}
+:::
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Orlar un menor nulo.** El teorema solo se aplica a menores distintos de cero. Si el menor de partida se anula, hay que cambiarlo por otro, no orlarlo.
+- **Concluir con un solo orlado nulo.** Hacen falta **todos**. En el ejemplo 2, tres de cuatro se anulaban y el rango era $3$, no $2$.
+- **Cambiar de menor a mitad del proceso.** Los orlados que se calculan tienen que rodear **al mismo** menor. Si mezclas menores de orden $2$ distintos, la lista de determinantes que examinas ya no cubre lo que el teorema exige.
+- **Contar mal los orlados.** Son $(m-h)(n-h)$, no $m-h$ ni $n-h$. En una matriz $4\times 5$, un menor de orden $2$ tiene $(4-2)(5-2) = 6$ orlados.
+- **Desordenar filas o columnas al escribir el orlado.** Las listas van siempre en orden creciente; reordenarlas cambia el signo y confunde.
+- **Olvidar la cota superior.** Cuando se llega a un menor no nulo de orden $\min\{m,n\}$ el proceso **termina**: no hay orden superior. No hay que buscar orlados que no existen.
+- **Ignorar las relaciones visibles.** Si una fila es suma de otras dos, todos los menores que usen las tres se anulan. Detectarlo ahorra páginas de cálculo.
+:::
+
+::: {.callout-warning}
+## Una observación sobre las matrices cuadradas
+
+Si $A$ es cuadrada de orden $n$, lo primero que hay que hacer **siempre** es calcular $|A|$:
+
+- si $|A| \neq 0$, entonces $\operatorname{rg}(A) = n$ y el problema está resuelto con un solo determinante;
+- si $|A| = 0$, sabes que $\operatorname{rg}(A) \le n-1$ y entonces sí conviene arrancar el algoritmo de orlados desde abajo.
+
+En el ejemplo resuelto 2 hemos hecho a propósito el recorrido completo para ilustrar el método, pero en un examen lo eficiente habría sido empezar por $|B| = 0$, deducir $\operatorname{rg}(B)\le 3$ y buscar directamente un menor de orden $3$ no nulo, que es $M_3 = 2$. Dos determinantes en lugar de siete.
+:::
+
+### Applet · Reto de rango {.unnumbered}
+
+Enfréntate a matrices generadas al azar y decide su rango antes de pedir la solución; usa el applet para comprobar cuántos determinantes has necesitado y compáralo con el camino mínimo que propone, prestando atención a las matrices cuadradas, donde una sola evaluación puede bastar.
+
+::: {#panel-retoRango .applet-panel data-applet-det="retoRango"}
+:::
+
+::: {.callout-tip}
+## El método por dentro, en dos líneas
+
+Todo el capítulo se resume en una idea: **el rango se construye de abajo hacia arriba, y en cada escalón solo hay que mirar el borde**. Cada vez que subes un orden lo haces conservando el testigo que ya tenías, y el teorema garantiza que no se te escapa nada por fuera de ese borde.
+
+Esa estructura reaparece en muchos algoritmos de matemáticas aplicadas: mantener una solución parcial certificada y ampliarla mínimamente en cada paso, en lugar de examinar todas las posibilidades. Es la misma filosofía de los métodos que se emplean en programación lineal y en el análisis de grandes conjuntos de datos, donde examinar todos los casos es imposible y la eficiencia depende de tener un teorema que autorice a mirar solo unos pocos.
+:::
+
+## Resumen del apartado
+
+- Un **menor orlado** de un menor $M$ de orden $h$ es un menor de orden $h+1$ que se obtiene añadiendo a $M$ una fila y una columna de las que no intervienen en él. Un menor de orden $h$ de una matriz $m\times n$ tiene $(m-h)(n-h)$ orlados.
+- **Teorema de los orlados:** si $M$ es un menor **no nulo** de orden $h$ y **todos** sus orlados son nulos, entonces $\operatorname{rg}(A) = h$.
+- Las dos hipótesis son necesarias: el menor de partida no puede ser cero, y no basta con que algunos orlados se anulen.
+- **Algoritmo:** partir de un elemento no nulo y orlar sucesivamente. Si en algún paso todos los orlados se anulan, el rango es el orden alcanzado; si se llega a un menor no nulo de orden $\min\{m,n\}$, el rango es ese mínimo.
+- Conviene elegir el menor de partida **con ceros alrededor**, con valor $1$ o $-1$ y, si hay parámetros, **sin el parámetro dentro**.
+- Toda relación de dependencia visible entre líneas anula familias completas de menores y ahorra cálculos.
+- Si la matriz es **cuadrada**, empieza por $|A|$: si no es cero, el rango es máximo y has terminado.
+- El ahorro es real: en una matriz $4\times 4$ el algoritmo decide el rango con unas siete evaluaciones frente a los $69$ menores que la matriz tiene.
+
+## Ejercicios propuestos
+
+**1.** ¿Cuántos orlados tiene un menor de orden $2$ en una matriz de dimensión $3\times 5$? ¿Y un menor de orden $3$ en una matriz $4\times 6$?
+
+**2.** Calcula por orlados el rango de
+
+$$
+A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 4 & 1 \\ 3 & 6 & 1 \end{pmatrix}
+$$
+
+**3.** Calcula el rango de
+
+$$
+B = \begin{pmatrix} 1 & -1 & 0 & 2 \\ 2 & 1 & 3 & 1 \\ 3 & 0 & 3 & 3 \end{pmatrix}
+$$
+
+indicando en cada paso qué menor usas y cuántos orlados examinas.
+
+**4.** En una matriz $4\times 4$ has encontrado un menor de orden $2$ no nulo y has comprobado que dos de sus orlados son cero. ¿Puedes concluir que el rango es $2$? Explica qué falta.
+
+**5.** Calcula el rango de
+
+$$
+C = \begin{pmatrix} 2 & 1 & 1 & 0 \\ 1 & 0 & 2 & 1 \\ 3 & 1 & 3 & 1 \end{pmatrix}
+$$
+
+**6.** Justifica que si una matriz de dimensión $3\times 5$ tiene un menor de orden $3$ distinto de cero, ya no hay que orlar más. ¿Cuánto vale su rango?
+
+**7.** Sea $D$ una matriz $5\times 4$ de la que se sabe que existe un menor de orden $3$ no nulo y que sus $(5-3)(4-3) = 2$ orlados son nulos. ¿Cuál es el rango de $D$? ¿Cuántas de sus filas son combinación lineal de las demás?
+
+**8.** Calcula el rango de
+
+$$
+E = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \end{pmatrix}
+$$
+
+usando el hecho de que $F_3 = F_1 + F_2$ para descartar los menores de orden $3$ sin calcularlos.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** En una matriz $3\times 5$, un menor de orden $2$ tiene $(3-2)(5-2) = 1\cdot 3 = 3$ orlados. En una $4\times 6$, un menor de orden $3$ tiene $(4-3)(6-3) = 1\cdot 3 = 3$ orlados.
+
+**2.** *Cota:* $\operatorname{rg}(A)\le 3$. *Orden 1:* $a_{11} = 1\neq 0$. *Orden 2:* orlando con la fila $2$ y la columna $2$ sale $\begin{vmatrix} 1 & 2 \\ 2 & 4 \end{vmatrix} = 0$; probamos con la fila $2$ y la columna $3$:
+
+$$
+\begin{vmatrix} 1 & 0 \\ 2 & 1 \end{vmatrix} = 1 \neq 0
+$$
+
+luego $\operatorname{rg}(A)\ge 2$. *Orden 3:* el menor usa las filas $1$, $2$ y las columnas $1$, $3$; le sobra la fila $3$ y la columna $2$, así que tiene $(3-2)(3-2) = 1$ orlado, el determinante completo. Como $C_2 = 2C_1$, ese determinante es cero. Por el teorema,
+
+$$
+\operatorname{rg}(A) = 2
+$$
+
+**3.** *Cota:* $\operatorname{rg}(B)\le 3$. *Orden 2:* con las filas $1$, $2$ y las columnas $1$, $2$,
+
+$$
+\begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1 + 2 = 3 \neq 0
+$$
+
+luego $\operatorname{rg}(B)\ge 2$. *Orden 3:* le sobra la fila $3$ y le sobran las columnas $3$ y $4$, así que hay $(3-2)(4-2) = 2$ orlados.
+
+Primer orlado, columnas $1$, $2$, $3$: es un determinante en el que $F_3 = F_1 + F_2$, ya que $3 = 1+2$, $0 = -1+1$ y $3 = 0+3$. Vale cero.
+
+Segundo orlado, columnas $1$, $2$, $4$: la misma relación $F_3 = F_1 + F_2$ se cumple también en la cuarta columna, $3 = 2+1$. Vale cero.
+
+Los dos orlados son nulos, luego $\operatorname{rg}(B) = 2$.
+
+**4.** **No** se puede concluir. En una matriz $4\times 4$, un menor de orden $2$ tiene $(4-2)(4-2) = 4$ orlados, y el teorema exige que **los cuatro** sean nulos. Faltan por examinar dos. Si alguno de los dos restantes no se anula, el rango es al menos $3$ y hay que continuar el proceso con él.
+
+**5.** *Cota:* $\operatorname{rg}(C)\le 3$. *Orden 2:* con las filas $1$, $2$ y las columnas $1$, $2$,
+
+$$
+\begin{vmatrix} 2 & 1 \\ 1 & 0 \end{vmatrix} = 0 - 1 = -1 \neq 0
+$$
+
+luego $\operatorname{rg}(C)\ge 2$. *Orden 3:* le sobra la fila $3$ y le sobran las columnas $3$ y $4$: hay $2$ orlados. Antes de calcularlos, observa que $F_3 = F_1 + F_2$, ya que $3 = 2+1$, $1 = 1+0$, $3 = 1+2$ y $1 = 0+1$. Todo menor de orden $3$ usa las tres filas y hereda esa combinación lineal, luego **los dos orlados son cero** sin necesidad de calcular nada:
+
+$$
+\operatorname{rg}(C) = 2
+$$
+
+**6.** Porque en una matriz $3\times 5$ el orden máximo de un menor es $\min\{3,5\} = 3$. Un menor de orden $3$ no nulo no admite orlados, ya que no queda ninguna cuarta fila que añadir: $(3-3)(5-3) = 0$. El proceso termina por arriba y el rango de esa matriz es
+
+$$
+\operatorname{rg} = 3
+$$
+
+que es el rango máximo posible para esa dimensión.
+
+**7.** Se cumplen las dos hipótesis del teorema —el menor de orden $3$ no es nulo y todos sus orlados, que son dos, se anulan—, luego $\operatorname{rg}(D) = 3$. La matriz tiene $5$ filas y solo $3$ independientes, así que $5 - 3 = 2$ filas son combinación lineal de las demás. Nótese que $3 = \min\{5,4\} - 1$, es decir, la matriz no tiene rango máximo.
+
+**8.** *Cota:* $\operatorname{rg}(E)\le 3$. *Orden 2:* con las filas $1$, $2$ y las columnas $1$, $2$,
+
+$$
+\begin{vmatrix} 1 & 1 \\ 1 & 2 \end{vmatrix} = 2 - 1 = 1 \neq 0
+$$
+
+luego $\operatorname{rg}(E)\ge 2$. *Orden 3:* comprobamos primero la relación anunciada. $F_1 + F_2 = (1+1,\; 1+2,\; 1+3,\; 1+4) = (2,3,4,5) = F_3$. Correcto.
+
+Cualquier menor de orden $3$ de $E$ usa obligatoriamente las tres filas, y al restringirse a tres columnas la relación se conserva: la tercera fila de la submatriz sigue siendo la suma de las otras dos. Un determinante con una fila combinación lineal de las demás vale cero, luego **los cuatro** menores de orden $3$ son nulos, y en particular los dos orlados de nuestro menor. Por tanto
+
+$$
+\operatorname{rg}(E) = 2
+$$
+
+Este ejercicio muestra el mejor uso del método: una relación bien detectada elimina varios determinantes de golpe.
+:::

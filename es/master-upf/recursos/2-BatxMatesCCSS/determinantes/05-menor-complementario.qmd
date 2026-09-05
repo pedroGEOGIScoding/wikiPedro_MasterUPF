@@ -1,0 +1,442 @@
+---
+title: "Tema 2.5 Menor complementario de un elemento"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 5 de 16)"
+filename: 05-menor-complementario
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de menor complementario de un elemento como determinante de la matriz que queda al suprimir su fila y su columna, notación, cálculo sistemático en matrices de orden 3 y de orden 4, tabla completa de los menores complementarios, recuento de cuántos hay, relación con la reducción de orden y separación clara respecto del concepto de adjunto, con ejemplos resueltos, errores típicos y applets manipulables.
+categories: [determinantes, menor complementario, submatrices, reducción de orden, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hasta ahora sabes calcular determinantes de orden $2$ con la fórmula del producto cruzado y de orden $3$ con la regla de Sarrus. También sabes usar las propiedades para simplificar antes de calcular. Pero si en un examen te aparece un determinante de orden $4$, ninguna de esas dos herramientas sirve: la fórmula de orden $2$ es demasiado corta y **la regla de Sarrus no se puede extender al orden 4**, por muy tentadoras que resulten las diagonales.
+
+Hace falta una idea distinta, y esa idea es tan sencilla que resulta casi decepcionante: **reducir el orden**. Si supiéramos convertir un determinante de orden $4$ en una combinación de determinantes de orden $3$, el problema estaría resuelto, porque los de orden $3$ ya los sabemos calcular. Y si se puede bajar de $4$ a $3$, también se podrá bajar de $5$ a $4$, de $6$ a $5$, y así hasta donde haga falta.
+
+La pieza básica de esa maquinaria de reducción es el **menor complementario**. Es simplemente el determinante que queda cuando tapas con el dedo la fila y la columna de un elemento y calculas el determinante de lo que sobra. Nada más. En este apartado aprenderás a construirlo sin equivocarte de fila ni de columna, a organizarlos todos en una tabla y a distinguirlo con nitidez del concepto que viene inmediatamente después, el **adjunto**, con el que se confunde el noventa por ciento de las veces.
+
+Merece la pena tomarse este apartado con calma. Es corto en teoría pero decisivo en consecuencias: sobre él se apoyan el desarrollo por adjuntos, el cálculo de determinantes de cualquier orden, el rango por menores y la matriz inversa. Un error de concepto aquí se arrastra durante todo el tema.
+
+## Suprimir una fila y una columna
+
+Antes de definir nada, conviene fijar con precisión la operación que está en el centro de todo: quitarle a una matriz una fila entera y una columna entera.
+
+::: {.callout-note}
+## Definición: submatriz complementaria de un elemento
+
+Sea $A$ una matriz **cuadrada** de orden $n$ y sea $a_{ij}$ uno de sus elementos. Se llama **submatriz complementaria** de $a_{ij}$ a la matriz de orden $n-1$ que se obtiene **suprimiendo por completo la fila $i$ y la columna $j$** de $A$.
+
+Los elementos que sobreviven conservan su posición relativa: los que estaban a la izquierda siguen a la izquierda y los que estaban arriba siguen arriba. Simplemente se cierran los huecos.
+:::
+
+Observa dos detalles que parecen obvios y que sin embargo son fuente constante de fallos:
+
+- Se suprime **la fila entera y la columna entera**, no solo el elemento $a_{ij}$. El propio elemento desaparece, claro, pero también desaparecen sus $n-1$ compañeros de fila y sus $n-1$ compañeros de columna. De los $n^2$ elementos iniciales quedan $(n-1)^2$.
+- La submatriz que queda es de nuevo **cuadrada**, de orden $n-1$. Esto no es casualidad: quitamos una fila y una columna, así que la matriz pierde una unidad en cada dimensión. Y como es cuadrada, tiene determinante.
+
+Ese determinante es precisamente lo que nos interesa.
+
+## Definición de menor complementario
+
+::: {.callout-note}
+## Definición: menor complementario
+
+Dada una matriz cuadrada $A$ de orden $n$, se llama **menor complementario** del elemento $a_{ij}$, y se escribe $\alpha_{ij}$, al **determinante de orden $n-1$** formado por todos los elementos de $A$ excepto los que pertenecen a la fila $i$ y a la columna $j$:
+
+$$
+\alpha_{ij} = \det\bigl(\text{submatriz de } A \text{ sin la fila } i \text{ ni la columna } j\bigr)
+$$
+
+El menor complementario es, por tanto, **un número**, no una matriz.
+:::
+
+::: {.callout-warning}
+## Un menor complementario es un número
+
+Este es el primer punto donde conviene ser estricto. La submatriz que queda al tapar la fila y la columna **es una matriz**; su determinante **es un número**. Cuando se pide $\alpha_{23}$ la respuesta correcta es algo como $-2$, nunca una tabla de números entre paréntesis.
+
+En algunos textos se reserva la letra $M_{ij}$ para la submatriz y se escribe $\alpha_{ij} = \det(M_{ij})$; en otros se llama directamente $M_{ij}$ al número. Aquí usaremos siempre $\alpha_{ij}$ para el número, que es la notación más extendida en Bachillerato, pero si en un enunciado ves $M_{ij}$ ya sabes que se refiere a lo mismo.
+:::
+
+Fíjate en un hecho que sorprende al principio: **el valor de $a_{ij}$ no interviene en su propio menor complementario**. El elemento marca la posición, dice qué fila y qué columna hay que suprimir, y después desaparece de escena. Dos matrices que solo se diferencien en el elemento $a_{23}$ tienen exactamente el mismo $\alpha_{23}$.
+
+### Ejemplo resuelto 1: dos menores complementarios de una matriz de orden 3
+
+Determina los menores complementarios $\alpha_{11}$ y $\alpha_{23}$ de
+
+$$
+A = \begin{pmatrix} 2 & -1 & 0 \\ 0 & 1 & -2 \\ -2 & 0 & 1 \end{pmatrix}
+$$
+
+**Cálculo de $\alpha_{11}$.** El elemento es $a_{11} = 2$, que ocupa la fila $1$ y la columna $1$. Suprimimos esa fila y esa columna, es decir, borramos la primera fila completa $(2,\ -1,\ 0)$ y la primera columna completa $(2,\ 0,\ -2)$. Quedan los cuatro elementos del cuadrado inferior derecho:
+
+$$
+\alpha_{11} = \begin{vmatrix} 1 & -2 \\ 0 & 1 \end{vmatrix} = 1\cdot 1 - (-2)\cdot 0 = 1
+$$
+
+**Cálculo de $\alpha_{23}$.** Ahora el elemento es $a_{23} = -2$, en la fila $2$ y la columna $3$. Se elimina la segunda fila $(0,\ 1,\ -2)$ y la tercera columna $(0,\ -2,\ 1)$. Sobreviven la primera y la tercera filas, restringidas a las columnas primera y segunda:
+
+$$
+\alpha_{23} = \begin{vmatrix} 2 & -1 \\ -2 & 0 \end{vmatrix} = 2\cdot 0 - (-1)\cdot(-2) = 0 - 2 = -2
+$$
+
+Observa que el $-2$ que ocupaba la posición $(2,3)$ no aparece por ninguna parte en el cálculo. Su papel se ha agotado al indicarnos qué línea y qué columna había que tapar.
+
+### Applet · Menor complementario {.unnumbered}
+
+Escribe una matriz cuadrada, haz clic sobre un elemento y observa cómo se resaltan la fila y la columna que se van a suprimir antes de que aparezca el determinante resultante. Experimenta cambiando **solo el elemento seleccionado**: comprobarás que su menor complementario no varía, porque ese número no interviene en el cálculo. Prueba también a elegir elementos de las esquinas y del centro para ver qué submatriz queda en cada caso.
+
+::: {#panel-menorComp .applet-panel data-applet-det="menorComp"}
+:::
+
+### Ejemplo resuelto 2: todos los menores complementarios de una matriz de orden 3
+
+Calcula los nueve menores complementarios de
+
+$$
+B = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}
+$$
+
+Conviene trabajar de forma ordenada, fila por fila, para no saltarse ninguno.
+
+**Primera fila.**
+
+$$
+\alpha_{11} = \begin{vmatrix} 2 & -1 \\ 1 & 2 \end{vmatrix} = 4 - (-1) = 5,
+\qquad
+\alpha_{12} = \begin{vmatrix} 3 & -1 \\ 1 & 2 \end{vmatrix} = 6 - (-1) = 7,
+\qquad
+\alpha_{13} = \begin{vmatrix} 3 & 2 \\ 1 & 1 \end{vmatrix} = 3 - 2 = 1
+$$
+
+**Segunda fila.**
+
+$$
+\alpha_{21} = \begin{vmatrix} 0 & 4 \\ 1 & 2 \end{vmatrix} = 0 - 4 = -4,
+\qquad
+\alpha_{22} = \begin{vmatrix} 2 & 4 \\ 1 & 2 \end{vmatrix} = 4 - 4 = 0,
+\qquad
+\alpha_{23} = \begin{vmatrix} 2 & 0 \\ 1 & 1 \end{vmatrix} = 2 - 0 = 2
+$$
+
+**Tercera fila.**
+
+$$
+\alpha_{31} = \begin{vmatrix} 0 & 4 \\ 2 & -1 \end{vmatrix} = 0 - 8 = -8,
+\qquad
+\alpha_{32} = \begin{vmatrix} 2 & 4 \\ 3 & -1 \end{vmatrix} = -2 - 12 = -14,
+\qquad
+\alpha_{33} = \begin{vmatrix} 2 & 0 \\ 3 & 2 \end{vmatrix} = 4 - 0 = 4
+$$
+
+Puestos en forma de tabla, los menores complementarios de $B$ son
+
+$$
+\begin{pmatrix} 5 & 7 & 1 \\ -4 & 0 & 2 \\ -8 & -14 & 4 \end{pmatrix}
+$$
+
+Tres comentarios sobre esta tabla:
+
+- **Aparece un cero.** $\alpha_{22} = 0$ porque la submatriz $\begin{pmatrix} 2 & 4 \\ 1 & 2\end{pmatrix}$ tiene las filas proporcionales. Que un menor complementario se anule es perfectamente normal y no indica ningún error.
+- **La tabla no se parece a $B$.** No hay ninguna relación posición a posición entre $b_{ij}$ y $\alpha_{ij}$: el primero es un dato de partida y el segundo es el resultado de un cálculo con todos los demás elementos.
+- **Los signos de la tabla son los que salen de los determinantes.** Todavía no hemos aplicado ningún signo adicional. Eso llegará en el apartado siguiente y es exactamente lo que convierte un menor complementario en un adjunto.
+
+### Applet · Tabla completa de menores {.unnumbered}
+
+Introduce una matriz cuadrada de orden $3$ o $4$ y genera de golpe la tabla con todos sus menores complementarios; comprueba después uno o dos de ellos a mano para asegurarte de que el criterio que usas al suprimir filas y columnas coincide con el del applet. Fíjate en particular en si aparecen ceros y busca en la matriz original la razón que los produce.
+
+::: {#panel-tablaMenores .applet-panel data-applet-det="tablaMenores"}
+:::
+
+## Menores complementarios en orden 4
+
+En orden $3$ los menores complementarios son determinantes de orden $2$ y se calculan de cabeza. En orden $4$ son determinantes de orden $3$, así que cada uno exige una regla de Sarrus completa. El procedimiento, sin embargo, es idéntico.
+
+### Ejemplo resuelto 3: menores complementarios de una matriz de orden 4
+
+Sea
+
+$$
+C = \begin{pmatrix} 2 & 1 & 0 & 7 \\ 1 & 2 & 3 & 6 \\ 2 & 4 & 0 & 3 \\ 1 & 0 & -1 & 2 \end{pmatrix}
+$$
+
+**Menor complementario $\alpha_{11}$.** Se suprimen la primera fila y la primera columna:
+
+$$
+\alpha_{11} = \begin{vmatrix} 2 & 3 & 6 \\ 4 & 0 & 3 \\ 0 & -1 & 2 \end{vmatrix}
+$$
+
+Aplicamos Sarrus. Productos con signo positivo: $2\cdot 0\cdot 2 = 0$, $3\cdot 3\cdot 0 = 0$ y $6\cdot 4\cdot(-1) = -24$. Productos con signo negativo: $6\cdot 0\cdot 0 = 0$, $2\cdot 3\cdot(-1) = -6$ y $3\cdot 4\cdot 2 = 24$. Por tanto
+
+$$
+\alpha_{11} = \bigl(0 + 0 + (-24)\bigr) - \bigl(0 + (-6) + 24\bigr) = -24 - 18 = -42
+$$
+
+**Menor complementario $\alpha_{22}$.** Se suprimen la segunda fila y la segunda columna:
+
+$$
+\alpha_{22} = \begin{vmatrix} 2 & 0 & 7 \\ 2 & 0 & 3 \\ 1 & -1 & 2 \end{vmatrix}
+$$
+
+Los productos positivos son $2\cdot 0\cdot 2 = 0$, $0\cdot 3\cdot 1 = 0$ y $7\cdot 2\cdot(-1) = -14$; los negativos, $7\cdot 0\cdot 1 = 0$, $2\cdot 3\cdot(-1) = -6$ y $0\cdot 2\cdot 2 = 0$. Así:
+
+$$
+\alpha_{22} = -14 - (-6) = -8
+$$
+
+**Menor complementario $\alpha_{43}$.** Se suprimen la cuarta fila y la tercera columna. Quedan las tres primeras filas con las columnas primera, segunda y cuarta:
+
+$$
+\alpha_{43} = \begin{vmatrix} 2 & 1 & 7 \\ 1 & 2 & 6 \\ 2 & 4 & 3 \end{vmatrix} = (12 + 12 + 28) - (28 + 48 + 3) = 52 - 79 = -27
+$$
+
+**Menor complementario $\alpha_{34}$.** Se suprimen la tercera fila y la cuarta columna:
+
+$$
+\alpha_{34} = \begin{vmatrix} 2 & 1 & 0 \\ 1 & 2 & 3 \\ 1 & 0 & -1 \end{vmatrix} = \bigl(-4 + 3 + 0\bigr) - \bigl(0 + 0 - 1\bigr) = -1 - (-1) = 0
+$$
+
+Que $\alpha_{34}$ valga $0$ no tiene nada de particular: la tercera columna de esa submatriz es combinación lineal de las otras dos.
+
+::: {.callout-caution}
+## El error de suprimir mal la línea
+
+Cuando la matriz es de orden $4$ o $5$, el fallo más frecuente no está en el cálculo del determinante pequeño, sino en **haber tachado la fila o la columna equivocada**. Suele deberse a dos causas:
+
+- **Contar desde cero.** Los índices se cuentan desde $1$: la primera fila es la fila $1$, no la fila $0$. Si en $\alpha_{23}$ tachas la fila $3$ y la columna $4$, todo lo demás sobra.
+- **Invertir el orden de los índices.** En $\alpha_{ij}$, el primer índice es **siempre la fila** y el segundo es **siempre la columna**. $\alpha_{23}$ y $\alpha_{32}$ son en general números distintos: en la matriz $C$ del ejemplo, $\alpha_{34} = 0$ mientras que $\alpha_{43} = -27$.
+
+Un truco muy eficaz: antes de escribir nada, tacha físicamente con el lápiz la fila y la columna sobre el enunciado. Lo que quede sin tachar es exactamente la submatriz.
+:::
+
+## Cuántos menores complementarios tiene una matriz
+
+Cada posición $(i,j)$ de la matriz da lugar a un menor complementario, así que una matriz cuadrada de orden $n$ tiene exactamente $n^2$ menores complementarios:
+
+- orden $2$: $4$ menores complementarios, y todos son determinantes de orden $1$, es decir, números sueltos;
+- orden $3$: $9$ menores complementarios, todos de orden $2$;
+- orden $4$: $16$ menores complementarios, todos de orden $3$;
+- orden $5$: $25$ menores complementarios, todos de orden $4$.
+
+::: {.callout-tip}
+## El caso del orden 2, que parece un juego de palabras
+
+En una matriz $A = \begin{pmatrix} a & b \\ c & d\end{pmatrix}$, el menor complementario de $a$ se obtiene tapando la primera fila y la primera columna. Queda un único elemento, $d$, y el determinante de orden $1$ de la matriz $(d)$ es el propio $d$. Es decir:
+
+$$
+\alpha_{11} = d, \qquad \alpha_{12} = c, \qquad \alpha_{21} = b, \qquad \alpha_{22} = a
+$$
+
+Cada menor complementario es simplemente **el elemento de la esquina opuesta**. Este caso, aparentemente trivial, explica de dónde sale la fórmula $|A| = ad - bc$ cuando la escribimos como $a\cdot\alpha_{11} - b\cdot\alpha_{12} = a d - b c$. El desarrollo por adjuntos que verás en los apartados siguientes ya estaba escondido en la fórmula de orden $2$ desde el principio.
+:::
+
+::: {.callout-important}
+## Por qué esta definición es tan útil
+
+Un determinante de orden $n$ es, por definición, una suma de $n!$ productos. Para $n = 4$ eso son $24$ productos de cuatro factores; para $n = 5$, $120$ productos de cinco factores. Calcularlos uno a uno es inviable en un examen y casi lo es a mano en cualquier circunstancia.
+
+Los menores complementarios permiten reorganizar esa suma gigantesca **agrupando los productos según qué elemento de una línea fija aparece en ellos**. De los $n!$ productos, exactamente $(n-1)!$ contienen al elemento $a_{i1}$, otros $(n-1)!$ contienen a $a_{i2}$, y así sucesivamente. Cuando se saca factor común a $a_{ij}$ en su grupo, lo que queda entre paréntesis es —salvo un signo— el menor complementario $\alpha_{ij}$.
+
+Ese es el motivo profundo de que la fórmula del desarrollo por adjuntos funcione, y explica por qué el menor complementario aparece por todas partes en el resto del tema: es la pieza que convierte un problema de orden $n$ en varios problemas de orden $n-1$.
+:::
+
+## La distinción que hay que tener clarísima
+
+Este apartado y el siguiente introducen dos objetos casi idénticos y con nombres parecidos. Merece la pena adelantarlo aquí, porque es **el error típico central de todo el tema**.
+
+::: {.callout-caution}
+## Menor complementario no es lo mismo que adjunto
+
+- El **menor complementario** $\alpha_{ij}$ es el determinante de la submatriz que queda al tapar la fila $i$ y la columna $j$. Se calcula y ya está: no se le añade ningún signo.
+- El **adjunto** $A_{ij}$ es ese mismo número **multiplicado por $(-1)^{i+j}$**, es decir, con el signo conservado o cambiado según la posición.
+
+En consecuencia:
+
+$$
+A_{ij} = (-1)^{i+j}\,\alpha_{ij}
+$$
+
+Los dos coinciden cuando $i+j$ es par y son **opuestos** cuando $i+j$ es impar. En la matriz $B$ del ejemplo resuelto 2, $\alpha_{12} = 7$ pero $A_{12} = -7$; en cambio $\alpha_{11} = 5$ y también $A_{11} = 5$.
+
+Regla práctica: si el enunciado dice «menor complementario», **no toques el signo**. Si dice «adjunto», mira la paridad de $i+j$. Poner un signo de más o de menos donde no toca cambia el resultado final del determinante y es la causa número uno de resultados erróneos en este tema.
+:::
+
+::: {.callout-tip}
+## Dónde vas a volver a encontrarte estos números
+
+- En el **desarrollo por adjuntos**, para calcular determinantes de cualquier orden.
+- En el **cálculo del rango por menores**, donde se generaliza la idea a submatrices cualesquiera, no solo a las que se obtienen tapando una fila y una columna.
+- En la **matriz de los adjuntos** y en la fórmula de la **matriz inversa**, donde hay que calcular los $n^2$ adjuntos de golpe. Si has aprendido a organizar la tabla de los menores complementarios, ese cálculo se vuelve mecánico.
+
+Calcular menores complementarios con orden y sin errores de signo es, por tanto, una inversión que se amortiza tres o cuatro veces a lo largo del tema.
+:::
+
+## Resumen del apartado
+
+- La **submatriz complementaria** de $a_{ij}$ se obtiene suprimiendo la fila $i$ y la columna $j$ completas. Es cuadrada de orden $n-1$.
+- El **menor complementario** $\alpha_{ij}$ es el determinante de esa submatriz. Es un **número**, no una matriz.
+- El valor de $a_{ij}$ **no interviene** en el cálculo de $\alpha_{ij}$: solo señala qué fila y qué columna hay que suprimir.
+- El primer índice indica la **fila** y el segundo, la **columna**. En general $\alpha_{ij} \neq \alpha_{ji}$.
+- Una matriz de orden $n$ tiene $n^2$ menores complementarios, todos ellos de orden $n-1$.
+- En orden $2$, el menor complementario de cada elemento es el elemento de la esquina opuesta.
+- Que un menor complementario valga $0$ es normal: indica que la submatriz tiene líneas proporcionales o dependientes.
+- El **adjunto** es el menor complementario con el signo $(-1)^{i+j}$ delante: $A_{ij} = (-1)^{i+j}\alpha_{ij}$. No son sinónimos.
+
+## Ejercicios propuestos
+
+**1 (básico).** Dada $A = \begin{pmatrix} 3 & -1 \\ 4 & 5 \end{pmatrix}$, calcula sus cuatro menores complementarios.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Cada submatriz es de orden $1$, así que su determinante es el propio elemento que queda:
+
+$$
+\alpha_{11} = 5, \qquad \alpha_{12} = 4, \qquad \alpha_{21} = -1, \qquad \alpha_{22} = 3
+$$
+
+Como se anunció, cada uno es el elemento de la esquina opuesta.
+:::
+
+**2 (básico).** Calcula $\alpha_{12}$ y $\alpha_{31}$ de $A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 1 \\ 5 & -1 & 0 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Para $\alpha_{12}$ se suprimen la fila $1$ y la columna $2$:
+
+$$
+\alpha_{12} = \begin{vmatrix} 2 & 1 \\ 5 & 0 \end{vmatrix} = 0 - 5 = -5
+$$
+
+Para $\alpha_{31}$ se suprimen la fila $3$ y la columna $1$:
+
+$$
+\alpha_{31} = \begin{vmatrix} 2 & 3 \\ 4 & 1 \end{vmatrix} = 2 - 12 = -10
+$$
+:::
+
+**3 (básico).** Escribe la tabla completa de los nueve menores complementarios de $A = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 3 & -1 \\ 2 & 1 & 1 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+\alpha_{11} = \begin{vmatrix} 3 & -1 \\ 1 & 1\end{vmatrix} = 4,
+\quad
+\alpha_{12} = \begin{vmatrix} 0 & -1 \\ 2 & 1\end{vmatrix} = 2,
+\quad
+\alpha_{13} = \begin{vmatrix} 0 & 3 \\ 2 & 1\end{vmatrix} = -6
+$$
+
+$$
+\alpha_{21} = \begin{vmatrix} 0 & 2 \\ 1 & 1\end{vmatrix} = -2,
+\quad
+\alpha_{22} = \begin{vmatrix} 1 & 2 \\ 2 & 1\end{vmatrix} = -3,
+\quad
+\alpha_{23} = \begin{vmatrix} 1 & 0 \\ 2 & 1\end{vmatrix} = 1
+$$
+
+$$
+\alpha_{31} = \begin{vmatrix} 0 & 2 \\ 3 & -1\end{vmatrix} = -6,
+\quad
+\alpha_{32} = \begin{vmatrix} 1 & 2 \\ 0 & -1\end{vmatrix} = -1,
+\quad
+\alpha_{33} = \begin{vmatrix} 1 & 0 \\ 0 & 3\end{vmatrix} = 3
+$$
+
+La tabla es $\begin{pmatrix} 4 & 2 & -6 \\ -2 & -3 & 1 \\ -6 & -1 & 3 \end{pmatrix}$.
+:::
+
+**4 (medio).** Calcula $\alpha_{23}$ y $\alpha_{32}$ de $C = \begin{pmatrix} 2 & 1 & 0 & 7 \\ 1 & 2 & 3 & 6 \\ 2 & 4 & 0 & 3 \\ 1 & 0 & -1 & 2 \end{pmatrix}$ y comprueba que son distintos.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Para $\alpha_{23}$ suprimimos la fila $2$ y la columna $3$:
+
+$$
+\alpha_{23} = \begin{vmatrix} 2 & 1 & 7 \\ 2 & 4 & 3 \\ 1 & 0 & 2 \end{vmatrix} = (16 + 3 + 0) - (28 + 0 + 4) = 19 - 32 = -13
+$$
+
+Para $\alpha_{32}$ suprimimos la fila $3$ y la columna $2$:
+
+$$
+\alpha_{32} = \begin{vmatrix} 2 & 0 & 7 \\ 1 & 3 & 6 \\ 1 & -1 & 2 \end{vmatrix} = (12 + 0 - 7) - (21 - 12 + 0) = 5 - 9 = -4
+$$
+
+En efecto, $\alpha_{23} = -13 \neq -4 = \alpha_{32}$: el orden de los índices importa.
+:::
+
+**5 (medio).** Sea $A$ una matriz de orden $3$ cuya segunda fila es $(0,\ 0,\ 0)$. ¿Qué puedes afirmar sobre $\alpha_{21}$, $\alpha_{22}$ y $\alpha_{23}$? ¿Y sobre $\alpha_{11}$?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Al calcular $\alpha_{21}$, $\alpha_{22}$ o $\alpha_{23}$ se suprime precisamente la fila de ceros, así que la submatriz resultante está formada por las filas primera y tercera: **no hay ninguna razón para que esos menores se anulen**, y en general valdrán lo que valgan.
+
+En cambio, al calcular $\alpha_{11}$ se suprime la fila $1$, de modo que la fila de ceros **sigue presente** en la submatriz. Un determinante con una línea de ceros vale $0$, luego $\alpha_{11} = 0$. Lo mismo ocurre con $\alpha_{12}$, $\alpha_{13}$, $\alpha_{31}$, $\alpha_{32}$ y $\alpha_{33}$: todos los menores complementarios de elementos que **no** están en la segunda fila son nulos.
+:::
+
+**6 (medio).** Se sabe que en una matriz de orden $4$ se cumple $\alpha_{14} = 0$. ¿Se puede deducir de ahí que $a_{14} = 0$? Justifícalo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+No. El menor complementario $\alpha_{14}$ se calcula con la submatriz que **no contiene** ni la fila $1$ ni la columna $4$, así que el valor de $a_{14}$ no interviene en absoluto en él. Que $\alpha_{14}$ sea nulo solo informa de que esa submatriz de orden $3$ tiene sus filas linealmente dependientes.
+
+Por ejemplo, en la matriz $C$ del ejercicio 4 se cumple $\alpha_{34} = 0$ y sin embargo $a_{34} = 3 \neq 0$.
+:::
+
+**7 (medio).** En la matriz $B = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}$ se sabe que $|B| = 14$. Calcula la suma $2\alpha_{11} - 0\cdot\alpha_{12} + 4\alpha_{13}$ y compárala con $|B|$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Con los valores calculados en el ejemplo resuelto 2, $\alpha_{11} = 5$, $\alpha_{12} = 7$ y $\alpha_{13} = 1$:
+
+$$
+2\cdot 5 - 0\cdot 7 + 4\cdot 1 = 10 - 0 + 4 = 14
+$$
+
+Coincide con $|B| = 14$. Los signos alternos $+,\,-,\,+$ que hemos usado son exactamente los factores $(-1)^{1+j}$: acabas de aplicar, sin saberlo, el desarrollo por los adjuntos de la primera fila que se estudia en el apartado 2.7.
+:::
+
+**8 (avanzado).** ¿Cuántos menores complementarios tiene una matriz de orden $6$? ¿De qué orden es cada uno? Si para calcular un determinante de orden $2$ hacen falta $2$ productos y para uno de orden $3$ hacen falta $6$, estima cuántos productos costaría calcular **todos** los menores complementarios de una matriz de orden $4$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Una matriz de orden $6$ tiene $6^2 = 36$ menores complementarios, cada uno de ellos un determinante de orden $5$.
+
+En orden $4$ hay $4^2 = 16$ menores complementarios, y cada uno es un determinante de orden $3$ que por Sarrus cuesta $6$ productos de tres factores. En total, $16\cdot 6 = 96$ productos. Es mucho trabajo, y por eso en la práctica **nunca se calculan los dieciséis**: en el desarrollo por adjuntos basta con los de una sola línea, y si esa línea tiene ceros, con menos todavía.
+:::
+
+**9 (avanzado).** Sea $A$ una matriz cuadrada de orden $3$ y sea $A^{t}$ su traspuesta. Relaciona el menor complementario $\alpha_{ij}$ de $A$ con el menor complementario correspondiente de $A^{t}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Al trasponer, la fila $i$ de $A$ se convierte en la columna $i$ de $A^{t}$ y la columna $j$ de $A$ se convierte en la fila $j$ de $A^{t}$. Suprimir en $A$ la fila $i$ y la columna $j$ equivale, por tanto, a suprimir en $A^{t}$ la fila $j$ y la columna $i$, y las dos submatrices que quedan son traspuestas la una de la otra.
+
+Como el determinante de una matriz coincide con el de su traspuesta, se concluye:
+
+$$
+\alpha_{ij}(A) = \alpha_{ji}\bigl(A^{t}\bigr)
+$$
+
+Es la traducción a los menores complementarios de la primera propiedad de los determinantes: todo lo que vale para filas vale para columnas.
+:::

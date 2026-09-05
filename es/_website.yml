@@ -290,11 +290,21 @@ website:
             - section: "Tema 2 Determinantes"
               contents:
               - master-upf/recursos/2-BatxMatesCCSS/determinantes/01-determinantes.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/determinantes/02-propiedades-determinantes.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/determinantes/03-menor-complementario-adjunto.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/determinantes/04-desarrollo-por-adjuntos.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/determinantes/05-rango-por-menores.qmd
-              - master-upf/recursos/2-BatxMatesCCSS/determinantes/06-inversa-con-determinantes.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/02-determinantes-orden-2-y-3.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/03-propiedades-determinantes.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/04-calculo-con-propiedades.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/05-menor-complementario.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/06-adjunto-de-un-elemento.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/07-desarrollo-por-adjuntos.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/08-determinantes-de-cualquier-orden.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/09-metodo-hacer-ceros.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/10-menor-de-una-matriz.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/11-rango-de-una-matriz.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/12-calculo-del-rango-por-menores.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/13-rango-con-parametros.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/14-matriz-de-los-adjuntos.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/15-inversa-con-determinantes.qmd
+              - master-upf/recursos/2-BatxMatesCCSS/determinantes/16-practica-determinantes.qmd
             - section: "Tema 3 Sistemas de ecuaciones"
               contents:
               - master-upf/recursos/2-BatxMatesCCSS/sistemas-ecuaciones/01-sistemas-ecuaciones-lineales.qmd

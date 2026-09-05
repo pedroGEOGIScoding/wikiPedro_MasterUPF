@@ -1,0 +1,587 @@
+---
+title: "Tema 2.13 Rango de una matriz con parámetros"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 13 de 16)"
+filename: 13-rango-con-parametros
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Discusión del rango de una matriz que depende de un parámetro, resolución de la ecuación determinante igual a cero, estudio separado de cada raíz, elección del menor testigo sin parámetro y redacción ordenada de la discusión, con ejemplos completos en matrices cuadradas y rectangulares.
+categories: [determinantes, rango, parámetros, discusión, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hasta ahora todas las matrices tenían números concretos y el rango era un número concreto. Aquí aparece una letra —$k$, $m$, $a$, $\lambda$— dentro de la matriz, y con ella el rango deja de ser un número para convertirse en **una función del parámetro**. La pregunta ya no es «¿cuánto vale el rango?», sino «¿cuánto vale el rango **para cada** valor del parámetro?».
+
+La respuesta tiene siempre la misma forma: hay un valor de rango que se da «casi siempre», el máximo, y unos pocos valores excepcionales del parámetro en los que el rango cae. Esos valores excepcionales son precisamente las **raíces de la ecuación que se obtiene al igualar a cero el determinante**. Y como cada raíz puede hacer caer el rango en distinta medida, hay que estudiarlas **una por una**.
+
+::: {.callout-tip}
+## Por qué este apartado es el más importante del tema
+
+Aquí es donde el método de los determinantes gana sin discusión. Escalonar por Gauss una matriz con un parámetro obliga a dividir entre expresiones como $k-2$ o $m+1$, y cada división exige abrir un caso aparte: al cabo de tres pasos tienes un árbol de casos ingobernable y con alto riesgo de perder alguna rama.
+
+Con determinantes no hay divisiones. El determinante de una matriz con parámetro es un **polinomio** en ese parámetro; se calcula una sola vez, se iguala a cero, se resuelve la ecuación y sus raíces son la lista completa y cerrada de valores conflictivos. Todo lo demás es rutina.
+
+Y no es un ejercicio artificial: cuando en el próximo bloque discutas sistemas de ecuaciones con parámetro, la discusión del sistema consistirá **exactamente** en discutir el rango de dos matrices. Lo que aprendas aquí lo usarás allí sin ninguna variación.
+:::
+
+## La estructura de una discusión
+
+::: {.callout-note}
+## Esquema general: matriz cuadrada de orden $n$ con parámetro
+
+**Paso 1.** Calcular $|A|$ en función del parámetro. Se obtiene un polinomio.
+
+**Paso 2.** **Factorizar** ese polinomio y resolver $|A| = 0$. Sean $k_1, k_2, \ldots$ sus raíces.
+
+**Paso 3.** Para todo valor del parámetro **distinto** de esas raíces se tiene $|A|\neq 0$ y por tanto
+
+$$
+\operatorname{rg}(A) = n
+$$
+
+que es el rango máximo. Este caso se resuelve de un plumazo y cubre casi todos los valores.
+
+**Paso 4.** Estudiar **cada raíz por separado**. Para cada $k_i$:
+
+- sustituir el valor en la matriz y escribir la matriz numérica que resulta;
+- buscar en ella un menor de orden $n-1$ distinto de cero; si existe, el rango es $n-1$;
+- si todos los menores de orden $n-1$ se anulan, bajar a orden $n-2$, y así sucesivamente.
+
+**Paso 5.** Redactar la conclusión como una lista de casos que cubra **todos** los valores del parámetro, sin huecos y sin solapamientos.
+:::
+
+::: {.callout-warning}
+## Dos raíces distintas pueden dar rangos distintos
+
+Es el error de bulto más frecuente: suponer que al anularse el determinante el rango baja siempre a $n-1$, o que todas las raíces se comportan igual. **No es así.** Cada raíz produce una matriz numérica **diferente**, con su propio rango, y hay que calcularlo en cada caso.
+
+En el ejemplo resuelto 1 verás una matriz $3\times 3$ cuyo determinante tiene dos raíces: en una el rango cae a $2$ y en la otra cae hasta $1$. Escribir «si el determinante es cero, el rango es $2$» habría dado media discusión mal.
+:::
+
+::: {.callout-tip}
+## El menor testigo: elígelo sin el parámetro
+
+Este es el truco que más tiempo ahorra. Antes de empezar la discusión, busca en la matriz un menor **que no contenga la letra**. Si encuentras uno de orden $h$ y no es cero, entonces
+
+$$
+\operatorname{rg}(A)\ge h \quad\text{para todo valor de } k
+$$
+
+y esa cota inferior ya no hay que volver a discutirla nunca. Con ella, la discusión se reduce a averiguar si en cada caso el rango es $h$ o algo más.
+
+En matrices donde el parámetro aparece en un solo sitio esto suele resolver el problema entero. En matrices donde aparece en todas las filas no siempre es posible, pero merece la pena mirar antes de arrancar.
+:::
+
+### Applet · Rango en función del parámetro {.unnumbered}
+
+Mueve el deslizador del parámetro y observa cómo el determinante y el rango cambian: fíjate en que el rango se mantiene constante en casi todo el recorrido y solo cae en unos pocos valores aislados, y comprueba que esos valores son exactamente las raíces del polinomio que el applet muestra factorizado.
+
+::: {#panel-rangoParam .applet-panel data-applet-det="rangoParam"}
+:::
+
+## Ejemplo resuelto 1: una matriz $3\times 3$ con dos casos distintos
+
+Discute, según los valores de $k$, el rango de
+
+$$
+A = \begin{pmatrix} k & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{pmatrix}
+$$
+
+**Paso 1: el determinante.** Desarrollamos por la primera fila:
+
+$$
+|A| = k\begin{vmatrix} k & 1 \\ 1 & k \end{vmatrix} - 1\begin{vmatrix} 1 & 1 \\ 1 & k \end{vmatrix} + 1\begin{vmatrix} 1 & k \\ 1 & 1 \end{vmatrix}
+$$
+
+Cada menor complementario vale
+
+$$
+\begin{vmatrix} k & 1 \\ 1 & k \end{vmatrix} = k^{2}-1, \qquad
+\begin{vmatrix} 1 & 1 \\ 1 & k \end{vmatrix} = k-1, \qquad
+\begin{vmatrix} 1 & k \\ 1 & 1 \end{vmatrix} = 1-k
+$$
+
+Sustituyendo:
+
+$$
+|A| = k(k^{2}-1) - (k-1) + (1-k) = k^{3} - k - k + 1 + 1 - k = k^{3} - 3k + 2
+$$
+
+**Paso 2: factorizar y resolver.** Probamos $k = 1$: $1 - 3 + 2 = 0$, luego $k-1$ es factor. Dividiendo,
+
+$$
+k^{3} - 3k + 2 = (k-1)(k^{2}+k-2) = (k-1)(k-1)(k+2) = (k-1)^{2}(k+2)
+$$
+
+Por tanto
+
+$$
+|A| = 0 \iff (k-1)^{2}(k+2) = 0 \iff k = 1 \;\text{ o }\; k = -2
+$$
+
+**Paso 3: el caso general.** Si $k\neq 1$ y $k\neq -2$, entonces $|A|\neq 0$ y
+
+$$
+\operatorname{rg}(A) = 3
+$$
+
+**Paso 4a: el caso $k = 1$.** Sustituimos:
+
+$$
+A_{k=1} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}
+$$
+
+Las tres filas son iguales. Cualquier menor de orden $2$ tiene sus dos filas idénticas y vale cero; en efecto, todos son de la forma $\begin{vmatrix} 1 & 1 \\ 1 & 1 \end{vmatrix} = 0$. Luego el rango es menor que $2$. Y como el elemento $1$ es un menor de orden $1$ no nulo,
+
+$$
+\operatorname{rg}(A) = 1 \quad\text{si } k = 1
+$$
+
+**Paso 4b: el caso $k = -2$.** Sustituimos:
+
+$$
+A_{k=-2} = \begin{pmatrix} -2 & 1 & 1 \\ 1 & -2 & 1 \\ 1 & 1 & -2 \end{pmatrix}
+$$
+
+Sabemos que $|A_{k=-2}| = 0$, así que el rango es como máximo $2$. Buscamos un menor de orden $2$:
+
+$$
+\begin{vmatrix} -2 & 1 \\ 1 & -2 \end{vmatrix} = 4 - 1 = 3 \neq 0
+$$
+
+Luego
+
+$$
+\operatorname{rg}(A) = 2 \quad\text{si } k = -2
+$$
+
+**Paso 5: conclusión.**
+
+| Valor del parámetro | $\operatorname{rg}(A)$ |
+|:---|:---:|
+| $k\neq 1$ y $k\neq -2$ | $3$ |
+| $k = -2$ | $2$ |
+| $k = 1$ | $1$ |
+
+**Lectura del resultado.** Las dos raíces se comportan de forma distinta y ese es el corazón del ejercicio. La raíz $k = 1$ es **doble** en el polinomio y en ella el rango se hunde hasta $1$, porque la matriz colapsa en tres filas iguales; la raíz $k = -2$ es simple y el rango solo baja un escalón. No hay ninguna regla que permita saltarse el estudio caso por caso, pero sí una intuición útil: cuanto más «degenera» la matriz al sustituir, más cae el rango.
+
+::: {.callout-important}
+## Por qué el caso general se resuelve tan rápido
+
+Podría parecer sospechoso despachar infinitos valores de $k$ en una línea, pero es correcto y conviene entender por qué. El determinante es un polinomio en $k$; un polinomio no nulo tiene un número finito de raíces —a lo sumo tantas como su grado—, y **fuera de ellas no se anula**. Por tanto, en cuanto conoces las raíces, para cualquier otro valor de $k$ tienes $|A|\neq 0$ garantizado, y el criterio del determinante da rango máximo sin más comprobaciones.
+
+Esta es la razón profunda de que el rango sea máximo «casi siempre»: la caída del rango es una **excepción** confinada a las raíces de un polinomio, y son finitas. También explica por qué el enunciado suele pedir «discute según los valores del parámetro»: se espera una respuesta con un caso general y una lista finita de casos particulares.
+:::
+
+## Ejemplo resuelto 2: una matriz rectangular $3\times 4$
+
+Discute, según los valores de $k$, el rango de
+
+$$
+B = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & k \end{pmatrix}
+$$
+
+Aquí la matriz **no es cuadrada** y no hay determinante que calcular. El plan cambia: se usa el menor testigo y el teorema de los orlados.
+
+**Paso 0: cota.** $\operatorname{rg}(B)\le\min\{3,4\} = 3$, así que el rango será $1$, $2$ o $3$.
+
+**Paso 1: el menor testigo sin parámetro.** El parámetro aparece solo en la posición $(3,4)$, así que hay muchos menores libres de $k$. Tomamos el de las filas $1$, $2$ y las columnas $1$, $2$:
+
+$$
+M = \begin{vmatrix} 1 & 1 \\ 1 & 2 \end{vmatrix} = 2 - 1 = 1 \neq 0
+$$
+
+Este valor **no depende de $k$**, luego
+
+$$
+\operatorname{rg}(B)\ge 2 \quad\text{para todo valor de } k
+$$
+
+El rango nunca podrá ser $1$ ni $0$, y la discusión se reduce a decidir cuándo vale $2$ y cuándo $3$.
+
+**Paso 2: los orlados de $M$.** El menor $M$ usa las filas $1$, $2$ y las columnas $1$, $2$. Le sobra la fila $3$ y le sobran las columnas $3$ y $4$, así que tiene $(3-2)(4-2) = 2$ orlados.
+
+*Primer orlado* (columnas $1$, $2$, $3$):
+
+$$
+\begin{vmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 2 & 3 & 4 \end{vmatrix}
+$$
+
+Por Sarrus: positivos $1\cdot 2\cdot 4 + 1\cdot 3\cdot 2 + 1\cdot 1\cdot 3 = 8 + 6 + 3 = 17$; negativos $2\cdot 2\cdot 1 + 3\cdot 3\cdot 1 + 1\cdot 1\cdot 4 = 4 + 9 + 4 = 17$. Valor: $17 - 17 = 0$. Este orlado es nulo **siempre**, porque no contiene $k$.
+
+*Segundo orlado* (columnas $1$, $2$, $4$):
+
+$$
+\begin{vmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \\ 2 & 3 & k \end{vmatrix}
+$$
+
+Desarrollamos por la primera fila:
+
+$$
+= 1\cdot\begin{vmatrix} 2 & 4 \\ 3 & k \end{vmatrix} - 1\cdot\begin{vmatrix} 1 & 4 \\ 2 & k \end{vmatrix} + 1\cdot\begin{vmatrix} 1 & 2 \\ 2 & 3 \end{vmatrix}
+$$
+
+$$
+= (2k - 12) - (k - 8) + (3 - 4) = 2k - 12 - k + 8 - 1 = k - 5
+$$
+
+**Paso 3: discusión.**
+
+*Si $k\neq 5$*, el segundo orlado vale $k-5\neq 0$: hay un menor de orden $3$ no nulo y, como $3$ es el orden máximo posible,
+
+$$
+\operatorname{rg}(B) = 3
+$$
+
+*Si $k = 5$*, los dos orlados de $M$ son cero —el primero siempre, el segundo porque $k-5 = 0$— y $M\neq 0$. Por el teorema de los orlados,
+
+$$
+\operatorname{rg}(B) = 2
+$$
+
+**Comprobación del caso $k = 5$.** Sustituyendo:
+
+$$
+B_{k=5} = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \end{pmatrix}
+$$
+
+y se ve que $F_3 = F_1 + F_2$, ya que $2 = 1+1$, $3 = 1+2$, $4 = 1+3$ y $5 = 1+4$. La tercera fila no aporta información nueva: hay dos filas independientes y el rango es $2$, como habíamos concluido.
+
+**Paso 4: conclusión.**
+
+| Valor del parámetro | $\operatorname{rg}(B)$ |
+|:---|:---:|
+| $k\neq 5$ | $3$ |
+| $k = 5$ | $2$ |
+
+**Nota sobre el ahorro.** La matriz tiene cuatro menores de orden $3$; sus valores son $0$, $k-5$, $2k-10$ y $k-5$. Los cuatro se anulan simultáneamente solo en $k = 5$, así que calcularlos todos habría dado el mismo resultado con el doble de trabajo. El teorema de los orlados nos ha permitido decidir con dos.
+
+### Applet · Discutir el rango según el parámetro {.unnumbered}
+
+Practica con el applet la discusión completa: introduce una matriz con parámetro, obtén el determinante factorizado, elige cada raíz y examina la matriz numérica que resulta; comprueba que el rango que obtienes en cada raíz coincide con el que el applet calcula y presta atención a las raíces múltiples, donde el rango suele caer más de un escalón.
+
+::: {#panel-discuteParam .applet-panel data-applet-det="discuteParam"}
+:::
+
+## Ejemplo resuelto 3: tres raíces simples
+
+Discute según $m$ el rango de
+
+$$
+C = \begin{pmatrix} m+1 & 0 & m-1 \\ m+1 & m & 4 \\ 0 & m & 2 \end{pmatrix}
+$$
+
+**Paso 1: el determinante.** Desarrollamos por la primera columna, que ya tiene un cero:
+
+$$
+|C| = (m+1)\begin{vmatrix} m & 4 \\ m & 2 \end{vmatrix} - (m+1)\begin{vmatrix} 0 & m-1 \\ m & 2 \end{vmatrix} + 0
+$$
+
+Los dos menores valen
+
+$$
+\begin{vmatrix} m & 4 \\ m & 2 \end{vmatrix} = 2m - 4m = -2m,
+\qquad
+\begin{vmatrix} 0 & m-1 \\ m & 2 \end{vmatrix} = 0 - m(m-1) = -m^{2}+m
+$$
+
+Sustituyendo:
+
+$$
+|C| = (m+1)(-2m) - (m+1)(-m^{2}+m) = (m+1)\left[-2m + m^{2} - m\right] = (m+1)(m^{2}-3m)
+$$
+
+**Paso 2: factorizar y resolver.** Sacando $m$ factor común del segundo paréntesis:
+
+$$
+|C| = m(m+1)(m-3)
+$$
+
+$$
+|C| = 0 \iff m = 0 \;\text{ o }\; m = -1 \;\text{ o }\; m = 3
+$$
+
+**Paso 3: caso general.** Si $m\notin\{-1,\,0,\,3\}$, entonces $|C|\neq 0$ y $\operatorname{rg}(C) = 3$.
+
+**Paso 4a: $m = 0$.**
+
+$$
+C_{m=0} = \begin{pmatrix} 1 & 0 & -1 \\ 1 & 0 & 4 \\ 0 & 0 & 2 \end{pmatrix}
+$$
+
+La segunda columna es nula, lo que explica por sí solo que el determinante se anule. Buscamos un menor de orden $2$ no nulo evitando esa columna, con las filas $1$, $2$ y las columnas $1$, $3$:
+
+$$
+\begin{vmatrix} 1 & -1 \\ 1 & 4 \end{vmatrix} = 4 + 1 = 5 \neq 0
+\;\Longrightarrow\; \operatorname{rg}(C) = 2
+$$
+
+**Paso 4b: $m = -1$.**
+
+$$
+C_{m=-1} = \begin{pmatrix} 0 & 0 & -2 \\ 0 & -1 & 4 \\ 0 & -1 & 2 \end{pmatrix}
+$$
+
+Ahora es la primera columna la que se anula. Con las filas $1$, $2$ y las columnas $2$, $3$:
+
+$$
+\begin{vmatrix} 0 & -2 \\ -1 & 4 \end{vmatrix} = 0 - 2 = -2 \neq 0
+\;\Longrightarrow\; \operatorname{rg}(C) = 2
+$$
+
+**Paso 4c: $m = 3$.**
+
+$$
+C_{m=3} = \begin{pmatrix} 4 & 0 & 2 \\ 4 & 3 & 4 \\ 0 & 3 & 2 \end{pmatrix}
+$$
+
+Aquí no hay ninguna línea nula; la anulación del determinante viene de que $F_1 = F_2 - F_3$. Con las filas $1$, $2$ y las columnas $1$, $2$:
+
+$$
+\begin{vmatrix} 4 & 0 \\ 4 & 3 \end{vmatrix} = 12 - 0 = 12 \neq 0
+\;\Longrightarrow\; \operatorname{rg}(C) = 2
+$$
+
+**Paso 5: conclusión.**
+
+| Valor del parámetro | $\operatorname{rg}(C)$ |
+|:---|:---:|
+| $m\neq -1$, $m\neq 0$, $m\neq 3$ | $3$ |
+| $m = -1$, $m = 0$ o $m = 3$ | $2$ |
+
+**Lectura.** Las tres raíces son simples y en las tres el rango cae exactamente un escalón. Compáralo con el ejemplo 1, donde la raíz doble hundía el rango hasta $1$. Aun así, **hemos verificado cada caso por separado**: la coincidencia de los tres resultados es una conclusión, no una hipótesis de partida.
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Suponer que todas las raíces dan el mismo rango.** Es lo que ocurre en el ejemplo 3 y lo que **no** ocurre en el ejemplo 1. Hay que comprobarlo caso por caso.
+- **No factorizar el determinante.** Un polinomio sin factorizar oculta las raíces múltiples y hace fácil perder alguna solución.
+- **Dejar el parámetro dentro del menor testigo.** Si el menor de orden $2$ que usas para acotar contiene $k$, su no anulación depende del caso y la cota deja de ser universal. Busca uno sin parámetro.
+- **Sustituir mal.** Al llevar $k = -2$ a la matriz, revisa los signos elemento a elemento. Un error de signo aquí cambia el rango del caso.
+- **Escribir una discusión con huecos.** La conclusión debe cubrir todos los valores del parámetro. Frases como «si $k$ es distinto de $1$» junto a «si $k = -2$» sin más dejan sin clasificar valores o los clasifican dos veces.
+- **Cambiar el criterio a mitad de camino.** Si empiezas la discusión de una matriz rectangular con un menor de orden $2$, sigue con **sus** orlados hasta el final.
+- **Anular el determinante y no seguir.** Que $|A| = 0$ solo dice que el rango no es máximo. Falta averiguar cuánto es.
+:::
+
+::: {.callout-warning}
+## Cómo se redacta la discusión
+
+La estructura de la respuesta escrita no es opcional; es parte de lo que se evalúa. Debe contener:
+
+1. La **cota**: $\operatorname{rg}(A)\le\min\{m,n\}$.
+2. El **cálculo del determinante** o del menor de mayor orden, en función del parámetro, **factorizado**.
+3. La **ecuación** $|A| = 0$ resuelta, con sus raíces explícitas.
+4. El **caso general**, formulado como «si el parámetro es distinto de todas las raíces...».
+5. Un **apartado por cada raíz**, con la matriz numérica escrita y el menor testigo que decide el rango.
+6. Una **tabla o lista final** que recoja todos los casos.
+
+Si la matriz es rectangular no hay paso 2 en su forma habitual: se sustituye por la elección de un menor testigo y el examen de sus orlados, uno de los cuales dependerá del parámetro.
+:::
+
+::: {.callout-tip}
+## Un caso que sorprende: el parámetro que no importa
+
+No siempre hay valores conflictivos. Considera
+
+$$
+D = \begin{pmatrix} 1 & 3 & 3 & 1 \\ k & k & 3 & -1 \\ -1 & 3 & 3 & 0 \end{pmatrix}
+$$
+
+Sus cuatro menores de orden $3$ valen, en el orden de las columnas $123$, $124$, $134$ y $234$,
+
+$$
+6(k-3), \qquad 2(2k+3), \qquad 3(k+3), \qquad 3(k-3)
+$$
+
+Para que el rango bajara de $3$ tendrían que anularse **los cuatro a la vez**, es decir, $k$ tendría que ser simultáneamente $3$, $-\tfrac32$ y $-3$. Es imposible: los cuatro polinomios no tienen ninguna raíz común. Por tanto
+
+$$
+\operatorname{rg}(D) = 3 \quad\text{para todo valor de } k
+$$
+
+La conclusión «el rango no depende del parámetro» es una respuesta perfectamente válida, y detectarla ahorra mucho trabajo. Fíjate además en que aquí **no basta un menor**: para afirmar que el rango es $3$ siempre, hay que ver que en cada valor de $k$ hay al menos uno de los cuatro que no se anula, y eso se sigue de que no comparten raíces.
+:::
+
+## Resumen del apartado
+
+- Cuando la matriz depende de un parámetro, el rango es **una función del parámetro** y la respuesta es una **discusión por casos**.
+- **Matriz cuadrada:** calcular $|A|$, factorizarlo, resolver $|A| = 0$. Fuera de las raíces, el rango es máximo; en cada raíz, se sustituye y se calcula el rango de la matriz numérica resultante.
+- **Matriz rectangular:** no hay determinante. Se elige un **menor testigo sin parámetro**, se acota el rango por debajo y se examinan **sus orlados**, alguno de los cuales dependerá del parámetro.
+- **Cada raíz se estudia por separado.** Dos raíces distintas pueden dar rangos distintos, y las raíces múltiples suelen hacer caer el rango más de un escalón.
+- El **menor testigo sin parámetro** es la mejor inversión de tiempo: fija una cota inferior válida para todos los casos.
+- El caso general cubre infinitos valores en una línea, porque un polinomio no nulo tiene un número finito de raíces.
+- La discusión final debe **cubrir todos los valores** del parámetro, sin huecos ni solapamientos, y presentarse ordenada en tabla o lista.
+- Puede ocurrir que **ningún** valor del parámetro baje el rango: sucede cuando los menores de orden máximo no tienen raíces comunes.
+- Todo este procedimiento es el que se usará para discutir sistemas de ecuaciones lineales con parámetro.
+
+## Ejercicios propuestos
+
+**1.** Discute según $k$ el rango de
+
+$$
+A = \begin{pmatrix} 1 & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{pmatrix}
+$$
+
+**2.** Discute según $m$ el rango de
+
+$$
+B = \begin{pmatrix} m & 1 & -1 \\ 1 & m & 1 \\ 1 & 1 & m \end{pmatrix}
+$$
+
+**3.** Discute según $a$ el rango de
+
+$$
+C = \begin{pmatrix} 1 & 2 & a \\ 2 & 4 & 1 \end{pmatrix}
+$$
+
+**4.** Halla los valores de $k$ para los que la matriz
+
+$$
+D = \begin{pmatrix} 2 & k \\ k & 8 \end{pmatrix}
+$$
+
+no tiene inversa, e indica el rango en esos casos.
+
+**5.** Discute según $t$ el rango de
+
+$$
+E = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 0 & 1 & 1 & 3 \\ 1 & 1 & 3 & t \end{pmatrix}
+$$
+
+**6.** Razona por qué, en una discusión con parámetro, conviene elegir un menor testigo que no contenga la letra, y qué se pierde si el menor elegido sí la contiene.
+
+**7.** Sea $A$ una matriz cuadrada de orden $3$ con $|A| = (k-2)^{3}$. ¿Para qué valores de $k$ es $\operatorname{rg}(A) = 3$? ¿Puede afirmarse, sin más datos, cuál es el rango cuando $k = 2$?
+
+**8.** Discute según $k$ el rango de
+
+$$
+F = \begin{pmatrix} k & 1 & 0 \\ 0 & k & 1 \\ 1 & 0 & k \end{pmatrix}
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** *Determinante.* Desarrollando por la primera fila,
+
+$$
+|A| = 1(k\cdot k - 1) - 1(k-1) + 1(1-k) = k^{2}-1-k+1+1-k = k^{2}-2k+1 = (k-1)^{2}
+$$
+
+*Raíces.* $|A| = 0 \iff k = 1$, raíz doble.
+
+*Caso general.* Si $k\neq 1$, entonces $|A| = (k-1)^{2}\neq 0$ y $\operatorname{rg}(A) = 3$.
+
+*Caso $k = 1$.* La matriz se convierte en la de todos unos:
+
+$$
+A_{k=1} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}
+$$
+
+Todos sus menores de orden $2$ tienen las dos filas iguales y valen cero, luego el rango es menor que $2$; y como hay elementos no nulos, $\operatorname{rg}(A) = 1$.
+
+*Conclusión.* $\operatorname{rg}(A) = 3$ si $k\neq 1$; $\operatorname{rg}(A) = 1$ si $k = 1$. Fíjate en que aquí el rango cae **dos** escalones de golpe, algo que ocurre con cierta frecuencia en las raíces múltiples.
+
+**2.** *Determinante.* Desarrollando por la primera fila,
+
+$$
+|B| = m(m^{2}-1) - 1(m-1) + (-1)(1-m) = m^{3}-m-m+1-1+m = m^{3}-m
+$$
+
+*Raíces.* $m^{3}-m = m(m-1)(m+1) = 0 \iff m = 0$, $m = 1$ o $m = -1$.
+
+*Caso general.* Si $m\notin\{-1,0,1\}$, entonces $\operatorname{rg}(B) = 3$.
+
+*Caso $m = 0$.* Queda $\begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}$ y el menor de las filas $1$, $2$ y columnas $1$, $2$ vale $\begin{vmatrix} 0 & 1 \\ 1 & 0 \end{vmatrix} = -1 \neq 0$, luego $\operatorname{rg}(B) = 2$.
+
+*Caso $m = 1$.* Queda $\begin{pmatrix} 1 & 1 & -1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$, con $F_2 = F_3$. El menor de las filas $1$, $2$ y columnas $1$, $3$ vale $\begin{vmatrix} 1 & -1 \\ 1 & 1 \end{vmatrix} = 2 \neq 0$, luego $\operatorname{rg}(B) = 2$.
+
+*Caso $m = -1$.* Queda $\begin{pmatrix} -1 & 1 & -1 \\ 1 & -1 & 1 \\ 1 & 1 & -1 \end{pmatrix}$ y el menor de las filas $1$, $3$ y columnas $1$, $2$ vale $\begin{vmatrix} -1 & 1 \\ 1 & 1 \end{vmatrix} = -1-1 = -2 \neq 0$, luego $\operatorname{rg}(B) = 2$.
+
+*Conclusión.* $\operatorname{rg}(B) = 3$ si $m\notin\{-1,0,1\}$ y $\operatorname{rg}(B) = 2$ en cada una de las tres raíces.
+
+**3.** *Cota.* $\operatorname{rg}(C)\le\min\{2,3\} = 2$, y como la matriz no es nula el rango es $1$ o $2$.
+
+*Menor testigo.* No hace falta buscar sin parámetro: examinamos los tres menores de orden $2$.
+
+$$
+\begin{vmatrix} 1 & 2 \\ 2 & 4 \end{vmatrix} = 0,
+\qquad
+\begin{vmatrix} 1 & a \\ 2 & 1 \end{vmatrix} = 1 - 2a,
+\qquad
+\begin{vmatrix} 2 & a \\ 4 & 1 \end{vmatrix} = 2 - 4a
+$$
+
+*Discusión.* Los tres se anulan a la vez cuando $1-2a = 0$ y $2-4a = 0$, es decir, cuando $a = \tfrac12$. Por tanto:
+
+- si $a\neq\tfrac12$, hay un menor de orden $2$ no nulo y $\operatorname{rg}(C) = 2$;
+- si $a = \tfrac12$, todos los menores de orden $2$ son nulos y, al ser $c_{11} = 1\neq 0$, resulta $\operatorname{rg}(C) = 1$.
+
+*Comprobación.* Con $a = 0{,}5$ la matriz es $\begin{pmatrix} 1 & 2 & 0{,}5 \\ 2 & 4 & 1 \end{pmatrix}$ y en efecto $F_2 = 2F_1$.
+
+**4.** $|D| = 16 - k^{2}$, que se anula si $k^{2} = 16$, es decir, $k = 4$ o $k = -4$. Para esos dos valores la matriz es singular y no tiene inversa. En ambos casos el rango es $1$, ya que el elemento $d_{11} = 2\neq 0$ da un menor de orden $1$ no nulo y no hay menores de orden $2$ no nulos. Para cualquier otro valor de $k$, $\operatorname{rg}(D) = 2$ y la matriz es inversible.
+
+**5.** *Cota.* $\operatorname{rg}(E)\le 3$.
+
+*Menor testigo sin parámetro.* Filas $1$, $2$ y columnas $1$, $2$:
+
+$$
+\begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} = 1 \neq 0
+\;\Longrightarrow\; \operatorname{rg}(E)\ge 2 \text{ para todo } t
+$$
+
+*Orlados.* Le sobra la fila $3$ y le sobran las columnas $3$ y $4$: hay $2$ orlados.
+
+Columnas $1$, $2$, $3$:
+
+$$
+\begin{vmatrix} 1 & 0 & 2 \\ 0 & 1 & 1 \\ 1 & 1 & 3 \end{vmatrix}
+= 1(3-1) - 0(0-1) + 2(0-1) = 2 - 2 = 0
+$$
+
+Columnas $1$, $2$, $4$:
+
+$$
+\begin{vmatrix} 1 & 0 & 1 \\ 0 & 1 & 3 \\ 1 & 1 & t \end{vmatrix}
+= 1(t-3) - 0(0-3) + 1(0-1) = t - 4
+$$
+
+*Discusión.* Si $t\neq 4$, el segundo orlado no es nulo y $\operatorname{rg}(E) = 3$. Si $t = 4$, los dos orlados son nulos y, por el teorema de los orlados, $\operatorname{rg}(E) = 2$.
+
+*Comprobación.* Con $t = 4$ la tercera fila es $(1,1,3,4) = F_1 + F_2$, lo que confirma el rango $2$.
+
+**6.** Si el menor testigo no contiene el parámetro, su valor es un número fijo; al ser distinto de cero, proporciona una cota inferior del rango **válida simultáneamente para todos los valores** del parámetro, y esa parte del problema queda cerrada de una vez. Si el menor sí contiene la letra, su anulación depende del caso: habría que discutir aparte los valores que lo anulan, y en ellos cambiar de menor y reiniciar el examen de orlados. Se pierde por tanto la universalidad de la cota y el árbol de casos se duplica sin necesidad.
+
+**7.** $\operatorname{rg}(A) = 3$ exactamente cuando $|A|\neq 0$, es decir, cuando $(k-2)^{3}\neq 0$, o sea para todo $k\neq 2$. Cuando $k = 2$ solo se puede afirmar que $\operatorname{rg}(A)\le 2$: sabemos que el rango no es máximo, pero **no** cuánto vale. Para determinarlo haría falta la matriz concreta y examinar sus menores de orden $2$; podría ser $2$, $1$ o incluso $0$ si la matriz resultara ser la nula.
+
+**8.** *Determinante.* Desarrollando por la primera fila,
+
+$$
+|F| = k(k\cdot k - 0) - 1(0 - 1) + 0 = k^{3} + 1
+$$
+
+*Raíces.* $k^{3} + 1 = 0 \iff k^{3} = -1 \iff k = -1$, que es la única solución real.
+
+*Caso general.* Si $k\neq -1$, entonces $|F|\neq 0$ y $\operatorname{rg}(F) = 3$.
+
+*Caso $k = -1$.* La matriz queda
+
+$$
+F_{k=-1} = \begin{pmatrix} -1 & 1 & 0 \\ 0 & -1 & 1 \\ 1 & 0 & -1 \end{pmatrix}
+$$
+
+y el menor de las filas $1$, $2$ y las columnas $1$, $2$ vale $\begin{vmatrix} -1 & 1 \\ 0 & -1 \end{vmatrix} = 1 \neq 0$, luego $\operatorname{rg}(F) = 2$.
+
+*Conclusión.* $\operatorname{rg}(F) = 3$ si $k\neq -1$ y $\operatorname{rg}(F) = 2$ si $k = -1$. Observa que el determinante $k^{3}+1$ se factoriza como $(k+1)(k^{2}-k+1)$ y que el segundo factor no tiene raíces reales, lo que confirma que hay un único valor conflictivo.
+:::

@@ -1,0 +1,501 @@
+---
+title: "Tema 2.7 Desarrollo de un determinante por sus adjuntos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 7 de 16)"
+filename: 07-desarrollo-por-adjuntos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Enunciado y justificación del desarrollo de un determinante por los adjuntos de una línea cualquiera, comprobación de que el resultado no depende de la fila o columna elegida, criterio para elegir la línea con más ceros, la fórmula de orden 3 y de orden 2 como casos particulares y el resultado de que la suma de los elementos de una línea por los adjuntos de otra es siempre cero, con ejemplos resueltos, errores típicos y applets manipulables.
+categories: [determinantes, desarrollo por adjuntos, adjuntos, reducción de orden, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Ya tienes las dos piezas: el menor complementario, que baja el orden de un determinante, y el adjunto, que le añade el signo correcto. Falta la instrucción de montaje: **cómo se combinan esas piezas para reconstruir el determinante entero**.
+
+La respuesta es el resultado más importante de todo el tema y se enuncia en una sola frase: el determinante es la suma de los productos de los elementos de **una línea cualquiera** por sus adjuntos respectivos. Cualquiera. Da igual que elijas la primera fila, la tercera columna o la que se te ocurra: el resultado es siempre el mismo número.
+
+Que dé lo mismo la línea elegida no es un detalle menor, sino la fuente de casi toda la potencia práctica del método. Si un determinante tiene una fila con tres ceros, desarrollar por ella significa que tres de los cuatro sumandos se anulan y solo hay que calcular un determinante de orden inferior en vez de cuatro. En cambio, si eliges una fila sin ceros, harás cuatro veces el trabajo para llegar exactamente al mismo sitio.
+
+En este apartado verás el enunciado, la justificación de por qué todas las líneas dan lo mismo, el criterio para elegir bien y un resultado sorprendente que aparece siempre en los exámenes: la suma de los elementos de una línea por los adjuntos de **otra** línea vale cero, siempre.
+
+## El teorema del desarrollo
+
+::: {.callout-note}
+## Desarrollo de un determinante por los adjuntos de una línea
+
+El determinante de una matriz cuadrada $A$ de orden $n$ es igual a la suma de los productos de los elementos de una fila o de una columna cualquiera por sus adjuntos correspondientes.
+
+**Desarrollo por la fila $i$:**
+
+$$
+|A| = a_{i1}A_{i1} + a_{i2}A_{i2} + a_{i3}A_{i3} + \dots + a_{in}A_{in}
+$$
+
+**Desarrollo por la columna $j$:**
+
+$$
+|A| = a_{1j}A_{1j} + a_{2j}A_{2j} + a_{3j}A_{3j} + \dots + a_{nj}A_{nj}
+$$
+
+En notación compacta, para cualquier fila $i$ fijada:
+
+$$
+|A| = \sum_{j=1}^{n} a_{ij}A_{ij}
+$$
+:::
+
+Antes de aplicarlo, conviene leerlo despacio y fijarse en tres cosas.
+
+- **Los índices que se repiten.** En cada sumando, el elemento y su adjunto tienen **los mismos dos subíndices**: $a_{23}$ va con $A_{23}$, nunca con $A_{32}$ ni con $A_{22}$. Es el error de escritura más frecuente.
+- **El número de sumandos.** Hay exactamente $n$ sumandos, uno por cada elemento de la línea elegida, ni uno más ni uno menos.
+- **Dónde están los signos.** No hay que escribir signos alternos a mano: ya están dentro de cada adjunto. Si en lugar de adjuntos usas menores complementarios, entonces sí tienes que poner tú el $(-1)^{i+j}$, y ahí es donde se cuelan los errores.
+
+::: {.callout-warning}
+## Escribir el desarrollo con menores complementarios
+
+Muchas veces resulta cómodo escribir el desarrollo directamente con menores complementarios, que son los determinantes que de verdad hay que calcular. Entonces la fórmula queda, para la fila $i$:
+
+$$
+|A| = (-1)^{i+1}a_{i1}\alpha_{i1} + (-1)^{i+2}a_{i2}\alpha_{i2} + \dots + (-1)^{i+n}a_{in}\alpha_{in}
+$$
+
+Para la primera fila los signos son $+,\,-,\,+,\,-,\dots$; para la segunda, $-,\,+,\,-,\,+,\dots$, y así alternando. **La primera pregunta que hay que hacerse al desarrollar por una línea es con qué signo empieza.** Si la línea es la fila $3$, empieza en $+$ porque $3+1 = 4$ es par; si es la fila $2$ o la columna $2$, empieza en $-$.
+:::
+
+### Ejemplo resuelto 1: el mismo determinante por tres caminos
+
+Calcula $|A|$ para
+
+$$
+A = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}
+$$
+
+de tres maneras: con la regla de Sarrus, desarrollando por la primera fila y desarrollando por la tercera columna.
+
+**Por la regla de Sarrus.** Los productos positivos son $2\cdot 2\cdot 2 = 8$, $0\cdot(-1)\cdot 1 = 0$ y $4\cdot 3\cdot 1 = 12$; los negativos, $4\cdot 2\cdot 1 = 8$, $2\cdot(-1)\cdot 1 = -2$ y $0\cdot 3\cdot 2 = 0$. Por tanto
+
+$$
+|A| = (8 + 0 + 12) - \bigl(8 + (-2) + 0\bigr) = 20 - 6 = 14
+$$
+
+**Por la primera fila.** Los signos empiezan en $+$ y alternan: $+,\,-,\,+$.
+
+$$
+|A| = 2\begin{vmatrix} 2 & -1 \\ 1 & 2 \end{vmatrix} - 0\begin{vmatrix} 3 & -1 \\ 1 & 2 \end{vmatrix} + 4\begin{vmatrix} 3 & 2 \\ 1 & 1 \end{vmatrix}
+$$
+
+$$
+|A| = 2\cdot 5 - 0\cdot 7 + 4\cdot 1 = 10 - 0 + 4 = 14
+$$
+
+**Por la tercera columna.** Los signos de la columna $3$ empiezan en $+$, porque $1+3 = 4$ es par, y alternan hacia abajo: $+,\,-,\,+$.
+
+$$
+|A| = 4\begin{vmatrix} 3 & 2 \\ 1 & 1 \end{vmatrix} - (-1)\begin{vmatrix} 2 & 0 \\ 1 & 1 \end{vmatrix} + 2\begin{vmatrix} 2 & 0 \\ 3 & 2 \end{vmatrix}
+$$
+
+$$
+|A| = 4\cdot 1 + 1\cdot 2 + 2\cdot 4 = 4 + 2 + 8 = 14
+$$
+
+Los tres caminos conducen a $14$. Observa el segundo sumando del último desarrollo: el elemento es $-1$ y el signo de posición es $-$, así que el producto queda $-(-1)\cdot 2 = +2$. Escribir $-(-1)$ con paréntesis, y no $--1$, evita el fallo clásico.
+
+### Ejemplo resuelto 2: otra matriz, dos líneas distintas
+
+Calcula $|B|$ para
+
+$$
+B = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 1 \\ 5 & -1 & 0 \end{pmatrix}
+$$
+
+**Comprobación previa con Sarrus.**
+
+$$
+|B| = (0 + 10 - 6) - (60 + 0 - 1) = 4 - 59 = -55
+$$
+
+**Desarrollo por la tercera columna,** que es la que tiene un cero:
+
+$$
+|B| = +3\begin{vmatrix} 2 & 4 \\ 5 & -1 \end{vmatrix} - 1\begin{vmatrix} 1 & 2 \\ 5 & -1 \end{vmatrix} + 0\begin{vmatrix} 1 & 2 \\ 2 & 4 \end{vmatrix}
+$$
+
+$$
+|B| = 3(-2 - 20) - (-1 - 10) + 0 = 3\cdot(-22) + 11 = -66 + 11 = -55
+$$
+
+El tercer determinante no hace ninguna falta: su elemento vale $0$ y todo el sumando se anula. Se puede escribir «$+\,0$» y pasar de largo.
+
+**Desarrollo por la segunda fila,** donde no hay ningún cero que ayude. Los signos empiezan en $-$:
+
+$$
+|B| = -2\begin{vmatrix} 2 & 3 \\ -1 & 0 \end{vmatrix} + 4\begin{vmatrix} 1 & 3 \\ 5 & 0 \end{vmatrix} - 1\begin{vmatrix} 1 & 2 \\ 5 & -1 \end{vmatrix}
+$$
+
+$$
+|B| = -2(0 + 3) + 4(0 - 15) - (-1 - 10) = -6 - 60 + 11 = -55
+$$
+
+Mismo resultado, más trabajo: tres determinantes de orden $2$ en lugar de dos.
+
+### Applet · Desarrollo por adjuntos {.unnumbered}
+
+Introduce una matriz, elige una fila o una columna y observa el desarrollo escrito término a término, con el elemento, el signo, el menor complementario y el producto separados. Experimenta desarrollando la misma matriz por líneas distintas y comprueba que el total no varía, aunque los sumandos intermedios sean completamente diferentes.
+
+::: {#panel-desarrollo .applet-panel data-applet-det="desarrollo"}
+:::
+
+## Por qué da lo mismo la línea elegida
+
+::: {.callout-important}
+## La razón de fondo
+
+Que $2n$ desarrollos distintos —$n$ por filas y $n$ por columnas— produzcan siempre el mismo número parece milagroso. No lo es: los tres desarrollos del ejemplo 1 no son tres fórmulas distintas, sino **tres formas de agrupar los mismos seis productos**.
+
+Recuerda la definición: el determinante de orden $n$ es la suma de todos los productos posibles de $n$ elementos, uno de cada fila y uno de cada columna, con signo positivo la mitad y negativo la otra mitad. En orden $3$ son $6$ productos de tres factores.
+
+Ahora fija una línea, por ejemplo la primera fila. **Cada uno de los seis productos contiene exactamente un elemento de esa fila**, porque todo producto toma un elemento de cada fila. Así que los seis productos se reparten en tres grupos según cuál sea ese elemento: los que llevan $a_{11}$, los que llevan $a_{12}$ y los que llevan $a_{13}$. Cada grupo tiene $2! = 2$ productos.
+
+Si en el grupo de $a_{11}$ sacas factor común $a_{11}$, lo que queda entre paréntesis es la suma de los productos posibles con un elemento de cada una de las filas y columnas restantes, con sus signos: es decir, **el menor complementario $\alpha_{11}$**. Lo mismo ocurre con los otros dos grupos, salvo por un ajuste de signo que resulta ser exactamente $(-1)^{1+j}$.
+
+Total: $|A| = a_{11}A_{11} + a_{12}A_{12} + a_{13}A_{13}$. Y si en lugar de la primera fila fijamos la tercera columna, el reparto de los seis productos es distinto, pero **son los mismos seis productos**, así que la suma final es idéntica. Por eso el resultado no depende de la línea.
+
+Comprobación directa en orden $3$: el desarrollo por la primera fila da
+
+$$
+|A| = a_{11}(a_{22}a_{33} - a_{23}a_{32}) - a_{12}(a_{21}a_{33} - a_{23}a_{31}) + a_{13}(a_{21}a_{32} - a_{22}a_{31})
+$$
+
+y al quitar los paréntesis aparecen los seis productos de la regla de Sarrus, con sus signos, ni uno más ni uno menos.
+:::
+
+::: {.callout-tip}
+## El orden 2 también es un desarrollo por adjuntos
+
+En una matriz $\begin{pmatrix} a & b \\ c & d\end{pmatrix}$, el desarrollo por la primera fila dice
+
+$$
+|A| = a\,A_{11} + b\,A_{12} = a\cdot d + b\cdot(-c) = ad - bc
+$$
+
+porque $\alpha_{11} = d$ y $\alpha_{12} = c$, este último con signo cambiado. La fórmula del producto cruzado que aprendiste al principio del tema **no es un caso aparte**: es este mismo teorema aplicado al orden $2$. Y lo mismo pasa con la regla de Sarrus, que se obtiene de desarrollar un determinante de orden $3$ y quitar paréntesis.
+
+Es decir: el desarrollo por adjuntos no es una técnica más entre otras, es **la** definición operativa del determinante, y todo lo demás son atajos suyos para órdenes pequeños.
+:::
+
+## Elegir bien la línea
+
+Como todas las líneas dan el mismo resultado, la elección es libre y conviene aprovecharla. El criterio es único y no admite discusión.
+
+::: {.callout-note}
+## Criterio de elección
+
+Desarrolla siempre por **la línea que tenga más ceros**. Cada cero de esa línea elimina un determinante de orden $n-1$ completo, que es el cálculo más caro del proceso.
+
+Si hay empate, prefiere la línea que además contenga un $1$ o un $-1$, porque evita multiplicaciones grandes.
+:::
+
+Un determinante de orden $4$ desarrollado por una línea sin ceros exige calcular **cuatro** determinantes de orden $3$, es decir, cuatro reglas de Sarrus con sus $24$ productos en total. Si la línea tiene dos ceros, solo hacen falta **dos**. Si tiene tres ceros, **uno**. El ahorro no es marginal: es la diferencia entre un ejercicio de cinco minutos y uno de veinte.
+
+### Ejemplo resuelto 3: una línea con un solo elemento no nulo
+
+Calcula
+
+$$
+|G| = \begin{vmatrix} 1 & 2 & 3 & 4 \\ 2 & 0 & 0 & 0 \\ 3 & 1 & 2 & 1 \\ 0 & 1 & 1 & 2 \end{vmatrix}
+$$
+
+La segunda fila tiene tres ceros: es, con diferencia, la mejor candidata. Desarrollamos por ella. Los signos de la fila $2$ empiezan en $-$, así que el término de $a_{21}$ lleva signo negativo:
+
+$$
+|G| = -2\begin{vmatrix} 2 & 3 & 4 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{vmatrix} + 0 - 0 + 0
+$$
+
+Solo queda un determinante de orden $3$. Por Sarrus:
+
+$$
+\begin{vmatrix} 2 & 3 & 4 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{vmatrix} = (8 + 3 + 4) - (8 + 2 + 6) = 15 - 16 = -1
+$$
+
+Por tanto
+
+$$
+|G| = -2\cdot(-1) = 2
+$$
+
+Un determinante de orden $4$ resuelto con **una sola** regla de Sarrus. Si hubiéramos desarrollado por la primera fila habrían hecho falta cuatro.
+
+### Applet · Elegir la mejor línea {.unnumbered}
+
+Carga una matriz y deja que el applet cuente los ceros de cada fila y de cada columna antes de recomendarte una línea. Experimenta añadiendo o quitando ceros y observa cómo cambia la recomendación y cuántos determinantes de orden inferior te ahorras en cada caso; compara después el trabajo real de desarrollar por la línea recomendada y por otra cualquiera.
+
+::: {#panel-eligeLinea .applet-panel data-applet-det="eligeLinea"}
+:::
+
+::: {.callout-tip}
+## Fabricar los ceros que no hay
+
+¿Y si ninguna línea tiene ceros? Entonces se fabrican. La propiedad que dice que **sumar a una línea una combinación lineal de las demás no altera el determinante** permite crear tantos ceros como se quiera antes de desarrollar. Esa combinación de las dos ideas —hacer ceros primero, desarrollar después— es el método estándar para órdenes altos y se estudia con detalle en el apartado 2.9.
+:::
+
+## La suma con los adjuntos de otra línea
+
+Y ahora el resultado que casi siempre aparece en forma de pregunta teórica, y que desconcierta a quien no lo ha visto antes.
+
+::: {.callout-note}
+## Suma de una línea por los adjuntos de otra
+
+Si se multiplican los elementos de una línea por los adjuntos **de otra línea paralela** y se suman, el resultado es siempre **cero**:
+
+$$
+a_{i1}A_{k1} + a_{i2}A_{k2} + \dots + a_{in}A_{kn} = 0 \qquad \text{si } i \neq k
+$$
+
+Lo mismo vale para columnas.
+:::
+
+::: {.callout-important}
+## Por qué vale cero
+
+La demostración es de una elegancia notable y conviene entenderla, porque es un razonamiento que se reutiliza en el apartado de la matriz inversa.
+
+Sea $A$ una matriz de orden $n$ y consideremos la suma $a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33}$, es decir, los elementos de la **fila 1** multiplicados por los adjuntos de la **fila 3**.
+
+Construyamos una matriz auxiliar $A'$ idéntica a $A$ salvo que su tercera fila se ha sustituido por una copia de la primera. Es decir, $A'$ tiene la fila $1$ repetida en la posición $3$.
+
+Dos observaciones:
+
+- Los adjuntos de la tercera fila de $A'$ **coinciden con los de $A$**, porque al calcular $A'_{3j}$ se suprime precisamente la tercera fila, que es la única que hemos modificado. Lo que queda es idéntico en las dos matrices.
+- Desarrollando $|A'|$ por su tercera fila, cuyos elementos son $a_{11}$, $a_{12}$, $a_{13}$, obtenemos exactamente la suma que nos interesa:
+
+$$
+|A'| = a_{11}A_{31} + a_{12}A_{32} + a_{13}A_{33}
+$$
+
+Pero $A'$ tiene **dos filas iguales**, la primera y la tercera, y un determinante con dos líneas iguales vale cero (propiedad 4 del apartado 2.3). Por tanto $|A'| = 0$ y la suma vale cero. El argumento no usa nada especial de las filas $1$ y $3$: funciona para cualquier par de líneas paralelas distintas.
+:::
+
+### Ejemplo resuelto 4: comprobación numérica
+
+Con la matriz $A = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}$, cuyos adjuntos son
+
+$$
+\begin{pmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ A_{31} & A_{32} & A_{33} \end{pmatrix}
+= \begin{pmatrix} 5 & -7 & 1 \\ 4 & 0 & -2 \\ -8 & 14 & 4 \end{pmatrix}
+$$
+
+comprobemos varias combinaciones.
+
+**Fila 1 con sus propios adjuntos** (debe dar $|A|$):
+
+$$
+2\cdot 5 + 0\cdot(-7) + 4\cdot 1 = 10 + 0 + 4 = 14
+$$
+
+**Fila 3 con sus propios adjuntos** (debe dar $|A|$ otra vez):
+
+$$
+1\cdot(-8) + 1\cdot 14 + 2\cdot 4 = -8 + 14 + 8 = 14
+$$
+
+**Fila 1 con los adjuntos de la fila 3** (debe dar $0$):
+
+$$
+2\cdot(-8) + 0\cdot 14 + 4\cdot 4 = -16 + 0 + 16 = 0
+$$
+
+**Fila 2 con los adjuntos de la fila 1** (debe dar $0$):
+
+$$
+3\cdot 5 + 2\cdot(-7) + (-1)\cdot 1 = 15 - 14 - 1 = 0
+$$
+
+**Columna 1 con los adjuntos de la columna 3** (debe dar $0$):
+
+$$
+2\cdot 1 + 3\cdot(-2) + 1\cdot 4 = 2 - 6 + 4 = 0
+$$
+
+Los cinco resultados son los previstos. La regla se resume así: **con los adjuntos propios sale el determinante; con los adjuntos ajenos sale cero**.
+
+### Applet · Adjuntos de una línea ajena {.unnumbered}
+
+Elige una línea de elementos y, por separado, una línea de adjuntos, y observa el valor de la suma resultante. Experimenta haciendo coincidir ambas líneas y separándolas después: comprobarás que el resultado salta bruscamente entre el determinante y el cero, sin valores intermedios, por muchas matrices distintas que pruebes.
+
+::: {#panel-filaAjena .applet-panel data-applet-det="filaAjena"}
+:::
+
+::: {.callout-tip}
+## Para qué sirve este resultado
+
+Parece un juego, pero es la clave del cálculo de la matriz inversa. Si formamos la matriz de los adjuntos y la multiplicamos adecuadamente por $A$, cada elemento de la diagonal del producto es una suma «línea por sus propios adjuntos», es decir, $|A|$; y cada elemento de fuera de la diagonal es una suma «línea por adjuntos ajenos», es decir, $0$. El producto resulta ser
+
+$$
+|A|\cdot I = \begin{pmatrix} |A| & 0 & 0 \\ 0 & |A| & 0 \\ 0 & 0 & |A| \end{pmatrix}
+$$
+
+y de ahí sale, dividiendo por $|A|$, la fórmula de la inversa que se estudia en el apartado 2.15. Todo el bloque final del tema descansa sobre este cero.
+:::
+
+::: {.callout-caution}
+## Errores típicos al desarrollar
+
+- **Cruzar los índices.** El elemento $a_{23}$ va multiplicado por $A_{23}$, no por $A_{32}$. Escribe siempre los dos subíndices en el mismo orden.
+- **Olvidar con qué signo empieza la línea.** Al desarrollar por la fila $2$ o por la columna $2$, el primer sumando lleva signo $-$. Comprueba la paridad antes de empezar, no después.
+- **Poner signos alternos y además usar adjuntos.** O usas adjuntos, que ya llevan el signo, o usas menores complementarios y pones tú los signos. Hacer las dos cosas equivale a no poner ninguno.
+- **Mezclar dos líneas.** Un desarrollo usa los $n$ elementos de **una sola** línea. Si en un mismo desarrollo aparecen $a_{11}$ y $a_{21}$, hay un error de planteamiento.
+- **Multiplicar por el elemento cuando el adjunto ya lo incluye.** El adjunto $A_{ij}$ **no contiene** a $a_{ij}$, así que hay que multiplicar. Quien cree que ya está incluido se olvida del factor y obtiene un número sin sentido.
+:::
+
+## Resumen del apartado
+
+- **Teorema del desarrollo:** $|A| = a_{i1}A_{i1} + \dots + a_{in}A_{in}$ para cualquier fila $i$, y análogamente para cualquier columna.
+- El resultado **no depende** de la línea elegida, porque todos los desarrollos reagrupan los mismos $n!$ productos de la definición.
+- Los signos ya están dentro de los adjuntos; si se usan menores complementarios hay que añadir $(-1)^{i+j}$.
+- El desarrollo por la fila $2$ o la columna $2$ empieza con signo $-$.
+- **Conviene desarrollar por la línea con más ceros:** cada cero elimina un determinante de orden $n-1$.
+- La fórmula de orden $2$ y la regla de Sarrus son casos particulares de este teorema.
+- La suma de los elementos de una línea por los adjuntos de **otra** línea paralela vale siempre $0$, porque equivale al determinante de una matriz con dos líneas iguales.
+- Ese cero es la pieza que hace funcionar la fórmula de la matriz inversa.
+
+## Ejercicios propuestos
+
+**1 (básico).** Escribe el desarrollo de $|A|$ por la segunda fila para una matriz genérica de orden $3$, indicando los signos.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+|A| = -a_{21}\begin{vmatrix} a_{12} & a_{13} \\ a_{32} & a_{33} \end{vmatrix} + a_{22}\begin{vmatrix} a_{11} & a_{13} \\ a_{31} & a_{33} \end{vmatrix} - a_{23}\begin{vmatrix} a_{11} & a_{12} \\ a_{31} & a_{32} \end{vmatrix}
+$$
+
+Empieza en $-$ porque $2+1 = 3$ es impar.
+:::
+
+**2 (básico).** Calcula $\begin{vmatrix} 1 & 3 & 0 \\ 2 & -1 & 4 \\ 5 & 0 & 2 \end{vmatrix}$ desarrollando por la línea más conveniente.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La tercera fila y la segunda columna tienen un cero cada una; también la primera fila. Elegimos la **tercera fila**, que además empieza por signo $+$:
+
+$$
+|A| = 5\begin{vmatrix} 3 & 0 \\ -1 & 4\end{vmatrix} - 0 + 2\begin{vmatrix} 1 & 3 \\ 2 & -1\end{vmatrix} = 5\cdot 12 + 2\cdot(-7) = 60 - 14 = 46
+$$
+:::
+
+**3 (básico).** Calcula el mismo determinante del ejercicio anterior desarrollando por la **primera columna** y comprueba que coincide.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+|A| = 1\begin{vmatrix} -1 & 4 \\ 0 & 2\end{vmatrix} - 2\begin{vmatrix} 3 & 0 \\ 0 & 2\end{vmatrix} + 5\begin{vmatrix} 3 & 0 \\ -1 & 4\end{vmatrix} = 1\cdot(-2) - 2\cdot 6 + 5\cdot 12 = -2 - 12 + 60 = 46
+$$
+
+Coincide, como tenía que ocurrir.
+:::
+
+**4 (medio).** Calcula $\begin{vmatrix} 2 & 1 & 0 \\ 0 & 3 & 0 \\ 4 & -2 & 5 \end{vmatrix}$ eligiendo razonadamente la línea.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La segunda fila tiene dos ceros: solo quedará un sumando. Empieza en signo $-$, pero el término no nulo es el segundo, que lleva $+$:
+
+$$
+|A| = -0 + 3\begin{vmatrix} 2 & 0 \\ 4 & 5\end{vmatrix} - 0 = 3\cdot 10 = 30
+$$
+
+La tercera columna, con dos ceros también, habría servido igual de bien.
+:::
+
+**5 (medio).** Calcula $\begin{vmatrix} 1 & 2 & 3 & 4 \\ 0 & 0 & 2 & 0 \\ 1 & 1 & 1 & 1 \\ 2 & 0 & 1 & 3 \end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La segunda fila tiene tres ceros. Su único elemento no nulo es $a_{23} = 2$, cuyo signo es $(-1)^{2+3} = -1$:
+
+$$
+|A| = -2\begin{vmatrix} 1 & 2 & 4 \\ 1 & 1 & 1 \\ 2 & 0 & 3 \end{vmatrix}
+$$
+
+Por Sarrus: $(3 + 4 + 0) - (8 + 0 + 6) = 7 - 14 = -7$. Por tanto
+
+$$
+|A| = -2\cdot(-7) = 14
+$$
+:::
+
+**6 (medio).** Dada $A = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}$, con adjuntos $A_{21} = 4$, $A_{22} = 0$ y $A_{23} = -2$, calcula $a_{31}A_{21} + a_{32}A_{22} + a_{33}A_{23}$ sin hacer ningún determinante nuevo y explica el resultado.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+1\cdot 4 + 1\cdot 0 + 2\cdot(-2) = 4 + 0 - 4 = 0
+$$
+
+Vale cero porque se están multiplicando los elementos de la **fila 3** por los adjuntos de la **fila 2**. Equivale al determinante de la matriz que resulta de copiar la fila $3$ en el lugar de la fila $2$, que tendría dos filas iguales.
+:::
+
+**7 (medio).** ¿Cuántos determinantes de orden $3$ hay que calcular, como máximo, para resolver un determinante de orden $4$ por adjuntos? ¿Y como mínimo, si una línea tiene tres ceros?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Como máximo, **cuatro**: uno por cada elemento de la línea elegida, si ninguno es nulo.
+
+Como mínimo, **uno**: si la línea tiene tres ceros, tres de los cuatro sumandos se anulan y solo sobrevive el que corresponde al elemento no nulo. Y si la línea entera fuese de ceros, no habría que calcular ninguno, porque el determinante sería $0$.
+:::
+
+**8 (avanzado).** Sea $A$ una matriz de orden $3$ con $|A| = 7$. ¿Cuánto vale $a_{11}A_{11} + a_{21}A_{21} + a_{31}A_{31}$? ¿Y $a_{11}A_{12} + a_{21}A_{22} + a_{31}A_{32}$?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La primera suma recorre los elementos de la **columna 1** multiplicados por los adjuntos de la **columna 1**: es el desarrollo por esa columna, luego vale $|A| = 7$.
+
+La segunda suma toma los elementos de la columna $1$ y los adjuntos de la columna $2$: son líneas distintas, así que vale $0$.
+:::
+
+**9 (avanzado).** Justifica que si una matriz cuadrada tiene una fila de ceros, su determinante es nulo, usando únicamente el teorema del desarrollo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Desarrollamos por esa misma fila de ceros. Cada sumando es de la forma $a_{ij}A_{ij}$ con $a_{ij} = 0$, luego todos los sumandos valen $0$ y su suma también:
+
+$$
+|A| = 0\cdot A_{i1} + 0\cdot A_{i2} + \dots + 0\cdot A_{in} = 0
+$$
+
+No hace falta conocer ninguno de los adjuntos: por grandes que sean, están multiplicados por cero. Este argumento vale para cualquier orden y es una demostración completa de la propiedad 2 del apartado 2.3.
+:::
+
+**10 (avanzado).** Una matriz de orden $3$ cumple que su segunda columna es $(0,\ 0,\ 1)$. Expresa $|A|$ en función de un único determinante de orden $2$ y determina su signo.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Desarrollando por la segunda columna, los dos primeros sumandos se anulan y queda solo el tercero, con signo $(-1)^{3+2} = -1$:
+
+$$
+|A| = -1\cdot\begin{vmatrix} a_{11} & a_{13} \\ a_{21} & a_{23} \end{vmatrix} = -\bigl(a_{11}a_{23} - a_{13}a_{21}\bigr)
+$$
+
+El signo del resultado depende, por tanto, del de ese determinante de orden $2$: es el opuesto.
+:::

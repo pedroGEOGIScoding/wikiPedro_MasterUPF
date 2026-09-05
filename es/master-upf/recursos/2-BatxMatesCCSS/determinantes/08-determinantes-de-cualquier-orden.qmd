@@ -1,0 +1,436 @@
+---
+title: "Tema 2.8 Determinantes de cualquier orden"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 8 de 16)"
+filename: 08-determinantes-de-cualquier-orden
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Aplicación repetida del desarrollo por adjuntos para calcular determinantes de orden 4 y 5, ejemplo completo de orden 4 resuelto por dos líneas distintas, ejemplo de orden 5 con reducciones sucesivas, coste del cálculo por la definición frente al desarrollo por adjuntos, recuento de productos y de determinantes intermedios y criterios de organización del trabajo, con ejemplos resueltos, errores típicos y applets manipulables.
+categories: [determinantes, orden superior, desarrollo por adjuntos, recursividad, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hasta el apartado anterior, todo lo que sabías calcular tenía un límite muy claro: orden $3$. La fórmula del producto cruzado sirve para el orden $2$ y la regla de Sarrus para el orden $3$, y ahí se acaba el catálogo de recetas directas. **La regla de Sarrus no admite ninguna extensión al orden 4**: las diagonales que se dibujan en un cuadrado de $4\times 4$ producen ocho productos, y un determinante de orden $4$ tiene veinticuatro. Sencillamente, no cuadra.
+
+El teorema del desarrollo por adjuntos rompe ese límite. Si un determinante de orden $4$ se escribe como suma de cuatro determinantes de orden $3$, y esos ya los sabemos calcular, el problema está resuelto. Y si tuviéramos un determinante de orden $5$, lo escribiríamos como suma de cinco de orden $4$, cada uno de los cuales se descompone en cuatro de orden $3$. El procedimiento no tiene techo: baja de orden en orden hasta llegar a un terreno conocido.
+
+Eso es lo que se llama un **método recursivo**: un método que resuelve un problema reduciéndolo a varios problemas iguales pero más pequeños, hasta llegar a un caso que se sabe resolver directamente.
+
+En este apartado aprenderás a aplicarlo con orden y sin perderte, verás cuánto cuesta realmente en cantidad de operaciones y entenderás por qué, a partir del orden $4$, calcular sin ceros es un mal negocio. Esa constatación es la que motivará el método del apartado siguiente.
+
+## El método recursivo
+
+::: {.callout-note}
+## Esquema general
+
+Para calcular un determinante de orden $n$ con $n > 3$:
+
+1. **Elegir la línea** —fila o columna— con más ceros.
+2. **Desarrollar** por los adjuntos de esa línea, escribiendo los $n$ sumandos con sus signos y descartando de entrada los que llevan elemento nulo.
+3. Cada sumando contiene un determinante de orden $n-1$. Si $n-1 = 3$, se resuelve con Sarrus; si $n - 1 = 2$, con el producto cruzado; si sigue siendo mayor que $3$, **se vuelve al paso 1** con él.
+4. Multiplicar cada determinante por su elemento y por su signo, y sumar.
+:::
+
+El punto 3 es el corazón del asunto: el mismo procedimiento se aplica a los subdeterminantes que van apareciendo. Por eso conviene trabajar con una disciplina estricta de escritura: cada determinante intermedio con un nombre ($D_1$, $D_2$, …), su valor calculado aparte y la suma final ensamblada al terminar. Intentar llevarlo todo en una sola línea de cálculo es la vía rápida hacia el error.
+
+## Un determinante de orden 4, paso a paso
+
+### Ejemplo resuelto 1: desarrollo por la columna con más ceros
+
+Calcula
+
+$$
+|A| = \begin{vmatrix} 2 & 0 & 5 & 1 \\ 3 & 4 & 2 & 0 \\ 6 & -1 & 3 & 2 \\ 4 & 0 & 2 & 1 \end{vmatrix}
+$$
+
+**Paso 1: elegir la línea.** Contamos los ceros:
+
+- filas: la primera tiene $1$, la segunda tiene $1$, la tercera ninguno, la cuarta tiene $1$;
+- columnas: la primera ninguno, la segunda tiene **dos**, la tercera ninguno, la cuarta tiene $1$.
+
+La ganadora es la **segunda columna**, con dos ceros. Desarrollando por ella nos ahorramos dos determinantes de orden $3$ enteros.
+
+**Paso 2: escribir el desarrollo.** Los signos de la columna $2$, de arriba abajo, son $-,\,+,\,-,\,+$, porque $1+2 = 3$ es impar. Los elementos son $0$, $4$, $-1$ y $0$:
+
+$$
+|A| = -0\cdot\begin{vmatrix} 3 & 2 & 0 \\ 6 & 3 & 2 \\ 4 & 2 & 1 \end{vmatrix}
++ 4\cdot\begin{vmatrix} 2 & 5 & 1 \\ 6 & 3 & 2 \\ 4 & 2 & 1 \end{vmatrix}
+- (-1)\cdot\begin{vmatrix} 2 & 5 & 1 \\ 3 & 2 & 0 \\ 4 & 2 & 1 \end{vmatrix}
++ 0\cdot\begin{vmatrix} 2 & 5 & 1 \\ 3 & 2 & 0 \\ 6 & 3 & 2 \end{vmatrix}
+$$
+
+El primero y el último sumando se anulan. Quedan solo dos determinantes de orden $3$ por calcular.
+
+**Paso 3: resolver los determinantes de orden 3.**
+
+$$
+D_1 = \begin{vmatrix} 2 & 5 & 1 \\ 6 & 3 & 2 \\ 4 & 2 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $2\cdot 3\cdot 1 = 6$, $5\cdot 2\cdot 4 = 40$ y $1\cdot 6\cdot 2 = 12$; suman $58$. Productos negativos: $1\cdot 3\cdot 4 = 12$, $2\cdot 2\cdot 2 = 8$ y $5\cdot 6\cdot 1 = 30$; suman $50$. Por tanto $D_1 = 58 - 50 = 8$.
+
+$$
+D_2 = \begin{vmatrix} 2 & 5 & 1 \\ 3 & 2 & 0 \\ 4 & 2 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $2\cdot 2\cdot 1 = 4$, $5\cdot 0\cdot 4 = 0$ y $1\cdot 3\cdot 2 = 6$; suman $10$. Productos negativos: $1\cdot 2\cdot 4 = 8$, $2\cdot 0\cdot 2 = 0$ y $5\cdot 3\cdot 1 = 15$; suman $23$. Por tanto $D_2 = 10 - 23 = -13$.
+
+**Paso 4: ensamblar.**
+
+$$
+|A| = 4\cdot D_1 + 1\cdot D_2 = 4\cdot 8 + (-13) = 32 - 13 = 19
+$$
+
+El determinante vale $19$.
+
+::: {.callout-warning}
+## El signo del tercer sumando
+
+Fíjate bien en el término $-(-1)\cdot D_2$. Hay dos signos negativos en juego y son de naturaleza distinta: uno viene de la **posición** $(3,2)$, cuya suma de índices es impar, y el otro es el **valor** del elemento $a_{32} = -1$. Al multiplicarlos resulta $+1\cdot D_2$, es decir, $+(-13)$.
+
+Escribirlo con paréntesis, $-(-1)$, y no como $--1$, cuesta un segundo y evita el error más común de todo el apartado.
+:::
+
+### Applet · Determinante de orden 4 {.unnumbered}
+
+Escribe una matriz de orden $4$, elige la línea por la que quieres desarrollar y sigue los cuatro sumandos con su signo, su elemento y su determinante de orden $3$ asociado. Experimenta resolviendo la misma matriz por dos líneas distintas —una con ceros y otra sin ellos— y compara el número de determinantes de orden $3$ que has tenido que calcular en cada caso.
+
+::: {#panel-orden4 .applet-panel data-applet-det="orden4"}
+:::
+
+### Ejemplo resuelto 2: el mismo determinante por una línea peor
+
+Vamos a repetir el cálculo anterior desarrollando por la **primera fila**, que solo tiene un cero, para ver qué diferencia hay. Los signos son $+,\,-,\,+,\,-$ y los elementos, $2$, $0$, $5$ y $1$:
+
+$$
+|A| = 2\begin{vmatrix} 4 & 2 & 0 \\ -1 & 3 & 2 \\ 0 & 2 & 1 \end{vmatrix}
+- 0\begin{vmatrix} 3 & 2 & 0 \\ 6 & 3 & 2 \\ 4 & 2 & 1 \end{vmatrix}
++ 5\begin{vmatrix} 3 & 4 & 0 \\ 6 & -1 & 2 \\ 4 & 0 & 1 \end{vmatrix}
+- 1\begin{vmatrix} 3 & 4 & 2 \\ 6 & -1 & 3 \\ 4 & 0 & 2 \end{vmatrix}
+$$
+
+Ahora hay que calcular **tres** determinantes de orden $3$ en lugar de dos:
+
+$$
+\begin{vmatrix} 4 & 2 & 0 \\ -1 & 3 & 2 \\ 0 & 2 & 1 \end{vmatrix} = (12 + 0 + 0) - (0 + 16 - 2) = 12 - 14 = -2
+$$
+
+$$
+\begin{vmatrix} 3 & 4 & 0 \\ 6 & -1 & 2 \\ 4 & 0 & 1 \end{vmatrix} = (-3 + 32 + 0) - (0 + 0 + 24) = 29 - 24 = 5
+$$
+
+$$
+\begin{vmatrix} 3 & 4 & 2 \\ 6 & -1 & 3 \\ 4 & 0 & 2 \end{vmatrix} = (-6 + 48 + 0) - (-8 + 0 + 48) = 42 - 40 = 2
+$$
+
+Y al ensamblar:
+
+$$
+|A| = 2\cdot(-2) + 5\cdot 5 - 1\cdot 2 = -4 + 25 - 2 = 19
+$$
+
+Mismo resultado, $19$, como garantiza el teorema. Pero con un $50\,\%$ más de trabajo y, sobre todo, con un $50\,\%$ más de oportunidades de equivocarse. **Elegir bien la línea no es una elegancia: es una estrategia de reducción de errores.**
+
+## Cuánto cuesta cada método
+
+::: {.callout-important}
+## El coste del cálculo por la definición
+
+Por definición, un determinante de orden $n$ es la suma de **todos** los productos posibles de $n$ elementos, uno de cada fila y uno de cada columna, la mitad con su signo y la otra mitad con el contrario. ¿Cuántos productos son?
+
+Para formar uno de esos productos hay que elegir un elemento de la primera fila —$n$ posibilidades—, después uno de la segunda fila que no repita columna —$n-1$ posibilidades—, después uno de la tercera —$n-2$— y así hasta agotar las filas. En total:
+
+$$
+n\cdot(n-1)\cdot(n-2)\cdots 2\cdot 1 = n!
+$$
+
+Y la mitad, $n!/2$, lleva signo positivo y la otra mitad, negativo. Los casos concretos son elocuentes:
+
+| Orden $n$ | Productos $n!$ | Positivos | Negativos | Factores por producto |
+|---|---|---|---|---|
+| $2$ | $2$ | $1$ | $1$ | $2$ |
+| $3$ | $6$ | $3$ | $3$ | $3$ |
+| $4$ | $24$ | $12$ | $12$ | $4$ |
+| $5$ | $120$ | $60$ | $60$ | $5$ |
+| $6$ | $720$ | $360$ | $360$ | $6$ |
+
+En orden $3$, esos $6$ productos son exactamente los de la regla de Sarrus: por eso la regla existe y es cómoda. En orden $4$ harían falta $24$ productos de cuatro factores cada uno, sin ninguna regla mnemotécnica que ayude a ordenarlos y a repartir bien los signos. Es humanamente inviable sin errores. Y en orden $6$, $720$ productos: ni siquiera merece la pena pensarlo.
+:::
+
+::: {.callout-important}
+## El coste del desarrollo por adjuntos
+
+El desarrollo por adjuntos no reduce el número total de multiplicaciones —al final los productos son los mismos—, pero **reorganiza el trabajo en tareas pequeñas y comprobables**, y eso lo cambia todo en la práctica.
+
+Si se desarrolla siempre por una línea sin ceros, un determinante de orden $n$ genera $n$ determinantes de orden $n-1$; cada uno de estos genera $n-1$ determinantes de orden $n-2$, y así sucesivamente. El número de determinantes de orden $2$ que acaban calculándose es
+
+$$
+n\cdot(n-1)\cdots 3 = \frac{n!}{2}
+$$
+
+- Orden $4$: se llega a $12$ determinantes de orden $2$, agrupados en $4$ determinantes de orden $3$.
+- Orden $5$: se llega a $60$ determinantes de orden $2$, agrupados en $20$ de orden $3$ y $5$ de orden $4$.
+
+Ahora bien, **cada cero de la línea elegida borra una rama entera del árbol**. Si en el orden $4$ la línea tiene dos ceros, el trabajo se reduce a la mitad; si tiene tres, a la cuarta parte. Ese es el margen real de mejora, y es enorme.
+
+La conclusión práctica es la del apartado siguiente: si la matriz no trae ceros, hay que fabricarlos antes de desarrollar.
+:::
+
+### Applet · Coste del cálculo {.unnumbered}
+
+Cambia el orden del determinante y el número de ceros de la línea elegida y observa cómo evolucionan el número de productos de la definición, el de determinantes intermedios y el ahorro conseguido. Experimenta sobre todo con el salto del orden $4$ al orden $5$ para hacerte una idea de por qué el crecimiento factorial hace inviable el cálculo directo.
+
+::: {#panel-coste .applet-panel data-applet-det="coste"}
+:::
+
+## Un determinante de orden 5
+
+### Ejemplo resuelto 3: dos reducciones sucesivas
+
+Calcula
+
+$$
+|N| = \begin{vmatrix} 1 & 2 & 0 & 0 & 2 \\ -2 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 1 & -2 \\ 1 & 2 & 3 & 0 & 1 \\ -1 & 2 & -2 & 0 & 1 \end{vmatrix}
+$$
+
+**Primera reducción.** La cuarta columna es $(0,\ 0,\ 1,\ 0,\ 0)$: tiene cuatro ceros y un solo elemento no nulo. Es la mejor línea posible. Desarrollando por ella, sobrevive únicamente el sumando correspondiente a $a_{34} = 1$, cuyo signo es $(-1)^{3+4} = -1$:
+
+$$
+|N| = -1\cdot\begin{vmatrix} 1 & 2 & 0 & 2 \\ -2 & 0 & 0 & 1 \\ 1 & 2 & 3 & 1 \\ -1 & 2 & -2 & 1 \end{vmatrix}
+$$
+
+De un golpe hemos pasado del orden $5$ al orden $4$ sin calcular nada.
+
+**Segunda reducción.** En el determinante de orden $4$ que ha quedado, llamémoslo $K$, la tercera columna es $(0,\ 0,\ 3,\ -2)$ y tiene dos ceros. Desarrollamos por ella; los signos son $+,\,-,\,+,\,-$:
+
+$$
+K = +0 - 0 + 3\begin{vmatrix} 1 & 2 & 2 \\ -2 & 0 & 1 \\ -1 & 2 & 1 \end{vmatrix} - (-2)\begin{vmatrix} 1 & 2 & 2 \\ -2 & 0 & 1 \\ 1 & 2 & 1 \end{vmatrix}
+$$
+
+**Tercera etapa: los dos determinantes de orden 3.**
+
+$$
+E_1 = \begin{vmatrix} 1 & 2 & 2 \\ -2 & 0 & 1 \\ -1 & 2 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 0\cdot 1 = 0$, $2\cdot 1\cdot(-1) = -2$ y $2\cdot(-2)\cdot 2 = -8$; suman $-10$. Productos negativos: $2\cdot 0\cdot(-1) = 0$, $1\cdot 1\cdot 2 = 2$ y $2\cdot(-2)\cdot 1 = -4$; suman $-2$. Luego $E_1 = -10 - (-2) = -8$.
+
+$$
+E_2 = \begin{vmatrix} 1 & 2 & 2 \\ -2 & 0 & 1 \\ 1 & 2 & 1 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 0\cdot 1 = 0$, $2\cdot 1\cdot 1 = 2$ y $2\cdot(-2)\cdot 2 = -8$; suman $-6$. Productos negativos: $2\cdot 0\cdot 1 = 0$, $1\cdot 1\cdot 2 = 2$ y $2\cdot(-2)\cdot 1 = -4$; suman $-2$. Luego $E_2 = -6 - (-2) = -4$.
+
+**Ensamblaje.**
+
+$$
+K = 3\cdot(-8) + 2\cdot(-4) = -24 - 8 = -32
+$$
+
+$$
+|N| = -1\cdot K = -(-32) = 32
+$$
+
+El determinante de orden $5$ vale $32$, y para obtenerlo solo hemos calculado **dos** determinantes de orden $3$. Sin ceros habrían hecho falta veinte.
+
+### Applet · Cálculo recursivo {.unnumbered}
+
+Introduce un determinante de orden $4$ o $5$ y despliega el árbol completo de reducciones, viendo en cada nivel qué línea se ha elegido y qué subdeterminantes genera. Experimenta plegando y desplegando las ramas para contar cuántos determinantes de orden $3$ y de orden $2$ acaban calculándose, y comprueba que cada elemento nulo de la línea elegida poda una rama entera del árbol.
+
+::: {#panel-recursivo .applet-panel data-applet-det="recursivo"}
+:::
+
+::: {.callout-tip}
+## La estrategia de mirar antes de escribir
+
+Antes de empezar a desarrollar cualquier determinante de orden $4$ o superior, dedica quince segundos a esto:
+
+1. **¿Hay una línea de ceros?** Entonces el determinante vale $0$ y se acabó.
+2. **¿Hay dos líneas iguales o proporcionales?** Entonces vale $0$ también.
+3. **¿Es triangular o diagonal?** Entonces es el producto de la diagonal principal.
+4. **¿Se puede sacar factor común de alguna línea?** Sácalo: los números se hacen más pequeños y el determinante que queda es más fácil.
+5. **¿Cuál es la línea con más ceros?** Esa es la línea de desarrollo.
+
+Estos cinco controles resuelven de golpe una fracción sorprendente de los determinantes de examen y, en el resto de los casos, reducen el trabajo a la mitad. Ninguno de ellos consume tiempo: son puras observaciones.
+:::
+
+::: {.callout-caution}
+## Errores típicos en órdenes altos
+
+- **Perder el hilo de los signos.** Con cuatro o cinco sumandos, cada uno con su signo de posición y su elemento posiblemente negativo, es fácil descolocarse. Solución: escribir los signos de la línea **antes** de escribir nada más, como una tira: $+\ -\ +\ -$.
+- **Copiar mal la submatriz.** Es el error más caro, porque no se detecta hasta el final y obliga a rehacerlo todo. Tacha físicamente la fila y la columna sobre el enunciado antes de copiar.
+- **Intentar aplicar Sarrus al orden 4.** No existe ninguna versión de la regla de Sarrus para orden $4$ o superior. Las diagonales de un cuadrado $4\times 4$ dan ocho productos y hacen falta veinticuatro. Cualquier respuesta obtenida así es incorrecta.
+- **Desarrollar por una línea mala habiendo una buena.** No da un resultado erróneo, pero multiplica el trabajo y las probabilidades de fallo.
+- **No comprobar el resultado.** Si el determinante debería salir entero y sale con fracciones, hay un error en algún paso; revisa antes de entregar.
+:::
+
+::: {.callout-tip}
+## Cómo lo hace un ordenador
+
+Un programa de cálculo numérico **no** usa el desarrollo por adjuntos para matrices grandes. El motivo es exactamente el que acabamos de contar: el número de operaciones crece como $n!$, y con $n = 20$ eso son más de dos trillones de productos, fuera del alcance de cualquier máquina.
+
+Lo que hace un ordenador es escalonar la matriz con transformaciones elementales —el método de Gauss— y multiplicar después los elementos de la diagonal, llevando la cuenta de los cambios de signo producidos por los intercambios de filas. Ese procedimiento tiene un coste proporcional a $n^3$: para $n = 20$ son unas ocho mil operaciones, un suspiro.
+
+El método del apartado siguiente, hacer ceros antes de desarrollar, es precisamente la versión manual de esa misma idea, y es la que se usa en la práctica en Bachillerato para órdenes $4$ y $5$.
+:::
+
+## Resumen del apartado
+
+- El desarrollo por adjuntos permite calcular determinantes de **cualquier orden**, aplicándolo repetidamente hasta llegar al orden $3$ o al $2$.
+- La regla de Sarrus **no se puede extender** más allá del orden $3$.
+- Un determinante de orden $n$ tiene $n!$ productos en su definición: $24$ en orden $4$, $120$ en orden $5$, $720$ en orden $6$.
+- Desarrollar por una línea sin ceros conduce, en cascada, a $n!/2$ determinantes de orden $2$.
+- **Cada cero de la línea elegida elimina una rama entera del cálculo.** Por eso la elección de línea es decisiva.
+- Conviene nombrar los determinantes intermedios ($D_1$, $D_2$, …), calcularlos aparte y ensamblarlos al final.
+- Antes de desarrollar, comprobar siempre si el determinante se resuelve solo por las propiedades: línea de ceros, líneas proporcionales, forma triangular o factores comunes.
+- Si no hay ceros, se fabrican con la propiedad de sumar a una línea un múltiplo de otra, tal como se verá en el apartado 2.9.
+
+## Ejercicios propuestos
+
+**1 (básico).** ¿Cuántos productos tiene la definición de un determinante de orden $4$? ¿Y cuántos son positivos?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$4! = 24$ productos, de los cuales $12$ llevan signo positivo y $12$ negativo. Cada producto tiene cuatro factores, uno de cada fila y uno de cada columna.
+:::
+
+**2 (básico).** Calcula $\begin{vmatrix} 1 & 0 & 0 & 0 \\ 2 & 3 & 0 & 0 \\ 4 & 5 & -1 & 0 \\ 6 & 7 & 8 & 2 \end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La matriz es triangular inferior, así que el determinante es el producto de la diagonal principal:
+
+$$
+1\cdot 3\cdot(-1)\cdot 2 = -6
+$$
+
+También se puede obtener desarrollando por la primera fila, que tiene tres ceros: queda $1$ por un determinante de orden $3$ que a su vez es triangular.
+:::
+
+**3 (básico).** Calcula $\begin{vmatrix} 2 & 1 & 3 & 0 \\ 0 & 0 & 5 & 0 \\ 1 & 2 & 1 & 4 \\ 3 & 0 & 2 & 1 \end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La segunda fila tiene tres ceros. Su único elemento no nulo es $a_{23} = 5$, con signo $(-1)^{2+3} = -1$:
+
+$$
+|A| = -5\begin{vmatrix} 2 & 1 & 0 \\ 1 & 2 & 4 \\ 3 & 0 & 1 \end{vmatrix}
+$$
+
+Por Sarrus: positivos $2\cdot 2\cdot 1 = 4$, $1\cdot 4\cdot 3 = 12$, $0$; suman $16$. Negativos: $0$, $2\cdot 4\cdot 0 = 0$, $1\cdot 1\cdot 1 = 1$; suman $1$. El determinante de orden $3$ vale $15$, luego
+
+$$
+|A| = -5\cdot 15 = -75
+$$
+:::
+
+**4 (medio).** Calcula $\begin{vmatrix} 1 & 2 & -1 & 3 \\ 2 & 1 & 0 & 4 \\ -1 & 3 & 2 & 1 \\ 0 & 2 & 1 & -2 \end{vmatrix}$ eligiendo razonadamente la línea.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+La tercera columna y la cuarta fila tienen un cero cada una. Desarrollamos por la **cuarta fila**, cuyos signos son $-,\,+,\,-,\,+$:
+
+$$
+|A| = -0 + 2\begin{vmatrix} 1 & -1 & 3 \\ 2 & 0 & 4 \\ -1 & 2 & 1 \end{vmatrix} - 1\begin{vmatrix} 1 & 2 & 3 \\ 2 & 1 & 4 \\ -1 & 3 & 1 \end{vmatrix} + (-2)\begin{vmatrix} 1 & 2 & -1 \\ 2 & 1 & 0 \\ -1 & 3 & 2 \end{vmatrix}
+$$
+
+Los tres determinantes de orden $3$ valen, respectivamente:
+
+$$
+\begin{vmatrix} 1 & -1 & 3 \\ 2 & 0 & 4 \\ -1 & 2 & 1 \end{vmatrix} = (0 + 4 + 12) - (0 + 8 - 2) = 16 - 6 = 10
+$$
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 2 & 1 & 4 \\ -1 & 3 & 1 \end{vmatrix} = (1 - 8 + 18) - (-3 + 12 + 4) = 11 - 13 = -2
+$$
+
+$$
+\begin{vmatrix} 1 & 2 & -1 \\ 2 & 1 & 0 \\ -1 & 3 & 2 \end{vmatrix} = (2 + 0 - 6) - (1 + 0 + 8) = -4 - 9 = -13
+$$
+
+Y ensamblando:
+
+$$
+|A| = 2\cdot 10 - (-2) + (-2)\cdot(-13) = 20 + 2 + 26 = 48
+$$
+:::
+
+**5 (medio).** Sin calcular nada, di cuánto vale $\begin{vmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ 5 & 1 & 0 & 7 \\ 3 & 3 & 3 & 3 \end{vmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Vale $0$, porque la segunda fila es el doble de la primera: $F_2 = 2F_1$. Un determinante con dos líneas proporcionales es nulo. No hace falta desarrollar absolutamente nada.
+:::
+
+**6 (medio).** En un determinante de orden $5$, una columna tiene cuatro ceros. ¿Cuántos determinantes de orden $3$ hay que calcular como máximo?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Al desarrollar por esa columna solo queda un sumando, con un determinante de orden $4$. Si ese determinante de orden $4$ no tuviera ningún cero, habría que calcular sus **cuatro** determinantes de orden $3$.
+
+Así que el máximo es $4$, frente a los $20$ que harían falta si la columna inicial no tuviera ceros. En el ejemplo resuelto 3, gracias a los ceros del determinante de orden $4$, bastaron dos.
+:::
+
+**7 (medio).** Calcula $\begin{vmatrix} 3 & 0 & 0 & 0 \\ 1 & 2 & 0 & 0 \\ 4 & 5 & 0 & 0 \\ 2 & 1 & 7 & 6 \end{vmatrix}$ y explica el resultado.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Desarrollando por la primera fila queda $3$ por el determinante de orden $3$ formado por las filas $2$, $3$ y $4$ y las columnas $2$, $3$ y $4$:
+
+$$
+|A| = 3\begin{vmatrix} 2 & 0 & 0 \\ 5 & 0 & 0 \\ 1 & 7 & 6 \end{vmatrix}
+$$
+
+Ese determinante tiene dos filas proporcionales —la segunda es $2{,}5$ veces la primera—, así que vale $0$. Por tanto $|A| = 0$.
+
+Hay un atajo aún más rápido: en la matriz original, las filas segunda y tercera son $(1,2,0,0)$ y $(4,5,0,0)$, y junto con la primera, $(3,0,0,0)$, forman tres filas que solo tienen dos posiciones no nulas. Tres líneas que viven en dos posiciones no pueden ser independientes, de modo que el determinante es necesariamente nulo.
+:::
+
+**8 (avanzado).** Un determinante de orden $6$ se calcula por la definición. Si una persona tarda cinco segundos en formar cada producto de seis factores y sumarlo, ¿cuánto tiempo le llevaría? Compáralo con desarrollar por una fila que tenga cinco ceros.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Por la definición hay $6! = 720$ productos. A cinco segundos cada uno, $3600$ segundos, es decir, **una hora entera** de cálculo ininterrumpido y sin fallos, algo poco realista.
+
+Con una fila de cinco ceros, el desarrollo deja un único determinante de orden $5$; si este a su vez se trabaja con ceros, se llega enseguida al orden $3$. La diferencia entre ambas vías no es de grado, es de naturaleza: por eso nadie calcula determinantes por la definición más allá del orden $3$.
+:::
+
+**9 (avanzado).** Justifica que el determinante de una matriz triangular superior de orden $n$ es el producto de los elementos de su diagonal principal, usando el desarrollo por adjuntos.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Se razona por reducción sucesiva. En una matriz triangular superior, la primera columna es $(a_{11},\ 0,\ 0,\ \dots,\ 0)$. Desarrollando por ella, todos los sumandos se anulan salvo el primero, que lleva signo $+$:
+
+$$
+|A| = a_{11}\cdot\begin{vmatrix} a_{22} & a_{23} & \cdots \\ 0 & a_{33} & \cdots \\ \vdots & \vdots & \ddots \end{vmatrix}
+$$
+
+El determinante que queda es de orden $n-1$ y **vuelve a ser triangular superior**, porque al quitar la primera fila y la primera columna la estructura de ceros se conserva. Repitiendo el argumento se van extrayendo $a_{22}$, $a_{33}$, y así sucesivamente, hasta llegar a un determinante de orden $1$ igual a $a_{nn}$. En total:
+
+$$
+|A| = a_{11}a_{22}a_{33}\cdots a_{nn}
+$$
+
+El mismo razonamiento, desarrollando por la primera fila en lugar de por la primera columna, sirve para las triangulares inferiores.
+:::

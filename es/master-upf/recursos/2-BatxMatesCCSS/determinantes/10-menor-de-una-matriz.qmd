@@ -1,0 +1,477 @@
+---
+title: "Tema 2.10 Menor de una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 10 de 16)"
+filename: 10-menor-de-una-matriz
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición general de menor de orden h de una matriz cualquiera como determinante de la submatriz formada al elegir h filas y h columnas, orden de un menor, diferencia esencial con el menor complementario de un elemento y recuento combinatorio de cuántos menores de orden h tiene una matriz de dimensión m por n.
+categories: [determinantes, menores, submatrices, combinatoria, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hasta ahora, cada vez que aparecía la palabra «menor» venía acompañada del apellido «complementario» y siempre iba pegada a un elemento concreto: el menor complementario de $a_{23}$, el de $a_{11}$. Tachabas la fila y la columna de ese elemento y calculabas el determinante de lo que quedaba. Era una herramienta al servicio del desarrollo por adjuntos, y solo tenía sentido en matrices **cuadradas**, porque solo ellas tienen determinante.
+
+Este apartado da un salto de generalidad que parece pequeño y no lo es. Vamos a hacer lo contrario de tachar: **elegir** unas cuantas filas y unas cuantas columnas —tantas filas como columnas— y quedarnos con el trocito cuadrado que forman sus cruces. El determinante de ese trocito es lo que llamaremos un **menor de la matriz**.
+
+La ventaja es enorme. Al no depender de un elemento concreto, esta idea ya no necesita que la matriz de partida sea cuadrada: se puede extraer un bloque $2\times 2$ de una matriz $3\times 7$. Y con eso se abre la puerta a medir con determinantes algo que hasta ahora solo sabíamos medir por Gauss: el **rango** de una matriz rectangular.
+
+::: {.callout-tip}
+## Por qué merece la pena este cambio de punto de vista
+
+En el bloque de matrices calculaste rangos escalonando: transformabas la matriz hasta que se leyera el número de filas no nulas. El método funciona y es rápido, pero **con parámetros se atasca**: en cuanto haces $F_2 \to F_2 - \frac{1}{k}F_1$ estás dividiendo entre $k$, y tienes que abrir un caso aparte para $k = 0$; dos o tres pivotes más y la discusión se ramifica sin control.
+
+Los determinantes ofrecen una salida elegante. Un menor con parámetro es un polinomio, y un polinomio se iguala a cero y se resuelve. Toda la discusión queda concentrada en unas pocas raíces, en lugar de dispersarse en una cadena de divisiones sospechosas. Ese es el motivo real por el que el rango se estudia otra vez, ahora desde los determinantes.
+:::
+
+## De tachar líneas a elegir líneas
+
+### Recordatorio: el menor complementario
+
+Si $A$ es cuadrada de orden $n$, el menor complementario del elemento $a_{ij}$, que escribíamos $\alpha_{ij}$, es el determinante de orden $n-1$ que se obtiene **suprimiendo** la fila $i$ y la columna $j$. Por ejemplo, si
+
+$$
+A = \begin{pmatrix} 2 & -1 & 0 \\ 3 & 5 & 4 \\ 1 & 1 & -2 \end{pmatrix},
+\qquad
+\alpha_{12} = \begin{vmatrix} 3 & 4 \\ 1 & -2 \end{vmatrix} = 3\cdot(-2) - 4\cdot 1 = -10
+$$
+
+Fíjate en tres rasgos de esa construcción, porque los tres van a cambiar ahora mismo: la matriz de partida **tenía que ser cuadrada**, el resultado era un determinante de orden $n-1$ y solo de ese orden, y cada menor complementario estaba **etiquetado por un elemento**, el $a_{ij}$ del que era complementario.
+
+### La definición general
+
+::: {.callout-note}
+## Definición: menor de orden $h$ de una matriz
+
+Sea $A$ una matriz de dimensión $m\times n$, cuadrada o no. Se llama **menor de orden $h$** de $A$ al determinante de la matriz cuadrada de orden $h$ formada por los elementos que están simultáneamente en $h$ filas y en $h$ columnas de $A$, elegidas libremente y conservando su orden relativo.
+
+El número $h$ se llama **orden del menor**, y necesariamente
+
+$$
+1 \le h \le \min\{m,\, n\}
+$$
+
+porque no se pueden elegir más filas de las que hay ni más columnas de las que hay.
+:::
+
+La matriz cuadrada que se forma al cruzar esas filas y columnas se llama **submatriz** de $A$. El menor es su determinante: la submatriz es una tabla, el menor es un número.
+
+::: {.callout-warning}
+## Submatriz y menor no son lo mismo
+
+La **submatriz** es el bloque cuadrado de números y se escribe con paréntesis, $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$; el **menor** es el determinante de esa submatriz, es decir, un número, y se escribe con barras verticales, $\begin{vmatrix} 1 & 0 \\ 2 & 1 \end{vmatrix} = 1$.
+
+Cuando leas «existe un menor de orden $3$ distinto de cero», se está afirmando que existe un bloque cuadrado $3\times 3$ cuyo **determinante** no se anula. Decir «un menor de orden $3$ es igual a $\begin{pmatrix} \cdots \end{pmatrix}$» es un error de tipo: un número nunca es igual a una matriz.
+:::
+
+### Cómo se nombra un menor
+
+Para que la comunicación sea posible hay que dejar claro **qué filas y qué columnas** se han elegido. Escribiremos $M_{\,1\,3\;\mid\;2\,4}$ para el menor que se forma con las filas $1$ y $3$ y con las columnas $2$ y $4$. En la práctica basta con anunciarlo en palabras antes del cálculo: «tomo las filas primera y tercera y las columnas segunda y cuarta». Lo que **no** vale es escribir un determinante suelto y esperar que se adivine de dónde ha salido.
+
+::: {.callout-caution}
+## El error más frecuente de todo el apartado
+
+Confundir **menor complementario de un elemento** con **menor de una matriz**. Son dos conceptos distintos, aunque el primero sea un caso particular del segundo:
+
+| | Menor complementario $\alpha_{ij}$ | Menor de orden $h$ |
+|---|---|---|
+| Matriz de partida | Solo cuadrada, de orden $n$ | Cualquiera, de dimensión $m\times n$ |
+| Construcción | Se **suprimen** la fila $i$ y la columna $j$ | Se **eligen** $h$ filas y $h$ columnas |
+| Orden del resultado | Siempre $n-1$ | Cualquier $h$ con $1\le h\le\min\{m,n\}$ |
+| Etiqueta | Un elemento, $a_{ij}$ | Dos listas: filas y columnas |
+| Sirve para | Adjuntos, desarrollo, inversa | Rango, dependencia lineal |
+
+Regla mnemotécnica: en el complementario **quitas dos líneas**; en el menor de una matriz **te quedas con las que quieras**.
+:::
+
+## Ejemplos de extracción de menores
+
+### Ejemplo resuelto 1: menores de una matriz $3\times 4$
+
+Consideremos
+
+$$
+A = \begin{pmatrix} 1 & 2 & -1 & 3 \\ 2 & 4 & 1 & 0 \\ 3 & 6 & 0 & 3 \end{pmatrix}
+$$
+
+Como $m = 3$ y $n = 4$, se tiene $\min\{3,4\} = 3$: en esta matriz hay menores de orden $1$, de orden $2$ y de orden $3$, y **ninguno de orden $4$**, porque haría falta elegir cuatro filas y solo hay tres.
+
+**Un menor de orden $1$.** Basta elegir una fila y una columna. Con la fila $2$ y la columna $3$ obtenemos $M_{\,2\;\mid\;3} = \begin{vmatrix} 1 \end{vmatrix} = 1$. Un menor de orden $1$ es, literalmente, **un elemento de la matriz**, porque el determinante de orden $1$ coincide con su único elemento.
+
+**Un menor de orden $2$.** Elijamos las filas $1$ y $2$ y las columnas $1$ y $3$. Al cruzarlas se recogen los elementos $a_{11} = 1$, $a_{13} = -1$, $a_{21} = 2$, $a_{23} = 1$:
+
+$$
+M_{\,1\,2\;\mid\;1\,3} = \begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1\cdot 1 - (-1)\cdot 2 = 1 + 2 = 3
+$$
+
+**Otro menor de orden $2$, esta vez nulo.** Con las filas $1$ y $2$ y las columnas $1$ y $2$:
+
+$$
+M_{\,1\,2\;\mid\;1\,2} = \begin{vmatrix} 1 & 2 \\ 2 & 4 \end{vmatrix} = 4 - 4 = 0
+$$
+
+Se anula porque en esa submatriz la segunda fila es el doble de la primera. Observa el detalle importante: **dentro de la misma matriz hay menores del mismo orden que valen cero y otros que no**. Que un menor concreto se anule no dice gran cosa; lo informativo es si existe alguno que no se anule.
+
+**Un menor de orden $3$.** Hay que tomar las tres filas y elegir tres de las cuatro columnas. Con las columnas $1$, $3$ y $4$:
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,3\,4} = \begin{vmatrix} 1 & -1 & 3 \\ 2 & 1 & 0 \\ 3 & 0 & 3 \end{vmatrix}
+$$
+
+Aplicamos la regla de Sarrus. Los productos con signo más suman $1\cdot 1\cdot 3 + (-1)\cdot 0\cdot 3 + 3\cdot 2\cdot 0 = 3$ y los productos con signo menos suman $3\cdot 1\cdot 3 + 1\cdot 0\cdot 0 + (-1)\cdot 2\cdot 3 = 9 - 6 = 3$. Por tanto
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,3\,4} = 3 - 3 = 0
+$$
+
+**Interpretación.** Este menor se anula, y no es casualidad. En $A$ se cumple $F_3 = F_1 + F_2$, ya que $3 = 1+2$, $6 = 2+4$, $0 = -1+1$ y $3 = 3+0$. Cualquier submatriz que use las **tres** filas heredará esa relación, y como un determinante con una línea combinación lineal de las otras vale cero, **todos** los menores de orden $3$ de $A$ son nulos. Es exactamente el mecanismo con el que los determinantes detectan la dependencia lineal.
+
+### Ejemplo resuelto 2: todos los menores de una matriz $2\times 3$
+
+Sea
+
+$$
+B = \begin{pmatrix} -1 & 0 & 2 \\ 0 & -2 & 3 \end{pmatrix}
+$$
+
+Aquí $\min\{2,3\} = 2$, luego solo hay menores de orden $1$ y de orden $2$. Vamos a listarlos **todos**, sin excepción.
+
+**Menores de orden $1$.** Son los seis elementos de la matriz: $-1$, $0$, $2$, $0$, $-2$ y $3$. Cuatro son no nulos y dos valen cero.
+
+**Menores de orden $2$.** Hay que tomar las dos filas —no hay elección— y dos de las tres columnas. Las parejas posibles son $\{1,2\}$, $\{1,3\}$ y $\{2,3\}$:
+
+$$
+M_{\,1\,2\;\mid\;1\,2} = \begin{vmatrix} -1 & 0 \\ 0 & -2 \end{vmatrix} = (-1)(-2) - 0\cdot 0 = 2
+$$
+
+$$
+M_{\,1\,2\;\mid\;1\,3} = \begin{vmatrix} -1 & 2 \\ 0 & 3 \end{vmatrix} = (-1)\cdot 3 - 2\cdot 0 = -3
+$$
+
+$$
+M_{\,1\,2\;\mid\;2\,3} = \begin{vmatrix} 0 & 2 \\ -2 & 3 \end{vmatrix} = 0\cdot 3 - 2\cdot(-2) = 4
+$$
+
+**Recuento.** La matriz $B$ tiene en total $6 + 3 = 9$ menores. Los tres de orden $2$ son distintos de cero, lo que anticipa que el rango de $B$ será $2$.
+
+**Menores de orden $3$: no existen.** Se necesitarían tres filas y $B$ solo tiene dos. Este es el punto en el que la restricción $h \le \min\{m,n\}$ deja de ser una fórmula y se convierte en algo evidente.
+
+### Applet · Menor de una matriz {.unnumbered}
+
+Escribe una matriz rectangular, marca en la cuadrícula las filas y las columnas que quieres seleccionar y observa cómo se recorta la submatriz correspondiente y cuál es el valor de su determinante; prueba a seleccionar el mismo número de filas que de columnas en posiciones no consecutivas —por ejemplo las filas primera y tercera con las columnas segunda y cuarta— para convencerte de que un menor no exige que las líneas elegidas estén pegadas.
+
+::: {#panel-menorGeneral .applet-panel data-applet-det="menorGeneral"}
+:::
+
+::: {.callout-important}
+## Las filas y columnas elegidas no tienen que ser consecutivas
+
+Es una duda que aparece siempre. La definición dice «$h$ filas y $h$ columnas elegidas libremente», y libremente significa libremente. En una matriz $4\times 5$ es perfectamente legítimo tomar las filas $1$ y $4$ junto con las columnas $2$ y $5$:
+
+$$
+A = \begin{pmatrix} \mathbf{1} & 0 & 3 & -1 & \mathbf{2} \\ 4 & 5 & 6 & 7 & 8 \\ 0 & 1 & 0 & 1 & 0 \\ \mathbf{2} & 1 & 1 & 3 & \mathbf{5} \end{pmatrix}
+\qquad
+M_{\,1\,4\;\mid\;1\,5} = \begin{vmatrix} 1 & 2 \\ 2 & 5 \end{vmatrix} = 5 - 4 = 1
+$$
+
+Lo único que hay que respetar es el **orden relativo**: la fila que estaba antes en $A$ sigue estando antes en la submatriz, y lo mismo con las columnas. Si te permitieras reordenarlas cambiarías el signo del determinante y el menor dejaría de estar bien definido. Por eso las listas se escriben siempre en orden creciente.
+:::
+
+## Cuántos menores tiene una matriz
+
+Los ejemplos anteriores dejan una sensación incómoda: los menores son muchos. Conviene contarlos con precisión, porque ese recuento es el argumento que justifica que en el apartado 2.12 busquemos un atajo en lugar de calcularlos todos.
+
+::: {.callout-note}
+## Recuento del número de menores de orden $h$
+
+Sea $A$ de dimensión $m\times n$ y sea $h$ con $1\le h\le\min\{m,n\}$. El número de menores de orden $h$ de $A$ es
+
+$$
+N(h) = \binom{m}{h}\cdot\binom{n}{h}
+$$
+
+donde $\dbinom{m}{h} = \dfrac{m!}{h!\,(m-h)!}$ es el número combinatorio que cuenta de cuántas formas se pueden elegir $h$ objetos entre $m$ sin importar el orden.
+:::
+
+::: {.callout-important}
+## Por qué el recuento es un producto de números combinatorios
+
+Construir un menor de orden $h$ consiste en tomar **dos decisiones independientes**:
+
+**Primera decisión: qué $h$ filas.** Se eligen $h$ filas entre las $m$ disponibles. El orden en que las nombres es irrelevante, porque en la submatriz se colocan siempre en orden creciente: «las filas $1$ y $3$» y «las filas $3$ y $1$» producen la misma submatriz. Elegir subconjuntos sin importar el orden es justamente lo que cuenta el número combinatorio, así que hay $\dbinom{m}{h}$ posibilidades.
+
+**Segunda decisión: qué $h$ columnas.** Por el mismo razonamiento, $\dbinom{n}{h}$ posibilidades.
+
+**Las dos decisiones son independientes:** cualquier elección de filas se combina con cualquier elección de columnas, y cada pareja produce un menor distinto. Por el principio de multiplicación, el total es el producto de los dos números.
+
+**Comprobación en un caso conocido.** Si $A$ es cuadrada de orden $n$ y tomamos $h = n-1$, resulta $N(n-1) = \dbinom{n}{n-1}^2 = n^2$, y en efecto una matriz cuadrada de orden $n$ tiene exactamente $n^2$ menores complementarios, uno por cada uno de sus $n^2$ elementos. El recuento general contiene al que ya conocías.
+:::
+
+### Ejemplo resuelto 3: recuento en una matriz $3\times 4$
+
+Volvamos a la matriz $A$ del ejemplo 1, de dimensión $3\times 4$. Los órdenes posibles son $h = 1$, $h = 2$ y $h = 3$.
+
+$$
+N(1) = \binom{3}{1}\binom{4}{1} = 3\cdot 4 = 12
+$$
+
+$$
+N(2) = \binom{3}{2}\binom{4}{2} = 3\cdot 6 = 18
+$$
+
+$$
+N(3) = \binom{3}{3}\binom{4}{3} = 1\cdot 4 = 4
+$$
+
+En total, $12 + 18 + 4 = 34$ menores. El recuento de orden $1$ es inmediato de comprobar: hay $12$ elementos y cada uno es un menor de orden $1$. Y el de orden $3$ también se ve a simple vista: solo hay una manera de elegir las tres filas y cuatro maneras de descartar una columna. Los $18$ menores de orden $2$ son ya un número respetable para una matriz tan pequeña.
+
+### Ejemplo resuelto 4: recuento en una matriz $4\times 4$
+
+Si $A$ es cuadrada de orden $4$:
+
+$$
+N(1) = \binom{4}{1}^2 = 16, \quad
+N(2) = \binom{4}{2}^2 = 36, \quad
+N(3) = \binom{4}{3}^2 = 16, \quad
+N(4) = 1
+$$
+
+Total: $16 + 36 + 16 + 1 = 69$ menores. Los $16$ de orden $3$ son los menores complementarios, y el único de orden $4$ es el propio determinante $|A|$.
+
+### Ejemplo resuelto 5: la explosión combinatoria
+
+Repitamos el cálculo para una matriz $4\times 5$:
+
+$$
+N(1) = 20, \quad
+N(2) = \binom{4}{2}\binom{5}{2} = 60, \quad
+N(3) = \binom{4}{3}\binom{5}{3} = 40, \quad
+N(4) = \binom{4}{4}\binom{5}{4} = 5
+$$
+
+Total: $20 + 60 + 40 + 5 = 125$ menores. Y para una matriz $5\times 6$ el total ya pasa de los cuatrocientos.
+
+**Conclusión estratégica.** Calcular todos los menores para averiguar el rango es un plan inviable en cuanto la matriz crece un poco. Necesitamos un procedimiento que examine **muy pocos** menores y sin embargo garantice el resultado: el método de los orlados del apartado 2.12. Este recuento demuestra que ese atajo no es una comodidad, sino una necesidad.
+
+### Applet · Recuento de menores {.unnumbered}
+
+Fija el número de filas y de columnas de una matriz y comprueba cómo cambia el número de menores de cada orden; presta atención a dos cosas concretas: que el orden máximo posible es siempre el mínimo entre filas y columnas, y a qué velocidad crece el total al pasar de una matriz $3\times 3$ a una $5\times 6$.
+
+::: {#panel-cuentaMenores .applet-panel data-applet-det="cuentaMenores"}
+:::
+
+::: {.callout-tip}
+## Un caso particular con nombre propio
+
+Cuando la matriz es cuadrada de orden $n$ y tomamos $h = n$, el recuento da
+
+$$
+N(n) = \binom{n}{n}\binom{n}{n} = 1
+$$
+
+Es decir, **una matriz cuadrada tiene un único menor de orden máximo: su propio determinante**. Esto explica por qué en una matriz cuadrada la pregunta «¿es $|A| \neq 0$?» es tan decisiva: si la respuesta es sí, hemos encontrado un menor no nulo del orden más grande posible y ya no hay nada más que investigar.
+
+En cambio, una matriz $3\times 5$ tiene $\dbinom{3}{3}\dbinom{5}{3} = 10$ menores de orden máximo. Basta con que **uno** de los diez no se anule para que el rango sea $3$; hacen falta los diez nulos para descartarlo. Esa asimetría entre «basta uno» y «hacen falta todos» es el eje del razonamiento sobre rangos.
+:::
+
+## El menor complementario como caso particular
+
+::: {.callout-note}
+## El menor complementario, releído
+
+Sea $A$ cuadrada de orden $n$. El menor complementario $\alpha_{ij}$ es el menor de orden $n-1$ que se obtiene eligiendo:
+
+- **todas las filas menos la $i$**, es decir, las $n-1$ filas restantes;
+- **todas las columnas menos la $j$**, es decir, las $n-1$ columnas restantes.
+
+Con la notación de listas, si $n = 4$,
+
+$$
+\alpha_{23} = M_{\,1\,3\,4\;\mid\;1\,2\,4}
+$$
+
+Suprimir la fila $2$ es lo mismo que elegir las filas $1$, $3$ y $4$; suprimir la columna $3$ es lo mismo que elegir las columnas $1$, $2$ y $4$. Son dos formas de describir la misma submatriz.
+:::
+
+### Ejemplo resuelto 6: la misma submatriz vista de dos maneras
+
+Sea
+
+$$
+A = \begin{pmatrix} 2 & 0 & 1 & -1 \\ 3 & 1 & 0 & 2 \\ -1 & 4 & 2 & 0 \\ 1 & 1 & 1 & 1 \end{pmatrix}
+$$
+
+**Como menor complementario.** Para hallar $\alpha_{23}$ tachamos la fila $2$ y la columna $3$. **Como menor de orden $3$.** Elegimos las filas $1$, $3$, $4$ y las columnas $1$, $2$, $4$. Sale exactamente la misma submatriz:
+
+$$
+\alpha_{23} = M_{\,1\,3\,4\;\mid\;1\,2\,4} = \begin{vmatrix} 2 & 0 & -1 \\ -1 & 4 & 0 \\ 1 & 1 & 1 \end{vmatrix}
+$$
+
+Por Sarrus, los productos positivos suman $2\cdot 4\cdot 1 + 0\cdot 0\cdot 1 + (-1)(-1)\cdot 1 = 9$ y los negativos $(-1)\cdot 4\cdot 1 + 2\cdot 0\cdot 1 + 0\cdot(-1)\cdot 1 = -4$, luego $\alpha_{23} = 9 - (-4) = 13$.
+
+**Lo que hay que retener.** No hay dos cosas: hay una sola, mirada desde dos lados. Los menores complementarios son los menores de orden $n-1$ de una matriz cuadrada, y son solo una parte de todos sus menores: aquí, $16$ de los $69$.
+
+::: {.callout-caution}
+## Tres confusiones que hay que evitar
+
+**«Un menor tiene signo.»** No. El signo $(-1)^{i+j}$ pertenece al **adjunto**, no al menor. La construcción $A_{ij} = (-1)^{i+j}\alpha_{ij}$ solo tiene sentido en el desarrollo por adjuntos, donde hay un elemento $a_{ij}$ de referencia; en un menor de orden $h$ elegido libremente no hay ningún elemento privilegiado, así que no hay ningún signo que aplicar.
+
+**«Un menor de orden $h$ sale de tachar $h$ filas.»** Al contrario: sale de **elegir** $h$ filas. Si una matriz tiene $5$ filas y tomo un menor de orden $2$, estoy eligiendo $2$ filas y descartando $3$, no tachando $2$.
+
+**«Solo las matrices cuadradas tienen menores.»** Falso, y esta es la novedad del apartado. Lo que solo tienen las cuadradas es **determinante**. Menores tiene cualquier matriz: una matriz $2\times 100$ no tiene determinante y sin embargo tiene $\dbinom{2}{2}\dbinom{100}{2} = 4950$ menores de orden $2$.
+:::
+
+## Qué información aporta un menor
+
+Todavía no hemos definido el rango con determinantes —eso es el apartado siguiente— pero sí podemos adelantar la idea que lo hace funcionar.
+
+::: {.callout-important}
+## Un menor no nulo certifica independencia
+
+Supón que en una matriz $A$ encuentras un menor de orden $h$ distinto de cero, formado con las filas $i_1,\ldots,i_h$ y las columnas $j_1,\ldots,j_h$. Entonces esas $h$ filas de $A$ son **linealmente independientes**.
+
+**Por qué.** Por reducción al absurdo. Si esas $h$ filas fueran dependientes, una de ellas sería combinación lineal de las otras $h-1$. Al restringirnos a las columnas $j_1,\ldots,j_h$, esa relación seguiría cumpliéndose entre las filas de la submatriz, porque una igualdad entre líneas completas se cumple posición a posición. Pero un determinante con una línea combinación lineal de las demás vale cero, y habíamos supuesto que el menor **no** es cero. Contradicción.
+
+**La otra cara.** El recíproco no vale para un menor concreto: un menor puede anularse aunque las filas sean independientes, porque el problema puede estar en las **columnas** elegidas. En la matriz del ejemplo 1, $M_{\,1\,2\,\mid\,1\,2}$ es cero y sin embargo $F_1$ y $F_2$ son independientes: lo que falla es haber elegido dos columnas proporcionales. Con las columnas $1$ y $3$ el menor vale $3$ y la independencia queda certificada.
+
+**Moraleja operativa.** Para probar que hay $h$ líneas independientes basta **encontrar un** menor de orden $h$ no nulo; para probar que no las hay, agotar **todos**. Buscar es más fácil que agotar, y el método de los orlados existe para reducir ese «todos» a una lista corta.
+:::
+
+::: {.callout-tip}
+## Los menores fuera del examen
+
+La idea de mirar bloques cuadrados de una tabla rectangular no es un truco escolar. En estadística aplicada, comprobar si ciertos menores de la matriz de datos se anulan equivale a detectar variables redundantes, que se podrían eliminar sin perder información. En teoría de códigos, los menores no nulos de una matriz generadora garantizan que un mensaje se reconstruya aunque se pierdan algunas de sus partes. Y en geometría, un menor de orden $2$ formado con las coordenadas de dos vectores mide el área del paralelogramo que determinan, de modo que su anulación significa que están alineados.
+
+En los tres casos la pregunta es la misma que vamos a aprender a responder: ¿cuál es el orden del mayor bloque cuadrado con determinante distinto de cero?
+:::
+
+## Resumen del apartado
+
+- Un **menor de orden $h$** de una matriz $A$ de dimensión $m\times n$ es el determinante de la submatriz cuadrada de orden $h$ obtenida al **elegir** $h$ filas y $h$ columnas de $A$, respetando su orden relativo.
+- La **submatriz** es una tabla y se escribe con paréntesis; el **menor** es un número y se escribe con barras verticales.
+- El orden de un menor cumple $1 \le h \le \min\{m,n\}$, y los menores de orden $1$ son los elementos de la matriz.
+- **Toda matriz tiene menores**, sea cuadrada o no. Solo el determinante exige matriz cuadrada.
+- El **menor complementario** $\alpha_{ij}$ es el menor de orden $n-1$ obtenido eligiendo todas las filas menos la $i$ y todas las columnas menos la $j$: un caso particular del concepto general. El **signo** $(-1)^{i+j}$ pertenece al adjunto, no al menor.
+- Número de menores de orden $h$: $\;N(h) = \dbinom{m}{h}\dbinom{n}{h}$. Una matriz cuadrada tiene $n^2$ menores de orden $n-1$ y exactamente **uno** de orden $n$, que es $|A|$.
+- El total crece muy deprisa: $34$ en una matriz $3\times 4$, $69$ en una $4\times 4$, $125$ en una $4\times 5$. Calcularlos todos no es una estrategia viable.
+- Si un menor de orden $h$ es distinto de cero, las $h$ filas que lo forman son **linealmente independientes**. El recíproco no vale para un menor concreto.
+
+## Ejercicios propuestos
+
+**1.** Dada la matriz
+
+$$
+A = \begin{pmatrix} 1 & -2 & 0 & 4 \\ 3 & 1 & 5 & -1 \\ 0 & 2 & -3 & 2 \end{pmatrix}
+$$
+
+escribe la submatriz y calcula el menor correspondiente a: **(a)** las filas $1$ y $3$ con las columnas $2$ y $4$; **(b)** las filas $1$, $2$, $3$ con las columnas $1$, $2$, $3$; **(c)** la fila $2$ con la columna $3$.
+
+**2.** ¿Cuál es el orden máximo de un menor en una matriz de dimensión $2\times 7$? ¿Y en una de $6\times 3$? ¿Y en una de $5\times 5$?
+
+**3.** Calcula cuántos menores de cada orden tiene una matriz de dimensión $3\times 5$ y cuántos tiene en total.
+
+**4.** Una matriz cuadrada de orden $5$. ¿Cuántos menores de orden $4$ tiene? ¿Cuántos de orden $5$? ¿Y cuántos en total?
+
+**5.** Halla **todos** los menores de orden $2$ de
+
+$$
+B = \begin{pmatrix} 1 & -1 \\ 2 & -2 \\ 0 & 0 \\ -3 & 2 \end{pmatrix}
+$$
+
+y di cuántos son distintos de cero.
+
+**6.** En la matriz
+
+$$
+C = \begin{pmatrix} 2 & 1 & 0 & 3 \\ 4 & 2 & 0 & 6 \\ 1 & 5 & 2 & -1 \end{pmatrix}
+$$
+
+encuentra un menor de orden $2$ distinto de cero y otro que sea nulo, explicando en cada caso por qué sale ese resultado.
+
+**7.** Sea $A$ cuadrada de orden $4$. Expresa el menor complementario $\alpha_{31}$ como menor de orden $3$ indicando la lista de filas y la lista de columnas elegidas.
+
+**8.** Justifica que si una matriz de dimensión $m\times n$ tiene una fila de ceros, todos los menores que la contengan son nulos. ¿Se puede concluir que **todos** los menores de la matriz son nulos?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** **(a)** Filas $1$ y $3$, columnas $2$ y $4$:
+
+$$
+\begin{pmatrix} -2 & 4 \\ 2 & 2 \end{pmatrix}, \qquad
+M_{\,1\,3\;\mid\;2\,4} = \begin{vmatrix} -2 & 4 \\ 2 & 2 \end{vmatrix} = -4 - 8 = -12
+$$
+
+**(b)** Las tres filas y las tres primeras columnas:
+
+$$
+M_{\,1\,2\,3\;\mid\;1\,2\,3} = \begin{vmatrix} 1 & -2 & 0 \\ 3 & 1 & 5 \\ 0 & 2 & -3 \end{vmatrix}
+$$
+
+Productos positivos: $1\cdot 1\cdot(-3) + (-2)\cdot 5\cdot 0 + 0\cdot 3\cdot 2 = -3$. Productos negativos: $0\cdot 1\cdot 0 + 1\cdot 5\cdot 2 + (-2)\cdot 3\cdot(-3) = 28$. Luego el menor vale $-3 - 28 = -31$.
+
+**(c)** Fila $2$, columna $3$: la submatriz es $\begin{pmatrix} 5 \end{pmatrix}$ y el menor de orden $1$ vale $5$.
+
+**2.** En $2\times 7$: $\min\{2,7\} = 2$, orden máximo $2$. En $6\times 3$: $\min\{6,3\} = 3$, orden máximo $3$. En $5\times 5$: orden máximo $5$, y ese menor único es el determinante de la matriz.
+
+**3.** Matriz $3\times 5$, con $\min\{3,5\} = 3$:
+
+$$
+N(1) = 3\cdot 5 = 15, \quad
+N(2) = \binom{3}{2}\binom{5}{2} = 30, \quad
+N(3) = \binom{3}{3}\binom{5}{3} = 10
+$$
+
+Total: $15 + 30 + 10 = 55$ menores.
+
+**4.** Para $m = n = 5$: $\;N(4) = \dbinom{5}{4}^2 = 25$ y $N(5) = \dbinom{5}{5}^2 = 1$. Los $25$ menores de orden $4$ son los menores complementarios, uno por cada elemento. Además $N(1) = 25$, $N(2) = \dbinom{5}{2}^2 = 100$ y $N(3) = \dbinom{5}{3}^2 = 100$. Total: $25 + 100 + 100 + 25 + 1 = 251$.
+
+**5.** Hay que elegir $2$ filas entre $4$ y las $2$ únicas columnas: $\dbinom{4}{2}\dbinom{2}{2} = 6$ menores.
+
+$$
+M_{\,1\,2} = \begin{vmatrix} 1 & -1 \\ 2 & -2 \end{vmatrix} = -2 + 2 = 0, \qquad
+M_{\,1\,3} = \begin{vmatrix} 1 & -1 \\ 0 & 0 \end{vmatrix} = 0
+$$
+
+$$
+M_{\,1\,4} = \begin{vmatrix} 1 & -1 \\ -3 & 2 \end{vmatrix} = 2 - 3 = -1, \qquad
+M_{\,2\,3} = \begin{vmatrix} 2 & -2 \\ 0 & 0 \end{vmatrix} = 0
+$$
+
+$$
+M_{\,2\,4} = \begin{vmatrix} 2 & -2 \\ -3 & 2 \end{vmatrix} = 4 - 6 = -2, \qquad
+M_{\,3\,4} = \begin{vmatrix} 0 & 0 \\ -3 & 2 \end{vmatrix} = 0
+$$
+
+Solo **dos** de los seis son distintos de cero: $M_{\,1\,4} = -1$ y $M_{\,2\,4} = -2$. Los que se anulan lo hacen por dos motivos: $M_{\,1\,2}$ porque sus filas son proporcionales ($F_2 = 2F_1$), y los otros tres porque contienen la fila de ceros $F_3$.
+
+**6.** Un menor **nulo**: filas $1$ y $2$ con columnas $1$ y $2$, que vale $\begin{vmatrix} 2 & 1 \\ 4 & 2 \end{vmatrix} = 4 - 4 = 0$. Se anula porque en $C$ se cumple $F_2 = 2F_1$, y esa proporcionalidad se hereda en cualquier submatriz formada con esas dos filas: **cualquier** menor de orden $2$ que use las filas $1$ y $2$ será nulo.
+
+Un menor **no nulo**: filas $1$ y $3$ con columnas $1$ y $2$, que vale $\begin{vmatrix} 2 & 1 \\ 1 & 5 \end{vmatrix} = 10 - 1 = 9 \neq 0$. Aquí las dos filas de la submatriz no son proporcionales, y por tanto $F_1$ y $F_3$ son linealmente independientes en $C$.
+
+**7.** Suprimir la fila $3$ deja las filas $1$, $2$, $4$; suprimir la columna $1$ deja las columnas $2$, $3$, $4$. Por tanto
+
+$$
+\alpha_{31} = M_{\,1\,2\,4\;\mid\;2\,3\,4}
+$$
+
+**8.** Si una fila de $A$ es de ceros y un menor la incluye entre sus $h$ filas elegidas, la submatriz tiene también una fila de ceros, y un determinante con una línea de ceros vale cero. Luego todos esos menores son nulos. **No** se puede concluir que todos los menores de la matriz sean nulos: basta no elegir esa fila. Por ejemplo,
+
+$$
+\begin{pmatrix} 1 & 0 \\ 0 & 0 \\ 0 & 1 \end{pmatrix}
+$$
+
+tiene la segunda fila nula y, sin embargo, el menor formado por las filas $1$ y $3$ con las dos columnas vale $\begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} = 1 \neq 0$.
+:::

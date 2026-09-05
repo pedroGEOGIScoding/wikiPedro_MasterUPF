@@ -1,0 +1,464 @@
+---
+title: "Tema 2.11 Rango de una matriz"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 11 de 16)"
+filename: 11-rango-de-una-matriz
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: El rango de una matriz definido como el orden del mayor menor no nulo, su equivalencia con el número de filas linealmente independientes y con el rango obtenido por el método de Gauss, la cota rg(A) menor o igual que el mínimo de m y n, la igualdad rg(A) igual a rg de la traspuesta y el criterio del determinante para matrices cuadradas.
+categories: [determinantes, rango, dependencia lineal, método de Gauss, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+El rango de una matriz ya lo conoces. Lo definimos como el número máximo de filas linealmente independientes y lo calculabas escalonando la matriz por Gauss: transformabas hasta que la estructura de ceros permitía leer directamente cuántas filas aportaban información nueva.
+
+Aquí vamos a dar una **segunda definición** del mismo número, esta vez con determinantes: el rango es el orden del mayor menor no nulo que se puede extraer de la matriz. Y no es un capricho, ni una definición alternativa que compite con la anterior: es **exactamente el mismo número**, obtenido por otro camino. Buena parte de este apartado consiste en entender por qué las dos formas de mirar el rango coinciden, porque ese entendimiento es lo que permite después elegir con criterio qué método usar en cada problema.
+
+::: {.callout-tip}
+## Un mismo número, tres lecturas
+
+Al final de este apartado tendrás tres descripciones del rango de $A$, todas equivalentes:
+
+1. El número máximo de filas (o de columnas) linealmente independientes de $A$.
+2. El número de filas no nulas de cualquier matriz escalonada obtenida de $A$ por transformaciones elementales.
+3. El **orden del mayor menor de $A$ distinto de cero**.
+
+Que tres caminos tan distintos lleven al mismo número no es habitual en matemáticas y da una medida de lo robusto que es el concepto. En la práctica, cada lectura tiene su terreno: la primera para razonar y justificar, la segunda para calcular rápido con números concretos, y la tercera para trabajar con parámetros y para decidir si una matriz cuadrada tiene inversa.
+:::
+
+## La definición con determinantes
+
+::: {.callout-note}
+## Definición: rango de una matriz
+
+Se llama **rango** de una matriz $A$ de dimensión $m\times n$, y se escribe $\operatorname{rg}(A)$, al **orden del mayor menor de $A$ distinto de cero**.
+
+Es decir, $\operatorname{rg}(A) = h$ si se cumplen las dos condiciones siguientes:
+
+- existe **algún** menor de orden $h$ con valor distinto de cero, y
+- **todos** los menores de orden $h+1$ son nulos, si es que existen menores de ese orden.
+
+Por convenio, el rango de la matriz nula es $0$, porque en ella no hay ningún menor no nulo de ningún orden: incluso sus menores de orden $1$, que son sus elementos, valen todos cero.
+:::
+
+La definición tiene una estructura de dos mitades que conviene aprender de memoria, porque es la que hay que reproducir en cualquier razonamiento sobre rangos:
+
+- Para asegurar $\operatorname{rg}(A) \ge h$ basta **exhibir un** menor de orden $h$ no nulo. Es una afirmación de existencia y se demuestra mostrando un ejemplo.
+- Para asegurar $\operatorname{rg}(A) < h+1$ hay que comprobar que **todos** los menores de orden $h+1$ son nulos. Es una afirmación universal y no basta con un caso.
+
+::: {.callout-caution}
+## El error clásico: dar por cerrado el rango con un solo menor nulo
+
+Supón que en una matriz $3\times 4$ has encontrado un menor de orden $2$ no nulo, calculas un menor de orden $3$, sale cero y concluyes que el rango es $2$. **Es un error de razonamiento.** Que un menor de orden $3$ se anule no impide que otro no lo haga, y una matriz $3\times 4$ tiene cuatro menores de orden $3$.
+
+Por ejemplo, en
+
+$$
+A = \begin{pmatrix} 1 & 2 & 3 & 0 \\ 2 & 4 & 6 & 1 \\ 0 & 0 & 0 & 5 \end{pmatrix}
+$$
+
+el menor formado con las tres columnas primeras vale cero, porque $C_2 = 2C_1$ y $C_3 = 3C_1$. Pero el menor con las columnas $1$, $2$ y $4$ tampoco sirve por el mismo motivo. En cambio, con las columnas $1$, $3$ y $4$ hay que mirar de verdad:
+
+$$
+\begin{vmatrix} 1 & 3 & 0 \\ 2 & 6 & 1 \\ 0 & 0 & 5 \end{vmatrix}
+= 5\cdot\begin{vmatrix} 1 & 3 \\ 2 & 6 \end{vmatrix} = 5\cdot(6-6) = 0
+$$
+
+Aquí sí sale cero de nuevo, y con las columnas $2$, $3$, $4$ pasa lo mismo. Solo después de agotar los **cuatro** se puede afirmar que $\operatorname{rg}(A) = 2$. La conclusión era correcta, pero el razonamiento con un único menor no lo era, y en un examen se penaliza.
+:::
+
+### Ejemplo resuelto 1: rango de una matriz $2\times 3$
+
+Calcula el rango de
+
+$$
+A = \begin{pmatrix} 1 & -2 & 1 \\ 0 & 0 & -2 \end{pmatrix}
+$$
+
+**Orden máximo posible.** Como $\min\{2,3\} = 2$, el mayor menor que se puede formar es de orden $2$ y por tanto $\operatorname{rg}(A) \le 2$.
+
+**Buscamos un menor de orden $2$ no nulo.** Con las columnas $1$ y $3$:
+
+$$
+\begin{vmatrix} 1 & 1 \\ 0 & -2 \end{vmatrix} = 1\cdot(-2) - 1\cdot 0 = -2 \neq 0
+$$
+
+**Conclusión.** Hemos encontrado un menor no nulo del orden máximo posible, así que ya no hay nada más que investigar:
+
+$$
+\operatorname{rg}(A) = 2
+$$
+
+Observa el detalle: el primer menor que se le ocurre a casi todo el mundo, el de las columnas $1$ y $2$, vale $\begin{vmatrix} 1 & -2 \\ 0 & 0 \end{vmatrix} = 0$. Si hubiéramos parado ahí, habríamos concluido erróneamente que el rango es $1$. **Un menor nulo no cierra nada.**
+
+### Ejemplo resuelto 2: rango $1$
+
+Calcula el rango de
+
+$$
+B = \begin{pmatrix} 2 & -4 & 6 \\ -1 & 2 & -3 \\ 3 & -6 & 9 \end{pmatrix}
+$$
+
+**Cota.** $\operatorname{rg}(B)\le 3$.
+
+**Menores de orden $3$.** Hay uno solo, el propio determinante. Como $F_2 = -\tfrac12 F_1$, hay dos filas proporcionales y por tanto $|B| = 0$. Luego $\operatorname{rg}(B) \le 2$.
+
+**Menores de orden $2$.** Hay $\dbinom{3}{2}\dbinom{3}{2} = 9$. Vamos a ver que todos se anulan sin calcularlos uno a uno: en $B$ se cumple $F_2 = -\tfrac12 F_1$ y $F_3 = \tfrac32 F_1$, es decir, **las tres filas son proporcionales entre sí**. Cualquier submatriz $2\times 2$ hereda esa proporcionalidad entre sus dos filas, y un determinante con dos filas proporcionales es cero. Los nueve menores de orden $2$ son nulos y $\operatorname{rg}(B)\le 1$.
+
+**Menores de orden $1$.** El elemento $a_{11} = 2 \neq 0$ es un menor de orden $1$ no nulo. Por tanto
+
+$$
+\operatorname{rg}(B) = 1
+$$
+
+**Lectura.** La matriz tiene nueve elementos y toda su información se reduce a una sola fila; las otras dos son copias reescaladas.
+
+## Por qué esta definición coincide con la anterior
+
+::: {.callout-important}
+## Equivalencia entre el rango por menores y el rango por independencia lineal
+
+Sea $r$ el número máximo de filas linealmente independientes de $A$ y sea $s$ el orden del mayor menor no nulo de $A$. Vamos a ver que $r = s$ probando las dos desigualdades.
+
+**Primero, $s \le r$.** Si existe un menor de orden $s$ no nulo, formado con ciertas $s$ filas de $A$, esas $s$ filas son linealmente independientes: si una de ellas fuera combinación lineal de las otras, esa relación se heredaría en la submatriz y el determinante sería cero, contra lo supuesto. Luego $A$ tiene al menos $s$ filas independientes, es decir, $r \ge s$.
+
+**Segundo, $r \le s$.** Si $A$ tiene $r$ filas linealmente independientes, quedémonos con la submatriz $R$ de $r\times n$ formada solo por ellas. Sus $r$ filas son independientes, así que $\operatorname{rg}(R) = r$ como número de filas independientes; y como el rango por filas coincide con el rango por columnas, $R$ tiene también $r$ columnas independientes. Eligiendo esas $r$ columnas se obtiene una submatriz cuadrada de orden $r$ cuyas filas son independientes, y una matriz cuadrada con todas sus filas independientes tiene determinante distinto de cero. Ese determinante es un menor de orden $r$ de $A$ no nulo, luego $s \ge r$.
+
+De las dos desigualdades se sigue $r = s$: **el orden del mayor menor no nulo es el número de líneas independientes**. Las dos definiciones nombran el mismo número, y en adelante usaremos la que resulte más cómoda.
+:::
+
+::: {.callout-note}
+## Consecuencias inmediatas
+
+**Cota fundamental.** Como el orden de un menor no puede pasar de $\min\{m,n\}$,
+
+$$
+0 \le \operatorname{rg}(A) \le \min\{m,\, n\}
+$$
+
+Un rango mayor que ese mínimo es imposible y delata un error de cálculo.
+
+**Rango de la traspuesta.** Los menores de $A^{t}$ son exactamente los traspuestos de los menores de $A$ —intercambiar filas por columnas al elegir es lo mismo que trasponer—, y trasponer no cambia el valor de un determinante. Por tanto $A$ y $A^{t}$ tienen los mismos menores no nulos y
+
+$$
+\operatorname{rg}(A) = \operatorname{rg}\!\left(A^{t}\right)
+$$
+
+**Rango cero.** $\operatorname{rg}(A) = 0$ si y solo si $A$ es la matriz nula, porque basta un elemento no nulo para tener un menor de orden $1$ no nulo.
+
+**Rango de la identidad.** $\operatorname{rg}(I_n) = n$, porque $|I_n| = 1 \neq 0$ es un menor de orden $n$ no nulo.
+
+**Matriz escalonada.** Si $A$ es escalonada con $k$ filas no nulas, tomando las $k$ filas no nulas y las $k$ columnas de los pivotes se obtiene una submatriz triangular con todos los elementos de la diagonal distintos de cero; su determinante es el producto de esa diagonal y no se anula. Luego $\operatorname{rg}(A) = k$.
+:::
+
+### Applet · Rango como orden del mayor menor no nulo {.unnumbered}
+
+Introduce una matriz y recorre con el applet los menores de cada orden, de mayor a menor: fíjate en que el rango es el primer orden en el que aparece al menos un menor no nulo, y comprueba que por encima de ese orden **todos** los menores se anulan, no solo alguno.
+
+::: {#panel-rangoDef .applet-panel data-applet-det="rangoDef"}
+:::
+
+## El caso de las matrices cuadradas
+
+Cuando la matriz es cuadrada, la definición por menores da un criterio inmediato que se usará constantemente en lo que queda de tema.
+
+::: {.callout-note}
+## Criterio del determinante
+
+Sea $A$ una matriz cuadrada de orden $n$. Entonces:
+
+$$
+|A| \neq 0 \;\Longleftrightarrow\; \operatorname{rg}(A) = n
+$$
+
+En ese caso se dice que $A$ tiene **rango máximo**, que es **regular** o **inversible**, y que sus $n$ filas son linealmente independientes.
+
+Si $|A| = 0$, la matriz se llama **singular**, su rango es estrictamente menor que $n$ y alguna de sus filas es combinación lineal de las demás.
+:::
+
+La razón es que una matriz cuadrada de orden $n$ tiene **un único** menor de orden $n$: su propio determinante. Si no se anula, el rango es $n$ sin más comprobaciones; si se anula, el rango baja y hay que seguir buscando en los menores de orden $n-1$.
+
+### Ejemplo resuelto 3: rango de una matriz cuadrada de orden $3$
+
+Calcula el rango de
+
+$$
+C = \begin{pmatrix} 2 & -1 & 3 \\ 1 & 4 & -2 \\ 3 & 3 & 1 \end{pmatrix}
+$$
+
+**Paso 1: el menor de orden máximo.** Por Sarrus, los productos positivos suman
+
+$$
+2\cdot 4\cdot 1 + (-1)\cdot(-2)\cdot 3 + 3\cdot 1\cdot 3 = 8 + 6 + 9 = 23
+$$
+
+y los negativos
+
+$$
+3\cdot 4\cdot 3 + 2\cdot(-2)\cdot 3 + (-1)\cdot 1\cdot 1 = 36 - 12 - 1 = 23
+$$
+
+Luego $|C| = 23 - 23 = 0$ y el rango es menor que $3$.
+
+**Paso 2: un menor de orden $2$.** Con las filas $1$ y $2$ y las columnas $1$ y $2$:
+
+$$
+\begin{vmatrix} 2 & -1 \\ 1 & 4 \end{vmatrix} = 8 + 1 = 9 \neq 0
+$$
+
+**Conclusión.**
+
+$$
+\operatorname{rg}(C) = 2
+$$
+
+**Comprobación por dependencia.** El determinante se anulaba porque $F_3 = F_1 + F_2$: en efecto, $2+1 = 3$, $-1+4 = 3$ y $3+(-2) = 1$. Encaja con el rango $2$: hay dos filas independientes y la tercera se deduce de ellas.
+
+::: {.callout-warning}
+## No confundir el orden con el rango
+
+En una matriz cuadrada de orden $4$, el rango puede valer $4$, $3$, $2$, $1$ o $0$. El **orden** es un dato de tamaño y no decide nada; el **rango** es una propiedad del contenido. Del mismo modo, una matriz $2\times 9$ tiene nueve columnas y su rango nunca pasará de $2$.
+
+Y al revés: si en un problema te sale que una matriz $3\times 3$ tiene rango $4$, no hay que buscar el error en la interpretación, sino en la aritmética, porque ese resultado es imposible.
+:::
+
+## Comparación con el método de Gauss
+
+Las dos técnicas dan el mismo número, pero no cuestan lo mismo. Conviene tenerlas las dos disponibles y saber cuándo tira una y cuándo la otra.
+
+### Ejemplo resuelto 4: la misma matriz por los dos caminos
+
+Calcula el rango de
+
+$$
+D = \begin{pmatrix} 1 & 2 & -1 & 3 \\ 2 & 4 & 1 & 0 \\ 3 & 6 & 0 & 3 \end{pmatrix}
+$$
+
+**Camino 1: por menores.**
+
+*Cota.* $\operatorname{rg}(D)\le\min\{3,4\} = 3$.
+
+*Un menor de orden $2$ no nulo.* Filas $1$ y $2$, columnas $1$ y $3$:
+
+$$
+\begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1 + 2 = 3 \neq 0
+\;\Longrightarrow\; \operatorname{rg}(D)\ge 2
+$$
+
+*Los menores de orden $3$.* Hay cuatro, uno por cada columna descartada. Pero en $D$ se cumple $F_3 = F_1 + F_2$, y cualquier submatriz de orden $3$ usa las tres filas, así que hereda esa combinación lineal. Un determinante con una fila combinación lineal de las otras vale cero, luego **los cuatro** menores de orden $3$ son nulos y
+
+$$
+\operatorname{rg}(D) = 2
+$$
+
+**Camino 2: por Gauss.** Con $F_2 \to F_2 - 2F_1$ y $F_3 \to F_3 - 3F_1$:
+
+$$
+\begin{pmatrix} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 3 & -6 \end{pmatrix}
+$$
+
+Y con $F_3 \to F_3 - F_2$:
+
+$$
+\begin{pmatrix} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 0 & 0 \end{pmatrix}
+$$
+
+Dos filas no nulas, luego $\operatorname{rg}(D) = 2$. **El mismo resultado.**
+
+**Balance.** En este caso Gauss ha sido más corto, y con matrices numéricas suele serlo. La ventaja del camino por menores aquí ha sido conceptual: la observación $F_3 = F_1 + F_2$ ha permitido descartar los cuatro menores de orden $3$ de golpe, sin calcular ninguno.
+
+### Applet · Rango por menores frente a rango por Gauss {.unnumbered}
+
+Escribe una matriz y compara en paralelo las dos vías: a la izquierda el escalonamiento paso a paso y a la derecha la búsqueda de menores no nulos por órdenes descendentes; comprueba que el número final es siempre el mismo y observa en qué tipo de matrices cada método necesita menos operaciones.
+
+::: {#panel-rangoVsGauss .applet-panel data-applet-det="rangoVsGauss"}
+:::
+
+::: {.callout-tip}
+## Cuándo conviene cada método
+
+**Usa Gauss cuando:**
+
+- la matriz es numérica y de tamaño moderado, sobre todo si ya tiene ceros o unos bien colocados;
+- solo te piden el rango, sin más preguntas alrededor;
+- la matriz es rectangular y alargada, con muchas más columnas que filas.
+
+**Usa menores cuando:**
+
+- la matriz **contiene parámetros**. Es el caso decisivo: escalonar con parámetros obliga a dividir entre expresiones que pueden anularse y la discusión se descontrola, mientras que un menor con parámetro es un polinomio que se iguala a cero y se resuelve. Es el contenido del apartado 2.13.
+- la matriz es **cuadrada** y sospechas que tiene rango máximo: un solo determinante lo resuelve.
+- ya conoces alguna dependencia entre líneas, porque entonces muchos menores se anulan sin necesidad de calcularlos.
+- te piden a la vez el rango y la inversa: el determinante que calculas para el rango es el que necesitas para la inversa.
+
+**Y una advertencia de método mixto.** Nada impide combinar los dos: se puede simplificar la matriz con transformaciones elementales —que no alteran el rango— y aplicar después el estudio por menores a la matriz simplificada. Es a menudo lo más rápido. Lo único que no se puede hacer es simplificar con transformaciones que sí cambian el rango.
+:::
+
+::: {.callout-important}
+## Por qué las transformaciones de Gauss no cambian los menores relevantes
+
+Que los dos métodos coincidan puede parecer sorprendente, pero se sigue de las propiedades de los determinantes que ya conoces:
+
+- $F_i \leftrightarrow F_j$ cambia el signo de los menores afectados, y un número no nulo sigue siendo no nulo al cambiar de signo. El rango no se ve.
+- $F_i \to k F_i$ con $k\neq 0$ multiplica esos menores por $k$, y un número no nulo multiplicado por $k \neq 0$ sigue siendo no nulo.
+- $F_i \to F_i + k F_j$ **no altera** el valor de los menores que contienen las dos filas $i$ y $j$, por la propiedad de que sumar a una línea un múltiplo de otra deja el determinante igual.
+
+En los tres casos, un menor que era nulo sigue siendo nulo y uno que no lo era sigue sin serlo. Por eso el orden del mayor menor no nulo se conserva a lo largo de todo el escalonamiento, y al llegar a la forma escalonada ese orden se lee como el número de filas no nulas.
+:::
+
+## Rango y sistemas de ecuaciones
+
+::: {.callout-tip}
+## El destino de todo esto
+
+Todo sistema de ecuaciones lineales se escribe $A\cdot X = B$, con $A$ la matriz de coeficientes. Ampliándola con la columna de términos independientes se obtiene $A' = (A\,|\,B)$. El teorema de Rouché-Frobenius afirma que el número de soluciones queda decidido comparando tres números: $\operatorname{rg}(A)$, $\operatorname{rg}(A')$ y el número de incógnitas $n$.
+
+- Si $\operatorname{rg}(A) \neq \operatorname{rg}(A')$, el sistema es **incompatible**: no tiene solución.
+- Si $\operatorname{rg}(A) = \operatorname{rg}(A') = n$, es **compatible determinado**: solución única.
+- Si $\operatorname{rg}(A) = \operatorname{rg}(A') < n$, es **compatible indeterminado**: infinitas soluciones.
+
+Fíjate en que las matrices $A$ y $A'$ tienen distinto número de columnas, así que la herramienta que necesitas es el rango de matrices **rectangulares**. Y cuando el sistema depende de un parámetro, esos rangos hay que discutirlos. Ese es el motivo por el que el aparato de menores que estamos construyendo es imprescindible y no un adorno.
+:::
+
+::: {.callout-caution}
+## Errores típicos de este apartado
+
+- **Concluir el rango tras un único menor nulo del orden siguiente.** Para bajar el rango hacen falta **todos** los menores de ese orden nulos.
+- **Olvidar la cota.** Un rango mayor que $\min\{m,n\}$ es imposible; escribirla al principio evita disparates.
+- **Decir que el rango es $0$ porque hay muchos ceros.** El rango vale $0$ únicamente para la matriz nula.
+- **Buscar el determinante de una matriz rectangular.** No existe. En una matriz rectangular solo hay menores.
+- **Escribir $\operatorname{rg}(A) = |A|$.** El rango es un orden, no un valor. Lo correcto es: si $|A|\neq 0$ entonces $\operatorname{rg}(A) = n$.
+- **Elegir siempre las primeras filas y columnas.** El menor formado por las esquinas superiores izquierdas puede anularse aunque el rango sea máximo; hay libertad total para elegir.
+- **Confundir «$|A| = 0$» con «$A$ es la matriz nula».** Muchísimas matrices no nulas tienen determinante cero.
+:::
+
+::: {.callout-warning}
+## Cómo se redacta un cálculo de rango
+
+Una solución completa contiene, en este orden:
+
+1. La **cota**: $\operatorname{rg}(A)\le\min\{m,n\}$.
+2. El **menor testigo**: un menor concreto, con sus filas y columnas identificadas, cuyo valor calculado no es cero. Esto establece la cota inferior.
+3. La **anulación del orden siguiente**: todos los menores de orden inmediatamente superior, calculados o justificados por una dependencia lineal visible.
+4. La **conclusión**: $\operatorname{rg}(A) = h$.
+
+Si te apoyas en una relación como $F_3 = F_1 + F_2$ para descartar de golpe varios menores, **escríbela y compruébala** elemento a elemento. Es un argumento perfectamente válido y ahorra mucho trabajo, pero solo si queda demostrado que la relación se cumple.
+:::
+
+## Resumen del apartado
+
+- El **rango** de $A$ es el **orden del mayor menor de $A$ distinto de cero**, y se escribe $\operatorname{rg}(A)$.
+- Ese número coincide con el **número máximo de filas (o columnas) linealmente independientes** y con el número de filas no nulas de cualquier escalonada de $A$: las tres lecturas son equivalentes.
+- Para probar $\operatorname{rg}(A)\ge h$ basta **un** menor de orden $h$ no nulo; para probar $\operatorname{rg}(A)<h$ hacen falta **todos** los de orden $h$ nulos.
+- **Cota:** $0\le\operatorname{rg}(A)\le\min\{m,n\}$.
+- $\operatorname{rg}(A) = 0$ solo para la matriz nula; $\operatorname{rg}(I_n) = n$.
+- $\operatorname{rg}(A) = \operatorname{rg}(A^{t})$, porque los menores de la traspuesta son los traspuestos de los menores y trasponer no cambia un determinante.
+- Si $A$ es cuadrada de orden $n$: $\;|A|\neq 0 \Longleftrightarrow \operatorname{rg}(A) = n$. Entonces $A$ es **regular**; si $|A| = 0$ es **singular**.
+- Las transformaciones elementales **no cambian el rango**, porque no convierten menores nulos en no nulos ni al contrario.
+- **Gauss** es preferible con matrices numéricas; **los menores** son imprescindibles con parámetros y con matrices cuadradas de las que también se quiere la inversa.
+- El rango es la herramienta con la que se discute el número de soluciones de un sistema lineal.
+
+## Ejercicios propuestos
+
+**1.** Calcula, usando menores, el rango de
+
+$$
+A = \begin{pmatrix} 1 & -1 \\ 2 & -2 \end{pmatrix},
+\qquad
+B = \begin{pmatrix} 3 & 0 & -1 \\ 0 & 0 & 0 \end{pmatrix},
+\qquad
+C = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+$$
+
+**2.** Calcula el rango de
+
+$$
+D = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}
+$$
+
+justificando por qué todos los menores de orden $2$ se anulan sin calcularlos uno a uno.
+
+**3.** Determina si la matriz
+
+$$
+E = \begin{pmatrix} 1 & -1 & 2 \\ 2 & 1 & -1 \\ 1 & -4 & 7 \end{pmatrix}
+$$
+
+es regular o singular, y da su rango.
+
+**4.** Se sabe que $A$ es de dimensión $4\times 6$ y que $\operatorname{rg}(A) = 3$. Responde: **(a)** ¿cuántas filas de $A$ son combinación lineal de las demás? **(b)** ¿cuánto vale $\operatorname{rg}(A^{t})$? **(c)** ¿pueden ser no nulos algunos menores de orden $4$ de $A$?
+
+**5.** Calcula el rango de
+
+$$
+F = \begin{pmatrix} 1 & 0 & 2 & -1 \\ 0 & 1 & 3 & 2 \end{pmatrix}
+$$
+
+por menores y por Gauss, y compara el trabajo que exige cada método.
+
+**6.** Justifica que si una matriz cuadrada de orden $3$ tiene dos columnas proporcionales, su rango es como máximo $2$ y no tiene inversa.
+
+**7.** ¿Es posible que una matriz $5\times 3$ tenga rango $4$? ¿Y rango $3$? ¿Y rango $0$ sin ser la matriz nula? Razona las tres respuestas.
+
+**8.** Sea $A$ cuadrada de orden $3$ con $|A| = 5$. Calcula $\operatorname{rg}(A)$, $\operatorname{rg}(A^{t})$ y $\operatorname{rg}(2A)$, justificando el último con la propiedad $|kA| = k^{n}|A|$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** Para $A$: el único menor de orden $2$ vale $\begin{vmatrix} 1 & -1 \\ 2 & -2 \end{vmatrix} = -2 + 2 = 0$, luego el rango es menor que $2$; y $a_{11} = 1 \neq 0$ es un menor de orden $1$ no nulo. Así $\operatorname{rg}(A) = 1$.
+
+Para $B$: los tres menores de orden $2$ contienen la fila de ceros, así que todos son nulos; y $b_{11} = 3\neq 0$. Luego $\operatorname{rg}(B) = 1$.
+
+Para $C$: todos los elementos son cero, no hay ningún menor no nulo de ningún orden y $\operatorname{rg}(C) = 0$. Es el único caso posible de rango cero.
+
+**2.** En $D$ se cumple $F_2 = 2F_1$ y $F_3 = 3F_1$: las tres filas son proporcionales entre sí. Cualquier submatriz $2\times 2$ está formada por dos filas proporcionales, luego su determinante es cero. Por tanto los nueve menores de orden $2$ son nulos y el rango es menor que $2$. Como $d_{11} = 1\neq 0$,
+
+$$
+\operatorname{rg}(D) = 1
+$$
+
+**3.** Por Sarrus, los productos positivos suman $1\cdot 1\cdot 7 + (-1)\cdot(-1)\cdot 1 + 2\cdot 2\cdot(-4) = 7 + 1 - 16 = -8$ y los negativos $1\cdot 1\cdot 2 + 1\cdot(-1)\cdot(-4) + (-1)\cdot 2\cdot 7 = 2 + 4 - 14 = -8$. Luego $|E| = -8 - (-8) = 0$: la matriz es **singular** y no tiene inversa. Como
+
+$$
+\begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1 + 2 = 3 \neq 0
+$$
+
+resulta $\operatorname{rg}(E) = 2$. Y efectivamente $F_3 = 3F_1 - F_2$: $3\cdot 1 - 2 = 1$, $3\cdot(-1) - 1 = -4$ y $3\cdot 2 - (-1) = 7$.
+
+**4.** **(a)** Hay $4$ filas y solo $3$ independientes, luego **una** de ellas es combinación lineal de las demás. **(b)** $\operatorname{rg}(A^{t}) = 3$, porque el rango no cambia al trasponer; nótese que $A^{t}$ es $6\times 4$. **(c)** No. Si algún menor de orden $4$ fuera no nulo, el rango sería al menos $4$, y sabemos que es $3$. Todos los menores de orden $4$ de $A$ son nulos.
+
+**5.** *Por menores.* Cota: $\operatorname{rg}(F)\le\min\{2,4\} = 2$. Con las columnas $1$ y $2$,
+
+$$
+\begin{vmatrix} 1 & 0 \\ 0 & 1 \end{vmatrix} = 1 \neq 0
+$$
+
+luego $\operatorname{rg}(F) = 2$, que es el máximo posible. Un solo determinante de orden $2$ y hemos terminado.
+
+*Por Gauss.* La matriz ya está escalonada: el primer pivote está en la posición $(1,1)$ y el segundo en la $(2,2)$, con ceros por debajo. Dos filas no nulas, luego $\operatorname{rg}(F) = 2$.
+
+*Comparación.* Aquí los dos métodos son inmediatos porque la matriz tiene la identidad de orden $2$ en las dos primeras columnas. En general, cuando la matriz es muy alargada y con pocos ceros, Gauss obliga a arrastrar todas las columnas mientras que el estudio por menores puede quedarse en un bloque pequeño y bien elegido.
+
+**6.** Si $C_1$ y $C_2$ son proporcionales, el determinante de la matriz es cero por la propiedad de las líneas proporcionales, luego $\operatorname{rg}(A) < 3$, es decir, $\operatorname{rg}(A)\le 2$. Al no tener rango máximo, $|A| = 0$ y la matriz es singular: no existe $A^{-1}$.
+
+**7.** Rango $4$: **imposible**, porque $\operatorname{rg}(A)\le\min\{5,3\} = 3$; además no hay menores de orden $4$, ya que solo hay tres columnas. Rango $3$: **posible**, es el rango máximo de esa dimensión y se alcanza en cuanto exista un menor de orden $3$ no nulo. Rango $0$ sin ser nula: **imposible**, porque cualquier elemento distinto de cero es ya un menor de orden $1$ no nulo y garantiza rango al menos $1$.
+
+**8.** Como $|A| = 5 \neq 0$, la matriz es regular y $\operatorname{rg}(A) = 3$. Al trasponer el rango no cambia, luego $\operatorname{rg}(A^{t}) = 3$; coherente además con $|A^{t}| = |A| = 5$. Para $2A$, con $n = 3$,
+
+$$
+|2A| = 2^{3}\cdot|A| = 8\cdot 5 = 40 \neq 0
+$$
+
+luego $\operatorname{rg}(2A) = 3$. En general, multiplicar una matriz por un número distinto de cero nunca cambia su rango: equivale a multiplicar todas las filas por ese número, que es una transformación elemental permitida.
+:::

@@ -1,12 +1,12 @@
 ---
 title: "Tema 2.1 Determinantes"
-subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 1 de 6)"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 1 de 16)"
 filename: 01-determinantes
 author: "Pedro Martínez Durán"
 date-modified: last-modified
 date-format: full
-description: A cada matriz cuadrada se le asocia un número, su determinante. Aquí se define y se aprende a calcularlo en los órdenes 1, 2 y 3 con la regla de Sarrus, y a resolver ecuaciones en las que la incógnita aparece dentro de un determinante.
-categories: [determinantes, orden 2, orden 3, regla de Sarrus, ecuaciones con determinantes, 2 Batx, matemáticas CCSS]
+description: Qué es el determinante de una matriz cuadrada y por qué a cada tabla cuadrada de números se le puede asociar un único número que la resume, la definición general como suma de todos los productos posibles de un elemento de cada fila y de cada columna, la mitad con su signo y la otra mitad con el contrario, las notaciones |A| y det(A), el determinante de orden 1, la razón de que solo las matrices cuadradas tengan determinante y las dos grandes aplicaciones que justifican todo el tema que son medir superficies y decidir si una matriz tiene inversa, con applets manipulables.
+categories: [determinantes, matriz cuadrada, notación, orden 1, 2 Batx, matemáticas CCSS]
 toc: true
 number-sections: true
 lightbox:
@@ -20,254 +20,311 @@ format:
     html-math-method: katex
 ---
 
-## De dónde viene este tema
+## De qué va este apartado
 
-En el tema 1 quedaron dos preguntas sin respuesta completa. ¿Cuándo tiene una matriz inversa? ¿Cómo se calcula el rango sin escalonar a mano? Las dos se contestan con una sola herramienta: el **determinante**.
+En tu instituto hay un patio bastante grande. Ahora dedicas la hora del recreo a hablar con los amigos y las amigas, pero a veces recuerdas el tiempo que pasabas allí jugando al fútbol, al baloncesto o al escondite, y te sorprende que cupierais todos perfectamente. Siempre has tenido la sensación de que era un espacio enorme, aunque ahora ya no te lo parezca tanto. Y ahí se despierta la curiosidad: **¿cuánto mide realmente ese patio?**
 
-Y el libro de texto abre la unidad con un problema muy concreto: medir la superficie del patio del instituto, que no tiene forma de polígono regular. La estrategia es la **triangulación**, dividir la figura irregular en triángulos, y el área de cada triángulo se calcula con un determinante [cite:file:223]:
+El problema es que el patio no tiene forma de polígono regular. No es un rectángulo, ni un círculo, ni un trapecio de manual. Es un recinto irregular, con esquinas donde el muro gira, con un saliente junto a las pistas y un rincón detrás del gimnasio. Ninguna fórmula de las que has memorizado sirve tal cual. Y, sin embargo, el problema tiene solución, y la solución es sorprendentemente sencilla: se toma una foto aérea o un mapa en línea, se marcan las **coordenadas de cada esquina**, se corta el recinto en triángulos y se suman las áreas de esos triángulos. Todo el trabajo se reduce entonces a saber calcular con precisión el área de un triángulo del que conocemos los tres vértices.
 
-$$
-A_T = \frac{1}{2}\begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix}
-$$
+Ese cálculo, que parece un asunto de geometría, se resuelve con una máquina algebraica que vas a construir en este tema: el **determinante**. La idea de fondo es la siguiente. En el tema anterior aprendiste que una matriz es una tabla de números organizada por filas y columnas, y que con esas tablas se puede operar. Ahora damos un paso más y hacemos algo que, a primera vista, parece imposible: **comprimir una tabla entera de números en un único número** que conserva la información esencial sobre ella.
 
-Con las coordenadas de los tres vértices sale el área directamente. Sumando las seis piezas del patio, la superficie total resultó de 1800 m² [cite:file:223].
+No cualquier información, claro. Un solo número no puede guardar todo lo que hay en una tabla de nueve o dieciséis casillas. Pero sí puede guardar algo muy concreto y muy valioso: si ese número vale cero, la matriz es «defectuosa» en un sentido preciso —sus filas se repiten unas a otras, no aporta tanta información como parece, no tiene inversa, el sistema de ecuaciones asociado no se comporta bien—; y si no vale cero, la matriz es «sana». Además, en dimensión dos y tres ese número mide exactamente un área o un volumen. Con una sola cifra respondemos a preguntas de álgebra y de geometría a la vez. Por eso el determinante es una de las herramientas más rentables de todo el bachillerato.
+
+En este primer apartado no vamos a calcular todavía determinantes complicados. Vamos a hacer algo previo y más importante: entender **qué es** un determinante, **de qué matrices** se puede calcular, **cómo se escribe** y **por qué merece la pena**. En el apartado siguiente aprenderás a calcularlo en los dos casos que usarás continuamente, el orden 2 y el orden 3.
+
+## Qué es un determinante
 
 ::: {.callout-note}
-## Los ocho objetivos del tema
+## Definición de determinante
 
-Calcular un determinante usando sus propiedades, calcularlo formando ceros, calcular el rango a partir de sus menores, calcular la inversa con determinantes, resolver ecuaciones con determinantes, reducir un determinante a otro cuyo valor se conoce, calcular un determinante en función del rango, y estudiar el rango de una matriz cuadrada que depende de un parámetro.
+Dada una matriz **cuadrada** $A$ de orden $n$, se llama **determinante de $A$**, y se escribe $|A|$ o $\det(A)$, al número que se obtiene al sumar **todos los productos posibles de $n$ elementos de $A$ tomando uno de cada fila y uno de cada columna**, la mitad de esos productos con su signo y la otra mitad con el signo contrario.
 
-Fíjate en que dos de ellos, el quinto y el sexto, no son cálculos rutinarios sino **estrategias**. Son los que más distinguen a quien ha entendido el tema.
+Si $A=(a_{ij})_{n\times n}$, el determinante se escribe sustituyendo los paréntesis de la matriz por dos barras verticales:
+
+$$
+|A| = \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+$$
 :::
 
-## Definición
+Conviene leer la definición muy despacio, porque en una sola frase hay tres condiciones encadenadas y cada una de ellas dice algo distinto.
 
-Dada una matriz cuadrada $A$ de orden $n$, su **determinante** $|A|$ es un número que se obtiene sumando todos los productos posibles de $n$ elementos, uno de cada fila y uno de cada columna, la mitad con su signo y la otra mitad con el signo contrario [cite:file:223].
+**Primera: se toman $n$ elementos.** Tantos como el orden de la matriz. En una matriz de orden 3 cada sumando es un producto de tres números; en una de orden 4, de cuatro números. Nunca menos, nunca más.
 
-Se escribe $|A|$ o $\det(A)$, y en forma desarrollada se cambian los paréntesis de la matriz por dos barras verticales.
+**Segunda: uno de cada fila y uno de cada columna.** Esta es la restricción decisiva y la que da al determinante todo su carácter. No vale coger dos elementos de la misma fila, ni dos de la misma columna. Cada sumando es, por tanto, una manera de emparejar filas con columnas sin repetir ninguna: a la fila 1 le asignamos una columna, a la fila 2 otra distinta, y así hasta agotar las $n$ filas y las $n$ columnas.
+
+**Tercera: la mitad con su signo y la otra mitad con el contrario.** Los productos no se suman todos alegremente. La mitad exacta entra con signo más y la otra mitad con signo menos, según una regla precisa que depende de cómo estén «desordenadas» las columnas elegidas respecto de las filas. Esa alternancia de signos es lo que hace que el determinante detecte repeticiones: cuando dos filas son iguales, cada producto positivo tiene un gemelo negativo que lo cancela y el resultado es cero.
+
+### Cuántos sumandos tiene un determinante
+
+De la definición se deduce inmediatamente cuántos sumandos hay. Emparejar $n$ filas con $n$ columnas sin repetir es exactamente lo mismo que ordenar $n$ objetos, y eso se puede hacer de $n!$ maneras distintas. El determinante de orden $n$ tiene, por tanto, $n!$ sumandos:
+
+| Orden $n$ | Número de sumandos $n!$ | Positivos | Negativos |
+|---|---|---|---|
+| $1$ | $1$ | $1$ | $0$ |
+| $2$ | $2$ | $1$ | $1$ |
+| $3$ | $6$ | $3$ | $3$ |
+| $4$ | $24$ | $12$ | $12$ |
+| $5$ | $120$ | $60$ | $60$ |
+
+La tabla explica por su cuenta la estructura del tema. El orden 2 tiene dos sumandos y se resuelve de memoria. El orden 3 tiene seis y se resuelve con una regla visual, la regla de Sarrus, que aprenderás en la parte 2. A partir del orden 4 la definición directa deja de ser practicable: veinticuatro productos de cuatro factores cada uno son casi cien multiplicaciones, y ningún estudiante razonable las hace a mano sin equivocarse. Por eso, de la parte 3 en adelante construiremos métodos indirectos —los adjuntos y el método de hacer ceros— que reducen un determinante grande a varios pequeños.
 
 ::: {.callout-important}
-## Si la matriz no es cuadrada, no tiene determinante
+## Por qué se exige que la matriz sea cuadrada
 
-No es que valga cero: es que **no existe** [cite:file:223]. La definición exige tomar un elemento de cada fila y de cada columna, y eso solo es posible si hay tantas filas como columnas.
+La condición de que $A$ sea cuadrada no es un capricho de la definición: es una **necesidad lógica**. Cada sumando del determinante debe usar un elemento de cada fila y un elemento de cada columna, sin repetir. Si la matriz tuviera $3$ filas y $5$ columnas, al recorrer las tres filas solo consumiríamos tres columnas y quedarían dos sin usar; y si tuviera $5$ filas y $3$ columnas, nos quedaríamos sin columnas antes de terminar las filas. En ninguno de los dos casos existe un emparejamiento completo, y sin emparejamiento completo no hay sumandos que sumar.
 
-Esta comprobación debe ser lo primero que hagas al ver el enunciado. Es gratis y evita perder el ejercicio entero.
+Dicho brevemente: **si una matriz no es cuadrada, no tiene determinante**. No es que su determinante valga cero; es que la expresión $|A|$ no significa nada. Escribir
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{vmatrix}
+$$
+
+es un error de la misma naturaleza que escribir la suma de dos matrices de dimensiones distintas.
 :::
 
-## Órdenes 1 y 2
+### Notación: dos maneras de escribir lo mismo
 
-Para el orden 1 el determinante es el propio número: $|(a_{11})| = a_{11}$.
+Hay dos notaciones en circulación y las dos son correctas. La primera es $\det(A)$, con la palabra abreviada y la matriz entre paréntesis; es la más clara y la que conviene usar cuando en la misma línea aparecen varios objetos. La segunda es $|A|$, con dos barras verticales; es más breve y es la que más verás en enunciados de examen.
 
-Para el orden 2:
-
-$$
-|A| = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} = a_{11}a_{22} - a_{12}a_{21}
-$$
-
-Es decir, **producto de la diagonal principal menos producto de la diagonal secundaria**.
-
-### Ejemplo
+Cuando en lugar del nombre de la matriz queremos escribir sus números, las barras se colocan directamente alrededor de la tabla, sustituyendo a los paréntesis:
 
 $$
-\begin{vmatrix} -1 & 4 \\ 5 & -6 \end{vmatrix} = (-1)(-6) - 4\cdot 5 = 6 - 20 = -14
+A = \begin{pmatrix} 1 & 4 \\ 5 & 6 \end{pmatrix}
+\qquad\Longrightarrow\qquad
+|A| = \begin{vmatrix} 1 & 4 \\ 5 & 6 \end{vmatrix}
+$$
+
+Y aquí conviene una distinción que se repetirá en todo el tema. **La expresión con paréntesis es una matriz: un objeto con filas y columnas. La expresión con barras es un número.** Son cosas de naturaleza distinta y no se pueden igualar entre sí. Escribir
+
+$$
+\begin{pmatrix} 1 & 4 \\ 5 & 6 \end{pmatrix} = -14
+$$
+
+es incorrecto, porque una tabla de cuatro números no es igual a un número. Lo correcto es
+
+$$
+\begin{vmatrix} 1 & 4 \\ 5 & 6 \end{vmatrix} = -14
 $$
 
 ::: {.callout-warning}
-## Las barras no son valor absoluto
+## Las barras de $|A|$ no son un valor absoluto
 
-Un determinante puede ser negativo, como acabamos de ver. Las barras verticales aquí significan «determinante de», no «valor absoluto de».
+Esta es probablemente la confusión más extendida del tema, y conviene desactivarla de entrada. El símbolo $|A|$, con $A$ una matriz, se lee «determinante de $A$» y **puede ser negativo**. No tiene absolutamente nada que ver con el valor absoluto de un número, que siempre es positivo o nulo.
 
-Y con matrices de orden 1 la confusión es especialmente fácil: $|(-5)| = -5$, no $5$.
+Así, $|A| = -14$ es una respuesta perfectamente posible y frecuente, mientras que $|-14| = 14$ es una operación completamente distinta que se aplica a números, no a matrices.
+
+El contexto deshace la ambigüedad: dentro de las barras, si hay una tabla o el nombre de una matriz, es un determinante; si hay un número, una letra que representa un número o una expresión algebraica, es un valor absoluto. Cuando en la parte 15 calculemos áreas con determinantes tendremos que escribir las dos cosas a la vez, $\tfrac{1}{2}\,\bigl|\,|A|\,\bigr|$, y ahí sí habrá que leer con cuidado; en la práctica se escribe con palabras para evitar el trabalenguas.
 :::
 
-## Orden 3 y regla de Sarrus
+### Applet · Qué es un determinante {.unnumbered}
 
-Para el orden 3 hay seis productos, tres con signo más y tres con signo menos:
+Antes de calcular nada, conviene ver la definición en movimiento. En el applet siguiente elige el orden de la matriz y observa cómo se generan **todos** los emparejamientos posibles de filas con columnas: cada uno de ellos ilumina exactamente una casilla por fila y una por columna, y ninguna se repite. Fíjate en tres cosas mientras experimentas. Primera, cuenta los emparejamientos y comprueba que salen $2$ en orden 2, $6$ en orden 3 y $24$ en orden 4, es decir, $n!$. Segunda, comprueba que en cada emparejamiento hay tantos factores como orden tiene la matriz. Y tercera, mira el signo asignado a cada producto y verifica que hay exactamente los mismos positivos que negativos en cuanto el orden es $2$ o mayor. Prueba también a introducir una matriz que no sea cuadrada y observa el mensaje de error: es la traducción práctica de la exigencia que acabamos de justificar.
 
-$$
-|A| = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}
-$$
-
-Los tres positivos van en el sentido de la diagonal principal, y los tres negativos en el de la secundaria [cite:file:223]. Para recordarlo se usa la **regla de Sarrus**: se repiten debajo las dos primeras filas y se leen las diagonales completas.
-
-### Ejemplo desarrollado
-
-Calculemos el determinante de la matriz del libro:
-
-$$
-\begin{vmatrix} 1 & 2 & 0 \\ -1 & 3 & -3 \\ 4 & 1 & -2 \end{vmatrix}
-$$
-
-Los tres productos positivos:
-
-$$
-1\cdot 3\cdot(-2) + 2\cdot(-3)\cdot 4 + 0\cdot(-1)\cdot 1 = -6 - 24 + 0 = -30
-$$
-
-Los tres negativos:
-
-$$
-0\cdot 3\cdot 4 + 2\cdot(-1)\cdot(-2) + 1\cdot(-3)\cdot 1 = 0 + 4 - 3 = 1
-$$
-
-Y por tanto $|A| = -30 - 1 = -31$.
-
-::: {.callout-tip}
-## Por qué seis y no otro número
-
-Porque $3! = 6$. La definición general dice que hay $n!$ productos, la mitad con cada signo.
-
-Y aquí está la razón de que Sarrus no se pueda extender: para el orden 4 harían falta $4! = 24$ productos, doce positivos y doce negativos. Existe una regla análoga, a veces llamada de Katarrus, pero es inmanejable y **nadie la usa**: lo práctico es el desarrollo por adjuntos de la parte 4.
+::: {#panel-queEs .applet-panel data-applet-det="queEs"}
 :::
 
-### Applet · Determinante de orden 1, 2 y 3 {.unnumbered}
+## El determinante de orden 1
 
-<div data-applet-det="orden23"></div>
-
-### Applet · Regla de Sarrus {.unnumbered}
-
-<div data-applet-det="sarrus"></div>
-
-## Cuándo un determinante vale cero
-
-Antes de terminar un cálculo largo, conviene saber reconocer los casos en que el determinante es cero **sin calcularlo**:
-
-- Hay una fila o columna de ceros.
-- Hay dos filas o columnas iguales.
-- Hay dos filas o columnas proporcionales.
-- Una fila es combinación lineal de las otras.
-
-Las cuatro situaciones se estudian a fondo en la parte 2, pero conviene tenerlas ya en el radar.
+El caso más pequeño posible es también el más desconcertante, precisamente porque es demasiado sencillo.
 
 ::: {.callout-note}
-## Un caso que sorprende
+## Determinante de una matriz de orden 1
 
-Prueba en el applet de Sarrus la matriz
+Si $A=(a_{11})$ es una matriz cuadrada de orden $1$, es decir, una matriz con una sola fila y una sola columna, su determinante es el propio elemento:
 
 $$
-\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{vmatrix}
+|A| = \begin{vmatrix} a_{11} \end{vmatrix} = a_{11}
 $$
-
-Sale **cero**. Y no es casualidad: la tercera fila es el doble de la segunda menos la primera, es decir, $F_3 = 2F_2 - F_1$.
-
-Cuando un determinante te sale cero, párate un momento y busca la relación entre las filas. Casi siempre está ahí, y encontrarla es la mejor forma de comprobar que no te has equivocado.
 :::
 
-## Ecuaciones con determinantes
+La definición general lo confirma sin necesidad de convenios adicionales. Con $n=1$ hay $1!=1$ sumandos; ese único sumando es un producto de un solo factor, y el único factor disponible es $a_{11}$; y como no hay ninguna pareja de columnas que pueda estar desordenada, el signo es el positivo. Resultado: $|A|=a_{11}$.
 
-Este es uno de los ocho objetivos. El procedimiento es siempre el mismo, y no tiene misterio:
-
-1. Desarrollar el determinante con la incógnita dentro.
-2. Agrupar los términos en $x$.
-3. Resolver la ecuación que resulta.
-
-### Ejemplo de orden 2
-
-Resuelve
+### Ejemplo 1. Determinantes de orden 1
 
 $$
-\begin{vmatrix} 1+x & 1-x \\ 1-x & 1+x \end{vmatrix} = 12
+\begin{vmatrix} 5 \end{vmatrix} = 5,
+\qquad
+\begin{vmatrix} 0 \end{vmatrix} = 0,
+\qquad
+\begin{vmatrix} -7 \end{vmatrix} = -7,
+\qquad
+\begin{vmatrix} \tfrac{2}{3} \end{vmatrix} = \tfrac{2}{3}
 $$
 
-Desarrollando:
+El tercero merece un comentario. Si las barras fueran un valor absoluto, $|-7|$ valdría $7$. Pero aquí las barras encierran una **matriz de orden 1** cuyo único elemento es $-7$, y el determinante de esa matriz es $-7$, con su signo. Es el ejemplo más limpio de que determinante y valor absoluto son operaciones distintas que comparten símbolo.
+
+::: {.callout-caution}
+## Errores típicos con el orden 1
+
+**Cambiar el signo.** Escribir $\begin{vmatrix} -7 \end{vmatrix} = 7$. Ya está comentado, pero es tan frecuente que conviene repetirlo: el determinante conserva el signo del elemento.
+
+**Creer que el orden 1 no sirve para nada.** Aparecerá continuamente a partir de la parte 10, cuando estudiemos los **menores** de una matriz: los menores de orden 1 de una matriz son, sencillamente, cada uno de sus elementos. Y el primer paso del algoritmo del rango consiste en buscar un menor de orden 1 distinto de cero, es decir, un elemento no nulo. Sin la convención de orden 1, ese algoritmo no tendría punto de partida.
+
+**Confundir el orden con el número de elementos.** Una matriz de orden $1$ tiene $1$ elemento; una de orden $2$ tiene $4$; una de orden $3$ tiene $9$. El orden cuenta filas, no casillas.
+:::
+
+### Applet · Determinante de orden 1 {.unnumbered}
+
+Usa el applet siguiente para fijar la idea con casos concretos. Introduce valores positivos, negativos, el cero y alguna fracción como $1/2$ o $-3/4$, y comprueba en cada caso que el determinante reproduce el elemento con su signo. Presta especial atención al contraste que el applet muestra entre el determinante y el valor absoluto del mismo número: son la misma notación y dos resultados distintos siempre que el elemento sea negativo. Antes de pulsar, predice tú el resultado; el objetivo es que no vuelvas a dudar nunca en este caso.
+
+::: {#panel-orden1 .applet-panel data-applet-det="orden1"}
+:::
+
+## Para qué sirve el determinante
+
+Un concepto se entiende de verdad cuando se sabe qué preguntas contesta. El determinante contesta, al menos, estas cuatro.
+
+### Medir superficies: el área del patio
+
+Volvamos al patio del instituto. Supón que sobre un mapa en línea has marcado las esquinas del recinto y has leído sus coordenadas en metros. La estrategia es la **triangulación**: se elige una esquina cualquiera y se trazan diagonales desde ella a todas las demás, con lo que el recinto queda partido en triángulos que no se solapan. El área total es la suma de las áreas de esos triángulos.
+
+Todo depende, pues, de saber calcular el área de un triángulo del que conocemos los tres vértices. Y ese es un cálculo que la fórmula «base por altura partido por dos» resuelve muy mal, porque obliga a averiguar primero la altura, que no aparece en los datos. El determinante lo resuelve de un golpe.
+
+::: {.callout-note}
+## Área de un triángulo a partir de sus vértices
+
+Si un triángulo tiene por vértices los puntos $P(x_1,\,y_1)$, $Q(x_2,\,y_2)$ y $R(x_3,\,y_3)$, su área es la mitad del valor absoluto del determinante
 
 $$
-(1+x)^2 - (1-x)^2 = (x^2+2x+1) - (x^2-2x+1) = 4x
+D = \begin{vmatrix} x_2-x_1 & y_2-y_1 \\ x_3-x_1 & y_3-y_1 \end{vmatrix}
 $$
 
-Luego $4x = 12$ y por tanto $x = 3$.
+Es decir, se colocan en las filas del determinante los dos vectores que van del primer vértice a los otros dos, se calcula el determinante y se toma la mitad de su valor absoluto.
+:::
 
-### Ejemplo con grado 3
+Aún no sabes calcular ese determinante de orden 2 —lo harás en la parte siguiente—, pero puedes ya entender el mecanismo. El determinante de los dos vectores mide el **área del paralelogramo** que ellos generan; el triángulo es exactamente la mitad de ese paralelogramo, de ahí el factor $\tfrac{1}{2}$. Y el valor absoluto aparece porque el determinante lleva un signo que indica el sentido de giro de los vértices: positivo si van en sentido antihorario, negativo si van en horario. Como un área nunca es negativa, ese signo se descarta al final. Fíjate en el detalle: ahí sí hay un valor absoluto de verdad, aplicado al **número** $D$, no a una matriz.
 
-Resuelve
+### Decidir si una matriz tiene inversa
+
+En el tema de matrices calculaste inversas por el método de Gauss-Jordan y comprobaste que, a veces, el procedimiento se atasca: aparece una fila de ceros en la parte izquierda y ya no hay manera de llegar a la identidad. Cuando eso ocurre, la matriz **no tiene inversa**. Lo incómodo del método de Gauss-Jordan es que solo descubres el atasco después de haber trabajado un buen rato.
+
+El determinante convierte esa cuestión en un cálculo previo de una sola línea:
 
 $$
-\begin{vmatrix} x^2 & 1 \\ 2x & x \end{vmatrix} = 0
+A \text{ tiene inversa} \iff |A| \neq 0
 $$
 
-Desarrollando queda $x^3 - 2x = 0$, y sacando factor común:
+Una matriz cuadrada con determinante distinto de cero se llama **regular** o **inversible**; si su determinante es cero se llama **singular** y no admite inversa. En la parte 15 demostraremos esta equivalencia y además obtendremos una fórmula cerrada para $A^{-1}$ que se construye enteramente con determinantes. De momento quédate con la idea: **el determinante es el detector de matrices defectuosas**, y una sola cifra decide la cuestión.
 
-$$
-x(x^2-2) = 0 \;\Longrightarrow\; x = 0, \quad x = \sqrt{2}, \quad x = -\sqrt{2}
-$$
+### Medir la información real de una tabla: el rango
+
+En la parte 11 del tema anterior viste que una fila de una matriz puede ser **combinación lineal** de las otras, y que en ese caso no aporta información nueva. El número de filas realmente independientes es el **rango**. El determinante detecta esa redundancia con una limpieza notable: si una fila es combinación lineal de las demás, el determinante vale cero. Sobre esa idea se construye, en las partes 10 a 13, un método completo para calcular rangos por menores, que es el que se usa cuando la matriz depende de un parámetro y hay que discutir casos.
+
+### Discutir sistemas de ecuaciones
+
+En el tema 3 estudiarás sistemas de ecuaciones lineales y verás que la pregunta «¿tiene solución este sistema, y es única?» se responde con determinantes: la regla de Cramer da directamente la solución cuando el determinante de los coeficientes no es cero, y el teorema de Rouché-Frobenius compara rangos —es decir, determinantes— para clasificar los casos. En cierto modo, todo el tema 2 es la caja de herramientas que el tema 3 necesita.
 
 ::: {.callout-tip}
-## Saca factor común antes de aplicar fórmulas
+## De dónde viene esta idea
 
-En las ecuaciones que salen de determinantes casi siempre falta el término independiente, así que se puede sacar factor común de $x$. Eso te regala la solución $x=0$ y baja el grado de lo que queda.
+Los determinantes son bastante más antiguos que las matrices, lo que sorprende a casi todo el mundo. Aparecieron a finales del siglo XVII de forma independiente en Japón y en Europa, y siempre por el mismo motivo: **resolver sistemas de ecuaciones lineales**. Nadie los inventó para «resumir una tabla»; se llegó a ellos por la puerta de atrás, observando que las soluciones de un sistema de dos o tres ecuaciones tienen todas la misma forma de fracción, y que el numerador y el denominador de esas fracciones son ciertas combinaciones de coeficientes que se repiten una y otra vez. A esas combinaciones se les acabó dando nombre.
 
-Lanzarse a la fórmula general sin mirar es un buen modo de complicarse la vida.
+En 1750 se publicó la regla que hoy lleva el nombre de regla de Cramer, y que expresa la solución de un sistema lineal como cociente de determinantes. La palabra «determinante», con el sentido actual, se consolidó a principios del siglo XIX, cuando se sistematizó la teoría y se demostraron las propiedades que estudiarás en la parte 3. La regla de Sarrus para el orden 3, que aprenderás en la parte siguiente, es de 1833.
+
+Las matrices, en cambio, no recibieron nombre hasta mediados del siglo XIX. Es decir: durante más de siglo y medio los matemáticos calcularon determinantes **de tablas que todavía no tenían nombre**. Esta inversión histórica explica una rareza del vocabulario que quizá ya has notado: el determinante se define «de una matriz», pero en la práctica se manipula como si fuera un objeto autónomo, con sus filas y sus columnas propias, y se le aplican transformaciones que a una matriz no le harías nunca.
 :::
 
-### Applet · Ecuaciones con determinantes {.unnumbered}
+::: {.callout-caution}
+## Errores típicos al empezar el tema
 
-<div data-applet-det="ecuacion"></div>
+**Calcular el determinante de una matriz rectangular.** Es la falta más grave, porque no es un error de cuenta sino de concepto. Antes de escribir nada, cuenta filas y columnas.
 
-## Actividades propuestas
+**Confundir el determinante con la matriz.** El determinante de una matriz de orden 3 no es otra matriz de orden 3: es un número suelto. Si al terminar un cálculo te queda una tabla, has hecho otra cosa.
 
-**1.** Calcula el determinante de estas matrices [cite:file:223]:
+**Creer que $|A|$ es siempre positivo.** Puede ser negativo, y muy a menudo lo es.
 
-$$
-A = \begin{pmatrix} 3 & -2 \\ 7 & 12 \end{pmatrix}, \qquad
-B = \begin{pmatrix} 2 & -2 & 1 \\ -1 & 5 & 0 \\ 2 & 3 & 2 \end{pmatrix}
-$$
+**Pensar que $|A|=0$ significa que $A$ es la matriz nula.** Son cosas distintas. La matriz nula tiene, en efecto, determinante cero, pero también lo tienen infinitas matrices llenas de números no nulos, como cualquiera que tenga dos filas iguales. Que el determinante se anule indica **redundancia** entre las líneas, no ausencia de números.
 
-**2.** Calcula $m$ para que estos determinantes valgan cero [cite:file:223]:
+**Sumar los elementos en lugar de multiplicarlos.** Cada sumando del determinante es un **producto**. La suma solo aparece al final, al juntar los $n!$ productos.
+:::
 
-$$
-\begin{vmatrix} 1 & 2 \\ m & 0 \end{vmatrix}, \qquad
-\begin{vmatrix} 2 & 3 \\ m & 1 \end{vmatrix}, \qquad
-\begin{vmatrix} 1 & m \\ m & 2 \end{vmatrix}
-$$
+## Resumen del apartado
 
-**3.** Calcula el valor de $k$ que anula el determinante [cite:file:225]:
+- El **determinante** asocia a cada matriz **cuadrada** un **número real**, escrito $|A|$ o $\det(A)$.
+- Se obtiene sumando todos los productos posibles de $n$ elementos tomando **uno de cada fila y uno de cada columna**, la mitad con su signo y la otra mitad con el contrario.
+- Un determinante de orden $n$ tiene $n!$ sumandos: $2$ en orden 2, $6$ en orden 3, $24$ en orden 4 y $120$ en orden 5. A partir del orden 4 la definición directa deja de ser práctica.
+- **Solo las matrices cuadradas tienen determinante.** Para una matriz rectangular, la expresión $|A|$ carece de sentido.
+- Las barras de $|A|$ **no son un valor absoluto**: el determinante puede ser negativo.
+- El determinante de orden 1 es el propio elemento: $\begin{vmatrix} a_{11}\end{vmatrix}=a_{11}$, con su signo.
+- Una matriz es **regular** (tiene inversa) si y solo si $|A|\neq 0$; si $|A|=0$ es **singular**.
+- El determinante mide áreas y volúmenes, detecta filas redundantes y permite discutir sistemas de ecuaciones lineales.
 
-$$
-\begin{vmatrix} 3 & 4 & 5 \\ 1 & 1 & 1 \\ 1 & 1 & k \end{vmatrix}
-$$
+## Ejercicios propuestos
 
-**4.** Calcula el valor de $k$ que anula el determinante [cite:file:225]:
-
-$$
-\begin{vmatrix} 2 & 1 & 1 \\ 0 & k & 6 \\ 3 & k & 12 \end{vmatrix}
-$$
-
-**5.** Resuelve las ecuaciones [cite:file:223]:
+**1.** Indica cuáles de estas matrices tienen determinante y cuáles no, justificando la respuesta:
 
 $$
-\text{a)} \begin{vmatrix} 1 & 1 & x \\ 1 & x & 1 \\ x & 1 & 1 \end{vmatrix} = 0
-\qquad
-\text{b)} \begin{vmatrix} 3x & -1 \\ 2 & 1 \end{vmatrix} = 0
+A=\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix},\quad
+B=\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix},\quad
+C=\begin{pmatrix} 7 \end{pmatrix},\quad
+D=\begin{pmatrix} 2 & 0 \\ 1 & 4 \\ -3 & 6 \end{pmatrix}
 $$
 
-**6.** ¿Qué relación deben tener $m$ y $n$ para que este determinante sea nulo? [cite:file:223]
+**2.** Calcula los siguientes determinantes de orden 1:
 
 $$
-\begin{vmatrix} m & -1 \\ 3 & n \end{vmatrix}
+\begin{vmatrix} 12 \end{vmatrix},\qquad
+\begin{vmatrix} -9 \end{vmatrix},\qquad
+\begin{vmatrix} 0 \end{vmatrix},\qquad
+\begin{vmatrix} -\tfrac{5}{2} \end{vmatrix}
 $$
+
+**3.** ¿Cuántos sumandos tiene el desarrollo del determinante de una matriz de orden $6$? ¿Cuántos de ellos llevan signo positivo?
+
+**4.** Escribe todos los productos posibles de la definición para una matriz de orden $2$, indicando de qué fila y de qué columna procede cada factor. ¿Cuántos son? ¿Cuál de ellos debe llevar signo negativo para que el resultado coincida con la fórmula $a_{11}a_{22}-a_{12}a_{21}$?
+
+**5.** Razona si las siguientes afirmaciones son verdaderas o falsas:
+
+a) Si $|A| = 0$, entonces todos los elementos de $A$ son cero.
+
+b) Si $A$ es de dimensión $4\times 3$, entonces $|A|$ existe y vale cero.
+
+c) $\begin{vmatrix} -3 \end{vmatrix} = 3$.
+
+d) Toda matriz cuadrada tiene un único determinante.
+
+**6.** Una matriz cuadrada $A$ de orden $3$ tiene $|A| = -5$. ¿Tiene inversa? ¿Y si tuviera $|A|=0$? ¿Y si fuese de dimensión $3\times 4$?
+
+**7.** En un mapa, tres esquinas consecutivas de un patio son los puntos $P(0,\,0)$, $Q(6,\,1)$ y $R(2,\,5)$, con las coordenadas en metros. Escribe —sin calcularlo todavía— el determinante que permite obtener el área del triángulo $PQR$ y explica qué representa cada fila.
+
+**8.** Explica con tus palabras por qué el determinante de una matriz con dos filas iguales debería valer cero, apoyándote en la frase «la mitad de los productos lleva un signo y la otra mitad el contrario».
+
+**9.** Si $A$ es una matriz cuadrada de orden $5$ y quisieras calcular su determinante aplicando literalmente la definición, ¿cuántas multiplicaciones tendrías que hacer aproximadamente? Suponiendo que tardas cinco segundos en cada producto de cinco factores, ¿cuánto tiempo emplearías?
 
 ::: {.callout-note collapse="true"}
 ## Soluciones
 
-**1.** $|A| = 3\cdot 12 - (-2)\cdot 7 = 36+14 = 50$.
+**1.** Tienen determinante $A$, que es cuadrada de orden $2$, y $C$, que es cuadrada de orden $1$. No lo tienen $B$, de dimensión $2\times 3$, ni $D$, de dimensión $3\times 2$: al no ser cuadradas, no existe ningún emparejamiento completo de filas con columnas y la expresión $|B|$ o $|D|$ no significa nada.
 
-Para $B$, aplicando Sarrus, los positivos dan $2\cdot 5\cdot 2 + (-2)\cdot 0\cdot 2 + 1\cdot(-1)\cdot 3 = 20+0-3 = 17$ y los negativos $1\cdot 5\cdot 2 + (-2)\cdot(-1)\cdot 2 + 2\cdot 0\cdot 3 = 10+4+0 = 14$. Luego $|B| = 17-14 = 3$.
+**2.** $\begin{vmatrix} 12 \end{vmatrix} = 12$; $\begin{vmatrix} -9 \end{vmatrix} = -9$; $\begin{vmatrix} 0 \end{vmatrix} = 0$; $\begin{vmatrix} -\tfrac{5}{2} \end{vmatrix} = -\tfrac{5}{2}$, es decir $-2{,}5$.
 
-**2.** El primero vale $0 - 2m = -2m$, que se anula en $m=0$. El segundo vale $2 - 3m$, que se anula en $m = 2/3$. El tercero vale $2 - m^2$, que se anula en $m = \pm\sqrt{2}$.
+**3.** Tiene $6! = 720$ sumandos, de los cuales la mitad, $360$, llevan signo positivo y los otros $360$ signo negativo.
 
-**3.** Es $k=1$, y se puede razonar **sin calcular nada**: si $k=1$, las filas segunda y tercera serían idénticas, y un determinante con dos filas iguales vale cero [cite:file:225].
+**4.** Hay $2! = 2$ productos. El primero toma el elemento de la fila 1 en la columna 1 y el de la fila 2 en la columna 2: $a_{11}a_{22}$. El segundo toma el de la fila 1 en la columna 2 y el de la fila 2 en la columna 1: $a_{12}a_{21}$. El que debe llevar signo negativo es el segundo, aquel en el que las columnas aparecen «cruzadas» respecto de las filas, y así se obtiene $|A| = a_{11}a_{22}-a_{12}a_{21}$.
 
-Por el camino largo también sale: desarrollando queda $-7k+7=0$, luego $k=1$.
+**5.** a) **Falsa.** Por ejemplo, una matriz con dos filas iguales llenas de números no nulos tiene determinante cero. Que el determinante se anule indica redundancia entre las líneas, no que la matriz sea nula. b) **Falsa.** Una matriz $4\times 3$ no es cuadrada y no tiene determinante; no es que valga cero, es que no existe. c) **Falsa.** Vale $-3$: las barras encierran una matriz de orden 1, no un número, y el determinante conserva el signo. d) **Verdadera.** El determinante es un número perfectamente definido a partir de los elementos de la matriz; no depende de ningún método de cálculo, así que dos procedimientos distintos deben dar el mismo resultado.
 
-**4.** Desarrollando se llega a $k^2 - 2k - 15 = 0$, cuyas soluciones son $k=5$ y $k=-3$ [cite:file:225].
+**6.** Con $|A|=-5\neq 0$ la matriz es regular y **sí** tiene inversa. Con $|A|=0$ sería singular y **no** tendría inversa. Si fuese de dimensión $3\times 4$ no tendría determinante ni tendría inversa: la inversa solo se define para matrices cuadradas.
 
-**5.** En el apartado a, desarrollando se obtiene $-x^3+3x-2=0$, que factoriza como $-(x-1)^2(x+2)$, luego $x=1$ (doble) y $x=-2$. Y hay un atajo: con $x=1$ las tres filas son iguales, así que $x=1$ tenía que ser solución.
+**7.** Se toma $P$ como vértice de referencia. El vector que va de $P$ a $Q$ es $(6-0,\ 1-0)=(6,\,1)$ y el que va de $P$ a $R$ es $(2-0,\ 5-0)=(2,\,5)$. El determinante buscado es
 
-En el b, $3x+2=0$ da $x = -2/3$.
+$$
+D = \begin{vmatrix} 6 & 1 \\ 2 & 5 \end{vmatrix}
+$$
 
-**6.** El determinante vale $mn+3$, que se anula cuando $mn = -3$. No es un valor concreto de cada letra, sino una **relación** entre las dos. Preguntas así distinguen a quien entiende lo que está calculando.
+La primera fila contiene las componentes del vector $\overrightarrow{PQ}$ y la segunda las del vector $\overrightarrow{PR}$. El área del triángulo será la mitad del valor absoluto de $D$; en la parte siguiente comprobarás que $D=28$ y que el área es de $14$ metros cuadrados.
+
+**8.** Cada producto de la definición toma un elemento de cada fila. Si las filas $1$ y $2$ son idénticas, para cada producto existe otro que se obtiene intercambiando entre esas dos filas las columnas utilizadas: los factores son exactamente los mismos números, porque las filas coinciden, de modo que el valor del producto es el mismo. Pero ese intercambio de dos columnas cambia la paridad del desorden y, por tanto, el signo. Los $n!$ productos quedan así agrupados en parejas de igual valor y signo opuesto, y la suma total es cero.
+
+**9.** Hay $5! = 120$ sumandos y cada uno es un producto de cinco factores, es decir, cuatro multiplicaciones: en total unas $480$ multiplicaciones, más las $119$ sumas o restas finales. A cinco segundos por sumando serían $600$ segundos, es decir, **diez minutos** de cálculo continuo sin equivocarse ni una vez, cosa altamente improbable. Esto justifica que en las partes 7 a 9 construyamos métodos que reducen el trabajo a una fracción mínima.
+
 :::
 
 ## Continúa
 
-La parte 2 recoge las **diez propiedades** de los determinantes. No son diez reglas para memorizar: son diez atajos, y con ellos se pueden calcular determinantes que por Sarrus serían inabordables.
+En el apartado siguiente pasamos del concepto al cálculo. Aprenderás la fórmula del determinante de orden 2, con su interpretación como área, y la **regla de Sarrus** para el orden 3, con sus seis productos y su esquema de diagonales. Verás también cómo se resuelven ecuaciones en las que la incógnita está dentro de un determinante, un tipo de ejercicio muy frecuente, y cerrarás por fin el problema del patio calculando de verdad la superficie de un recinto irregular.

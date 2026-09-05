@@ -1,0 +1,469 @@
+---
+title: "Tema 2.6 Adjunto de un elemento"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 6 de 16)"
+filename: 06-adjunto-de-un-elemento
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Definición de adjunto de un elemento como su menor complementario afectado del signo que corresponde a la paridad de la suma de sus índices, el tablero de ajedrez de signos, reglas rápidas para decidir el signo, tabla completa de adjuntos en orden 3 y en orden 4, comparación sistemática entre menor complementario y adjunto y los errores típicos de signo, con ejemplos resueltos y applets manipulables.
+categories: [determinantes, adjuntos, menor complementario, signos, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+En el apartado anterior aprendiste a tapar una fila y una columna y a calcular el determinante de lo que sobra: el menor complementario $\alpha_{ij}$. Al final aparecía una pista inquietante. Con la matriz $B = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2\end{pmatrix}$, cuyo determinante vale $14$, la combinación
+
+$$
+2\cdot\alpha_{11} - 0\cdot\alpha_{12} + 4\cdot\alpha_{13} = 2\cdot 5 - 0\cdot 7 + 4\cdot 1 = 14
+$$
+
+reproducía exactamente el determinante. Pero solo si se ponían esos signos alternos $+,\,-,\,+$. Si los hubiéramos sumado todos con signo más, habría salido $2\cdot 5 + 0\cdot 7 + 4\cdot 1 = 14$ por pura casualidad —el segundo sumando era nulo—, y con otra matriz el número habría sido cualquier otro.
+
+Esos signos alternos no son un capricho ni un truco de memoria: proceden de la propia definición de determinante, en la que la mitad de los productos entra con su signo y la otra mitad con el contrario. Para no tener que arrastrarlos aparte cada vez, se incorporan al propio número. El resultado es el **adjunto**, y es el objeto con el que se trabaja de verdad en el resto del tema.
+
+En este apartado vas a aprender a calcular adjuntos, a decidir el signo en un segundo mirando la posición y, sobre todo, a **no confundirlos con los menores complementarios**. Esa confusión es el error típico central del tema, y la mayoría de los determinantes de orden $4$ que salen mal en un examen salen mal por un signo, no por una multiplicación.
+
+## Definición
+
+::: {.callout-note}
+## Definición: adjunto de un elemento
+
+Dada una matriz cuadrada $A$ de orden $n$, se llama **adjunto** del elemento $a_{ij}$, y se escribe $A_{ij}$, al menor complementario de $a_{ij}$ con el signo conservado o cambiado según que $i+j$ sea par o impar, respectivamente. Es decir:
+
+$$
+A_{ij} = (-1)^{\,i+j}\,\alpha_{ij}
+$$
+
+El adjunto, como el menor complementario, es **un número**.
+:::
+
+Desglosemos el factor $(-1)^{i+j}$, que es todo lo que separa un concepto del otro:
+
+- Si $i+j$ es **par**, entonces $(-1)^{i+j} = +1$ y resulta $A_{ij} = \alpha_{ij}$. El adjunto y el menor complementario **coinciden**.
+- Si $i+j$ es **impar**, entonces $(-1)^{i+j} = -1$ y resulta $A_{ij} = -\alpha_{ij}$. El adjunto y el menor complementario son **opuestos**.
+
+Dicho de otro modo: el adjunto nunca es un número «nuevo», siempre es el menor complementario o su opuesto. Lo único que hay que decidir es cuál de los dos.
+
+::: {.callout-warning}
+## Cuidado con la notación
+
+En este tema conviven tres símbolos muy parecidos y con significados muy distintos:
+
+- $a_{ij}$, en minúscula, es el **elemento** de la matriz: un dato del enunciado.
+- $\alpha_{ij}$, con letra griega, es el **menor complementario**: un determinante de orden $n-1$.
+- $A_{ij}$, en mayúscula, es el **adjunto**: el menor complementario con su signo.
+
+Escribir $A_{ij}$ cuando se quiere decir $a_{ij}$ es un descuido de notación que en un examen puede costar una respuesta entera. Cuando escribas a mano, exagera la diferencia de tamaño entre la mayúscula y la minúscula.
+:::
+
+## El tablero de ajedrez de signos
+
+Decidir si $i+j$ es par o impar en cada elemento acaba siendo automático, pero al principio conviene visualizarlo. Los signos $(-1)^{i+j}$ se distribuyen en la matriz exactamente como las casillas de un tablero de ajedrez: empiezan en $+$ en la esquina superior izquierda y van alternando en horizontal y en vertical.
+
+Para orden $3$:
+
+$$
+\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix}
+$$
+
+Para orden $4$:
+
+$$
+\begin{pmatrix} + & - & + & - \\ - & + & - & + \\ + & - & + & - \\ - & + & - & + \end{pmatrix}
+$$
+
+Y el patrón continúa igual para cualquier orden. Fíjate en tres consecuencias inmediatas:
+
+- **Toda la diagonal principal lleva signo $+$**, porque en ella $i = j$ y por tanto $i+j = 2i$ es siempre par.
+- **Dos casillas vecinas** (que comparten un lado) tienen siempre signos opuestos: al pasar de una a otra cambia un índice en una unidad, así que cambia la paridad.
+- **Dos casillas en diagonal** tienen siempre el mismo signo: cambian los dos índices en una unidad, la suma cambia en dos y la paridad se conserva.
+
+::: {.callout-tip}
+## Tres formas de decidir el signo en un segundo
+
+1. **Sumar y mirar la paridad.** Para $A_{35}$: $3+5 = 8$, par, signo $+$. Para $A_{25}$: $2+5 = 7$, impar, signo $-$.
+2. **Comparar la paridad de los índices.** Si $i$ y $j$ son **del mismo tipo** —los dos pares o los dos impares—, el signo es $+$; si son de distinto tipo, el signo es $-$. Así, $a_{11}$ tiene los dos índices impares y le corresponde $+$; $a_{12}$ tiene uno par y otro impar y le corresponde $-$; a $a_{24}$ y $a_{35}$ les corresponde $+$, y a $a_{25}$ y $a_{32}$, $-$.
+3. **Saltar por el tablero.** Sitúate mentalmente en $a_{11}$, que es $+$, y muévete hasta la posición contando pasos horizontales y verticales: si el número total de pasos es par, el signo es $+$; si es impar, es $-$.
+
+Cualquiera de las tres vale. Elige una y úsala siempre igual: el objetivo es que decidir el signo deje de ser una decisión y pase a ser un reflejo.
+:::
+
+### Applet · Tablero de signos {.unnumbered}
+
+Cambia el orden de la matriz y recorre las casillas comprobando en cada una el valor de $i+j$ y el signo asociado. Experimenta en particular con las casillas de la diagonal principal y con parejas de casillas vecinas y en diagonal, para convencerte de las tres consecuencias que se acaban de enunciar antes de fiarte de ellas en un examen.
+
+::: {#panel-signos .applet-panel data-applet-det="signos"}
+:::
+
+## Ejemplos resueltos
+
+### Ejemplo resuelto 1: dos adjuntos de una matriz de orden 3
+
+Determina los adjuntos $A_{32}$ y $A_{22}$ de
+
+$$
+A = \begin{pmatrix} 2 & -1 & 0 \\ 0 & 1 & -2 \\ -2 & 0 & 1 \end{pmatrix}
+$$
+
+**Adjunto $A_{32}$.** Primero el menor complementario: se suprimen la fila $3$ y la columna $2$, y quedan las filas primera y segunda con las columnas primera y tercera:
+
+$$
+\alpha_{32} = \begin{vmatrix} 2 & 0 \\ 0 & -2 \end{vmatrix} = 2\cdot(-2) - 0\cdot 0 = -4
+$$
+
+Ahora el signo: $3+2 = 5$, impar, luego $(-1)^{3+2} = -1$ y
+
+$$
+A_{32} = (-1)^{3+2}\cdot(-4) = -(-4) = 4
+$$
+
+**Adjunto $A_{22}$.** El menor complementario se obtiene suprimiendo la fila $2$ y la columna $2$:
+
+$$
+\alpha_{22} = \begin{vmatrix} 2 & 0 \\ -2 & 1 \end{vmatrix} = 2\cdot 1 - 0\cdot(-2) = 2
+$$
+
+Y el signo: $2+2 = 4$, par, luego $(-1)^{2+2} = +1$ y
+
+$$
+A_{22} = +2 = 2
+$$
+
+Aquí el adjunto y el menor complementario coinciden, porque el elemento está en la diagonal principal.
+
+### Applet · Adjunto de un elemento {.unnumbered}
+
+Selecciona un elemento de la matriz y sigue el cálculo desglosado en sus dos etapas: primero el menor complementario y después el factor de signo. Experimenta cambiando el elemento seleccionado a una posición vecina y comprueba que, aunque el menor complementario cambie de valor, el signo se invierte siempre al moverse una casilla en horizontal o en vertical.
+
+::: {#panel-adjunto .applet-panel data-applet-det="adjunto"}
+:::
+
+### Ejemplo resuelto 2: todos los adjuntos de una matriz de orden 3
+
+Calcula los nueve adjuntos de
+
+$$
+B = \begin{pmatrix} 2 & 0 & 4 \\ 3 & 2 & -1 \\ 1 & 1 & 2 \end{pmatrix}
+$$
+
+En el apartado anterior ya obtuvimos su tabla de menores complementarios:
+
+$$
+\begin{pmatrix} \alpha_{11} & \alpha_{12} & \alpha_{13} \\ \alpha_{21} & \alpha_{22} & \alpha_{23} \\ \alpha_{31} & \alpha_{32} & \alpha_{33} \end{pmatrix}
+= \begin{pmatrix} 5 & 7 & 1 \\ -4 & 0 & 2 \\ -8 & -14 & 4 \end{pmatrix}
+$$
+
+Ahora basta superponer el tablero de signos, casilla por casilla:
+
+$$
+\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix}
+\quad\longrightarrow\quad
+\begin{pmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ A_{31} & A_{32} & A_{33} \end{pmatrix}
+= \begin{pmatrix} 5 & -7 & 1 \\ 4 & 0 & -2 \\ -8 & 14 & 4 \end{pmatrix}
+$$
+
+Cinco de los nueve adjuntos coinciden con su menor complementario y cuatro son su opuesto. Observa que $A_{22} = 0$: el signo no cambia nada cuando el número es cero, y en ese caso da igual la paridad de los índices.
+
+Comprobemos ahora la combinación que apareció al final del apartado anterior, esta vez con adjuntos y **sin signos añadidos a mano**:
+
+$$
+b_{11}A_{11} + b_{12}A_{12} + b_{13}A_{13} = 2\cdot 5 + 0\cdot(-7) + 4\cdot 1 = 10 + 0 + 4 = 14 = |B|
+$$
+
+Los signos alternos ya están dentro de los adjuntos. Esa es exactamente la ventaja de haberlos incorporado.
+
+### Ejemplo resuelto 3: adjuntos en orden 4
+
+Sea
+
+$$
+C = \begin{pmatrix} 2 & 1 & 0 & 7 \\ 1 & 2 & 3 & 6 \\ 2 & 4 & 0 & 3 \\ 1 & 0 & -1 & 2 \end{pmatrix}
+$$
+
+**Adjunto $A_{11}$.** Ya calculamos $\alpha_{11} = -42$. Como $1+1 = 2$ es par, $A_{11} = -42$.
+
+**Adjunto $A_{21}$.** El menor complementario se obtiene suprimiendo la fila $2$ y la columna $1$:
+
+$$
+\alpha_{21} = \begin{vmatrix} 1 & 0 & 7 \\ 4 & 0 & 3 \\ 0 & -1 & 2 \end{vmatrix} = (0 + 0 - 28) - (0 - 3 + 0) = -28 + 3 = -25
+$$
+
+Como $2+1 = 3$ es impar, $A_{21} = -(-25) = 25$.
+
+**Adjunto $A_{43}$.** Sabemos que $\alpha_{43} = -27$. Como $4+3 = 7$ es impar, $A_{43} = 27$.
+
+**Adjunto $A_{14}$.** Suprimiendo la fila $1$ y la columna $4$:
+
+$$
+\alpha_{14} = \begin{vmatrix} 1 & 2 & 3 \\ 2 & 4 & 0 \\ 1 & 0 & -1 \end{vmatrix} = (-4 + 0 + 0) - (12 + 0 - 4) = -4 - 8 = -12
+$$
+
+Como $1+4 = 5$ es impar, $A_{14} = 12$.
+
+**Adjunto $A_{34}$.** Ya vimos que $\alpha_{34} = 0$, luego $A_{34} = 0$ sea cual sea el signo.
+
+Reunidos, estos cinco adjuntos son:
+
+$$
+A_{11} = -42, \qquad A_{21} = 25, \qquad A_{43} = 27, \qquad A_{14} = 12, \qquad A_{34} = 0
+$$
+
+### Ejemplo resuelto 4: expresar un adjunto sin calcularlo
+
+A veces solo se pide **plantear** el adjunto, con su signo y su determinante, sin llegar al número. Para la matriz
+
+$$
+D = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}
+$$
+
+se tiene:
+
+$$
+A_{11} = +\begin{vmatrix} 5 & 6 \\ 8 & 9\end{vmatrix},
+\qquad
+A_{12} = -\begin{vmatrix} 4 & 6 \\ 7 & 9\end{vmatrix},
+\qquad
+A_{21} = -\begin{vmatrix} 2 & 3 \\ 8 & 9\end{vmatrix},
+\qquad
+A_{32} = -\begin{vmatrix} 1 & 3 \\ 4 & 6\end{vmatrix}
+$$
+
+Y para una matriz de orden $4$ como
+
+$$
+E = \begin{pmatrix} 2 & 1 & 0 & 7 \\ 1 & 2 & 3 & 6 \\ 2 & 4 & 0 & 3 \\ 1 & 0 & -1 & 2 \end{pmatrix}
+$$
+
+los adjuntos de $e_{11}$ y de $e_{22}$ se escriben así:
+
+$$
+A_{11} = +\begin{vmatrix} 2 & 3 & 6 \\ 4 & 0 & 3 \\ 0 & -1 & 2 \end{vmatrix},
+\qquad
+A_{22} = +\begin{vmatrix} 2 & 0 & 7 \\ 2 & 0 & 3 \\ 1 & -1 & 2 \end{vmatrix}
+$$
+
+Este tipo de ejercicio es muy rentable: obliga a acertar el signo y la submatriz, que es donde de verdad se falla, sin gastar tiempo en aritmética.
+
+## Comparación sistemática
+
+Merece la pena poner los dos conceptos uno al lado del otro, porque su parecido es engañoso.
+
+| | Menor complementario $\alpha_{ij}$ | Adjunto $A_{ij}$ |
+|---|---|---|
+| Qué es | Determinante de la submatriz sin la fila $i$ ni la columna $j$ | Ese mismo determinante afectado de $(-1)^{i+j}$ |
+| Depende de la posición | Solo para saber qué se tapa | Para saber qué se tapa **y** qué signo poner |
+| Fórmula | — | $A_{ij} = (-1)^{i+j}\alpha_{ij}$ |
+| Cuándo coinciden | Cuando $i+j$ es par | |
+| Cuándo son opuestos | Cuando $i+j$ es impar | |
+| Dónde se usa | Paso intermedio | Desarrollo por adjuntos, matriz adjunta, matriz inversa |
+
+### Applet · Menor complementario frente a adjunto {.unnumbered}
+
+Recorre las posiciones de la matriz viendo simultáneamente el menor complementario y el adjunto de cada elemento. Experimenta buscando en qué casillas los dos valores son iguales y en cuáles son opuestos, y contrasta el patrón que obtengas con el tablero de ajedrez de signos: deberían encajar sin excepciones.
+
+::: {#panel-comparaMenorAdjunto .applet-panel data-applet-det="comparaMenorAdjunto"}
+:::
+
+## Errores típicos
+
+::: {.callout-caution}
+## El signo se aplica al menor, nunca al elemento
+
+Este es **el** error del apartado. La fórmula es
+
+$$
+A_{ij} = (-1)^{i+j}\,\alpha_{ij}
+$$
+
+y no $(-1)^{i+j}a_{ij}$ ni nada que se le parezca. El elemento $a_{ij}$ **no interviene** en su propio adjunto: solo dice qué fila y qué columna se tapan.
+
+Un ejemplo con la matriz $B$ de antes: el elemento $b_{12}$ vale $0$ y su adjunto es $A_{12} = -7$. Si alguien aplicase el signo al elemento obtendría $-0 = 0$, un número completamente distinto y sin ningún significado.
+
+Otro ejemplo: $b_{32} = 1$, un número positivo pequeño, mientras que $A_{32} = 14$. No hay ninguna relación entre el tamaño del elemento y el de su adjunto.
+:::
+
+::: {.callout-caution}
+## Otros tres fallos frecuentes
+
+- **Poner el signo dos veces.** Si al escribir el determinante ya has antepuesto un $-$, no vuelvas a cambiar el signo al final. Un doble cambio devuelve el signo original y anula el trabajo.
+- **Olvidar el signo cuando el menor ya es negativo.** Con $\alpha_{21} = -25$ e índices de suma impar, el adjunto es $A_{21} = -(-25) = +25$. Es muy fácil quedarse en $-25$ por inercia. Escribe siempre el paréntesis: $-(-25)$, nunca $--25$.
+- **Confundir $A_{ij}$ con la matriz $A$.** El adjunto se denota con la misma letra que la matriz, en mayúscula y con dos subíndices. Si el enunciado usa la letra $A$ para la matriz, conviene ser especialmente cuidadoso al leer: $A$ es una tabla, $A_{23}$ es un número.
+:::
+
+::: {.callout-important}
+## De dónde sale realmente el factor $(-1)^{i+j}$
+
+El signo no se inventa para que las cuentas cuadren: se deduce de la definición de determinante como suma de $n!$ productos, la mitad con un signo y la mitad con el contrario.
+
+Piensa en el caso más sencillo, el elemento $a_{11}$. Los productos de la definición que contienen a $a_{11}$ son los que toman ese elemento y luego eligen un elemento de cada fila y cada columna restantes: exactamente los productos que forman el determinante de la submatriz obtenida al tapar la fila $1$ y la columna $1$, **y con los mismos signos**. Por eso al elemento $a_{11}$ le corresponde el menor complementario tal cual, con signo $+$.
+
+Para cualquier otra posición, la idea es la misma pero antes hay que llevar el elemento $a_{ij}$ hasta la esquina superior izquierda. Eso se consigue subiendo su fila $i-1$ posiciones y desplazando su columna $j-1$ posiciones, lo que supone $(i-1) + (j-1) = i+j-2$ intercambios de líneas contiguas. Como cada intercambio de dos líneas **cambia el signo del determinante** (propiedad 3 del apartado 2.3), el determinante queda multiplicado por
+
+$$
+(-1)^{\,i+j-2} = (-1)^{\,i+j}
+$$
+
+porque $(-1)^{-2} = 1$. De ahí, y no de un convenio arbitrario, sale el tablero de ajedrez.
+:::
+
+::: {.callout-tip}
+## Por qué este concepto se llama así
+
+Un adjunto es literalmente algo «que se añade» o «que acompaña». Cada elemento de una matriz lleva asociado un número que lo acompaña en la fórmula del determinante, y ese acompañante es precisamente el adjunto. Cuando en el apartado siguiente escribamos
+
+$$
+|A| = a_{i1}A_{i1} + a_{i2}A_{i2} + \dots + a_{in}A_{in}
+$$
+
+verás que cada elemento aparece multiplicado por su acompañante, uno a uno, sin que sobre ni falte nada.
+
+La misma idea, con otro nombre, se usa hoy en programas de cálculo simbólico: la expansión por cofactores —así se llaman los adjuntos en inglés— es uno de los algoritmos clásicos para determinantes con entradas simbólicas, donde los métodos numéricos no valen porque las entradas no son números sino expresiones con parámetros.
+:::
+
+## Resumen del apartado
+
+- El **adjunto** de $a_{ij}$ es $A_{ij} = (-1)^{i+j}\alpha_{ij}$: el menor complementario afectado por un signo que solo depende de la posición.
+- Si $i+j$ es **par**, adjunto y menor complementario **coinciden**; si es **impar**, son **opuestos**.
+- Los signos forman un **tablero de ajedrez** que empieza en $+$ arriba a la izquierda. Toda la diagonal principal lleva $+$.
+- El signo se aplica **al menor complementario**, nunca al elemento $a_{ij}$, que no interviene en su propio adjunto.
+- Símbolos distintos: $a_{ij}$ es el elemento, $\alpha_{ij}$ el menor complementario y $A_{ij}$ el adjunto.
+- Si un menor complementario es nulo, su adjunto también lo es, con independencia del signo.
+- Una matriz de orden $n$ tiene $n^2$ adjuntos; se organizan en la matriz de los adjuntos que se estudiará en el apartado 2.14.
+- El factor $(-1)^{i+j}$ procede de los intercambios de líneas necesarios para llevar el elemento a la esquina superior izquierda.
+
+## Ejercicios propuestos
+
+**1 (básico).** Indica el signo que corresponde a los adjuntos de las posiciones $(1,3)$, $(2,4)$, $(3,3)$, $(4,1)$ y $(5,2)$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+- $(1,3)$: $1+3 = 4$, par, signo $+$.
+- $(2,4)$: $2+4 = 6$, par, signo $+$.
+- $(3,3)$: diagonal principal, signo $+$.
+- $(4,1)$: $4+1 = 5$, impar, signo $-$.
+- $(5,2)$: $5+2 = 7$, impar, signo $-$.
+:::
+
+**2 (básico).** Calcula $A_{11}$, $A_{12}$ y $A_{21}$ de $M = \begin{pmatrix} 3 & -1 \\ 4 & 5 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Los menores complementarios son los elementos de la esquina opuesta: $\alpha_{11} = 5$, $\alpha_{12} = 4$ y $\alpha_{21} = -1$. Aplicando los signos:
+
+$$
+A_{11} = +5 = 5, \qquad A_{12} = -4, \qquad A_{21} = -(-1) = 1
+$$
+:::
+
+**3 (básico).** Escribe la tabla de los nueve adjuntos de $N = \begin{pmatrix} 1 & 0 & 2 \\ 0 & 3 & -1 \\ 2 & 1 & 1 \end{pmatrix}$, sabiendo que su tabla de menores complementarios es $\begin{pmatrix} 4 & 2 & -6 \\ -2 & -3 & 1 \\ -6 & -1 & 3 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Se cambia el signo en las posiciones con $i+j$ impar, es decir, en $(1,2)$, $(2,1)$, $(2,3)$ y $(3,2)$:
+
+$$
+\begin{pmatrix} 4 & -2 & -6 \\ 2 & -3 & -1 \\ -6 & 1 & 3 \end{pmatrix}
+$$
+:::
+
+**4 (medio).** Dada $P = \begin{pmatrix} -2 & 1 \\ 7 & 12 \end{pmatrix}$, halla todos sus adjuntos e indica cuáles son negativos.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+A_{11} = +12 = 12, \qquad A_{12} = -7, \qquad A_{21} = -1, \qquad A_{22} = -2
+$$
+
+Son negativos $A_{12} = -7$, $A_{21} = -1$ y $A_{22} = -2$. Observa que $A_{22}$ es negativo aunque su signo de posición sea $+$: el signo final depende también del valor del menor complementario, que aquí es $-2$.
+:::
+
+**5 (medio).** Expresa, sin calcular los determinantes, los adjuntos $A_{13}$, $A_{31}$ y $A_{22}$ de $Q = \begin{pmatrix} 2 & 1 & 0 & 7 \\ 1 & 2 & 3 & 6 \\ 2 & 4 & 0 & 3 \\ 1 & 0 & -1 & 2 \end{pmatrix}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+$$
+A_{13} = +\begin{vmatrix} 1 & 2 & 6 \\ 2 & 4 & 3 \\ 1 & 0 & 2 \end{vmatrix},
+\qquad
+A_{31} = +\begin{vmatrix} 1 & 0 & 7 \\ 2 & 3 & 6 \\ 0 & -1 & 2 \end{vmatrix},
+\qquad
+A_{22} = +\begin{vmatrix} 2 & 0 & 7 \\ 2 & 0 & 3 \\ 1 & -1 & 2 \end{vmatrix}
+$$
+
+Los tres llevan signo $+$ porque $1+3$, $3+1$ y $2+2$ son pares.
+:::
+
+**6 (medio).** Un alumno calcula $\alpha_{23} = -13$ en cierta matriz y escribe $A_{23} = -13$. ¿Es correcto? Corrige si hace falta.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+No es correcto. Como $2+3 = 5$ es impar, el signo es $-$ y por tanto
+
+$$
+A_{23} = (-1)^{2+3}\cdot(-13) = -(-13) = 13
+$$
+
+El alumno ha olvidado que cambiar el signo de un número negativo lo convierte en positivo. Escribir siempre el paréntesis, $-(-13)$, evita este fallo.
+:::
+
+**7 (medio).** En una matriz de orden $3$ se sabe que $a_{21} = 0$. ¿Se puede deducir algo sobre $A_{21}$?
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+No se puede deducir nada. El adjunto $A_{21}$ se construye con los elementos que **no** están en la fila $2$ ni en la columna $1$, así que el valor de $a_{21}$ es irrelevante para él.
+
+Lo que sí se deduce es que, en el desarrollo del determinante por la segunda fila, el sumando $a_{21}A_{21}$ vale $0$: no porque el adjunto sea nulo, sino porque lo es el elemento que lo multiplica. Esta observación es la razón de que interese desarrollar por líneas con muchos ceros.
+:::
+
+**8 (avanzado).** Sea $A$ una matriz de orden $3$ y sea $B$ la matriz que se obtiene multiplicando su tercera fila por $5$. Relaciona los adjuntos $A_{11}$ y $B_{11}$, y también $A_{31}$ y $B_{31}$.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+Para $A_{11}$ y $B_{11}$: la submatriz que se usa contiene la tercera fila, que en $B$ está multiplicada por $5$. Multiplicar una línea de un determinante por $5$ multiplica el determinante por $5$, luego
+
+$$
+B_{11} = 5\,A_{11}
+$$
+
+Para $A_{31}$ y $B_{31}$: al tapar la fila $3$, la modificación desaparece de la submatriz, que es idéntica en ambas matrices. Por tanto
+
+$$
+B_{31} = A_{31}
+$$
+
+Es un buen recordatorio de que los adjuntos de una línea **no dependen** de los elementos de esa misma línea.
+:::
+
+**9 (avanzado).** Demuestra que en una matriz de orden $n$ hay tantos adjuntos con signo $+$ como con signo $-$ cuando $n$ es par, y uno más con signo $+$ cuando $n$ es impar.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+En cada fila los signos se alternan empezando por $+$ si la fila es impar y por $-$ si es par. Si $n$ es **par**, cada fila tiene exactamente $n/2$ casillas de cada signo, y sumando las $n$ filas resulta $n^2/2$ de cada tipo: hay tantos $+$ como $-$.
+
+Si $n$ es **impar**, cada fila impar tiene $\frac{n+1}{2}$ signos $+$ y $\frac{n-1}{2}$ signos $-$, y cada fila par al revés. Como hay $\frac{n+1}{2}$ filas impares y $\frac{n-1}{2}$ filas pares, el recuento total de casillas con $+$ es
+
+$$
+\frac{n+1}{2}\cdot\frac{n+1}{2} + \frac{n-1}{2}\cdot\frac{n-1}{2} = \frac{n^2+1}{2}
+$$
+
+y el de casillas con $-$ es $\frac{n^2-1}{2}$. Hay exactamente una más con signo $+$. Para $n = 3$: cinco casillas $+$ y cuatro $-$, como se ve en el tablero dibujado más arriba.
+:::

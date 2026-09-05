@@ -1,915 +1,2185 @@
 /* =====================================================================
-   det-applets.js — MOTOR DEL TEMA 2 DETERMINANTES · 2.º Batx Mates CCSS
-   Ubicación: 2-BatxMatesCCSS/determinantes/assets/det-applets.js
+   det-applets.js · Tema 2 Determinantes
+   2.º de Bachillerato · Matemáticas Aplicadas a las Ciencias Sociales
+   Ruta: 2-BatxMatesCCSS/determinantes/assets/det-applets.js
 
-   QUÉ ES
-     Motor propio en JavaScript plano, sin OJS y sin dependencias de red.
-     Expone window.DET con aritmética EXACTA de fracciones, de modo que
-     un determinante o una inversa nunca salen como 0.3333333333333.
+   NÚCLEO del tema. Misma arquitectura que los motores de Números reales,
+   Polinomios, Ecuaciones e inecuaciones, Sistemas de ecuaciones, los tres
+   temas de Estadística de 2.º y el Tema 1 Matrices: un núcleo con las
+   utilidades comunes y varios módulos que registran los applets.
 
-     El núcleo numérico es el mismo que el del tema 1 de matrices, ya
-     probado: fracciones con máximo común divisor, Gauss con registro
-     de pasos, menores, adjuntos e inversa por adjuntos.
+   API pública: window.DET
+     .registry             mapa clave -> función montadora
+     .shell(...)           armazón estándar de applet (título, ayuda,
+                           controles, escenarios y salida reactiva)
+     .tex .K .KD .texifica       KaTeX local sobre nodos data-tex
+     .esc .fmt .nc .etq .kf .mil .milTex .sig   formato de números
+     .entero .real .fraccionTxt  validación de entradas numéricas
+     .Frac                 fracciones exactas con BigInt
+     .mcd .mcm .factoriza .factorizaTex .divisores
 
-   DEPENDENCIAS (vía assets/_scripts.html)
-     ../assets/applets.css · assets/det-applets.css
-     ../assets/katex/katex.min.css · ../assets/katex/katex.min.js
+     ÁLGEBRA DE POLINOMIOS (coeficientes Frac, índice = grado). Se usa sobre
+     todo en las entradas con parámetro: determinantes y rangos que dependen
+     de k, y en la resolución de las ecuaciones det(A) = 0.
+     .parsePol .pSuma .pResta .pMult .pDiv .pEval .pTex .ruffini
+     .factorizaPol .raicesRacionales .solCuadratica .solLineal
+     .Conj .rectaConj .inecLineal .tablaSignos .intervTex
 
-   INSERCIÓN EN EL .qmd
-     <div data-applet-det="clave"></div>
+     SALIDA
+     .expr .svgWrap .txt .line .rect .circle .path .poly .leyenda .COL
+     .resultado .badge .kvs .tabla .paso
+     .log                   pila de errores por applet
+     .matricial             true cuando ha cargado det-applets-alg.js
+     .determinantes         true cuando ha cargado det-applets-det.js
+     .extraA … .extraF     true cuando cada módulo se ha cargado
 
-   CLAVES DE ESTE ARCHIVO (partes 1 y 2)
-     orden23 · sarrus · ecuacion
-     props · transforma · escalar · producto · reducir
+   El álgebra de matrices (dimensiones, operaciones, transposición, Gauss,
+   rango y ecuaciones matriciales) vive en det-applets-alg.js. El álgebra
+   propia de este tema (Sarrus con sus seis productos, menores
+   complementarios, adjuntos, desarrollo por una línea, método de hacer
+   ceros, rango por menores y matriz adjunta e inversa por determinantes)
+   vive en det-applets-det.js. Ambas capas amplían este mismo objeto
+   window.DET. Toda la aritmética usa fracciones con BigInt, así que los
+   determinantes, los pivotes y los elementos de la inversa son exactos,
+   sin errores de coma flotante.
 
-   ARRANQUE
-     DOMContentLoaded + setTimeout(boot, 0), el patrón unificado de los
-     motores del curso, con guarda data-mounted para no montar dos veces.
+   Sin OJS, sin CDN, sin auto-render, sin dependencias externas.
    ===================================================================== */
-
 (function () {
   'use strict';
 
-  /* ------------------------------------------------------------------
-     1. FRACCIONES EXACTAS
-     ------------------------------------------------------------------ */
-
-  function gcd(a, b) {
-    a = Math.abs(a); b = Math.abs(b);
-    while (b) { var t = a % b; a = b; b = t; }
-    return a || 1;
+  /* Registro de applets. IMPRESCINDIBLE crearlo sin prototipo: con un
+     objeto literal, claves como 'constructor', 'toString' o 'valueOf'
+     se resolverían por la cadena de prototipos a métodos de
+     Object.prototype y monta() creería que el applet ya existe. */
+  var R = Object.create(null);
+  /* Consulta segura del registro: solo claves propias. */
+  function tieneApplet(clave) {
+    return Object.prototype.hasOwnProperty.call(R, clave) && typeof R[clave] === 'function';
   }
-
-  function R(n, d) {
-    if (d === undefined) d = 1;
-    if (d === 0) return { n: 0, d: 1, bad: true };
-    if (d < 0) { n = -n; d = -d; }
-    var g = gcd(n, d);
-    return { n: n / g, d: d / g };
+  /* ==================================================================
+     0 · texto y KaTeX
+     ================================================================== */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
   }
+  function K(t) { return '<span data-tex="' + esc(t) + '"></span>'; }
+  function KD(t) { return '<span data-tex="' + esc(t) + '" data-display="1"></span>'; }
 
-  var F = {
-    add: function (a, b) { return R(a.n * b.d + b.n * a.d, a.d * b.d); },
-    sub: function (a, b) { return R(a.n * b.d - b.n * a.d, a.d * b.d); },
-    mul: function (a, b) { return R(a.n * b.n, a.d * b.d); },
-    div: function (a, b) { return b.n === 0 ? R(0, 0) : R(a.n * b.d, a.d * b.n); },
-    neg: function (a) { return R(-a.n, a.d); },
-    isZero: function (a) { return a.n === 0; },
-    eq: function (a, b) { return a.n * b.d === b.n * a.d; },
-    num: function (a) { return a.n / a.d; },
-    str: function (a) { return a.d === 1 ? String(a.n) : a.n + '/' + a.d; },
-    tex: function (a) {
-      if (a.d === 1) return String(a.n);
-      return (a.n < 0 ? '-' : '') + '\\tfrac{' + Math.abs(a.n) + '}{' + a.d + '}';
-    }
-  };
-
-  function parseEntry(s) {
-    s = String(s).trim();
-    if (!s.length) return null;
-    if (/^[+-]?\d+$/.test(s)) return R(parseInt(s, 10), 1);
-    var fr = s.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
-    if (fr) { var d = parseInt(fr[2], 10); return d === 0 ? null : R(parseInt(fr[1], 10), d); }
-    var de = s.match(/^([+-]?)(\d*)\.(\d+)$/);
-    if (de) {
-      var den = Math.pow(10, de[3].length);
-      var num = (de[2] === '' ? 0 : parseInt(de[2], 10)) * den + parseInt(de[3], 10);
-      return R(de[1] === '-' ? -num : num, den);
-    }
-    return null;
+  function tex(root) {
+    if (!window.katex || !root) return;
+    root.querySelectorAll('[data-tex]').forEach(function (e) {
+      if (e.dataset.done) return;
+      try {
+        katex.render(e.dataset.tex, e, {
+          throwOnError: false,
+          displayMode: e.hasAttribute('data-display')
+        });
+        e.dataset.done = 1;
+      } catch (x) { e.textContent = e.dataset.tex; }
+    });
   }
 
-  /* ------------------------------------------------------------------
-     2. LECTURA DE MATRICES
-     ------------------------------------------------------------------ */
-
-  function parseM(txt) {
-    var rows = String(txt == null ? '' : txt)
-      .trim().split(/[\n;]+/)
-      .map(function (r) { return r.trim(); })
-      .filter(function (r) { return r.length > 0; });
-    if (!rows.length) return { err: 'Escribe una matriz: una fila por línea.' };
-    var M = [], cols = null;
-    for (var i = 0; i < rows.length; i++) {
-      var cells = rows[i].split(/[\s,]+/).filter(function (c) { return c.length > 0; });
-      var row = [];
-      for (var j = 0; j < cells.length; j++) {
-        var v = parseEntry(cells[j]);
-        if (!v) {
-          return { err: 'No entiendo el elemento «' + cells[j] + '» de la fila ' + (i + 1) +
-            '. Escribe enteros (3, -5), decimales con punto (2.5) o fracciones (3/4).' };
-        }
-        row.push(v);
-      }
-      if (cols === null) cols = row.length;
-      else if (row.length !== cols) {
-        return { err: 'Todas las filas deben tener el mismo número de elementos: la fila ' +
-          (i + 1) + ' tiene ' + row.length + ' y la primera tiene ' + cols + '.' };
-      }
-      M.push(row);
-    }
-    return { M: M, r: M.length, c: cols, dim: M.length + '\u00d7' + cols };
-  }
-
-  /* ------------------------------------------------------------------
-     3. ÁLGEBRA EXACTA
-     ------------------------------------------------------------------ */
-
-  function clone(A) { return A.map(function (r) { return r.slice(); }); }
-  function ident(n) {
-    var I = [];
-    for (var i = 0; i < n; i++) { I.push([]); for (var j = 0; j < n; j++) I[i].push(i === j ? R(1) : R(0)); }
-    return I;
-  }
-  function zeros(m, n) {
-    var Z = [];
-    for (var i = 0; i < m; i++) { Z.push([]); for (var j = 0; j < n; j++) Z[i].push(R(0)); }
-    return Z;
-  }
-  function addM(A, B) { return A.map(function (r, i) { return r.map(function (x, j) { return F.add(x, B[i][j]); }); }); }
-  function subM(A, B) { return A.map(function (r, i) { return r.map(function (x, j) { return F.sub(x, B[i][j]); }); }); }
-  function scaleM(k, A) { return A.map(function (r) { return r.map(function (x) { return F.mul(k, x); }); }); }
-  function mulM(A, B) {
-    var m = A.length, p = B.length, n = B[0].length, C = zeros(m, n);
-    for (var i = 0; i < m; i++) for (var j = 0; j < n; j++) {
-      var s = R(0);
-      for (var k = 0; k < p; k++) s = F.add(s, F.mul(A[i][k], B[k][j]));
-      C[i][j] = s;
-    }
-    return C;
-  }
-  function transM(A) {
-    var T = [];
-    for (var j = 0; j < A[0].length; j++) { T.push([]); for (var i = 0; i < A.length; i++) T[j].push(A[i][j]); }
-    return T;
-  }
-  function eqM(A, B) {
-    if (!A || !B || A.length !== B.length || A[0].length !== B[0].length) return false;
-    for (var i = 0; i < A.length; i++) for (var j = 0; j < A[0].length; j++) if (!F.eq(A[i][j], B[i][j])) return false;
-    return true;
-  }
-  function minor(A, i, j) {
-    var S = [];
-    for (var a = 0; a < A.length; a++) {
-      if (a === i) continue;
-      var row = [];
-      for (var b = 0; b < A[0].length; b++) { if (b === j) continue; row.push(A[a][b]); }
-      S.push(row);
-    }
-    return S;
-  }
-  function subM2(A, rows, cols) {
-    return rows.map(function (i) { return cols.map(function (j) { return A[i][j]; }); });
-  }
-  function det(A) {
-    var n = A.length;
-    if (n === 0) return R(1);
-    if (n === 1) return A[0][0];
-    if (n === 2) return F.sub(F.mul(A[0][0], A[1][1]), F.mul(A[0][1], A[1][0]));
-    var s = R(0);
-    for (var j = 0; j < n; j++) {
-      if (F.isZero(A[0][j])) continue;
-      var t = F.mul(A[0][j], det(minor(A, 0, j)));
-      s = (j % 2 === 0) ? F.add(s, t) : F.sub(s, t);
-    }
+  /* Convierte $...$ y $$...$$ de un texto plano en nodos data-tex.
+     Hay que aplicarlo a TODO lo que se inserte con innerHTML. */
+  function texifica(s) {
+    if (typeof s !== 'string') return s;
+    s = s.replace(/\$\$([\s\S]+?)\$\$/g, function (_, t) {
+      return '<span data-tex="' + esc(t.trim()) + '" data-display="1"></span>';
+    });
+    s = s.replace(/\$([^\$\n]+?)\$/g, function (_, t) {
+      return '<span data-tex="' + esc(t.trim()) + '"></span>';
+    });
     return s;
   }
-  function cofM(A) {
-    var n = A.length, C = zeros(n, n);
-    for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
-      var m = det(minor(A, i, j));
-      C[i][j] = ((i + j) % 2 === 0) ? m : F.neg(m);
-    }
-    return C;
+
+  /* ==================================================================
+     1 · formato de números (convención española: coma decimal)
+     ================================================================== */
+  var FINO = '\u202F';                 /* espacio fino sin salto de línea */
+
+  function fmt(x, d) {
+    d = d === undefined ? 4 : d;
+    if (!Number.isFinite(x)) return '—';
+    var y = Number(x.toFixed(d));
+    var s = String(Object.is(y, -0) ? 0 : y);
+    if (s.indexOf('e') >= 0) return x.toExponential(Math.min(d, 12));
+    return s;
   }
-  function invAdj(A) {
-    var d = det(A);
-    if (F.isZero(d)) return null;
-    return scaleM(F.div(R(1), d), transM(cofM(A)));
+  function nc(x, d) { return fmt(x, d).replace('.', ','); }          /* texto  */
+  /* Rótulos de figuras: signo menos tipográfico (U+2212) en vez del guion. */
+  function etq(x, d) { return nc(x, d).replace('-', '−'); }
+  function kf(x, d) { return fmt(x, d).replace('.', '{,}'); }        /* KaTeX  */
+
+  function grupos(s, sep) {
+    var neg = s.charAt(0) === '-';
+    if (neg) s = s.slice(1);
+    var e = s.split('.'), ent = e[0], dec = e[1];
+    var out = '', c = 0;
+    for (var i = ent.length - 1; i >= 0; i--) {
+      out = ent.charAt(i) + out;
+      if (++c % 3 === 0 && i > 0) out = sep + out;
+    }
+    return (neg ? '-' : '') + out + (dec ? ',' + dec : '');
+  }
+  function mil(x) { return grupos(String(x), FINO); }
+  function milTex(x) {
+    var s = String(x), p = s.split('.');
+    var ent = grupos(p[0], '\\,');
+    return ent + (p[1] ? '{,}' + p[1] : '');
+  }
+  /* Ajusta a entero los resultados que solo se desvían por el redondeo
+     de la coma flotante: log(1000) en base 10 debe salir 3, no 2,999… */
+  function casi(x, tol) {
+    var r = Math.round(x);
+    return Math.abs(x - r) < (tol || 1e-10) ? r : x;
   }
 
-  /* Escalonamiento con registro de pasos y control del signo del determinante */
-  function gauss(A0) {
-    var A = clone(A0), m = A.length, n = A[0].length;
-    var steps = [{ lab: 'Matriz de partida', M: clone(A) }], r = 0, signo = 1;
-    for (var c = 0; c < n && r < m; c++) {
-      var p = -1;
-      for (var i = r; i < m; i++) if (!F.isZero(A[i][c])) { p = i; break; }
-      if (p < 0) continue;
-      if (p !== r) {
-        var t = A[r]; A[r] = A[p]; A[p] = t;
-        signo = -signo;
-        steps.push({ lab: 'F_{' + (r + 1) + '}\\leftrightarrow F_{' + (p + 1) + '}', M: clone(A), signo: true });
-      }
-      for (var i2 = r + 1; i2 < m; i2++) {
-        if (F.isZero(A[i2][c])) continue;
-        var f = F.div(A[i2][c], A[r][c]);
-        for (var k = 0; k < n; k++) A[i2][k] = F.sub(A[i2][k], F.mul(f, A[r][k]));
-        steps.push({
-          lab: 'F_{' + (i2 + 1) + '}\\to F_{' + (i2 + 1) + '}-\\left(' + F.tex(f) + '\\right)F_{' + (r + 1) + '}',
-          M: clone(A)
-        });
-      }
-      r++;
-    }
-    return { M: A, steps: steps, rank: r, signo: signo };
+  /* Notación con n cifras significativas, en texto español */
+  function sig(x, n) {
+    if (!Number.isFinite(x) || x === 0) return nc(x, 0);
+    return String(Number(x.toPrecision(n))).replace('.', ',');
   }
+
+  /* ==================================================================
+     2 · validación de entradas
+     ================================================================== */
+  function entero(v, min, max, nombre) {
+    var s = String(v).trim().replace(',', '.');
+    var x = Number(s);
+    if (s === '' || !Number.isFinite(x) || !Number.isInteger(x))
+      throw Error((nombre || 'El valor') + ' debe ser un número entero. Ejemplo: 12');
+    if (min !== undefined && x < min) throw Error((nombre || 'El valor') + ' debe ser al menos ' + min + '.');
+    if (max !== undefined && x > max) throw Error((nombre || 'El valor') + ' no puede pasar de ' + max + ' en este applet.');
+    return x;
+  }
+  function real(v, min, max, nombre) {
+    var s = String(v).trim().replace(/\s/g, '').replace(',', '.');
+    var x = Number(s);
+    if (s === '' || !Number.isFinite(x))
+      throw Error((nombre || 'El valor') + ' debe ser un número. Escribe la parte decimal con coma o con punto: 3,75 o 3.75');
+    if (min !== undefined && x < min) throw Error((nombre || 'El valor') + ' debe ser mayor o igual que ' + String(min).replace('.', ',') + '.');
+    if (max !== undefined && x > max) throw Error((nombre || 'El valor') + ' debe ser menor o igual que ' + String(max).replace('.', ',') + '.');
+    return x;
+  }
+  /* "7/12", "-3/4", "5"  ->  Frac */
+  function fraccionTxt(v, nombre) {
+    var s = String(v).trim().replace(/\s/g, '');
+    if (!/^[+-]?\d+(\/\d+)?$/.test(s))
+      throw Error((nombre || 'La fracción') + ' se escribe con la barra inclinada, numerador y denominador enteros. Ejemplos: 7/12, -3/4, 5');
+    var p = s.split('/');
+    var b = p.length > 1 ? Number(p[1]) : 1;
+    if (b === 0) throw Error('El denominador no puede ser 0: la división entre cero no está definida.');
+    return new Frac(Number(p[0]), b);
+  }
+  function listaReales(txt, nombre, max) {
+    var s = String(txt || '').trim();
+    if (!s) throw Error('Escribe los números separados por espacios, comas o punto y coma. Ejemplo: 2 3,5 -1/2 pi');
+    var L = s.split(/[\s;]+|,(?=\s|-?\d*\/)/).filter(Boolean);
+    var out = L.map(function (t) { return valorSimbolico(t); });
+    if (max && out.length > max) throw Error('Máximo ' + max + ' números para que la figura se lea bien.');
+    return out;
+  }
+
+  /* Acepta números, fracciones y unas cuantas constantes y raíces:
+     3   -2,5   7/4   pi   e   phi   sqrt2   raiz(3)   -sqrt(5)/2      */
+  function valorSimbolico(t) {
+    var s = String(t).trim().toLowerCase().replace(/\s/g, '');
+    var neg = 1;
+    if (s.charAt(0) === '-') { neg = -1; s = s.slice(1); }
+    else if (s.charAt(0) === '+') { s = s.slice(1); }
+
+    /* fracción puramente numérica: 7/4 */
+    var mf = s.match(/^(\d+(?:[.,]\d+)?)\/(\d+)$/);
+    if (mf) {
+      var nn = Number(mf[1].replace(',', '.')), dd = Number(mf[2]);
+      if (dd === 0) throw Error('El denominador no puede ser 0.');
+      return { v: neg * nn / dd, tex: (neg < 0 ? '-' : '') + '\\dfrac{' + mf[1].replace(',', '{,}') + '}{' + mf[2] + '}', txt: String(t).trim() };
+    }
+
+    var div = 1, m = s.match(/^(.*)\/(\d+)$/);
+    if (m) { s = m[1]; div = Number(m[2]); }
+
+    var v = null, tx = null;
+    if (s === 'pi' || s === 'π') { v = Math.PI; tx = '\\pi'; }
+    else if (s === 'e') { v = Math.E; tx = 'e'; }
+    else if (s === 'phi' || s === 'aureo' || s === 'φ') { v = (1 + Math.sqrt(5)) / 2; tx = '\\varphi'; }
+    else if ((m = s.match(/^(?:sqrt|raiz|raíz|r)\(?(\d+(?:[.,]\d+)?)\)?$/))) {
+      var a = Number(m[1].replace(',', '.'));
+      v = Math.sqrt(a); tx = '\\sqrt{' + m[1].replace(',', '{,}') + '}';
+    } else {
+      var x = Number(s.replace(',', '.'));
+      if (!Number.isFinite(x)) throw Error('No entiendo «' + t + '». Admito enteros, decimales (3,5), fracciones (7/4), pi, e, phi y raíces como sqrt2 o raiz(3).');
+      v = x; tx = String(m ? s : s).replace(',', '{,}');
+    }
+    if (div !== 1) { v = v / div; tx = '\\dfrac{' + tx + '}{' + div + '}'; }
+    if (neg < 0) { v = -v; tx = '-' + tx; }
+    return { v: v, tex: tx, txt: String(t).trim() };
+  }
+
+  /* ==================================================================
+     3 · aritmética exacta: fracciones con BigInt
+     ================================================================== */
+  function babs(b) { return b < 0n ? -b : b; }
+  function bmcd(a, b) {
+    a = babs(a); b = babs(b);
+    while (b) { var t = a % b; a = b; b = t; }
+    return a;
+  }
+  function mcd() {
+    var L = Array.prototype.slice.call(arguments).map(function (x) { return BigInt(x); });
+    return Number(L.reduce(function (a, b) { return bmcd(a, b); }, 0n));
+  }
+  function mcm() {
+    var L = Array.prototype.slice.call(arguments).map(function (x) { return BigInt(x); });
+    return Number(L.reduce(function (a, b) {
+      if (a === 0n || b === 0n) return 0n;
+      return babs(a * b) / bmcd(a, b);
+    }, 1n));
+  }
+
+  function Frac(n, d) {
+    if (d === undefined) d = 1;
+    n = BigInt(n); d = BigInt(d);
+    if (d === 0n) throw Error('El denominador no puede ser 0.');
+    if (d < 0n) { n = -n; d = -d; }
+    var g = bmcd(n, d) || 1n;
+    this.n = n / g;
+    this.d = d / g;
+  }
+  Frac.prototype.val = function () { return Number(this.n) / Number(this.d); };
+  Frac.prototype.esEntero = function () { return this.d === 1n; };
+  Frac.prototype.txt = function () { return this.d === 1n ? String(this.n) : this.n + '/' + this.d; };
+  Frac.prototype.tex = function (inline) {
+    if (this.d === 1n) return String(this.n);
+    var s = this.n < 0n ? '-' : '';
+    var f = (inline ? '\\frac' : '\\dfrac') + '{' + babs(this.n) + '}{' + this.d + '}';
+    return s + f;
+  };
+  Frac.prototype.mas = function (o) { return new Frac(this.n * o.d + o.n * this.d, this.d * o.d); };
+  Frac.prototype.menos = function (o) { return new Frac(this.n * o.d - o.n * this.d, this.d * o.d); };
+  Frac.prototype.por = function (o) { return new Frac(this.n * o.n, this.d * o.d); };
+  Frac.prototype.entre = function (o) {
+    if (o.n === 0n) throw Error('No se puede dividir entre 0.');
+    return new Frac(this.n * o.d, this.d * o.n);
+  };
+  Frac.prototype.opuesto = function () { return new Frac(-this.n, this.d); };
+  Frac.prototype.cmp = function (o) {
+    var a = this.n * o.d, b = o.n * this.d;
+    return a < b ? -1 : (a > b ? 1 : 0);
+  };
+
+  function factoriza(n) {
+    n = Math.abs(Math.trunc(n));
+    var f = [], p = 2;
+    if (n < 2) return f;
+    while (p * p <= n) {
+      var e = 0;
+      while (n % p === 0) { n /= p; e++; }
+      if (e) f.push([p, e]);
+      p += (p === 2 ? 1 : 2);
+    }
+    if (n > 1) f.push([n, 1]);
+    return f;
+  }
+  function factorizaTex(n) {
+    var f = factoriza(n);
+    if (!f.length) return String(n);
+    return f.map(function (p) { return p[1] === 1 ? String(p[0]) : p[0] + '^{' + p[1] + '}'; }).join(' \\cdot ');
+  }
+  function esCuadradoPerfecto(n) {
+    if (n < 0) return false;
+    var r = Math.round(Math.sqrt(n));
+    return r * r === n;
+  }
+
+
+  /* ==================================================================
+     9 · figuras SVG
+     ================================================================== */
+  var COL = {
+    azul: '#1976d2', azulOsc: '#0d47a1', rojo: '#c62828', verde: '#2e7d32',
+    naranja: '#e07b00', morado: '#6a3d9a', teal: '#00695c', rosa: '#ad1457',
+    eje: '#455a64', guia: '#cfd8dc', texto: '#263238', gris: '#78909c',
+    suave: '#f2f7fd'
+  };
 
   /* ------------------------------------------------------------------
-     4. SALIDA CON KaTeX, SIN AUTO-RENDER
+     altoDibujado(body)
+
+     Devuelve la coordenada Y mas baja que llega a ocupar el contenido de
+     un cuerpo de SVG generado con los ayudantes de este fichero (text,
+     rect, line, circle, path, polygon/polyline y foreignObject). Sirve
+     para calcular el alto del viewBox a partir de lo que realmente se
+     dibuja, en vez de fijar una altura a ojo que deja el lienzo con
+     cientos de pixeles en blanco al final.
+
+     Los <text> se miden con su linea de base mas un 32 % del cuerpo de
+     letra, que es la parte descendente tipica (g, j, p, q, y).
      ------------------------------------------------------------------ */
+  function altoDibujado(body) {
+    var s = String(body || ''), max = 0, m, re;
+    function up(v) { if (typeof v === 'number' && isFinite(v) && v > max) max = v; }
+    function num(t) { return parseFloat(t); }
 
-  function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-  function k(tex) { return '<span data-tex="' + esc(tex) + '"></span>'; }
-  function kd(tex) { return '<span data-tex="' + esc(tex) + '" data-display="1"></span>'; }
+    re = /<text\b[^>]*\by="(-?[\d.]+)"[^>]*?\bfont-size="(-?[\d.]+)"/g;
+    while ((m = re.exec(s))) up(num(m[1]) + num(m[2]) * 0.32);
 
-  function renderTex(root) {
-    if (!window.katex) return;
-    var nodes = root.querySelectorAll('[data-tex]');
-    for (var i = 0; i < nodes.length; i++) {
-      var el = nodes[i];
-      if (el.getAttribute('data-done') === '1') continue;
-      try {
-        window.katex.render(el.getAttribute('data-tex'), el, {
-          throwOnError: false, displayMode: el.hasAttribute('data-display'), output: 'html'
-        });
-        el.setAttribute('data-done', '1');
-      } catch (e) { el.textContent = el.getAttribute('data-tex'); }
+    re = /<rect\b[^>]*\by="(-?[\d.]+)"[^>]*?\bheight="(-?[\d.]+)"/g;
+    while ((m = re.exec(s))) up(num(m[1]) + num(m[2]));
+
+    re = /<foreignObject\b[^>]*\by="(-?[\d.]+)"[^>]*?\bheight="(-?[\d.]+)"/g;
+    while ((m = re.exec(s))) up(num(m[1]) + num(m[2]));
+
+    re = /<line\b[^>]*\by1="(-?[\d.]+)"[^>]*?\by2="(-?[\d.]+)"/g;
+    while ((m = re.exec(s))) { up(num(m[1])); up(num(m[2])); }
+
+    re = /<circle\b[^>]*\bcy="(-?[\d.]+)"[^>]*?\br="(-?[\d.]+)"/g;
+    while ((m = re.exec(s))) up(num(m[1]) + num(m[2]));
+
+    /* En las rutas de estas figuras solo se usan M, L y C, que llevan
+       las coordenadas en parejas x y: basta con mirar las impares. */
+    re = /<path\b[^>]*\bd="([^"]*)"/g;
+    while ((m = re.exec(s))) {
+      var ns = m[1].match(/-?\d*\.?\d+/g) || [];
+      for (var q = 1; q < ns.length; q += 2) up(num(ns[q]));
     }
+
+    re = /<(?:polygon|polyline)\b[^>]*\bpoints="([^"]*)"/g;
+    while ((m = re.exec(s))) {
+      var ps = m[1].match(/-?\d*\.?\d+/g) || [];
+      for (var r = 1; r < ps.length; r += 2) up(num(ps[r]));
+    }
+    return Math.ceil(max);
   }
 
-  /* Matriz a LaTeX. env: 'pmatrix' (matriz) o 'vmatrix' (determinante) */
-  function texM(A, opts) {
-    opts = opts || {};
-    var env = opts.bars ? 'vmatrix' : 'pmatrix';
-    var body = A.map(function (row, i) {
-      return row.map(function (x, j) {
-        var s = F.tex(x);
-        var hot = (opts.hi && opts.hi[0] === i && opts.hi[1] === j) ||
-                  (opts.hiRow === i) || (opts.hiCol === j) ||
-                  (opts.hiSet && opts.hiSet.some(function (p) { return p[0] === i && p[1] === j; }));
-        return hot ? '\\boxed{' + s + '}' : s;
-      }).join(' & ');
-    }).join(' \\\\ ');
-    return (opts.name ? opts.name + ' = ' : '') + '\\begin{' + env + '}' + body + '\\end{' + env + '}';
+  function svgWrap(body, W, H, label, cap) {
+    return '<div class="ap-fig"><svg role="img" aria-label="' + esc(label) +
+      '" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">' +
+      '<title>' + esc(label) + '</title>' + body + '</svg>' +
+      (cap ? '<p class="ap-figcap">' + cap + '</p>' : '') + '</div>';
   }
-  function view(A, opts) { return k(texM(A, opts)); }
-  function viewDet(A, opts) {
-    opts = opts || {}; opts.bars = true;
-    return k(texM(A, opts));
+  function txt(x, y, s, o) {
+    o = o || {};
+    return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.anchor || 'middle') +
+      '" font-size="' + (o.size || 18) + '" font-weight="' + (o.weight || 'normal') +
+      '" fill="' + (o.fill || COL.texto) + '"' +
+      (o.family ? ' font-family="' + o.family + '"' : '') +
+      (o.style ? ' font-style="' + o.style + '"' : '') + '>' + s + '</text>';
   }
-
-  function ok(m) { return '<div class="mx-ok">' + m + '</div>'; }
-  function info(m) { return '<div class="mx-info">' + m + '</div>'; }
-  function warn(m) { return '<div class="mx-warn">' + m + '</div>'; }
-  function err(m) { return '<div class="mx-bad ap-err">' + m + '</div>'; }
-
-  function stepsView(steps) {
-    var h = '<div class="mx-steps">';
-    steps.forEach(function (s) {
-      h += '<div class="mx-step"><span class="mx-step-lab">' +
-        (/[\\_]/.test(s.lab) ? k(s.lab) : s.lab) +
-        (s.signo ? ' <b>(cambia el signo)</b>' : '') +
-        '</span>' + viewDet(s.M) + '</div>';
+  function line(x1, y1, x2, y2, col, w, dash) {
+    return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 +
+      '" stroke="' + (col || COL.eje) + '" stroke-width="' + (w || 1.6) +
+      (dash ? '" stroke-dasharray="' + dash : '') + '" stroke-linecap="round"/>';
+  }
+  function rect(x, y, w, h, fill, stroke, o) {
+    o = o || {};
+    return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) +
+      '" rx="' + (o.r === undefined ? 6 : o.r) + '" fill="' + (fill || 'none') +
+      '" stroke="' + (stroke || 'none') + '" stroke-width="' + (o.sw || 1.6) +
+      (o.op !== undefined ? '" opacity="' + o.op : '') + '"/>';
+  }
+  function circle(cx, cy, r, fill, stroke, sw) {
+    return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + (fill || COL.azul) +
+      '" stroke="' + (stroke || '#fff') + '" stroke-width="' + (sw === undefined ? 2 : sw) + '"/>';
+  }
+  function path(d, col, w, fill, dash) {
+    return '<path d="' + d + '" fill="' + (fill || 'none') + '" stroke="' + (col || COL.eje) +
+      '" stroke-width="' + (w || 2) + (dash ? '" stroke-dasharray="' + dash : '') +
+      '" stroke-linejoin="round" stroke-linecap="round"/>';
+  }
+  function poly(pts, fill, stroke, w) {
+    return '<polygon points="' + pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') +
+      '" fill="' + (fill || 'none') + '" stroke="' + (stroke || 'none') + '" stroke-width="' + (w || 1.6) + '"/>';
+  }
+  function leyenda(items) {
+    var h = '<ul class="ap-legend">';
+    items.forEach(function (it) {
+      h += '<li><span class="ap-sw" style="background:' + it[0] + '"></span>' + it[1] + '</li>';
     });
-    return h + '</div>';
+    return h + '</ul>';
   }
 
   /* ------------------------------------------------------------------
-     5. CONSTRUCTOR DE APPLETS
+     Recta real reutilizable.
+     opts = { min, max, W, H, y, paso, etiquetas, puntos:[{x,tex,col,arriba}],
+              tramos:[{a,b,col,abierto:[bool,bool],alto}], titulo }
+     Devuelve el HTML completo de la figura.
      ------------------------------------------------------------------ */
+  function rectaReal(opts) {
+    var min = opts.min, max = opts.max;
+    var W = opts.W || 1000, H = opts.H || (opts.alto || 220);
+    var mx = opts.mx === undefined ? 70 : opts.mx;
+    var yy = opts.y || Math.round(H * 0.62);
+    if (max <= min) throw Error('El extremo derecho de la recta debe ser mayor que el izquierdo.');
+    function X(v) { return mx + (v - min) / (max - min) * (W - 2 * mx); }
+    var b = '';
 
-  var registry = {};
-  function reg(key, fn) { registry[key] = fn; }
+    /* tramos (intervalos) por debajo o sobre el eje */
+    (opts.tramos || []).forEach(function (t) {
+      var x1 = X(Math.max(t.a, min)), x2 = X(Math.min(t.b, max));
+      var alto = t.alto === undefined ? 16 : t.alto;
+      b += rect(Math.min(x1, x2), yy - alto / 2, Math.abs(x2 - x1), alto, t.col || 'rgba(25,118,210,.22)', t.borde || 'none', { r: alto / 2 });
+    });
 
-  function build(node, title, instr, fields, compute) {
+    /* eje con flechas */
+    b += line(mx - 40, yy, W - mx + 40, yy, COL.eje, 2.6);
+    b += poly([[W - mx + 40, yy], [W - mx + 24, yy - 8], [W - mx + 24, yy + 8]], COL.eje, COL.eje);
+    b += poly([[mx - 40, yy], [mx - 24, yy - 8], [mx - 24, yy + 8]], COL.eje, COL.eje);
+
+    /* marcas */
+    var paso = opts.paso || (max - min) / 10;
+    var ini = Math.ceil(min / paso) * paso;
+    for (var v = ini; v <= max + 1e-9; v += paso) {
+      var x = X(v);
+      var mayor = Math.abs(v / paso - Math.round(v / paso)) < 1e-9;
+      b += line(x, yy - (mayor ? 9 : 5), x, yy + (mayor ? 9 : 5), COL.gris, 1.6);
+      if (opts.etiquetas !== false) {
+        var et = Math.abs(v) < 1e-9 ? '0' : etq(v, opts.dec === undefined ? 2 : opts.dec);
+        b += txt(x, yy + 32, et, { size: opts.sizeEt || 17, fill: COL.gris });
+      }
+    }
+
+    /* puntos destacados */
+    (opts.puntos || []).forEach(function (p) {
+      var x = X(p.x);
+      var arriba = p.arriba !== false;
+      var col = p.col || COL.rojo;
+      b += line(x, yy - (arriba ? 46 : -46), x, yy, col, 1.6, '5 4');
+      if (p.hueco) b += circle(x, yy, 8, '#fff', col, 3);
+      else b += circle(x, yy, 8, col, '#fff', 2.4);
+      if (p.tex) {
+        b += '<foreignObject x="' + (x - 90) + '" y="' + (arriba ? yy - 84 : yy + 44) + '" width="180" height="40">' +
+          '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:19px;color:' + col + '">' +
+          '<span data-tex="' + esc(p.tex) + '"></span></div></foreignObject>';
+      }
+    });
+    if (opts.titulo) b = txt(W / 2, 30, esc(opts.titulo), { size: 20, weight: '700', fill: COL.azulOsc }) + b;
+    return svgWrap(b, W, H, opts.label || 'Recta real', opts.cap);
+  }
+
+  /* ------------------------------------------------------------------
+     Ejes cartesianos con una o varias curvas.
+     opts = { xmin,xmax,ymin,ymax, W,H, curvas:[{f,col,dash,label}],
+              puntos:[{x,y,col,tex}], rectas:[{y}|{x}], cap }
+     ------------------------------------------------------------------ */
+  function ejes(opts) {
+    var W = opts.W || 940, H = opts.H || 560, m = opts.m || 58;
+    var xmin = opts.xmin, xmax = opts.xmax, ymin = opts.ymin, ymax = opts.ymax;
+    function X(v) { return m + (v - xmin) / (xmax - xmin) * (W - 2 * m); }
+    function Y(v) { return H - m - (v - ymin) / (ymax - ymin) * (H - 2 * m); }
+    var b = rect(m, m, W - 2 * m, H - 2 * m, '#fff', '#e3e9ef', { r: 4 });
+
+    var px = opts.paso || Math.max(1, Math.round((xmax - xmin) / 10));
+    var py = opts.pasoY || Math.max(1, Math.round((ymax - ymin) / 8));
+    for (var v = Math.ceil(xmin / px) * px; v <= xmax; v += px) {
+      b += line(X(v), m, X(v), H - m, COL.guia, 1);
+      b += txt(X(v), H - m + 26, etq(v, 0), { size: 16, fill: COL.gris });
+    }
+    for (var w = Math.ceil(ymin / py) * py; w <= ymax; w += py) {
+      b += line(m, Y(w), W - m, Y(w), COL.guia, 1);
+      b += txt(m - 12, Y(w) + 6, etq(w, 0), { size: 16, fill: COL.gris, anchor: 'end' });
+    }
+    if (ymin <= 0 && ymax >= 0) b += line(m, Y(0), W - m, Y(0), COL.eje, 2.2);
+    if (xmin <= 0 && xmax >= 0) b += line(X(0), m, X(0), H - m, COL.eje, 2.2);
+
+    (opts.curvas || []).forEach(function (c) {
+      var d = '', dentro = false;
+      for (var i = 0; i <= 600; i++) {
+        var x = xmin + (xmax - xmin) * i / 600, y;
+        try { y = c.f(x); } catch (e) { y = NaN; }
+        if (!Number.isFinite(y) || y < ymin - (ymax - ymin) || y > ymax + (ymax - ymin)) { dentro = false; continue; }
+        d += (dentro ? ' L ' : ' M ') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1);
+        dentro = true;
+      }
+      b += path(d, c.col || COL.azul, c.w || 3, 'none', c.dash);
+      if (c.label) b += '<foreignObject x="' + (c.lx || W - 250) + '" y="' + (c.ly || 70) + '" width="200" height="40">' +
+        '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:19px;color:' + (c.col || COL.azul) + '">' +
+        '<span data-tex="' + esc(c.label) + '"></span></div></foreignObject>';
+    });
+    (opts.puntos || []).forEach(function (p) {
+      b += circle(X(p.x), Y(p.y), 7, p.col || COL.rojo, '#fff', 2);
+      if (p.tex) b += '<foreignObject x="' + (X(p.x) - 80) + '" y="' + (Y(p.y) - 52) + '" width="160" height="40">' +
+        '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:18px;color:' + (p.col || COL.rojo) + '">' +
+        '<span data-tex="' + esc(p.tex) + '"></span></div></foreignObject>';
+    });
+    return svgWrap(b, W, H, opts.label || 'Gráfica', opts.cap);
+  }
+
+  /* ==================================================================
+     10 · piezas de salida
+     ================================================================== */
+  function resultado(valor, etiqueta) {
+    return '<div class="ap-res"><span class="ap-res-num">' + valor + '</span>' +
+      '<span class="ap-res-lab">' + etiqueta + '</span></div>';
+  }
+  function badge(t, clase) { return '<span class="ap-badge ' + (clase || 'info') + '">' + t + '</span>'; }
+
+  /* --- Tipografía de sumandos negativos ------------------------------
+     Nunca se imprime «8 + −5»: o se escribe «8 + (−5)» o «8 − 5».
+     esNegTxt() reconoce el guion ASCII y el menos tipográfico «−»;
+     parNegTex/parNegTxt envuelven en paréntesis un sumando negativo ya
+     formateado; sumandosTex/sumandosTxt unen una lista con « + »
+     aplicando los paréntesis a todos los sumandos menos al primero.
+     Es la función auxiliar única que usan los cuatro sitios del tema
+     donde antes aparecía el doble signo. */
+  function esNegTxt(s) { return /^\s*[-\u2212]/.test(String(s)); }
+  function parNegTex(s) { return esNegTxt(s) ? '\\left(' + String(s) + '\\right)' : String(s); }
+  function parNegTxt(s) { return esNegTxt(s) ? '(' + String(s) + ')' : String(s); }
+  function sumandosTex(lista) {
+    return lista.map(function (s, i) { return i === 0 ? String(s) : parNegTex(s); }).join(' + ');
+  }
+  function sumandosTxt(lista) {
+    return lista.map(function (s, i) { return i === 0 ? String(s) : parNegTxt(s); }).join(' + ');
+  }
+  function kvs(items) {
+    return '<div class="ap-kvs">' + items.map(function (i) {
+      return '<span class="ap-kv">' + i + '</span>';
+    }).join('') + '</div>';
+  }
+  /* tabla(cab, filas, opts) · filas: array de arrays; primera celda th */
+  function tabla(cab, filas, opts) {
+    opts = opts || {};
+    var h = '<table class="ap-tbl ap-eq"><thead><tr>';
+    cab.forEach(function (c) { h += '<th>' + c + '</th>'; });
+    h += '</tr></thead><tbody>';
+    filas.forEach(function (f) {
+      var cl = f.clase ? ' class="' + f.clase + '"' : '';
+      var cel = f.celdas || f;
+      h += '<tr' + cl + '>';
+      cel.forEach(function (c, i) {
+        h += (i === 0 && opts.thPrimera !== false ? '<th>' + c + '</th>' : '<td>' + c + '</td>');
+      });
+      h += '</tr>';
+    });
+    return h + '</tbody></table>';
+  }
+  /* paso(n, txtHtml, clase)
+     El distintivo admite tanto un número («1», «2»…) como una etiqueta
+     de varias palabras («inicio», «orden 2»). Con un solo dígito la
+     píldora de .ap-paso-n queda circular (min-width = diámetro de
+     antes); con texto largo crece a lo ancho en vez de desbordarse.
+     La clase .ap-paso-n-larga solo ajusta el cuerpo de letra. */
+  function paso(n, txtHtml, clase) {
+    var etq = String(n === null || n === undefined ? '' : n);
+    var larga = etq.replace(/<[^>]*>/g, '').length > 2 ? ' ap-paso-n-larga' : '';
+    return '<div class="ap-paso ' + (clase || '') + '"><span class="ap-paso-n' + larga + '">' + etq + '</span>' +
+      '<div class="ap-paso-c">' + txtHtml + '</div></div>';
+  }
+
+  /* ==================================================================
+     11 · armazón estándar de applet
+     ================================================================== */
+  function shell(node, title, instr, fields, compute) {
     node.classList.add('applet');
-    node.innerHTML = '<h4 class="mx-title">' + title + '</h4>' +
-      (instr ? '<div class="mx-instr">' + instr + '</div>' : '') +
-      '<div class="mx-inputs"></div><div class="mx-out ap-out"></div>';
-    var box = node.querySelector('.mx-inputs');
+    node.innerHTML =
+      '<h4 class="mx-title">Applet · ' + esc(title) + '</h4>' +
+      '<div class="mx-instr">' + texifica(instr) + '</div>' +
+      '<div class="mx-inputs"></div>' +
+      '<div class="ap-chips"></div>' +
+      '<div class="mx-out ap-out"></div>';
+    tex(node);
+    var inp = node.querySelector('.mx-inputs');
+    var chips = node.querySelector('.ap-chips');
     var out = node.querySelector('.mx-out');
-    var ctl = {};
+    var ctl = {}, api = {};
 
-    fields.forEach(function (f) {
-      var wrap = document.createElement('label');
-      wrap.className = 'mx-field';
+    (fields || []).forEach(function (f) {
+      if (f.type === 'presets') {
+        f.list.forEach(function (p) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'ap-chip';
+          b.textContent = p.label;
+          if (p.title) b.title = p.title;
+          b.addEventListener('click', function () {
+            if (p.apply) p.apply(ctl);
+            run();
+          });
+          chips.appendChild(b);
+        });
+        return;
+      }
+      if (f.type === 'button') {
+        var bb = document.createElement('button');
+        bb.type = 'button';
+        bb.className = 'ap-chip ap-chip-act';
+        bb.textContent = f.label;
+        bb.addEventListener('click', function () {
+          if (f.click) f.click(ctl, api);
+          run();
+        });
+        chips.appendChild(bb);
+        ctl[f.id] = bb;
+        return;
+      }
+      var lab = document.createElement('label');
+      lab.className = 'mx-field';
       var cap = document.createElement('span');
       cap.textContent = f.label;
-      wrap.appendChild(cap);
+      lab.appendChild(cap);
       var el;
-      if (f.type === 'select') {
-        el = document.createElement('select');
-        f.options.forEach(function (o) {
-          var op = document.createElement('option');
-          op.value = o; op.textContent = o; el.appendChild(op);
-        });
-        if (f.value) el.value = f.value;
-      } else if (f.type === 'range') {
+      if (f.type === 'range') {
         el = document.createElement('input');
-        el.type = 'range'; el.min = f.min; el.max = f.max;
+        el.type = 'range';
+        el.min = f.min; el.max = f.max; el.step = f.step || 1; el.value = f.value;
+        el.className = 'mx-in';
+        var live = document.createElement('span');
+        live.className = 'mx-mono';
+        live.textContent = String(el.value).replace('.', ',');
+        el._sincroniza = function () { live.textContent = String(el.value).replace('.', ','); };
+        el.addEventListener('input', el._sincroniza);
+        lab.appendChild(el); lab.appendChild(live);
+      } else if (f.type === 'number') {
+        el = document.createElement('input');
+        el.type = 'number';
+        if (f.min !== undefined) el.min = f.min;
+        if (f.max !== undefined) el.max = f.max;
         el.step = f.step || 1; el.value = f.value;
+        el.className = 'mx-in';
+        lab.appendChild(el);
+      } else if (f.type === 'check') {
+        el = document.createElement('input');
+        el.type = 'checkbox'; el.checked = !!f.value;
+        el.className = 'mx-in';
+        lab.appendChild(el);
+      } else if (f.type === 'select') {
+        el = document.createElement('select');
+        el.className = 'mx-in';
+        (f.options || []).forEach(function (o) {
+          var op = document.createElement('option');
+          op.value = o.value !== undefined ? o.value : o;
+          op.textContent = o.label !== undefined ? o.label : o;
+          el.appendChild(op);
+        });
+        if (f.value !== undefined) el.value = f.value;
+        lab.appendChild(el);
       } else if (f.type === 'text') {
         el = document.createElement('input');
         el.type = 'text'; el.value = f.value || '';
+        if (f.place) el.placeholder = f.place;
+        el.className = 'mx-in';
+        el.spellcheck = false;
+        lab.appendChild(el);
       } else {
         el = document.createElement('textarea');
-        el.rows = f.rows || 3; el.value = f.value || ''; el.spellcheck = false;
+        el.rows = f.rows || 2; el.value = f.value || ''; el.spellcheck = false;
+        if (f.place) el.placeholder = f.place;
+        el.className = 'mx-in';
+        lab.appendChild(el);
       }
-      el.className = 'mx-in';
-      wrap.appendChild(el);
-      if (f.type === 'range') {
-        var live = document.createElement('span');
-        live.className = 'mx-mono';
-        live.textContent = f.value;
-        el.addEventListener('input', function () { live.textContent = el.value; });
-        wrap.appendChild(live);
-      }
-      box.appendChild(wrap);
+      if (f.ancho) lab.style.flex = '1 1 ' + f.ancho;
       ctl[f.id] = el;
+      inp.appendChild(lab);
       el.addEventListener('input', run);
       el.addEventListener('change', run);
     });
 
-    function run() {
+    function values() {
       var v = {};
-      for (var key in ctl) v[key] = ctl[key].value;
-      var html;
-      try { html = compute(v); }
-      catch (e) { html = err('Error inesperado en el applet: ' + e.message); }
-      out.innerHTML = html;
-      renderTex(out);
+      Object.keys(ctl).forEach(function (k) {
+        var e = ctl[k];
+        if (!e || e.tagName === 'BUTTON') return;
+        v[k] = e.type === 'checkbox' ? e.checked : e.value;
+      });
+      return v;
     }
+    function run() {
+      /* Los escenarios asignan .value directamente y eso no dispara 'input':
+         hay que refrescar a mano el rótulo en vivo de los deslizadores. */
+      Object.keys(ctl).forEach(function (k) {
+        if (ctl[k] && typeof ctl[k]._sincroniza === 'function') ctl[k]._sincroniza();
+      });
+      try {
+        var html = compute(values(), ctl, out, api);
+        if (html !== undefined && html !== null) {
+          out.innerHTML = texifica(html);
+          tex(out);
+        }
+      } catch (e) {
+        out.innerHTML = '<div class="mx-bad ap-err">' + esc(e.message) + '</div>';
+        tex(out);
+        (window.DET && window.DET.log ? window.DET.log : []).push({ applet: title, error: e.message });
+      }
+    }
+    api.run = run;
+    api.ctl = ctl;
+    api.out = out;
+    api.node = node;
     run();
-    return { out: out, ctl: ctl, run: run };
+    return api;
   }
 
-  function need(txt, nombre) {
-    var p = parseM(txt);
-    if (p.err) return { err: 'En la matriz ' + nombre + ': ' + p.err };
-    return p;
+  /* ==================================================================
+     4 · álgebra de polinomios: representación y operaciones exactas
+
+     Un polinomio es un array de Frac: el índice es el grado.
+        [Frac(2), Frac(0), Frac(3)]   ->   3x^2 + 2
+     El array siempre va «recortado»: el último coeficiente no es 0,
+     salvo en el polinomio nulo, que es [Frac(0)].
+     Toda la aritmética pasa por Frac (BigInt), así que 1/3, 7/12 o los
+     coeficientes que salen al dividir son exactos.
+     ================================================================== */
+  var CERO = function () { return [new Frac(0)]; };
+  var UNO = function () { return [new Frac(1)]; };
+
+  function pRecorta(p) {
+    var q = p.slice();
+    while (q.length > 1 && q[q.length - 1].n === 0n) q.pop();
+    return q;
   }
-  function needSquare(txt, nombre) {
-    var p = need(txt, nombre);
-    if (p.err) return p;
-    if (p.r !== p.c) {
-      return { err: 'La matriz ' + nombre + ' es ' + p.dim + ', y <b>solo las matrices cuadradas tienen determinante</b>. ' +
-        'Si no es cuadrada, no hay determinante que calcular: no es que valga cero, es que no existe.' };
+  function pEsCero(p) { p = pRecorta(p); return p.length === 1 && p[0].n === 0n; }
+  function pGrado(p) { p = pRecorta(p); return pEsCero(p) ? -Infinity : p.length - 1; }
+  function pGradoTxt(p) { return pEsCero(p) ? 'sin grado (polinomio nulo)' : String(pGrado(p)); }
+  function pLider(p) { p = pRecorta(p); return p[p.length - 1]; }
+  function pIndep(p) { return p[0]; }
+  function pCopia(p) { return p.map(function (c) { return new Frac(c.n, c.d); }); }
+
+  function pDe(lista) {                       /* de números o fracciones */
+    return pRecorta(lista.map(function (c) {
+      return (c instanceof Frac) ? c : new Frac(c);
+    }));
+  }
+  function pMono(coef, grado) {               /* coef · x^grado */
+    var a = [];
+    for (var i = 0; i < grado; i++) a.push(new Frac(0));
+    a.push(coef instanceof Frac ? coef : new Frac(coef));
+    return pRecorta(a);
+  }
+
+  function pSuma(a, b) {
+    var n = Math.max(a.length, b.length), r = [];
+    for (var i = 0; i < n; i++) {
+      var x = a[i] || new Frac(0), y = b[i] || new Frac(0);
+      r.push(x.mas(y));
     }
-    return p;
+    return pRecorta(r);
+  }
+  function pResta(a, b) { return pSuma(a, pOpuesto(b)); }
+  function pOpuesto(a) { return a.map(function (c) { return c.opuesto(); }); }
+  function pEscala(a, k) {
+    k = (k instanceof Frac) ? k : new Frac(k);
+    return pRecorta(a.map(function (c) { return c.por(k); }));
+  }
+  function pMult(a, b) {
+    if (pEsCero(a) || pEsCero(b)) return CERO();
+    var r = [];
+    for (var i = 0; i < a.length + b.length - 1; i++) r.push(new Frac(0));
+    for (var i2 = 0; i2 < a.length; i2++) {
+      for (var j = 0; j < b.length; j++) {
+        r[i2 + j] = r[i2 + j].mas(a[i2].por(b[j]));
+      }
+    }
+    return pRecorta(r);
+  }
+  function pPot(a, n) {
+    var r = UNO();
+    for (var i = 0; i < n; i++) r = pMult(r, a);
+    return r;
+  }
+  function pIgual(a, b) { return pEsCero(pResta(a, b)); }
+
+  /* División entera con resto, guardando cada paso para el applet.
+     Devuelve { q, r, pasos:[{mono, monoTex, producto, resto}] }        */
+  function pDiv(A, B) {
+    if (pEsCero(B)) throw Error('No se puede dividir entre el polinomio nulo.');
+    var q = CERO(), r = pRecorta(pCopia(A)), pasos = [];
+    var gB = pGrado(B), lB = pLider(B), guarda = 0;
+    while (!pEsCero(r) && pGrado(r) >= gB) {
+      if (++guarda > 60) throw Error('La división es demasiado larga para este applet.');
+      var g = pGrado(r) - gB;
+      var c = pLider(r).entre(lB);
+      var m = pMono(c, g);
+      var prod = pMult(m, B);
+      var nuevo = pResta(r, prod);
+      pasos.push({
+        mono: m, monoTex: pTex(m), coef: c, grado: g,
+        productoTex: pTex(prod), restoTex: pTex(nuevo),
+        producto: prod, resto: nuevo, dividendoTex: pTex(r)
+      });
+      q = pSuma(q, m);
+      r = nuevo;
+    }
+    return { q: q, r: r, pasos: pasos };
+  }
+
+  /* Valor numérico por Horner, con la lista de acumulados. */
+  function pEval(p, x) {
+    x = (x instanceof Frac) ? x : new Frac(x);
+    var acum = new Frac(0), lista = [];
+    for (var i = p.length - 1; i >= 0; i--) {
+      acum = acum.por(x).mas(p[i]);
+      lista.push(new Frac(acum.n, acum.d));
+    }
+    return { valor: acum, pasos: lista };
+  }
+  function pEvalNum(p, x) {                    /* evaluación en coma flotante */
+    var y = 0;
+    for (var i = p.length - 1; i >= 0; i--) y = y * x + p[i].val();
+    return y;
+  }
+  function pDeriva(p) {
+    if (pGrado(p) <= 0) return CERO();
+    var r = [];
+    for (var i = 1; i < p.length; i++) r.push(p[i].por(new Frac(i)));
+    return pRecorta(r);
+  }
+
+  /* ---------- escritura en LaTeX ---------- */
+  function coefTex(c, primero, grado) {
+    var neg = c.n < 0n;
+    var abs = new Frac(neg ? -c.n : c.n, c.d);
+    var signo = primero ? (neg ? '-' : '') : (neg ? ' - ' : ' + ');
+    var cuerpo;
+    if (grado > 0 && abs.n === 1n && abs.d === 1n) cuerpo = '';
+    else cuerpo = abs.tex(true);
+    return signo + cuerpo;
+  }
+  function pTex(p, v) {
+    v = v || 'x';
+    p = pRecorta(p);
+    if (pEsCero(p)) return '0';
+    var s = '', primero = true;
+    for (var i = p.length - 1; i >= 0; i--) {
+      var c = p[i];
+      if (c.n === 0n) continue;
+      s += coefTex(c, primero, i);
+      if (i === 1) s += v;
+      else if (i > 1) s += v + '^{' + i + '}';
+      primero = false;
+    }
+    return s;
+  }
+  function pTexPar(p, v) {                     /* entre paréntesis si hace falta */
+    var t = pTex(p, v);
+    return (pGrado(p) <= 0 && p[0].d === 1n && p[0].n >= 0n) ? t : '\\left(' + t + '\\right)';
+  }
+
+  /* ---------- lectura de una expresión escrita por el alumno ----------
+     Admite:  3x^2-5x+2 · x³ (con superíndices) · 2x(x-1)^2 · -x/2+3
+              7 · (x+1)(x-1) · 3/4x^2 · espacios libres · coma decimal
+     Solo se admite dividir entre un número (no entre otro polinomio).   */
+  function normalizaEntrada(s, v) {
+    v = v || 'x';
+    var t = String(s || '').trim().toLowerCase();
+    t = t.replace(/\s+/g, '');
+    t = t.replace(/[·×*]/g, '*');
+    t = t.replace(/[−–—]/g, '-');
+    t = t.replace(/[\[{]/g, '(').replace(/[\]}]/g, ')');
+    t = t.replace(/⁰/g, '^0').replace(/¹/g, '^1').replace(/²/g, '^2').replace(/³/g, '^3')
+      .replace(/⁴/g, '^4').replace(/⁵/g, '^5').replace(/⁶/g, '^6').replace(/⁷/g, '^7')
+      .replace(/⁸/g, '^8').replace(/⁹/g, '^9');
+    t = t.replace(/(\d),(\d)/g, '$1.$2');
+    return t;
+  }
+
+  function parsePol(str, v, nombre) {
+    v = (v || 'x').toLowerCase();
+    var s = normalizaEntrada(str, v);
+    var etiqueta = nombre || 'el polinomio';
+    if (s === '') throw Error('Escribe ' + etiqueta + '. Ejemplo: 3x^2-5x+2');
+    var permitido = new RegExp('^[0-9' + v + '\\+\\-\\*\\^\\(\\)\\./]*$');
+    if (!permitido.test(s)) {
+      var malo = s.split('').filter(function (c) { return !permitido.test(c); })[0];
+      throw Error('No entiendo el símbolo «' + malo + '». Usa solo números, la letra ' + v +
+        ', los signos + - * ^ ( ) y la barra / para dividir entre un número. Ejemplo: 2x^3-x/2+5');
+    }
+    var i = 0;
+    function fin() { return i >= s.length; }
+    function ver() { return s.charAt(i); }
+    function come(c) { if (ver() === c) { i++; return true; } return false; }
+
+    function numero() {
+      var j = i;
+      while (!fin() && /[0-9.]/.test(ver())) i++;
+      var txt = s.slice(j, i);
+      if (!/^\d+(\.\d+)?$/.test(txt)) throw Error('Número mal escrito cerca de «' + txt + '». Ejemplos válidos: 3, 2.5, 7/2');
+      if (txt.indexOf('.') >= 0) {                    /* decimal exacto -> fracción */
+        var pd = txt.split('.');
+        var den = Math.pow(10, pd[1].length);
+        return new Frac(Number(pd[0]) * den + Number(pd[1]), den);
+      }
+      return new Frac(Number(txt));
+    }
+    function entPos() {
+      var j = i;
+      while (!fin() && /[0-9]/.test(ver())) i++;
+      var t = s.slice(j, i);
+      if (!/^\d+$/.test(t)) throw Error('Después de ^ tiene que ir un exponente natural. Ejemplo: x^3');
+      var n = Number(t);
+      if (n > 12) throw Error('En este applet los exponentes llegan hasta 12.');
+      return n;
+    }
+
+    function expresion() {
+      var signo = 1;
+      if (come('+')) signo = 1; else if (come('-')) signo = -1;
+      var acc = pEscala(termino(), new Frac(signo));
+      while (!fin() && (ver() === '+' || ver() === '-')) {
+        var neg = come('-'); if (!neg) come('+');
+        var t = termino();
+        acc = neg ? pResta(acc, t) : pSuma(acc, t);
+      }
+      return acc;
+    }
+    function termino() {
+      var acc = factor();
+      for (;;) {
+        if (come('*')) { acc = pMult(acc, factor()); continue; }
+        if (come('/')) {
+          var d = factor();
+          if (pGrado(d) > 0) throw Error('En esta casilla solo se puede dividir entre un número. Para una fracción algebraica usa las dos casillas, numerador y denominador.');
+          if (pEsCero(d)) throw Error('No se puede dividir entre 0.');
+          acc = pEscala(acc, new Frac(d[0].d, d[0].n));
+          continue;
+        }
+        if (!fin() && (/[0-9(]/.test(ver()) || ver() === v)) { acc = pMult(acc, factor()); continue; }
+        break;
+      }
+      return acc;
+    }
+    function factor() {
+      var b = base();
+      if (come('^')) {
+        var e = entPos();
+        b = pPot(b, e);
+      }
+      return b;
+    }
+    function base() {
+      if (come('(')) {
+        var e = expresion();
+        if (!come(')')) throw Error('Falta cerrar un paréntesis. Revisa la expresión.');
+        return e;
+      }
+      if (ver() === v) { i++; return pMono(new Frac(1), 1); }
+      if (/[0-9.]/.test(ver())) return [numero()];
+      if (ver() === '-') { i++; return pEscala(base(), new Frac(-1)); }
+      throw Error('No entiendo la expresión a partir de «' + s.slice(i) + '». Ejemplo correcto: 2x^3-5x+1');
+    }
+
+    var res = expresion();
+    if (!fin()) throw Error('Sobra algo al final: «' + s.slice(i) + '». Ejemplo correcto: 2x^3-5x+1');
+    if (pGrado(res) > 12) throw Error('En este applet el grado máximo es 12.');
+    return pRecorta(res);
   }
 
   /* ==================================================================
-     PARTE 1 · DETERMINANTES
+     5 · Ruffini, teorema del resto y raíces
      ================================================================== */
+  function ruffini(p, r) {
+    p = pRecorta(p);
+    r = (r instanceof Frac) ? r : new Frac(r);
+    var arriba = [], baja = [], sube = [];
+    for (var i = p.length - 1; i >= 0; i--) arriba.push(p[i]);
+    var acc = arriba[0];
+    baja.push(acc); sube.push(null);
+    for (var j = 1; j < arriba.length; j++) {
+      var s = acc.por(r);
+      sube.push(s);
+      acc = arriba[j].mas(s);
+      baja.push(acc);
+    }
+    /* baja[] va de mayor a menor grado; el último valor es el resto y los
+       anteriores son los coeficientes del cociente, que hay que invertir. */
+    return {
+      arriba: arriba, sube: sube, baja: baja,
+      cociente: pRecorta(baja.slice(0, baja.length - 1).reverse()),
+      resto: baja[baja.length - 1], r: r
+    };
+  }
 
-  reg('orden23', function (node) {
-    build(node, 'Applet \u00b7 Determinante de orden 1, 2 y 3',
-      'Escribe una matriz <b>cuadrada</b> de orden 1, 2 o 3, con una fila por l\u00ednea. ' +
-      'El applet marca los elementos que intervienen en cada producto y descompone el c\u00e1lculo. ' +
-      'Ejemplos del libro: <code>-1 4<br>5 -6</code> (vale \u221214) \u00b7 ' +
-      '<code>1 2 0<br>-1 3 -3<br>4 1 -2</code> \u00b7 <code>3 -2<br>7 12</code>. ' +
-      'Prueba tambi\u00e9n una matriz que no sea cuadrada para ver el aviso.',
-      [{ id: 'A', label: 'Matriz A (cuadrada)', rows: 4, value: '-1 4\n5 -6' }],
-      function (v) {
-        var p = needSquare(v.A, 'A');
-        if (p.err) return err(p.err);
-        var A = p.M, n = p.r;
-        if (n > 3) return warn('Este applet llega hasta el orden 3. Para \u00f3rdenes mayores usa el applet ' +
-          'de desarrollo por adjuntos o el de c\u00e1lculo formando ceros, en las partes 4 y siguientes. ' +
-          'De todos modos, el valor es ' + k('|A| = ' + F.tex(det(A))) + '.');
-        var h = '<div class="mx-flex">' + viewDet(A, { name: '|A|' }) + '</div>';
-        if (n === 1) {
-          h += '<p>El determinante de orden 1 es el propio n\u00famero: ' + k('|A| = ' + F.tex(A[0][0])) + '.</p>';
-          h += info('Cuidado con no confundirlo con el valor absoluto. Aqu\u00ed las barras significan determinante, ' +
-            'as\u00ed que ' + k('|(-5)| = -5') + ' y no 5.');
-          return h;
-        }
-        if (n === 2) {
-          var pos = F.mul(A[0][0], A[1][1]), neg = F.mul(A[0][1], A[1][0]);
-          h += kd('|A| = a_{11}a_{22} - a_{12}a_{21} = ' +
-            F.tex(A[0][0]) + '\\cdot' + F.tex(A[1][1]) + ' - ' +
-            F.tex(A[0][1]) + '\\cdot' + F.tex(A[1][0]) + ' = ' +
-            F.tex(pos) + ' - (' + F.tex(neg) + ') = ' + F.tex(F.sub(pos, neg)));
-          h += '<div class="mx-grid">' + viewDet(A, { hiSet: [[0, 0], [1, 1]] }) +
-            '<span>diagonal principal, con signo +</span></div>';
-          h += '<div class="mx-grid">' + viewDet(A, { hiSet: [[0, 1], [1, 0]] }) +
-            '<span>diagonal secundaria, con signo \u2212</span></div>';
-          h += ok('Regla para orden 2: <b>producto de la diagonal principal menos producto de la secundaria</b>. ' +
-            'Es la \u00fanica f\u00f3rmula del tema que hay que saberse de memoria sin excusa.');
-          return h;
-        }
-        var posT = [[[0, 0], [1, 1], [2, 2]], [[0, 1], [1, 2], [2, 0]], [[0, 2], [1, 0], [2, 1]]];
-        var negT = [[[0, 2], [1, 1], [2, 0]], [[0, 0], [1, 2], [2, 1]], [[0, 1], [1, 0], [2, 2]]];
-        function bloque(lista, signo) {
-          var suma = R(0), lineas = '';
-          lista.forEach(function (tri) {
-            var prod = R(1);
-            tri.forEach(function (q) { prod = F.mul(prod, A[q[0]][q[1]]); });
-            suma = F.add(suma, prod);
-            lineas += '<div class="mx-step"><span class="mx-step-lab">' +
-              k(tri.map(function (q) { return F.tex(A[q[0]][q[1]]); }).join('\\cdot') + ' = ' + F.tex(prod)) +
-              '</span>' + viewDet(A, { hiSet: tri }) + '</div>';
-          });
-          return { suma: suma, html: '<div class="mx-steps">' + lineas + '</div>' };
-        }
-        var P = bloque(posT), N = bloque(negT);
-        h += '<p><b>Los tres productos con signo +</b> (sentido de la diagonal principal):</p>' + P.html;
-        h += '<p>Suman ' + k(F.tex(P.suma)) + '.</p>';
-        h += '<p><b>Los tres productos con signo \u2212</b> (sentido de la diagonal secundaria):</p>' + N.html;
-        h += '<p>Suman ' + k(F.tex(N.suma)) + '.</p>';
-        h += kd('|A| = ' + F.tex(P.suma) + ' - (' + F.tex(N.suma) + ') = ' + F.tex(F.sub(P.suma, N.suma)));
-        h += info('Seis productos de tres factores cada uno: en total ' + k('3! = 6') + ' sumandos, ' +
-          'tres con signo m\u00e1s y tres con signo menos. Esa estructura es la <b>definici\u00f3n general</b> ' +
-          'de determinante: ' + k('n!') + ' productos, la mitad con cada signo.');
-        h += warn('Y ahora el aviso que ahorra disgustos: esta regla vale <b>solo</b> para orden 3. ' +
-          'Para orden 4 hay 24 sumandos y la regla de Sarrus no sirve; hay que usar adjuntos o hacer ceros.');
-        return h;
+  /* Divisores enteros de un entero (positivos y negativos) */
+  function divisores(n) {
+    n = Math.abs(Math.trunc(n));
+    var d = [];
+    if (n === 0) return [1];
+    for (var i = 1; i * i <= n; i++) {
+      if (n % i === 0) { d.push(i); if (i !== n / i) d.push(n / i); }
+    }
+    d.sort(function (a, b) { return a - b; });
+    return d;
+  }
+
+  /* Multiplica por el mcm de los denominadores: P = (1/k)·Pent, Pent entero */
+  function pEntero(p) {
+    var den = 1;
+    p.forEach(function (c) { den = mcm(den, Number(c.d)); });
+    var ent = p.map(function (c) { return new Frac(c.n * BigInt(den) / c.d, 1); });
+    var g = 0;
+    ent.forEach(function (c) { g = mcd(g, Number(c.n)); });
+    if (!g) g = 1;
+    return { p: pRecorta(ent), factor: new Frac(den, 1), contenido: g };
+  }
+
+  /* Candidatos a raíz racional: ±divisor(a0)/divisor(an) */
+  function candidatosRaiz(p) {
+    var E = pEntero(p).p;
+    if (pEsCero(E)) return [];
+    var k = 0;
+    while (k < E.length && E[k].n === 0n) k++;         /* x^k factor común */
+    var a0 = Number(E[k].n), an = Number(pLider(E).n);
+    var D0 = divisores(a0), Dn = divisores(an);
+    var vistos = {}, out = [];
+    if (k > 0) { vistos['0/1'] = 1; out.push(new Frac(0)); }
+    D0.forEach(function (a) {
+      Dn.forEach(function (b) {
+        [1, -1].forEach(function (s) {
+          var f = new Frac(s * a, b);
+          var key = f.txt();
+          if (!vistos[key]) { vistos[key] = 1; out.push(f); }
+        });
       });
-  });
+    });
+    out.sort(function (a, b) { return a.val() - b.val(); });
+    return out;
+  }
 
-  reg('sarrus', function (node) {
-    build(node, 'Applet \u00b7 Regla de Sarrus',
-      'La regla de Sarrus es una forma visual de recordar los seis productos del orden 3: se repiten las ' +
-      'dos primeras filas debajo y se leen las diagonales. Escribe una matriz de orden 3 y observa el esquema. ' +
-      'Ejemplos: <code>1 2 3<br>4 5 6<br>7 8 9</code> (vale 0, \u00bfpor qu\u00e9?) \u00b7 ' +
-      '<code>2 0 1<br>3 -1 2<br>1 4 0</code> \u00b7 <code>1 2 0<br>-1 3 -3<br>4 1 -2</code>.',
-      [{ id: 'A', label: 'Matriz de orden 3', rows: 4, value: '2 0 1\n3 -1 2\n1 4 0' }],
-      function (v) {
-        var p = needSquare(v.A, 'A');
-        if (p.err) return err(p.err);
-        if (p.r !== 3) return err('La regla de Sarrus es exclusiva del <b>orden 3</b>, y tu matriz es de orden ' +
-          p.r + '. Para orden 2 usa la diferencia de diagonales; para orden 4 o m\u00e1s, adjuntos.');
-        var A = p.M;
-        var amp = [A[0], A[1], A[2], A[0], A[1]];
-        var h = '<p><b>Esquema de Sarrus:</b> se copian debajo las dos primeras filas.</p>';
-        h += '<div class="mx-flex">' + view(amp) + '</div>';
-        var pos = [[[0, 0], [1, 1], [2, 2]], [[1, 0], [2, 1], [3, 2]], [[2, 0], [3, 1], [4, 2]]];
-        var neg = [[[2, 0], [1, 1], [0, 2]], [[3, 0], [2, 1], [1, 2]], [[4, 0], [3, 1], [2, 2]]];
-        function suma(lista) {
-          var s = R(0), txt = [];
-          lista.forEach(function (tri) {
-            var pr = R(1);
-            tri.forEach(function (q) { pr = F.mul(pr, amp[q[0]][q[1]]); });
-            s = F.add(s, pr);
-            txt.push(tri.map(function (q) { return F.tex(amp[q[0]][q[1]]); }).join('\\cdot'));
-          });
-          return { s: s, txt: txt };
-        }
-        var P = suma(pos), N = suma(neg);
-        h += '<p>Diagonales que <b>bajan</b> hacia la derecha, con signo +:</p>';
-        h += kd(P.txt.join(' \\;+\\; ') + ' = ' + F.tex(P.s));
-        h += '<p>Diagonales que <b>suben</b> hacia la derecha, con signo \u2212:</p>';
-        h += kd(N.txt.join(' \\;+\\; ') + ' = ' + F.tex(N.s));
-        h += kd('|A| = ' + F.tex(P.s) + ' - (' + F.tex(N.s) + ') = ' + F.tex(F.sub(P.s, N.s)));
-        var d = det(A);
-        h += F.eq(F.sub(P.s, N.s), d)
-          ? ok('Coincide con el c\u00e1lculo directo: ' + k('|A| = ' + F.tex(d)) + '.')
-          : err('Discrepancia interna, avisa al profesor.');
-        if (F.isZero(d)) {
-          h += warn('El determinante vale <b>cero</b>. Antes de dar por bueno el c\u00e1lculo, busca la causa: ' +
-            '\u00bfhay una fila de ceros? \u00bfDos filas iguales o proporcionales? \u00bfUna fila que es suma de las otras? ' +
-            'Con la matriz 1 2 3 / 4 5 6 / 7 8 9, la tercera fila es el doble de la segunda menos la primera.');
-        }
-        return h;
-      });
-  });
-
-  reg('ecuacion', function (node) {
-    build(node, 'Applet \u00b7 Ecuaciones con determinantes',
-      'Un objetivo del tema: <b>resolver ecuaciones con determinantes</b>. Escribe una matriz usando la letra ' +
-      '<code>x</code> en las posiciones que quieras, y el applet desarrolla el determinante, plantea la ecuaci\u00f3n ' +
-      'y la resuelve. Formas admitidas en cada casilla: <code>x</code>, <code>-x</code>, <code>2x</code>, ' +
-      '<code>x+1</code>, <code>x-3</code>, <code>3x-2</code> y n\u00fameros. ' +
-      'Ejemplos del libro: <code>1 x<br>x 1</code> igual a 0 \u00b7 <code>3x -1<br>2 1</code> igual a 0 \u00b7 ' +
-      '<code>x 1<br>1 x</code> igual a 3.',
-      [
-        { id: 'A', label: 'Matriz con la inc\u00f3gnita x', rows: 4, value: '1 x\nx 1' },
-        { id: 'b', label: 'El determinante debe valer', type: 'text', value: '0' }
-      ],
-      function (v) {
-        /* Evalúa el determinante en varios valores de x y ajusta un polinomio */
-        function lin(s, xv) {
-          s = String(s).trim().replace(/\s+/g, '');
-          if (!/^[-+0-9x.\/]+$/.test(s)) return null;
-          var m2 = s.match(/^([+-]?)(\d*(?:\.\d+)?)x([+-]\d+(?:\.\d+)?)?$/);
-          if (m2) {
-            var co = m2[2] === '' ? 1 : parseFloat(m2[2]);
-            if (m2[1] === '-') co = -co;
-            return co * xv + (m2[3] ? parseFloat(m2[3]) : 0);
-          }
-          var m3 = s.match(/^([+-]?\d+(?:\.\d+)?)([+-])x$/);
-          if (m3) return parseFloat(m3[1]) + (m3[2] === '-' ? -xv : xv);
-          var num = parseFloat(s);
-          return isNaN(num) ? null : num;
-        }
-        function grid(txt, xv) {
-          var rows = String(txt).trim().split(/[\n;]+/).map(function (r) { return r.trim(); }).filter(function (r) { return r.length; });
-          var G = [], c = null;
-          for (var i = 0; i < rows.length; i++) {
-            var cells = rows[i].split(/[\s,]+/).filter(function (s) { return s.length; });
-            var row = [];
-            for (var j = 0; j < cells.length; j++) {
-              var x = lin(cells[j], xv);
-              if (x === null) return { err: 'No entiendo \u00ab' + cells[j] + '\u00bb. Usa n\u00fameros o expresiones lineales en x: x, 2x, x-3, 3x+1.' };
-              row.push(x);
-            }
-            if (c === null) c = row.length; else if (row.length !== c) return { err: 'Las filas no tienen el mismo n\u00famero de elementos.' };
-            G.push(row);
-          }
-          if (!G.length) return { err: 'Escribe una matriz.' };
-          if (G.length !== c) return { err: 'La matriz debe ser cuadrada: la tuya es ' + G.length + '\u00d7' + c + '.' };
-          return { M: G, n: G.length };
-        }
-        function detN(A) {
-          var n = A.length;
-          if (n === 1) return A[0][0];
-          if (n === 2) return A[0][0] * A[1][1] - A[0][1] * A[1][0];
-          var s = 0;
-          for (var j = 0; j < n; j++) {
-            if (Math.abs(A[0][j]) < 1e-14) continue;
-            var sub = A.slice(1).map(function (r) { return r.filter(function (_, c) { return c !== j; }); });
-            s += (j % 2 === 0 ? 1 : -1) * A[0][j] * detN(sub);
-          }
-          return s;
-        }
-        var g0 = grid(v.A, 0);
-        if (g0.err) return err(g0.err);
-        var n = g0.n;
-        var bb = parseEntry(v.b);
-        if (!bb) return err('El valor del segundo miembro no vale. Escribe un entero, un decimal con punto o una fracci\u00f3n.');
-        var bnum = F.num(bb);
-
-        /* Muestra simbólica de la matriz */
-        var rowsTxt = String(v.A).trim().split(/[\n;]+/).map(function (r) { return r.trim(); }).filter(function (r) { return r.length; });
-        var simb = rowsTxt.map(function (r) { return r.split(/[\s,]+/).filter(function (s) { return s.length; }).join(' & '); }).join(' \\\\ ');
-        var h = '<div class="mx-flex">' + k('\\begin{vmatrix}' + simb + '\\end{vmatrix} = ' + F.tex(bb)) + '</div>';
-
-        /* Coeficientes del polinomio por interpolación en 0,1,...,n */
-        var vals = [];
-        for (var t = 0; t <= n; t++) {
-          var gt = grid(v.A, t);
-          if (gt.err) return err(gt.err);
-          vals.push(detN(gt.M));
-        }
-        /* Diferencias finitas para obtener el grado real */
-        var grado = 0;
-        var dif = vals.slice();
-        for (var q = 1; q <= n; q++) {
-          var nd = [];
-          for (var i2 = 0; i2 + 1 < dif.length; i2++) nd.push(dif[i2 + 1] - dif[i2]);
-          if (nd.every(function (z) { return Math.abs(z) < 1e-9; })) { grado = q - 1; break; }
-          dif = nd; grado = q;
-        }
-        h += '<p>Desarrollando el determinante queda un polinomio de grado <b>' + grado + '</b> en ' + k('x') + '.</p>';
-
-        /* Resolución numérica: grado 1 y 2 exactos, grado ≥3 por barrido */
-        var sols = [];
-        if (grado === 0) {
-          h += (Math.abs(vals[0] - bnum) < 1e-9)
-            ? ok('El determinante no depende de ' + k('x') + ' y vale exactamente ' + k(String(vals[0])) +
-              ', igual que el segundo miembro. La igualdad se cumple para <b>cualquier</b> valor de ' + k('x') + '.')
-            : err('El determinante no depende de ' + k('x') + ': vale siempre ' + String(vals[0]) +
-              ', que es distinto de ' + F.tex(bb) + '. La ecuaci\u00f3n <b>no tiene soluci\u00f3n</b>.');
-          return h;
-        }
-        if (grado === 1) {
-          var a1 = vals[1] - vals[0], a0 = vals[0] - bnum;
-          var s1 = -a0 / a1;
-          sols.push(s1);
-          h += kd((a1 === 1 ? '' : String(a1)) + 'x ' + (a0 >= 0 ? '+ ' + a0 : '- ' + (-a0)) + ' = 0 \\;\\Rightarrow\\; x = ' + String(Math.round(s1 * 1e6) / 1e6));
-        } else if (grado === 2) {
-          var c0 = vals[0] - bnum;
-          var c1 = (-3 * vals[0] + 4 * vals[1] - vals[2]) / 2;
-          var c2 = (vals[0] - 2 * vals[1] + vals[2]) / 2;
-          var disc = c1 * c1 - 4 * c2 * c0;
-          h += kd(String(c2) + 'x^2 ' + (c1 >= 0 ? '+' : '-') + String(Math.abs(c1)) + 'x ' +
-            (c0 >= 0 ? '+' : '-') + String(Math.abs(c0)) + ' = 0');
-          if (disc < -1e-9) {
-            h += warn('El discriminante es negativo: la ecuaci\u00f3n <b>no tiene soluciones reales</b>.');
-            return h;
-          }
-          var raiz = Math.sqrt(Math.max(disc, 0));
-          sols.push((-c1 + raiz) / (2 * c2));
-          if (raiz > 1e-9) sols.push((-c1 - raiz) / (2 * c2));
-        } else {
-          for (var x = -20; x <= 20; x += 0.5) {
-            var gx = grid(v.A, x);
-            if (gx.err) break;
-            if (Math.abs(detN(gx.M) - bnum) < 1e-9) sols.push(x);
-          }
-          h += info('Para grado 3 o superior el applet <b>busca</b> soluciones entre \u221220 y 20, de media en media. ' +
-            'Puede haber ra\u00edces que no encuentre. Desarrolla el determinante a mano, saca factor com\u00fan ' +
-            'y resuelve la ecuaci\u00f3n polin\u00f3mica: es lo que se pide en el examen.');
-        }
-        if (!sols.length) return h + warn('No se han encontrado soluciones en el intervalo explorado.');
-        var fmt = function (z) { return String(Math.round(z * 1e6) / 1e6); };
-        h += ok('Soluciones: ' + sols.map(function (z) { return k('x = ' + fmt(z)); }).join(' \u00b7 '));
-        /* Comprobación */
-        var comp = sols.map(function (z) {
-          var gz = grid(v.A, z);
-          return '<div class="mx-flex"><span>Para ' + k('x = ' + fmt(z)) + '</span>' +
-            viewDet(gz.M.map(function (r) { return r.map(function (u) { return parseEntry(String(Math.round(u * 1e4) / 1e4)) || R(0); }); })) +
-            k('= ' + fmt(detN(gz.M))) + '</div>';
-        }).join('');
-        h += '<p><b>Comprobaci\u00f3n:</b></p>' + comp;
-        return h;
-      });
-  });
+  function raicesRacionales(p) {
+    var res = [], q = pRecorta(pCopia(p));
+    var cand = candidatosRaiz(p);
+    cand.forEach(function (c) {
+      var m = 0;
+      for (;;) {
+        var rf = ruffini(q, c);
+        if (rf.resto.n !== 0n) break;
+        q = rf.cociente;
+        m++;
+        if (pGrado(q) <= 0) break;
+      }
+      if (m) res.push({ raiz: c, mult: m });
+    });
+    return { raices: res, resto: q };
+  }
 
   /* ==================================================================
-     PARTE 2 · PROPIEDADES
+     6 · factorización completa sobre los racionales
+     Devuelve { k, lineales:[{raiz,mult}], cuads:[{poly,mult}], xk, tex }
      ================================================================== */
+  function factorizaPol(P) {
+    P = pRecorta(P);
+    if (pEsCero(P)) return { nulo: true, lineales: [], cuads: [], k: new Frac(0), tex: '0' };
+    if (pGrado(P) === 0) return { lineales: [], cuads: [], k: P[0], tex: P[0].tex(true), constante: true };
 
-  reg('props', function (node) {
-    build(node, 'Applet \u00b7 Comprobador de propiedades',
-      'Escribe dos matrices cuadradas del <b>mismo orden</b> y el applet verifica una por una las propiedades ' +
-      'del tema, diciendo si se cumplen y si son o no propiedades generales. ' +
-      'Ejemplos: A = <code>2 1<br>3 4</code> y B = <code>1 0<br>2 5</code> \u00b7 ' +
-      'A = <code>1 -1 2<br>-2 4 0<br>3 5 -1</code> con B = <code>1 0 0<br>0 2 0<br>0 0 3</code>.',
-      [
-        { id: 'A', label: 'Matriz A (cuadrada)', rows: 4, value: '2 1\n3 4' },
-        { id: 'B', label: 'Matriz B (mismo orden)', rows: 4, value: '1 0\n2 5' }
-      ],
-      function (v) {
-        var pa = needSquare(v.A, 'A'), pb = needSquare(v.B, 'B');
-        if (pa.err) return err(pa.err);
-        if (pb.err) return err(pb.err);
-        if (pa.r !== pb.r) return err('A es de orden ' + pa.r + ' y B de orden ' + pb.r + '. Deben coincidir.');
-        var A = pa.M, B = pb.M, n = pa.r;
-        var dA = det(A), dB = det(B);
-        var h = '<div class="mx-grid">' + viewDet(A, { name: '|A|' }) + k('= ' + F.tex(dA)) +
-          viewDet(B, { name: '|B|' }) + k('= ' + F.tex(dB)) + '</div>';
+    var k = new Frac(1), q = pCopia(P);
 
-        var filas = [];
-        filas.push(['1. ' + k('|A| = |A^t|'), F.tex(det(transM(A))), F.eq(det(transM(A)), dA),
-          'Siempre cierta. Por eso toda propiedad sobre filas vale igual para columnas.']);
-        var AB = mulM(A, B);
-        filas.push(['9. ' + k('|A\\cdot B| = |A|\\cdot|B|'), F.tex(det(AB)) + ' y ' + F.tex(F.mul(dA, dB)),
-          F.eq(det(AB), F.mul(dA, dB)), 'Siempre cierta. El determinante s\u00ed respeta el producto.']);
-        var S = addM(A, B);
-        filas.push(['\u00bf' + k('|A+B| = |A|+|B|') + '?', F.tex(det(S)) + ' frente a ' + F.tex(F.add(dA, dB)),
-          F.eq(det(S), F.add(dA, dB)), '<b>FALSA en general.</b> Si aqu\u00ed coinciden es casualidad de estos datos.']);
-        var BA = mulM(B, A);
-        filas.push([k('|AB| = |BA|'), F.tex(det(AB)) + ' y ' + F.tex(det(BA)), F.eq(det(AB), det(BA)),
-          'Siempre cierta, aunque ' + k('AB \\neq BA') + '. Los determinantes son n\u00fameros y s\u00ed conmutan.']);
-        var kk = R(2);
-        filas.push(['8. ' + k('|kA| = k^n|A|') + ' con ' + k('k=2'), F.tex(det(scaleM(kk, A))) +
-          ' y ' + k('2^{' + n + '}\\cdot' + F.tex(dA) + ' = ' + F.tex(F.mul(R(Math.pow(2, n)), dA))),
-          F.eq(det(scaleM(kk, A)), F.mul(R(Math.pow(2, n)), dA)),
-          'Siempre cierta. El factor sale de <b>cada</b> una de las ' + n + ' filas, no una sola vez.']);
-        if (!F.isZero(dA)) {
-          filas.push(['10. ' + k('|A^{-1}| = 1/|A|'), F.tex(det(invAdj(A))) + ' y ' + F.tex(F.div(R(1), dA)),
-            F.eq(det(invAdj(A)), F.div(R(1), dA)), 'Siempre cierta cuando la inversa existe.']);
+    /* 1 · sacar denominadores y contenido: P = k · Q, con Q entero primitivo */
+    var e = pEntero(q);
+    k = new Frac(e.contenido, 1).entre(e.factor);
+    q = pEscala(e.p, new Frac(1, e.contenido));
+    if (pLider(q).n < 0n) { q = pOpuesto(q); k = k.opuesto(); }
+
+    /* 2 · factor x^m */
+    var m = 0;
+    while (q.length > 1 && q[0].n === 0n) { q = q.slice(1); m++; }
+
+    /* 3 · raíces racionales por Ruffini repetido */
+    var lin = [];
+    var seguir = true;
+    while (seguir && pGrado(q) > 0) {
+      seguir = false;
+      var cand = candidatosRaiz(q);
+      for (var i = 0; i < cand.length; i++) {
+        var rf = ruffini(q, cand[i]);
+        if (rf.resto.n === 0n) {
+          var yaEsta = null;
+          lin.forEach(function (L) { if (L.raiz.cmp(cand[i]) === 0) yaEsta = L; });
+          if (yaEsta) yaEsta.mult++;
+          else lin.push({ raiz: cand[i], mult: 1 });
+          q = rf.cociente;
+          seguir = true;
+          break;
         }
+      }
+    }
 
-        h += '<table class="ap-tbl"><thead><tr><th>Propiedad</th><th>Valores</th><th>\u00bfSe cumple?</th><th>Comentario</th></tr></thead><tbody>';
-        filas.forEach(function (f) {
-          h += '<tr><td>' + f[0] + '</td><td>' + f[1] + '</td><td>' + (f[2] ? '\u2714 s\u00ed' : '\u2717 no') +
-            '</td><td>' + f[3] + '</td></tr>';
-        });
-        h += '</tbody></table>';
-        h += warn('El error cl\u00e1sico n.\u00ba 1 del tema: <b>el determinante no es lineal respecto de la suma</b>. ' +
-          k('|A+B| \\neq |A|+|B|') + ' en general, mientras que ' + k('|AB| = |A||B|') + ' s\u00ed se cumple siempre.');
-        h += info('Y un dato con truco para examen: si ' + k('|A| = 3') + ' y ' + k('|2A| = 48') +
-          ', entonces ' + k('2^n\\cdot 3 = 48') + ', luego ' + k('2^n = 16') + ' y el orden de A es 4.');
-        return h;
-      });
-  });
+    /* 4 · lo que queda: grado 2 irreducible, o grado >= 3 sin raíces racionales */
+    var cuads = [];
+    if (pGrado(q) >= 2) {
+      var l = pLider(q);
+      if (!(l.n === 1n && l.d === 1n)) { k = k.por(l); q = pEscala(q, new Frac(l.d, l.n)); }
+      cuads.push({ poly: q, mult: 1 });
+      q = UNO();
+    } else if (pGrado(q) === 0) {
+      k = k.por(q[0]);
+    }
 
-  reg('transforma', function (node) {
-    build(node, 'Applet \u00b7 Efecto de las transformaciones',
-      'Aqu\u00ed se ve <b>qu\u00e9 le hace al determinante</b> cada transformaci\u00f3n elemental. Escribe una matriz cuadrada, ' +
-      'elige la operaci\u00f3n y observa c\u00f3mo cambia, o no cambia, el valor. ' +
-      'Es la base de todo el m\u00e9todo de hacer ceros. Ejemplo: <code>1 2 3<br>0 -1 4<br>5 2 0</code>.',
-      [
-        { id: 'A', label: 'Matriz A (cuadrada)', rows: 4, value: '1 2 3\n0 -1 4\n5 2 0' },
-        { id: 'op', label: 'Transformaci\u00f3n', type: 'select', value: 'Intercambiar F1 y F2',
-          options: ['Intercambiar F1 y F2', 'Multiplicar F1 por 3', 'F2 \u2192 F2 + 4\u00b7F1', 'Trasponer', 'Poner F2 igual a F1'] }
-      ],
-      function (v) {
-        var p = needSquare(v.A, 'A');
-        if (p.err) return err(p.err);
-        var A = p.M, n = p.r, d = det(A), B, expl, esperado;
-        if (v.op === 'Intercambiar F1 y F2') {
-          if (n < 2) return err('Necesitas al menos orden 2.');
-          B = clone(A); var t = B[0]; B[0] = B[1]; B[1] = t;
-          esperado = F.neg(d);
-          expl = 'Propiedad 4: al intercambiar dos filas el determinante <b>cambia de signo</b>. ' +
-            'Y ojo, si intercambias tres filas de forma c\u00edclica, el determinante <b>no</b> var\u00eda, porque son dos intercambios.';
-        } else if (v.op === 'Multiplicar F1 por 3') {
-          B = clone(A); B[0] = B[0].map(function (x) { return F.mul(R(3), x); });
-          esperado = F.mul(R(3), d);
-          expl = 'Propiedad 3: al multiplicar <b>una sola fila</b> por 3, el determinante queda multiplicado por 3. ' +
-            'No confundir con multiplicar toda la matriz, que lo multiplicar\u00eda por ' + k('3^{' + n + '}') + '.';
-        } else if (v.op === 'F2 \u2192 F2 + 4\u00b7F1') {
-          if (n < 2) return err('Necesitas al menos orden 2.');
-          B = clone(A);
-          B[1] = B[1].map(function (x, j) { return F.add(x, F.mul(R(4), A[0][j])); });
-          esperado = d;
-          expl = 'Propiedad 5: sumar a una fila un m\u00faltiplo de otra <b>no cambia</b> el determinante. ' +
-            'Esta es la propiedad estrella: es la que permite hacer ceros con total tranquilidad.';
-        } else if (v.op === 'Trasponer') {
-          B = transM(A);
-          esperado = d;
-          expl = 'Propiedad 1: ' + k('|A| = |A^t|') + '. Filas y columnas juegan el mismo papel.';
+    lin.sort(function (a, b) { return a.raiz.val() - b.raiz.val(); });
+    return { k: k, xk: m, lineales: lin, cuads: cuads };
+  }
+
+  function factorLinTex(raiz, v) {
+    v = v || 'x';
+    if (raiz.n === 0n) return v;
+    if (raiz.d === 1n) {
+      return raiz.n > 0n ? '(' + v + ' - ' + raiz.n + ')' : '(' + v + ' + ' + (-raiz.n) + ')';
+    }
+    var s = raiz.n > 0n ? '-' : '+';
+    var abs = raiz.n < 0n ? -raiz.n : raiz.n;
+    return '\\left(' + v + ' ' + s + ' \\frac{' + abs + '}{' + raiz.d + '}\\right)';
+  }
+  function potTex(base, m) { return m === 1 ? base : base + '^{' + m + '}'; }
+
+  function factorizaTexPol(F, v, modo) {
+    v = v || 'x';
+    if (F.nulo) return '0';
+    if (F.constante) return F.k.tex(true);
+    var partes = [];
+    var k = F.k;
+    if (modo === 'entera') {
+      /* factores enteros: (qx - p) en vez de q(x - p/q) */
+      var kk = k;
+      if (F.xk) partes.push(potTex(v, F.xk));
+      F.lineales.forEach(function (L) {
+        if (L.raiz.d === 1n) {
+          partes.push(potTex(factorLinTex(L.raiz, v), L.mult));
         } else {
-          if (n < 2) return err('Necesitas al menos orden 2.');
-          B = clone(A); B[1] = A[0].slice();
-          esperado = R(0);
-          expl = 'Propiedad 6: con dos filas <b>iguales</b> el determinante es cero. Lo mismo si son proporcionales, ' +
-            'o si una es combinaci\u00f3n lineal de las dem\u00e1s.';
+          var num = L.raiz.n, den = L.raiz.d;
+          var t = '(' + den + v + (num > 0n ? ' - ' + num : ' + ' + (-num)) + ')';
+          partes.push(potTex(t, L.mult));
+          kk = kk.entre(new Frac(den, 1));
         }
-        var dB = det(B);
-        var h = '<div class="mx-grid">' + viewDet(A, { name: '|A|' }) + k('= ' + F.tex(d)) + '</div>';
-        h += '<div class="mx-grid">' + viewDet(B, { name: '|B|' }) + k('= ' + F.tex(dB)) + '</div>';
-        h += F.eq(dB, esperado)
-          ? ok(expl + '<br>Comprobado: el valor esperado era ' + k(F.tex(esperado)) + ' y sale ' + k(F.tex(dB)) + '.')
-          : err('Discrepancia inesperada, avisa al profesor.');
-        h += info('Consecuencia pr\u00e1ctica: las transformaciones que <b>no</b> alteran el determinante son las de la ' +
-          'propiedad 5. Las otras s\u00ed lo alteran, y si las usas debes <b>compensar</b> el cambio al final. ' +
-          'Es el descuido que m\u00e1s ejercicios estropea al hacer ceros.');
-        return h;
       });
-  });
+      F.cuads.forEach(function (C) { partes.push(potTex('(' + pTex(C.poly, v) + ')', C.mult)); });
+      var pre = (kk.n === 1n && kk.d === 1n) ? '' : (kk.n === -1n && kk.d === 1n ? '-' : kk.tex(true) + '\\,');
+      return pre + (partes.join('') || '1');
+    }
+    if (F.xk) partes.push(potTex(v, F.xk));
+    F.lineales.forEach(function (L) { partes.push(potTex(factorLinTex(L.raiz, v), L.mult)); });
+    F.cuads.forEach(function (C) { partes.push(potTex('(' + pTex(C.poly, v) + ')', C.mult)); });
+    var pref = (k.n === 1n && k.d === 1n) ? '' : (k.n === -1n && k.d === 1n ? '-' : k.tex(true) + '\\,');
+    return pref + (partes.join('') || '1');
+  }
 
-  reg('escalar', function (node) {
-    build(node, 'Applet \u00b7 Determinante de kA',
-      'Explora la propiedad ' + k('|kA| = k^n|A|') + ', que es la que m\u00e1s se falla del tema. ' +
-      'Escribe una matriz cuadrada y mueve el deslizador del escalar; fíjate en c\u00f3mo influye el <b>orden</b>. ' +
-      'Prueba la misma ' + k('k') + ' con una matriz de orden 2 y otra de orden 3 y compara.',
-      [
-        { id: 'A', label: 'Matriz A (cuadrada)', rows: 4, value: '2 1\n3 4' },
-        { id: 'k', label: 'Escalar k', type: 'range', min: -4, max: 5, value: 2 }
-      ],
-      function (v) {
-        var p = needSquare(v.A, 'A');
-        if (p.err) return err(p.err);
-        var A = p.M, n = p.r, kk = R(parseInt(v.k, 10));
-        var d = det(A), kA = scaleM(kk, A), dk = det(kA);
-        var pot = R(Math.pow(F.num(kk), n));
-        var h = '<div class="mx-grid">' + viewDet(A, { name: '|A|' }) + k('= ' + F.tex(d)) + '</div>';
-        h += '<div class="mx-grid">' + k(F.tex(kk) + 'A') + view(kA) + '</div>';
-        h += '<div class="mx-grid">' + viewDet(kA, { name: '|' + F.tex(kk) + 'A|' }) + k('= ' + F.tex(dk)) + '</div>';
-        h += kd('|kA| = k^{n}|A| = ' + F.tex(kk) + '^{' + n + '}\\cdot' + F.tex(d) + ' = ' +
-          F.tex(pot) + '\\cdot' + F.tex(d) + ' = ' + F.tex(F.mul(pot, d)));
-        h += F.eq(dk, F.mul(pot, d))
-          ? ok('Coincide. El exponente es el <b>orden</b> de la matriz, ' + n + ', porque el factor ' +
-            k('k') + ' se extrae de cada una de las ' + n + ' filas.')
-          : err('Discrepancia inesperada.');
-        h += warn('Con ' + k('|A| = 5') + ' y orden 3, ' + k('|2A| = 2^3\\cdot 5 = 40') + ', no 10. ' +
-          'Mucha gente responde 10 en el examen, y es el error m\u00e1s frecuente de todo el apartado de propiedades.');
-        return h;
+  /* Reconstruye el producto para comprobar la identidad */
+  function factorRehacer(F) {
+    if (F.nulo) return CERO();
+    var p = [F.k];
+    for (var i = 0; i < (F.xk || 0); i++) p = pMult(p, pMono(new Frac(1), 1));
+    F.lineales.forEach(function (L) {
+      p = pMult(p, pPot(pDe([L.raiz.opuesto(), new Frac(1)]), L.mult));
+    });
+    F.cuads.forEach(function (C) { p = pMult(p, pPot(C.poly, C.mult)); });
+    return p;
+  }
+
+  /* Lista plana de factores irreducibles con su multiplicidad, para el
+     mcd y el mcm de polinomios y para simplificar fracciones. */
+  function factoresLista(P) {
+    var F = factorizaPol(P), L = [];
+    if (F.xk) L.push({ clave: 'x', poly: pMono(new Frac(1), 1), mult: F.xk });
+    F.lineales.forEach(function (l) {
+      L.push({ clave: 'L' + l.raiz.txt(), poly: pDe([l.raiz.opuesto(), new Frac(1)]), mult: l.mult });
+    });
+    F.cuads.forEach(function (c) {
+      L.push({ clave: 'Q' + pTex(c.poly), poly: c.poly, mult: c.mult });
+    });
+    return { k: F.k, factores: L };
+  }
+
+  function mcdPol(A, B) {
+    var a = factoresLista(A), b = factoresLista(B), out = UNO();
+    a.factores.forEach(function (fa) {
+      b.factores.forEach(function (fb) {
+        if (fa.clave === fb.clave) out = pMult(out, pPot(fa.poly, Math.min(fa.mult, fb.mult)));
       });
-  });
+    });
+    return out;
+  }
+  function mcmPol(A, B) {
+    var a = factoresLista(A), b = factoresLista(B), out = UNO(), usados = {};
+    a.factores.forEach(function (fa) {
+      var m = fa.mult;
+      b.factores.forEach(function (fb) { if (fb.clave === fa.clave) m = Math.max(m, fb.mult); });
+      usados[fa.clave] = 1;
+      out = pMult(out, pPot(fa.poly, m));
+    });
+    b.factores.forEach(function (fb) {
+      if (!usados[fb.clave]) out = pMult(out, pPot(fb.poly, fb.mult));
+    });
+    return out;
+  }
 
-  reg('producto', function (node) {
-    build(node, 'Applet \u00b7 Determinante de un producto',
-      'Comprueba ' + k('|AB| = |A|\\cdot|B|') + ' y, de paso, que ' + k('|A+B| \\neq |A|+|B|') + '. ' +
-      'Escribe dos matrices cuadradas del mismo orden. ' +
-      'Ejemplo del libro: si ' + k('|A| = 20') + ' y ' + k('|B| = 30') + ' entonces ' + k('|AB| = 600') + '. ' +
-      'Prueba A = <code>1 0<br>0 1</code> con B = <code>-1 0<br>0 -1</code> y observa el caso de la suma.',
-      [
-        { id: 'A', label: 'Matriz A', rows: 3, value: '1 2\n3 4' },
-        { id: 'B', label: 'Matriz B', rows: 3, value: '2 0\n1 3' }
-      ],
-      function (v) {
-        var pa = needSquare(v.A, 'A'), pb = needSquare(v.B, 'B');
-        if (pa.err) return err(pa.err);
-        if (pb.err) return err(pb.err);
-        if (pa.r !== pb.r) return err('Los \u00f3rdenes deben coincidir: A es ' + pa.dim + ' y B es ' + pb.dim + '.');
-        var A = pa.M, B = pb.M, dA = det(A), dB = det(B);
-        var AB = mulM(A, B), S = addM(A, B);
-        var h = '<div class="mx-grid">' + viewDet(A, { name: '|A|' }) + k('= ' + F.tex(dA)) +
-          viewDet(B, { name: '|B|' }) + k('= ' + F.tex(dB)) + '</div>';
-        h += '<hr class="mx-sep"><p><b>Producto</b></p>';
-        h += '<div class="mx-grid">' + view(AB, { name: 'A\\cdot B' }) + viewDet(AB) + k('= ' + F.tex(det(AB))) + '</div>';
-        h += kd('|A|\\cdot|B| = ' + F.tex(dA) + '\\cdot' + F.tex(dB) + ' = ' + F.tex(F.mul(dA, dB)));
-        h += F.eq(det(AB), F.mul(dA, dB))
-          ? ok('Se cumple ' + k('|AB| = |A|\\cdot|B|') + '. Esta propiedad es <b>siempre</b> cierta.')
-          : err('Discrepancia inesperada.');
-        h += '<hr class="mx-sep"><p><b>Suma</b></p>';
-        h += '<div class="mx-grid">' + view(S, { name: 'A+B' }) + viewDet(S) + k('= ' + F.tex(det(S))) + '</div>';
-        h += kd('|A|+|B| = ' + F.tex(dA) + ' + ' + F.tex(dB) + ' = ' + F.tex(F.add(dA, dB)));
-        h += F.eq(det(S), F.add(dA, dB))
-          ? warn('Aqu\u00ed coinciden, pero es <b>pura casualidad</b> de estos n\u00fameros. Cambia un elemento y ver\u00e1s ' +
-            'que se rompe: no es una propiedad.')
-          : err('No coinciden, y eso es lo normal: ' + k('|A+B| \\neq |A| + |B|') + '. ' +
-            'El determinante no se reparte sobre la suma.');
-        h += info('Consecuencias que salen en examen: ' + k('|A^2| = |A|^2') + ', y si ' + k('|M| = 6') +
-          ' entonces ' + k('|M^3| = 216') + '. Y si A tiene inversa, ' + k('|A^{-1}| = 1/|A|') + '.');
-        return h;
-      });
-  });
+  /* ==================================================================
+     7 · fracciones algebraicas
+     ================================================================== */
+  function Frax(num, den) {
+    if (pEsCero(den)) throw Error('El denominador de una fracción algebraica no puede ser el polinomio nulo.');
+    this.n = pRecorta(num);
+    this.d = pRecorta(den);
+  }
+  Frax.prototype.tex = function (v) {
+    return '\\dfrac{' + pTex(this.n, v) + '}{' + pTex(this.d, v) + '}';
+  };
+  Frax.prototype.esPolinomio = function () { return pGrado(this.d) === 0; };
 
-  reg('reducir', function (node) {
-    build(node, 'Applet \u00b7 Reducir a un determinante conocido',
-      'Otro objetivo del tema: <b>reducir un determinante a otro cuyo valor se conoce</b>. ' +
-      'Parte de un determinante gen\u00e9rico de orden 3 con valor conocido ' + k('D') +
-      ' y aplica transformaciones; el applet te dice cu\u00e1nto vale el resultado <b>en funci\u00f3n de D</b>, ' +
-      'sin necesidad de saber los n\u00fameros. Elige varias transformaciones y observa el factor acumulado.',
-      [
-        { id: 'D', label: 'Valor de D', type: 'text', value: '5' },
-        { id: 't1', label: 'Transformaci\u00f3n 1', type: 'select', value: 'Multiplicar F1 por 2',
-          options: ['(ninguna)', 'Multiplicar F1 por 2', 'Multiplicar F1 por 3', 'Intercambiar F1 y F3', 'Trasponer', 'F2 \u2192 F2 + 5F1'] },
-        { id: 't2', label: 'Transformaci\u00f3n 2', type: 'select', value: 'Multiplicar F3 por 2',
-          options: ['(ninguna)', 'Multiplicar F2 por 2', 'Multiplicar F3 por 2', 'Intercambiar F2 y F3', 'Multiplicar toda la matriz por 2', 'F1 \u2192 F1 - 3F2'] }
-      ],
-      function (v) {
-        var D = parseEntry(v.D);
-        if (!D) return err('Escribe un valor num\u00e9rico para D.');
-        var factor = R(1), signo = 1, pasos = [];
-        function aplicar(t) {
-          if (t === '(ninguna)') return;
-          if (t === 'Multiplicar F1 por 2' || t === 'Multiplicar F2 por 2' || t === 'Multiplicar F3 por 2') {
-            factor = F.mul(factor, R(2));
-            pasos.push([t, 'una sola fila por 2', '\\times 2']);
-          } else if (t === 'Multiplicar F1 por 3') {
-            factor = F.mul(factor, R(3));
-            pasos.push([t, 'una sola fila por 3', '\\times 3']);
-          } else if (t === 'Multiplicar toda la matriz por 2') {
-            factor = F.mul(factor, R(8));
-            pasos.push([t, 'las TRES filas por 2, luego ' + k('2^3'), '\\times 2^3 = \\times 8']);
-          } else if (t.indexOf('Intercambiar') === 0) {
-            signo = -signo;
-            pasos.push([t, 'intercambio de dos filas', '\\times(-1)']);
-          } else if (t === 'Trasponer') {
-            pasos.push([t, 'no cambia nada', '\\times 1']);
-          } else {
-            pasos.push([t, 'sumar a una fila un m\u00faltiplo de otra: no cambia nada', '\\times 1']);
-          }
-        }
-        aplicar(v.t1); aplicar(v.t2);
-        var total = F.mul(factor, R(signo));
-        var h = '<p>Partimos de un determinante de orden 3 con ' + k('D = ' + F.tex(D)) + '.</p>';
-        if (!pasos.length) return h + info('Elige alguna transformaci\u00f3n para ver su efecto.');
-        h += '<table class="ap-tbl"><thead><tr><th>Transformaci\u00f3n</th><th>Qu\u00e9 hace</th><th>Factor</th></tr></thead><tbody>';
-        pasos.forEach(function (pz) {
-          h += '<tr><td>' + pz[0] + '</td><td>' + pz[1] + '</td><td>' + k(pz[2]) + '</td></tr>';
-        });
-        h += '</tbody></table>';
-        h += kd('\\text{nuevo determinante} = ' + F.tex(total) + '\\cdot D = ' +
-          F.tex(total) + '\\cdot' + F.tex(D) + ' = ' + F.tex(F.mul(total, D)));
-        h += info('As\u00ed se resuelven los ejercicios del tipo \u00absabiendo que ' + k('|A| = 5') +
-          ', calcula el determinante de esta otra matriz\u00bb. No hace falta conocer ni un solo elemento: ' +
-          'basta seguir la pista de los factores.');
-        h += warn('El descuido t\u00edpico: multiplicar <b>toda</b> la matriz por 2 y anotar factor 2. ' +
-          'Son las tres filas, as\u00ed que el factor es ' + k('2^3 = 8') + '.');
-        return h;
-      });
-  });
+  /* Simplifica dividiendo entre el mcd y arrastrando la constante. */
+  function fraxSimplifica(F) {
+    if (pEsCero(F.n)) return { frax: new Frax(CERO(), UNO()), comun: UNO(), restricciones: raicesDe(F.d) };
+    var g = mcdPol(F.n, F.d);
+    var n2 = pDiv(F.n, g).q, d2 = pDiv(F.d, g).q;
+    /* dejar el denominador con coeficiente principal positivo y sin fracciones */
+    var l = pLider(d2);
+    if (l.n < 0n) { n2 = pOpuesto(n2); d2 = pOpuesto(d2); }
+    var den = 1;
+    n2.concat(d2).forEach(function (c) { den = mcm(den, Number(c.d)); });
+    if (den !== 1) { n2 = pEscala(n2, new Frac(den)); d2 = pEscala(d2, new Frac(den)); }
+    return {
+      frax: new Frax(n2, d2), comun: g,
+      restricciones: raicesDe(F.d),
+      simplificable: pGrado(g) > 0
+    };
+  }
+  function raicesDe(P) {
+    var R2 = raicesRacionales(P);
+    return R2.raices.map(function (r) { return r.raiz; });
+  }
 
-  /* ------------------------------------------------------------------
-     6. API PÚBLICA Y ARRANQUE
-     ------------------------------------------------------------------ */
+  function fraxSuma(A, B, signo) {
+    signo = signo === undefined ? 1 : signo;
+    var comun = mcmPol(A.d, B.d);
+    var fa = pDiv(comun, A.d).q, fb = pDiv(comun, B.d).q;
+    var na = pMult(A.n, fa), nb = pMult(B.n, fb);
+    var num = signo > 0 ? pSuma(na, nb) : pResta(na, nb);
+    return { bruto: new Frax(num, comun), comun: comun, fa: fa, fb: fb, na: na, nb: nb };
+  }
+  function fraxMult(A, B) { return new Frax(pMult(A.n, B.n), pMult(A.d, B.d)); }
+  function fraxDiv(A, B) {
+    if (pEsCero(B.n)) throw Error('No se puede dividir entre una fracción con numerador nulo.');
+    return new Frax(pMult(A.n, B.d), pMult(A.d, B.n));
+  }
 
-  window.DET = {
-    F: F, R: R, parseEntry: parseEntry, parseM: parseM,
-    clone: clone, ident: ident, zeros: zeros,
-    addM: addM, subM: subM, scaleM: scaleM, mulM: mulM, transM: transM, eqM: eqM,
-    minor: minor, subM2: subM2, det: det, cofM: cofM, invAdj: invAdj, gauss: gauss,
-    k: k, kd: kd, texM: texM, view: view, viewDet: viewDet, renderTex: renderTex,
-    ok: ok, info: info, warn: warn, err: err, stepsView: stepsView, esc: esc,
-    build: build, need: need, needSquare: needSquare,
-    reg: reg, registry: registry, log: []
+  /* ==================================================================
+     8 · identidades notables y piezas de salida propias del tema
+     ================================================================== */
+  function notable(tipo, A, B) {
+    /* A y B son polinomios (normalmente monomios) */
+    var izq, der, nombre;
+    if (tipo === 'suma2') {
+      nombre = 'Cuadrado de una suma';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)^{2}';
+      der = pMult(pSuma(A, B), pSuma(A, B));
+    } else if (tipo === 'resta2') {
+      nombre = 'Cuadrado de una diferencia';
+      izq = '\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)^{2}';
+      der = pMult(pResta(A, B), pResta(A, B));
+    } else if (tipo === 'sumapordif') {
+      nombre = 'Suma por diferencia';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)';
+      der = pMult(pSuma(A, B), pResta(A, B));
+    } else if (tipo === 'suma3') {
+      nombre = 'Cubo de una suma';
+      izq = '\\left(' + pTex(A) + ' + ' + pTex(B) + '\\right)^{3}';
+      der = pPot(pSuma(A, B), 3);
+    } else {
+      nombre = 'Cubo de una diferencia';
+      izq = '\\left(' + pTex(A) + ' - ' + pTex(B) + '\\right)^{3}';
+      der = pPot(pResta(A, B), 3);
+    }
+    return { nombre: nombre, izq: izq, der: der, derTex: pTex(der) };
+  }
+
+  /* Caja grande con una expresión algebraica */
+  function expr(label, tex, display) {
+    return '<div class="eq-expr">' +
+      (label ? '<span class="eq-expr-lab">' + esc(label) + '</span>' : '') +
+      (display === false ? K(tex) : KD(tex)) + '</div>';
+  }
+
+  /* Fichas de los términos de un polinomio */
+  function terminosHTML(p, v) {
+    v = v || 'x';
+    p = pRecorta(p);
+    var h = '<div class="pol-terms">';
+    var hay = false;
+    for (var i = p.length - 1; i >= 0; i--) {
+      if (p[i].n === 0n) continue;
+      hay = true;
+      var cl = 'pol-term' + (i === pGrado(p) ? ' pol-term-hi' : '') + (i === 0 ? ' pol-term-ind' : '');
+      var t = (i === 0) ? p[i].tex(true) :
+        (p[i].n === 1n && p[i].d === 1n ? '' : (p[i].n === -1n && p[i].d === 1n ? '-' : p[i].tex(true))) +
+        v + (i > 1 ? '^{' + i + '}' : '');
+      h += '<span class="' + cl + '"><span class="pol-term-x">' + K(t) + '</span>' +
+        '<span class="pol-term-g">' + (i === 0 ? 'independiente' : 'grado ' + i) + '</span></span>';
+    }
+    if (!hay) h += '<span class="pol-term"><span class="pol-term-x">' + K('0') + '</span>' +
+      '<span class="pol-term-g">nulo</span></span>';
+    return h + '</div>';
+  }
+
+  /* Tabla de Ruffini dibujada */
+  function ruffiniHTML(p, r, opts) {
+    opts = opts || {};
+    var R2 = ruffini(p, r);
+    var n = R2.arriba.length;
+    var h = '<table class="pol-ruf"><tbody>';
+    h += '<tr class="pol-ruf-r1"><td></td>';
+    R2.arriba.forEach(function (c) { h += '<td>' + K(c.tex(true)) + '</td>'; });
+    h += '</tr>';
+    h += '<tr class="pol-ruf-r2"><td class="pol-ruf-div">' + K(R2.r.tex(true)) + '</td><td></td>';
+    for (var i = 1; i < n; i++) h += '<td>' + K(R2.sube[i].tex(true)) + '</td>';
+    h += '</tr>';
+    h += '<tr class="pol-ruf-r3"><td class="pol-ruf-div"></td>';
+    R2.baja.forEach(function (c, i) {
+      var ultimo = i === n - 1;
+      h += '<td class="' + (ultimo ? (c.n === 0n ? 'pol-ruf-rest pol-ruf-rest0' : 'pol-ruf-rest') : '') + '">' +
+        K(c.tex(true)) + '</td>';
+    });
+    h += '</tr></tbody></table>';
+    var cap = opts.cap === undefined
+      ? 'Fila 1: coeficientes ordenados de mayor a menor grado, con los ceros de los términos que faltan. Fila 2: cada valor se multiplica por ' +
+        K(R2.r.tex(true)) + '. Fila 3: suma de las dos anteriores. La última casilla es el resto.'
+      : opts.cap;
+    return h + (cap ? '<p class="pol-ruf-cap">' + cap + '</p>' : '');
+  }
+
+  /* División larga en formato monoespaciado clásico */
+  function divisionLargaHTML(A, B, v) {
+    v = v || 'x';
+    function pl(p) {                                  /* texto plano de un polinomio */
+      p = pRecorta(p);
+      if (pEsCero(p)) return '0';
+      var s = '', primero = true;
+      for (var i = p.length - 1; i >= 0; i--) {
+        var c = p[i];
+        if (c.n === 0n) continue;
+        var neg = c.n < 0n;
+        var abs = new Frac(neg ? -c.n : c.n, c.d);
+        s += primero ? (neg ? '-' : '') : (neg ? ' - ' : ' + ');
+        if (!(i > 0 && abs.n === 1n && abs.d === 1n)) s += abs.txt();
+        if (i === 1) s += v; else if (i > 1) s += v + '^' + i;
+        primero = false;
+      }
+      return s;
+    }
+    var D = pDiv(A, B);
+    var lineas = [];
+    var cab = pl(A);
+    var anchoIzq = Math.max(cab.length, 20) + 2;
+    lineas.push(pad(cab, anchoIzq) + '| ' + pl(B));
+    lineas.push(pad('', anchoIzq) + '| ' + pl(D.q));
+    lineas.push(rep('-', anchoIzq) + '+' + rep('-', Math.max(pl(B).length, pl(D.q).length) + 2));
+    D.pasos.forEach(function (s) {
+      lineas.push(pad('-(' + pl(s.producto) + ')', anchoIzq));
+      lineas.push(pad(pl(s.resto), anchoIzq));
+    });
+    return '<div class="pol-mono">' + esc(lineas.join('\n')) + '</div>';
+  }
+  function pad(s, n) { while (s.length < n) s += ' '; return s; }
+  function rep(c, n) { var s = ''; for (var i = 0; i < n; i++) s += c; return s; }
+
+  /* ==================================================================
+     E1 · radicales exactos:  √n = fuera·√dentro
+     ================================================================== */
+  function simplRaiz(n) {                      /* n entero >= 0 */
+    n = Number(n);
+    if (n < 0) return null;
+    if (n === 0) return { fuera: 0, dentro: 1 };
+    var fuera = 1, dentro = n, p = 2;
+    while (p * p <= dentro) {
+      while (dentro % (p * p) === 0) { dentro /= p * p; fuera *= p; }
+      p++;
+    }
+    return { fuera: fuera, dentro: dentro };
+  }
+  function raizTex(n) {
+    var s = simplRaiz(n);
+    if (!s) return '\\sqrt{' + n + '}';
+    if (s.dentro === 1) return String(s.fuera);
+    return (s.fuera === 1 ? '' : s.fuera) + '\\sqrt{' + s.dentro + '}';
+  }
+
+  /* Número de la forma  (p ± q√r)/s  con enteros, ya reducido.
+     Sirve para escribir las raíces irracionales de una cuadrática de
+     forma exacta, sin decimales. */
+  function Irr(p, q, r, s) {
+    this.p = p; this.q = q; this.r = r; this.s = s;   /* (p + q√r)/s */
+    var sr = simplRaiz(r);
+    if (sr && sr.dentro === 1) { this.p = p + q * sr.fuera; this.q = 0; this.r = 1; }
+    else if (sr) { this.q = q * sr.fuera; this.r = sr.dentro; }
+    if (this.s < 0) { this.p = -this.p; this.q = -this.q; this.s = -this.s; }
+    var g = Math.abs(mcdN(mcdN(this.p, this.q), this.s)) || 1;
+    this.p /= g; this.q /= g; this.s /= g;
+  }
+  function mcdN(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a; }
+  Irr.prototype.val = function () { return (this.p + this.q * Math.sqrt(this.r)) / this.s; };
+  Irr.prototype.esRacional = function () { return this.q === 0 || this.r === 1; };
+  Irr.prototype.frac = function () { return new Frac(BigInt(this.p), BigInt(this.s)); };
+  Irr.prototype.tex = function () {
+    if (this.esRacional()) return this.frac().tex(true);
+    var num = (this.p === 0 ? '' : this.p) +
+      (this.q < 0 ? (this.p === 0 ? '-' : ' - ') : (this.p === 0 ? '' : ' + ')) +
+      (Math.abs(this.q) === 1 ? '' : Math.abs(this.q)) + '\\sqrt{' + this.r + '}';
+    return this.s === 1 ? num : '\\dfrac{' + num + '}{' + this.s + '}';
+  };
+  Irr.prototype.txt = function () { return this.esRacional() ? this.frac().txt() : nc(this.val(), 4); };
+  Irr.prototype.aprox = function (d) { return kf(this.val(), d == null ? 3 : d); };
+
+  /* ==================================================================
+     E2 · conjuntos de números reales como unión de intervalos
+     Un trozo es {a, b, ai, bi}: extremos (±Infinity permitido) y si
+     cada uno está incluido. Un punto aislado es un trozo degenerado.
+     ================================================================== */
+  function Conj(trozos) { this.t = (trozos || []).slice(); this.normaliza(); }
+  Conj.vacio = function () { return new Conj([]); };
+  Conj.todo = function () { return new Conj([{ a: -Infinity, b: Infinity, ai: false, bi: false }]); };
+  Conj.punto = function (x) { return new Conj([{ a: x, b: x, ai: true, bi: true }]); };
+  Conj.puntos = function (xs) { return new Conj(xs.map(function (x) { return { a: x, b: x, ai: true, bi: true }; })); };
+  Conj.intervalo = function (a, b, ai, bi) { return new Conj([{ a: a, b: b, ai: !!ai, bi: !!bi }]); };
+  Conj.prototype.normaliza = function () {
+    var t = this.t.filter(function (i) { return i.a < i.b || (i.a === i.b && i.ai && i.bi); });
+    t.sort(function (u, v) { return u.a - v.a || (v.ai ? 1 : 0) - (u.ai ? 1 : 0); });
+    var out = [];
+    t.forEach(function (i) {
+      var L = out[out.length - 1];
+      if (L && (i.a < L.b || (i.a === L.b && (i.ai || L.bi)))) {
+        if (i.b > L.b) { L.b = i.b; L.bi = i.bi; }
+        else if (i.b === L.b) { L.bi = L.bi || i.bi; }
+      } else out.push({ a: i.a, b: i.b, ai: i.ai, bi: i.bi });
+    });
+    this.t = out;
+  };
+  Conj.prototype.esVacio = function () { return this.t.length === 0; };
+  Conj.prototype.esTodo = function () { return this.t.length === 1 && this.t[0].a === -Infinity && this.t[0].b === Infinity; };
+  Conj.prototype.contiene = function (x) {
+    return this.t.some(function (i) {
+      return (x > i.a || (x === i.a && i.ai)) && (x < i.b || (x === i.b && i.bi));
+    });
+  };
+  Conj.prototype.union = function (o) { return new Conj(this.t.concat(o.t)); };
+  Conj.prototype.comp = function () {                 /* complementario en R */
+    var out = [], cur = -Infinity, curIn = false;
+    this.t.forEach(function (i) {
+      out.push({ a: cur, b: i.a, ai: curIn, bi: !i.ai });
+      cur = i.b; curIn = !i.bi;
+    });
+    out.push({ a: cur, b: Infinity, ai: curIn, bi: false });
+    return new Conj(out.filter(function (i) { return i.a < i.b || (i.a === i.b && i.ai && i.bi); }));
+  };
+  Conj.prototype.inter = function (o) { return this.comp().union(o.comp()).comp(); };
+  Conj.prototype.quita = function (xs) {             /* quita puntos sueltos */
+    var C = this;
+    (Array.isArray(xs) ? xs : [xs]).forEach(function (x) { C = C.inter(Conj.punto(x).comp()); });
+    return C;
+  };
+  function numTex(x) {
+    if (x === Infinity) return '+\\infty';
+    if (x === -Infinity) return '-\\infty';
+    if (x instanceof Frac) return x.tex(true);
+    if (x instanceof Irr) return x.tex();
+    return kf(x, 4);
+  }
+  Conj.prototype.tex = function (etqs) {
+    if (this.esVacio()) return '\\varnothing';
+    if (this.esTodo()) return '\\mathbb{R}';
+    var E = etqs || {};
+    function nom(x) { return E[x] != null ? E[x] : numTex(x); }
+    return this.t.map(function (i) {
+      if (i.a === i.b) return '\\{' + nom(i.a) + '\\}';
+      return '\\left' + (i.ai ? '[' : '(') + nom(i.a) + ',\\; ' + nom(i.b) + '\\right' + (i.bi ? ']' : ')');
+    }).join(' \\cup ');
+  };
+  Conj.prototype.desig = function (v) {              /* con desigualdades */
+    v = v || 'x';
+    if (this.esVacio()) return '\\text{sin solución}';
+    if (this.esTodo()) return v + ' \\in \\mathbb{R}';
+    return this.t.map(function (i) {
+      if (i.a === i.b) return v + ' = ' + numTex(i.a);
+      if (i.a === -Infinity) return v + (i.bi ? ' \\leq ' : ' < ') + numTex(i.b);
+      if (i.b === Infinity) return v + (i.ai ? ' \\geq ' : ' > ') + numTex(i.a);
+      return numTex(i.a) + (i.ai ? ' \\leq ' : ' < ') + v + (i.bi ? ' \\leq ' : ' < ') + numTex(i.b);
+    }).join(' \\quad\\text{o}\\quad ');
   };
 
-  var booted = false;
-  function boot() {
-    if (booted) return;
-    booted = true;
-    var nodes = document.querySelectorAll('[data-applet-det]');
-    for (var i = 0; i < nodes.length; i++) {
-      var node = nodes[i];
-      if (node.getAttribute('data-mounted') === '1') continue;
-      var key = node.getAttribute('data-applet-det');
-      var fn = registry[key];
-      node.setAttribute('data-mounted', '1');
-      if (!fn) {
-        node.classList.add('applet');
-        node.innerHTML = '<div class="mx-bad ap-err">No existe ning\u00fan applet con la clave <code>' +
-          esc(key) + '</code>. Claves disponibles: <code>' +
-          Object.keys(registry).sort().join('</code>, <code>') + '</code>.</div>';
-        window.DET.log.push({ clave: key, error: 'clave inexistente' });
-        continue;
-      }
-      try { fn(node); }
-      catch (e) {
-        node.classList.add('applet');
-        node.innerHTML = '<div class="mx-bad ap-err">El applet <code>' + esc(key) +
-          '</code> no ha podido montarse: ' + esc(e.message) + '</div>';
-        window.DET.log.push({ clave: key, error: e.message, stack: e.stack });
-      }
+  /* Recta real con el conjunto sombreado, a tamaño grande. */
+  function rectaConj(C, opts) {
+    opts = opts || {};
+    var marcas = (opts.marcas || []).map(Number).filter(function (v) { return isFinite(v); });
+    C.t.forEach(function (i) { [i.a, i.b].forEach(function (v) { if (isFinite(v)) marcas.push(v); }); });
+    var vals = marcas.length ? marcas : [0];
+    var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+    if (max - min < 1) { var c = (min + max) / 2; min = c - 2; max = c + 2; }
+    var pad = (max - min) * 0.35 + 0.5;
+    min = Math.floor(min - pad); max = Math.ceil(max + pad);
+    var W = opts.W || 1000, H = opts.H || 210, mx = 62, yy = Math.round(H * 0.56);
+    function X(v) { return mx + (v - min) / (max - min) * (W - 2 * mx); }
+    var b = '';
+    /* zona sombreada */
+    C.t.forEach(function (i) {
+      var x1 = X(Math.max(i.a, min - 1)), x2 = X(Math.min(i.b, max + 1));
+      if (i.a === i.b) return;
+      b += rect(x1, yy - 15, Math.max(x2 - x1, 1), 30, 'rgba(37,99,235,.20)', 'none');
+      b += line(x1, yy, x2, yy, COL.azul, 8);
+    });
+    /* eje */
+    b += line(mx - 26, yy, W - mx + 26, yy, '#334155', 2.6);
+    b += path('M ' + (W - mx + 26) + ' ' + yy + ' l -13 -7 l 0 14 z', '#334155', 1, '#334155');
+    b += path('M ' + (mx - 26) + ' ' + yy + ' l 13 -7 l 0 14 z', '#334155', 1, '#334155');
+    /* enteros */
+    var pasoE = Math.max(1, Math.round((max - min) / 12));
+    for (var k = Math.ceil(min); k <= max; k += pasoE) {
+      b += line(X(k), yy - 8, X(k), yy + 8, '#94a3b8', 1.6);
+      b += txt(X(k), yy + 34, etq(k), { s: 19, a: 'middle', c: '#475569' });
     }
+    /* extremos */
+    C.t.forEach(function (i) {
+      [[i.a, i.ai], [i.b, i.bi]].forEach(function (par) {
+        var v = par[0];
+        if (!isFinite(v)) return;
+        b += par[1] ? circle(X(v), yy, 11, COL.azul, '#fff', 3)
+          : circle(X(v), yy, 11, '#fff', COL.azul, 3.4);
+        b += '<foreignObject x="' + (X(v) - 80) + '" y="' + (yy - 66) + '" width="160" height="42">' +
+          '<div xmlns="http://www.w3.org/1999/xhtml" style="text-align:center;font-size:21px;color:#1d4ed8">' +
+          '<span data-tex="' + esc(numTex(v)) + '"></span></div></foreignObject>';
+      });
+    });
+    if (C.esVacio()) b += txt(W / 2, yy - 42, 'El conjunto solución está vacío', { s: 22, a: 'middle', c: COL.rojo, w: 700 });
+    return svgWrap(b, W, H, opts.label || 'Conjunto solución sobre la recta real', opts.cap);
   }
 
-  window.DET.boot = boot;
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(boot, 0); });
-  } else {
-    setTimeout(boot, 0);
+  /* ==================================================================
+     E3 · ecuaciones de primer grado
+     ================================================================== */
+  function solLineal(a, b) {                  /* a·x + b = 0, a y b Frac */
+    if (a.n === 0n) {
+      return b.n === 0n
+        ? { tipo: 'identidad', conj: Conj.todo(), tex: 'x \\in \\mathbb{R}' }
+        : { tipo: 'incompatible', conj: Conj.vacio(), tex: '\\varnothing' };
+    }
+    var x = b.opuesto().entre(a);
+    return { tipo: 'unica', x: x, conj: Conj.punto(x.val()), tex: 'x = ' + x.tex(true) };
   }
+
+  /* Resuelve  izq = der  cuando ambos miembros son polinomios,
+     devolviendo los pasos didácticos habituales. */
+  function resuelveLinealPaso(izqTxt, derTxt) {
+    var A = parsePol(izqTxt), B = parsePol(derTxt);
+    var D = pResta(A, B);
+    var pasos = [];
+    pasos.push({ t: 'Paso todo al primer miembro', tex: pTex(D) + ' = 0' });
+    var den = 1n;
+    D.forEach(function (c) { den = den * c.d / bmcd(den, c.d); });
+    if (den !== 1n) {
+      D = D.map(function (c) { return c.por(new Frac(den)); });
+      pasos.push({ t: 'Multiplico por el m.c.m. de los denominadores, ' + den, tex: pTex(D) + ' = 0' });
+    }
+    var g = pGrado(D);
+    if (g === 1) {
+      var a = D[1], b = D[0];
+      pasos.push({ t: 'Agrupo la incógnita y los números', tex: a.tex(true) + 'x = ' + b.opuesto().tex(true) });
+      var S = solLineal(a, b);
+      pasos.push({ t: 'Despejo', tex: S.tex });
+      return { grado: 1, pasos: pasos, sol: S, poli: D };
+    }
+    return { grado: g, pasos: pasos, poli: D };
+  }
+
+  /* ==================================================================
+     E4 · ecuaciones de segundo grado
+     ================================================================== */
+  function solCuadratica(a, b, c) {           /* Frac */
+    /* paso a coeficientes enteros para trabajar con el discriminante */
+    var den = 1n;
+    [a, b, c].forEach(function (f) { den = den * f.d / bmcd(den, f.d); });
+    var A = Number(a.por(new Frac(den)).n), B = Number(b.por(new Frac(den)).n), C = Number(c.por(new Frac(den)).n);
+    var g = mcdN(mcdN(A, B), C) || 1;
+    if (A < 0) g = -g;
+    A /= g; B /= g; C /= g;
+    var disc = B * B - 4 * A * C;
+    var R = { a: A, b: B, c: C, disc: disc, enteriza: den !== 1n || g !== 1, simplificada: [A, B, C] };
+    if (A === 0) {
+      var L = solLineal(new Frac(BigInt(B)), new Frac(BigInt(C)));
+      R.tipo = 'lineal'; R.sol = L; R.conj = L.conj; R.raices = L.x ? [new Irr(Number(L.x.n), 0, 1, Number(L.x.d))] : [];
+      return R;
+    }
+    R.completa = (B !== 0 && C !== 0);
+    R.incompletaTipo = B === 0 && C === 0 ? 'doble-cero' : (C === 0 ? 'sin-c' : (B === 0 ? 'sin-b' : null));
+    if (disc > 0) {
+      R.tipo = 'dos';
+      R.raices = [new Irr(-B, 1, disc, 2 * A), new Irr(-B, -1, disc, 2 * A)];
+      R.raices.sort(function (u, v) { return u.val() - v.val(); });
+      R.conj = Conj.puntos(R.raices.map(function (r) { return r.val(); }));
+    } else if (disc === 0) {
+      R.tipo = 'doble';
+      R.raices = [new Irr(-B, 0, 1, 2 * A)];
+      R.conj = Conj.puntos([R.raices[0].val()]);
+    } else {
+      R.tipo = 'ninguna'; R.raices = []; R.conj = Conj.vacio();
+    }
+    R.exacta = disc >= 0 && (simplRaiz(disc) || {}).dentro === 1;
+    R.suma = new Frac(BigInt(-B), BigInt(A));
+    R.producto = new Frac(BigInt(C), BigInt(A));
+    R.vertice = { x: -B / (2 * A), y: (4 * A * C - B * B) / (4 * A) };
+    return R;
+  }
+  function cuadTex(a, b, c, v) {
+    v = v || 'x';
+    return pTex(pDe([c, b, a]).map(function (f) { return f; })).replace(/x/g, v) + ' = 0';
+  }
+  function raicesTex(R) {
+    if (R.tipo === 'ninguna') return '\\varnothing';
+    return R.raices.map(function (r, i) { return v0(R, i) + ' = ' + r.tex(); }).join(', \\quad ');
+  }
+  function v0(R, i) { return R.tipo === 'doble' ? 'x_1 = x_2' : 'x_' + (i + 1); }
+
+  /* ==================================================================
+     E5 · bicuadradas y bipotenciales  a·x^(2n) + b·x^n + c = 0
+     ================================================================== */
+  function solBipotencial(a, b, c, n) {
+    n = n || 2;
+    var T = solCuadratica(a, b, c);
+    var salida = { cuad: T, n: n, ramas: [], conj: Conj.vacio() };
+    T.raices.forEach(function (t) {
+      var tv = t.val();
+      var rama = { t: t, valores: [] };
+      if (n % 2 === 0) {
+        if (tv > 0) {
+          var raiz = Math.sqrt(tv);
+          rama.valores = [-raiz, raiz];
+          rama.motivo = 'dos soluciones';
+          if (t.esRacional() && t.frac().esCuadrado && t.frac().esCuadrado()) rama.exacta = true;
+        } else if (tv === 0) { rama.valores = [0]; rama.motivo = 'una solución'; }
+        else { rama.valores = []; rama.motivo = 'ninguna: un valor par de una potencia par no puede ser negativo'; }
+      } else {
+        rama.valores = [Math.cbrt(tv)];
+        rama.motivo = 'una solución';
+      }
+      salida.ramas.push(rama);
+      salida.conj = salida.conj.union(Conj.puntos(rama.valores));
+    });
+    return salida;
+  }
+
+  /* ==================================================================
+     E6 · ecuaciones polinómicas por factorización
+     ================================================================== */
+  function solPolinomica(p) {
+    p = pRecorta(p);
+    var F = factorizaPol(p);
+    var raices = [], vistos = {};
+    if (F.xk) { vistos['0'] = 1; raices.push({ raiz: new Frac(0n), mult: F.xk, tipo: 'racional', deFactorX: true }); }
+    F.lineales.forEach(function (L) {
+      var v = L.raiz.val(), k = L.raiz.txt();
+      if (!vistos[k]) { vistos[k] = 1; raices.push({ raiz: L.raiz, mult: L.mult, tipo: 'racional' }); }
+    });
+    var extra = [];
+    var irreducibles = [];
+    (F.cuads || []).forEach(function (q) {
+      if (pGrado(q.poly) !== 2) { irreducibles.push(q); return; }
+      var Q = solCuadratica(q.poly[2], q.poly[1], q.poly[0]);
+      extra.push({ p: q.poly, mult: q.mult, cuad: Q });
+      Q.raices.forEach(function (r) { raices.push({ irr: r, mult: q.mult, tipo: 'irracional' }); });
+    });
+    raices.sort(function (u, v) { return (u.raiz ? u.raiz.val() : u.irr.val()) - (v.raiz ? v.raiz.val() : v.irr.val()); });
+    return {
+      factor: F, raices: raices, cuadraticos: extra, irreducibles: irreducibles,
+      conj: Conj.puntos(raices.map(function (r) { return r.raiz ? r.raiz.val() : r.irr.val(); })),
+      grado: pGrado(p)
+    };
+  }
+
+  /* ==================================================================
+     E7 · ecuaciones racionales  N(x)/D(x) = M(x)/E(x)
+     ================================================================== */
+  function solRacional(n1, d1, n2, d2) {
+    /* cruzo en multiplicación: n1·d2 − n2·d1 = 0, con D≠0 */
+    var izq = pMult(n1, d2), der = pMult(n2, d1);
+    var P = pResta(izq, der);
+    var prohibidos = [];
+    [d1, d2].forEach(function (d) {
+      if (pGrado(d) <= 0) return;
+      raicesDe(d).forEach(function (r) {
+        if (!prohibidos.some(function (q) { return q.cmp(r) === 0; })) prohibidos.push(r);
+      });
+    });
+    var S = solPolinomica(P);
+    var validas = [], descartadas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      var anula = prohibidos.some(function (q) { return Math.abs(q.val() - v) < 1e-12; });
+      (anula ? descartadas : validas).push(r);
+    });
+    return {
+      cruzada: P, prohibidos: prohibidos, todas: S.raices,
+      validas: validas, descartadas: descartadas,
+      conj: Conj.puntos(validas.map(function (r) { return r.raiz ? r.raiz.val() : r.irr.val(); })),
+      dominio: Conj.todo().quita(prohibidos.map(function (q) { return q.val(); }))
+    };
+  }
+
+  /* ==================================================================
+     E8 · ecuaciones radicales   √(A(x)) = B(x)   ó   √A ± √C = B
+     ================================================================== */
+  function solRadical(A, B) {                 /* √(A) = B, A y B polinomios */
+    var P = pResta(pPot(B, 2), A);            /* B² − A = 0 */
+    var S = solPolinomica(P);
+    var validas = [], falsas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      var a = pEvalNum(A, v), b = pEvalNum(B, v);
+      var ok = a >= -1e-9 && b >= -1e-9 && Math.abs(Math.sqrt(Math.max(a, 0)) - b) < 1e-7;
+      (ok ? validas : falsas).push({ r: r, v: v, radicando: a, miembro: b, ok: ok });
+    });
+    return {
+      elevada: P, todas: S.raices, comprob: validas.concat(falsas),
+      validas: validas, falsas: falsas,
+      conj: Conj.puntos(validas.map(function (c) { return c.v; })),
+      dominioTex: pTex(A) + ' \\geq 0'
+    };
+  }
+
+  /* ==================================================================
+     E9 · exponenciales y logarítmicas
+     ================================================================== */
+  function esPotencia(n, b) {                 /* n = b^k con k entero ? */
+    if (n <= 0 || b <= 1) return null;
+    var k = Math.round(Math.log(n) / Math.log(b));
+    for (var j = Math.max(0, k - 2); j <= k + 2; j++) if (Math.abs(Math.pow(b, j) - n) < 1e-9) return j;
+    return null;
+  }
+  function solExponencial(base, expIzq, valor) {
+    /* base^(expIzq(x)) = valor  ->  expIzq(x) = log_base(valor) */
+    var k = esPotencia(valor, base);
+    var res = { base: base, valor: valor, exacto: k != null, k: k };
+    var objetivo = k != null ? new Frac(BigInt(k)) : null;
+    if (k != null) {
+      var D = pResta(expIzq, pDe([objetivo]));
+      res.igualdad = pTex(expIzq) + ' = ' + k;
+      var S = pGrado(D) === 1 ? { tipo: 'lineal', s: solLineal(D[1], D[0]) } : { tipo: 'poli', s: solPolinomica(D) };
+      res.reducida = D; res.sol = S;
+      res.conj = S.tipo === 'lineal' ? S.s.conj : S.s.conj;
+    } else {
+      res.logTex = '\\log_{' + base + '} ' + valor + ' = \\dfrac{\\ln ' + valor + '}{\\ln ' + base + '} \\approx ' +
+        kf(Math.log(valor) / Math.log(base), 4);
+      res.conj = Conj.vacio();
+    }
+    return res;
+  }
+  function solLogaritmica(base, arg, valor) {
+    /* log_base(arg(x)) = valor  ->  arg(x) = base^valor, con arg > 0 */
+    var objetivo = Math.pow(base, valor);
+    var D = pResta(arg, pDe([new Frac(BigInt(Math.round(objetivo)))]));
+    var S = solPolinomica(D);
+    var validas = [], descartadas = [];
+    S.raices.forEach(function (r) {
+      var v = r.raiz ? r.raiz.val() : r.irr.val();
+      (pEvalNum(arg, v) > 1e-9 ? validas : descartadas).push({ r: r, v: v, arg: pEvalNum(arg, v) });
+    });
+    return {
+      base: base, valor: valor, objetivo: objetivo, reducida: D,
+      validas: validas, descartadas: descartadas,
+      conj: Conj.puntos(validas.map(function (c) { return c.v; })),
+      condicionTex: pTex(arg) + ' > 0'
+    };
+  }
+
+  /* ==================================================================
+     E10 · ecuaciones trigonométricas elementales
+     ================================================================== */
+  var TRIG_NOT = {
+    sen: { tex: '\\operatorname{sen}', f: Math.sin, per: 2 },
+    cos: { tex: '\\cos', f: Math.cos, per: 2 },
+    tg: { tex: '\\operatorname{tg}', f: Math.tan, per: 1 }
+  };
+  /* ángulos notables: valor -> {tex, rad} */
+  var NOTABLES = [
+    { v: 0, tex: '0', rad: 0 },
+    { v: 1 / 6, tex: '\\dfrac{\\pi}{6}', rad: Math.PI / 6 },
+    { v: 1 / 4, tex: '\\dfrac{\\pi}{4}', rad: Math.PI / 4 },
+    { v: 1 / 3, tex: '\\dfrac{\\pi}{3}', rad: Math.PI / 3 },
+    { v: 1 / 2, tex: '\\dfrac{\\pi}{2}', rad: Math.PI / 2 },
+    { v: 2 / 3, tex: '\\dfrac{2\\pi}{3}', rad: 2 * Math.PI / 3 },
+    { v: 3 / 4, tex: '\\dfrac{3\\pi}{4}', rad: 3 * Math.PI / 4 },
+    { v: 5 / 6, tex: '\\dfrac{5\\pi}{6}', rad: 5 * Math.PI / 6 },
+    { v: 1, tex: '\\pi', rad: Math.PI },
+    { v: 7 / 6, tex: '\\dfrac{7\\pi}{6}', rad: 7 * Math.PI / 6 },
+    { v: 5 / 4, tex: '\\dfrac{5\\pi}{4}', rad: 5 * Math.PI / 4 },
+    { v: 4 / 3, tex: '\\dfrac{4\\pi}{3}', rad: 4 * Math.PI / 3 },
+    { v: 3 / 2, tex: '\\dfrac{3\\pi}{2}', rad: 3 * Math.PI / 2 },
+    { v: 5 / 3, tex: '\\dfrac{5\\pi}{3}', rad: 5 * Math.PI / 3 },
+    { v: 7 / 4, tex: '\\dfrac{7\\pi}{4}', rad: 7 * Math.PI / 4 },
+    { v: 11 / 6, tex: '\\dfrac{11\\pi}{6}', rad: 11 * Math.PI / 6 }
+  ];
+  function anguloTex(rad) {
+    var r = ((rad % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    for (var i = 0; i < NOTABLES.length; i++) if (Math.abs(NOTABLES[i].rad - r) < 1e-9) return NOTABLES[i].tex;
+    return kf(r * 180 / Math.PI, 2) + '^{\\circ}';
+  }
+  function gradTex(rad) {
+    var g = ((rad * 180 / Math.PI) % 360 + 360) % 360;
+    return (Math.abs(g - Math.round(g)) < 1e-7 ? String(Math.round(g)) : kf(g, 2)) + '^{\\circ}';
+  }
+  function solTrig(fn, k) {                   /* fn ∈ {sen,cos,tg}, valor k */
+    var T = TRIG_NOT[fn];
+    var R = { fn: fn, tex: T.tex, k: k, base: [], familia: [], enRango: [] };
+    if (fn === 'tg') {
+      var a = Math.atan(k);
+      R.base = [a];
+      R.familia = [{ tex: anguloTex(a) + ' + k\\pi', ang: a, per: Math.PI }];
+    } else if (Math.abs(k) > 1) {
+      R.imposible = true;
+      return R;
+    } else if (fn === 'sen') {
+      var s = Math.asin(k);
+      R.base = [s, Math.PI - s];
+      R.familia = [
+        { tex: anguloTex(s) + ' + 2k\\pi', ang: s, per: 2 * Math.PI },
+        { tex: anguloTex(Math.PI - s) + ' + 2k\\pi', ang: Math.PI - s, per: 2 * Math.PI }
+      ];
+    } else {
+      var c = Math.acos(k);
+      R.base = [c, 2 * Math.PI - c];
+      R.familia = [
+        { tex: anguloTex(c) + ' + 2k\\pi', ang: c, per: 2 * Math.PI },
+        { tex: anguloTex(2 * Math.PI - c) + ' + 2k\\pi', ang: 2 * Math.PI - c, per: 2 * Math.PI }
+      ];
+    }
+    /* soluciones dentro de [0, 2π) */
+    var vistas = {};
+    R.familia.forEach(function (f) {
+      for (var j = -2; j <= 3; j++) {
+        var x = f.ang + j * f.per;
+        if (x >= -1e-9 && x < 2 * Math.PI - 1e-9) {
+          var key = x.toFixed(9);
+          if (!vistas[key]) { vistas[key] = 1; R.enRango.push(x); }
+        }
+      }
+    });
+    R.enRango.sort(function (u, v) { return u - v; });
+    return R;
+  }
+
+  /* ==================================================================
+     E11 · inecuaciones: tabla de signos y conjunto solución
+     ================================================================== */
+  var RELS = {
+    '>': { tex: '>', ok: function (s) { return s > 0; }, cerrada: false },
+    '<': { tex: '<', ok: function (s) { return s < 0; }, cerrada: false },
+    '>=': { tex: '\\geq', ok: function (s) { return s > 0; }, cerrada: true },
+    '<=': { tex: '\\leq', ok: function (s) { return s < 0; }, cerrada: true }
+  };
+  function inecLineal(a, b, rel) {            /* a·x + b  rel  0 */
+    var Rl = RELS[rel];
+    if (a.n === 0n) {
+      var s = b.val();
+      var vale = Rl.ok(s) || (Rl.cerrada && Math.abs(s) < 1e-12);
+      return { grado: 0, giro: false, conj: vale ? Conj.todo() : Conj.vacio(), rel: rel, trivial: true };
+    }
+    var x = b.opuesto().entre(a);
+    var negativo = a.val() < 0;
+    var relFinal = negativo ? { '>': '<', '<': '>', '>=': '<=', '<=': '>=' }[rel] : rel;
+    var xv = x.val();
+    var mayor = relFinal === '>' || relFinal === '>=';
+    var cerr = RELS[relFinal].cerrada;
+    var conj = mayor ? Conj.intervalo(xv, Infinity, cerr, false) : Conj.intervalo(-Infinity, xv, false, cerr);
+    return { grado: 1, x: x, giro: negativo, rel: rel, relFinal: relFinal, conj: conj, frontera: xv };
+  }
+  /* signo de un polinomio factorizado en cada trozo determinado por sus raíces */
+  function tablaSignos(p, rel, opts) {
+    opts = opts || {};
+    var Rl = RELS[rel];
+    p = pRecorta(p);
+    var ceros = [];
+    raicesDe(p).forEach(function (r) { ceros.push({ v: r.val(), tex: r.tex(true), tipo: 'cero' }); });
+    var g = pGrado(p);
+    if (g === 2) {                              /* añade raíces irracionales */
+      var Q = solCuadratica(p[2], p[1], p[0]);
+      if (Q.tipo !== 'ninguna' && !ceros.length) {
+        Q.raices.forEach(function (r) { ceros.push({ v: r.val(), tex: r.tex(), tipo: 'cero' }); });
+      }
+    }
+    (opts.polos || []).forEach(function (q) { ceros.push({ v: q.v, tex: q.tex, tipo: 'polo' }); });
+    ceros = ceros.filter(function (c, i, A) {
+      return A.findIndex(function (d) { return Math.abs(d.v - c.v) < 1e-12; }) === i;
+    }).sort(function (u, v) { return u.v - v.v; });
+    var f = opts.f || function (x) { return pEvalNum(p, x); };
+    var trozos = [], conj = Conj.vacio();
+    for (var i = 0; i <= ceros.length; i++) {
+      var a = i === 0 ? -Infinity : ceros[i - 1].v;
+      var b = i === ceros.length ? Infinity : ceros[i].v;
+      var m = !isFinite(a) && !isFinite(b) ? 0 : (!isFinite(a) ? b - 1 : (!isFinite(b) ? a + 1 : (a + b) / 2));
+      var s = f(m);
+      var pos = s > 0;
+      trozos.push({ a: a, b: b, muestra: m, valor: s, signo: pos ? '+' : '−', cumple: Rl.ok(s) });
+      if (Rl.ok(s)) conj = conj.union(Conj.intervalo(a, b, false, false));
+    }
+    if (Rl.cerrada) {
+      ceros.forEach(function (c) { if (c.tipo === 'cero') conj = conj.union(Conj.punto(c.v)); });
+    }
+    conj = conj.quita(ceros.filter(function (c) { return c.tipo === 'polo'; }).map(function (c) { return c.v; }));
+    return { ceros: ceros, trozos: trozos, conj: conj, rel: rel, grado: g };
+  }
+  function inecRacional(n, d, rel) {
+    var polos = raicesDe(d).map(function (r) { return { v: r.val(), tex: r.tex(true) }; });
+    return tablaSignos(n, rel, {
+      polos: polos,
+      f: function (x) { var dv = pEvalNum(d, x); return dv === 0 ? NaN : pEvalNum(n, x) / dv; }
+    });
+  }
+  /* HTML de la tabla de signos, grande y legible */
+  function tablaSignosHTML(T, etiqueta) {
+    var cab = ['Intervalo'], fila1 = [], fila2 = [];
+    T.trozos.forEach(function (t) {
+      cab.push(K(intervTex(t)));
+      fila1.push('<span class="eq-sg ' + (t.signo === '+' ? 'eq-sg-p' : 'eq-sg-n') + '">' + t.signo + '</span>');
+      fila2.push(t.cumple ? badge('sí', 'si') : badge('no', 'no'));
+    });
+    var h = '<table class="ap-tbl ap-eq eq-signos"><thead><tr>';
+    cab.forEach(function (c, i) { h += (i ? '<th>' : '<th class="eq-th-lab">') + c + '</th>'; });
+    h += '</tr></thead><tbody><tr><th>Signo de ' + K(etiqueta || 'f(x)') + '</th>';
+    fila1.forEach(function (c) { h += '<td>' + c + '</td>'; });
+    h += '</tr><tr><th>¿Cumple ' + K(RELS[T.rel].tex + ' 0') + '?</th>';
+    fila2.forEach(function (c) { h += '<td>' + c + '</td>'; });
+    return h + '</tr></tbody></table>';
+  }
+  function intervTex(t) {
+    var a = t.a === -Infinity ? '-\\infty' : numTex(t.a);
+    var b = t.b === Infinity ? '+\\infty' : numTex(t.b);
+    return '\\left(' + a + ',\\, ' + b + '\\right)';
+  }
+
+  /* ==================================================================
+     E12 · comprobación de una solución, para el hábito de verificar
+     ================================================================== */
+  function comprueba(izq, der, x) {
+    var a = pEvalNum(izq, x), b = pEvalNum(der, x);
+    return { izq: a, der: b, ok: Math.abs(a - b) < 1e-9, dif: a - b };
+  }
+
+  /* ==================================================================
+     E13 · applet de diagnóstico (siempre en el núcleo)
+     ================================================================== */
+  R.diagnostico = function (node) {
+    node.classList.add('applet');
+    var M = window.DET || {};
+    function ok(f) { try { return !!f(); } catch (e) { return false; } }
+    function m(txt) { return M.parseMat(txt); }
+    var filas = [
+      ['KaTeX en local', !!window.katex],
+      ['Núcleo det-applets.js', true],
+      ['Capa de álgebra matricial det-applets-alg.js', M.matricial === true],
+      ['Capa de determinantes det-applets-det.js', M.determinantes === true],
+      ['Módulo det-applets-a.js (qué es un determinante, orden 2 y 3)', M.extraA === true],
+      ['Módulo det-applets-b.js (propiedades y cálculo con atajos)', M.extraB === true],
+      ['Módulo det-applets-c.js (menores, adjuntos y desarrollo)', M.extraC === true],
+      ['Módulo det-applets-d.js (orden superior y método de hacer ceros)', M.extraD === true],
+      ['Módulo det-applets-e.js (menores de una matriz y rango)', M.extraE === true],
+      ['Módulo det-applets-f.js (matriz adjunta, inversa y práctica)', M.extraF === true],
+      ['Lectura de matrices desde texto', ok(function () {
+        var A = m('1 2 3; 4 5 6');
+        return A.f === 2 && A.c === 3 && A.a[1][2].val() === 6;
+      })],
+      ['Determinante de orden 2', ok(function () {
+        return M.det(m('3 1; 5 2')).val() === 1 && M.det(m('2 4; 1 2')).val() === 0;
+      })],
+      ['Determinante de orden 3 por Sarrus', ok(function () {
+        var S = M.sarrus(m('1 2 3; 4 5 6; 7 8 10'));
+        return S.total.val() === -3 && S.positivos.length === 3 && S.negativos.length === 3;
+      })],
+      ['Sarrus coincide con el determinante general', ok(function () {
+        var A = m('2 0 1; 3 -1 4; 5 2 -2');
+        return M.sarrus(A).total.val() === M.det(A).val();
+      })],
+      ['Determinante de una matriz triangular', ok(function () {
+        return M.det(m('2 7 9; 0 3 5; 0 0 4')).val() === 24;
+      })],
+      ['Propiedad ' + K('\\det(A^t) = \\det(A)'), ok(function () {
+        var A = m('1 2 3; 0 4 5; 1 0 6');
+        return M.det(M.matTrans(A)).val() === M.det(A).val();
+      })],
+      ['Propiedad det(AB) = det(A)·det(B)', ok(function () {
+        var A = m('1 2; 3 4'), B = m('0 1; 5 2');
+        return M.det(M.matProd(A, B)).val() === M.det(A).val() * M.det(B).val();
+      })],
+      ['Determinante nulo con dos filas proporcionales', ok(function () {
+        return M.det(m('1 2 3; 2 4 6; 5 0 1')).val() === 0;
+      })],
+      ['Menor complementario de un elemento', ok(function () {
+        return M.menorComp(m('1 2 3; 4 5 6; 7 8 10'), 0, 0).val() === 2;
+      })],
+      ['Adjunto de un elemento y su signo', ok(function () {
+        var A = m('1 2 3; 4 5 6; 7 8 10');
+        return M.adjunto(A, 0, 1).val() === 2 && M.signoAdj(0, 1) === -1;
+      })],
+      ['Desarrollo por los adjuntos de una línea', ok(function () {
+        var A = m('1 2 3; 4 5 6; 7 8 10');
+        var D = M.desarrollo(A, 'fila', 0);
+        return D.total.val() === M.det(A).val() && D.terminos.length === 3;
+      })],
+      ['Desarrollo por filas y por columnas coinciden', ok(function () {
+        var A = m('2 -1 0 3; 1 4 5 0; 0 2 1 1; 3 0 2 2');
+        return M.desarrollo(A, 'fila', 2).total.val() === M.desarrollo(A, 'columna', 1).total.val();
+      })],
+      ['Método de hacer ceros', ok(function () {
+        var A = m('1 2 3; 4 5 6; 7 8 10');
+        var C = M.hacerCeros(A);
+        return C.total.val() === M.det(A).val() && C.pasos.length > 0;
+      })],
+      ['Menores de un orden dado', ok(function () {
+        var L = M.menoresDeOrden(m('1 2 3; 4 5 6'), 2);
+        return L.length === 3;
+      })],
+      ['Rango por menores', ok(function () {
+        var R = M.rangoMenores(m('1 2 3; 2 4 6; 1 1 1'));
+        return R.rango === 2 && M.rango(m('1 2 3; 2 4 6; 1 1 1')) === 2;
+      })],
+      ['Rango por menores y por Gauss coinciden', ok(function () {
+        var A = m('1 2 0 1; 2 4 1 3; 3 6 1 4');
+        return M.rangoMenores(A).rango === M.rango(A);
+      })],
+      ['Matriz de los adjuntos', ok(function () {
+        var Adj = M.matAdjuntos(m('1 2; 3 4'));
+        return Adj.a[0][0].val() === 4 && Adj.a[0][1].val() === -3 &&
+               Adj.a[1][0].val() === -2 && Adj.a[1][1].val() === 1;
+      })],
+      ['Inversa por determinantes', ok(function () {
+        var I = M.inversaDet(m('2 1; 1 1'));
+        return I.existe === true && I.inv.a[0][0].val() === 1 && I.inv.a[0][1].val() === -1;
+      })],
+      ['La inversa por determinantes coincide con Gauss-Jordan', ok(function () {
+        var A = m('1 2 3; 0 1 4; 5 6 0');
+        return M.matIgual(M.inversaDet(A).inv, M.inversa(A).inv);
+      })],
+      ['Matriz singular sin inversa', ok(function () {
+        return M.inversaDet(m('1 2; 2 4')).existe === false;
+      })],
+      ['Comprobación ' + K('A\\cdot A^{-1} = I'), ok(function () {
+        var A = m('2 1; 1 1');
+        return M.esIdentidad(M.matProd(A, M.inversaDet(A).inv));
+      })]
+    ];
+    /* --- Comprobación real de montaje de los paneles de la página ---
+       El motor puede calcular bien y, aun así, quedar paneles vacíos
+       (por ejemplo si su módulo no ha cargado). Aquí se recorren los
+       nodos data-applet-det y se cuentan los que no han pintado nada.
+       Se excluye el propio panel de diagnóstico, que en este instante
+       todavía está vacío porque su innerHTML se asigna al final. */
+    var vacios = [];
+    var paneles = document.querySelectorAll('[data-applet-det]');
+    Array.prototype.forEach.call(paneles, function (nd) {
+      if (nd === node) return;
+      if (nd.children.length === 0) vacios.push(nd.getAttribute('data-applet-det') || '(sin clave)');
+    });
+    var totalPaneles = paneles.length;
+    filas.push([
+      'Paneles de la página que han pintado contenido' +
+        (totalPaneles ? ' (' + (totalPaneles - vacios.length) + ' de ' + totalPaneles + ')' : ''),
+      vacios.length === 0
+    ]);
+
+    var buenas = 0;
+    filas.forEach(function (f) { if (f[1]) buenas++; });
+    var h = '<h4 class="mx-title">Applet · Diagnóstico técnico</h4>' +
+      '<div class="mx-instr">Comprueba que el tema ha cargado bien y que el motor calcula lo que debe. ' +
+      'Si alguna fila sale en rojo, revisa el orden de carga en <code>assets/_scripts.html</code>.</div>' +
+      '<table class="ap-tbl ap-eq"><thead><tr><th>Comprobación</th><th>Estado</th></tr></thead><tbody>';
+    filas.forEach(function (f) {
+      h += '<tr><th>' + f[0] + '</th><td>' + badge(f[1] ? 'correcto' : 'falla', f[1] ? 'si' : 'no') + '</td></tr>';
+    });
+    h += '</tbody></table>' +
+      '<p class="ap-note">Comprobaciones esenciales: <strong>' + buenas + ' correctas</strong>, ' +
+      (filas.length - buenas) + ' con fallo.</p>';
+    if (vacios.length) {
+      h += '<p class="ap-warn">Hay ' + vacios.length + ' panel(es) sin montar (quedan vacíos): ' +
+        esc(vacios.join(', ')) + '. Revisa que su módulo esté cargado en ' +
+        '<code>assets/_scripts.html</code> y que la clave esté registrada.</p>';
+    } else if (totalPaneles) {
+      h += '<p class="ap-note">Los ' + totalPaneles + ' paneles de esta página han montado correctamente.</p>';
+    }
+    var errs = window.DET && window.DET.log.length
+      ? '<p class="ap-warn">Se han registrado ' + window.DET.log.length + ' avisos: ' +
+        esc(window.DET.log.map(function (e) { return e.applet + ' — ' + e.error; }).join(' · ')) + '</p>'
+      : '<p class="ap-note">Ningún applet ha registrado errores en esta página.</p>';
+    node.innerHTML = h + errs;
+    tex(node);
+  };
+
+  /* ==================================================================
+     E14 · API pública, arranque y espera de módulos
+     ================================================================== */
+  window.DET = {
+    registry: R,
+    tieneApplet: tieneApplet,
+    /* texto y fórmulas */
+    tex: tex, K: K, KD: KD, texifica: texifica, esc: esc,
+    /* formato */
+    fmt: fmt, nc: nc, etq: etq, kf: kf, mil: mil, milTex: milTex, sig: sig, casi: casi,
+    /* entradas */
+    entero: entero, real: real, fraccionTxt: fraccionTxt, listaReales: listaReales,
+    valorSimbolico: valorSimbolico,
+    /* aritmética exacta */
+    Frac: Frac, mcd: mcd, mcm: mcm, factoriza: factoriza, factorizaTex: factorizaTex,
+    esCuadradoPerfecto: esCuadradoPerfecto, divisores: divisores,
+    /* polinomios (heredado del motor de Polinomios) */
+    parsePol: parsePol, normalizaEntrada: normalizaEntrada,
+    pDe: pDe, pMono: pMono, pRecorta: pRecorta, pCopia: pCopia, pEsCero: pEsCero,
+    pGrado: pGrado, pGradoTxt: pGradoTxt, pLider: pLider, pIndep: pIndep,
+    pSuma: pSuma, pResta: pResta, pOpuesto: pOpuesto, pEscala: pEscala,
+    pMult: pMult, pPot: pPot, pIgual: pIgual, pDiv: pDiv,
+    pEval: pEval, pEvalNum: pEvalNum, pDeriva: pDeriva,
+    pTex: pTex, pTexPar: pTexPar, pEntero: pEntero, CERO: CERO, UNO: UNO,
+    ruffini: ruffini, candidatosRaiz: candidatosRaiz, raicesRacionales: raicesRacionales,
+    factorizaPol: factorizaPol, factorizaTexPol: factorizaTexPol,
+    factorRehacer: factorRehacer, factoresLista: factoresLista,
+    factorLinTex: factorLinTex, potTex: potTex, mcdPol: mcdPol, mcmPol: mcmPol,
+    Frax: Frax, fraxSimplifica: fraxSimplifica, fraxSuma: fraxSuma,
+    fraxMult: fraxMult, fraxDiv: fraxDiv, raicesDe: raicesDe, notable: notable,
+
+    /* --- capa propia del tema: ecuaciones e inecuaciones --- */
+    simplRaiz: simplRaiz, raizTex: raizTex, Irr: Irr, numTex: numTex,
+    Conj: Conj, rectaConj: rectaConj,
+    solLineal: solLineal, resuelveLinealPaso: resuelveLinealPaso,
+    solCuadratica: solCuadratica, cuadTex: cuadTex, raicesTex: raicesTex,
+    solBipotencial: solBipotencial, solPolinomica: solPolinomica,
+    solRacional: solRacional, solRadical: solRadical,
+    esPotencia: esPotencia, solExponencial: solExponencial, solLogaritmica: solLogaritmica,
+    solTrig: solTrig, anguloTex: anguloTex, gradTex: gradTex, NOTABLES: NOTABLES, TRIG: TRIG_NOT,
+    RELS: RELS, inecLineal: inecLineal, tablaSignos: tablaSignos, inecRacional: inecRacional,
+    tablaSignosHTML: tablaSignosHTML, intervTex: intervTex, comprueba: comprueba,
+
+    /* figuras y salida */
+    svgWrap: svgWrap, altoDibujado: altoDibujado,
+    txt: txt, line: line, rect: rect, circle: circle,
+    path: path, poly: poly, leyenda: leyenda, COL: COL,
+    rectaReal: rectaReal, ejes: ejes,
+    expr: expr, terminosHTML: terminosHTML, ruffiniHTML: ruffiniHTML,
+    divisionLargaHTML: divisionLargaHTML,
+    resultado: resultado, badge: badge, kvs: kvs, tabla: tabla, paso: paso,
+    /* tipografía de sumandos negativos: 8 + (−5), nunca 8 + −5 */
+    esNegTxt: esNegTxt, parNegTex: parNegTex, parNegTxt: parNegTxt,
+    sumandosTex: sumandosTex, sumandosTxt: sumandosTxt,
+    shell: shell, log: [],
+    monta: monta
+  };
+
+  /* Monta todos los paneles data-applet-det presentes en la página.
+     Se llama al cargar y también cada vez que un módulo termina de
+     registrarse, de modo que el orden de los <script> no importe. */
+  function monta() {
+    var nodos = document.querySelectorAll('[data-applet-det]');
+    Array.prototype.forEach.call(nodos, function (nd) {
+      var clave = nd.getAttribute('data-applet-det');
+      /* El diagnóstico informa de qué módulos han cargado, así que no
+         puede dibujarse hasta que la página esté completa: los <script>
+         defer de los módulos se ejecutan después de DOMContentLoaded. */
+      if (clave === 'diagnostico' && document.readyState !== 'complete') return;
+      if (nd.getAttribute('data-montado') === '1') return;
+      /* Consulta con hasOwnProperty: nunca por la cadena de prototipos. */
+      if (!tieneApplet(clave)) return;     /* quizá su módulo aún no ha cargado */
+      var f = R[clave];
+      nd.setAttribute('data-montado', '1');
+      try {
+        f(nd);
+      } catch (e) {
+        window.DET.log.push({ applet: clave, error: String(e && e.message || e) });
+        nd.innerHTML = '<p class="ap-warn">Este applet no ha podido montarse (' +
+          esc(String(e && e.message || e)) + ').</p>';
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monta);
+  else monta();
+  window.addEventListener('load', monta);
 })();

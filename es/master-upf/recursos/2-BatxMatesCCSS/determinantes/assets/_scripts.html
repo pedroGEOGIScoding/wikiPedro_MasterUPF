@@ -7,13 +7,24 @@
              include-after-body: assets/_scripts.html
              html-math-method: katex
 
-     ORDEN OBLIGATORIO
+     ORDEN OBLIGATORIO DE CARGA
        1) applets.css            hoja común del curso, en ../assets
        2) det-applets.css        extras propios del tema (clases .mx-*)
        3) katex.min.css          KaTeX servido en LOCAL, sin CDN
        4) katex.min.js           motor de fórmulas, en local
-       5) det-applets.js         núcleo + applets de las partes 1 y 2
-       6) det-applets-extra.js   applets de las partes 3, 4, 5 y 6
+       5) det-applets.js         NÚCLEO (window.DET, shell, formato, KaTeX)
+       6) det-applets-alg.js     capa de álgebra de matrices (Frac/BigInt)
+       7) det-applets-det.js     capa propia del tema: Sarrus, menores,
+                                 adjuntos, desarrollo, hacer ceros, rango
+                                 por menores, matriz adjunta e inversa
+       8) det-applets-a.js       módulo A · qué es un determinante, orden 2 y 3
+       9) det-applets-b.js       módulo B · propiedades y cálculo con atajos
+      10) det-applets-c.js       módulo C · menores, adjuntos y desarrollo
+      11) det-applets-d.js       módulo D · orden superior y hacer ceros
+      12) det-applets-e.js       módulo E · menores de una matriz y rango
+      13) det-applets-f.js       módulo F · adjunta, inversa y práctica
+
+     Los módulos 8-13 dependen de 5, 6 y 7. No cambies el orden.
 
      NOTA SOBRE LAS RUTAS
        Las páginas se renderizan en determinantes/, así que ../assets
@@ -26,11 +37,10 @@
        el resto de la página.
 
      RECORDATORIO PARA EL DESPLIEGUE
-       Si Quarto no copia esta carpeta al sitio, añade en _website.yml:
-         project:
-           resources:
-             - "master-upf/recursos/2-BatxMatesCCSS/assets/**"
-             - "master-upf/recursos/2-BatxMatesCCSS/determinantes/assets/**"
+       Para que Quarto copie esta carpeta al sitio, en _quarto.yml debe
+       constar, dentro de project: resources:
+         - master-upf/recursos/2-BatxMatesCCSS/assets/**
+         - master-upf/recursos/2-BatxMatesCCSS/determinantes/assets/**
      ===================================================================== -->
 
 <link rel="stylesheet" href="../assets/applets.css">
@@ -38,4 +48,11 @@
 <link rel="stylesheet" href="../assets/katex/katex.min.css">
 <script defer src="../assets/katex/katex.min.js"></script>
 <script defer src="assets/det-applets.js"></script>
-<script defer src="assets/det-applets-extra.js"></script>
+<script defer src="assets/det-applets-alg.js"></script>
+<script defer src="assets/det-applets-det.js"></script>
+<script defer src="assets/det-applets-a.js"></script>
+<script defer src="assets/det-applets-b.js"></script>
+<script defer src="assets/det-applets-c.js"></script>
+<script defer src="assets/det-applets-d.js"></script>
+<script defer src="assets/det-applets-e.js"></script>
+<script defer src="assets/det-applets-f.js"></script>

@@ -1,0 +1,562 @@
+---
+title: "Tema 2.2 Determinantes de orden 2 y 3"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 2 de 16)"
+filename: 02-determinantes-orden-2-y-3
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Cálculo efectivo del determinante en los dos casos que se usan a diario, la fórmula del orden 2 como producto de la diagonal principal menos el de la secundaria y su lectura geométrica como área, los seis productos del orden 3 con la regla de Sarrus y el esquema de las diagonales, el aviso de que Sarrus solo sirve en orden 3, la resolución de ecuaciones con la incógnita dentro de un determinante y el cálculo de áreas de triángulos y de recintos irregulares por triangulación, con applets manipulables.
+categories: [determinantes, orden 2, regla de Sarrus, ecuaciones, área, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+En la parte anterior quedó definido qué es un determinante: la suma de todos los productos posibles de un elemento de cada fila y de cada columna, la mitad con su signo y la otra mitad con el contrario. La definición es impecable, pero como receta de cálculo resulta poco amable. Nadie quiere enumerar emparejamientos y decidir signos cada vez que le piden uno.
+
+Afortunadamente, en los dos órdenes que aparecen continuamente —el $2$ y el $3$— la definición se comprime en dos fórmulas cortas que se aprenden en un rato y se usan durante todo el curso. Con dos sumandos en un caso y seis en el otro, todo el trabajo se reduce a multiplicar y restar con orden.
+
+Este apartado hace tres cosas. Primero, deduce y explica esas dos fórmulas, incluida la **regla de Sarrus**, que es la manera visual de recordar los seis productos del orden 3 sin equivocarse de signo. Segundo, resuelve un tipo de ejercicio muy habitual en las pruebas de acceso: las **ecuaciones en las que la incógnita está dentro del determinante**, que ahora podremos plantear y resolver sin ninguna teoría adicional. Y tercero, cierra el problema con el que abrimos el tema, el del **patio del instituto**, calculando de verdad la superficie de un recinto irregular a partir de las coordenadas de sus esquinas.
+
+## Determinante de orden 2
+
+::: {.callout-note}
+## Determinante de una matriz de orden 2
+
+Dada la matriz cuadrada de orden $2$
+
+$$
+A = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix}
+$$
+
+su determinante es el número
+
+$$
+|A| = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}
+= a_{11}a_{22} - a_{12}a_{21}
+$$
+:::
+
+La fórmula sale directamente de la definición y no hay nada que memorizar a ciegas. Con $n=2$ hay $2!=2$ sumandos. El primero toma el elemento de la fila 1 en la columna 1 y el de la fila 2 en la columna 2: es $a_{11}a_{22}$, el producto de la **diagonal principal**. El segundo toma el de la fila 1 en la columna 2 y el de la fila 2 en la columna 1: es $a_{12}a_{21}$, el producto de la **diagonal secundaria**. Uno de los dos lleva signo positivo y el otro negativo, y por convenio —el mismo que hace que $|I|=1$— el positivo es el de la diagonal principal.
+
+De ahí la frase que conviene tener grabada:
+
+> El determinante de orden 2 es **el producto de la diagonal principal menos el producto de la diagonal secundaria**.
+
+### Ejemplo 1. Cuatro determinantes de orden 2
+
+$$
+\begin{vmatrix} 1 & 2 \\ 3 & 4 \end{vmatrix}
+= 1\cdot 4 - 2\cdot 3 = 4 - 6 = -2
+$$
+
+$$
+\begin{vmatrix} 2 & 0 \\ 1 & 5 \end{vmatrix}
+= 2\cdot 5 - 0\cdot 1 = 10 - 0 = 10
+$$
+
+$$
+\begin{vmatrix} 1 & -2 \\ 0 & -5 \end{vmatrix}
+= 1\cdot(-5) - (-2)\cdot 0 = -5 + 0 = -5
+$$
+
+$$
+\begin{vmatrix} -2 & 1 \\ 7 & 12 \end{vmatrix}
+= (-2)\cdot 12 - 1\cdot 7 = -24 - 7 = -31
+$$
+
+Los dos últimos concentran casi todos los errores del orden 2, y son errores de signo, no de multiplicación. En el tercero, el segundo producto es $(-2)\cdot 0 = 0$ y se resta, de modo que queda $-5-0$; quien se salta el paréntesis escribe $-5-(-2)\cdot 0$ mal colocado y acaba cambiando el signo. En el cuarto hay un factor negativo dentro del primer producto: $(-2)\cdot 12 = -24$, y a eso hay que **restarle** $7$, con lo que el resultado se aleja del cero en lugar de acercarse.
+
+::: {.callout-caution}
+## El paréntesis obligatorio
+
+Cuando un elemento es negativo, escríbelo siempre entre paréntesis dentro del producto. La expresión $2\cdot -3$ no está bien escrita; la forma correcta es $2\cdot(-3)$. Y nunca escribas dos signos seguidos: en lugar de $5 + -3$ se escribe $5 + (-3)$, o directamente $5-3$.
+
+En un determinante de orden 3 hay que encadenar seis productos con seis signos, y basta un descuido para arruinar el ejercicio entero.
+:::
+
+### Applet · Determinante de orden 2 {.unnumbered}
+
+Experimenta con el applet siguiente antes de seguir. Modifica los cuatro elementos y observa cómo se iluminan por separado la diagonal principal y la secundaria, y cómo el resultado es siempre la resta de sus productos. Prueba deliberadamente tres situaciones: pon un cero en la diagonal secundaria y comprueba que el determinante se reduce al producto de la principal; haz que las dos filas sean iguales y comprueba que el resultado es cero; y multiplica una fila entera por $3$ y observa que el determinante también queda multiplicado por $3$. Esas dos últimas observaciones son, de hecho, dos de las propiedades que estudiaremos en la parte 3, y verlas aquí con números hace que después parezcan evidentes.
+
+::: {#panel-orden2 .applet-panel data-applet-det="orden2"}
+:::
+
+### Qué mide el determinante de orden 2
+
+Un determinante de orden 2 no es solo una cuenta: **es un área**. Si interpretamos cada fila como un vector del plano,
+
+$$
+\vec{u} = (a_{11},\ a_{12}), \qquad \vec{v} = (a_{21},\ a_{22})
+$$
+
+entonces el valor absoluto de $|A|$ es el área del **paralelogramo** que tiene a $\vec u$ y $\vec v$ por lados.
+
+Esa lectura explica de golpe varios hechos que, de otro modo, habría que memorizar. Si los dos vectores son **proporcionales**, no generan ningún paralelogramo: están sobre la misma recta y la figura tiene área nula, así que el determinante es cero. Si uno de los vectores es el vector nulo, ocurre lo mismo. Y si intercambiamos las dos filas, el paralelogramo es el mismo pero recorrido en sentido contrario, de modo que el área no cambia pero el signo del determinante sí.
+
+Ese signo tiene sentido propio: es positivo cuando $\vec u$ y $\vec v$ están en sentido antihorario y negativo en caso contrario. Por eso, cuando lo que queremos es un área, tomamos valor absoluto al final; y por eso, cuando lo que queremos es saber si tres puntos están alineados, nos basta con mirar si el determinante vale cero, sin preocuparnos por su signo.
+
+## Determinante de orden 3: la regla de Sarrus
+
+::: {.callout-note}
+## Determinante de una matriz de orden 3
+
+Dada la matriz cuadrada de orden $3$
+
+$$
+A = \begin{pmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{pmatrix}
+$$
+
+su determinante es
+
+$$
+|A| = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}
+- a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} - a_{11}a_{23}a_{32}
+$$
+:::
+
+Son los $3!=6$ sumandos que anuncia la definición: tres positivos y tres negativos, cada uno con un factor de cada fila y de cada columna. Comprueba tú mismo el detalle en el primer sumando negativo, $a_{13}a_{22}a_{31}$: los primeros subíndices son $1$, $2$, $3$, una fila cada uno; los segundos son $3$, $2$, $1$, una columna cada una. La condición se cumple, como en los otros cinco.
+
+Memorizar esa fila de seis productos con sus signos es incómodo. La **regla de Sarrus** convierte la memorización en un dibujo.
+
+### El esquema de las diagonales
+
+La versión más segura de la regla consiste en **copiar debajo del determinante sus dos primeras filas**, con lo que se obtiene un rectángulo de cinco filas y tres columnas:
+
+$$
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{array}
+$$
+
+En ese rectángulo hay tres diagonales completas que **descienden hacia la derecha** y tres que **descienden hacia la izquierda**. Las primeras dan los sumandos **positivos** y las segundas los **negativos**:
+
+- Diagonales descendentes hacia la derecha: $a_{11}a_{22}a_{33}$, $a_{21}a_{32}a_{13}$, $a_{31}a_{12}a_{23}$. Reordenando los factores, son exactamente $a_{11}a_{22}a_{33}$, $a_{13}a_{21}a_{32}$ y $a_{12}a_{23}a_{31}$: los tres positivos.
+- Diagonales descendentes hacia la izquierda: $a_{13}a_{22}a_{31}$, $a_{23}a_{32}a_{11}$, $a_{33}a_{12}a_{21}$. Es decir, $a_{13}a_{22}a_{31}$, $a_{11}a_{23}a_{32}$ y $a_{12}a_{21}a_{33}$: los tres negativos.
+
+### Applet · Regla de Sarrus {.unnumbered}
+
+En el applet siguiente vas a ver la regla de Sarrus construida término a término. Introduce una matriz de orden 3 y recorre los seis productos uno por uno: en cada paso el applet resalta las tres casillas que intervienen, muestra el producto con su signo y acumula el total parcial. Experimenta con estas tres pruebas. Primera, introduce una matriz con una fila de ceros y observa que los seis productos se anulan a la vez. Segunda, intercambia dos filas y comprueba que los productos son los mismos pero los signos se han cruzado, de modo que el resultado cambia de signo. Y tercera, introduce una matriz con dos filas iguales y localiza cómo los seis productos se emparejan y se cancelan de dos en dos. Intenta también teclear una matriz de orden 4 y lee el mensaje de aviso: es la limitación que se explica más abajo.
+
+::: {#panel-sarrus .applet-panel data-applet-det="sarrus"}
+:::
+
+### Ejemplo 3. Sarrus paso a paso
+
+Calcula el determinante de
+
+$$
+A = \begin{pmatrix} 2 & 0 & 1 \\ -1 & 3 & -2 \\ -3 & 4 & -4 \end{pmatrix}
+$$
+
+**Sumandos positivos.** Diagonal principal y sus dos paralelas:
+
+$$
+2\cdot 3\cdot(-4) = -24,
+\qquad
+0\cdot(-2)\cdot(-3) = 0,
+\qquad
+1\cdot(-1)\cdot 4 = -4
+$$
+
+Su suma es $-24 + 0 + (-4) = -28$.
+
+**Sumandos negativos.** Diagonal secundaria y sus dos paralelas:
+
+$$
+1\cdot 3\cdot(-3) = -9,
+\qquad
+0\cdot(-1)\cdot(-4) = 0,
+\qquad
+2\cdot(-2)\cdot 4 = -16
+$$
+
+Su suma es $-9 + 0 + (-16) = -25$.
+
+**Resultado.** Se restan los dos bloques:
+
+$$
+|A| = -28 - (-25) = -28 + 25 = -3
+$$
+
+Observa que los tres sumandos «positivos» han salido negativos y los tres «negativos» también. No hay contradicción: positivo y negativo se refieren al **signo con que entran en la suma**, no al signo del producto. Confundir ambas cosas es otro clásico.
+
+### Ejemplo 4. Dos casos con estructura
+
+$$
+\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{vmatrix}
+= 45 + 84 + 96 - 105 - 48 - 72 = 0
+$$
+
+Detalladamente, los positivos son $1\cdot 5\cdot 9 = 45$, $2\cdot 6\cdot 7 = 84$ y $3\cdot 4\cdot 8 = 96$, que suman $225$; los negativos son $3\cdot 5\cdot 7 = 105$, $1\cdot 6\cdot 8 = 48$ y $2\cdot 4\cdot 9 = 72$, que suman también $225$. El determinante es cero, y no por casualidad: la fila central es la media de las otras dos, es decir, es combinación lineal de ellas.
+
+$$
+\begin{vmatrix} 2 & 0 & -2 \\ 0 & 1 & -3 \\ 0 & 3 & 3 \end{vmatrix}
+= 6 + 0 + 0 - 0 + 18 - 0 = 24
+$$
+
+Aquí la primera columna tiene dos ceros y el trabajo se reduce a dos sumandos: del bloque positivo solo sobrevive $2\cdot 1\cdot 3 = 6$, y del negativo solo $2\cdot(-3)\cdot 3 = -18$, que al restarse aporta $+18$. El total es $6+18 = 24$.
+
+### Ejemplo 5. Un cero que no se ve venir
+
+$$
+B = \begin{pmatrix} 3 & -2 & 2 \\ -1 & 5 & 0 \\ 2 & 3 & 2 \end{pmatrix}
+$$
+
+Positivos: $3\cdot 5\cdot 2 = 30$, $(-2)\cdot 0\cdot 2 = 0$ y $2\cdot(-1)\cdot 3 = -6$, que suman $24$. Negativos: $2\cdot 5\cdot 2 = 20$, $(-2)\cdot(-1)\cdot 2 = 4$ y $3\cdot 0\cdot 3 = 0$, que suman $24$. Por tanto
+
+$$
+|B| = 24 - 24 = 0
+$$
+
+Aquí no hay filas iguales ni proporcionales a simple vista, ni ceros llamativos, y sin embargo el determinante se anula. La razón es que la tercera fila es combinación lineal de las otras dos: basta comprobar que $F_1 + F_2 = (3-1,\ -2+5,\ 2+0) = (2,\ 3,\ 2) = F_3$. La consecuencia práctica es importante: **un determinante nulo no siempre se detecta a ojo**, y por eso conviene conocer bien las propiedades de la parte 3.
+
+::: {.callout-warning}
+## La regla de Sarrus **solo** vale para el orden 3
+
+Esta advertencia es de las que hay que subrayar dos veces. La regla de Sarrus no es un principio general: es un truco mnemotécnico que reproduce los seis sumandos del orden 3 y **nada más**.
+
+Aplicarla a una matriz de orden 4 produce ocho productos, cuando el determinante de orden 4 tiene $4!=24$ sumandos. El resultado no es una aproximación ni un caso particular: es sencillamente un número sin ningún significado. Aplicarla a una de orden 2 tampoco tiene sentido, porque allí basta la fórmula de las dos diagonales.
+
+Para el orden 4 y superiores usaremos el **desarrollo por adjuntos** (partes 7 y 8) combinado con el método de **hacer ceros** (parte 9). Si en un examen te encuentras un determinante de orden 4 y aplicas Sarrus, el ejercicio está perdido desde la primera línea.
+:::
+
+## Ecuaciones con la incógnita dentro de un determinante
+
+Como un determinante es un número, se puede igualar a otro número y plantear una ecuación. Es un tipo de ejercicio muy frecuente porque combina dos destrezas: calcular el determinante con soltura y resolver después la ecuación que resulte.
+
+El procedimiento es siempre el mismo y tiene tres pasos: **desarrollar** el determinante con la fórmula que corresponda al orden, **simplificar** agrupando los términos con la incógnita, y **resolver** la ecuación obtenida, sin olvidar comprobar el resultado.
+
+### Applet · Ecuaciones con determinantes {.unnumbered}
+
+Practica con el applet antes de ver los ejemplos resueltos. Escribe una matriz con un parámetro —por ejemplo con $k$ o con $x$ en alguna casilla— y observa cómo el applet desarrolla el determinante y te devuelve el **polinomio** en esa letra, ya reducido, junto con sus raíces. Lo interesante es lo siguiente: prueba a colocar el parámetro en una sola casilla y comprueba que el polinomio sale de primer grado; ponlo después en dos casillas de la misma fila y verás que sigue siendo de primer grado; y colócalo en dos casillas de filas y columnas distintas para obtener un polinomio de segundo grado. Entender de qué depende el grado te permitirá anticipar cuántas soluciones esperar.
+
+::: {#panel-ecuacionDet .applet-panel data-applet-det="ecuacionDet"}
+:::
+
+### Ejemplo 6. Una ecuación de primer grado
+
+Resuelve
+
+$$
+\begin{vmatrix} 1+x & 1-x \\ 1-x & 1+x \end{vmatrix} = 12
+$$
+
+Desarrollamos por la fórmula del orden 2:
+
+$$
+(1+x)(1+x) - (1-x)(1-x) = 12
+$$
+
+$$
+x^2 + 2x + 1 - (x^2 - 2x + 1) = 12
+$$
+
+$$
+x^2 + 2x + 1 - x^2 + 2x - 1 = 12
+$$
+
+Los términos de segundo grado se cancelan y queda $4x = 12$, es decir, $x = 3$.
+
+Comprobación: con $x=3$ el determinante es
+
+$$
+\begin{vmatrix} 4 & -2 \\ -2 & 4 \end{vmatrix} = 16 - 4 = 12
+$$
+
+Nótese el paréntesis en el segundo producto: es imprescindible, porque hay que restar el desarrollo completo de $(1-x)^2$, no solo su primer término. Suprimirlo es el error más común de este ejercicio.
+
+### Ejemplo 7. Una ecuación de tercer grado
+
+Resuelve
+
+$$
+\begin{vmatrix} x-2 & 1-2x \\ x & x^2 \end{vmatrix} = 0
+$$
+
+Desarrollamos:
+
+$$
+(x-2)\,x^2 - (1-2x)\,x = 0
+$$
+
+$$
+x^3 - 2x^2 - x + 2x^2 = 0
+$$
+
+$$
+x^3 - x = 0
+$$
+
+Sacamos factor común $x$, que se puede porque no hay término independiente:
+
+$$
+x\,(x^2-1) = 0
+$$
+
+Un producto es cero cuando lo es alguno de sus factores, así que $x=0$ o bien $x^2-1=0$, de donde $x=1$ y $x=-1$. Hay, pues, **tres soluciones**: $x=-1$, $x=0$ y $x=1$.
+
+### Ejemplo 8. Un parámetro que anula un determinante de orden 3
+
+Calcula el valor de $k$ que anula
+
+$$
+\begin{vmatrix} 3 & 4 & -5 \\ 1 & -1 & 1 \\ 1 & -1 & k \end{vmatrix}
+$$
+
+Antes de desarrollar, mira la matriz. Las filas segunda y tercera son $(1,\,-1,\,1)$ y $(1,\,-1,\,k)$: si $k=1$ serían **idénticas**, y un determinante con dos filas iguales vale cero. La respuesta se ve, por tanto, sin hacer una sola cuenta. Hagamos de todos modos el desarrollo, tanto para confirmarla como para comprobar que no hay otras soluciones.
+
+Positivos: $3\cdot(-1)\cdot k = -3k$; $4\cdot 1\cdot 1 = 4$; $(-5)\cdot 1\cdot(-1) = 5$.
+
+Negativos: $(-5)\cdot(-1)\cdot 1 = 5$; $3\cdot 1\cdot(-1) = -3$; $4\cdot 1\cdot k = 4k$.
+
+$$
+|A| = (-3k + 4 + 5) - (5 - 3 + 4k) = -3k + 9 - 2 - 4k = -7k + 7
+$$
+
+Igualando a cero, $-7k+7=0$, es decir, $k=1$, y es la **única** solución porque la ecuación es de primer grado. La intuición estaba bien encaminada y el cálculo la confirma.
+
+### Ejemplo 9. Un parámetro que da ecuación de segundo grado
+
+Calcula los valores de $k$ que anulan
+
+$$
+\begin{vmatrix} 2 & 1 & -1 \\ 0 & k-6 & 3 \\ k+1 & 2 & 0 \end{vmatrix}
+$$
+
+Aquí la inspección no sugiere nada, así que aplicamos Sarrus sin más.
+
+Positivos: $2\cdot(k-6)\cdot 0 = 0$; $1\cdot 3\cdot(k+1) = 3k+3$; $(-1)\cdot 0\cdot 2 = 0$.
+
+Negativos: $(-1)\cdot(k-6)\cdot(k+1) = -(k^2-5k-6) = -k^2+5k+6$; $2\cdot 3\cdot 2 = 12$; $1\cdot 0\cdot 0 = 0$.
+
+$$
+|A| = (3k+3) - \bigl(-k^2+5k+6+12\bigr) = 3k+3+k^2-5k-18 = k^2-2k-15
+$$
+
+Resolvemos $k^2-2k-15=0$:
+
+$$
+k = \frac{2 \pm \sqrt{4+60}}{2} = \frac{2 \pm 8}{2}
+$$
+
+de donde $k=5$ y $k=-3$. Comprobación rápida con $k=0$: la fórmula predice $|A|=-15$, y en efecto
+
+$$
+\begin{vmatrix} 2 & 1 & -1 \\ 0 & -6 & 3 \\ 1 & 2 & 0 \end{vmatrix}
+= 0 + 3 + 0 - (6 + 12 + 0) = 3 - 18 = -15
+$$
+
+::: {.callout-tip}
+## Comprobar sin rehacer el ejercicio
+
+Cuando obtienes un determinante que depende de un parámetro, dispones de una verificación gratuita y rapidísima: **sustituye un valor cómodo del parámetro**, normalmente $k=0$ o $k=1$, en la matriz de partida y en el polinomio final, y comprueba que los dos caminos dan lo mismo. Si coinciden, es casi seguro que el desarrollo está bien; si no, has localizado el error sin repasar línea por línea.
+
+:::
+
+## Áreas: el problema del patio, resuelto
+
+Ya tenemos todas las piezas para cerrar el problema que abrió el tema.
+
+::: {.callout-note}
+## Área de un triángulo y de un polígono
+
+El área del triángulo de vértices $P(x_1,\,y_1)$, $Q(x_2,\,y_2)$ y $R(x_3,\,y_3)$ es
+
+$$
+S = \frac{1}{2}\left|\ \begin{vmatrix} x_2-x_1 & y_2-y_1 \\ x_3-x_1 & y_3-y_1 \end{vmatrix}\ \right|
+$$
+
+donde las barras exteriores sí son un valor absoluto ordinario. Equivalentemente, con un determinante de orden 3:
+
+$$
+S = \frac{1}{2}\left|\ \begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix}\ \right|
+$$
+
+Un polígono de $k$ vértices se descompone en $k-2$ triángulos trazando diagonales desde un mismo vértice, y su área es la suma de las áreas de esos triángulos.
+:::
+
+### Applet · Área con determinantes {.unnumbered}
+
+Con el applet siguiente vas a ver la conexión entre álgebra y geometría en directo. Arrastra los tres vértices del triángulo por la cuadrícula y observa simultáneamente el determinante y el área. Haz tres experimentos concretos. Primero, coloca los tres puntos sobre una misma recta y comprueba que el determinante se hace exactamente cero. Segundo, intercambia el orden de dos vértices y verás que el determinante cambia de signo mientras el área permanece igual: ahí se toca con el dedo por qué hace falta el valor absoluto. Y tercero, duplica las coordenadas de los dos vectores y observa que el área se multiplica por cuatro, no por dos, que es lo que cabe esperar de una magnitud de superficie.
+
+::: {#panel-areaDet .applet-panel data-applet-det="areaDet"}
+:::
+
+### Ejemplo 10. Área de un triángulo
+
+Calcula el área del triángulo de vértices $P(0,\,0)$, $Q(6,\,1)$ y $R(2,\,5)$, con las coordenadas en metros.
+
+Los vectores que salen de $P$ son $\overrightarrow{PQ}=(6,\,1)$ y $\overrightarrow{PR}=(2,\,5)$. El determinante es
+
+$$
+D = \begin{vmatrix} 6 & 1 \\ 2 & 5 \end{vmatrix} = 6\cdot 5 - 1\cdot 2 = 30 - 2 = 28
+$$
+
+y el área vale
+
+$$
+S = \frac{28}{2} = 14 \ \text{m}^2
+$$
+
+Con la variante de orden 3 se obtiene lo mismo:
+
+$$
+\begin{vmatrix} 0 & 0 & 1 \\ 6 & 1 & 1 \\ 2 & 5 & 1 \end{vmatrix}
+= 0 + 0 + 30 - 2 - 0 - 0 = 28
+$$
+
+### Ejemplo 11. La superficie del patio
+
+Un patio tiene forma de cuadrilátero. Situando el origen de coordenadas en una de sus esquinas y midiendo en metros, los cuatro vértices, recorridos en orden, son
+
+$$
+A(0,\,0), \qquad B(30,\,0), \qquad C(34,\,18), \qquad D(6,\,25)
+$$
+
+Triangulamos desde $A$ trazando la diagonal $AC$: el cuadrilátero queda partido en los triángulos $ABC$ y $ACD$.
+
+**Triángulo $ABC$.** Los vectores desde $A$ son $\overrightarrow{AB}=(30,\,0)$ y $\overrightarrow{AC}=(34,\,18)$:
+
+$$
+\begin{vmatrix} 30 & 0 \\ 34 & 18 \end{vmatrix} = 30\cdot 18 - 0\cdot 34 = 540
+\qquad\Longrightarrow\qquad
+S_1 = \frac{540}{2} = 270 \ \text{m}^2
+$$
+
+**Triángulo $ACD$.** Los vectores desde $A$ son $\overrightarrow{AC}=(34,\,18)$ y $\overrightarrow{AD}=(6,\,25)$:
+
+$$
+\begin{vmatrix} 34 & 18 \\ 6 & 25 \end{vmatrix} = 34\cdot 25 - 18\cdot 6 = 850 - 108 = 742
+\qquad\Longrightarrow\qquad
+S_2 = \frac{742}{2} = 371 \ \text{m}^2
+$$
+
+**Superficie total.**
+
+$$
+S = S_1 + S_2 = 270 + 371 = 641 \ \text{m}^2
+$$
+
+El patio mide $641$ metros cuadrados. Fíjate en lo que ha hecho falta: cuatro pares de coordenadas leídos en un mapa y dos determinantes de orden 2. Ni una sola altura, ni una sola medida sobre el terreno. Ese es exactamente el tipo de problema que las matemáticas resuelven mejor que el sentido común.
+
+::: {.callout-caution}
+## Errores típicos del orden 2 y del orden 3
+
+**Restar mal el bloque negativo.** En Sarrus hay que restar la **suma completa** de los tres productos negativos. Si esa suma es negativa, al restarla se convierte en positiva; olvidar el paréntesis en ese punto es el fallo número uno.
+
+**Contar cinco productos, o siete.** Los sumandos son exactamente seis, tres y tres. Cuenta siempre antes de sumar.
+
+**Usar Sarrus en orden 4.** Está prohibido y da un número sin sentido.
+
+**Olvidar el valor absoluto en un área**, o ponerlo cuando lo que se pide es el determinante. Un área nunca es negativa; un determinante sí.
+
+:::
+
+## Resumen del apartado
+
+- Orden 2: $\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22}\end{vmatrix} = a_{11}a_{22}-a_{12}a_{21}$, es decir, diagonal principal menos diagonal secundaria.
+- Orden 3: seis sumandos, tres positivos y tres negativos, que la **regla de Sarrus** organiza copiando debajo las dos primeras filas y leyendo las diagonales.
+- **La regla de Sarrus solo es válida en orden 3.** Para órdenes superiores se usan los adjuntos y el método de hacer ceros.
+- Escribe siempre los elementos negativos entre paréntesis y resta el bloque negativo completo.
+- Un determinante puede igualarse a un número y dar lugar a una **ecuación**: se desarrolla, se agrupa la incógnita y se resuelve. El grado depende de en cuántas filas y columnas distintas aparece la incógnita.
+- Antes de desarrollar un determinante con parámetro, **míralo**: dos filas que se vuelven iguales para cierto valor dan una solución inmediata.
+- El valor absoluto de un determinante de orden 2 es el área del paralelogramo formado por sus filas vistas como vectores; el área de un triángulo es su mitad.
+- Un recinto poligonal se mide **triangulando** desde un vértice: un polígono de $k$ vértices da $k-2$ triángulos.
+
+## Ejercicios propuestos
+
+**1.** Calcula:
+
+$$
+\begin{vmatrix} 3 & -1 \\ 5 & 2 \end{vmatrix},
+\qquad
+\begin{vmatrix} -4 & 6 \\ -2 & 3 \end{vmatrix},
+\qquad
+\begin{vmatrix} 0 & -7 \\ 8 & 0 \end{vmatrix},
+\qquad
+\begin{vmatrix} \tfrac{1}{2} & 3 \\ 4 & -1 \end{vmatrix}
+$$
+
+**2.** Calcula por la regla de Sarrus:
+
+$$
+\begin{vmatrix} 1 & 3 & -2 \\ 0 & 4 & 1 \\ 2 & -1 & 5 \end{vmatrix}
+\qquad\text{y}\qquad
+\begin{vmatrix} 2 & -1 & 3 \\ 1 & 0 & -2 \\ 4 & 1 & -1 \end{vmatrix}
+$$
+
+**3.** Halla el valor de $m$ para que cada determinante valga cero:
+
+a) $\begin{vmatrix} 1 & 2 \\ m & 0 \end{vmatrix}$, b) $\begin{vmatrix} m & 2 \\ 3 & m \end{vmatrix}$, c) $\begin{vmatrix} m & 2 \\ -2 & m \end{vmatrix}$.
+
+**4.** Resuelve la ecuación
+
+$$
+\begin{vmatrix} x & 1 & 1 \\ 1 & x & 1 \\ 1 & 1 & x \end{vmatrix} = 0
+$$
+
+**5.** Comprueba si los puntos $A(-1,\,2)$, $B(2,\,3)$ y $C(8,\,5)$ están alineados.
+
+**6.** Calcula el área del triángulo de vértices $P(1,\,1)$, $Q(4,\,2)$ y $R(2,\,5)$.
+
+**7.** Determina el área del cuadrilátero de vértices $A(0,\,0)$, $B(8,\,2)$, $C(10,\,9)$ y $D(1,\,6)$, triangulando desde $A$.
+
+**8.** Sin desarrollar del todo, razona cuánto vale
+
+$$
+\begin{vmatrix} 5 & 5 & 5 \\ 2 & 7 & -3 \\ 10 & 10 & 10 \end{vmatrix}
+$$
+
+**9.** Halla los valores de $k$ para los que la matriz siguiente **no** tiene inversa:
+
+$$
+A = \begin{pmatrix} k & 1 & 0 \\ 2 & k & 1 \\ 0 & 1 & 1 \end{pmatrix}
+$$
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $3\cdot 2 - (-1)\cdot 5 = 6+5 = 11$. $(-4)\cdot 3 - 6\cdot(-2) = -12+12 = 0$; las filas son proporcionales. $0\cdot 0 - (-7)\cdot 8 = 56$. $\tfrac{1}{2}\cdot(-1) - 3\cdot 4 = -\tfrac{1}{2} - 12 = -\tfrac{25}{2} = -12{,}5$.
+
+**2.** Primero: positivos $1\cdot 4\cdot 5 = 20$, $3\cdot 1\cdot 2 = 6$, $(-2)\cdot 0\cdot(-1) = 0$, suman $26$; negativos $(-2)\cdot 4\cdot 2 = -16$, $1\cdot 1\cdot(-1) = -1$, $3\cdot 0\cdot 5 = 0$, suman $-17$. Por tanto $26-(-17) = 43$.
+
+Segundo: positivos $2\cdot 0\cdot(-1) = 0$, $(-1)\cdot(-2)\cdot 4 = 8$, $3\cdot 1\cdot 1 = 3$, suman $11$; negativos $3\cdot 0\cdot 4 = 0$, $2\cdot(-2)\cdot 1 = -4$, $(-1)\cdot 1\cdot(-1) = 1$, suman $-3$. Por tanto $11-(-3) = 14$.
+
+**3.** a) $1\cdot 0 - 2m = -2m = 0$, luego $m=0$. b) $m^2 - 6 = 0$, luego $m = \sqrt{6}$ o $m = -\sqrt{6}$. c) $m^2 + 4 = 0$ no tiene solución real: **no existe** ningún valor de $m$ que lo anule, porque $m^2+4 \ge 4$ para todo $m$ real.
+
+**4.** Desarrollando por Sarrus: positivos $x^3$, $1$ y $1$; negativos $x$, $x$ y $x$. Queda $x^3 - 3x + 2 = 0$. Se ve que $x=1$ es raíz, y dividiendo se obtiene $x^3-3x+2 = (x-1)(x^2+x-2) = (x-1)(x-1)(x+2)$. Las soluciones son $x=1$ (doble) y $x=-2$. La primera se podía anticipar: con $x=1$ las tres filas son iguales.
+
+**5.** $\overrightarrow{AB} = (3,\,1)$ y $\overrightarrow{AC} = (9,\,3)$. El determinante vale $3\cdot 3 - 1\cdot 9 = 0$, luego **sí** están alineados: $\overrightarrow{AC} = 3\,\overrightarrow{AB}$.
+
+**6.** $\overrightarrow{PQ} = (3,\,1)$ y $\overrightarrow{PR} = (1,\,4)$. El determinante es $3\cdot 4 - 1\cdot 1 = 11$ y el área $\tfrac{11}{2} = 5{,}5$ unidades cuadradas.
+
+**7.** Triángulo $ABC$: $\overrightarrow{AB}=(8,\,2)$, $\overrightarrow{AC}=(10,\,9)$, determinante $8\cdot 9 - 2\cdot 10 = 52$, área $26$. Triángulo $ACD$: $\overrightarrow{AC}=(10,\,9)$, $\overrightarrow{AD}=(1,\,6)$, determinante $10\cdot 6 - 9\cdot 1 = 51$, área $25{,}5$. Superficie total: $26 + 25{,}5 = 51{,}5$ unidades cuadradas.
+
+**8.** Vale **cero**. La tercera fila es el doble de la primera, es decir, las filas primera y tercera son proporcionales, y eso anula el determinante. Si se prefiere, la primera fila tiene todos sus elementos iguales y la tercera también, con lo que en el desarrollo cada producto positivo encuentra su gemelo negativo. Desarrollando por Sarrus se confirma: $350 - 150 + 100 - 350 - 100 + 150 = 0$.
+
+**9.** La matriz no tiene inversa cuando su determinante se anula. Por Sarrus, los positivos son $k\cdot k\cdot 1 = k^2$, $1\cdot 1\cdot 0 = 0$ y $0\cdot 2\cdot 1 = 0$; los negativos son $0\cdot k\cdot 0 = 0$, $k\cdot 1\cdot 1 = k$ y $1\cdot 2\cdot 1 = 2$. Así pues $|A| = k^2 - k - 2 = (k-2)(k+1)$, que se anula para $k=2$ y $k=-1$. Para cualquier otro valor de $k$ la matriz sí tiene inversa.
+
+:::
+
+## Continúa
+
+Ya sabes calcular determinantes de orden 2 y 3, pero has visto también que a veces el resultado se adivina antes de operar: filas iguales, filas proporcionales, filas de ceros, matrices triangulares. En el apartado siguiente esas observaciones sueltas se convierten en **once propiedades** con enunciado preciso y justificación, y en el posterior aprenderás a explotarlas para calcular determinantes con una fracción del trabajo, incluso de órdenes que Sarrus no alcanza.

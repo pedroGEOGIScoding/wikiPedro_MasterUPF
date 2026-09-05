@@ -1,0 +1,480 @@
+---
+title: "Tema 2.4 Cálculo de un determinante usando sus propiedades"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 4 de 16)"
+filename: 04-calculo-con-propiedades
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Estrategia de cálculo con determinantes, con el protocolo de mirar antes de operar, la detección a simple vista de líneas de ceros, líneas iguales, proporcionales o combinación lineal de las demás, la extracción de factores comunes de una línea o de la matriz entera, la triangulación mediante la propiedad de sumar a una línea un múltiplo de otra y varios ejemplos completos de orden 3 y de orden 4 resueltos sin desarrollar, con applets manipulables.
+categories: [determinantes, propiedades, factor común, triangulación, estrategia, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hay dos maneras de enfrentarse a un determinante. La primera consiste en lanzarse a calcular: aplicar Sarrus, encadenar los seis productos y confiar en no perder ningún signo. La segunda consiste en **mirarlo primero**, buscar en él una estructura que permita simplificarlo y solo después, si hace falta, calcular. La diferencia entre ambas no es de estilo, sino de resultados: la primera falla en cuanto el orden pasa de tres o los números crecen; la segunda funciona siempre.
+
+Este apartado enseña la segunda. Con las once propiedades de la parte anterior en la mano, vas a aprender un **protocolo de inspección** que se aplica antes de escribir nada, y tres técnicas de simplificación que resuelven la inmensa mayoría de los ejercicios: reconocer los determinantes que valen cero, extraer factores comunes y triangular con la propiedad 9.
+
+Verás determinantes de orden 4 resueltos sin haber estudiado todavía el desarrollo por adjuntos, y verás también determinantes con letras que se resuelven en tres líneas. La idea que debe quedarte es sencilla y vale para todo el curso: **en matemáticas, la observación es una forma de cálculo**.
+
+## Antes de calcular, mirar
+
+::: {.callout-note}
+## Protocolo de inspección
+
+Ante cualquier determinante, y antes de escribir una sola multiplicación, recorre esta lista por orden:
+
+1. ¿Hay una **línea de ceros**? Si la hay, el determinante vale $0$ y hemos terminado.
+2. ¿Hay **dos líneas iguales**? Si las hay, vale $0$.
+3. ¿Hay **dos líneas proporcionales**? Si las hay, vale $0$.
+4. ¿Hay una línea que sea **suma o combinación lineal** de otras? Si la hay, vale $0$.
+5. ¿La matriz es **triangular o diagonal**? Si lo es, el resultado es el producto de la diagonal principal.
+6. ¿Hay algún **factor común** en alguna línea? Si lo hay, sácalo fuera y trabaja con números más pequeños.
+7. ¿Hay algún **$1$ o $-1$** bien situado? Si lo hay, úsalo de pivote para hacer ceros.
+
+Solo si ninguna de las siete preguntas da fruto se pasa al cálculo directo.
+:::
+
+Las cuatro primeras preguntas son detectores de cero; las tres últimas, simplificadores. Recorrer la lista cuesta veinte segundos y ahorra, con frecuencia, todo el ejercicio.
+
+### Los cuatro detectores de cero
+
+Conviene entrenar el ojo con casos concretos. En los cuatro determinantes siguientes el resultado es $0$ y en ninguno de ellos hace falta calcular nada:
+
+$$
+\begin{vmatrix} 3 & 1 & 4 \\ 0 & 0 & 0 \\ 2 & 9 & 1 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 7 & 1 & 0 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 5 & 7 & 9 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 5 & 6 \\ 2 & 3 & 5 \\ 4 & 1 & 5 \end{vmatrix}
+$$
+
+En el primero hay una fila de ceros. En el segundo, $F_2 = 2F_1$: filas proporcionales. En el tercero, $F_3 = F_1 + F_2$, una fila combinación lineal de las otras. Y en el cuarto la trampa está en las columnas: $C_3 = C_1 + C_2$, porque $1+5=6$, $2+3=5$ y $4+1=5$. Este último es el más difícil de ver, y por eso el protocolo debe recorrerse **mirando filas y columnas**, no solo filas.
+
+::: {.callout-caution}
+## Los tres despistes de la inspección
+
+**Mirar solo las filas.** La propiedad 1 garantiza que todo vale igual para columnas, y muchos enunciados esconden ahí la simetría. Acostúmbrate a leer el determinante en las dos direcciones.
+
+**Buscar únicamente proporciones enteras.** Dos líneas pueden ser proporcionales con razón $\tfrac{1}{2}$, $-3$ o $0{,}4$. Comprueba la razón en todas las posiciones, no solo en la primera.
+
+**Confundir «tiene ceros» con «vale cero».** Una matriz llena de ceros dispersos puede tener determinante distinto de cero. Solo una **línea entera** de ceros lo anula con seguridad.
+:::
+
+### Inspección de un caso completo
+
+$$
+\begin{vmatrix} 12 & 7 & 19 \\ -4 & 25 & 21 \\ 8 & 32 & 40 \end{vmatrix}
+$$
+
+Los números invitan a calcular deprisa y mal: seis productos de dos cifras y una resta final con muchas probabilidades de descuido. Antes de eso, recorramos el protocolo.
+
+No hay líneas de ceros, ni iguales, ni proporcionales. La tercera fila es múltiplo de $8$, así que ya hay algo que aprovechar. Pero merece la pena seguir mirando, y en concreto mirar **las columnas**. Observa la primera fila: $12 + 7 = 19$. Ahora la segunda: $-4 + 25 = 21$. Y la tercera: $8 + 32 = 40$. En las tres se cumple lo mismo, es decir,
+
+$$
+C_3 = C_1 + C_2
+$$
+
+La tercera columna es combinación lineal de las otras dos y, por la propiedad 8, el determinante vale **cero**. Cero multiplicaciones, cero riesgo de error.
+
+Este ejemplo enseña dos cosas. La primera, que una relación puede estar oculta en las columnas cuando las filas no dicen nada. Y la segunda, que conviene comprobar sumas y restas sencillas entre líneas —$C_1+C_2$, $F_1-F_2$, $F_1+F_3$— antes de dar por perdida la inspección: son las combinaciones lineales más habituales en los enunciados.
+
+### Applet · Atajos y detectores {.unnumbered}
+
+Este applet es un entrenador de vista. Introduce una matriz cuadrada y, antes de pulsar nada, decide tú si su determinante vale cero y por qué; después pide el análisis y el panel te dirá qué propiedades ha detectado —línea de ceros, líneas iguales, proporcionales, combinación lineal, estructura triangular, factores comunes— y cuál es el camino más corto hasta el resultado. Usa los escenarios preparados para entrenar los casos difíciles, especialmente los que esconden la relación en las columnas y no en las filas. Un buen ejercicio: carga un escenario, tapa la pantalla con la mano, apuesta por un valor y compruébalo después. Repítelo hasta acertar diez seguidos.
+
+::: {#panel-atajos .applet-panel data-applet-det="atajos"}
+:::
+
+## Sacar factor común de una línea
+
+La propiedad 5 dice que multiplicar una línea por $k$ multiplica el determinante por $k$. Leída al revés, permite **extraer** un factor común de una línea y sacarlo fuera del determinante. Es la técnica que más simplifica el cálculo cuando aparecen números grandes o fracciones.
+
+::: {.callout-important}
+## Un factor por cada línea, no por cada matriz
+
+Cuando saques un factor común, deja muy claro **de qué línea** lo has sacado, y que solo lo sacas **una vez**. El error clásico consiste en ver que todos los elementos de la matriz son múltiplos de $2$ y escribir un único $2$ fuera. Si la matriz es de orden 3 y las tres filas se dividen entre $2$, salen fuera tres doses, es decir, $2^{3} = 8$. Es la misma cuestión de $|kA| = k^{n}|A|$ vista desde el otro lado.
+:::
+
+### Ejemplo 1. Un factor en cada fila
+
+$$
+\begin{vmatrix} 3 & 6 & 9 \\ 2 & 5 & 1 \\ 4 & 0 & 8 \end{vmatrix}
+$$
+
+La primera fila es múltiplo de $3$ y la tercera lo es de $4$. Sacamos los dos factores:
+
+$$
+= 3\cdot\begin{vmatrix} 1 & 2 & 3 \\ 2 & 5 & 1 \\ 4 & 0 & 8 \end{vmatrix}
+= 3\cdot 4\cdot\begin{vmatrix} 1 & 2 & 3 \\ 2 & 5 & 1 \\ 1 & 0 & 2 \end{vmatrix}
+$$
+
+Ahora Sarrus sobre números pequeños. Positivos: $1\cdot 5\cdot 2 = 10$, $2\cdot 1\cdot 1 = 2$ y $3\cdot 2\cdot 0 = 0$, que suman $12$. Negativos: $3\cdot 5\cdot 1 = 15$, $1\cdot 1\cdot 0 = 0$ y $2\cdot 2\cdot 2 = 8$, que suman $23$. Por tanto el determinante interior vale $12 - 23 = -11$ y
+
+$$
+|A| = 12\cdot(-11) = -132
+$$
+
+Si hubiéramos aplicado Sarrus directamente sobre la matriz de partida habríamos manejado productos como $3\cdot 5\cdot 8 = 120$ y $9\cdot 2\cdot 0$, con mucho más riesgo de error aritmético.
+
+### Ejemplo 2. Factor común y detector combinados
+
+$$
+\begin{vmatrix} 101 & 102 & 103 \\ 104 & 105 & 106 \\ 107 & 108 & 109 \end{vmatrix}
+$$
+
+Aquí no hay ningún factor común evidente y los números son incómodos. Pero la propiedad 9 permite restar columnas sin alterar el resultado. Hacemos $C_2 \rightarrow C_2 - C_1$ y $C_3 \rightarrow C_3 - C_1$:
+
+$$
+= \begin{vmatrix} 101 & 1 & 2 \\ 104 & 1 & 2 \\ 107 & 1 & 2 \end{vmatrix}
+$$
+
+Y ahora salta a la vista: la tercera columna es el doble de la segunda, luego el determinante vale $0$. Tres restas y una mirada han sustituido a seis productos de tres cifras.
+
+### Applet · Sacar factor común {.unnumbered}
+
+Practica la extracción de factores con este applet. Introduce una matriz y el panel te indica, línea por línea, cuál es el máximo común divisor de sus elementos y qué queda dentro al sacarlo. Experimenta con tres situaciones. Primera, saca el factor de una sola fila y comprueba que el determinante interior queda dividido exactamente por ese número. Segunda, saca factores de dos o tres líneas seguidas y observa cómo se acumulan multiplicándose fuera. Y tercera —la más instructiva—, carga una matriz cuyos elementos sean todos múltiplos de $2$, saca el factor de cada fila por separado y comprueba que el resultado global es $2^{n}$, no $2$. Prueba también con matrices de fracciones: sacar un denominador común convierte el determinante en otro de números enteros.
+
+::: {#panel-factorComun .applet-panel data-applet-det="factorComun"}
+:::
+
+### Ejemplo 3. Factor común con letras
+
+$$
+\begin{vmatrix} 1 & a & b+c \\ 1 & b & a+c \\ 1 & c & a+b \end{vmatrix}
+$$
+
+La estructura sugiere sumar la segunda columna a la tercera. Hacemos $C_3 \rightarrow C_3 + C_2$, operación que por la propiedad 9 no altera el determinante:
+
+$$
+= \begin{vmatrix} 1 & a & a+b+c \\ 1 & b & a+b+c \\ 1 & c & a+b+c \end{vmatrix}
+$$
+
+Ahora la tercera columna tiene factor común $a+b+c$, que sacamos fuera:
+
+$$
+= (a+b+c)\cdot\begin{vmatrix} 1 & a & 1 \\ 1 & b & 1 \\ 1 & c & 1 \end{vmatrix} = (a+b+c)\cdot 0 = 0
+$$
+
+porque el determinante que queda tiene las columnas primera y tercera iguales. El resultado es $0$ **para cualesquiera valores de $a$, $b$ y $c$**, y se ha obtenido sin desarrollar ni un solo producto.
+
+## Triangular con la propiedad 9
+
+La técnica más potente del apartado consiste en usar $F_i \rightarrow F_i + k\,F_j$ para fabricar ceros hasta dejar la matriz triangular, y aplicar entonces la propiedad 11: el determinante es el producto de la diagonal principal.
+
+::: {.callout-note}
+## El método, paso a paso
+
+1. **Consigue un $1$ o un $-1$ en la esquina superior izquierda.** Si no lo hay, intercambia dos líneas para llevarlo allí, recordando que cada intercambio cambia el signo; o saca un factor común de alguna línea para fabricarlo.
+2. **Haz ceros en el resto de la primera columna** con transformaciones del tipo $F_i \rightarrow F_i - a_{i1}F_1$. Ninguna de ellas altera el determinante.
+3. **Repite el proceso** con el elemento de la posición $(2,2)$ para la segunda columna, después con el $(3,3)$, y así sucesivamente.
+4. **Multiplica la diagonal principal** de la matriz triangular obtenida y no olvides los signos de los intercambios ni los factores que hayas sacado.
+:::
+
+::: {.callout-warning}
+## Las tres operaciones no son intercambiables
+
+Repítelo mentalmente cada vez que hagas una transformación:
+
+- $F_i \rightarrow F_i + k\,F_j$: el determinante **no cambia**. Es la operación gratuita.
+- $F_i \leftrightarrow F_j$: el determinante **cambia de signo**.
+- $F_i \rightarrow k\,F_i$: el determinante **queda multiplicado por $k$**, así que hay que dividir por $k$ al final, o mejor, escribir el factor fuera en el momento de sacarlo.
+
+Y una cuarta que **no** es válida: no se puede sustituir $F_i$ por $2F_i + 3F_j$ y seguir como si nada, porque ahí hay una multiplicación escondida que multiplica el determinante por $2$. Si necesitas hacerlo, escribe el $\tfrac{1}{2}$ correspondiente fuera del determinante.
+:::
+
+### Ejemplo 4. Triangulación en orden 3
+
+Calcula
+
+$$
+|A| = \begin{vmatrix} 2 & -1 & 3 \\ 1 & 2 & -1 \\ 3 & 1 & 4 \end{vmatrix}
+$$
+
+**Paso 1.** No hay un $1$ en la esquina, pero sí en la posición $(2,1)$. Intercambiamos las dos primeras filas, lo que cambia el signo:
+
+$$
+|A| = -\begin{vmatrix} 1 & 2 & -1 \\ 2 & -1 & 3 \\ 3 & 1 & 4 \end{vmatrix}
+$$
+
+**Paso 2.** Hacemos ceros bajo el pivote con $F_2 \rightarrow F_2 - 2F_1$ y $F_3 \rightarrow F_3 - 3F_1$. La segunda fila pasa a ser $(2-2,\ -1-4,\ 3+2) = (0,\,-5,\,5)$ y la tercera $(3-3,\ 1-6,\ 4+3) = (0,\,-5,\,7)$:
+
+$$
+|A| = -\begin{vmatrix} 1 & 2 & -1 \\ 0 & -5 & 5 \\ 0 & -5 & 7 \end{vmatrix}
+$$
+
+**Paso 3.** Con $F_3 \rightarrow F_3 - F_2$ la tercera fila queda $(0,\,0,\,2)$:
+
+$$
+|A| = -\begin{vmatrix} 1 & 2 & -1 \\ 0 & -5 & 5 \\ 0 & 0 & 2 \end{vmatrix}
+$$
+
+**Paso 4.** La matriz es triangular superior, así que el determinante interior es el producto de la diagonal:
+
+$$
+|A| = -\bigl(1\cdot(-5)\cdot 2\bigr) = -(-10) = 10
+$$
+
+Comprobación por Sarrus sobre la matriz original: positivos $2\cdot 2\cdot 4 = 16$, $(-1)\cdot(-1)\cdot 3 = 3$ y $3\cdot 1\cdot 1 = 3$, que suman $22$; negativos $3\cdot 2\cdot 3 = 18$, $2\cdot(-1)\cdot 1 = -2$ y $(-1)\cdot 1\cdot 4 = -4$, que suman $12$. Y en efecto $22 - 12 = 10$.
+
+### Ejemplo 5. Un determinante de orden 4
+
+Aquí la regla de Sarrus no existe y el desarrollo directo tendría $24$ sumandos. Con la propiedad 9 se resuelve en cuatro pasos.
+
+$$
+|M| = \begin{vmatrix} 1 & 2 & -1 & 3 \\ 2 & 3 & 1 & -1 \\ -1 & 1 & 4 & 2 \\ 3 & -2 & 0 & 1 \end{vmatrix}
+$$
+
+**Paso 1.** El pivote ya está: $a_{11} = 1$. Hacemos ceros en el resto de la primera columna con $F_2 \rightarrow F_2 - 2F_1$, $F_3 \rightarrow F_3 + F_1$ y $F_4 \rightarrow F_4 - 3F_1$:
+
+$$
+|M| = \begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -1 & 3 & -7 \\ 0 & 3 & 3 & 5 \\ 0 & -8 & 3 & -8 \end{vmatrix}
+$$
+
+Comprueba una de las filas para convencerte: la tercera era $(-1,\,1,\,4,\,2)$ y al sumarle la primera queda $(-1+1,\ 1+2,\ 4-1,\ 2+3) = (0,\,3,\,3,\,5)$.
+
+**Paso 2.** El nuevo pivote es el $-1$ de la posición $(2,2)$. Hacemos ceros debajo con $F_3 \rightarrow F_3 + 3F_2$ y $F_4 \rightarrow F_4 - 8F_2$:
+
+$$
+|M| = \begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -1 & 3 & -7 \\ 0 & 0 & 12 & -16 \\ 0 & 0 & -21 & 48 \end{vmatrix}
+$$
+
+En efecto, $(0,\,3,\,3,\,5) + 3\cdot(0,\,-1,\,3,\,-7) = (0,\,0,\,12,\,-16)$, y $(0,\,-8,\,3,\,-8) - 8\cdot(0,\,-1,\,3,\,-7) = (0,\,0,\,-21,\,48)$.
+
+**Paso 3.** Antes de seguir, saquemos factor común $4$ de la tercera fila para no arrastrar números grandes:
+
+$$
+|M| = 4\cdot\begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -1 & 3 & -7 \\ 0 & 0 & 3 & -4 \\ 0 & 0 & -21 & 48 \end{vmatrix}
+$$
+
+Ahora $F_4 \rightarrow F_4 + 7F_3$ deja la última fila en $(0,\,0,\,0,\,48-28) = (0,\,0,\,0,\,20)$:
+
+$$
+|M| = 4\cdot\begin{vmatrix} 1 & 2 & -1 & 3 \\ 0 & -1 & 3 & -7 \\ 0 & 0 & 3 & -4 \\ 0 & 0 & 0 & 20 \end{vmatrix}
+$$
+
+**Paso 4.** La matriz es triangular. Multiplicamos la diagonal y el factor extraído:
+
+$$
+|M| = 4\cdot\bigl(1\cdot(-1)\cdot 3\cdot 20\bigr) = 4\cdot(-60) = -240
+$$
+
+Todo el ejercicio ha costado siete transformaciones y una multiplicación final. Compáralo con los $24$ productos de cuatro factores que exigiría la definición.
+
+::: {.callout-tip}
+## Cómo elegir el pivote
+
+La calidad de un pivote se mide por dos criterios. El primero es su **valor**: un $1$ o un $-1$ evita fracciones, porque los coeficientes $k$ de las transformaciones salen enteros. El segundo es su **posición**: interesa que en su fila y en su columna haya ya muchos ceros, porque entonces hay menos trabajo que hacer.
+
+Si no hay ningún $1$ en la matriz, tienes tres recursos. Sacar un factor común de alguna línea puede fabricarlo: de la fila $(4,\,6,\,10)$ sale un $2$ y queda $(2,\,3,\,5)$. Restar dos líneas parecidas también: si $F_1$ empieza por $7$ y $F_2$ por $6$, la transformación $F_1 \rightarrow F_1 - F_2$ deja un $1$ en la primera posición sin alterar el determinante. Y siempre puedes trabajar por columnas si allí encuentras un pivote mejor.
+:::
+
+::: {.callout-tip}
+## Por qué los ordenadores hacen exactamente esto
+
+El método que acabas de aplicar no es un truco escolar: es **el** algoritmo que usa cualquier programa de cálculo para obtener determinantes, y la razón es puramente económica. Calcular un determinante de orden $n$ por la definición exige del orden de $n!$ productos: $24$ en orden 4, $120$ en orden 5, más de tres millones y medio en orden 10. Triangular con la propiedad 9, en cambio, exige del orden de $n^{3}$ operaciones: unas $64$ en orden 4 y unas mil en orden 10.
+
+La diferencia se vuelve abismal enseguida. Un determinante de orden 20 tendría, por la definición, más de dos trillones de sumandos, mientras que la triangulación lo resuelve en unos pocos miles de operaciones. Por eso, aunque en el examen manejes órdenes 3 y 4, la técnica que estás aprendiendo es la misma que se aplica a matrices de miles de filas en economía, en logística o en tratamiento de imágenes.
+:::
+
+### Ejemplo 6. Un determinante con parámetro resuelto por propiedades
+
+$$
+\begin{vmatrix} a+1 & a & a \\ a & a+1 & a \\ a & a & a+1 \end{vmatrix}
+$$
+
+Cada fila suma lo mismo, $3a+1$. Aprovechémoslo con $C_1 \rightarrow C_1 + C_2 + C_3$, que es una combinación lineal de las otras columnas y por tanto no altera el determinante:
+
+$$
+= \begin{vmatrix} 3a+1 & a & a \\ 3a+1 & a+1 & a \\ 3a+1 & a & a+1 \end{vmatrix}
+= (3a+1)\cdot\begin{vmatrix} 1 & a & a \\ 1 & a+1 & a \\ 1 & a & a+1 \end{vmatrix}
+$$
+
+Ahora $F_2 \rightarrow F_2 - F_1$ y $F_3 \rightarrow F_3 - F_1$:
+
+$$
+= (3a+1)\cdot\begin{vmatrix} 1 & a & a \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{vmatrix} = (3a+1)\cdot 1 = 3a+1
+$$
+
+El resultado es un polinomio de primer grado en $a$, obtenido sin desarrollar. De paso queda resuelta la pregunta habitual: la matriz no tiene inversa cuando $3a+1 = 0$, es decir, para $a = -\tfrac{1}{3}$.
+
+### Applet · Reto de propiedades {.unnumbered}
+
+Es el momento de comprobar si has interiorizado la estrategia. Este applet te propone determinantes de dificultad creciente y te pide que **elijas la transformación** en cada paso, en lugar de darte el resultado hecho: sacar un factor, intercambiar dos líneas, sumar a una línea un múltiplo de otra o declarar que el determinante es cero por una propiedad concreta. El panel aplica tu elección, actualiza la matriz y lleva la cuenta del factor acumulado, avisándote si olvidas un signo o un factor. Intenta resolver cada reto en el mínimo número de pasos y compara tu marca con la solución óptima que muestra el applet al final. Fíjate especialmente en los retos en los que la propiedad decisiva está en las columnas.
+
+::: {#panel-retoPropiedades .applet-panel data-applet-det="retoPropiedades"}
+:::
+
+::: {.callout-caution}
+## Errores típicos del cálculo con propiedades
+
+**Perder el signo de un intercambio.** Cada vez que intercambies dos líneas, escribe el signo menos delante del determinante en ese mismo momento. Dejarlo «para el final» es la garantía de olvidarlo.
+
+**Sacar un factor y no ponerlo fuera.** Si divides una fila entre $3$, el $3$ tiene que aparecer multiplicando por fuera. El determinante que queda dentro **ya no vale lo mismo** que el original.
+
+**Modificar la fila equivocada.** En $F_2 \rightarrow F_2 - 3F_1$ la fila que cambia es la segunda; la primera se queda exactamente como estaba. Reescribirla también es un error frecuente cuando se hacen varias transformaciones seguidas.
+
+**Encadenar transformaciones que se pisan.** Si en el mismo paso haces $F_2 \rightarrow F_2 - F_1$ y $F_1 \rightarrow F_1 - F_2$, la segunda usa una $F_2$ que ya ha cambiado y el resultado es incorrecto. Usa siempre como referencia filas **que no se modifiquen en ese paso**.
+
+**Triangular a medias y aplicar la propiedad 11.** El producto de la diagonal solo vale si **todos** los elementos por debajo de ella (o todos los de encima) son cero. Con un solo elemento superviviente, la propiedad no se puede usar.
+
+**Olvidar comprobar.** Cuando el determinante es de orden 3, verifica el resultado con Sarrus. Cuesta un minuto y detecta cualquier signo perdido por el camino.
+:::
+
+## Resumen del apartado
+
+- **Mirar antes de calcular.** El protocolo de siete preguntas resuelve o simplifica la mayoría de los determinantes.
+- Anulan el determinante: una línea de ceros, dos líneas iguales, dos líneas proporcionales y una línea combinación lineal de las demás. Búscalas **en filas y en columnas**.
+- Si la matriz es triangular o diagonal, el determinante es el producto de la diagonal principal.
+- De cada línea se puede **sacar un factor común**; si se saca de las $n$ líneas, el factor total es $k^{n}$.
+- $F_i \rightarrow F_i + k\,F_j$ **no altera** el determinante: es la herramienta para fabricar ceros y triangular.
+- $F_i \leftrightarrow F_j$ cambia el signo y $F_i \rightarrow k\,F_i$ multiplica por $k$. Lleva la cuenta de ambos.
+- Un buen pivote es un $1$ o un $-1$ situado donde haya muchos ceros alrededor. Si no lo hay, fabrícalo sacando un factor común o restando dos líneas parecidas.
+- Con estas técnicas se resuelven determinantes de orden 4 y superior sin necesidad de la definición ni de Sarrus.
+
+## Ejercicios propuestos
+
+**1.** Sin calcular, justifica cuáles de estos determinantes valen cero:
+
+$$
+\begin{vmatrix} 2 & 4 & 6 \\ 1 & 2 & 3 \\ 5 & 1 & 0 \end{vmatrix},
+\qquad
+\begin{vmatrix} 1 & 0 & 1 \\ 3 & 2 & 5 \\ 4 & 1 & 5 \end{vmatrix},
+\qquad
+\begin{vmatrix} 7 & 2 & 1 \\ 0 & 3 & 5 \\ 0 & 0 & -4 \end{vmatrix}
+$$
+
+**2.** Saca todos los factores comunes posibles y calcula después:
+
+$$
+\begin{vmatrix} 4 & 8 & 12 \\ 3 & 1 & 2 \\ 5 & 10 & 15 \end{vmatrix}
+$$
+
+**3.** Calcula triangulando:
+
+$$
+\begin{vmatrix} 1 & 3 & 2 \\ 2 & 1 & -1 \\ 4 & 2 & 3 \end{vmatrix}
+$$
+
+**4.** Calcula el determinante de orden 4
+
+$$
+\begin{vmatrix} 1 & -1 & 2 & 0 \\ 2 & 1 & -1 & 3 \\ 0 & 3 & 1 & -2 \\ 1 & 2 & 0 & 4 \end{vmatrix}
+$$
+
+**5.** Calcula, sin desarrollar más de lo imprescindible:
+
+$$
+\begin{vmatrix} 5 & 0 & 0 & 0 \\ 7 & -1 & 0 & 0 \\ 2 & 3 & 4 & 0 \\ 9 & 8 & 6 & 2 \end{vmatrix}
+$$
+
+**6.** Demuestra que, cualesquiera que sean $a$, $b$ y $c$,
+
+$$
+\begin{vmatrix} a & b & c \\ a & b & c \\ 1 & 2 & 3 \end{vmatrix} = 0
+$$
+
+y explica qué propiedad lo garantiza.
+
+**7.** Calcula
+
+$$
+\begin{vmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 4 \\ 1 & 3 & 6 & 10 \\ 1 & 4 & 10 & 20 \end{vmatrix}
+$$
+
+usando la propiedad 9 con la primera fila como pivote.
+
+**8.** Si $A$ es de orden $3$ y $|A| = 5$, ¿cuánto vale el determinante de la matriz que se obtiene al multiplicar la primera fila de $A$ por $2$, intercambiar después las filas segunda y tercera y sumar por último a la primera fila el triple de la tercera?
+
+**9.** Halla los valores de $k$ para los que se anula
+
+$$
+\begin{vmatrix} k & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{vmatrix}
+$$
+
+utilizando la técnica del ejemplo 6.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** El primero vale $0$ porque $F_1 = 2F_2$, filas proporcionales. El segundo vale $0$ porque $C_3 = C_1 + C_2$: en efecto, $1+0=1$, $3+2=5$ y $4+1=5$. El tercero **no** vale cero: es triangular superior y su determinante es $7\cdot 3\cdot(-4) = -84$.
+
+**2.** De la primera fila sale $4$ y de la tercera sale $5$:
+
+$$
+= 4\cdot 5\cdot\begin{vmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \\ 1 & 2 & 3 \end{vmatrix} = 20\cdot 0 = 0
+$$
+
+porque las filas primera y tercera del determinante interior son iguales. El resultado es $0$.
+
+**3.** Con $F_2 \rightarrow F_2 - 2F_1$ y $F_3 \rightarrow F_3 - 4F_1$ se obtiene
+
+$$
+\begin{vmatrix} 1 & 3 & 2 \\ 0 & -5 & -5 \\ 0 & -10 & -5 \end{vmatrix}
+$$
+
+y con $F_3 \rightarrow F_3 - 2F_2$ la última fila queda $(0,\,0,\,5)$. El determinante es $1\cdot(-5)\cdot 5 = -25$.
+
+**4.** Con el pivote $a_{11}=1$: $F_2 \rightarrow F_2 - 2F_1$ da $(0,\,3,\,-5,\,3)$, la tercera fila ya empieza por cero y $F_4 \rightarrow F_4 - F_1$ da $(0,\,3,\,-2,\,4)$. Queda
+
+$$
+\begin{vmatrix} 1 & -1 & 2 & 0 \\ 0 & 3 & -5 & 3 \\ 0 & 3 & 1 & -2 \\ 0 & 3 & -2 & 4 \end{vmatrix}
+$$
+
+Ahora $F_3 \rightarrow F_3 - F_2$ da $(0,\,0,\,6,\,-5)$ y $F_4 \rightarrow F_4 - F_2$ da $(0,\,0,\,3,\,1)$. Finalmente $F_4 \rightarrow F_4 - \tfrac{1}{2}F_3$ deja $(0,\,0,\,0,\,\tfrac{7}{2})$, y el determinante es
+
+$$
+1\cdot 3\cdot 6\cdot\tfrac{7}{2} = 63
+$$
+
+**5.** Es triangular inferior, así que basta multiplicar la diagonal: $5\cdot(-1)\cdot 4\cdot 2 = -40$.
+
+**6.** Las filas primera y segunda son idénticas, sean cuales sean $a$, $b$ y $c$. Por la propiedad 4, el determinante es cero. También puede razonarse con la propiedad 3: al intercambiar esas dos filas la matriz no cambia, luego $|A| = -|A|$ y por tanto $|A| = 0$.
+
+**7.** Restando la primera fila a las demás, $F_2 \rightarrow F_2 - F_1$, $F_3 \rightarrow F_3 - F_1$ y $F_4 \rightarrow F_4 - F_1$:
+
+$$
+\begin{vmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 2 & 3 \\ 0 & 2 & 5 & 9 \\ 0 & 3 & 9 & 19 \end{vmatrix}
+$$
+
+Con $F_3 \rightarrow F_3 - 2F_2$ y $F_4 \rightarrow F_4 - 3F_2$ queda
+
+$$
+\begin{vmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 2 & 3 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 3 & 10 \end{vmatrix}
+$$
+
+y con $F_4 \rightarrow F_4 - 3F_3$ la última fila es $(0,\,0,\,0,\,1)$. El determinante vale $1\cdot 1\cdot 1\cdot 1 = 1$.
+
+**8.** Se aplican las tres propiedades en orden. Multiplicar una fila por $2$ multiplica el determinante por $2$: queda $10$. Intercambiar dos filas cambia el signo: queda $-10$. Sumar a una fila un múltiplo de otra no altera nada: el resultado final es $-10$.
+
+**9.** Cada fila suma $k+2$, así que con $C_1 \rightarrow C_1 + C_2 + C_3$ la primera columna se llena de $k+2$ y se saca fuera:
+
+$$
+= (k+2)\cdot\begin{vmatrix} 1 & 1 & 1 \\ 1 & k & 1 \\ 1 & 1 & k \end{vmatrix}
+$$
+
+Con $F_2 \rightarrow F_2 - F_1$ y $F_3 \rightarrow F_3 - F_1$ el determinante interior se vuelve triangular:
+
+$$
+= (k+2)\cdot\begin{vmatrix} 1 & 1 & 1 \\ 0 & k-1 & 0 \\ 0 & 0 & k-1 \end{vmatrix} = (k+2)(k-1)^{2}
+$$
+
+Se anula, por tanto, para $k = -2$ y para $k = 1$. Este segundo valor se veía venir: con $k=1$ las tres filas de la matriz de partida serían iguales.
+:::
+
+## Continúa
+
+Las propiedades resuelven muchísimo, pero no todo. Cuando un determinante no presenta ninguna estructura aprovechable hace falta un método general, y ese método es el **desarrollo por adjuntos**, que reduce un determinante de orden $n$ a varios de orden $n-1$. Para construirlo necesitamos dos conceptos previos: el **menor complementario** de un elemento, que es el asunto del apartado siguiente, y el **adjunto**, que veremos justo después.

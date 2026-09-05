@@ -1,0 +1,461 @@
+---
+title: "Tema 2.14 Matriz de los adjuntos"
+subtitle: "Matemáticas Aplicadas a las CCSS · 2.º de Bachillerato — Determinantes (Parte 14 de 16)"
+filename: 14-matriz-de-los-adjuntos
+author: "Pedro Martínez Durán"
+date-modified: last-modified
+date-format: full
+description: Construcción elemento a elemento de la matriz de los adjuntos de una matriz cuadrada, su transpuesta, el aviso sobre las dos convenciones de notación que circulan con el nombre de matriz adjunta, la identidad fundamental que la relaciona con el determinante y las consecuencias que abren la puerta al cálculo de la inversa, con ejemplos completos de orden dos y tres y applets manipulables.
+categories: [determinantes, matriz de los adjuntos, adjuntos, matriz inversa, 2 Batx, matemáticas CCSS]
+toc: true
+number-sections: true
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+format:
+  html:
+    include-after-body: assets/_scripts.html
+    html-math-method: katex
+---
+
+## De qué va este apartado
+
+Hasta aquí los adjuntos han sido una herramienta de un solo uso: se calculaban los de **una línea** —la que más ceros tuviera— y con ellos se desarrollaba el determinante. Los demás adjuntos de la matriz no hacían falta y nadie los calculaba.
+
+Ahora vamos a hacer justo lo contrario: calcular **todos** los adjuntos de una matriz cuadrada, los $n^2$, y colocarlos ordenadamente en una nueva matriz del mismo orden. Esa matriz se llama **matriz de los adjuntos** de $A$ y se escribe $\operatorname{Adj}(A)$.
+
+¿Para qué? La respuesta corta es que con ella se fabrica la **matriz inversa** con una única fórmula, válida para cualquier orden, sin escalonar nada y sin resolver ningún sistema. La respuesta larga ocupa este apartado, y pasa por una igualdad muy elegante,
+$$
+A\cdot \operatorname{Adj}(A)^t = |A|\cdot I ,
+$$
+que se lee así: al multiplicar $A$ por la transpuesta de su matriz de adjuntos no sale una matriz cualquiera, sino una **matriz escalar** con el determinante de $A$ repetido en toda la diagonal principal y ceros fuera. Y esa identidad no se demuestra con cálculos nuevos: sale entera de dos resultados que ya conoces del apartado 2.7, el desarrollo de un determinante por los adjuntos de una línea y el hecho de que los elementos de una línea multiplicados por los adjuntos de **otra** suman cero.
+
+Este apartado no introduce técnicas de cálculo nuevas: reorganiza lo que ya sabes hacer y prepara el terreno del apartado siguiente, donde la fórmula de la inversa aparecerá casi como un regalo.
+
+## La matriz de los adjuntos
+
+Recordemos la definición de adjunto. Dada una matriz cuadrada $A$ de orden $n$, el **menor complementario** $\alpha_{ij}$ es el determinante de la matriz de orden $n-1$ que queda al suprimir la fila $i$ y la columna $j$, y el **adjunto** del elemento $a_{ij}$ es
+$$
+A_{ij} = (-1)^{i+j}\cdot \alpha_{ij} .
+$$
+El adjunto es, entonces, un **número**: el menor complementario con el signo del tablero de ajedrez. Con esto ya podemos definir la matriz que da nombre al apartado.
+
+::: {.callout-note}
+## Matriz de los adjuntos
+
+Sea $A$ una matriz **cuadrada** de orden $n$. Se llama **matriz de los adjuntos** de $A$, y se representa por $\operatorname{Adj}(A)$, a la matriz cuadrada del mismo orden $n$ cuyo elemento de la posición $(i,j)$ es el adjunto $A_{ij}$ del elemento $a_{ij}$ de $A$:
+$$
+\operatorname{Adj}(A) = \begin{pmatrix}
+A_{11} & A_{12} & \cdots & A_{1n} \\
+A_{21} & A_{22} & \cdots & A_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+A_{n1} & A_{n2} & \cdots & A_{nn}
+\end{pmatrix}.
+$$
+Cada elemento de $A$ se sustituye **por su adjunto**, en la misma posición que ocupaba.
+:::
+
+Tres observaciones inmediatas, y las tres importan:
+
+**Solo tiene sentido para matrices cuadradas.** Los menores complementarios exigen que lo que queda al suprimir una fila y una columna vuelva a ser cuadrado. En una matriz rectangular eso no ocurre, así que ni hay adjuntos ni hay matriz de adjuntos.
+
+**$\operatorname{Adj}(A)$ tiene el mismo orden que $A$**, porque se sustituyen números por números, posición a posición.
+
+**Los elementos de $A$ desaparecen del resultado.** En la posición $(1,1)$ de $\operatorname{Adj}(A)$ no está $a_{11}$, ni $a_{11}$ multiplicado por nada: está $A_{11}$, que se ha calculado precisamente **sin usar** la fila $1$ ni la columna $1$. Este es el punto donde se concentra la mitad de los errores del apartado, y volveremos sobre él.
+
+### La matriz de los adjuntos de orden 2
+
+Conviene hacer el caso general de orden $2$ una vez, porque se usará constantemente. Sea
+$$
+A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}.
+$$
+Los menores complementarios de una matriz de orden $2$ son determinantes de orden $1$, es decir, el propio elemento que sobrevive:
+
+- $\alpha_{11} = |d| = d$, y como $(-1)^{1+1} = +1$, resulta $A_{11} = d$.
+- $\alpha_{12} = |c| = c$, y como $(-1)^{1+2} = -1$, resulta $A_{12} = -c$.
+- $\alpha_{21} = |b| = b$, con signo $-$, luego $A_{21} = -b$.
+- $\alpha_{22} = |a| = a$, con signo $+$, luego $A_{22} = a$.
+
+Por tanto
+$$
+\operatorname{Adj}\!\begin{pmatrix} a & b \\ c & d \end{pmatrix} = \begin{pmatrix} d & -c \\ -b & a \end{pmatrix},
+\qquad
+\operatorname{Adj}(A)^t = \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+$$
+Fíjate bien en la transpuesta de la derecha: los elementos de la **diagonal principal se han intercambiado** ($a$ y $d$ cambian de sitio) y los de la **diagonal secundaria han cambiado de signo** ($b$ y $c$ se quedan donde están, pero con el signo contrario). Esa es exactamente la receta que verás en el apartado siguiente para la inversa de orden $2$, y aquí queda demostrada de dónde sale.
+
+### Ejemplo resuelto · Orden 2 con números
+
+Calculemos $\operatorname{Adj}(A)$ y $\operatorname{Adj}(A)^t$ para
+$$
+A = \begin{pmatrix} 4 & 3 \\ 2 & 5 \end{pmatrix}.
+$$
+No usaremos la fórmula general: repetimos el razonamiento elemento a elemento, que es lo que se pide en un examen.
+
+$$
+A_{11} = (-1)^{1+1}\cdot |5| = 5, \qquad
+A_{12} = (-1)^{1+2}\cdot |2| = -2,
+$$
+$$
+A_{21} = (-1)^{2+1}\cdot |3| = -3, \qquad
+A_{22} = (-1)^{2+2}\cdot |4| = 4 .
+$$
+Colocando cada adjunto en su posición:
+$$
+\operatorname{Adj}(A) = \begin{pmatrix} 5 & -2 \\ -3 & 4 \end{pmatrix},
+\qquad
+\operatorname{Adj}(A)^t = \begin{pmatrix} 5 & -3 \\ -2 & 4 \end{pmatrix}.
+$$
+Y ya podemos hacer una comprobación que anticipa lo que viene. El determinante es $|A| = 4\cdot 5 - 3\cdot 2 = 14$, y
+$$
+A\cdot \operatorname{Adj}(A)^t = \begin{pmatrix} 4 & 3 \\ 2 & 5 \end{pmatrix}\begin{pmatrix} 5 & -3 \\ -2 & 4 \end{pmatrix} = \begin{pmatrix} 20 - 6 & -12 + 12 \\ 10 - 10 & -6 + 20 \end{pmatrix} = \begin{pmatrix} 14 & 0 \\ 0 & 14 \end{pmatrix} = 14\cdot I_2 .
+$$
+Ha aparecido el determinante en la diagonal y ceros fuera. No es casualidad, como veremos.
+
+### Ejemplo resuelto · Orden 3, adjunto a adjunto
+
+Este es el ejemplo que hay que saber hacer sin dudar. Tomemos
+$$
+A = \begin{pmatrix} 1 & 2 & -1 \\ 0 & 3 & 2 \\ 2 & 1 & 1 \end{pmatrix}.
+$$
+Hay que calcular **nueve** adjuntos, cada uno un determinante de orden $2$ con su signo. Los organizamos por filas, tachando la fila y la columna del elemento correspondiente.
+
+**Primera fila.** Para $A_{11}$ suprimimos la fila $1$ y la columna $1$; el signo es $(-1)^{1+1} = +$:
+$$
+A_{11} = +\begin{vmatrix} 3 & 2 \\ 1 & 1 \end{vmatrix} = 3 - 2 = 1 .
+$$
+Para $A_{12}$ suprimimos la fila $1$ y la columna $2$, y el signo es $(-1)^{1+2} = -$:
+$$
+A_{12} = -\begin{vmatrix} 0 & 2 \\ 2 & 1 \end{vmatrix} = -(0 - 4) = 4 .
+$$
+Para $A_{13}$, signo $+$:
+$$
+A_{13} = +\begin{vmatrix} 0 & 3 \\ 2 & 1 \end{vmatrix} = 0 - 6 = -6 .
+$$
+
+**Segunda fila.** Los signos de la segunda fila empiezan por $-$:
+$$
+A_{21} = -\begin{vmatrix} 2 & -1 \\ 1 & 1 \end{vmatrix} = -(2 + 1) = -3, \qquad
+A_{22} = +\begin{vmatrix} 1 & -1 \\ 2 & 1 \end{vmatrix} = 1 + 2 = 3,
+$$
+$$
+A_{23} = -\begin{vmatrix} 1 & 2 \\ 2 & 1 \end{vmatrix} = -(1 - 4) = 3 .
+$$
+
+**Tercera fila.** Los signos vuelven a empezar por $+$:
+$$
+A_{31} = +\begin{vmatrix} 2 & -1 \\ 3 & 2 \end{vmatrix} = 4 + 3 = 7, \qquad
+A_{32} = -\begin{vmatrix} 1 & -1 \\ 0 & 2 \end{vmatrix} = -(2 - 0) = -2,
+$$
+$$
+A_{33} = +\begin{vmatrix} 1 & 2 \\ 0 & 3 \end{vmatrix} = 3 - 0 = 3 .
+$$
+
+Ya solo queda colocar los nueve números en su sitio:
+$$
+\operatorname{Adj}(A) = \begin{pmatrix} 1 & 4 & -6 \\ -3 & 3 & 3 \\ 7 & -2 & 3 \end{pmatrix},
+\qquad
+\operatorname{Adj}(A)^t = \begin{pmatrix} 1 & -3 & 7 \\ 4 & 3 & -2 \\ -6 & 3 & 3 \end{pmatrix}.
+$$
+
+::: {.callout-tip}
+## Un control de calidad gratis
+
+Cuando hayas terminado los nueve adjuntos tienes, sin más trabajo, **tres formas distintas de calcular $|A|$**: desarrollando por la primera fila, por la segunda o por la tercera. Con los números de arriba:
+$$
+|A| = 1\cdot 1 + 2\cdot 4 + (-1)\cdot(-6) = 1 + 8 + 6 = 15 ,
+$$
+$$
+|A| = 0\cdot(-3) + 3\cdot 3 + 2\cdot 3 = 0 + 9 + 6 = 15 ,
+$$
+$$
+|A| = 2\cdot 7 + 1\cdot(-2) + 1\cdot 3 = 14 - 2 + 3 = 15 .
+$$
+Los tres resultados coinciden, así que es muy improbable que haya un error en los adjuntos. Hazlo siempre: cuesta treinta segundos y evita arrastrar un signo equivocado hasta el final del ejercicio.
+:::
+
+::: {.callout-caution}
+## Los cuatro errores clásicos al construir $\operatorname{Adj}(A)$
+
+1. **Multiplicar el adjunto por el elemento.** En la posición $(i,j)$ de $\operatorname{Adj}(A)$ va $A_{ij}$, **no** $a_{ij}\cdot A_{ij}$. Ese producto aparece en el desarrollo del determinante, que es otra cosa: allí se suman los productos, aquí solo se colocan los adjuntos.
+2. **Aplicar el signo al elemento en vez de al menor.** El signo $(-1)^{i+j}$ multiplica al **menor complementario**, no al número $a_{ij}$. Si el menor sale $-4$ y el signo es $-$, el adjunto es $+4$.
+3. **Olvidar el signo de las posiciones «impares».** Los adjuntos de las posiciones $(1,2)$, $(2,1)$, $(2,3)$ y $(3,2)$ llevan signo $-$ en el orden $3$. Es cómodo dibujar al margen el tablero $\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix}$ antes de empezar.
+4. **Confundir posiciones al transponer.** $\operatorname{Adj}(A)^t$ tiene en la posición $(i,j)$ el adjunto $A_{ji}$, con los índices al revés. Transponer al final, en un paso separado y escribiendo la matriz completa, evita el desastre.
+:::
+
+### Applet · Matriz de los adjuntos {.unnumbered}
+
+Escribe una matriz cuadrada y el panel construye $\operatorname{Adj}(A)$ **elemento a elemento**: para cada posición muestra qué fila y qué columna se suprimen, el menor complementario que queda, el signo $(-1)^{i+j}$ y el adjunto resultante, y va rellenando la matriz de adjuntos casilla a casilla. Al final muestra también su transpuesta, para que veas exactamente qué se mueve al transponer. Prueba los escenarios preparados de orden $2$ y $3$, y fíjate en el caso de la matriz con una fila de ceros: sus adjuntos **no** son todos nulos, aunque el determinante sí lo sea.
+
+::: {#panel-matAdjuntos .applet-panel data-applet-det="matAdjuntos"}
+:::
+
+## Aviso importante: dos convenciones con el mismo nombre
+
+Aquí hay que detenerse, porque es una fuente real de confusión al consultar distintos libros o apuntes.
+
+::: {.callout-warning}
+## «Matriz adjunta» significa dos cosas distintas según el texto
+
+Circulan dos convenciones:
+
+- **Convención A** (la que usamos aquí). Se llama **matriz de los adjuntos** de $A$, y se escribe $\operatorname{Adj}(A)$, a la matriz que tiene el adjunto $A_{ij}$ en la posición $(i,j)$. La fórmula de la inversa lleva entonces **transpuesta**:
+$$
+A^{-1} = \frac{1}{|A|}\cdot \operatorname{Adj}(A)^t .
+$$
+- **Convención B.** Otros textos llaman **matriz adjunta** directamente a la **transpuesta** de la anterior, es decir, a la que tiene $A_{ji}$ en la posición $(i,j)$. Con ese nombre la fórmula de la inversa se escribe sin transponer, porque la transposición ya está incluida en la definición.
+
+Las dos convenciones dan **la misma inversa**: lo único que cambia es en qué momento se transpone. Lo que no se puede hacer es mezclarlas, porque entonces se transpone dos veces o ninguna, y el resultado es incorrecto.
+
+**En estos apuntes, y en todo lo que sigue, $\operatorname{Adj}(A)$ es la matriz de los adjuntos sin transponer**, tal como se ha definido arriba, y la transposición se escribe siempre explícitamente con el símbolo $t$. Si en un enunciado ves «matriz adjunta» sin más precisión, mira la fórmula de la inversa que usa ese texto: si lleva $t$, está usando la convención A.
+:::
+
+Hay un caso en el que la distinción es invisible: si $A$ es **simétrica**, su matriz de adjuntos también lo es, y entonces $\operatorname{Adj}(A)^t = \operatorname{Adj}(A)$. Conviene, por tanto, no comprobar nunca una fórmula solo con matrices simétricas: no distinguen las dos convenciones.
+
+## La identidad fundamental
+
+Ya hemos visto en el ejemplo de orden $2$ que $A\cdot \operatorname{Adj}(A)^t$ daba una matriz escalar con el determinante en la diagonal. Vamos a enunciarlo en general y a justificarlo.
+
+::: {.callout-note}
+## Identidad de la matriz de los adjuntos
+
+Para toda matriz cuadrada $A$ de orden $n$ se cumple
+$$
+A\cdot \operatorname{Adj}(A)^t = \operatorname{Adj}(A)^t\cdot A = |A|\cdot I_n ,
+$$
+es decir,
+$$
+A\cdot \operatorname{Adj}(A)^t = \begin{pmatrix}
+|A| & 0 & \cdots & 0 \\
+0 & |A| & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & |A|
+\end{pmatrix}.
+$$
+:::
+
+::: {.callout-important}
+## Por qué se cumple
+
+El producto no hay que calcularlo: hay que **leerlo**. Llamemos $P = A\cdot \operatorname{Adj}(A)^t$ y preguntémonos qué es cada elemento $p_{ij}$.
+
+El elemento $p_{ij}$ es la fila $i$ de $A$ multiplicada por la columna $j$ de $\operatorname{Adj}(A)^t$. Ahora bien, la columna $j$ de $\operatorname{Adj}(A)^t$ es la **fila $j$** de $\operatorname{Adj}(A)$, o sea $(A_{j1}, A_{j2}, \ldots, A_{jn})$: los adjuntos de la fila $j$ de $A$. Por tanto
+$$
+p_{ij} = a_{i1}A_{j1} + a_{i2}A_{j2} + \cdots + a_{in}A_{jn} .
+$$
+Y esta expresión ya la conocemos, con dos lecturas según los índices:
+
+**Si $i = j$**, es la suma de los elementos de la fila $i$ multiplicados por **sus propios** adjuntos. Eso es exactamente el **desarrollo del determinante por la fila $i$**, así que
+$$
+p_{ii} = |A| \qquad \text{para todo } i .
+$$
+Toda la diagonal principal vale $|A|$.
+
+**Si $i \neq j$**, es la suma de los elementos de la fila $i$ multiplicados por los adjuntos de **otra** fila, la $j$. Y ese resultado, visto en el apartado 2.7, es **cero**:
+$$
+p_{ij} = 0 \qquad \text{si } i \neq j .
+$$
+El motivo es transparente: esa suma es el desarrollo, por la fila $j$, del determinante de la matriz que se obtiene de $A$ sustituyendo su fila $j$ por una copia de la fila $i$. Esa matriz tiene **dos filas iguales** (la $i$ y la $j$), y un determinante con dos filas iguales es cero.
+
+Juntando las dos lecturas: diagonal $|A|$, ceros fuera, es decir $P = |A|\cdot I_n$. Y repitiendo el argumento con columnas en lugar de filas se obtiene igualmente $\operatorname{Adj}(A)^t\cdot A = |A|\cdot I_n$, con lo que el producto es el mismo por los dos lados, cosa que no es habitual con matrices.
+:::
+
+### Ejemplo resuelto · La identidad en orden 3
+
+Comprobémosla con la matriz del ejemplo anterior, $A = \begin{pmatrix} 1 & 2 & -1 \\ 0 & 3 & 2 \\ 2 & 1 & 1 \end{pmatrix}$, cuyo determinante es $|A| = 15$ y cuya transpuesta de adjuntos es $\operatorname{Adj}(A)^t = \begin{pmatrix} 1 & -3 & 7 \\ 4 & 3 & -2 \\ -6 & 3 & 3 \end{pmatrix}$.
+
+Multiplicamos fila por columna. Primera fila de $A$ por las tres columnas:
+$$
+(1,\,2,\,-1)\cdot(1,\,4,\,-6) = 1 + 8 + 6 = 15 ,
+$$
+$$
+(1,\,2,\,-1)\cdot(-3,\,3,\,3) = -3 + 6 - 3 = 0 ,
+$$
+$$
+(1,\,2,\,-1)\cdot(7,\,-2,\,3) = 7 - 4 - 3 = 0 .
+$$
+Segunda fila de $A$:
+$$
+(0,\,3,\,2)\cdot(1,\,4,\,-6) = 0 + 12 - 12 = 0 , \qquad
+(0,\,3,\,2)\cdot(-3,\,3,\,3) = 0 + 9 + 6 = 15 ,
+$$
+$$
+(0,\,3,\,2)\cdot(7,\,-2,\,3) = 0 - 6 + 6 = 0 .
+$$
+Tercera fila de $A$:
+$$
+(2,\,1,\,1)\cdot(1,\,4,\,-6) = 2 + 4 - 6 = 0 , \qquad
+(2,\,1,\,1)\cdot(-3,\,3,\,3) = -6 + 3 + 3 = 0 ,
+$$
+$$
+(2,\,1,\,1)\cdot(7,\,-2,\,3) = 14 - 2 + 3 = 15 .
+$$
+Es decir,
+$$
+A\cdot \operatorname{Adj}(A)^t = \begin{pmatrix} 15 & 0 & 0 \\ 0 & 15 & 0 \\ 0 & 0 & 15 \end{pmatrix} = 15\cdot I_3 = |A|\cdot I_3 .
+$$
+Cada uno de los ceros es una fila de $A$ multiplicada por los adjuntos de otra fila: no son casualidades numéricas, sino la propiedad de la fila ajena en acción, seis veces.
+
+### Applet · La identidad fundamental {.unnumbered}
+
+El panel toma tu matriz, calcula $|A|$, construye $\operatorname{Adj}(A)$ y su transpuesta, efectúa el producto casilla por casilla y **etiqueta cada casilla** con su significado: las de la diagonal aparecen marcadas como «desarrollo por la fila $i$» y las de fuera como «fila $i$ por adjuntos de la fila $j$, que vale $0$». Prueba una matriz con determinante nulo y observa el caso límite: el producto sale la matriz nula, porque $|A|\cdot I = 0\cdot I$. Ahí es donde se romperá la fórmula de la inversa del apartado siguiente.
+
+::: {#panel-identidadAdj .applet-panel data-applet-det="identidadAdj"}
+:::
+
+## Consecuencias y casos particulares
+
+La identidad anterior es el motor del apartado siguiente, pero de ella y de la propia definición se deducen ya algunas cosas útiles.
+
+**El paso a la inversa.** Si $|A| \neq 0$ podemos dividir la identidad por ese número:
+
+$$
+A\cdot \left(\frac{1}{|A|}\operatorname{Adj}(A)^t\right) = I_n .
+$$
+La matriz del paréntesis se comporta como la inversa de $A$: multiplicada por $A$ da la identidad, y por el otro lado también, porque la identidad valía en los dos órdenes. Esta es toda la demostración de la fórmula que estudiaremos en el apartado 2.15; conviene verla ahora, mientras la identidad está fresca.
+
+**La matriz de adjuntos de la identidad es la identidad.** En $I_n$, el menor complementario de un elemento de la diagonal es $|I_{n-1}| = 1$ con signo $+$, y los menores complementarios de los elementos de fuera tienen una fila de ceros y valen $0$. Así que $\operatorname{Adj}(I_n) = I_n$.
+
+**Matrices diagonales.** Si $D$ es diagonal, cada adjunto de la diagonal es el producto de **los demás** elementos diagonales, y los de fuera son cero:
+$$
+D = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}
+\;\Longrightarrow\;
+\operatorname{Adj}(D) = \begin{pmatrix} 15 & 0 & 0 \\ 0 & 10 & 0 \\ 0 & 0 & 6 \end{pmatrix},
+$$
+y en efecto $D\cdot \operatorname{Adj}(D)^t = \begin{pmatrix} 30 & 0 & 0 \\ 0 & 30 & 0 \\ 0 & 0 & 30 \end{pmatrix} = 30\cdot I_3$, con $|D| = 2\cdot 3\cdot 5 = 30$.
+
+**Determinante nulo.** Si $|A| = 0$, la identidad se convierte en $A\cdot \operatorname{Adj}(A)^t = 0$, la matriz nula: dos matrices no nulas cuyo producto es nulo, es decir, divisores de cero. Y es el aviso de que ahí no habrá inversa.
+
+::: {.callout-tip}
+## El determinante de la matriz de los adjuntos
+
+Con los datos del ejemplo de orden $3$ se puede hacer un pequeño descubrimiento. Teníamos $|A| = 15$ y
+$$
+\operatorname{Adj}(A) = \begin{pmatrix} 1 & 4 & -6 \\ -3 & 3 & 3 \\ 7 & -2 & 3 \end{pmatrix}.
+$$
+Calculemos su determinante por la regla de Sarrus:
+$$
+|\operatorname{Adj}(A)| = 1\cdot 3\cdot 3 + 4\cdot 3\cdot 7 + (-6)\cdot(-3)\cdot(-2) - \big[(-6)\cdot 3\cdot 7 + 1\cdot 3\cdot(-2) + 4\cdot(-3)\cdot 3\big]
+$$
+$$
+= 9 + 84 - 36 - \big[-126 - 6 - 36\big] = 57 + 168 = 225 .
+$$
+Y $225 = 15^2$. No es coincidencia: para una matriz de orden $n$ se cumple
+$$
+|\operatorname{Adj}(A)| = |A|^{\,n-1} .
+$$
+En el orden $2$ eso significa $|\operatorname{Adj}(A)| = |A|$, algo que puedes comprobar de un vistazo con la fórmula general: $\begin{vmatrix} d & -c \\ -b & a\end{vmatrix} = ad - bc$. La justificación general es corta si se toman determinantes en la identidad fundamental: $|A|\cdot|\operatorname{Adj}(A)^t| = \big||A|\cdot I_n\big| = |A|^n$, y como transponer no altera el determinante, al dividir entre $|A|$ (cuando no es cero) queda el resultado.
+:::
+
+::: {.callout-tip}
+## De dónde viene todo esto
+
+La matriz de los adjuntos no nació como objeto interesante en sí mismo, sino como subproducto de un cálculo concreto: resolver sistemas de ecuaciones lineales con fórmulas cerradas, sin eliminar incógnitas una a una. Los determinantes aparecieron en ese contexto casi un siglo antes que las matrices, y la combinación «adjuntos en tabla, transpuestos y divididos por el determinante» permitía escribir de un tirón la solución de un sistema.
+
+En cálculo con ordenador hoy casi nunca se usa: para una matriz de orden $n$ exige calcular $n^2$ determinantes de orden $n-1$, un coste que crece de forma explosiva, mientras que el método de Gauss-Jordan se mantiene manejable. Su valor es teórico y didáctico: da una **fórmula explícita**, y una fórmula permite razonar —por ejemplo, discutir para qué valores de un parámetro existe la inversa— mientras que un algoritmo solo permite calcular.
+:::
+
+## Resumen del apartado
+
+- La **matriz de los adjuntos** $\operatorname{Adj}(A)$ de una matriz cuadrada de orden $n$ es la matriz del mismo orden que tiene en la posición $(i,j)$ el adjunto $A_{ij} = (-1)^{i+j}\alpha_{ij}$.
+- Solo se define para matrices **cuadradas**, y en cada posición va **solo el adjunto**, nunca multiplicado por el elemento $a_{ij}$.
+- En el orden $2$: $\operatorname{Adj}\begin{pmatrix} a & b \\ c & d\end{pmatrix} = \begin{pmatrix} d & -c \\ -b & a\end{pmatrix}$ y $\operatorname{Adj}(A)^t = \begin{pmatrix} d & -b \\ -c & a\end{pmatrix}$: se intercambia la diagonal principal y se cambia de signo la secundaria.
+- En el orden $3$ hay que calcular **nueve** determinantes de orden $2$ con su signo del tablero. Los tres desarrollos por cada fila sirven de comprobación.
+- Cuidado con la **notación**: hay textos que llaman «matriz adjunta» a $\operatorname{Adj}(A)$ y otros a su transpuesta. Aquí $\operatorname{Adj}(A)$ va **sin transponer**, y la transposición se escribe siempre.
+- Identidad fundamental: $A\cdot \operatorname{Adj}(A)^t = \operatorname{Adj}(A)^t\cdot A = |A|\cdot I_n$. La diagonal sale $|A|$ por el desarrollo por adjuntos de cada línea; los ceros de fuera, por la propiedad de la línea ajena.
+- Si $|A| \neq 0$, dividiendo la identidad por $|A|$ aparece la inversa: $A^{-1} = \dfrac{1}{|A|}\operatorname{Adj}(A)^t$, que es el apartado siguiente. Si $|A| = 0$, el producto es la matriz nula y no hay inversa.
+- Además, $|\operatorname{Adj}(A)| = |A|^{\,n-1}$.
+
+## Ejercicios propuestos
+
+**1.** Calcula $\operatorname{Adj}(A)$ y $\operatorname{Adj}(A)^t$ para $A = \begin{pmatrix} 3 & -1 \\ 2 & 4\end{pmatrix}$, y comprueba la identidad fundamental.
+
+**2.** Halla la matriz de los adjuntos de $B = \begin{pmatrix} 1 & 0 & 2 \\ -1 & 3 & 1 \\ 0 & 2 & 1\end{pmatrix}$.
+
+**3.** Con la matriz $B$ del ejercicio anterior, calcula $|B|$ de tres maneras distintas usando los adjuntos ya obtenidos.
+
+**4.** Sea $C = \begin{pmatrix} 1 & 2 \\ 2 & 4\end{pmatrix}$. Calcula $\operatorname{Adj}(C)^t$ y el producto $C\cdot \operatorname{Adj}(C)^t$. ¿Qué ocurre y por qué?
+
+**5.** Comprueba que $\operatorname{Adj}(A)^t\cdot A = |A|\cdot I_3$ para $A = \begin{pmatrix} 1 & 2 & -1 \\ 0 & 3 & 2 \\ 2 & 1 & 1\end{pmatrix}$, usando la matriz de adjuntos calculada en el apartado.
+
+**6.** Sea $T = \begin{pmatrix} 2 & 5 & -1 \\ 0 & 3 & 4 \\ 0 & 0 & -2 \end{pmatrix}$, triangular superior. Calcula $\operatorname{Adj}(T)$ y observa qué forma tiene $\operatorname{Adj}(T)^t$.
+
+**7.** Si $A$ es una matriz cuadrada de orden $3$ con $|A| = -2$, ¿cuánto vale $|\operatorname{Adj}(A)|$? ¿Y si el orden fuese $4$?
+
+**8.** Explica, sin hacer ningún cálculo, por qué el elemento de la posición $(2,3)$ del producto $A\cdot \operatorname{Adj}(A)^t$ es siempre cero.
+
+::: {.callout-note collapse="true"}
+## Soluciones
+
+**1.** $A_{11} = 4$, $A_{12} = -2$, $A_{21} = 1$, $A_{22} = 3$, luego
+$$
+\operatorname{Adj}(A) = \begin{pmatrix} 4 & -2 \\ 1 & 3\end{pmatrix}, \qquad \operatorname{Adj}(A)^t = \begin{pmatrix} 4 & 1 \\ -2 & 3\end{pmatrix}.
+$$
+Como $|A| = 3\cdot 4 - (-1)\cdot 2 = 14$:
+$$
+A\cdot \operatorname{Adj}(A)^t = \begin{pmatrix} 3 & -1 \\ 2 & 4\end{pmatrix}\begin{pmatrix} 4 & 1 \\ -2 & 3\end{pmatrix} = \begin{pmatrix} 12 + 2 & 3 - 3 \\ 8 - 8 & 2 + 12\end{pmatrix} = \begin{pmatrix} 14 & 0 \\ 0 & 14\end{pmatrix} = 14\cdot I_2 .
+$$
+
+**2.** Los nueve adjuntos, con su signo:
+$$
+B_{11} = +\begin{vmatrix} 3 & 1 \\ 2 & 1\end{vmatrix} = 1, \quad
+B_{12} = -\begin{vmatrix} -1 & 1 \\ 0 & 1\end{vmatrix} = 1, \quad
+B_{13} = +\begin{vmatrix} -1 & 3 \\ 0 & 2\end{vmatrix} = -2,
+$$
+$$
+B_{21} = -\begin{vmatrix} 0 & 2 \\ 2 & 1\end{vmatrix} = 4, \quad
+B_{22} = +\begin{vmatrix} 1 & 2 \\ 0 & 1\end{vmatrix} = 1, \quad
+B_{23} = -\begin{vmatrix} 1 & 0 \\ 0 & 2\end{vmatrix} = -2,
+$$
+$$
+B_{31} = +\begin{vmatrix} 0 & 2 \\ 3 & 1\end{vmatrix} = -6, \quad
+B_{32} = -\begin{vmatrix} 1 & 2 \\ -1 & 1\end{vmatrix} = -3, \quad
+B_{33} = +\begin{vmatrix} 1 & 0 \\ -1 & 3\end{vmatrix} = 3 .
+$$
+Por tanto
+$$
+\operatorname{Adj}(B) = \begin{pmatrix} 1 & 1 & -2 \\ 4 & 1 & -2 \\ -6 & -3 & 3\end{pmatrix},
+\qquad
+\operatorname{Adj}(B)^t = \begin{pmatrix} 1 & 4 & -6 \\ 1 & 1 & -3 \\ -2 & -2 & 3\end{pmatrix}.
+$$
+
+**3.** Por la primera fila: $1\cdot 1 + 0\cdot 1 + 2\cdot(-2) = 1 - 4 = -3$. Por la segunda: $(-1)\cdot 4 + 3\cdot 1 + 1\cdot(-2) = -4 + 3 - 2 = -3$. Por la tercera: $0\cdot(-6) + 2\cdot(-3) + 1\cdot 3 = -6 + 3 = -3$. Así que $|B| = -3$ y los adjuntos están bien calculados.
+
+**4.** $\operatorname{Adj}(C) = \begin{pmatrix} 4 & -2 \\ -2 & 1\end{pmatrix}$ y $\operatorname{Adj}(C)^t = \begin{pmatrix} 4 & -2 \\ -2 & 1\end{pmatrix}$, que coincide con ella porque $C$ es simétrica. El producto es
+$$
+C\cdot \operatorname{Adj}(C)^t = \begin{pmatrix} 1 & 2 \\ 2 & 4\end{pmatrix}\begin{pmatrix} 4 & -2 \\ -2 & 1\end{pmatrix} = \begin{pmatrix} 4 - 4 & -2 + 2 \\ 8 - 8 & -4 + 4\end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0\end{pmatrix}.
+$$
+Sale la matriz nula porque $|C| = 4 - 4 = 0$ y la identidad dice que el producto es $|C|\cdot I_2 = 0\cdot I_2$. Ninguna de las dos matrices es nula: son divisores de cero. Consecuencia práctica: $C$ no tendrá inversa.
+
+**5.** Con $\operatorname{Adj}(A)^t = \begin{pmatrix} 1 & -3 & 7 \\ 4 & 3 & -2 \\ -6 & 3 & 3\end{pmatrix}$, la primera fila de este producto es
+$$
+(1,\,-3,\,7)\cdot(1,\,0,\,2) = 1 + 0 + 14 = 15, \quad
+(1,\,-3,\,7)\cdot(2,\,3,\,1) = 2 - 9 + 7 = 0, \quad
+(1,\,-3,\,7)\cdot(-1,\,2,\,1) = -1 - 6 + 7 = 0 ,
+$$
+y de forma análoga las otras dos filas dan $(0, 15, 0)$ y $(0, 0, 15)$. En total $\operatorname{Adj}(A)^t\cdot A = 15\cdot I_3 = |A|\cdot I_3$, el mismo resultado que por el otro lado.
+
+**6.** Los adjuntos son
+$$
+T_{11} = +\begin{vmatrix} 3 & 4 \\ 0 & -2\end{vmatrix} = -6, \quad
+T_{12} = -\begin{vmatrix} 0 & 4 \\ 0 & -2\end{vmatrix} = 0, \quad
+T_{13} = +\begin{vmatrix} 0 & 3 \\ 0 & 0\end{vmatrix} = 0,
+$$
+$$
+T_{21} = -\begin{vmatrix} 5 & -1 \\ 0 & -2\end{vmatrix} = 10, \quad
+T_{22} = +\begin{vmatrix} 2 & -1 \\ 0 & -2\end{vmatrix} = -4, \quad
+T_{23} = -\begin{vmatrix} 2 & 5 \\ 0 & 0\end{vmatrix} = 0,
+$$
+$$
+T_{31} = +\begin{vmatrix} 5 & -1 \\ 3 & 4\end{vmatrix} = 23, \quad
+T_{32} = -\begin{vmatrix} 2 & -1 \\ 0 & 4\end{vmatrix} = -8, \quad
+T_{33} = +\begin{vmatrix} 2 & 5 \\ 0 & 3\end{vmatrix} = 6 .
+$$
+Así, $\operatorname{Adj}(T) = \begin{pmatrix} -6 & 0 & 0 \\ 10 & -4 & 0 \\ 23 & -8 & 6\end{pmatrix}$, que es triangular **inferior**, y su transpuesta $\operatorname{Adj}(T)^t = \begin{pmatrix} -6 & 10 & 23 \\ 0 & -4 & -8 \\ 0 & 0 & 6\end{pmatrix}$ vuelve a ser triangular superior, como $T$. Comprobación rápida de la diagonal: $|T| = 2\cdot 3\cdot(-2) = -12$, y en efecto $2\cdot(-6) = -12$, $3\cdot(-4) = -12$ y $(-2)\cdot 6 = -12$.
+
+**7.** Para el orden $3$, $|\operatorname{Adj}(A)| = |A|^{3-1} = (-2)^2 = 4$. Para el orden $4$ sería $|\operatorname{Adj}(A)| = (-2)^{4-1} = -8$.
+
+**8.** Ese elemento es la fila $2$ de $A$ multiplicada por la columna $3$ de $\operatorname{Adj}(A)^t$, que es la fila $3$ de $\operatorname{Adj}(A)$, o sea los adjuntos de la **tercera** fila de $A$. Se trata, pues, de la suma de los elementos de una línea por los adjuntos de otra: coincide con el determinante de la matriz que resulta de cambiar la fila $3$ de $A$ por una copia de su fila $2$, matriz que tiene dos filas iguales y determinante nulo.
+:::
